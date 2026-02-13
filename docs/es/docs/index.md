@@ -40,7 +40,7 @@ Las funcionalidades clave son:
 * **Rápido**: Muy alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks Python más rápidos disponibles](#performance).
 * **Rápido de programar**: Aumenta la velocidad para desarrollar funcionalidades en aproximadamente un 200% a 300%. *
 * **Menos bugs**: Reduce en aproximadamente un 40% los errores inducidos por humanos (desarrolladores). *
-* **Intuitivo**: Gran soporte para editores. <abbr title="también conocido como auto-complete, autocompletado, IntelliSense">Autocompletado</abbr> en todas partes. Menos tiempo depurando.
+* **Intuitivo**: Gran soporte para editores. <dfn title="también conocido como: autocompletado, IntelliSense">Autocompletado</dfn> en todas partes. Menos tiempo depurando.
 * **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades desde cada declaración de parámetro. Menos bugs.
 * **Robusto**: Obtén código listo para producción. Con documentación interactiva automática.
@@ -368,7 +368,7 @@ item: Item
 * Validación de datos:
     * Errores automáticos y claros cuando los datos son inválidos.
     * Validación incluso para objetos JSON profundamente anidados.
-* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de entrada: de la red a los datos y tipos de Python. Leyendo desde:
+* <dfn title="también conocido como: serialización, parsing, marshalling">Conversión</dfn> de datos de entrada: de la red a los datos y tipos de Python. Leyendo desde:
     * JSON.
     * Parámetros de path.
     * Parámetros de query.
@@ -376,7 +376,7 @@ item: Item
     * Headers.
     * Forms.
     * Archivos.
-* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de salida: convirtiendo de datos y tipos de Python a datos de red (como JSON):
+* <dfn title="también conocido como: serialización, parsing, marshalling">Conversión</dfn> de datos de salida: convirtiendo de datos y tipos de Python a datos de red (como JSON):
     * Convertir tipos de Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * Objetos `datetime`.
     * Objetos `UUID`.
@@ -439,7 +439,7 @@ Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="ht
 
 * Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de formulario** y **archivos**.
 * Cómo establecer **restricciones de validación** como `maximum_length` o `regex`.
-* Un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso y fácil de usar.
+* Un sistema de **<dfn title="también conocido como: componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso y fácil de usar.
 * Seguridad y autenticación, incluyendo soporte para **OAuth2** con **tokens JWT** y autenticación **HTTP Basic**.
 * Técnicas más avanzadas (pero igualmente fáciles) para declarar **modelos JSON profundamente anidados** (gracias a Pydantic).
 * Integración con **GraphQL** usando <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otros paquetes.
@@ -524,7 +524,7 @@ Usadas por Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si deseas usar el `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si deseas usar la configuración de plantilla por defecto.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar <abbr title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</abbr> de forms, con `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar form <dfn title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</dfn>, con `request.form()`.
 
 Usadas por FastAPI:
 

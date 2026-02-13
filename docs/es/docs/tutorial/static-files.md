@@ -7,7 +7,7 @@ Puedes servir archivos estáticos automáticamente desde un directorio utilizand
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Detalles Técnicos
 

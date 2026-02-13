@@ -2,7 +2,7 @@
 
 En el capítulo anterior, el sistema de seguridad (que se basa en el sistema de inyección de dependencias) le estaba dando a la *path operation function* un `token` como un `str`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Pero eso aún no es tan útil. Vamos a hacer que nos dé el usuario actual.
 
