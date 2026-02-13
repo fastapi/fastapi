@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for pt (update-all). PR [#14912](https://github.com/fastapi/fastapi/pull/14912) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for es (update-all and add-missing). PR [#14911](https://github.com/fastapi/fastapi/pull/14911) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for zh (update-all). PR [#14917](https://github.com/fastapi/fastapi/pull/14917) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for uk (update-all). PR [#14914](https://github.com/fastapi/fastapi/pull/14914) by [@YuriiMotov](https://github.com/YuriiMotov).
