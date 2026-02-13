@@ -129,7 +129,7 @@ Swagger UI 使用以下文件：
 它可能以如下内容开头：
 
 ```JavaScript
-/*! 有关许可信息请参见 redoc.standalone.js.LICENSE.txt */
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
