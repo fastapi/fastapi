@@ -193,7 +193,7 @@ Burada göreceğimiz şey de bu.
 
 Bu durumda, `int` key’lere ve `float` value’lara sahip olduğu sürece herhangi bir `dict` kabul edersiniz:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | İpucu
 
