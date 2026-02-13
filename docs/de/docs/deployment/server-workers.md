@@ -64,13 +64,13 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
@@ -119,7 +119,7 @@ In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern 
 
 * **Sicherheit – HTTPS**
 * **Beim Hochfahren ausführen**
-* **Neustarts**
+* ***Neustarts***
 * Replikation (die Anzahl der laufenden Prozesse)
 * **Arbeitsspeicher**
 * **Schritte vor dem Start**

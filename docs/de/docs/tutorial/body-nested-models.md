@@ -163,7 +163,7 @@ images: list[Image]
 
 so wie in:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Editor-Unterstützung überall { #editor-support-everywhere }
 

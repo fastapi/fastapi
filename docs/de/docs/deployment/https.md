@@ -28,7 +28,7 @@ Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes 
 * **Standardmäßig** bedeutet das, dass Sie nur **ein HTTPS-Zertifikat pro IP-Adresse** haben können.
     * Ganz gleich, wie groß Ihr Server ist oder wie klein die einzelnen Anwendungen darauf sind.
     * Hierfür gibt es jedoch eine **Lösung**.
-* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
+* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
     * Mit dieser SNI-Erweiterung kann ein einzelner Server (mit einer **einzelnen IP-Adresse**) über **mehrere HTTPS-Zertifikate** verfügen und **mehrere HTTPS-Domains/Anwendungen bereitstellen**.
     * Damit das funktioniert, muss eine **einzelne** Komponente (Programm), die auf dem Server ausgeführt wird und welche die **öffentliche IP-Adresse** überwacht, **alle HTTPS-Zertifikate** des Servers haben.
 * **Nachdem** eine sichere Verbindung hergestellt wurde, ist das Kommunikationsprotokoll **immer noch HTTP**.
@@ -65,7 +65,7 @@ Hier ist ein Beispiel, wie eine HTTPS-API aussehen könnte, Schritt für Schritt
 
 Alles beginnt wahrscheinlich damit, dass Sie einen **Domainnamen erwerben**. Anschließend konfigurieren Sie ihn in einem DNS-Server (wahrscheinlich beim selben Cloudanbieter).
 
-Sie würden wahrscheinlich einen Cloud-Server (eine virtuelle Maschine) oder etwas Ähnliches bekommen, und dieser hätte eine <abbr title="Sie ändert sich nicht">feste</abbr> **öffentliche IP-Adresse**.
+Sie würden wahrscheinlich einen Cloud-Server (eine virtuelle Maschine) oder etwas Ähnliches bekommen, und dieser hätte eine <dfn title="Ändert sich im Laufe der Zeit nicht. Nicht dynamisch.">feste</dfn> **öffentliche IP-Adresse**.
 
 In dem oder den DNS-Server(n) würden Sie einen Eintrag (einen „`A record`“) konfigurieren, um mit **Ihrer Domain** auf die öffentliche **IP-Adresse Ihres Servers** zu verweisen.
 
