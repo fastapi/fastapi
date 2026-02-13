@@ -10,7 +10,7 @@
 
 もしセキュリティ上の欠陥がソースコードにあるならば、それは存在したままです。
 
-ドキュメンテーションを非表示にするのは、単にあなたのAPIへのアクセス方法を難解にするだけでなく、同時にあなた自身の本番環境でのAPIのデバッグを困難にしてしまう可能性があります。単純に、 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a> の一つの形態として考えられるでしょう。
+ドキュメンテーションを非表示にするのは、単にあなたのAPIへのアクセス方法を難解にするだけでなく、同時にあなた自身の本番環境でのAPIのデバッグを困難にしてしまう可能性があります。単純に、 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">秘匿によるセキュリティ</a> の一つの形態として考えられるでしょう。
 
 もしあなたのAPIのセキュリティを強化したいなら、いくつかのよりよい方法があります。例を示すと、
 
@@ -29,7 +29,7 @@
 
 例えば、
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 ここでは `openapi_url` の設定を、デフォルトの `"/openapi.json"` のまま宣言しています。
 

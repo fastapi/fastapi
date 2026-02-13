@@ -7,7 +7,7 @@
 * `StaticFiles` をインポート。
 * `StaticFiles()` インスタンスを特定のパスに「マウント」。
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | 技術詳細
 
