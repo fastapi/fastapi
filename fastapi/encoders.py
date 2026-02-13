@@ -1,7 +1,7 @@
 import dataclasses
 import datetime
 from collections import defaultdict, deque
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -18,9 +18,6 @@ from types import GeneratorType
 from typing import (
     Annotated,
     Any,
-    Callable,
-    Optional,
-    Union,
 )
 from uuid import UUID
 

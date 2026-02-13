@@ -7,7 +7,7 @@ from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import NamedTuple, Optional, TypedDict, Union
+from typing import NamedTuple, TypedDict
 
 import pytest
 from fastapi._compat import Undefined
@@ -58,7 +58,7 @@ class RoleEnum(Enum):
 
 
 class ModelWithConfig(BaseModel):
-    role: Optional[RoleEnum] = None
+    role: RoleEnum | None = None
 
     model_config = {"use_enum_values": True}
 
@@ -319,7 +319,7 @@ def test_encode_sequence():
         def __init__(self, items: list[str]):
             self._items = items
 
-        def __getitem__(self, index: Union[int, slice]) -> Union[str, Sequence[str]]:
+        def __getitem__(self, index: int | slice) -> str | Sequence[str]:
             return self._items[index]
 
         def __len__(self) -> int:
