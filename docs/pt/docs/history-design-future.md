@@ -24,7 +24,7 @@ Há muitas ferramentas criadas antes que ajudaram a inspirar sua criação.
 
 Eu estive evitando a criação de um novo _framework_ por vários anos. Primeiro tentei resolver todas as funcionalidades cobertas por **FastAPI** usando muitos _frameworks_, _plug-ins_ e ferramentas diferentes.
 
-Mas em algum ponto, não havia outra opção senão criar algo que oferecia todas as funcionalidades, aproveitando as melhores ideias de ferramentas anteriores, e combinando-as da melhor maneira possível, usando funcionalidades da linguagem que nem estavam disponíveis antes (_type hints_ do Python 3.6+).
+Mas em algum ponto, não havia outra opção senão criar algo que oferecia todas as funcionalidades, aproveitando as melhores ideias de ferramentas anteriores, e combinando-as da melhor maneira possível, usando funcionalidades da linguagem que nem estavam disponíveis antes (anotações de tipo do Python 3.6+).
 
 </blockquote>
 
@@ -32,7 +32,7 @@ Mas em algum ponto, não havia outra opção senão criar algo que oferecia toda
 
 Ao usar todas as alternativas anteriores, eu tive a chance de aprender com todas elas, aproveitar ideias e combiná-las da melhor maneira que encontrei para mim e para os times de desenvolvedores com os quais trabalhava.
 
-Por exemplo, estava claro que idealmente ele deveria ser baseado nos _type hints_ padrões do Python.
+Por exemplo, estava claro que idealmente ele deveria ser baseado nas anotações de tipo padrão do Python.
 
 Também, a melhor abordagem era usar padrões já existentes.
 

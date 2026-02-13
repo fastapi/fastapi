@@ -28,7 +28,7 @@ Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas 
 * Por padrão, isso significa que você só pode ter um certificado HTTPS por endereço IP.
     * Não importa o tamanho do seu servidor ou quão pequeno cada aplicativo que você tem nele possa ser.
     * No entanto, existe uma solução para isso.
-* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
+* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - Indicação do Nome do Servidor">SNI</abbr></a>.
     * Esta extensão SNI permite que um único servidor (com um único endereço IP) tenha vários certificados HTTPS e atenda a vários domínios / aplicativos HTTPS.
     * Para que isso funcione, um único componente (programa) em execução no servidor, ouvindo no endereço IP público, deve ter todos os certificados HTTPS no servidor.
 * Depois de obter uma conexão segura, o protocolo de comunicação ainda é HTTP.
@@ -65,7 +65,7 @@ Aqui está um exemplo de como uma API HTTPS poderia ser estruturada, passo a pas
 
 A etapa inicial provavelmente seria adquirir algum nome de domínio. Então, você iria configurá-lo em um servidor DNS (possivelmente no mesmo provedor em nuvem).
 
-Você provavelmente usaria um servidor em nuvem (máquina virtual) ou algo parecido, e ele teria um <abbr title="Que não muda">fixo</abbr> Endereço IP público.
+Você provavelmente usaria um servidor em nuvem (máquina virtual) ou algo parecido, e ele teria um <dfn title="Não muda ao longo do tempo. Não é dinâmico.">fixo</dfn> Endereço IP público.
 
 No(s) servidor(es) DNS, você configuraria um registro (um `A record`) para apontar seu domínio para o endereço IP público do seu servidor.
 
@@ -135,7 +135,7 @@ Então, o cliente envia uma solicitação HTTPS. Que é apenas uma solicitação
 
 <img src="/img/deployment/https/https04.drawio.svg">
 
-### Desencriptando a Solicitação { #decrypt-the-request }
+### Desencripte a Solicitação { #decrypt-the-request }
 
 O Proxy de Terminação TLS então usaria a encriptação combinada para desencriptar a solicitação, e transmitiria a solicitação básica (desencriptada) para o processo executando a aplicação (por exemplo, um processo com Uvicorn executando a aplicação FastAPI).
 
@@ -186,7 +186,7 @@ Para fazer isso, e acomodar as necessidades de diferentes aplicações, existem 
 * Executar como um servidor (ao menos durante o processo de aquisição do certificado) no endereço IP público associado com o domínio.
     * Como dito anteriormente, apenas um processo pode estar ligado a uma porta e IP específicos.
     * Essa é uma dos motivos que fazem utilizar o mesmo Proxy de Terminação TLS para gerenciar a renovação de certificados ser tão útil.
-    * Caso contrário, você pode ter que parar a execução do Proxy de Terminação TLS momentaneamente, inicializar o programa de renovação para renovar os certificados, e então reiniciar o Proxy de Terminação TLS. Isso não é o ideal, já que sua(s) aplicação(ões) não vão estar disponíveis enquanto o Proxy de Terminação TLS estiver desligado.
+    * Caso contrário, você pode ter que parar a execução do Proxy de Terminação TLS momentaneamente, inicializar o programa de renovação para adquirir os certificados, depois configurá-los com o Proxy de Terminação TLS, e então reiniciar o Proxy de Terminação TLS. Isso não é o ideal, já que sua(s) aplicação(ões) não vão estar disponíveis enquanto o Proxy de Terminação TLS estiver desligado.
 
 Todo esse processo de renovação, enquanto o aplicativo ainda funciona, é uma das principais razões para preferir um sistema separado para gerenciar HTTPS com um Proxy de Terminação TLS em vez de usar os certificados TLS no servidor da aplicação diretamente (e.g. com o Uvicorn).
 
