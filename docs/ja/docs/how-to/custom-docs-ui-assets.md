@@ -129,7 +129,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 先頭は次のようになっているかもしれません:
 
 ```JavaScript
-/*! ライセンス情報については redoc.standalone.js.LICENSE.txt を参照してください */
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
