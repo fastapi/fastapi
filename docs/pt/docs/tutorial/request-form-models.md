@@ -24,7 +24,7 @@ Isto é suportado desde a versão `0.113.0` do FastAPI. 🤓
 
 Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja receber como **campos de formulários**, e então declarar o parâmetro como um `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 O **FastAPI** irá **extrair** as informações para **cada campo** dos **dados do formulário** na requisição e dar para você o modelo Pydantic que você definiu.
 
@@ -42,13 +42,13 @@ Em alguns casos de uso especiais (provavelmente não muito comum), você pode de
 
 /// note | Nota
 
-Isso é suportado deste a versão `0.114.0` do FastAPI. 🤓
+Isso é suportado desde a versão `0.114.0` do FastAPI. 🤓
 
 ///
 
 Você pode utilizar a configuração de modelo do Pydantic para `proibir` qualquer campo `extra`:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 Caso um cliente tente enviar informações adicionais, ele receberá um retorno de **erro**.
 

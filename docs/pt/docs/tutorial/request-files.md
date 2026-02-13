@@ -20,13 +20,13 @@ Isso é necessário, visto que os arquivos enviados são enviados como "dados de
 
 Importe `File` e `UploadFile` de `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## Definir Parâmetros `File` { #define-file-parameters }
 
 Crie parâmetros de arquivo da mesma forma que você faria para `Body` ou `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Informação
 
@@ -54,7 +54,7 @@ Mas há muitos casos em que você pode se beneficiar do uso de `UploadFile`.
 
 Defina um parâmetro de arquivo com um tipo de `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 
@@ -121,7 +121,7 @@ Dados de formulários normalmente são codificados usando o "media type" `applic
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo da requisição.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
 
 ///
 
@@ -143,7 +143,7 @@ Você pode tornar um arquivo opcional usando anotações de tipo padrão e defin
 
 Você também pode usar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Uploads de Múltiplos Arquivos { #multiple-file-uploads }
 
@@ -153,13 +153,13 @@ Eles serão associados ao mesmo "campo de formulário" enviado usando "dados de 
 
 Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
 /// note | Detalhes Técnicos
 
-Você pode também pode usar `from starlette.responses import HTMLResponse`.
+Você também pode usar `from starlette.responses import HTMLResponse`.
 
 **FastAPI** providencia o mesmo `starlette.responses` que `fastapi.responses` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria das respostas disponíveis vem diretamente do Starlette.
 
@@ -169,7 +169,7 @@ Você pode também pode usar `from starlette.responses import HTMLResponse`.
 
 Da mesma forma de antes, você pode usar `File()` para definir parâmetros adicionais, mesmo para `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Recapitulando { #recap }
 

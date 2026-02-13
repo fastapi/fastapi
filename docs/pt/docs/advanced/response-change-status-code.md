@@ -18,9 +18,9 @@ Para estes casos, você pode utilizar um parâmetro `Response`.
 
 Você pode declarar um parâmetro do tipo `Response` em sua *função de operação de rota* (assim como você pode fazer para cookies e headers).
 
-E então você pode definir o `status_code` neste objeto de retorno temporal.
+E então você pode definir o `status_code` neste objeto de retorno *temporal*.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 E então você pode retornar qualquer objeto que você precise, como você faria normalmente (um `dict`, um modelo de banco de dados, etc.).
 
