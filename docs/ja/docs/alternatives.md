@@ -321,7 +321,7 @@ Pydanticのようなデータのバリデーション、シリアライゼーシ
 
 ///
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a> { #hug }
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a> { #hug }
 
 Hugは、Pythonの型ヒントを利用してAPIパラメータの型宣言を実装した最初のフレームワークの1つです。これは素晴らしいアイデアで、他のツールが同じことをするきっかけとなりました。
 
