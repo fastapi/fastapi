@@ -62,15 +62,11 @@ In Python type hints, a parameter can be **required** and still allow the value 
 This means that the field must be present in the request body, but its value can be `null`
 (`None` in Python).
 
-This typically happens when you use `Optional[T]` **without** providing a default value.
+This typically happens when you use something like `str | None` (or `Optional[str]`) **without** providing a default value.
 
 For example:
 
-{* ../../docs_src/body/tutorial005_py39.py hl[6] *}
-
-And for Python 3.10+:
-
-{* ../../docs_src/body/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/body/tutorial005_py310.py hl[8] *}
 
 In this example:
 

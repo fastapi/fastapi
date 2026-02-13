@@ -5,7 +5,7 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    description: str | None
+    description: str | None = None
 
 
 @app.post("/items/")
