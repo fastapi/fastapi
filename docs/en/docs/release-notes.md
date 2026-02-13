@@ -15,6 +15,10 @@ hide:
 
 * 🌐 Update translations for ru (update-outdated). PR [#14909](https://github.com/fastapi/fastapi/pull/14909) by [@YuriiMotov](https://github.com/YuriiMotov).
 
+### Internal
+
+* ⬆ Bump pillow from 12.1.0 to 12.1.1. PR [#14899](https://github.com/fastapi/fastapi/pull/14899) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.129.0
 
 ### Breaking Changes
