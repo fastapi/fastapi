@@ -1,6 +1,6 @@
 import binascii
 from base64 import b64decode
-from typing import Dict, Optional
+from typing import Annotated
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -11,7 +11,6 @@ from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
 from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
-from typing_extensions import Annotated
 
 
 class HTTPBasicCredentials(BaseModel):
@@ -72,8 +71,8 @@ class HTTPBase(SecurityBase):
         self,
         *,
         scheme: str,
-        scheme_name: Optional[str] = None,
-        description: Optional[str] = None,
+        scheme_name: str | None = None,
+        description: str | None = None,
         auto_error: bool = True,
     ):
         self.model: HTTPBaseModel = HTTPBaseModel(
@@ -82,7 +81,7 @@ class HTTPBase(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> Dict[str, str]:
+    def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": f"{self.model.scheme.title()}"}
 
     def make_not_authenticated_error(self) -> HTTPException:
@@ -92,9 +91,7 @@ class HTTPBase(SecurityBase):
             headers=self.make_authenticate_headers(),
         )
 
-    async def __call__(
-        self, conn: HTTPConnection
-    ) -> Optional[HTTPAuthorizationCredentials]:
+    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
@@ -144,7 +141,7 @@ class HTTPBasic(HTTPBase):
         self,
         *,
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -154,7 +151,7 @@ class HTTPBasic(HTTPBase):
             ),
         ] = None,
         realm: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 HTTP Basic authentication realm.
@@ -162,7 +159,7 @@ class HTTPBasic(HTTPBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -197,14 +194,14 @@ class HTTPBasic(HTTPBase):
         self.realm = realm
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> Dict[str, str]:
+    def make_authenticate_headers(self) -> dict[str, str]:
         if self.realm:
             return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         return {"WWW-Authenticate": "Basic"}
 
     async def __call__(  # type: ignore
         self, conn: HTTPConnection
-    ) -> Optional[HTTPBasicCredentials]:
+    ) -> HTTPBasicCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "basic":
@@ -257,9 +254,9 @@ class HTTPBearer(HTTPBase):
     def __init__(
         self,
         *,
-        bearerFormat: Annotated[Optional[str], Doc("Bearer token format.")] = None,
+        bearerFormat: Annotated[str | None, Doc("Bearer token format.")] = None,
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -269,7 +266,7 @@ class HTTPBearer(HTTPBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -303,9 +300,7 @@ class HTTPBearer(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(
-        self, conn: HTTPConnection
-    ) -> Optional[HTTPAuthorizationCredentials]:
+    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
@@ -363,7 +358,7 @@ class HTTPDigest(HTTPBase):
         self,
         *,
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -373,7 +368,7 @@ class HTTPDigest(HTTPBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -406,9 +401,7 @@ class HTTPDigest(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(
-        self, conn: HTTPConnection
-    ) -> Optional[HTTPAuthorizationCredentials]:
+    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):

@@ -29,15 +29,15 @@ Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach
 
 Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> erzeugt wird:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
 
 Der ge`yield`ete Wert ist das, was in *Pfadoperationen* und andere Abhängigkeiten eingefügt wird:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
 
 Der auf die `yield`-Anweisung folgende Code wird nach der Response ausgeführt:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
 
 /// tip | Tipp
 
@@ -57,7 +57,7 @@ Sie können also mit `except SomeException` diese bestimmte Exception innerhalb 
 
 Auf die gleiche Weise können Sie `finally` verwenden, um sicherzustellen, dass die Exit-Schritte ausgeführt werden, unabhängig davon, ob eine Exception geworfen wurde oder nicht.
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
 
 ## Unterabhängigkeiten mit `yield` { #sub-dependencies-with-yield }
 
@@ -268,7 +268,7 @@ In Python können Sie Kontextmanager erstellen, indem Sie <a href="https://docs.
 
 Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie `with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
 
 /// tip | Tipp
 

@@ -29,7 +29,7 @@
 
 Для этого нужно обратиться к запросу напрямую.
 
-{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
 Если объявить параметр *функции-обработчика пути* с типом `Request`, **FastAPI** поймёт, что нужно передать объект `Request` в этот параметр.
 

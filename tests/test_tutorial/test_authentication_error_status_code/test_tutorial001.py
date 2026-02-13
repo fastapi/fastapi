@@ -4,14 +4,11 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        "tutorial001_an_py310",
     ],
 )
 def get_client(request: pytest.FixtureRequest):

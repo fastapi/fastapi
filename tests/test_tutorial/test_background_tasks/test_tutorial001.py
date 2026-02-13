@@ -3,7 +3,7 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from docs_src.background_tasks.tutorial001 import app
+from docs_src.background_tasks.tutorial001_py310 import app
 
 client = TestClient(app)
 

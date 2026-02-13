@@ -128,14 +128,6 @@ Inside of the function, you can access all the attributes of the model object di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
 ## Request body + path parameters { #request-body-path-parameters }
 
 You can declare path parameters and request body at the same time.
@@ -163,7 +155,7 @@ The function parameters will be recognized as follows:
 
 FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-The `str | None` (Python 3.10+) or `Union` in `Union[str, None]` (Python 3.8+) is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
+The `str | None` is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
 
 But adding the type annotations will allow your editor to give you better support and detect errors.
 

@@ -196,31 +196,11 @@ They have contributed source code, documentation, etc. 📦
 
 There are hundreds of other contributors, you can see them all in the <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
 
-## Top Translators
-
-These are the **Top Translators**. 🌐
-
-These users have created the most Pull Requests with [translations to other languages](contributing.md#translations){.internal-link target=_blank} that have been *merged*.
-
-<div class="user-list user-list-center">
-
-{% for user in (translators.values() | list)[:50] %}
-
-{% if user.login not in skip_users %}
-
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Translations: {{ user.count }}</div></div>
-
-{% endif %}
-
-{% endfor %}
-
-</div>
-
 ## Top Translation Reviewers
 
 These users are the **Top Translation Reviewers**. 🕵️
 
-I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
+Translation reviewers have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
 
 <div class="user-list user-list-center">
 {% for user in (translation_reviewers.values() | list)[:50] %}

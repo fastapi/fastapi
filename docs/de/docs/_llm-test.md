@@ -15,7 +15,7 @@ So verwenden:
 
 Die Tests:
 
-## Codeschnipsel { #code-snippets}
+## Codeschnipsel { #code-snippets }
 
 //// tab | Test
 
@@ -35,7 +35,7 @@ Siehe Abschnitt `### Content of code snippets` im allgemeinen Prompt in `scripts
 
 //// tab | Test
 
-Gestern schrieb mein Freund: „Wenn man unkorrekt korrekt schreibt, hat man es unkorrekt geschrieben“. Worauf ich antwortete: „Korrekt, aber ‚unkorrekt‘ ist unkorrekterweise nicht ‚„unkorrekt“‘“.
+Gestern schrieb mein Freund: „Wenn man ‚incorrectly‘ korrekt schreibt, hat man es falsch geschrieben“. Worauf ich antwortete: „Korrekt, aber ‚incorrectly‘ ist inkorrekterweise nicht ‚„incorrectly“‘“.
 
 /// note | Hinweis
 
@@ -53,7 +53,7 @@ Siehe zum Beispiel den Abschnitt `### Quotes` in `docs/de/llm-prompt.md`.
 
 ////
 
-## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
+## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets }
 
 //// tab | Test
 
@@ -189,7 +189,7 @@ Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
 
-## HTML „abbr“-Elemente { #html-abbr-elements }
+## HTML-„abbr“-Elemente { #html-abbr-elements }
 
 //// tab | Test
 
@@ -201,11 +201,6 @@ Hier einige Dinge, die in HTML-„abbr“-Elemente gepackt sind (einige sind erf
 * <abbr title="less than – kleiner als"><code>lt</code></abbr>
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>
-
-### Das abbr gibt eine Erklärung { #the-abbr-gives-an-explanation }
-
-* <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</abbr>
-* <abbr title="Eine Methode des Machine Learning, die künstliche neuronale Netze mit zahlreichen versteckten Schichten zwischen Eingabe- und Ausgabeschicht verwendet und so eine umfassende interne Struktur entwickelt">Deep Learning</abbr>
 
 ### Das abbr gibt eine vollständige Phrase und eine Erklärung { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
@@ -223,6 +218,11 @@ Hier einige Dinge, die in HTML-„abbr“-Elemente gepackt sind (einige sind erf
 Siehe Abschnitt `### HTML abbr elements` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
+
+## HTML „dfn“-Elemente { #html-dfn-elements }
+
+* <dfn title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</dfn>
+* <dfn title="Eine Methode des Machine Learning, die künstliche neuronale Netze mit zahlreichen versteckten Schichten zwischen Eingabe- und Ausgabeschicht verwendet und so eine umfassende interne Struktur entwickelt">Deep Learning</dfn>
 
 ## Überschriften { #headings }
 
@@ -248,7 +248,7 @@ Die einzige strenge Regel für Überschriften ist, dass das LLM den Hash-Teil in
 
 Siehe Abschnitt `### Headings` im allgemeinen Prompt in `scripts/translate.py`.
 
-Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headings` in `docs/de/llm-prompt.md`.
+Für einige sprachsspezifische Anweisungen, siehe z. B. den Abschnitt `### Headings` in `docs/de/llm-prompt.md`.
 
 ////
 
@@ -443,7 +443,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 * die Workload
 
 * das Deployment
-* bereitstellen
+* deployen
 
 * das SDK
 * das Software Development Kit

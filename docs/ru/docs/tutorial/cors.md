@@ -46,7 +46,7 @@
 * Отдельных HTTP-методов (`POST`, `PUT`) или всех вместе, используя `"*"`.
 * Отдельных HTTP-заголовков или всех вместе, используя `"*"`.
 
-{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 `CORSMiddleware` использует "запрещающие" значения по умолчанию, поэтому вам нужно явным образом разрешить использование отдельных источников, методов или заголовков, чтобы браузеры могли использовать их в кросс-доменном контексте.
 
@@ -77,7 +77,7 @@
 
 ## Больше информации { #more-info }
 
-Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing – совместное использование ресурсов между источниками">CORS</abbr> обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">документации CORS от Mozilla</a>.
+Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing - совместное использование ресурсов между источниками">CORS</abbr> обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">документации CORS от Mozilla</a>.
 
 /// note | Технические детали
 

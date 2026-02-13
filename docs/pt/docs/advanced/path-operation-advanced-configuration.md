@@ -10,21 +10,21 @@ Se você não é um "especialista" no OpenAPI, você provavelmente não precisa 
 
 Você pode definir o `operationId` do OpenAPI que será utilizado na sua *operação de rota* com o parâmetro `operation_id`.
 
-Você precisa ter certeza que ele é único para cada operação.
+Você deveria ter certeza que ele é único para cada operação.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operationId` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
+Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operation_id` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
 
-Você deve fazer isso depois de adicionar todas as suas *operações de rota*.
+Você deveria fazer isso depois de adicionar todas as suas *operações de rota*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Dica
 
-Se você chamar `app.openapi()` manualmente, os `operationId`s devem ser atualizados antes dessa chamada.
+Se você chamar `app.openapi()` manualmente, você deveria atualizar os `operationId`s antes dessa chamada.
 
 ///
 
@@ -40,17 +40,17 @@ Mesmo que elas estejam em módulos (arquivos Python) diferentes.
 
 Para excluir uma *operação de rota* do esquema OpenAPI gerado (e por consequência, dos sistemas de documentação automáticos), utilize o parâmetro `include_in_schema` e defina ele como `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Descrição avançada a partir de docstring { #advanced-description-from-docstring }
 
-Você pode limitar as linhas utilizadas a partir de uma docstring de uma *função de operação de rota* para o OpenAPI.
+Você pode limitar as linhas utilizadas a partir da docstring de uma *função de operação de rota* para o OpenAPI.
 
-Adicionar um `\f` (um caractere de escape para alimentação de formulário) faz com que o **FastAPI** restrinja a saída utilizada pelo OpenAPI até esse ponto.
+Adicionar um `\f` (um caractere de escape para "form feed") faz com que o **FastAPI** trunque a saída usada para o OpenAPI até esse ponto.
 
-Ele não será mostrado na documentação, mas outras ferramentas (como o Sphinx) serão capazes de utilizar o resto do texto.
+Ele não será mostrado na documentação, mas outras ferramentas (como o Sphinx) serão capazes de utilizar o resto.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Respostas Adicionais { #additional-responses }
 
@@ -92,7 +92,7 @@ Você pode estender o esquema do OpenAPI para uma *operação de rota* utilizand
 
 Esse parâmetro `openapi_extra` pode ser útil, por exemplo, para declarar [Extensões do OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Se você abrir os documentos criados automaticamente para a API, sua extensão aparecerá no final da *operação de rota* específica.
 
@@ -131,69 +131,37 @@ E se você olhar o esquema OpenAPI resultante (na rota `/openapi.json` da sua AP
 
 ### Esquema de *operação de rota* do OpenAPI personalizado { #custom-openapi-path-operation-schema }
 
-O dicionário em `openapi_extra` vai ter todos os seus níveis mesclados dentro do esquema OpenAPI gerado automaticamente para a *operação de rota*.
+O dicionário em `openapi_extra` vai ser mesclado profundamente com o esquema OpenAPI gerado automaticamente para a *operação de rota*.
 
-Então, você pode adicionar dados extras para o esquema gerado automaticamente.
+Então, você pode adicionar dados extras ao esquema gerado automaticamente.
 
-Por exemplo, você poderia optar por ler e validar a requisição com seu próprio código, sem utilizar funcionalidades automatizadas do FastAPI com o Pydantic, mas você ainda pode quere definir a requisição no esquema OpenAPI.
+Por exemplo, você poderia decidir ler e validar a requisição com seu próprio código, sem usar as funcionalidades automáticas do FastAPI com o Pydantic, mas ainda assim querer definir a requisição no esquema OpenAPI.
 
 Você pode fazer isso com `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
-Nesse exemplo, nós não declaramos nenhum modelo do Pydantic. Na verdade, o corpo da requisição não está nem mesmo <abbr title="convertido de um formato plano, como bytes, para objetos Python">analisado</abbr> como JSON, ele é lido diretamente como `bytes` e a função `magic_data_reader()` seria a responsável por analisar ele de alguma forma.
+Nesse exemplo, nós não declaramos nenhum modelo do Pydantic. Na verdade, o corpo da requisição não está nem mesmo <abbr title="converted from some plain format, like bytes, into Python objects - convertido de algum formato simples, como bytes, em objetos Python">analisado</abbr> como JSON, ele é lido diretamente como `bytes`, e a função `magic_data_reader()` seria a responsável por analisar ele de alguma forma.
 
 De toda forma, nós podemos declarar o esquema esperado para o corpo da requisição.
 
 ### Tipo de conteúdo do OpenAPI personalizado { #custom-openapi-content-type }
 
-Utilizando esse mesmo truque, você pode utilizar um modelo Pydantic para definir o JSON Schema que é então incluído na seção do esquema personalizado do OpenAPI na *operação de rota*.
+Utilizando esse mesmo truque, você pode usar um modelo Pydantic para definir o JSON Schema que é então incluído na seção do esquema personalizado do OpenAPI na *operação de rota*.
 
-E você pode fazer isso até mesmo quando os dados da requisição não seguem o formato JSON.
+E você pode fazer isso até mesmo quando o tipo de dados na requisição não é JSON.
 
-Por exemplo, nesta aplicação nós não usamos a funcionalidade integrada ao FastAPI de extrair o JSON Schema dos modelos Pydantic nem a validação automática do JSON. Na verdade, estamos declarando o tipo do conteúdo da requisição como YAML, em vez de JSON:
+Por exemplo, nesta aplicação nós não usamos a funcionalidade integrada ao FastAPI de extrair o JSON Schema dos modelos Pydantic nem a validação automática para JSON. Na verdade, estamos declarando o tipo de conteúdo da requisição como YAML, em vez de JSON:
 
-//// tab | Pydantic v2
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
+Entretanto, mesmo que não utilizemos a funcionalidade integrada por padrão, ainda estamos usando um modelo Pydantic para gerar um JSON Schema manualmente para os dados que queremos receber em YAML.
 
-////
+Então utilizamos a requisição diretamente e extraímos o corpo como `bytes`. Isso significa que o FastAPI não vai sequer tentar analisar o payload da requisição como JSON.
 
-//// tab | Pydantic v1
+E então no nosso código, nós analisamos o conteúdo YAML diretamente e, em seguida, estamos usando novamente o mesmo modelo Pydantic para validar o conteúdo YAML:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
-
-////
-
-/// info | Informação
-
-Na versão 1 do Pydantic, o método para obter o JSON Schema de um modelo é `Item.schema()`, na versão 2 do Pydantic, o método é `Item.model_json_schema()`.
-
-///
-
-Entretanto, mesmo que não utilizemos a funcionalidade integrada por padrão, ainda estamos usando um modelo Pydantic para gerar um JSON Schema manualmente para os dados que queremos receber no formato YAML.
-
-Então utilizamos a requisição diretamente, e extraímos o corpo como `bytes`. Isso significa que o FastAPI não vai sequer tentar analisar o corpo da requisição como JSON.
-
-E então no nosso código, nós analisamos o conteúdo YAML diretamente, e estamos utilizando o mesmo modelo Pydantic para validar o conteúdo YAML:
-
-//// tab | Pydantic v2
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
-
-////
-
-/// info | Informação
-
-Na versão 1 do Pydantic, o método para analisar e validar um objeto era `Item.parse_obj()`, na versão 2 do Pydantic, o método é chamado de `Item.model_validate()`.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 /// tip | Dica
 

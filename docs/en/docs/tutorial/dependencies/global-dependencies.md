@@ -6,7 +6,7 @@ Similar to the way you can [add `dependencies` to the *path operation decorators
 
 In that case, they will be applied to all the *path operations* in the application:
 
-{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
 
 
 And all the ideas in the section about [adding `dependencies` to the *path operation decorators*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} still apply, but in this case, to all of the *path operations* in the app.

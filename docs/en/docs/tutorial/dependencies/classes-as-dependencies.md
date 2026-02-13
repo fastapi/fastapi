@@ -101,7 +101,7 @@ Now you can declare your dependency using this class.
 
 Notice how we write `CommonQueryParams` twice in the above code:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 
@@ -137,7 +137,7 @@ It is from this one that FastAPI will extract the declared parameters and that i
 
 In this case, the first `CommonQueryParams`, in:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 You could actually write just:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 
@@ -197,7 +197,7 @@ But declaring the type is encouraged as that way your editor will know what will
 
 But you see that we are having some code repetition here, writing `CommonQueryParams` twice:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 
@@ -225,7 +225,7 @@ For those specific cases, you can do the following:
 
 Instead of writing:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...you write:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.8 non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip
 

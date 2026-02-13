@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union, cast
+from typing import Annotated, Any, cast
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -9,9 +9,6 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
-
-# TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -63,7 +60,7 @@ class OAuth2PasswordRequestForm:
         self,
         *,
         grant_type: Annotated[
-            Union[str, None],
+            str | None,
             Form(pattern="^password$"),
             Doc(
                 """
@@ -71,6 +68,9 @@ class OAuth2PasswordRequestForm:
                 "password". Nevertheless, this dependency class is permissive and
                 allows not passing it. If you want to enforce it, use instead the
                 `OAuth2PasswordRequestFormStrict` dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,
@@ -81,6 +81,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -91,6 +94,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -115,11 +121,14 @@ class OAuth2PasswordRequestForm:
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
         client_id: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -130,7 +139,7 @@ class OAuth2PasswordRequestForm:
             ),
         ] = None,
         client_secret: Annotated[
-            Union[str, None],
+            str | None,
             Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
@@ -225,6 +234,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 "password". This dependency is strict about it. If you want to be
                 permissive, use instead the `OAuth2PasswordRequestForm` dependency
                 class.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -235,6 +247,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -245,6 +260,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -269,11 +287,14 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
         client_id: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -284,7 +305,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             ),
         ] = None,
         client_secret: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -323,7 +344,7 @@ class OAuth2(SecurityBase):
         self,
         *,
         flows: Annotated[
-            Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]],
+            OAuthFlowsModel | dict[str, dict[str, Any]],
             Doc(
                 """
                 The dictionary of OAuth2 flows.
@@ -331,7 +352,7 @@ class OAuth2(SecurityBase):
             ),
         ] = OAuthFlowsModel(),
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -341,7 +362,7 @@ class OAuth2(SecurityBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -399,8 +420,8 @@ class OAuth2(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, request: HTTPConnection) -> Optional[str]:
-        authorization = request.headers.get("Authorization")
+    async def __call__(self, conn: HTTPConnection) -> str | None:
+        authorization = conn.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
@@ -426,11 +447,14 @@ class OAuth2PasswordBearer(OAuth2):
                 """
                 The URL to obtain the OAuth2 token. This would be the *path operation*
                 that has `OAuth2PasswordRequestForm` as a dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -440,16 +464,19 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            dict[str, str] | None,
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
                 use this dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -479,7 +506,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = True,
         refreshUrl: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 The URL to refresh the token and obtain a new one.
@@ -506,8 +533,8 @@ class OAuth2PasswordBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: HTTPConnection) -> Optional[str]:
-        authorization = request.headers.get("Authorization")
+    async def __call__(self, conn: HTTPConnection) -> str | None:
+        authorization = conn.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -535,7 +562,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ],
         refreshUrl: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 The URL to refresh the token and obtain a new one.
@@ -543,7 +570,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -553,7 +580,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            dict[str, str] | None,
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -562,7 +589,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -612,8 +639,8 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: HTTPConnection) -> Optional[str]:
-        authorization = request.headers.get("Authorization")
+    async def __call__(self, conn: HTTPConnection) -> str | None:
+        authorization = conn.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -639,7 +666,7 @@ class SecurityScopes:
     def __init__(
         self,
         scopes: Annotated[
-            Optional[List[str]],
+            list[str] | None,
             Doc(
                 """
                 This will be filled by FastAPI.
@@ -648,7 +675,7 @@ class SecurityScopes:
         ] = None,
     ):
         self.scopes: Annotated[
-            List[str],
+            list[str],
             Doc(
                 """
                 The list of all the scopes required by dependencies.

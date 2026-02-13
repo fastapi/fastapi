@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.configure_swagger_ui.tutorial003 import app
+from docs_src.configure_swagger_ui.tutorial003_py310 import app
 
 client = TestClient(app)
 

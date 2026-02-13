@@ -32,11 +32,11 @@
 
 Файл `main.py`:
 
-{* ../../docs_src/async_tests/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 Файл `test_main.py` содержит тесты для `main.py`, теперь он может выглядеть так:
 
-{* ../../docs_src/async_tests/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## Запуск тестов { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 Маркер `@pytest.mark.anyio` говорит pytest, что тестовая функция должна быть вызвана асинхронно:
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | Подсказка
 
@@ -66,7 +66,7 @@ $ pytest
 
 Затем мы можем создать `AsyncClient` со ссылкой на приложение и посылать асинхронные запросы, используя `await`.
 
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 Это эквивалентно следующему:
 
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | Подсказка
 
-Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), то не забывайте инициализировать объекты, которым нужен цикл событий (event loop), только внутри асинхронных функций, например, в `'@app.on_event("startup")` callback.
+Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), то не забывайте инициализировать объекты, которым нужен цикл событий (event loop), только внутри асинхронных функций, например, в `@app.on_event("startup")` callback.
 
 ///

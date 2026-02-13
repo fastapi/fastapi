@@ -8,35 +8,13 @@ Here are several ways to do it.
 
 You can declare `examples` for a Pydantic model that will be added to the generated JSON Schema.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
-
-////
 
 That extra info will be added as-is to the output **JSON Schema** for that model, and it will be used in the API docs.
 
-//// tab | Pydantic v2
-
-In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
+You can use the attribute `model_config` that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
-
-//// tab | Pydantic v1
-
-In Pydantic version 1, you would use an internal class `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>.
-
-You can set `schema_extra` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
 
 /// tip
 
@@ -96,7 +74,7 @@ You can of course also pass multiple `examples`:
 
 When you do this, the examples will be part of the internal **JSON Schema** for that body data.
 
-Nevertheless, at the <abbr title="2023-08-26">time of writing this</abbr>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
+Nevertheless, at the <dfn title="2023-08-26">time of writing this</dfn>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
 
 ### OpenAPI-specific `examples` { #openapi-specific-examples }
 

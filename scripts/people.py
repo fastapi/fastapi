@@ -3,9 +3,10 @@ import secrets
 import subprocess
 import time
 from collections import Counter
+from collections.abc import Container
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Container, Union
+from typing import Any, Union
 
 import httpx
 import yaml
@@ -378,9 +379,10 @@ def main() -> None:
         return
 
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions@github.com"], check=True
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        check=True,
     )
     branch_name = f"fastapi-people-experts-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")

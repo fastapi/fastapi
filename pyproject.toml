@@ -9,7 +9,7 @@ description = "FastAPI framework, high performance, easy to learn, fast to code,
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
@@ -30,12 +30,9 @@ classifiers = [
     "Framework :: AsyncIO",
     "Framework :: FastAPI",
     "Framework :: Pydantic",
-    "Framework :: Pydantic :: 1",
     "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -45,9 +42,10 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0,<0.51.0",
-    "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
+    "starlette>=0.40.0,<1.0.0",
+    "pydantic>=2.7.0",
     "typing-extensions>=4.8.0",
+    "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
 ]
 
@@ -72,11 +70,10 @@ standard = [
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
-    # TODO: this should be part of some pydantic optional extra dependencies
     # # Settings management
-    # "pydantic-settings >=2.0.0",
+    "pydantic-settings >=2.0.0",
     # # Extra Pydantic data types
-    # "pydantic-extra-types >=2.0.0",
+    "pydantic-extra-types >=2.0.0",
 ]
 
 standard-no-fastapi-cloud-cli = [
@@ -91,11 +88,10 @@ standard-no-fastapi-cloud-cli = [
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
-    # TODO: this should be part of some pydantic optional extra dependencies
     # # Settings management
-    # "pydantic-settings >=2.0.0",
+    "pydantic-settings >=2.0.0",
     # # Extra Pydantic data types
-    # "pydantic-extra-types >=2.0.0",
+    "pydantic-extra-types >=2.0.0",
 ]
 
 all = [
@@ -111,9 +107,9 @@ all = [
     # For Starlette's schema generation, would not be used with FastAPI
     "pyyaml >=5.3.1",
     # For UJSONResponse
-    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    "ujson >=5.8.0",
     # For ORJSONResponse
-    "orjson >=3.2.1",
+    "orjson >=3.9.3",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -127,6 +123,69 @@ all = [
 [project.scripts]
 fastapi = "fastapi.cli:main"
 
+[dependency-groups]
+dev = [
+    { include-group = "tests" },
+    { include-group = "docs" },
+    { include-group = "translations" },
+    "playwright >=1.57.0",
+    "prek >=0.2.22",
+]
+docs = [
+    { include-group = "docs-tests" },
+    "black >=25.1.0",
+    "cairosvg >=2.8.2",
+    "griffe-typingdoc >=0.3.0",
+    "griffe-warnings-deprecated >=1.1.0",
+    "jieba >=0.42.1",
+    "markdown-include-variants >=0.0.8",
+    "mdx-include >=1.4.1,<2.0.0",
+    "mkdocs-macros-plugin >=1.5.0",
+    "mkdocs-material >=9.7.0",
+    "mkdocs-redirects >=1.2.1,<1.3.0",
+    "mkdocstrings[python] >=0.30.1",
+    "pillow >=11.3.0",
+    "python-slugify >=8.0.4",
+    "pyyaml >=5.3.1,<7.0.0",
+    "typer >=0.21.1",
+]
+docs-tests = [
+    "httpx >=0.23.0,<1.0.0",
+    "ruff >=0.14.14",
+]
+github-actions = [
+    "httpx >=0.27.0,<1.0.0",
+    "pydantic >=2.5.3,<3.0.0",
+    "pydantic-settings >=2.1.0,<3.0.0",
+    "pygithub >=2.3.0,<3.0.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "smokeshow >=0.5.0",
+]
+tests = [
+    { include-group = "docs-tests" },
+    "anyio[trio] >=3.2.1,<5.0.0",
+    "coverage[toml] >=6.5.0,<8.0",
+    "dirty-equals >=0.9.0",
+    "flask >=3.0.0,<4.0.0",
+    "inline-snapshot >=0.21.1",
+    "mypy >=1.14.1",
+    "pwdlib[argon2] >=0.2.1",
+    "pyjwt >=2.9.0",
+    "pytest >=7.1.3,<9.0.0",
+    "pytest-codspeed >=4.2.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "sqlmodel >=0.0.31",
+    "strawberry-graphql >=0.200.0,<1.0.0",
+    "types-orjson >=3.6.2",
+    "types-ujson >=5.10.0.20240515",
+    "a2wsgi >=1.9.0,<=2.0.0",
+]
+translations = [
+    "gitpython >=3.1.46",
+    "pydantic-ai >=0.4.10",
+    "pygithub >=2.8.1",
+]
+
 [tool.pdm]
 version = { source = "file", path = "fastapi/__init__.py" }
 distribution = true
@@ -135,14 +194,36 @@ distribution = true
 source-includes = [
     "tests/",
     "docs_src/",
-    "requirements*.txt",
     "scripts/",
     # For a test
     "docs/en/docs/img/favicon.png",
-    ]
+]
 
 [tool.tiangolo._internal-slim-build.packages.fastapi-slim.project]
 name = "fastapi-slim"
+readme = "fastapi-slim/README.md"
+dependencies = [
+    "fastapi",
+]
+optional-dependencies = {}
+scripts = {}
+
+[tool.tiangolo._internal-slim-build.packages.fastapi-slim.tool.pdm.build]
+# excludes needs to explicitly exclude the top level python packages,
+# otherwise PDM includes them by default
+# A "*" glob pattern can't be used here because in PDM internals, the patterns are put
+# in a set (unordered, order varies) and each excluded file is assigned one of the
+# glob patterns that matches, as the set is unordered, the matched pattern could be "*"
+# independent of the order here. And then the internal code would give it a lower score
+# than the one for a default included file.
+# By not using "*" and explicitly excluding the top level packages, they get a higher
+# score than the default inclusion
+excludes = ["fastapi", "tests", "pdm_build.py"]
+# source-includes needs to explicitly define some value because PDM will check the
+# truthy value of the list, and if empty, will include some defaults, including "tests",
+# an empty string doesn't match anything, but makes the list truthy, so that PDM
+# doesn't override it during the build.
+source-includes = [""]
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
@@ -174,7 +255,6 @@ xfail_strict = true
 junit_family = "xunit2"
 filterwarnings = [
     "error",
-    'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
@@ -184,8 +264,6 @@ filterwarnings = [
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
-    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
-    'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
 ]
 
 [tool.coverage.run]
@@ -196,11 +274,216 @@ source = [
     "tests",
     "fastapi"
 ]
+relative_files = true
 context = '${CONTEXT}'
 dynamic_context = "test_function"
 omit = [
-    "docs_src/response_model/tutorial003_04.py",
+    "docs_src/response_model/tutorial003_04_py39.py",
     "docs_src/response_model/tutorial003_04_py310.py",
+    "docs_src/dependencies/tutorial008_an_py39.py",  # difficult to mock
+    "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
+    "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
+    # Pydantic v1 migration, no longer tested
+    "docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
+    # TODO: remove all the ignores below when all translations use the new Python 3.10 files
+    "docs_src/additional_responses/tutorial001_py39.py",
+    "docs_src/additional_responses/tutorial003_py39.py",
+    "docs_src/advanced_middleware/tutorial001_py39.py",
+    "docs_src/advanced_middleware/tutorial002_py39.py",
+    "docs_src/advanced_middleware/tutorial003_py39.py",
+    "docs_src/app_testing/app_a_py39/main.py",
+    "docs_src/app_testing/app_a_py39/test_main.py",
+    "docs_src/app_testing/tutorial001_py39.py",
+    "docs_src/app_testing/tutorial002_py39.py",
+    "docs_src/app_testing/tutorial003_py39.py",
+    "docs_src/app_testing/tutorial004_py39.py",
+    "docs_src/async_tests/app_a_py39/main.py",
+    "docs_src/async_tests/app_a_py39/test_main.py",
+    "docs_src/authentication_error_status_code/tutorial001_an_py39.py",
+    "docs_src/background_tasks/tutorial001_py39.py",
+    "docs_src/behind_a_proxy/tutorial001_01_py39.py",
+    "docs_src/behind_a_proxy/tutorial001_py39.py",
+    "docs_src/behind_a_proxy/tutorial002_py39.py",
+    "docs_src/behind_a_proxy/tutorial003_py39.py",
+    "docs_src/behind_a_proxy/tutorial004_py39.py",
+    "docs_src/bigger_applications/app_an_py39/dependencies.py",
+    "docs_src/bigger_applications/app_an_py39/internal/admin.py",
+    "docs_src/bigger_applications/app_an_py39/main.py",
+    "docs_src/bigger_applications/app_an_py39/routers/items.py",
+    "docs_src/bigger_applications/app_an_py39/routers/users.py",
+    "docs_src/bigger_applications/app_py39/dependencies.py",
+    "docs_src/bigger_applications/app_py39/main.py",
+    "docs_src/body_nested_models/tutorial008_py39.py",
+    "docs_src/body_nested_models/tutorial009_py39.py",
+    "docs_src/conditional_openapi/tutorial001_py39.py",
+    "docs_src/configure_swagger_ui/tutorial001_py39.py",
+    "docs_src/configure_swagger_ui/tutorial002_py39.py",
+    "docs_src/configure_swagger_ui/tutorial003_py39.py",
+    "docs_src/cors/tutorial001_py39.py",
+    "docs_src/custom_docs_ui/tutorial001_py39.py",
+    "docs_src/custom_docs_ui/tutorial002_py39.py",
+    "docs_src/custom_response/tutorial001_py39.py",
+    "docs_src/custom_response/tutorial001b_py39.py",
+    "docs_src/custom_response/tutorial002_py39.py",
+    "docs_src/custom_response/tutorial003_py39.py",
+    "docs_src/custom_response/tutorial004_py39.py",
+    "docs_src/custom_response/tutorial005_py39.py",
+    "docs_src/custom_response/tutorial006_py39.py",
+    "docs_src/custom_response/tutorial006b_py39.py",
+    "docs_src/custom_response/tutorial006c_py39.py",
+    "docs_src/custom_response/tutorial007_py39.py",
+    "docs_src/custom_response/tutorial008_py39.py",
+    "docs_src/custom_response/tutorial009_py39.py",
+    "docs_src/custom_response/tutorial009b_py39.py",
+    "docs_src/custom_response/tutorial009c_py39.py",
+    "docs_src/custom_response/tutorial010_py39.py",
+    "docs_src/debugging/tutorial001_py39.py",
+    "docs_src/dependencies/tutorial006_an_py39.py",
+    "docs_src/dependencies/tutorial006_py39.py",
+    "docs_src/dependencies/tutorial007_py39.py",
+    "docs_src/dependencies/tutorial008_py39.py",
+    "docs_src/dependencies/tutorial008b_an_py39.py",
+    "docs_src/dependencies/tutorial008b_py39.py",
+    "docs_src/dependencies/tutorial008c_an_py39.py",
+    "docs_src/dependencies/tutorial008c_py39.py",
+    "docs_src/dependencies/tutorial008d_an_py39.py",
+    "docs_src/dependencies/tutorial008d_py39.py",
+    "docs_src/dependencies/tutorial008e_an_py39.py",
+    "docs_src/dependencies/tutorial008e_py39.py",
+    "docs_src/dependencies/tutorial010_py39.py",
+    "docs_src/dependencies/tutorial011_an_py39.py",
+    "docs_src/dependencies/tutorial011_py39.py",
+    "docs_src/dependencies/tutorial012_an_py39.py",
+    "docs_src/dependencies/tutorial012_py39.py",
+    "docs_src/events/tutorial001_py39.py",
+    "docs_src/events/tutorial002_py39.py",
+    "docs_src/events/tutorial003_py39.py",
+    "docs_src/extending_openapi/tutorial001_py39.py",
+    "docs_src/extra_models/tutorial004_py39.py",
+    "docs_src/extra_models/tutorial005_py39.py",
+    "docs_src/first_steps/tutorial001_py39.py",
+    "docs_src/first_steps/tutorial003_py39.py",
+    "docs_src/generate_clients/tutorial001_py39.py",
+    "docs_src/generate_clients/tutorial002_py39.py",
+    "docs_src/generate_clients/tutorial003_py39.py",
+    "docs_src/generate_clients/tutorial004_py39.py",
+    "docs_src/graphql_/tutorial001_py39.py",
+    "docs_src/handling_errors/tutorial001_py39.py",
+    "docs_src/handling_errors/tutorial002_py39.py",
+    "docs_src/handling_errors/tutorial003_py39.py",
+    "docs_src/handling_errors/tutorial004_py39.py",
+    "docs_src/handling_errors/tutorial005_py39.py",
+    "docs_src/handling_errors/tutorial006_py39.py",
+    "docs_src/metadata/tutorial001_1_py39.py",
+    "docs_src/metadata/tutorial001_py39.py",
+    "docs_src/metadata/tutorial002_py39.py",
+    "docs_src/metadata/tutorial003_py39.py",
+    "docs_src/metadata/tutorial004_py39.py",
+    "docs_src/middleware/tutorial001_py39.py",
+    "docs_src/openapi_webhooks/tutorial001_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial001_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial002_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial003_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial005_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial006_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial007_py39.py",
+    "docs_src/path_operation_configuration/tutorial002b_py39.py",
+    "docs_src/path_operation_configuration/tutorial006_py39.py",
+    "docs_src/path_params/tutorial001_py39.py",
+    "docs_src/path_params/tutorial002_py39.py",
+    "docs_src/path_params/tutorial003_py39.py",
+    "docs_src/path_params/tutorial003b_py39.py",
+    "docs_src/path_params/tutorial004_py39.py",
+    "docs_src/path_params/tutorial005_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial002_an_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial002_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial003_an_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial003_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial004_an_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial004_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial005_an_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial005_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial006_an_py39.py",
+    "docs_src/path_params_numeric_validations/tutorial006_py39.py",
+    "docs_src/python_types/tutorial001_py39.py",
+    "docs_src/python_types/tutorial002_py39.py",
+    "docs_src/python_types/tutorial003_py39.py",
+    "docs_src/python_types/tutorial004_py39.py",
+    "docs_src/python_types/tutorial005_py39.py",
+    "docs_src/python_types/tutorial006_py39.py",
+    "docs_src/python_types/tutorial007_py39.py",
+    "docs_src/python_types/tutorial008_py39.py",
+    "docs_src/python_types/tutorial008b_py39.py",
+    "docs_src/python_types/tutorial009_py39.py",
+    "docs_src/python_types/tutorial009b_py39.py",
+    "docs_src/python_types/tutorial009c_py39.py",
+    "docs_src/python_types/tutorial010_py39.py",
+    "docs_src/python_types/tutorial013_py39.py",
+    "docs_src/query_params/tutorial001_py39.py",
+    "docs_src/query_params/tutorial005_py39.py",
+    "docs_src/query_params_str_validations/tutorial005_an_py39.py",
+    "docs_src/query_params_str_validations/tutorial005_py39.py",
+    "docs_src/query_params_str_validations/tutorial006_an_py39.py",
+    "docs_src/query_params_str_validations/tutorial006_py39.py",
+    "docs_src/query_params_str_validations/tutorial012_an_py39.py",
+    "docs_src/query_params_str_validations/tutorial012_py39.py",
+    "docs_src/query_params_str_validations/tutorial013_an_py39.py",
+    "docs_src/query_params_str_validations/tutorial013_py39.py",
+    "docs_src/request_files/tutorial001_03_an_py39.py",
+    "docs_src/request_files/tutorial001_03_py39.py",
+    "docs_src/request_files/tutorial001_an_py39.py",
+    "docs_src/request_files/tutorial001_py39.py",
+    "docs_src/request_files/tutorial002_an_py39.py",
+    "docs_src/request_files/tutorial002_py39.py",
+    "docs_src/request_files/tutorial003_an_py39.py",
+    "docs_src/request_files/tutorial003_py39.py",
+    "docs_src/request_form_models/tutorial001_an_py39.py",
+    "docs_src/request_form_models/tutorial001_py39.py",
+    "docs_src/request_form_models/tutorial002_an_py39.py",
+    "docs_src/request_form_models/tutorial002_py39.py",
+    "docs_src/request_forms/tutorial001_an_py39.py",
+    "docs_src/request_forms/tutorial001_py39.py",
+    "docs_src/request_forms_and_files/tutorial001_an_py39.py",
+    "docs_src/request_forms_and_files/tutorial001_py39.py",
+    "docs_src/response_change_status_code/tutorial001_py39.py",
+    "docs_src/response_cookies/tutorial001_py39.py",
+    "docs_src/response_cookies/tutorial002_py39.py",
+    "docs_src/response_directly/tutorial002_py39.py",
+    "docs_src/response_headers/tutorial001_py39.py",
+    "docs_src/response_headers/tutorial002_py39.py",
+    "docs_src/response_model/tutorial003_02_py39.py",
+    "docs_src/response_model/tutorial003_03_py39.py",
+    "docs_src/response_status_code/tutorial001_py39.py",
+    "docs_src/response_status_code/tutorial002_py39.py",
+    "docs_src/security/tutorial001_an_py39.py",
+    "docs_src/security/tutorial001_py39.py",
+    "docs_src/security/tutorial006_an_py39.py",
+    "docs_src/security/tutorial006_py39.py",
+    "docs_src/security/tutorial007_an_py39.py",
+    "docs_src/security/tutorial007_py39.py",
+    "docs_src/settings/app01_py39/config.py",
+    "docs_src/settings/app01_py39/main.py",
+    "docs_src/settings/app02_an_py39/config.py",
+    "docs_src/settings/app02_an_py39/main.py",
+    "docs_src/settings/app02_an_py39/test_main.py",
+    "docs_src/settings/app02_py39/config.py",
+    "docs_src/settings/app02_py39/main.py",
+    "docs_src/settings/app02_py39/test_main.py",
+    "docs_src/settings/app03_an_py39/config.py",
+    "docs_src/settings/app03_an_py39/main.py",
+    "docs_src/settings/app03_py39/config.py",
+    "docs_src/settings/app03_py39/main.py",
+    "docs_src/settings/tutorial001_py39.py",
+    "docs_src/static_files/tutorial001_py39.py",
+    "docs_src/sub_applications/tutorial001_py39.py",
+    "docs_src/templates/tutorial001_py39.py",
+    "docs_src/using_request_directly/tutorial001_py39.py",
+    "docs_src/websockets/tutorial001_py39.py",
+    "docs_src/websockets/tutorial003_py39.py",
+    "docs_src/wsgi/tutorial001_py39.py",
 ]
 
 [tool.coverage.report]
@@ -229,36 +512,42 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
-"docs_src/dependencies/tutorial007.py" = ["F821"]
-"docs_src/dependencies/tutorial008.py" = ["F821"]
-"docs_src/dependencies/tutorial009.py" = ["F821"]
-"docs_src/dependencies/tutorial010.py" = ["F821"]
-"docs_src/custom_response/tutorial007.py" = ["B007"]
-"docs_src/dataclasses/tutorial003.py" = ["I001"]
-"docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
-"docs_src/path_operation_advanced_configuration/tutorial007_pv1.py" = ["B904"]
-"docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
-"docs_src/dependencies/tutorial008_an.py" = ["F821"]
+"docs_src/custom_request_and_route/tutorial002_an_py310.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_an_py39.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_py310.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_py39.py" = ["B904"]
+"docs_src/custom_response/tutorial007_py310.py" = ["B007"]
+"docs_src/custom_response/tutorial007_py39.py" = ["B007"]
+"docs_src/dataclasses/tutorial003_py39.py" = ["I001"]
+"docs_src/dependencies/tutorial007_py310.py" = ["F821"]
+"docs_src/dependencies/tutorial007_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial008_an_py310.py" = ["F821"]
 "docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]
-"docs_src/query_params_str_validations/tutorial012_an.py" = ["B006"]
+"docs_src/dependencies/tutorial008_py310.py" = ["F821"]
+"docs_src/dependencies/tutorial008_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial008b_an_py310.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_py310.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_py39.py" = ["B904"]
+"docs_src/dependencies/tutorial009_py310.py" = ["F821"]
+"docs_src/dependencies/tutorial009_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial010_py310.py" = ["F821"]
+"docs_src/dependencies/tutorial010_py39.py" = ["F821"]
+"docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py" = ["B904"]
+"docs_src/path_operation_advanced_configuration/tutorial007_py310.py" = ["B904"]
+"docs_src/path_operation_advanced_configuration/tutorial007_py39.py" = ["B904"]
+"docs_src/query_params_str_validations/tutorial012_an_py310.py" = ["B006"]
 "docs_src/query_params_str_validations/tutorial012_an_py39.py" = ["B006"]
-"docs_src/query_params_str_validations/tutorial013_an.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013_an_py310.py" = ["B006"]
 "docs_src/query_params_str_validations/tutorial013_an_py39.py" = ["B006"]
-"docs_src/security/tutorial004.py" = ["B904"]
-"docs_src/security/tutorial004_an.py" = ["B904"]
 "docs_src/security/tutorial004_an_py310.py" = ["B904"]
 "docs_src/security/tutorial004_an_py39.py" = ["B904"]
 "docs_src/security/tutorial004_py310.py" = ["B904"]
-"docs_src/security/tutorial005.py" = ["B904"]
-"docs_src/security/tutorial005_an.py" = ["B904"]
+"docs_src/security/tutorial004_py39.py" = ["B904"]
 "docs_src/security/tutorial005_an_py310.py" = ["B904"]
 "docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
-"docs_src/dependencies/tutorial008b.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_an.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
-
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]

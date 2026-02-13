@@ -144,11 +144,11 @@ Isso foi alterado na versão 0.110.0 para corrigir consumo de memória não trat
 
 ### Tarefas em Segundo Plano e Dependências com `yield`, Detalhes Técnicos { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Antes do FastAPI 0.106.0, lançar exceções após o `yield` não era possível, o código de saída em dependências com `yield` era executado depois que a resposta era enviada, então [Tratadores de Exceções](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} já teriam sido executados.
+Antes do FastAPI 0.106.0, lançar exceções após o `yield` não era possível, o código de saída em dependências com `yield` era executado depois que a resposta era enviada, então [Tratadores de Exceções](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} já teriam sido executados.
 
 Isso foi projetado assim principalmente para permitir o uso dos mesmos objetos "yielded" por dependências dentro de tarefas em segundo plano, porque o código de saída seria executado depois que as tarefas em segundo plano fossem concluídas.
 
-Isso foi alterado no FastAPI 0.106.0 com a intenção de não manter recursos enquanto se espera a resposta percorrer a rede.
+Isso foi alterado no FastAPI 0.106.0 com a intenção de não manter recursos enquanto se espera a response percorrer a rede.
 
 /// tip | Dica
 

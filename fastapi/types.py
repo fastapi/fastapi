@@ -1,11 +1,12 @@
 import types
+from collections.abc import Callable
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Set, Tuple, Type, TypeVar, Union
+from typing import Any, TypeVar, Union
 
 from pydantic import BaseModel
+from pydantic.main import IncEx as IncEx
 
 DecoratedCallable = TypeVar("DecoratedCallable", bound=Callable[..., Any])
 UnionType = getattr(types, "UnionType", Union)
-ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
-IncEx = Union[Set[int], Set[str], Dict[int, Any], Dict[str, Any]]
-DependencyCacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str]
+ModelNameMap = dict[type[BaseModel] | type[Enum], str]
+DependencyCacheKey = tuple[Callable[..., Any] | None, tuple[str, ...], str]

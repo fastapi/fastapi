@@ -6,13 +6,29 @@ For that, you can use the `WSGIMiddleware` and use it to wrap your WSGI applicat
 
 ## Using `WSGIMiddleware` { #using-wsgimiddleware }
 
-You need to import `WSGIMiddleware`.
+/// info
+
+This requires installing `a2wsgi` for example with `pip install a2wsgi`.
+
+///
+
+You need to import `WSGIMiddleware` from `a2wsgi`.
 
 Then wrap the WSGI (e.g. Flask) app with the middleware.
 
 And then mount that under a path.
 
-{* ../../docs_src/wsgi/tutorial001.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+
+/// note
+
+Previously, it was recommended to use `WSGIMiddleware` from `fastapi.middleware.wsgi`, but it is now deprecated.
+
+It’s advised to use the `a2wsgi` package instead. The usage remains the same.
+
+Just ensure that you have the `a2wsgi` package installed and import `WSGIMiddleware` correctly from `a2wsgi`.
+
+///
 
 ## Check it { #check-it }
 
