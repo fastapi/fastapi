@@ -1,6 +1,6 @@
-# 环境变量
+# 环境变量 { #environment-variables }
 
-/// tip
+/// tip | 提示
 
 如果你已经知道什么是“环境变量”并且知道如何使用它们，你可以放心跳过这一部分。
 
@@ -10,7 +10,7 @@
 
 环境变量对于处理应用程序**设置**、作为 Python **安装**的一部分等方面非常有用。
 
-## 创建和使用环境变量
+## 创建和使用环境变量 { #create-and-use-env-vars }
 
 你在 **shell（终端）**中就可以**创建**和使用环境变量，并不需要用到 Python：
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## 在 Python 中读取环境变量
+## 在 Python 中读取环境变量 { #read-env-vars-in-python }
 
 你也可以在 Python **之外**的终端中创建环境变量（或使用任何其他方法），然后在 Python 中**读取**它们。
 
@@ -63,9 +63,9 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip
+/// tip | 提示
 
-第二个参数是 <a href="https://docs.python.org/zh-cn/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的默认返回值。
+第二个参数是 <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的默认返回值。
 
 如果没有提供，默认值为 `None`，这里我们提供 `"World"` 作为默认值。
 
@@ -151,21 +151,21 @@ Hello World from Python
 
 </div>
 
-/// tip
+/// tip | 提示
 
-你可以在 <a href="https://12factor.net/zh_cn/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多信息。
+你可以在 <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多信息。
 
 ///
 
-## 类型和验证
+## 类型和验证 { #types-and-validation }
 
 这些环境变量只能处理**文本字符串**，因为它们是处于 Python 范畴之外的，必须与其他程序和操作系统的其余部分兼容（甚至与不同的操作系统兼容，如 Linux、Windows、macOS）。
 
 这意味着从环境变量中读取的**任何值**在 Python 中都将是一个 `str`，任何类型转换或验证都必须在代码中完成。
 
-你将在[高级用户指南 - 设置和环境变量](./advanced/settings.md)中了解更多关于使用环境变量处理**应用程序设置**的信息。
+你将在[高级用户指南 - 设置和环境变量](./advanced/settings.md){.internal-link target=_blank}中了解更多关于使用环境变量处理**应用程序设置**的信息。
 
-## `PATH` 环境变量
+## `PATH` 环境变量 { #path-environment-variable }
 
 有一个**特殊的**环境变量称为 **`PATH`**，操作系统（Linux、macOS、Windows）用它来查找要运行的程序。
 
@@ -209,7 +209,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 如果找到了，那么操作系统将**使用它**；否则，操作系统会继续在**其他目录**中查找。
 
-### 安装 Python 和更新 `PATH`
+### 安装 Python 和更新 `PATH` { #installing-python-and-updating-the-path }
 
 安装 Python 时，可能会询问你是否要更新 `PATH` 环境变量。
 
@@ -233,7 +233,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 假设你安装 Python 并最终将其安装在了目录 `C:\opt\custompython\bin` 中。
 
-如果你同意更新 `PATH` 环境变量 (在 Python 安装程序中，这个操作是名为 `Add Python x.xx to PATH` 的复选框 —— 译者注)，那么安装程序将会将 `C:\opt\custompython\bin` 添加到 `PATH` 环境变量中。
+如果你同意更新 `PATH` 环境变量，那么安装程序将会将 `C:\opt\custompython\bin` 添加到 `PATH` 环境变量中。
 
 ```plaintext
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-当学习[虚拟环境](virtual-environments.md)时，这些信息将会很有用。
+当学习[虚拟环境](virtual-environments.md){.internal-link target=_blank}时，这些信息将会很有用。
 
-## 结论
+## 结论 { #conclusion }
 
 通过这个教程，你应该对**环境变量**是什么以及如何在 Python 中使用它们有了基本的了解。
 
-你也可以在<a href="https://zh.wikipedia.org/wiki/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" class="external-link" target="_blank">环境变量 - 维基百科</a> (<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a>) 中了解更多关于它们的信息。
+你也可以在<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">环境变量 - 维基百科</a>中了解更多关于它们的信息。
 
 在许多情况下，环境变量的用途和适用性并不是很明显。但是在开发过程中，它们会在许多不同的场景中出现，因此了解它们是很有必要的。
 

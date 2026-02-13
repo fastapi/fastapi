@@ -2,7 +2,7 @@
 
 The simplest FastAPI file could look like this:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Copy that to a file `main.py`.
 
@@ -54,7 +54,7 @@ In the output, there's a line with something like:
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
+That line shows the URL where your app is being served on your local machine.
 
 ### Check it { #check-it }
 
@@ -183,7 +183,7 @@ That's it! Now you can access your app at that URL. ✨
 
 ### Step 1: import `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
@@ -197,7 +197,7 @@ You can use all the <a href="https://www.starlette.dev/" class="external-link" t
 
 ### Step 2: create a `FastAPI` "instance" { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
@@ -266,12 +266,12 @@ We are going to call them "**operations**" too.
 
 #### Define a *path operation decorator* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
 * the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
 /// info | `@decorator` Info
 
@@ -320,7 +320,7 @@ This is our "**path operation function**":
 * **operation**: is `get`.
 * **function**: is the function below the "decorator" (below `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 This is a Python function.
 
@@ -332,7 +332,7 @@ In this case, it is an `async` function.
 
 You could also define it as a normal function instead of `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note
 
@@ -342,7 +342,7 @@ If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md
 
 ### Step 5: return the content { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 You can return a `dict`, `list`, singular values as `str`, `int`, etc.
 

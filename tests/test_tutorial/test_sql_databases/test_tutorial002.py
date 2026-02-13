@@ -22,9 +22,7 @@ def clear_sqlmodel():
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial002_an_py39"),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
 )
@@ -416,6 +414,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

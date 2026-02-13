@@ -31,6 +31,7 @@ internal:
         - .pre-commit-config.yaml
         - pdm_build.py
         - requirements*.txt
+        - uv.lock
         - docs/en/data/sponsors.yml
         - docs/en/overrides/main.html
       - all-globs-to-all-files:
