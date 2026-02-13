@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Например, вы объявили операцию пути `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Если клиент обратится к `/items`, по умолчанию произойдёт редирект на `/items/`.
 
@@ -115,7 +115,7 @@ sequenceDiagram
 
 Хотя весь ваш код написан с расчётом, что путь один — `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Прокси будет «обрезать» префикс пути на лету перед передачей запроса на сервер приложения (скорее всего Uvicorn, запущенный через FastAPI CLI), поддерживая у вашего приложения иллюзию, что его обслуживают по `/app`, чтобы вам не пришлось менять весь код и добавлять префикс `/api/v1`.
 
@@ -193,7 +193,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Здесь мы добавляем его в сообщение лишь для демонстрации.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Затем, если вы запустите Uvicorn так:
 
@@ -220,7 +220,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Если нет возможности передать опцию командной строки `--root-path` (или аналог), вы можете указать параметр `root_path` при создании приложения FastAPI:
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Передача `root_path` в `FastAPI` эквивалентна опции командной строки `--root-path` для Uvicorn или Hypercorn.
 
@@ -241,17 +241,17 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Uvicorn ожидает, что прокси обратится к нему по `http://127.0.0.1:8000/app`, а уже задача прокси — добавить сверху префикс `/api/v1`.
 
-## О прокси с урезанным префиксом пути { #about-proxies-with-a-stripped-path-prefix }
+## О прокси с функцией удаления префикса пути { #about-proxies-with-a-stripped-path-prefix }
 
-Помните, что прокси с урезанным префиксом пути — лишь один из вариантов настройки.
+Помните, что прокси с функцией удаления префикса пути — лишь один из вариантов настройки.
 
-Во многих случаях по умолчанию прокси будет без урезанного префикса пути.
+Во многих случаях по умолчанию прокси будет без функции удаления префикса пути.
 
-В таком случае (без урезанного префикса) прокси слушает, например, по адресу `https://myawesomeapp.com`, и если браузер идёт на `https://myawesomeapp.com/api/v1/app`, а ваш сервер (например, Uvicorn) слушает на `http://127.0.0.1:8000`, то прокси (без урезанного префикса) обратится к Uvicorn по тому же пути: `http://127.0.0.1:8000/api/v1/app`.
+В таком случае (без функции удаления префикса пути) прокси слушает, например, по адресу `https://myawesomeapp.com`, и если браузер идёт на `https://myawesomeapp.com/api/v1/app`, а ваш сервер (например, Uvicorn) слушает на `http://127.0.0.1:8000`, то прокси (без урезанного префикса) обратится к Uvicorn по тому же пути: `http://127.0.0.1:8000/api/v1/app`.
 
 ## Локальное тестирование с Traefik { #testing-locally-with-traefik }
 
-Вы можете легко поэкспериментировать локально с урезанным префиксом пути, используя <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+Вы можете легко поэкспериментировать локально с функцией удаления префикса пути, используя <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
 
 <a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Скачайте Traefik</a> — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
 
@@ -400,7 +400,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Например:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Будет сгенерирована схема OpenAPI примерно такая:
 
@@ -455,7 +455,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Если вы не хотите, чтобы FastAPI добавлял автоматический сервер, используя `root_path`, укажите параметр `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 и тогда этот сервер не будет добавлен в схему OpenAPI.
 
