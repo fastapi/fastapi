@@ -28,7 +28,7 @@ Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes 
 * **Standardmäßig** bedeutet das, dass Sie nur **ein HTTPS-Zertifikat pro IP-Adresse** haben können.
     * Ganz gleich, wie groß Ihr Server ist oder wie klein die einzelnen Anwendungen darauf sind.
     * Hierfür gibt es jedoch eine **Lösung**.
-* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
+* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
     * Mit dieser SNI-Erweiterung kann ein einzelner Server (mit einer **einzelnen IP-Adresse**) über **mehrere HTTPS-Zertifikate** verfügen und **mehrere HTTPS-Domains/Anwendungen bereitstellen**.
     * Damit das funktioniert, muss eine **einzelne** Komponente (Programm), die auf dem Server ausgeführt wird und welche die **öffentliche IP-Adresse** überwacht, **alle HTTPS-Zertifikate** des Servers haben.
 * **Nachdem** eine sichere Verbindung hergestellt wurde, ist das Kommunikationsprotokoll **immer noch HTTP**.

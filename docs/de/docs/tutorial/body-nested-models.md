@@ -193,7 +193,7 @@ Das schauen wir uns mal an.
 
 Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüssel und `float`-Werte hat:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Tipp
 
