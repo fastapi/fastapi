@@ -76,7 +76,7 @@ In this example:
 
 ```python
 class Item(BaseModel):
-    description: Optional[str] = None
+    description: str | None = None
 ```
 
 Here, `description` can be omitted entirely in the request body.
