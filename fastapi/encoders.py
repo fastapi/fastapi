@@ -52,13 +52,13 @@ except ImportError:
 
 
 # Taken from Pydantic v1 as is
-def isoformat(o: Union[datetime.date, datetime.time]) -> str:
+def isoformat(o: datetime.date | datetime.time) -> str:
     return o.isoformat()
 
 
 # Adapted from Pydantic v1
 # TODO: pv2 should this return strings instead?
-def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
+def decimal_encoder(dec_value: Decimal) -> int | float:
     """
     Encodes a Decimal as int if there's no exponent, otherwise float
 
@@ -139,7 +139,7 @@ def jsonable_encoder(
         ),
     ],
     include: Annotated[
-        Optional[IncEx],
+        IncEx | None,
         Doc(
             """
             Pydantic's `include` parameter, passed to Pydantic models to set the
@@ -148,7 +148,7 @@ def jsonable_encoder(
         ),
     ] = None,
     exclude: Annotated[
-        Optional[IncEx],
+        IncEx | None,
         Doc(
             """
             Pydantic's `exclude` parameter, passed to Pydantic models to set the
@@ -198,7 +198,7 @@ def jsonable_encoder(
         ),
     ] = False,
     custom_encoder: Annotated[
-        Optional[dict[Any, Callable[[Any], Any]]],
+        dict[Any, Callable[[Any], Any]] | None,
         Doc(
             """
             Pydantic's `custom_encoder` parameter, passed to Pydantic models to define

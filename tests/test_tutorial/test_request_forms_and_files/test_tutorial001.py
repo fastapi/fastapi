@@ -9,8 +9,8 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial001_py39",
-        "tutorial001_an_py39",
+        "tutorial001_py310",
+        "tutorial001_an_py310",
     ],
 )
 def get_app(request: pytest.FixtureRequest):

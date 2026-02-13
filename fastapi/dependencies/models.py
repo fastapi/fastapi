@@ -1,13 +1,13 @@
 import inspect
 import sys
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from functools import cached_property, partial
-from typing import Any, Callable, Optional, Union
+from typing import Any, Literal
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
 from fastapi.types import DependencyCacheKey
-from typing_extensions import Literal
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -15,7 +15,7 @@ else:  # pragma: no cover
     from asyncio import iscoroutinefunction
 
 
-def _unwrapped_call(call: Optional[Callable[..., Any]]) -> Any:
+def _unwrapped_call(call: Callable[..., Any] | None) -> Any:
     if call is None:
         return call  # pragma: no cover
     unwrapped = inspect.unwrap(_impartial(call))
@@ -36,19 +36,19 @@ class Dependant:
     cookie_params: list[ModelField] = field(default_factory=list)
     body_params: list[ModelField] = field(default_factory=list)
     dependencies: list["Dependant"] = field(default_factory=list)
-    name: Optional[str] = None
-    call: Optional[Callable[..., Any]] = None
-    request_param_name: Optional[str] = None
-    websocket_param_name: Optional[str] = None
-    http_connection_param_name: Optional[str] = None
-    response_param_name: Optional[str] = None
-    background_tasks_param_name: Optional[str] = None
-    security_scopes_param_name: Optional[str] = None
-    own_oauth_scopes: Optional[list[str]] = None
-    parent_oauth_scopes: Optional[list[str]] = None
+    name: str | None = None
+    call: Callable[..., Any] | None = None
+    request_param_name: str | None = None
+    websocket_param_name: str | None = None
+    http_connection_param_name: str | None = None
+    response_param_name: str | None = None
+    background_tasks_param_name: str | None = None
+    security_scopes_param_name: str | None = None
+    own_oauth_scopes: list[str] | None = None
+    parent_oauth_scopes: list[str] | None = None
     use_cache: bool = True
-    path: Optional[str] = None
-    scope: Union[Literal["function", "request"], None] = None
+    path: str | None = None
+    scope: Literal["function", "request"] | None = None
 
     @cached_property
     def oauth_scopes(self) -> list[str]:
@@ -185,7 +185,7 @@ class Dependant:
         return False
 
     @cached_property
-    def computed_scope(self) -> Union[str, None]:
+    def computed_scope(self) -> str | None:
         if self.scope:
             return self.scope
         if self.is_gen_callable or self.is_async_gen_callable:

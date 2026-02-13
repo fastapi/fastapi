@@ -8,8 +8,8 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001_03_py39",
-        "tutorial001_03_an_py39",
+        "tutorial001_03_py310",
+        "tutorial001_03_an_py310",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
