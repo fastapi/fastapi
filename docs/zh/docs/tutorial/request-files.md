@@ -20,13 +20,13 @@ $ pip install python-multipart
 
 从 `fastapi` 导入 `File` 和 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## 定义 `File` 参数 { #define-file-parameters }
 
 像为 `Body` 或 `Form` 一样创建文件参数：
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | 信息
 
@@ -54,7 +54,7 @@ $ pip install python-multipart
 
 将文件参数的类型声明为 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 与 `bytes` 相比，使用 `UploadFile` 有多项优势：
 
@@ -76,9 +76,9 @@ $ pip install python-multipart
 
 `UploadFile` 具有以下 `async` 方法。它们都会在底层调用对应的文件方法（使用内部的 `SpooledTemporaryFile`）。
 
-* `write(data)`：将 `data`（`str` 或 `bytes`）写入文件。
-* `read(size)`：读取文件中 `size`（`int`）个字节/字符。
-* `seek(offset)`：移动到文件中字节位置 `offset`（`int`）。
+* `write(data)`：将 `data` (`str` 或 `bytes`) 写入文件。
+* `read(size)`：读取文件中 `size` (`int`) 个字节/字符。
+* `seek(offset)`：移动到文件中字节位置 `offset` (`int`)。
     * 例如，`await myfile.seek(0)` 会移动到文件开头。
     * 如果你先运行过 `await myfile.read()`，然后需要再次读取内容时，这尤其有用。
 * `close()`：关闭文件。
@@ -121,7 +121,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 但当表单包含文件时，会编码为 `multipart/form-data`。如果你使用 `File`，**FastAPI** 会知道需要从请求体的正确位置获取文件。
 
-如果你想进一步了解这些编码和表单字段，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> web docs for <code>POST</code></a>。
+如果你想进一步了解这些编码和表单字段，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> 关于 <code>POST</code> 的 Web 文档</a>。
 
 ///
 
@@ -135,7 +135,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 ## 可选文件上传 { #optional-file-upload }
 
-您可以通过使用标准类型注解并将 None 作为默认值的方式将一个文件参数设为可选:
+您可以通过使用标准类型注解并将 `None` 作为默认值的方式将一个文件参数设为可选:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
@@ -143,7 +143,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## 多文件上传 { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ FastAPI 支持同时上传多个文件。
 
 要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表（`List`）：
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
 
@@ -169,7 +169,7 @@ FastAPI 支持同时上传多个文件。
 
 和之前的方式一样，你可以为 `File()` 设置额外参数，即使是 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## 小结 { #recap }
 

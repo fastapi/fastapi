@@ -14,7 +14,7 @@
 
 该参数的值是由 `Depends()` 组成的 `list`：
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 路径操作装饰器依赖项的执行或解析方式和普通依赖项一样，但就算这些依赖项会返回值，它们的值也不会传递给*路径操作函数*。
 
@@ -22,13 +22,13 @@
 
 有些编辑器会检查代码中没使用过的函数参数，并显示错误提示。
 
-在*路径操作装饰器*中使用 `dependencies` 参数，可以确保在执行依赖项的同时，避免编辑器显示错误提示。
+在*路径操作装饰器*中使用 `dependencies` 参数，可以确保在执行依赖项的同时，避免编辑器/工具报错。
 
 使用路径装饰器依赖项还可以避免开发新人误会代码中包含无用的未使用参数。
 
 ///
 
-/// info | 说明
+/// info | 信息
 
 本例中，使用的是自定义响应头 `X-Key` 和 `X-Token`。
 
@@ -44,13 +44,13 @@
 
 路径装饰器依赖项可以声明请求的需求项（比如响应头）或其他子依赖项：
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
 ### 触发异常 { #raise-exceptions }
 
 路径装饰器依赖项与正常的依赖项一样，可以 `raise` 异常：
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
 ### 返回值 { #return-values }
 
@@ -58,7 +58,7 @@
 
 因此，可以复用在其他位置使用过的、（能返回值的）普通依赖项，即使没有使用这个值，也会执行该依赖项：
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
 ## 为一组路径操作定义依赖项 { #dependencies-for-a-group-of-path-operations }
 

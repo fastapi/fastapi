@@ -36,4 +36,4 @@
 
 ## OpenAPI 文档 URL { #openapi-docs-urls }
 
-要更改用于自动生成文档的 URL，请阅读 [教程 - 元数据和文档 URL](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}。
+要更改自动生成的文档用户界面所使用的 URL，请阅读 [教程 - 元数据和文档 URL](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}。

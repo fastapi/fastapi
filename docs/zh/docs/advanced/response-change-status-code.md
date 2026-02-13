@@ -20,9 +20,11 @@
 
 然后你可以在这个*临时*响应对象中设置`status_code`。
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
-然后你可以像平常一样返回任何你需要的对象（例如一个`dict`或者一个数据库模型）。如果你声明了一个`response_model`，它仍然会被用来过滤和转换你返回的对象。
+然后你可以像平常一样返回任何你需要的对象（例如一个`dict`或者一个数据库模型）。
+
+如果你声明了一个`response_model`，它仍然会被用来过滤和转换你返回的对象。
 
 **FastAPI**将使用这个*临时*响应来提取状态码（也包括cookies和头部），并将它们放入包含你返回的值的最终响应中，该响应由任何`response_model`过滤。
 

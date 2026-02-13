@@ -12,7 +12,7 @@
 
 务必确保每个操作的 `operation_id` 都是唯一的。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### 使用 *路径操作函数* 的函数名作为 operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@
 
 你应该在添加了所有 *路径操作* 之后执行此操作。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip
 
@@ -40,7 +40,7 @@
 
 使用参数 `include_in_schema` 并将其设置为 `False`，来从生成的 OpenAPI 方案中排除一个 *路径操作*（这样一来，就从自动化文档系统中排除掉了）：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## 来自 docstring 的高级描述 { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@
 
 例如，这个 `openapi_extra` 可用于声明 [OpenAPI 扩展](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions)：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 当你打开自动 API 文档时，你的扩展会显示在该 *路径操作* 的底部。
 
@@ -139,9 +139,9 @@
 
 你可以用 `openapi_extra` 来做到：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-在这个示例中，我们没有声明任何 Pydantic 模型。事实上，请求体甚至没有被 <abbr title="从某种纯文本格式（如字节）转换为 Python 对象">解析</abbr> 为 JSON，而是直接以 `bytes` 读取，并由函数 `magic_data_reader()` 以某种方式负责解析。
+在这个示例中，我们没有声明任何 Pydantic 模型。事实上，请求体甚至没有被 <dfn title="从某种纯文本格式（如字节）转换为 Python 对象">解析</dfn> 为 JSON，而是直接以 `bytes` 读取，并由函数 `magic_data_reader()` 以某种方式负责解析。
 
 尽管如此，我们仍然可以声明请求体的预期方案。
 
@@ -153,7 +153,7 @@
 
 例如，在这个应用中我们不使用 FastAPI 集成的从 Pydantic 模型提取 JSON Schema 的功能，也不使用对 JSON 的自动校验。实际上，我们将请求的内容类型声明为 YAML，而不是 JSON：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 尽管我们没有使用默认的集成功能，我们仍然使用 Pydantic 模型手动生成我们想以 YAML 接收的数据的 JSON Schema。
 
@@ -161,7 +161,7 @@
 
 接着在我们的代码中，我们直接解析该 YAML 内容，然后再次使用同一个 Pydantic 模型来验证该 YAML 内容：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip
 

@@ -2,7 +2,7 @@
 
 最简单的 FastAPI 文件可能像下面这样：
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 将其复制到 `main.py` 文件中。
 
@@ -110,7 +110,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 如果你对原始的 OpenAPI 模式长什么样子感到好奇，FastAPI 自动生成了包含所有 API 描述的 JSON（模式）。
 
-你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:800api.json</a> 看到它。
+你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 看到它。
 
 它将显示以如下内容开头的 JSON：
 
@@ -183,7 +183,7 @@ Deploying to FastAPI Cloud...
 
 ### 步骤 1：导入 `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
@@ -197,7 +197,7 @@ Deploying to FastAPI Cloud...
 
 ### 步骤 2：创建一个 `FastAPI`「实例」 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
@@ -266,12 +266,12 @@ https://example.com/items/foo
 
 #### 定义一个*路径操作装饰器* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")` 告诉 **FastAPI** 在它下方的函数负责处理如下访问请求：
 
 * 请求路径为 `/`
-* 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
+* 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
 /// info | `@decorator` Info
 
@@ -320,7 +320,7 @@ https://example.com/items/foo
 * **操作**：是 `get`。
 * **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 这是一个 Python 函数。
 
@@ -332,7 +332,7 @@ https://example.com/items/foo
 
 你也可以将其定义为常规函数而不使用 `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note
 
@@ -342,7 +342,7 @@ https://example.com/items/foo
 
 ### 步骤 5：返回内容 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 你可以返回一个 `dict`、`list`，像 `str`、`int` 一样的单个值，等等。
 
