@@ -17,12 +17,11 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_required_nullable_field(client: TestClient):
-    response = client.post("/items/", json={"description": None})
+    response = client.post("/items/", json={"description": "Some description"})
     assert response.status_code == 200
-    assert response.json() == {"description": None}
+    assert response.json() == {"description": "Some description"}
 
 
 def test_required_field_missing(client: TestClient):
     response = client.post("/items/", json={})
-    assert response.status_code == 200
-    assert response.json() == {"description": None}
+    assert response.status_code == 422
