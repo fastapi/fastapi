@@ -6,7 +6,7 @@
 
 ### Basado en estándares abiertos { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para la creación de APIs, incluyendo declaraciones de <abbr title="también conocido como: endpoints, rutas">path</abbr> <abbr title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</abbr>, parámetros, request bodies, seguridad, etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para la creación de APIs, incluyendo declaraciones de <dfn title="también conocido como: endpoints, rutas">path</dfn> <dfn title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</dfn>, parámetros, request bodies, seguridad, etc.
 * Documentación automática de modelos de datos con <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ya que OpenAPI en sí mismo está basado en JSON Schema).
 * Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional.
 * Esto también permite el uso de **generación de código cliente automática** en muchos idiomas.
@@ -105,8 +105,8 @@ Pero por defecto, todo **"simplemente funciona"**.
 
 * Validación para la mayoría (¿o todas?) de los **tipos de datos** de Python, incluyendo:
     * Objetos JSON (`dict`).
-    * Array JSON (`list`) definiendo tipos de elementos.
-    * Campos de cadena de caracteres (`str`), definiendo longitudes mínimas y máximas.
+    * array JSON (`list`) definiendo tipos de elementos.
+    * Campos de string (`str`), definiendo longitudes mínimas y máximas.
     * Números (`int`, `float`) con valores mínimos y máximos, etc.
 
 * Validación para tipos más exóticos, como:
@@ -136,7 +136,7 @@ Todo construido como herramientas y componentes reutilizables que son fáciles d
 
 ### Inyección de dependencias { #dependency-injection }
 
-FastAPI incluye un sistema de <abbr title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></abbr> extremadamente fácil de usar, pero extremadamente potente.
+FastAPI incluye un sistema de <dfn title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></dfn> extremadamente fácil de usar, pero extremadamente potente.
 
 * Incluso las dependencias pueden tener dependencias, creando una jerarquía o **"grafo de dependencias"**.
 * Todo **manejado automáticamente** por el framework.
@@ -153,8 +153,8 @@ Cualquier integración está diseñada para ser tan simple de usar (con dependen
 
 ### Probado { #tested }
 
-* 100% de <abbr title="La cantidad de código que se prueba automáticamente">cobertura de tests</abbr>.
-* 100% <abbr title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</abbr> code base.
+* 100% de <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests</dfn>.
+* 100% <dfn title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</dfn> code base.
 * Usado en aplicaciones en producción.
 
 ## Funcionalidades de Starlette { #starlette-features }
@@ -173,7 +173,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 * **CORS**, GZip, archivos estáticos, responses en streaming.
 * Soporte para **Session y Cookie**.
 * Cobertura de tests del 100%.
-* code base completamente anotada con tipos.
+* code base 100% anotada con tipos.
 
 ## Funcionalidades de Pydantic { #pydantic-features }
 
@@ -190,7 +190,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<abbr title="Un programa que verifica errores de código">linter</abbr>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.
