@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -7,7 +5,7 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    description: Optional[str]
+    description: str | None
 
 
 @app.post("/items/")
