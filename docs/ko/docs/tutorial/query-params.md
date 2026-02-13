@@ -2,7 +2,7 @@
 
 경로 매개변수의 일부가 아닌 다른 함수 매개변수를 선언하면 "쿼리" 매개변수로 자동 해석합니다.
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 쿼리는 URL에서 `?` 후에 나오고 `&`으로 구분되는 키-값 쌍의 집합입니다.
 
@@ -24,7 +24,7 @@ URL의 일부이므로 "자연스럽게" 문자열입니다.
 경로 매개변수에 적용된 동일한 프로세스가 쿼리 매개변수에도 적용됩니다:
 
 * (당연히) 편집기 지원
-* 데이터 <abbr title="converting the string that comes from an HTTP request into Python data">"파싱"</abbr>
+* 데이터 <dfn title="HTTP 요청에서 온 문자열을 Python 데이터로 변환하는 것">"파싱"</dfn>
 * 데이터 검증
 * 자동 문서화
 
@@ -128,7 +128,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 그러나 쿼리 매개변수를 필수로 만들려면 단순히 기본값을 선언하지 않으면 됩니다:
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 여기 쿼리 매개변수 `needy`는 `str`형인 필수 쿼리 매개변수입니다.
 

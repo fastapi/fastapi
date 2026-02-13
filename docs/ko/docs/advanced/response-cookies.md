@@ -6,7 +6,7 @@
 
 그런 다음 해당 *임시* 응답 객체에서 쿠키를 설정할 수 있습니다.
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 그런 다음 일반적으로 하듯이 필요한 어떤 객체든 반환할 수 있습니다(`dict`, 데이터베이스 모델 등).
 
@@ -24,7 +24,7 @@
 
 그런 다음 쿠키를 설정하고 반환하면 됩니다:
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip | 팁
 

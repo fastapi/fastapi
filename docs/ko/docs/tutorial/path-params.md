@@ -2,7 +2,7 @@
 
 파이썬의 포맷 문자열 리터럴에서 사용되는 문법을 이용하여 경로 "매개변수" 또는 "변수"를 선언할 수 있습니다:
 
-{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
 
 경로 매개변수 `item_id`의 값은 함수의 `item_id` 인자로 전달됩니다.
 
@@ -16,7 +16,7 @@
 
 파이썬 표준 타입 어노테이션을 사용하여 함수에 있는 경로 매개변수의 타입을 선언할 수 있습니다:
 
-{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
 
 위의 예시에서, `item_id`는 `int`로 선언되었습니다.
 
@@ -26,7 +26,7 @@
 
 ///
 
-## 데이터 <abbr title="다음으로도 알려져 있습니다: 직렬화, 파싱, 마샬링">변환</abbr> { #data-conversion }
+## 데이터 <dfn title="다음으로도 알려져 있습니다: 직렬화, 파싱, 마샬링">변환</dfn> { #data-conversion }
 
 이 예제를 실행하고 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>을 열면, 다음 응답을 볼 수 있습니다:
 
@@ -38,7 +38,7 @@
 
 함수가 받은(반환도 하는) 값은 문자열 `"3"`이 아니라 파이썬 `int` 형인 `3`입니다.
 
-즉, 타입 선언을 하면 **FastAPI**는 자동으로 요청을 <abbr title="HTTP 요청에서 전달되는 문자열을 파이썬 데이터로 변환">"파싱"</abbr>합니다.
+즉, 타입 선언을 하면 **FastAPI**는 자동으로 요청을 <dfn title="HTTP 요청에서 전달되는 문자열을 파이썬 데이터로 변환">"파싱"</dfn>합니다.
 
 ///
 
@@ -116,21 +116,21 @@
 
 사용자 ID를 이용해 특정 사용자의 정보를 가져오는 경로 `/users/{user_id}`도 있습니다.
 
-*경로 처리*는 순차적으로 평가되기 때문에 `/users/{user_id}` 이전에 `/users/me`에 대한 경로가 먼저 선언되었는지 확인해야 합니다:
+*경로 처리*는 순차적으로 평가되기 때문에 `/users/me`에 대한 경로가 `/users/{user_id}` 이전에 먼저 선언되었는지 확인해야 합니다:
 
-{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
 
 그렇지 않으면 `/users/{user_id}`에 대한 경로가 `/users/me`에도 매칭되어, 매개변수 `user_id`에 `"me"` 값이 들어왔다고 "생각하게" 됩니다.
 
 마찬가지로, 경로 처리를 재정의할 수는 없습니다:
 
-{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
 
 경로가 먼저 매칭되기 때문에 첫 번째 것이 항상 사용됩니다.
 
 ## 사전정의 값 { #predefined-values }
 
-만약 *경로 매개변수*를 받는 *경로 처리*가 있지만, 가능한 유효한 *경로 매개변수* 값들을 미리 정의하고 싶다면 파이썬 표준 <abbr title="열거형(Enumeration)">`Enum`</abbr>을 사용할 수 있습니다.
+만약 *경로 매개변수*를 받는 *경로 처리*가 있지만, 가능한 유효한 *경로 매개변수* 값들을 미리 정의하고 싶다면 파이썬 표준 <abbr title="열거형">`Enum`</abbr>을 사용할 수 있습니다.
 
 ### `Enum` 클래스 생성 { #create-an-enum-class }
 
@@ -140,11 +140,11 @@
 
 가능한 값들에 해당하는 고정된 값의 클래스 어트리뷰트들을 만듭니다:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
 
 /// tip | 팁
 
-혹시 궁금하다면, "AlexNet", "ResNet", 그리고 "LeNet"은 그저 머신 러닝 <abbr title="기술적으로는 딥 러닝 모델 아키텍처">모델</abbr>들의 이름입니다.
+혹시 궁금하다면, "AlexNet", "ResNet", 그리고 "LeNet"은 그저 머신 러닝 <dfn title="기술적으로는 딥 러닝 모델 아키텍처">모델</dfn>들의 이름입니다.
 
 ///
 
@@ -152,7 +152,7 @@
 
 생성한 열거형 클래스(`ModelName`)를 사용하는 타입 어노테이션으로 *경로 매개변수*를 만듭니다:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
 ### 문서 확인 { #check-the-docs }
 
@@ -168,13 +168,13 @@
 
 생성한 열거형 `ModelName`의 *열거형 멤버*와 비교할 수 있습니다:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
 
 #### *열거형 값* 가져오기 { #get-the-enumeration-value }
 
 `model_name.value` 또는 일반적으로 `your_enum_member.value`를 이용하여 실제 값(위 예시의 경우 `str`)을 가져올 수 있습니다:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
 
 /// tip | 팁
 
@@ -188,7 +188,7 @@
 
 클라이언트에 반환하기 전에 해당 값(이 경우 문자열)으로 변환됩니다:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
 
 클라이언트는 아래와 같은 JSON 응답을 얻게 됩니다:
 
@@ -227,7 +227,7 @@ Starlette의 옵션을 직접 이용하여 다음과 같은 URL을 사용함으�
 
 따라서 다음과 같이 사용할 수 있습니다:
 
-{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
 
 /// tip | 팁
 
@@ -242,7 +242,7 @@ Starlette의 옵션을 직접 이용하여 다음과 같은 URL을 사용함으�
 **FastAPI**를 이용하면 짧고 직관적인 표준 파이썬 타입 선언을 사용하여 다음을 얻을 수 있습니다:
 
 * 편집기 지원: 오류 검사, 자동완성 등
-* 데이터 "<abbr title="HTTP 요청에서 전달되는 문자열을 파이썬 데이터로 변환">parsing</abbr>"
+* 데이터 "<dfn title="HTTP 요청에서 전달되는 문자열을 파이썬 데이터로 변환">파싱</dfn>"
 * 데이터 검증
 * API 주석(Annotation)과 자동 문서
 

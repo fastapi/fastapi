@@ -15,7 +15,7 @@
 
 `yield`를 사용하는 의존성이 있다면, exit 코드는 미들웨어 *후에* 실행됩니다.
 
-백그라운드 작업(뒤에서 보게 될 [Background Tasks](background-tasks.md){.internal-link target=_blank} 섹션에서 다룹니다)이 있다면, 모든 미들웨어 *후에* 실행됩니다.
+백그라운드 작업(뒤에서 보게 될 [백그라운드 작업](background-tasks.md){.internal-link target=_blank} 섹션에서 다룹니다)이 있다면, 모든 미들웨어 *후에* 실행됩니다.
 
 ///
 
@@ -31,7 +31,7 @@
     * 그런 다음 해당 *경로 처리*가 생성한 `response`를 반환합니다.
 * 그런 다음 반환하기 전에 `response`를 추가로 수정할 수 있습니다.
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | 팁
 
@@ -57,7 +57,7 @@
 
 예를 들어, 요청을 처리하고 응답을 생성하는 데 걸린 시간을 초 단위로 담는 사용자 정의 헤더 `X-Process-Time`을 추가할 수 있습니다:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | 팁
 
@@ -92,4 +92,4 @@ app.add_middleware(MiddlewareB)
 
 다른 미들웨어에 대한 더 많은 정보는 나중에 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=_blank}에서 확인할 수 있습니다.
 
-다음 섹션에서 미들웨어로 <abbr title="Cross-Origin Resource Sharing">CORS</abbr>를 처리하는 방법을 보게 될 것입니다.
+다음 섹션에서 미들웨어로 <abbr title="Cross-Origin Resource Sharing - 교차 출처 리소스 공유">CORS</abbr>를 처리하는 방법을 보게 될 것입니다.

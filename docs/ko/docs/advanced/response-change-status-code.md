@@ -20,7 +20,7 @@
 
 그리고 이 *임시* 응답 객체에서 `status_code`를 설정할 수 있습니다.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 그리고 평소처럼 필요한 어떤 객체든 반환할 수 있습니다(`dict`, 데이터베이스 모델 등).
 
