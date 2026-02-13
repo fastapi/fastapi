@@ -27,9 +27,9 @@ $ pip install jinja2
 * Template döndürecek *path operation* içinde bir `Request` parametresi tanımlayın.
 * Oluşturduğunuz `templates` nesnesini kullanarak bir `TemplateResponse` render edip döndürün; template'in adını, request nesnesini ve Jinja2 template'i içinde kullanılacak anahtar-değer çiftlerini içeren bir "context" sözlüğünü (dict) iletin.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
-/// note | Not
+/// note
 
 FastAPI 0.108.0 ve Starlette 0.29.0 öncesinde, ilk parametre `name` idi.
 
@@ -37,7 +37,7 @@ Ayrıca, daha önceki sürümlerde `request` nesnesi, Jinja2 için context için
 
 ///
 
-/// tip | İpucu
+/// tip
 
 `response_class=HTMLResponse` olarak tanımlarsanız doküman arayüzü (docs UI) response'un HTML olacağını anlayabilir.
 

@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Bağımlılıklarınızdan biri aynı *path operation* için birden fazla kez tanımlanırsa (örneğin birden fazla bağımlılığın ortak bir alt bağımlılığı varsa), **FastAPI** o alt bağımlılığı request başına yalnızca bir kez çağıracağını bilir.
 
-Dönen değeri bir <abbr title="A utility/system to store computed/generated values, to reuse them instead of computing them again. - Hesaplanan/üretilen değerleri saklayıp, onları tekrar hesaplamak yerine yeniden kullanmayı sağlayan bir yardımcı araç/sistem.">"cache"</abbr> içinde saklar ve aynı request içinde buna ihtiyaç duyan tüm "dependant"lara aktarır; böylece aynı request için bağımlılığı tekrar tekrar çağırmaz.
+Dönen değeri bir <dfn title="Hesaplanan/üretilen değerleri saklayıp, tekrar hesaplamak yerine yeniden kullanmayı sağlayan bir yardımcı araç/sistem.">"önbellek"</dfn> içinde saklar ve aynı request içinde buna ihtiyaç duyan tüm "dependant"lara aktarır; böylece aynı request için bağımlılığı tekrar tekrar çağırmaz.
 
 Daha ileri bir senaryoda, "cached" değeri kullanmak yerine aynı request içinde her adımda (muhtemelen birden fazla kez) bağımlılığın çağrılması gerektiğini biliyorsanız, `Depends` kullanırken `use_cache=False` parametresini ayarlayabilirsiniz:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ Annotated olmayan
+//// tab | Python 3.10+ Annotated olmayan
 
 /// tip | İpucu
 

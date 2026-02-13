@@ -8,7 +8,7 @@ Bu durum özellikle kullanıcı modellerinde sık görülür, çünkü:
 * **output modeli** `password` içermemelidir.
 * **database modeli** büyük ihtimalle hash'lenmiş bir `password` tutmalıdır.
 
-/// danger
+/// danger | Tehlike
 
 Kullanıcının düz metin (plaintext) `password`'ünü asla saklamayın. Her zaman sonradan doğrulayabileceğiniz "güvenli bir hash" saklayın.
 
@@ -132,7 +132,7 @@ UserInDB(
 )
 ```
 
-/// warning
+/// warning | Uyarı
 
 Ek destek fonksiyonları olan `fake_password_hasher` ve `fake_save_user` sadece verinin olası bir akışını göstermek içindir; elbette gerçek bir güvenlik sağlamazlar.
 
@@ -164,7 +164,7 @@ OpenAPI'de bu `anyOf` ile tanımlanır.
 
 Bunu yapmak için standart Python type hint'i olan <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>'ı kullanın:
 
-/// note
+/// note | Not
 
 Bir <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> tanımlarken en spesifik type'ı önce, daha az spesifik olanı sonra ekleyin. Aşağıdaki örnekte daha spesifik olan `PlaneItem`, `Union[PlaneItem, CarItem]` içinde `CarItem`'dan önce gelir.
 
@@ -190,9 +190,9 @@ Ancak bunu `response_model=PlaneItem | CarItem` atamasına koyarsak hata alırı
 
 Aynı şekilde, nesne listesi döndüren response'ları da tanımlayabilirsiniz.
 
-Bunun için standart Python `typing.List`'i (ya da Python 3.9 ve üzeri için sadece `list`) kullanın:
+Bunun için standart Python `list`'i kullanın:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Rastgele `dict` ile Response { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ Bir Pydantic modeli kullanmadan, sadece key ve value type'larını belirterek d�
 
 Bu, geçerli field/attribute adlarını (Pydantic modeli için gerekli olurdu) önceden bilmiyorsanız kullanışlıdır.
 
-Bu durumda `typing.Dict` (ya da Python 3.9 ve üzeri için sadece `dict`) kullanabilirsiniz:
+Bu durumda `dict` kullanabilirsiniz:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Özet { #recap }
 

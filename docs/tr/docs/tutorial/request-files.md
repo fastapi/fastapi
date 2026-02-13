@@ -20,13 +20,13 @@ Bunun nedeni, upload edilen dosyaların "form data" olarak gönderilmesidir.
 
 `fastapi` içinden `File` ve `UploadFile` import edin:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File` Parametrelerini Tanımlayın { #define-file-parameters }
 
 `Body` veya `Form` için yaptığınız gibi dosya parametreleri oluşturun:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Bilgi
 
@@ -54,7 +54,7 @@ Ancak bazı durumlarda `UploadFile` kullanmak size fayda sağlayabilir.
 
 Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 `UploadFile` kullanmanın `bytes`’a göre birkaç avantajı vardır:
 
@@ -121,7 +121,7 @@ Formlardan gelen veri, dosya içermiyorsa normalde "media type" olarak `applicat
 
 Ancak form dosya içeriyorsa `multipart/form-data` olarak encode edilir. `File` kullanırsanız, **FastAPI** dosyaları body’nin doğru kısmından alması gerektiğini bilir.
 
-Bu encoding’ler ve form alanları hakkında daha fazla okumak isterseniz <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web dokümanlarındaki <code>POST</code></a> sayfasına bakın.
+Bu encoding’ler ve form alanları hakkında daha fazla okumak isterseniz <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> web dokümanlarındaki <code>POST</code></a> sayfasına bakın.
 
 ///
 
@@ -143,7 +143,7 @@ Standart type annotation’ları kullanıp varsayılan değeri `None` yaparak bi
 
 Ek metadata ayarlamak için `UploadFile` ile birlikte `File()` da kullanabilirsiniz. Örneğin:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Birden Fazla Dosya Upload { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Bu dosyalar, "form data" ile gönderilen aynı "form field" ile ilişkilendirili
 
 Bunu kullanmak için `bytes` veya `UploadFile` listesini tanımlayın:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` alırsınız.
 
@@ -169,7 +169,7 @@ Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` 
 
 Daha önce olduğu gibi, `UploadFile` için bile ek parametreler ayarlamak amacıyla `File()` kullanabilirsiniz:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Özet { #recap }
 
