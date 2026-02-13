@@ -7,7 +7,7 @@
 * Імпортуйте `StaticFiles`.
 * «Під'єднати» екземпляр `StaticFiles()` з вказанням необхідного шляху.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Технічні деталі
 

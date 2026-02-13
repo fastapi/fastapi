@@ -6,7 +6,7 @@
 
 Sonra da bu *geçici* response nesnesi üzerinde header'ları ayarlayabilirsiniz.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 Ardından normalde yaptığınız gibi ihtiyacınız olan herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli vb.).
 
@@ -22,7 +22,7 @@ Doğrudan bir `Response` döndürdüğünüzde de header ekleyebilirsiniz.
 
 [Bir Response'u Doğrudan Döndürün](response-directly.md){.internal-link target=_blank} bölümünde anlatıldığı gibi bir response oluşturun ve header'ları ek bir parametre olarak geçin:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | Teknik Detaylar
 

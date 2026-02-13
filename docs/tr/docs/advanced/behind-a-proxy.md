@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Örneğin `/items/` adında bir *path operation* tanımladığınızı düşünelim:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Client `/items`'a gitmeye çalışırsa, varsayılan olarak `/items/`'a redirect edilir.
 
@@ -115,7 +115,7 @@ Bu durumda, orijinal `/app` path'i aslında `/api/v1/app` altında servis edilir
 
 Kodunuzun tamamı sadece `/app` varmış gibi yazılmış olsa bile.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Proxy, request'i app server'a (muhtemelen FastAPI CLI üzerinden Uvicorn) iletmeden önce **path prefix**'i anlık olarak **"kırpar"** (strip). Böylece uygulamanız hâlâ `/app` altında servis ediliyormuş gibi davranır ve tüm kodunuzu `/api/v1` prefix'ini içerecek şekilde güncellemeniz gerekmez.
 
@@ -149,14 +149,14 @@ Docs UI'nin, bu API `server`'ının (proxy arkasında) `/api/v1` altında bulund
 ```JSON hl_lines="4-8"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Burada daha fazla şey var
     "servers": [
         {
             "url": "/api/v1"
         }
     ],
     "paths": {
-            // More stuff here
+            // Burada daha fazla şey var
     }
 }
 ```
@@ -193,7 +193,7 @@ Uygulamanızın her request için kullandığı mevcut `root_path` değerini ala
 
 Burada sadece göstermek için bunu mesaja dahil ediyoruz.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Ardından Uvicorn'u şu şekilde başlatırsanız:
 
@@ -220,7 +220,7 @@ Response şöyle bir şey olur:
 
 Alternatif olarak, `--root-path` gibi bir komut satırı seçeneği (veya muadili) sağlayamıyorsanız, FastAPI uygulamanızı oluştururken `root_path` parametresini ayarlayabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 `FastAPI`'ye `root_path` vermek, Uvicorn veya Hypercorn'a `--root-path` komut satırı seçeneğini vermekle eşdeğerdir.
 
@@ -400,14 +400,14 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
 
 Örneğin:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Şöyle bir OpenAPI şeması üretir:
 
 ```JSON hl_lines="5-7"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Burada daha fazla şey var
     "servers": [
         {
             "url": "/api/v1"
@@ -422,7 +422,7 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
         }
     ],
     "paths": {
-            // More stuff here
+            // Burada daha fazla şey var
     }
 }
 ```
@@ -455,7 +455,7 @@ OpenAPI spesifikasyonunda `servers` özelliği opsiyoneldir.
 
 **FastAPI**'nin `root_path` kullanarak otomatik bir server eklemesini istemiyorsanız, `root_path_in_servers=False` parametresini kullanabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 Böylece OpenAPI şemasına dahil etmez.
 

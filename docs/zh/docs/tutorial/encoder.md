@@ -12,7 +12,7 @@
 
 例如，它不接收`datetime`这类的对象，因为这些对象与JSON不兼容。
 
-因此，`datetime`对象必须将转换为包含<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO格式化</a>的`str`类型对象。
+因此，`datetime`对象必须转换为包含<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO 格式</a>的`str`类型对象。
 
 同样，这个数据库也不会接收Pydantic模型（带有属性的对象），而只接收`dict`。
 
@@ -30,6 +30,6 @@
 
 /// note | 注意
 
-`jsonable_encoder`实际上是FastAPI内部用来转换数据的。但是它在许多其他场景中也很有用。
+`jsonable_encoder`实际上是**FastAPI**内部用来转换数据的。但是它在许多其他场景中也很有用。
 
 ///

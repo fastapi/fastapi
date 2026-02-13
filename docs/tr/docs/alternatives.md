@@ -137,7 +137,7 @@ Birçok Flask REST framework’ü var; ancak zaman ayırıp inceledikten sonra �
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-API sistemlerinin ihtiyaç duyduğu temel özelliklerden biri, koddan (Python) veriyi alıp ağ üzerinden gönderilebilecek bir şeye dönüştürmek, yani veri “<abbr title="marshalling, conversion olarak da adlandırılır">dönüşüm</abbr>”üdür. Örneğin, bir veritabanından gelen verileri içeren bir objeyi JSON objesine dönüştürmek, `datetime` objelerini string’e çevirmek vb.
+API sistemlerinin ihtiyaç duyduğu temel özelliklerden biri, koddan (Python) veriyi alıp ağ üzerinden gönderilebilecek bir şeye dönüştürmek, yani veri “<dfn title="marshalling, conversion olarak da adlandırılır">dönüşüm</dfn>”üdür. Örneğin, bir veritabanından gelen verileri içeren bir objeyi JSON objesine dönüştürmek, `datetime` objelerini string’e çevirmek vb.
 
 API’ların ihtiyaç duyduğu bir diğer önemli özellik, veri doğrulamadır; belirli parametreler göz önüne alındığında verinin geçerli olduğundan emin olmak. Örneğin, bir alanın `int` olması ve rastgele bir metin olmaması. Bu özellikle dışarıdan gelen veriler için kullanışlıdır.
 
@@ -145,7 +145,7 @@ Bir veri doğrulama sistemi olmadan, tüm bu kontrolleri kod içinde el ile yapm
 
 Marshmallow, bu özellikleri sağlamak için inşa edildi. Harika bir kütüphanedir ve geçmişte çok kullandım.
 
-Ancak Python tip belirteçlerinden önce yazılmıştır. Dolayısıyla her <abbr title="verinin nasıl oluşturulması gerektiğinin tanımı">şemayı</abbr> tanımlamak için Marshmallow’un sağladığı belirli yardımcılar ve sınıflar kullanılır.
+Ancak Python tip belirteçlerinden önce yazılmıştır. Dolayısıyla her <dfn title="verinin nasıl oluşturulması gerektiğinin tanımı">şemayı</dfn> tanımlamak için Marshmallow’un sağladığı belirli yardımcılar ve sınıflar kullanılır.
 
 /// check | **FastAPI**'a ilham olan
 
@@ -155,7 +155,7 @@ Kodla, veri tiplerini ve doğrulamayı otomatik sağlayan “şemalar” tanıml
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-API’ların ihtiyaç duyduğu bir diğer büyük özellik, gelen isteklerden veriyi <abbr title="okuyup Python verisine dönüştürmek">ayrıştırma</abbr>dır.
+API’ların ihtiyaç duyduğu bir diğer büyük özellik, gelen isteklerden veriyi <dfn title="okuyup Python verisine dönüştürme">ayrıştırma</dfn>dır.
 
 Webargs, Flask dahil birkaç framework’ün üzerinde bunu sağlamak için geliştirilmiş bir araçtır.
 
@@ -417,7 +417,7 @@ Tüm veri doğrulama, veri dönüşümü ve JSON Schema tabanlı otomatik model 
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette, yüksek performanslı asyncio servisleri oluşturmak için ideal, hafif bir <abbr title="Asenkron Python web uygulamaları geliştirmek için yeni standart">ASGI</abbr> framework’ü/araç takımıdır.
+Starlette, yüksek performanslı asyncio servisleri oluşturmak için ideal, hafif bir <dfn title="Asenkron Python web uygulamaları geliştirmek için yeni standart">ASGI</dfn> framework’ü/araç takımıdır.
 
 Çok basit ve sezgiseldir. Kolayca genişletilebilir ve modüler bileşenlere sahip olacak şekilde tasarlanmıştır.
 

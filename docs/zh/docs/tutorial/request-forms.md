@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 从 `fastapi` 导入 `Form`：
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## 定义 `Form` 参数 { #define-form-parameters }
 
 创建表单参数的方式与 `Body` 或 `Query` 相同：
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 例如，在 OAuth2 规范的一种使用方式（称为“密码流”）中，要求将 `username` 和 `password` 作为表单字段发送。
 
-<abbr title="specification - 规范">spec</abbr> 要求这些字段必须精确命名为 `username` 和 `password`，并且作为表单字段发送，而不是 JSON。
+<dfn title="规范">规范</dfn> 要求这些字段必须精确命名为 `username` 和 `password`，并且作为表单字段发送，而不是 JSON。
 
 使用 `Form` 可以像使用 `Body`（以及 `Query`、`Path`、`Cookie`）一样声明相同的配置，包括校验、示例、别名（例如将 `username` 写成 `user-name`）等。
 

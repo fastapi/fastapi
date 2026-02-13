@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | İpucu
 
-Bu konuyla ilgili daha fazlasını <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> bölümünde okuyabilirsiniz.
+Bu konuyla ilgili daha fazlasını <a href="https://12factor.net/config" class="external-link" target="_blank">Twelve-Factor Uygulaması: Config</a> bölümünde okuyabilirsiniz.
 
 ///
 
@@ -291,7 +291,7 @@ Bu bilgiler, [Virtual Environments](virtual-environments.md){.internal-link targ
 
 Buraya kadar **ortam değişkenleri**nin ne olduğuna ve Python’da nasıl kullanılacağına dair temel bir fikir edinmiş olmalısınız.
 
-Ayrıca <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a> sayfasından daha fazlasını da okuyabilirsiniz.
+Ayrıca <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Ortam Değişkeni için Wikipedia</a> sayfasından daha fazlasını da okuyabilirsiniz.
 
 Çoğu zaman ortam değişkenlerinin hemen nasıl işe yarayacağı ilk bakışta çok net olmayabilir. Ancak geliştirme yaparken birçok farklı senaryoda tekrar tekrar karşınıza çıkarlar; bu yüzden bunları bilmek faydalıdır.
 

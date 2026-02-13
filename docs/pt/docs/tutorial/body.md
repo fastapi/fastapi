@@ -72,9 +72,9 @@ Apenas com essa declaração de tipos do Python, o **FastAPI** irá:
 * Validar os dados.
     * Se algum dado for inválido, irá retornar um erro bem claro, indicando exatamente onde e o que estava incorreto.
 * Entregar a você a informação recebida no parâmetro `item`.
-    * Como você o declarou na função como do tipo `Item`, você também terá o suporte do editor (completação, etc) para todos os atributos e seus tipos.
+    * Como você o declarou na função como do tipo `Item`, você também terá o suporte do editor (preenchimento automático, etc) para todos os atributos e seus tipos.
 * Gerar definições de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para o seu modelo; você também pode usá-las em qualquer outro lugar se fizer sentido para o seu projeto.
-* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces – Interfaces de usuário">UIs</abbr> de documentação automática.
+* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces - Interfaces de usuário">UIs</abbr> de documentação automática.
 
 ## Documentação automática { #automatic-docs }
 
@@ -88,7 +88,7 @@ E também serão utilizados na documentação da API dentro de cada *operação 
 
 ## Suporte do editor { #editor-support }
 
-No seu editor, dentro da função você receberá dicas de tipos e completação em todo lugar (isso não aconteceria se você recebesse um `dict` em vez de um modelo Pydantic):
+No seu editor, dentro da função você receberá dicas de tipos e preenchimento automático em todo lugar (isso não aconteceria se você recebesse um `dict` em vez de um modelo Pydantic):
 
 <img src="/img/tutorial/body/image03.png">
 
@@ -155,7 +155,7 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 
 O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
-O `str | None` (Python 3.10+) ou o `Union` em `Union[str, None]` (Python 3.9+) não é utilizado pelo FastAPI para determinar que o valor não é obrigatório, ele saberá que não é obrigatório porque tem um valor padrão `= None`.
+O `str | None` não é utilizado pelo FastAPI para determinar que o valor não é obrigatório, ele saberá que não é obrigatório porque tem um valor padrão `= None`.
 
 Mas adicionar as anotações de tipo permitirá ao seu editor oferecer um suporte melhor e detectar erros.
 

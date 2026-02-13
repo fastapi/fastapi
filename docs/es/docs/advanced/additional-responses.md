@@ -26,7 +26,7 @@ Cada uno de esos `dict`s de response puede tener una clave `model`, conteniendo 
 
 Por ejemplo, para declarar otro response con un código de estado `404` y un modelo Pydantic `Message`, puedes escribir:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Nota
 
@@ -203,7 +203,7 @@ Por ejemplo, puedes declarar un response con un código de estado `404` que usa 
 
 Y un response con un código de estado `200` que usa tu `response_model`, pero incluye un `example` personalizado:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Todo se combinará e incluirá en tu OpenAPI, y se mostrará en la documentación de la API:
 

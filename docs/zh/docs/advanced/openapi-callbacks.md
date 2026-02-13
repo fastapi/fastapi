@@ -179,7 +179,7 @@ JSON 请求体包含如下内容：
 
 ### 查看文档 { #check-the-docs }
 
-现在，使用 Uvicorn 启动应用，打开 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+现在，启动应用并打开 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
 就能看到文档的*路径操作*已经包含了**回调**的内容以及*外部 API*：
 

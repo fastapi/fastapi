@@ -32,7 +32,7 @@
 
 当您创建一个 **FastAPI** 应用程序时，有一个 `webhooks` 属性可以用来定义网络钩子，方式与您定义*路径操作*的时候相同，例如使用 `@app.webhooks.post()` 。
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 您定义的网络钩子将被包含在 `OpenAPI` 的架构中，并出现在自动生成的**文档 UI** 中。
 

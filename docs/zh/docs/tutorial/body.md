@@ -153,7 +153,7 @@
 
 FastAPI 会根据默认值 `= None` 知道 `q` 的值不是必填的。
 
-`str | None`（Python 3.10+）或 `Union[str, None]`（Python 3.9+ 中的 `Union`）并不是 FastAPI 用来判断是否必填的依据；是否必填由是否有默认值 `= None` 决定。
+`str | None` 并不是 FastAPI 用来判断是否必填的依据；是否必填由是否有默认值 `= None` 决定。
 
 但添加这些类型注解可以让你的编辑器提供更好的支持并检测错误。
 

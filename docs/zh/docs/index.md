@@ -40,7 +40,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 * **快速**：极高性能，可与 **NodeJS** 和 **Go** 并肩（归功于 Starlette 和 Pydantic）。[最快的 Python 框架之一](#performance)。
 * **高效编码**：功能开发速度提升约 200% ～ 300%。*
 * **更少 bug**：人为（开发者）错误减少约 40%。*
-* **直观**：极佳的编辑器支持。处处皆可<abbr title="也被称为：自动完成、自动补全、IntelliSense">自动补全</abbr>。更少的调试时间。
+* **直观**：极佳的编辑器支持。处处皆可<dfn title="也被称为：自动完成、自动补全、IntelliSense">自动补全</dfn>。更少的调试时间。
 * **易用**：为易用和易学而设计。更少的文档阅读时间。
 * **简短**：最小化代码重复。一次参数声明即可获得多种功能。更少的 bug。
 * **健壮**：生产可用级代码。并带有自动生成的交互式文档。
@@ -368,7 +368,7 @@ item: Item
 * 数据校验：
     * 当数据无效时自动生成清晰的错误信息。
     * 即便是多层嵌套的 JSON 对象也会进行校验。
-* 输入数据的<abbr title="也被称为：序列化、解析、编组">转换</abbr>：从网络读取到 Python 数据和类型。读取来源：
+* <dfn title="也被称为：序列化、解析、编组">转换</dfn>输入数据：从网络读取到 Python 数据和类型。读取来源：
     * JSON。
     * 路径参数。
     * 查询参数。
@@ -376,7 +376,7 @@ item: Item
     * Headers。
     * Forms。
     * Files。
-* 输出数据的<abbr title="也被称为：序列化、解析、编组">转换</abbr>：从 Python 数据和类型转换为网络数据（JSON）：
+* <dfn title="也被称为：序列化、解析、编组">转换</dfn>输出数据：从 Python 数据和类型转换为网络数据（JSON）：
     * 转换 Python 类型（`str`、`int`、`float`、`bool`、`list` 等）。
     * `datetime` 对象。
     * `UUID` 对象。
@@ -439,7 +439,7 @@ item: Item
 
 * 来自不同位置的**参数**声明：**headers**、**cookies**、**form 字段**和**文件**。
 * 如何设置**校验约束**，如 `maximum_length` 或 `regex`。
-* 功能强大且易用的 **<abbr title="也被称为 components、resources、providers、services、injectables">依赖注入</abbr>** 系统。
+* 功能强大且易用的 **<dfn title="也被称为：组件、资源、提供者、服务、可注入项">依赖注入</dfn>** 系统。
 * 安全与认证，包括对 **OAuth2**、**JWT tokens** 和 **HTTP Basic** 认证的支持。
 * 更高级（但同样简单）的 **多层嵌套 JSON 模型** 声明技巧（得益于 Pydantic）。
 * 通过 <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 等库进行 **GraphQL** 集成。
@@ -524,7 +524,7 @@ Starlette 使用：
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient` 时需要。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时需要。
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 使用 `request.form()` 支持表单<abbr title="将 HTTP 请求中的字符串转换为 Python 数据">「解析」</abbr>时需要。
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 使用 `request.form()` 支持表单<dfn title="将 HTTP 请求中的字符串转换为 Python 数据">「解析」</dfn>时需要。
 
 FastAPI 使用：
 

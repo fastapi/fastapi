@@ -14,7 +14,7 @@ Döndürmeniz gerekenden daha fazla veri döndürmediğinizden emin olmak için,
 
 *path operation*'larınıza özet ve açıklama eklemek ve bunları dokümantasyon arayüzünde göstermek için, [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank} dokümantasyonunu okuyun.
 
-## Dokümantasyon Yanıt Açıklaması - OpenAPI { #documentation-response-description-openapi }
+## Dokümantasyon Response Açıklaması - OpenAPI { #documentation-response-description-openapi }
 
 Dokümantasyon arayüzünde gösterilen response açıklamasını tanımlamak için, [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank} dokümantasyonunu okuyun.
 

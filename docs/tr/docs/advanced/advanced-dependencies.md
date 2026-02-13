@@ -18,7 +18,7 @@ Class'ın kendisini değil (zaten callable'dır), o class'ın bir instance'ını
 
 Bunu yapmak için `__call__` adında bir method tanımlarız:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAPI**'nin kullanacağı şey bu `__call__` olacaktır; ayrıca daha sonra *path operation function* içindeki parametreye bir değer geçmek için çağrılacak olan da budur.
 
@@ -26,7 +26,7 @@ Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAP
 
 Ve şimdi, dependency'yi "parametreleştirmek" için kullanacağımız instance parametrelerini tanımlamak üzere `__init__` kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu doğrudan kendi kodumuzda kullanırız.
 
@@ -34,7 +34,7 @@ Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu 
 
 Bu class'tan bir instance'ı şöyle oluşturabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 Böylece dependency'mizi "parametreleştirmiş" oluruz; artık içinde `"bar"` vardır ve bu değer `checker.fixed_content` attribute'u olarak durur.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...ve bunun döndürdüğü her şeyi, *path operation function* içinde `fixed_content_included` parametresine dependency değeri olarak geçirir:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | İpucu
 

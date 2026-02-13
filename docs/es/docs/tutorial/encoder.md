@@ -26,7 +26,7 @@ En este ejemplo, convertiría el modelo de Pydantic a un `dict`, y el `datetime`
 
 El resultado de llamarlo es algo que puede ser codificado con la función estándar de Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
 
-No devuelve un gran `str` que contenga los datos en formato JSON (como una cadena de texto). Devuelve una estructura de datos estándar de Python (por ejemplo, un `dict`) con valores y sub-valores que son todos compatibles con JSON.
+No devuelve un gran `str` que contenga los datos en formato JSON (como un string). Devuelve una estructura de datos estándar de Python (por ejemplo, un `dict`) con valores y sub-valores que son todos compatibles con JSON.
 
 /// note | Nota
 
