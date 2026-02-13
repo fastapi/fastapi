@@ -91,7 +91,9 @@ class HTTPBase(SecurityBase):
             headers=self.make_authenticate_headers(),
         )
 
-    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
@@ -300,7 +302,9 @@ class HTTPBearer(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
@@ -401,7 +405,9 @@ class HTTPDigest(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, conn: HTTPConnection) -> HTTPAuthorizationCredentials | None:
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
         authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):

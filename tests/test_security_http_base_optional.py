@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI, Security, WebSocket
 from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBase
 from fastapi.testclient import TestClient
@@ -12,7 +10,7 @@ security = HTTPBase(scheme="Other", auto_error=False)
 
 @app.get("/users/me")
 def read_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(security),
+    credentials: HTTPAuthorizationCredentials | None = Security(security),
 ):
     if credentials is None:
         return {"msg": "Create an account first"}
@@ -22,7 +20,7 @@ def read_current_user(
 @app.websocket("/users/timeline")
 async def read_user_timeline(
     websocket: WebSocket,
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(security),
+    credentials: HTTPAuthorizationCredentials | None = Security(security),
 ):
     await websocket.accept()
     await websocket.send_json(
