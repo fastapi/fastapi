@@ -7,7 +7,7 @@
 * `StaticFiles`'ı import edin.
 * Belirli bir path'te bir `StaticFiles()` örneğini "mount" edin.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Teknik Detaylar
 
@@ -23,7 +23,7 @@
 
 Bu, bir `APIRouter` kullanmaktan farklıdır; çünkü mount edilen uygulama tamamen bağımsızdır. Ana uygulamanızın OpenAPI ve docs'ları, mount edilen uygulamadan hiçbir şey içermez, vb.
 
-Bununla ilgili daha fazla bilgiyi [Advanced User Guide](../advanced/index.md){.internal-link target=_blank} içinde okuyabilirsiniz.
+Bununla ilgili daha fazla bilgiyi [Gelişmiş Kullanıcı Kılavuzu](../advanced/index.md){.internal-link target=_blank} içinde okuyabilirsiniz.
 
 ## Detaylar { #details }
 

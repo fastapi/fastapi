@@ -12,7 +12,7 @@ OpenAPI konusunda "uzman" değilseniz, muhtemelen buna ihtiyacınız yok.
 
 Bunun her operation için benzersiz olduğundan emin olmanız gerekir.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### operationId olarak *path operation function* adını kullanma { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ API’lerinizin function adlarını `operationId` olarak kullanmak istiyorsanız
 
 Bunu, tüm *path operation*’ları ekledikten sonra yapmalısınız.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip | İpucu
 
@@ -40,7 +40,7 @@ Farklı modüllerde (Python dosyalarında) olsalar bile.
 
 Bir *path operation*’ı üretilen OpenAPI şemasından (dolayısıyla otomatik dokümantasyon sistemlerinden) hariç tutmak için `include_in_schema` parametresini kullanın ve `False` yapın:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## Docstring’den İleri Düzey Açıklama { #advanced-description-from-docstring }
 
@@ -68,7 +68,7 @@ Uygulamanızda bir *path operation* tanımladığınızda, **FastAPI** OpenAPI �
 
 /// note | Teknik Detaylar
 
-OpenAPI spesifikasyonunda buna <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a> denir.
+OpenAPI spesifikasyonunda buna <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Nesnesi</a> denir.
 
 ///
 
@@ -90,9 +90,9 @@ Bir *path operation* için OpenAPI şemasını `openapi_extra` parametresiyle ge
 
 ### OpenAPI Extensions { #openapi-extensions }
 
-Örneğin bu `openapi_extra`, [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) tanımlamak için faydalı olabilir:
+Örneğin bu `openapi_extra`, [OpenAPI Uzantıları](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) tanımlamak için faydalı olabilir:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 Otomatik API dokümanlarını açtığınızda, extension’ınız ilgili *path operation*’ın en altında görünür.
 
@@ -139,9 +139,9 @@ Böylece otomatik üretilen şemaya ek veri ekleyebilirsiniz.
 
 Bunu `openapi_extra` ile yapabilirsiniz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-Bu örnekte herhangi bir Pydantic model tanımlamadık. Hatta request body JSON olarak <abbr title="converted from some plain format, like bytes, into Python objects - bytes gibi düz bir formattan Python nesnelerine dönüştürme">parsed</abbr> bile edilmiyor; doğrudan `bytes` olarak okunuyor ve `magic_data_reader()` fonksiyonu bunu bir şekilde parse etmekten sorumlu oluyor.
+Bu örnekte herhangi bir Pydantic model tanımlamadık. Hatta request body JSON olarak <dfn title="bytes gibi düz bir formattan, ör. bytes, Python nesnelerine dönüştürme">ayrıştırılmıyor</dfn>; doğrudan `bytes` olarak okunuyor ve `magic_data_reader()` fonksiyonu bunu bir şekilde parse etmekten sorumlu oluyor.
 
 Buna rağmen, request body için beklenen şemayı tanımlayabiliriz.
 
@@ -153,7 +153,7 @@ Ve bunu, request içindeki veri tipi JSON olmasa bile yapabilirsiniz.
 
 Örneğin bu uygulamada, FastAPI’nin Pydantic modellerinden JSON Schema çıkarmaya yönelik entegre işlevselliğini ve JSON için otomatik doğrulamayı kullanmıyoruz. Hatta request content type’ını JSON değil, YAML olarak tanımlıyoruz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 Buna rağmen, varsayılan entegre işlevselliği kullanmasak da, YAML olarak almak istediğimiz veri için JSON Schema’yı manuel üretmek üzere bir Pydantic model kullanmaya devam ediyoruz.
 
@@ -161,7 +161,7 @@ Ardından request’i doğrudan kullanıp body’yi `bytes` olarak çıkarıyoru
 
 Sonrasında kodumuzda bu YAML içeriğini doğrudan parse ediyor, ardından YAML içeriğini doğrulamak için yine aynı Pydantic modeli kullanıyoruz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip | İpucu
 

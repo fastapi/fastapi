@@ -18,7 +18,7 @@ OpenAPI spesifikasyonunda ve otomatik API doküman arayüzlerinde kullanılan ş
 
 Şu şekilde ayarlayabilirsiniz:
 
-{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | İpucu
 
@@ -36,7 +36,7 @@ OpenAPI 3.1.0 ve FastAPI 0.99.0 sürümünden itibaren, `license_info` içinde `
 
 Örneğin:
 
-{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## Tag'ler için Metadata { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ Her sözlük şunları içerebilir:
 
 Tag'leriniz için metadata oluşturup `openapi_tags` parametresine geçin:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Açıklamaların içinde Markdown kullanabileceğinizi unutmayın; örneğin "login" kalın (**login**) ve "fancy" italik (_fancy_) olarak gösterilecektir.
 
@@ -72,7 +72,7 @@ Kullandığınız tüm tag'ler için metadata eklemek zorunda değilsiniz.
 
 *path operation*'larınızı (ve `APIRouter`'ları) farklı tag'lere atamak için `tags` parametresini kullanın:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Bilgi
 
@@ -100,7 +100,7 @@ Ancak bunu `openapi_url` parametresiyle yapılandırabilirsiniz.
 
 Örneğin `/api/v1/openapi.json` adresinden sunulacak şekilde ayarlamak için:
 
-{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 OpenAPI şemasını tamamen kapatmak isterseniz `openapi_url=None` ayarlayabilirsiniz; bu, onu kullanan dokümantasyon arayüzlerini de devre dışı bırakır.
 
@@ -117,4 +117,4 @@ Dahil gelen iki dokümantasyon arayüzünü yapılandırabilirsiniz:
 
 Örneğin Swagger UI'yi `/documentation` adresinden sunup ReDoc'u kapatmak için:
 
-{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

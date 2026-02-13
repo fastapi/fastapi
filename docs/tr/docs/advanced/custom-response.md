@@ -30,7 +30,7 @@ Büyük response'larda, doğrudan bir `Response` döndürmek bir dictionary dön
 
 Ancak döndürdüğünüz içeriğin **JSON ile serialize edilebilir** olduğundan eminseniz, onu doğrudan response class’ına verebilir ve FastAPI’nin response class’ına vermeden önce dönüş içeriğinizi `jsonable_encoder` içinden geçirirken oluşturacağı ek yükten kaçınabilirsiniz.
 
-{* ../../docs_src/custom_response/tutorial001b_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial001b_py310.py hl[2,7] *}
 
 /// info | Bilgi
 
@@ -55,7 +55,7 @@ Ve OpenAPI’de de bu şekilde dokümante edilir.
 * `HTMLResponse` import edin.
 * *path operation decorator*’ınızın `response_class` parametresi olarak `HTMLResponse` verin.
 
-{* ../../docs_src/custom_response/tutorial002_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
 /// info | Bilgi
 
@@ -73,7 +73,7 @@ Ve OpenAPI’de de bu şekilde dokümante edilir.
 
 Yukarıdaki örneğin aynısı, bu sefer bir `HTMLResponse` döndürerek, şöyle görünebilir:
 
-{* ../../docs_src/custom_response/tutorial003_py39.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
 
 /// warning | Uyarı
 
@@ -97,7 +97,7 @@ Bu durumda `response_class` sadece OpenAPI *path operation*’ını dokümante e
 
 Örneğin şöyle bir şey olabilir:
 
-{* ../../docs_src/custom_response/tutorial004_py39.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
 
 Bu örnekte `generate_html_response()` fonksiyonu, HTML’i bir `str` olarak döndürmek yerine zaten bir `Response` üretip döndürmektedir.
 
@@ -136,7 +136,7 @@ Bunu doğrudan döndürebilirsiniz.
 
 FastAPI (aslında Starlette) otomatik olarak bir Content-Length header’ı ekler. Ayrıca `media_type`’a göre bir Content-Type header’ı ekler ve text türleri için sona bir charset ekler.
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -146,7 +146,7 @@ Yukarıda okuduğunuz gibi, bir miktar text veya bytes alır ve HTML response d�
 
 Bir miktar text veya bytes alır ve düz metin response döndürür.
 
-{* ../../docs_src/custom_response/tutorial005_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -180,7 +180,7 @@ Bunun için `ujson` kurulmalıdır; örneğin `pip install ujson`.
 
 ///
 
-{* ../../docs_src/custom_response/tutorial001_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial001_py310.py hl[2,7] *}
 
 /// tip | İpucu
 
@@ -194,13 +194,13 @@ HTTP redirect döndürür. Varsayılan olarak 307 status code (Temporary Redirec
 
 `RedirectResponse`’u doğrudan döndürebilirsiniz:
 
-{* ../../docs_src/custom_response/tutorial006_py39.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
 
 ---
 
 Veya `response_class` parametresi içinde kullanabilirsiniz:
 
-{* ../../docs_src/custom_response/tutorial006b_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 
 Bunu yaparsanız, *path operation* function’ınızdan doğrudan URL döndürebilirsiniz.
 
@@ -210,13 +210,13 @@ Bu durumda kullanılan `status_code`, `RedirectResponse` için varsayılan olan 
 
 Ayrıca `status_code` parametresini `response_class` parametresiyle birlikte kullanabilirsiniz:
 
-{* ../../docs_src/custom_response/tutorial006c_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 Bir async generator veya normal generator/iterator alır ve response body’yi stream eder.
 
-{* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
 
 #### `StreamingResponse`’u file-like objelerle kullanma { #using-streamingresponse-with-file-like-objects }
 
@@ -226,7 +226,7 @@ Böylece önce hepsini memory’ye okumak zorunda kalmazsınız; bu generator fu
 
 Buna cloud storage ile etkileşime giren, video işleyen ve benzeri birçok kütüphane dahildir.
 
-{* ../../docs_src/custom_response/tutorial008_py39.py hl[2,10:12,14] *}
+{* ../../docs_src/custom_response/tutorial008_py310.py hl[2,10:12,14] *}
 
 1. Bu generator function’dır. İçinde `yield` ifadeleri olduğu için "generator function" denir.
 2. Bir `with` bloğu kullanarak, generator function bittiğinde file-like objenin kapandığından emin oluruz. Yani response göndermeyi bitirdikten sonra kapanır.
@@ -255,11 +255,11 @@ Diğer response türlerine göre instantiate ederken farklı argümanlar alır:
 
 File response'ları uygun `Content-Length`, `Last-Modified` ve `ETag` header’larını içerir.
 
-{* ../../docs_src/custom_response/tutorial009_py39.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
 `response_class` parametresini de kullanabilirsiniz:
 
-{* ../../docs_src/custom_response/tutorial009b_py39.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
 Bu durumda *path operation* function’ınızdan doğrudan dosya path'ini döndürebilirsiniz.
 
@@ -273,7 +273,7 @@ Diyelim ki girintili ve biçimlendirilmiş JSON döndürmek istiyorsunuz; bunun 
 
 Bir `CustomORJSONResponse` oluşturabilirsiniz. Burada yapmanız gereken temel şey, content’i `bytes` olarak döndüren bir `Response.render(content)` metodu yazmaktır:
 
-{* ../../docs_src/custom_response/tutorial009c_py39.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
 
 Artık şunu döndürmek yerine:
 
@@ -299,7 +299,7 @@ Bunu tanımlayan parametre `default_response_class`’tır.
 
 Aşağıdaki örnekte **FastAPI**, tüm *path operations* için varsayılan olarak `JSONResponse` yerine `ORJSONResponse` kullanır.
 
-{* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
 /// tip | İpucu
 

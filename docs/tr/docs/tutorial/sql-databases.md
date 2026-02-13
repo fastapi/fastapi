@@ -8,7 +8,7 @@ Burada <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_b
 
 /// tip | İpucu
 
-İstediğiniz başka bir SQL veya NoSQL veritabanı kütüphanesini kullanabilirsiniz (bazı durumlarda <abbr title="Object Relational Mapper: a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr> olarak adlandırılır). FastAPI sizi hiçbir şeye zorlamaz.
+İstediğiniz başka bir SQL veya NoSQL veritabanı kütüphanesini kullanabilirsiniz (bazı durumlarda <abbr title="Object Relational Mapper - Obje-İlişkisel Eşleyici: bazı sınıfların SQL tablolarını ve örneklerin bu tablolardaki satırları temsil ettiği bir kütüphane için süslü bir terim">"ORMs"</abbr> olarak adlandırılır). FastAPI sizi hiçbir şeye zorlamaz. 😎
 
 ///
 
@@ -49,7 +49,7 @@ $ pip install sqlmodel
 
 Önce, tek bir **SQLModel** modeliyle uygulamanın en basit ilk sürümünü oluşturacağız.
 
-Aşağıda, **birden fazla model** kullanarak güvenliği ve esnekliği artırıp geliştireceğiz.
+Aşağıda, **birden fazla model** kullanarak güvenliği ve esnekliği artırıp geliştireceğiz. 🤓
 
 ### Modelleri Oluşturma { #create-models }
 
@@ -93,7 +93,7 @@ Sonra `SQLModel.metadata.create_all(engine)` kullanan bir fonksiyon ekleyerek t�
 
 Bir **`Session`**, **nesneleri memory’de** tutar ve verideki gerekli değişiklikleri takip eder; ardından veritabanıyla iletişim kurmak için **`engine` kullanır**.
 
-`yield` ile, her request için yeni bir `Session` sağlayacak bir FastAPI **dependency** oluşturacağız. Bu da her request’te tek session kullanmamızı garanti eder.
+`yield` ile, her request için yeni bir `Session` sağlayacak bir FastAPI **dependency** oluşturacağız. Bu da her request’te tek session kullanmamızı garanti eder. 🤓
 
 Ardından bu dependency’yi kullanacak kodun geri kalanını sadeleştirmek için `Annotated` ile `SessionDep` dependency’sini oluştururuz.
 
@@ -107,7 +107,7 @@ Uygulama başlarken veritabanı table’larını oluşturacağız.
 
 Burada bir uygulama startup event’inde table’ları oluşturuyoruz.
 
-Production’da büyük ihtimalle uygulamayı başlatmadan önce çalışan bir migration script’i kullanırsınız.
+Production’da büyük ihtimalle uygulamayı başlatmadan önce çalışan bir migration script’i kullanırsınız. 🤓
 
 /// tip | İpucu
 
@@ -169,19 +169,19 @@ Sonra `/docs` arayüzüne gidin; **FastAPI**’nin API’yi **dokümante etmek**
 
 Şimdi bu uygulamayı biraz **refactor** edelim ve **güvenliği** ile **esnekliği** artıralım.
 
-Önceki uygulamaya bakarsanız, UI’da şu ana kadar client’ın oluşturulacak `Hero`’nun `id` değerini belirlemesine izin verdiğini görebilirsiniz.
+Önceki uygulamaya bakarsanız, UI’da şu ana kadar client’ın oluşturulacak `Hero`’nun `id` değerini belirlemesine izin verdiğini görebilirsiniz. 😱
 
 Buna izin vermemeliyiz; DB’de zaten atanmış bir `id`’yi ezebilirler. `id` belirlemek **client** tarafından değil, **backend** veya **veritabanı** tarafından yapılmalıdır.
 
-Ayrıca hero için bir `secret_name` oluşturuyoruz ama şimdiye kadar her yerde geri döndürüyoruz; bu pek de **secret** sayılmaz...
+Ayrıca hero için bir `secret_name` oluşturuyoruz ama şimdiye kadar her yerde geri döndürüyoruz; bu pek de **secret** sayılmaz... 😅
 
-Bunları birkaç **ek model** ekleyerek düzelteceğiz. SQLModel’in parlayacağı yer de burası.
+Bunları birkaç **ek model** ekleyerek düzelteceğiz. SQLModel’in parlayacağı yer de burası. ✨
 
 ### Birden Fazla Model Oluşturma { #create-multiple-models }
 
 **SQLModel**’de, `table=True` olan herhangi bir model sınıfı bir **table model**’dir.
 
-`table=True` olmayan her model sınıfı ise bir **data model**’dir; bunlar aslında sadece Pydantic modelleridir (bazı küçük ek özelliklerle).
+`table=True` olmayan her model sınıfı ise bir **data model**’dir; bunlar aslında sadece Pydantic modelleridir (bazı küçük ek özelliklerle). 🤓
 
 SQLModel ile **inheritance** kullanarak her durumda tüm alanları tekrar tekrar yazmaktan **kaçınabiliriz**.
 
@@ -216,7 +216,7 @@ Sonraki adımda `HeroPublic` modelini oluştururuz; bu model API client’ların
 
 `HeroBase` ile aynı alanlara sahiptir; dolayısıyla `secret_name` içermez.
 
-Sonunda kahramanlarımızın kimliği korunmuş oldu!
+Sonunda kahramanlarımızın kimliği korunmuş oldu! 🥷
 
 Ayrıca `id: int` alanını yeniden tanımlar. Bunu yaparak API client’larıyla bir **contract** (sözleşme) oluşturmuş oluruz; böylece `id` alanının her zaman var olacağını ve `int` olacağını (asla `None` olmayacağını) bilirler.
 
@@ -224,7 +224,7 @@ Ayrıca `id: int` alanını yeniden tanımlar. Bunu yaparak API client’larıyl
 
 Return model’in bir değerin her zaman mevcut olduğunu ve her zaman `int` olduğunu (`None` değil) garanti etmesi API client’ları için çok faydalıdır; bu kesinlik sayesinde daha basit kod yazabilirler.
 
-Ayrıca **otomatik üretilen client**’ların arayüzleri de daha basit olur; böylece API’nizle çalışan geliştiriciler için süreç çok daha rahat olur.
+Ayrıca **otomatik üretilen client**’ların arayüzleri de daha basit olur; böylece API’nizle çalışan geliştiriciler için süreç çok daha rahat olur. 😎
 
 ///
 
@@ -262,13 +262,13 @@ Ayrıca password değerlerini saklamadan önce **hash** etmelisiniz; **asla plai
 
 #### `HeroUpdate` - hero güncellemek için *data model* { #heroupdate-the-data-model-to-update-a-hero }
 
-Uygulamanın önceki sürümünde bir hero’yu **güncellemenin** bir yolu yoktu; ancak artık **birden fazla model** ile bunu yapabiliriz.
+Uygulamanın önceki sürümünde bir hero’yu **güncellemenin** bir yolu yoktu; ancak artık **birden fazla model** ile bunu yapabiliriz. 🎉
 
 `HeroUpdate` *data model* biraz özeldir: yeni bir hero oluşturmak için gereken alanların **tamamına** sahiptir, ancak tüm alanlar **opsiyoneldir** (hepsinin bir default değeri vardır). Bu sayede hero güncellerken sadece güncellemek istediğiniz alanları gönderebilirsiniz.
 
 Tüm **alanlar aslında değiştiği** için (tip artık `None` içeriyor ve default değerleri `None` oluyor), onları **yeniden tanımlamamız** gerekir.
 
-Aslında `HeroBase`’ten miras almamız gerekmiyor; çünkü tüm alanları yeniden tanımlıyoruz. Tutarlılık için miras almayı bırakıyorum ama bu gerekli değil. Daha çok kişisel tercih meselesi.
+Aslında `HeroBase`’ten miras almamız gerekmiyor; çünkü tüm alanları yeniden tanımlıyoruz. Tutarlılık için miras almayı bırakıyorum ama bu gerekli değil. Daha çok kişisel tercih meselesi. 🤷
 
 `HeroUpdate` alanları:
 
@@ -316,7 +316,7 @@ Tek bir hero’yu **okuyabiliriz**:
 
 Bir hero’yu **güncelleyebiliriz**. Bunun için HTTP `PATCH` operasyonu kullanırız.
 
-Kodda, client’ın gönderdiği tüm verilerle bir `dict` alırız; **yalnızca client’ın gönderdiği veriler**, yani sadece default değer oldukları için orada bulunan değerler hariç. Bunu yapmak için `exclude_unset=True` kullanırız. Asıl numara bu.
+Kodda, client’ın gönderdiği tüm verilerle bir `dict` alırız; **yalnızca client’ın gönderdiği veriler**, yani sadece default değer oldukları için orada bulunan değerler hariç. Bunu yapmak için `exclude_unset=True` kullanırız. Asıl numara bu. 🪄
 
 Sonra `hero_db.sqlmodel_update(hero_data)` ile `hero_db`’yi `hero_data` içindeki verilerle güncelleriz.
 
@@ -326,7 +326,7 @@ Sonra `hero_db.sqlmodel_update(hero_data)` ile `hero_db`’yi `hero_data` içind
 
 Bir hero’yu **silmek** büyük ölçüde aynı kalıyor.
 
-Bu örnekte her şeyi refactor etme isteğimizi bastıracağız.
+Bu örnekte her şeyi refactor etme isteğimizi bastıracağız. 😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
@@ -354,4 +354,4 @@ $ fastapi dev main.py
 
 Bir SQL veritabanıyla etkileşim kurmak için <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> kullanabilir ve *data model* ile *table model* yaklaşımıyla kodu sadeleştirebilirsiniz.
 
-**SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial</a> da bulunuyor.
+**SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial</a> da bulunuyor. 🚀

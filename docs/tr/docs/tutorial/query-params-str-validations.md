@@ -16,7 +16,7 @@ FastAPI, `q`’nun zorunlu olmadığını `= None` varsayılan değerinden anlar
 
 ///
 
-## Ek doğrulama { #additional-validation }
+## Ek Doğrulama { #additional-validation }
 
 `q` opsiyonel olsa bile, verildiği durumda **uzunluğunun 50 karakteri geçmemesini** zorlayacağız.
 
@@ -47,39 +47,15 @@ Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalışırken ha
 
 Şu tip anotasyonuna sahiptik:
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 Şimdi bunu `Annotated` ile saracağız; şöyle olacak:
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 Bu iki sürüm de aynı anlama gelir: `q`, `str` veya `None` olabilen bir parametredir ve varsayılan olarak `None`’dır.
 
@@ -109,7 +85,7 @@ FastAPI artık şunları yapacak:
 
 ## Alternatif (eski): Varsayılan değer olarak `Query` { #alternative-old-query-as-the-default-value }
 
-FastAPI’nin önceki sürümlerinde (<abbr title="before 2023-03 - 2023-03’ten önce">0.95.0</abbr> öncesi) `Query`’yi `Annotated` içine koymak yerine, parametrenizin varsayılan değeri olarak kullanmanız gerekiyordu. Etrafta bu şekilde yazılmış kod görme ihtimaliniz yüksek; bu yüzden açıklayalım.
+FastAPI’nin önceki sürümlerinde ( <dfn title="2023-03’ten önce">0.95.0</dfn> öncesi) `Query`’yi `Annotated` içine koymak yerine, parametrenizin varsayılan değeri olarak kullanmanız gerekiyordu. Etrafta bu şekilde yazılmış kod görme ihtimaliniz yüksek; bu yüzden açıklayalım.
 
 /// tip | İpucu
 
@@ -130,6 +106,7 @@ q: str | None = Query(default=None)
 ```
 
 ...parametreyi `None` varsayılan değeriyle opsiyonel yapar; şununla aynı:
+
 
 ```Python
 q: str | None = None
@@ -179,7 +156,7 @@ Fonksiyon parametrelerindeki varsayılan değer stiline göre **`Annotated` kull
 
 Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** ve **beklendiği gibi çalışır**. Eğer **zorunlu** bir parametre varsa (varsayılan değer yoksa) editörünüz hata ile bunu belirtir; ayrıca gerekli parametreyi vermeden çalıştırırsanız **Python** da şikayet eder.
 
-`Annotated` kullanmayıp bunun yerine **(eski) varsayılan değer stilini** kullanırsanız, o fonksiyonu FastAPI olmadan **başka yerlerde** çağırdığınızda doğru çalışması için argümanları geçmeniz gerektiğini **hatırlamak** zorunda kalırsınız; yoksa değerler beklediğinizden farklı olur (ör. `str` yerine `QueryInfo` veya benzeri). Üstelik editörünüz de şikayet etmez ve Python da fonksiyonu çalıştırırken şikayet etmez; ancak içerideki operasyonlar hata verince ortaya çıkar.
+`Annotated` kullanmayıp bunun yerine **(eski) varsayılan değer stilini** kullanırsanız, o fonksiyonu FastAPI olmadan **başka yerlerde** çağırdığınızda doğru çalışması için argümanları geçmeniz gerektiğini **hatırlamak** zorunda kalırsınız; yoksa değerler beklediğinizden farklı olur (ör. `QueryInfo` veya benzeri). Üstelik editörünüz de şikayet etmez ve Python da fonksiyonu çalıştırırken şikayet etmez; ancak içerideki operasyonlar hata verince ortaya çıkar.
 
 `Annotated` birden fazla metadata anotasyonu alabildiği için, artık aynı fonksiyonu <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a> gibi başka araçlarla da kullanabilirsiniz. 🚀
 
@@ -191,7 +168,7 @@ Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** 
 
 ## Regular expression ekleyin { #add-regular-expressions }
 
-Parametrenin eşleşmesi gereken bir `pattern` <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings. - Regular expression (regex/regexp), string’ler için arama deseni tanımlayan karakter dizisidir.">regular expression</abbr> tanımlayabilirsiniz:
+Parametrenin eşleşmesi gereken bir `pattern` <dfn title="String'ler için arama deseni tanımlayan karakter dizisi">düzenli ifade</dfn> tanımlayabilirsiniz:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -211,7 +188,7 @@ Elbette `None` dışında varsayılan değerler de kullanabilirsiniz.
 
 Örneğin `q` query parametresi için `min_length` değerini `3` yapmak ve varsayılan değer olarak `"fixedquery"` vermek istediğinizi düşünelim:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note | Not
 
@@ -233,7 +210,7 @@ q: str
 q: str | None = None
 ```
 
-Ancak biz artık `Query` ile tanımlıyoruz; örneğin şöyle:
+Acak biz artık `Query` ile tanımlıyoruz; örneğin şöyle:
 
 ```Python
 q: Annotated[str | None, Query(min_length=3)] = None
@@ -241,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Dolayısıyla `Query` kullanırken bir değeri zorunlu yapmak istediğinizde, varsayılan değer tanımlamamanız yeterlidir:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### Zorunlu ama `None` olabilir { #required-can-be-none }
 
@@ -292,7 +269,7 @@ Etkileşimli API dokümanları da buna göre güncellenir ve birden fazla değer
 
 Hiç değer verilmezse varsayılan bir `list` de tanımlayabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 Şu adrese giderseniz:
 
@@ -315,7 +292,7 @@ http://localhost:8000/items/
 
 `list[str]` yerine doğrudan `list` de kullanabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note | Not
 
@@ -371,7 +348,7 @@ O zaman bir `alias` tanımlayabilirsiniz; bu alias, parametre değerini bulmak i
 
 Diyelim ki artık bu parametreyi istemiyorsunuz.
 
-Bazı client’lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <abbr title="obsolete, recommended not to use it - kullanımdan kalkmış, kullanmamanız önerilir">deprecated</abbr> olarak göstermesini istiyorsunuz.
+Bazı client’lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <dfn title="kullanımdan kalkmış, kullanmamanız önerilir">deprecated</dfn> olarak göstermesini istiyorsunuz.
 
 O zaman `Query`’ye `deprecated=True` parametresini geçin:
 
@@ -401,7 +378,7 @@ Pydantic’te <a href="https://docs.pydantic.dev/latest/concepts/validators/#fie
 
 ///
 
-Örneğin bu custom validator, bir item ID’sinin <abbr title="ISBN means International Standard Book Number - ISBN, International Standard Book Number (Uluslararası Standart Kitap Numarası) anlamına gelir">ISBN</abbr> kitap numarası için `isbn-` ile veya <abbr title="IMDB (Internet Movie Database) is a website with information about movies - IMDB (Internet Movie Database), filmler hakkında bilgi içeren bir web sitesidir">IMDB</abbr> film URL ID’si için `imdb-` ile başladığını kontrol eder:
+Örneğin bu custom validator, bir item ID’sinin <abbr title="International Standard Book Number - Uluslararası Standart Kitap Numarası">ISBN</abbr> kitap numarası için `isbn-` ile veya <abbr title="Internet Movie Database - İnternet Film Veritabanı: filmler hakkında bilgi içeren bir web sitesi">IMDB</abbr> film URL ID’si için `imdb-` ile başladığını kontrol eder:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -435,9 +412,9 @@ Fark ettiniz mi? `value.startswith()` ile bir string, tuple alabilir ve tuple i�
 
 #### Rastgele Bir Item { #a-random-item }
 
-`data.items()` ile, her dictionary öğesi için key ve value içeren tuple’lardan oluşan bir <abbr title="Something we can iterate on with a for loop, like a list, set, etc. - for döngüsüyle üzerinde gezebileceğimiz (iterate edebileceğimiz) bir nesne; list, set vb.">iterable object</abbr> elde ederiz.
+`data.items()` ile, her dictionary öğesi için key ve value içeren tuple’lardan oluşan bir <dfn title="for döngüsüyle üzerinde gezinebileceğimiz bir şey; list, set vb.">yinelemeli nesne</dfn> elde ederiz.
 
-Bu iterable object’i `list(data.items())` ile düzgün bir `list`’e çeviririz.
+Bu yinelemeli nesneyi `list(data.items())` ile düzgün bir `list`’e çeviririz.
 
 Ardından `random.choice()` ile list’ten **rastgele bir değer** alırız; yani `(id, name)` içeren bir tuple elde ederiz. Şuna benzer: `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
