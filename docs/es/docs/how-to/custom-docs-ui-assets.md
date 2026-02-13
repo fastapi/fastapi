@@ -129,7 +129,7 @@ Deberías ver un archivo JavaScript muy largo de **ReDoc**.
 Podría comenzar con algo como:
 
 ```JavaScript
-/*! Para información de la licencia por favor mira redoc.standalone.js.LICENSE.txt */
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
