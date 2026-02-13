@@ -8,7 +8,7 @@ Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
 
 ///
 
-Vous pouvez déclarer des réponses supplémentaires, avec des codes HTTP, des types de médias, des descriptions, etc.
+Vous pouvez déclarer des réponses supplémentaires, avec des codes d'état supplémentaires, des types de médias, des descriptions, etc.
 
 Ces réponses supplémentaires seront incluses dans le schéma OpenAPI, elles apparaîtront donc également dans la documentation de l'API.
 
@@ -26,7 +26,7 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Remarque
 
@@ -203,7 +203,7 @@ Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui util
 
 Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 

@@ -2,7 +2,7 @@
 
 Quand vous déclarez d'autres paramètres de fonction qui ne font pas partie des paramètres de chemin, ils sont automatiquement interprétés comme des paramètres de « query ».
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 La query est l'ensemble des paires clé-valeur placées après le `?` dans une URL, séparées par des caractères `&`.
 
@@ -24,7 +24,7 @@ Mais lorsque vous les déclarez avec des types Python (dans l'exemple ci-dessus,
 Tous les mêmes processus qui s'appliquaient aux paramètres de chemin s'appliquent aussi aux paramètres de requête :
 
 * Prise en charge de l'éditeur (évidemment)
-* <abbr title="conversion de la chaîne provenant d'une requête HTTP en données Python">« parsing »</abbr> des données
+* <dfn title="conversion de la chaîne provenant d'une requête HTTP en données Python">« parsing »</dfn> des données
 * Validation des données
 * Documentation automatique
 
@@ -67,7 +67,7 @@ Dans ce cas, le paramètre de fonction `q` sera optionnel et vaudra `None` par d
 
 /// check | Vérifications
 
-Notez également que FastAPI est suffisamment intelligent pour remarquer que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` ne l'est pas, c'est donc un paramètre de requête.
+Notez également que **FastAPI** est suffisamment intelligent pour remarquer que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` ne l'est pas, c'est donc un paramètre de requête.
 
 ///
 
@@ -127,7 +127,7 @@ Si vous ne voulez pas leur donner de valeur spécifique mais simplement les rend
 
 Mais si vous voulez rendre un paramètre de requête obligatoire, vous pouvez simplement ne déclarer aucune valeur par défaut :
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Ici, le paramètre de requête `needy` est un paramètre de requête requis de type `str`.
 
