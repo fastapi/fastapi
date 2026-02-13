@@ -164,7 +164,7 @@ images: list[Image]
 
 наприклад:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Підтримка в редакторі всюди { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ images: list[Image]
 
 У цьому випадку ви можете приймати будь-який `dict`, якщо його ключі — це `int`, а значення — `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Порада
 
@@ -216,6 +216,6 @@ images: list[Image]
 
 * Підтримка в редакторі (автодоповнення всюди!)
 * Конвертація даних (парсинг/сериалізація)
-* Валідацію даних
+* Валідація даних
 * Документація схем
 * Автоматичне створення документації

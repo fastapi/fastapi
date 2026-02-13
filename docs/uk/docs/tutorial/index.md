@@ -44,10 +44,10 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
              <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
              to quit<b>)</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -84,12 +84,12 @@ $ pip install "fastapi[standard]"
 
 ///
 
-## Розширений посібник користувача { #advanced-user-guide }
+## Просунутий посібник користувача { #advanced-user-guide }
 
-Існує також **Розширений посібник користувача**, який ви зможете прочитати пізніше після цього **Туторіал - Посібник користувача**.
+Існує також **Просунутий посібник користувача**, який ви зможете прочитати пізніше після цього **Туторіал - Посібник користувача**.
 
-**Розширений посібник користувача** засновано на цьому, використовує ті самі концепції та навчає вас деяким додатковим функціям.
+**Просунутий посібник користувача** засновано на цьому, використовує ті самі концепції та навчає вас деяким додатковим функціям.
 
 Але вам слід спочатку прочитати **Туторіал - Посібник користувача** (те, що ви зараз читаєте).
 
-Він розроблений таким чином, що ви можете створити повну програму лише за допомогою **Туторіал - Посібник користувача**, а потім розширити її різними способами, залежно від ваших потреб, використовуючи деякі з додаткових ідей з **Розширеного посібника користувача**.
+Він розроблений таким чином, що ви можете створити повну програму лише за допомогою **Туторіал - Посібник користувача**, а потім розширити її різними способами, залежно від ваших потреб, використовуючи деякі з додаткових ідей з **Просунутого посібника користувача**.
