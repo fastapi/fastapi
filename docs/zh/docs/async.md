@@ -298,7 +298,7 @@ CPU 密集型操作的常见示例是需要复杂的数学处理。
 
 这一点，再加上 Python 是**数据科学**、机器学习（尤其是深度学习）的主要语言这一简单事实，使得 **FastAPI** 与数据科学/机器学习 Web API 和应用程序（以及其他许多应用程序）非常匹配。
 
-了解如何在生产环境中实现这种并行性，可查看此文 [Deployment](deployment/index.md){.internal-link target=_blank}。
+了解如何在生产环境中实现这种并行性，可查看此文 [部署](deployment/index.md){.internal-link target=_blank}。
 
 ## `async` 和 `await` { #async-and-await }
 
@@ -369,7 +369,7 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 即使你没有使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 编写自己的异步程序，使其拥有较高的兼容性并获得一些好处（例如， 结构化并发）。
 
-我（指原作者 —— 译者注）基于 AnyIO 新建了一个库，作为一个轻量级的封装层，用来优化类型注解，同时提供了更好的**自动补全**、**内联错误提示**等功能。这个库还附带了一个友好的入门指南和教程，能帮助你**理解**并编写**自己的异步代码**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。如果你有**结合使用异步代码和常规**（阻塞/同步）代码的需求，这个库会特别有用。
+我基于 AnyIO 新建了一个库，作为一个轻量级的封装层，用来优化类型注解，同时提供了更好的**自动补全**、**内联错误提示**等功能。这个库还附带了一个友好的入门指南和教程，能帮助你**理解**并编写**自己的异步代码**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。如果你有**结合使用异步代码和常规**（阻塞/同步）代码的需求，这个库会特别有用。
 
 ### 其他形式的异步代码 { #other-forms-of-asynchronous-code }
 
