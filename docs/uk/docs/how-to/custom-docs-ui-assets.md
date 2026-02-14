@@ -129,7 +129,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 Він може починатися приблизно так:
 
 ```JavaScript
-/*! Для інформації про ліцензію див. redoc.standalone.js.LICENSE.txt */
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
