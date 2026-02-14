@@ -74,6 +74,7 @@ from starlette.routing import (
     get_name,
 )
 from starlette.routing import Mount as Mount  # noqa
+from starlette.staticfiles import StaticFiles
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
@@ -1490,7 +1491,8 @@ class APIRouter(routing.Router):
                     prefix + route.path, route.endpoint, name=route.name
                 )
             elif isinstance(route, routing.Mount):
-                self.mount(prefix + router.prefix + route.path, route.app, name=route.name)
+                if isinstance(route.app, StaticFiles):
+                    self.mount(prefix + router.prefix + route.path, route.app, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
