@@ -1,12 +1,12 @@
 # LLM-Testdatei { #llm-test-file }
 
-Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachsspezifische Prompt wird an `general_prompt` angehängt.
+Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachspezifische Prompt wird an `general_prompt` angehängt.
 
 Hier hinzugefügte Tests werden von allen Erstellern sprachspezifischer Prompts gesehen.
 
 So verwenden:
 
-* Einen sprachsspezifischen Prompt haben – `docs/{language code}/llm-prompt.md`.
+* Einen sprachspezifischen Prompt haben – `docs/{language code}/llm-prompt.md`.
 * Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache durchführen (siehe z. B. das Kommando `translate-page` der `translate.py`). Dadurch wird die Übersetzung unter `docs/{language code}/docs/_llm-test.md` erstellt.
 * Prüfen Sie, ob in der Übersetzung alles in Ordnung ist.
 * Verbessern Sie bei Bedarf Ihren sprachsspezifischen Prompt, den allgemeinen Prompt oder das englische Dokument.

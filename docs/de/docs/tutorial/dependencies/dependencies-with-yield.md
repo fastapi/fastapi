@@ -61,7 +61,7 @@ Auf die gleiche Weise können Sie `finally` verwenden, um sicherzustellen, dass 
 
 ## Unterabhängigkeiten mit `yield` { #sub-dependencies-with-yield }
 
-Sie können Unterabhängigkeiten und „Bäume“ von Unterabhhängigkeiten beliebiger Größe und Form haben, und einige oder alle davon können `yield` verwenden.
+Sie können Unterabhängigkeiten und „Bäume“ von Unterabhängigkeiten beliebiger Größe und Form haben, und einige oder alle davon können `yield` verwenden.
 
 **FastAPI** stellt sicher, dass der „Exit-Code“ in jeder Abhängigkeit mit `yield` in der richtigen Reihenfolge ausgeführt wird.
 
