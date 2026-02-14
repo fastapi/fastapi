@@ -65,7 +65,7 @@ Dans un scénario avancé où vous savez que vous avez besoin que la dépendance
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]]:
+async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
     return {"fresh_value": fresh_value}
 ```
 

@@ -14,7 +14,7 @@ Dans ce cadre, j'ai dû étudier, tester et utiliser de nombreuses alternatives.
 
 L'histoire de **FastAPI** est en grande partie l'histoire de ses prédécesseurs.
 
-Comme dit dans la section [Alternatives](alternatives.md){.internal-link target=\_blank} :
+Comme dit dans la section [Alternatives](alternatives.md){.internal-link target=_blank} :
 
 <blockquote markdown="1">
 
@@ -76,4 +76,4 @@ Mais il y a encore de nombreuses améliorations et fonctionnalités à venir.
 
 **FastAPI** a un grand avenir devant lui.
 
-Et [votre aide](help-fastapi.md){.internal-link target=\_blank} est grandement appréciée.
+Et [votre aide](help-fastapi.md){.internal-link target=_blank} est grandement appréciée.

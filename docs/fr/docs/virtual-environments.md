@@ -187,7 +187,7 @@ C’est facultatif, mais c’est une bonne manière de vérifier que tout foncti
 ```console
 $ which python
 
-/ home/user/code/awesome-project/.venv/bin/python
+/home/user/code/awesome-project/.venv/bin/python
 ```
 
 </div>
