@@ -76,6 +76,6 @@ def test_mount_non_staticfiles_app_raises_error() -> None:
 
     with pytest.raises(
         FastAPIError,
-        match="APIRouter does not support mounting ASGI applications other than StaticFiles",
+        match="APIRouter does not support mounting ASGI applications other than StaticFiles.",
     ):
         router.mount("/sub", sub_app)
