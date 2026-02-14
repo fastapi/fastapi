@@ -209,6 +209,18 @@ class ValidationException(Exception):
         return message.rstrip()
 
 
+class RequestMalformedError(ValidationException):
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        body: Any = None,
+        endpoint_ctx: Optional[EndpointContext] = None,
+    ) -> None:
+        super().__init__(errors, endpoint_ctx=endpoint_ctx)
+        self.body = body
+
+
 class RequestValidationError(ValidationException):
     def __init__(
         self,
