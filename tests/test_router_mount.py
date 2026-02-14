@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from fastapi import APIRouter, FastAPI
+from fastapi.exceptions import FastAPIError
 from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
@@ -68,27 +69,13 @@ def test_mount_staticfiles_with_include_router_prefix(tmp_path: Path) -> None:
     assert r.text == "combined prefix"
 
 
-def test_mount_non_staticfiles_app_is_ignored() -> None:
-    """Mounting a non-StaticFiles ASGI app on APIRouter should be silently ignored
-    (not propagated to the main app) to preserve existing behavior."""
-    app = FastAPI()
-    api_router = APIRouter(prefix="/api")
+def test_mount_non_staticfiles_app_raises_error() -> None:
+    """Mounting a non-StaticFiles ASGI app on APIRouter should raise FastAPIError."""
+    router = APIRouter()
+    sub_app = FastAPI()
 
-    subapi = FastAPI()
-
-    @subapi.get("/sub")
-    def read_sub() -> dict:
-        return {"message": "sub"}
-
-    api_router.mount("/subapi", subapi)
-    app.include_router(api_router)
-
-    client = TestClient(app)
-
-    # Non-StaticFiles sub-app mount is not propagated — returns 404
-    r = client.get("/api/subapi/sub")
-    assert r.status_code == 404
-
-    # Regular routes are unaffected
-    # (no routes defined here, but include_router itself should not crash)
-    assert app is not None
+    with pytest.raises(
+        FastAPIError,
+        match="APIRouter does not support mounting ASGI applications other than StaticFiles",
+    ):
+        router.mount("/sub", sub_app)

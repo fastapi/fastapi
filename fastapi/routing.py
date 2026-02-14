@@ -994,6 +994,26 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
 
+    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        """
+        Mount a `StaticFiles` instance at the given path.
+
+        Raises `FastAPIError` if `app` is not an instance of `StaticFiles`,
+        since mounting arbitrary ASGI sub-applications under an `APIRouter`
+        is not supported. Sub-applications should be mounted directly on
+        the root `FastAPI` instance instead.
+        """
+        if not isinstance(app, StaticFiles):
+            raise FastAPIError(
+                "APIRouter does not support mounting ASGI applications other than "
+                "StaticFiles. Mount sub-applications directly on the root FastAPI "
+                "instance instead."
+            )
+        self._mount(path=path, app=app, name=name)
+
+    def _mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        super().mount(path=path, app=app, name=name)
+
     def route(
         self,
         path: str,
@@ -1492,7 +1512,7 @@ class APIRouter(routing.Router):
                 )
             elif isinstance(route, routing.Mount):
                 if isinstance(route.app, StaticFiles):
-                    self.mount(prefix + router.prefix + route.path, route.app, name=route.name)
+                    self._mount(prefix + router.prefix + route.path, route.app, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
