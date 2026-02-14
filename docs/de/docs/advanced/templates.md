@@ -27,7 +27,7 @@ $ pip install jinja2
 * Deklarieren Sie einen `<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
 * Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Hinweis
 

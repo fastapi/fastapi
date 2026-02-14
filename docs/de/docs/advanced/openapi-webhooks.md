@@ -8,7 +8,7 @@ Das wird normalerweise als **Web<abbr title="Haken, Einhängepunkt">hook</abbr>*
 
 ## Webhooks-Schritte { #webhooks-steps }
 
-Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, welche Nachricht Sie senden möchten, den **Body des Requests**.
+Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, welche Nachricht Sie senden möchten, den **Requestbody**.
 
 Sie definieren auch auf irgendeine Weise, in welchen **Momenten** Ihre App diese Requests oder Events senden wird.
 
@@ -18,7 +18,7 @@ Die gesamte **Logik** zur Registrierung der URLs für Webhooks und der Code zum 
 
 ## Webhooks mit **FastAPI** und OpenAPI dokumentieren { #documenting-webhooks-with-fastapi-and-openapi }
 
-Mit **FastAPI**, mithilfe von OpenAPI, können Sie die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre App senden kann (z. B. `POST`, `PUT`, usw.) und die Request**bodys** definieren, die Ihre App senden würde.
+Mit **FastAPI**, mithilfe von OpenAPI, können Sie die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre App senden kann (z. B. `POST`, `PUT`, usw.) und die **Requestbodys** definieren, die Ihre App senden würde.
 
 Dies kann es Ihren Benutzern viel einfacher machen, **deren APIs zu implementieren**, um Ihre **Webhook**-Requests zu empfangen. Möglicherweise können diese sogar einen Teil ihres eigenen API-Codes automatisch generieren.
 
@@ -32,7 +32,7 @@ Webhooks sind in OpenAPI 3.1.0 und höher verfügbar und werden von FastAPI `0.9
 
 Wenn Sie eine **FastAPI**-Anwendung erstellen, gibt es ein `webhooks`-Attribut, das Sie verwenden können, um *Webhooks* zu definieren, genauso wie Sie *Pfadoperationen* definieren würden, zum Beispiel mit `@app.webhooks.post()`.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Die von Ihnen definierten Webhooks landen im **OpenAPI**-Schema und der automatischen **Dokumentations-Oberfläche**.
 
