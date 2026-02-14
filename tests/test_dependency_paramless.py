@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Security
 from fastapi.security import (
@@ -13,7 +13,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def process_auth(
-    credentials: Annotated[Union[str, None], Security(oauth2_scheme)],
+    credentials: Annotated[str | None, Security(oauth2_scheme)],
     security_scopes: SecurityScopes,
 ):
     # This is an incorrect way of using it, this is not checking if the scopes are
@@ -27,14 +27,14 @@ def process_auth(
 
 @app.get("/get-credentials")
 def get_credentials(
-    credentials: Annotated[dict, Security(process_auth, scopes=["a", "b"])],
+    credentials: Annotated[dict, Security(process_auth, oauth_scopes=["a", "b"])],
 ):
     return credentials
 
 
 @app.get(
     "/parameterless-with-scopes",
-    dependencies=[Security(process_auth, scopes=["a", "b"])],
+    dependencies=[Security(process_auth, oauth_scopes=["a", "b"])],
 )
 def get_parameterless_with_scopes():
     return {"status": "ok"}
