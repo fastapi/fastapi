@@ -6,7 +6,7 @@ Vous pouvez connecter le <abbr title="En anglais: debugger">débogueur</abbr> da
 
 Dans votre application FastAPI, importez et exécutez directement `uvicorn` :
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### À propos de `__name__ == "__main__"` { #about-name-main }
 
@@ -87,7 +87,7 @@ Parce que vous exécutez le serveur Uvicorn directement depuis votre code, vous 
 Par exemple, dans Visual Studio Code, vous pouvez :
 
 - Allez dans le panneau « Debug ».
-- « Add configuration... ».
+- « Add configuration ... ».
 - Sélectionnez « Python ».
 - Lancez le <abbr title="En anglais: debugger">débogueur</abbr> avec l'option « Python: Current File (Integrated Terminal) ».
 
@@ -102,7 +102,7 @@ Voici à quoi cela pourrait ressembler :
 Si vous utilisez Pycharm, vous pouvez :
 
 - Ouvrez le menu « Run ».
-- Sélectionnez l'option « Debug... ».
+- Sélectionnez l'option « Debug ... ».
 - Un menu contextuel s'affiche alors.
 - Sélectionnez le fichier à déboguer (dans ce cas, `main.py`).
 

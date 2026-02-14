@@ -36,6 +36,6 @@ Pour plus de commodités, **FastAPI** fournit les objets `starlette.responses` s
 
 ## Documents OpenAPI et API { #openapi-and-api-docs }
 
-Si vous renvoyez directement des codes HTTP et des réponses supplémentaires, ils ne seront pas inclus dans le schéma OpenAPI (la documentation de l'API), car FastAPI n'a aucun moyen de savoir à l'avance ce que vous allez renvoyer.
+Si vous renvoyez directement des codes HTTP et des réponses supplémentaires, ils ne seront pas inclus dans le schéma OpenAPI (les documents de l'API), car FastAPI n'a aucun moyen de savoir à l'avance ce que vous allez renvoyer.
 
 Mais vous pouvez documenter cela dans votre code, en utilisant : [Réponses supplémentaires](additional-responses.md){.internal-link target=_blank}.

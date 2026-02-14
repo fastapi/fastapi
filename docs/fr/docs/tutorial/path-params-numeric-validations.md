@@ -54,11 +54,11 @@ Cela n'a pas d'importance pour **FastAPI**. Il détectera les paramètres par le
 
 Ainsi, vous pouvez déclarer votre fonction comme suit :
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
 Mais gardez à l'esprit que si vous utilisez `Annotated`, vous n'aurez pas ce problème, cela n'aura pas d'importance car vous n'utilisez pas les valeurs par défaut des paramètres de fonction pour `Query()` ou `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## Ordonner les paramètres comme vous le souhaitez, astuces { #order-the-parameters-as-you-need-tricks }
 
@@ -81,15 +81,15 @@ Si vous voulez :
 
 Passez `*`, comme premier paramètre de la fonction.
 
-Python ne fera rien avec ce `*`, mais il saura que tous les paramètres suivants doivent être appelés comme arguments "mots-clés" (paires clé-valeur), également connus sous le nom de <abbr title="De : K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Même s'ils n'ont pas de valeur par défaut.
+Python ne fera rien avec ce `*`, mais il saura que tous les paramètres suivants doivent être appelés comme arguments « mots-clés » (paires clé-valeur), également connus sous le nom de <abbr title="De : K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Même s'ils n'ont pas de valeur par défaut.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### Mieux avec `Annotated` { #better-with-annotated }
 
 Gardez à l'esprit que si vous utilisez `Annotated`, comme vous n'utilisez pas les valeurs par défaut des paramètres de fonction, vous n'aurez pas ce problème, et vous n'aurez probablement pas besoin d'utiliser `*`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## Validations numériques : supérieur ou égal { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Avec `Query` et `Path` (et d'autres que vous verrez plus tard) vous pouvez décl
 
 Ici, avec `ge=1`, `item_id` devra être un nombre entier « `g`reater than or `e`qual » à `1`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## Validations numériques : supérieur et inférieur ou égal { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ La même chose s'applique pour :
 * `gt` : `g`reater `t`han
 * `le` : `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## Validations numériques : flottants, supérieur et inférieur { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Ainsi, `0.5` serait une valeur valide. Mais `0.0` ou `0` ne le serait pas.
 
 Et la même chose pour <abbr title="less than"><code>lt</code></abbr>.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## Pour résumer { #recap }
 
