@@ -2,6 +2,7 @@ import inspect
 import sys
 from collections.abc import AsyncGenerator, Generator
 from functools import wraps
+from typing import Annotated, ForwardRef
 
 import pytest
 from fastapi import Depends, FastAPI
@@ -447,3 +448,22 @@ def test_class_dependency(route):
     response = client.get(route)
     assert response.status_code == 200, response.text
     assert response.json() is True
+
+
+def test_annotated_forwardref_dependency():
+    app = FastAPI()
+
+    User = ForwardRef("User")
+
+    def get_user() -> "User":
+        return {"name": "amulya"}
+
+    @app.get("/")
+    def read_user(user: Annotated[User, Depends(get_user)]):
+        return user
+
+    client = TestClient(app)
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert response.json() == {"name": "amulya"}
