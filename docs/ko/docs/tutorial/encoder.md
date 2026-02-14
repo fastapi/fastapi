@@ -12,7 +12,7 @@ JSON 호환 가능 데이터만 수신하는 `fake_db` 데이터베이스가 존
 
 예를 들면, `datetime` 객체는 JSON과 호환되지 않으므로 이 데이터베이스는 이를 받지 않습니다.
 
-따라서 `datetime` 객체는 <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO format</a>의 데이터를 포함하는 `str`로 변환되어야 합니다.
+따라서 `datetime` 객체는 <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO 형식</a>의 데이터를 포함하는 `str`로 변환되어야 합니다.
 
 같은 방식으로 이 데이터베이스는 Pydantic 모델(속성이 있는 객체)을 받지 않고, `dict`만을 받습니다.
 

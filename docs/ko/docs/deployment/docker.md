@@ -14,7 +14,7 @@ FastAPI 애플리케이션을 배포할 때 일반적인 접근 방법은 **리�
 <summary>Dockerfile Preview 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ def read_item(item_id: int, q: str | None = None):
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ FastAPI가 단일 파일(예: `./app` 디렉터리 없이 `main.py`만 있는 �
 그런 다음 `Dockerfile`에서 해당 파일을 복사하도록 경로만 맞게 변경하면 됩니다:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Traefik은 Docker, Kubernetes 등과 통합되어 있어, 이를 사용해 컨�
 
 ## 복제 - 프로세스 개수 { #replication-number-of-processes }
 
-**Kubernetes**, Docker Swarm Mode, Nomad 등의 복잡한 시스템으로 여러 머신에 분산된 컨테이너를 관리하는 <abbr title="어떤 방식으로 연결되어 함께 동작하도록 구성된 머신의 그룹">클러스터</abbr>를 사용한다면, 각 컨테이너에서(**워커를 사용하는 Uvicorn** 같은) **프로세스 매니저**를 쓰는 대신, **클러스터 레벨**에서 **복제를 처리**하고 싶을 가능성이 큽니다.
+**Kubernetes**, Docker Swarm Mode, Nomad 등의 복잡한 시스템으로 여러 머신에 분산된 컨테이너를 관리하는 <dfn title="어떤 방식으로 연결되어 함께 동작하도록 구성된 머신의 그룹">클러스터</dfn>를 사용한다면, 각 컨테이너에서(**워커를 사용하는 Uvicorn** 같은) **프로세스 매니저**를 쓰는 대신, **클러스터 레벨**에서 **복제를 처리**하고 싶을 가능성이 큽니다.
 
 Kubernetes 같은 분산 컨테이너 관리 시스템은 보통 들어오는 요청에 대한 **로드 밸런싱**을 지원하면서도, **컨테이너 복제**를 처리하는 통합된 방법을 가지고 있습니다. 모두 **클러스터 레벨**에서요.
 
@@ -499,7 +499,7 @@ HTTPS에 사용되는 동일한 **TLS 종료 프록시** 컴포넌트가 **로�
 그런 경우에는 `--workers` 커맨드 라인 옵션을 사용해 실행할 워커 수를 설정할 수 있습니다:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 

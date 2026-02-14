@@ -18,7 +18,7 @@
 
 그리고 해당 경로에 마운트합니다.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
 
 /// note | 참고
 

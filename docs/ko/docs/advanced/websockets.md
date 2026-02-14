@@ -24,7 +24,7 @@ $ pip install websockets
 
 그리고 백엔드와 WebSockets을 사용해 통신하려면 아마도 프런트엔드의 유틸리티를 사용할 것입니다.
 
-또는 네이티브 코드로 WebSocket 백엔드와 직접 통신하는 네이티브 모바일 응용 프로그램을 가질 수도 있습니다.
+또는 네이티브 코드로 WebSocket 백엔드와 직접 통신하는 네이티브 모바일 애플리케이션을 가질 수도 있습니다.
 
 혹은 WebSocket 엔드포인트와 통신할 수 있는 다른 방법이 있을 수도 있습니다.
 
@@ -38,13 +38,13 @@ $ pip install websockets
 
 그러나 이는 WebSockets의 서버 측에 집중하고 동작하는 예제를 제공하는 가장 간단한 방법입니다:
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## `websocket` 생성하기 { #create-a-websocket }
 
-**FastAPI** 응용 프로그램에서 `websocket`을 생성합니다:
+**FastAPI** 애플리케이션에서 `websocket`을 생성합니다:
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 기술 세부사항
 
@@ -58,13 +58,13 @@ $ pip install websockets
 
 WebSocket 경로에서 메시지를 대기(`await`)하고 전송할 수 있습니다.
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
 
 여러분은 이진 데이터, 텍스트, JSON 데이터를 받을 수 있고 전송할 수 있습니다.
 
 ## 시도해보기 { #try-it }
 
-파일 이름이 `main.py`라고 가정하고 다음으로 응용 프로그램을 실행합니다:
+파일 이름이 `main.py`라고 가정하고 다음으로 애플리케이션을 실행합니다:
 
 <div class="termy">
 
@@ -86,7 +86,7 @@ $ fastapi dev main.py
 
 <img src="/img/tutorial/websockets/image02.png">
 
-그리고 WebSockets가 포함된 **FastAPI** 응용 프로그램이 응답을 돌려줄 것입니다:
+그리고 WebSockets가 포함된 **FastAPI** 애플리케이션이 응답을 돌려줄 것입니다:
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -121,7 +121,7 @@ WebSocket이기 때문에 `HTTPException`을 발생시키는 것은 적절하지
 
 ### 종속성을 가진 WebSockets 시도해보기 { #try-the-websockets-with-dependencies }
 
-파일 이름이 `main.py`라고 가정하고 다음으로 응용 프로그램을 실행합니다:
+파일 이름이 `main.py`라고 가정하고 다음으로 애플리케이션을 실행합니다:
 
 <div class="termy">
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 WebSocket 연결이 닫히면, `await websocket.receive_text()`가 `WebSocketDisconnect` 예외를 발생시킵니다. 그러면 이 예제처럼 이를 잡아 처리할 수 있습니다.
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
 
 테스트해보기:
 
