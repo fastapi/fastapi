@@ -172,7 +172,7 @@ FastAPI 會為每個 *路徑操作* 使用一個**唯一 ID**，它會被用於*
 //// tab | Node.js
 
 ```Javascript
-{!> ../../docs_src/ggenerate_clients/tutorial004.js!}
+{!> ../../docs_src/generate_clients/tutorial004.js!}
 ```
 
 ////

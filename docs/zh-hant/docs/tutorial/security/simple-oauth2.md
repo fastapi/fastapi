@@ -112,7 +112,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 如果密碼不匹配，我們回傳同樣的錯誤。
 
-#### 密碼雜湊（hashing）{ #password-hashing }
+#### 密碼雜湊（hashing） { #password-hashing }
 
 「雜湊」的意思是：把一些內容（這裡是密碼）轉換成一串看起來像亂碼的位元組序列（就是字串）。
 

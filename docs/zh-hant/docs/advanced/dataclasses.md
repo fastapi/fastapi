@@ -55,21 +55,21 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 3. `Author` dataclass 內含一個 `Item` dataclass 的清單。
 4. `Author` dataclass 被用作 `response_model` 參數。
 5. 你可以將其他標準型別註記與 dataclass 一起用作請求本文。
-   
+
    在此例中，它是 `Item` dataclass 的清單。
 6. 這裡我們回傳一個字典，其中的 `items` 是一個 dataclass 清單。
-   
+
    FastAPI 仍能將資料<dfn title="將資料轉換成可傳輸的格式">序列化</dfn>為 JSON。
 7. 這裡 `response_model` 使用的是「`Author` dataclass 的清單」這種型別註記。
-   
+
    同樣地，你可以把 `dataclasses` 與標準型別註記組合使用。
 8. 注意這個「路徑操作函式」使用的是一般的 `def` 而非 `async def`。
-   
+
    一如往常，在 FastAPI 中你可以視需要混用 `def` 與 `async def`。
-   
+
    如果需要複習何時用哪個，請參考文件中關於 [`async` 與 `await`](../async.md#in-a-hurry){.internal-link target=_blank} 的章節「In a hurry?」。
 9. 這個「路徑操作函式」回傳的不是 dataclass（雖然也可以），而是一個包含內部資料的字典清單。
-   
+
    FastAPI 會使用 `response_model` 參數（其中包含 dataclass）來轉換回應。
 
 你可以把 `dataclasses` 與其他型別註記以多種方式組合，形成複雜的資料結構。
