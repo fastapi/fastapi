@@ -8,7 +8,7 @@ In this section we'll see how to use other middlewares.
 
 ## Adding ASGI middlewares { #adding-asgi-middlewares }
 
-As **FastAPI** is based on Starlette and implements the <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> specification, you can use any ASGI middleware.
+As **FastAPI** is based on [Starlette](https://www.starlette.io/) and implements the <abbr title="Asynchronous Server Gateway Interface">[ASGI](https://asgi.readthedocs.io/)</abbr> specification, you can use any ASGI middleware.
 
 A middleware doesn't have to be made for FastAPI or Starlette to work, as long as it follows the ASGI spec.
 
