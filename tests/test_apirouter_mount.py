@@ -1,4 +1,5 @@
 """Tests for mounting StaticFiles under APIRouter (issue #10180)."""
+
 from pathlib import Path
 
 import pytest

@@ -1506,7 +1506,9 @@ class APIRouter(routing.Router):
                 )
             elif isinstance(route, routing.Mount):
                 if isinstance(route.app, StaticFiles):
-                    self._mount(prefix + router.prefix + route.path, route.app, name=route.name)
+                    self._mount(
+                        prefix + router.prefix + route.path, route.app, name=route.name
+                    )
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
