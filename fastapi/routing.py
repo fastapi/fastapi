@@ -1003,7 +1003,7 @@ class APIRouter(routing.Router):
             raise FastAPIError(
                 "APIRouter does not support mounting ASGI applications other than StaticFiles."
             )
-        self._mount(path=path, app=app, name=name)
+        self._mount(path=self.prefix + path, app=app, name=name)
 
     def _mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
         super().mount(path=path, app=app, name=name)
