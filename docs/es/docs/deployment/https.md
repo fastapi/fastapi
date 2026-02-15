@@ -65,7 +65,7 @@ Aquí tienes un ejemplo de cómo podría ser una API HTTPS, paso a paso, prestan
 
 Probablemente todo comenzaría adquiriendo un **nombre de dominio**. Luego, lo configurarías en un servidor DNS (posiblemente tu mismo proveedor de la nube).
 
-Probablemente conseguirías un servidor en la nube (una máquina virtual) o algo similar, y tendría una **dirección IP pública** <abbr title="Que no cambia">fija</abbr>.
+Probablemente conseguirías un servidor en la nube (una máquina virtual) o algo similar, y tendría una **dirección IP pública** <dfn title="No cambia con el tiempo. No dinámica.">fija</dfn>.
 
 En el/los servidor(es) DNS configurarías un registro (un "`A record`") para apuntar **tu dominio** a la **dirección IP pública de tu servidor**.
 

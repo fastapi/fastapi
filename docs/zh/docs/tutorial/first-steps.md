@@ -1,8 +1,8 @@
-# 第一步
+# 第一步 { #first-steps }
 
 最简单的 FastAPI 文件可能像下面这样：
 
-{* ../../docs_src/first_steps/tutorial001.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 将其复制到 `main.py` 文件中。
 
@@ -56,7 +56,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 该行显示了你的应用在本机所提供服务的 URL 地址。
 
-### 查看
+### 查看 { #check-it }
 
 打开浏览器访问 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
 
@@ -66,7 +66,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 {"message": "Hello World"}
 ```
 
-### 交互式 API 文档
+### 交互式 API 文档 { #interactive-api-docs }
 
 跳转到 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
@@ -74,7 +74,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### 可选的 API 文档
+### 可选的 API 文档 { #alternative-api-docs }
 
 前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
@@ -82,31 +82,31 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+### OpenAPI { #openapi }
 
 **FastAPI** 使用定义 API 的 **OpenAPI** 标准将你的所有 API 转换成「模式」。
 
-#### 「模式」
+#### 「模式」 { #schema }
 
 「模式」是对事物的一种定义或描述。它并非具体的实现代码，而只是抽象的描述。
 
-#### API「模式」
+#### API「模式」 { #api-schema }
 
 在这种场景下，<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> 是一种规定如何定义 API 模式的规范。
 
 「模式」的定义包括你的 API 路径，以及它们可能使用的参数等等。
 
-#### 数据「模式」
+#### 数据「模式」 { #data-schema }
 
 「模式」这个术语也可能指的是某些数据比如 JSON 的结构。
 
 在这种情况下，它可以表示 JSON 的属性及其具有的数据类型，等等。
 
-#### OpenAPI 和 JSON Schema
+#### OpenAPI 和 JSON Schema { #openapi-and-json-schema }
 
 OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送和接收的数据的定义（或称为「模式」），这些定义通过 JSON 数据模式标准 **JSON Schema** 所生成。
 
-#### 查看 `openapi.json`
+#### 查看 `openapi.json` { #check-the-openapi-json }
 
 如果你对原始的 OpenAPI 模式长什么样子感到好奇，FastAPI 自动生成了包含所有 API 描述的 JSON（模式）。
 
@@ -135,7 +135,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 ...
 ```
 
-#### OpenAPI 的用途
+#### OpenAPI 的用途 { #what-is-openapi-for }
 
 驱动 FastAPI 内置的 2 个交互式文档系统的正是 OpenAPI 模式。
 
@@ -143,11 +143,47 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 你还可以使用它自动生成与你的 API 进行通信的客户端代码。例如 web 前端，移动端或物联网嵌入程序。
 
-## 分步概括
+### 部署你的应用（可选） { #deploy-your-app-optional }
 
-### 步骤 1：导入 `FastAPI`
+你可以选择将 FastAPI 应用部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>，如果还没有，先去加入候补名单。🚀
 
-{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
+如果你已经拥有 **FastAPI Cloud** 账户（我们从候补名单邀请了你 😉），你可以用一条命令部署应用。
+
+部署前，先确保已登录：
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+然后部署你的应用：
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+就这些！现在你可以通过该 URL 访问你的应用了。✨
+
+## 分步概括 { #recap-step-by-step }
+
+### 步骤 1：导入 `FastAPI` { #step-1-import-fastapi }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
@@ -159,17 +195,17 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ///
 
-### 步骤 2：创建一个 `FastAPI`「实例」
+### 步骤 2：创建一个 `FastAPI`「实例」 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
 这个实例将是创建你所有 API 的主要交互对象。
 
-### 步骤 3：创建一个*路径操作*
+### 步骤 3：创建一个*路径操作* { #step-3-create-a-path-operation }
 
-#### 路径
+#### 路径 { #path }
 
 这里的「路径」指的是 URL 中从第一个 `/` 起的后半部分。
 
@@ -193,7 +229,7 @@ https://example.com/items/foo
 
 开发 API 时，「路径」是用来分离「关注点」和「资源」的主要手段。
 
-#### 操作
+#### 操作 { #operation }
 
 这里的「操作」指的是一种 HTTP「方法」。
 
@@ -228,14 +264,14 @@ https://example.com/items/foo
 
 我们也打算称呼它们为「操作」。
 
-#### 定义一个*路径操作装饰器*
+#### 定义一个*路径操作装饰器* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")` 告诉 **FastAPI** 在它下方的函数负责处理如下访问请求：
 
 * 请求路径为 `/`
-* 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
+* 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
 /// info | `@decorator` Info
 
@@ -276,7 +312,7 @@ https://example.com/items/foo
 
 ///
 
-### 步骤 4：定义**路径操作函数**
+### 步骤 4：定义**路径操作函数** { #step-4-define-the-path-operation-function }
 
 这是我们的「**路径操作函数**」：
 
@@ -284,7 +320,7 @@ https://example.com/items/foo
 * **操作**：是 `get`。
 * **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
-{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 这是一个 Python 函数。
 
@@ -296,17 +332,17 @@ https://example.com/items/foo
 
 你也可以将其定义为常规函数而不使用 `async def`:
 
-{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note
 
-如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#_1){.internal-link target=_blank}。
+如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry){.internal-link target=_blank}。
 
 ///
 
-### 步骤 5：返回内容
+### 步骤 5：返回内容 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 你可以返回一个 `dict`、`list`，像 `str`、`int` 一样的单个值，等等。
 
@@ -314,10 +350,31 @@ https://example.com/items/foo
 
 还有许多其他将会自动转换为 JSON 的对象和模型（包括 ORM 对象等）。尝试下使用你最喜欢的一种，它很有可能已经被支持。
 
-## 总结
+### 步骤 6：部署 { #step-6-deploy-it }
+
+用一条命令将你的应用部署到 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**：`fastapi deploy`。🎉
+
+#### 关于 FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 的作者和团队打造。
+
+它以最小的投入简化了 **构建**、**部署** 和 **访问** API 的流程。
+
+它把使用 FastAPI 构建应用的相同**开发者体验**带到了将应用**部署**到云端的过程。🎉
+
+FastAPI Cloud 是 *FastAPI 及其朋友们* 开源项目的主要赞助和资金提供方。✨
+
+#### 部署到其他云服务商 { #deploy-to-other-cloud-providers }
+
+FastAPI 是开源并基于标准的。你可以将 FastAPI 应用部署到你选择的任何云服务商。
+
+按照你的云服务商的指南部署 FastAPI 应用即可。🤓
+
+## 总结 { #recap }
 
 * 导入 `FastAPI`。
 * 创建一个 `app` 实例。
 * 编写一个**路径操作装饰器**，如 `@app.get("/")`。
 * 定义一个**路径操作函数**，如 `def root(): ...`。
 * 使用命令 `fastapi dev` 运行开发服务器。
+* 可选：使用 `fastapi deploy` 部署你的应用。

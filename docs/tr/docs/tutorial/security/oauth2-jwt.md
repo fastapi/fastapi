@@ -116,7 +116,11 @@ Sonra, alınan password'ün kayıttaki hash ile eşleşip eşleşmediğini doğr
 
 Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonksiyon ekleyelim.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+`authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
+
+Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek zamanlama saldırılarını (timing attacks) engeller.
 
 /// note | Not
 
@@ -152,7 +156,7 @@ Response için token endpoint'inde kullanılacak bir Pydantic Model tanımlayın
 
 Yeni bir access token üretmek için bir yardımcı fonksiyon oluşturun.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Dependency'leri güncelleme { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ Gelen token'ı decode edin, doğrulayın ve mevcut kullanıcıyı döndürün.
 
 Token geçersizse, hemen bir HTTP hatası döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## `/token` *path operation*'ını güncelleme { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ Token'ın süre sonu için bir `timedelta` oluşturun.
 
 Gerçek bir JWT access token üretip döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### JWT "subject" `sub` Hakkında Teknik Detaylar { #technical-details-about-the-jwt-subject-sub }
 

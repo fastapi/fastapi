@@ -8,7 +8,7 @@ Nas próximas seções você verá outras opções, configurações, e recursos 
 
 /// tip | Dica
 
-As próximas seções **não são necessáriamente "avançadas"**
+As próximas seções **não são necessariamente "avançadas"**.
 
 E é possível que para seu caso de uso, a solução esteja em uma delas.
 

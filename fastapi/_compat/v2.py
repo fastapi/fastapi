@@ -8,8 +8,11 @@ from functools import lru_cache
 from typing import (
     Annotated,
     Any,
+    Literal,
     Union,
     cast,
+    get_args,
+    get_origin,
 )
 
 from fastapi._compat import lenient_issubclass, shared
@@ -32,7 +35,6 @@ from pydantic_core import Url as Url
 from pydantic_core.core_schema import (
     with_info_plain_validator_function as with_info_plain_validator_function,
 )
-from typing_extensions import Literal, get_args, get_origin
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
@@ -83,7 +85,7 @@ class ModelField:
     field_info: FieldInfo
     name: str
     mode: Literal["validation", "serialization"] = "validation"
-    config: Union[ConfigDict, None] = None
+    config: ConfigDict | None = None
 
     @property
     def alias(self) -> str:
@@ -91,14 +93,14 @@ class ModelField:
         return a if a is not None else self.name
 
     @property
-    def validation_alias(self) -> Union[str, None]:
+    def validation_alias(self) -> str | None:
         va = self.field_info.validation_alias
         if isinstance(va, str) and va:
             return va
         return None
 
     @property
-    def serialization_alias(self) -> Union[str, None]:
+    def serialization_alias(self) -> str | None:
         sa = self.field_info.serialization_alias
         return sa or None
 
@@ -143,7 +145,7 @@ class ModelField:
         value: Any,
         values: dict[str, Any] = {},  # noqa: B006
         *,
-        loc: tuple[Union[int, str], ...] = (),
+        loc: tuple[int | str, ...] = (),
     ) -> tuple[Any, list[dict[str, Any]]]:
         try:
             return (
@@ -160,8 +162,8 @@ class ModelField:
         value: Any,
         *,
         mode: Literal["json", "python"] = "json",
-        include: Union[IncEx, None] = None,
-        exclude: Union[IncEx, None] = None,
+        include: IncEx | None = None,
+        exclude: IncEx | None = None,
         by_alias: bool = True,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
@@ -202,7 +204,7 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> dict[str, Any]:
-    override_mode: Union[Literal["validation"], None] = (
+    override_mode: Literal["validation"] | None = (
         None
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
@@ -318,7 +320,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
 
 
-def get_missing_field_error(loc: tuple[Union[int, str], ...]) -> dict[str, Any]:
+def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
     error = ValidationError.from_exception_data(
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
@@ -360,7 +362,7 @@ def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 
-TypeModelOrEnum = Union[type["BaseModel"], type[Enum]]
+TypeModelOrEnum = type["BaseModel"] | type[Enum]
 TypeModelSet = set[TypeModelOrEnum]
 
 
@@ -377,7 +379,7 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
 
 
 def get_flat_models_from_model(
-    model: type["BaseModel"], known_models: Union[TypeModelSet, None] = None
+    model: type["BaseModel"], known_models: TypeModelSet | None = None
 ) -> TypeModelSet:
     known_models = known_models or set()
     fields = get_model_fields(model)
@@ -426,7 +428,7 @@ def get_flat_models_from_fields(
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+    *, errors: Sequence[Any], loc_prefix: tuple[str | int, ...]
 ) -> list[dict[str, Any]]:
     updated_loc_errors: list[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors

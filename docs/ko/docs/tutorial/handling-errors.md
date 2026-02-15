@@ -25,7 +25,7 @@ API를 사용하는 클라이언트에 오류를 알려야 하는 상황은 많�
 
 ### `HTTPException` 가져오기 { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### 코드에서 `HTTPException` 발생시키기 { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ Python 예외이므로 `return` 하는 것이 아니라 `raise` 합니다.
 
 이 예시에서는, 클라이언트가 존재하지 않는 ID로 항목을 요청하면 상태 코드 `404`로 예외를 발생시킵니다:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### 결과 응답 { #the-resulting-response }
 
@@ -77,7 +77,7 @@ HTTP 오류에 커스텀 헤더를 추가할 수 있으면 유용한 상황이 �
 
 하지만 고급 시나리오에서 필요하다면 커스텀 헤더를 추가할 수 있습니다:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## 커스텀 예외 핸들러 설치하기 { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@ HTTP 오류에 커스텀 헤더를 추가할 수 있으면 유용한 상황이 �
 
 `@app.exception_handler()`로 커스텀 예외 핸들러를 추가할 수 있습니다:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 여기서 `/unicorns/yolo`를 요청하면, *경로 처리*가 `UnicornException`을 `raise`합니다.
 
@@ -127,7 +127,7 @@ HTTP 오류에 커스텀 헤더를 추가할 수 있으면 유용한 상황이 �
 
 예외 핸들러는 `Request`와 예외를 받습니다.
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 이제 `/items/foo`로 이동하면, 다음과 같은 기본 JSON 오류 대신:
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 예를 들어, 이런 오류들에 대해 JSON 대신 일반 텍스트 응답을 반환하고 싶을 수 있습니다:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | 기술 세부사항
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 앱을 개발하는 동안 body를 로그로 남기고 디버그하거나, 사용자에게 반환하는 등으로 사용할 수 있습니다.
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 이제 다음처럼 유효하지 않은 item을 보내보세요:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 예외를 사용하면서 **FastAPI**의 동일한 기본 예외 핸들러도 함께 사용하고 싶다면, `fastapi.exception_handlers`에서 기본 예외 핸들러를 가져와 재사용할 수 있습니다:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 이 예시에서는 매우 표현력 있는 메시지로 오류를 출력만 하고 있지만, 요지는 이해하셨을 겁니다. 예외를 사용한 뒤 기본 예외 핸들러를 그대로 재사용할 수 있습니다.

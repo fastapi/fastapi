@@ -64,7 +64,7 @@ dataclass는 자동으로 Pydantic dataclass로 변환됩니다.
 
 6. 여기서는 dataclasses 리스트인 `items`를 포함하는 딕셔너리를 반환합니다.
 
-    FastAPI는 여전히 데이터를 JSON으로 <abbr title="converting the data to a format that can be transmitted - 데이터를 전송 가능한 형식으로 변환하는 것">serializing</abbr>할 수 있습니다.
+    FastAPI는 여전히 데이터를 JSON으로 <dfn title="데이터를 전송 가능한 형식으로 변환하는 것">직렬화</dfn>할 수 있습니다.
 
 7. 여기서 `response_model`은 `Author` dataclasses 리스트에 대한 타입 애너테이션을 사용합니다.
 

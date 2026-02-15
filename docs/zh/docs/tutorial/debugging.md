@@ -1,14 +1,14 @@
-# 调试
+# 调试 { #debugging }
 
 你可以在编辑器中连接调试器，例如使用 Visual Studio Code 或 PyCharm。
 
-## 调用 `uvicorn`
+## 调用 `uvicorn` { #call-uvicorn }
 
 在你的 FastAPI 应用中直接导入 `uvicorn` 并运行：
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
-### 关于 `__name__ == "__main__"`
+### 关于 `__name__ == "__main__"` { #about-name-main }
 
 `__name__ == "__main__"` 的主要目的是使用以下代码调用文件时执行一些代码：
 
@@ -26,7 +26,7 @@ $ python myapp.py
 from myapp import app
 ```
 
-#### 更多细节
+#### 更多细节 { #more-details }
 
 假设你的文件命名为 `myapp.py`。
 
@@ -57,7 +57,7 @@ $ python myapp.py
 ```Python
 from myapp import app
 
-# Some more code
+# 其他一些代码
 ```
 
 在这种情况下，`myapp.py` 内部的自动变量不会有值为 `"__main__"` 的变量 `__name__`。
@@ -68,13 +68,13 @@ from myapp import app
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-/// info
+/// info | 信息
 
 更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
 
 ///
 
-## 使用你的调试器运行代码
+## 使用你的调试器运行代码 { #run-your-code-with-your-debugger }
 
 由于是从代码直接运行的 Uvicorn 服务器，所以你可以从调试器直接调用 Python 程序（你的 FastAPI 应用）。
 

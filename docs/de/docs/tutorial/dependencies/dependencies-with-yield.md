@@ -1,6 +1,6 @@
 # Abhängigkeiten mit `yield` { #dependencies-with-yield }
 
-FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title="Manchmal auch genannt „Exit Code“, „Cleanup Code“, „Teardown Code“, „Closing Code“, „Kontextmanager Exit Code“, usw.">zusätzliche Schritte ausführen</abbr>.
+FastAPI unterstützt Abhängigkeiten, die einige <dfn title="manchmal auch genannt: „Exit Code“, „Cleanup Code“, „Teardown Code“, „Closing Code“, „Kontextmanager Exit Code“, usw.">zusätzliche Schritte nach Abschluss</dfn> ausführen.
 
 Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte / den zusätzlichen Code danach.
 
@@ -29,15 +29,15 @@ Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach
 
 Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> erzeugt wird:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 Der ge`yield`ete Wert ist das, was in *Pfadoperationen* und andere Abhängigkeiten eingefügt wird:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
 Der auf die `yield`-Anweisung folgende Code wird nach der Response ausgeführt:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | Tipp
 
@@ -57,7 +57,7 @@ Sie können also mit `except SomeException` diese bestimmte Exception innerhalb 
 
 Auf die gleiche Weise können Sie `finally` verwenden, um sicherzustellen, dass die Exit-Schritte ausgeführt werden, unabhängig davon, ob eine Exception geworfen wurde oder nicht.
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
 ## Unterabhängigkeiten mit `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ Sie können Unterabhängigkeiten und „Bäume“ von Unterabhängigkeiten belie
 
 Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `dependency_a` abhängen:
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 Und alle können `yield` verwenden.
 
@@ -75,7 +75,7 @@ In diesem Fall benötigt `dependency_c` zum Ausführen seines Exit-Codes, dass d
 
 Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` genannt) für seinen Exit-Code.
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
 Auf die gleiche Weise könnten Sie einige Abhängigkeiten mit `yield` und einige andere Abhängigkeiten mit `return` haben, und alle können beliebig voneinander abhängen.
 
@@ -109,7 +109,7 @@ Aber es ist für Sie da, wenn Sie es brauchen. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
 Wenn Sie Exceptions abfangen und darauf basierend eine benutzerdefinierte Response erstellen möchten, erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
@@ -117,7 +117,7 @@ Wenn Sie Exceptions abfangen und darauf basierend eine benutzerdefinierte Respon
 
 Wenn Sie eine Exception mit `except` in einer Abhängigkeit mit `yield` abfangen und sie nicht erneut auslösen (oder eine neue Exception auslösen), kann FastAPI nicht feststellen, dass es eine Exception gab, genau so wie es bei normalem Python der Fall wäre:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 In diesem Fall sieht der Client eine *HTTP 500 Internal Server Error*-Response, wie es sein sollte, da wir keine `HTTPException` oder Ähnliches auslösen, aber der Server hat **keine Logs** oder einen anderen Hinweis darauf, was der Fehler war. 😱
 
@@ -127,7 +127,7 @@ Wenn Sie eine Exception in einer Abhängigkeit mit `yield` abfangen, sollten Sie
 
 Sie können dieselbe Exception mit `raise` erneut auslösen:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
 
 Jetzt erhält der Client dieselbe *HTTP 500 Internal Server Error*-Response, aber der Server enthält unseren benutzerdefinierten `InternalError` in den Logs. 😎
 
@@ -190,7 +190,7 @@ Normalerweise wird der Exit-Code von Abhängigkeiten mit `yield` ausgeführt **n
 
 Wenn Sie aber wissen, dass Sie die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* nicht mehr benötigen, können Sie `Depends(scope="function")` verwenden, um FastAPI mitzuteilen, dass es die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* schließen soll, jedoch **bevor** die **Response gesendet wird**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
 
 `Depends()` erhält einen `scope`-Parameter, der sein kann:
 
@@ -268,7 +268,7 @@ In Python können Sie Kontextmanager erstellen, indem Sie <a href="https://docs.
 
 Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie `with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
 
-{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | Tipp
 

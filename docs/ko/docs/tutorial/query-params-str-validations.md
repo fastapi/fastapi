@@ -2,7 +2,7 @@
 
 **FastAPI**를 사용하면 매개변수에 대한 추가 정보 및 검증을 선언할 수 있습니다.
 
-이 응용 프로그램을 예로 들어보겠습니다:
+이 애플리케이션을 예로 들어보겠습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
 
@@ -41,45 +41,21 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 ## `q` 매개변수의 타입에 `Annotated` 사용하기 { #use-annotated-in-the-type-for-the-q-parameter }
 
-이전에 [Python Types Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}에서 `Annotated`를 사용해 매개변수에 메타데이터를 추가할 수 있다고 말씀드린 것을 기억하시나요?
+이전에 [Python 타입 소개](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}에서 `Annotated`를 사용해 매개변수에 메타데이터를 추가할 수 있다고 말씀드린 것을 기억하시나요?
 
 이제 FastAPI에서 사용할 차례입니다. 🚀
 
 다음과 같은 타입 어노테이션이 있었습니다:
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 여기서 `Annotated`로 감싸서 다음과 같이 만듭니다:
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 두 버전 모두 같은 의미로, `q`는 `str` 또는 `None`이 될 수 있는 매개변수이며 기본값은 `None`입니다.
 
@@ -109,7 +85,7 @@ q: Annotated[Union[str, None]] = None
 
 ## 대안(이전 방식): 기본값으로 `Query` 사용 { #alternative-old-query-as-the-default-value }
 
-이전 FastAPI 버전(<abbr title="before 2023-03">0.95.0</abbr> 이전)에서는 `Annotated`에 넣는 대신, 매개변수의 기본값으로 `Query`를 사용해야 했습니다. 주변에서 이 방식을 사용하는 코드를 볼 가능성이 높기 때문에 설명해 드리겠습니다.
+이전 FastAPI 버전(<dfn title="2023-03 이전">0.95.0</dfn> 이전)에서는 `Annotated`에 넣는 대신, 매개변수의 기본값으로 `Query`를 사용해야 했습니다. 주변에서 이 방식을 사용하는 코드를 볼 가능성이 높기 때문에 설명해 드리겠습니다.
 
 /// tip | 팁
 
@@ -192,7 +168,7 @@ FastAPI 없이도 **다른 곳에서** 같은 함수를 **호출**할 수 있고
 
 ## 정규식 추가 { #add-regular-expressions }
 
-매개변수와 일치해야 하는 <abbr title="문자열에 대한 검색 패턴을 정의하는 문자들의 순열인 정규 표현식(regular expression), regex 또는 regexp입니다.">정규 표현식</abbr> `pattern`을 정의할 수 있습니다:
+매개변수와 일치해야 하는 <dfn title="정규 표현식(regex 또는 regexp)은 문자열에 대한 검색 패턴을 정의하는 문자 시퀀스입니다.">정규 표현식</dfn> `pattern`을 정의할 수 있습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -212,7 +188,7 @@ FastAPI 없이도 **다른 곳에서** 같은 함수를 **호출**할 수 있고
 
 `q` 쿼리 매개변수에 `min_length`를 `3`으로 설정하고, 기본값을 `"fixedquery"`로 선언하고 싶다고 해봅시다:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note | 참고
 
@@ -242,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 따라서 `Query`를 사용하면서 값을 필수로 선언해야 할 때는, 기본값을 선언하지 않으면 됩니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### 필수지만 `None` 가능 { #required-can-be-none }
 
@@ -293,7 +269,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 제공된 값이 없으면 기본 `list` 값을 정의할 수도 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 다음으로 이동하면:
 
@@ -316,7 +292,7 @@ http://localhost:8000/items/
 
 `list[str]` 대신 `list`를 직접 사용할 수도 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note | 참고
 
@@ -372,7 +348,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 이제는 더 이상 이 매개변수를 마음에 들어하지 않는다고 가정해 봅시다.
 
-이 매개변수를 사용하는 클라이언트가 있기 때문에 한동안은 남겨둬야 하지만, 문서에서 <abbr title="obsolete, recommended not to use it – 구식이며, 사용하지 않는 것을 추천">deprecated</abbr>로 명확하게 보여주고 싶습니다.
+이 매개변수를 사용하는 클라이언트가 있기 때문에 한동안은 남겨둬야 하지만, 문서에서 <dfn title="구식이며, 사용하지 않기를 권장함">사용 중단됨</dfn>으로 명확하게 보여주고 싶습니다.
 
 그렇다면 `deprecated=True` 매개변수를 `Query`로 전달합니다:
 
@@ -402,7 +378,7 @@ Pydantic에는 <a href="https://docs.pydantic.dev/latest/concepts/validators/#fi
 
 ///
 
-예를 들어, 이 커스텀 validator는 <abbr title="ISBN means International Standard Book Number – 국제 표준 도서 번호">ISBN</abbr> 도서 번호의 경우 아이템 ID가 `isbn-`으로 시작하고, <abbr title="IMDB (Internet Movie Database) is a website with information about movies – 영화에 대한 정보를 제공하는 웹사이트">IMDB</abbr> 영화 URL ID의 경우 `imdb-`로 시작하는지 확인합니다:
+예를 들어, 이 커스텀 validator는 <abbr title="International Standard Book Number - 국제 표준 도서 번호">ISBN</abbr> 도서 번호의 경우 아이템 ID가 `isbn-`으로 시작하고, <abbr title="Internet Movie Database - 인터넷 영화 데이터베이스: 영화에 대한 정보를 제공하는 웹사이트">IMDB</abbr> 영화 URL ID의 경우 `imdb-`로 시작하는지 확인합니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -436,9 +412,9 @@ Pydantic에는 <a href="https://docs.pydantic.dev/latest/concepts/validators/#fi
 
 #### 임의의 항목 { #a-random-item }
 
-`data.items()`를 사용하면 각 딕셔너리 항목의 키와 값을 담은 튜플로 구성된 <abbr title="리스트, 세트 등처럼 for 루프로 순회할 수 있는 것">iterable object</abbr>를 얻습니다.
+`data.items()`를 사용하면 각 딕셔너리 항목의 키와 값을 담은 튜플로 구성된 <dfn title="리스트, 세트 등처럼 for 루프로 순회할 수 있는 것">이터러블 객체</dfn>를 얻습니다.
 
-이 iterable object를 `list(data.items())`로 적절한 `list`로 변환합니다.
+이 이터러블 객체를 `list(data.items())`로 적절한 `list`로 변환합니다.
 
 그 다음 `random.choice()`로 리스트에서 **무작위 값**을 얻어 `(id, name)` 형태의 튜플을 얻습니다. 예를 들어 `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")` 같은 값이 될 것입니다.
 

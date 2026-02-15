@@ -18,7 +18,7 @@
 
 После этого смонтируйте его на путь.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
 
 /// note | Примечание
 

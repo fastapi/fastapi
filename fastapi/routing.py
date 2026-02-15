@@ -7,6 +7,7 @@ import types
 from collections.abc import (
     AsyncIterator,
     Awaitable,
+    Callable,
     Collection,
     Coroutine,
     Generator,
@@ -24,10 +25,7 @@ from functools import cached_property
 from typing import (
     Annotated,
     Any,
-    Callable,
-    Optional,
     TypeVar,
-    Union,
 )
 
 from annotated_doc import Doc
@@ -85,7 +83,7 @@ from typing_extensions import deprecated
 # Copy of starlette.routing.request_response modified to include the
 # dependencies' AsyncExitStack
 def request_response(
-    func: Callable[[Request], Union[Awaitable[Response], Response]],
+    func: Callable[[Request], Awaitable[Response] | Response],
 ) -> ASGIApp:
     """
     Takes a function or coroutine `func(request) -> response`,
@@ -169,10 +167,10 @@ class _AsyncLiftContextManager(AbstractAsyncContextManager[_T]):
 
     async def __aexit__(
         self,
-        exc_type: Optional[type[BaseException]],
-        exc_value: Optional[BaseException],
-        traceback: Optional[types.TracebackType],
-    ) -> Optional[bool]:
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: types.TracebackType | None,
+    ) -> bool | None:
         return self._cm.__exit__(exc_type, exc_value, traceback)
 
 
@@ -200,7 +198,7 @@ def _merge_lifespan_context(
     @asynccontextmanager
     async def merged_lifespan(
         app: AppType,
-    ) -> AsyncIterator[Optional[Mapping[str, Any]]]:
+    ) -> AsyncIterator[Mapping[str, Any] | None]:
         async with original_context(app) as maybe_original_state:
             async with nested_context(app) as maybe_nested_state:
                 if maybe_nested_state is None and maybe_original_state is None:
@@ -264,16 +262,16 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
 
 async def serialize_response(
     *,
-    field: Optional[ModelField] = None,
+    field: ModelField | None = None,
     response_content: Any,
-    include: Optional[IncEx] = None,
-    exclude: Optional[IncEx] = None,
+    include: IncEx | None = None,
+    exclude: IncEx | None = None,
     by_alias: bool = True,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
-    endpoint_ctx: Optional[EndpointContext] = None,
+    endpoint_ctx: EndpointContext | None = None,
 ) -> Any:
     if field:
         if is_coroutine:
@@ -319,17 +317,17 @@ async def run_endpoint_function(
 
 def get_request_handler(
     dependant: Dependant,
-    body_field: Optional[ModelField] = None,
-    status_code: Optional[int] = None,
-    response_class: Union[type[Response], DefaultPlaceholder] = Default(JSONResponse),
-    response_field: Optional[ModelField] = None,
-    response_model_include: Optional[IncEx] = None,
-    response_model_exclude: Optional[IncEx] = None,
+    body_field: ModelField | None = None,
+    status_code: int | None = None,
+    response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+    response_field: ModelField | None = None,
+    response_model_include: IncEx | None = None,
+    response_model_exclude: IncEx | None = None,
     response_model_by_alias: bool = True,
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -341,7 +339,7 @@ def get_request_handler(
         actual_response_class = response_class
 
     async def app(request: Request) -> Response:
-        response: Union[Response, None] = None
+        response: Response | None = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
@@ -477,7 +475,7 @@ def get_request_handler(
 
 def get_websocket_app(
     dependant: Dependant,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
@@ -518,9 +516,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        name: Optional[str] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        dependency_overrides_provider: Optional[Any] = None,
+        name: str | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        dependency_overrides_provider: Any | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -561,33 +559,30 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        name: Optional[str] = None,
-        methods: Optional[Union[set[str], list[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        name: str | None = None,
+        methods: set[str] | list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[type[Response], DefaultPlaceholder] = Default(
-            JSONResponse
-        ),
-        dependency_overrides_provider: Optional[Any] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
-        generate_unique_id_function: Union[
-            Callable[["APIRoute"], str], DefaultPlaceholder
-        ] = Default(generate_unique_id),
+        response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+        dependency_overrides_provider: Any | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
+        generate_unique_id_function: Callable[["APIRoute"], str]
+        | DefaultPlaceholder = Default(generate_unique_id),
         defer_init: bool = True,
     ) -> None:
         self.path = path
@@ -650,7 +645,7 @@ class APIRoute(routing.Route):
             self.init_attributes()
 
     @cached_property
-    def response_field(self) -> Optional[ModelField]:
+    def response_field(self) -> ModelField | None:
         if not self.response_model:
             return None
         response_name = "Response_" + self.unique_id
@@ -661,8 +656,8 @@ class APIRoute(routing.Route):
         )
 
     @cached_property
-    def response_fields(self) -> dict[Union[int, str], ModelField]:
-        response_fields: dict[Union[int, str], ModelField] = {}
+    def response_fields(self) -> dict[int| str, ModelField]:
+        response_fields: dict[int| str, ModelField] = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
@@ -775,7 +770,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -789,7 +784,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to all the
@@ -812,7 +807,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -828,7 +823,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -842,7 +837,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         routes: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 **Note**: you probably shouldn't use this parameter, it is inherited
@@ -873,7 +868,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         default: Annotated[
-            Optional[ASGIApp],
+            ASGIApp | None,
             Doc(
                 """
                 Default function handler for this router. Used to handle
@@ -882,7 +877,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependency_overrides_provider: Annotated[
-            Optional[Any],
+            Any | None,
             Doc(
                 """
                 Only used internally by FastAPI to handle dependency overrides.
@@ -904,7 +899,7 @@ class APIRouter(routing.Router):
             ),
         ] = APIRoute,
         on_startup: Annotated[
-            Optional[Sequence[Callable[[], Any]]],
+            Sequence[Callable[[], Any]] | None,
             Doc(
                 """
                 A list of startup event handler functions.
@@ -916,7 +911,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         on_shutdown: Annotated[
-            Optional[Sequence[Callable[[], Any]]],
+            Sequence[Callable[[], Any]] | None,
             Doc(
                 """
                 A list of shutdown event handler functions.
@@ -931,7 +926,7 @@ class APIRouter(routing.Router):
         # the generic to Lifespan[AppType] is the type of the top level application
         # which the router cannot know statically, so we use typing.Any
         lifespan: Annotated[
-            Optional[Lifespan[Any]],
+            Lifespan[Any] | None,
             Doc(
                 """
                 A `Lifespan` context manager handler. This replaces `startup` and
@@ -943,7 +938,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark all *path operations* in this router as deprecated.
@@ -995,16 +990,6 @@ class APIRouter(routing.Router):
             ),
         ] = True,
     ) -> None:
-        # Handle on_startup/on_shutdown locally since Starlette removed support
-        # Ref: https://github.com/Kludex/starlette/pull/3117
-        # TODO: deprecate this once the lifespan (or alternative) interface is improved
-        self.on_startup: list[Callable[[], Any]] = (
-            [] if on_startup is None else list(on_startup)
-        )
-        self.on_shutdown: list[Callable[[], Any]] = (
-            [] if on_shutdown is None else list(on_shutdown)
-        )
-
         # Determine the lifespan context to use
         if lifespan is None:
             # Use the default lifespan that runs on_startup/on_shutdown handlers
@@ -1028,8 +1013,19 @@ class APIRouter(routing.Router):
             assert not prefix.endswith("/"), (
                 "A path prefix must not end with '/', as the routes will start with '/'"
             )
+
+        # Handle on_startup/on_shutdown locally since Starlette removed support
+        # Ref: https://github.com/Kludex/starlette/pull/3117
+        # TODO: deprecate this once the lifespan (or alternative) interface is improved
+        self.on_startup: list[Callable[[], Any]] = (
+            [] if on_startup is None else list(on_startup)
+        )
+        self.on_shutdown: list[Callable[[], Any]] = (
+            [] if on_shutdown is None else list(on_shutdown)
+        )
+
         self.prefix = prefix
-        self.tags: list[Union[str, Enum]] = tags or []
+        self.tags: list[str | Enum] = tags or []
         self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
@@ -1046,8 +1042,8 @@ class APIRouter(routing.Router):
     def route(
         self,
         path: str,
-        methods: Optional[Collection[str]] = None,
-        name: Optional[str] = None,
+        methods: Collection[str] | None = None,
+        name: str | None = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
@@ -1068,33 +1064,30 @@ class APIRouter(routing.Router):
         endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[Union[set[str], list[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        methods: set[str] | list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[type[Response], DefaultPlaceholder] = Default(
-            JSONResponse
-        ),
-        name: Optional[str] = None,
-        route_class_override: Optional[type[APIRoute]] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
-        generate_unique_id_function: Union[
-            Callable[[APIRoute], str], DefaultPlaceholder
-        ] = Default(generate_unique_id),
+        response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+        name: str | None = None,
+        route_class_override: type[APIRoute] | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
+        generate_unique_id_function: Callable[[APIRoute], str]
+        | DefaultPlaceholder = Default(generate_unique_id),
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1150,27 +1143,27 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[list[str]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        methods: list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] = Default(JSONResponse),
-        name: Optional[str] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
+        name: str | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -1211,9 +1204,9 @@ class APIRouter(routing.Router):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        name: Optional[str] = None,
+        name: str | None = None,
         *,
-        dependencies: Optional[Sequence[params.Depends]] = None,
+        dependencies: Sequence[params.Depends] | None = None,
     ) -> None:
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -1239,7 +1232,7 @@ class APIRouter(routing.Router):
             ),
         ],
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A name for the WebSocket. Only used internally.
@@ -1248,7 +1241,7 @@ class APIRouter(routing.Router):
         ] = None,
         *,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be used for this
@@ -1296,7 +1289,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def websocket_route(
-        self, path: str, name: Union[str, None] = None
+        self, path: str, name: str | None = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_websocket_route(path, func, name=name)
@@ -1315,7 +1308,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -1329,7 +1322,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to all the
@@ -1352,7 +1345,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -1368,7 +1361,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -1382,7 +1375,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark all *path operations* in this router as deprecated.
@@ -1444,6 +1437,10 @@ class APIRouter(routing.Router):
         app.include_router(internal_router)
         ```
         """
+        assert self is not router, (
+            "Cannot include the same APIRouter instance into itself. "
+            "Did you mean to include a different router?"
+        )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
@@ -1601,7 +1598,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -1614,7 +1611,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1627,7 +1624,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -1639,7 +1636,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -1652,7 +1649,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -1680,7 +1677,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -1690,7 +1687,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -1700,7 +1697,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -1720,7 +1717,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -1732,7 +1729,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -1834,7 +1831,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -1842,7 +1839,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -1858,7 +1855,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -1978,7 +1975,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -1991,7 +1988,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2004,7 +2001,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2016,7 +2013,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -2029,7 +2026,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -2057,7 +2054,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2067,7 +2064,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -2077,7 +2074,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -2097,7 +2094,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -2109,7 +2106,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2211,7 +2208,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2219,7 +2216,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2235,7 +2232,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2360,7 +2357,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -2373,7 +2370,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2386,7 +2383,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2398,7 +2395,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -2411,7 +2408,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -2439,7 +2436,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2449,7 +2446,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -2459,7 +2456,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -2479,7 +2476,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -2491,7 +2488,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2593,7 +2590,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2601,7 +2598,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2617,7 +2614,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2742,7 +2739,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -2755,7 +2752,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2768,7 +2765,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2780,7 +2777,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -2793,7 +2790,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -2821,7 +2818,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2831,7 +2828,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -2841,7 +2838,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -2861,7 +2858,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -2873,7 +2870,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2975,7 +2972,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2983,7 +2980,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2999,7 +2996,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3119,7 +3116,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3132,7 +3129,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3145,7 +3142,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3157,7 +3154,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3170,7 +3167,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3198,7 +3195,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3208,7 +3205,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3218,7 +3215,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3238,7 +3235,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -3250,7 +3247,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -3352,7 +3349,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -3360,7 +3357,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3376,7 +3373,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3496,7 +3493,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3509,7 +3506,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3522,7 +3519,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3534,7 +3531,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3547,7 +3544,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3575,7 +3572,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3585,7 +3582,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3595,7 +3592,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3615,7 +3612,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -3627,7 +3624,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -3729,7 +3726,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -3737,7 +3734,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3753,7 +3750,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3878,7 +3875,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3891,7 +3888,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3904,7 +3901,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3916,7 +3913,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3929,7 +3926,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3957,7 +3954,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3967,7 +3964,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3977,7 +3974,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3997,7 +3994,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -4009,7 +4006,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -4111,7 +4108,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -4119,7 +4116,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4135,7 +4132,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4260,7 +4257,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -4273,7 +4270,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -4286,7 +4283,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -4298,7 +4295,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -4311,7 +4308,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -4339,7 +4336,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -4349,7 +4346,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -4359,7 +4356,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -4379,7 +4376,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -4391,7 +4388,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -4493,7 +4490,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -4501,7 +4498,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4517,7 +4514,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path

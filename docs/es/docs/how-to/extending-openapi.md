@@ -43,19 +43,19 @@ Por ejemplo, vamos a añadir <a href="https://github.com/Rebilly/ReDoc/blob/mast
 
 Primero, escribe toda tu aplicación **FastAPI** como normalmente:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
 ### Generar el esquema de OpenAPI { #generate-the-openapi-schema }
 
 Luego, usa la misma función de utilidad para generar el esquema de OpenAPI, dentro de una función `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
 ### Modificar el esquema de OpenAPI { #modify-the-openapi-schema }
 
 Ahora puedes añadir la extensión de ReDoc, agregando un `x-logo` personalizado al "objeto" `info` en el esquema de OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
 ### Cachear el esquema de OpenAPI { #cache-the-openapi-schema }
 
@@ -65,13 +65,13 @@ De esa forma, tu aplicación no tendrá que generar el esquema cada vez que un u
 
 Se generará solo una vez, y luego se usará el mismo esquema cacheado para las siguientes requests.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
 ### Sobrescribir el método { #override-the-method }
 
 Ahora puedes reemplazar el método `.openapi()` por tu nueva función.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
 ### Revisa { #check-it }
 

@@ -8,7 +8,7 @@
 * `@app.delete()`
 * 등
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | 참고
 
@@ -43,7 +43,7 @@ FastAPI는 이를 알고 있으며, 응답 본문이 없다고 명시하는 Open
 
 /// note | 참고
 
-만약 HTTP 상태 코드가 무엇인지 이미 알고 있다면, 다음 섹션으로 넘어가세요.
+만약 HTTP 상태 코드가 무엇인지 이미 알고 있다면, 다음 섡션으로 넘어가세요.
 
 ///
 
@@ -66,7 +66,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 /// tip | 팁
 
-각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>의 HTTP 상태 코드에 관한 문서</a>를 확인하세요.
+각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr>의 HTTP 상태 코드에 관한 문서</a>를 확인하세요.
 
 ///
 
@@ -74,7 +74,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 이전 예시를 다시 확인해보겠습니다:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` 은 "생성됨"을 위한 상태 코드입니다.
 
@@ -82,7 +82,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 `fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 이것들은 단지 편의를 위한 것으로, 동일한 숫자를 갖고 있지만, 이를 통해 편집기의 자동완성 기능으로 찾을 수 있습니다:
 

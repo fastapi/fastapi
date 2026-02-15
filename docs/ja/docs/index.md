@@ -40,7 +40,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 * **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス（Starlette と Pydantic のおかげです）。 [利用可能な最も高速な Python フレームワークの一つです](#performance)。
 * **高速なコーディング**: 開発速度を約 200%〜300% 向上させます。*
 * **少ないバグ**: 開発者起因のヒューマンエラーを約 40% 削減します。*
-* **直感的**: 素晴らしいエディタサポート。あらゆる場所で <abbr title="also known as auto-complete, autocompletion, IntelliSense">補完</abbr> が使えます。デバッグ時間を削減します。
+* **直感的**: 素晴らしいエディタサポート。<dfn title="別名: auto-complete、autocompletion、IntelliSense">補完</dfn> があらゆる場所で使えます。デバッグ時間を削減します。
 * **簡単**: 簡単に利用・習得できるようにデザインされています。ドキュメントを読む時間を削減します。
 * **短い**: コードの重複を最小限にします。各パラメータ宣言から複数の機能を得られます。バグも減ります。
 * **堅牢性**: 自動対話型ドキュメントにより、本番環境向けのコードが得られます。
@@ -127,7 +127,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Web API の代わりにターミナルで使用する <abbr title="Command Line Interface">CLI</abbr> アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a> を確認してください。
+Web API の代わりにターミナルで使用する <abbr title="Command Line Interface - コマンドラインインターフェイス">CLI</abbr> アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a> を確認してください。
 
 **Typer** は FastAPI の弟分です。そして、**CLI 版 FastAPI** を意図しています。 ⌨️ 🚀
 
@@ -368,7 +368,7 @@ item: Item
 * データの検証:
     * データが無効な場合に自動で明確なエラーを返します。
     * 深い入れ子になった JSON オブジェクトでも検証が可能です。
-* 入力データの <abbr title="also known as: serialization, parsing, marshalling">変換</abbr>: ネットワークから Python のデータや型へ。以下から読み取ります:
+* 入力データの <dfn title="別名: serialization、parsing、marshalling">変換</dfn>: ネットワークから Python のデータや型へ。以下から読み取ります:
     * JSON。
     * パスパラメータ。
     * クエリパラメータ。
@@ -376,7 +376,7 @@ item: Item
     * ヘッダー。
     * フォーム。
     * ファイル。
-* 出力データの <abbr title="also known as: serialization, parsing, marshalling">変換</abbr>: Python のデータや型からネットワークデータへ（JSON として）変換します:
+* 出力データの <dfn title="別名: serialization、parsing、marshalling">変換</dfn>: Python のデータや型からネットワークデータへ（JSON として）変換します:
     * Python の型（`str`、`int`、`float`、`bool`、`list` など）の変換。
     * `datetime` オブジェクト。
     * `UUID` オブジェクト。
@@ -439,7 +439,7 @@ item: Item
 
 * **ヘッダー**、**Cookie**、**フォームフィールド**、**ファイル**など、他のさまざまな場所からの **パラメータ** 宣言。
 * `maximum_length` や `regex` のような **検証制約** を設定する方法。
-* 非常に強力で使いやすい **<abbr title="also known as components, resources, providers, services, injectables">依存性注入</abbr>** システム。
+* 非常に強力で使いやすい **<dfn title="別名: components、resources、providers、services、injectables">依存性注入</dfn>** システム。
 * **JWT トークン**を用いた **OAuth2** や **HTTP Basic** 認証のサポートを含む、セキュリティと認証。
 * **深くネストされた JSON モデル**を宣言するための、より高度な（しかし同様に簡単な）手法（Pydantic のおかげです）。
 * <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> および他のライブラリによる **GraphQL** 統合。
@@ -524,7 +524,7 @@ Starlette によって使用されるもの:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient` を使用したい場合に必要です。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用したい場合に必要です。
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()` とともに、フォームの <abbr title="converting the string that comes from an HTTP request into Python data">「parsing」</abbr> をサポートしたい場合に必要です。
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()` とともに、フォームの <dfn title="HTTP リクエストから届く文字列を Python データに変換すること">「parsing」</dfn> をサポートしたい場合に必要です。
 
 FastAPI によって使用されるもの:
 

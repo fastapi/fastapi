@@ -191,6 +191,7 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
@@ -331,6 +332,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /zh/
+    name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
 extra_css:

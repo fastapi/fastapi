@@ -2,12 +2,13 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39"),
+        pytest.param("tutorial002_py310"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -38,28 +39,30 @@ def test_path_operation(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "info": {
-            "title": "FastAPI",
-            "version": "0.1.0",
-        },
-        "openapi": "3.1.0",
-        "paths": {
-            "/legacy/": {
-                "get": {
-                    "operationId": "get_legacy_data_legacy__get",
-                    "responses": {
-                        "200": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {},
+    assert response.json() == snapshot(
+        {
+            "info": {
+                "title": "FastAPI",
+                "version": "0.1.0",
+            },
+            "openapi": "3.1.0",
+            "paths": {
+                "/legacy/": {
+                    "get": {
+                        "operationId": "get_legacy_data_legacy__get",
+                        "responses": {
+                            "200": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {},
+                                    },
                                 },
+                                "description": "Successful Response",
                             },
-                            "description": "Successful Response",
                         },
+                        "summary": "Get Legacy Data",
                     },
-                    "summary": "Get Legacy Data",
                 },
             },
-        },
-    }
+        }
+    )

@@ -32,7 +32,7 @@ Webhook'lar OpenAPI 3.1.0 ve üzeri sürümlerde mevcuttur; FastAPI `0.99.0` ve 
 
 Bir **FastAPI** uygulaması oluşturduğunuzda, *webhook*'ları tanımlamak için kullanabileceğiniz bir `webhooks` attribute'u vardır; *path operation* tanımlar gibi, örneğin `@app.webhooks.post()` ile.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Tanımladığınız webhook'lar **OpenAPI** şemasında ve otomatik **docs UI**'da yer alır.
 

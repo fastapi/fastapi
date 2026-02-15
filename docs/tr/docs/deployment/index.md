@@ -1,8 +1,8 @@
-# Deployment { #deployment }
+# Dağıtım { #deployment }
 
 **FastAPI** uygulamasını deploy etmek nispeten kolaydır.
 
-## Deployment Ne Anlama Gelir? { #what-does-deployment-mean }
+## Dağıtım Ne Anlama Gelir? { #what-does-deployment-mean }
 
 Bir uygulamayı **deploy** etmek, onu **kullanıcılara erişilebilir hale getirmek** için gerekli adımları gerçekleştirmek anlamına gelir.
 
@@ -10,7 +10,7 @@ Bir **web API** için bu süreç normalde uygulamayı **uzak bir makineye** yerl
 
 Bu, kodu sürekli olarak değiştirdiğiniz, bozup düzelttiğiniz, geliştirme sunucusunu durdurup yeniden başlattığınız vb. **geliştirme** aşamalarının tam tersidir.
 
-## Deployment Stratejileri { #deployment-strategies }
+## Dağıtım Stratejileri { #deployment-strategies }
 
 Kullanım durumunuza ve kullandığınız araçlara bağlı olarak bunu yapmanın birkaç yolu vardır.
 

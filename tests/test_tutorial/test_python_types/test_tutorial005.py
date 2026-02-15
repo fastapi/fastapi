@@ -1,4 +1,4 @@
-from docs_src.python_types.tutorial005_py39 import get_items
+from docs_src.python_types.tutorial005_py310 import get_items
 
 
 def test_get_items():

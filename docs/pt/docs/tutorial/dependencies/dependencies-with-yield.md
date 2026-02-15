@@ -1,6 +1,6 @@
 # Dependências com yield { #dependencies-with-yield }
 
-O **FastAPI** possui suporte para dependências que realizam <abbr title='às vezes também chamado de "código de saída", "código de limpeza", "código de teardown", "código de fechamento", "código de saída do gerenciador de contexto", etc.'>alguns passos extras ao finalizar</abbr>.
+O **FastAPI** possui suporte para dependências que realizam <dfn title='às vezes também chamado de "código de saída", "código de limpeza", "código de teardown", "código de fechamento", "código de saída do gerenciador de contexto", etc.'>alguns passos extras ao finalizar</dfn>.
 
 Para fazer isso, utilize `yield` em vez de `return`, e escreva os passos extras (código) depois.
 
@@ -29,15 +29,15 @@ Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dado
 
 Apenas o código anterior à declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
 O código após o `yield` é executado após a resposta:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | Dica
 
@@ -57,7 +57,7 @@ Então, você pode procurar por essa exceção específica dentro da dependênci
 
 Da mesma forma, você pode utilizar `finally` para garantir que os passos de saída são executados, com ou sem exceções.
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
 ## Subdependências com `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ O **FastAPI** garantirá que o "código de saída" em cada dependência com `yie
 
 Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` depender de `dependency_a`:
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 E todas elas podem utilizar `yield`.
 
@@ -75,7 +75,7 @@ Neste caso, `dependency_c`, para executar seu código de saída, precisa que o v
 
 E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeado de `dep_a`) esteja disponível para executar seu código de saída.
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
 Da mesma forma, você pode ter algumas dependências com `yield` e outras com `return` e ter uma relação de dependência entre algumas das duas.
 
@@ -109,7 +109,7 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
 Se você quiser capturar exceções e criar uma resposta personalizada com base nisso, crie um [Manipulador de Exceções Customizado](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
@@ -117,7 +117,7 @@ Se você quiser capturar exceções e criar uma resposta personalizada com base 
 
 Se você capturar uma exceção com `except` em uma dependência que utilize `yield` e ela não for levantada novamente (ou uma nova exceção for levantada), o FastAPI não será capaz de identificar que houve uma exceção, da mesma forma que aconteceria com Python puro:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 Neste caso, o cliente irá ver uma resposta *HTTP 500 Internal Server Error* como deveria acontecer, já que não estamos levantando nenhuma `HTTPException` ou coisa parecida, mas o servidor **não terá nenhum log** ou qualquer outra indicação de qual foi o erro. 😱
 
@@ -127,7 +127,7 @@ Se você capturar uma exceção em uma dependência com `yield`, a menos que voc
 
 Você pode relançar a mesma exceção utilizando `raise`:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
 
 Agora o cliente irá receber a mesma resposta *HTTP 500 Internal Server Error*, mas o servidor terá nosso `InternalError` personalizado nos logs. 😎
 
@@ -190,7 +190,7 @@ Normalmente, o código de saída das dependências com `yield` é executado **ap
 
 Mas se você sabe que não precisará usar a dependência depois de retornar da *função de operação de rota*, você pode usar `Depends(scope="function")` para dizer ao FastAPI que deve fechar a dependência depois que a *função de operação de rota* retornar, mas **antes** de a **resposta ser enviada**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
 
 `Depends()` recebe um parâmetro `scope` que pode ser:
 
@@ -269,7 +269,7 @@ Em Python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar
 `with` ou `async with` dentro da função da dependência:
 
-{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | Dica
 

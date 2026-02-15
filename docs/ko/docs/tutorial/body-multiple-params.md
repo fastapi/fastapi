@@ -106,13 +106,6 @@
 q: str | None = None
 ```
 
-또는 Python 3.9에서는:
-
-```Python
-q: Union[str, None] = None
-```
-
-
 예를 들어:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

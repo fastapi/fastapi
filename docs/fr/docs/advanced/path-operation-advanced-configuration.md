@@ -12,7 +12,7 @@ Vous pouvez définir l’OpenAPI `operationId` à utiliser dans votre chemin d�
 
 Vous devez vous assurer qu’il est unique pour chaque opération.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### Utiliser le nom de la fonction de chemin d’accès comme operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, 
 
 Vous devez le faire après avoir ajouté tous vos chemins d’accès.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip | Astuce
 
@@ -40,7 +40,7 @@ Même si elles se trouvent dans des modules différents (fichiers Python).
 
 Pour exclure un chemin d’accès du schéma OpenAPI généré (et donc des systèmes de documentation automatiques), utilisez le paramètre `include_in_schema` et définissez-le à `False` :
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## Description avancée depuis la docstring { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@ Vous pouvez étendre le schéma OpenAPI pour un chemin d’accès en utilisant l
 
 Cet `openapi_extra` peut être utile, par exemple, pour déclarer des [Extensions OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) :
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 Si vous ouvrez la documentation automatique de l’API, votre extension apparaîtra en bas du chemin d’accès spécifique.
 
@@ -139,9 +139,9 @@ Par exemple, vous pourriez décider de lire et de valider la requête avec votre
 
 Vous pourriez le faire avec `openapi_extra` :
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-Dans cet exemple, nous n’avons déclaré aucun modèle Pydantic. En fait, le corps de la requête n’est même pas <abbr title="converti d'un format simple, comme des octets, en objets Python">parsé</abbr> en JSON, il est lu directement en tant que `bytes`, et la fonction `magic_data_reader()` serait chargée de l’analyser d’une manière ou d’une autre.
+Dans cet exemple, nous n’avons déclaré aucun modèle Pydantic. En fait, le corps de la requête n’est même pas <dfn title="converti d'un format simple, comme des octets, en objets Python">parsé</dfn> en JSON, il est lu directement en tant que `bytes`, et la fonction `magic_data_reader()` serait chargée de l’analyser d’une manière ou d’une autre.
 
 Néanmoins, nous pouvons déclarer le schéma attendu pour le corps de la requête.
 
@@ -153,7 +153,7 @@ Et vous pourriez le faire même si le type de données dans la requête n’est 
 
 Par exemple, dans cette application nous n’utilisons pas la fonctionnalité intégrée de FastAPI pour extraire le JSON Schema des modèles Pydantic ni la validation automatique pour le JSON. En fait, nous déclarons le type de contenu de la requête comme YAML, pas JSON :
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 Néanmoins, bien que nous n’utilisions pas la fonctionnalité intégrée par défaut, nous utilisons toujours un modèle Pydantic pour générer manuellement le JSON Schema pour les données que nous souhaitons recevoir en YAML.
 
@@ -161,7 +161,7 @@ Ensuite, nous utilisons directement la requête et extrayons le corps en tant qu
 
 Ensuite, dans notre code, nous analysons directement ce contenu YAML, puis nous utilisons à nouveau le même modèle Pydantic pour valider le contenu YAML :
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip | Astuce
 

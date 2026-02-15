@@ -2,7 +2,7 @@
 
 最もシンプルなFastAPIファイルは以下のようになります:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 これを`main.py`にコピーします。
 
@@ -104,7 +104,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### OpenAPIおよびJSONスキーマ { #openapi-and-json-schema }
 
-OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマは**JSONデータスキーマ**の標準規格に準拠したJSONスキーマを利用するAPIによって送受されるデータの定義（または「スキーマ」）を含んでいます。
+OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマは**JSONデータスキーマ**の標準規格である**JSON Schema**を利用するAPIによって送受されるデータの定義（または「スキーマ」）を含んでいます。
 
 #### `openapi.json`を確認 { #check-the-openapi-json }
 
@@ -183,7 +183,7 @@ Deploying to FastAPI Cloud...
 
 ### Step 1: `FastAPI`をインポート { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
@@ -197,7 +197,7 @@ Deploying to FastAPI Cloud...
 
 ### Step 2: `FastAPI`の「インスタンス」を生成 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
 これが、すべてのAPIを作成するための主要なポイントになります。
@@ -265,12 +265,12 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 
 #### *path operation デコレータ*を定義 { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")`は直下の関数が下記のリクエストの処理を担当することを**FastAPI**に伝えます:
 
 * パス `/`
-* <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
+* <dfn title="HTTP GET メソッド"><code>get</code> オペレーション</dfn>
 
 /// info | `@decorator` Info
 
@@ -319,7 +319,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 * **オペレーション**: は`get`です。
 * **関数**: 「デコレータ」の直下にある関数 (`@app.get("/")`の直下) です。
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 これは、Pythonの関数です。
 
@@ -331,7 +331,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 `async def`の代わりに通常の関数として定義することもできます:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | 備考
 
@@ -341,7 +341,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 ### Step 5: コンテンツの返信 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 `dict`、`list`、`str`、`int`などの単一の値を返すことができます。
 

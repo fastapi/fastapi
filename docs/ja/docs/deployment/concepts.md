@@ -29,7 +29,6 @@
 
 ## セキュリティ - HTTPS { #security-https }
 
-<!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
 [前チャプターのHTTPSについて](https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
 
 通常、アプリケーションサーバにとって**外部の**コンポーネントである**TLS Termination Proxy**によって提供されることが一般的です。このプロキシは通信の暗号化を担当します。
@@ -193,7 +192,6 @@ FastAPI アプリケーションでは、Uvicorn を実行する `fastapi` コ�
 同じAPIプログラムの**複数のプロセス**を実行する場合、それらは一般的に**Worker／ワーカー**と呼ばれます。
 
 ### ワーカー・プロセス と ポート { #worker-processes-and-ports }
-<!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
 
 [HTTPSについて](https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
 

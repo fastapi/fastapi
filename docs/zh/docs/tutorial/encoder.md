@@ -1,4 +1,4 @@
-# JSON 兼容编码器
+# JSON 兼容编码器 { #json-compatible-encoder }
 
 在某些情况下，您可能需要将数据类型（如Pydantic模型）转换为与JSON兼容的数据类型（如`dict`、`list`等）。
 
@@ -6,13 +6,13 @@
 
 对于这种要求， **FastAPI**提供了`jsonable_encoder()`函数。
 
-## 使用`jsonable_encoder`
+## 使用`jsonable_encoder` { #using-the-jsonable-encoder }
 
 让我们假设你有一个数据库名为`fake_db`，它只能接收与JSON兼容的数据。
 
 例如，它不接收`datetime`这类的对象，因为这些对象与JSON不兼容。
 
-因此，`datetime`对象必须将转换为包含<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO格式化</a>的`str`类型对象。
+因此，`datetime`对象必须转换为包含<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO 格式</a>的`str`类型对象。
 
 同样，这个数据库也不会接收Pydantic模型（带有属性的对象），而只接收`dict`。
 
@@ -28,8 +28,8 @@
 
 这个操作不会返回一个包含JSON格式（作为字符串）数据的庞大的`str`。它将返回一个Python标准数据结构（例如`dict`），其值和子值都与JSON兼容。
 
-/// note
+/// note | 注意
 
-`jsonable_encoder`实际上是FastAPI内部用来转换数据的。但是它在许多其他场景中也很有用。
+`jsonable_encoder`实际上是**FastAPI**内部用来转换数据的。但是它在许多其他场景中也很有用。
 
 ///
