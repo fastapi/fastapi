@@ -1,8 +1,7 @@
-from starlette.responses import Response
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
+from starlette.responses import Response
 
 
 class CustomResponse(Response):
@@ -51,7 +50,9 @@ def test_openapi_schema():
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": {"text/plain": {"schema": {"type": "string"}}},
+                                "content": {
+                                    "text/plain": {"schema": {"type": "string"}}
+                                },
                             }
                         },
                     }
