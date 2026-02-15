@@ -656,8 +656,8 @@ class APIRoute(routing.Route):
         )
 
     @cached_property
-    def response_fields(self) -> dict[int| str, ModelField]:
-        response_fields: dict[int| str, ModelField] = {}
+    def response_fields(self) -> dict[int | str, ModelField]:
+        response_fields: dict[int | str, ModelField] = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
