@@ -694,7 +694,7 @@ class APIRoute(routing.Route):
         return _should_embed_body_fields(self._flat_dependant.body_params)
 
     @cached_property
-    def body_field(self) -> Optional[ModelField]:
+    def body_field(self) -> ModelField | None:
         return get_body_field(
             flat_dependant=self._flat_dependant,
             name=self.unique_id,
