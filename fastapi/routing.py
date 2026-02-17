@@ -237,9 +237,9 @@ class _DefaultLifespan:
 # Uses WeakKeyDictionary so entries are automatically evicted when the endpoint
 # function is garbage collected (e.g., when a dynamically created FastAPI app is
 # destroyed), preventing both memory leaks and stale-ID lookups.
-_endpoint_context_cache: weakref.WeakKeyDictionary[Callable[..., Any], EndpointContext] = (
-    weakref.WeakKeyDictionary()
-)
+_endpoint_context_cache: weakref.WeakKeyDictionary[
+    Callable[..., Any], EndpointContext
+] = weakref.WeakKeyDictionary()
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
