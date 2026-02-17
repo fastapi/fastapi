@@ -76,4 +76,4 @@
 
 У **FastAPI** великое будущее.
 
-И [ваш вклад в это](help-fastapi.md){.internal-link target=_blank} - очень ценнен.
+И [ваш вклад в это](help-fastapi.md){.internal-link target=_blank} - очень ценен.
