@@ -37,15 +37,15 @@ Python 설치까지 포함해 **모든 것을 관리해주는 도구**를 도입
 <div class="termy">
 
 ```console
-// Go to the home directory
+// 홈 디렉터리로 이동
 $ cd
-// Create a directory for all your code projects
+// 모든 코드 프로젝트를 위한 디렉터리 생성
 $ mkdir code
-// Enter into that code directory
+// 그 code 디렉터리로 이동
 $ cd code
-// Create a directory for this project
+// 이 프로젝트를 위한 디렉터리 생성
 $ mkdir awesome-project
-// Enter into that project directory
+// 그 프로젝트 디렉터리로 이동
 $ cd awesome-project
 ```
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## 가상 환경 생성 { #create-a-virtual-environment }
 
-Python 프로젝트를 **처음 시작할 때**, **<abbr title="다른 옵션도 있지만, 이것은 간단한 가이드라인입니다">프로젝트 내부</abbr>**에 가상 환경을 생성하세요.
+Python 프로젝트를 **처음 시작할 때**, 가상 환경을 **<dfn title="다른 옵션도 있지만, 이것은 간단한 가이드라인입니다">프로젝트 내부</dfn>**에 생성하세요.
 
 /// tip
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 해당 환경에 **새 패키지**를 설치할 때마다, 환경을 다시 **활성화**하세요.
 
-이렇게 하면 해당 패키지가 설치한 **터미널(<abbr title="command line interface">CLI</abbr>) 프로그램**을 사용할 때, 전역으로 설치되어 있을 수도 있는(아마 필요한 버전과는 다른 버전인) 다른 프로그램이 아니라 가상 환경에 있는 것을 사용하게 됩니다.
+이렇게 하면 해당 패키지가 설치한 **터미널(<abbr title="command line interface - 명령줄 인터페이스">CLI</abbr>) 프로그램**을 사용할 때, 전역으로 설치되어 있을 수도 있는(아마 필요한 버전과는 다른 버전인) 다른 프로그램이 아니라 가상 환경에 있는 것을 사용하게 됩니다.
 
 ///
 
@@ -557,7 +557,7 @@ Python을 설치하면 컴퓨터에 몇몇 파일이 들어 있는 디렉터리�
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// 지금은 실행하지 마세요, 예시일 뿐입니다 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
@@ -811,7 +811,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// sirius 임포트 오류, 설치되어 있지 않습니다 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -826,13 +826,13 @@ Traceback (most recent call last):
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// 비활성화를 위해 이전 디렉터리에 있을 필요는 없습니다. 어디서든, 다른 프로젝트로 이동한 뒤에도 할 수 있습니다 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// prisoner-of-azkaban/.venv의 가상 환경을 활성화하세요 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// 이제 python을 실행하면, 이 가상 환경에 설치된 sirius 패키지를 찾습니다 ✨
 $ python main.py
 
 I solemnly swear 🐺

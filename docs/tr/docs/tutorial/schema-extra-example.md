@@ -74,7 +74,7 @@ Elbette birden fazla `examples` da geçebilirsiniz:
 
 Bunu yaptığınızda, örnekler bu body verisi için dahili **JSON Schema**’nın bir parçası olur.
 
-Buna rağmen, <abbr title="2023-08-26 - bunun yazıldığı tarihte">time of writing this</abbr>, doküman arayüzünü gösteren araç olan Swagger UI, **JSON Schema** içindeki veriler için birden fazla örneği göstermeyi desteklemiyor. Ancak aşağıda bir çözüm yolu var.
+Buna rağmen, <dfn title="2023-08-26">bu yazı yazılırken</dfn>, doküman arayüzünü gösteren araç olan Swagger UI, **JSON Schema** içindeki veriler için birden fazla örneği göstermeyi desteklemiyor. Ancak aşağıda bir çözüm yolu var.
 
 ### OpenAPI’ye özel `examples` { #openapi-specific-examples }
 

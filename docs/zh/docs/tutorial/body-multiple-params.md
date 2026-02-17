@@ -104,12 +104,6 @@
 q: str | None = None
 ```
 
-或者在 Python 3.9 中：
-
-```Python
-q: Union[str, None] = None
-```
-
 比如：
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

@@ -62,7 +62,7 @@ Editörünüzde kullanmak FastAPI'nin avantajlarını gerçekten gösterir: ne k
 
 İlk adım FastAPI'yi kurmaktır.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, etkinleştirin ve ardından **FastAPI'yi kurun**:
+Bir [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, etkinleştirin ve ardından **FastAPI'yi kurun**:
 
 <div class="termy">
 

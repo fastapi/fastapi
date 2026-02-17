@@ -44,7 +44,7 @@ Sonrasında, (**FastAPI** kullanan bir geliştirici olarak) sahip olmak istediğ
 
 Çeşitli fikirleri en popüler Python editörlerinde test ettim: PyCharm, VS Code, Jedi tabanlı editörler.
 
-Bu test, en son <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>'ine göre, kullanıcıların yaklaşık %80'inin kullandığı editörleri kapsıyor.
+Bu test, en son <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Geliştirici Anketi</a>'ine göre, kullanıcıların yaklaşık %80'inin kullandığı editörleri kapsıyor.
 
 Bu da demek oluyor ki **FastAPI**, Python geliştiricilerinin %80'inin kullandığı editörlerle test edildi. Ve diğer editörlerin çoğu benzer şekilde çalıştığından, avantajları neredeyse tüm editörlerde çalışacaktır.
 

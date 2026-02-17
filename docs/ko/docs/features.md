@@ -6,7 +6,7 @@
 
 ### 개방형 표준을 기반으로 { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>: <abbr title="또한 다음으로도 불립니다: 엔드포인트, 라우트">path</abbr> <abbr title="HTTP 메소드(POST, GET, PUT, DELETE 등)로도 알려져 있습니다">operations</abbr>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>: <dfn title="또한 다음으로도 불림: 엔드포인트, 라우트">경로</dfn> <dfn title="HTTP 메소드(POST, GET, PUT, DELETE 등)로도 알려짐">처리</dfn>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
 * <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a>를 사용한 자동 데이터 모델 문서화(OpenAPI 자체가 JSON Schema를 기반으로 하기 때문입니다).
 * 단순히 떠올려서 덧붙인 레이어가 아니라, 세심한 검토를 거친 뒤 이러한 표준을 중심으로 설계되었습니다.
 * 이는 또한 다양한 언어로 자동 **클라이언트 코드 생성**을 사용할 수 있게 해줍니다.
@@ -136,7 +136,7 @@ Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/
 
 ### 의존성 주입 { #dependency-injection }
 
-FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='또한 다음으로도 불립니다: "컴포넌트", "자원", "서비스", "제공자"'><strong>Dependency Injection</strong></abbr> 시스템을 포함하고 있습니다.
+FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 다음으로도 불림: "컴포넌트", "자원", "서비스", "제공자"'><strong>의존성 주입</strong></dfn> 시스템을 포함하고 있습니다.
 
 * 의존성도 의존성을 가질 수 있어, 의존성의 계층 또는 **의존성의 "그래프"**를 생성합니다.
 * 모든 것이 프레임워크에 의해 **자동으로 처리됩니다**.
@@ -153,8 +153,8 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='또한 �
 
 ### 테스트됨 { #tested }
 
-* 100% <abbr title="자동으로 테스트되는 코드의 양">test coverage</abbr>.
-* 100% <abbr title="Python 타입 어노테이션으로, 이를 통해 편집기와 외부 도구가 더 나은 지원을 제공할 수 있습니다">type annotated</abbr> 코드 베이스.
+* 100% <dfn title="자동으로 테스트되는 코드의 양">테스트 커버리지</dfn>.
+* 100% <dfn title="Python 타입 어노테이션으로, 이를 통해 편집기와 외부 도구가 더 나은 지원을 제공할 수 있습니다">타입 어노테이션</dfn> 코드 베이스.
 * 프로덕션 애플리케이션에서 사용됩니다.
 
 ## Starlette 기능 { #starlette-features }
@@ -190,7 +190,7 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='또한 �
 * **No brainfuck**:
     * 새로운 스키마 정의 마이크로 언어를 배울 필요가 없습니다.
     * Python 타입을 알고 있다면 Pydantic 사용법도 알고 있는 것입니다.
-* 여러분의 **<abbr title="Integrated Development Environment - 통합 개발 환경: 코드 편집기와 비슷합니다">IDE</abbr>/<abbr title="코드 오류를 확인하는 프로그램">linter</abbr>/뇌**와 잘 어울립니다:
+* 여러분의 **<abbr title="Integrated Development Environment - 통합 개발 환경: 코드 편집기와 비슷합니다">IDE</abbr>/<dfn title="코드 오류를 확인하는 프로그램">린터</dfn>/뇌**와 잘 어울립니다:
     * pydantic 데이터 구조는 여러분이 정의한 클래스 인스턴스일 뿐이므로, 자동 완성, 린팅, mypy, 그리고 직관까지도 검증된 데이터와 함께 제대로 작동합니다.
 * **복잡한 구조**를 검증합니다:
     * 계층적인 Pydantic 모델, Python `typing`의 `List`와 `Dict` 등을 사용합니다.

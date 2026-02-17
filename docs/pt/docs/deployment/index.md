@@ -4,7 +4,7 @@ Implantar uma aplicação **FastAPI** é relativamente fácil.
 
 ## O que significa Implantação { #what-does-deployment-mean }
 
-Implantar uma aplicação significa executar as etapas necessárias para torná-la disponível para os usuários.
+**Implantar** uma aplicação significa executar as etapas necessárias para torná-la **disponível para os usuários**.
 
 Para uma **web API**, isso normalmente envolve colocá-la em uma **máquina remota**, com um **programa de servidor** que ofereça bom desempenho, estabilidade, etc., de modo que seus **usuários** possam **acessar** a aplicação com eficiência e sem interrupções ou problemas.
 

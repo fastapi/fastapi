@@ -8,6 +8,6 @@ Projeniz için ilginç ve yararlı görünen bir şey varsa devam edin ve incele
 
 /// tip | İpucu
 
-**FastAPI**'ı yapılandırılmış bir şekilde (önerilir) **öğrenmek** istiyorsanız bunun yerine [Öğretici - Kullanıcı Rehberi](../tutorial/index.md){.internal-link target=_blank}'ni bölüm bölüm okuyun.
+**FastAPI**'yi yapılandırılmış bir şekilde (önerilir) **öğrenmek** istiyorsanız bunun yerine [Öğretici - Kullanıcı Rehberi](../tutorial/index.md){.internal-link target=_blank}'ni bölüm bölüm okuyun.
 
 ///

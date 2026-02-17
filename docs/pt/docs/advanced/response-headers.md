@@ -6,7 +6,7 @@ Você pode declarar um parâmetro do tipo `Response` na sua *função de operaç
 
 Então você pode definir os cabeçalhos nesse objeto de resposta *temporário*.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 Em seguida você pode retornar qualquer objeto que precisar, da maneira que faria normalmente (um `dict`, um modelo de banco de dados, etc.).
 
@@ -22,7 +22,7 @@ Você também pode adicionar cabeçalhos quando retornar uma `Response` diretame
 
 Crie uma resposta conforme descrito em [Retornar uma resposta diretamente](response-directly.md){.internal-link target=_blank} e passe os cabeçalhos como um parâmetro adicional:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | Detalhes Técnicos
 
@@ -38,4 +38,4 @@ E como a `Response` pode ser usada frequentemente para definir cabeçalhos e coo
 
 Tenha em mente que cabeçalhos personalizados proprietários podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo `X-`</a>.
 
-Porém, se voce tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando o parâmetro `expose_headers` descrito na <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">documentação de CORS do Starlette</a>.
+Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando o parâmetro `expose_headers` descrito na <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">documentação de CORS do Starlette</a>.

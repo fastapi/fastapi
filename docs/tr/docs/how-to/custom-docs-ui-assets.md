@@ -18,7 +18,7 @@ Bu, örneğin bazı URL'leri kısıtlayan bir ülkede yaşıyorsanız faydalı o
 
 Bunları devre dışı bırakmak için `FastAPI` uygulamanızı oluştururken URL'lerini `None` olarak ayarlayın:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
 
 ### Özel dokümanları ekleyin { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Dokümanlar için HTML sayfalarını üretmek üzere FastAPI'nin dahili fonksiyo
 
 ReDoc için de benzer şekilde...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | İpucu
 
@@ -50,7 +50,7 @@ Swagger UI bunu arka planda sizin için yönetir, ancak bu "redirect" yardımcı
 
 Şimdi her şeyin çalıştığını test edebilmek için bir *path operation* oluşturun:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
 
 ### Test edin { #test-it }
 
@@ -118,7 +118,7 @@ Bundan sonra dosya yapınız şöyle görünebilir:
 * `StaticFiles` içe aktarın.
 * Belirli bir path'te bir `StaticFiles()` instance'ını "mount" edin.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
 
 ### Statik dosyaları test edin { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Bu, uygulamanızdan statik dosyaları servis edebildiğinizi ve dokümanlar içi
 
 Bunları devre dışı bırakmak için `FastAPI` uygulamanızı oluştururken URL'lerini `None` olarak ayarlayın:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
 
 ### Statik dosyalar için özel dokümanları ekleyin { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Yine FastAPI'nin dahili fonksiyonlarını kullanarak dokümanlar için HTML sayf
 
 ReDoc için de benzer şekilde...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | İpucu
 
@@ -176,7 +176,7 @@ Swagger UI bunu arka planda sizin için yönetir, ancak bu "redirect" yardımcı
 
 Şimdi her şeyin çalıştığını test edebilmek için bir *path operation* oluşturun:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
 
 ### Statik Dosyalar UI'ını Test Edin { #test-static-files-ui }
 

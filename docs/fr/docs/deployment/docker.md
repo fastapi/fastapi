@@ -14,7 +14,7 @@ Vous êtes pressé et vous connaissez déjà tout ça ? Allez directement au [`D
 <summary>Aperçu du Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ Maintenant, dans le même répertoire de projet, créez un fichier `Dockerfile` 
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ Si votre FastAPI est un seul fichier, par exemple `main.py` sans répertoire `./
 Vous n'auriez alors qu'à changer les chemins correspondants pour copier le fichier dans le `Dockerfile` :
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Sans utiliser de conteneurs, faire en sorte que les applications s'exécutent au
 
 ## Réplication - Nombre de processus { #replication-number-of-processes }
 
-Si vous avez un <abbr title="Un groupe de machines configurées pour être connectées et fonctionner ensemble d'une certaine manière.">cluster</abbr> de machines avec **Kubernetes**, Docker Swarm Mode, Nomad, ou un autre système complexe similaire pour gérer des conteneurs distribués sur plusieurs machines, alors vous voudrez probablement **gérer la réplication** au **niveau du cluster** plutôt que d'utiliser un **gestionnaire de processus** (comme Uvicorn avec workers) dans chaque conteneur.
+Si vous avez un <dfn title="Groupe de machines configurées pour être connectées et fonctionner ensemble d'une certaine manière.">cluster</dfn> de machines avec **Kubernetes**, Docker Swarm Mode, Nomad, ou un autre système complexe similaire pour gérer des conteneurs distribués sur plusieurs machines, alors vous voudrez probablement **gérer la réplication** au **niveau du cluster** plutôt que d'utiliser un **gestionnaire de processus** (comme Uvicorn avec workers) dans chaque conteneur.
 
 L'un de ces systèmes de gestion de conteneurs distribués comme Kubernetes dispose normalement d'une manière intégrée de gérer la **réplication des conteneurs** tout en supportant l'**équilibrage de charge** des requêtes entrantes. Le tout au **niveau du cluster**.
 
@@ -499,7 +499,7 @@ Bien sûr, il existe des **cas particuliers** où vous pourriez vouloir avoir **
 Dans ces cas, vous pouvez utiliser l'option de ligne de commande `--workers` pour définir le nombre de workers que vous souhaitez exécuter :
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 

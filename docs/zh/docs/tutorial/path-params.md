@@ -2,7 +2,7 @@
 
 你可以使用与 Python 字符串格式化相同的语法声明路径“参数”或“变量”：
 
-{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
 
 路径参数 `item_id` 的值会作为参数 `item_id` 传递给你的函数。
 
@@ -16,7 +16,7 @@
 
 使用 Python 标准类型注解，声明路径操作函数中路径参数的类型：
 
-{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
 
 本例把 `item_id` 的类型声明为 `int`。
 
@@ -26,7 +26,7 @@
 
 ///
 
-## 数据<abbr title="也称为：序列化、解析、编组">转换</abbr> { #data-conversion }
+## 数据<dfn title="也称为：序列化、解析、编组">转换</dfn> { #data-conversion }
 
 运行示例并访问 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，返回的响应如下：
 
@@ -38,7 +38,7 @@
 
 注意，函数接收并返回的值是 `3`（ `int`），不是 `"3"`（`str`）。
 
-**FastAPI** 通过类型声明自动<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">**解析**请求中的数据</abbr>。
+**FastAPI** 通过类型声明自动进行请求的<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</dfn>。
 
 ///
 
@@ -118,19 +118,19 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 由于*路径操作*是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
 
-{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
 
 否则，`/users/{user_id}` 将匹配 `/users/me`，FastAPI 会**认为**正在接收值为 `"me"` 的 `user_id` 参数。
 
 同样，你不能重复定义一个路径操作：
 
-{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
 
 由于路径首先匹配，始终会使用第一个定义的。
 
 ## 预设值 { #predefined-values }
 
-路径操作使用 Python 的 <abbr title="Enumeration">`Enum`</abbr> 类型接收预设的路径参数。
+路径操作使用 Python 的 <abbr title="Enumeration - 枚举">`Enum`</abbr> 类型接收预设的路径参数。
 
 ### 创建 `Enum` 类 { #create-an-enum-class }
 
@@ -140,11 +140,11 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 然后，创建包含固定值的类属性，这些固定值是可用的有效值：
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
 
 /// tip | 提示
 
-**AlexNet**、**ResNet**、**LeNet** 是机器学习<abbr title="技术上来说是深度学习模型架构">模型</abbr>的名字。
+**AlexNet**、**ResNet**、**LeNet** 是机器学习<dfn title="技术上来说是深度学习模型架构">模型</dfn>的名字。
 
 ///
 
@@ -152,7 +152,7 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 使用 Enum 类（`ModelName`）创建使用类型注解的路径参数：
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
 ### 查看文档 { #check-the-docs }
 
@@ -168,13 +168,13 @@ API 文档会显示预定义路径参数的可用值：
 
 可以将其与枚举类 `ModelName` 中的枚举成员进行比较：
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
 
 #### 获取枚举值 { #get-the-enumeration-value }
 
 使用 `model_name.value` 或通用的 `your_enum_member.value` 获取实际的值（本例中为 `str`）：
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
 
 /// tip | 提示
 
@@ -188,7 +188,7 @@ API 文档会显示预定义路径参数的可用值：
 
 返回给客户端之前，会把枚举成员转换为对应的值（本例中为字符串）：
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
 
 客户端中的 JSON 响应如下：
 
@@ -227,7 +227,7 @@ OpenAPI 不支持声明包含路径的路径参数，因为这会导致测试和
 
 用法如下：
 
-{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
 
 /// tip | 提示
 
@@ -242,7 +242,7 @@ OpenAPI 不支持声明包含路径的路径参数，因为这会导致测试和
 通过简短、直观的 Python 标准类型声明，**FastAPI** 可以获得：
 
 - 编辑器支持：错误检查，代码自动补全等
-- 数据 "<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>"
+- 数据 "<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</dfn>"
 - 数据校验
 - API 注解和自动文档
 

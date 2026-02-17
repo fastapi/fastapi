@@ -26,7 +26,7 @@ O **FastAPI** pegará este modelo, gerará o esquema JSON dele e incluirá no lo
 
 Por exemplo, para declarar um outro retorno com o status code `404` e um modelo do Pydantic chamado `Message`, você pode escrever:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Nota
 
@@ -203,7 +203,7 @@ Por exemplo, você pode declarar um retorno com o código de status `404` que ut
 
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Isso será combinado e incluído em seu OpenAPI, e disponibilizado na documentação da sua API:
 
@@ -243,5 +243,5 @@ Por exemplo:
 
 Para verificar exatamente o que você pode incluir nos retornos, você pode conferir estas seções na especificação do OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Retorno OpenAPI</a>, inclui o `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Retorno OpenAPI</a>, você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Retornos do OpenAPI</a>, inclui o `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Retorno do OpenAPI</a>, você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.

@@ -10,7 +10,7 @@ En la mayoría de los casos, los principales proveedores de nube tienen guías p
 
 Simplifica el proceso de **construir**, **desplegar** y **acceder** a una API con un esfuerzo mínimo.
 
-Trae la misma experiencia de desarrollador de construir aplicaciones con FastAPI a desplegarlas en la nube. 🎉
+Trae la misma **experiencia de desarrollador** de construir aplicaciones con FastAPI a **desplegarlas** en la nube. 🎉
 
 FastAPI Cloud es el sponsor principal y proveedor de financiamiento de los proyectos open source *FastAPI and friends*. ✨
 

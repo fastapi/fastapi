@@ -18,7 +18,7 @@ El primer paso es desactivar la documentación automática, ya que por defecto, 
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
 
 ### Incluye la documentación personalizada { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Consejo
 
@@ -50,7 +50,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
 
 ### Pruébalo { #test-it }
 
@@ -118,7 +118,7 @@ Después de eso, tu estructura de archivos podría verse así:
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
 
 ### Prueba los archivos estáticos { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Igual que cuando usas un CDN personalizado, el primer paso es desactivar la docu
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
 
 ### Incluye la documentación personalizada para archivos estáticos { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Nuevamente, puedes reutilizar las funciones internas de FastAPI para crear las p
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Consejo
 
@@ -176,7 +176,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
 
 ### Prueba la UI de Archivos Estáticos { #test-static-files-ui }
 

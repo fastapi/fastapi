@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 例如，假设你定义了一个*路径操作* `/items/`：
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 如果客户端尝试访问 `/items`，默认会被重定向到 `/items/`。
 
@@ -115,7 +115,7 @@ sequenceDiagram
 
 即使你的所有代码都假设只有 `/app`。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 代理会在将请求传递给应用服务器（可能是通过 FastAPI CLI 运行的 Uvicorn）之前，实时**“移除”**这个**路径前缀**，让你的应用认为它是在 `/app` 被服务，这样你就不需要更新所有代码去包含 `/api/v1` 前缀。
 
@@ -193,7 +193,7 @@ ASGI 规范为这种用例定义了 `root_path`。
 
 这里我们把它包含在响应消息中仅用于演示。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 然后，如果你这样启动 Uvicorn：
 
@@ -220,7 +220,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 或者，如果你无法提供类似 `--root-path` 的命令行选项，你可以在创建 FastAPI 应用时设置参数 `root_path`：
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 把 `root_path` 传给 `FastAPI` 等同于把命令行选项 `--root-path` 传给 Uvicorn 或 Hypercorn。
 
@@ -400,7 +400,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 例如：
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 会生成如下的 OpenAPI 模式：
 
@@ -455,7 +455,7 @@ OpenAPI 规范中的 `servers` 属性是可选的。
 
 如果你不希望 **FastAPI** 包含一个使用 `root_path` 的自动服务器，可以使用参数 `root_path_in_servers=False`：
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 这样它就不会被包含到 OpenAPI 模式中。
 

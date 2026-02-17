@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## `File`と`Form`のインポート { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File`と`Form`のパラメータの定義 { #define-file-and-form-parameters }
 
 ファイルやフォームのパラメータは`Body`や`Query`の場合と同じように作成します:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 ファイルとフォームフィールドがフォームデータとしてアップロードされ、ファイルとフォームフィールドを受け取ります。
 

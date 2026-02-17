@@ -18,7 +18,7 @@
 
 为此，声明一个 `__call__` 方法：
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 在这种情况下，**FastAPI** 会使用这个 `__call__` 来检查附加参数和子依赖，并且稍后会调用它，把返回值传递给你的*路径操作函数*中的参数。
 
@@ -26,7 +26,7 @@
 
 现在，我们可以用 `__init__` 声明实例的参数，用来“参数化”这个依赖项：
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 在本例中，**FastAPI** 不会接触或关心 `__init__`，我们会在自己的代码中直接使用它。
 
@@ -34,7 +34,7 @@
 
 我们可以这样创建该类的实例：
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 这样就把依赖项“参数化”了，现在它内部带有属性 `checker.fixed_content` 的值 `"bar"`。
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...并将其返回值作为依赖项的值，传给我们的*路径操作函数*中的参数 `fixed_content_included`：
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | 提示
 

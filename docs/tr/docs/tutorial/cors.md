@@ -46,7 +46,7 @@ Ayrıca backend’in şunlara izin verip vermediğini de belirtebilirsiniz:
 * Belirli HTTP method’ları (`POST`, `PUT`) veya wildcard `"*"` ile hepsini.
 * Belirli HTTP header’ları veya wildcard `"*"` ile hepsini.
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 
 `CORSMiddleware` implementasyonu tarafından kullanılan varsayılan parametreler kısıtlayıcıdır; bu nedenle tarayıcıların Cross-Domain bağlamında kullanmasına izin vermek için belirli origin’leri, method’ları veya header’ları açıkça etkinleştirmeniz gerekir.
@@ -78,7 +78,7 @@ Bu durumda middleware gelen request’i intercept eder ve uygun CORS header’la
 
 ## Daha Fazla Bilgi { #more-info }
 
-<abbr title="Cross-Origin Resource Sharing">CORS</abbr> hakkında daha fazla bilgi için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS dokümantasyonu</a>na bakın.
+<abbr title="Cross-Origin Resource Sharing - Kökenler Arası Kaynak Paylaşımı">CORS</abbr> hakkında daha fazla bilgi için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS dokümantasyonu</a>na bakın.
 
 /// note | Teknik Detaylar
 
