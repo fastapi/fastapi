@@ -170,7 +170,7 @@ When defining a union, include the most specific type first, followed by the les
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[12:13,16:18,31] *}
 
 ## List of models { #list-of-models }
 
