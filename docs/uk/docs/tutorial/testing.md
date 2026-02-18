@@ -1,17 +1,18 @@
-# Тестування
+# Тестування { #testing }
 
-Тестування **FastAPI**  додатків є простим та ефективним завдяки бібліотеці <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, яка базується на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>.
-Оскільки HTTPX розроблений на основі Requests, його API є інтуїтивно зрозумілим для тих, хто вже знайомий з Requests.
+Завдяки <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> тестувати застосунки **FastAPI** просто й приємно.
 
-З його допомогою Ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
+Воно базується на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
 
-## Використання `TestClient`
+З його допомогою ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
+
+## Використання `TestClient` { #using-testclient }
 
 /// info | Інформація
 
 Щоб використовувати `TestClient`, спочатку встановіть <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
-Переконайтеся, що Ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили саму бібліотеку, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили `httpx`, наприклад:
 
 ```console
 $ pip install httpx
@@ -21,7 +22,7 @@ $ pip install httpx
 
 Імпортуйте `TestClient`.
 
-Створіть `TestClient`, передавши йому Ваш застосунок **FastAPI**.
+Створіть `TestClient`, передавши йому ваш застосунок **FastAPI**.
 
 Створюйте функції з іменами, що починаються з `test_` (це стандартна угода для `pytest`).
 
@@ -29,8 +30,7 @@ $ pip install httpx
 
 Записуйте прості `assert`-вирази зі стандартними виразами Python, які потрібно перевірити (це також стандарт для `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
-
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Порада
 
@@ -46,25 +46,25 @@ $ pip install httpx
 
 Ви також можете використовувати `from starlette.testclient import TestClient`.
 
-**FastAPI** надає той самий `starlette.testclient` під назвою `fastapi.testclient` для зручності розробників, але він безпосередньо походить із Starlette.
+**FastAPI** надає той самий `starlette.testclient` під назвою `fastapi.testclient` просто для зручності для вас, розробника. Але він безпосередньо походить із Starlette.
 
 ///
 
 /// tip | Порада
 
-Якщо Вам потрібно викликати `async`-функції у ваших тестах, окрім відправлення запитів до FastAPI-застосунку (наприклад, асинхронні функції роботи з базою даних), перегляньте [Асинхронні тести](../advanced/async-tests.md){.internal-link target=_blank} у розширеному керівництві.
+Якщо ви хочете викликати `async`-функції у ваших тестах, окрім відправлення запитів до вашого застосунку FastAPI (наприклад, асинхронні функції роботи з базою даних), перегляньте [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} у розширеному керівництві.
 
 ///
 
-## Розділення тестів
+## Розділення тестів { #separating-tests }
 
-У реальному застосунку Ваші тести, ймовірно, будуть в окремому файлі.
+У реальному застосунку ваші тести, ймовірно, будуть в окремому файлі.
 
-Також Ваш **FastAPI**-застосунок може складатися з кількох файлів або модулів тощо.
+Також ваш застосунок **FastAPI** може складатися з кількох файлів/модулів тощо.
 
-### Файл застосунку **FastAPI**
+### Файл застосунку **FastAPI** { #fastapi-app-file }
 
-Припустимо, у Вас є структура файлів, описана в розділі [Більші застосунки](bigger-applications.md){.internal-link target=_blank}:
+Припустимо, у вас є структура файлів, описана в розділі [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .
@@ -72,14 +72,15 @@ $ pip install httpx
 │   ├── __init__.py
 │   └── main.py
 ```
-У файлі `main.py` знаходиться Ваш застосунок **FastAPI** :
 
-{* ../../docs_src/app_testing/main.py *}
+У файлі `main.py` знаходиться ваш застосунок **FastAPI**:
 
-### Файл тестування
 
-Ви можете створити файл `test_main.py` з Вашими тестами. Він може знаходитися в тому ж пакеті Python (у тій самій директорії з файлом `__init__.py`):
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
+### Файл тестування { #testing-file }
+
+Ви можете створити файл `test_main.py` з вашими тестами. Він може знаходитися в тому ж пакеті Python (у тій самій директорії з файлом `__init__.py`):
 
 ``` hl_lines="5"
 .
@@ -89,18 +90,18 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-Оскільки цей файл знаходиться в тому ж пакеті, Ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app`  із модуля `main` (`main.py`):
+Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app` із модуля `main` (`main.py`):
 
-{* ../../docs_src/app_testing/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...і написати код для тестів так само як і раніше.
 
-## Тестування: розширений приклад
+## Тестування: розширений приклад { #testing-extended-example }
 
 Тепер розширимо цей приклад і додамо більше деталей, щоб побачити, як тестувати різні частини.
 
-### Розширений файл застосунку **FastAPI**
+### Розширений файл застосунку **FastAPI** { #extended-fastapi-app-file }
 
 Залишимо ту саму структуру файлів:
 
@@ -112,75 +113,26 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-Припустимо, що тепер файл `main.py` із Вашим **FastAPI**-застосунком містить додаткові операції шляху (**path operations**).
+Припустимо, що тепер файл `main.py` із вашим застосунком **FastAPI** містить інші **операції шляху**.
 
 Він має `GET`-операцію, яка може повертати помилку.
 
 Він має `POST`-операцію, яка може повертати кілька помилок.
 
-Обидві операції шляху вимагають заголовок `X-Token`.
+Обидві *операції шляху* вимагають заголовок `X-Token`.
 
-//// tab | Python 3.10+
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
+### Розширений тестовий файл { #extended-testing-file }
 
-////
+Потім ви можете оновити `test_main.py`, додавши розширені тести:
 
-//// tab | Python 3.9+
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
 
-////
+Коли вам потрібно передати клієнту інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайні Requests.
 
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Порада
-
-Бажано використовувати версію з `Annotated`, якщо це можливо
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Порада
-
-Бажано використовувати версію з `Annotated`, якщо це можливо
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
-
-### Розширений тестовий файл
-
-Потім Ви можете оновити `test_main.py`, додавши розширені тести:
-
-{* ../../docs_src/app_testing/app_b/test_main.py *}
-
-Коли Вам потрібно передати клієнту інформацію в запиті, але Ви не знаєте, як це зробити, Ви можете пошукати (наприклад, у Google) спосіб реалізації в `httpx`, або навіть у `requests`, оскільки HTTPX розроблений на основі дизайну Requests.
-
-Далі Ви просто повторюєте ці ж дії у ваших тестах.
+Далі ви просто повторюєте ці ж дії у ваших тестах.
 
 Наприклад:
 
@@ -195,15 +147,16 @@ $ pip install httpx
 /// info | Інформація
 
 Зверніть увагу, що `TestClient` отримує дані, які можна конвертувати в JSON, а не Pydantic-моделі.
-Якщо у Вас є Pydantic-модель у тесті, і Ви хочете передати її дані в додаток під час тестування, Ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+
+Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в застосунок під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
 
 ///
 
-## Запуск тестів
+## Запуск { #run-it }
 
 Після цього вам потрібно встановити `pytest`.
 
-Переконайтеся, що Ви створили [віртуальне середовище]{.internal-link target=_blank}, активували його і встановили необхідні пакети, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його і встановили необхідні пакети, наприклад:
 
 <div class="termy">
 
@@ -215,7 +168,7 @@ $ pip install pytest
 
 </div>
 
-`pytest` автоматично знайде файли з тестами, виконає їх і надасть вам результати.
+Він автоматично знайде файли та тести, виконає їх і повідомить вам результати.
 
 Запустіть тести за допомогою:
 

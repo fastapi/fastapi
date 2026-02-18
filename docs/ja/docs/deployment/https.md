@@ -1,10 +1,10 @@
-# HTTPS について
+# HTTPS について { #about-https }
 
 HTTPSは単に「有効」か「無効」かで決まるものだと思いがちです。
 
 しかし、それよりもはるかに複雑です。
 
-/// tip
+/// tip | 豆知識
 
 もし急いでいたり、HTTPSの仕組みについて気にしないのであれば、次のセクションに進み、さまざまなテクニックを使ってすべてをセットアップするステップ・バイ・ステップの手順をご覧ください。
 
@@ -22,25 +22,19 @@ HTTPSは単に「有効」か「無効」かで決まるものだと思いがち
 * 接続の暗号化は**TCPレベル**で行われます。
     * それは**HTTPの1つ下**のレイヤーです。
     * つまり、**証明書と暗号化**の処理は、**HTTPの前**に行われます。
-* **TCPは "ドメイン "について知りません**。IPアドレスについてのみ知っています。
+* **TCPは「ドメイン」について知りません**。IPアドレスについてのみ知っています。
     * 要求された**特定のドメイン**に関する情報は、**HTTPデータ**に入ります。
 * **HTTPS証明書**は、**特定のドメイン**を「証明」しますが、プロトコルと暗号化はTCPレベルで行われ、どのドメインが扱われているかを**知る前**に行われます。
 * **デフォルトでは**、**IPアドレスごとに1つのHTTPS証明書**しか持てないことになります。
     * これは、サーバーの規模やアプリケーションの規模に寄りません。
     * しかし、これには**解決策**があります。
-* **TLS**プロトコル(HTTPの前に、TCPレベルで暗号化を処理するもの)には、**<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="サーバー名表示">SNI</abbr></a>**と呼ばれる**拡張**があります。
+* **TLS**プロトコル(HTTPの前に、TCPレベルで暗号化を処理するもの)には、**<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - サーバー名表示">SNI</abbr></a>**と呼ばれる**拡張**があります。
     * このSNI拡張機能により、1つのサーバー（**単一のIPアドレス**を持つ）が**複数のHTTPS証明書**を持ち、**複数のHTTPSドメイン/アプリケーション**にサービスを提供できるようになります。
     * これが機能するためには、**パブリックIPアドレス**でリッスンしている、サーバー上で動作している**単一の**コンポーネント(プログラム)が、サーバー内の**すべてのHTTPS証明書**を持っている必要があります。
-
 * セキュアな接続を取得した**後**でも、通信プロトコルは**HTTPのまま**です。
     * コンテンツは**HTTPプロトコル**で送信されているにもかかわらず、**暗号化**されています。
 
-
-サーバー（マシン、ホストなど）上で**1つのプログラム/HTTPサーバー**を実行させ、**HTTPSに関する全てのこと**を管理するのが一般的です。
-
-**暗号化された HTTPS リクエスト** を受信し、**復号化された HTTP リクエスト** を同じサーバーで実行されている実際の HTTP アプリケーション（この場合は **FastAPI** アプリケーション）に送信し、アプリケーションから **HTTP レスポンス** を受け取り、適切な **HTTPS 証明書** を使用して **暗号化** し、そして**HTTPS** を使用してクライアントに送り返します。
-
-このサーバーはしばしば **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>**と呼ばれます。
+サーバー（マシン、ホストなど）上で**1つのプログラム/HTTPサーバー**を実行させ、**HTTPSに関する全てのこと**を管理するのが一般的です。**暗号化された HTTPS リクエスト** を受信し、**復号化された HTTP リクエスト** を同じサーバーで実行されている実際の HTTP アプリケーション（この場合は **FastAPI** アプリケーション）に送信し、アプリケーションから **HTTP レスポンス** を受け取り、適切な **HTTPS 証明書** を使用して **暗号化** し、そして**HTTPS** を使用してクライアントに送り返します。このサーバーはしばしば **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>**と呼ばれます。
 
 TLS Termination Proxyとして使えるオプションには、以下のようなものがあります：
 
@@ -50,7 +44,7 @@ TLS Termination Proxyとして使えるオプションには、以下のよう�
 * HAProxy
 
 
-## Let's Encrypt
+## Let's Encrypt { #lets-encrypt }
 
 Let's Encrypt以前は、これらの**HTTPS証明書**は信頼できる第三者によって販売されていました。
 
@@ -64,27 +58,27 @@ Let's Encrypt以前は、これらの**HTTPS証明書**は信頼できる第三�
 
 このアイデアは、これらの証明書の取得と更新を自動化することで、**安全なHTTPSを、無料で、永遠に**利用できるようにすることです。
 
-## 開発者のための HTTPS
+## 開発者のための HTTPS { #https-for-developers }
 
 ここでは、HTTPS APIがどのように見えるかの例を、主に開発者にとって重要なアイデアに注意を払いながら、ステップ・バイ・ステップで説明します。
 
-### ドメイン名
+### ドメイン名 { #domain-name }
 
 ステップの初めは、**ドメイン名**を**取得すること**から始まるでしょう。その後、DNSサーバー（おそらく同じクラウドプロバイダー）に設定します。
 
-おそらくクラウドサーバー（仮想マシン）かそれに類するものを手に入れ、<abbr title="変わらない">固定の</abbr> **パブリックIPアドレス**を持つことになるでしょう。
+おそらくクラウドサーバー（仮想マシン）かそれに類するものを手に入れ、<dfn title="時間とともに変化しない。動的ではない。">固定の</dfn> **パブリックIPアドレス**を持つことになるでしょう。
 
-DNSサーバーでは、**取得したドメイン**をあなたのサーバーのパプリック**IPアドレス**に向けるレコード（「`Aレコード`」）を設定します。
+DNSサーバーでは、**取得したドメイン**をあなたのサーバーのパプリック**IPアドレス**に向けるレコード（「`A record`」）を設定します。
 
 これはおそらく、最初の1回だけあり、すべてをセットアップするときに行うでしょう。
 
-/// tip
+/// tip | 豆知識
 
 ドメイン名の話はHTTPSに関する話のはるか前にありますが、すべてがドメインとIPアドレスに依存するため、ここで言及する価値があります。
 
 ///
 
-### DNS
+### DNS { #dns }
 
 では、実際のHTTPSの部分に注目してみよう。
 
@@ -94,7 +88,7 @@ DNSサーバーは、ブラウザに特定の**IPアドレス**を使用する�
 
 <img src="/img/deployment/https/https01.drawio.svg">
 
-### TLS Handshake の開始
+### TLS Handshake の開始 { #tls-handshake-start }
 
 ブラウザはIPアドレスと**ポート443**（HTTPSポート）で通信します。
 
@@ -104,7 +98,7 @@ DNSサーバーは、ブラウザに特定の**IPアドレス**を使用する�
 
 TLS接続を確立するためのクライアントとサーバー間のこのやりとりは、**TLSハンドシェイク**と呼ばれます。
 
-### SNI拡張機能付きのTLS
+### SNI拡張機能付きのTLS { #tls-with-sni-extension }
 
 サーバー内の**1つのプロセス**だけが、特定 の**IPアドレス**の特定の**ポート** で待ち受けることができます。
 
@@ -112,7 +106,7 @@ TLS接続を確立するためのクライアントとサーバー間のこの�
 
 TLS（HTTPS）はデフォルトで`443`という特定のポートを使用する。つまり、これが必要なポートです。
 
-このポートをリッスンできるのは1つのプロセスだけなので、これを実行するプロセスは**TLS Termination Proxy**となります。
+このポートをリクエストできるのは1つのプロセスだけなので、これを実行するプロセスは**TLS Termination Proxy**となります。
 
 TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）にアクセスできます。
 
@@ -130,13 +124,13 @@ TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）に�
 
 これが**HTTPS**であり、純粋な（暗号化されていない）TCP接続ではなく、**セキュアなTLS接続**の中に**HTTP**があるだけです。
 
-/// tip
+/// tip | 豆知識
 
 通信の暗号化は、HTTPレベルではなく、**TCPレベル**で行われることに注意してください。
 
 ///
 
-### HTTPS リクエスト
+### HTTPS リクエスト { #https-request }
 
 これでクライアントとサーバー（具体的にはブラウザとTLS Termination Proxy）は**暗号化されたTCP接続**を持つことになり、**HTTP通信**を開始することができます。
 
@@ -144,19 +138,19 @@ TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）に�
 
 <img src="/img/deployment/https/https04.drawio.svg">
 
-### リクエストの復号化
+### リクエストの復号化 { #decrypt-the-request }
 
 TLS Termination Proxy は、合意が取れている暗号化を使用して、**リクエストを復号化**し、**プレーン (復号化された) HTTP リクエスト** をアプリケーションを実行しているプロセス (例えば、FastAPI アプリケーションを実行している Uvicorn を持つプロセス) に送信します。
 
 <img src="/img/deployment/https/https05.drawio.svg">
 
-### HTTP レスポンス
+### HTTP レスポンス { #http-response }
 
 アプリケーションはリクエストを処理し、**プレーン(暗号化されていない)HTTPレスポンス** をTLS Termination Proxyに送信します。
 
 <img src="/img/deployment/https/https06.drawio.svg">
 
-### HTTPS レスポンス
+### HTTPS レスポンス { #https-response }
 
 TLS Termination Proxyは次に、事前に合意が取れている暗号(`someapp.example.com`の証明書から始まる)を使って**レスポンスを暗号化し**、ブラウザに送り返す。
 
@@ -166,7 +160,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 クライアント（ブラウザ）は、レスポンスが正しいサーバーから来たことを知ることができます。 なぜなら、そのサーバーは、以前に**HTTPS証明書**を使って合意した暗号を使っているからです。
 
-### 複数のアプリケーション
+### 複数のアプリケーション { #multiple-applications }
 
 同じサーバー（または複数のサーバー）に、例えば他のAPIプログラムやデータベースなど、**複数のアプリケーション**が存在する可能性があります。
 
@@ -176,7 +170,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 そうすれば、TLS Termination Proxy は、**複数のドメイン**や複数のアプリケーションのHTTPSと証明書を処理し、それぞれのケースで適切なアプリケーションにリクエストを送信することができます。
 
-### 証明書の更新
+### 証明書の更新 { #certificate-renewal }
 
 将来のある時点で、各証明書は（取得後約3ヶ月で）**失効**します。
 
@@ -200,10 +194,42 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 アプリを提供しながらこのような更新処理を行うことは、アプリケーション・サーバー（Uvicornなど）でTLS証明書を直接使用するのではなく、TLS Termination Proxyを使用して**HTTPSを処理する別のシステム**を用意したくなる主な理由の1つです。
 
-## まとめ
+## プロキシ転送ヘッダー { #proxy-forwarded-headers }
+
+プロキシを使ってHTTPSを処理する場合、**アプリケーションサーバー**（たとえばFastAPI CLI経由のUvicorn）はHTTPS処理について何も知らず、**TLS Termination Proxy**とはプレーンなHTTPで通信します。
+
+この**プロキシ**は通常、リクエストを**アプリケーションサーバー**に転送する前に、その場でいくつかのHTTPヘッダーを設定し、リクエストがプロキシによって**転送**されていることをアプリケーションサーバーに知らせます。
+
+/// note | 技術詳細
+
+プロキシヘッダーは次のとおりです：
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+それでも、**アプリケーションサーバー**は信頼できる**プロキシ**の背後にあることを知らないため、デフォルトではそれらのヘッダーを信頼しません。
+
+しかし、**アプリケーションサーバー**が**プロキシ**から送信される*forwarded*ヘッダーを信頼するように設定できます。FastAPI CLIを使用している場合は、*CLI Option* `--forwarded-allow-ips` を使って、どのIPからの*forwarded*ヘッダーを信頼すべきかを指定できます。
+
+たとえば、**アプリケーションサーバー**が信頼できる**プロキシ**からの通信のみを受け取っている場合、`--forwarded-allow-ips="*"` に設定して、受信するすべてのIPを信頼するようにできます。受け取るリクエストは、**プロキシ**が使用するIPからのものだけになるためです。
+
+こうすることで、アプリケーションは、HTTPSを使用しているかどうか、ドメインなど、自身のパブリックURLが何であるかを把握できるようになります。
+
+これは、たとえばリダイレクトを適切に処理するのに便利です。
+
+/// tip | 豆知識
+
+これについては、[Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} のドキュメントで詳しく学べます。
+
+///
+
+## まとめ { #recap }
 
 **HTTPS**を持つことは非常に重要であり、ほとんどの場合、かなり**クリティカル**です。開発者として HTTPS に関わる労力のほとんどは、これらの**概念とその仕組みを理解する**ことです。
 
 しかし、ひとたび**開発者向けHTTPS**の基本的な情報を知れば、簡単な方法ですべてを管理するために、さまざまなツールを組み合わせて設定することができます。
 
-次の章では、**FastAPI** アプリケーションのために **HTTPS** をセットアップする方法について、いくつかの具体例を紹介します。🔒
+次の章のいくつかでは、**FastAPI** アプリケーションのために **HTTPS** をセットアップする方法について、いくつかの具体例を紹介します。🔒

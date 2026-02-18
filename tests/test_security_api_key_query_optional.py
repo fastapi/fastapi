@@ -1,8 +1,7 @@
-from typing import Optional
-
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import APIKeyQuery
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -14,7 +13,7 @@ class User(BaseModel):
     username: str
 
 
-def get_current_user(oauth_header: Optional[str] = Security(api_key)):
+def get_current_user(oauth_header: str | None = Security(api_key)):
     if oauth_header is None:
         return None
     user = User(username=oauth_header)
@@ -22,7 +21,7 @@ def get_current_user(oauth_header: Optional[str] = Security(api_key)):
 
 
 @app.get("/users/me")
-def read_current_user(current_user: Optional[User] = Depends(get_current_user)):
+def read_current_user(current_user: User | None = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     return current_user
@@ -46,27 +45,29 @@ def test_security_api_key_no_key():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Current User",
-                    "operationId": "read_current_user_users_me_get",
-                    "security": [{"APIKeyQuery": []}],
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Current User",
+                        "operationId": "read_current_user_users_me_get",
+                        "security": [{"APIKeyQuery": []}],
+                    }
                 }
-            }
-        },
-        "components": {
-            "securitySchemes": {
-                "APIKeyQuery": {"type": "apiKey", "name": "key", "in": "query"}
-            }
-        },
-    }
+            },
+            "components": {
+                "securitySchemes": {
+                    "APIKeyQuery": {"type": "apiKey", "name": "key", "in": "query"}
+                }
+            },
+        }
+    )

@@ -14,7 +14,7 @@ Sie haben es eilig und kennen sich bereits aus? Springen Sie zum [`Dockerfile` u
 <summary>Dockerfile-Vorschau 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -145,8 +145,6 @@ Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhän
 * Erstellen Sie eine `main.py`-Datei mit:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -168,7 +166,7 @@ Erstellen Sie nun im selben Projektverzeichnis eine Datei `Dockerfile` mit:
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -392,7 +390,7 @@ Wenn Ihr FastAPI eine einzelne Datei ist, zum Beispiel `main.py` ohne ein `./app
 Dann müssten Sie nur noch die entsprechenden Pfade ändern, um die Datei im `Dockerfile` zu kopieren:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -456,7 +454,7 @@ Ohne die Verwendung von Containern kann es umständlich und schwierig sein, Anwe
 
 ## Replikation – Anzahl der Prozesse { #replication-number-of-processes }
 
-Wenn Sie einen <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</abbr> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Uvicorn mit Workern) zu verwenden.
+Wenn Sie einen <dfn title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</dfn> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Uvicorn mit Workern) zu verwenden.
 
 Diese verteilten Containerverwaltungssysteme wie Kubernetes verfügen normalerweise über eine integrierte Möglichkeit, die **Replikation von Containern** zu handhaben und gleichzeitig **Load Balancing** für die eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> zu unterstützen. Alles auf **Cluster-Ebene**.
 
@@ -501,7 +499,7 @@ Natürlich gibt es **Sonderfälle**, in denen Sie **einen Container** mit mehrer
 In diesen Fällen können Sie die `--workers` Befehlszeilenoption verwenden, um die Anzahl der zu startenden Worker festzulegen:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -572,7 +570,7 @@ Wenn Sie ein einfaches Setup mit einem **einzelnen Container** haben, welcher da
 
 ### Docker-Basisimage { #base-docker-image }
 
-Es gab ein offizielles FastAPI-Docker-Image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Dieses ist jedoch jetzt veraltet. ⛔️
+Es gab ein offizielles FastAPI-Docker-Image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Dieses ist jedoch jetzt deprecatet. ⛔️
 
 Sie sollten wahrscheinlich **nicht** dieses Basis-Docker-Image (oder ein anderes ähnliches) verwenden.
 

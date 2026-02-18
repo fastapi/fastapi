@@ -1,40 +1,41 @@
-# リクエストボディ
+# リクエストボディ { #request-body }
 
-クライアント (ブラウザなど) からAPIにデータを送信する必要があるとき、データを **リクエストボディ (request body)** として送ります。
+クライアント（例えばブラウザ）からAPIにデータを送信する必要がある場合、**リクエストボディ**として送信します。
 
-**リクエスト** ボディはクライアントによってAPIへ送られます。**レスポンス** ボディはAPIがクライアントに送るデータです。
+**リクエスト**ボディは、クライアントからAPIへ送信されるデータです。**レスポンス**ボディは、APIがクライアントに送信するデータです。
 
-APIはほとんどの場合 **レスポンス** ボディを送らなければなりません。しかし、クライアントは必ずしも **リクエスト** ボディを送らなければいけないわけではありません。
+APIはほとんどの場合 **レスポンス** ボディを送信する必要があります。しかしクライアントは、常に **リクエストボディ** を送信する必要があるとは限りません。場合によっては、クエリパラメータ付きのパスだけをリクエストして、ボディを送信しないこともあります。
 
-**リクエスト** ボディを宣言するために <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
+**リクエスト**ボディを宣言するには、<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用し、その強力な機能とメリットをすべて利用します。
 
 /// info | 情報
 
-データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。
+データを送信するには、`POST`（より一般的）、`PUT`、`DELETE`、`PATCH` のいずれかを使用すべきです。
 
-GET リクエストでボディを送信することは、仕様では未定義の動作ですが、FastAPI でサポートされており、非常に複雑な（極端な）ユースケースにのみ対応しています。
+`GET` リクエストでボディを送信することは仕様上は未定義の動作ですが、それでもFastAPIではサポートされています。ただし、非常に複雑／極端なユースケースのためだけです。
 
-非推奨なので、Swagger UIを使った対話型のドキュメントにはGETのボディ情報は表示されません。さらに、中継するプロキシが対応していない可能性があります。
+推奨されないため、Swagger UIによる対話的ドキュメントでは `GET` 使用時のボディのドキュメントは表示されず、途中のプロキシが対応していない可能性もあります。
 
 ///
 
-## Pydanticの `BaseModel` をインポート
+## Pydanticの `BaseModel` をインポート { #import-pydantics-basemodel }
 
-ます初めに、 `pydantic` から `BaseModel` をインポートする必要があります:
+まず、`pydantic` から `BaseModel` をインポートする必要があります:
 
-{* ../../docs_src/body/tutorial001.py hl[4] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## データモデルの作成
+## データモデルの作成 { #create-your-data-model }
 
-そして、`BaseModel` を継承したクラスとしてデータモデルを宣言します。
+次に、`BaseModel` を継承するクラスとしてデータモデルを宣言します。
 
-すべての属性にpython標準の型を使用します:
+すべての属性に標準のPython型を使用します:
 
-{* ../../docs_src/body/tutorial001.py hl[7:11] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-クエリパラメータの宣言と同様に、モデル属性がデフォルト値をもつとき、必須な属性ではなくなります。それ以外は必須になります。オプショナルな属性にしたい場合は `None` を使用してください。
 
-例えば、上記のモデルは以下の様なJSON「`オブジェクト`」(もしくはPythonの `dict` ) を宣言しています:
+クエリパラメータの宣言と同様に、モデル属性がデフォルト値を持つ場合は必須ではありません。そうでなければ必須です。単にオプションにするには `None` を使用してください。
+
+例えば、上記のモデルは次のようなJSON「`object`」（またはPythonの `dict`）を宣言します:
 
 ```JSON
 {
@@ -45,7 +46,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 }
 ```
 
-...`description` と `tax` はオプショナル (デフォルト値は `None`) なので、以下のJSON「`オブジェクト`」も有効です:
+...`description` と `tax` はオプション（デフォルト値が `None`）なので、このJSON「`object`」も有効です:
 
 ```JSON
 {
@@ -54,109 +55,112 @@ GET リクエストでボディを送信することは、仕様では未定義�
 }
 ```
 
-## パラメータとして宣言
+## パラメータとして宣言 { #declare-it-as-a-parameter }
 
-*パスオペレーション* に加えるために、パスパラメータやクエリパラメータと同じ様に宣言します:
+*path operation* に追加するには、パスパラメータやクエリパラメータを宣言したのと同じ方法で宣言します:
 
-{* ../../docs_src/body/tutorial001.py hl[18] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
-...そして、作成したモデル `Item` で型を宣言します。
+...そして、作成したモデル `Item` を型として宣言します。
 
-## 結果
+## 結果 { #results }
 
-そのPythonの型宣言だけで **FastAPI** は以下のことを行います:
+そのPythonの型宣言だけで **FastAPI** は以下を行います:
 
-* リクエストボディをJSONとして読み取ります。
-* 適当な型に変換します（必要な場合）。
+* リクエストのボディをJSONとして読み取ります。
+* 対応する型に変換します（必要な場合）。
 * データを検証します。
-    * データが無効な場合は、明確なエラーが返され、どこが不正なデータであったかを示します。
-* 受け取ったデータをパラメータ `item` に変換します。
-    * 関数内で `Item` 型であると宣言したので、すべての属性とその型に対するエディタサポート（補完など）をすべて使用できます。
-* モデルの<a href="http://json-schema.org" class="external-link" target="_blank">JSONスキーマ</a>定義を生成し、好きな場所で使用することができます。
-* これらのスキーマは、生成されたOpenAPIスキーマの一部となり、自動ドキュメントの<abbr title = "User Interfaces">UI</abbr>に使用されます。
+    * データが無効な場合は、どこで何が不正なデータだったのかを正確に示す、分かりやすい明確なエラーを返します。
+* 受け取ったデータをパラメータ `item` に渡します。
+    * 関数内で `Item` 型として宣言したため、すべての属性とその型について、エディタサポート（補完など）も利用できます。
+* モデル向けの <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定義を生成します。プロジェクトにとって意味があるなら、他の場所でも好きなように利用できます。
+* それらのスキーマは生成されるOpenAPIスキーマの一部となり、自動ドキュメントの <abbr title="User Interfaces - ユーザーインターフェース">UIs</abbr> で使用されます。
 
-## 自動ドキュメント生成
+## 自動ドキュメント { #automatic-docs }
 
-モデルのJSONスキーマはOpenAPIで生成されたスキーマの一部になり、対話的なAPIドキュメントに表示されます:
+モデルのJSON Schemaは、OpenAPIで生成されたスキーマの一部になり、対話的なAPIドキュメントに表示されます:
 
 <img src="/img/tutorial/body/image01.png">
 
-そして、それらが使われる *パスオペレーション* のそれぞれのAPIドキュメントにも表示されます:
+また、それらが必要な各 *path operation* 内のAPIドキュメントでも使用されます:
 
 <img src="/img/tutorial/body/image02.png">
 
-## エディターサポート
+## エディタサポート { #editor-support }
 
-エディターによる型ヒントと補完が関数内で利用できます (Pydanticモデルではなく `dict` を受け取ると、同じサポートは受けられません):
+エディタ上で、関数内のあらゆる場所で型ヒントと補完が得られます（Pydanticモデルの代わりに `dict` を受け取った場合は起きません）:
 
 <img src="/img/tutorial/body/image03.png">
 
-型によるエラーチェックも可能です:
+不正な型操作に対するエラーチェックも得られます:
 
 <img src="/img/tutorial/body/image04.png">
 
-これは偶然ではなく、このデザインに基づいてフレームワークが作られています。
+これは偶然ではなく、フレームワーク全体がその設計を中心に構築されています。
 
-全てのエディターで機能することを確認するために、実装前の設計時に徹底的にテストしました。
+そして、すべてのエディタで動作することを確実にするために、実装前の設計フェーズで徹底的にテストされました。
 
-これをサポートするためにPydantic自体にもいくつかの変更がありました。
+これをサポートするために、Pydantic自体にもいくつかの変更が加えられました。
 
-上記のスクリーンショットは<a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>を撮ったものです。
+前述のスクリーンショットは <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a> で撮影されたものです。
 
-しかし、<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>やほとんどのPythonエディタでも同様なエディターサポートを受けられます:
+ただし、<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> や、他のほとんどのPythonエディタでも同じエディタサポートを得られます:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | 豆知識
 
-<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
+エディタとして <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> を使用している場合、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> を使用できます。
 
-以下のエディターサポートが強化されます:
+以下により、Pydanticモデルに対するエディタサポートが改善されます:
 
-* 自動補完
-* 型チェック
-* リファクタリング
-* 検索
-* インスペクション
+* auto-completion
+* type checks
+* refactoring
+* searching
+* inspections
 
 ///
 
-## モデルの使用
+## モデルを使用する { #use-the-model }
 
-関数内部で、モデルの全ての属性に直接アクセスできます:
+関数内では、モデルオブジェクトのすべての属性に直接アクセスできます:
 
-{* ../../docs_src/body/tutorial002.py hl[21] *}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-## リクエストボディ + パスパラメータ
+## リクエストボディ + パスパラメータ { #request-body-path-parameters }
 
 パスパラメータとリクエストボディを同時に宣言できます。
 
-**FastAPI** はパスパラメータである関数パラメータは**パスから受け取り**、Pydanticモデルによって宣言された関数パラメータは**リクエストボディから受け取る**ということを認識します。
+**FastAPI** は、パスパラメータに一致する関数パラメータは **パスから取得** し、Pydanticモデルとして宣言された関数パラメータは **リクエストボディから取得** すべきだと認識します。
 
-{* ../../docs_src/body/tutorial003.py hl[17:18] *}
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## リクエストボディ + パスパラメータ + クエリパラメータ
 
-また、**ボディ**と**パス**と**クエリ**のパラメータも同時に宣言できます。
+## リクエストボディ + パス + クエリパラメータ { #request-body-path-query-parameters }
 
-**FastAPI** はそれぞれを認識し、適切な場所からデータを取得します。
+**body**、**path**、**query** パラメータもすべて同時に宣言できます。
 
-{* ../../docs_src/body/tutorial004.py hl[18] *}
+**FastAPI** はそれぞれを認識し、正しい場所からデータを取得します。
 
-関数パラメータは以下の様に認識されます:
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
-* パラメータが**パス**で宣言されている場合は、優先的にパスパラメータとして扱われます。
-* パラメータが**単数型** (`int`、`float`、`str`、`bool` など)の場合は**クエリ**パラメータとして解釈されます。
-* パラメータが **Pydantic モデル**型で宣言された場合、リクエスト**ボディ**として解釈されます。
+関数パラメータは以下のように認識されます:
+
+* パラメータが **path** でも宣言されている場合、パスパラメータとして使用されます。
+* パラメータが **単数型**（`int`、`float`、`str`、`bool` など）の場合、**query** パラメータとして解釈されます。
+* パラメータが **Pydanticモデル** の型として宣言されている場合、リクエスト **body** として解釈されます。
 
 /// note | 備考
 
-FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
+FastAPIは、デフォルト値 `= None` があるため、`q` の値が必須ではないことを認識します。
 
-`Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
+`str | None` は、値が必須ではないことを判断するためにFastAPIでは使用されません。`= None` というデフォルト値があるため、必須ではないことを認識します。
+
+しかし、型アノテーションを追加すると、エディタがより良いサポートを提供し、エラーを検出できるようになります。
 
 ///
 
-## Pydanticを使わない方法
+## Pydanticを使わない方法 { #without-pydantic }
 
-もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#_2){.internal-link target=_blank}を確認してください。
+Pydanticモデルを使いたくない場合は、**Body** パラメータも使用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} のドキュメントを参照してください。

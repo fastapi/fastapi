@@ -101,12 +101,6 @@ Obviamente, você também pode declarar parâmetros de consulta assim que você 
 Dado que, por padrão, valores singulares são interpretados como parâmetros de consulta, você não precisa explicitamente adicionar uma `Query`, você pode somente:
 
 ```Python
-q: Union[str, None] = None
-```
-
-Ou como em Python 3.10 e versões superiores:
-
-```Python
 q: str | None = None
 ```
 

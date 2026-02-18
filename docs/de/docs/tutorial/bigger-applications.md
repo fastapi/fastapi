@@ -56,19 +56,19 @@ from app.routers import items
 
 Die gleiche Dateistruktur mit Kommentaren:
 
-```
+```bash
 .
-├── app                  # „app“ ist ein Python-Package
-│   ├── __init__.py      # diese Datei macht „app“ zu einem „Python-Package“
-│   ├── main.py          # „main“-Modul, z. B. import app.main
-│   ├── dependencies.py  # „dependencies“-Modul, z. B. import app.dependencies
-│   └── routers          # „routers“ ist ein „Python-Subpackage“
-│   │   ├── __init__.py  # macht „routers“ zu einem „Python-Subpackage“
-│   │   ├── items.py     # „items“-Submodul, z. B. import app.routers.items
-│   │   └── users.py     # „users“-Submodul, z. B. import app.routers.users
-│   └── internal         # „internal“ ist ein „Python-Subpackage“
-│       ├── __init__.py  # macht „internal“ zu einem „Python-Subpackage“
-│       └── admin.py     # „admin“-Submodul, z. B. import app.internal.admin
+├── app                  # "app" ist ein Python-Package
+│   ├── __init__.py      # diese Datei macht "app" zu einem "Python-Package"
+│   ├── main.py          # "main"-Modul, z. B. import app.main
+│   ├── dependencies.py  # "dependencies"-Modul, z. B. import app.dependencies
+│   └── routers          # "routers" ist ein "Python-Subpackage"
+│   │   ├── __init__.py  # macht "routers" zu einem "Python-Subpackage"
+│   │   ├── items.py     # "items"-Submodul, z. B. import app.routers.items
+│   │   └── users.py     # "users"-Submodul, z. B. import app.routers.users
+│   └── internal         # "internal" ist ein "Python-Subpackage"
+│       ├── __init__.py  # macht "internal" zu einem "Python-Subpackage"
+│       └── admin.py     # "admin"-Submodul, z. B. import app.internal.admin
 ```
 
 ## `APIRouter` { #apirouter }
@@ -85,7 +85,7 @@ Sie können die *Pfadoperationen* für dieses Modul mit `APIRouter` erstellen.
 
 Sie importieren ihn und erstellen eine „Instanz“ auf die gleiche Weise wie mit der Klasse `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### *Pfadoperationen* mit `APIRouter` { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ Und dann verwenden Sie ihn, um Ihre *Pfadoperationen* zu deklarieren.
 
 Verwenden Sie ihn auf die gleiche Weise wie die Klasse `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 Sie können sich `APIRouter` als eine „Mini-`FastAPI`“-Klasse vorstellen.
 
@@ -117,7 +117,7 @@ Also fügen wir sie in ihr eigenes `dependencies`-Modul (`app/dependencies.py`) 
 
 Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefinierten `X-Token`-Header zu lesen:
 
-{* ../../docs_src/bigger_applications/app_an_py39/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | Tipp
 
@@ -149,7 +149,7 @@ Wir wissen, dass alle *Pfadoperationen* in diesem Modul folgendes haben:
 
 Anstatt also alles zu jeder *Pfadoperation* hinzuzufügen, können wir es dem `APIRouter` hinzufügen.
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 Da der Pfad jeder *Pfadoperation* mit `/` beginnen muss, wie in:
 
@@ -208,7 +208,7 @@ Und wir müssen die Abhängigkeitsfunktion aus dem Modul `app.dependencies` impo
 
 Daher verwenden wir einen relativen Import mit `..` für die Abhängigkeiten:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Wie relative Importe funktionieren { #how-relative-imports-work }
 
@@ -279,7 +279,7 @@ Wir fügen weder das Präfix `/items` noch `tags=["items"]` zu jeder *Pfadoperat
 
 Aber wir können immer noch _mehr_ `tags` hinzufügen, die auf eine bestimmte *Pfadoperation* angewendet werden, sowie einige zusätzliche `responses`, die speziell für diese *Pfadoperation* gelten:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | Tipp
 
@@ -305,13 +305,13 @@ Sie importieren und erstellen wie gewohnt eine `FastAPI`-Klasse.
 
 Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies.md){.internal-link target=_blank} deklarieren, die mit den Abhängigkeiten für jeden `APIRouter` kombiniert werden:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### Den `APIRouter` importieren { #import-the-apirouter }
 
 Jetzt importieren wir die anderen Submodule, die `APIRouter` haben:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
 Da es sich bei den Dateien `app/routers/users.py` und `app/routers/items.py` um Submodule handelt, die Teil desselben Python-Packages `app` sind, können wir einen einzelnen Punkt `.` verwenden, um sie mit „relativen Imports“ zu importieren.
 
@@ -374,13 +374,13 @@ würde der `router` von `users` den von `items` überschreiben und wir könnten 
 
 Um also beide in derselben Datei verwenden zu können, importieren wir die Submodule direkt:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
 ### Die `APIRouter` für `users` und `items` inkludieren { #include-the-apirouters-for-users-and-items }
 
 Inkludieren wir nun die `router` aus diesen Submodulen `users` und `items`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
 /// info | Info
 
@@ -420,13 +420,13 @@ Sie enthält einen `APIRouter` mit einigen administrativen *Pfadoperationen*, di
 
 In diesem Beispiel wird es ganz einfach sein. Nehmen wir jedoch an, dass wir, da sie mit anderen Projekten in der Organisation geteilt wird, sie nicht ändern und kein `prefix`, `dependencies`, `tags`, usw. direkt zum `APIRouter` hinzufügen können:
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Aber wir möchten immer noch ein benutzerdefiniertes `prefix` festlegen, wenn wir den `APIRouter` einbinden, sodass alle seine *Pfadoperationen* mit `/admin` beginnen, wir möchten es mit den `dependencies` sichern, die wir bereits für dieses Projekt haben, und wir möchten `tags` und `responses` hinzufügen.
 
 Wir können das alles deklarieren, ohne den ursprünglichen `APIRouter` ändern zu müssen, indem wir diese Parameter an `app.include_router()` übergeben:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
 
 Auf diese Weise bleibt der ursprüngliche `APIRouter` unverändert, sodass wir dieselbe `app/internal/admin.py`-Datei weiterhin mit anderen Projekten in der Organisation teilen können.
 
@@ -447,7 +447,7 @@ Wir können *Pfadoperationen* auch direkt zur `FastAPI`-App hinzufügen.
 
 Hier machen wir es ... nur um zu zeigen, dass wir es können 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
 und es wird korrekt funktionieren, zusammen mit allen anderen *Pfadoperationen*, die mit `app.include_router()` hinzugefügt wurden.
 
@@ -479,7 +479,7 @@ $ fastapi dev app/main.py
 
 </div>
 
-und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 Sie sehen die automatische API-Dokumentation, einschließlich der Pfade aller Submodule, mit den richtigen Pfaden (und Präfixen) und den richtigen Tags:
 

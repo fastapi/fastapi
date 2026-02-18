@@ -1,41 +1,41 @@
-# 追加のステータスコード
+# 追加のステータスコード { #additional-status-codes }
 
-デフォルトでは、 **FastAPI** は `JSONResponse` を使ってレスポンスを返します。その `JSONResponse` の中には、 *path operation* が返した内容が入ります。
+デフォルトでは、 **FastAPI** は `JSONResponse` を使ってレスポンスを返し、*path operation* から返した内容をその `JSONResponse` の中に入れます。
 
-それは、デフォルトのステータスコードか、 *path operation* でセットしたものを利用します。
+デフォルトのステータスコード、または *path operation* で設定したステータスコードが使用されます。
 
-## 追加のステータスコード
+## 追加のステータスコード { #additional-status-codes_1 }
 
-メインのステータスコードとは別に、他のステータスコードを返したい場合は、`Response` (`JSONResponse` など) に追加のステータスコードを設定して直接返します。
+メインのステータスコードとは別に追加のステータスコードを返したい場合は、`JSONResponse` のような `Response` を直接返し、追加のステータスコードを直接設定できます。
 
-例えば、itemを更新し、成功した場合は200 "OK"のHTTPステータスコードを返す *path operation* を作りたいとします。
+たとえば、item を更新でき、成功時に HTTP ステータスコード 200 "OK" を返す *path operation* を作りたいとします。
 
-しかし、新しいitemも許可したいです。itemが存在しない場合は、それらを作成して201 "Created"を返します。
+しかし、新しい item も受け付けたいとします。そして、item が以前存在しなかった場合には作成し、HTTP ステータスコード 201「Created」を返します。
 
-これを達成するには、 `JSONResponse` をインポートし、 `status_code` を設定して直接内容を返します。
+これを実現するには、`JSONResponse` をインポートし、望む `status_code` を設定して、そこで内容を直接返します。
 
-{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning | 注意
+/// warning
 
-上記の例のように `Response` を明示的に返す場合、それは直接返されます。
+上の例のように `Response` を直接返すと、それはそのまま返されます。
 
-モデルなどはシリアライズされません。
+モデルなどによってシリアライズされません。
 
-必要なデータが含まれていることや、値が有効なJSONであること (`JSONResponse` を使う場合) を確認してください。
+必要なデータが含まれていること、そして（`JSONResponse` を使用している場合）値が有効な JSON であることを確認してください。
 
 ///
 
 /// note | 技術詳細
 
-`from starlette.responses import JSONResponse` を利用することもできます。
+`from starlette.responses import JSONResponse` を使うこともできます。
 
-**FastAPI** は `fastapi.responses` と同じ `starlette.responses` を、開発者の利便性のために提供しています。しかし有効なレスポンスはほとんどStarletteから来ています。 `status` についても同じです。
+**FastAPI** は開発者の利便性のために、`fastapi.responses` と同じ `starlette.responses` を提供しています。しかし、利用可能なレスポンスのほとんどは Starlette から直接提供されています。`status` も同様です。
 
 ///
 
-## OpenAPIとAPIドキュメント
+## OpenAPI と API ドキュメント { #openapi-and-api-docs }
 
-ステータスコードとレスポンスを直接返す場合、それらはOpenAPIスキーマ (APIドキュメント) には含まれません。なぜなら、FastAPIは何が返されるのか事前に知ることができないからです。
+追加のステータスコードとレスポンスを直接返す場合、それらは OpenAPI スキーマ（API ドキュメント）には含まれません。FastAPI には、事前に何が返されるかを知る方法がないからです。
 
-しかし、 [Additional Responses](additional-responses.md){.internal-link target=_blank} を使ってコードの中にドキュメントを書くことができます。
+しかし、[追加のレスポンス](additional-responses.md){.internal-link target=_blank} を使ってコード内にドキュメント化できます。

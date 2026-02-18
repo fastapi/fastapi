@@ -56,7 +56,7 @@ from app.routers import items
 
 La misma estructura de archivos con comentarios:
 
-```
+```bash
 .
 ├── app                  # "app" es un paquete de Python
 │   ├── __init__.py      # este archivo hace que "app" sea un "paquete de Python"
@@ -85,7 +85,7 @@ Puedes crear las *path operations* para ese módulo usando `APIRouter`.
 
 Lo importas y creas una "instance" de la misma manera que lo harías con la clase `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### *Path operations* con `APIRouter` { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ Y luego lo usas para declarar tus *path operations*.
 
 Úsalo de la misma manera que usarías la clase `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 Puedes pensar en `APIRouter` como una clase "mini `FastAPI`".
 
@@ -117,7 +117,7 @@ Así que las ponemos en su propio módulo `dependencies` (`app/dependencies.py`)
 
 Ahora utilizaremos una dependencia simple para leer un header `X-Token` personalizado:
 
-{* ../../docs_src/bigger_applications/app_an_py39/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | Consejo
 
@@ -149,7 +149,7 @@ Sabemos que todas las *path operations* en este módulo tienen el mismo:
 
 Entonces, en lugar de agregar todo eso a cada *path operation*, podemos agregarlo al `APIRouter`.
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 Como el path de cada *path operation* tiene que empezar con `/`, como en:
 
@@ -185,7 +185,7 @@ El resultado final es que los paths de item son ahora:
 * Todos incluirán las `responses` predefinidas.
 * Todas estas *path operations* tendrán la lista de `dependencies` evaluadas/ejecutadas antes de ellas.
   * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
-  * Las dependencias del router se ejecutan primero, luego las [dependencias en el decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, y luego las dependencias de parámetros normales.
+  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, y luego las dependencias de parámetros normales.
   * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
 /// tip | Consejo
@@ -208,13 +208,13 @@ Y necesitamos obtener la función de dependencia del módulo `app.dependencies`,
 
 Así que usamos un import relativo con `..` para las dependencias:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Cómo funcionan los imports relativos { #how-relative-imports-work }
 
 /// tip | Consejo
 
-Si sabes perfectamente cómo funcionan los imports, continúa a la siguiente sección.
+Si sabes perfectamente cómo funcionan los imports, continúa a la siguiente sección abajo.
 
 ///
 
@@ -271,7 +271,7 @@ eso significaría:
 
 Eso se referiría a algún paquete arriba de `app/`, con su propio archivo `__init__.py`, etc. Pero no tenemos eso. Así que, eso lanzaría un error en nuestro ejemplo. 🚨
 
-Pero ahora sabes cómo funciona, para que puedas usar imports relativos en tus propias aplicaciones sin importar cuán complejas sean. 🤓
+Pero ahora sabes cómo funciona, para que puedas usar imports relativos en tus propias apps sin importar cuán complejas sean. 🤓
 
 ### Agregar algunos `tags`, `responses`, y `dependencies` personalizados { #add-some-custom-tags-responses-and-dependencies }
 
@@ -279,11 +279,11 @@ No estamos agregando el prefijo `/items` ni los `tags=["items"]` a cada *path op
 
 Pero aún podemos agregar _más_ `tags` que se aplicarán a una *path operation* específica, y también algunas `responses` extra específicas para esa *path operation*:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | Consejo
 
-Esta última *path operation* tendrá la combinación de tags: `["items", "custom"]`.
+Esta última path operation tendrá la combinación de tags: `["items", "custom"]`.
 
 Y también tendrá ambas responses en la documentación, una para `404` y otra para `403`.
 
@@ -301,17 +301,17 @@ Y como la mayor parte de tu lógica ahora vivirá en su propio módulo específi
 
 ### Importar `FastAPI` { #import-fastapi }
 
-Importas y creas una clase `FastAPI` como de costumbre.
+Importas y creas una clase `FastAPI` como normalmente.
 
 Y podemos incluso declarar [dependencias globales](dependencies/global-dependencies.md){.internal-link target=_blank} que se combinarán con las dependencias para cada `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### Importar el `APIRouter` { #import-the-apirouter }
 
 Ahora importamos los otros submódulos que tienen `APIRouter`s:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
 Como los archivos `app/routers/users.py` y `app/routers/items.py` son submódulos que son parte del mismo paquete de Python `app`, podemos usar un solo punto `.` para importarlos usando "imports relativos".
 
@@ -374,13 +374,13 @@ el `router` de `users` sobrescribiría el de `items` y no podríamos usarlos al 
 
 Así que, para poder usar ambos en el mismo archivo, importamos los submódulos directamente:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
 ### Incluir los `APIRouter`s para `users` y `items` { #include-the-apirouters-for-users-and-items }
 
 Ahora, incluyamos los `router`s de los submódulos `users` y `items`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
 /// info | Información
 
@@ -398,7 +398,7 @@ Incluirá todas las rutas de ese router como parte de ella.
 
 En realidad creará internamente una *path operation* para cada *path operation* que fue declarada en el `APIRouter`.
 
-Así, detrás de escena, funcionará como si todo fuera la misma única aplicación.
+Así, detrás de escena, funcionará como si todo fuera la misma única app.
 
 ///
 
@@ -420,34 +420,34 @@ Contiene un `APIRouter` con algunas *path operations* de administración que tu 
 
 Para este ejemplo será súper simple. Pero digamos que porque está compartido con otros proyectos en la organización, no podemos modificarlo y agregar un `prefix`, `dependencies`, `tags`, etc. directamente al `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Pero aún queremos configurar un `prefix` personalizado al incluir el `APIRouter` para que todas sus *path operations* comiencen con `/admin`, queremos asegurarlo con las `dependencies` que ya tenemos para este proyecto, y queremos incluir `tags` y `responses`.
 
 Podemos declarar todo eso sin tener que modificar el `APIRouter` original pasando esos parámetros a `app.include_router()`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
 
 De esa manera, el `APIRouter` original permanecerá sin modificar, por lo que aún podemos compartir ese mismo archivo `app/internal/admin.py` con otros proyectos en la organización.
 
-El resultado es que, en nuestra aplicación, cada una de las *path operations* del módulo `admin` tendrá:
+El resultado es que, en nuestra app, cada una de las *path operations* del módulo `admin` tendrá:
 
 * El prefix `/admin`.
 * El tag `admin`.
 * La dependencia `get_token_header`.
 * La response `418`. 🍵
 
-Pero eso solo afectará a ese `APIRouter` en nuestra aplicación, no en ningún otro código que lo utilice.
+Pero eso solo afectará a ese `APIRouter` en nuestra app, no en ningún otro código que lo utilice.
 
 Así, por ejemplo, otros proyectos podrían usar el mismo `APIRouter` con un método de autenticación diferente.
 
 ### Incluir una *path operation* { #include-a-path-operation }
 
-También podemos agregar *path operations* directamente a la aplicación de `FastAPI`.
+También podemos agregar *path operations* directamente a la app de `FastAPI`.
 
 Aquí lo hacemos... solo para mostrar que podemos 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
 y funcionará correctamente, junto con todas las otras *path operations* añadidas con `app.include_router()`.
 
@@ -461,13 +461,13 @@ Los `APIRouter`s no están "montados", no están aislados del resto de la aplica
 
 Esto se debe a que queremos incluir sus *path operations* en el esquema de OpenAPI y las interfaces de usuario.
 
-Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, se "clonan" las *path operations* (se vuelven a crear), no se incluyen directamente.
+Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, las *path operations* se "clonan" (se vuelven a crear), no se incluyen directamente.
 
 ///
 
 ## Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
-Ahora, ejecuta tu aplicación:
+Ahora, ejecuta tu app:
 
 <div class="termy">
 
@@ -481,7 +481,7 @@ $ fastapi dev app/main.py
 
 Y abre la documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Verás la documentación automática de la API, incluyendo los paths de todos los submódulos, usando los paths correctos (y prefijos) y las tags correctas:
+Verás la documentación automática de la API, incluyendo los paths de todos los submódulos, usando los paths correctos (y prefijos) y los tags correctos:
 
 <img src="/img/tutorial/bigger-applications/image01.png">
 
@@ -501,4 +501,4 @@ De la misma manera que puedes incluir un `APIRouter` en una aplicación `FastAPI
 router.include_router(other_router)
 ```
 
-Asegúrate de hacerlo antes de incluir `router` en la aplicación de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.
+Asegúrate de hacerlo antes de incluir `router` en la app de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.

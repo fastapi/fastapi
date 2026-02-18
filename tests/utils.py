@@ -2,12 +2,11 @@ import sys
 
 import pytest
 
-needs_py39 = pytest.mark.skipif(sys.version_info < (3, 9), reason="requires python3.9+")
 needs_py310 = pytest.mark.skipif(
     sys.version_info < (3, 10), reason="requires python3.10+"
 )
-needs_py_lt_314 = pytest.mark.skipif(
-    sys.version_info >= (3, 14), reason="requires python3.13-"
+needs_py314 = pytest.mark.skipif(
+    sys.version_info < (3, 14), reason="requires python3.14+"
 )
 
 

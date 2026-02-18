@@ -1,8 +1,9 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 import pytest
 from fastapi import Cookie, FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
 
 app = FastAPI()
@@ -12,12 +13,12 @@ app = FastAPI()
 
 
 @app.get("/optional-str")
-async def read_optional_str(p: Annotated[Optional[str], Cookie()] = None):
+async def read_optional_str(p: Annotated[str | None, Cookie()] = None):
     return {"p": p}
 
 
 class CookieModelOptionalStr(BaseModel):
-    p: Optional[str] = None
+    p: str | None = None
 
 
 @app.get("/model-optional-str")
@@ -30,17 +31,19 @@ async def read_model_optional_str(p: Annotated[CookieModelOptionalStr, Cookie()]
     ["/optional-str", "/model-optional-str"],
 )
 def test_optional_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": False,
-            "schema": {
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "title": "P",
-            },
-            "name": "p",
-            "in": "cookie",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "title": "P",
+                },
+                "name": "p",
+                "in": "cookie",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -72,13 +75,13 @@ def test_optional_str(path: str):
 
 @app.get("/optional-alias")
 async def read_optional_alias(
-    p: Annotated[Optional[str], Cookie(alias="p_alias")] = None,
+    p: Annotated[str | None, Cookie(alias="p_alias")] = None,
 ):
     return {"p": p}
 
 
 class CookieModelOptionalAlias(BaseModel):
-    p: Optional[str] = Field(None, alias="p_alias")
+    p: str | None = Field(None, alias="p_alias")
 
 
 @app.get("/model-optional-alias")
@@ -91,17 +94,19 @@ async def read_model_optional_alias(p: Annotated[CookieModelOptionalAlias, Cooki
     ["/optional-alias", "/model-optional-alias"],
 )
 def test_optional_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": False,
-            "schema": {
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "title": "P Alias",
-            },
-            "name": "p_alias",
-            "in": "cookie",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "title": "P Alias",
+                },
+                "name": "p_alias",
+                "in": "cookie",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -148,13 +153,13 @@ def test_optional_alias_by_alias(path: str):
 
 @app.get("/optional-validation-alias")
 def read_optional_validation_alias(
-    p: Annotated[Optional[str], Cookie(validation_alias="p_val_alias")] = None,
+    p: Annotated[str | None, Cookie(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
 
 class CookieModelOptionalValidationAlias(BaseModel):
-    p: Optional[str] = Field(None, validation_alias="p_val_alias")
+    p: str | None = Field(None, validation_alias="p_val_alias")
 
 
 @app.get("/model-optional-validation-alias")
@@ -169,17 +174,19 @@ def read_model_optional_validation_alias(
     ["/optional-validation-alias", "/model-optional-validation-alias"],
 )
 def test_optional_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": False,
-            "schema": {
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "title": "P Val Alias",
-            },
-            "name": "p_val_alias",
-            "in": "cookie",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "title": "P Val Alias",
+                },
+                "name": "p_val_alias",
+                "in": "cookie",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -230,14 +237,14 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 @app.get("/optional-alias-and-validation-alias")
 def read_optional_alias_and_validation_alias(
     p: Annotated[
-        Optional[str], Cookie(alias="p_alias", validation_alias="p_val_alias")
+        str | None, Cookie(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"p": p}
 
 
 class CookieModelOptionalAliasAndValidationAlias(BaseModel):
-    p: Optional[str] = Field(None, alias="p_alias", validation_alias="p_val_alias")
+    p: str | None = Field(None, alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.get("/model-optional-alias-and-validation-alias")
@@ -255,17 +262,19 @@ def read_model_optional_alias_and_validation_alias(
     ],
 )
 def test_optional_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": False,
-            "schema": {
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "title": "P Val Alias",
-            },
-            "name": "p_val_alias",
-            "in": "cookie",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "title": "P Val Alias",
+                },
+                "name": "p_val_alias",
+                "in": "cookie",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(

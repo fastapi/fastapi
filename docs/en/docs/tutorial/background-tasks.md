@@ -15,7 +15,7 @@ This includes, for example:
 
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
 
@@ -31,13 +31,13 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Add the background task { #add-the-background-task }
 
 Inside of your *path operation function*, pass your task function to the *background tasks* object with the method `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` receives as arguments:
 

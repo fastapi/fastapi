@@ -1,237 +1,208 @@
-# 生成客户端
+# 生成 SDK { #generating-sdks }
 
-因为 **FastAPI** 是基于OpenAPI规范的，自然您可以使用许多相匹配的工具，包括自动生成API文档 (由 Swagger UI 提供)。
+因为 **FastAPI** 基于 **OpenAPI** 规范，它的 API 可以用许多工具都能理解的标准格式来描述。
 
-一个不太明显而又特别的优势是，你可以为你的API针对不同的**编程语言**来**生成客户端**(有时候被叫做 <abbr title="Software Development Kits">**SDKs**</abbr> )。
+这让你可以轻松生成最新的**文档**、多语言的客户端库（<abbr title="Software Development Kits - 软件开发工具包">**SDKs**</abbr>），以及与代码保持同步的**测试**或**自动化工作流**。
 
-## OpenAPI 客户端生成
+本指南将带你为 FastAPI 后端生成一个 **TypeScript SDK**。
 
-有许多工具可以从**OpenAPI**生成客户端。
+## 开源 SDK 生成器 { #open-source-sdk-generators }
 
-一个常见的工具是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>。
+一个功能多样的选择是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>，它支持**多种编程语言**，可以根据你的 OpenAPI 规范生成 SDK。
 
-如果您正在开发**前端**，一个非常有趣的替代方案是 <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>。
+对于 **TypeScript 客户端**，<a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> 是为 TypeScript 生态打造的专用方案，提供优化的使用体验。
 
-## 生成一个 TypeScript 前端客户端
+你还可以在 <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a> 上发现更多 SDK 生成器。
 
-让我们从一个简单的 FastAPI 应用开始：
+/// tip | 提示
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
-
-请注意，*路径操作* 定义了他们所用于请求数据和回应数据的模型，所使用的模型是`Item` 和 `ResponseMessage`。
-
-### API 文档
-
-如果您访问API文档，您将看到它具有在请求中发送和在响应中接收数据的**模式(schemas)**：
-
-<img src="/img/tutorial/generate-clients/image01.png">
-
-您可以看到这些模式，因为它们是用程序中的模型声明的。
-
-那些信息可以在应用的 **OpenAPI模式** 被找到，然后显示在API文档中（通过Swagger UI）。
-
-OpenAPI中所包含的模型里有相同的信息可以用于 **生成客户端代码**。
-
-### 生成一个TypeScript 客户端
-
-现在我们有了带有模型的应用，我们可以为前端生成客户端代码。
-
-#### 安装 `openapi-ts`
-
-您可以使用以下工具在前端代码中安装 `openapi-ts`:
-
-<div class="termy">
-
-```console
-$ npm install @hey-api/openapi-ts --save-dev
-
----> 100%
-```
-
-</div>
-
-#### 生成客户端代码
-
-要生成客户端代码，您可以使用现在将要安装的命令行应用程序 `openapi-ts`。
-
-因为它安装在本地项目中，所以您可能无法直接使用此命令，但您可以将其放在 `package.json` 文件中。
-
-它可能看起来是这样的:
-
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
-  }
-}
-```
-
-在这里添加 NPM `generate-client` 脚本后，您可以使用以下命令运行它:
-
-<div class="termy">
-
-```console
-$ npm run generate-client
-
-frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
-```
-
-</div>
-
-此命令将在 `./src/client` 中生成代码，并将在其内部使用 `axios`（前端HTTP库）。
-
-### 尝试客户端代码
-
-现在您可以导入并使用客户端代码，它可能看起来像这样，请注意，您可以为这些方法使用自动补全：
-
-<img src="/img/tutorial/generate-clients/image02.png">
-
-您还将自动补全要发送的数据：
-
-<img src="/img/tutorial/generate-clients/image03.png">
-
-/// tip
-
-请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
+FastAPI 会自动生成 **OpenAPI 3.1** 规范，因此你使用的任何工具都必须支持该版本。
 
 ///
 
-如果发送的数据字段不符，你也会看到编辑器的错误提示:
+## 来自 FastAPI 赞助商的 SDK 生成器 { #sdk-generators-from-fastapi-sponsors }
+
+本节介绍的是由赞助 FastAPI 的公司提供的、具备**风险投资背景**或**公司支持**的方案。这些产品在高质量生成的 SDK 之上，提供了**更多特性**和**集成**。
+
+通过 ✨ [**赞助 FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨，这些公司帮助确保框架及其**生态**保持健康并且**可持续**。
+
+他们的赞助也体现了对 FastAPI **社区**（也就是你）的高度承诺，不仅关注提供**优秀的服务**，也支持一个**健壮且繁荣的框架**——FastAPI。🙇
+
+例如，你可以尝试：
+
+* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
+* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+
+其中一些方案也可能是开源的或提供免费层级，你可以不花钱就先试用。其他商业 SDK 生成器也可在网上找到。🤓
+
+## 创建一个 TypeScript SDK { #create-a-typescript-sdk }
+
+先从一个简单的 FastAPI 应用开始：
+
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+
+请注意，这些*路径操作*使用 `Item` 和 `ResponseMessage` 模型来定义它们的请求载荷和响应载荷。
+
+### API 文档 { #api-docs }
+
+访问 `/docs` 时，你会看到有用于请求发送和响应接收数据的**模式**：
+
+<img src="/img/tutorial/generate-clients/image01.png">
+
+之所以能看到这些模式，是因为它们在应用中用模型声明了。
+
+这些信息会包含在应用的 **OpenAPI 模式** 中，并显示在 API 文档里。
+
+OpenAPI 中包含的这些模型信息就是用于**生成客户端代码**的基础。
+
+### Hey API { #hey-api }
+
+当我们有了带模型的 FastAPI 应用后，可以使用 Hey API 来生成 TypeScript 客户端。最快的方式是通过 npx：
+
+```sh
+npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
+```
+
+这会在 `./src/client` 生成一个 TypeScript SDK。
+
+你可以在其官网了解如何<a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">安装 `@hey-api/openapi-ts`</a>，以及阅读<a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">生成结果</a>的说明。
+
+### 使用 SDK { #using-the-sdk }
+
+现在你可以导入并使用客户端代码了。它可能是这样，并且你会发现方法有自动补全：
+
+<img src="/img/tutorial/generate-clients/image02.png">
+
+要发送的载荷也会有自动补全：
+
+<img src="/img/tutorial/generate-clients/image03.png">
+
+/// tip | 提示
+
+请注意 `name` 和 `price` 的自动补全，它们是在 FastAPI 应用中的 `Item` 模型里定义的。
+
+///
+
+你发送的数据如果不符合要求，会在编辑器中显示内联错误：
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
-响应(response)对象也拥有自动补全:
+响应对象同样有自动补全：
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
-## 带有标签的 FastAPI 应用
+## 带有标签的 FastAPI 应用 { #fastapi-app-with-tags }
 
-在许多情况下，你的FastAPI应用程序会更复杂，你可能会使用标签来分隔不同组的*路径操作(path operations)*。
+很多情况下，你的 FastAPI 应用会更大，你可能会用标签来划分不同组的*路径操作*。
 
-例如，您可以有一个用 `items` 的部分和另一个用于 `users` 的部分，它们可以用标签来分隔：
+例如，你可以有一个 **items** 相关的部分和另一个 **users** 相关的部分，它们可以用标签来分隔：
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
-### 生成带有标签的 TypeScript 客户端
+### 生成带标签的 TypeScript 客户端 { #generate-a-typescript-client-with-tags }
 
-如果您使用标签为FastAPI应用生成客户端，它通常也会根据标签分割客户端代码。
+如果你为使用了标签的 FastAPI 应用生成客户端，通常也会根据标签来拆分客户端代码。
 
-通过这种方式，您将能够为客户端代码进行正确地排序和分组：
+这样你就可以在客户端代码中把内容正确地组织和分组：
 
 <img src="/img/tutorial/generate-clients/image06.png">
 
-在这个案例中，您有：
+在这个例子中，你会有：
 
 * `ItemsService`
 * `UsersService`
 
-### 客户端方法名称
+### 客户端方法名 { #client-method-names }
 
-现在生成的方法名像 `createItemItemsPost` 看起来不太简洁:
+现在，像 `createItemItemsPost` 这样的生成方法名看起来不太简洁：
 
 ```TypeScript
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...这是因为客户端生成器为每个 *路径操作* 使用OpenAPI的内部 **操作 ID(operation ID)**。
+...这是因为客户端生成器会把每个*路径操作*的 OpenAPI 内部**操作 ID（operation ID）**用作方法名的一部分。
 
-OpenAPI要求每个操作 ID 在所有 *路径操作* 中都是唯一的，因此 FastAPI 使用**函数名**、**路径**和**HTTP方法/操作**来生成此操作ID，因为这样可以确保这些操作 ID 是唯一的。
+OpenAPI 要求每个操作 ID 在所有*路径操作*中都是唯一的，因此 FastAPI 会使用**函数名**、**路径**和**HTTP 方法/操作**来生成操作 ID，以确保其唯一性。
 
-但接下来我会告诉你如何改进。 🤓
+接下来我会告诉你如何改进。🤓
 
-## 自定义操作ID和更好的方法名
+## 自定义操作 ID 与更好的方法名 { #custom-operation-ids-and-better-method-names }
 
-您可以**修改**这些操作ID的**生成**方式，以使其更简洁，并在客户端中具有**更简洁的方法名称**。
+你可以**修改**这些操作 ID 的**生成**方式，使之更简单，从而在客户端中得到**更简洁的方法名**。
 
-在这种情况下，您必须确保每个操作ID在其他方面是**唯一**的。
+在这种情况下，你需要用其他方式确保每个操作 ID 依然是**唯一**的。
 
-例如，您可以确保每个*路径操作*都有一个标签，然后根据**标签**和*路径操作***名称**（函数名）来生成操作ID。
+例如，你可以确保每个*路径操作*都有一个标签，然后基于**标签**和*路径操作***名称**（函数名）来生成操作 ID。
 
-### 自定义生成唯一ID函数
+### 自定义唯一 ID 生成函数 { #custom-generate-unique-id-function }
 
-FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**，也用于任何所需自定义模型的名称，用于请求或响应。
+FastAPI 为每个*路径操作*使用一个**唯一 ID**，它既用于**操作 ID**，也用于请求或响应里任何需要的自定义模型名称。
 
-你可以自定义该函数。它接受一个 `APIRoute` 对象作为输入，并输出一个字符串。
+你可以自定义这个函数。它接收一个 `APIRoute` 并返回一个字符串。
 
-例如，以下是一个示例，它使用第一个标签（你可能只有一个标签）和*路径操作*名称（函数名）。
+例如，这里使用第一个标签（你很可能只有一个标签）和*路径操作*名称（函数名）。
 
-然后，你可以将这个自定义函数作为 `generate_unique_id_function` 参数传递给 **FastAPI**:
+然后你可以把这个自定义函数通过 `generate_unique_id_function` 参数传给 **FastAPI**：
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
-### 使用自定义操作ID生成TypeScript客户端
+### 使用自定义操作 ID 生成 TypeScript 客户端 { #generate-a-typescript-client-with-custom-operation-ids }
 
-现在，如果你再次生成客户端，你会发现它具有改善的方法名称：
+现在再次生成客户端，你会看到方法名已经改进：
 
 <img src="/img/tutorial/generate-clients/image07.png">
 
-正如你所见，现在方法名称中只包含标签和函数名，不再包含URL路径和HTTP操作的信息。
+如你所见，方法名现在由标签和函数名组成，不再包含 URL 路径和 HTTP 操作的信息。
 
-### 预处理用于客户端生成器的OpenAPI规范
+### 为客户端生成器预处理 OpenAPI 规范 { #preprocess-the-openapi-specification-for-the-client-generator }
 
-生成的代码仍然存在一些**重复的信息**。
+生成的代码中仍有一些**重复信息**。
 
-我们已经知道该方法与 **items** 相关，因为它在 `ItemsService` 中（从标签中获取），但方法名中仍然有标签名作为前缀。😕
+我们已经知道这个方法与 **items** 有关，因为它位于 `ItemsService`（来自标签），但方法名里仍然带有标签名前缀。😕
 
-一般情况下对于OpenAPI，我们可能仍然希望保留它，因为这将确保操作ID是**唯一的**。
+通常我们仍然希望在 OpenAPI 中保留它，以确保操作 ID 的**唯一性**。
 
-但对于生成的客户端，我们可以在生成客户端之前**修改** OpenAPI 操作ID，以使方法名称更加美观和**简洁**。
+但对于生成的客户端，我们可以在生成之前**修改** OpenAPI 的操作 ID，只是为了让方法名更美观、更**简洁**。
 
-我们可以将 OpenAPI JSON 下载到一个名为`openapi.json`的文件中，然后使用以下脚本**删除此前缀的标签**：
+我们可以把 OpenAPI JSON 下载到 `openapi.json` 文件中，然后用如下脚本**移除这个标签前缀**：
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
-通过这样做，操作ID将从类似于 `items-get_items` 的名称重命名为 `get_items` ，这样客户端生成器就可以生成更简洁的方法名称。
+//// tab | Node.js
 
-### 使用预处理的OpenAPI生成TypeScript客户端
-
-现在，由于最终结果保存在文件openapi.json中，你可以修改 package.json 文件以使用此本地文件，例如：
-
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
-  }
-}
+```Javascript
+{!> ../../docs_src/generate_clients/tutorial004.js!}
 ```
 
-生成新的客户端之后，你现在将拥有**清晰的方法名称**，具备**自动补全**、**错误提示**等功能：
+////
+
+这样，操作 ID 会从 `items-get_items` 之类的名字重命名为 `get_items`，从而让客户端生成器生成更简洁的方法名。
+
+### 使用预处理后的 OpenAPI 生成 TypeScript 客户端 { #generate-a-typescript-client-with-the-preprocessed-openapi }
+
+因为最终结果现在保存在 `openapi.json` 中，你需要更新输入位置：
+
+```sh
+npx @hey-api/openapi-ts -i ./openapi.json -o src/client
+```
+
+生成新客户端后，你将拥有**简洁的方法名**，并具备**自动补全**、**内联错误**等功能：
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
-## 优点
+## 优点 { #benefits }
 
-当使用自动生成的客户端时，你将获得以下的自动补全功能：
+使用自动生成的客户端时，你会获得以下内容的**自动补全**：
 
-* 方法。
-* 请求体中的数据、查询参数等。
-* 响应数据。
+* 方法
+* 请求体中的数据、查询参数等
+* 响应数据
 
-你还将获得针对所有内容的错误提示。
+你还会为所有内容获得**内联错误**。
 
-每当你更新后端代码并**重新生成**前端代码时，新的*路径操作*将作为方法可用，旧的方法将被删除，并且其他任何更改将反映在生成的代码中。 🤓
+每当你更新后端代码并**重新生成**前端时，新的*路径操作*会作为方法可用，旧的方法会被移除，其他任何更改都会反映到生成的代码中。🤓
 
-这也意味着如果有任何更改，它将自动**反映**在客户端代码中。如果你**构建**客户端，在使用的数据上存在**不匹配**时，它将报错。
+这也意味着如果有任何变更，它会自动**反映**到客户端代码中。而当你**构建**客户端时，如果所用数据存在任何**不匹配**，它会直接报错。
 
-因此，你将在开发周期的早期**检测到许多错误**，而不必等待错误在生产环境中向最终用户展示，然后尝试调试问题所在。 ✨
+因此，你可以在开发周期的早期就**发现许多错误**，而不必等到错误在生产环境中暴露给最终用户后再去调试问题所在。✨

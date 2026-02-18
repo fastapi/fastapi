@@ -1,36 +1,26 @@
-# ボディ - ネストされたモデル
+# ボディ - ネストされたモデル { #body-nested-models }
 
 **FastAPI** を使用すると、深くネストされた任意のモデルを定義、検証、文書化、使用することができます（Pydanticのおかげです）。
 
-## リストのフィールド
+## リストのフィールド { #list-fields }
 
-属性をサブタイプとして定義することができます。例えば、Pythonの`list`は以下のように定義できます:
+属性をサブタイプとして定義することができます。例えば、Pythonの`list`:
 
-{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
 
-これにより、各項目の型は宣言されていませんが、`tags`はある項目のリストになります。
+これにより、各項目の型は宣言されていませんが、`tags`はリストになります。
 
-## タイプパラメータを持つリストのフィールド
+## タイプパラメータを持つリストのフィールド { #list-fields-with-type-parameter }
 
-しかし、Pythonには型や「タイプパラメータ」を使ってリストを宣言する方法があります:
+しかし、Pythonには内部の型、または「タイプパラメータ」を使ってリストを宣言するための特定の方法があります:
 
-### typingの`List`をインポート
+### タイプパラメータを持つ`list`の宣言 { #declare-a-list-with-a-type-parameter }
 
-まず、Pythonの標準の`typing`モジュールから`List`をインポートします:
-
-{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
-### タイプパラメータを持つ`List`の宣言
-
-`list`や`dict`、`tuple`のようなタイプパラメータ（内部の型）を持つ型を宣言するには:
-
-* `typing`モジュールからそれらをインストールします。
-* 角括弧（`[`と`]`）を使って「タイプパラメータ」として内部の型を渡します:
+`list`、`dict`、`tuple`のようにタイプパラメータ（内部の型）を持つ型を宣言するには、
+角括弧（`[`と`]`）を使って内部の型を「タイプパラメータ」として渡します。
 
 ```Python
-from typing import List
-
-my_list: List[str]
+my_list: list[str]
 ```
 
 型宣言の標準的なPythonの構文はこれだけです。
@@ -39,17 +29,17 @@ my_list: List[str]
 
 そのため、以下の例では`tags`を具体的な「文字列のリスト」にすることができます:
 
-{* ../../docs_src/body_nested_models/tutorial002.py hl[14] *}
+{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
 
-## セット型
+## セット型 { #set-types }
 
 しかし、よく考えてみると、タグは繰り返すべきではなく、おそらくユニークな文字列になるのではないかと気付いたとします。
 
 そして、Pythonにはユニークな項目のセットのための特別なデータ型`set`があります。
 
-そのため、以下のように、`Set`をインポートして`str`の`set`として`tags`を宣言することができます:
+そして、`tags`を文字列のセットとして宣言できます:
 
-{* ../../docs_src/body_nested_models/tutorial003.py hl[1,14] *}
+{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
 
 これを使えば、データが重複しているリクエストを受けた場合でも、ユニークな項目のセットに変換されます。
 
@@ -57,27 +47,27 @@ my_list: List[str]
 
 また、それに応じて注釈をつけたり、文書化したりします。
 
-## ネストされたモデル
+## ネストされたモデル { #nested-models }
 
 Pydanticモデルの各属性には型があります。
 
 しかし、その型はそれ自体が別のPydanticモデルである可能性があります。
 
-そのため、特定の属性名、型、バリデーションを指定して、深くネストしたJSON`object`を宣言することができます。
+そのため、特定の属性名、型、バリデーションを指定して、深くネストしたJSON「オブジェクト」を宣言することができます。
 
 すべては、任意のネストにされています。
 
-### サブモデルの定義
+### サブモデルの定義 { #define-a-submodel }
 
 例えば、`Image`モデルを定義することができます:
 
-{* ../../docs_src/body_nested_models/tutorial004.py hl[9,10,11] *}
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
 
-### サブモデルを型として使用
+### サブモデルを型として使用 { #use-the-submodel-as-a-type }
 
 そして、それを属性の型として使用することができます:
 
-{* ../../docs_src/body_nested_models/tutorial004.py hl[20] *}
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
 
 これは **FastAPI** が以下のようなボディを期待することを意味します:
 
@@ -102,23 +92,23 @@ Pydanticモデルの各属性には型があります。
 * データの検証
 * 自動文書化
 
-## 特殊な型とバリデーション
+## 特殊な型とバリデーション { #special-types-and-validation }
 
-`str`や`int`、`float`のような通常の単数型の他にも、`str`を継承したより複雑な単数型を使うこともできます。
+`str`や`int`、`float`などの通常の単数型の他にも、`str`を継承したより複雑な単数型を使うこともできます。
 
-すべてのオプションをみるには、<a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydanticのエキゾチック な型</a>のドキュメントを確認してください。次の章でいくつかの例をみることができます。
+すべてのオプションをみるには、<a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydanticの型の概要</a>を確認してください。次の章でいくつかの例をみることができます。
 
-例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`を指定することができます:
+例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`のインスタンスとして宣言することができます:
 
-{* ../../docs_src/body_nested_models/tutorial005.py hl[4,10] *}
+{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
 
-文字列は有効なURLであることが確認され、そのようにJSONスキーマ・OpenAPIで文書化されます。
+文字列は有効なURLであることが確認され、そのようにJSON Schema / OpenAPIで文書化されます。
 
-## サブモデルのリストを持つ属性
+## サブモデルのリストを持つ属性 { #attributes-with-lists-of-submodels }
 
 Pydanticモデルを`list`や`set`などのサブタイプとして使用することもできます:
 
-{* ../../docs_src/body_nested_models/tutorial006.py hl[20] *}
+{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
 
 これは、次のようなJSONボディを期待します（変換、検証、ドキュメントなど）:
 
@@ -152,59 +142,59 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
 
 ///
 
-## 深くネストされたモデル
+## 深くネストされたモデル { #deeply-nested-models }
 
 深くネストされた任意のモデルを定義することができます:
 
-{* ../../docs_src/body_nested_models/tutorial007.py hl[9,14,20,23,27] *}
+{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
 /// info | 情報
 
-`Offer`は`Item`のリストであり、オプションの`Image`のリストを持っていることに注目してください。
+`Offer`は`Item`のリストであり、それらがさらにオプションの`Image`のリストを持っていることに注目してください。
 
 ///
 
-## 純粋なリストのボディ
+## 純粋なリストのボディ { #bodies-of-pure-lists }
 
 期待するJSONボディのトップレベルの値がJSON`array`（Pythonの`list`）であれば、Pydanticモデルと同じように、関数のパラメータで型を宣言することができます:
 
 ```Python
-images: List[Image]
+images: list[Image]
 ```
 
 以下のように:
 
-{* ../../docs_src/body_nested_models/tutorial008.py hl[15] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
-## あらゆる場所でのエディタサポート
+## あらゆる場所でのエディタサポート { #editor-support-everywhere }
 
-エディタのサポートもどこでも受けることができます。
+そして、あらゆる場所でエディタサポートを得られます。
 
 以下のようにリストの中の項目でも:
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body-nested-models/image01.png">
+<img src="/img/tutorial/body-nested-models/image01.png">
 
 Pydanticモデルではなく、`dict`を直接使用している場合はこのようなエディタのサポートは得られません。
 
-しかし、それらについて心配する必要はありません。入力された辞書は自動的に変換され、出力も自動的にJSONに変換されます。
+しかし、それらについて心配する必要はありません。入力されたdictは自動的に変換され、出力も自動的にJSONに変換されます。
 
-## 任意の`dict`のボディ
+## 任意の`dict`のボディ { #bodies-of-arbitrary-dicts }
 
 また、ある型のキーと別の型の値を持つ`dict`としてボディを宣言することもできます。
 
-有効なフィールド・属性名を事前に知る必要がありません（Pydanticモデルの場合のように）。
+この方法で、有効なフィールド/属性名を事前に知る必要がありません（Pydanticモデルの場合のように）。
 
-これは、まだ知らないキーを受け取りたいときに便利だと思います。
+これは、まだ知らないキーを受け取りたいときに便利です。
 
 ---
 
-他にも、`int`のように他の型のキーを持ちたい場合などに便利です。
+もうひとつ便利なケースは、別の型（例: `int`）のキーを持ちたい場合です。
 
-それをここで見ていきましょう。
+それをここで見ていきます。
 
 この場合、`int`のキーと`float`の値を持つものであれば、どんな`dict`でも受け入れることができます:
 
-{* ../../docs_src/body_nested_models/tutorial009.py hl[15] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | 豆知識
 
@@ -218,14 +208,14 @@ JSONはキーとして`str`しかサポートしていないことに注意し�
 
 ///
 
-## まとめ
+## まとめ { #recap }
 
 **FastAPI** を使用すると、Pydanticモデルが提供する最大限の柔軟性を持ちながら、コードをシンプルに短く、エレガントに保つことができます。
 
-以下のような利点があります:
+しかし、以下のような利点があります:
 
 * エディタのサポート（どこでも補完！）
-* データ変換（別名：構文解析・シリアライズ）
+* データ変換（別名：構文解析 / シリアライズ）
 * データの検証
 * スキーマ文書
-* 自動文書化
+* 自動ドキュメント

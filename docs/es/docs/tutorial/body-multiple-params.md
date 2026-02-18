@@ -101,12 +101,6 @@ Por supuesto, también puedes declarar parámetros adicionales de query siempre 
 Como, por defecto, los valores singulares se interpretan como parámetros de query, no tienes que añadir explícitamente un `Query`, solo puedes hacer:
 
 ```Python
-q: Union[str, None] = None
-```
-
-O en Python 3.10 y superior:
-
-```Python
 q: str | None = None
 ```
 

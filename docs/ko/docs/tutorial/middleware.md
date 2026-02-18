@@ -1,66 +1,95 @@
-# 미들웨어
+# 미들웨어 { #middleware }
 
 미들웨어를 **FastAPI** 응용 프로그램에 추가할 수 있습니다.
 
-"미들웨어"는 특정 *경로 작동*에 의해 처리되기 전, 모든 **요청**에 대해서 동작하는 함수입니다. 또한 모든 **응답**이 반환되기 전에도 동일하게 동작합니다.
+"미들웨어"는 특정 *경로 처리*에 의해 처리되기 전, 모든 **요청**에 대해서 동작하는 함수입니다. 또한 모든 **응답**이 반환되기 전에도 동일하게 동작합니다.
 
-* 미들웨어는 응용 프로그램으로 오는 **요청**를 가져옵니다.
-* **요청** 또는 다른 필요한 코드를 실행 시킬 수 있습니다.
-* **요청**을 응용 프로그램의 *경로 작동*으로 전달하여 처리합니다.
-* 애플리케이션의 *경로 작업*에서 생성한 **응답**를 받습니다.
-* **응답** 또는 다른 필요한 코드를 실행시키는 동작을 할 수 있습니다.
-* **응답**를 반환합니다.
+* 미들웨어는 응용 프로그램으로 오는 각 **요청**을 가져옵니다.
+* 그런 다음 해당 **요청**에 대해 무언가를 하거나 필요한 코드를 실행할 수 있습니다.
+* 그런 다음 **요청**을 나머지 애플리케이션(어떤 *경로 처리*가)을 통해 처리되도록 전달합니다.
+* 그런 다음 애플리케이션(어떤 *경로 처리*가)이 생성한 **응답**을 가져옵니다.
+* 그런 다음 해당 **응답**에 대해 무언가를 하거나 필요한 코드를 실행할 수 있습니다.
+* 그런 다음 **응답**을 반환합니다.
 
 /// note | 기술 세부사항
 
-만약 `yield`를 사용한 의존성을 가지고 있다면, 미들웨어가 실행되고 난 후에 exit이 실행됩니다.
+`yield`를 사용하는 의존성이 있다면, exit 코드는 미들웨어 *후에* 실행됩니다.
 
-만약 (나중에 문서에서 다룰) 백그라운드 작업이 있다면, 모든 미들웨어가 실행되고 *난 후에* 실행됩니다.
+백그라운드 작업(뒤에서 보게 될 [백그라운드 작업](background-tasks.md){.internal-link target=_blank} 섹션에서 다룹니다)이 있다면, 모든 미들웨어 *후에* 실행됩니다.
 
 ///
 
-## 미들웨어 만들기
+## 미들웨어 만들기 { #create-a-middleware }
 
-미들웨어를 작성하기 위해서 함수 상단에 `@app.middleware("http")` 데코레이터를 사용할 수 있습니다.
+미들웨어를 만들기 위해 함수 상단에 데코레이터 `@app.middleware("http")`를 사용합니다.
 
-미들웨어 함수는 다음 항목들을 받습니다:
+미들웨어 함수는 다음을 받습니다:
 
 * `request`.
 * `request`를 매개변수로 받는 `call_next` 함수.
-    * 이 함수는 `request`를 해당하는 *경로 작업*으로 전달합니다.
-    * 그런 다음, *경로 작업*에 의해 생성된 `response` 를 반환합니다.
-* `response`를 반환하기 전에 추가로 `response`를 수정할 수 있습니다.
+    * 이 함수는 `request`를 해당하는 *경로 처리*로 전달합니다.
+    * 그런 다음 해당 *경로 처리*가 생성한 `response`를 반환합니다.
+* 그런 다음 반환하기 전에 `response`를 추가로 수정할 수 있습니다.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | 팁
 
-사용자 정의 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-' 접두사를 사용</a>하여 추가할 수 있습니다.
+사용자 정의 독점 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">`X-` 접두사를 사용</a>하여 추가할 수 있다는 점을 기억하세요.
 
-그러나 만약 클라이언트의 브라우저에서 볼 수 있는 사용자 정의 헤더를 가지고 있다면, 그것들을 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})에 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette CORS 문서</a>에 명시된 `expose_headers` 매개변수를 이용하여 헤더들을 추가하여야합니다.
-
-///
-
-/// note | 기술적 세부사항
-
-`from starlette.requests import request`를 사용할 수도 있습니다.
-
-**FastAPI**는 개발자에게 편의를 위해 이를 제공합니다. 그러나 Starlette에서 직접 파생되었습니다.
+하지만 브라우저에서 클라이언트가 볼 수 있게 하려는 사용자 정의 헤더가 있다면, <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette의 CORS 문서</a>에 문서화된 `expose_headers` 매개변수를 사용해 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})에 추가해야 합니다.
 
 ///
 
-### `response`의 전과 후
+/// note | 기술 세부사항
 
-*경로 작동*을 받기 전 `request`와 함께 작동할 수 있는 코드를 추가할 수 있습니다.
+`from starlette.requests import Request`를 사용할 수도 있습니다.
 
-그리고 `response` 또한 생성된 후 반환되기 전에 코드를 추가 할 수 있습니다.
+**FastAPI**는 개발자인 여러분의 편의를 위해 이를 제공합니다. 하지만 이는 Starlette에서 직접 가져온 것입니다.
 
-예를 들어, 요청을 수행하고 응답을 생성하는데 까지 걸린 시간 값을 가지고 있는 `X-Process-Time` 같은 사용자 정의 헤더를 추가할 수 있습니다.
+///
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+### `response`의 전과 후 { #before-and-after-the-response }
 
-## 다른 미들웨어
+어떤 *경로 처리*가 받기 전에, `request`와 함께 실행될 코드를 추가할 수 있습니다.
 
-미들웨어에 대한 더 많은 정보는 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=\_blank}에서 확인할 수 있습니다.
+또한 `response`가 생성된 후, 반환하기 전에 코드를 추가할 수도 있습니다.
 
-다음 부분에서 미들웨어와 함께 <abbr title="교차-출처 리소스 공유">CORS</abbr>를 어떻게 다루는지에 대해 확인할 것입니다.
+예를 들어, 요청을 처리하고 응답을 생성하는 데 걸린 시간을 초 단위로 담는 사용자 정의 헤더 `X-Process-Time`을 추가할 수 있습니다:
+
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+
+/// tip | 팁
+
+여기서는 이러한 사용 사례에서 더 정확할 수 있기 때문에 `time.time()` 대신 <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a>를 사용합니다. 🤓
+
+///
+
+## 여러 미들웨어 실행 순서 { #multiple-middleware-execution-order }
+
+`@app.middleware()` 데코레이터 또는 `app.add_middleware()` 메서드를 사용해 여러 미들웨어를 추가하면, 새로 추가된 각 미들웨어가 애플리케이션을 감싸 스택을 형성합니다. 마지막에 추가된 미들웨어가 *가장 바깥쪽*이고, 처음에 추가된 미들웨어가 *가장 안쪽*입니다.
+
+요청 경로에서는 *가장 바깥쪽* 미들웨어가 먼저 실행됩니다.
+
+응답 경로에서는 마지막에 실행됩니다.
+
+예를 들어:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+이 경우 실행 순서는 다음과 같습니다:
+
+* **요청**: MiddlewareB → MiddlewareA → route
+
+* **응답**: route → MiddlewareA → MiddlewareB
+
+이러한 스태킹 동작은 미들웨어가 예측 가능하고 제어 가능한 순서로 실행되도록 보장합니다.
+
+## 다른 미들웨어 { #other-middlewares }
+
+다른 미들웨어에 대한 더 많은 정보는 나중에 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+
+다음 섹션에서 미들웨어로 <abbr title="Cross-Origin Resource Sharing - 교차 출처 리소스 공유">CORS</abbr>를 처리하는 방법을 보게 될 것입니다.

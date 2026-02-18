@@ -1,205 +1,196 @@
-# Paramètres de chemin
+# Paramètres de chemin { #path-parameters }
 
-Vous pouvez déclarer des "paramètres" ou "variables" de chemin avec la même syntaxe que celle utilisée par le
-<a href="https://docs.python.org/fr/3/library/string.html#format-string-syntax" class="external-link" target="_blank">formatage de chaîne Python</a> :
+Vous pouvez déclarer des « paramètres » ou « variables » de chemin avec la même syntaxe utilisée par les chaînes de format Python :
 
+{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
 
-{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
+La valeur du paramètre de chemin `item_id` sera transmise à votre fonction dans l'argument `item_id`.
 
-La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`.
-
-Donc, si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>,
-vous verrez comme réponse :
+Donc, si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vous verrez comme réponse :
 
 ```JSON
 {"item_id":"foo"}
 ```
 
-## Paramètres de chemin typés
+## Paramètres de chemin typés { #path-parameters-with-types }
 
-Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python :
+Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python standard :
 
-
-{* ../../docs_src/path_params/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
-/// check | vérifier
+/// check | Vérifications
 
-Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
-que des vérifications d'erreur, de l'auto-complétion, etc.
+Cela vous apporte la prise en charge par l'éditeur dans votre fonction, avec vérifications d'erreurs, autocomplétion, etc.
 
 ///
 
-## <abbr title="aussi appelé sérialisation, ou parfois parsing ou marshalling en anglais">Conversion</abbr> de données
+## <dfn title="également appelé : sérialisation, parsing, marshalling">Conversion</dfn> de données { #data-conversion }
 
-Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, vous aurez comme réponse :
+Si vous exécutez cet exemple et ouvrez votre navigateur sur <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, vous verrez comme réponse :
 
 ```JSON
 {"item_id":3}
 ```
 
-/// check | vérifier
+/// check | Vérifications
 
-Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
-en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
+Remarquez que la valeur reçue par votre fonction (et renvoyée) est `3`, en tant qu'entier (`int`) Python, pas la chaîne de caractères « 3 ».
 
-Grâce aux déclarations de types, **FastAPI** fournit du
-<abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
+Ainsi, avec cette déclaration de type, **FastAPI** vous fournit automatiquement le <dfn title="conversion de la chaîne de caractères provenant d'une requête HTTP en données Python">« parsing »</dfn> de la requête.
 
 ///
 
-## Validation de données
+## Validation de données { #data-validation }
 
-Si vous allez sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vous aurez une belle erreur HTTP :
+Mais si vous allez dans le navigateur sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vous verrez une belle erreur HTTP :
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "path",
-                "item_id"
-            ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
-        }
-    ]
+  "detail": [
+    {
+      "type": "int_parsing",
+      "loc": [
+        "path",
+        "item_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "foo"
+    }
+  ]
 }
 ```
 
-car le paramètre de chemin `item_id` possède comme valeur `"foo"`, qui ne peut pas être convertie en entier (`int`).
+car le paramètre de chemin `item_id` a pour valeur « foo », qui n'est pas un `int`.
 
-La même erreur se produira si vous passez un nombre flottant (`float`) et non un entier, comme ici
-<a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
+La même erreur apparaîtrait si vous fournissiez un `float` au lieu d'un `int`, comme ici : <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
+/// check | Vérifications
 
-/// check | vérifier
+Ainsi, avec la même déclaration de type Python, **FastAPI** vous fournit la validation de données.
 
-Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
+Remarquez que l'erreur indique clairement l'endroit exact où la validation n'a pas réussi.
 
-Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.
-
-Ce qui est incroyablement utile au moment de développer et débugger du code qui interagit avec votre API.
+C'est incroyablement utile lors du développement et du débogage du code qui interagit avec votre API.
 
 ///
 
-## Documentation
+## Documentation { #documentation }
 
-Et quand vous vous rendez sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, vous verrez la
-documentation générée automatiquement et interactive :
+Et lorsque vous ouvrez votre navigateur sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, vous verrez une documentation d'API automatique et interactive comme :
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// info
+/// check | Vérifications
 
-À nouveau, en utilisant uniquement les déclarations de type Python, **FastAPI** vous fournit automatiquement une documentation interactive (via Swagger UI).
+À nouveau, simplement avec cette même déclaration de type Python, **FastAPI** vous fournit une documentation interactive automatique (intégrant Swagger UI).
 
-On voit bien dans la documentation que `item_id` est déclaré comme entier.
+Remarquez que le paramètre de chemin est déclaré comme entier.
 
 ///
 
-## Les avantages d'avoir une documentation basée sur une norme, et la documentation alternative.
+## Les avantages d'une norme, documentation alternative { #standards-based-benefits-alternative-documentation }
 
-Le schéma généré suivant la norme <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a>,
-il existe de nombreux outils compatibles.
+Et comme le schéma généré suit la norme <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, il existe de nombreux outils compatibles.
 
-Grâce à cela, **FastAPI** lui-même fournit une documentation alternative (utilisant ReDoc), qui peut être lue
-sur <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> :
+Grâce à cela, **FastAPI** fournit lui-même une documentation d'API alternative (utilisant ReDoc), accessible sur <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> :
 
 <img src="/img/tutorial/path-params/image02.png">
 
-De la même façon, il existe bien d'autres outils compatibles, y compris des outils de génération de code
-pour de nombreux langages.
+De la même façon, il existe de nombreux outils compatibles, y compris des outils de génération de code pour de nombreux langages.
 
-## Pydantic
+## Pydantic { #pydantic }
 
-Toute la validation de données est effectué en arrière-plan avec <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>,
-dont vous bénéficierez de tous les avantages. Vous savez donc que vous êtes entre de bonnes mains.
+Toute la validation de données est effectuée sous le capot par <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, vous en bénéficiez donc pleinement. Vous savez ainsi que vous êtes entre de bonnes mains.
 
-## L'ordre importe
+Vous pouvez utiliser les mêmes déclarations de type avec `str`, `float`, `bool` et de nombreux autres types de données complexes.
 
-Quand vous créez des *fonctions de chemins*, vous pouvez vous retrouver dans une situation où vous avez un chemin fixe.
+Plusieurs d'entre eux sont explorés dans les prochains chapitres du tutoriel.
 
-Tel que `/users/me`, disons pour récupérer les données sur l'utilisateur actuel.
+## L'ordre importe { #order-matters }
 
-Et vous avez un second chemin : `/users/{user_id}` pour récupérer de la donnée sur un utilisateur spécifique grâce à son identifiant d'utilisateur
+Quand vous créez des *chemins d'accès*, vous pouvez vous retrouver dans une situation avec un chemin fixe.
 
-Les *fonctions de chemin* étant évaluées dans l'ordre, il faut s'assurer que la fonction correspondant à `/users/me` est déclarée avant celle de `/users/{user_id}` :
+Par exemple `/users/me`, disons pour récupérer les données de l'utilisateur actuel.
 
-{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
+Et vous pouvez aussi avoir un chemin `/users/{user_id}` pour récupérer des données sur un utilisateur spécifique grâce à un identifiant d'utilisateur.
 
-Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, la fonction "croyant" qu'elle a reçu un paramètre `user_id` avec pour valeur `"me"`.
+Comme les *chemins d'accès* sont évalués dans l'ordre, vous devez vous assurer que le chemin `/users/me` est déclaré avant celui de `/users/{user_id}` :
 
-## Valeurs prédéfinies
+{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
 
-Si vous avez une *fonction de chemin* qui reçoit un *paramètre de chemin*, mais que vous voulez que les valeurs possibles des paramètres soient prédéfinies, vous pouvez utiliser les <abbr title="Enumeration">`Enum`</abbr> de Python.
+Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, « pensant » qu'il reçoit un paramètre `user_id` avec la valeur « me ».
 
-### Création d'un `Enum`
+De même, vous ne pouvez pas redéfinir un chemin d'accès :
 
-Importez `Enum` et créez une sous-classe qui hérite de `str` et `Enum`.
+{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
 
-En héritant de `str` la documentation sera capable de savoir que les valeurs doivent être de type `string` et pourra donc afficher cette `Enum` correctement.
+Le premier sera toujours utilisé puisque le chemin correspond en premier.
 
-Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs autorisées pour cette énumération.
+## Valeurs prédéfinies { #predefined-values }
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
+Si vous avez un *chemin d'accès* qui reçoit un *paramètre de chemin*, mais que vous voulez que les valeurs possibles de ce *paramètre de chemin* soient prédéfinies, vous pouvez utiliser une <abbr title="Enumeration - Énumération">`Enum`</abbr> Python standard.
 
-/// info
+### Créer une classe `Enum` { #create-an-enum-class }
 
-<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Les énumérations (ou enums) sont disponibles en Python</a> depuis la version 3.4.
+Importez `Enum` et créez une sous-classe qui hérite de `str` et de `Enum`.
 
-///
+En héritant de `str`, la documentation de l'API saura que les valeurs doivent être de type `string` et pourra donc s'afficher correctement.
+
+Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs valides disponibles :
+
+{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
 
 /// tip | Astuce
 
-Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
+Si vous vous demandez, « AlexNet », « ResNet » et « LeNet » sont juste des noms de <dfn title="Techniquement, architectures de modèles de Deep Learning">modèles</dfn> de Machine Learning.
 
 ///
 
-### Déclarer un paramètre de chemin
+### Déclarer un paramètre de chemin { #declare-a-path-parameter }
 
-Créez ensuite un *paramètre de chemin* avec une annotation de type désignant l'énumération créée précédemment (`ModelName`) :
+Créez ensuite un *paramètre de chemin* avec une annotation de type utilisant la classe d'énumération que vous avez créée (`ModelName`) :
 
-{* ../../docs_src/path_params/tutorial005.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
-### Documentation
+### Consulter la documentation { #check-the-docs }
 
-Les valeurs disponibles pour le *paramètre de chemin* sont bien prédéfinies, la documentation les affiche correctement :
+Comme les valeurs disponibles pour le *paramètre de chemin* sont prédéfinies, la documentation interactive peut les afficher clairement :
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Manipuler les *énumérations* Python
+### Travailler avec les *énumérations* Python { #working-with-python-enumerations }
 
-La valeur du *paramètre de chemin* sera un des "membres" de l'énumération.
+La valeur du *paramètre de chemin* sera un *membre d'énumération*.
 
-#### Comparer les *membres d'énumération*
+#### Comparer des *membres d'énumération* { #compare-enumeration-members }
 
-Vous pouvez comparer ce paramètre avec les membres de votre énumération `ModelName` :
+Vous pouvez le comparer avec le *membre d'énumération* dans votre enum `ModelName` :
 
-{* ../../docs_src/path_params/tutorial005.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
 
-#### Récupérer la *valeur de l'énumération*
+#### Obtenir la *valeur de l'énumération* { #get-the-enumeration-value }
 
-Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici), avec `model_name.value`, ou en général, `votre_membre_d'enum.value` :
+Vous pouvez obtenir la valeur réelle (une `str` dans ce cas) avec `model_name.value`, ou en général, `votre_membre_d_enum.value` :
 
-{* ../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
 
 /// tip | Astuce
 
-Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
+Vous pouvez aussi accéder à la valeur « lenet » avec `ModelName.lenet.value`.
 
 ///
 
-#### Retourner des *membres d'énumération*
+#### Retourner des *membres d'énumération* { #return-enumeration-members }
 
-Vous pouvez retourner des *membres d'énumération* dans vos *fonctions de chemin*, même imbriquée dans un JSON (e.g. un `dict`).
+Vous pouvez retourner des *membres d'énumération* depuis votre *chemin d'accès*, même imbriqués dans un corps JSON (par ex. un `dict`).
 
-Ils seront convertis vers leurs valeurs correspondantes (chaînes de caractères ici) avant d'être transmis au client :
+Ils seront convertis vers leurs valeurs correspondantes (des chaînes de caractères ici) avant d'être renvoyés au client :
 
-{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
 
-Le client recevra une réponse JSON comme celle-ci :
+Dans votre client, vous recevrez une réponse JSON comme :
 
 ```JSON
 {
@@ -208,53 +199,53 @@ Le client recevra une réponse JSON comme celle-ci :
 }
 ```
 
-## Paramètres de chemin contenant des chemins
+## Paramètres de chemin contenant des chemins { #path-parameters-containing-paths }
 
-Disons que vous avez une *fonction de chemin* liée au chemin `/files/{file_path}`.
+Disons que vous avez un *chemin d'accès* avec un chemin `/files/{file_path}`.
 
-Mais que `file_path` lui-même doit contenir un *chemin*, comme `home/johndoe/myfile.txt` par exemple.
+Mais vous avez besoin que `file_path` lui-même contienne un *chemin*, comme `home/johndoe/myfile.txt`.
 
-Donc, l'URL pour ce fichier pourrait être : `/files/home/johndoe/myfile.txt`.
+Ainsi, l'URL pour ce fichier serait : `/files/home/johndoe/myfile.txt`.
 
-### Support d'OpenAPI
+### Support d'OpenAPI { #openapi-support }
 
-OpenAPI ne supporte pas de manière de déclarer un paramètre de chemin contenant un *chemin*, cela pouvant causer des scénarios difficiles à tester et définir.
+OpenAPI ne prend pas en charge une manière de déclarer un *paramètre de chemin* contenant un *chemin* à l'intérieur, car cela peut conduire à des scénarios difficiles à tester et à définir.
 
-Néanmoins, cela reste faisable dans **FastAPI**, via les outils internes de Starlette.
+Néanmoins, vous pouvez toujours le faire dans **FastAPI**, en utilisant l'un des outils internes de Starlette.
 
-Et la documentation fonctionne quand même, bien qu'aucune section ne soit ajoutée pour dire que la paramètre devrait contenir un *chemin*.
+Et la documentation fonctionnera quand même, même si aucune indication supplémentaire ne sera ajoutée pour dire que le paramètre doit contenir un chemin.
 
-### Convertisseur de *chemin*
+### Convertisseur de chemin { #path-convertor }
 
-En utilisant une option de Starlette directement, vous pouvez déclarer un *paramètre de chemin* contenant un *chemin* avec une URL comme :
+En utilisant une option directement depuis Starlette, vous pouvez déclarer un *paramètre de chemin* contenant un *chemin* avec une URL comme :
 
 ```
 /files/{file_path:path}
 ```
 
-Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:path`, indique à Starlette que le paramètre devrait correspondre à un *chemin*.
+Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:path`, indique que le paramètre doit correspondre à n'importe quel *chemin*.
 
-Vous pouvez donc l'utilisez comme tel :
+Vous pouvez donc l'utiliser ainsi :
 
-{* ../../docs_src/path_params/tutorial004.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
 
 /// tip | Astuce
 
-Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
+Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash initial (`/`).
 
 Dans ce cas, l'URL serait : `/files//home/johndoe/myfile.txt`, avec un double slash (`//`) entre `files` et `home`.
 
 ///
 
-## Récapitulatif
+## Récapitulatif { #recap }
 
-Avec **FastAPI**, en utilisant les déclarations de type rapides, intuitives et standards de Python, vous bénéficiez de :
+Avec **FastAPI**, en utilisant des déclarations de type Python courtes, intuitives et standard, vous obtenez :
 
-* Support de l'éditeur : vérification d'erreurs, auto-complétion, etc.
-* <abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"Parsing"</abbr> de données.
-* Validation de données.
-* Annotations d'API et documentation automatique.
+* Support de l'éditeur : vérifications d'erreurs, autocomplétion, etc.
+* Données « <dfn title="conversion de la chaîne de caractères provenant d'une requête HTTP en données Python">parsing</dfn> »
+* Validation de données
+* Annotations d'API et documentation automatique
 
-Et vous n'avez besoin de le déclarer qu'une fois.
+Et vous n'avez besoin de les déclarer qu'une seule fois.
 
-C'est probablement l'avantage visible principal de **FastAPI** comparé aux autres *frameworks* (outre les performances pures).
+C'est probablement l'avantage visible principal de **FastAPI** comparé aux autres frameworks (outre les performances pures).

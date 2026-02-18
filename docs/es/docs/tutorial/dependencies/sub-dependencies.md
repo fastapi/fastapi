@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Si una de tus dependencias se declara varias veces para la misma *path operation*, por ejemplo, múltiples dependencias tienen una sub-dependencia común, **FastAPI** sabrá llamar a esa sub-dependencia solo una vez por request.
 
-Y guardará el valor devuelto en un <abbr title="Una utilidad/sistema para almacenar valores calculados/generados, para reutilizarlos en lugar de calcularlos nuevamente.">"cache"</abbr> y lo pasará a todos los "dependants" que lo necesiten en ese request específico, en lugar de llamar a la dependencia varias veces para el mismo request.
+Y guardará el valor devuelto en un <dfn title="Una utilidad/sistema para almacenar valores calculados/generados, para reutilizarlos en lugar de calcularlos nuevamente.">"caché"</dfn> y lo pasará a todos los "dependants" que lo necesiten en ese request específico, en lugar de llamar a la dependencia varias veces para el mismo request.
 
-En un escenario avanzado donde sabes que necesitas que la dependencia se llame en cada paso (posiblemente varias veces) en el mismo request en lugar de usar el valor "cache", puedes establecer el parámetro `use_cache=False` al usar `Depends`:
+En un escenario avanzado donde sabes que necesitas que la dependencia se llame en cada paso (posiblemente varias veces) en el mismo request en lugar de usar el valor "en caché", puedes establecer el parámetro `use_cache=False` al usar `Depends`:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ sin Anotaciones
+//// tab | Python 3.10+ sin Anotaciones
 
 /// tip | Consejo
 

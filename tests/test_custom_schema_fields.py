@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -10,9 +10,9 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
 
-    description: Annotated[
-        Optional[str], WithJsonSchema({"type": ["string", "null"]})
-    ] = None
+    description: Annotated[str | None, WithJsonSchema({"type": ["string", "null"]})] = (
+        None
+    )
 
     model_config = {
         "json_schema_extra": {
