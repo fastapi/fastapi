@@ -342,5 +342,6 @@ extra_css:
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py
