@@ -163,7 +163,7 @@ images: list[Image]
 
 例如：
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## 无处不在的编辑器支持 { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ images: list[Image]
 
 在下面的例子中，你将接受任意键为 `int` 类型并且值为 `float` 类型的 `dict`：
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | 提示
 

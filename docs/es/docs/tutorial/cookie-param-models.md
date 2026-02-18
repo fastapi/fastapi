@@ -46,7 +46,7 @@ Pero incluso si **rellenas los datos** y haces clic en "Execute", como la UI de 
 
 En algunos casos de uso especiales (probablemente no muy comunes), podrías querer **restringir** las cookies que deseas recibir.
 
-Tu API ahora tiene el poder de controlar su propio <abbr title="Esto es una broma, por si acaso. No tiene nada que ver con los consentimientos de cookies, pero es gracioso que incluso la API ahora pueda rechazar las pobres cookies. Toma una cookie. 🍪">consentimiento de cookies</abbr>. 🤪🍪
+Tu API ahora tiene el poder de controlar su propio <dfn title="Esto es una broma, por si acaso. No tiene nada que ver con los consentimientos de cookies, pero es gracioso que incluso la API ahora pueda rechazar las pobres cookies. Toma una cookie. 🍪">consentimiento de cookies</dfn>. 🤪🍪
 
 Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier campo `extra`:
 
@@ -54,9 +54,9 @@ Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier c
 
 Si un cliente intenta enviar algunas **cookies extra**, recibirán un response de **error**.
 
-Pobres banners de cookies con todo su esfuerzo para obtener tu consentimiento para que la <abbr title="Esta es otra broma. No me prestes atención. Toma un café para tu cookie. ☕">API lo rechace</abbr>. 🍪
+Pobres banners de cookies con todo su esfuerzo para obtener tu consentimiento para que la <dfn title="Esta es otra broma. No me prestes atención. Toma un café para tu cookie. ☕">API lo rechace</dfn>. 🍪
 
-Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valor de `good-list-please`, el cliente recibirá un response de **error** que le informa que la cookie `santa_tracker` <abbr title="Santa desaprueba la falta de cookies. 🎅 Está bien, no más bromas de cookies.">no está permitida</abbr>:
+Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valor de `good-list-please`, el cliente recibirá un response de **error** que le informa que la `santa_tracker` <dfn title="Santa desaprueba la falta de cookies. 🎅 Está bien, no más bromas de cookies.">cookie no está permitida</dfn>:
 
 ```json
 {
@@ -73,4 +73,4 @@ Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valo
 
 ## Resumen { #summary }
 
-Puedes usar **modelos de Pydantic** para declarar <abbr title="Toma una última cookie antes de irte. 🍪">**cookies**</abbr> en **FastAPI**. 😎
+Puedes usar **modelos de Pydantic** para declarar <dfn title="Toma una última cookie antes de irte. 🍪">**cookies**</dfn> en **FastAPI**. 😎

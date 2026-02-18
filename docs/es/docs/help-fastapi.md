@@ -110,7 +110,7 @@ En muchos casos solo copiarán un fragmento del código, pero eso no es suficien
 
 ### Sugerir soluciones { #suggest-solutions }
 
-* Después de poder entender la pregunta, puedes darles un posible **respuesta**.
+* Después de poder entender la pregunta, puedes darles una posible **respuesta**.
 
 * En muchos casos, es mejor entender su **problema subyacente o caso de uso**, porque podría haber una mejor manera de resolverlo que lo que están intentando hacer.
 
@@ -247,9 +247,9 @@ Las conversaciones en los sistemas de chat tampoco son tan fácilmente buscables
 
 Por otro lado, hay miles de usuarios en los sistemas de chat, por lo que hay muchas posibilidades de que encuentres a alguien con quien hablar allí, casi todo el tiempo. 😄
 
-## Patrocina al autor { #sponsor-the-author }
+## Hazte sponsor del autor { #sponsor-the-author }
 
-Si tu **producto/empresa** depende de o está relacionado con **FastAPI** y quieres llegar a sus usuarios, puedes patrocinar al autor (a mí) a través de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>. Según el nivel, podrías obtener algunos beneficios extra, como una insignia en la documentación. 🎁
+Si tu **producto/empresa** depende de o está relacionado con **FastAPI** y quieres llegar a sus usuarios, puedes hacerte sponsor del autor (de mí) a través de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>. Según el nivel, podrías obtener algunos beneficios extra, como una insignia en la documentación. 🎁
 
 ---
 

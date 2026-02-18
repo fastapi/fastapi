@@ -2,7 +2,7 @@
 
 가장 단순한 FastAPI 파일은 다음과 같이 보일 것입니다:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 위 코드를 `main.py`에 복사합니다.
 
@@ -104,7 +104,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### OpenAPI와 JSON 스키마 { #openapi-and-json-schema }
 
-OpenAPI는 당신의 API에 대한 API 스키마를 정의합니다. 또한 이 스키마는 JSON 데이터 스키마의 표준인 **JSON 스키마**를 사용하여 당신의 API가 보내고 받는 데이터의 정의(또는 "스키마")를 포함합니다.
+OpenAPI는 여러분의 API에 대한 API 스키마를 정의합니다. 또한 이 스키마는 JSON 데이터 스키마의 표준인 **JSON 스키마**를 사용하여 여러분의 API가 보내고 받는 데이터의 정의(또는 "스키마")를 포함합니다.
 
 #### `openapi.json` 확인 { #check-the-openapi-json }
 
@@ -183,9 +183,9 @@ Deploying to FastAPI Cloud...
 
 ### 1 단계: `FastAPI` 임포트 { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
-`FastAPI`는 당신의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
+`FastAPI`는 여러분의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
 
 /// note | 기술 세부사항
 
@@ -197,11 +197,11 @@ Deploying to FastAPI Cloud...
 
 ### 2 단계: `FastAPI` "인스턴스" 생성 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 여기에서 `app` 변수는 `FastAPI` 클래스의 "인스턴스"가 됩니다.
 
-이것은 당신의 모든 API를 생성하기 위한 상호작용의 주요 지점이 될 것입니다.
+이것은 여러분의 모든 API를 생성하기 위한 상호작용의 주요 지점이 될 것입니다.
 
 ### 3 단계: *경로 처리* 생성 { #step-3-create-a-path-operation }
 
@@ -266,12 +266,12 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 
 #### *경로 처리 데코레이터* 정의 { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")`은 **FastAPI**에게 바로 아래에 있는 함수가 다음으로 이동하는 요청을 처리한다는 것을 알려줍니다:
 
 * 경로 `/`
-* <abbr title="an HTTP GET method"><code>get</code> operation</abbr> 사용
+* <dfn title="HTTP GET 메소드"><code>get</code> 작동</dfn> 사용
 
 /// info | `@decorator` 정보
 
@@ -320,7 +320,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * **작동**: 은 `get`입니다.
 * **함수**: 는 "데코레이터" 아래에 있는 함수입니다 (`@app.get("/")` 아래).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 이것은 파이썬 함수입니다.
 
@@ -332,7 +332,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 `async def`을 이용하는 대신 일반 함수로 정의할 수 있습니다:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | 참고
 
@@ -342,7 +342,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 ### 5 단계: 콘텐츠 반환 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 `dict`, `list`, 단일값을 가진 `str`, `int` 등을 반환할 수 있습니다.
 

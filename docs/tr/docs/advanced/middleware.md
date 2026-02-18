@@ -57,13 +57,13 @@ Gelen tüm request'lerin `https` veya `wss` olmasını zorunlu kılar.
 
 `http` veya `ws` olarak gelen herhangi bir request, bunun yerine güvenli şemaya redirect edilir.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header saldırılarına karşı korunmak için, gelen tüm request'lerde `Host` header'ının doğru ayarlanmış olmasını zorunlu kılar.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Aşağıdaki argümanlar desteklenir:
 
@@ -78,7 +78,7 @@ Gelen bir request doğru şekilde doğrulanmazsa `400` response gönderilir.
 
 Middleware hem standart hem de streaming response'ları ele alır.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Aşağıdaki argümanlar desteklenir:
 

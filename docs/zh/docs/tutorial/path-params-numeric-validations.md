@@ -54,11 +54,11 @@ FastAPI 在 0.95.0 版本添加了对 `Annotated` 的支持（并开始推荐使
 
 因此，你可以将函数声明为：
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
 但请记住，如果你使用 `Annotated`，你就不会遇到这个问题，因为你没有使用 `Query()` 或 `Path()` 作为函数参数的默认值。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## 按需对参数排序的技巧 { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ FastAPI 在 0.95.0 版本添加了对 `Annotated` 的支持（并开始推荐使
 
 Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数都应该作为关键字参数（键值对）来调用，也被称为 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>。即使它们没有默认值。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### 使用 `Annotated` 更好 { #better-with-annotated }
 
 请记住，如果你使用 `Annotated`，因为你没有使用函数参数的默认值，所以你不会有这个问题，你大概率也不需要使用 `*`。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## 数值校验：大于等于 { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数�
 
 在这里，使用 `ge=1` 后，`item_id` 必须是一个整数，值要「`g`reater than or `e`qual」1。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## 数值校验：大于和小于等于 { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数�
 * `gt`：大于（`g`reater `t`han）
 * `le`：小于等于（`l`ess than or `e`qual）
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## 数值校验：浮点数、大于和小于 { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数�
 
 对于 <abbr title="less than - 小于"><code>lt</code></abbr> 也是一样的。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## 总结 { #recap }
 

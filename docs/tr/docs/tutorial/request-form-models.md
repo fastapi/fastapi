@@ -24,7 +24,7 @@ Bu özellik FastAPI `0.113.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Sadece, **form field** olarak almak istediğiniz alanlarla bir **Pydantic model** tanımlayın ve ardından parametreyi `Form` olarak bildirin:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI**, request içindeki **form data**'dan **her bir field** için veriyi **çıkarır** ve size tanımladığınız Pydantic model'ini verir.
 
@@ -48,7 +48,7 @@ Bu özellik FastAPI `0.114.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Herhangi bir `extra` field'ı `forbid` etmek için Pydantic'in model konfigürasyonunu kullanabilirsiniz:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 Bir client fazladan veri göndermeye çalışırsa, bir **error** response alır.
 

@@ -65,7 +65,7 @@ Burada, bir HTTPS API’nin adım adım nasıl görünebileceğine dair, özelli
 
 Muhtemelen her şey, bir **domain adı** **temin etmenizle** başlar. Sonra bunu bir DNS server’ında (muhtemelen aynı cloud provider’ınızda) yapılandırırsınız.
 
-Muhtemelen bir cloud server (virtual machine) ya da benzeri bir şey alırsınız ve bunun <abbr title="That doesn't change - Bu değişmez">fixed</abbr> bir **public IP adresi** olur.
+Muhtemelen bir cloud server (virtual machine) ya da benzeri bir şey alırsınız ve bunun <dfn title="Zamanla değişmeyen. Dinamik olmayan.">sabit</dfn> bir **public IP adresi** olur.
 
 DNS server(lar)ında, bir kaydı ("`A record`") **domain**’inizi server’ınızın **public IP adresine** yönlendirecek şekilde yapılandırırsınız.
 

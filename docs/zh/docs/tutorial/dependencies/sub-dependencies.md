@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 如果在同一个*路径操作* 多次声明了同一个依赖项，例如，多个依赖项共用一个子依赖项，**FastAPI** 在处理同一请求时，只调用一次该子依赖项。
 
-FastAPI 不会为同一个请求多次调用同一个依赖项，而是把依赖项的返回值进行<abbr title="一个实用程序/系统来存储计算/生成的值，以便重用它们，而不是再次计算它们。">「缓存」</abbr>，并把它传递给同一请求中所有需要使用该返回值的「依赖项」。
+FastAPI 不会为同一个请求多次调用同一个依赖项，而是把依赖项的返回值进行<dfn title="用于存储已计算/生成的值，以便复用而无需再次计算的实用工具/系统">「缓存」</dfn>，并把它传递给同一请求中所有需要使用该返回值的「依赖项」。
 
 在高级使用场景中，如果不想使用「缓存」值，而是为需要在同一请求的每一步操作（多次）中都实际调用依赖项，可以把 `Depends` 的参数 `use_cache` 的值设置为 `False`:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ 非 Annotated
+//// tab | Python 3.10+ 非 Annotated
 
 /// tip | 提示
 

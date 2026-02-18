@@ -26,7 +26,7 @@
 
 예를 들어, 상태 코드 `404`와 Pydantic 모델 `Message`를 사용하는 다른 응답을 선언하려면 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | 참고
 
@@ -203,7 +203,7 @@
 
 또한 `response_model`을 사용하는 상태 코드 `200` 응답을 선언하되, 커스텀 `example`을 포함할 수도 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 이 모든 내용은 OpenAPI에 결합되어 포함되고, API 문서에 표시됩니다:
 

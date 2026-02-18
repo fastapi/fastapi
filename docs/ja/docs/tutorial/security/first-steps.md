@@ -20,7 +20,7 @@
 
 `main.py`に、下記の例をコピーします:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## 実行 { #run-it }
 
@@ -132,7 +132,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 `OAuth2PasswordBearer` クラスのインスタンスを作成する時に、パラメーター`tokenUrl`を渡します。このパラメーターには、クライアント (ユーザーのブラウザで動作するフロントエンド) がトークンを取得するために`username`と`password`を送信するURLを指定します。
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | 豆知識
 
@@ -150,7 +150,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 /// info | 情報
 
-非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
+非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`tokenUrl`ではなく`token_url`であることを気に入らないかもしれません。
 
 それはOpenAPI仕様と同じ名前を使用しているからです。そのため、これらのセキュリティスキームについてもっと調べる必要がある場合は、それをコピーして貼り付ければ、それについての詳細な情報を見つけることができます。
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 これで`oauth2_scheme`を`Depends`で依存関係に渡すことができます。
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 この依存関係は、*path operation 関数*のパラメーター`token`に代入される`str`を提供します。
 

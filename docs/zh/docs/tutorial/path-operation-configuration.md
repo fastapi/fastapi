@@ -46,7 +46,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 **FastAPI** 对此的支持与使用普通字符串相同：
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## 摘要和描述 { #summary-and-description }
 
@@ -56,13 +56,13 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 ## 从 docstring 获取描述 { #description-from-docstring }
 
-描述内容比较长且占用多行时，可以在函数的 <abbr title="作为函数内部的第一个表达式、用于文档用途的多行字符串（不赋给任何变量）">docstring</abbr> 中声明*路径操作*的描述，**FastAPI** 会从中读取。
+描述内容比较长且占用多行时，可以在函数的 <dfn title="作为函数内部的第一个表达式（不赋给任何变量）的多行字符串，用于文档用途">docstring</dfn> 中声明*路径操作*的描述，**FastAPI** 会从中读取。
 
 文档字符串支持 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
-下图为 Markdown 文本在 API 文档中的显示效果：
+它会在交互式文档中使用：
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
@@ -72,7 +72,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 说明
+/// info | 信息
 
 注意，`response_description` 只用于描述响应，`description` 一般则用于描述*路径操作*。
 
@@ -90,9 +90,9 @@ OpenAPI 规定每个*路径操作*都要有响应描述。
 
 ## 弃用*路径操作* { #deprecate-a-path-operation }
 
-`deprecated` 参数可以把*路径操作*标记为<abbr title="过时，建议不要使用">弃用</abbr>，无需直接删除：
+如果需要把*路径操作*标记为<dfn title="过时，建议不要使用">弃用</dfn>，但不删除它，可以传入 `deprecated` 参数：
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 API 文档会把该路径操作标记为弃用：
 

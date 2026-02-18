@@ -30,7 +30,7 @@
 
 我们使用 `yield` 创建了一个异步函数 `lifespan()` 像这样：
 
-{* ../../docs_src/events/tutorial003_py39.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
 在这里，我们在 `yield` 之前将（虚拟的）模型函数放入机器学习模型的字典中，以此模拟加载模型的耗时**启动**操作。这段代码将在应用程序**开始处理请求之前**执行，即**启动**期间。
 
@@ -48,7 +48,7 @@
 
 首先要注意的是，我们定义了一个带有 `yield` 的异步函数。这与带有 `yield` 的依赖项非常相似。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
 
 这个函数在 `yield` 之前的部分，会在应用启动前执行。
 
@@ -60,7 +60,7 @@
 
 它将函数转化为所谓的“**异步上下文管理器**”。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
 
 在 Python 中，**上下文管理器**是一个你可以在 `with` 语句中使用的东西，例如，`open()` 可以作为上下文管理器使用。
 
@@ -82,7 +82,7 @@ async with lifespan(app):
 
 `FastAPI` 的 `lifespan` 参数接受一个**异步上下文管理器**，所以我们可以把我们新定义的异步上下文管理器 `lifespan` 传给它。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[22] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
 ## 替代事件（弃用） { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ async with lifespan(app):
 
 使用事件 `"startup"` 声明一个在应用启动前运行的函数：
 
-{* ../../docs_src/events/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
 本例中，`startup` 事件处理器函数为项目“数据库”（只是一个 `dict`）提供了一些初始值。
 
@@ -116,7 +116,7 @@ async with lifespan(app):
 
 使用事件 `"shutdown"` 声明一个在应用关闭时运行的函数：
 
-{* ../../docs_src/events/tutorial002_py39.py hl[6] *}
+{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 此处，`shutdown` 事件处理器函数会向文件 `log.txt` 写入一行文本 `"Application shutdown"`。
 

@@ -18,7 +18,7 @@ Ardından WSGI (örn. Flask) uygulamasını middleware ile sarmalayın.
 
 Ve sonra bunu bir path'in altına mount edin.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
 
 /// note | Not
 

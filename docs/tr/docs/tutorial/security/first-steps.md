@@ -20,7 +20,7 @@ Güvenliği yönetmek için **FastAPI**’nin sunduğu araçları kullanalım.
 
 Örneği `main.py` adlı bir dosyaya kopyalayın:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Çalıştırın { #run-it }
 
@@ -132,7 +132,7 @@ Bu durumda bile **FastAPI**, onu oluşturabilmeniz için gereken araçları suna
 
 `OAuth2PasswordBearer` sınıfının bir instance’ını oluştururken `tokenUrl` parametresini veririz. Bu parametre, client’ın (kullanıcının browser’ında çalışan frontend’in) token almak için `username` ve `password` göndereceği URL’yi içerir.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | İpucu
 
@@ -170,7 +170,7 @@ Dolayısıyla `Depends` ile kullanılabilir.
 
 Artık `Depends` ile bir dependency olarak `oauth2_scheme`’i geçebilirsiniz.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Bu dependency, *path operation function* içindeki `token` parametresine atanacak bir `str` sağlar.
 

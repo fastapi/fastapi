@@ -32,7 +32,7 @@ Webhooks는 OpenAPI 3.1.0 이상에서 사용할 수 있으며, FastAPI `0.99.0`
 
 **FastAPI** 애플리케이션을 만들면, *경로 처리*를 정의하는 것과 같은 방식으로(예: `@app.webhooks.post()`), *webhooks*를 정의하는 데 사용할 수 있는 `webhooks` 속성이 있습니다.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 여러분이 정의한 webhook은 **OpenAPI** 스키마와 자동 **docs UI**에 포함됩니다.
 

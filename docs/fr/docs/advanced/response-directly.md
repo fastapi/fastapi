@@ -22,7 +22,7 @@ En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle s
 
 Et quand vous retournez une `Response`, **FastAPI** la transmet directement.
 
-Elle ne fera aucune conversion de données avec les modèles Pydantic, elle ne convertira pas le contenu en un type quelconque.
+Elle ne fera aucune conversion de données avec les modèles Pydantic, elle ne convertira pas le contenu en un type quelconque, etc.
 
 Cela vous donne beaucoup de flexibilité. Vous pouvez retourner n'importe quel type de données, surcharger n'importe quelle déclaration ou validation de données, etc.
 
@@ -54,7 +54,7 @@ Disons que vous voulez retourner une réponse <a href="https://en.wikipedia.org/
 
 Vous pouvez mettre votre contenu XML dans une chaîne de caractères, la placer dans une `Response`, et la retourner :
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Notes { #notes }
 

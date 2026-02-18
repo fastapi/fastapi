@@ -2,7 +2,7 @@
 
 Python tiene soporte para "anotaciones de tipos" opcionales (también llamadas "type hints").
 
-Estas **"anotaciones de tipos"** o type hints son una sintaxis especial que permite declarar el <abbr title="por ejemplo: str, int, float, bool">tipo</abbr> de una variable.
+Estas **"anotaciones de tipos"** o type hints son una sintaxis especial que permite declarar el <dfn title="por ejemplo: str, int, float, bool">tipo</dfn> de una variable.
 
 Al declarar tipos para tus variables, los editores y herramientas te pueden proporcionar un mejor soporte.
 
@@ -22,7 +22,7 @@ Si eres un experto en Python, y ya sabes todo sobre las anotaciones de tipos, sa
 
 Comencemos con un ejemplo simple:
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
 Llamar a este programa genera:
 
@@ -34,9 +34,9 @@ La función hace lo siguiente:
 
 * Toma un `first_name` y `last_name`.
 * Convierte la primera letra de cada uno a mayúsculas con `title()`.
-* <abbr title="Los une, como uno. Con el contenido de uno después del otro.">Concatena</abbr> ambos con un espacio en el medio.
+* <dfn title="Los une, como uno. Con el contenido de uno después del otro.">Concatena</dfn> ambos con un espacio en el medio.
 
-{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
 ### Edítalo { #edit-it }
 
@@ -78,7 +78,7 @@ Eso es todo.
 
 Esas son las "anotaciones de tipos":
 
-{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
 Eso no es lo mismo que declarar valores predeterminados como sería con:
 
@@ -106,7 +106,7 @@ Con eso, puedes desplazarte, viendo las opciones, hasta que encuentres la que "t
 
 Revisa esta función, ya tiene anotaciones de tipos:
 
-{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
 Porque el editor conoce los tipos de las variables, no solo obtienes autocompletado, también obtienes chequeo de errores:
 
@@ -114,7 +114,7 @@ Porque el editor conoce los tipos de las variables, no solo obtienes autocomplet
 
 Ahora sabes que debes corregirlo, convertir `age` a un string con `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
 ## Declaración de tipos { #declaring-types }
 
@@ -133,29 +133,32 @@ Puedes usar, por ejemplo:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
 
-### Tipos genéricos con parámetros de tipo { #generic-types-with-type-parameters }
+### Módulo `typing` { #typing-module }
 
-Hay algunas estructuras de datos que pueden contener otros valores, como `dict`, `list`, `set` y `tuple`. Y los valores internos también pueden tener su propio tipo.
+Para algunos casos adicionales, podrías necesitar importar algunas cosas del módulo `typing` de la standard library, por ejemplo cuando quieres declarar que algo tiene "cualquier tipo", puedes usar `Any` de `typing`:
 
-Estos tipos que tienen tipos internos se denominan tipos "**genéricos**". Y es posible declararlos, incluso con sus tipos internos.
+```python
+from typing import Any
 
-Para declarar esos tipos y los tipos internos, puedes usar el módulo estándar de Python `typing`. Existe específicamente para soportar estas anotaciones de tipos.
 
-#### Versiones más recientes de Python { #newer-versions-of-python }
+def some_function(data: Any):
+    print(data)
+```
 
-La sintaxis que utiliza `typing` es **compatible** con todas las versiones, desde Python 3.6 hasta las versiones más recientes, incluyendo Python 3.9, Python 3.10, etc.
+### Tipos genéricos { #generic-types }
 
-A medida que avanza Python, las **versiones más recientes** vienen con soporte mejorado para estas anotaciones de tipos y en muchos casos ni siquiera necesitarás importar y usar el módulo `typing` para declarar las anotaciones de tipos.
+Algunos tipos pueden tomar "parámetros de tipo" entre corchetes, para definir sus tipos internos, por ejemplo una "lista de strings" se declararía `list[str]`.
 
-Si puedes elegir una versión más reciente de Python para tu proyecto, podrás aprovechar esa simplicidad adicional.
+Estos tipos que pueden tomar parámetros de tipo se llaman **Tipos Genéricos** o **Genéricos**.
 
-En toda la documentación hay ejemplos compatibles con cada versión de Python (cuando hay una diferencia).
+Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos dentro):
 
-Por ejemplo, "**Python 3.6+**" significa que es compatible con Python 3.6 o superior (incluyendo 3.7, 3.8, 3.9, 3.10, etc). Y "**Python 3.9+**" significa que es compatible con Python 3.9 o superior (incluyendo 3.10, etc).
-
-Si puedes usar las **últimas versiones de Python**, utiliza los ejemplos para la última versión, esos tendrán la **mejor y más simple sintaxis**, por ejemplo, "**Python 3.10+**".
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
 #### Lista { #list }
 
@@ -167,7 +170,7 @@ Como tipo, pon `list`.
 
 Como la lista es un tipo que contiene algunos tipos internos, los pones entre corchetes:
 
-{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
 /// info | Información
 
@@ -193,7 +196,7 @@ Y aún así, el editor sabe que es un `str` y proporciona soporte para eso.
 
 Harías lo mismo para declarar `tuple`s y `set`s:
 
-{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
 
 Esto significa:
 
@@ -208,7 +211,7 @@ El primer parámetro de tipo es para las claves del `dict`.
 
 El segundo parámetro de tipo es para los valores del `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
 
 Esto significa:
 
@@ -218,45 +221,21 @@ Esto significa:
 
 #### Union { #union }
 
-Puedes declarar que una variable puede ser cualquier de **varios tipos**, por ejemplo, un `int` o un `str`.
+Puedes declarar que una variable puede ser cualquiera de **varios tipos**, por ejemplo, un `int` o un `str`.
 
-En Python 3.6 y posterior (incluyendo Python 3.10) puedes usar el tipo `Union` de `typing` y poner dentro de los corchetes los posibles tipos a aceptar.
+Para definirlo usas la <dfn title='también llamado "operador OR a nivel de bits", pero ese significado no es relevante aquí'>barra vertical (`|`)</dfn> para separar ambos tipos.
 
-En Python 3.10 también hay una **nueva sintaxis** donde puedes poner los posibles tipos separados por una <abbr title='también llamado "operador OR a nivel de bits", pero ese significado no es relevante aquí'>barra vertical (`|`)</abbr>.
-
-//// tab | Python 3.10+
+Esto se llama una "unión", porque la variable puede ser cualquiera en la unión de esos dos conjuntos de tipos.
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b_py39.py!}
-```
-
-////
-
-En ambos casos, esto significa que `item` podría ser un `int` o un `str`.
+Esto significa que `item` podría ser un `int` o un `str`.
 
 #### Posiblemente `None` { #possibly-none }
 
 Puedes declarar que un valor podría tener un tipo, como `str`, pero que también podría ser `None`.
-
-En Python 3.6 y posteriores (incluyendo Python 3.10) puedes declararlo importando y usando `Optional` del módulo `typing`.
-
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-Usar `Optional[str]` en lugar de solo `str` te permitirá al editor ayudarte a detectar errores donde podrías estar asumiendo que un valor siempre es un `str`, cuando en realidad también podría ser `None`.
-
-`Optional[Something]` es realmente un atajo para `Union[Something, None]`, son equivalentes.
-
-Esto también significa que en Python 3.10, puedes usar `Something | None`:
 
 //// tab | Python 3.10+
 
@@ -266,96 +245,7 @@ Esto también significa que en Python 3.10, puedes usar `Something | None`:
 
 ////
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-////
-
-//// tab | Python 3.9+ alternativa
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b_py39.py!}
-```
-
-////
-
-#### Uso de `Union` u `Optional` { #using-union-or-optional }
-
-Si estás usando una versión de Python inferior a 3.10, aquí tienes un consejo desde mi punto de vista muy **subjetivo**:
-
-* 🚨 Evita usar `Optional[SomeType]`
-* En su lugar ✨ **usa `Union[SomeType, None]`** ✨.
-
-Ambos son equivalentes y debajo son lo mismo, pero recomendaría `Union` en lugar de `Optional` porque la palabra "**opcional**" parecería implicar que el valor es opcional, y en realidad significa "puede ser `None`", incluso si no es opcional y aún es requerido.
-
-Creo que `Union[SomeType, None]` es más explícito sobre lo que significa.
-
-Se trata solo de las palabras y nombres. Pero esas palabras pueden afectar cómo tú y tus compañeros de equipo piensan sobre el código.
-
-Como ejemplo, tomemos esta función:
-
-{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
-
-El parámetro `name` está definido como `Optional[str]`, pero **no es opcional**, no puedes llamar a la función sin el parámetro:
-
-```Python
-say_hi()  # ¡Oh, no, esto lanza un error! 😱
-```
-
-El parámetro `name` sigue siendo **requerido** (no *opcional*) porque no tiene un valor predeterminado. Aún así, `name` acepta `None` como valor:
-
-```Python
-say_hi(name=None)  # Esto funciona, None es válido 🎉
-```
-
-La buena noticia es que, una vez que estés en Python 3.10, no tendrás que preocuparte por eso, ya que podrás simplemente usar `|` para definir uniones de tipos:
-
-{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
-
-Y entonces no tendrás que preocuparte por nombres como `Optional` y `Union`. 😎
-
-#### Tipos genéricos { #generic-types }
-
-Estos tipos que toman parámetros de tipo en corchetes se llaman **Tipos Genéricos** o **Genéricos**, por ejemplo:
-
-//// tab | Python 3.10+
-
-Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos dentro):
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-Y, como con versiones anteriores de Python, desde el módulo `typing`:
-
-* `Union`
-* `Optional`
-* ...y otros.
-
-En Python 3.10, como alternativa a usar los genéricos `Union` y `Optional`, puedes usar la <abbr title='también llamado "operador OR a nivel de bits", pero ese significado no es relevante aquí'>barra vertical (`|`)</abbr> para declarar uniones de tipos, eso es mucho mejor y más simple.
-
-////
-
-//// tab | Python 3.9+
-
-Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos dentro):
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-Y generics desde el módulo `typing`:
-
-* `Union`
-* `Optional`
-* ...y otros.
-
-////
+Usar `str | None` en lugar de solo `str` te permitirá al editor ayudarte a detectar errores donde podrías estar asumiendo que un valor siempre es un `str`, cuando en realidad también podría ser `None`.
 
 ### Clases como tipos { #classes-as-types }
 
@@ -363,11 +253,11 @@ También puedes declarar una clase como el tipo de una variable.
 
 Digamos que tienes una clase `Person`, con un nombre:
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
 
 Luego puedes declarar una variable para que sea de tipo `Person`:
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
 
 Y luego, nuevamente, obtienes todo el soporte del editor:
 
@@ -403,19 +293,13 @@ Para saber más sobre <a href="https://docs.pydantic.dev/" class="external-link"
 
 Verás mucho más de todo esto en práctica en el [Tutorial - Guía del Usuario](tutorial/index.md){.internal-link target=_blank}.
 
-/// tip | Consejo
-
-Pydantic tiene un comportamiento especial cuando utilizas `Optional` o `Union[Something, None]` sin un valor por defecto, puedes leer más sobre ello en la documentación de Pydantic sobre <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required Optional fields</a>.
-
-///
-
 ## Anotaciones de tipos con metadata { #type-hints-with-metadata-annotations }
 
-Python también tiene una funcionalidad que permite poner **<abbr title="Datos sobre los datos, en este caso, información sobre el tipo, por ejemplo, una descripción.">metadatos</abbr> adicional** en estas anotaciones de tipos usando `Annotated`.
+Python también tiene una funcionalidad que permite poner **<dfn title="Datos sobre los datos, en este caso, información sobre el tipo, por ejemplo, una descripción.">metadata</dfn> adicional** en estas anotaciones de tipos usando `Annotated`.
 
-Desde Python 3.9, `Annotated` es parte de la standard library, así que puedes importarlo desde `typing`.
+Puedes importar `Annotated` desde `typing`.
 
-{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
 
 Python en sí no hace nada con este `Annotated`. Y para los editores y otras herramientas, el tipo sigue siendo `str`.
 

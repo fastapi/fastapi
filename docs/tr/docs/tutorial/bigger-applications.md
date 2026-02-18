@@ -85,7 +85,7 @@ Bu module için *path operation*’ları `APIRouter` kullanarak oluşturabilirsi
 
 `FastAPI` class’ında yaptığınız gibi import edip bir "instance" oluşturursunuz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### `APIRouter` ile *Path Operations* { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ Sonra bunu kullanarak *path operation*’larınızı tanımlarsınız.
 
 `FastAPI` class’ını nasıl kullanıyorsanız aynı şekilde kullanın:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 `APIRouter`’ı "mini bir `FastAPI`" class’ı gibi düşünebilirsiniz.
 
@@ -117,7 +117,7 @@ Bu yüzden onları ayrı bir `dependencies` module’üne koyuyoruz (`app/depend
 
 Şimdi, özel bir `X-Token` header'ını okumak için basit bir dependency kullanalım:
 
-{* ../../docs_src/bigger_applications/app_an_py39/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | İpucu
 
@@ -149,7 +149,7 @@ Bu module’deki tüm *path operation*’ların şu ortak özelliklere sahip old
 
 Dolayısıyla bunları her *path operation*’a tek tek eklemek yerine `APIRouter`’a ekleyebiliriz.
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 Her *path operation*’ın path’i aşağıdaki gibi `/` ile başlamak zorunda olduğundan:
 
@@ -208,7 +208,7 @@ Dependency function’ını ise `app.dependencies` module’ünden, yani `app/de
 
 Bu yüzden dependency’ler için `..` ile relative import kullanıyoruz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Relative Import Nasıl Çalışır { #how-relative-imports-work }
 
@@ -279,7 +279,7 @@ Artık nasıl çalıştığını bildiğinize göre, uygulamalarınız ne kadar 
 
 Ama yine de belirli bir *path operation*’a uygulanacak _ek_ `tags` tanımlayabilir, ayrıca o *path operation*’a özel `responses` ekleyebiliriz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | İpucu
 
@@ -305,13 +305,13 @@ Normal şekilde bir `FastAPI` class’ı oluşturursunuz.
 
 Hatta her `APIRouter` için olan dependency’lerle birleştirilecek [global dependencies](dependencies/global-dependencies.md){.internal-link target=_blank} bile tanımlayabilirsiniz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### `APIRouter` Import Edin { #import-the-apirouter }
 
 Şimdi `APIRouter` içeren diğer submodule’leri import ediyoruz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
 `app/routers/users.py` ve `app/routers/items.py` dosyaları aynı Python package’i olan `app`’in parçası olan submodule’ler olduğu için, onları "relative import" ile tek bir nokta `.` kullanarak import edebiliriz.
 
@@ -374,13 +374,13 @@ from .routers.users import router
 
 Bu yüzden ikisini de aynı dosyada kullanabilmek için submodule’leri doğrudan import ediyoruz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
 ### `users` ve `items` için `APIRouter`’ları Dahil Edin { #include-the-apirouters-for-users-and-items }
 
 Şimdi `users` ve `items` submodule’lerindeki `router`’ları dahil edelim:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
 /// info | Bilgi
 
@@ -420,13 +420,13 @@ Bu dosyada, kurumunuzun birden fazla proje arasında paylaştığı bazı admin 
 
 Bu örnekte çok basit olacak. Ancak kurum içinde başka projelerle paylaşıldığı için, bunu değiştirip `prefix`, `dependencies`, `tags` vs. doğrudan `APIRouter`’a ekleyemediğimizi varsayalım:
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Yine de bu `APIRouter`’ı dahil ederken özel bir `prefix` ayarlamak istiyoruz ki tüm *path operation*’ları `/admin` ile başlasın; ayrıca bu projede hâlihazırda kullandığımız `dependencies` ile güvene almak, `tags` ve `responses` eklemek istiyoruz.
 
 Orijinal `APIRouter`’ı değiştirmeden, bu parametreleri `app.include_router()`’a vererek hepsini tanımlayabiliriz:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
 
 Böylece orijinal `APIRouter` değişmeden kalır; yani aynı `app/internal/admin.py` dosyasını kurum içindeki diğer projelerle de paylaşmaya devam edebiliriz.
 
@@ -447,7 +447,7 @@ Dolayısıyla örneğin diğer projeler aynı `APIRouter`’ı farklı bir authe
 
 Burada bunu yapıyoruz... sadece yapabildiğimizi göstermek için 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
 ve `app.include_router()` ile eklenen diğer tüm *path operation*’larla birlikte doğru şekilde çalışır.
 
