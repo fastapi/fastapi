@@ -45,7 +45,10 @@ jobs:
   test:
     needs:
       - changes
-    if: needs.changes.outputs.src == 'true'
+    if: |
+      needs.changes.outputs.src == 'true' ||
+      github.event_name == 'schedule' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/master')
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
