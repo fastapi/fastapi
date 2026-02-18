@@ -162,7 +162,7 @@ You can declare a response to be the union of two or more types, that means, tha
 
 It will be defined in OpenAPI with `anyOf`.
 
-To do that, use the standard Python type hint union:
+To do that, use the standard Python union syntax:
 
 /// note
 
