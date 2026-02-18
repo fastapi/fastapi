@@ -6,15 +6,15 @@ Oder die Abhängigkeit gibt keinen Wert zurück.
 
 Aber Sie müssen sie trotzdem ausführen/auflösen.
 
-In diesen Fällen können Sie, anstatt einen Parameter der *Pfadoperation-Funktion* mit `Depends` zu deklarieren, eine `list`e von `dependencies` zum *Pfadoperation-Dekorator* hinzufügen.
+In diesen Fällen können Sie, anstatt einen Parameter der *Pfadoperation-Funktion* mit `Depends` zu deklarieren, eine `list` von `dependencies` zum *Pfadoperation-Dekorator* hinzufügen.
 
 ## `dependencies` zum *Pfadoperation-Dekorator* hinzufügen { #add-dependencies-to-the-path-operation-decorator }
 
 Der *Pfadoperation-Dekorator* erhält ein optionales Argument `dependencies`.
 
-Es sollte eine `list`e von `Depends()` sein:
+Es sollte eine `list` von `Depends()` sein:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
@@ -44,13 +44,13 @@ Sie können dieselben Abhängigkeits-*Funktionen* verwenden, die Sie normalerwei
 
 Sie können Anforderungen für einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> (wie Header) oder andere Unterabhängigkeiten deklarieren:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
 ### Exceptions auslösen { #raise-exceptions }
 
 Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeiten:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
 ### Rückgabewerte { #return-values }
 
@@ -58,7 +58,7 @@ Und sie können Werte zurückgeben oder nicht, die Werte werden nicht verwendet.
 
 Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Sie bereits an anderer Stelle verwenden, wiederverwenden, und auch wenn der Wert nicht verwendet wird, wird die Abhängigkeit ausgeführt:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
 ## Abhängigkeiten für eine Gruppe von *Pfadoperationen* { #dependencies-for-a-group-of-path-operations }
 

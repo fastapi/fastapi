@@ -12,7 +12,7 @@ OpenAPI “전문가”가 아니라면, 아마 이 내용은 필요하지 않�
 
 각 작업마다 고유하도록 보장해야 합니다.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### *경로 처리 함수* 이름을 operationId로 사용하기 { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ API의 함수 이름을 `operationId`로 사용하고 싶다면, 모든 API를 �
 
 모든 *경로 처리*를 추가한 뒤에 수행해야 합니다.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip | 팁
 
@@ -40,7 +40,7 @@ API의 함수 이름을 `operationId`로 사용하고 싶다면, 모든 API를 �
 
 생성된 OpenAPI 스키마(따라서 자동 문서화 시스템)에서 특정 *경로 처리*를 제외하려면, `include_in_schema` 매개변수를 `False`로 설정하세요:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## docstring에서 고급 설명 가져오기 { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@ OpenAPI 명세에서는 이를 <a href="https://github.com/OAI/OpenAPI-Specifica
 
 예를 들어 `openapi_extra`는 [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions)를 선언하는 데 도움이 될 수 있습니다:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 자동 API 문서를 열면, 해당 특정 *경로 처리*의 하단에 확장이 표시됩니다.
 
@@ -139,9 +139,9 @@ OpenAPI 명세에서는 이를 <a href="https://github.com/OAI/OpenAPI-Specifica
 
 그럴 때 `openapi_extra`를 사용할 수 있습니다:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-이 예시에서는 어떤 Pydantic 모델도 선언하지 않았습니다. 사실 요청 바디는 JSON으로 <abbr title="converted from some plain format, like bytes, into Python objects - bytes 같은 일반 형식에서 Python 객체로 변환">parsed</abbr>되지도 않고, `bytes`로 직접 읽습니다. 그리고 함수 `magic_data_reader()`가 어떤 방식으로든 이를 파싱하는 역할을 담당합니다.
+이 예시에서는 어떤 Pydantic 모델도 선언하지 않았습니다. 사실 요청 바디는 JSON으로 <dfn title="bytes 같은 일반 형식에서 Python 객체로 변환">파싱</dfn>되지도 않고, `bytes`로 직접 읽습니다. 그리고 함수 `magic_data_reader()`가 어떤 방식으로든 이를 파싱하는 역할을 담당합니다.
 
 그럼에도 불구하고, 요청 바디에 대해 기대하는 스키마를 선언할 수 있습니다.
 
@@ -153,7 +153,7 @@ OpenAPI 명세에서는 이를 <a href="https://github.com/OAI/OpenAPI-Specifica
 
 예를 들어 이 애플리케이션에서는 Pydantic 모델에서 JSON Schema를 추출하는 FastAPI의 통합 기능도, JSON에 대한 자동 검증도 사용하지 않습니다. 실제로 요청 콘텐츠 타입을 JSON이 아니라 YAML로 선언합니다:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 그럼에도 기본 통합 기능을 사용하지 않더라도, YAML로 받고자 하는 데이터에 대한 JSON Schema를 수동으로 생성하기 위해 Pydantic 모델을 여전히 사용합니다.
 
@@ -161,7 +161,7 @@ OpenAPI 명세에서는 이를 <a href="https://github.com/OAI/OpenAPI-Specifica
 
 그리고 코드에서 YAML 콘텐츠를 직접 파싱한 뒤, 다시 같은 Pydantic 모델을 사용해 YAML 콘텐츠를 검증합니다:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip | 팁
 

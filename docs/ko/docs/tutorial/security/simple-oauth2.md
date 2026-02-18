@@ -162,7 +162,7 @@ UserInDB(
 
 /// tip | 팁
 
-다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
+다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
 
 하지만 지금은 필요한 세부 정보에 집중하겠습니다.
 
@@ -286,4 +286,4 @@ UserInDB(
 
 유일한 오점은 아직 실제로 "안전"하지 않다는 것입니다.
 
-다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.
+다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.

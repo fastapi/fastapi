@@ -2,7 +2,7 @@
 
 Wenn Sie in Ihrer Funktion andere Parameter deklarieren, die nicht Teil der Pfad-Parameter sind, dann werden diese automatisch als „Query“-Parameter interpretiert.
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 Die <abbr title="Abfrage">Query</abbr> ist die Menge von Schlüssel-Wert-Paaren, die nach dem `?` in einer URL folgen und durch `&`-Zeichen getrennt sind.
 
@@ -24,7 +24,7 @@ Aber wenn Sie sie mit Python-Typen deklarieren (im obigen Beispiel als `int`), w
 Die gleichen Prozesse, die für Pfad-Parameter gelten, werden auch auf Query-Parameter angewendet:
 
 * Editor Unterstützung (natürlich)
-* Daten-<abbr title="Konvertieren des Strings, der von einem HTTP-Request kommt, in Python-Daten">„Parsen“</abbr>
+* Daten-<dfn title="Konvertieren des Strings, der von einem HTTP-Request kommt, in Python-Daten">„Parsen“</dfn>
 * Datenvalidierung
 * Automatische Dokumentation
 
@@ -127,7 +127,7 @@ Wenn Sie keinen spezifischen Wert haben wollen, sondern der Parameter einfach op
 
 Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie einfach keinen Defaultwert:
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Hier ist `needy` ein erforderlicher Query-Parameter vom Typ `str`.
 
