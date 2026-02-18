@@ -8,7 +8,7 @@ API 문서는 **Swagger UI**와 **ReDoc**을 사용하며, 각각 JavaScript와 
 
 ## JavaScript와 CSS용 커스텀 CDN { #custom-cdn-for-javascript-and-css }
 
-예를 들어 다른 <abbr title="Content Delivery Network">CDN</abbr>을 사용하고 싶다고 해봅시다. 예를 들면 `https://unpkg.com/`을 사용하려는 경우입니다.
+예를 들어 다른 <abbr title="Content Delivery Network - 콘텐츠 전송 네트워크">CDN</abbr>을 사용하고 싶다고 해봅시다. 예를 들면 `https://unpkg.com/`을 사용하려는 경우입니다.
 
 이는 예를 들어 특정 국가에서 일부 URL을 제한하는 경우에 유용할 수 있습니다.
 
@@ -18,7 +18,7 @@ API 문서는 **Swagger UI**와 **ReDoc**을 사용하며, 각각 JavaScript와 
 
 비활성화하려면 `FastAPI` 앱을 생성할 때 해당 URL을 `None`으로 설정하세요:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
 
 ### 커스텀 문서 포함하기 { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ FastAPI 내부 함수를 재사용해 문서용 HTML 페이지를 생성하고, 
 
 ReDoc도 마찬가지입니다...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | 팁
 
@@ -50,7 +50,7 @@ Swagger UI가 이 과정을 백그라운드에서 처리해 주지만, 이를 �
 
 이제 모든 것이 제대로 동작하는지 테스트할 수 있도록 *경로 처리*를 하나 만드세요:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
 
 ### 테스트하기 { #test-it }
 
@@ -118,7 +118,7 @@ JavaScript와 CSS를 자체 호스팅하는 것은 예를 들어, 오프라인 �
 * `StaticFiles`를 import합니다.
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트(mount)"합니다.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
 
 ### 정적 파일 테스트하기 { #test-the-static-files }
 
@@ -144,7 +144,7 @@ JavaScript와 CSS를 자체 호스팅하는 것은 예를 들어, 오프라인 �
 
 비활성화하려면 `FastAPI` 앱을 생성할 때 해당 URL을 `None`으로 설정하세요:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
 
 ### 정적 파일을 위한 커스텀 문서 포함하기 { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ JavaScript와 CSS를 자체 호스팅하는 것은 예를 들어, 오프라인 �
 
 ReDoc도 마찬가지입니다...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | 팁
 
@@ -176,7 +176,7 @@ Swagger UI가 이 과정을 백그라운드에서 처리해 주지만, 이를 �
 
 이제 모든 것이 제대로 동작하는지 테스트할 수 있도록 *경로 처리*를 하나 만드세요:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
 
 ### 정적 파일 UI 테스트하기 { #test-static-files-ui }
 

@@ -1,8 +1,8 @@
-# Démarrage { #first-steps }
+# Démarrer { #first-steps }
 
 Le fichier **FastAPI** le plus simple possible pourrait ressembler à ceci :
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Copiez cela dans un fichier `main.py`.
 
@@ -56,7 +56,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 Cette ligne montre l’URL où votre application est servie, sur votre machine locale.
 
-### Vérifiez { #check-it }
+### Vérifier { #check-it }
 
 Ouvrez votre navigateur à l’adresse <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
@@ -183,7 +183,7 @@ C’est tout ! Vous pouvez maintenant accéder à votre application à cette URL
 
 ### Étape 1 : importer `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` est une classe Python qui fournit toutes les fonctionnalités nécessaires à votre API.
 
@@ -197,7 +197,7 @@ Vous pouvez donc aussi utiliser toutes les fonctionnalités de <a href="https://
 
 ### Étape 2 : créer une « instance » `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Ici, la variable `app` sera une « instance » de la classe `FastAPI`.
 
@@ -266,14 +266,14 @@ Nous allons donc aussi les appeler « opérations ».
 
 #### Définir un « décorateur de chemin d’accès » { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 Le `@app.get("/")` indique à **FastAPI** que la fonction juste en dessous est chargée de gérer les requêtes qui vont vers :
 
 * le chemin `/`
-* en utilisant une <abbr title="une méthode HTTP GET"><code>get</code> opération</abbr>
+* en utilisant une <dfn title="une méthode HTTP GET"><code>get</code> opération</dfn>
 
-/// info | `@décorateur` Info
+/// info | `@decorator` Info
 
 Cette syntaxe `@something` en Python est appelée un « décorateur ».
 
@@ -320,7 +320,7 @@ Voici notre « fonction de chemin d’accès » :
 * **opération** : `get`.
 * **fonction** : la fonction sous le « décorateur » (sous `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 C’est une fonction Python.
 
@@ -332,9 +332,9 @@ Dans ce cas, c’est une fonction `async`.
 
 Vous pouvez aussi la définir comme une fonction normale au lieu de `async def` :
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note
+/// note | Remarque
 
 Si vous ne connaissez pas la différence, consultez [Asynchrone : « Pressé ? »](../async.md#in-a-hurry){.internal-link target=_blank}.
 
@@ -342,7 +342,7 @@ Si vous ne connaissez pas la différence, consultez [Asynchrone : « Pressé ? �
 
 ### Étape 5 : retourner le contenu { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Vous pouvez retourner un `dict`, une `list`, des valeurs uniques comme `str`, `int`, etc.
 

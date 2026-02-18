@@ -30,7 +30,7 @@ $ pip install httpx
 
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Подсказка
 
@@ -76,7 +76,7 @@ $ pip install httpx
 В файле `main.py` находится Ваше приложение **FastAPI**:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Файл тестов { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 Так как оба файла находятся в одной директории, для импорта объекта приложения из файла `main` в файл `test_main` Вы можете использовать относительный импорт:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...и писать дальше тесты, как и раньше.
@@ -119,7 +119,7 @@ $ pip install httpx
 
 Ещё есть операция `POST`, и она может вернуть несколько ошибок.
 
-Обе *операции пути* требуют наличия в запросе заголовка `X-Token`.
+Обе *операции пути* требуют наличия в запросе HTTP-заголовка `X-Token`.
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
@@ -139,7 +139,7 @@ $ pip install httpx
 * Передаёте *path*-параметры или *query*-параметры, вписав их непосредственно в строку URL.
 * Передаёте JSON в теле запроса, передав Python-объект (например: `dict`) через именованный параметр `json`.
 * Если же Вам необходимо отправить *форму с данными* вместо JSON, то используйте параметр `data` вместо `json`.
-* Для передачи *заголовков*, передайте объект `dict` через параметр `headers`.
+* Для передачи *HTTP-заголовков*, передайте объект `dict` через параметр `headers`.
 * Для передачи *cookies* также передайте `dict`, но через параметр `cookies`.
 
 Для получения дополнительной информации о передаче данных на бэкенд с помощью `httpx` или `TestClient` ознакомьтесь с <a href="https://www.python-httpx.org" class="external-link" target="_blank">документацией HTTPX</a>.

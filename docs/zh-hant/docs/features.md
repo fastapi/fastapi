@@ -1,17 +1,17 @@
-# 特性
+# 特性 { #features }
 
-## FastAPI 特性
+## FastAPI 特性 { #fastapi-features }
 
-**FastAPI** 提供了以下内容：
+**FastAPI** 提供了以下內容：
 
-### 建立在開放標準的基礎上
+### 建立在開放標準的基礎上 { #based-on-open-standards }
 
-* 使用 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 來建立 API，包含<abbr title="path，也被叫做: endpoints, routes">路徑</abbr><abbr title="也叫做 HTTP 方法，例如 POST, GET, PUT, DELETE">操作</abbr>、參數、請求內文、安全性等聲明。
+* 使用 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 來建立 API，包含 <dfn title="也稱為：端點、路由">路徑</dfn>、<dfn title="也稱為 HTTP 方法，例如 POST、GET、PUT、DELETE">操作</dfn>、參數、請求內文、安全性等宣告。
 * 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a>（因為 OpenAPI 本身就是基於 JSON Schema）自動生成資料模型文件。
 * 經過縝密的研究後圍繞這些標準進行設計，而不是事後在已有系統上附加的一層功能。
 * 這也讓我們在多種語言中可以使用自動**用戶端程式碼生成**。
 
-### 能夠自動生成文件
+### 能夠自動生成文件 { #automatic-docs }
 
 FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由於該框架基於 OpenAPI，因此有多種選擇，預設提供了兩種。
 
@@ -19,12 +19,11 @@ FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由�
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a> 提供結構性的文件，讓你可以在瀏覽器中查看。
+* 使用 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a> 的替代 API 文件。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-
-### 現代 Python
+### 現代 Python { #just-modern-python }
 
 這一切都基於標準的 **Python 型別**宣告（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
 
@@ -32,7 +31,7 @@ FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由�
 
 如果你寫帶有 Python 型別的程式碼：
 
-```python
+```Python
 from datetime import date
 
 from pydantic import BaseModel
@@ -50,10 +49,9 @@ class User(BaseModel):
     joined: date
 ```
 
-
 可以像這樣來使用：
 
-```python
+```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
 
 second_user_data = {
@@ -65,7 +63,6 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-
 /// info
 
 `**second_user_data` 意思是:
@@ -74,11 +71,11 @@ my_second_user: User = User(**second_user_data)
 
 ///
 
-### 多種編輯器支援
+### 多種編輯器支援 { #editor-support }
 
 整個框架的設計是為了讓使用變得簡單且直觀，在開始開發之前，所有決策都在多個編輯器上進行了測試，以確保提供最佳的開發體驗。
 
-在最近的 Python 開發者調查中，我們能看到<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank"> 被使用最多的功能是 autocompletion</a>，此功能可以預測將要輸入文字，並自動補齊。
+在最近的 Python 開發者調查中，我們能看到<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank"> 被使用最多的功能是 autocompletion</a>。
 
 整個 **FastAPI** 框架就是基於這一點，任何地方都可以進行自動補齊。
 
@@ -86,11 +83,11 @@ my_second_user: User = User(**second_user_data)
 
 在這裡，你的編輯器可能會這樣幫助你：
 
-* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a> 中:
+* 在 <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a> 中:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 中:
+* 在 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 中:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -98,17 +95,13 @@ my_second_user: User = User(**second_user_data)
 
 這樣比較不會輸錯鍵名，不用來回翻看文件，也不用來回滾動尋找你最後使用的 `username` 或者 `user_name`。
 
-
-
-### 簡潔
+### 簡潔 { #short }
 
 FastAPI 為你提供了**預設值**，讓你不必在初期進行繁瑣的配置，一切都可以自動運作。如果你有更具體的需求，則可以進行調整和自定義，
 
-但在大多數情況下，你只需要直接使用預設值，就能順利完成 API 開發。
+但預設情況下，一切都「直接可用」。
 
-### 驗證
-
-所有的驗證都由完善且強大的 **Pydantic** 處理。
+### 驗證 { #validation }
 
 * 驗證大部分（甚至所有？）的 Python **資料型別**，包括：
     * JSON 物件 (`dict`)。
@@ -120,9 +113,11 @@ FastAPI 為你提供了**預設值**，讓你不必在初期進行繁瑣的配�
     * URL
     * Email
     * UUID
+    * ...等等。
 
+所有的驗證都由完善且強大的 **Pydantic** 處理。
 
-### 安全性及身份驗證
+### 安全性及身份驗證 { #security-and-authentication }
 
 FastAPI 已經整合了安全性和身份驗證的功能，但不會強制與特定的資料庫或資料模型進行綁定。
 
@@ -139,10 +134,9 @@ OpenAPI 中定義的安全模式，包括：
 
 所有的這些都是可重複使用的工具和套件，可以輕鬆與你的系統、資料儲存（Data Stores）、關聯式資料庫（RDBMS）以及非關聯式資料庫（NoSQL）等等整合。
 
+### 依賴注入（Dependency Injection） { #dependency-injection }
 
-### 依賴注入（Dependency Injection）
-
-FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "components", "resources", "services", "providers"'><strong>依賴注入</strong></abbr>系統。
+FastAPI 有一個使用簡單，但是非常強大的 <dfn title='也稱為「components」、「resources」、「services」、「providers」'><strong>依賴注入</strong></dfn> 系統。
 
 * 依賴項甚至可以有自己的依賴，從而形成一個層級或**依賴圖**的結構。
 * 所有**自動化處理**都由框架完成。
@@ -151,23 +145,21 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 * 支持複雜的用戶身份驗證系統、**資料庫連接**等。
 * 不與資料庫、前端等進行強制綁定，但能輕鬆整合它們。
 
-
-### 無限制「擴充功能」
+### 無限制「擴充功能」 { #unlimited-plug-ins }
 
 或者說，無需其他額外配置，直接導入並使用你所需要的程式碼。
 
 任何整合都被設計得非常簡單易用（通過依賴注入），你只需用與*路徑操作*相同的結構和語法，用兩行程式碼就能為你的應用程式建立一個「擴充功能」。
 
+### 測試 { #tested }
 
-### 測試
-
-* 100% 的<abbr title="有自動測試的程式碼">測試覆蓋率</abbr>。
-* 100% 的程式碼有<abbr title="Python 型別註釋，有了這個你的編輯器和外部工具可以給你更好的支援">型別註釋</abbr>。
+* 100% <dfn title="自動化測試所涵蓋的程式碼量">測試覆蓋率</dfn>。
+* 100% <dfn title="Python 型別註解；有了它你的編輯器和外部工具可以提供更好的支援">型別註解</dfn>的程式碼庫。
 * 已能夠在生產環境應用程式中使用。
 
-## Starlette 特性
+## Starlette 特性 { #starlette-features }
 
-**FastAPI** 完全相容且基於 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>。所以，你有其他的 Starlette 程式碼也能正常運作。FastAPI 繼承了 Starlette 的所有功能，如果你已經知道或者使用過 Starlette，大部分的功能會以相同的方式運作。
+**FastAPI** 完全相容且基於 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>。所以，你有其他的 Starlette 程式碼也能正常運作。`FastAPI` 實際上是 `Starlette` 的一個子類別。所以，如果你已經知道或者使用過 Starlette，大部分的功能會以相同的方式運作。
 
 通過 **FastAPI** 你可以獲得所有 **Starlette** 的特性（FastAPI 就像加強版的 Starlette）：
 
@@ -181,11 +173,11 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 * 100% 測試覆蓋率。
 * 100% 型別註釋的程式碼庫。
 
-## Pydantic 特性
+## Pydantic 特性 { #pydantic-features }
 
 **FastAPI** 完全相容且基於 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>。所以，你有其他 Pydantic 程式碼也能正常工作。
 
-相容包括基於 Pydantic 的外部函式庫， 例如用於資料庫的 <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s。
+相容包括基於 Pydantic 的外部函式庫，例如用於資料庫的 <abbr title="Object-Relational Mapper - 物件關聯對映器">ORM</abbr>s、<abbr title="Object-Document Mapper - 物件文件對映器">ODM</abbr>s。
 
 這也意味著在很多情況下，你可以把從請求中獲得的物件**直接傳到資料庫**，因為所有資料都會自動進行驗證。
 
@@ -196,7 +188,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 * **更簡單**：
     * 不需要學習新的 micro-language 來定義結構。
     * 如果你知道 Python 型別，你就知道如何使用 Pydantic。
-* 和你的 **<abbr title="Integrated Development Environment，和程式碼編輯器類似">IDE</abbr>/<abbr title="一個檢查程式碼錯誤的工具">linter</abbr>/brain** 都能好好配合：
+* 和你的 **<abbr title="Integrated Development Environment - 整合開發環境: 類似於程式碼編輯器">IDE</abbr>/<dfn title="檢查程式碼錯誤的程式">linter</dfn>/brain** 都能好好配合：
     * 因為 Pydantic 的資料結構其實就是你自己定義的類別實例，所以自動補齊、linting、mypy 以及你的直覺都能很好地在經過驗證的資料上發揮作用。
 * 驗證**複雜結構**：
     * 使用 Pydantic 模型時，你可以把資料結構分層設計，並且用 Python 的 `List` 和 `Dict` 等型別來定義。

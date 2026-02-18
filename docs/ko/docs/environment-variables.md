@@ -19,10 +19,10 @@
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// 환경 변수 MY_NAME을 다음과 같이 생성할 수 있습니다
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// 그런 다음 다른 프로그램과 함께 사용할 수 있습니다. 예:
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// 환경 변수 MY_NAME 생성
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// 다른 프로그램과 함께 사용하기. 예:
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -78,20 +78,20 @@ print(f"Hello {name} from Python")
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// 여기서는 아직 환경 변수를 설정하지 않습니다
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 환경 변수를 설정하지 않았으므로 기본값이 사용됩니다
 
 Hello World from Python
 
-// But if we create an environment variable first
+// 하지만 먼저 환경 변수를 생성하면
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// 그리고 프로그램을 다시 실행하면
 $ python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// 여기서는 아직 환경 변수를 설정하지 않습니다
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 환경 변수를 설정하지 않았으므로 기본값이 사용됩니다
 
 Hello World from Python
 
-// But if we create an environment variable first
+// 하지만 먼저 환경 변수를 생성하면
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// 그리고 프로그램을 다시 실행하면
 $ python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 ```
@@ -136,14 +136,14 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// 이 프로그램 호출을 위해 같은 줄에서 환경 변수 MY_NAME 생성
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// 이후에는 해당 환경 변수가 존재하지 않습니다
 $ python main.py
 
 Hello World from Python

@@ -14,7 +14,7 @@
 <summary>Dockerfile 预览 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ def read_item(item_id: int, q: str | None = None):
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 然后你只需要在 `Dockerfile` 中修改相应路径来复制该文件：
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Traefik 与 Docker、Kubernetes 等都有集成，因此为容器设置和配置
 
 ## 复制 - 进程数 { #replication-number-of-processes }
 
-如果你有一个由 **Kubernetes**、Docker Swarm Mode、Nomad 或其他类似的复杂系统管理的、在多台机器上运行的分布式容器<abbr title="被配置为以某种方式连接并协同工作的多台机器">集群</abbr>，那么你很可能会希望在**集群层面**来**处理复制**，而不是在每个容器中使用**进程管理**（比如让 Uvicorn 运行多个 workers）。
+如果你有一个由 **Kubernetes**、Docker Swarm Mode、Nomad 或其他类似的复杂系统管理的、在多台机器上运行的分布式容器<dfn title="被配置为以某种方式连接并协同工作的多台机器">集群</dfn>，那么你很可能会希望在**集群层面**来**处理复制**，而不是在每个容器中使用**进程管理**（比如让 Uvicorn 运行多个 workers）。
 
 像 Kubernetes 这样的分布式容器管理系统通常都有某种内置方式来处理**容器复制**，同时对传入请求进行**负载均衡**。这一切都在**集群层面**完成。
 
@@ -499,7 +499,7 @@ Traefik 与 Docker、Kubernetes 等都有集成，因此为容器设置和配置
 在这些情况下，你可以使用 `--workers` 命令行选项来设置要运行的 worker 数量：
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 

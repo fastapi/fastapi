@@ -25,7 +25,7 @@ Client’a hata içeren HTTP response’ları döndürmek için `HTTPException` 
 
 ### `HTTPException`’ı Import Etme { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### Kodunuzda Bir `HTTPException` Raise Etme { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ Bir değer döndürmek yerine exception raise etmenin faydası, Dependencies ve 
 
 Bu örnekte, client var olmayan bir ID ile bir item istediğinde, `404` status code’u ile bir exception raise edelim:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### Ortaya Çıkan Response { #the-resulting-response }
 
@@ -77,7 +77,7 @@ Muhtemelen bunu doğrudan kendi kodunuzda kullanmanız gerekmeyecek.
 
 Ama ileri seviye bir senaryo için ihtiyaç duyarsanız, özel header’lar ekleyebilirsiniz:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## Özel Exception Handler’ları Kurmak { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@ Ve bu exception’ı FastAPI ile global olarak handle etmek istiyorsunuz.
 
 `@app.exception_handler()` ile özel bir exception handler ekleyebilirsiniz:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 Burada `/unicorns/yolo` için request atarsanız, *path operation* bir `UnicornException` `raise` eder.
 
@@ -127,7 +127,7 @@ Override etmek için `RequestValidationError`’ı import edin ve exception hand
 
 Exception handler, bir `Request` ve exception’ı alır.
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 Artık `/items/foo`’ya giderseniz, şu varsayılan JSON hatası yerine:
 
@@ -159,7 +159,7 @@ Benzer şekilde `HTTPException` handler’ını da override edebilirsiniz.
 
 Örneğin bu hatalar için JSON yerine plain text response döndürmek isteyebilirsiniz:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | Teknik Detaylar
 
@@ -183,7 +183,7 @@ Ancak bu, eğer sadece string’e çevirip bu bilgiyi doğrudan response olarak 
 
 Uygulamanızı geliştirirken body’yi log’lamak, debug etmek, kullanıcıya döndürmek vb. için bunu kullanabilirsiniz.
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 Şimdi şu gibi geçersiz bir item göndermeyi deneyin:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Exception’ı, **FastAPI**’nin aynı varsayılan exception handler’larıyla birlikte kullanmak isterseniz, varsayılan exception handler’ları `fastapi.exception_handlers` içinden import edip yeniden kullanabilirsiniz:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 Bu örnekte sadece oldukça açıklayıcı bir mesajla hatayı yazdırıyorsunuz; ama fikir anlaşılıyor. Exception’ı kullanıp ardından varsayılan exception handler’ları olduğu gibi yeniden kullanabilirsiniz.

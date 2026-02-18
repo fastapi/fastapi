@@ -6,7 +6,7 @@
 
 Ardından bu *geçici* response nesnesi üzerinde cookie'leri set edebilirsiniz.
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Sonrasında normalde yaptığınız gibi ihtiyaç duyduğunuz herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli vb.).
 
@@ -24,9 +24,9 @@ Bunu yapmak için, [Doğrudan Response Döndürme](response-directly.md){.intern
 
 Sonra bunun içinde Cookie'leri set edin ve response'u döndürün:
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip | İpucu
+/// tip
 
 `Response` parametresini kullanmak yerine doğrudan bir response döndürürseniz, FastAPI onu olduğu gibi (doğrudan) döndürür.
 

@@ -164,7 +164,7 @@ images: list[Image]
 
 이를 아래처럼:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## 어디서나 편집기 지원 { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Pydantic 모델 대신 `dict`로 직접 작업한다면 이런 종류의 편집�
 
 이 경우, `int` 키와 `float` 값을 가진 한 어떤 `dict`든 받아들입니다:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | 팁
 

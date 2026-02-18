@@ -30,7 +30,7 @@ Verwenden Sie das `TestClient`-Objekt auf die gleiche Weise wie `httpx`.
 
 Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken, die Sie überprüfen müssen (wiederum, Standard-`pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Tipp
 
@@ -76,7 +76,7 @@ Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigge
 In der Datei `main.py` haben Sie Ihre **FastAPI**-Anwendung:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 
 ### Testdatei { #testing-file }
@@ -93,7 +93,7 @@ Dann könnten Sie eine Datei `test_main.py` mit Ihren Tests haben. Sie könnte s
 
 Da sich diese Datei im selben Package befindet, können Sie relative Importe verwenden, um das Objekt `app` aus dem `main`-Modul (`main.py`) zu importieren:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ... und haben den Code für die Tests wie zuvor.

@@ -6,7 +6,7 @@ from collections import Counter
 from collections.abc import Container
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 import httpx
 import yaml
@@ -70,7 +70,7 @@ class Author(BaseModel):
 
 class CommentsNode(BaseModel):
     createdAt: datetime
-    author: Union[Author, None] = None
+    author: Author | None = None
 
 
 class Replies(BaseModel):
@@ -89,7 +89,7 @@ class DiscussionsComments(BaseModel):
 
 class DiscussionsNode(BaseModel):
     number: int
-    author: Union[Author, None] = None
+    author: Author | None = None
     title: str | None = None
     createdAt: datetime
     comments: DiscussionsComments
@@ -127,8 +127,8 @@ def get_graphql_response(
     *,
     settings: Settings,
     query: str,
-    after: Union[str, None] = None,
-    category_id: Union[str, None] = None,
+    after: str | None = None,
+    category_id: str | None = None,
 ) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {"after": after, "category_id": category_id}
@@ -156,7 +156,7 @@ def get_graphql_response(
 def get_graphql_question_discussion_edges(
     *,
     settings: Settings,
-    after: Union[str, None] = None,
+    after: str | None = None,
 ) -> list[DiscussionsEdge]:
     data = get_graphql_response(
         settings=settings,

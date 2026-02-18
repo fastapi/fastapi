@@ -58,7 +58,7 @@ Internamente, o **FastAPI CLI** usa o <a href="https://www.uvicorn.dev" class="e
 
 Executar `fastapi dev` inicia o modo de desenvolvimento.
 
-Por padrão, o recarregamento automático está ativado, recarregando o servidor automaticamente quando você faz mudanças no seu código. Isso consome muitos recursos e pode ser menos estável do que quando está desativado. Você deve usá-lo apenas no desenvolvimento. Ele também escuta no endereço IP `127.0.0.1`, que é o IP para a sua máquina se comunicar apenas consigo mesma (`localhost`).
+Por padrão, o recarregamento automático está ativado, recarregando o servidor automaticamente quando você faz mudanças no seu código. Isso consome muitos recursos e pode ser menos estável do que quando está desativado. Você deveria usá-lo apenas no desenvolvimento. Ele também escuta no endereço IP `127.0.0.1`, que é o IP para a sua máquina se comunicar apenas consigo mesma (`localhost`).
 
 ## `fastapi run` { #fastapi-run }
 

@@ -104,12 +104,6 @@ Da einfache Werte standardmäßig als Query-Parameter interpretiert werden, müs
 q: str | None = None
 ```
 
-Oder in Python 3.9:
-
-```Python
-q: Union[str, None] = None
-```
-
 Zum Beispiel:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

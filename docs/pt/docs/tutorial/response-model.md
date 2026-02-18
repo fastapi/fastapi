@@ -183,7 +183,7 @@ Pode haver casos em que você retorna algo que não é um campo Pydantic válido
 
 O caso mais comum seria [retornar uma Response diretamente, conforme explicado posteriormente na documentação avançada](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Este caso simples é tratado automaticamente pelo FastAPI porque a anotação do tipo de retorno é a classe (ou uma subclasse de) `Response`.
 
@@ -193,7 +193,7 @@ E as ferramentas também ficarão felizes porque `RedirectResponse` e ​​`JSO
 
 Você também pode usar uma subclasse de `Response` na anotação de tipo:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Isso também funcionará porque `RedirectResponse` é uma subclasse de `Response`, e o FastAPI tratará automaticamente este caso simples.
 
@@ -201,7 +201,7 @@ Isso também funcionará porque `RedirectResponse` é uma subclasse de `Response
 
 Mas quando você retorna algum outro objeto arbitrário que não é um tipo Pydantic válido (por exemplo, um objeto de banco de dados) e você o anota dessa forma na função, o FastAPI tentará criar um modelo de resposta Pydantic a partir dessa anotação de tipo e falhará.
 
-O mesmo aconteceria se você tivesse algo como uma <abbr title='Uma união entre vários tipos significa "qualquer um desses tipos".'>união</abbr> entre tipos diferentes onde um ou mais deles não são tipos Pydantic válidos, por exemplo, isso falharia 💥:
+O mesmo aconteceria se você tivesse algo como uma <dfn title="uma união entre vários tipos significa 'qualquer um desses tipos'.">união</dfn> entre tipos diferentes onde um ou mais deles não são tipos Pydantic válidos, por exemplo, isso falharia 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -290,7 +290,7 @@ Se os dados tiverem os mesmos valores que os padrões, como o item com ID `baz`:
 }
 ```
 
-O FastAPI é inteligente o suficiente (na verdade, o Pydantic é inteligente o suficiente) para perceber que, embora `description`, `tax` e `tags` tenham os mesmos valores que os padrões, eles foram definidos explicitamente (em vez de retirados dos padrões).
+O FastAPI é inteligente o suficiente (na verdade, o Pydantic é inteligente o suficiente) para perceber que, embora `description`, `tax` e `tags` tenham os mesmos valores que os padrões, eles foram definidos explícita e diretamente (em vez de retirados dos padrões).
 
 Portanto, eles serão incluídos na resposta JSON.
 

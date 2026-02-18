@@ -30,7 +30,7 @@ $ pip install httpx
 
 Записуйте прості `assert`-вирази зі стандартними виразами Python, які потрібно перевірити (це також стандарт для `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Порада
 
@@ -76,7 +76,7 @@ $ pip install httpx
 У файлі `main.py` знаходиться ваш застосунок **FastAPI**:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Файл тестування { #testing-file }
 
@@ -90,9 +90,9 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app`  із модуля `main` (`main.py`):
+Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app` із модуля `main` (`main.py`):
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...і написати код для тестів так само як і раніше.

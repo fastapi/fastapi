@@ -6,7 +6,7 @@
 
 在你的 FastAPI 应用中直接导入 `uvicorn` 并运行：
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### 关于 `__name__ == "__main__"` { #about-name-main }
 
@@ -68,7 +68,7 @@ from myapp import app
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-/// info
+/// info | 信息
 
 更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
 

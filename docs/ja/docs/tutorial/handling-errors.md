@@ -25,7 +25,7 @@ HTTPレスポンスをエラーでクライアントに返すには、`HTTPExcep
 
 ### `HTTPException`のインポート { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### コード内での`HTTPException`の発生 { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 この例では、クライアントが存在しないIDでアイテムを要求した場合、`404`のステータスコードを持つ例外を発生させます:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### レスポンス結果 { #the-resulting-response }
 
@@ -77,7 +77,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 しかし、高度なシナリオのために必要な場合には、カスタムヘッダーを追加することができます:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## カスタム例外ハンドラのインストール { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 カスタム例外ハンドラを`@app.exception_handler()`で追加することができます:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 ここで、`/unicorns/yolo`をリクエストすると、*path operation*は`UnicornException`を`raise`します。
 
@@ -127,7 +127,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 この例外ハンドラは`Request`と例外を受け取ります。
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 これで、`/items/foo`にアクセスすると、以下のデフォルトのJSONエラーの代わりに:
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | 技術詳細
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 アプリ開発中にボディのログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 ここで、以下のような無効な項目を送信してみてください:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 **FastAPI** から同じデフォルトの例外ハンドラと一緒に例外を使用したい場合は、`fastapi.exception_handlers`からデフォルトの例外ハンドラをインポートして再利用できます:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 この例では、非常に表現力のあるメッセージでエラーを`print`しているだけですが、要点は理解できるはずです。例外を使用し、その後デフォルトの例外ハンドラを再利用できます。

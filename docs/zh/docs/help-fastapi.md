@@ -59,7 +59,7 @@
 
 ## 发推谈谈 **FastAPI** { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a>，告诉我和大家你为什么喜欢它。🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">发推谈谈 **FastAPI**</a>，告诉我和大家你为什么喜欢它。🎉
 
 我很高兴听到 **FastAPI** 的使用情况、你喜欢它的哪些点、你在哪个项目/公司使用它，等等。
 

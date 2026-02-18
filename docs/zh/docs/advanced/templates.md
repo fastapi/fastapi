@@ -27,7 +27,7 @@ $ pip install jinja2
 * 在返回模板的*路径操作*中声明 `Request` 参数
 * 使用 `templates` 渲染并返回 `TemplateResponse`，传递模板的名称、request 对象以及一个包含多个键值对（用于 Jinja2 模板）的 "context" 字典。
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note
 

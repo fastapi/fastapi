@@ -1,11 +1,10 @@
 from functools import partial
-from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 
-def main(some_arg, q: Optional[str] = None):
+def main(some_arg, q: str | None = None):
     return {"some_arg": some_arg, "q": q}
 
 

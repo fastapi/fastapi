@@ -30,7 +30,7 @@ $ pip install httpx
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 提示
 
@@ -76,7 +76,7 @@ $ pip install httpx
 在 `main.py` 文件中你有一个 **FastAPI** app:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### 测试文件 { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 ...然后测试代码和之前一样的。
 

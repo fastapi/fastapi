@@ -1,6 +1,6 @@
 # Bağımlılıklar { #dependencies }
 
-**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** sistemine sahiptir.
+**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<dfn title="diğer adları: components, resources, providers, services, injectables">Bağımlılık Enjeksiyonu</dfn>** sistemine sahiptir.
 
 Kullanımı çok basit olacak şekilde tasarlanmıştır ve herhangi bir geliştiricinin diğer bileşenleri **FastAPI** ile entegre etmesini kolaylaştırır.
 
