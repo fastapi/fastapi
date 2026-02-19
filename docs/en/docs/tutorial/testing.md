@@ -178,9 +178,8 @@ Run the tests with:
 $ pytest
 
 ================ test session starts ================
-platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+platform linux -- Python 3.12.x, pytest-8.x.y, pluggy-1.x.y
 rootdir: /home/user/code/superawesome-cli/app
-plugins: forked-1.1.3, xdist-1.31.0, cov-2.8.1
 collected 6 items
 
 ---> 100%
