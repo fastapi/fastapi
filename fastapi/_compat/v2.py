@@ -251,6 +251,7 @@ def get_definitions(
             mode="validation",
         )
         for model in flat_validation_models
+        if lenient_issubclass(model, BaseModel)
     ]
     flat_serialization_model_fields = [
         ModelField(
@@ -259,6 +260,7 @@ def get_definitions(
             mode="serialization",
         )
         for model in flat_serialization_models
+        if lenient_issubclass(model, BaseModel)
     ]
     flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
     input_types = {f.field_info.annotation for f in fields}
