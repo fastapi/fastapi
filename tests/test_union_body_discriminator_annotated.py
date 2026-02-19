@@ -1,6 +1,6 @@
 # Ref: https://github.com/fastapi/fastapi/discussions/14495
 
-from typing import Annotated, Union
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI
@@ -27,7 +27,7 @@ def client_fixture() -> TestClient:
         return v.get("pet_type", "")
 
     Pet = Annotated[
-        Union[Annotated[Cat, Tag("cat")], Annotated[Dog, Tag("dog")]],
+        Annotated[Cat, Tag("cat")] | Annotated[Dog, Tag("dog")],
         Discriminator(get_pet_type),
     ]
 

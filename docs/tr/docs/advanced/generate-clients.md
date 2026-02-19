@@ -40,7 +40,7 @@ Bu çözümlerin bazıları açık kaynak olabilir veya ücretsiz katman sunabil
 
 Basit bir FastAPI uygulamasıyla başlayalım:
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
 *Path operation*'ların, request payload ve response payload için kullandıkları modelleri `Item` ve `ResponseMessage` modelleriyle tanımladıklarına dikkat edin.
 
@@ -98,7 +98,7 @@ Birçok durumda FastAPI uygulamanız daha büyük olacaktır ve farklı *path op
 
 Örneğin **items** için bir bölüm, **users** için başka bir bölüm olabilir ve bunları tag'lerle ayırabilirsiniz:
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
 ### Tag'lerle TypeScript Client Üretme { #generate-a-typescript-client-with-tags }
 
@@ -145,7 +145,7 @@ Bu fonksiyonu özelleştirebilirsiniz. Bir `APIRoute` alır ve string döndürü
 
 Sonrasında bu özel fonksiyonu `generate_unique_id_function` parametresiyle **FastAPI**'ye geçebilirsiniz:
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
 ### Özel Operation ID'lerle TypeScript Client Üretme { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -167,7 +167,7 @@ Ancak üretilen client için, client'ları üretmeden hemen önce OpenAPI operat
 
 OpenAPI JSON'u `openapi.json` diye bir dosyaya indirip, şu tarz bir script ile **öndeki tag'i kaldırabiliriz**:
 
-{* ../../docs_src/generate_clients/tutorial004_py39.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
 //// tab | Node.js
 

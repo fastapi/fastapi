@@ -20,7 +20,7 @@ Ardından kullanıcı adı ve şifreyi yazdığınızda tarayıcı bunları otom
 * Bu, `HTTPBasicCredentials` tipinde bir nesne döndürür:
     * İçinde gönderilen `username` ve `password` bulunur.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 URL’yi ilk kez açmaya çalıştığınızda (veya dokümanlardaki "Execute" butonuna tıkladığınızda) tarayıcı sizden kullanıcı adınızı ve şifrenizi ister:
 
@@ -40,13 +40,13 @@ Bunu yönetmek için önce `username` ve `password` değerlerini UTF-8 ile encod
 
 Sonra `secrets.compare_digest()` kullanarak `credentials.username`’in `"stanleyjobson"` ve `credentials.password`’ün `"swordfish"` olduğundan emin olabiliriz.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Bu, kabaca şuna benzer olurdu:
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # Bir hata döndür
     ...
 ```
 
@@ -104,4 +104,4 @@ Bu sayede uygulama kodunuzda `secrets.compare_digest()` kullanarak bu güvenlik 
 
 Credential’ların hatalı olduğunu tespit ettikten sonra, 401 status code ile (credential verilmediğinde dönenle aynı) bir `HTTPException` döndürün ve tarayıcının giriş penceresini yeniden göstermesi için `WWW-Authenticate` header’ını ekleyin:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

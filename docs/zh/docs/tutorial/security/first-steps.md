@@ -20,7 +20,7 @@
 
 把下面的示例代码复制到 `main.py`：
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## 运行 { #run-it }
 
@@ -132,7 +132,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 创建 `OAuth2PasswordBearer` 类实例时，需要传入 `tokenUrl` 参数。该参数包含客户端（运行在用户浏览器中的前端）用来发送 `username` 和 `password` 以获取令牌的 URL。
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | 提示
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 现在你可以通过 `Depends` 将 `oauth2_scheme` 作为依赖传入。
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 该依赖会提供一个 `str`，赋值给*路径操作函数*的参数 `token`。
 

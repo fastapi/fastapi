@@ -9,9 +9,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="test_module",
     params=[
-        "app_b_py39.test_main",
         pytest.param("app_b_py310.test_main", marks=needs_py310),
-        "app_b_an_py39.test_main",
         pytest.param("app_b_an_py310.test_main", marks=needs_py310),
     ],
 )

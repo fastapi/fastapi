@@ -7,8 +7,84 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🔨 Add Kapa.ai widget (AI chatbot). PR [#14938](https://github.com/fastapi/fastapi/pull/14938) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove Python 3.9 specific files, no longer needed after updating translations. PR [#14931](https://github.com/fastapi/fastapi/pull/14931) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for JWT to prevent timing attacks. PR [#14908](https://github.com/fastapi/fastapi/pull/14908) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* ✏️ Fix several typos in ru translations. PR [#14934](https://github.com/fastapi/fastapi/pull/14934) by [@argoarsiks](https://github.com/argoarsiks).
+* 🌐 Update translations for ko (update-all and add-missing). PR [#14923](https://github.com/fastapi/fastapi/pull/14923) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for uk (add-missing). PR [#14922](https://github.com/fastapi/fastapi/pull/14922) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for zh-hant (update-all and add-missing). PR [#14921](https://github.com/fastapi/fastapi/pull/14921) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for fr (update-all and add-missing). PR [#14920](https://github.com/fastapi/fastapi/pull/14920) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for de (update-all) . PR [#14910](https://github.com/fastapi/fastapi/pull/14910) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for ja (update-all). PR [#14916](https://github.com/fastapi/fastapi/pull/14916) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for pt (update-all). PR [#14912](https://github.com/fastapi/fastapi/pull/14912) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for es (update-all and add-missing). PR [#14911](https://github.com/fastapi/fastapi/pull/14911) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for zh (update-all). PR [#14917](https://github.com/fastapi/fastapi/pull/14917) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for uk (update-all). PR [#14914](https://github.com/fastapi/fastapi/pull/14914) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for tr (update-all). PR [#14913](https://github.com/fastapi/fastapi/pull/14913) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for ru (update-outdated). PR [#14909](https://github.com/fastapi/fastapi/pull/14909) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
+* 🎨 Upgrade typing syntax for Python 3.10. PR [#14932](https://github.com/fastapi/fastapi/pull/14932) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump cryptography from 46.0.4 to 46.0.5. PR [#14892](https://github.com/fastapi/fastapi/pull/14892) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pillow from 12.1.0 to 12.1.1. PR [#14899](https://github.com/fastapi/fastapi/pull/14899) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.129.0
+
+### Breaking Changes
+
+* ➖ Drop support for Python 3.9. PR [#14897](https://github.com/fastapi/fastapi/pull/14897) by [@tiangolo](https://github.com/tiangolo).
+
+### Refactors
+
+* 🎨 Update internal types for Python 3.10. PR [#14898](https://github.com/fastapi/fastapi/pull/14898) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update highlights in webhooks docs. PR [#14905](https://github.com/fastapi/fastapi/pull/14905) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update source examples and docs from Python 3.9 to 3.10. PR [#14900](https://github.com/fastapi/fastapi/pull/14900) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔨 Update docs.py scripts to migrate Python 3.9 to Python 3.10. PR [#14906](https://github.com/fastapi/fastapi/pull/14906) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.8
+
+### Docs
+
+* 📝 Fix grammar in `docs/en/docs/tutorial/first-steps.md`. PR [#14708](https://github.com/fastapi/fastapi/pull/14708) by [@SanjanaS10](https://github.com/SanjanaS10).
+
+### Internal
+
+* 🔨 Tweak PDM hook script. PR [#14895](https://github.com/fastapi/fastapi/pull/14895) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Update build setup for `fastapi-slim`, deprecate it, and make it only depend on `fastapi`. PR [#14894](https://github.com/fastapi/fastapi/pull/14894) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.7
+
+### Features
+
+* ✨ Show a clear error on attempt to include router into itself. PR [#14258](https://github.com/fastapi/fastapi/pull/14258) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
+* ✨ Replace `dict` by `Mapping` on `HTTPException.headers`. PR [#12997](https://github.com/fastapi/fastapi/pull/12997) by [@rijenkii](https://github.com/rijenkii).
+
+### Refactors
+
+* ♻️ Simplify reading files in memory, do it sequentially instead of (fake) parallel. PR [#14884](https://github.com/fastapi/fastapi/pull/14884) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Use `dfn` tag for definitions instead of `abbr` in docs. PR [#14744](https://github.com/fastapi/fastapi/pull/14744) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ✅ Tweak comment in test to reference PR. PR [#14885](https://github.com/fastapi/fastapi/pull/14885) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update LLM-prompt for `abbr` and `dfn` tags. PR [#14747](https://github.com/fastapi/fastapi/pull/14747) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Test order for the submitted byte Files. PR [#14828](https://github.com/fastapi/fastapi/pull/14828) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.128.6

@@ -12,7 +12,7 @@ from pytest import MonkeyPatch
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("app01_py39"),
+        pytest.param("app01_py310"),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest):

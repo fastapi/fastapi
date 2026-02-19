@@ -14,7 +14,7 @@ Aceleniz var ve bunları zaten biliyor musunuz? Aşağıdaki [`Dockerfile`'a atl
 <summary>Dockerfile Önizleme 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ def read_item(item_id: int, q: str | None = None):
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ FastAPI uygulamanız tek bir dosyaysa; örneğin `./app` dizini olmadan sadece `
 Bu durumda `Dockerfile` içinde dosyayı kopyaladığınız path'leri buna göre değiştirmeniz yeterlidir:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Container kullanmadan, uygulamaları startup'ta çalıştırmak ve restart mekan
 
 ## Replication - Process Sayısı { #replication-number-of-processes }
 
-Kubernetes, Docker Swarm Mode, Nomad veya benzeri, birden fazla makinede dağıtık container'ları yöneten karmaşık bir sistemle kurulmuş bir <abbr title="Bir şekilde birbirine bağlanacak ve birlikte çalışacak şekilde yapılandırılmış makineler grubu.">cluster</abbr>'ınız varsa, replication'ı her container içinde bir **process manager** (ör. worker'lı Uvicorn) kullanarak yönetmek yerine, muhtemelen **cluster seviyesinde** ele almak istersiniz.
+Eğer bir <dfn title="Bir şekilde birbirine bağlanacak ve birlikte çalışacak şekilde yapılandırılmış makineler grubu.">küme</dfn> (cluster) olarak yapılandırılmış makineler grubunuz varsa ve bunları **Kubernetes**, Docker Swarm Mode, Nomad veya benzeri, birden çok makinede dağıtık container'ları yöneten karmaşık bir sistemle yönetiyorsanız, replication'ı her container içinde bir **process manager** (ör. worker'lı Uvicorn) kullanarak yönetmek yerine, muhtemelen **küme seviyesinde (cluster level)** ele almak istersiniz.
 
 Kubernetes gibi dağıtık container yönetim sistemleri, gelen request'ler için **load balancing** desteği sunarken aynı zamanda **container replication**'ını yönetmek için entegre mekanizmalara sahiptir. Hepsi **cluster seviyesinde**.
 
@@ -499,7 +499,7 @@ Elbette bazı **özel durumlarda** bir container içinde birden fazla **Uvicorn 
 Bu durumlarda çalıştırmak istediğiniz worker sayısını `--workers` komut satırı seçeneğiyle ayarlayabilirsiniz:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 

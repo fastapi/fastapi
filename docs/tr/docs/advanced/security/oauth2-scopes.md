@@ -16,7 +16,7 @@ Bu bölüm az çok ileri seviye sayılır. Yeni başlıyorsanız atlayabilirsini
 
 OAuth2 scope'larına mutlaka ihtiyacınız yok; authentication ve authorization'ı istediğiniz şekilde ele alabilirsiniz.
 
-Ancak scope'lu OAuth2, API'nize (OpenAPI ile) ve API dokümanlarınıza güzel biçimde entegre edilebilir.
+Namun scope'lu OAuth2, API'nize (OpenAPI ile) ve API dokümanlarınıza güzel biçimde entegre edilebilir.
 
 Buna rağmen, bu scope'ları (veya başka herhangi bir security/authorization gereksinimini) kodunuzda ihtiyaç duyduğunuz şekilde yine siz zorunlu kılarsınız.
 
@@ -257,7 +257,7 @@ Ancak başkalarının bağlanacağı bir OAuth2 uygulaması geliştiriyorsanız 
 
 En yaygını implicit flow'dur.
 
-En güvenlisi code flow'dur; ancak daha fazla adım gerektirdiği için implementasyonu daha karmaşıktır. Daha karmaşık olduğundan, birçok sağlayıcı implicit flow'yu önermeye yönelir.
+En güvenlisi code flow'dur; ancak daha fazla adım gerektirdiği için implementasyonu daha karmaşıktır. Daha karmaşıktır olduğundan, birçok sağlayıcı implicit flow'yu önermeye yönelir.
 
 /// note | Not
 

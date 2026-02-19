@@ -31,7 +31,7 @@
     * 次に、対応する*path operation*によって生成された `response` を返します。
 * その後、`response` を返す前にさらに `response` を変更することもできます。
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | 豆知識
 
@@ -57,7 +57,7 @@
 
 例えば、リクエストの処理とレスポンスの生成にかかった秒数を含むカスタムヘッダー `X-Process-Time` を追加できます:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | 豆知識
 
@@ -92,4 +92,4 @@ app.add_middleware(MiddlewareB)
 
 他のミドルウェアの詳細については、[高度なユーザーガイド: 高度なミドルウェア](../advanced/middleware.md){.internal-link target=_blank}を参照してください。
 
-次のセクションでは、ミドルウェアを使用して <abbr title="Cross-Origin Resource Sharing">CORS</abbr> を処理する方法について説明します。
+次のセクションでは、ミドルウェアを使用して <abbr title="Cross-Origin Resource Sharing - クロスオリジンリソース共有">CORS</abbr> を処理する方法について説明します。

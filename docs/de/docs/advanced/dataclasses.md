@@ -1,4 +1,4 @@
-# Verwendung von Datenklassen { #using-dataclasses }
+# Datenklassen verwenden { #using-dataclasses }
 
 FastAPI basiert auf **Pydantic**, und ich habe Ihnen gezeigt, wie Sie Pydantic-Modelle verwenden können, um <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> zu deklarieren.
 
@@ -64,7 +64,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
 6. Hier geben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurück, das `items` enthält, welches eine Liste von Datenklassen ist.
 
-    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <abbr title="Konvertieren der Daten in ein übertragbares Format">serialisieren</abbr>.
+    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <dfn title="Konvertieren der Daten in ein übertragbares Format">Serialisieren</dfn>.
 
 7. Hier verwendet das `response_model` als Typannotation eine Liste von `Author`-Datenklassen.
 

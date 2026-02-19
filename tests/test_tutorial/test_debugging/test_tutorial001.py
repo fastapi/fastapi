@@ -7,7 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-MOD_NAME = "docs_src.debugging.tutorial001_py39"
+MOD_NAME = "docs_src.debugging.tutorial001_py310"
 
 
 @pytest.fixture(name="client")

@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Import `Form` from `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## Define `Form` parameters { #define-form-parameters }
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.
 
-The <abbr title="specification">spec</abbr> requires the fields to be exactly named `username` and `password`, and to be sent as form fields, not JSON.
+The <dfn title="specification">spec</dfn> requires the fields to be exactly named `username` and `password`, and to be sent as form fields, not JSON.
 
 With `Form` you can declare the same configurations as with `Body` (and `Query`, `Path`, `Cookie`), including validation, examples, an alias (e.g. `user-name` instead of `username`), etc.
 

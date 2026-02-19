@@ -26,7 +26,7 @@ Bu response `dict`'lerinin her birinde, `response_model`'e benzer şekilde bir P
 
 Örneğin, `404` status code'u ve `Message` Pydantic model'i ile başka bir response tanımlamak için şunu yazabilirsiniz:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Not
 
@@ -203,7 +203,7 @@ Varsayılan `200` status code'unu (ya da gerekiyorsa özel bir tane) kullanarak 
 
 Ayrıca `response_model`'inizi kullanan, ancak özel bir `example` içeren `200` status code'lu bir response da tanımlayabilirsiniz:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Bunların hepsi OpenAPI'nize birleştirilerek dahil edilir ve API dokümanlarında gösterilir:
 

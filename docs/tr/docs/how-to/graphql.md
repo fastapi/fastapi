@@ -35,7 +35,7 @@ Kullanım senaryonuza göre farklı bir kütüphaneyi tercih edebilirsiniz; anca
 
 Strawberry'yi FastAPI ile nasıl entegre edebileceğinize dair küçük bir ön izleme:
 
-{* ../../docs_src/graphql_/tutorial001_py39.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
 
 Strawberry hakkında daha fazlasını <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry dokümantasyonunda</a> öğrenebilirsiniz.
 

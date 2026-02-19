@@ -5,16 +5,16 @@ from unittest.mock import patch
 
 from inline_snapshot import snapshot
 
-from docs_src.generate_clients import tutorial003_py39
+from docs_src.generate_clients import tutorial003_py310
 
 
 def test_remove_tags(tmp_path: pathlib.Path):
     tmp_file = tmp_path / "openapi.json"
-    openapi_json = tutorial003_py39.app.openapi()
+    openapi_json = tutorial003_py310.app.openapi()
     tmp_file.write_text(json.dumps(openapi_json))
 
     with patch("pathlib.Path", return_value=tmp_file):
-        importlib.import_module("docs_src.generate_clients.tutorial004_py39")
+        importlib.import_module("docs_src.generate_clients.tutorial004_py310")
 
     modified_openapi = json.loads(tmp_file.read_text())
     assert modified_openapi == snapshot(
