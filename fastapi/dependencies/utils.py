@@ -381,19 +381,12 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, FieldInfo | params.Depends)
         ]
         fastapi_specific_annotations = [
             arg
             for arg in fastapi_annotations
-            if isinstance(
-                arg,
-                (
-                    params.Param,
-                    params.Body,
-                    params.Depends,
-                ),
-            )
+            if isinstance(arg, params.Param | params.Body | params.Depends)
         ]
         if fastapi_specific_annotations:
             fastapi_annotation: FieldInfo | params.Depends | None = (
@@ -724,7 +717,7 @@ def _get_multidict_value(
     if (
         (not _is_json_field(field))
         and field_annotation_is_sequence(field.field_info.annotation)
-        and isinstance(values, (ImmutableMultiDict, Headers))
+        and isinstance(values, ImmutableMultiDict | Headers)
     ):
         value = values.getlist(alias)
     else:
@@ -833,7 +826,7 @@ def request_params_to_args(
     return values, errors
 
 
-def is_union_of_base_models(field_type: Any) -> bool:
+def is_union_of_base_models(field_type: type | None) -> bool:
     """Check if field type is a Union where all members are BaseModel subclasses."""
     from fastapi.types import UnionType
 

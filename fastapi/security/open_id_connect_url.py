@@ -70,7 +70,7 @@ class OpenIdConnect(SecurityBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         self.model = OpenIdConnectModel(
             openIdConnectUrl=openIdConnectUrl, description=description
         )
