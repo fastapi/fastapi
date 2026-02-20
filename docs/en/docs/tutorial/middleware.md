@@ -59,6 +59,9 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
+Middleware can also be used to add request tracing headers such as `X-Request-ID`. This is commonly used in production systems to uniquely identify and track requests across multiple services for debugging and observability.
+
+
 /// tip
 
 Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> instead of `time.time()` because it can be more precise for these use cases. 🤓
