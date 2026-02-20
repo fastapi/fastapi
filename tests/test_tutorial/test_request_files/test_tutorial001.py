@@ -162,8 +162,8 @@ def test_openapi_schema(client: TestClient):
                         "properties": {
                             "file": {
                                 "title": "File",
+                                "contentMediaType": "application/octet-stream",
                                 "type": "string",
-                                "format": "binary",
                             }
                         },
                     },

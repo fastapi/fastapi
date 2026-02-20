@@ -202,8 +202,8 @@ def test_openapi_schema(client: TestClient):
                             },
                             "fileb": {
                                 "title": "Fileb",
+                                "contentMediaType": "application/octet-stream",
                                 "type": "string",
-                                "format": "binary",
                             },
                             "token": {"title": "Token", "type": "string"},
                         },
