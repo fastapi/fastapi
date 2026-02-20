@@ -15,7 +15,7 @@ from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
 
 github_graphql_url = "https://api.github.com/graphql"
-questions_category_id = "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDAxNDM0"
+questions_category_id = "DIC_kwDOCZduT84B6E2a"
 
 discussions_query = """
 query Q($after: String, $category_id: ID) {
