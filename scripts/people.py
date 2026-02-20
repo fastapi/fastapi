@@ -52,7 +52,7 @@ class RateLimiter:
 
         final_wait_time = ceil(max(primary_limit_wait_time, secondary_limit_wait_time))
         logging.info(f"Sleeping for {final_wait_time} seconds to respect rate limit")
-        time.sleep(final_wait_time)
+        time.sleep(max(final_wait_time, 1))
 
         self.last_request_start_time = datetime.now(tz=timezone.utc)
         return self
