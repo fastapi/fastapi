@@ -31,6 +31,7 @@ hide:
 
 ### Internal
 
+* 👷 Always run tests on push to `master` branch and when run by scheduler. PR [#14940](https://github.com/fastapi/fastapi/pull/14940) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🎨 Upgrade typing syntax for Python 3.10. PR [#14932](https://github.com/fastapi/fastapi/pull/14932) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump cryptography from 46.0.4 to 46.0.5. PR [#14892](https://github.com/fastapi/fastapi/pull/14892) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pillow from 12.1.0 to 12.1.1. PR [#14899](https://github.com/fastapi/fastapi/pull/14899) by [@dependabot[bot]](https://github.com/apps/dependabot).
