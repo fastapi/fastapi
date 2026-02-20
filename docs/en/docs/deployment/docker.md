@@ -66,10 +66,10 @@ For example, there's an official <a href="https://hub.docker.com/_/python" class
 
 And there are many other images for different things like databases, for example for:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
+- <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
+- <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
+- <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
+- <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
 
 By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases, you can use the **official images**, and just configure them with environment variables.
 
@@ -99,9 +99,9 @@ I'll show you how to build a **Docker image** for FastAPI **from scratch**, base
 
 This is what you would want to do in **most cases**, for example:
 
-* Using **Kubernetes** or similar tools
-* When running on a **Raspberry Pi**
-* Using a cloud service that would run a container image for you, etc.
+- Using **Kubernetes** or similar tools
+- When running on a **Raspberry Pi**
+- Using a cloud service that would run a container image for you, etc.
 
 ### Package Requirements { #package-requirements }
 
@@ -111,7 +111,7 @@ It would depend mainly on the tool you use to **install** those requirements.
 
 The most common way to do it is to have a file `requirements.txt` with the package names and their versions, one per line.
 
-You would of course use the same ideas you read in [About FastAPI versions](versions.md){.internal-link target=_blank} to set the ranges of versions.
+You would of course use the same ideas you read in [About FastAPI versions](versions.md){.internal-link target=\_blank} to set the ranges of versions.
 
 For example, your `requirements.txt` could look like:
 
@@ -140,9 +140,9 @@ There are other formats and tools to define and install package dependencies.
 
 ### Create the **FastAPI** Code { #create-the-fastapi-code }
 
-* Create an `app` directory and enter it.
-* Create an empty file `__init__.py`.
-* Create a `main.py` file with:
+- Create an `app` directory and enter it.
+- Create an empty file `__init__.py`.
+- Create a `main.py` file with:
 
 ```Python
 from fastapi import FastAPI
@@ -188,41 +188,47 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 2. Set the current working directory to `/code`.
 
-    This is where we'll put the `requirements.txt` file and the `app` directory.
+   This is where we'll put the `requirements.txt` file and the `app` directory.
 
 3. Copy the file with the requirements to the `/code` directory.
 
-    Copy **only** the file with the requirements first, not the rest of the code.
+   Copy **only** the file with the requirements first, not the rest of the code.
 
-    As this file **doesn't change often**, Docker will detect it and use the **cache** for this step, enabling the cache for the next step too.
+   As this file **doesn't change often**, Docker will detect it and use the **cache** for this step, enabling the cache for the next step too.
 
 4. Install the package dependencies in the requirements file.
 
-    The `--no-cache-dir` option tells `pip` to not save the downloaded packages locally, as that is only if `pip` was going to be run again to install the same packages, but that's not the case when working with containers.
+   The `--no-cache-dir` option tells `pip` to not save the downloaded packages locally, as that is only if `pip` was going to be run again to install the same packages, but that's not the case when working with containers.
 
-    /// note
+   /// note
 
-    The `--no-cache-dir` is only related to `pip`, it has nothing to do with Docker or containers.
+   The `--no-cache-dir` is only related to `pip`, it has nothing to do with Docker or containers.
 
-    ///
+   ///
 
-    The `--upgrade` option tells `pip` to upgrade the packages if they are already installed.
+   The `--upgrade` option tells `pip` to upgrade the packages if they are already installed.
 
-    Because the previous step copying the file could be detected by the **Docker cache**, this step will also **use the Docker cache** when available.
+   Because the previous step copying the file could be detected by the **Docker cache**, this step will also **use the Docker cache** when available.
 
-    Using the cache in this step will **save** you a lot of **time** when building the image again and again during development, instead of **downloading and installing** all the dependencies **every time**.
+   Using the cache in this step will **save** you a lot of **time** when building the image again and again during development, instead of **downloading and installing** all the dependencies **every time**.
 
 5. Copy the `./app` directory inside the `/code` directory.
 
-    As this has all the code which is what **changes most frequently** the Docker **cache** won't be used for this or any **following steps** easily.
+   As this has all the code which is what **changes most frequently** the Docker **cache** won't be used for this or any **following steps** easily.
 
-    So, it's important to put this **near the end** of the `Dockerfile`, to optimize the container image build times.
+   So, it's important to put this **near the end** of the `Dockerfile`, to optimize the container image build times.
 
 6. Set the **command** to use `fastapi run`, which uses Uvicorn underneath.
 
-    `CMD` takes a list of strings, each of these strings is what you would type in the command line separated by spaces.
+   `CMD` takes a list of strings, each of these strings is what you would type in the command line separated by spaces.
 
-    This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
+   This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
+
+   /// tip
+
+   The --reload option is useful during local development as it enables automatic code reloading. However, it is not recommended for production Docker deployments, as it adds file-watching overhead. When running inside a container, use a standard command without --reload.
+
+   ///
 
 /// tip
 
@@ -254,7 +260,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md){.internal-link target=_blank} are triggered.
+Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md){.internal-link target=\_blank} are triggered.
 
 You can read more about it in the <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker docs for shell and exec form</a>.
 
@@ -317,8 +323,8 @@ COPY ./app /code/app
 
 Now that all the files are in place, let's build the container image.
 
-* Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
-* Build your FastAPI image:
+- Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
+- Build your FastAPI image:
 
 <div class="termy">
 
@@ -340,7 +346,7 @@ In this case, it's the same current directory (`.`).
 
 ### Start the Docker Container { #start-the-docker-container }
 
-* Run a container based on your image:
+- Run a container based on your image:
 
 <div class="termy">
 
@@ -413,7 +419,7 @@ When you pass the file to `fastapi run` it will detect automatically that it is 
 
 ## Deployment Concepts { #deployment-concepts }
 
-Let's talk again about some of the same [Deployment Concepts](concepts.md){.internal-link target=_blank} in terms of containers.
+Let's talk again about some of the same [Deployment Concepts](concepts.md){.internal-link target=\_blank} in terms of containers.
 
 Containers are mainly a tool to simplify the process of **building and deploying** an application, but they don't enforce a particular approach to handle these **deployment concepts**, and there are several possible strategies.
 
@@ -421,12 +427,12 @@ The **good news** is that with each different strategy there's a way to cover al
 
 Let's review these **deployment concepts** in terms of containers:
 
-* HTTPS
-* Running on startup
-* Restarts
-* Replication (the number of processes running)
-* Memory
-* Previous steps before starting
+- HTTPS
+- Running on startup
+- Restarts
+- Replication (the number of processes running)
+- Memory
+- Previous steps before starting
 
 ## HTTPS { #https }
 
@@ -482,7 +488,7 @@ Each of these containers running your app would normally have **just one process
 
 And the distributed container system with the **load balancer** would **distribute the requests** to each one of the containers with your app **in turns**. So, each request could be handled by one of the multiple **replicated containers** running your app.
 
-And normally this **load balancer** would be able to handle requests that go to *other* apps in your cluster (e.g. to a different domain, or under a different URL path prefix), and would transmit that communication to the right containers for *that other* application running in your cluster.
+And normally this **load balancer** would be able to handle requests that go to _other_ apps in your cluster (e.g. to a different domain, or under a different URL path prefix), and would transmit that communication to the right containers for _that other_ application running in your cluster.
 
 ### One Process per Container { #one-process-per-container }
 
@@ -531,12 +537,12 @@ Then you could want to have **a single container** with a **process manager** st
 
 The main point is, **none** of these are **rules written in stone** that you have to blindly follow. You can use these ideas to **evaluate your own use case** and decide what is the best approach for your system, checking out how to manage the concepts of:
 
-* Security - HTTPS
-* Running on startup
-* Restarts
-* Replication (the number of processes running)
-* Memory
-* Previous steps before starting
+- Security - HTTPS
+- Running on startup
+- Restarts
+- Replication (the number of processes running)
+- Memory
+- Previous steps before starting
 
 ## Memory { #memory }
 
@@ -592,11 +598,11 @@ After having a Container (Docker) Image there are several ways to deploy it.
 
 For example:
 
-* With **Docker Compose** in a single server
-* With a **Kubernetes** cluster
-* With a Docker Swarm Mode cluster
-* With another tool like Nomad
-* With a cloud service that takes your container image and deploys it
+- With **Docker Compose** in a single server
+- With a **Kubernetes** cluster
+- With a Docker Swarm Mode cluster
+- With another tool like Nomad
+- With a cloud service that takes your container image and deploys it
 
 ## Docker Image with `uv` { #docker-image-with-uv }
 
@@ -606,12 +612,12 @@ If you are using <a href="https://github.com/astral-sh/uv" class="external-link"
 
 Using container systems (e.g. with **Docker** and **Kubernetes**) it becomes fairly straightforward to handle all the **deployment concepts**:
 
-* HTTPS
-* Running on startup
-* Restarts
-* Replication (the number of processes running)
-* Memory
-* Previous steps before starting
+- HTTPS
+- Running on startup
+- Restarts
+- Replication (the number of processes running)
+- Memory
+- Previous steps before starting
 
 In most cases, you probably won't want to use any base image, and instead **build a container image from scratch** based on the official Python Docker image.
 
