@@ -42,6 +42,8 @@ evaluate_forwardref = eval_type_lenient
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
+    # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
+    # and dropping support for any version of Pydantic before that one (so, in a very long time)
     def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
         json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
         bytes_mode = (
