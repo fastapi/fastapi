@@ -9,6 +9,9 @@ on:
       - opened
       - synchronize
 
+permissions:
+  contents: read
+
 jobs:
   test-redistribute:
     runs-on: ubuntu-latest
