@@ -27,7 +27,7 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
 )
 from pydantic._internal._typing_extra import eval_type_lenient
 from pydantic.fields import FieldInfo as FieldInfo
-from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
+from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined
@@ -39,6 +39,14 @@ from pydantic_core.core_schema import (
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
 evaluate_forwardref = eval_type_lenient
+
+
+class GenerateJsonSchema(_GenerateJsonSchema):
+    def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
+        json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
+        self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
+        return json_schema
+
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -235,7 +243,9 @@ def get_definitions(
     dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
     dict[str, dict[str, Any]],
 ]:
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    schema_generator: _GenerateJsonSchema = GenerateJsonSchema(
+        ref_template=REF_TEMPLATE
+    )
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
     flat_validation_models = get_flat_models_from_fields(
