@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ➖ Drop support for `fastapi-slim`, no more versions will be released, use only `"fastapi[standard]"` or `fastapi`. PR [#14957](https://github.com/fastapi/fastapi/pull/14957) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update pyproject.toml, remove unneeded lines. PR [#14956](https://github.com/fastapi/fastapi/pull/14956) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.129.1
