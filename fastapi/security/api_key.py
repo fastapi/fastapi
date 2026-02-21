@@ -16,7 +16,7 @@ class APIKeyBase(SecurityBase):
         description: str | None,
         scheme_name: str | None,
         auto_error: bool,
-    ):
+    ) -> None:
         self.auto_error = auto_error
 
         self.model: APIKey = APIKey(
@@ -128,7 +128,7 @@ class APIKeyQuery(APIKeyBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         super().__init__(
             location=APIKeyIn.query,
             name=name,
@@ -216,7 +216,7 @@ class APIKeyHeader(APIKeyBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         super().__init__(
             location=APIKeyIn.header,
             name=name,
@@ -304,7 +304,7 @@ class APIKeyCookie(APIKeyBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         super().__init__(
             location=APIKeyIn.cookie,
             name=name,

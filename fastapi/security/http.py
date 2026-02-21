@@ -74,7 +74,7 @@ class HTTPBase(SecurityBase):
         scheme_name: str | None = None,
         description: str | None = None,
         auto_error: bool = True,
-    ):
+    ) -> None:
         self.model: HTTPBaseModel = HTTPBaseModel(
             scheme=scheme, description=description
         )
@@ -188,7 +188,7 @@ class HTTPBasic(HTTPBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
@@ -295,7 +295,7 @@ class HTTPBearer(HTTPBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -396,7 +396,7 @@ class HTTPDigest(HTTPBase):
                 """
             ),
         ] = True,
-    ):
+    ) -> None:
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
