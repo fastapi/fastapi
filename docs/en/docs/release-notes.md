@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix JSON Schema for files, use `contentMediaType` instead of `format: binary`. PR [#14953](https://github.com/fastapi/fastapi/pull/14953) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 🔨 Add Kapa.ai widget (AI chatbot). PR [#14938](https://github.com/fastapi/fastapi/pull/14938) by [@tiangolo](https://github.com/tiangolo).
