@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.129.2
+
 ### Internal
 
 * ⬆️ Upgrade pytest. PR [#14959](https://github.com/fastapi/fastapi/pull/14959) by [@tiangolo](https://github.com/tiangolo).
