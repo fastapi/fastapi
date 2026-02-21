@@ -282,6 +282,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        openapi_response_class: Type[JSONResponse] = JSONResponse,
         servers: Annotated[
             list[dict[str, str | Any]] | None,
             Doc(
@@ -860,6 +861,7 @@ class FastAPI(Starlette):
         self.license_info = license_info
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
+        self.openapi_response_class = openapi_response_class
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
@@ -1086,7 +1088,7 @@ class FastAPI(Starlette):
                     if root_path and self.root_path_in_servers:
                         self.servers.insert(0, {"url": root_path})
                         server_urls.add(root_path)
-                return JSONResponse(self.openapi())
+                return self.openapi_response_class(self.openapi())
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
