@@ -243,9 +243,7 @@ def get_definitions(
     dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
     dict[str, dict[str, Any]],
 ]:
-    schema_generator: _GenerateJsonSchema = GenerateJsonSchema(
-        ref_template=REF_TEMPLATE
-    )
+    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
     flat_validation_models = get_flat_models_from_fields(
