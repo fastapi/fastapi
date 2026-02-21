@@ -37,7 +37,7 @@ def test_optional_schema(path: str):
         "properties": {
             "p": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P",
@@ -109,7 +109,7 @@ def test_optional_alias_schema(path: str):
         "properties": {
             "p_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Alias",
@@ -200,7 +200,7 @@ def test_optional_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Val Alias",
@@ -296,7 +296,7 @@ def test_optional_alias_and_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Val Alias",
