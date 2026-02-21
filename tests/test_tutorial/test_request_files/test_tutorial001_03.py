@@ -123,7 +123,7 @@ def test_openapi_schema(client: TestClient):
                                 "title": "File",
                                 "type": "string",
                                 "description": "A file read as bytes",
-                                "format": "binary",
+                                "contentMediaType": "application/octet-stream",
                             }
                         },
                     },
