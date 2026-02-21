@@ -192,6 +192,7 @@ nav:
     - advanced/wsgi.md
     - advanced/generate-clients.md
     - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
