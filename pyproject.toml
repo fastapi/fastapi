@@ -256,14 +256,14 @@ strict_xfail = true
 filterwarnings = [
     "error",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
-    "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
+    # "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
     # https://github.com/sqlalchemy/sqlalchemy/commit/59521abcc0676e936b31a523bd968fc157fef0c2
-    'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
+    # 'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
     # Trio 24.1.0 raises a warning from attrs
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
-    'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
+    # 'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
 ]
 
 [tool.coverage.run]
