@@ -9,7 +9,7 @@ hide:
 
 ### Fixes
 
-* 🐛 Fix JSON Schema for files, use `contentMediaType` instead of `format: binary`. PR [#14953](https://github.com/fastapi/fastapi/pull/14953) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Fix JSON Schema for bytes, use `"contentMediaType": "application/octet-stream"` instead of `"format": "binary"`. PR [#14953](https://github.com/fastapi/fastapi/pull/14953) by [@tiangolo](https://github.com/tiangolo).
 
 ### Docs
 
