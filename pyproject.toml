@@ -548,6 +548,7 @@ ignore = [
 "docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
+"docs_src/json_base64_bytes/tutorial001_py310.py" = ["UP012"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
