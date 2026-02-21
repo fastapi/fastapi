@@ -4,14 +4,11 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from ...utils import needs_py310
-
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial006c_py310", marks=needs_py310),
-        pytest.param("tutorial006c_an_py310", marks=needs_py310),
+        "tutorial006c_an_py310",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -22,24 +19,28 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
 def test_query_params_str_validations_no_query(client: TestClient):
     response = client.get("/items/")
-    assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
-        "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "q"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
     }
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
-def test_query_params_str_validations_empty_str(client: TestClient):
-    response = client.get("/items/?q=")
+@pytest.mark.parametrize("q_value", ["None", "null", ""])
+def test_query_params_str_validations_send_explicit_none(
+    client: TestClient, q_value: str
+):
+    response = client.get("/items/", params={"q": q_value})
     assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
     }
 
