@@ -73,7 +73,7 @@ def test_openapi_schema(client: TestClient) -> None:
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "anyOf": [
+                                        "oneOf": [
                                             {"$ref": "#/components/schemas/Cat"},
                                             {"$ref": "#/components/schemas/Dog"},
                                         ],
