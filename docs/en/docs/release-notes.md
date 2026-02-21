@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔧 Update pyproject.toml, remove unneeded lines. PR [#14956](https://github.com/fastapi/fastapi/pull/14956) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.129.1
 
 ### Fixes
