@@ -156,35 +156,21 @@ That way, we can declare just the differences between the models (with plaintext
 
 {* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-## `Union` or `anyOf` { #union-or-anyof }
+## Union or `anyOf` { #union-or-anyof }
 
-You can declare a response to be the `Union` of two or more types, that means, that the response would be any of them.
+You can declare a response to be the union of two or more types, that means, that the response would be any of them.
 
 It will be defined in OpenAPI with `anyOf`.
 
-To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+To do that, use the standard Python union syntax:
 
 /// note
 
-When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+When defining a union, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `PlaneItem | CarItem`.
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
-
-### `Union` in Python 3.10 { #union-in-python-3-10 }
-
-In this example we pass `Union[PlaneItem, CarItem]` as the value of the argument `response_model`.
-
-Because we are passing it as a **value to an argument** instead of putting it in a **type annotation**, we have to use `Union` even in Python 3.10.
-
-If it was in a type annotation we could have used the vertical bar, as:
-
-```Python
-some_variable: PlaneItem | CarItem
-```
-
-But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[12:13,16:18,31] *}
 
 ## List of models { #list-of-models }
 
