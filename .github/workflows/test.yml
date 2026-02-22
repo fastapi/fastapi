@@ -149,9 +149,12 @@ jobs:
         run: uv sync --no-dev --group tests --extra all
       - name: CodSpeed benchmarks
         uses: CodSpeedHQ/action@v4
+        env:
+            COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py3.13
+            CONTEXT: ${{ runner.os }}-py3.13
         with:
           mode: simulation
-          run: uv run --no-sync pytest tests/benchmarks --codspeed
+          run: uv run --no-sync coverage run -m pytest tests/ --codspeed
 
   coverage-combine:
     needs:
