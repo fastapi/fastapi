@@ -8,7 +8,7 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial001_py310"),
+        pytest.param("tutorial010_py310"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -20,7 +20,7 @@ def get_client(request: pytest.FixtureRequest):
 def test_get_custom_response(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 200, response.text
-    assert response.json() == [{"item_id": "Foo"}]
+    assert response.text == snapshot("<h1>Items</h1><p>This is a list of items.</p>")
 
 
 def test_openapi_schema(client: TestClient):
@@ -36,7 +36,9 @@ def test_openapi_schema(client: TestClient):
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": {"application/json": {"schema": {}}},
+                                "content": {
+                                    "text/html": {"schema": {"type": "string"}}
+                                },
                             }
                         },
                         "summary": "Read Items",

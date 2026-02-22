@@ -271,6 +271,7 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
     endpoint_ctx: EndpointContext | None = None,
+    dump_json: bool = False,
 ) -> Any:
     if field:
         if is_coroutine:
@@ -286,8 +287,8 @@ async def serialize_response(
                 body=response_content,
                 endpoint_ctx=ctx,
             )
-
-        return field.serialize(
+        serializer = field.serialize_json if dump_json else field.serialize
+        return serializer(
             value,
             include=include,
             exclude=exclude,
@@ -443,6 +444,14 @@ def get_request_handler(
                     response_args["status_code"] = current_status_code
                 if solved_result.response.status_code:
                     response_args["status_code"] = solved_result.response.status_code
+                # Use the fast path (dump_json) when no custom response
+                # class was set and a response field with a TypeAdapter
+                # exists. Serializes directly to JSON bytes via Pydantic's
+                # Rust core, skipping the intermediate Python dict +
+                # json.dumps() step.
+                use_dump_json = response_field is not None and isinstance(
+                    response_class, DefaultPlaceholder
+                )
                 content = await serialize_response(
                     field=response_field,
                     response_content=raw_response,
@@ -454,8 +463,16 @@ def get_request_handler(
                     exclude_none=response_model_exclude_none,
                     is_coroutine=is_coroutine,
                     endpoint_ctx=endpoint_ctx,
+                    dump_json=use_dump_json,
                 )
-                response = actual_response_class(content, **response_args)
+                if use_dump_json:
+                    response = Response(
+                        content=content,
+                        media_type="application/json",
+                        **response_args,
+                    )
+                else:
+                    response = actual_response_class(content, **response_args)
                 if not is_body_allowed_for_status_code(response.status_code):
                     response.body = b""
                 response.headers.raw.extend(solved_result.response.headers.raw)
