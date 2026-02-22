@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.130.0
+
 ### Features
 
 * ✨ Serialize JSON response with Pydantic (in Rust), when there's a Pydantic return type or response model. PR [#14962](https://github.com/fastapi/fastapi/pull/14962) by [@tiangolo](https://github.com/tiangolo).
