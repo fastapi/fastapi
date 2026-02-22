@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+* 🗑️ Deprecate `ORJSONResponse` and `UJSONResponse`. PR [#14964](https://github.com/fastapi/fastapi/pull/14964) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.130.0
 
 ### Features
