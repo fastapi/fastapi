@@ -105,10 +105,6 @@ all = [
     "itsdangerous >=1.1.0",
     # For Starlette's schema generation, would not be used with FastAPI
     "pyyaml >=5.3.1",
-    # For UJSONResponse
-    "ujson >=5.8.0",
-    # For ORJSONResponse
-    "orjson >=3.9.3",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -151,6 +147,10 @@ docs = [
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
     "ruff >=0.14.14",
+    # For UJSONResponse
+    "ujson >=5.8.0",
+    # For ORJSONResponse
+    "orjson >=3.9.3",
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
