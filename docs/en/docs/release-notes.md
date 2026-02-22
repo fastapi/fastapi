@@ -12,6 +12,8 @@ hide:
 ### Features
 
 * ✨ Serialize JSON response with Pydantic (in Rust), when there's a Pydantic return type or response model. PR [#14962](https://github.com/fastapi/fastapi/pull/14962) by [@tiangolo](https://github.com/tiangolo).
+    * This results in 2x (or more) performance increase for JSON responses.
+    * New docs: [Custom Response - JSON Performance](https://fastapi.tiangolo.com/advanced/custom-response/#json-performance).
 
 ## 0.129.2
 
