@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👷 Do not run codspeed with coverage as it's not tracked. PR [#14966](https://github.com/fastapi/fastapi/pull/14966) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Do not include benchmark tests in coverage to speed up coverage processing. PR [#14965](https://github.com/fastapi/fastapi/pull/14965) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.131.0
