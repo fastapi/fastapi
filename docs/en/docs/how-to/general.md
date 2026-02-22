@@ -6,6 +6,10 @@ Here are several pointers to other places in the docs, for general or frequent q
 
 To ensure that you don't return more data than you should, read the docs for [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank}.
 
+## Optimize Response Performance - Response Model - Return Type { #optimize-response-performance-response-model-return-type }
+
+To optimize performance when returning JSON data, use a return type or response model, that way Pydantic will handle the serialization to JSON on the Rust side, without going through Python. Read more in the docs for [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank}.
+
 ## Documentation Tags - OpenAPI { #documentation-tags-openapi }
 
 To add tags to your *path operations*, and group them in the docs UI, read the docs for [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
