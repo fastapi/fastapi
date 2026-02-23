@@ -208,4 +208,4 @@ jobs:
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
-          allowed-skips: coverage-combine,test
+          allowed-skips: coverage-combine,test,benchmark
