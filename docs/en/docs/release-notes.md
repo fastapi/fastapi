@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.132.0
+
 ### Breaking Changes
 
 * 🔒️ Add `strict_content_type` checking for JSON requests. PR [#14978](https://github.com/fastapi/fastapi/pull/14978) by [@tiangolo](https://github.com/tiangolo).
