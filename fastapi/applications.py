@@ -840,6 +840,29 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        strict_content_type: Annotated[
+            bool,
+            Doc(
+                """
+                Enable strict checking for request Content-Type headers.
+
+                When `True` (the default), requests with a body that do not include
+                a `Content-Type` header will **not** be parsed as JSON.
+
+                This prevents potential cross-site request forgery (CSRF) attacks
+                that exploit the browser's ability to send requests without a
+                Content-Type header, bypassing CORS preflight checks. In particular
+                applicable for apps that need to be run locally (in localhost).
+
+                When `False`, requests without a `Content-Type` header will have
+                their body parsed as JSON, which maintains compatibility with
+                certain clients that don't send `Content-Type` headers.
+
+                Read more about it in the
+                [FastAPI docs for Strict Content-Type](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+                """
+            ),
+        ] = True,
         **extra: Annotated[
             Any,
             Doc(
@@ -974,6 +997,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
+            strict_content_type=strict_content_type,
         )
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
