@@ -1,6 +1,6 @@
+import inspect
+from collections.abc import AsyncIterator, Iterator
 from typing import Any
-from collections.abc import AsyncIterator
-from collections.abc import Iterator
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from starlette.responses import FileResponse as FileResponse  # noqa
@@ -11,7 +11,6 @@ from starlette.responses import RedirectResponse as RedirectResponse  # noqa
 from starlette.responses import Response as Response  # noqa
 from starlette.responses import StreamingResponse as StreamingResponse  # noqa
 from typing_extensions import deprecated
-import inspect
 
 
 def _is_async(obj: Any) -> bool:
@@ -181,6 +180,7 @@ def format_sse(
 
     # SSE events are separated by double newlines
     return "\n".join(lines) + "\n\n"
+
 
 try:
     import ujson

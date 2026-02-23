@@ -1,5 +1,5 @@
 """Tests for Server-Sent Events (SSE) response classes."""
-import pytest
+
 from fastapi import FastAPI
 from fastapi.responses import SSEResponse, format_sse
 from fastapi.testclient import TestClient
@@ -195,7 +195,7 @@ def test_sse_response_custom_headers():
 
 def test_sse_export():
     """Test that SSEResponse is exported from fastapi."""
-    from fastapi import SSEResponse
-    from fastapi import format_sse
+    from fastapi import SSEResponse, format_sse
+
     assert SSEResponse is not None
     assert format_sse is not None
