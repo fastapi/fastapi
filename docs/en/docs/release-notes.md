@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#14972](https://github.com/fastapi/fastapi/pull/14972) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Allow skipping `benchmark` job in `test` workflow. PR [#14974](https://github.com/fastapi/fastapi/pull/14974) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.132.0
