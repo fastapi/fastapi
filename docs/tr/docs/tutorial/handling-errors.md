@@ -205,13 +205,11 @@ Aldığınız body’yi de içeren, verinin geçersiz olduğunu söyleyen bir re
         "size"
       ],
       "msg": "value is not a valid integer",
-      "type": "type_error.integer"
+      "type": "type_error.integer",
+      "input": "XL"
     }
   ],
-  "body": {
-    "title": "towel",
-    "size": "XL"
-  }
+  "body": "{\n  \"title\": \"towel\",\n  \"size\": \"XL\"\n}"
 }
 ```
 

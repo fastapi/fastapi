@@ -112,7 +112,7 @@ def test_put_images_not_list(client: TestClient):
                     "url": "http://example.com/image.png",
                     "name": "example image",
                 },
-                "msg": "Input should be a valid list",
+                "msg": "Input should be a valid array",
                 "type": "list_type",
             },
         ]
