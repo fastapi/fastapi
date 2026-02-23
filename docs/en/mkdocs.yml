@@ -192,6 +192,8 @@ nav:
     - advanced/wsgi.md
     - advanced/generate-clients.md
     - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
@@ -342,5 +344,6 @@ extra_css:
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py

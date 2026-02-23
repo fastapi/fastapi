@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI, File, UploadFile
@@ -13,12 +13,12 @@ app = FastAPI()
 
 
 @app.post("/optional-bytes", operation_id="optional_bytes")
-async def read_optional_bytes(p: Annotated[Optional[bytes], File()] = None):
+async def read_optional_bytes(p: Annotated[bytes | None, File()] = None):
     return {"file_size": len(p) if p else None}
 
 
 @app.post("/optional-uploadfile", operation_id="optional_uploadfile")
-async def read_optional_uploadfile(p: Annotated[Optional[UploadFile], File()] = None):
+async def read_optional_uploadfile(p: Annotated[UploadFile | None, File()] = None):
     return {"file_size": p.size if p else None}
 
 
@@ -37,7 +37,7 @@ def test_optional_schema(path: str):
         "properties": {
             "p": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P",
@@ -82,14 +82,14 @@ def test_optional(path: str):
 
 @app.post("/optional-bytes-alias", operation_id="optional_bytes_alias")
 async def read_optional_bytes_alias(
-    p: Annotated[Optional[bytes], File(alias="p_alias")] = None,
+    p: Annotated[bytes | None, File(alias="p_alias")] = None,
 ):
     return {"file_size": len(p) if p else None}
 
 
 @app.post("/optional-uploadfile-alias", operation_id="optional_uploadfile_alias")
 async def read_optional_uploadfile_alias(
-    p: Annotated[Optional[UploadFile], File(alias="p_alias")] = None,
+    p: Annotated[UploadFile | None, File(alias="p_alias")] = None,
 ):
     return {"file_size": p.size if p else None}
 
@@ -109,7 +109,7 @@ def test_optional_alias_schema(path: str):
         "properties": {
             "p_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Alias",
@@ -170,7 +170,7 @@ def test_optional_alias_by_alias(path: str):
     "/optional-bytes-validation-alias", operation_id="optional_bytes_validation_alias"
 )
 def read_optional_bytes_validation_alias(
-    p: Annotated[Optional[bytes], File(validation_alias="p_val_alias")] = None,
+    p: Annotated[bytes | None, File(validation_alias="p_val_alias")] = None,
 ):
     return {"file_size": len(p) if p else None}
 
@@ -180,7 +180,7 @@ def read_optional_bytes_validation_alias(
     operation_id="optional_uploadfile_validation_alias",
 )
 def read_optional_uploadfile_validation_alias(
-    p: Annotated[Optional[UploadFile], File(validation_alias="p_val_alias")] = None,
+    p: Annotated[UploadFile | None, File(validation_alias="p_val_alias")] = None,
 ):
     return {"file_size": p.size if p else None}
 
@@ -200,7 +200,7 @@ def test_optional_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Val Alias",
@@ -263,7 +263,7 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 )
 def read_optional_bytes_alias_and_validation_alias(
     p: Annotated[
-        Optional[bytes], File(alias="p_alias", validation_alias="p_val_alias")
+        bytes | None, File(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"file_size": len(p) if p else None}
@@ -275,7 +275,7 @@ def read_optional_bytes_alias_and_validation_alias(
 )
 def read_optional_uploadfile_alias_and_validation_alias(
     p: Annotated[
-        Optional[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
+        UploadFile | None, File(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"file_size": p.size if p else None}
@@ -296,7 +296,7 @@ def test_optional_alias_and_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "anyOf": [
-                    {"type": "string", "format": "binary"},
+                    {"type": "string", "contentMediaType": "application/octet-stream"},
                     {"type": "null"},
                 ],
                 "title": "P Val Alias",

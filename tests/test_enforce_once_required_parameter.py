@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import Depends, FastAPI, Query
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -11,7 +9,7 @@ def _get_client_key(client_id: str = Query(...)) -> str:
     return f"{client_id}_key"
 
 
-def _get_client_tag(client_id: Optional[str] = Query(None)) -> Optional[str]:
+def _get_client_tag(client_id: str | None = Query(None)) -> str | None:
     if client_id is None:
         return None
     return f"{client_id}_tag"
@@ -20,7 +18,7 @@ def _get_client_tag(client_id: Optional[str] = Query(None)) -> Optional[str]:
 @app.get("/foo")
 def foo_handler(
     client_key: str = Depends(_get_client_key),
-    client_tag: Optional[str] = Depends(_get_client_tag),
+    client_tag: str | None = Depends(_get_client_tag),
 ):
     return {"client_id": client_key, "client_tag": client_tag}
 
