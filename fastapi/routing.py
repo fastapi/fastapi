@@ -271,6 +271,7 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
     endpoint_ctx: EndpointContext | None = None,
+    dump_json: bool = False,
 ) -> Any:
     if field:
         if is_coroutine:
@@ -286,8 +287,8 @@ async def serialize_response(
                 body=response_content,
                 endpoint_ctx=ctx,
             )
-
-        return field.serialize(
+        serializer = field.serialize_json if dump_json else field.serialize
+        return serializer(
             value,
             include=include,
             exclude=exclude,
@@ -328,6 +329,7 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
+    strict_content_type: bool | DefaultPlaceholder = Default(True),
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
@@ -336,6 +338,10 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
+    if isinstance(strict_content_type, DefaultPlaceholder):
+        actual_strict_content_type: bool = strict_content_type.value
+    else:
+        actual_strict_content_type = strict_content_type
 
     async def app(request: Request) -> Response:
         response: Response | None = None
@@ -369,7 +375,8 @@ def get_request_handler(
                         json_body: Any = Undefined
                         content_type_value = request.headers.get("content-type")
                         if not content_type_value:
-                            json_body = await request.json()
+                            if not actual_strict_content_type:
+                                json_body = await request.json()
                         else:
                             message = email.message.Message()
                             message["content-type"] = content_type_value
@@ -443,6 +450,14 @@ def get_request_handler(
                     response_args["status_code"] = current_status_code
                 if solved_result.response.status_code:
                     response_args["status_code"] = solved_result.response.status_code
+                # Use the fast path (dump_json) when no custom response
+                # class was set and a response field with a TypeAdapter
+                # exists. Serializes directly to JSON bytes via Pydantic's
+                # Rust core, skipping the intermediate Python dict +
+                # json.dumps() step.
+                use_dump_json = response_field is not None and isinstance(
+                    response_class, DefaultPlaceholder
+                )
                 content = await serialize_response(
                     field=response_field,
                     response_content=raw_response,
@@ -454,8 +469,16 @@ def get_request_handler(
                     exclude_none=response_model_exclude_none,
                     is_coroutine=is_coroutine,
                     endpoint_ctx=endpoint_ctx,
+                    dump_json=use_dump_json,
                 )
-                response = actual_response_class(content, **response_args)
+                if use_dump_json:
+                    response = Response(
+                        content=content,
+                        media_type="application/json",
+                        **response_args,
+                    )
+                else:
+                    response = actual_response_class(content, **response_args)
                 if not is_body_allowed_for_status_code(response.status_code):
                     response.body = b""
                 response.headers.raw.extend(solved_result.response.headers.raw)
@@ -582,6 +605,7 @@ class APIRoute(routing.Route):
         openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[["APIRoute"], str]
         | DefaultPlaceholder = Default(generate_unique_id),
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -608,6 +632,7 @@ class APIRoute(routing.Route):
         self.callbacks = callbacks
         self.openapi_extra = openapi_extra
         self.generate_unique_id_function = generate_unique_id_function
+        self.strict_content_type = strict_content_type
         self.tags = tags or []
         self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
@@ -696,6 +721,7 @@ class APIRoute(routing.Route):
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
             embed_body_fields=self._embed_body_fields,
+            strict_content_type=self.strict_content_type,
         )
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
@@ -946,6 +972,29 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        strict_content_type: Annotated[
+            bool,
+            Doc(
+                """
+                Enable strict checking for request Content-Type headers.
+
+                When `True` (the default), requests with a body that do not include
+                a `Content-Type` header will **not** be parsed as JSON.
+
+                This prevents potential cross-site request forgery (CSRF) attacks
+                that exploit the browser's ability to send requests without a
+                Content-Type header, bypassing CORS preflight checks. In particular
+                applicable for apps that need to be run locally (in localhost).
+
+                When `False`, requests without a `Content-Type` header will have
+                their body parsed as JSON, which maintains compatibility with
+                certain clients that don't send `Content-Type` headers.
+
+                Read more about it in the
+                [FastAPI docs for Strict Content-Type](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+                """
+            ),
+        ] = Default(True),
     ) -> None:
         # Determine the lifespan context to use
         if lifespan is None:
@@ -992,6 +1041,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.strict_content_type = strict_content_type
 
     def route(
         self,
@@ -1042,6 +1092,7 @@ class APIRouter(routing.Router):
         openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[[APIRoute], str]
         | DefaultPlaceholder = Default(generate_unique_id),
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1088,6 +1139,9 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            strict_content_type=get_value_or_default(
+                strict_content_type, self.strict_content_type
+            ),
         )
         self.routes.append(route)
 
@@ -1463,6 +1517,11 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
+                    strict_content_type=get_value_or_default(
+                        route.strict_content_type,
+                        router.strict_content_type,
+                        self.strict_content_type,
+                    ),
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
