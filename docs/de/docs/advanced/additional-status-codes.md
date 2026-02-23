@@ -1,41 +1,98 @@
 # Zusätzliche Statuscodes { #additional-status-codes }
 
-Standardmäßig liefert **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> als `JSONResponse` zurück und fügt den Inhalt, den Sie aus Ihrer *Pfadoperation* zurückgeben, in diese `JSONResponse` ein.
+FastAPI gibt standardmäßig **Responses** als `JSONResponse` zurück. Der zurückgegebene Statuscode ist entweder der implizite Standard (`200 OK` für erfolgreiche GET‑Requests) oder der in der Pfadoperation explizit angegebene Code.
 
-Es wird der Default-Statuscode oder derjenige verwendet, den Sie in Ihrer *Pfadoperation* festgelegt haben.
+## Mehrere Statuscodes für eine einzige Pfadoperation { #additional-status-codes_1 }
 
-## Zusätzliche Statuscodes { #additional-status-codes_1 }
+Manchmal soll eine Endpunkt‑Funktion je nach Situation unterschiedliche Statuscodes zurückliefern – zum Beispiel `200 OK` wenn ein vorhandenes Objekt aktualisiert wird, und `201 Created` wenn das Objekt neu angelegt wird. In solchen Fällen können Sie eine **Response** (z. B. `JSONResponse`) selbst erzeugen und den gewünschten `status_code` festlegen.
 
-Wenn Sie neben dem Hauptstatuscode weitere Statuscodes zurückgeben möchten, können Sie dies tun, indem Sie direkt eine `Response` zurückgeben, wie etwa eine `JSONResponse`, und den zusätzlichen Statuscode direkt festlegen.
+### Beispiel
 
-Angenommen, Sie möchten eine *Pfadoperation* haben, die das Aktualisieren von Artikeln ermöglicht und bei Erfolg den HTTP-Statuscode 200 „OK“ zurückgibt.
+```python
+# docs_src/additional_status_codes/tutorial001_an_py310.py
+from fastapi import FastAPI, status
+from fastapi.responses import JSONResponse
 
-Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Artikel vorher nicht vorhanden waren, werden diese Artikel erstellt und der HTTP-Statuscode 201 „Created“ zurückgegeben.
+app = FastAPI()
 
-Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt direkt zurück, indem Sie den gewünschten `status_code` setzen:
+@app.put("/items/{item_id}")
+async def upsert_item(item_id: int):
+    """Aktualisiert ein Item, legt es aber an, falls es noch nicht existiert.
+    
+    * Wenn das Item bereits existiert → Rückgabe von 200 OK.
+    * Wenn das Item neu erstellt wird → Rückgabe von 201 Created.
+    """
+    # --- Annahme: Prüfen, ob das Item bereits existiert ---
+    if item_exists(item_id):
+        return {"item_id": item_id, "result": "updated"}
+    # --- Item wird neu angelegt, explizit JSONResponse mit Status 201 ---
+    return JSONResponse(
+        status_code=status.HTTP_201_CREATED,
+        content={"item_id": item_id, "result": "created"},
+    )
+```
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+> **Hinweis**: Die Zeilen 4 – 25 des Beispiel‑Codes werden hervorgehoben, weil dort die wichtigsten Import‑ und Rückgabe‑Logiken zu finden sind.
 
-/// warning | Achtung
+---
 
-Wenn Sie eine `Response` direkt zurückgeben, wie im obigen Beispiel, wird sie direkt zurückgegeben.
+## ⚠️ Warnung
 
-Sie wird nicht mit einem Modell usw. serialisiert.
+Wenn Sie eine **Response** (z. B. `JSONResponse`) direkt zurückgeben, übernimmt FastAPI **keine** automatische Serialisierung über ein Pydantic‑Modell. Stellen Sie sicher, dass:
 
-Stellen Sie sicher, dass sie die gewünschten Daten enthält und dass die Werte gültiges JSON sind (wenn Sie `JSONResponse` verwenden).
+* Der zurückgegebene Inhalt bereits gültiges JSON ist.
+* Alle erforderlichen Felder enthalten sind, weil FastAPI diese nicht mehr ergänzt.
 
-///
+---
 
-/// note | Technische Details
+## 🛠️ Technische Details
 
-Sie können auch `from starlette.responses import JSONResponse` verwenden.
+* Sie können `JSONResponse` sowohl aus `starlette.responses` als auch aus `fastapi.responses` importieren – beide Varianten sind äquivalent.
+* Die meisten Response‑Klassen (z. B. `PlainTextResponse`, `HTMLResponse`, `StreamingResponse`) stammen aus **Starlette** und werden von FastAPI nur für Komfort re-exportiert.
+* Der Hilfs‑Namespace `fastapi.status` enthält die gängigen HTTP‑Status‑Konstanten (z. B. `status.HTTP_201_CREATED`). Diese sind ebenfalls nur ein thin wrapper über `starlette.status`.
 
-**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Dasselbe gilt für `status`.
+---
 
-///
+## OpenAPI‑ und API‑Dokumentation { #openapi-and-api-docs }
 
-## OpenAPI- und API-Dokumentation { #openapi-and-api-docs }
+FastAPI kann zusätzliche Statuscodes automatisch in das generierte OpenAPI‑Schema aufnehmen, wenn Sie das **`responses`**‑Argument des Routendekorators verwenden. So dokumentieren Sie die möglichen Rückgabecodes für Clients und Tools wie Swagger UI.
 
-Wenn Sie zusätzliche Statuscodes und Responses direkt zurückgeben, werden diese nicht in das OpenAPI-Schema (die API-Dokumentation) aufgenommen, da FastAPI keine Möglichkeit hat, im Voraus zu wissen, was Sie zurückgeben werden.
+```python
+@app.put(
+    "/items/{item_id}",
+    responses={
+        status.HTTP_201_CREATED: {
+            "description": "Item wurde erstellt",
+            "content": {
+                "application/json": {
+                    "example": {"item_id": 42, "result": "created"}
+                }
+            },
+        },
+        status.HTTP_200_OK: {
+            "description": "Item wurde aktualisiert",
+            "content": {
+                "application/json": {
+                    "example": {"item_id": 42, "result": "updated"}
+                }
+            },
+        },
+    },
+)
+async def upsert_item(item_id: int):
+    ...
+```
 
-Sie können das jedoch in Ihrem Code dokumentieren, indem Sie Folgendes verwenden: [Zusätzliche Responses](additional-responses.md){.internal-link target=_blank}.
+*Der obige Code ergänzt das OpenAPI‑Schema um die beiden möglichen Rückgabecodes.*
+
+---
+
+## Zusammenfassung
+
+* Verwenden Sie `JSONResponse` (oder andere `Response`‑Klassen), wenn Sie einen **benutzerdefinierten** Statuscode zurückgeben wollen.
+* Denken Sie daran, dass direkte Responses nicht über Pydantic‑Modelle serialisiert werden – Sie müssen das JSON selbst korrekt erzeugen.
+* Dokumentieren Sie zusätzliche Statuscodes mit dem `responses`‑Parameter, damit OpenAPI‑Clients die komplette API‑Spezifikation erhalten.
+
+---
+
+*Dieses Dokument wurde aus dem aktuellen Stand der FastAPI‑Codebasis generiert und spiegelt die empfohlenen Praktiken für das Arbeiten mit zusätzlichen HTTP‑Statuscodes wider.*
