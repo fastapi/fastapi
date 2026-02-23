@@ -1083,12 +1083,10 @@ all = [
     { name = "httpx" },
     { name = "itsdangerous" },
     { name = "jinja2" },
-    { name = "orjson" },
     { name = "pydantic-extra-types" },
     { name = "pydantic-settings" },
     { name = "python-multipart" },
     { name = "pyyaml" },
-    { name = "ujson" },
     { name = "uvicorn", extra = ["standard"] },
 ]
 standard = [
@@ -1134,6 +1132,7 @@ dev = [
     { name = "mkdocs-redirects" },
     { name = "mkdocstrings", extra = ["python"] },
     { name = "mypy" },
+    { name = "orjson" },
     { name = "pillow" },
     { name = "playwright" },
     { name = "prek" },
@@ -1151,6 +1150,7 @@ dev = [
     { name = "typer" },
     { name = "types-orjson" },
     { name = "types-ujson" },
+    { name = "ujson" },
 ]
 docs = [
     { name = "black" },
@@ -1165,15 +1165,19 @@ docs = [
     { name = "mkdocs-material" },
     { name = "mkdocs-redirects" },
     { name = "mkdocstrings", extra = ["python"] },
+    { name = "orjson" },
     { name = "pillow" },
     { name = "python-slugify" },
     { name = "pyyaml" },
     { name = "ruff" },
     { name = "typer" },
+    { name = "ujson" },
 ]
 docs-tests = [
     { name = "httpx" },
+    { name = "orjson" },
     { name = "ruff" },
+    { name = "ujson" },
 ]
 github-actions = [
     { name = "httpx" },
@@ -1192,6 +1196,7 @@ tests = [
     { name = "httpx" },
     { name = "inline-snapshot" },
     { name = "mypy" },
+    { name = "orjson" },
     { name = "pwdlib", extra = ["argon2"] },
     { name = "pyjwt" },
     { name = "pytest" },
@@ -1202,6 +1207,7 @@ tests = [
     { name = "strawberry-graphql" },
     { name = "types-orjson" },
     { name = "types-ujson" },
+    { name = "ujson" },
 ]
 translations = [
     { name = "gitpython" },
@@ -1225,7 +1231,6 @@ requires-dist = [
     { name = "jinja2", marker = "extra == 'all'", specifier = ">=3.1.5" },
     { name = "jinja2", marker = "extra == 'standard'", specifier = ">=3.1.5" },
     { name = "jinja2", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=3.1.5" },
-    { name = "orjson", marker = "extra == 'all'", specifier = ">=3.9.3" },
     { name = "pydantic", specifier = ">=2.7.0" },
     { name = "pydantic-extra-types", marker = "extra == 'all'", specifier = ">=2.0.0" },
     { name = "pydantic-extra-types", marker = "extra == 'standard'", specifier = ">=2.0.0" },
@@ -1240,7 +1245,6 @@ requires-dist = [
     { name = "starlette", specifier = ">=0.40.0,<1.0.0" },
     { name = "typing-extensions", specifier = ">=4.8.0" },
     { name = "typing-inspection", specifier = ">=0.4.2" },
-    { name = "ujson", marker = "extra == 'all'", specifier = ">=5.8.0" },
     { name = "uvicorn", extras = ["standard"], marker = "extra == 'all'", specifier = ">=0.12.0" },
     { name = "uvicorn", extras = ["standard"], marker = "extra == 'standard'", specifier = ">=0.12.0" },
     { name = "uvicorn", extras = ["standard"], marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=0.12.0" },
@@ -1269,6 +1273,7 @@ dev = [
     { name = "mkdocs-redirects", specifier = ">=1.2.1,<1.3.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.30.1" },
     { name = "mypy", specifier = ">=1.14.1" },
+    { name = "orjson", specifier = ">=3.9.3" },
     { name = "pillow", specifier = ">=11.3.0" },
     { name = "playwright", specifier = ">=1.57.0" },
     { name = "prek", specifier = ">=0.2.22" },
@@ -1286,6 +1291,7 @@ dev = [
     { name = "typer", specifier = ">=0.21.1" },
     { name = "types-orjson", specifier = ">=3.6.2" },
     { name = "types-ujson", specifier = ">=5.10.0.20240515" },
+    { name = "ujson", specifier = ">=5.8.0" },
 ]
 docs = [
     { name = "black", specifier = ">=25.1.0" },
@@ -1300,15 +1306,19 @@ docs = [
     { name = "mkdocs-material", specifier = ">=9.7.0" },
     { name = "mkdocs-redirects", specifier = ">=1.2.1,<1.3.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.30.1" },
+    { name = "orjson", specifier = ">=3.9.3" },
     { name = "pillow", specifier = ">=11.3.0" },
     { name = "python-slugify", specifier = ">=8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
     { name = "typer", specifier = ">=0.21.1" },
+    { name = "ujson", specifier = ">=5.8.0" },
 ]
 docs-tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
+    { name = "orjson", specifier = ">=3.9.3" },
     { name = "ruff", specifier = ">=0.14.14" },
+    { name = "ujson", specifier = ">=5.8.0" },
 ]
 github-actions = [
     { name = "httpx", specifier = ">=0.27.0,<1.0.0" },
@@ -1327,6 +1337,7 @@ tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "inline-snapshot", specifier = ">=0.21.1" },
     { name = "mypy", specifier = ">=1.14.1" },
+    { name = "orjson", specifier = ">=3.9.3" },
     { name = "pwdlib", extras = ["argon2"], specifier = ">=0.2.1" },
     { name = "pyjwt", specifier = ">=2.9.0" },
     { name = "pytest", specifier = ">=9.0.0" },
@@ -1337,6 +1348,7 @@ tests = [
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "types-orjson", specifier = ">=3.6.2" },
     { name = "types-ujson", specifier = ">=5.10.0.20240515" },
+    { name = "ujson", specifier = ">=5.8.0" },
 ]
 translations = [
     { name = "gitpython", specifier = ">=3.1.46" },

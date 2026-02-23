@@ -1,26 +1,29 @@
-import warnings
+import importlib
 
 import pytest
-from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore", FastAPIDeprecationWarning)
-    from docs_src.custom_response.tutorial001b_py310 import app
 
-client = TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial010_py310"),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.custom_response.{request.param}")
+    client = TestClient(mod.app)
+    return client
 
 
-@pytest.mark.filterwarnings("ignore::fastapi.exceptions.FastAPIDeprecationWarning")
-def test_get_custom_response():
+def test_get_custom_response(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 200, response.text
-    assert response.json() == [{"item_id": "Foo"}]
+    assert response.text == snapshot("<h1>Items</h1><p>This is a list of items.</p>")
 
 
-@pytest.mark.filterwarnings("ignore::fastapi.exceptions.FastAPIDeprecationWarning")
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == snapshot(
@@ -33,7 +36,9 @@ def test_openapi_schema():
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": {"application/json": {"schema": {}}},
+                                "content": {
+                                    "text/html": {"schema": {"type": "string"}}
+                                },
                             }
                         },
                         "summary": "Read Items",
