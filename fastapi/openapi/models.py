@@ -1,6 +1,6 @@
 from collections.abc import Callable, Iterable, Mapping
 from enum import Enum
-from typing import Annotated, Any, Literal, Optional, Union
+from typing import Annotated, Any, Literal, Union
 
 from fastapi._compat import with_info_plain_validator_function
 from fastapi.logger import logger
@@ -137,20 +137,20 @@ class Schema(BaseModelWithConfig):
     allOf: list["SchemaOrBool"] | None = None
     anyOf: list["SchemaOrBool"] | None = None
     oneOf: list["SchemaOrBool"] | None = None
-    not_: Optional["SchemaOrBool"] = Field(default=None, alias="not")
-    if_: Optional["SchemaOrBool"] = Field(default=None, alias="if")
-    then: Optional["SchemaOrBool"] = None
-    else_: Optional["SchemaOrBool"] = Field(default=None, alias="else")
+    not_: "SchemaOrBool" | None = Field(default=None, alias="not")
+    if_: "SchemaOrBool" | None = Field(default=None, alias="if")
+    then: "SchemaOrBool" | None = None
+    else_: "SchemaOrBool" | None = Field(default=None, alias="else")
     dependentSchemas: dict[str, "SchemaOrBool"] | None = None
     prefixItems: list["SchemaOrBool"] | None = None
-    items: Optional["SchemaOrBool"] = None
-    contains: Optional["SchemaOrBool"] = None
+    items: "SchemaOrBool" | None = None
+    contains: "SchemaOrBool" | None = None
     properties: dict[str, "SchemaOrBool"] | None = None
     patternProperties: dict[str, "SchemaOrBool"] | None = None
-    additionalProperties: Optional["SchemaOrBool"] = None
-    propertyNames: Optional["SchemaOrBool"] = None
-    unevaluatedItems: Optional["SchemaOrBool"] = None
-    unevaluatedProperties: Optional["SchemaOrBool"] = None
+    additionalProperties: "SchemaOrBool" | None = None
+    propertyNames: "SchemaOrBool" | None = None
+    unevaluatedItems: "SchemaOrBool" | None = None
+    unevaluatedProperties: "SchemaOrBool" | None = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
     # A Vocabulary for Structural Validation
     type: SchemaType | list[SchemaType] | None = None
@@ -180,7 +180,7 @@ class Schema(BaseModelWithConfig):
     # A Vocabulary for the Contents of String-Encoded Data
     contentEncoding: str | None = None
     contentMediaType: str | None = None
-    contentSchema: Optional["SchemaOrBool"] = None
+    contentSchema: "SchemaOrBool" | None = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-basic-meta
     # A Vocabulary for Basic Meta-Data Annotations
     title: str | None = None
