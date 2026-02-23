@@ -329,7 +329,7 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
-    strict_content_type: bool = True,
+    strict_content_type: bool | DefaultPlaceholder = Default(True),
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
@@ -338,6 +338,10 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
+    if isinstance(strict_content_type, DefaultPlaceholder):
+        actual_strict_content_type: bool = strict_content_type.value
+    else:
+        actual_strict_content_type = strict_content_type
 
     async def app(request: Request) -> Response:
         response: Response | None = None
@@ -371,7 +375,7 @@ def get_request_handler(
                         json_body: Any = Undefined
                         content_type_value = request.headers.get("content-type")
                         if not content_type_value:
-                            if not strict_content_type:
+                            if not actual_strict_content_type:
                                 json_body = await request.json()
                         else:
                             message = email.message.Message()
@@ -601,7 +605,7 @@ class APIRoute(routing.Route):
         openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[["APIRoute"], str]
         | DefaultPlaceholder = Default(generate_unique_id),
-        strict_content_type: bool = True,
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -990,7 +994,7 @@ class APIRouter(routing.Router):
                 [FastAPI docs for Strict Content-Type](https://fastapi.tiangolo.com/advanced/strict-content-type/).
                 """
             ),
-        ] = True,
+        ] = Default(True),
     ) -> None:
         # Determine the lifespan context to use
         if lifespan is None:
@@ -1088,7 +1092,7 @@ class APIRouter(routing.Router):
         openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[[APIRoute], str]
         | DefaultPlaceholder = Default(generate_unique_id),
-        strict_content_type: bool | None = None,
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1135,9 +1139,9 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
-            strict_content_type=strict_content_type
-            if strict_content_type is not None
-            else self.strict_content_type,
+            strict_content_type=get_value_or_default(
+                strict_content_type, self.strict_content_type
+            ),
         )
         self.routes.append(route)
 
@@ -1513,7 +1517,11 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
-                    strict_content_type=route.strict_content_type,
+                    strict_content_type=get_value_or_default(
+                        route.strict_content_type,
+                        router.strict_content_type,
+                        self.strict_content_type,
+                    ),
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
