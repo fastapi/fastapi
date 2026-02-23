@@ -1,8 +1,8 @@
 """Tests for Server-Sent Events (SSE) response."""
+
 from collections.abc import AsyncGenerator
 from typing import Any
 
-import pytest
 from fastapi import FastAPI
 from fastapi.responses import SSEResponse, sse_content
 from fastapi.testclient import TestClient
@@ -143,7 +143,9 @@ def test_sse_content_helper():
 
         from starlette.responses import StreamingResponse
 
-        return StreamingResponse(sse_content(generator()), media_type="text/event-stream")
+        return StreamingResponse(
+            sse_content(generator()), media_type="text/event-stream"
+        )
 
     client = TestClient(app, raise_server_exceptions=False)
     response = client.get("/events")

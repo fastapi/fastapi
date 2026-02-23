@@ -1,4 +1,5 @@
-from typing import Any, AsyncGenerator, Literal
+from collections.abc import AsyncGenerator
+from typing import Any
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from starlette.responses import FileResponse as FileResponse  # noqa
