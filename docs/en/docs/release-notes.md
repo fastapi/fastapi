@@ -12,6 +12,9 @@ hide:
 ### Breaking Changes
 
 * 🔒️ Add `strict_content_type` checking for JSON requests. PR [#14978](https://github.com/fastapi/fastapi/pull/14978) by [@tiangolo](https://github.com/tiangolo).
+    * Now FastAPI checks, by default, that JSON requests have a `Content-Type` header with a valid JSON value, like `application/json`, and rejects requests that don't.
+    * If the clients for your app don't send a valid `Content-Type` header you can disable this with `strict_content_type=False`.
+    * Check the new docs: [Strict Content-Type Checking](https://fastapi.tiangolo.com/advanced/strict-content-type/).
 
 ### Internal
 
