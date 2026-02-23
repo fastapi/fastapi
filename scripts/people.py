@@ -64,7 +64,6 @@ class RateLimiter:
         self.last_query_cost = cost
         self.remaining_points = remaining
         self.reset_at = datetime.fromisoformat(reset_at.replace("Z", "+00:00"))
-        logging.info(f"remaining points: {self.remaining_points}, reset at: {self.reset_at.isoformat()}")
 
 
 rate_limiter = RateLimiter()
