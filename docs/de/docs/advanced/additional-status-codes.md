@@ -18,7 +18,7 @@ app = FastAPI()
 @app.put("/items/{item_id}")
 async def upsert_item(item_id: int):
     """Aktualisiert ein Item, legt es aber an, falls es noch nicht existiert.
-    
+
     * Wenn das Item bereits existiert → Rückgabe von 200 OK.
     * Wenn das Item neu erstellt wird → Rückgabe von 201 Created.
     """

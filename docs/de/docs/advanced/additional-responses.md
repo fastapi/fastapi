@@ -2,7 +2,7 @@
 
 !!! warning "Achtung"
     Dies ist ein eher fortgeschrittenes Thema.
-    
+
     Wenn Sie mit **FastAPI** beginnen, benötigen Sie dies möglicherweise nicht.
 
 FastAPI erlaubt es, zusätzliche **Responses** zu deklarieren, die nicht nur den Standard‑`200`‑Success‑Response abdecken. Diese können weitere HTTP‑Statuscodes, unterschiedliche Medientypen, detaillierte Beschreibungen und sogar benutzerdefinierte Header enthalten. Alle zusätzlichen Responses werden automatisch in das OpenAPI‑Schema eingefügt, sodass sie in der automatisch generierten API‑Dokumentation (Swagger UI / ReDoc) sichtbar sind.
