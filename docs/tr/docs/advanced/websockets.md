@@ -38,13 +38,13 @@ Production'da yukarıdaki seçeneklerden birini kullanırsınız.
 
 Ama WebSockets'in server tarafına odaklanmak ve çalışan bir örnek görmek için en basit yol bu:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Bir `websocket` Oluşturun { #create-a-websocket }
 
 **FastAPI** uygulamanızda bir `websocket` oluşturun:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Teknik Detaylar
 
@@ -58,7 +58,7 @@ Ama WebSockets'in server tarafına odaklanmak ve çalışan bir örnek görmek i
 
 WebSocket route'unuzda mesajları `await` edebilir ve mesaj gönderebilirsiniz.
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 Binary, text ve JSON verisi alıp gönderebilirsiniz.
 
@@ -109,7 +109,7 @@ WebSocket endpoint'lerinde `fastapi` içinden import edip şunları kullanabilir
 
 Diğer FastAPI endpoint'leri/*path operations* ile aynı şekilde çalışırlar:
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info | Bilgi
 
@@ -154,7 +154,7 @@ Bununla WebSocket'e bağlanabilir, ardından mesaj gönderip alabilirsiniz:
 
 Bir WebSocket bağlantısı kapandığında, `await websocket.receive_text()` bir `WebSocketDisconnect` exception'ı raise eder; ardından bunu bu örnekteki gibi yakalayıp (catch) yönetebilirsiniz.
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 Denemek için:
 

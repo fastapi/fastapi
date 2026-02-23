@@ -38,13 +38,13 @@ En production, vous auriez l'une des options ci-dessus.
 
 Mais c'est la façon la plus simple de se concentrer sur la partie serveur des WebSockets et d'avoir un exemple fonctionnel :
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Créer un `websocket` { #create-a-websocket }
 
 Dans votre application **FastAPI**, créez un `websocket` :
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Détails techniques
 
@@ -58,7 +58,7 @@ Vous pourriez aussi utiliser `from starlette.websockets import WebSocket`.
 
 Dans votre route WebSocket, vous pouvez `await` des messages et envoyer des messages.
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 Vous pouvez recevoir et envoyer des données binaires, texte et JSON.
 
@@ -109,7 +109,7 @@ Dans les endpoints WebSocket, vous pouvez importer depuis `fastapi` et utiliser 
 
 Ils fonctionnent de la même manière que pour les autres endpoints/*chemins d'accès* FastAPI :
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info
 
@@ -154,7 +154,7 @@ Avec cela, vous pouvez connecter le WebSocket puis envoyer et recevoir des messa
 
 Lorsqu'une connexion WebSocket est fermée, l'instruction `await websocket.receive_text()` lèvera une exception `WebSocketDisconnect`, que vous pouvez ensuite intercepter et gérer comme dans cet exemple.
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 Pour l'essayer :
 
