@@ -243,7 +243,6 @@ source = [
 ]
 relative_files = true
 context = '${CONTEXT}'
-dynamic_context = "test_function"
 omit = [
     "tests/benchmarks/*",
     "docs_src/response_model/tutorial003_04_py39.py",

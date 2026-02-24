@@ -4,4 +4,4 @@ set -e
 set -x
 
 export PYTHONPATH=./docs_src
-coverage run -m pytest tests scripts/tests/ ${@}
+pytest -n auto --dist loadgroup  tests scripts/tests/ ${@}
