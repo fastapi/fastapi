@@ -180,7 +180,7 @@ tests = [
     "a2wsgi >=1.9.0,<=2.0.0",
     "pytest-xdist[psutil]>=2.5.0",
     "pytest-cov>=4.0.0",
-    "pytest-sugar>=0.9.5",
+    "pytest-sugar>=1.0.0",
 ]
 translations = [
     "gitpython >=3.1.46",
