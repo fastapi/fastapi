@@ -1151,6 +1151,8 @@ dev = [
     { name = "pyjwt" },
     { name = "pytest" },
     { name = "pytest-codspeed" },
+    { name = "pytest-cov" },
+    { name = "pytest-sugar" },
     { name = "pytest-xdist", extra = ["psutil"] },
     { name = "python-slugify" },
     { name = "pyyaml" },
@@ -1211,6 +1213,8 @@ tests = [
     { name = "pyjwt" },
     { name = "pytest" },
     { name = "pytest-codspeed" },
+    { name = "pytest-cov" },
+    { name = "pytest-sugar" },
     { name = "pytest-xdist", extra = ["psutil"] },
     { name = "pyyaml" },
     { name = "ruff" },
@@ -1294,6 +1298,8 @@ dev = [
     { name = "pyjwt", specifier = ">=2.9.0" },
     { name = "pytest", specifier = ">=9.0.0" },
     { name = "pytest-codspeed", specifier = ">=4.2.0" },
+    { name = "pytest-cov", specifier = ">=4.0.0" },
+    { name = "pytest-sugar", specifier = ">=0.9.5" },
     { name = "pytest-xdist", extras = ["psutil"], specifier = ">=1.32.0" },
     { name = "python-slugify", specifier = ">=8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
@@ -1354,6 +1360,8 @@ tests = [
     { name = "pyjwt", specifier = ">=2.9.0" },
     { name = "pytest", specifier = ">=9.0.0" },
     { name = "pytest-codspeed", specifier = ">=4.2.0" },
+    { name = "pytest-cov", specifier = ">=4.0.0" },
+    { name = "pytest-sugar", specifier = ">=0.9.5" },
     { name = "pytest-xdist", extras = ["psutil"], specifier = ">=1.32.0" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
@@ -4416,6 +4424,33 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/4b/39/48cf6afbca55bc7c8c93c3d4ae926a1068bcce3f0241709db19b078d5418/pytest_codspeed-4.2.0-cp314-cp314t-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:dbbb2d61b85bef8fc7e2193f723f9ac2db388a48259d981bbce96319043e9830", size = 267983, upload-time = "2025-10-24T09:02:50.558Z" },
     { url = "https://files.pythonhosted.org/packages/33/86/4407341efb5dceb3e389635749ce1d670542d6ca148bd34f9d5334295faf/pytest_codspeed-4.2.0-cp314-cp314t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:748411c832147bfc85f805af78a1ab1684f52d08e14aabe22932bbe46c079a5f", size = 256732, upload-time = "2025-10-24T09:02:51.603Z" },
     { url = "https://files.pythonhosted.org/packages/25/0e/8cb71fd3ed4ed08c07aec1245aea7bc1b661ba55fd9c392db76f1978d453/pytest_codspeed-4.2.0-py3-none-any.whl", hash = "sha256:e81bbb45c130874ef99aca97929d72682733527a49f84239ba575b5cb843bab0", size = 113726, upload-time = "2025-10-24T09:02:54.785Z" },
+]
+
+[[package]]
+name = "pytest-cov"
+version = "7.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "coverage", extra = ["toml"] },
+    { name = "pluggy" },
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/f7/c933acc76f5208b3b00089573cf6a2bc26dc80a8aece8f52bb7d6b1855ca/pytest_cov-7.0.0.tar.gz", hash = "sha256:33c97eda2e049a0c5298e91f519302a1334c26ac65c1a483d6206fd458361af1", size = 54328, upload-time = "2025-09-09T10:57:02.113Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/49/1377b49de7d0c1ce41292161ea0f721913fa8722c19fb9c1e3aa0367eecb/pytest_cov-7.0.0-py3-none-any.whl", hash = "sha256:3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861", size = 22424, upload-time = "2025-09-09T10:57:00.695Z" },
+]
+
+[[package]]
+name = "pytest-sugar"
+version = "1.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytest" },
+    { name = "termcolor" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0b/4e/60fed105549297ba1a700e1ea7b828044842ea27d72c898990510b79b0e2/pytest-sugar-1.1.1.tar.gz", hash = "sha256:73b8b65163ebf10f9f671efab9eed3d56f20d2ca68bda83fa64740a92c08f65d", size = 16533, upload-time = "2025-08-23T12:19:35.737Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/87/d5/81d38a91c1fdafb6711f053f5a9b92ff788013b19821257c2c38c1e132df/pytest_sugar-1.1.1-py3-none-any.whl", hash = "sha256:2f8319b907548d5b9d03a171515c1d43d2e38e32bd8182a1781eb20b43344cc8", size = 11440, upload-time = "2025-08-23T12:19:34.894Z" },
 ]
 
 [[package]]
