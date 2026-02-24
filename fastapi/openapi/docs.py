@@ -5,6 +5,20 @@ from annotated_doc import Doc
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
+
+def _html_safe_json(value: Any) -> str:
+    """Serialize a value to JSON with HTML special characters escaped.
+
+    This prevents injection when the JSON is embedded inside a <script> tag.
+    """
+    return (
+        json.dumps(value)
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+        .replace("&", "\\u0026")
+    )
+
+
 swagger_ui_default_parameters: Annotated[
     dict[str, Any],
     Doc(
@@ -155,7 +169,7 @@ def get_swagger_ui_html(
     """
 
     for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+        html += f"{_html_safe_json(key)}: {_html_safe_json(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
@@ -169,7 +183,7 @@ def get_swagger_ui_html(
 
     if init_oauth:
         html += f"""
-        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
+        ui.initOAuth({_html_safe_json(jsonable_encoder(init_oauth))})
         """
 
     html += """
