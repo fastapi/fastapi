@@ -1550,8 +1550,8 @@ class APIRouter(routing.Router):
                     prefix + route.path, route.endpoint, name=route.name
                 )
             elif isinstance(route, routing.Mount):
-                self.mount(prefix + route.path, route.app, route.name)
-
+                self.mount(prefix + router.prefix + route.path, route.app, name=route.name)
+                    
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
