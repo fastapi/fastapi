@@ -1420,7 +1420,8 @@ class APIRouter(routing.Router):
         Include another `APIRouter` in the same current `APIRouter`.
 
         Read more about it in the
-        [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
+        [FastAPI docs for Bigger Applications]
+        (https://fastapi.tiangolo.com/tutorial/bigger-applications/).
 
         ## Example
 
