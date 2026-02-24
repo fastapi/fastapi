@@ -169,6 +169,12 @@ Takes an async generator or a normal generator/iterator and streams the response
 
 {* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
 
+/// warning
+
+When using an **async generator**, make sure to use `asyncio.sleep()` instead of `time.sleep()`. Using blocking operations like `time.sleep()` in an async generator will block the event loop and prevent proper streaming.
+
+///
+
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
 If you have a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
