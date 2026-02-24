@@ -167,7 +167,19 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[1,4,11,17] *}
+
+/// note
+
+Notice the `await asyncio.sleep(0)` inside the async generator function.
+
+In asyncio, a running task only yields control back to the event loop when it hits an `await`. Without any `await` expression, the generator would hold the event loop for the entire iteration, preventing the response from being streamed chunk by chunk and also preventing proper task cancellation.
+
+Adding `await asyncio.sleep(0)` is a lightweight way to give the event loop a chance to send each chunk to the client and handle cancellation between iterations.
+
+If your generator doesn't have any natural `await` points, consider using a **normal (synchronous) generator** with `def` instead to avoid this issue.
+
+///
 
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
