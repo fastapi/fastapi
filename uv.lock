@@ -1274,7 +1274,7 @@ dev = [
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
     { name = "black", specifier = ">=25.1.0" },
     { name = "cairosvg", specifier = ">=2.8.2" },
-    { name = "coverage", extras = ["toml"], specifier = ">=6.5.0,<8.0" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
     { name = "dirty-equals", specifier = ">=0.9.0" },
     { name = "flask", specifier = ">=3.0.0,<4.0.0" },
     { name = "gitpython", specifier = ">=3.1.46" },
@@ -1352,7 +1352,7 @@ github-actions = [
 tests = [
     { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
-    { name = "coverage", extras = ["toml"], specifier = ">=6.5.0,<8.0" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
     { name = "dirty-equals", specifier = ">=0.9.0" },
     { name = "flask", specifier = ">=3.0.0,<4.0.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
