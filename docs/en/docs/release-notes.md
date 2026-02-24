@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.133.0
+
 ### Upgrades
 
 * ⬆️ Add support for Starlette 1.0.0+. PR [#14987](https://github.com/fastapi/fastapi/pull/14987) by [@tiangolo](https://github.com/tiangolo).
