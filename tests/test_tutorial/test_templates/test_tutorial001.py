@@ -3,7 +3,10 @@ import shutil
 
 from fastapi.testclient import TestClient
 
+from tests.utils import workdir_lock
 
+
+@workdir_lock
 def test_main():
     if os.path.isdir("./static"):  # pragma: nocover
         shutil.rmtree("./static")

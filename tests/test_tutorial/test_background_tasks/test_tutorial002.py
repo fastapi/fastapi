@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310
+from tests.utils import needs_py310, workdir_lock
 
 
 @pytest.fixture(
@@ -22,6 +22,7 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
+@workdir_lock
 def test(client: TestClient):
     log = Path("log.txt")
     if log.is_file():
