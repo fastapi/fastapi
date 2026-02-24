@@ -346,9 +346,10 @@ def get_request_handler(
     async def app(request: Request) -> Response:
         response: Response | None = None
         file_stack = request.scope.get("fastapi_middleware_astack")
-        assert isinstance(file_stack, AsyncExitStack), (
-            "fastapi_middleware_astack not found in request scope"
-        )
+        if not isinstance(file_stack, AsyncExitStack):
+            raise FastAPIError(
+                "fastapi_middleware_astack not found in request scope"
+            )
 
         # Extract endpoint context for error messages
         endpoint_ctx = (
@@ -415,9 +416,10 @@ def get_request_handler(
         # Solve dependencies and run path operation function, auto-closing dependencies
         errors: list[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
-        assert isinstance(async_exit_stack, AsyncExitStack), (
-            "fastapi_inner_astack not found in request scope"
-        )
+        if not isinstance(async_exit_stack, AsyncExitStack):
+            raise FastAPIError(
+                "fastapi_inner_astack not found in request scope"
+            )
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
@@ -511,9 +513,10 @@ def get_websocket_app(
             mount_path = websocket.scope.get("root_path", "").rstrip("/")
             endpoint_ctx["path"] = f"WS {mount_path}{dependant.path}"
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
-        assert isinstance(async_exit_stack, AsyncExitStack), (
-            "fastapi_inner_astack not found in request scope"
-        )
+        if not isinstance(async_exit_stack, AsyncExitStack):
+            raise FastAPIError(
+                "fastapi_inner_astack not found in request scope"
+            )
         solved_result = await solve_dependencies(
             request=websocket,
             dependant=dependant,
