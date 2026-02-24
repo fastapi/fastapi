@@ -1,3 +1,9 @@
+<a href="https://typer.tiangolo.com" target="_blank">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://typer.tiangolo.com/img/logo-margin/logo-margin-white-vector.svg#only-dark">
+        <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;">
+    </picture>
+</a>
 # FastAPI { #fastapi }
 
 <style>
