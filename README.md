@@ -128,12 +128,7 @@ There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-
 
 ## **Typer**, the FastAPI of CLIs
 
-<a href="https://typer.tiangolo.com" target="_blank">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://typer.tiangolo.com/img/logo-margin/logo-margin-white-vector.svg#only-dark">
-        <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;">
-    </picture>
-</a>
+<a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
