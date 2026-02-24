@@ -181,6 +181,7 @@ tests = [
     "pytest-xdist[psutil]>=2.5.0",
     "pytest-cov>=4.0.0",
     "pytest-sugar>=1.0.0",
+    "pytest-timeout>=2.4.0",
 ]
 translations = [
     "gitpython >=3.1.46",
@@ -232,6 +233,7 @@ strict_xfail = true
 filterwarnings = [
     "error",
 ]
+timeout = "5"
 
 [tool.coverage.run]
 parallel = true
