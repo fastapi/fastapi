@@ -3,4 +3,4 @@
 set -e
 set -x
 
-bash scripts/test.sh --cov --cov-context=test --cov-report=term-missing --cov-report=html ${@}
+bash scripts/test-cov.sh --cov-report=term-missing --cov-report=html ${@}
