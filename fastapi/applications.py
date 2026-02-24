@@ -1099,6 +1099,65 @@ class FastAPI(Starlette):
             )
         return self.openapi_schema
 
+    def audit_security(
+        self,
+    ) -> list[dict[str, Any]]:
+        """
+        Audit all routes for security dependencies.
+
+        Returns a list of route info dicts for every route that has **no**
+        security dependency (i.e. no ``SecurityBase`` instance) anywhere in
+        its dependency tree. Useful for security reviews and compliance
+        audits.
+
+        Each dict contains:
+
+        * ``path`` – the route path (e.g. ``/users/{user_id}``)
+        * ``methods`` – the HTTP methods (e.g. ``{"GET"}``)
+        * ``name`` – the route/endpoint name
+        * ``endpoint`` – the endpoint callable
+
+        Example::
+
+            unprotected = app.audit_security()
+            for route_info in unprotected:
+                print(f"UNPROTECTED: {route_info['methods']} {route_info['path']}")
+        """
+        from fastapi.routing import APIRoute, APIWebSocketRoute
+
+        def _has_security(dependant: Any) -> bool:
+            """Recursively check if a Dependant tree contains any SecurityBase."""
+            if dependant._is_security_scheme:
+                return True
+            for sub in dependant.dependencies:
+                if _has_security(sub):
+                    return True
+            return False
+
+        unprotected: list[dict[str, Any]] = []
+        for route in self.routes:
+            if isinstance(route, APIRoute):
+                if not _has_security(route.dependant):
+                    unprotected.append(
+                        {
+                            "path": route.path,
+                            "methods": route.methods,
+                            "name": route.name,
+                            "endpoint": route.endpoint,
+                        }
+                    )
+            elif isinstance(route, APIWebSocketRoute):
+                if not _has_security(route.dependant):
+                    unprotected.append(
+                        {
+                            "path": route.path,
+                            "methods": {"WS"},
+                            "name": route.name,
+                            "endpoint": route.endpoint,
+                        }
+                    )
+        return unprotected
+
     def setup(self) -> None:
         if self.openapi_url:
 
