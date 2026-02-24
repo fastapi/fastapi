@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.132.1
+
 ### Refactors
 
 * ♻️ Refactor logic to handle OpenAPI and Swagger UI escaping data. PR [#14986](https://github.com/fastapi/fastapi/pull/14986) by [@tiangolo](https://github.com/tiangolo).
