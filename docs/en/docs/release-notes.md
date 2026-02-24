@@ -7,6 +7,18 @@ hide:
 
 ## Latest Changes
 
+## 0.133.0
+
+### Upgrades
+
+* ⬆️ Add support for Starlette 1.0.0+. PR [#14987](https://github.com/fastapi/fastapi/pull/14987) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.132.1
+
+### Refactors
+
+* ♻️ Refactor logic to handle OpenAPI and Swagger UI escaping data. PR [#14986](https://github.com/fastapi/fastapi/pull/14986) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👥 Update FastAPI People - Experts. PR [#14972](https://github.com/fastapi/fastapi/pull/14972) by [@tiangolo](https://github.com/tiangolo).
