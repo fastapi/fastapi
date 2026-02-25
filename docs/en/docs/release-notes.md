@@ -12,7 +12,7 @@ hide:
 ### Features
 
 * 🔧 Add FastAPI Agents Skill. PR [#14982](https://github.com/fastapi/fastapi/pull/14982) by [@tiangolo](https://github.com/tiangolo).
-    * Read more about in [Library Agent Skills](https://tiangolo.com/ideas/library-agent-skills/).
+    * Read more about it in [Library Agent Skills](https://tiangolo.com/ideas/library-agent-skills/).
 
 ### Internal
 
