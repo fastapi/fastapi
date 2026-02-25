@@ -16,7 +16,7 @@ fastapi dev
 ```
 
 
-And to run the production server:
+Run the production server:
 
 ```bash
 fastapi run
