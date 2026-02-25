@@ -1,4 +1,4 @@
-from typing import Annotated, Any, Union
+from typing import Annotated, Any
 from unittest.mock import Mock, patch
 
 import pytest
@@ -24,12 +24,12 @@ def convert(v: Any) -> Any:
 @app.post("/nullable-required-bytes")
 async def read_nullable_required_bytes(
     file: Annotated[
-        Union[bytes, None],
+        bytes | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ],
     files: Annotated[
-        Union[list[bytes], None],
+        list[bytes] | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ],
@@ -43,12 +43,12 @@ async def read_nullable_required_bytes(
 @app.post("/nullable-required-uploadfile")
 async def read_nullable_required_uploadfile(
     file: Annotated[
-        Union[UploadFile, None],
+        UploadFile | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ],
     files: Annotated[
-        Union[list[UploadFile], None],
+        list[UploadFile] | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ],
@@ -196,12 +196,12 @@ def test_nullable_required_pass_file(path: str):
 @app.post("/nullable-non-required-bytes")
 async def read_nullable_non_required_bytes(
     file: Annotated[
-        Union[bytes, None],
+        bytes | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
     files: Annotated[
-        Union[list[bytes], None],
+        list[bytes] | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
@@ -215,12 +215,12 @@ async def read_nullable_non_required_bytes(
 @app.post("/nullable-non-required-uploadfile")
 async def read_nullable_non_required_uploadfile(
     file: Annotated[
-        Union[UploadFile, None],
+        UploadFile | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
     files: Annotated[
-        Union[list[UploadFile], None],
+        list[UploadFile] | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
@@ -351,12 +351,12 @@ def test_nullable_non_required_pass_file(path: str):
 async def read_nullable_with_non_null_default_bytes(
     *,
     file: Annotated[
-        Union[bytes, None],
+        bytes | None,
         File(),
         BeforeValidator(lambda v: convert(v)),
     ] = b"default",
     files: Annotated[
-        Union[list[bytes], None],
+        list[bytes] | None,
         File(default_factory=lambda: [b"default"]),
         BeforeValidator(lambda v: convert(v)),
     ],

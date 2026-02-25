@@ -1,4 +1,4 @@
-from typing import Annotated, Any, Union
+from typing import Annotated, Any
 from unittest.mock import Mock, patch
 
 import pytest
@@ -21,12 +21,12 @@ def convert(v: Any) -> Any:
 @app.get("/nullable-required")
 async def read_nullable_required(
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ],
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ],
@@ -39,8 +39,8 @@ async def read_nullable_required(
 
 
 class ModelNullableRequired(BaseModel):
-    int_val: Union[int, None]
-    str_val: Union[str, None]
+    int_val: int | None
+    str_val: str | None
 
     @field_validator("*", mode="before")
     @classmethod
@@ -160,12 +160,12 @@ def test_nullable_required_pass_value(path: str, values: dict[str, str]):
 @app.get("/nullable-non-required")
 async def read_nullable_non_required(
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
@@ -178,8 +178,8 @@ async def read_nullable_non_required(
 
 
 class ModelNullableNonRequired(BaseModel):
-    int_val: Union[int, None] = None
-    str_val: Union[str, None] = None
+    int_val: int | None = None
+    str_val: str | None = None
 
     @field_validator("*", mode="before")
     @classmethod
@@ -293,12 +293,12 @@ def test_nullable_non_required_pass_value(path: str, values: dict[str, str]):
 async def read_nullable_with_non_null_default(
     *,
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ] = -1,
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Cookie(),
         BeforeValidator(lambda v: convert(v)),
     ] = "default",
@@ -311,8 +311,8 @@ async def read_nullable_with_non_null_default(
 
 
 class ModelNullableWithNonNullDefault(BaseModel):
-    int_val: Union[int, None] = -1
-    str_val: Union[str, None] = "default"
+    int_val: int | None = -1
+    str_val: str | None = "default"
 
     @field_validator("*", mode="before")
     @classmethod

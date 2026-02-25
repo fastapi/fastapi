@@ -1,4 +1,4 @@
-from typing import Annotated, Any, Union
+from typing import Annotated, Any
 from unittest.mock import Mock, patch
 
 import pytest
@@ -21,17 +21,17 @@ def convert(v: Any) -> Any:
 @app.get("/nullable-required")
 async def read_nullable_required(
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ],
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ],
     list_val: Annotated[
-        Union[list[int], None],
+        list[int] | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ],
@@ -45,9 +45,9 @@ async def read_nullable_required(
 
 
 class ModelNullableRequired(BaseModel):
-    int_val: Union[int, None]
-    str_val: Union[str, None]
-    list_val: Union[list[int], None]
+    int_val: int | None
+    str_val: str | None
+    list_val: list[int] | None
 
     @field_validator("*", mode="before")
     @classmethod
@@ -234,17 +234,17 @@ def test_nullable_required_pass_empty_str_to_str_val(path: str):
 @app.get("/nullable-non-required")
 async def read_nullable_non_required(
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
     list_val: Annotated[
-        Union[list[int], None],
+        list[int] | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ] = None,
@@ -258,9 +258,9 @@ async def read_nullable_non_required(
 
 
 class ModelNullableNonRequired(BaseModel):
-    int_val: Union[int, None] = None
-    str_val: Union[str, None] = None
-    list_val: Union[list[int], None] = None
+    int_val: int | None = None
+    str_val: str | None = None
+    list_val: list[int] | None = None
 
     @field_validator("*", mode="before")
     @classmethod
@@ -428,17 +428,17 @@ def test_nullable_non_required_pass_empty_str_to_str_val(path: str):
 async def read_nullable_with_non_null_default(
     *,
     int_val: Annotated[
-        Union[int, None],
+        int | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ] = -1,
     str_val: Annotated[
-        Union[str, None],
+        str | None,
         Header(),
         BeforeValidator(lambda v: convert(v)),
     ] = "default",
     list_val: Annotated[
-        Union[list[int], None],
+        list[int] | None,
         Header(default_factory=lambda: [0]),
         BeforeValidator(lambda v: convert(v)),
     ],
@@ -452,9 +452,9 @@ async def read_nullable_with_non_null_default(
 
 
 class ModelNullableWithNonNullDefault(BaseModel):
-    int_val: Union[int, None] = -1
-    str_val: Union[str, None] = "default"
-    list_val: Union[list[int], None] = [0]
+    int_val: int | None = -1
+    str_val: str | None = "default"
+    list_val: list[int] | None = [0]
 
     @field_validator("*", mode="before")
     @classmethod
