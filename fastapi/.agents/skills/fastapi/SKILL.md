@@ -9,7 +9,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 
 ## Use the `fastapi` CLI
 
-To run the development server, in localhost, with reload:
+Run the development server on localhost with reload:
 
 ```bash
 fastapi dev
