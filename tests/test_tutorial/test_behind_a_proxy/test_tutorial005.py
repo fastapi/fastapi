@@ -34,7 +34,7 @@ def test_forwarded_prefix_middleware(
     "prefix",
     [
         "/api/v1",
-        pytest.param("/backend/v1", marks=pytest.mark.xfail),
+        "/backend/v1",
     ],
 )
 def test_openapi_servers(prefix: str):
