@@ -545,7 +545,7 @@ When working with SQL databases, prefer using SQLModel as it is integrated with 
 
 Do not use Pydantic `RootModel`, instead use regular type annotations with `Annotated` and Pydantic validation utilities.
 
-For example for a list with validations you could do:
+For example, for a list with validations you could do:
 
 ```python
 from typing import Annotated
