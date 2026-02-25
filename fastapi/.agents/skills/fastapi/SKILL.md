@@ -348,7 +348,7 @@ Use dependencies when:
 
 ### Dependencies with `yield` and `scope`
 
-When the using dependencies with `yield`, they can have a `scope` that defines when the exit code is run.
+When using dependencies with `yield`, they can have a `scope` that defines when the exit code is run.
 
 Use the default scope `"request"` to run the exit code after the response is sent back.
 
