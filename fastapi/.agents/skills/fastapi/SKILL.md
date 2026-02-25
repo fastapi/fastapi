@@ -303,7 +303,7 @@ async def list_items():
 app.include_router(router, prefix="/items", tags=["items"])
 ```
 
-There could be exceptions but try to follow this convention.
+There could be exceptions, but try to follow this convention.
 
 Apply shared dependencies at the router level via `dependencies=[Depends(...)]`.
 
