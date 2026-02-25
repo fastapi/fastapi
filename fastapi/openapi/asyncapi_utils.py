@@ -103,4 +103,3 @@ def get_asyncapi(
         output["externalDocs"] = external_docs
 
     return jsonable_encoder(output, by_alias=True, exclude_none=True)
-

@@ -17,6 +17,7 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
+from fastapi.openapi.asyncapi_utils import get_asyncapi
 from fastapi.openapi.docs import (
     get_asyncapi_html,
     get_redoc_html,
@@ -24,7 +25,6 @@ from fastapi.openapi.docs import (
     get_swagger_ui_oauth2_redirect_html,
 )
 from fastapi.openapi.utils import get_openapi
-from fastapi.openapi.asyncapi_utils import get_asyncapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
@@ -978,7 +978,9 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         if self.asyncapi_url:
             assert self.title, "A title must be provided for AsyncAPI, e.g.: 'My API'"
-            assert self.version, "A version must be provided for AsyncAPI, e.g.: '2.1.0'"
+            assert self.version, (
+                "A version must be provided for AsyncAPI, e.g.: '2.1.0'"
+            )
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
