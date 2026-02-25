@@ -1,4 +1,5 @@
 from fastapi import FastAPI, WebSocket
+from fastapi.openapi.asyncapi_utils import get_asyncapi, get_asyncapi_channel
 from fastapi.testclient import TestClient
 
 
@@ -260,3 +261,144 @@ def test_asyncapi_ui_no_docs_url():
     # Should not contain link to /docs if docs_url is None
     # But navigation should still work (just won't show the link)
     assert "/asyncapi.json" in response.text
+
+
+def test_asyncapi_with_servers():
+    """Test AsyncAPI schema with custom servers."""
+    app = FastAPI(
+        title="Test API",
+        version="1.0.0",
+        servers=[{"url": "wss://example.com", "protocol": "wss"}],
+    )
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    client = TestClient(app)
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert "servers" in schema
+    assert schema["servers"] == [{"url": "wss://example.com", "protocol": "wss"}]
+
+
+def test_asyncapi_with_all_metadata():
+    """Test AsyncAPI schema with all optional metadata fields."""
+    app = FastAPI(
+        title="Test API",
+        version="1.0.0",
+        summary="Test summary",
+        description="Test description",
+        terms_of_service="https://example.com/terms",
+        contact={"name": "API Support", "email": "support@example.com"},
+        license_info={"name": "MIT", "url": "https://opensource.org/licenses/MIT"},
+    )
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    client = TestClient(app)
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert schema["info"]["summary"] == "Test summary"
+    assert schema["info"]["description"] == "Test description"
+    assert schema["info"]["termsOfService"] == "https://example.com/terms"
+    assert schema["info"]["contact"] == {
+        "name": "API Support",
+        "email": "support@example.com",
+    }
+    assert schema["info"]["license"] == {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    }
+
+
+def test_asyncapi_with_external_docs():
+    """Test AsyncAPI schema with external documentation."""
+    app = FastAPI(
+        title="Test API",
+        version="1.0.0",
+    )
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    # Set external_docs after app creation
+    app.openapi_external_docs = {
+        "description": "External API documentation",
+        "url": "https://docs.example.com",
+    }
+
+    client = TestClient(app)
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert "externalDocs" in schema
+    assert schema["externalDocs"] == {
+        "description": "External API documentation",
+        "url": "https://docs.example.com",
+    }
+
+
+def test_asyncapi_channel_with_route_name():
+    """Test AsyncAPI channel with named route."""
+    app = FastAPI(title="Test API", version="1.0.0")
+
+    @app.websocket("/ws", name="my_websocket")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    client = TestClient(app)
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    channel = schema["channels"]["/ws"]
+    assert channel["subscribe"]["operationId"] == "my_websocket"
+    assert channel["publish"]["operationId"] == "my_websocket_publish"
+
+
+def test_get_asyncapi_channel_direct():
+    """Test get_asyncapi_channel function directly."""
+    from fastapi import routing
+
+    app = FastAPI(title="Test API", version="1.0.0")
+
+    @app.websocket("/ws", name="test_ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    # Get the route from the app
+    route = next(r for r in app.routes if isinstance(r, routing.APIWebSocketRoute))
+    channel = get_asyncapi_channel(route=route)
+    assert "subscribe" in channel
+    assert "publish" in channel
+    assert channel["subscribe"]["operationId"] == "test_ws"
+    assert channel["publish"]["operationId"] == "test_ws_publish"
+
+
+def test_get_asyncapi_direct():
+    """Test get_asyncapi function directly."""
+    app = FastAPI(title="Test API", version="1.0.0")
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    schema = get_asyncapi(
+        title=app.title,
+        version=app.version,
+        routes=app.routes,
+    )
+    assert schema["asyncapi"] == "2.6.0"
+    assert schema["info"]["title"] == "Test API"
+    assert "/ws" in schema["channels"]
