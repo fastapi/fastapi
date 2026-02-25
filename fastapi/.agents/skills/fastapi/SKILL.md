@@ -258,7 +258,7 @@ async def get_item() -> Any:
 
 Do not use `ORJSONResponse` or `UJSONResponse`, they are deprecated.
 
-Instead declare a return type or response model. Pydantic will handle the data serialization on the Rust side.
+Instead, declare a return type or response model. Pydantic will handle the data serialization on the Rust side.
 
 ## Including Routers
 
