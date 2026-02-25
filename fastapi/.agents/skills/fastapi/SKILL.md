@@ -203,7 +203,7 @@ The return type doesn't have to be a Pydantic model, it could be a different typ
 
 ### When to use `response_model` instead
 
-If the return type is not the same as the type that you want to use to validate, filter, serialize, use the `response_model` parameter on the decorator instead.
+If the return type is not the same as the type that you want to use to validate, filter, or serialize, use the `response_model` parameter on the decorator instead.
 
 ```python
 from typing import Any
