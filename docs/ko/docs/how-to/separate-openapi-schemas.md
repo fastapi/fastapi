@@ -72,7 +72,7 @@
 하지만 `Item-Output`에서는 `description`이 **필수이며**, 빨간 별표가 있습니다.
 
 <div class="screenshot">
-<img src="/img/tutorial/separate-openapi-schemas/image04.png">
+<img src="/img/tutorial/separate-openapi_schemas/image04.png">
 </div>
 
 **Pydantic v2**의 이 기능 덕분에 API 문서는 더 **정밀**해지고, 자동 생성된 클라이언트와 SDK가 있다면 그것들도 더 정밀해져서 더 나은 **developer experience**와 일관성을 제공할 수 있습니다. 🎉

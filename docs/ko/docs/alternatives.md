@@ -137,7 +137,7 @@ Flask REST framework는 여러 개가 있지만, 시간을 들여 조사해 본 
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-API 시스템에 필요한 주요 기능 중 하나는 데이터 "<abbr title="also called marshalling, conversion - 마샬링, 변환이라고도 합니다">serialization</abbr>"입니다. 이는 코드(Python)에서 데이터를 가져와 네트워크로 전송할 수 있는 형태로 변환하는 것을 의미합니다. 예를 들어 데이터베이스의 데이터를 담은 객체를 JSON 객체로 변환하거나, `datetime` 객체를 문자열로 변환하는 등의 작업입니다.
+API 시스템에 필요한 주요 기능 중 하나는 데이터 "<dfn title="마샬링, 변환이라고도 함">직렬화</dfn>"입니다. 이는 코드(Python)에서 데이터를 가져와 네트워크로 전송할 수 있는 형태로 변환하는 것을 의미합니다. 예를 들어 데이터베이스의 데이터를 담은 객체를 JSON 객체로 변환하거나, `datetime` 객체를 문자열로 변환하는 등의 작업입니다.
 
 API에 또 하나 크게 필요한 기능은 데이터 검증입니다. 특정 파라미터를 기준으로 데이터가 유효한지 확인하는 것입니다. 예를 들어 어떤 필드가 `int`인지, 임의의 문자열이 아닌지 확인하는 식입니다. 이는 특히 들어오는 데이터에 유용합니다.
 
@@ -145,7 +145,7 @@ API에 또 하나 크게 필요한 기능은 데이터 검증입니다. 특정 �
 
 이런 기능들을 제공하기 위해 Marshmallow가 만들어졌습니다. 훌륭한 라이브러리이며, 저도 이전에 많이 사용했습니다.
 
-하지만 Python type hints가 존재하기 전에 만들어졌습니다. 그래서 각 <abbr title="the definition of how data should be formed - 데이터가 어떻게 구성되어야 하는지에 대한 정의">schema</abbr>를 정의하려면 Marshmallow가 제공하는 특정 유틸리티와 클래스를 사용해야 합니다.
+하지만 Python type hints가 존재하기 전에 만들어졌습니다. 그래서 각 <dfn title="데이터가 어떻게 구성되어야 하는지에 대한 정의">스키마</dfn>를 정의하려면 Marshmallow가 제공하는 특정 유틸리티와 클래스를 사용해야 합니다.
 
 /// check | **FastAPI**에 영감을 준 것
 
@@ -155,7 +155,7 @@ API에 또 하나 크게 필요한 기능은 데이터 검증입니다. 특정 �
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-API에 필요한 또 다른 큰 기능은 들어오는 요청에서 데이터를 <abbr title="reading and converting to Python data - 읽어서 Python 데이터로 변환하기">parsing</abbr>하는 것입니다.
+API에 필요한 또 다른 큰 기능은 들어오는 요청에서 데이터를 <dfn title="읽어서 Python 데이터로 변환하기">파싱</dfn>하는 것입니다.
 
 Webargs는 Flask를 포함한 여러 framework 위에서 이를 제공하기 위해 만들어진 도구입니다.
 
@@ -419,7 +419,7 @@ Marshmallow와 비교할 수 있습니다. 다만 benchmark에서 Marshmallow보
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette는 경량 <abbr title="The new standard for building asynchronous Python web applications - 비동기 Python 웹 애플리케이션을 구축하기 위한 새로운 표준">ASGI</abbr> framework/toolkit으로, 고성능 asyncio 서비스를 만들기에 이상적입니다.
+Starlette는 경량 <dfn title="비동기 Python 웹 애플리케이션을 구축하기 위한 새로운 표준">ASGI</dfn> framework/toolkit으로, 고성능 asyncio 서비스를 만들기에 이상적입니다.
 
 매우 단순하고 직관적입니다. 쉽게 확장할 수 있도록 설계되었고, 모듈식 component를 갖습니다.
 

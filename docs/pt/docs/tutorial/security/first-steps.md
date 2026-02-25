@@ -20,7 +20,7 @@ Vamos primeiro usar o código e ver como funciona, e depois voltaremos para ente
 
 Copie o exemplo em um arquivo `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Execute-o { #run-it }
 
@@ -132,7 +132,7 @@ Nesse caso, o **FastAPI** também fornece as ferramentas para construí-la.
 
 Quando criamos uma instância da classe `OAuth2PasswordBearer`, passamos o parâmetro `tokenUrl`. Esse parâmetro contém a URL que o client (o frontend rodando no navegador do usuário) usará para enviar o `username` e o `password` para obter um token.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | Dica
 
@@ -156,7 +156,7 @@ Isso ocorre porque ele usa o mesmo nome da especificação do OpenAPI. Assim, se
 
 ///
 
-A variável `oauth2_scheme` é uma instância de `OAuth2PasswordBearer`, mas também é "chamável" (callable).
+A variável `oauth2_scheme` é uma instância de `OAuth2PasswordBearer`, mas também é um "callable".
 
 Ela pode ser chamada como:
 
@@ -170,7 +170,7 @@ Então, pode ser usada com `Depends`.
 
 Agora você pode passar esse `oauth2_scheme` em uma dependência com `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Essa dependência fornecerá uma `str` que é atribuída ao parâmetro `token` da função de operação de rota.
 

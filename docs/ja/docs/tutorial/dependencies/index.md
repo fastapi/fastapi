@@ -1,6 +1,6 @@
 # 依存関係 { #dependencies }
 
-**FastAPI** は非常に強力でありながら直感的な **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** システムを持っています。
+**FastAPI** は非常に強力でありながら直感的な **<dfn title="別名: コンポーネント、リソース、プロバイダ、サービス、インジェクタブル">依存性注入</dfn>** システムを持っています。
 
 それは非常にシンプルに使用できるように設計されており、開発者が他のコンポーネント **FastAPI** と統合するのが非常に簡単になるように設計されています。
 

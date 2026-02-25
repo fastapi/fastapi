@@ -46,7 +46,7 @@
 
 **FastAPI** は、プレーンな文字列の場合と同じ方法でそれをサポートしています:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## 概要と説明 { #summary-and-description }
 
@@ -56,7 +56,7 @@
 
 ## docstringを用いた説明 { #description-from-docstring }
 
-説明文は長くて複数行におよぶ傾向があるので、関数<abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation – ドキュメントに使用される関数内の最初の式（変数に代入されていない）としての複数行の文字列">docstring</abbr>内に*path operation*の説明文を宣言できます。すると、**FastAPI** は説明文を読み込んでくれます。
+説明文は長くて複数行におよぶ傾向があるので、関数<dfn title="関数内の最初の式（どの変数にも代入されない）として記述される、ドキュメント用の複数行の文字列">docstring</dfn>内に*path operation*の説明文を宣言できます。すると、**FastAPI** は説明文を読み込んでくれます。
 
 docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
@@ -90,9 +90,9 @@ OpenAPIは*path operation*ごとにレスポンスの説明を必要としてい
 
 ## *path operation*を非推奨にする { #deprecate-a-path-operation }
 
-*path operation*を<abbr title="obsolete, recommended not to use it – 非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
+*path operation*を<dfn title="非推奨、使用しないことを推奨">deprecated</dfn>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 対話的ドキュメントでは非推奨と明記されます:
 

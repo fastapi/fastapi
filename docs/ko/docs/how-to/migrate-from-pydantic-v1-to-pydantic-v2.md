@@ -22,7 +22,7 @@ Pydantic v1을 사용하는 오래된 FastAPI 앱이 있다면, 여기서는 이
 
 ## 공식 가이드 { #official-guide }
 
-Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Migration Guide</a>가 있습니다.
+Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">마이그레이션 가이드</a>가 있습니다.
 
 여기에는 무엇이 바뀌었는지, 검증이 이제 어떻게 더 정확하고 엄격해졌는지, 가능한 주의사항 등도 포함되어 있습니다.
 
@@ -30,7 +30,7 @@ Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/lates
 
 ## 테스트 { #tests }
 
-앱에 대한 [tests](../tutorial/testing.md){.internal-link target=_blank}가 있는지 확인하고, 지속적 통합(CI)에서 테스트를 실행하세요.
+앱에 대한 [테스트](../tutorial/testing.md){.internal-link target=_blank}가 있는지 확인하고, 지속적 통합(CI)에서 테스트를 실행하세요.
 
 이렇게 하면 업그레이드를 진행하면서도 모든 것이 기대한 대로 계속 동작하는지 확인할 수 있습니다.
 

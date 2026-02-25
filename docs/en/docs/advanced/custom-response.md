@@ -1,6 +1,6 @@
 # Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others }
 
-By default, **FastAPI** will return the responses using `JSONResponse`.
+By default, **FastAPI** will return JSON responses.
 
 You can override it by returning a `Response` directly as seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}.
 
@@ -10,43 +10,27 @@ But you can also declare the `Response` that you want to be used (e.g. any `Resp
 
 The contents that you return from your *path operation function* will be put inside of that `Response`.
 
-And if that `Response` has a JSON media type (`application/json`), like is the case with the `JSONResponse` and `UJSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*.
-
 /// note
 
 If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
 
 ///
 
-## Use `ORJSONResponse` { #use-orjsonresponse }
+## JSON Responses { #json-responses }
 
-For example, if you are squeezing performance, you can install and use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> and set the response to be `ORJSONResponse`.
+By default FastAPI returns JSON responses.
 
-Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
+If you declare a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} FastAPI will use it to serialize the data to JSON, using Pydantic.
 
-For large responses, returning a `Response` directly is much faster than returning a dictionary.
+If you don't declare a response model, FastAPI will use the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} and put it in a `JSONResponse`.
 
-This is because by default, FastAPI will inspect every item inside and make sure it is serializable as JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+If you declare a `response_class` with a JSON media type (`application/json`), like is the case with the `JSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*. But the data won't be serialized to JSON bytes with Pydantic, instead it will be converted with the `jsonable_encoder` and then passed to the `JSONResponse` class, which will serialize it to bytes using the standard JSON library in Python.
 
-But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
+### JSON Performance { #json-performance }
 
-{* ../../docs_src/custom_response/tutorial001b_py39.py hl[2,7] *}
+In short, if you want the maximum performance, use a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} and don't declare a `response_class` in the *path operation decorator*.
 
-/// info
-
-The parameter `response_class` will also be used to define the "media type" of the response.
-
-In this case, the HTTP header `Content-Type` will be set to `application/json`.
-
-And it will be documented as such in OpenAPI.
-
-///
-
-/// tip
-
-The `ORJSONResponse` is only available in FastAPI, not in Starlette.
-
-///
+{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
 
 ## HTML Response { #html-response }
 
@@ -55,7 +39,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 * Import `HTMLResponse`.
 * Pass `HTMLResponse` as the parameter `response_class` of your *path operation decorator*.
 
-{* ../../docs_src/custom_response/tutorial002_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
 /// info
 
@@ -73,7 +57,7 @@ As seen in [Return a Response directly](response-directly.md){.internal-link tar
 
 The same example from above, returning an `HTMLResponse`, could look like:
 
-{* ../../docs_src/custom_response/tutorial003_py39.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
 
 /// warning
 
@@ -97,7 +81,7 @@ The `response_class` will then be used only to document the OpenAPI *path operat
 
 For example, it could be something like:
 
-{* ../../docs_src/custom_response/tutorial004_py39.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
 
 In this example, the function `generate_html_response()` already generates and returns a `Response` instead of returning the HTML in a `str`.
 
@@ -136,7 +120,7 @@ It accepts the following parameters:
 
 FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the `media_type` and appending a charset for text types.
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -146,7 +130,7 @@ Takes some text or bytes and returns an HTML response, as you read above.
 
 Takes some text or bytes and returns a plain text response.
 
-{* ../../docs_src/custom_response/tutorial005_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -154,54 +138,20 @@ Takes some data and returns an `application/json` encoded response.
 
 This is the default response used in **FastAPI**, as you read above.
 
-### `ORJSONResponse` { #orjsonresponse }
-
-A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
-
-/// info
-
-This requires installing `orjson` for example with `pip install orjson`.
-
-///
-
-### `UJSONResponse` { #ujsonresponse }
-
-An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
-
-/// info
-
-This requires installing `ujson` for example with `pip install ujson`.
-
-///
-
-/// warning
-
-`ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
-
-///
-
-{* ../../docs_src/custom_response/tutorial001_py39.py hl[2,7] *}
-
-/// tip
-
-It's possible that `ORJSONResponse` might be a faster alternative.
-
-///
-
 ### `RedirectResponse` { #redirectresponse }
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
 
 You can return a `RedirectResponse` directly:
 
-{* ../../docs_src/custom_response/tutorial006_py39.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
 
 ---
 
 Or you can use it in the `response_class` parameter:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 
 If you do that, then you can return the URL directly from your *path operation* function.
 
@@ -211,13 +161,13 @@ In this case, the `status_code` used will be the default one for the `RedirectRe
 
 You can also use the `status_code` parameter combined with the `response_class` parameter:
 
-{* ../../docs_src/custom_response/tutorial006c_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
-{* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
 
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
@@ -227,7 +177,7 @@ That way, you don't have to read it all first in memory, and you can pass that g
 
 This includes many libraries to interact with cloud storage, video processing, and others.
 
-{* ../../docs_src/custom_response/tutorial008_py39.py hl[2,10:12,14] *}
+{* ../../docs_src/custom_response/tutorial008_py310.py hl[2,10:12,14] *}
 
 1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
 2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
@@ -256,11 +206,11 @@ Takes a different set of arguments to instantiate than the other response types:
 
 File responses will include appropriate `Content-Length`, `Last-Modified` and `ETag` headers.
 
-{* ../../docs_src/custom_response/tutorial009_py39.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
 You can also use the `response_class` parameter:
 
-{* ../../docs_src/custom_response/tutorial009b_py39.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
 In this case, you can return the file path directly from your *path operation* function.
 
@@ -268,13 +218,13 @@ In this case, you can return the file path directly from your *path operation* f
 
 You can create your own custom response class, inheriting from `Response` and using it.
 
-For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, but with some custom settings not used in the included `ORJSONResponse` class.
+For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> with some settings.
 
 Let's say you want it to return indented and formatted JSON, so you want to use the orjson option `orjson.OPT_INDENT_2`.
 
 You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
 
-{* ../../docs_src/custom_response/tutorial009c_py39.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
 
 Now instead of returning:
 
@@ -292,15 +242,23 @@ Now instead of returning:
 
 Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
 
+### `orjson` or Response Model { #orjson-or-response-model }
+
+If what you are looking for is performance, you are probably better off using a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} than an `orjson` response.
+
+With a response model, FastAPI will use Pydantic to serialize the data to JSON, without using intermediate steps, like converting it with `jsonable_encoder`, which would happen in any other case.
+
+And under the hood, Pydantic uses the same underlying Rust mechanisms as `orjson` to serialize to JSON, so you will already get the best performance with a response model.
+
 ## Default response class { #default-response-class }
 
 When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
 
 The parameter that defines this is `default_response_class`.
 
-In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
+In the example below, **FastAPI** will use `HTMLResponse` by default, in all *path operations*, instead of JSON.
 
-{* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
 /// tip
 

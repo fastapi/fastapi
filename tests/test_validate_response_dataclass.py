@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
@@ -12,8 +10,8 @@ app = FastAPI()
 @dataclass
 class Item:
     name: str
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/invalid", response_model=Item)

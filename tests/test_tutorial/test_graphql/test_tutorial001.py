@@ -1,6 +1,7 @@
 import warnings
 
 import pytest
+from inline_snapshot import snapshot
 from starlette.testclient import TestClient
 
 warnings.filterwarnings(
@@ -9,7 +10,7 @@ warnings.filterwarnings(
     category=DeprecationWarning,
 )
 
-from docs_src.graphql_.tutorial001_py39 import app  # noqa: E402
+from docs_src.graphql_.tutorial001_py310 import app  # noqa: E402
 
 
 @pytest.fixture(name="client")
@@ -26,45 +27,47 @@ def test_query(client: TestClient):
 def test_openapi(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "info": {
-            "title": "FastAPI",
-            "version": "0.1.0",
-        },
-        "openapi": "3.1.0",
-        "paths": {
-            "/graphql": {
-                "get": {
-                    "operationId": "handle_http_get_graphql_get",
-                    "responses": {
-                        "200": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {},
+    assert response.json() == snapshot(
+        {
+            "info": {
+                "title": "FastAPI",
+                "version": "0.1.0",
+            },
+            "openapi": "3.1.0",
+            "paths": {
+                "/graphql": {
+                    "get": {
+                        "operationId": "handle_http_get_graphql_get",
+                        "responses": {
+                            "200": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {},
+                                    },
                                 },
+                                "description": "The GraphiQL integrated development environment.",
                             },
-                            "description": "The GraphiQL integrated development environment.",
+                            "404": {
+                                "description": "Not found if GraphiQL or query via GET are not enabled.",
+                            },
                         },
-                        "404": {
-                            "description": "Not found if GraphiQL or query via GET are not enabled.",
-                        },
+                        "summary": "Handle Http Get",
                     },
-                    "summary": "Handle Http Get",
-                },
-                "post": {
-                    "operationId": "handle_http_post_graphql_post",
-                    "responses": {
-                        "200": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {},
+                    "post": {
+                        "operationId": "handle_http_post_graphql_post",
+                        "responses": {
+                            "200": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {},
+                                    },
                                 },
+                                "description": "Successful Response",
                             },
-                            "description": "Successful Response",
                         },
+                        "summary": "Handle Http Post",
                     },
-                    "summary": "Handle Http Post",
                 },
             },
-        },
-    }
+        }
+    )

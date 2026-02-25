@@ -2,7 +2,7 @@
 
 En sade FastAPI dosyası şu şekilde görünür:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Yukarıdakini `main.py` adlı bir dosyaya kopyalayın.
 
@@ -183,7 +183,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 ### Adım 1: `FastAPI` import edin { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI`, API'nız için tüm işlevselliği sağlayan bir Python class'ıdır.
 
@@ -197,7 +197,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 ### Adım 2: bir `FastAPI` "instance"ı oluşturun { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Burada `app` değişkeni `FastAPI` class'ının bir "instance"ı olacaktır.
 
@@ -266,12 +266,12 @@ Biz de bunlara "**operation**" diyeceğiz.
 
 #### Bir *path operation decorator* tanımlayın { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")`, **FastAPI**'a hemen altındaki fonksiyonun şuraya giden request'leri ele almakla sorumlu olduğunu söyler:
 
 * path `/`
-* <abbr title="bir HTTP GET method'u"><code>get</code> operation</abbr> kullanarak
+* <dfn title="bir HTTP GET methodu"><code>get</code> operation</dfn> kullanarak
 
 /// info | `@decorator` Bilgisi
 
@@ -320,7 +320,7 @@ Bu bizim "**path operation function**"ımız:
 * **operation**: `get`.
 * **function**: "decorator"ün altındaki fonksiyondur (`@app.get("/")`'in altındaki).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Bu bir Python fonksiyonudur.
 
@@ -332,7 +332,7 @@ Bu durumda, bu bir `async` fonksiyondur.
 
 Bunu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Not
 
@@ -342,7 +342,7 @@ Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurr
 
 ### Adım 5: içeriği döndürün { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Bir `dict`, `list`, `str`, `int` vb. tekil değerler döndürebilirsiniz.
 

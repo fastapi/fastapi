@@ -1,4 +1,4 @@
-# 심화 사용자 안내서 - 도입부 { #advanced-user-guide }
+# 심화 사용자 안내서 { #advanced-user-guide }
 
 ## 추가 기능 { #additional-features }
 

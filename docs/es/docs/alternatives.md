@@ -20,7 +20,7 @@ Es el framework más popular de Python y es ampliamente confiable. Se utiliza pa
 
 Está relativamente acoplado con bases de datos relacionales (como MySQL o PostgreSQL), por lo que tener una base de datos NoSQL (como Couchbase, MongoDB, Cassandra, etc) como motor de almacenamiento principal no es muy fácil.
 
-Fue creado para generar el HTML en el backend, no para crear APIs utilizadas por un frontend moderno (como React, Vue.js y Angular) o por otros sistemas (como dispositivos del <abbr title="Internet of Things – Internet de las cosas">IoT</abbr>) comunicándose con él.
+Fue creado para generar el HTML en el backend, no para crear APIs utilizadas por un frontend moderno (como React, Vue.js y Angular) o por otros sistemas (como dispositivos del <abbr title="Internet of Things - Internet de las cosas">IoT</abbr>) comunicándose con él.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
@@ -76,7 +76,7 @@ Aun así, FastAPI se inspiró bastante en Requests.
 
 Están, más o menos, en extremos opuestos, complementándose entre sí.
 
-Requests tiene un diseño muy simple e intuitivo, es muy fácil de usar, con valores predeterminados sensatos. Pero al mismo tiempo, es muy poderoso y personalizable.
+Requests tiene un diseño muy simple e intuitivo, es muy fácil de usar, con valores por defecto sensatos. Pero al mismo tiempo, es muy poderoso y personalizable.
 
 Por eso, como se dice en el sitio web oficial:
 
@@ -102,7 +102,7 @@ Mira las similitudes entre `requests.get(...)` y `@app.get(...)`.
 
 * Tener un API simple e intuitivo.
 * Usar nombres de métodos HTTP (operaciones) directamente, de una manera sencilla e intuitiva.
-* Tener valores predeterminados sensatos, pero personalizaciones poderosas.
+* Tener valores por defecto sensatos, pero personalizaciones poderosas.
 
 ///
 
@@ -137,7 +137,7 @@ Existen varios frameworks REST para Flask, pero después de invertir tiempo y tr
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-Una de las principales funcionalidades necesitadas por los sistemas API es la "<abbr title="también llamada marshalling, conversión">serialización</abbr>" de datos, que consiste en tomar datos del código (Python) y convertirlos en algo que pueda ser enviado a través de la red. Por ejemplo, convertir un objeto que contiene datos de una base de datos en un objeto JSON. Convertir objetos `datetime` en strings, etc.
+Una de las principales funcionalidades necesitadas por los sistemas API es la "<dfn title="también llamado marshalling, conversión">serialización</dfn>" de datos, que consiste en tomar datos del código (Python) y convertirlos en algo que pueda ser enviado a través de la red. Por ejemplo, convertir un objeto que contiene datos de una base de datos en un objeto JSON. Convertir objetos `datetime` en strings, etc.
 
 Otra gran funcionalidad necesaria por las APIs es la validación de datos, asegurarse de que los datos sean válidos, dados ciertos parámetros. Por ejemplo, que algún campo sea un `int`, y no algún string aleatorio. Esto es especialmente útil para los datos entrantes.
 
@@ -145,7 +145,7 @@ Sin un sistema de validación de datos, tendrías que hacer todas las comprobaci
 
 Estas funcionalidades son para lo que fue creado Marshmallow. Es un gran paquete, y lo he usado mucho antes.
 
-Pero fue creado antes de que existieran las anotaciones de tipos en Python. Así que, para definir cada <abbr title="la definición de cómo deberían formarse los datos">esquema</abbr> necesitas usar utilidades y clases específicas proporcionadas por Marshmallow.
+Pero fue creado antes de que existieran las anotaciones de tipos en Python. Así que, para definir cada <dfn title="la definición de cómo deberían formarse los datos">esquema</dfn> necesitas usar utilidades y clases específicas proporcionadas por Marshmallow.
 
 /// check | Inspiró a **FastAPI** a
 
@@ -155,7 +155,7 @@ Usar código para definir "esquemas" que proporcionen tipos de datos y validaci�
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-Otra gran funcionalidad requerida por las APIs es el <abbr title="lectura y conversión a datos de Python">parse</abbr> de datos de las requests entrantes.
+Otra gran funcionalidad requerida por las APIs es el <dfn title="lectura y conversión a datos de Python">parsing</dfn> de datos de las requests entrantes.
 
 Webargs es una herramienta que fue creada para proporcionar esa funcionalidad sobre varios frameworks, incluido Flask.
 
@@ -177,7 +177,7 @@ Tener validación automática de datos entrantes en una request.
 
 ### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a> { #apispec }
 
-Marshmallow y Webargs proporcionan validación, parse y serialización como plug-ins.
+Marshmallow y Webargs proporcionan validación, parsing y serialización como plug-ins.
 
 Pero la documentación todavía falta. Entonces APISpec fue creado.
 
@@ -419,7 +419,7 @@ Manejar toda la validación de datos, serialización de datos y documentación a
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette es un framework/toolkit <abbr title="The new standard for building asynchronous Python web applications – El nuevo estándar para construir aplicaciones web asíncronas en Python">ASGI</abbr> liviano, ideal para construir servicios asyncio de alto rendimiento.
+Starlette es un framework/toolkit <dfn title="El nuevo estándar para construir aplicaciones web asíncronas en Python">ASGI</dfn> liviano, ideal para construir servicios asyncio de alto rendimiento.
 
 Es muy simple e intuitivo. Está diseñado para ser fácilmente extensible y tener componentes modulares.
 

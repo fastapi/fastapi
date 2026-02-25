@@ -48,8 +48,8 @@
 
 /// warning | 경고
 
-별도 키가 전달된 `Field` 또한 여러분의 어플리케이션의 OpenAPI 스키마에 나타날 것입니다.
-이런 키가 OpenAPI 명세서, [the OpenAPI validator](https://validator.swagger.io/)같은 몇몇 OpenAPI 도구들에 포함되지 못할 수 있으며, 여러분이 생성한 스키마와 호환되지 않을 수 있습니다.
+별도 키가 전달된 `Field` 또한 여러분의 애플리케이션의 OpenAPI 스키마에 나타날 것입니다.
+이런 키가 OpenAPI 명세서의 일부가 아닐 수도 있으므로, [OpenAPI validator](https://validator.swagger.io/) 같은 몇몇 OpenAPI 도구들은 여러분이 생성한 스키마와 호환되지 않을 수 있습니다.
 
 ///
 

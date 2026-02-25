@@ -3,13 +3,14 @@ import importlib
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial002_py39",
-        "tutorial002_an_py39",
+        "tutorial002_py310",
+        "tutorial002_an_py310",
     ],
 )
 def get_app(request: pytest.FixtureRequest):
@@ -102,142 +103,152 @@ def test_get_root(app: FastAPI):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/files/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/files/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Create Files",
+                        "operationId": "create_files_files__post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "multipart/form-data": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_create_files_files__post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Create Files",
-                    "operationId": "create_files_files__post",
-                    "requestBody": {
-                        "content": {
-                            "multipart/form-data": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_create_files_files__post"
-                                }
-                            }
+                    }
+                },
+                "/uploadfiles/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "required": True,
-                    },
-                }
-            },
-            "/uploadfiles/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Create Upload Files",
+                        "operationId": "create_upload_files_uploadfiles__post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "multipart/form-data": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_create_upload_files_uploadfiles__post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Create Upload Files",
-                    "operationId": "create_upload_files_uploadfiles__post",
-                    "requestBody": {
-                        "content": {
-                            "multipart/form-data": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_create_upload_files_uploadfiles__post"
-                                }
+                    }
+                },
+                "/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             }
                         },
-                        "required": True,
-                    },
-                }
-            },
-            "/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Main",
-                    "operationId": "main__get",
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "Body_create_upload_files_uploadfiles__post": {
-                    "title": "Body_create_upload_files_uploadfiles__post",
-                    "required": ["files"],
-                    "type": "object",
-                    "properties": {
-                        "files": {
-                            "title": "Files",
-                            "type": "array",
-                            "items": {"type": "string", "format": "binary"},
-                        }
-                    },
+                        "summary": "Main",
+                        "operationId": "main__get",
+                    }
                 },
-                "Body_create_files_files__post": {
-                    "title": "Body_create_files_files__post",
-                    "required": ["files"],
-                    "type": "object",
-                    "properties": {
-                        "files": {
-                            "title": "Files",
-                            "type": "array",
-                            "items": {"type": "string", "format": "binary"},
-                        }
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
+            },
+            "components": {
+                "schemas": {
+                    "Body_create_upload_files_uploadfiles__post": {
+                        "title": "Body_create_upload_files_uploadfiles__post",
+                        "required": ["files"],
+                        "type": "object",
+                        "properties": {
+                            "files": {
+                                "title": "Files",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "contentMediaType": "application/octet-stream",
+                                },
+                            }
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
+                    "Body_create_files_files__post": {
+                        "title": "Body_create_files_files__post",
+                        "required": ["files"],
+                        "type": "object",
+                        "properties": {
+                            "files": {
+                                "title": "Files",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "contentMediaType": "application/octet-stream",
+                                },
+                            }
+                        },
                     },
-                },
-            }
-        },
-    }
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                }
+            },
+        }
+    )

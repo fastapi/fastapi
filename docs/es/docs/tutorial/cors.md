@@ -46,7 +46,8 @@ También puedes especificar si tu backend permite:
 * Métodos HTTP específicos (`POST`, `PUT`) o todos ellos con el comodín `"*"`.
 * Headers HTTP específicos o todos ellos con el comodín `"*"`.
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
+
 
 Los parámetros predeterminados utilizados por la implementación de `CORSMiddleware` son restrictivos por defecto, por lo que necesitarás habilitar explícitamente orígenes, métodos o headers particulares para que los navegadores estén permitidos de usarlos en un contexto de Cross-Domain.
 

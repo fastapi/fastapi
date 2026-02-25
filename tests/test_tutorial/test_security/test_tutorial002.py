@@ -2,6 +2,7 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -9,9 +10,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial002_an_py39"),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
 )
@@ -42,30 +41,32 @@ def test_token(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Users Me",
-                    "operationId": "read_users_me_users_me_get",
-                    "security": [{"OAuth2PasswordBearer": []}],
-                }
-            }
-        },
-        "components": {
-            "securitySchemes": {
-                "OAuth2PasswordBearer": {
-                    "type": "oauth2",
-                    "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Users Me",
+                        "operationId": "read_users_me_users_me_get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                    }
                 }
             },
-        },
-    }
+            "components": {
+                "securitySchemes": {
+                    "OAuth2PasswordBearer": {
+                        "type": "oauth2",
+                        "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
+                    }
+                },
+            },
+        }
+    )

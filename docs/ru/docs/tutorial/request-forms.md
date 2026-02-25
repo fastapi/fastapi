@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Импортируйте `Form` из `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## Определение параметров `Form` { #define-form-parameters }
 
 Создайте параметры формы так же, как это делается для `Body` или `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
-Например, в одном из способов использования спецификации OAuth2 (называемом «потоком пароля») требуется отправить `username` и `password` в виде полей формы.
+Например, в одном из способов использования спецификации OAuth2 (называемом «password flow» - аутентификация по паролю) требуется отправить `username` и `password` в виде полей формы.
 
-<abbr title="specification – спецификация">spec</abbr> требует, чтобы поля были строго названы `username` и `password` и отправлялись как поля формы, а не JSON.
+<dfn title="спецификация">спецификация</dfn> требует, чтобы поля были строго названы `username` и `password` и отправлялись как поля формы, а не JSON.
 
 С помощью `Form` вы можете объявить те же настройки, что и с `Body` (и `Query`, `Path`, `Cookie`), включая валидацию, примеры, псевдоним (например, `user-name` вместо `username`) и т.д.
 
@@ -56,7 +56,7 @@ $ pip install python-multipart
 
 Но когда форма содержит файлы, она кодируется как `multipart/form-data`. О работе с файлами вы прочтёте в следующей главе.
 
-Если вы хотите узнать больше про эти кодировки и поля формы, обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Сеть разработчиков Mozilla">MDN</abbr> веб-документации для `POST`</a>.
+Если вы хотите узнать больше про эти кодировки и поля формы, обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> веб-документации для `POST`</a>.
 
 ///
 

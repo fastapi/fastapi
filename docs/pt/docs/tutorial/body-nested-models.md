@@ -164,7 +164,7 @@ images: list[Image]
 
 como em:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Suporte de editor em todo canto { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Outro caso útil é quando você deseja ter chaves de outro tipo, por exemplo, `
 
 Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Dica
 

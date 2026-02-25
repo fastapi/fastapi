@@ -353,7 +353,9 @@ Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link ta
 
 Translate HTML abbr elements (`<abbr title="description">text</abbr>`) as follows:
 
-- If the text surrounded by the abbr element is an abbreviation (the text may be surrounded by further HTML or Markdown markup or quotes, for example <code>text</code> or `text` or "text", ignore that further markup when deciding if the text is an abbreviation), and if the description (the text inside the title attribute) contains the full phrase for this abbreviation, then append a dash (-) to the full phrase, followed by the translation of the full phrase.
+- The text inside abbr tag may be surrounded by further HTML or Markdown markup or quotes, for example <code>text</code> or `text` or "text". Preserve markup and only translate visible text inside the abbr element.
+
+- If the description (the text inside the title attribute) contains the full phrase for this abbreviation, then append a dash (-) to the full phrase, followed by the translation of the full phrase.
 
 Conversion scheme:
 
@@ -421,45 +423,7 @@ Result (German):
 <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>
 ```
 
-- If the description is not a full phrase for an abbreviation which the abbr element surrounds, but some other information, then just translate the description.
-
-Conversion scheme:
-
-Source (English):
-
-```
-<abbr title="{description}">{text}</abbr>
-```
-
-Result:
-
-```
-<abbr title="{translation of description}">{translation of text}</abbr>
-```
-
-Examples:
-
-    Source (English):
-
-```
-<abbr title="also known as: endpoints, routes">path</abbr>
-<abbr title="a program that checks for code errors">linter</abbr>
-<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>
-<abbr title="before 2023-03">0.95.0</abbr>
-<abbr title="2023-08-26">at the time of writing this</abbr>
-```
-
-Result (German):
-
-```
-<abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>
-<abbr title="Programm das auf Fehler im Code prüft">Linter</abbr>
-<abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">Parsen</abbr>
-<abbr title="vor 2023-03">0.95.0</abbr>
-<abbr title="2023-08-26">zum Zeitpunkt als das hier geschrieben wurde</abbr>
-```
-
-- If the text surrounded by the abbr element is an abbreviation and the description contains both the full phrase for that abbreviation, and other information, separated by a colon (`:`), then append a dash (`-`) and the translation of the full phrase to the original full phrase and translate the other information.
+- If the title of abbr element contains a full phrase for that abbreviation, and other information, separated by a colon (`:`), then append a dash (`-`) and the translation of the full phrase to the original full phrase and translate the other information.
 
 Conversion scheme:
 
@@ -526,3 +490,23 @@ Result (German):
 - If there is an existing translation, and it has ADDITIONAL abbr elements in a sentence, and these additional abbr elements do not exist in the related sentence in the English text, then KEEP those additional abbr elements in the translation. Do not remove them. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text, then also remove the abbr element. The reasoning for this rule is, that such additional abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. These additional abbr elements would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to abbr elements.
 
 - Apply above rules also when there is an existing translation! Make sure that all title attributes in abbr elements get properly translated or updated, using the schemes given above. However, leave the ADDITIONAL abbr's described above alone. Do not change their formatting or content.
+
+### HTML dfn elements
+
+For HTML dfn elements (`<dfn>text</dfn>`), translate the text inside the dfn element and the title attribute. Do not include the original English text in the title attribute.
+
+Examples:
+
+Source (English):
+
+```
+<dfn title="also known as: endpoints, routes">path</dfn>
+<dfn title="a program that checks for code errors">linter</dfn>
+```
+
+Result (German):
+
+```
+<dfn title="auch bekannt als: Endpunkte, Routen">Pfad</dfn>
+<dfn title="Programm das auf Fehler im Code prüft">Linter</dfn>
+```

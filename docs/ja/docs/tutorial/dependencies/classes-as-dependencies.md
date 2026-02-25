@@ -101,7 +101,7 @@ FastAPIが実際にチェックしているのは、それが「呼び出し可�
 
 上のコードでは`CommonQueryParams`を２回書いていることに注目してください:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 
@@ -137,7 +137,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 この場合、以下にある最初の`CommonQueryParams`:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 実際には以下のように書けばいいだけです:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 しかし、ここでは`CommonQueryParams`を２回書くというコードの繰り返しが発生していることがわかります:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 以下のように書く代わりに:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...以下のように書きます:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.9+ 注釈なし
+//// tab | Python 3.10+ 注釈なし
 
 /// tip | 豆知識
 

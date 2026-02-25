@@ -24,7 +24,7 @@ Dies wird seit FastAPI Version `0.113.0` unterstützt. 🤓
 
 Sie müssen nur ein **Pydantic-Modell** mit den Feldern deklarieren, die Sie als **Formularfelder** erhalten möchten, und dann den Parameter als `Form` deklarieren:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Formulardaten** im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell übergeben.
 
@@ -48,7 +48,7 @@ Dies wird seit FastAPI Version `0.114.0` unterstützt. 🤓
 
 Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` Felder zu `verbieten`:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 

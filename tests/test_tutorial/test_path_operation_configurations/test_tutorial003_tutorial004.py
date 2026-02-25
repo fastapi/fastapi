@@ -4,6 +4,7 @@ from textwrap import dedent
 import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 
 from ...utils import needs_py310
 
@@ -24,9 +25,7 @@ DESCRIPTIONS = {
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
-        pytest.param("tutorial004_py39"),
         pytest.param("tutorial004_py310", marks=needs_py310),
     ],
 )
@@ -66,145 +65,147 @@ def test_openapi_schema(client: TestClient, mod_name: str):
 
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/": {
-                "post": {
-                    "summary": "Create an item",
-                    "description": DESCRIPTIONS[mod_name],
-                    "operationId": "create_item_items__post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
-                            }
-                        },
-                        "required": True,
-                    },
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "post": {
+                        "summary": "Create an item",
+                        "description": Is(DESCRIPTIONS[mod_name]),
+                        "operationId": "create_item_items__post",
+                        "requestBody": {
                             "content": {
                                 "application/json": {
                                     "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
+                            "required": True,
                         },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/Item"}
                                     }
-                                }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
                             },
                         },
                     },
                 },
             },
-        },
-        "components": {
-            "schemas": {
-                "HTTPValidationError": {
-                    "properties": {
-                        "detail": {
-                            "items": {
-                                "$ref": "#/components/schemas/ValidationError",
+            "components": {
+                "schemas": {
+                    "HTTPValidationError": {
+                        "properties": {
+                            "detail": {
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError",
+                                },
+                                "title": "Detail",
+                                "type": "array",
                             },
-                            "title": "Detail",
-                            "type": "array",
                         },
+                        "title": "HTTPValidationError",
+                        "type": "object",
                     },
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                },
-                "Item": {
-                    "properties": {
-                        "description": {
-                            "anyOf": [
-                                {
-                                    "type": "string",
-                                },
-                                {
-                                    "type": "null",
-                                },
-                            ],
-                            "title": "Description",
-                        },
-                        "name": {
-                            "title": "Name",
-                            "type": "string",
-                        },
-                        "price": {
-                            "title": "Price",
-                            "type": "number",
-                        },
-                        "tags": {
-                            "default": [],
-                            "items": {
-                                "type": "string",
-                            },
-                            "title": "Tags",
-                            "type": "array",
-                            "uniqueItems": True,
-                        },
-                        "tax": {
-                            "anyOf": [
-                                {
-                                    "type": "number",
-                                },
-                                {
-                                    "type": "null",
-                                },
-                            ],
-                            "title": "Tax",
-                        },
-                    },
-                    "required": [
-                        "name",
-                        "price",
-                    ],
-                    "title": "Item",
-                    "type": "object",
-                },
-                "ValidationError": {
-                    "properties": {
-                        "ctx": {"title": "Context", "type": "object"},
-                        "input": {"title": "Input"},
-                        "loc": {
-                            "items": {
+                    "Item": {
+                        "properties": {
+                            "description": {
                                 "anyOf": [
                                     {
                                         "type": "string",
                                     },
                                     {
-                                        "type": "integer",
+                                        "type": "null",
                                     },
                                 ],
+                                "title": "Description",
                             },
-                            "title": "Location",
-                            "type": "array",
+                            "name": {
+                                "title": "Name",
+                                "type": "string",
+                            },
+                            "price": {
+                                "title": "Price",
+                                "type": "number",
+                            },
+                            "tags": {
+                                "default": [],
+                                "items": {
+                                    "type": "string",
+                                },
+                                "title": "Tags",
+                                "type": "array",
+                                "uniqueItems": True,
+                            },
+                            "tax": {
+                                "anyOf": [
+                                    {
+                                        "type": "number",
+                                    },
+                                    {
+                                        "type": "null",
+                                    },
+                                ],
+                                "title": "Tax",
+                            },
                         },
-                        "msg": {
-                            "title": "Message",
-                            "type": "string",
-                        },
-                        "type": {
-                            "title": "Error Type",
-                            "type": "string",
-                        },
+                        "required": [
+                            "name",
+                            "price",
+                        ],
+                        "title": "Item",
+                        "type": "object",
                     },
-                    "required": [
-                        "loc",
-                        "msg",
-                        "type",
-                    ],
-                    "title": "ValidationError",
-                    "type": "object",
+                    "ValidationError": {
+                        "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
+                            "loc": {
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string",
+                                        },
+                                        {
+                                            "type": "integer",
+                                        },
+                                    ],
+                                },
+                                "title": "Location",
+                                "type": "array",
+                            },
+                            "msg": {
+                                "title": "Message",
+                                "type": "string",
+                            },
+                            "type": {
+                                "title": "Error Type",
+                                "type": "string",
+                            },
+                        },
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type",
+                        ],
+                        "title": "ValidationError",
+                        "type": "object",
+                    },
                 },
             },
-        },
-    }
+        }
+    )

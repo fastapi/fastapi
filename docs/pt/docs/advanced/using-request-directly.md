@@ -5,7 +5,7 @@ Até agora você declarou as partes da requisição que você precisa utilizando
 Obtendo dados de:
 
 * O path como parâmetros.
-* Cabeçalhos (*Headers*).
+* Cabeçalhos.
 * Cookies.
 * etc.
 
@@ -29,7 +29,7 @@ Vamos imaginar que você deseja obter o endereço de IP/host do cliente dentro d
 
 Para isso você precisa acessar a requisição diretamente.
 
-{* ../../docs_src/using_request_directly/tutorial001_py39.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
 Ao declarar o parâmetro com o tipo sendo um `Request` em sua *função de operação de rota*, o **FastAPI** saberá como passar o `Request` neste parâmetro.
 

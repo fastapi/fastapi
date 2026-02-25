@@ -8,7 +8,7 @@ Aquí veremos un ejemplo usando <a href="https://sqlmodel.tiangolo.com/" class="
 
 /// tip | Consejo
 
-Puedes usar cualquier otro paquete de bases de datos SQL o NoSQL que quieras (en algunos casos llamadas <abbr title="Object Relational Mapper – Mapeador Objeto-Relacional: un término elegante para un paquete donde algunas clases representan tablas SQL y las instances representan filas en esas tablas">"ORMs"</abbr>), FastAPI no te obliga a usar nada. 😎
+Puedes usar cualquier otro paquete de bases de datos SQL o NoSQL que quieras (en algunos casos llamadas <abbr title="Object Relational Mapper - Mapeador Objeto-Relacional: un término elegante para un paquete donde algunas clases representan tablas SQL y las instances representan filas en esas tablas">"ORMs"</abbr>), FastAPI no te obliga a usar nada. 😎
 
 ///
 
@@ -354,4 +354,4 @@ Si vas a la interfaz de `/docs` de la API, verás que ahora está actualizada, y
 
 Puedes usar <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> para interactuar con una base de datos SQL y simplificar el código con *modelos de datos* y *modelos de tablas*.
 
-Puedes aprender mucho más en la documentación de **SQLModel**, hay un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial sobre el uso de SQLModel con **FastAPI**</a>. 🚀
+Puedes aprender mucho más en la documentación de **SQLModel**, hay un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial más largo sobre el uso de SQLModel con **FastAPI**</a>. 🚀

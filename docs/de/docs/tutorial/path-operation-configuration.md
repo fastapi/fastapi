@@ -46,17 +46,17 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 
 **FastAPI** unterstützt das auf die gleiche Weise wie einfache Strings:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## Zusammenfassung und Beschreibung { #summary-and-description }
 
 Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr title="Beschreibung">`description`</abbr> hinzufügen:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Beschreibung mittels Docstring { #description-from-docstring }
 
-Da Beschreibungen oft mehrere Zeilen lang sind, können Sie die Beschreibung der *Pfadoperation* im <abbr title="Ein mehrzeiliger String (keiner Variable zugewiesen) als erster Ausdruck in einer Funktion, wird für die Dokumentation derselben verwendet">Docstring</abbr> der Funktion deklarieren, und **FastAPI** wird sie daraus auslesen.
+Da Beschreibungen oft mehrere Zeilen lang sind, können Sie die Beschreibung der *Pfadoperation* im <dfn title="Ein mehrzeiliger String (keiner Variable zugewiesen) als erster Ausdruck in einer Funktion, wird für die Dokumentation derselben verwendet">Docstring</dfn> der Funktion deklarieren, und **FastAPI** wird sie daraus auslesen.
 
 Sie können <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> im Docstring schreiben, es wird korrekt interpretiert und angezeigt (unter Berücksichtigung der Einrückung des Docstring).
 
@@ -70,7 +70,7 @@ Es wird in der interaktiven Dokumentation verwendet:
 
 Sie können die Response mit dem Parameter `response_description` beschreiben:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Info
 
@@ -90,9 +90,9 @@ Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolg
 
 ## Eine *Pfadoperation* deprecaten { #deprecate-a-path-operation }
 
-Wenn Sie eine *Pfadoperation* als <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
+Wenn Sie eine *Pfadoperation* als <dfn title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</dfn> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 Sie wird in der interaktiven Dokumentation gut sichtbar als deprecatet markiert werden:
 

@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 from dirty_equals import HasRepr
 from fastapi import Depends, FastAPI
@@ -22,7 +20,7 @@ def get_client():
 
     class ModelA(BaseModel):
         name: str
-        description: Optional[str] = None
+        description: str | None = None
         foo: ModelB
         tags: dict[str, str] = {}
 

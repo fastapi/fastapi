@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -12,8 +11,8 @@ app = FastAPI()
 class Item:
     name: str
     date: datetime
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/valid", response_model=Item)

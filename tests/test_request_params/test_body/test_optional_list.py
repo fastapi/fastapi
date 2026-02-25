@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 import pytest
 from fastapi import Body, FastAPI
@@ -15,13 +15,13 @@ app = FastAPI()
 
 @app.post("/optional-list-str", operation_id="optional_list_str")
 async def read_optional_list_str(
-    p: Annotated[Optional[list[str]], Body(embed=True)] = None,
+    p: Annotated[list[str] | None, Body(embed=True)] = None,
 ):
     return {"p": p}
 
 
 class BodyModelOptionalListStr(BaseModel):
-    p: Optional[list[str]] = None
+    p: list[str] | None = None
 
 
 @app.post("/model-optional-list-str", operation_id="model_optional_list_str")
@@ -103,13 +103,13 @@ def test_optional_list_str(path: str):
 
 @app.post("/optional-list-alias", operation_id="optional_list_alias")
 async def read_optional_list_alias(
-    p: Annotated[Optional[list[str]], Body(embed=True, alias="p_alias")] = None,
+    p: Annotated[list[str] | None, Body(embed=True, alias="p_alias")] = None,
 ):
     return {"p": p}
 
 
 class BodyModelOptionalListAlias(BaseModel):
-    p: Optional[list[str]] = Field(None, alias="p_alias")
+    p: list[str] | None = Field(None, alias="p_alias")
 
 
 @app.post("/model-optional-list-alias", operation_id="model_optional_list_alias")
@@ -208,14 +208,14 @@ def test_optional_list_alias_by_alias(path: str):
 )
 def read_optional_list_validation_alias(
     p: Annotated[
-        Optional[list[str]], Body(embed=True, validation_alias="p_val_alias")
+        list[str] | None, Body(embed=True, validation_alias="p_val_alias")
     ] = None,
 ):
     return {"p": p}
 
 
 class BodyModelOptionalListValidationAlias(BaseModel):
-    p: Optional[list[str]] = Field(None, validation_alias="p_val_alias")
+    p: list[str] | None = Field(None, validation_alias="p_val_alias")
 
 
 @app.post(
@@ -323,7 +323,7 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
 )
 def read_optional_list_alias_and_validation_alias(
     p: Annotated[
-        Optional[list[str]],
+        list[str] | None,
         Body(embed=True, alias="p_alias", validation_alias="p_val_alias"),
     ] = None,
 ):
@@ -331,9 +331,7 @@ def read_optional_list_alias_and_validation_alias(
 
 
 class BodyModelOptionalListAliasAndValidationAlias(BaseModel):
-    p: Optional[list[str]] = Field(
-        None, alias="p_alias", validation_alias="p_val_alias"
-    )
+    p: list[str] | None = Field(None, alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

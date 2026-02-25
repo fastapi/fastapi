@@ -6,7 +6,7 @@
 
 Щоб отримувати завантажені файли та/або дані форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-Переконайтеся, що Ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили бібліотеку, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили бібліотеку, наприклад:
 
 ```console
 $ pip install python-multipart
@@ -16,15 +16,15 @@ $ pip install python-multipart
 
 ## Імпорт `File` та `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## Оголошення параметрів `File` та `Form` { #define-file-and-form-parameters }
 
 Створіть параметри файлів та форми так само як і для `Body` або `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
-Файли та поля форми будуть завантажені як формові дані, і Ви отримаєте файли та поля форми.
+Файли та поля форми будуть завантажені як формові дані, і ви отримаєте файли та поля форми.
 
 Ви також можете оголосити деякі файли як `bytes`, а деякі як `UploadFile`.
 

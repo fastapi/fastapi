@@ -191,6 +191,9 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
@@ -317,6 +320,8 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
+  - link: /fr/
+    name: fr - français
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
@@ -329,11 +334,16 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /zh/
+    name: zh - 简体中文
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
 extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py

@@ -74,7 +74,7 @@ Pydanticモデルで`Field()`を使う場合、追加の`examples`も宣言で�
 
 この場合、examplesはそのボディデータの内部**JSON Schema**の一部になります。
 
-それでも、<abbr title="2023-08-26">執筆時点</abbr>では、ドキュメントUIの表示を担当するツールであるSwagger UIは、**JSON Schema**内のデータに対して複数の例を表示することをサポートしていません。しかし、回避策については以下を読んでください。
+それでも、<dfn title="2023-08-26">執筆時点</dfn>では、ドキュメントUIの表示を担当するツールであるSwagger UIは、**JSON Schema**内のデータに対して複数の例を表示することをサポートしていません。しかし、回避策については以下を読んでください。
 
 ### OpenAPI固有の`examples` { #openapi-specific-examples }
 

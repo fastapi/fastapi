@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from typing import Union
 
 from dirty_equals import IsUUID
 from fastapi import FastAPI
@@ -16,8 +15,8 @@ class Item:
     name: str
     price: float
     tags: list[str] = field(default_factory=list)
-    description: Union[str, None] = None
-    tax: Union[float, None] = None
+    description: str | None = None
+    tax: float | None = None
 
 
 app = FastAPI()

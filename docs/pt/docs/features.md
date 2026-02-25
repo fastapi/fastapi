@@ -6,7 +6,7 @@
 
 ### Baseado em padrões abertos { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para criação de APIs, incluindo declarações de <abbr title="também conhecido como: endpoints, routes">caminho</abbr> <abbr title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</abbr>, parâmetros, requisições de corpo, segurança etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">caminho</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, requisições de corpo, segurança etc.
 * Modelo de documentação automática com <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (já que o OpenAPI em si é baseado no JSON Schema).
 * Projetado em cima desses padrões após um estudo meticuloso, em vez de uma reflexão breve.
 * Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
@@ -136,7 +136,7 @@ Tudo construído como ferramentas e componentes reutilizáveis que são fáceis 
 
 ### Injeção de dependência { #dependency-injection }
 
-FastAPI inclui um sistema de <abbr title='também conhecido como "components", "resources", "services", "providers"'><strong>injeção de dependência</strong></abbr> extremamente fácil de usar, mas extremamente poderoso.
+FastAPI inclui um sistema de <dfn title='também conhecido como "componentes", "recursos", "serviços", "provedores"'><strong>injeção de dependência</strong></dfn> extremamente fácil de usar, mas extremamente poderoso.
 
 * Mesmo dependências podem ter dependências, criando uma hierarquia ou **"grafo" de dependências**.
 * Tudo **automaticamente controlado** pelo framework.
@@ -153,8 +153,8 @@ Qualquer integração é projetada para ser tão simples de usar (com dependênc
 
 ### Testado { #tested }
 
-* 100% <abbr title="A quantidade de código que é testada automaticamente">de cobertura de testes</abbr>.
-* 100% do código com <abbr title="Anotações de tipo do Python, com isso seu editor e ferramentas externas podem te dar um suporte melhor">anotações de tipo</abbr>.
+* 100% <dfn title="A quantidade de código que é testada automaticamente">de cobertura de testes</dfn>.
+* 100% do código com <dfn title="Anotações de tipo do Python, com isso seu editor e ferramentas externas podem te dar um suporte melhor">anotações de tipo</dfn>.
 * Usado para aplicações em produção.
 
 ## Recursos do Starlette { #starlette-features }
@@ -179,7 +179,7 @@ Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI
 
 **FastAPI** é totalmente compatível com (e baseado no) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Então, qualquer código Pydantic adicional que você tiver, também funcionará.
 
-Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper">ORM</abbr>s e <abbr title="Object-Document Mapper">ODM</abbr>s para bancos de dados.
+Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s e <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bancos de dados.
 
 Isso também significa que em muitos casos você poderá passar o mesmo objeto que você receber de uma requisição **diretamente para o banco de dados**, já que tudo é validado automaticamente.
 
@@ -190,7 +190,7 @@ Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI u
 * **Sem pegadinhas**:
     * Sem novas definições de esquema de micro-linguagem para aprender.
     * Se você conhece os tipos do Python, você sabe como usar o Pydantic.
-* Vai bem com o/a seu/sua **<abbr title="Ambiente de Desenvolvimento Integrado, similar a um editor de código">IDE</abbr>/<abbr title="Um programa que confere erros de código">linter</abbr>/cérebro**:
+* Vai bem com o/a seu/sua **<abbr title="Integrated Development Environment - Ambiente de Desenvolvimento Integrado: similar a um editor de código">IDE</abbr>/<dfn title="Um programa que confere erros de código">linter</dfn>/cérebro**:
     * Como as estruturas de dados do Pydantic são apenas instâncias de classes que você define, o preenchimento automático, linting, mypy e a sua intuição devem funcionar corretamente com seus dados validados.
 * Valida **estruturas complexas**:
     * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.

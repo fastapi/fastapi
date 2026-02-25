@@ -1,274 +1,274 @@
-# OAuth2 作用域
+# OAuth2 作用域 { #oauth2-scopes }
 
-**FastAPI** 无缝集成 OAuth2 作用域（`Scopes`），可以直接使用。
+你可以在 **FastAPI** 中直接使用 OAuth2 作用域（Scopes），它们已无缝集成。
 
-作用域是更精密的权限系统，遵循 OAuth2 标准，与 OpenAPI 应用（和 API 自动文档）集成。
+这样你就可以按照 OAuth2 标准，构建更精细的权限系统，并将其集成进你的 OpenAPI 应用（以及 API 文档）中。
 
-OAuth2 也是脸书、谷歌、GitHub、微软、推特等第三方身份验证应用使用的机制。这些身份验证应用在用户登录应用时使用 OAuth2 提供指定权限。
+带作用域的 OAuth2 是很多大型身份验证提供商使用的机制，例如 Facebook、Google、GitHub、Microsoft、X (Twitter) 等。它们用它来为用户和应用授予特定权限。
 
-脸书、谷歌、GitHub、微软、推特就是 OAuth2 作用域登录。
+每次你“使用” Facebook、Google、GitHub、Microsoft、X (Twitter) “登录”时，该应用就在使用带作用域的 OAuth2。
 
-本章介绍如何在 **FastAPI** 应用中使用 OAuth2 作用域管理验证与授权。
+本节将介绍如何在你的 **FastAPI** 应用中，使用相同的带作用域的 OAuth2 管理认证与授权。
 
 /// warning | 警告
 
-本章内容较难，刚接触 FastAPI 的新手可以跳过。
+本节内容相对进阶，如果你刚开始，可以先跳过。
 
-OAuth2 作用域不是必需的，没有它，您也可以处理身份验证与授权。
+你并不一定需要 OAuth2 作用域，你也可以用你自己的方式处理认证与授权。
 
-但 OAuth2 作用域与 API（通过 OpenAPI）及 API 文档集成地更好。
+但带作用域的 OAuth2 能很好地集成进你的 API（通过 OpenAPI）和 API 文档。
 
-不管怎么说，**FastAPI** 支持在代码中使用作用域或其它安全/授权需求项。
+不过，无论如何，你都可以在代码中按需强制这些作用域，或任何其它安全/授权需求。
 
-很多情况下，OAuth2 作用域就像一把牛刀。
+很多情况下，带作用域的 OAuth2 可能有点“大材小用”。
 
-但如果您确定要使用作用域，或对它有兴趣，请继续阅读。
-
-///
-
-## OAuth2 作用域与 OpenAPI
-
-OAuth2 规范的**作用域**是由空格分割的字符串组成的列表。
-
-这些字符串支持任何格式，但不能包含空格。
-
-作用域表示的是**权限**。
-
-OpenAPI 中（例如 API 文档）可以定义**安全方案**。
-
-这些安全方案在使用 OAuth2 时，还可以声明和使用作用域。
-
-**作用域**只是（不带空格的）字符串。
-
-常用于声明特定安全权限，例如：
-
-* 常见用例为，`users:read` 或 `users:write`
-* 脸书和 Instagram 使用 `instagram_basic`
-* 谷歌使用 `https://www.googleapis.com/auth/drive`
-
-/// info | 说明
-
-OAuth2 中，**作用域**只是声明特定权限的字符串。
-
-是否使用冒号 `:` 等符号，或是不是 URL 并不重要。
-
-这些细节只是特定的实现方式。
-
-对 OAuth2 来说，它们都只是字符串而已。
+但如果你确实需要它，或者只是好奇，请继续阅读。
 
 ///
 
-## 全局纵览
+## OAuth2 作用域与 OpenAPI { #oauth2-scopes-and-openapi }
 
-首先，快速浏览一下以下代码与**用户指南**中 [OAuth2 实现密码哈希与 Bearer  JWT 令牌验证](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}一章中代码的区别。以下代码使用 OAuth2 作用域：
+OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
-{* ../../docs_src/security/tutorial005.py hl[2,4,8,12,46,64,105,107:115,121:124,128:134,139,153] *}
+这些字符串的内容可以是任意格式，但不应包含空格。
 
-下面，我们逐步说明修改的代码内容。
+这些作用域表示“权限”。
 
-## OAuth2 安全方案
+在 OpenAPI（例如 API 文档）中，你可以定义“安全方案”（security schemes）。
 
-第一个修改的地方是，使用两个作用域 `me` 和 `items ` 声明 OAuth2 安全方案。
+当这些安全方案使用 OAuth2 时，你还可以声明并使用作用域。
 
-`scopes` 参数接收**字典**，键是作用域、值是作用域的描述：
+每个“作用域”只是一个（不带空格的）字符串。
 
-{* ../../docs_src/security/tutorial005.py hl[62:65] *}
+它们通常用于声明特定的安全权限，例如：
 
-因为声明了作用域，所以登录或授权时会在 API 文档中显示。
+* 常见示例：`users:read` 或 `users:write`
+* Facebook / Instagram 使用 `instagram_basic`
+* Google 使用 `https://www.googleapis.com/auth/drive`
 
-此处，选择给予访问权限的作用域： `me` 和 `items`。
+/// info | 信息
 
-这也是使用脸书、谷歌、GitHub 登录时的授权机制。
+在 OAuth2 中，“作用域”只是一个声明所需特定权限的字符串。
+
+是否包含像 `:` 这样的字符，或者是不是一个 URL，并不重要。
+
+这些细节取决于具体实现。
+
+对 OAuth2 而言，它们都只是字符串。
+
+///
+
+## 全局纵览 { #global-view }
+
+首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
+
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+
+下面我们逐步回顾这些更改。
+
+## OAuth2 安全方案 { #oauth2-security-scheme }
+
+第一个变化是：我们在声明 OAuth2 安全方案时，添加了两个可用的作用域 `me` 和 `items`。
+
+参数 `scopes` 接收一个 `dict`，以作用域为键、描述为值：
+
+{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+
+因为我们现在声明了这些作用域，所以当你登录/授权时，它们会显示在 API 文档里。
+
+你可以选择要授予访问权限的作用域：`me` 和 `items`。
+
+这与使用 Facebook、Google、GitHub 等登录时授予权限的机制相同：
 
 <img src="/img/tutorial/security/image11.png">
 
-## JWT 令牌作用域
+## 带作用域的 JWT 令牌 { #jwt-token-with-scopes }
 
-现在，修改令牌*路径操作*，返回请求的作用域。
+现在，修改令牌的*路径操作*以返回请求的作用域。
 
-此处仍然使用 `OAuth2PasswordRequestForm`。它包含类型为**字符串列表**的 `scopes` 属性，且`scopes` 属性中包含要在请求里接收的每个作用域。
+我们仍然使用 `OAuth2PasswordRequestForm`。它包含 `scopes` 属性，其值是 `list[str]`，包含请求中接收到的每个作用域。
 
-这样，返回的 JWT 令牌中就包含了作用域。
+我们把这些作用域作为 JWT 令牌的一部分返回。
 
 /// danger | 危险
 
-为了简明起见，本例把接收的作用域直接添加到了令牌里。
+为简单起见，此处我们只是把接收到的作用域直接添加到了令牌中。
 
-但在您的应用中，为了安全，应该只把作用域添加到确实需要作用域的用户，或预定义的用户。
+但在你的应用里，为了安全起见，你应该只添加该用户实际能够拥有的作用域，或你预先定义的作用域。
 
 ///
 
-{* ../../docs_src/security/tutorial005.py hl[153] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
-## 在*路径操作*与依赖项中声明作用域
+## 在*路径操作*与依赖项中声明作用域 { #declare-scopes-in-path-operations-and-dependencies }
 
-接下来，为*路径操作*  `/users/me/items/` 声明作用域 `items`。
+现在我们声明，路径操作 `/users/me/items/` 需要作用域 `items`。
 
-为此，要从 `fastapi` 中导入并使用 `Security` 。
+为此，从 `fastapi` 导入并使用 `Security`。
 
-`Security` 声明依赖项的方式和 `Depends` 一样，但 `Security` 还能接收作用域（字符串）列表类型的参数 `scopes`。
+你可以用 `Security` 来声明依赖（就像 `Depends` 一样），但 `Security` 还接收一个 `scopes` 参数，其值是作用域（字符串）列表。
 
-此处使用与 `Depends` 相同的方式，把依赖项函数 `get_current_active_user` 传递给 `Security`。
+在这里，我们把依赖函数 `get_current_active_user` 传给 `Security`（就像用 `Depends` 一样）。
 
-同时，还传递了作用域**列表**，本例中只传递了一个作用域：`items`（此处支持传递更多作用域）。
+同时还传入一个作用域 `list`，此处仅包含一个作用域：`items`（也可以包含更多）。
 
-依赖项函数 `get_current_active_user` 还能声明子依赖项，不仅可以使用 `Depends`，也可以使用 `Security`。声明子依赖项函数（`get_current_user`）及更多作用域。
+依赖函数 `get_current_active_user` 也可以声明子依赖，不仅可以用 `Depends`，也可以用 `Security`。它声明了自己的子依赖函数（`get_current_user`），并添加了更多的作用域需求。
 
-本例要求使用作用域 `me`（还可以使用更多作用域）。
+在这个例子里，它需要作用域 `me`（也可以需要多个作用域）。
 
-/// note | 笔记
+/// note | 注意
 
 不必在不同位置添加不同的作用域。
 
-本例使用的这种方式只是为了展示 **FastAPI** 如何处理在不同层级声明的作用域。
+这里这样做，是为了演示 **FastAPI** 如何处理在不同层级声明的作用域。
 
 ///
 
-{* ../../docs_src/security/tutorial005.py hl[4,139,166] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
 /// info | 技术细节
 
-`Security` 实际上是 `Depends` 的子类，而且只比 `Depends` 多一个参数。
+`Security` 实际上是 `Depends` 的子类，它只多了一个我们稍后会看到的参数。
 
-但使用 `Security` 代替 `Depends`，**FastAPI** 可以声明安全作用域，并在内部使用这些作用域，同时，使用 OpenAPI 存档 API。
+但当你使用 `Security` 而不是 `Depends` 时，**FastAPI** 会知道它可以声明安全作用域，在内部使用它们，并用 OpenAPI 文档化 API。
 
-但实际上，从 `fastapi` 导入的 `Query`、`Path`、`Depends`、`Security` 等对象，只是返回特殊类的函数。
+另外，从 `fastapi` 导入的 `Query`、`Path`、`Depends`、`Security` 等，实际上都是返回特殊类的函数。
 
 ///
 
-## 使用 `SecurityScopes`
+## 使用 `SecurityScopes` { #use-securityscopes }
 
-修改依赖项 `get_current_user`。
+现在更新依赖项 `get_current_user`。
 
-这是上面的依赖项使用的依赖项。
+上面那些依赖会用到它。
 
-这里使用的也是之前创建的 OAuth2 方案，并把它声明为依赖项：`oauth2_scheme`。
+这里我们使用之前创建的同一个 OAuth2 方案，并把它声明为依赖：`oauth2_scheme`。
 
-该依赖项函数本身不需要作用域，因此，可以使用 `Depends` 和 `oauth2_scheme`。不需要指定安全作用域时，不必使用 `Security`。
+因为这个依赖函数本身没有任何作用域需求，所以我们可以用 `Depends(oauth2_scheme)`，当不需要指定安全作用域时，不必使用 `Security`。
 
-此处还声明了从 `fastapi.security` 导入的 `SecurityScopes` 类型的特殊参数。
+我们还声明了一个从 `fastapi.security` 导入的特殊参数 `SecurityScopes` 类型。
 
-`SecuriScopes` 类与 `Request` 类似（`Request` 用于直接提取请求对象）。
+这个 `SecurityScopes` 类类似于 `Request`（`Request` 用来直接获取请求对象）。
 
-{* ../../docs_src/security/tutorial005.py hl[8,105] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## 使用 `scopes`
+## 使用 `scopes` { #use-the-scopes }
 
 参数 `security_scopes` 的类型是 `SecurityScopes`。
 
-它的属性 `scopes`  是作用域列表，所有依赖项都把它作为子依赖项。也就是说所有**依赖**……这听起来有些绕，后文会有解释。
+它会有一个 `scopes` 属性，包含一个列表，里面是它自身以及所有把它作为子依赖的依赖项所需要的所有作用域。也就是说，所有“依赖者”……这可能有点绕，下面会再次解释。
 
-（类 `SecurityScopes` 的）`security_scopes` 对象还提供了单字符串类型的属性 `scope_str`，该属性是（要在本例中使用的）用空格分割的作用域。
+`security_scopes` 对象（类型为 `SecurityScopes`）还提供了一个 `scope_str` 属性，它是一个用空格分隔这些作用域的单个字符串（我们将会用到它）。
 
-此处还创建了后续代码中要复用（`raise`）的 `HTTPException` 。
+我们创建一个 `HTTPException`，后面可以在多个位置复用（`raise`）它。
 
-该异常包含了作用域所需的（如有），以空格分割的字符串（使用 `scope_str`）。该字符串要放到包含作用域的 `WWW-Authenticate` 请求头中（这也是规范的要求）。
+在这个异常中，我们包含所需的作用域（如果有的话），以空格分隔的字符串（使用 `scope_str`）。我们把这个包含作用域的字符串放在 `WWW-Authenticate` 响应头中（这是规范要求的一部分）。
 
-{* ../../docs_src/security/tutorial005.py hl[105,107:115] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
 
-## 校验 `username` 与数据形状
+## 校验 `username` 与数据形状 { #verify-the-username-and-data-shape }
 
-我们可以校验是否获取了 `username`，并抽取作用域。
+我们校验是否获取到了 `username`，并提取作用域。
 
-然后，使用 Pydantic 模型校验数据（捕获 `ValidationError` 异常），如果读取 JWT 令牌或使用 Pydantic 模型验证数据时出错，就会触发之前创建的 `HTTPException` 异常。
+然后使用 Pydantic 模型验证这些数据（捕获 `ValidationError` 异常），如果读取 JWT 令牌或用 Pydantic 验证数据时出错，就抛出我们之前创建的 `HTTPException`。
 
-对此，要使用新的属性 `scopes` 更新 Pydantic 模型 `TokenData`。
+为此，我们给 Pydantic 模型 `TokenData` 添加了一个新属性 `scopes`。
 
-使用 Pydantic 验证数据可以确保数据中含有由作用域组成的**字符串列表**，以及 `username` 字符串等内容。
+通过用 Pydantic 验证数据，我们可以确保确实得到了例如一个由作用域组成的 `list[str]`，以及一个 `str` 类型的 `username`。
 
-反之，如果使用**字典**或其它数据结构，就有可能在后面某些位置破坏应用，形成安全隐患。
+而不是，例如得到一个 `dict` 或其它什么，这可能会在后续某个时刻破坏应用，形成安全风险。
 
-还可以使用用户名验证用户，如果没有用户，也会触发之前创建的异常。
+我们还验证是否存在该用户名的用户，如果没有，就抛出前面创建的同一个异常。
 
-{* ../../docs_src/security/tutorial005.py hl[46,116:127] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
-## 校验 `scopes`
+## 校验 `scopes` { #verify-the-scopes }
 
-接下来，校验所有依赖项和依赖要素（包括*路径操作*）所需的作用域。这些作用域包含在令牌的 `scopes` 里，如果不在其中就会触发 `HTTPException` 异常。
+现在我们要验证，这个依赖以及所有依赖者（包括*路径操作*）所需的所有作用域，是否都包含在接收到的令牌里的作用域中，否则就抛出 `HTTPException`。
 
-为此，要使用包含所有作用域**字符串列表**的 `security_scopes.scopes`， 。
+为此，我们使用 `security_scopes.scopes`，它包含一个由这些作用域组成的 `list[str]`。
 
-{* ../../docs_src/security/tutorial005.py hl[128:134] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
-## 依赖项树与作用域
+## 依赖树与作用域 { #dependency-tree-and-scopes }
 
-再次查看这个依赖项树与作用域。
+再次回顾这个依赖树与作用域。
 
-`get_current_active_user` 依赖项包含子依赖项 `get_current_user`，并在 `get_current_active_user`中声明了作用域 `"me"` 包含所需作用域列表 ，在 `security_scopes.scopes` 中传递给 `get_current_user`。
+由于 `get_current_active_user` 依赖把 `get_current_user` 作为子依赖，因此在 `get_current_active_user` 中声明的作用域 `"me"` 会被包含在传给 `get_current_user` 的 `security_scopes.scopes` 所需作用域列表中。
 
-*路径操作*自身也声明了作用域，`"items"`，这也是 `security_scopes.scopes` 列表传递给 `get_current_user` 的。
+*路径操作*本身也声明了一个作用域 `"items"`，它也会包含在传给 `get_current_user` 的 `security_scopes.scopes` 列表中。
 
-依赖项与作用域的层级架构如下：
+依赖与作用域的层级结构如下：
 
 * *路径操作* `read_own_items` 包含：
-    * 依赖项所需的作用域 `["items"]`：
-    * `get_current_active_user`:
-        *  依赖项函数 `get_current_active_user` 包含：
-            * 所需的作用域 `"me"` 包含依赖项：
-            * `get_current_user`:
-                * 依赖项函数 `get_current_user` 包含：
-                    * 没有作用域需求其自身
-                    * 依赖项使用 `oauth2_scheme`
-                    * `security_scopes` 参数的类型是 `SecurityScopes`：
-                        * `security_scopes` 参数的属性 `scopes` 是包含上述声明的所有作用域的**列表**，因此：
-                            * `security_scopes.scopes` 包含用于*路径操作*的 `["me", "items"]`
-                            * `security_scopes.scopes` 包含*路径操作* `read_users_me` 的 `["me"]`，因为它在依赖项里被声明
-                            * `security_scopes.scopes` 包含用于*路径操作* `read_system_status` 的 `[]`（空列表），并且它的依赖项 `get_current_user` 也没有声明任何 `scope`
+    * 带有依赖的必需作用域 `["items"]`：
+    * `get_current_active_user`：
+        *  依赖函数 `get_current_active_user` 包含：
+            * 带有依赖的必需作用域 `["me"]`：
+            * `get_current_user`：
+                * 依赖函数 `get_current_user` 包含：
+                    * 自身不需要任何作用域。
+                    * 一个使用 `oauth2_scheme` 的依赖。
+                    * 一个类型为 `SecurityScopes` 的 `security_scopes` 参数：
+                        * 该 `security_scopes` 参数有一个 `scopes` 属性，它是一个包含上面所有已声明作用域的 `list`，因此：
+                            * 对于*路径操作* `read_own_items`，`security_scopes.scopes` 将包含 `["me", "items"]`。
+                            * 对于*路径操作* `read_users_me`，`security_scopes.scopes` 将包含 `["me"]`，因为它在依赖 `get_current_active_user` 中被声明。
+                            * 对于*路径操作* `read_system_status`，`security_scopes.scopes` 将包含 `[]`（空列表），因为它既没有声明任何带 `scopes` 的 `Security`，其依赖 `get_current_user` 也没有声明任何 `scopes`。
 
 /// tip | 提示
 
-此处重要且**神奇**的事情是，`get_current_user` 检查每个*路径操作*时可以使用不同的 `scopes` 列表。
+这里重要且“神奇”的地方是，`get_current_user` 在检查每个*路径操作*时会得到不同的 `scopes` 列表。
 
-所有这些都依赖于在每个*路径操作*和指定*路径操作*的依赖树中的每个依赖项。
+这一切都取决于为该特定*路径操作*在其自身以及依赖树中的每个依赖里声明的 `scopes`。
 
 ///
 
-## `SecurityScopes` 的更多细节
+## 关于 `SecurityScopes` 的更多细节 { #more-details-about-securityscopes }
 
-您可以任何位置或多个位置使用 `SecurityScopes`，不一定非得在**根**依赖项中使用。
+你可以在任意位置、多个位置使用 `SecurityScopes`，不一定非得在“根”依赖里。
 
-它总是在当前 `Security` 依赖项中和所有依赖因子对于**特定** *路径操作*和**特定**依赖树中安全作用域
+它总会包含当前 `Security` 依赖中以及所有依赖者在“该特定”*路径操作*和“该特定”依赖树里声明的安全作用域。
 
-因为 `SecurityScopes` 包含所有由依赖项声明的作用域，可以在核心依赖函数中用它验证所需作用域的令牌，然后再在不同的*路径操作*中声明不同作用域需求。
+因为 `SecurityScopes` 会包含依赖者声明的所有作用域，你可以在一个核心依赖函数里用它验证令牌是否具有所需作用域，然后在不同的*路径操作*里声明不同的作用域需求。
 
-它们会为每个*路径操作*进行单独检查。
+它们会针对每个*路径操作*分别检查。
 
-## 查看文档
+## 查看文档 { #check-it }
 
-打开 API 文档，进行身份验证，并指定要授权的作用域。
+打开 API 文档，你可以进行身份验证，并指定要授权的作用域。
 
 <img src="/img/tutorial/security/image11.png">
 
-没有选择任何作用域，也可以进行**身份验证**，但访问 `/uses/me` 或 `/users/me/items` 时，会显示没有足够的权限。但仍可以访问 `/status/`。
+如果你不选择任何作用域，你依然会“通过认证”，但当你访问 `/users/me/` 或 `/users/me/items/` 时，会收到一个错误，提示你没有足够的权限。你仍然可以访问 `/status/`。
 
-如果选择了作用域 `me`，但没有选择作用域 `items`，则可以访问 `/users/me/`，但不能访问 `/users/me/items`。
+如果你选择了作用域 `me`，但没有选择作用域 `items`，你可以访问 `/users/me/`，但不能访问 `/users/me/items/`。
 
-这就是通过用户提供的令牌使用第三方应用访问这些*路径操作*时会发生的情况，具体怎样取决于用户授予第三方应用的权限。
+当第三方应用使用用户提供的令牌访问这些*路径操作*时，也会发生同样的情况，取决于用户授予该应用了多少权限。
 
-## 关于第三方集成
+## 关于第三方集成 { #about-third-party-integrations }
 
-本例使用 OAuth2 **密码**流。
+在这个示例中我们使用的是 OAuth2 的“password”流。
 
-这种方式适用于登录我们自己的应用，最好使用我们自己的前端。
+当我们登录自己的应用（很可能还有我们自己的前端）时，这是合适的。
 
-因为我们能控制自己的前端应用，可以信任它接收 `username` 与 `password`。
+因为我们可以信任它来接收 `username` 和 `password`，毕竟我们掌控它。
 
-但如果构建的是连接其它应用的 OAuth2 应用，比如具有与脸书、谷歌、GitHub 相同功能的第三方身份验证应用。那您就应该使用其它安全流。
+但如果你在构建一个 OAuth2 应用，让其它应用来连接（也就是说，你在构建等同于 Facebook、Google、GitHub 等的身份验证提供商），你应该使用其它的流。
 
-最常用的是隐式流。
+最常见的是隐式流（implicit flow）。
 
-最安全的是代码流，但实现起来更复杂，而且需要更多步骤。因为它更复杂，很多第三方身份验证应用最终建议使用隐式流。
+最安全的是代码流（authorization code flow），但实现更复杂，需要更多步骤。也因为更复杂，很多提供商最终会建议使用隐式流。
 
-/// note | 笔记
+/// note | 注意
 
-每个身份验证应用都会采用不同方式会命名流，以便融合入自己的品牌。
+每个身份验证提供商常常会用不同的方式给它们的流命名，以融入自己的品牌。
 
-但归根结底，它们使用的都是 OAuth2 标准。
+但归根结底，它们实现的都是同一个 OAuth2 标准。
 
 ///
 
-**FastAPI** 的 `fastapi.security.oauth2` 里包含了所有 OAuth2 身份验证流工具。
+**FastAPI** 在 `fastapi.security.oauth2` 中为所有这些 OAuth2 身份验证流提供了工具。
 
-## 装饰器 `dependencies` 中的 `Security`
+## 装饰器 `dependencies` 中的 `Security` { #security-in-decorator-dependencies }
 
-同样，您可以在装饰器的 `dependencies` 参数中定义 `Depends` 列表，（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank})），也可以把 `scopes` 与 `Security` 一起使用。
+就像你可以在装饰器的 `dependencies` 参数中定义 `Depends` 的 `list`（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}），你也可以在那儿配合 `Security` 使用 `scopes`。

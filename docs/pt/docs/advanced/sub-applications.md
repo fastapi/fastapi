@@ -10,7 +10,7 @@ Se você precisar ter duas aplicações FastAPI independentes, cada uma com seu 
 
 Primeiro, crie a aplicação principal, de nível superior, **FastAPI**, e suas *operações de rota*:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### Sub-aplicação { #sub-application }
 
@@ -18,7 +18,7 @@ Em seguida, crie sua sub-aplicação e suas *operações de rota*.
 
 Essa sub-aplicação é apenas outra aplicação FastAPI padrão, mas esta é a que será "montada":
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### Monte a sub-aplicação { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@ Na sua aplicação de nível superior, `app`, monte a sub-aplicação, `subapi`.
 
 Neste caso, ela será montada no path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### Verifique a documentação automática da API { #check-the-automatic-api-docs }
 

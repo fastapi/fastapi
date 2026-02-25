@@ -1,12 +1,12 @@
-# 关于 HTTPS
+# 关于 HTTPS { #about-https }
 
 人们很容易认为 HTTPS 仅仅是“启用”或“未启用”的东西。
 
 但实际情况比这复杂得多。
 
-/// note | 提示
+/// tip | 提示
 
-如果你很赶时间或不在乎，请继续阅读下一部分，下一部分会提供一个step-by-step的教程，告诉你怎么使用不同技术来把一切都配置好。
+如果你很赶时间或不在乎，请继续阅读后续章节，它们会提供逐步的教程，告诉你怎么使用不同技术把一切都配置好。
 
 ///
 
@@ -15,24 +15,24 @@
 现在，从**开发人员的视角**，在了解 HTTPS 时需要记住以下几点：
 
 * 要使用 HTTPS，**服务器**需要拥有由**第三方**生成的**"证书(certificate)"**。
-     * 这些证书实际上是从第三方**获取**的，而不是“生成”的。
+    * 这些证书实际上是从第三方**获取**的，而不是“生成”的。
 * 证书有**生命周期**。
-     * 它们会**过期**。
-     * 然后它们需要**更新**，**再次从第三方获取**。
+    * 它们会**过期**。
+    * 然后它们需要**更新**，**再次从第三方获取**。
 * 连接的加密发生在 **TCP 层**。
-     * 这是 HTTP 协议**下面的一层**。
-     * 因此，**证书和加密**处理是在 **HTTP之前**完成的。
+    * 这是 HTTP 协议**下面的一层**。
+    * 因此，**证书和加密**处理是在 **HTTP之前**完成的。
 * **TCP 不知道域名**。 仅仅知道 IP 地址。
-     * 有关所请求的 **特定域名** 的信息位于 **HTTP 数据**中。
+    * 有关所请求的 **特定域名** 的信息位于 **HTTP 数据**中。
 * **HTTPS 证书**“证明”**某个域名**，但协议和加密发生在 TCP 层，在知道正在处理哪个域名**之前**。
 * **默认情况下**，这意味着你**每个 IP 地址只能拥有一个 HTTPS 证书**。
-     * 无论你的服务器有多大，或者服务器上的每个应用程序有多小。
-     * 不过，对此有一个**解决方案**。
-* **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
-     * SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域名/应用程序**。
-     * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
+    * 无论你的服务器有多大，或者服务器上的每个应用程序有多小。
+    * 不过，对此有一个**解决方案**。
+* **TLS** 协议（在 HTTP 之下的 TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - 服务器名称指示">SNI</abbr></a>**。
+    * SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域名/应用程序**。
+    * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
 * **获得安全连接后**，通信协议**仍然是HTTP**。
-     * 内容是 **加密过的**，即使它们是通过 **HTTP 协议** 发送的。
+    * 内容是 **加密过的**，即使它们是通过 **HTTP 协议** 发送的。
 
 通常的做法是在服务器上运行**一个程序/HTTP 服务器**并**管理所有 HTTPS 部分**：接收**加密的 HTTPS 请求**， 将 **解密的 HTTP 请求** 发送到在同一服务器中运行的实际 HTTP 应用程序（在本例中为 **FastAPI** 应用程序），从应用程序中获取 **HTTP 响应**， 使用适当的 **HTTPS 证书**对其进行加密并使用 **HTTPS** 将其发送回客户端。 此服务器通常被称为 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理(TLS Termination Proxy)</a>**。
 
@@ -43,7 +43,7 @@
 * Nginx
 * HAProxy
 
-## Let's Encrypt
+## Let's Encrypt { #lets-encrypt }
 
 在 Let's Encrypt 之前，这些 **HTTPS 证书** 由受信任的第三方出售。
 
@@ -57,28 +57,27 @@
 
 我们的想法是自动获取和更新这些证书，以便你可以永远免费拥有**安全的 HTTPS**。
 
-## 面向开发人员的 HTTPS
+## 面向开发人员的 HTTPS { #https-for-developers }
 
 这里有一个 HTTPS API 看起来是什么样的示例，我们会分步说明，并且主要关注对开发人员重要的部分。
 
-
-### 域名
+### 域名 { #domain-name }
 
 第一步我们要先**获取**一些**域名(Domain Name)**。 然后可以在 DNS 服务器（可能是你的同一家云服务商提供的）中配置它。
 
-你可能拥有一个云服务器（虚拟机）或类似的东西，并且它会有一个<abbr title="That isn't Change">固定</abbr> **公共IP地址**。
+你可能拥有一个云服务器（虚拟机）或类似的东西，并且它会有一个<dfn title="不会随时间改变。非动态的。">固定</dfn> **公共IP地址**。
 
 在 DNS 服务器中，你可以配置一条记录（“A 记录”）以将 **你的域名** 指向你服务器的公共 **IP 地址**。
 
 这个操作一般只需要在最开始执行一次。
 
-/// tip
+/// tip | 提示
 
 域名这部分发生在 HTTPS 之前，由于这一切都依赖于域名和 IP 地址，所以先在这里提一下。
 
 ///
 
-### DNS
+### DNS { #dns }
 
 现在让我们关注真正的 HTTPS 部分。
 
@@ -88,7 +87,7 @@ DNS 服务器会告诉浏览器使用某个特定的 **IP 地址**。 这将是�
 
 <img src="/img/deployment/https/https01.drawio.svg">
 
-### TLS 握手开始
+### TLS 握手开始 { #tls-handshake-start }
 
 然后，浏览器将在**端口 443**（HTTPS 端口）上与该 IP 地址进行通信。
 
@@ -98,7 +97,7 @@ DNS 服务器会告诉浏览器使用某个特定的 **IP 地址**。 这将是�
 
 客户端和服务器之间建立 TLS 连接的过程称为 **TLS 握手**。
 
-### 带有 SNI 扩展的 TLS
+### 带有 SNI 扩展的 TLS { #tls-with-sni-extension }
 
 **服务器中只有一个进程**可以侦听特定 **IP 地址**的特定 **端口**。 可能有其他进程在同一 IP 地址的其他端口上侦听，但每个 IP 地址和端口组合只有一个进程。
 
@@ -122,13 +121,13 @@ TLS 终止代理可以访问一个或多个 **TLS 证书**（HTTPS 证书）。
 
 这就是 **HTTPS**，它只是 **安全 TLS 连接** 内的普通 **HTTP**，而不是纯粹的（未加密的）TCP 连接。
 
-/// tip
+/// tip | 提示
 
 请注意，通信加密发生在 **TCP 层**，而不是 HTTP 层。
 
 ///
 
-### HTTPS 请求
+### HTTPS 请求 { #https-request }
 
 现在客户端和服务器（特别是浏览器和 TLS 终止代理）具有 **加密的 TCP 连接**，它们可以开始 **HTTP 通信**。
 
@@ -136,19 +135,19 @@ TLS 终止代理可以访问一个或多个 **TLS 证书**（HTTPS 证书）。
 
 <img src="/img/deployment/https/https04.drawio.svg">
 
-### 解密请求
+### 解密请求 { #decrypt-the-request }
 
 TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（解密的）HTTP 请求**传输到运行应用程序的进程（例如运行 FastAPI 应用的 Uvicorn 进程）。
 
 <img src="/img/deployment/https/https05.drawio.svg">
 
-### HTTP 响应
+### HTTP 响应 { #http-response }
 
 应用程序将处理请求并向 TLS 终止代理发送**（未加密）HTTP 响应**。
 
 <img src="/img/deployment/https/https06.drawio.svg">
 
-### HTTPS 响应
+### HTTPS 响应 { #https-response }
 
 然后，TLS 终止代理将使用之前协商的加密算法（以`someapp.example.com`的证书开头）对响应进行加密，并将其发送回浏览器。
 
@@ -158,7 +157,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 客户端（浏览器）将知道响应来自正确的服务器，因为它使用了他们之前使用 **HTTPS 证书** 协商出的加密算法。
 
-### 多个应用程序
+### 多个应用程序 { #multiple-applications }
 
 在同一台（或多台）服务器中，可能存在**多个应用程序**，例如其他 API 程序或数据库。
 
@@ -168,7 +167,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 这样，TLS 终止代理就可以为多个应用程序处理**多个域名**的 HTTPS 和证书，然后在每种情况下将请求传输到正确的应用程序。
 
-### 证书更新
+### 证书更新 { #certificate-renewal }
 
 在未来的某个时候，每个证书都会**过期**（大约在获得证书后 3 个月）。
 
@@ -183,16 +182,48 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 有多种方法可以做到这一点。 一些流行的方式是：
 
 * **修改一些DNS记录**。
-     * 为此，续订程序需要支持 DNS 提供商的 API，因此，要看你使用的 DNS 提供商是否提供这一功能。
+    * 为此，续订程序需要支持 DNS 提供商的 API，因此，要看你使用的 DNS 提供商是否提供这一功能。
 * **在与域名关联的公共 IP 地址上作为服务器运行**（至少在证书获取过程中）。
-     * 正如我们上面所说，只有一个进程可以监听特定的 IP 和端口。
-     * 这就是当同一个 TLS 终止代理还负责证书续订过程时它非常有用的原因之一。
-     * 否则，你可能需要暂时停止 TLS 终止代理，启动续订程序以获取证书，然后使用 TLS 终止代理配置它们，然后重新启动 TLS 终止代理。 这并不理想，因为你的应用程序在 TLS 终止代理关闭期间将不可用。
+    * 正如我们上面所说，只有一个进程可以监听特定的 IP 和端口。
+    * 这就是当同一个 TLS 终止代理还负责证书续订过程时它非常有用的原因之一。
+    * 否则，你可能需要暂时停止 TLS 终止代理，启动续订程序以获取证书，然后使用 TLS 终止代理配置它们，然后重新启动 TLS 终止代理。 这并不理想，因为你的应用程序在 TLS 终止代理关闭期间将不可用。
 
 通过拥有一个**单独的系统来使用 TLS 终止代理来处理 HTTPS**, 而不是直接将 TLS 证书与应用程序服务器一起使用 （例如 Uvicorn）,你可以在
 更新证书的过程中同时保持提供服务。
 
-## 回顾
+## 代理转发请求头 { #proxy-forwarded-headers }
+
+当使用代理来处理 HTTPS 时，你的**应用服务器**（例如通过 FastAPI CLI 运行的 Uvicorn）对 HTTPS 过程并不了解，它只通过纯 HTTP 与 **TLS 终止代理**通信。
+
+这个**代理**通常会在将请求转发给**应用服务器**之前，临时设置一些 HTTP 请求头，以便让应用服务器知道该请求是由代理**转发**过来的。
+
+/// note | 技术细节
+
+这些代理请求头包括：
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+不过，由于**应用服务器**并不知道自己位于受信任的**代理**之后，默认情况下，它不会信任这些请求头。
+
+但你可以配置**应用服务器**去信任由**代理**发送的这些“转发”请求头。如果你在使用 FastAPI CLI，可以使用命令行选项 `--forwarded-allow-ips` 指定它应该信任哪些 IP 发来的这些“转发”请求头。
+
+例如，如果**应用服务器**只接收来自受信任**代理**的通信，你可以设置 `--forwarded-allow-ips="*"`，让它信任所有传入的 IP，因为它只会接收来自**代理**所使用 IP 的请求。
+
+这样，应用就能知道自己的公共 URL、是否使用 HTTPS、域名等信息。
+
+这在需要正确处理重定向等场景时很有用。
+
+/// tip | 提示
+
+你可以在文档中了解更多：[在代理之后 - 启用代理转发请求头](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+
+///
+
+## 回顾 { #recap }
 
 拥有**HTTPS** 非常重要，并且在大多数情况下相当**关键**。 作为开发人员，你围绕 HTTPS 所做的大部分努力就是**理解这些概念**以及它们的工作原理。
 

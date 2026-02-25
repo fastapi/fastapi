@@ -20,7 +20,7 @@
 * Она возвращает объект типа `HTTPBasicCredentials`:
     * Он содержит отправленные `username` и `password`.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 Когда вы впервые откроете URL (или нажмёте кнопку «Execute» в документации), браузер попросит ввести имя пользователя и пароль:
 
@@ -40,7 +40,7 @@
 
 Затем можно использовать `secrets.compare_digest()`, чтобы убедиться, что `credentials.username` равен `"stanleyjobson"`, а `credentials.password` — `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Это было бы похоже на:
 
@@ -104,4 +104,4 @@ Pythonу придётся сравнить весь общий префикс `s
 
 После того как обнаружено, что учётные данные некорректны, верните `HTTPException` со статус-кодом ответа 401 (тем же, что и при отсутствии учётных данных) и добавьте HTTP-заголовок `WWW-Authenticate`, чтобы браузер снова показал окно входа:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

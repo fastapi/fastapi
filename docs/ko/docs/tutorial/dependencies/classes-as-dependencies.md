@@ -101,7 +101,7 @@ FastAPI가 실제로 확인하는 것은 그것이 "호출 가능(callable)"(함
 
 위 코드에서 `CommonQueryParams`를 두 번 작성하는 방식에 주목하세요:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 
@@ -137,7 +137,7 @@ FastAPI는 여기에서 선언된 매개변수들을 추출하고, 실제로 이
 
 이 경우 첫 번째 `CommonQueryParams`는 다음에서:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 실제로는 이렇게만 작성해도 됩니다:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 하지만 `CommonQueryParams`를 두 번 작성하는 코드 반복이 있다는 것을 볼 수 있습니다:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 다음처럼 작성하는 대신:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...이렇게 작성합니다:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ Annotated 미사용
 
 /// tip | 팁
 

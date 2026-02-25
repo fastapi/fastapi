@@ -1,9 +1,8 @@
-from typing import Optional
-
 import pytest
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -24,7 +23,7 @@ class User(BaseModel):
     username: str
 
 
-def get_current_user(oauth_header: Optional[str] = Security(reusable_oauth2)):
+def get_current_user(oauth_header: str | None = Security(reusable_oauth2)):
     if oauth_header is None:
         return None
     user = User(username=oauth_header)
@@ -37,7 +36,7 @@ def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
 
 
 @app.get("/users/me")
-def read_users_me(current_user: Optional[User] = Depends(get_current_user)):
+def read_users_me(current_user: User | None = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     return current_user
@@ -152,125 +151,133 @@ def test_strict_login_correct_correct_grant_type():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/login": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/login": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Login",
+                        "operationId": "login_login_post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "application/x-www-form-urlencoded": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_login_login_post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Login",
-                    "operationId": "login_login_post",
-                    "requestBody": {
-                        "content": {
-                            "application/x-www-form-urlencoded": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_login_login_post"
-                                }
+                    }
+                },
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             }
                         },
-                        "required": True,
-                    },
-                }
-            },
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Users Me",
-                    "operationId": "read_users_me_users_me_get",
-                    "security": [{"OAuth2": []}],
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "Body_login_login_post": {
-                    "title": "Body_login_login_post",
-                    "required": ["grant_type", "username", "password"],
-                    "type": "object",
-                    "properties": {
-                        "grant_type": {
-                            "title": "Grant Type",
-                            "pattern": "^password$",
-                            "type": "string",
-                        },
-                        "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string"},
-                        "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": {
-                            "title": "Client Id",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "client_secret": {
-                            "title": "Client Secret",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                    },
+                        "summary": "Read Users Me",
+                        "operationId": "read_users_me_users_me_get",
+                        "security": [{"OAuth2": []}],
+                    }
                 },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+            },
+            "components": {
+                "schemas": {
+                    "Body_login_login_post": {
+                        "title": "Body_login_login_post",
+                        "required": ["grant_type", "username", "password"],
+                        "type": "object",
+                        "properties": {
+                            "grant_type": {
+                                "title": "Grant Type",
+                                "pattern": "^password$",
+                                "type": "string",
+                            },
+                            "username": {"title": "Username", "type": "string"},
+                            "password": {"title": "Password", "type": "string"},
+                            "scope": {
+                                "title": "Scope",
+                                "type": "string",
+                                "default": "",
+                            },
+                            "client_id": {
+                                "title": "Client Id",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            },
+                            "client_secret": {
+                                "title": "Client Secret",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
                             },
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            },
-            "securitySchemes": {
-                "OAuth2": {
-                    "type": "oauth2",
-                    "flows": {
-                        "password": {
-                            "scopes": {
-                                "read:users": "Read the users",
-                                "write:users": "Create users",
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
                             },
-                            "tokenUrl": "token",
-                        }
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
                     },
-                    "description": "OAuth2 security scheme",
-                }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                },
+                "securitySchemes": {
+                    "OAuth2": {
+                        "type": "oauth2",
+                        "flows": {
+                            "password": {
+                                "scopes": {
+                                    "read:users": "Read the users",
+                                    "write:users": "Create users",
+                                },
+                                "tokenUrl": "token",
+                            }
+                        },
+                        "description": "OAuth2 security scheme",
+                    }
+                },
             },
-        },
-    }
+        }
+    )

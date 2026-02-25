@@ -8,7 +8,7 @@ The same way you can specify a response model, you can also declare the HTTP sta
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note
 
@@ -74,7 +74,7 @@ To know more about each status code and which code is for what, check the <a hre
 
 Let's see the previous example again:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` is the status code for "Created".
 
@@ -82,7 +82,7 @@ But you don't have to memorize what each of these codes mean.
 
 You can use the convenience variables from `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 

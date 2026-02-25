@@ -25,7 +25,7 @@
 
 ### Імпорт `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### Згенеруйте `HTTPException` у своєму коді { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@
 
 У цьому прикладі, коли клієнт запитує елемент за ID, якого не існує, згенеруйте виключення зі статус-кодом `404`:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### Отримана відповідь { #the-resulting-response }
 
@@ -77,7 +77,7 @@
 
 Але якщо вам знадобиться це для складного сценарію, ви можете додати власні заголовки:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## Встановлення власних обробників виключень { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@
 
 Ви можете додати власний обробник виключень за допомогою `@app.exception_handler()`:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 Тут, якщо ви звернетеся до `/unicorns/yolo`, *операція шляху* згенерує (`raise`) `UnicornException`.
 
@@ -127,7 +127,7 @@
 
 Обробник виключень отримає `Request` і саме виключення.
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 Тепер, якщо ви перейдете за посиланням `/items/foo`, замість того, щоб отримати стандартну JSON-помилку:
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 Наприклад, ви можете захотіти повернути відповідь у вигляді простого тексту замість JSON для цих помилок:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | Технічні деталі
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 Ви можете використовувати це під час розробки свого додатка, щоб логувати тіло запиту та налагоджувати його, повертати користувачеві тощо.
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 Тепер спробуйте надіслати некоректний елемент, наприклад:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Якщо ви хочете використовувати виключення разом із такими ж обробниками виключень за замовчуванням, як у **FastAPI**, ви можете імпортувати та повторно використати обробники виключень за замовчуванням із `fastapi.exception_handlers`:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 У цьому прикладі ви просто друкуєте помилку з дуже виразним повідомленням, але ви зрозуміли основну ідею. Ви можете використовувати виключення, а потім просто повторно використати обробники виключень за замовчуванням.

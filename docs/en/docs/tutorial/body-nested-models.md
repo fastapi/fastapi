@@ -164,7 +164,7 @@ images: list[Image]
 
 as in:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Editor support everywhere { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip
 

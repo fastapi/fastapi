@@ -1,5 +1,5 @@
 import re
-from typing import TypedDict, Union
+from typing import TypedDict
 
 CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)\s*(.*)\*\}$")
 CODE_INCLUDE_PLACEHOLDER = "<CODE_INCLUDE>"
@@ -50,8 +50,8 @@ class MarkdownLinkInfo(TypedDict):
     line_no: int
     url: str
     text: str
-    title: Union[str, None]
-    attributes: Union[str, None]
+    title: str | None
+    attributes: str | None
     full_match: str
 
 
@@ -287,8 +287,8 @@ def _add_lang_code_to_url(url: str, lang_code: str) -> str:
 def _construct_markdown_link(
     url: str,
     text: str,
-    title: Union[str, None],
-    attributes: Union[str, None],
+    title: str | None,
+    attributes: str | None,
     lang_code: str,
 ) -> str:
     """
@@ -549,7 +549,7 @@ def extract_multiline_code_blocks(text: list[str]) -> list[MultilineCodeBlockInf
     return blocks
 
 
-def _split_hash_comment(line: str) -> tuple[str, Union[str, None]]:
+def _split_hash_comment(line: str) -> tuple[str, str | None]:
     match = HASH_COMMENT_RE.match(line)
     if match:
         code = match.group("code").rstrip()
@@ -558,7 +558,7 @@ def _split_hash_comment(line: str) -> tuple[str, Union[str, None]]:
     return line.rstrip(), None
 
 
-def _split_slashes_comment(line: str) -> tuple[str, Union[str, None]]:
+def _split_slashes_comment(line: str) -> tuple[str, str | None]:
     match = SLASHES_COMMENT_RE.match(line)
     if match:
         code = match.group("code").rstrip()
@@ -603,9 +603,9 @@ def replace_multiline_code_block(
         return block_a["content"].copy()  # We don't handle mermaid code blocks for now
 
     code_block: list[str] = []
-    for line_a, line_b in zip(block_a["content"], block_b["content"]):
-        line_a_comment: Union[str, None] = None
-        line_b_comment: Union[str, None] = None
+    for line_a, line_b in zip(block_a["content"], block_b["content"], strict=False):
+        line_a_comment: str | None = None
+        line_b_comment: str | None = None
 
         # Handle comments based on language
         if block_language in {
@@ -659,7 +659,7 @@ def replace_multiline_code_blocks_in_text(
         )
 
     modified_text = text.copy()
-    for block, original_block in zip(code_blocks, original_code_blocks):
+    for block, original_block in zip(code_blocks, original_code_blocks, strict=True):
         updated_content = replace_multiline_code_block(block, original_block)
 
         start_line_index = block["start_line_no"] - 1

@@ -1,6 +1,6 @@
 # Dependencias { #dependencies }
 
-**FastAPI** tiene un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso pero intuitivo.
+**FastAPI** tiene un sistema de **<dfn title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
 
 Está diseñado para ser muy simple de usar, y para hacer que cualquier desarrollador integre otros componentes con **FastAPI** de forma muy sencilla.
 

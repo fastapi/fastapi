@@ -3,7 +3,7 @@ import random
 import sys
 import time
 from pathlib import Path
-from typing import Any, Union, cast
+from typing import Any, cast
 
 import httpx
 from github import Github
@@ -181,9 +181,9 @@ class Settings(BaseSettings):
     github_repository: str
     github_token: SecretStr
     github_event_path: Path
-    github_event_name: Union[str, None] = None
+    github_event_name: str | None = None
     httpx_timeout: int = 30
-    debug: Union[bool, None] = False
+    debug: bool | None = False
     number: int | None = None
 
 
@@ -199,12 +199,12 @@ def get_graphql_response(
     *,
     settings: Settings,
     query: str,
-    after: Union[str, None] = None,
-    category_id: Union[str, None] = None,
-    discussion_number: Union[int, None] = None,
-    discussion_id: Union[str, None] = None,
-    comment_id: Union[str, None] = None,
-    body: Union[str, None] = None,
+    after: str | None = None,
+    category_id: str | None = None,
+    discussion_number: int | None = None,
+    discussion_id: str | None = None,
+    comment_id: str | None = None,
+    body: str | None = None,
 ) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {
@@ -249,7 +249,7 @@ def get_graphql_translation_discussions(
 
 
 def get_graphql_translation_discussion_comments_edges(
-    *, settings: Settings, discussion_number: int, after: Union[str, None] = None
+    *, settings: Settings, discussion_number: int, after: str | None = None
 ) -> list[CommentsEdge]:
     data = get_graphql_response(
         settings=settings,
@@ -372,8 +372,8 @@ def main() -> None:
             f"Found a translation discussion for language: {lang} in discussion: #{discussion.number}"
         )
 
-        already_notified_comment: Union[Comment, None] = None
-        already_done_comment: Union[Comment, None] = None
+        already_notified_comment: Comment | None = None
+        already_done_comment: Comment | None = None
 
         logging.info(
             f"Checking current comments in discussion: #{discussion.number} to see if already notified about this PR: #{pr.number}"

@@ -20,7 +20,7 @@
 
 예제를 파일 `main.py`에 복사하세요:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## 실행하기 { #run-it }
 
@@ -132,7 +132,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 `OAuth2PasswordBearer` 클래스의 인스턴스를 만들 때 `tokenUrl` 파라미터를 전달합니다. 이 파라미터에는 클라이언트(사용자의 브라우저에서 실행되는 frontend)가 token을 받기 위해 `username`과 `password`를 보낼 URL이 들어 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | 팁
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 이제 `Depends`로 `oauth2_scheme`를 의존성에 전달할 수 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 이 의존성은 `str`을 제공하고, 그 값은 *경로 처리 함수*의 파라미터 `token`에 할당됩니다.
 

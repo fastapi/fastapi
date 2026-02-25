@@ -1,10 +1,8 @@
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from typing import (
     Annotated,
     Any,
     BinaryIO,
-    Callable,
-    Optional,
     TypeVar,
     cast,
 )
@@ -58,11 +56,11 @@ class UploadFile(StarletteUploadFile):
         BinaryIO,
         Doc("The standard Python file object (non-async)."),
     ]
-    filename: Annotated[Optional[str], Doc("The original file name.")]
-    size: Annotated[Optional[int], Doc("The size of the file in bytes.")]
+    filename: Annotated[str | None, Doc("The original file name.")]
+    size: Annotated[int | None, Doc("The size of the file in bytes.")]
     headers: Annotated[Headers, Doc("The headers of the request.")]
     content_type: Annotated[
-        Optional[str], Doc("The content type of the request, from the headers.")
+        str | None, Doc("The content type of the request, from the headers.")
     ]
 
     async def write(
@@ -141,7 +139,7 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_json_schema__(
         cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
     ) -> dict[str, Any]:
-        return {"type": "string", "format": "binary"}
+        return {"type": "string", "contentMediaType": "application/octet-stream"}
 
     @classmethod
     def __get_pydantic_core_schema__(

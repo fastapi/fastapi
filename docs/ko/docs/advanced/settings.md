@@ -54,7 +54,7 @@ Pydantic 모델과 같은 방식으로, 타입 어노테이션(그리고 필요�
 
 다양한 데이터 타입, `Field()`로 추가 검증 등 Pydantic 모델에서 사용하는 동일한 검증 기능과 도구를 모두 사용할 수 있습니다.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | 팁
 
@@ -70,7 +70,7 @@ Pydantic 모델과 같은 방식으로, 타입 어노테이션(그리고 필요�
 
 이제 애플리케이션에서 새 `settings` 객체를 사용할 수 있습니다:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### 서버 실행하기 { #run-the-server }
 
@@ -104,11 +104,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 예를 들어 `config.py` 파일을 다음처럼 만들 수 있습니다:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 그리고 `main.py` 파일에서 이를 사용합니다:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | 팁
 
@@ -126,7 +126,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 이전 예시에서 이어서, `config.py` 파일은 다음과 같을 수 있습니다:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 이제는 기본 인스턴스 `settings = Settings()`를 생성하지 않는다는 점에 유의하세요.
 
@@ -134,7 +134,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 이제 새로운 `config.Settings()`를 반환하는 의존성을 생성합니다.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | 팁
 
@@ -146,13 +146,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 그 다음 *경로 처리 함수*에서 이를 의존성으로 요구하고, 필요한 어디서든 사용할 수 있습니다.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### 설정과 테스트 { #settings-and-testing }
 
 그 다음, `get_settings`에 대한 의존성 override를 만들어 테스트 중에 다른 설정 객체를 제공하기가 매우 쉬워집니다:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 의존성 override에서는 새 `Settings` 객체를 생성할 때 `admin_email`의 새 값을 설정하고, 그 새 객체를 반환합니다.
 
@@ -193,11 +193,11 @@ APP_NAME="ChimichangApp"
 
 그리고 `config.py`를 다음처럼 업데이트합니다:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | 팁
 
-`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>을 참고하세요.
+`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>를 참고하세요.
 
 ///
 
@@ -226,11 +226,11 @@ def get_settings():
 
 하지만 위에 `@lru_cache` 데코레이터를 사용하고 있으므로, `Settings` 객체는 최초 호출 시 딱 한 번만 생성됩니다. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 그 다음 요청들에서 의존성으로 `get_settings()`가 다시 호출될 때마다, `get_settings()`의 내부 코드를 실행해서 새 `Settings` 객체를 만드는 대신, 첫 호출에서 반환된 동일한 객체를 계속 반환합니다.
 
-#### `lru_cache` Technical Details { #lru-cache-technical-details }
+#### `lru_cache` 기술 세부사항 { #lru-cache-technical-details }
 
 `@lru_cache`는 데코레이션한 함수가 매번 다시 계산하는 대신, 첫 번째에 반환된 동일한 값을 반환하도록 함수를 수정합니다(즉, 매번 함수 코드를 실행하지 않습니다).
 

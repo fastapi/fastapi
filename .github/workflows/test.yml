@@ -14,6 +14,7 @@ on:
 
 env:
   UV_NO_SYNC: true
+  INLINE_SNAPSHOT_DEFAULT_FLAGS: review
 
 jobs:
   changes:
@@ -44,36 +45,44 @@ jobs:
   test:
     needs:
       - changes
-    if: needs.changes.outputs.src == 'true'
+    if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
+        uv-resolution:
+          - highest
+        starlette-src:
+          - starlette-pypi
+          - starlette-git
         include:
-          - os: ubuntu-latest
-            python-version: "3.9"
-            coverage: coverage
           - os: macos-latest
             python-version: "3.10"
             coverage: coverage
+            uv-resolution: lowest-direct
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
+            uv-resolution: lowest-direct
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
-            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+            uv-resolution: highest
           - os: ubuntu-latest
             python-version: "3.13"
-            coverage: coverage
+            uv-resolution: highest
             codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
+            uv-resolution: highest
+            starlette-src: starlette-git
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
       UV_PYTHON: ${{ matrix.python-version }}
+      UV_RESOLUTION: ${{ matrix.uv-resolution }}
+      STARLETTE_SRC: ${{ matrix.starlette-src }}
     steps:
       - name: Dump GitHub context
         env:
@@ -92,23 +101,16 @@ jobs:
             pyproject.toml
             uv.lock
       - name: Install Dependencies
-        run: uv sync --locked --no-dev --group tests --extra all
+        run: uv sync --no-dev --group tests --extra all
+      - name: Install Starlette from source
+        if: matrix.starlette-src == 'starlette-git'
+        run: uv pip install "git+https://github.com/Kludex/starlette@main"
       - run: mkdir coverage
       - name: Test
-        if: matrix.codspeed != 'codspeed'
-        run: uv run bash scripts/test.sh
+        run: uv run --no-sync bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-      - name: CodSpeed benchmarks
-        if: matrix.codspeed == 'codspeed'
-        uses: CodSpeedHQ/action@v4
-        env:
-            COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
-            CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-        with:
-          mode: simulation
-          run: uv run coverage run -m pytest tests/ --codspeed
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
@@ -117,6 +119,39 @@ jobs:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
+
+  benchmark:
+    needs:
+      - changes
+    if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    env:
+      UV_PYTHON: "3.13"
+      UV_RESOLUTION: highest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Install Dependencies
+        run: uv sync --no-dev --group tests --extra all
+      - name: CodSpeed benchmarks
+        uses: CodSpeedHQ/action@v4
+        with:
+          mode: simulation
+          run: uv run --no-sync pytest tests/benchmarks --codspeed
 
   coverage-combine:
     needs:
@@ -162,6 +197,7 @@ jobs:
     if: always()
     needs:
       - coverage-combine
+      - benchmark
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
@@ -172,4 +208,4 @@ jobs:
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
-          allowed-skips: coverage-combine,test
+          allowed-skips: coverage-combine,test,benchmark

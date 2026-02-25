@@ -2,7 +2,7 @@
 
 Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimiyle path "parametreleri"ni veya "değişkenleri"ni tanımlayabilirsiniz:
 
-{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
 
 Path parametresi `item_id`'nin değeri, fonksiyonunuza `item_id` argümanı olarak aktarılacaktır.
 
@@ -16,7 +16,7 @@ Yani, bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" clas
 
 Standart Python tip belirteçlerini kullanarak path parametresinin tipini fonksiyonun içinde tanımlayabilirsiniz:
 
-{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
 
 Bu durumda, `item_id` bir `int` olarak tanımlanır.
 
@@ -26,7 +26,7 @@ Bu sayede, fonksiyon içinde hata denetimi, kod tamamlama vb. konularda editör 
 
 ///
 
-## Veri <abbr title="also known as: endpoints, routes">conversion</abbr> { #data-conversion }
+## Veri <dfn title="diğer adlarıyla: serileştirme, ayrıştırma, marshalling">dönüştürme</dfn> { #data-conversion }
 
 Bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> adresini açarsanız, şöyle bir response görürsünüz:
 
@@ -38,7 +38,7 @@ Bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:8000/item
 
 Dikkat edin: fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3`, string `"3"` değil, bir Python `int`'idir.
 
-Yani, bu tip tanımıyla birlikte **FastAPI** size otomatik request <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"parsing"</abbr> sağlar.
+Yani, bu tip tanımıyla birlikte **FastAPI** size otomatik request "<dfn title="HTTP request'ten gelen string'i Python verisine dönüştürme">ayrıştırma</dfn>" sağlar.
 
 ///
 
@@ -118,13 +118,13 @@ Sonra belirli bir kullanıcı hakkında, kullanıcı ID'si ile veri almak için 
 
 *Path operation*'lar sırayla değerlendirildiği için, `/users/me` için olan path'in `/users/{user_id}` olandan önce tanımlandığından emin olmanız gerekir:
 
-{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
 
 Aksi halde, `/users/{user_id}` için olan path, `"me"` değerini `user_id` parametresi olarak aldığını "düşünerek" `/users/me` için de eşleşir.
 
 Benzer şekilde, bir path operation'ı yeniden tanımlayamazsınız:
 
-{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
 
 Path önce eşleştiği için her zaman ilk olan kullanılır.
 
@@ -140,11 +140,11 @@ Bir *path operation*'ınız *path parameter* alıyorsa ama olası geçerli *path
 
 Sonra, kullanılabilir geçerli değerler olacak sabit değerli class attribute'ları oluşturun:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
 
 /// tip | İpucu
 
-Merak ediyorsanız: "AlexNet", "ResNet" ve "LeNet", Makine Öğrenmesi <abbr title="Technically, Deep Learning model architectures">modelleri</abbr>nin sadece isimleridir.
+Merak ediyorsanız: "AlexNet", "ResNet" ve "LeNet", Makine Öğrenmesi <dfn title="Teknik olarak, Derin Öğrenme model mimarileri">modelleri</dfn>nin sadece isimleridir.
 
 ///
 
@@ -152,7 +152,7 @@ Merak ediyorsanız: "AlexNet", "ResNet" ve "LeNet", Makine Öğrenmesi <abbr tit
 
 Ardından oluşturduğunuz enum sınıfını (`ModelName`) kullanarak tip belirteciyle bir *path parameter* oluşturun:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
 ### Dokümana Göz Atalım { #check-the-docs }
 
@@ -168,13 +168,13 @@ Ardından oluşturduğunuz enum sınıfını (`ModelName`) kullanarak tip belirt
 
 Bunu, oluşturduğunuz enum `ModelName` içindeki *enumeration member* ile karşılaştırabilirsiniz:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
 
 #### *Enumeration Value*'yu Alalım { #get-the-enumeration-value }
 
 Gerçek değeri (bu durumda bir `str`) `model_name.value` ile veya genel olarak `your_enum_member.value` ile alabilirsiniz:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
 
 /// tip | İpucu
 
@@ -188,7 +188,7 @@ Gerçek değeri (bu durumda bir `str`) `model_name.value` ile veya genel olarak 
 
 İstemciye dönmeden önce, karşılık gelen değerlerine (bu durumda string) dönüştürülürler:
 
-{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
 
 İstemcinizde şöyle bir JSON response alırsınız:
 
@@ -227,7 +227,7 @@ Bu durumda parametrenin adı `file_path`'tir ve son kısım olan `:path`, parame
 
 Yani şununla kullanabilirsiniz:
 
-{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
 
 /// tip | İpucu
 
@@ -242,7 +242,7 @@ Bu durumda URL, `files` ile `home` arasında çift eğik çizgi (`//`) olacak ş
 **FastAPI** ile kısa, sezgisel ve standart Python tip tanımlarını kullanarak şunları elde edersiniz:
 
 * Editör desteği: hata denetimleri, otomatik tamamlama vb.
-* Veri "<abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">parsing</abbr>"
+* Veri "<dfn title="HTTP request'ten gelen string'i Python verisine dönüştürme">ayrıştırma</dfn>"
 * Veri doğrulama
 * API annotation ve otomatik dokümantasyon
 

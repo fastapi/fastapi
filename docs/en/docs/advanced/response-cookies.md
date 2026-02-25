@@ -6,7 +6,7 @@ You can declare a parameter of type `Response` in your *path operation function*
 
 And then you can set cookies in that *temporal* response object.
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 And then you can return any object you need, as you normally would (a `dict`, a database model, etc).
 
@@ -24,7 +24,7 @@ To do that, you can create a response as described in [Return a Response Directl
 
 Then set Cookies in it, and then return it:
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip
 

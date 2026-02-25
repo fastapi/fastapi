@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | 豆知識
 
-詳しくは <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> を参照してください。
+詳しくは <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: 設定</a> を参照してください。
 
 ///
 
@@ -291,7 +291,7 @@ $ C:\opt\custompython\bin\python
 
 これで、**環境変数**とは何か、Pythonでどのように使用するかについて、基本的な理解が得られたはずです。
 
-環境変数についての詳細は、<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a> も参照してください。
+環境変数についての詳細は、<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia の環境変数</a> も参照してください。
 
 多くの場合、環境変数がどのように役立ち、すぐに適用できるのかはあまり明確ではありません。しかし、開発中のさまざまなシナリオで何度も登場するため、知っておくとよいでしょう。
 

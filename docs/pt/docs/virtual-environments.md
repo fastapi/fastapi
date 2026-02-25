@@ -1,6 +1,6 @@
 # Ambientes Virtuais { #virtual-environments }
 
-Ao trabalhar em projetos Python, você provavelmente deve usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
+Ao trabalhar em projetos Python, você provavelmente deveria usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
 
 /// info | Informação
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Crie um ambiente virtual { #create-a-virtual-environment }
 
-Ao começar a trabalhar em um projeto Python **pela primeira vez**, crie um ambiente virtual **<abbr title="existem outras opções, esta é uma diretriz simples">dentro do seu projeto</abbr>**.
+Ao começar a trabalhar em um projeto Python **pela primeira vez**, crie um ambiente virtual **<dfn title="existem outras opções, esta é uma diretriz simples">dentro do seu projeto</dfn>**.
 
 /// tip | Dica
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Toda vez que você instalar um **novo pacote** naquele ambiente, **ative** o ambiente novamente.
 
-Isso garante que, se você usar um **programa de terminal (<abbr title="Command Line Interface – Interface de Linha de Comando">CLI</abbr>)** instalado por esse pacote, você usará aquele do seu ambiente virtual e não qualquer outro que possa ser instalado globalmente, provavelmente com uma versão diferente do que você precisa.
+Isso garante que, se você usar um **programa de terminal (<abbr title="command line interface - interface de linha de comando">CLI</abbr>)** instalado por esse pacote, você usará aquele do seu ambiente virtual e não qualquer outro que possa ser instalado globalmente, provavelmente com uma versão diferente do que você precisa.
 
 ///
 
@@ -176,7 +176,7 @@ Verifique se o ambiente virtual está ativo (o comando anterior funcionou).
 
 /// tip | Dica
 
-Isso é **opcional**, mas é uma boa maneira de **verificar** se tudo está funcionando conforme o esperado e se você está usando o ambiente virtual intendido.
+Isso é **opcional**, mas é uma boa maneira de **verificar** se tudo está funcionando conforme o esperado e se você está usando o ambiente virtual pretendido.
 
 ///
 
@@ -220,7 +220,7 @@ Se você usar <a href="https://github.com/astral-sh/uv" class="external-link" ta
 
 ///
 
-Se você estiver usando `pip` para instalar pacotes (ele vem por padrão com o Python), você deve **atualizá-lo** para a versão mais recente.
+Se você estiver usando `pip` para instalar pacotes (ele vem por padrão com o Python), você deveria **atualizá-lo** para a versão mais recente.
 
 Muitos erros exóticos durante a instalação de um pacote são resolvidos apenas atualizando o `pip` primeiro.
 
@@ -835,7 +835,7 @@ $ source .venv/bin/activate
 // Agora, quando você executar o python, ele encontrará o pacote sirius instalado neste ambiente virtual ✨
 $ python main.py
 
-Eu juro solenemente 🐺
+I solemnly swear 🐺
 ```
 
 </div>

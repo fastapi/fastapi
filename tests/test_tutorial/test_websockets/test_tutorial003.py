@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 @pytest.fixture(
     name="mod",
     params=[
-        pytest.param("tutorial003_py39"),
+        pytest.param("tutorial003_py310"),
     ],
 )
 def get_mod(request: pytest.FixtureRequest):

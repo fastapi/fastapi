@@ -1,4 +1,4 @@
-# セキュリティ入門
+# セキュリティ入門 { #security }
 
 セキュリティ、認証、認可を扱うには多くの方法があります。
 
@@ -10,11 +10,11 @@
 
 しかし、その前に、いくつかの小さな概念を確認しましょう。
 
-## お急ぎですか？
+## お急ぎですか？ { #in-a-hurry }
 
 もし、これらの用語に興味がなく、ユーザー名とパスワードに基づく認証でセキュリティを**今すぐ**確保する必要がある場合は、次の章に進んでください。
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2は、認証と認可を処理するためのいくつかの方法を定義した仕様です。
 
@@ -24,7 +24,7 @@ OAuth2は、認証と認可を処理するためのいくつかの方法を定�
 
 これが、「Facebook、Google、X (Twitter)、GitHubを使ってログイン」を使用したすべてのシステムの背後で使われている仕組みです。
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 OAuth 1というものもありましたが、これはOAuth2とは全く異なり、通信をどのように暗号化するかという仕様が直接的に含まれており、より複雑なものとなっています。
 
@@ -38,7 +38,7 @@ OAuth2は、通信を暗号化する方法を指定せず、アプリケーシ�
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connectは、**OAuth2**をベースにした別の仕様です。
 
@@ -48,7 +48,7 @@ OpenID Connectは、**OAuth2**をベースにした別の仕様です。
 
 しかし、FacebookのログインはOpenID Connectをサポートしていません。OAuth2を独自にアレンジしています。
 
-### OpenID (「OpenID Connect」ではない)
+### OpenID (「OpenID Connect」ではない) { #openid-not-openid-connect }
 
 また、「OpenID」という仕様もありました。それは、**OpenID Connect**と同じことを解決しようとしたものですが、OAuth2に基づいているわけではありませんでした。
 
@@ -56,7 +56,7 @@ OpenID Connectは、**OAuth2**をベースにした別の仕様です。
 
 現在ではあまり普及していませんし、使われてもいません。
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI（以前はSwaggerとして知られていました）は、APIを構築するためのオープンな仕様です（現在はLinux Foundationの一部になっています）。
 
@@ -97,7 +97,7 @@ Google、Facebook、X (Twitter)、GitHubなど、他の認証/認可プロバイ
 
 ///
 
-## **FastAPI** ユーティリティ
+## **FastAPI** ユーティリティ { #fastapi-utilities }
 
 FastAPIは `fastapi.security` モジュールの中で、これらのセキュリティスキームごとにいくつかのツールを提供し、これらのセキュリティメカニズムを簡単に使用できるようにします。
 

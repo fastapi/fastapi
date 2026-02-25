@@ -74,7 +74,7 @@ Você também pode, é claro, passar vários `examples`:
 
 Quando fizer isso, os exemplos farão parte do **JSON Schema** interno para esses dados do body.
 
-No entanto, <abbr title="2023-08-26">no momento em que isto foi escrito</abbr>, o Swagger UI, a ferramenta responsável por exibir a UI da documentação, não suporta mostrar vários exemplos para os dados no **JSON Schema**. Mas leia abaixo para uma solução alternativa.
+No entanto, <dfn title="2023-08-26">no momento em que isto foi escrito</dfn>, o Swagger UI, a ferramenta responsável por exibir a UI da documentação, não suporta mostrar vários exemplos para os dados no **JSON Schema**. Mas leia abaixo para uma solução alternativa.
 
 ### `examples` específicos do OpenAPI { #openapi-specific-examples }
 

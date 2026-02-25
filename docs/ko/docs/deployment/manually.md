@@ -46,7 +46,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 이제 조금 더 자세히 살펴보겠습니다.
 
-FastAPI는 <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>라고 불리는, Python 웹 프레임워크와 서버를 만들기 위한 표준을 사용합니다. FastAPI는 ASGI 웹 프레임워크입니다.
+FastAPI는 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버 게이트웨이 인터페이스">ASGI</abbr>라고 불리는, Python 웹 프레임워크와 서버를 만들기 위한 표준을 사용합니다. FastAPI는 ASGI 웹 프레임워크입니다.
 
 원격 서버 머신에서 **FastAPI** 애플리케이션(또는 다른 ASGI 애플리케이션)을 실행하기 위해 필요한 핵심 요소는 **Uvicorn** 같은 ASGI 서버 프로그램입니다. `fastapi` 명령에는 기본으로 이것이 포함되어 있습니다.
 

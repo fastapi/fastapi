@@ -164,7 +164,7 @@ images: list[Image]
 
 以下のように:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## あらゆる場所でのエディタサポート { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Pydanticモデルではなく、`dict`を直接使用している場合はこの
 
 この場合、`int`のキーと`float`の値を持つものであれば、どんな`dict`でも受け入れることができます:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | 豆知識
 

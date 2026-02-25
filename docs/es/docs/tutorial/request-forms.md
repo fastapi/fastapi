@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Importar `Form` desde `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## Definir parámetros de `Form` { #define-form-parameters }
 
 Crea parámetros de formulario de la misma manera que lo harías para `Body` o `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 Por ejemplo, en una de las formas en las que se puede usar la especificación OAuth2 (llamada "password flow") se requiere enviar un `username` y `password` como campos de formulario.
 
-La <abbr title="specification – especificación">spec</abbr> requiere que los campos se llamen exactamente `username` y `password`, y que se envíen como campos de formulario, no JSON.
+La <dfn title="especificación">especificación</dfn> requiere que los campos se llamen exactamente `username` y `password`, y que se envíen como campos de formulario, no JSON.
 
 Con `Form` puedes declarar las mismas configuraciones que con `Body` (y `Query`, `Path`, `Cookie`), incluyendo validación, ejemplos, un alias (por ejemplo, `user-name` en lugar de `username`), etc.
 
@@ -56,7 +56,7 @@ Los datos de formularios normalmente se codifican usando el "media type" `applic
 
 Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Leerás sobre la gestión de archivos en el próximo capítulo.
 
-Si quieres leer más sobre estas codificaciones y campos de formulario, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Red de Desarrolladores de Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
+Si quieres leer más sobre estas codificaciones y campos de formulario, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
 
 ///
 

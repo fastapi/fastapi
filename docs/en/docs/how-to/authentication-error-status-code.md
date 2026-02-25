@@ -8,7 +8,7 @@ But if for some reason your clients depend on the old behavior, you can revert t
 
 For example, you can create a subclass of `HTTPBearer` that returns a `403 Forbidden` error instead of the default `401 Unauthorized` error:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py39.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
 
 /// tip
 

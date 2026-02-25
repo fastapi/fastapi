@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Puedes desplegar tu app de FastAPI en <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> con un solo comando; ve y únete a la lista de espera si aún no lo has hecho. 🚀
+Puedes desplegar tu app de FastAPI en <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> con **un solo comando**; ve y únete a la lista de espera si aún no lo has hecho. 🚀
 
 ## Iniciar sesión { #login }
 
@@ -20,7 +20,7 @@ You are logged in to FastAPI Cloud 🚀
 
 ## Desplegar { #deploy }
 
-Ahora despliega tu app, con un solo comando:
+Ahora despliega tu app, con **un solo comando**:
 
 <div class="termy">
 

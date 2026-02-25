@@ -18,7 +18,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이를 위해 `__call__` 메서드를 선언합니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 이 경우, **FastAPI**는 추가 매개변수와 하위 의존성을 확인하기 위해 `__call__`을 사용하게 되며,
 나중에 *경로 처리 함수*에서 매개변수에 값을 전달할 때 이를 호출하게 됩니다.
@@ -27,7 +27,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이제 `__init__`을 사용하여 의존성을 "매개변수화"할 수 있는 인스턴스의 매개변수를 선언할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 이 경우, **FastAPI**는 `__init__`에 전혀 관여하지 않으며, 우리는 이 메서드를 코드에서 직접 사용하게 됩니다.
 
@@ -35,7 +35,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 다음과 같이 이 클래스의 인스턴스를 생성할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 이렇게 하면 `checker.fixed_content` 속성에 `"bar"`라는 값을 담아 의존성을 "매개변수화"할 수 있습니다.
 
@@ -51,7 +51,7 @@ checker(q="somequery")
 
 ...그리고 이때 반환되는 값을 *경로 처리 함수*의 의존성 값으로, `fixed_content_included` 매개변수에 전달합니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | 팁
 
@@ -79,13 +79,13 @@ checker(q="somequery")
 
 ### `yield`와 `scope`가 있는 의존성 { #dependencies-with-yield-and-scope }
 
-0.121.0 버전에서 FastAPI는 `yield`가 있는 의존성에 대해 `Depends(scope="function")` 지원을 추가했습니다.
+0.121.0 버전에서 FastAPI는 `Depends(scope="function")` 지원을 추가했습니다.
 
 `Depends(scope="function")`를 사용하면, `yield` 이후의 종료 코드는 *경로 처리 함수*가 끝난 직후(클라이언트에 응답이 반환되기 전)에 실행됩니다.
 
 그리고 `Depends(scope="request")`(기본값)를 사용하면, `yield` 이후의 종료 코드는 응답이 전송된 후에 실행됩니다.
 
-자세한 내용은 [Dependencies with `yield` - Early exit and `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) 문서를 참고하세요.
+자세한 내용은 [`yield`가 있는 의존성 - 조기 종료와 `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) 문서를 참고하세요.
 
 ### `yield`가 있는 의존성과 `StreamingResponse`, 기술 세부사항 { #dependencies-with-yield-and-streamingresponse-technical-details }
 
@@ -133,7 +133,7 @@ SQLModel(또는 SQLAlchemy)을 사용하면서 이런 특정 사용 사례가 �
 
 그러면 세션이 데이터베이스 연결을 해제하여, 다른 요청들이 이를 사용할 수 있게 됩니다.
 
-`yield`가 있는 의존성에서 조기 종료가 필요한 다른 사용 사례가 있다면, 여러분의 구체적인 사용 사례와 `yield`가 있는 의존성에 대한 조기 종료가 어떤 점에서 이득이 되는지를 포함해 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Question</a>을 생성해 주세요.
+`yield`가 있는 의존성에서 조기 종료가 필요한 다른 사용 사례가 있다면, 여러분의 구체적인 사용 사례와 `yield`가 있는 의존성에 대한 조기 종료가 어떤 점에서 이득이 되는지를 포함해 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions 질문</a>을 생성해 주세요.
 
 `yield`가 있는 의존성에서 조기 종료에 대한 설득력 있는 사용 사례가 있다면, 조기 종료를 선택적으로 활성화할 수 있는 새로운 방법을 추가하는 것을 고려하겠습니다.
 
@@ -145,7 +145,7 @@ FastAPI 0.110.0 이전에는 `yield`가 있는 의존성을 사용한 다음 그
 
 ### 백그라운드 태스크와 `yield`가 있는 의존성, 기술 세부사항 { #background-tasks-and-dependencies-with-yield-technical-details }
 
-FastAPI 0.106.0 이전에는 `yield` 이후에 예외를 발생시키는 것이 불가능했습니다. `yield`가 있는 의존성의 종료 코드는 응답이 전송된 *후에* 실행되었기 때문에, [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}가 이미 실행된 뒤였습니다.
+FastAPI 0.106.0 이전에는 `yield` 이후에 예외를 발생시키는 것이 불가능했습니다. `yield`가 있는 의존성의 종료 코드는 응답이 전송된 *후에* 실행되었기 때문에, [예외 핸들러](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}가 이미 실행된 뒤였습니다.
 
 이는 주로 백그라운드 태스크 안에서 의존성이 "yield"한 동일한 객체들을 사용할 수 있게 하기 위한 설계였습니다. 백그라운드 태스크가 끝난 뒤에 종료 코드가 실행되었기 때문입니다.
 

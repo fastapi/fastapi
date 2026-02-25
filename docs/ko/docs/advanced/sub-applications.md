@@ -10,7 +10,7 @@
 
 먼저, 메인 최상위 **FastAPI** 애플리케이션과 그 *경로 처리*를 생성합니다:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### 하위 응용프로그램 { #sub-application }
 
@@ -18,7 +18,7 @@
 
 이 하위 응용프로그램은 또 다른 표준 FastAPI 애플리케이션이지만, "마운트"될 애플리케이션입니다:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### 하위 응용프로그램 마운트 { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 이 경우 `/subapi` 경로에 마운트됩니다:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### 자동 API 문서 확인 { #check-the-automatic-api-docs }
 

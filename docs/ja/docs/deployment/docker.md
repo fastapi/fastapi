@@ -14,7 +14,7 @@ Linuxコンテナの使用には、**セキュリティ**、**反復可能性（
 <summary>Dockerfile Preview 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ def read_item(item_id: int, q: str | None = None):
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -392,7 +392,7 @@ FastAPI が単一のファイル、例えば `./app` ディレクトリのない
 そうすれば、`Dockerfile`の中にファイルをコピーするために、対応するパスを変更するだけでよいです：
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -456,7 +456,7 @@ TraefikはDockerやKubernetesなどと統合されているので、コンテナ
 
 ## レプリケーション - プロセス数 { #replication-number-of-processes }
 
-**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<abbr title="A group of machines that are configured to be connected and work together in some way. - ある方法で接続され、連携して動作するように構成されたマシンの集まり">cluster</abbr>を構成している場合、 各コンテナで（Workerを持つUvicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
+**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<dfn title="ある方法で接続され、連携して動作するように構成されたマシンの集まり">クラスタ</dfn>を構成している場合、 各コンテナで（Workerを持つUvicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
 
 Kubernetesのような分散コンテナ管理システムの1つは通常、入ってくるリクエストの**ロードバランシング**をサポートしながら、**コンテナのレプリケーション**を処理する統合された方法を持っています。このことはすべて**クラスタレベル**にてです。
 
@@ -501,7 +501,7 @@ HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネン�
 そのような場合、`--workers` コマンドラインオプションを使って、実行したいワーカー数を設定できます：
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 

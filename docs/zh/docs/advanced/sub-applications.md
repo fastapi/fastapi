@@ -1,54 +1,54 @@
-# 子应用 - 挂载
+# 子应用 - 挂载 { #sub-applications-mounts }
 
 如果需要两个独立的 FastAPI 应用，拥有各自独立的 OpenAPI 与文档，则需设置一个主应用，并**挂载**一个（或多个）子应用。
 
-## 挂载 **FastAPI** 应用
+## 挂载 **FastAPI** 应用 { #mounting-a-fastapi-application }
 
 **挂载**是指在特定路径中添加完全**独立**的应用，然后在该路径下使用*路径操作*声明的子应用处理所有事务。
 
-### 顶层应用
+### 顶层应用 { #top-level-application }
 
 首先，创建主（顶层）**FastAPI** 应用及其*路径操作*：
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
-### 子应用
+### 子应用 { #sub-application }
 
 接下来，创建子应用及其*路径操作*。
 
 子应用只是另一个标准 FastAPI 应用，但这个应用是被**挂载**的应用：
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
-### 挂载子应用
+### 挂载子应用 { #mount-the-sub-application }
 
 在顶层应用 `app` 中，挂载子应用 `subapi`。
 
 本例的子应用挂载在 `/subapi` 路径下：
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
-### 查看文档
+### 查看自动 API 文档 { #check-the-automatic-api-docs }
 
-如果主文件是 `main.py`，则用以下 `uvicorn` 命令运行主应用：
+现在，使用你的文件运行 `fastapi` 命令：
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-查看文档 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs。</a>
+然后在 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 打开文档。
 
 下图显示的是主应用 API 文档，只包括其自有的*路径操作*。
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-然后查看子应用文档 <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs。</a>
+然后查看子应用文档 <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>。
 
 下图显示的是子应用的 API 文档，也是只包括其自有的*路径操作*，所有这些路径操作都在 `/subapi` 子路径前缀下。
 
@@ -56,7 +56,7 @@ $ uvicorn main:app --reload
 
 两个用户界面都可以正常运行，因为浏览器能够与每个指定的应用或子应用会话。
 
-### 技术细节：`root_path`
+### 技术细节：`root_path` { #technical-details-root-path }
 
 以上述方式挂载子应用时，FastAPI 使用 ASGI 规范中的 `root_path` 机制处理挂载子应用路径之间的通信。
 

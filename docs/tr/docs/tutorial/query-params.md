@@ -2,7 +2,7 @@
 
 Fonksiyonda path parametrelerinin parçası olmayan diğer parametreleri tanımladığınızda, bunlar otomatik olarak "query" parametreleri olarak yorumlanır.
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 Query, bir URL'de `?` işaretinden sonra gelen ve `&` karakterleriyle ayrılan anahtar-değer çiftlerinin kümesidir.
 
@@ -24,7 +24,7 @@ Ancak, bunları Python tipleriyle (yukarıdaki örnekte `int` olarak) tanımlad�
 Path parametreleri için geçerli olan aynı süreç query parametreleri için de geçerlidir:
 
 * Editör desteği (tabii ki)
-* Veri <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+* Veri <dfn title="bir HTTP request'ten gelen string'i Python verisine dönüştürme">"ayrıştırma"</dfn>
 * Veri doğrulama
 * Otomatik dokümantasyon
 
@@ -46,7 +46,7 @@ http://127.0.0.1:8000/items/
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-Ancak örneğin şuraya giderseniz:
+Namunak örneğin şuraya giderseniz:
 
 ```
 http://127.0.0.1:8000/items/?skip=20
@@ -128,7 +128,7 @@ Belirli bir değer eklemek istemiyor ama sadece opsiyonel olmasını istiyorsan�
 
 Ancak bir query parametresini zorunlu yapmak istediğinizde, herhangi bir varsayılan değer tanımlamamanız yeterlidir:
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Burada query parametresi `needy`, `str` tipinde zorunlu bir query parametresidir.
 

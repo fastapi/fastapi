@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Se uma de suas dependências é declarada várias vezes para a mesma *operação de rota*, por exemplo, múltiplas dependências com uma mesma subdependência, o **FastAPI** irá chamar essa subdependência uma única vez para cada requisição.
 
-E o valor retornado é salvo em um <abbr title="Um utilitário/sistema para armazenar valores calculados/gerados para serem reutilizados em vez de computá-los novamente.">"cache"</abbr> e repassado para todos os "dependentes" que precisam dele em uma requisição específica, em vez de chamar a dependência múltiplas vezes para uma mesma requisição.
+E o valor retornado é salvo em um <dfn title="Um utilitário/sistema para armazenar valores calculados/gerados para serem reutilizados em vez de computá-los novamente.">"cache"</dfn> e repassado para todos os "dependentes" que precisam dele em uma requisição específica, em vez de chamar a dependência múltiplas vezes para uma mesma requisição.
 
 Em um cenário avançado onde você precise que a dependência seja calculada em cada passo (possivelmente várias vezes) de uma requisição em vez de utilizar o valor em "cache", você pode definir o parâmetro `use_cache=False` em `Depends`:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ non-Annotated
+//// tab | Python 3.10+ non-Annotated
 
 /// tip | Dica
 

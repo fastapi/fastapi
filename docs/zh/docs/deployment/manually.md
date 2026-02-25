@@ -1,6 +1,6 @@
-# 手动运行服务器
+# 手动运行服务器 { #run-a-server-manually }
 
-## 使用 `fastapi run` 命令
+## 使用 `fastapi run` 命令 { #use-the-fastapi-run-command }
 
 简而言之，使用 `fastapi run` 来运行您的 FastAPI 应用程序：
 
@@ -42,11 +42,11 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 例如，您可以使用该命令在容器、服务器等环境中启动您的 **FastAPI** 应用。
 
-## ASGI 服务器
+## ASGI 服务器 { #asgi-servers }
 
 让我们深入了解一些细节。
 
-FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称为 <abbr title="Asynchronous Server Gateway Interface，异步服务器网关接口">ASGI</abbr>。FastAPI 本质上是一个 ASGI Web 框架。
+FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称为 <abbr title="Asynchronous Server Gateway Interface - 异步服务器网关接口">ASGI</abbr>。FastAPI 本质上是一个 ASGI Web 框架。
 
 要在远程服务器上运行 **FastAPI** 应用（或任何其他 ASGI 应用），您需要一个 ASGI 服务器程序，例如 **Uvicorn**。它是 `fastapi` 命令默认使用的 ASGI 服务器。
 
@@ -58,7 +58,7 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>：基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
 * <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>：NGINX Unit 是一个轻量级且灵活的 Web 应用运行时环境。
 
-## 服务器主机和服务器程序
+## 服务器主机和服务器程序 { #server-machine-and-server-program }
 
 关于名称，有一个小细节需要记住。 💡
 
@@ -68,8 +68,7 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 当提到远程主机时，通常将其称为**服务器**，但也称为**机器**(machine)、**VM**（虚拟机）、**节点**。 这些都是指某种类型的远程计算机，通常运行 Linux，您可以在其中运行程序。
 
-
-## 安装服务器程序
+## 安装服务器程序 { #install-the-server-program }
 
 当您安装 FastAPI 时，它自带一个生产环境服务器——Uvicorn，并且您可以使用 `fastapi run` 命令来启动它。
 
@@ -91,7 +90,7 @@ $ pip install "uvicorn[standard]"
 
 类似的流程也适用于任何其他 ASGI 服务器程序。
 
-/// tip
+/// tip | 提示
 
 通过添加 `standard` 选项，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
@@ -101,7 +100,7 @@ $ pip install "uvicorn[standard]"
 
 ///
 
-## 运行服务器程序
+## 运行服务器程序 { #run-the-server-program }
 
 如果您手动安装了 ASGI 服务器，通常需要以特定格式传递一个导入字符串，以便服务器能够正确导入您的 FastAPI 应用：
 
@@ -115,7 +114,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 </div>
 
-/// note
+/// note | 注意
 
 命令 `uvicorn main:app` 的含义如下：
 
@@ -132,7 +131,7 @@ from main import app
 
 每种 ASGI 服务器程序通常都会有类似的命令，您可以在它们的官方文档中找到更多信息。
 
-/// warning
+/// warning | 警告
 
 Uvicorn 和其他服务器支持 `--reload` 选项，该选项在开发过程中非常有用。
 
@@ -142,7 +141,7 @@ Uvicorn 和其他服务器支持 `--reload` 选项，该选项在开发过程中
 
 ///
 
-## 部署概念
+## 部署概念 { #deployment-concepts }
 
 这些示例运行服务器程序（例如 Uvicorn），启动**单个进程**，在所有 IP（`0.0.0.0`）上监听预定义端口（例如`80`）。
 

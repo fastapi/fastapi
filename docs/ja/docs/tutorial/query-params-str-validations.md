@@ -47,39 +47,15 @@ FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（
 
 次の型アノテーションがありました:
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 これを `Annotated` で包んで、次のようにします:
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 どちらも同じ意味で、`q` は `str` または `None` になり得るパラメータで、デフォルトでは `None` です。
 
@@ -109,7 +85,7 @@ FastAPI は次を行います:
 
 ## 代替（古い方法）: デフォルト値としての `Query` { #alternative-old-query-as-the-default-value }
 
-FastAPI の以前のバージョン（<abbr title="before 2023-03">0.95.0</abbr> より前）では、パラメータのデフォルト値として `Query` を使う必要があり、`Annotated` の中に入れるのではありませんでした。これを使ったコードを見かける可能性が高いので、説明します。
+FastAPI の以前のバージョン（<dfn title="2023-03 より前">0.95.0</dfn> より前）では、パラメータのデフォルト値として `Query` を使う必要があり、`Annotated` の中に入れるのではありませんでした。これを使ったコードを見かける可能性が高いので、説明します。
 
 /// tip | 豆知識
 
@@ -192,7 +168,7 @@ FastAPI なしで同じ関数を **別の場所** から **呼び出しても**�
 
 ## 正規表現の追加 { #add-regular-expressions }
 
-パラメータが一致するべき <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">正規表現</abbr> `pattern` を定義することができます:
+パラメータが一致するべき <dfn title="正規表現、regex、regexp は、文字列に対する検索パターンを定義する文字の並びです。">正規表現</dfn> `pattern` を定義することができます:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -212,7 +188,7 @@ FastAPI なしで同じ関数を **別の場所** から **呼び出しても**�
 
 クエリパラメータ `q` の `min_length` を `3` とし、デフォルト値を `"fixedquery"` として宣言したいとします:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note | 備考
 
@@ -242,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 そのため、`Query` を使いながら値を必須として宣言したい場合は、単にデフォルト値を宣言しません:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### 必須、`None` にできる { #required-can-be-none }
 
@@ -293,7 +269,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 また、値が指定されていない場合はデフォルトの `list` を定義することもできます。
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 以下にアクセスすると:
 
@@ -316,7 +292,7 @@ http://localhost:8000/items/
 
 `list[str]` の代わりに直接 `list` を使うこともできます:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note | 備考
 
@@ -372,7 +348,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 さて、このパラメータが気に入らなくなったとしましょう。
 
-それを使っているクライアントがいるので、しばらくは残しておく必要がありますが、ドキュメントには<abbr title="obsolete, recommended not to use it">deprecated</abbr>と明記しておきたいです。
+それを使っているクライアントがいるので、しばらくは残しておく必要がありますが、ドキュメントには<abbr title="obsolete, recommended not to use it - 廃止予定、使用は推奨されません">deprecated</abbr>と明記しておきたいです。
 
 その場合、`Query`にパラメータ`deprecated=True`を渡します:
 
@@ -402,7 +378,7 @@ Pydantic には <a href="https://docs.pydantic.dev/latest/concepts/validators/#f
 
 ///
 
-例えば、このカスタムバリデータは、<abbr title="ISBN means International Standard Book Number – 国際標準図書番号">ISBN</abbr> の書籍番号なら item ID が `isbn-` で始まること、<abbr title="IMDB (Internet Movie Database) is a website with information about movies – IMDB（Internet Movie Database）は映画に関する情報を掲載するWebサイトです">IMDB</abbr> の movie URL ID なら `imdb-` で始まることをチェックします:
+例えば、このカスタムバリデータは、<abbr title="International Standard Book Number - 国際標準図書番号">ISBN</abbr> の書籍番号なら item ID が `isbn-` で始まること、<abbr title="Internet Movie Database - インターネット・ムービー・データベース: 映画に関する情報を掲載する Web サイト">IMDB</abbr> の movie URL ID なら `imdb-` で始まることをチェックします:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -436,7 +412,7 @@ Pydantic には <a href="https://docs.pydantic.dev/latest/concepts/validators/#f
 
 #### ランダムなアイテム { #a-random-item }
 
-`data.items()` で、辞書の各アイテムのキーと値を含むタプルを持つ <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">反復可能オブジェクト</abbr> を取得します。
+`data.items()` で、辞書の各アイテムのキーと値を含むタプルを持つ <dfn title="for ループで繰り返し処理できるもの（list、set など）">反復可能オブジェクト</dfn> を取得します。
 
 この反復可能オブジェクトを `list(data.items())` で適切な `list` に変換します。
 

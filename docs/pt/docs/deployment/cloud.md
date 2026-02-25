@@ -1,6 +1,6 @@
 # Implantar FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
 
-Você pode usar praticamente **qualquer provedor de nuvem** para implantar seu aplicativo FastAPI.
+Você pode usar praticamente **qualquer provedor de nuvem** para implantar sua aplicação FastAPI.
 
 Na maioria dos casos, os principais provedores de nuvem têm tutoriais para implantar o FastAPI com eles.
 

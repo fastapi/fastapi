@@ -54,11 +54,11 @@ Pythonは「デフォルト」を持つ値を「デフォルト」を持たな�
 
 そのため、以下のように関数を宣言することができます:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
 ただし、`Annotated`を使う場合はこの問題は起きないことを覚えておいてください。`Query()`や`Path()`に関数パラメータのデフォルト値を使わないためです。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## 必要に応じてパラメータを並び替えるトリック { #order-the-parameters-as-you-need-tricks }
 
@@ -81,15 +81,15 @@ Pythonは「デフォルト」を持つ値を「デフォルト」を持たな�
 
 関数の最初のパラメータとして`*`を渡します。
 
-Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
+Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="From: K-ey W-ord Arg-uments - キーワード引数"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### `Annotated`のほうがよい { #better-with-annotated }
 
 `Annotated`を使う場合は、関数パラメータのデフォルト値を使わないため、この問題は起きず、おそらく`*`を使う必要もありません。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## 数値の検証: 以上 { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 ここで、`ge=1`の場合、`item_id`は`1`「より大きい`g`か、同じ`e`」整数でなければなりません。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## 数値の検証: より大きいと小なりイコール { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## 数値の検証: 浮動小数点、 大なり小なり { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 これは<abbr title="less than – より小さい"><code>lt</code></abbr>も同じです。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## まとめ { #recap }
 

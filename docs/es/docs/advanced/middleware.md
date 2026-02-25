@@ -8,7 +8,7 @@ En esta sección veremos cómo usar otros middlewares.
 
 ## Agregando middlewares ASGI { #adding-asgi-middlewares }
 
-Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface – Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>, puedes usar cualquier middleware ASGI.
+Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>, puedes usar cualquier middleware ASGI.
 
 Un middleware no tiene que estar hecho para FastAPI o Starlette para funcionar, siempre que siga la especificación ASGI.
 
@@ -57,13 +57,13 @@ Impone que todas las requests entrantes deben ser `https` o `wss`.
 
 Cualquier request entrante a `http` o `ws` será redirigida al esquema seguro.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Impone que todas las requests entrantes tengan correctamente configurado el header `Host`, para proteger contra ataques de HTTP Host Header.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Se soportan los siguientes argumentos:
 
@@ -78,7 +78,7 @@ Maneja responses GZip para cualquier request que incluya `"gzip"` en el header `
 
 El middleware manejará tanto responses estándar como en streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Se soportan los siguientes argumentos:
 

@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from docs_src.behind_a_proxy.tutorial003_py39 import app
+from docs_src.behind_a_proxy.tutorial003_py310 import app
 
 client = TestClient(app)
 

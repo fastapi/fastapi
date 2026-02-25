@@ -2,13 +2,14 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial006_py39"),
-        pytest.param("tutorial006_an_py39"),
+        pytest.param("tutorial006_py310"),
+        pytest.param("tutorial006_an_py310"),
     ],
 )
 def get_client(request: pytest.FixtureRequest) -> TestClient:
@@ -104,120 +105,122 @@ def test_read_items_size_too_large(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/{item_id}": {
-                "get": {
-                    "summary": "Read Items",
-                    "operationId": "read_items_items__item_id__get",
-                    "parameters": [
-                        {
-                            "required": True,
-                            "schema": {
-                                "title": "The ID of the item to get",
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 1000,
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/{item_id}": {
+                    "get": {
+                        "summary": "Read Items",
+                        "operationId": "read_items_items__item_id__get",
+                        "parameters": [
+                            {
+                                "required": True,
+                                "schema": {
+                                    "title": "The ID of the item to get",
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 1000,
+                                },
+                                "name": "item_id",
+                                "in": "path",
                             },
-                            "name": "item_id",
-                            "in": "path",
-                        },
-                        {
-                            "required": True,
-                            "schema": {
-                                "type": "string",
-                                "title": "Q",
+                            {
+                                "required": True,
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Q",
+                                },
+                                "name": "q",
+                                "in": "query",
                             },
-                            "name": "q",
-                            "in": "query",
-                        },
-                        {
-                            "in": "query",
-                            "name": "size",
-                            "required": True,
-                            "schema": {
-                                "exclusiveMaximum": 10.5,
-                                "exclusiveMinimum": 0,
-                                "title": "Size",
-                                "type": "number",
-                            },
-                        },
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {},
-                                }
-                            },
-                        },
-                        "422": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError",
-                                    },
+                            {
+                                "in": "query",
+                                "name": "size",
+                                "required": True,
+                                "schema": {
+                                    "exclusiveMaximum": 10.5,
+                                    "exclusiveMinimum": 0,
+                                    "title": "Size",
+                                    "type": "number",
                                 },
                             },
-                            "description": "Validation Error",
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {},
+                                    }
+                                },
+                            },
+                            "422": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError",
+                                        },
+                                    },
+                                },
+                                "description": "Validation Error",
+                            },
                         },
-                    },
+                    }
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "HTTPValidationError": {
-                    "properties": {
-                        "detail": {
-                            "items": {
-                                "$ref": "#/components/schemas/ValidationError",
+            },
+            "components": {
+                "schemas": {
+                    "HTTPValidationError": {
+                        "properties": {
+                            "detail": {
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError",
+                                },
+                                "title": "Detail",
+                                "type": "array",
                             },
-                            "title": "Detail",
-                            "type": "array",
                         },
+                        "title": "HTTPValidationError",
+                        "type": "object",
                     },
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                },
-                "ValidationError": {
-                    "properties": {
-                        "ctx": {"title": "Context", "type": "object"},
-                        "input": {"title": "Input"},
-                        "loc": {
-                            "items": {
-                                "anyOf": [
-                                    {
-                                        "type": "string",
-                                    },
-                                    {
-                                        "type": "integer",
-                                    },
-                                ],
+                    "ValidationError": {
+                        "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
+                            "loc": {
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string",
+                                        },
+                                        {
+                                            "type": "integer",
+                                        },
+                                    ],
+                                },
+                                "title": "Location",
+                                "type": "array",
                             },
-                            "title": "Location",
-                            "type": "array",
+                            "msg": {
+                                "title": "Message",
+                                "type": "string",
+                            },
+                            "type": {
+                                "title": "Error Type",
+                                "type": "string",
+                            },
                         },
-                        "msg": {
-                            "title": "Message",
-                            "type": "string",
-                        },
-                        "type": {
-                            "title": "Error Type",
-                            "type": "string",
-                        },
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type",
+                        ],
+                        "title": "ValidationError",
+                        "type": "object",
                     },
-                    "required": [
-                        "loc",
-                        "msg",
-                        "type",
-                    ],
-                    "title": "ValidationError",
-                    "type": "object",
                 },
             },
-        },
-    }
+        }
+    )

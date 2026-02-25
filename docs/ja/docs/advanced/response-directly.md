@@ -54,7 +54,7 @@
 
 XMLを文字列にし、`Response` に含め、それを返します。
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## 備考 { #notes }
 

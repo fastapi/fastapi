@@ -2,7 +2,7 @@
 
 Найпростіший файл FastAPI може виглядати так:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Скопіюйте це до файлу `main.py`.
 
@@ -183,7 +183,7 @@ Deploying to FastAPI Cloud...
 
 ### Крок 1: імпортуємо `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` — це клас у Python, який надає всю функціональність для вашого API.
 
@@ -197,7 +197,7 @@ Deploying to FastAPI Cloud...
 
 ### Крок 2: створюємо «екземпляр» `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Тут змінна `app` буде «екземпляром» класу `FastAPI`.
 
@@ -221,7 +221,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Інформація
+/// info
 
 «Шлях» також зазвичай називають «ендпоінтом» або «маршрутом».
 
@@ -266,12 +266,12 @@ https://example.com/items/foo
 
 #### Визначте *декоратор операції шляху* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 Декоратор `@app.get("/")` повідомляє **FastAPI**, що функція одразу нижче відповідає за обробку запитів, які надходять до:
 
 * шляху `/`
-* використовуючи <abbr title="an HTTP GET method"><code>get</code> операцію</abbr>
+* використовуючи <dfn title="HTTP метод GET"><code>get</code> операція</dfn>
 
 /// info | `@decorator` Інформація
 
@@ -300,7 +300,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | Порада
+/// tip
 
 Ви можете використовувати кожну операцію (HTTP-метод) як забажаєте.
 
@@ -320,7 +320,7 @@ https://example.com/items/foo
 * **операція**: це `get`.
 * **функція**: це функція нижче «декоратора» (нижче `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Це функція Python.
 
@@ -332,9 +332,9 @@ https://example.com/items/foo
 
 Ви також можете визначити її як звичайну функцію замість `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note | Примітка
+/// note
 
 Якщо ви не знаєте різницю, подивіться [Асинхронність: *«Поспішаєте?»*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
@@ -342,7 +342,7 @@ https://example.com/items/foo
 
 ### Крок 5: поверніть вміст { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Ви можете повернути `dict`, `list`, а також окремі значення `str`, `int` тощо.
 

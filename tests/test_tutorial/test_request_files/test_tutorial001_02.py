@@ -11,9 +11,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial001_02_py39"),
         pytest.param("tutorial001_02_py310", marks=needs_py310),
-        pytest.param("tutorial001_02_an_py39"),
         pytest.param("tutorial001_02_an_py310", marks=needs_py310),
     ],
 )
@@ -136,7 +134,10 @@ def test_openapi_schema(client: TestClient):
                             "file": {
                                 "title": "File",
                                 "anyOf": [
-                                    {"type": "string", "format": "binary"},
+                                    {
+                                        "type": "string",
+                                        "contentMediaType": "application/octet-stream",
+                                    },
                                     {"type": "null"},
                                 ],
                             }
@@ -149,7 +150,10 @@ def test_openapi_schema(client: TestClient):
                             "file": {
                                 "title": "File",
                                 "anyOf": [
-                                    {"type": "string", "format": "binary"},
+                                    {
+                                        "type": "string",
+                                        "contentMediaType": "application/octet-stream",
+                                    },
                                     {"type": "null"},
                                 ],
                             }

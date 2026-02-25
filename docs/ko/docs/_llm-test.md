@@ -35,7 +35,7 @@
 
 //// tab | 테스트
 
-어제 제 친구가 이렇게 썼습니다: "If you spell incorrectly correctly, you have spelled it incorrectly". 이에 저는 이렇게 답했습니다: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"".
+어제 제 친구가 이렇게 썼습니다: "If you spell incorrectly correctly, you have spelled it incorrectly". 이에 저는 이렇게 답했습니다: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
 /// note | 참고
 
@@ -132,7 +132,7 @@ works(foo="bar")  # 이건 동작합니다 🎉
 일부 텍스트
 ///
 
-/// note Technical details | 기술 세부사항
+/// note | 기술 세부사항
 일부 텍스트
 ///
 
@@ -202,11 +202,6 @@ works(foo="bar")  # 이건 동작합니다 🎉
 * <abbr title="XML Web Token - XML 웹 토큰">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface - 병렬 서버 게이트웨이 인터페이스">PSGI</abbr>
 
-### abbr가 설명을 제공 { #the-abbr-gives-an-explanation }
-
-* <abbr title="어떤 방식으로든 서로 연결되고 함께 작동하도록 구성된 머신들의 집합입니다.">cluster</abbr>
-* <abbr title="입력과 출력 계층 사이에 수많은 은닉 계층을 둔 인공 신경망을 사용하는 머신 러닝 방법으로, 이를 통해 포괄적인 내부 구조를 형성합니다">Deep Learning</abbr>
-
 ### abbr가 전체 문구와 설명을 제공 { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network - 모질라 개발자 네트워크: Firefox를 만드는 사람들이 작성한 개발자용 문서">MDN</abbr>
@@ -223,6 +218,11 @@ works(foo="bar")  # 이건 동작합니다 🎉
 `scripts/translate.py`의 일반 프롬프트에서 `### HTML abbr elements` 섹션을 참고하세요.
 
 ////
+
+## HTML "dfn" 요소 { #html-dfn-elements }
+
+* <dfn title="어떤 방식으로든 서로 연결되고 함께 작동하도록 구성된 머신들의 집합입니다.">클러스터</dfn>
+* <dfn title="입력과 출력 계층 사이에 수많은 은닉 계층을 둔 인공 신경망을 사용하는 머신 러닝 방법으로, 이를 통해 포괄적인 내부 구조를 형성합니다">딥 러닝</dfn>
 
 ## 제목 { #headings }
 
@@ -256,15 +256,15 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 //// tab | 테스트
 
-* 당신
-* 당신의
+* 여러분
+* 여러분의
 
 * 예: (e.g.)
 * 등 (etc.)
 
-* `int`로서의 `foo`
-* `str`로서의 `bar`
-* `list`로서의 `baz`
+* `foo`로서의 `int`
+* `bar`로서의 `str`
+* `baz`로서의 `list`
 
 * 튜토리얼 - 사용자 가이드
 * 고급 사용자 가이드

@@ -24,7 +24,7 @@ $ pip install python-multipart
 
 **폼 필드**로 받고 싶은 필드를 **Pydantic 모델**로 선언한 다음, 매개변수를 `Form`으로 선언하면 됩니다:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI**는 요청에서 받은 **폼 데이터**에서 **각 필드**에 대한 데이터를 **추출**하고 정의한 Pydantic 모델을 줍니다.
 
@@ -48,7 +48,7 @@ $ pip install python-multipart
 
 Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있습니다:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 클라이언트가 추가 데이터를 보내려고 하면 **오류** 응답을 받게 됩니다.
 

@@ -1,14 +1,13 @@
-from typing import Optional, Union
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class Item(BaseModel):
-    name: Optional[str] = None
+    name: str | None = None
 
 
 class ExtendedItem(Item):
@@ -16,7 +15,7 @@ class ExtendedItem(Item):
 
 
 @app.post("/items/")
-def save_union_different_body(item: Union[ExtendedItem, Item]):
+def save_union_different_body(item: ExtendedItem | Item):
     return {"item": item}
 
 
@@ -38,100 +37,106 @@ def test_post_item():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Save Union Different Body",
+                        "operationId": "save_union_different_body_items__post",
+                        "requestBody": {
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "title": "Item",
+                                        "anyOf": [
+                                            {
+                                                "$ref": "#/components/schemas/ExtendedItem"
+                                            },
+                                            {"$ref": "#/components/schemas/Item"},
+                                        ],
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Save Union Different Body",
-                    "operationId": "save_union_different_body_items__post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "title": "Item",
-                                    "anyOf": [
-                                        {"$ref": "#/components/schemas/ExtendedItem"},
-                                        {"$ref": "#/components/schemas/Item"},
-                                    ],
-                                }
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "Item": {
+                        "title": "Item",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "title": "Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
                             }
                         },
-                        "required": True,
+                    },
+                    "ExtendedItem": {
+                        "title": "ExtendedItem",
+                        "required": ["age"],
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "title": "Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            },
+                            "age": {"title": "Age", "type": "integer"},
+                        },
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
                     },
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "Item": {
-                    "title": "Item",
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        }
-                    },
-                },
-                "ExtendedItem": {
-                    "title": "ExtendedItem",
-                    "required": ["age"],
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "age": {"title": "Age", "type": "integer"},
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            }
-        },
-    }
+            },
+        }
+    )

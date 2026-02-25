@@ -1,10 +1,10 @@
-# Paramètres de requête
+# Paramètres de requête { #query-parameters }
 
-Quand vous déclarez des paramètres dans votre fonction de chemin qui ne font pas partie des paramètres indiqués dans le chemin associé, ces paramètres sont automatiquement considérés comme des paramètres de "requête".
+Quand vous déclarez d'autres paramètres de fonction qui ne font pas partie des paramètres de chemin, ils sont automatiquement interprétés comme des paramètres de « query ».
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
-La partie appelée requête (ou **query**) dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`.
+La query est l'ensemble des paires clé-valeur placées après le `?` dans une URL, séparées par des caractères `&`.
 
 Par exemple, dans l'URL :
 
@@ -12,27 +12,27 @@ Par exemple, dans l'URL :
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-...les paramètres de requête sont :
+... les paramètres de requête sont :
 
-* `skip` : avec une valeur de`0`
+* `skip` : avec une valeur de `0`
 * `limit` : avec une valeur de `10`
 
-Faisant partie de l'URL, ces valeurs sont des chaînes de caractères (`str`).
+Comme ils font partie de l'URL, ce sont « naturellement » des chaînes de caractères.
 
-Mais quand on les déclare avec des types Python (dans l'exemple précédent, en tant qu'`int`), elles sont converties dans les types renseignés.
+Mais lorsque vous les déclarez avec des types Python (dans l'exemple ci-dessus, en tant que `int`), ils sont convertis vers ce type et validés par rapport à celui-ci.
 
-Toutes les fonctionnalités qui s'appliquent aux paramètres de chemin s'appliquent aussi aux paramètres de requête :
+Tous les mêmes processus qui s'appliquaient aux paramètres de chemin s'appliquent aussi aux paramètres de requête :
 
-* Support de l'éditeur : vérification d'erreurs, auto-complétion, etc.
-* <abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"Parsing"</abbr> de données.
-* Validation de données.
-* Annotations d'API et documentation automatique.
+* Prise en charge de l'éditeur (évidemment)
+* <dfn title="conversion de la chaîne provenant d'une requête HTTP en données Python">« parsing »</dfn> des données
+* Validation des données
+* Documentation automatique
 
-## Valeurs par défaut
+## Valeurs par défaut { #defaults }
 
-Les paramètres de requête ne sont pas une partie fixe d'un chemin, ils peuvent être optionnels et avoir des valeurs par défaut.
+Comme les paramètres de requête ne sont pas une partie fixe d'un chemin, ils peuvent être optionnels et avoir des valeurs par défaut.
 
-Dans l'exemple ci-dessus, ils ont des valeurs par défaut qui sont `skip=0` et `limit=10`.
+Dans l'exemple ci-dessus, ils ont des valeurs par défaut `skip=0` et `limit=10`.
 
 Donc, accéder à l'URL :
 
@@ -40,52 +40,44 @@ Donc, accéder à l'URL :
 http://127.0.0.1:8000/items/
 ```
 
-serait équivalent à accéder à l'URL :
+serait équivalent à accéder à :
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-Mais si vous accédez à, par exemple :
+Mais si vous accédez, par exemple, à :
 
 ```
 http://127.0.0.1:8000/items/?skip=20
 ```
 
-Les valeurs des paramètres de votre fonction seront :
+Les valeurs des paramètres dans votre fonction seront :
 
-* `skip=20` : car c'est la valeur déclarée dans l'URL.
-* `limit=10` : car `limit` n'a pas été déclaré dans l'URL, et que la valeur par défaut était `10`.
+* `skip=20` : car vous l'avez défini dans l'URL
+* `limit=10` : car c'était la valeur par défaut
 
-## Paramètres optionnels
+## Paramètres optionnels { #optional-parameters }
 
-De la même façon, vous pouvez définir des paramètres de requête comme optionnels, en leur donnant comme valeur par défaut `None` :
+De la même façon, vous pouvez déclarer des paramètres de requête optionnels, en définissant leur valeur par défaut à `None` :
 
-{* ../../docs_src/query_params/tutorial002.py hl[9] *}
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
-Ici, le paramètre `q` sera optionnel, et aura `None` comme valeur par défaut.
+Dans ce cas, le paramètre de fonction `q` sera optionnel et vaudra `None` par défaut.
 
-/// check | Remarque
+/// check | Vérifications
 
-On peut voir que **FastAPI** est capable de détecter que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` n'en est pas un, c'est donc un paramètre de requête.
-
-///
-
-/// note
-
-**FastAPI** saura que `q` est optionnel grâce au `=None`.
-
-Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI** n'en utilisera que la partie `str`), mais il servira tout de même à votre éditeur de texte pour détecter des erreurs dans votre code.
+Notez également que **FastAPI** est suffisamment intelligent pour remarquer que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` ne l'est pas, c'est donc un paramètre de requête.
 
 ///
 
-## Conversion des types des paramètres de requête
+## Conversion des types des paramètres de requête { #query-parameter-type-conversion }
 
-Vous pouvez aussi déclarer des paramètres de requête comme booléens (`bool`), **FastAPI** les convertira :
+Vous pouvez aussi déclarer des types `bool`, ils seront convertis :
 
-{* ../../docs_src/query_params/tutorial003.py hl[9] *}
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
-Avec ce code, en allant sur :
+Dans ce cas, si vous allez sur :
 
 ```
 http://127.0.0.1:8000/items/foo?short=1
@@ -115,60 +107,61 @@ ou
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction considérera le paramètre `short` comme ayant une valeur booléenne à `True`. Sinon la valeur sera à `False`.
+ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction verra le paramètre `short` avec une valeur `bool` à `True`. Sinon la valeur sera à `False`.
 
-## Multiples paramètres de chemin et de requête
+## Multiples paramètres de chemin et de requête { #multiple-path-and-query-parameters }
 
-Vous pouvez déclarer plusieurs paramètres de chemin et paramètres de requête dans la même fonction, **FastAPI** saura comment les gérer.
+Vous pouvez déclarer plusieurs paramètres de chemin et paramètres de requête en même temps, FastAPI sait lequel est lequel.
 
 Et vous n'avez pas besoin de les déclarer dans un ordre spécifique.
 
-Ils seront détectés par leurs noms :
+Ils seront détectés par leur nom :
 
-{* ../../docs_src/query_params/tutorial004.py hl[8,10] *}
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Paramètres de requête requis
+## Paramètres de requête requis { #required-query-parameters }
 
-Quand vous déclarez une valeur par défaut pour un paramètre qui n'est pas un paramètre de chemin (actuellement, nous n'avons vu que les paramètres de requête), alors ce paramètre n'est pas requis.
+Quand vous déclarez une valeur par défaut pour des paramètres qui ne sont pas des paramètres de chemin (pour l'instant, nous n'avons vu que les paramètres de requête), alors ils ne sont pas requis.
 
-Si vous ne voulez pas leur donner de valeur par défaut mais juste les rendre optionnels, utilisez `None` comme valeur par défaut.
+Si vous ne voulez pas leur donner de valeur spécifique mais simplement les rendre optionnels, définissez la valeur par défaut à `None`.
 
-Mais si vous voulez rendre un paramètre de requête obligatoire, vous pouvez juste ne pas y affecter de valeur par défaut :
+Mais si vous voulez rendre un paramètre de requête obligatoire, vous pouvez simplement ne déclarer aucune valeur par défaut :
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-Ici le paramètre `needy` est un paramètre requis (ou obligatoire) de type `str`.
+Ici, le paramètre de requête `needy` est un paramètre de requête requis de type `str`.
 
-Si vous ouvrez une URL comme :
+Si vous ouvrez dans votre navigateur une URL comme :
 
 ```
 http://127.0.0.1:8000/items/foo-item
 ```
 
-...sans ajouter le paramètre requis `needy`, vous aurez une erreur :
+... sans ajouter le paramètre requis `needy`, vous verrez une erreur comme :
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null
+    }
+  ]
 }
 ```
 
-La présence de `needy` étant nécessaire, vous auriez besoin de l'insérer dans l'URL :
+Comme `needy` est un paramètre requis, vous devez le définir dans l'URL :
 
 ```
 http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 ```
 
-...ce qui fonctionnerait :
+... cela fonctionnerait :
 
 ```JSON
 {
@@ -177,18 +170,18 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-Et bien sur, vous pouvez définir certains paramètres comme requis, certains avec des valeurs par défaut et certains entièrement optionnels :
+Et bien sûr, vous pouvez définir certains paramètres comme requis, certains avec une valeur par défaut et certains entièrement optionnels :
 
-{* ../../docs_src/query_params/tutorial006.py hl[10] *}
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
-Ici, on a donc 3 paramètres de requête :
+Dans ce cas, il y a 3 paramètres de requête :
 
-* `needy`, requis et de type `str`.
-* `skip`, un `int` avec comme valeur par défaut `0`.
+* `needy`, un `str` requis.
+* `skip`, un `int` avec une valeur par défaut de `0`.
 * `limit`, un `int` optionnel.
 
 /// tip | Astuce
 
-Vous pouvez utiliser les `Enum`s de la même façon qu'avec les [Paramètres de chemin](path-params.md#valeurs-predefinies){.internal-link target=_blank}.
+Vous pourriez aussi utiliser des `Enum`s de la même façon qu'avec les [Paramètres de chemin](path-params.md#predefined-values){.internal-link target=_blank}.
 
 ///

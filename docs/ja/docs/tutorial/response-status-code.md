@@ -8,7 +8,7 @@
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | 備考
 
@@ -74,7 +74,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 先ほどの例をもう一度見てみましょう:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201`は「作成完了」のためのステータスコードです。
 
@@ -82,7 +82,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 `fastapi.status`の便利な変数を利用することができます。
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 それらは単なる便利なものであり、同じ番号を保持しています。しかし、その方法ではエディタの自動補完を使用してそれらを見つけることができます。
 

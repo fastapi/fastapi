@@ -8,7 +8,7 @@
 
 /// tip | 팁
 
-다른 SQL 또는 NoSQL 데이터베이스 라이브러리를 사용할 수도 있습니다 (일부는 <abbr title="Object Relational Mapper: a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>이라고도 불립니다), FastAPI는 특정 라이브러리의 사용을 강요하지 않습니다. 😎
+다른 SQL 또는 NoSQL 데이터베이스 라이브러리를 사용할 수도 있습니다 (일부는 <abbr title="Object Relational Mapper - 객체-관계 매퍼: 일부 클래스는 SQL 테이블을, 인스턴스는 해당 테이블의 행을 나타내는 라이브러리를 가리키는 용어">"ORMs"</abbr>이라고도 불립니다), FastAPI는 특정 라이브러리의 사용을 강요하지 않습니다. 😎
 
 ///
 

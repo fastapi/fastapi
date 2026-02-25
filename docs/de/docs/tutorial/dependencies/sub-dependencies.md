@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Wenn eine Ihrer Abhängigkeiten mehrmals für dieselbe *Pfadoperation* deklariert wird, beispielsweise wenn mehrere Abhängigkeiten eine gemeinsame Unterabhängigkeit haben, wird **FastAPI** diese Unterabhängigkeit nur einmal pro <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> aufrufen.
 
-Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, der bereits berechnete/generierte Werte zwischenspeichert, um sie später wiederzuverwenden, anstatt sie erneut zu berechnen.">„Cache“</abbr> und übergibt diesen gecachten Wert an alle „Dependanten“, die ihn in diesem spezifischen Request benötigen, anstatt die Abhängigkeit mehrmals für denselben Request aufzurufen.
+Und es speichert den zurückgegebenen Wert in einem <dfn title="Hilfsprogramm/System zum Speichern berechneter/erzeugter Werte, um sie wiederzuverwenden, anstatt sie erneut zu berechnen.">„Cache“</dfn> und übergibt diesen gecachten Wert an alle „Dependanten“, die ihn in diesem spezifischen Request benötigen, anstatt die Abhängigkeit mehrmals für denselben Request aufzurufen.
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in demselben Request aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ nicht annotiert
+//// tab | Python 3.10+ nicht annotiert
 
 /// tip | Tipp
 

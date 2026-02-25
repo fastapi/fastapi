@@ -6,7 +6,7 @@ Puedes conectar el depurador en tu editor, por ejemplo con Visual Studio Code o 
 
 En tu aplicación de FastAPI, importa y ejecuta `uvicorn` directamente:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Acerca de `__name__ == "__main__"` { #about-name-main }
 

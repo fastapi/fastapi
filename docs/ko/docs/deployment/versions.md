@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 이용 가능한 버전들 { #available-versions }
 
-사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [Release Notes](../release-notes.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [릴리스 노트](../release-notes.md){.internal-link target=_blank}에서 확인할 수 있습니다.
 
 ## 버전들에 대해 { #about-versions }
 
@@ -66,7 +66,7 @@ fastapi>=0.45.0,<0.46.0
 
 앱에 테스트를 추가해야 합니다.
 
-**FastAPI**에서는 매우 쉽습니다(Starlette 덕분에). 문서를 확인해 보세요: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+**FastAPI**에서는 매우 쉽습니다(Starlette 덕분에). 문서를 확인해 보세요: [테스트](../tutorial/testing.md){.internal-link target=_blank}
 
 테스트를 갖춘 뒤에는 **FastAPI** 버전을 더 최신 버전으로 업그레이드하고, 테스트를 실행하여 모든 코드가 올바르게 동작하는지 확인하세요.
 

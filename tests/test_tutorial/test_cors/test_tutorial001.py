@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.cors.tutorial001_py39 import app
+from docs_src.cors.tutorial001_py310 import app
 
 
 def test_cors():

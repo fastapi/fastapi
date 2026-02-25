@@ -54,11 +54,11 @@ Python видасть помилку, якщо розмістити значен
 
 Тому ви можете оголосити вашу функцію так:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
 Але майте на увазі, що якщо ви використовуєте `Annotated`, цієї проблеми не буде, це не матиме значення, оскільки ви не використовуєте значення за замовчуванням параметрів функції для `Query()` або `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## Упорядковуйте параметри, як вам потрібно: хитрощі { #order-the-parameters-as-you-need-tricks }
 
@@ -81,15 +81,15 @@ Python видасть помилку, якщо розмістити значен
 
 Передайте `*` як перший параметр функції.
 
-Python нічого не зробить із цією `*`, але розпізнає, що всі наступні параметри слід викликати як аргументи за ключовим словом (пари ключ-значення), також відомі як <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Навіть якщо вони не мають значення за замовчуванням.
+Python нічого не зробить із цією `*`, але розпізнає, що всі наступні параметри слід викликати як аргументи за ключовим словом (пари ключ-значення), також відомі як <abbr title="Походить від: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Навіть якщо вони не мають значення за замовчуванням.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### Краще з `Annotated` { #better-with-annotated }
 
 Майте на увазі, що якщо ви використовуєте `Annotated`, оскільки ви не використовуєте значення за замовчуванням параметрів функції, цієї проблеми не буде, і, ймовірно, вам не потрібно буде використовувати `*`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## Валідація числових даних: більше або дорівнює { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python нічого не зробить із цією `*`, але розпізн
 
 Тут, завдяки `ge=1`, `item_id` має бути цілим числом, яке "`g`reater than or `e`qual" (більше або дорівнює) `1`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## Валідація числових даних: більше ніж і менше або дорівнює { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,19 +106,19 @@ Python нічого не зробить із цією `*`, але розпізн
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## Валідація числових даних: float, більше ніж і менше ніж { #number-validations-floats-greater-than-and-less-than }
 
 Валідація чисел також працює для значень типу `float`.
 
-Ось де стає важливо мати можливість оголошувати <abbr title="greater than"><code>gt</code></abbr>, а не тільки <abbr title="greater than or equal"><code>ge</code></abbr>. Це дозволяє, наприклад, вимагати, щоб значення було більше `0`, навіть якщо воно менше `1`.
+Ось де стає важливо мати можливість оголошувати <abbr title="greater than - більше ніж"><code>gt</code></abbr>, а не тільки <abbr title="greater than or equal - більше або дорівнює"><code>ge</code></abbr>. Це дозволяє, наприклад, вимагати, щоб значення було більше `0`, навіть якщо воно менше `1`.
 
 Таким чином, значення `0.5` буде допустимим. Але `0.0` або `0` — ні.
 
-Те саме стосується <abbr title="less than"><code>lt</code></abbr>.
+Те саме стосується <abbr title="less than - менше ніж"><code>lt</code></abbr>.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## Підсумок { #recap }
 

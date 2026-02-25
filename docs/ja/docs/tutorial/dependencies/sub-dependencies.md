@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 依存関係の1つが同じ*path operation*に対して複数回宣言されている場合、例えば、複数の依存関係が共通のサブ依存関係を持っている場合、**FastAPI** はリクエストごとに1回だけそのサブ依存関係を呼び出します。
 
-そして、返された値を<abbr title="A utility/system to store computed/generated values, to reuse them instead of computing them again. – 計算/生成された値を保存し、再計算する代わりに再利用するためのユーティリティ/システム。">「キャッシュ」</abbr>に保存し、同じリクエストに対して依存関係を何度も呼び出す代わりに、その特定のリクエストでそれを必要とする全ての「依存」に渡すことになります。
+そして、返された値を<dfn title="計算/生成された値を保存し、再計算する代わりに再利用するためのユーティリティ/システム">「キャッシュ」</dfn>に保存し、同じリクエストに対して依存関係を何度も呼び出す代わりに、その特定のリクエストでそれを必要とする全ての「依存」に渡すことになります。
 
 高度なシナリオでは、「キャッシュされた」値を使うのではなく、同じリクエストの各ステップ（おそらく複数回）で依存関係を呼び出す必要があることがわかっている場合、`Depends`を使用する際に、`use_cache=False`というパラメータを設定することができます:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ 非Annotated
+//// tab | Python 3.10+ 非Annotated
 
 /// tip | 豆知識
 

@@ -26,7 +26,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note
 
@@ -203,7 +203,7 @@ For example, you can declare a response with a status code `404` that uses a Pyd
 
 And a response with a status code `200` that uses your `response_model`, but includes a custom `example`:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 It will all be combined and included in your OpenAPI, and shown in the API docs:
 

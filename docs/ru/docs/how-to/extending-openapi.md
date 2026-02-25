@@ -24,7 +24,7 @@
 * `version`: Версия вашего API, например `2.5.0`.
 * `openapi_version`: Версия используемой спецификации OpenAPI. По умолчанию — последняя: `3.1.0`.
 * `summary`: Краткое описание API.
-* `description`: Описание вашего API; может включать Markdown и будет отображается в документации.
+* `description`: Описание вашего API; может включать Markdown и будет отображаться в документации.
 * `routes`: Список маршрутов — это каждая зарегистрированная *операция пути*. Берутся из `app.routes`.
 
 /// info | Информация
@@ -43,19 +43,19 @@
 
 Сначала напишите приложение **FastAPI** как обычно:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
 ### Сгенерируйте схему OpenAPI { #generate-the-openapi-schema }
 
 Затем используйте ту же вспомогательную функцию для генерации схемы OpenAPI внутри функции `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
 ### Измените схему OpenAPI { #modify-the-openapi-schema }
 
 Теперь можно добавить расширение ReDoc, добавив кастомный `x-logo` в «объект» `info` в схеме OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
 ### Кэшируйте схему OpenAPI { #cache-the-openapi-schema }
 
@@ -65,13 +65,13 @@
 
 Она будет создана один раз, а затем тот же кэшированный вариант будет использоваться для последующих запросов.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
 ### Переопределите метод { #override-the-method }
 
 Теперь вы можете заменить метод `.openapi()` на вашу новую функцию.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
 ### Проверьте { #check-it }
 

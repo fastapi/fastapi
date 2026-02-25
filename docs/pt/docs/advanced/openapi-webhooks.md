@@ -32,7 +32,7 @@ Webhooks estão disponíveis a partir do OpenAPI 3.1.0, e possui suporte do Fast
 
 Quando você cria uma aplicação com o **FastAPI**, existe um atributo chamado `webhooks`, que você utilizar para defini-los da mesma maneira que você definiria as suas **operações de rotas**, utilizando por exemplo `@app.webhooks.post()`.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Os webhooks que você define aparecerão no esquema do **OpenAPI** e na **página de documentação** gerada automaticamente.
 

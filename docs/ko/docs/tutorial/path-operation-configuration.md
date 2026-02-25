@@ -46,17 +46,17 @@
 
 **FastAPI**는 일반 문자열과 동일한 방식으로 이를 지원합니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## 요약과 설명 { #summary-and-description }
 
 `summary`와 `description`을 추가할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## 독스트링으로 만든 설명 { #description-from-docstring }
 
-설명은 보통 길어지고 여러 줄에 걸쳐있기 때문에, *경로 처리* 설명을 함수 <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation – 문서화에 사용되는 함수 내부 첫 표현식의 여러 줄 문자열(어떤 변수에도 할당되지 않음)">docstring</abbr>에 선언할 수 있으며, **FastAPI**는 그곳에서 이를 읽습니다.
+설명은 보통 길어지고 여러 줄에 걸쳐있기 때문에, *경로 처리* 설명을 함수 <dfn title="문서화에 사용되는 함수 내부 첫 표현식의 여러 줄 문자열(어떤 변수에도 할당되지 않음)">독스트링</dfn>에 선언할 수 있으며, **FastAPI**는 그곳에서 이를 읽습니다.
 
 독스트링에는 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>을 작성할 수 있으며, (독스트링의 들여쓰기를 고려하여) 올바르게 해석되고 표시됩니다.
 
@@ -70,7 +70,7 @@
 
 `response_description` 매개변수로 응답에 관한 설명을 명시할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | 정보
 
@@ -90,9 +90,9 @@ OpenAPI는 각 *경로 처리*가 응답에 관한 설명을 요구할 것을 �
 
 ## *경로 처리* 지원중단하기 { #deprecate-a-path-operation }
 
-*경로 처리*를 제거하지 않고 <abbr title="obsolete, recommended not to use it – 구식이며 사용하지 않는 것이 권장됨">deprecated</abbr>로 표시해야 한다면, `deprecated` 매개변수를 전달하면 됩니다:
+*경로 처리*를 제거하지 않고 <dfn title="구식이며 사용하지 않는 것이 권장됨">지원중단</dfn>으로 표시해야 한다면, `deprecated` 매개변수를 전달하면 됩니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 대화형 문서에서 지원중단으로 명확하게 표시됩니다:
 

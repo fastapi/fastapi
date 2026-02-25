@@ -31,13 +31,13 @@ A função middleware recebe:
     * Então ela retorna a `response` gerada pela *operação de rota* correspondente.
 * Você pode então modificar ainda mais o `response` antes de retorná-lo.
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | Dica
 
 Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo `X-`</a>.
 
-Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Documentos CORS da Starlette</a>.
+Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Documentação CORS da Starlette</a>.
 
 ///
 
@@ -57,7 +57,7 @@ E também depois que a `response` é gerada, antes de retorná-la.
 
 Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a solicitação e gerar uma resposta:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | Dica
 

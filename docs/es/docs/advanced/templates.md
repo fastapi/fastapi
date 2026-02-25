@@ -27,7 +27,7 @@ $ pip install jinja2
 * Declara un parámetro `Request` en la *path operation* que devolverá una plantilla.
 * Usa los `templates` que creaste para renderizar y devolver un `TemplateResponse`, pasa el nombre de la plantilla, el objeto de request, y un diccionario "context" con pares clave-valor que se usarán dentro de la plantilla Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Nota
 
@@ -43,7 +43,7 @@ Al declarar `response_class=HTMLResponse`, la interfaz de usuario de la document
 
 ///
 
-/// note | Nota Técnica
+/// note | Detalles técnicos
 
 También podrías usar `from starlette.templating import Jinja2Templates`.
 

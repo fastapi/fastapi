@@ -40,7 +40,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 * **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나](#performance).
 * **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도 증가. *
 * **적은 버그**: 사람(개발자)에 의한 에러 약 40% 감소. *
-* **직관적**: 훌륭한 편집기 지원. 모든 곳에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr>. 적은 디버깅 시간.
+* **직관적**: 훌륭한 편집기 지원. <dfn title="다른 말로는: 자동 완성, 자동완성, IntelliSense">자동완성</dfn>이 모든 곳에서 동작. 적은 디버깅 시간.
 * **쉬움**: 쉽게 사용하고 배우도록 설계. 적은 문서 읽기 시간.
 * **짧음**: 코드 중복 최소화. 각 매개변수 선언의 여러 기능. 적은 버그.
 * **견고함**: 준비된 프로덕션 용 코드를 얻으십시오. 자동 대화형 문서와 함께.
@@ -127,7 +127,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 보십시오.
+웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface - 커맨드 라인 인터페이스">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 보십시오.
 
 **Typer**는 FastAPI의 동생입니다. 그리고 **CLI를 위한 FastAPI**가 되기 위해 생겼습니다. ⌨️ 🚀
 
@@ -161,8 +161,6 @@ $ pip install "fastapi[standard]"
 다음 내용으로 `main.py` 파일을 만드십시오:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -174,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -183,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하십시오:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -197,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -288,9 +284,7 @@ INFO:     Application startup complete.
 
 Pydantic 덕분에 표준 Python 타입을 사용해 본문을 선언합니다.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -300,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -309,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -374,7 +368,7 @@ item: Item
 * 데이터 검증:
     * 데이터가 유효하지 않을 때 자동으로 생성하는 명확한 에러.
     * 깊이 중첩된 JSON 객체에 대한 유효성 검사.
-* 입력 데이터 <abbr title="also known as: serialization, parsing, marshalling">변환</abbr>: 네트워크에서 파이썬 데이터 및 타입으로 전송. 읽을 수 있는 것들:
+* 입력 데이터 <dfn title="다른 말로는: 직렬화, 파싱, 마샬링">변환</dfn>: 네트워크에서 파이썬 데이터 및 타입으로 전송. 읽을 수 있는 것들:
     * JSON.
     * 경로 매개변수.
     * 쿼리 매개변수.
@@ -382,7 +376,7 @@ item: Item
     * 헤더.
     * 폼(Forms).
     * 파일.
-* 출력 데이터 <abbr title="also known as: serialization, parsing, marshalling">변환</abbr>: 파이썬 데이터 및 타입을 네트워크 데이터로 전환(JSON 형식으로):
+* 출력 데이터 <dfn title="다른 말로는: 직렬화, 파싱, 마샬링">변환</dfn>: 파이썬 데이터 및 타입을 네트워크 데이터로 전환(JSON 형식으로):
     * 파이썬 타입 변환 (`str`, `int`, `float`, `bool`, `list`, 등).
     * `datetime` 객체.
     * `UUID` 객체.
@@ -445,7 +439,7 @@ item: Item
 
 * 서로 다른 장소에서 **매개변수** 선언: **헤더**, **쿠키**, **폼 필드** 그리고 **파일**.
 * `maximum_length` 또는 `regex`처럼 **유효성 제약**하는 방법.
-* 강력하고 사용하기 쉬운 **<abbr title="also known as components, resources, providers, services, injectables">의존성 주입</abbr>** 시스템.
+* 강력하고 사용하기 쉬운 **<dfn title="다른 말로는: 컴포넌트, 리소스, 프로바이더, 서비스, 인젝터블">의존성 주입</dfn>** 시스템.
 * **OAuth2** 지원을 포함한 **JWT tokens** 및 **HTTP Basic**을 갖는 보안과 인증.
 * (Pydantic 덕분에) **깊은 중첩 JSON 모델**을 선언하는데 더 진보한 (하지만 마찬가지로 쉬운) 기술.
 * <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 및 기타 라이브러리와의 **GraphQL** 통합.
@@ -530,7 +524,7 @@ Starlette이 사용하는:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient`를 사용하려면 필요.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 기본 템플릿 설정을 사용하려면 필요.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 form <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr> 지원을 원하면 필요.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 form <dfn title="HTTP 요청에서 온 문자열을 파이썬 데이터로 변환">"파싱"</dfn> 지원을 원하면 필요.
 
 FastAPI가 사용하는:
 

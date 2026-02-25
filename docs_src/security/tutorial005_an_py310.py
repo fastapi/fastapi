@@ -60,6 +60,8 @@ class UserInDB(User):
 
 password_hash = PasswordHash.recommended()
 
+DUMMY_HASH = password_hash.hash("dummypassword")
+
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="token",
     scopes={"me": "Read information about the current user.", "items": "Read items."},
@@ -85,6 +87,7 @@ def get_user(db, username: str):
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
     if not user:
+        verify_password(password, DUMMY_HASH)
         return False
     if not verify_password(password, user.hashed_password):
         return False

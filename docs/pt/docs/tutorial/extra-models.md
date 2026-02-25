@@ -190,9 +190,9 @@ Mas se colocarmos isso na atribuição `response_model=PlaneItem | CarItem`, ter
 
 Da mesma forma, você pode declarar respostas de listas de objetos.
 
-Para isso, use o padrão Python `typing.List` (ou simplesmente `list` no Python 3.9 e superior):
+Para isso, use o padrão Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Resposta com `dict` arbitrário { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ Você também pode declarar uma resposta usando um simples `dict` arbitrário, d
 
 Isso é útil se você não souber os nomes de campo / atributo válidos (que seriam necessários para um modelo Pydantic) antecipadamente.
 
-Neste caso, você pode usar `typing.Dict` (ou simplesmente `dict` no Python 3.9 e superior):
+Neste caso, você pode usar `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Recapitulação { #recap }
 

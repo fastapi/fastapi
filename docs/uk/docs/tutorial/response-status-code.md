@@ -8,7 +8,7 @@
 * `@app.delete()`
 * тощо.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Примітка
 
@@ -66,7 +66,7 @@ FastAPI знає про це і створить документацію OpenAP
 
 /// tip | Порада
 
-Щоб дізнатися більше про кожен код статусу і для чого призначений кожен із них, перегляньте документацію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> про HTTP коди статусу</a>.
+Щоб дізнатися більше про кожен код статусу і для чого призначений кожен із них, перегляньте документацію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> про HTTP коди статусу</a>.
 
 ///
 
@@ -74,7 +74,7 @@ FastAPI знає про це і створить документацію OpenAP
 
 Розглянемо попередній приклад ще раз:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` — це код статусу для «Created».
 
@@ -82,7 +82,7 @@ FastAPI знає про це і створить документацію OpenAP
 
 Ви можете використовувати зручні змінні з `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Вони — просто для зручності, містять те саме число, але так ви можете скористатися автозаповненням редактора, щоб знайти їх:
 

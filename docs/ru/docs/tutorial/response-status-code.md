@@ -8,7 +8,7 @@
 * `@app.delete()`
 * и других.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Примечание
 
@@ -66,7 +66,7 @@ FastAPI знает об этом и создаст документацию Open
 
 /// tip | Подсказка
 
-Чтобы узнать больше о HTTP кодах статуса и о том, для чего каждый из них предназначен, ознакомьтесь с <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Сеть разработчиков Mozilla">MDN</abbr> документацией об HTTP статус-кодах</a>.
+Чтобы узнать больше о HTTP кодах статуса и о том, для чего каждый из них предназначен, ознакомьтесь с <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> документацией об HTTP статус-кодах</a>.
 
 ///
 
@@ -74,7 +74,7 @@ FastAPI знает об этом и создаст документацию Open
 
 Рассмотрим предыдущий пример еще раз:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` – это код статуса "Создано".
 
@@ -82,7 +82,7 @@ FastAPI знает об этом и создаст документацию Open
 
 Для удобства вы можете использовать переменные из `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Они содержат те же числовые значения, но позволяют использовать автозавершение редактора кода для выбора кода статуса:
 
@@ -90,7 +90,7 @@ FastAPI знает об этом и создаст документацию Open
 
 /// note | Технические детали
 
-Вы также можете использовать `from starlette import status` вместо `from fastapi import status`.
+Вы также можете использовать `from starlette import status`.
 
 **FastAPI** позволяет использовать как `starlette.status`, так и `fastapi.status` исключительно для удобства разработчиков. Но поставляется fastapi.status непосредственно из Starlette.
 

@@ -116,7 +116,11 @@ E outra função utilitária para verificar se uma senha recebida corresponde ao
 
 E outra para autenticar e retornar um usuário.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+Quando `authenticate_user` é chamado com um nome de usuário que não existe no banco de dados, ainda executamos `verify_password` contra um hash fictício.
+
+Isso garante que o endpoint leve aproximadamente o mesmo tempo para responder, seja o nome de usuário válido ou não, prevenindo **timing attacks** que poderiam ser usados para enumerar nomes de usuário existentes.
 
 /// note | Nota
 
@@ -152,7 +156,7 @@ Defina um modelo Pydantic que será usado no endpoint de token para a resposta.
 
 Crie uma função utilitária para gerar um novo token de acesso.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Atualize as dependências { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ Decodifique o token recebido, verifique-o e retorne o usuário atual.
 
 Se o token for inválido, retorne um erro HTTP imediatamente.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## Atualize a *operação de rota* `/token` { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ Crie um `timedelta` com o tempo de expiração do token.
 
 Crie um token de acesso JWT real e o retorne.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### Detalhes técnicos sobre o "sujeito" `sub` do JWT { #technical-details-about-the-jwt-subject-sub }
 

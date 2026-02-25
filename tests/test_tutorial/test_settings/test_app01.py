@@ -4,6 +4,7 @@ import sys
 import pytest
 from dirty_equals import IsAnyStr
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import ValidationError
 from pytest import MonkeyPatch
 
@@ -11,7 +12,7 @@ from pytest import MonkeyPatch
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("app01_py39"),
+        pytest.param("app01_py310"),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest):
@@ -58,21 +59,23 @@ def test_app(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/info": {
-                "get": {
-                    "operationId": "info_info_get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Info",
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/info": {
+                    "get": {
+                        "operationId": "info_info_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Info",
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )

@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## `File` 및 `Form` 임포트 { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File` 및 `Form` 매개변수 정의 { #define-file-and-form-parameters }
 
 `Body` 및 `Query`와 동일한 방식으로 파일과 폼의 매개변수를 생성합니다:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 파일과 폼 필드는 폼 데이터로 업로드되며, 파일과 폼 필드를 받게 됩니다.
 

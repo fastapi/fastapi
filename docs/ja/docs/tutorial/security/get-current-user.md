@@ -2,7 +2,7 @@
 
 一つ前の章では、（依存性注入システムに基づいた）セキュリティシステムは、 *path operation 関数* に `str` として `token` を与えていました:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 しかし、それはまだそんなに有用ではありません。
 

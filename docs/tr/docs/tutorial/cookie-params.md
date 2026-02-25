@@ -1,4 +1,4 @@
-# Çerez (Cookie) Parametreleri { #cookie-parameters }
+# Cookie (Çerez) Parametreleri { #cookie-parameters }
 
 `Query` ve `Path` parametrelerini tanımladığınız şekilde Cookie parametreleri tanımlayabilirsiniz.
 
@@ -26,20 +26,20 @@ Ancak `fastapi`'dan `Query`, `Path`, `Cookie` ve diğerlerini import ettiğinizd
 
 /// info | Bilgi
 
-Çerezleri tanımlamak için `Cookie` kullanmanız gerekir, aksi halde parametreler query parametreleri olarak yorumlanır.
+Cookie'leri tanımlamak için `Cookie` kullanmanız gerekir, aksi halde parametreler query parametreleri olarak yorumlanır.
 
 ///
 
 /// info | Bilgi
 
-**Tarayıcılar çerezleri** özel şekillerde ve arka planda işlediği için, **JavaScript**'in onlara dokunmasına kolayca izin **vermezler**.
+**Tarayıcılar cookie'leri** özel şekillerde ve arka planda işlediği için, **JavaScript**'in onlara dokunmasına kolayca izin **vermezler**.
 
-`/docs` adresindeki **API docs UI**'a giderseniz, *path operation*'larınız için çerezlerin **dokümantasyonunu** görebilirsiniz.
+`/docs` adresindeki **API docs UI**'a giderseniz, *path operation*'larınız için cookie'lerin **dokümantasyonunu** görebilirsiniz.
 
-Ancak **veriyi doldurup** "Execute" düğmesine tıklasanız bile, docs UI **JavaScript** ile çalıştığı için çerezler gönderilmez ve herhangi bir değer yazmamışsınız gibi bir **hata** mesajı görürsünüz.
+Ancak **veriyi doldurup** "Execute" düğmesine tıklasanız bile, docs UI **JavaScript** ile çalıştığı için cookie'ler gönderilmez ve herhangi bir değer yazmamışsınız gibi bir **hata** mesajı görürsünüz.
 
 ///
 
 ## Özet { #recap }
 
-`Query` ve `Path` ile aynı ortak deseni kullanarak, çerezleri `Cookie` ile tanımlayın.
+`Query` ve `Path` ile aynı ortak deseni kullanarak, cookie'leri `Cookie` ile tanımlayın.

@@ -1,6 +1,6 @@
 import pytest
 
-from docs_src.python_types.tutorial003_py39 import get_name_with_age
+from docs_src.python_types.tutorial003_py310 import get_name_with_age
 
 
 def test_get_name_with_age_pass_int():

@@ -41,7 +41,7 @@ FastAPIはこの戻り値の型を使って以下を行います:
 
 /// note | 備考
 
-`response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation 関数* のパラメータではありません。
+`response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータです。関数のパラメータやボディなどとは違い、*path operation 関数*のパラメータではありません。
 
 ///
 
@@ -183,7 +183,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 最も一般的なケースは、[高度なドキュメントで後述する「Responseを直接返す」](../advanced/response-directly.md){.internal-link target=_blank}場合です。
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 このシンプルなケースは、戻り値の型アノテーションが `Response` のクラス（またはサブクラス）であるため、FastAPIが自動的に処理します。
 
@@ -193,7 +193,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 型アノテーションで `Response` のサブクラスを使うこともできます:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 これは `RedirectResponse` が `Response` のサブクラスであり、FastAPIがこのシンプルなケースを自動処理するため、同様に動作します。
 
@@ -201,7 +201,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 しかし、Pydantic型として有効ではない別の任意のオブジェクト（例: データベースオブジェクト）を返し、関数でそのようにアノテーションすると、FastAPIはその型アノテーションからPydanticレスポンスモデルを作成しようとして失敗します。
 
-同様に、<abbr title='複数の型のunionは「これらの型のいずれか」を意味します。'>union</abbr>のように、複数の型のうち1つ以上がPydantic型として有効でないものを含む場合も起こります。例えば次は失敗します 💥:
+同様に、<dfn title="複数の型のユニオンは「これらの型のいずれか」を意味します。">ユニオン</dfn>のように、複数の型のうち1つ以上がPydantic型として有効でないものを含む場合も起こります。例えば次は失敗します 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

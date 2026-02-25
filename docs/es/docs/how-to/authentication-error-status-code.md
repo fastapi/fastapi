@@ -8,7 +8,7 @@ Pero si por alguna razón tus clientes dependen del comportamiento anterior, pue
 
 Por ejemplo, puedes crear una subclase de `HTTPBearer` que devuelva un error `403 Forbidden` en lugar del `401 Unauthorized` por defecto:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py39.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
 
 /// tip | Consejo
 

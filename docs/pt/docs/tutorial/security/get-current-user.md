@@ -2,7 +2,7 @@
 
 No capítulo anterior, o sistema de segurança (que é baseado no sistema de injeção de dependências) estava fornecendo à *função de operação de rota* um `token` como uma `str`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Mas isso ainda não é tão útil.
 

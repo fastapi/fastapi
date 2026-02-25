@@ -2,13 +2,13 @@
 
 A documentação da API usa **Swagger UI** e **ReDoc**, e cada um deles precisa de alguns arquivos JavaScript e CSS.
 
-Por padrão, esses arquivos são fornecidos por um <abbr title="Content Delivery Network – Rede de Entrega de Conteúdo: Um serviço, normalmente composto por vários servidores, que fornece arquivos estáticos, como JavaScript e CSS. É comumente usado para providenciar esses arquivos do servidor mais próximo do cliente, melhorando o desempenho.">CDN</abbr>.
+Por padrão, esses arquivos são fornecidos por um <abbr title="Content Delivery Network - Rede de Entrega de Conteúdo: Um serviço, normalmente composto por vários servidores, que fornece arquivos estáticos, como JavaScript e CSS. É comumente usado para servir esses arquivos a partir do servidor mais próximo do cliente, melhorando o desempenho.">CDN</abbr>.
 
 Mas é possível personalizá-los, você pode definir um CDN específico ou providenciar os arquivos você mesmo.
 
 ## CDN Personalizado para JavaScript e CSS { #custom-cdn-for-javascript-and-css }
 
-Vamos supor que você deseja usar um <abbr title="Content Delivery Network – Rede de Entrega de Conteúdo">CDN</abbr> diferente, por exemplo, você deseja usar `https://unpkg.com/`.
+Vamos supor que você deseja usar um <abbr title="Content Delivery Network - Rede de Entrega de Conteúdo">CDN</abbr> diferente, por exemplo, você deseja usar `https://unpkg.com/`.
 
 Isso pode ser útil se, por exemplo, você mora em um país que restringe algumas URLs.
 
@@ -18,7 +18,7 @@ O primeiro passo é desativar a documentação automática, pois por padrão, el
 
 Para desativá-los, defina suas URLs como `None` ao criar sua aplicação FastAPI:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
 
 ### Incluir a documentação personalizada { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Você pode reutilizar as funções internas do FastAPI para criar as páginas HT
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Dica
 
@@ -50,7 +50,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
 
 ### Teste { #test-it }
 
@@ -118,7 +118,7 @@ Depois disso, sua estrutura de arquivos deve se parecer com:
 * Importe `StaticFiles`.
 * "Monte" a instância `StaticFiles()` em um caminho específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
 
 ### Teste os arquivos estáticos { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Da mesma forma que ao usar um CDN personalizado, o primeiro passo é desativar a
 
 Para desativá-los, defina suas URLs como `None` ao criar sua aplicação FastAPI:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
 
 ### Incluir a documentação personalizada para arquivos estáticos { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Novamente, você pode reutilizar as funções internas do FastAPI para criar as 
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Dica
 
@@ -176,7 +176,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
 
 ### Teste a UI de Arquivos Estáticos { #test-static-files-ui }
 

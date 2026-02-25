@@ -20,7 +20,7 @@ GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
   - 🦇 „Dark-Mode“-Unterstützung.
 - 🐋 [Docker Compose](https://www.docker.com) für Entwicklung und Produktion.
 - 🔒 Sicheres Passwort-Hashing standardmäßig.
-- 🔑 JWT (JSON Web Token)-Token-Authentifizierung.
+- 🔑 JWT (JSON Web Token)-Authentifizierung.
 - 📫 E-Mail-basierte Passwortwiederherstellung.
 - ✅ Tests mit [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) als Reverse-Proxy / Load Balancer.

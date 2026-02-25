@@ -40,7 +40,7 @@ Algumas dessas soluções também podem ser open source ou oferecer planos gratu
 
 Vamos começar com uma aplicação FastAPI simples:
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
 Note que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`.
 
@@ -98,7 +98,7 @@ Em muitos casos, sua aplicação FastAPI será maior, e você provavelmente usar
 
 Por exemplo, você poderia ter uma seção para **items** e outra seção para **users**, e elas poderiam ser separadas por tags:
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
 ### Gere um cliente TypeScript com Tags { #generate-a-typescript-client-with-tags }
 
@@ -141,11 +141,11 @@ O FastAPI usa um **ID exclusivo** para cada *operação de rota*, ele é usado p
 
 Você pode personalizar essa função. Ela recebe uma `APIRoute` e retorna uma string.
 
-Por exemplo, aqui está usando a primeira tag (você provavelmente terá apenas uma tag) e o nome da *operação de rota* (o nome da função).
+Por exemplo, aqui está usando a primeira tag (Você provavelmente terá apenas uma tag) e o nome da *operação de rota* (o nome da função).
 
 Você pode então passar essa função personalizada para o **FastAPI** como o parâmetro `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
 ### Gere um cliente TypeScript com IDs de operação personalizados { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -167,7 +167,7 @@ Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do Ope
 
 Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então poderíamos **remover essa tag prefixada** com um script como este:
 
-{* ../../docs_src/generate_clients/tutorial004_py39.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
 //// tab | Node.js
 

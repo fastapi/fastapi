@@ -2,19 +2,23 @@
 
 When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
 
-By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+If you declare a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} FastAPI will use it to serialize the data to JSON, using Pydantic.
 
-Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a `JSONResponse` that would be used to send the response to the client.
+If you don't declare a response model, FastAPI will use the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} and put it in a `JSONResponse`.
 
-But you can return a `JSONResponse` directly from your *path operations*.
+You could also create a `JSONResponse` directly and return it.
 
-It might be useful, for example, to return custom headers or cookies.
+/// tip
+
+You will normally have much better performance using a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} than returning a `JSONResponse` directly, as that way it serializes the data using Pydantic, in Rust.
+
+///
 
 ## Return a `Response` { #return-a-response }
 
-In fact, you can return any `Response` or any sub-class of it.
+You can return any `Response` or any sub-class of it.
 
-/// tip
+/// info
 
 `JSONResponse` itself is a sub-class of `Response`.
 
@@ -54,7 +58,19 @@ Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML"
 
 You could put your XML content in a string, put that in a `Response`, and return it:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+
+## How a Response Model Works { #how-a-response-model-works }
+
+When you declare a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} in a path operation, **FastAPI** will use it to serialize the data to JSON, using Pydantic.
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
+As that will happen on the Rust side, the performance will be much better than if it was done with regular Python and the `JSONResponse` class.
+
+When using a response model FastAPI won't use the `jsonable_encoder` to convert the data (which would be slower) nor the `JSONResponse` class.
+
+Instead it takes the JSON bytes generated with Pydantic using the response model and returns a `Response` with the right media type for JSON directly (`application/json`).
 
 ## Notes { #notes }
 

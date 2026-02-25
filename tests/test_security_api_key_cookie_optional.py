@@ -1,8 +1,7 @@
-from typing import Optional
-
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import APIKeyCookie
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -14,7 +13,7 @@ class User(BaseModel):
     username: str
 
 
-def get_current_user(oauth_header: Optional[str] = Security(api_key)):
+def get_current_user(oauth_header: str | None = Security(api_key)):
     if oauth_header is None:
         return None
     user = User(username=oauth_header)
@@ -47,27 +46,29 @@ def test_openapi_schema():
     client = TestClient(app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Current User",
-                    "operationId": "read_current_user_users_me_get",
-                    "security": [{"APIKeyCookie": []}],
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Current User",
+                        "operationId": "read_current_user_users_me_get",
+                        "security": [{"APIKeyCookie": []}],
+                    }
                 }
-            }
-        },
-        "components": {
-            "securitySchemes": {
-                "APIKeyCookie": {"type": "apiKey", "name": "key", "in": "cookie"}
-            }
-        },
-    }
+            },
+            "components": {
+                "securitySchemes": {
+                    "APIKeyCookie": {"type": "apiKey", "name": "key", "in": "cookie"}
+                }
+            },
+        }
+    )

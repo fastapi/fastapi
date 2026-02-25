@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## Import `File` and `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## Define `File` and `Form` parameters { #define-file-and-form-parameters }
 
 Create file and form parameters the same way you would for `Body` or `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 The files and form fields will be uploaded as form data and you will receive the files and form fields.
 

@@ -8,7 +8,7 @@
 
 ## ASGI middleware 추가하기 { #adding-asgi-middlewares }
 
-**FastAPI**는 Starlette를 기반으로 하고 <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> 사양을 구현하므로, 어떤 ASGI middleware든 사용할 수 있습니다.
+**FastAPI**는 Starlette를 기반으로 하고 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버 게이트웨이 인터페이스">ASGI</abbr> 사양을 구현하므로, 어떤 ASGI middleware든 사용할 수 있습니다.
 
 ASGI 사양을 따르기만 하면, FastAPI나 Starlette를 위해 만들어진 middleware가 아니어도 동작합니다.
 
@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `http` 또는 `ws`로 들어오는 모든 요청은 대신 보안 스킴으로 리디렉션됩니다.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 올바르게 설정된 `Host` 헤더가 있어야 하도록 강제합니다.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 다음 인자들을 지원합니다:
 
@@ -78,7 +78,7 @@ HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 �
 
 이 middleware는 일반 응답과 스트리밍 응답을 모두 처리합니다.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 다음 인자들을 지원합니다:
 

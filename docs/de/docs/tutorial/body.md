@@ -154,7 +154,7 @@ Die Funktionsparameter werden wie folgt erkannt:
 
 FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, aufgrund des definierten Defaultwertes `= None`.
 
-Das `str | None` (Python 3.10+) oder `Union` in `Union[str, None]` (Python 3.9+) wird von FastAPI nicht verwendet, um zu bestimmen, dass der Wert nicht erforderlich ist. FastAPI weiß, dass er nicht erforderlich ist, weil er einen Defaultwert von `= None` hat.
+Das `str | None` wird von FastAPI nicht verwendet, um zu bestimmen, dass der Wert nicht erforderlich ist. FastAPI weiß, dass er nicht erforderlich ist, weil er einen Defaultwert von `= None` hat.
 
 Das Hinzufügen der Typannotationen ermöglicht jedoch Ihrem Editor, Ihnen eine bessere Unterstützung zu bieten und Fehler zu erkennen.
 

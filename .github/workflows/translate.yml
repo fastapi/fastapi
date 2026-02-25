@@ -35,6 +35,11 @@ on:
         type: boolean
         required: false
         default: false
+      max:
+        description: Maximum number of items to translate (e.g. 10)
+        type: number
+        required: false
+        default: 10
 
 jobs:
   langs:
@@ -115,3 +120,4 @@ jobs:
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
           COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
+          MAX: ${{ github.event.inputs.max }}

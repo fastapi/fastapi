@@ -3,13 +3,14 @@ import importlib
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial001_py39",
-        "tutorial001_an_py39",
+        "tutorial001_py310",
+        "tutorial001_an_py310",
     ],
 )
 def get_app(request: pytest.FixtureRequest):
@@ -149,88 +150,96 @@ def test_post_files_and_token(tmp_path, app: FastAPI):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/files/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/files/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Create File",
+                        "operationId": "create_file_files__post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "multipart/form-data": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_create_file_files__post"
                                     }
                                 }
                             },
+                            "required": True,
+                        },
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "Body_create_file_files__post": {
+                        "title": "Body_create_file_files__post",
+                        "required": ["file", "fileb", "token"],
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "title": "File",
+                                "type": "string",
+                                "contentMediaType": "application/octet-stream",
+                            },
+                            "fileb": {
+                                "title": "Fileb",
+                                "contentMediaType": "application/octet-stream",
+                                "type": "string",
+                            },
+                            "token": {"title": "Token", "type": "string"},
                         },
                     },
-                    "summary": "Create File",
-                    "operationId": "create_file_files__post",
-                    "requestBody": {
-                        "content": {
-                            "multipart/form-data": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_create_file_files__post"
-                                }
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
                             }
                         },
-                        "required": True,
                     },
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "Body_create_file_files__post": {
-                    "title": "Body_create_file_files__post",
-                    "required": ["file", "fileb", "token"],
-                    "type": "object",
-                    "properties": {
-                        "file": {"title": "File", "type": "string", "format": "binary"},
-                        "fileb": {
-                            "title": "Fileb",
-                            "type": "string",
-                            "format": "binary",
-                        },
-                        "token": {"title": "Token", "type": "string"},
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            }
-        },
-    }
+            },
+        }
+    )

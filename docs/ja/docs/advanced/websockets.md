@@ -38,13 +38,13 @@ $ pip install websockets
 
 しかし、これはWebSocketsのサーバーサイドに焦点を当て、動作する例を示す最も簡単な方法です。
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## `websocket` を作成する { #create-a-websocket }
 
 **FastAPI** アプリケーションで、`websocket` を作成します。
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技術詳細
 
@@ -58,7 +58,7 @@ $ pip install websockets
 
 WebSocketルートでは、メッセージを待機して送信するために `await` を使用できます。
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
 
 バイナリやテキストデータ、JSONデータを送受信できます。
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 WebSocket接続が閉じられると、 `await websocket.receive_text()` は例外 `WebSocketDisconnect` を発生させ、この例のようにキャッチして処理することができます。
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
 
 試してみるには、
 

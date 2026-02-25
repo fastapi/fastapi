@@ -40,7 +40,7 @@ Temel özellikleri şunlardır:
 * **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [Mevcut en hızlı Python framework'lerinden biri](#performance).
 * **Kodlaması Hızlı**: Özellik geliştirme hızını yaklaşık %200 ile %300 aralığında artırır. *
 * **Daha az hata**: İnsan (geliştirici) kaynaklı hataları yaklaşık %40 azaltır. *
-* **Sezgisel**: Harika bir editör desteği. Her yerde <abbr title="auto-complete, autocompletion, IntelliSense olarak da bilinir">Completion</abbr>. Hata ayıklamaya daha az zaman.
+* **Sezgisel**: Harika bir editör desteği. Her yerde <dfn title="oto-tamamlama, autocompletion, IntelliSense olarak da bilinir">Tamamlama</dfn>. Hata ayıklamaya daha az zaman.
 * **Kolay**: Kullanımı ve öğrenmesi kolay olacak şekilde tasarlandı. Doküman okumaya daha az zaman.
 * **Kısa**: Kod tekrarını minimize eder. Her parametre tanımından birden fazla özellik. Daha az hata.
 * **Sağlam**: Production'a hazır kod elde edersiniz. Otomatik etkileşimli dokümantasyon ile birlikte.
@@ -127,7 +127,7 @@ Temel özellikleri şunlardır:
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Web API yerine terminalde kullanılacak bir <abbr title="Command Line Interface">CLI</abbr> uygulaması geliştiriyorsanız <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>'a göz atın.
+Web API yerine terminalde kullanılacak bir <abbr title="Command Line Interface - Komut Satırı Arayüzü">CLI</abbr> uygulaması geliştiriyorsanız <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>'a göz atın.
 
 **Typer**, FastAPI'ın küçük kardeşi. Ve hedefi CLI'ların **FastAPI'ı** olmak. ⌨️ 🚀
 
@@ -161,8 +161,6 @@ $ pip install "fastapi[standard]"
 Şu içerikle `main.py` adında bir dosya oluşturalım:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -174,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -183,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Eğer kodunuz `async` / `await` kullanıyorsa, `async def` kullanın:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -197,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -288,9 +284,7 @@ Alternatif otomatik dokümantasyonu göreceksiniz (<a href="https://github.com/R
 
 Body'yi Pydantic sayesinde standart Python tiplerini kullanarak tanımlayalım.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -300,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -309,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -374,7 +368,7 @@ item: Item
 * Verinin doğrulanması:
     * Veri geçersiz olduğunda otomatik ve anlaşılır hatalar.
     * Çok derin iç içe JSON nesneleri için bile doğrulama.
-* Girdi verisinin <abbr title="serialization, parsing, marshalling olarak da bilinir">Dönüşümü</abbr>: network'ten gelen veriyi Python verisine ve type'larına çevirir. Şunlardan okur:
+* Girdi verisinin <dfn title="şöyle de bilinir: serileştirme, ayrıştırma, marshalling">Dönüşümü</dfn>: network'ten gelen veriyi Python verisine ve type'larına çevirir. Şunlardan okur:
     * JSON.
     * Path parameter'lar.
     * Query parameter'lar.
@@ -382,7 +376,7 @@ item: Item
     * Header'lar.
     * Form'lar.
     * File'lar.
-* Çıktı verisinin <abbr title="serialization, parsing, marshalling olarak da bilinir">Dönüşümü</abbr>: Python verisini ve type'larını network verisine çevirir (JSON olarak):
+* Çıktı verisinin <dfn title="şöyle de bilinir: serileştirme, ayrıştırma, marshalling">Dönüşümü</dfn>: Python verisini ve type'larını network verisine çevirir (JSON olarak):
     * Python type'larını dönüştürür (`str`, `int`, `float`, `bool`, `list`, vb.).
     * `datetime` nesneleri.
     * `UUID` nesneleri.
@@ -445,7 +439,7 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 
 * **parameter**'ların farklı yerlerden: **header**'lar, **cookie**'ler, **form alanları** ve **file**'lar olarak tanımlanması.
 * `maximum_length` ya da `regex` gibi **doğrulama kısıtlamalarının** nasıl ayarlanacağı.
-* Çok güçlü ve kullanımı kolay bir **<abbr title="components, resources, providers, services, injectables olarak da bilinir">Dependency Injection</abbr>** sistemi.
+* Çok güçlü ve kullanımı kolay bir **<dfn title="şöyle de bilinir: bileşenler, kaynaklar, sağlayıcılar, servisler, enjekte edilebilirler">Bağımlılık Enjeksiyonu</dfn>** sistemi.
 * **JWT tokens** ve **HTTP Basic** auth ile **OAuth2** desteği dahil güvenlik ve kimlik doğrulama.
 * **Çok derin iç içe JSON modelleri** tanımlamak için daha ileri (ama aynı derecede kolay) teknikler (Pydantic sayesinde).
 * <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> ve diğer kütüphaneler ile **GraphQL** entegrasyonu.
@@ -530,7 +524,7 @@ Starlette tarafından kullanılanlar:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient` kullanmak istiyorsanız gereklidir.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - varsayılan template yapılandırmasını kullanmak istiyorsanız gereklidir.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()` ile, form <abbr title="HTTP request'inden gelen string'i Python verisine dönüştürme">"parsing"</abbr> desteği istiyorsanız gereklidir.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()` ile, form <dfn title="HTTP request'ten gelen string'i Python verisine dönüştürme">"ayrıştırma"</dfn> desteği istiyorsanız gereklidir.
 
 FastAPI tarafından kullanılanlar:
 
@@ -540,7 +534,7 @@ FastAPI tarafından kullanılanlar:
 
 ### `standard` Bağımlılıkları Olmadan { #without-standard-dependencies }
 
-`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `pip install "fastapi[standard]"` yerine `pip install fastapi` ile kurabilirsiniz.
+`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `pip install fastapi` ile kurabilirsiniz.
 
 ### `fastapi-cloud-cli` Olmadan { #without-fastapi-cloud-cli }
 
