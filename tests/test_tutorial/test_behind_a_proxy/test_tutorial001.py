@@ -12,7 +12,7 @@ def test_main():
     assert response.json() == {
         "message": "Hello World",
         "path": "/api/v1/app",
-        "root_path": "/api/v1"
+        "root_path": "/api/v1",
     }
 
 
