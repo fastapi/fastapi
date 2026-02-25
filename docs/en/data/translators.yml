@@ -1,6 +1,6 @@
 nilslindemann:
   login: nilslindemann
-  count: 122
+  count: 130
   avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
   url: https://github.com/nilslindemann
 jaystone776:
@@ -8,16 +8,21 @@ jaystone776:
   count: 46
   avatarUrl: https://avatars.githubusercontent.com/u/11191137?u=299205a95e9b6817a43144a48b643346a5aac5cc&v=4
   url: https://github.com/jaystone776
+tiangolo:
+  login: tiangolo
+  count: 31
+  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
+  url: https://github.com/tiangolo
+ceb10n:
+  login: ceb10n
+  count: 30
+  avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
+  url: https://github.com/ceb10n
 valentinDruzhinin:
   login: valentinDruzhinin
   count: 29
   avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
   url: https://github.com/valentinDruzhinin
-ceb10n:
-  login: ceb10n
-  count: 27
-  avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
-  url: https://github.com/ceb10n
 tokusumi:
   login: tokusumi
   count: 23
@@ -38,16 +43,16 @@ waynerv:
   count: 20
   avatarUrl: https://avatars.githubusercontent.com/u/39515546?u=ec35139777597cdbbbddda29bf8b9d4396b429a9&v=4
   url: https://github.com/waynerv
+hard-coders:
+  login: hard-coders
+  count: 16
+  avatarUrl: https://avatars.githubusercontent.com/u/9651103?u=78d12d1acdf853c817700145e73de7fd9e5d068b&v=4
+  url: https://github.com/hard-coders
 AlertRED:
   login: AlertRED
   count: 16
   avatarUrl: https://avatars.githubusercontent.com/u/15695000?u=f5a4944c6df443030409c88da7d7fa0b7ead985c&v=4
   url: https://github.com/AlertRED
-hard-coders:
-  login: hard-coders
-  count: 15
-  avatarUrl: https://avatars.githubusercontent.com/u/9651103?u=95db33927bbff1ed1c07efddeb97ac2ff33068ed&v=4
-  url: https://github.com/hard-coders
 Joao-Pedro-P-Holanda:
   login: Joao-Pedro-P-Holanda
   count: 14
@@ -103,6 +108,11 @@ pablocm83:
   count: 8
   avatarUrl: https://avatars.githubusercontent.com/u/28315068?u=3310fbb05bb8bfc50d2c48b6cb64ac9ee4a14549&v=4
   url: https://github.com/pablocm83
+YuriiMotov:
+  login: YuriiMotov
+  count: 8
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
+  url: https://github.com/YuriiMotov
 ptt3199:
   login: ptt3199
   count: 7
@@ -118,15 +128,10 @@ batlopes:
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/33462923?u=0fb3d7acb316764616f11e4947faf080e49ad8d9&v=4
   url: https://github.com/batlopes
-tiangolo:
-  login: tiangolo
-  count: 6
-  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
-  url: https://github.com/tiangolo
 lucasbalieiro:
   login: lucasbalieiro
   count: 6
-  avatarUrl: https://avatars.githubusercontent.com/u/37416577?u=dad91601ee4f40458d691774ec439aff308344d7&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/37416577?u=d144221c34c08adac8b20e1833d776ffa1c4b1d0&v=4
   url: https://github.com/lucasbalieiro
 Alexandrhub:
   login: Alexandrhub
@@ -286,7 +291,7 @@ hsuanchi:
 alejsdev:
   login: alejsdev
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=447d12a1b347f466b35378bee4c7104cc9b2c571&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=0facffe3abf87f57a1f05fa773d1119cc5c2f6a5&v=4
   url: https://github.com/alejsdev
 riroan:
   login: riroan
@@ -356,7 +361,7 @@ Rishat-F:
 ruzia:
   login: ruzia
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/24503?v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/24503?u=abce66d26c9611818720f11e6ae6773a6e0928f8&v=4
   url: https://github.com/ruzia
 izaguerreiro:
   login: izaguerreiro
@@ -408,6 +413,11 @@ ayr-ton:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/1090517?u=5cf70a0e0f0dbf084e074e494aa94d7c91a46ba6&v=4
   url: https://github.com/ayr-ton
+Kadermiyanyedi:
+  login: Kadermiyanyedi
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/48386782?u=e34f31bf50a8ed8d37fbfa4f301b0c190b1b4b86&v=4
+  url: https://github.com/Kadermiyanyedi
 KdHyeon0661:
   login: KdHyeon0661
   count: 2
@@ -456,7 +466,7 @@ ArtemKhymenko:
 hasnatsajid:
   login: hasnatsajid
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/86589885?u=6668823c3b029bfecf10a8918ed3af1aafb8b15e&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/86589885?v=4
   url: https://github.com/hasnatsajid
 alperiox:
   login: alperiox
@@ -543,8 +553,3 @@ EdmilsonRodrigues:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/62777025?u=217d6f3cd6cc750bb8818a3af7726c8d74eb7c2d&v=4
   url: https://github.com/EdmilsonRodrigues
-YuriiMotov:
-  login: YuriiMotov
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
-  url: https://github.com/YuriiMotov

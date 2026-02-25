@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Angenommen, Sie definieren eine *Pfadoperation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Wenn der Client versucht, zu `/items` zu gehen, würde er standardmäßig zu `/items/` umgeleitet.
 
@@ -64,7 +64,7 @@ Wenn Sie mehr über HTTPS erfahren möchten, lesen Sie den Leitfaden [Über HTTP
 
 ///
 
-### Wie Proxy-Forwarded-Header funktionieren
+### Wie Proxy-Forwarded-Header funktionieren { #how-proxy-forwarded-headers-work }
 
 Hier ist eine visuelle Darstellung, wie der **Proxy** weitergeleitete Header zwischen dem Client und dem **Anwendungsserver** hinzufügt:
 
@@ -115,7 +115,7 @@ In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1
 
 Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app` gibt.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Und der Proxy würde das **Pfadpräfix** on-the-fly **„entfernen“**, bevor er den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an den Anwendungsserver (wahrscheinlich Uvicorn via FastAPI CLI) übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
 
@@ -193,7 +193,7 @@ Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede
 
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Wenn Sie Uvicorn dann starten mit:
 
@@ -220,7 +220,7 @@ wäre die <abbr title="Response – Antwort: Daten, die der Server zum anfragend
 
 Falls Sie keine Möglichkeit haben, eine Kommandozeilenoption wie `--root-path` oder ähnlich zu übergeben, können Sie, alternativ dazu, beim Erstellen Ihrer FastAPI-Anwendung den Parameter `root_path` setzen:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe der `--root-path`-Kommandozeilenoption an Uvicorn oder Hypercorn.
 
@@ -228,7 +228,7 @@ Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe d
 
 Beachten Sie, dass der Server (Uvicorn) diesen `root_path` für nichts anderes verwendet als für die Weitergabe an die Anwendung.
 
-Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Response:
+Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Response:
 
 ```JSON
 {
@@ -400,7 +400,7 @@ Wenn Sie eine benutzerdefinierte Liste von Servern (`servers`) übergeben und es
 
 Zum Beispiel:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Erzeugt ein OpenAPI-Schema, wie:
 
@@ -443,11 +443,19 @@ Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server
 
 ///
 
+/// note | Technische Details
+
+Die Eigenschaft `servers` in der OpenAPI-Spezifikation ist optional.
+
+Wenn Sie den Parameter `servers` nicht angeben und `root_path` den Wert `/` hat, wird die Eigenschaft `servers` im generierten OpenAPI-Schema standardmäßig vollständig weggelassen, was dem Äquivalent eines einzelnen Servers mit einem `url`-Wert von `/` entspricht.
+
+///
+
 ### Den automatischen Server von `root_path` deaktivieren { #disable-automatic-server-from-root-path }
 
 Wenn Sie nicht möchten, dass **FastAPI** einen automatischen Server inkludiert, welcher `root_path` verwendet, können Sie den Parameter `root_path_in_servers=False` verwenden:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 Dann wird er nicht in das OpenAPI-Schema aufgenommen.
 

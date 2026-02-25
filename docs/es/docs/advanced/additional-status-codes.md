@@ -1,10 +1,10 @@
-# Códigos de Estado Adicionales
+# Códigos de Estado Adicionales { #additional-status-codes }
 
 Por defecto, **FastAPI** devolverá los responses usando un `JSONResponse`, colocando el contenido que devuelves desde tu *path operation* dentro de ese `JSONResponse`.
 
 Usará el código de estado por defecto o el que configures en tu *path operation*.
 
-## Códigos de estado adicionales
+## Códigos de estado adicionales { #additional-status-codes_1 }
 
 Si quieres devolver códigos de estado adicionales aparte del principal, puedes hacerlo devolviendo un `Response` directamente, como un `JSONResponse`, y configurando el código de estado adicional directamente.
 
@@ -34,7 +34,7 @@ También podrías usar `from starlette.responses import JSONResponse`.
 
 ///
 
-## OpenAPI y documentación de API
+## OpenAPI y documentación de API { #openapi-and-api-docs }
 
 Si devuelves códigos de estado adicionales y responses directamente, no se incluirán en el esquema de OpenAPI (la documentación de la API), porque FastAPI no tiene una forma de saber de antemano qué vas a devolver.
 

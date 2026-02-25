@@ -18,7 +18,7 @@ Ohne Änderung der Einstellungen ist die Syntaxhervorhebung standardmäßig akti
 
 Sie können sie jedoch deaktivieren, indem Sie `syntaxHighlight` auf `False` setzen:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
 ... und dann zeigt die Swagger-Oberfläche die Syntaxhervorhebung nicht mehr an:
 
@@ -28,7 +28,7 @@ Sie können sie jedoch deaktivieren, indem Sie `syntaxHighlight` auf `False` set
 
 Auf die gleiche Weise könnten Sie das Theme der Syntaxhervorhebung mit dem Schlüssel `"syntaxHighlight.theme"` festlegen (beachten Sie, dass er einen Punkt in der Mitte hat):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
 Obige Konfiguration würde das Theme für die Farbe der Syntaxhervorhebung ändern:
 
@@ -40,13 +40,13 @@ FastAPI enthält einige Defaultkonfigurationsparameter, die für die meisten Anw
 
 Es umfasst die folgenden Defaultkonfigurationen:
 
-{* ../../fastapi/openapi/docs.py ln[8:23] hl[17:23] *}
+{* ../../fastapi/openapi/docs.py ln[9:24] hl[18:24] *}
 
 Sie können jede davon überschreiben, indem Sie im Argument `swagger_ui_parameters` einen anderen Wert festlegen.
 
 Um beispielsweise `deepLinking` zu deaktivieren, könnten Sie folgende Einstellungen an `swagger_ui_parameters` übergeben:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
 
 ## Andere Parameter der Swagger-Oberfläche { #other-swagger-ui-parameters }
 

@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Create a Virtual Environment { #create-a-virtual-environment }
 
-When you start working on a Python project **for the first time**, create a virtual environment **<abbr title="there are other options, this is a simple guideline">inside your project</abbr>**.
+When you start working on a Python project **for the first time**, create a virtual environment **<dfn title="there are other options, this is a simple guideline">inside your project</dfn>**.
 
 /// tip
 
@@ -241,6 +241,26 @@ $ python -m pip install --upgrade pip
 ```
 
 </div>
+
+/// tip
+
+Sometimes, you might get a **`No module named pip`** error when trying to upgrade pip.
+
+If this happens, install and upgrade pip using the command below:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+This command will install pip if it is not already installed and also ensures that the installed version of pip is at least as recent as the one available in `ensurepip`.
+
+///
 
 ## Add `.gitignore` { #add-gitignore }
 

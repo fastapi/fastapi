@@ -1,20 +1,20 @@
-# 헤더 매개변수
+# 헤더 매개변수 { #header-parameters }
 
 헤더 매개변수를 `Query`, `Path` 그리고 `Cookie` 매개변수들과 같은 방식으로 정의할 수 있습니다.
 
-## `Header` 임포트
+## `Header` 임포트 { #import-header }
 
 먼저 `Header`를 임포트합니다:
 
-{* ../../docs_src/header_params/tutorial001.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-## `Header` 매개변수 선언
+## `Header` 매개변수 선언 { #declare-header-parameters }
 
 `Path`, `Query` 그리고 `Cookie`를 사용한 동일한 구조를 이용하여 헤더 매개변수를 선언합니다.
 
 첫 번째 값은 기본값이며, 추가 검증이나 어노테이션 매개변수 모두 전달할 수 있습니다:
 
-{* ../../docs_src/header_params/tutorial001.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
 /// note | 기술 세부사항
 
@@ -30,7 +30,7 @@
 
 ///
 
-## 자동 변환
+## 자동 변환 { #automatic-conversion }
 
 `Header`는 `Path`, `Query` 그리고 `Cookie`가 제공하는 것 외에 기능이 조금 더 있습니다.
 
@@ -46,15 +46,15 @@
 
 만약 언더스코어를 하이픈으로 자동 변환을 비활성화해야 할 어떤 이유가 있다면, `Header`의 `convert_underscores` 매개변수를 `False`로 설정하십시오:
 
-{* ../../docs_src/header_params/tutorial002.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
 /// warning | 경고
 
-`convert_underscore`를 `False`로 설정하기 전에, 어떤 HTTP 프록시들과 서버들은 언더스코어가 포함된 헤더 사용을 허락하지 않는다는 것을 명심하십시오.
+`convert_underscores`를 `False`로 설정하기 전에, 어떤 HTTP 프록시들과 서버들은 언더스코어가 포함된 헤더 사용을 허락하지 않는다는 것을 명심하십시오.
 
 ///
 
-## 중복 헤더
+## 중복 헤더 { #duplicate-headers }
 
 중복 헤더들을 수신할 수 있습니다. 즉, 다중값을 갖는 동일한 헤더를 뜻합니다.
 
@@ -64,9 +64,9 @@
 
 예를 들어, 두 번 이상 나타날 수 있는 `X-Token`헤더를 선언하려면, 다음과 같이 작성합니다:
 
-{* ../../docs_src/header_params/tutorial003.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
-다음과 같은 두 개의 HTTP 헤더를 전송하여 해당 *경로* 와 통신할 경우:
+다음과 같은 두 개의 HTTP 헤더를 전송하여 해당 *경로 처리* 와 통신할 경우:
 
 ```
 X-Token: foo
@@ -84,7 +84,7 @@ X-Token: bar
 }
 ```
 
-## 요약
+## 요약 { #recap }
 
 `Header`는 `Query`, `Path`, `Cookie`와 동일한 패턴을 사용하여 선언합니다.
 

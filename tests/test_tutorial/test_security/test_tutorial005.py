@@ -2,20 +2,16 @@ import importlib
 from types import ModuleType
 
 import pytest
-from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="mod",
     params=[
-        "tutorial005",
         pytest.param("tutorial005_py310", marks=needs_py310),
-        "tutorial005_an",
-        pytest.param("tutorial005_py39", marks=needs_py39),
-        pytest.param("tutorial005_an_py39", marks=needs_py39),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )
@@ -217,240 +213,202 @@ def test_openapi_schema(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/token": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {"$ref": "#/components/schemas/Token"}
-                                }
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/token": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/Token"}
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
                             },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Login For Access Token",
+                        "operationId": "login_for_access_token_token_post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "application/x-www-form-urlencoded": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Login For Access Token",
-                    "operationId": "login_for_access_token_token_post",
-                    "requestBody": {
-                        "content": {
-                            "application/x-www-form-urlencoded": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
-                                }
+                    }
+                },
+                "/users/me/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/User"}
+                                    }
+                                },
                             }
                         },
-                        "required": True,
-                    },
-                }
+                        "summary": "Read Users Me",
+                        "operationId": "read_users_me_users_me__get",
+                        "security": [{"OAuth2PasswordBearer": ["me"]}],
+                    }
+                },
+                "/users/me/items/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Own Items",
+                        "operationId": "read_own_items_users_me_items__get",
+                        "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
+                    }
+                },
+                "/status/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read System Status",
+                        "operationId": "read_system_status_status__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                    }
+                },
             },
-            "/users/me/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {"$ref": "#/components/schemas/User"}
-                                }
-                            },
-                        }
-                    },
-                    "summary": "Read Users Me",
-                    "operationId": "read_users_me_users_me__get",
-                    "security": [{"OAuth2PasswordBearer": ["me"]}],
-                }
-            },
-            "/users/me/items/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Own Items",
-                    "operationId": "read_own_items_users_me_items__get",
-                    "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
-                }
-            },
-            "/status/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read System Status",
-                    "operationId": "read_system_status_status__get",
-                    "security": [{"OAuth2PasswordBearer": []}],
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "User": {
-                    "title": "User",
-                    "required": IsOneOf(
-                        ["username", "email", "full_name", "disabled"],
-                        # TODO: remove when deprecating Pydantic v1
-                        ["username"],
-                    ),
-                    "type": "object",
-                    "properties": {
-                        "username": {"title": "Username", "type": "string"},
-                        "email": IsDict(
-                            {
+            "components": {
+                "schemas": {
+                    "User": {
+                        "title": "User",
+                        "required": ["username"],
+                        "type": "object",
+                        "properties": {
+                            "username": {"title": "Username", "type": "string"},
+                            "email": {
                                 "title": "Email",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Email", "type": "string"}
-                        ),
-                        "full_name": IsDict(
-                            {
+                            },
+                            "full_name": {
                                 "title": "Full Name",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Full Name", "type": "string"}
-                        ),
-                        "disabled": IsDict(
-                            {
+                            },
+                            "disabled": {
                                 "title": "Disabled",
                                 "anyOf": [{"type": "boolean"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Disabled", "type": "boolean"}
-                        ),
+                            },
+                        },
                     },
-                },
-                "Token": {
-                    "title": "Token",
-                    "required": ["access_token", "token_type"],
-                    "type": "object",
-                    "properties": {
-                        "access_token": {"title": "Access Token", "type": "string"},
-                        "token_type": {"title": "Token Type", "type": "string"},
+                    "Token": {
+                        "title": "Token",
+                        "required": ["access_token", "token_type"],
+                        "type": "object",
+                        "properties": {
+                            "access_token": {"title": "Access Token", "type": "string"},
+                            "token_type": {"title": "Token Type", "type": "string"},
+                        },
                     },
-                },
-                "Body_login_for_access_token_token_post": {
-                    "title": "Body_login_for_access_token_token_post",
-                    "required": ["username", "password"],
-                    "type": "object",
-                    "properties": {
-                        "grant_type": IsDict(
-                            {
+                    "Body_login_for_access_token_token_post": {
+                        "title": "Body_login_for_access_token_token_post",
+                        "required": ["username", "password"],
+                        "type": "object",
+                        "properties": {
+                            "grant_type": {
                                 "title": "Grant Type",
                                 "anyOf": [
                                     {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Grant Type",
-                                "pattern": "^password$",
+                            },
+                            "username": {"title": "Username", "type": "string"},
+                            "password": {
+                                "title": "Password",
                                 "type": "string",
-                            }
-                        ),
-                        "username": {"title": "Username", "type": "string"},
-                        "password": {
-                            "title": "Password",
-                            "type": "string",
-                            "format": "password",
-                        },
-                        "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
+                                "format": "password",
+                            },
+                            "scope": {
+                                "title": "Scope",
+                                "type": "string",
+                                "default": "",
+                            },
+                            "client_id": {
                                 "title": "Client Id",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
+                            },
+                            "client_secret": {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
                                 "format": "password",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Client Secret",
-                                "type": "string",
-                                "format": "password",
-                            }
-                        ),
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            },
-            "securitySchemes": {
-                "OAuth2PasswordBearer": {
-                    "type": "oauth2",
-                    "flows": {
-                        "password": {
-                            "scopes": {
-                                "me": "Read information about the current user.",
-                                "items": "Read items.",
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
                             },
-                            "tokenUrl": "token",
-                        }
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
                     },
-                }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                },
+                "securitySchemes": {
+                    "OAuth2PasswordBearer": {
+                        "type": "oauth2",
+                        "flows": {
+                            "password": {
+                                "scopes": {
+                                    "me": "Read information about the current user.",
+                                    "items": "Read items.",
+                                },
+                                "tokenUrl": "token",
+                            }
+                        },
+                    }
+                },
             },
-        },
-    }
+        }
+    )

@@ -18,7 +18,7 @@ Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser
 
 Dazu deklarieren wir eine Methode `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
@@ -26,7 +26,7 @@ In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zus
 
 Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „Parametrisieren“ der Abhängigkeit verwenden können:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmern, wir werden es direkt in unserem Code verwenden.
 
@@ -34,7 +34,7 @@ In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmer
 
 Wir könnten eine Instanz dieser Klasse erstellen mit:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ... und übergibt, was immer das als Wert dieser Abhängigkeit in unserer *Pfadoperation-Funktion* zurückgibt, als den Parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | Tipp
 
@@ -70,11 +70,21 @@ Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherhe
 
 Sie benötigen diese technischen Details höchstwahrscheinlich nicht.
 
-Diese Details sind hauptsächlich nützlich, wenn Sie eine FastAPI-Anwendung haben, die älter als 0.118.0 ist, und Sie auf Probleme mit Abhängigkeiten mit `yield` stoßen.
+Diese Details sind hauptsächlich nützlich, wenn Sie eine FastAPI-Anwendung haben, die älter als 0.121.0 ist, und Sie auf Probleme mit Abhängigkeiten mit `yield` stoßen.
 
 ///
 
 Abhängigkeiten mit `yield` haben sich im Laufe der Zeit weiterentwickelt, um verschiedene Anwendungsfälle abzudecken und einige Probleme zu beheben, hier ist eine Zusammenfassung der Änderungen.
+
+### Abhängigkeiten mit `yield` und `scope` { #dependencies-with-yield-and-scope }
+
+In Version 0.121.0 hat FastAPI Unterstützung für `Depends(scope="function")` für Abhängigkeiten mit `yield` hinzugefügt.
+
+Mit `Depends(scope="function")` wird der Exit-Code nach `yield` direkt nach dem Ende der *Pfadoperation-Funktion* ausgeführt, bevor die Response an den Client gesendet wird.
+
+Und bei Verwendung von `Depends(scope="request")` (dem Default) wird der Exit-Code nach `yield` ausgeführt, nachdem die Response gesendet wurde.
+
+Mehr dazu finden Sie in der Dokumentation zu [Abhängigkeiten mit `yield` – Frühes Beenden und `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
 
 ### Abhängigkeiten mit `yield` und `StreamingResponse`, Technische Details { #dependencies-with-yield-and-streamingresponse-technical-details }
 
@@ -134,7 +144,7 @@ Dies wurde in Version 0.110.0 geändert, um unbehandelten Speicherverbrauch durc
 
 ### Hintergrundtasks und Abhängigkeiten mit `yield`, Technische Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} bereits ausgeführt worden wären.
+Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} bereits ausgeführt worden wären.
 
 Dies war so designt, hauptsächlich um die Verwendung derselben von Abhängigkeiten „geyieldeten“ Objekte in Hintergrundtasks zu ermöglichen, da der Exit-Code erst ausgeführt wurde, nachdem die Hintergrundtasks abgeschlossen waren.
 

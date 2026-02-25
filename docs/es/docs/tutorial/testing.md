@@ -1,4 +1,4 @@
-# Testing
+# Testing { #testing }
 
 Gracias a <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
 
@@ -6,7 +6,7 @@ Está basado en <a href="https://www.python-httpx.org" class="external-link" tar
 
 Con él, puedes usar <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directamente con **FastAPI**.
 
-## Usando `TestClient`
+## Usando `TestClient` { #using-testclient }
 
 /// info | Información
 
@@ -30,7 +30,7 @@ Usa el objeto `TestClient` de la misma manera que con `httpx`.
 
 Escribe declaraciones `assert` simples con las expresiones estándar de Python que necesites revisar (otra vez, estándar de `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Consejo
 
@@ -52,17 +52,17 @@ También podrías usar `from starlette.testclient import TestClient`.
 
 /// tip | Consejo
 
-Si quieres llamar a funciones `async` en tus pruebas además de enviar solicitudes a tu aplicación FastAPI (por ejemplo, funciones asincrónicas de bases de datos), echa un vistazo a las [Pruebas Asincrónicas](../advanced/async-tests.md){.internal-link target=_blank} en el tutorial avanzado.
+Si quieres llamar a funciones `async` en tus pruebas además de enviar requests a tu aplicación FastAPI (por ejemplo, funciones asincrónicas de bases de datos), echa un vistazo a las [Pruebas Asincrónicas](../advanced/async-tests.md){.internal-link target=_blank} en el tutorial avanzado.
 
 ///
 
-## Separando pruebas
+## Separando pruebas { #separating-tests }
 
 En una aplicación real, probablemente tendrías tus pruebas en un archivo diferente.
 
 Y tu aplicación de **FastAPI** también podría estar compuesta de varios archivos/módulos, etc.
 
-### Archivo de aplicación **FastAPI**
+### Archivo de aplicación **FastAPI** { #fastapi-app-file }
 
 Digamos que tienes una estructura de archivos como se describe en [Aplicaciones Más Grandes](bigger-applications.md){.internal-link target=_blank}:
 
@@ -75,9 +75,9 @@ Digamos que tienes una estructura de archivos como se describe en [Aplicaciones 
 
 En el archivo `main.py` tienes tu aplicación de **FastAPI**:
 
-{* ../../docs_src/app_testing/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
-### Archivo de prueba
+### Archivo de prueba { #testing-file }
 
 Entonces podrías tener un archivo `test_main.py` con tus pruebas. Podría estar en el mismo paquete de Python (el mismo directorio con un archivo `__init__.py`):
 
@@ -91,15 +91,15 @@ Entonces podrías tener un archivo `test_main.py` con tus pruebas. Podría estar
 
 Debido a que este archivo está en el mismo paquete, puedes usar importaciones relativas para importar el objeto `app` desde el módulo `main` (`main.py`):
 
-{* ../../docs_src/app_testing/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 ...y tener el código para las pruebas tal como antes.
 
-## Pruebas: ejemplo extendido
+## Pruebas: ejemplo extendido { #testing-extended-example }
 
 Ahora extiende este ejemplo y añade más detalles para ver cómo escribir pruebas para diferentes partes.
 
-### Archivo de aplicación **FastAPI** extendido
+### Archivo de aplicación **FastAPI** extendido { #extended-fastapi-app-file }
 
 Continuemos con la misma estructura de archivos que antes:
 
@@ -119,63 +119,13 @@ Tiene una operación `POST` que podría devolver varios errores.
 
 Ambas *path operations* requieren un `X-Token` header.
 
-//// tab | Python 3.10+
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ sin Anotar
-
-/// tip | Consejo
-
-Prefiere usar la versión `Annotated` si es posible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ sin Anotar
-
-/// tip | Consejo
-
-Prefiere usar la versión `Annotated` si es posible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
-
-### Archivo de prueba extendido
+### Archivo de prueba extendido { #extended-testing-file }
 
 Podrías entonces actualizar `test_main.py` con las pruebas extendidas:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 Cada vez que necesites que el cliente pase información en el request y no sepas cómo, puedes buscar (Googlear) cómo hacerlo en `httpx`, o incluso cómo hacerlo con `requests`, dado que el diseño de HTTPX está basado en el diseño de Requests.
 
@@ -199,7 +149,7 @@ Si tienes un modelo de Pydantic en tu prueba y quieres enviar sus datos a la apl
 
 ///
 
-## Ejecútalo
+## Ejecútalo { #run-it }
 
 Después de eso, solo necesitas instalar `pytest`.
 

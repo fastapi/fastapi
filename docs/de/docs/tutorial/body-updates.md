@@ -50,14 +50,6 @@ Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter
 
 Wie in `item.model_dump(exclude_unset=True)`.
 
-/// info | Info
-
-In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
-
-Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
-
 Das wird ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> erstellen, mit nur den Daten, die gesetzt wurden, als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
 Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>) gesendeten Daten enthält, ohne Defaultwerte:
@@ -67,14 +59,6 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr tit
 ### Pydantics `update`-Parameter verwenden { #using-pydantics-update-parameter }
 
 Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
-
-/// info | Info
-
-In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
-
-Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
 
 Wie in `stored_item_model.model_copy(update=update_data)`:
 

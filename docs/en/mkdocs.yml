@@ -1,4 +1,4 @@
-INHERIT: ../en/mkdocs.maybe-insiders.yml
+INHERIT: ../en/mkdocs.env.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
@@ -52,10 +52,13 @@ theme:
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
+  social:
+    cards_layout_options:
+      logo: ../en/docs/img/icon-white.svg
+  typeset: null
   search: null
   macros:
     include_yaml:
-    - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
     - contributors: ../en/data/contributors.yml
@@ -188,10 +191,14 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
@@ -210,6 +217,7 @@ nav:
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
     - how-to/testing-database.md
+    - how-to/authentication-error-status-code.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -252,6 +260,10 @@ nav:
   - management.md
 - release-notes.md
 markdown_extensions:
+  material.extensions.preview:
+    targets:
+      include:
+      - '*'
   abbr: null
   attr_list: null
   footnotes: null
@@ -308,8 +320,6 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
-  - link: /fa/
-    name: fa - فارسی
   - link: /fr/
     name: fr - français
   - link: /ja/
@@ -324,19 +334,16 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /vi/
-    name: vi - Tiếng Việt
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
-  - link: /em/
-    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py

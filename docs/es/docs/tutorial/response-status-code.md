@@ -1,4 +1,4 @@
-# Código de Estado del Response
+# Código de Estado del Response { #response-status-code }
 
 De la misma manera que puedes especificar un modelo de response, también puedes declarar el código de estado HTTP usado para el response con el parámetro `status_code` en cualquiera de las *path operations*:
 
@@ -8,7 +8,7 @@ De la misma manera que puedes especificar un modelo de response, también puedes
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Nota
 
@@ -39,7 +39,7 @@ FastAPI sabe esto, y producirá documentación OpenAPI que establece que no hay 
 
 ///
 
-## Acerca de los códigos de estado HTTP
+## Acerca de los códigos de estado HTTP { #about-http-status-codes }
 
 /// note | Nota
 
@@ -53,28 +53,28 @@ Estos códigos de estado tienen un nombre asociado para reconocerlos, pero la pa
 
 En breve:
 
-* `100` y superiores son para "Información". Rara vez los usas directamente. Los responses con estos códigos de estado no pueden tener un body.
-* **`200`** y superiores son para responses "Exitosos". Estos son los que usarías más.
+* `100 - 199` son para "Información". Rara vez los usas directamente. Los responses con estos códigos de estado no pueden tener un body.
+* **`200 - 299`** son para responses "Exitosos". Estos son los que usarías más.
     * `200` es el código de estado por defecto, lo que significa que todo estaba "OK".
     * Otro ejemplo sería `201`, "Created". Comúnmente se usa después de crear un nuevo registro en la base de datos.
     * Un caso especial es `204`, "No Content". Este response se usa cuando no hay contenido para devolver al cliente, por lo tanto, el response no debe tener un body.
-* **`300`** y superiores son para "Redirección". Los responses con estos códigos de estado pueden o no tener un body, excepto `304`, "Not Modified", que no debe tener uno.
-* **`400`** y superiores son para responses de "Error del Cliente". Este es el segundo tipo que probablemente más usarías.
+* **`300 - 399`** son para "Redirección". Los responses con estos códigos de estado pueden o no tener un body, excepto `304`, "Not Modified", que no debe tener uno.
+* **`400 - 499`** son para responses de "Error del Cliente". Este es el segundo tipo que probablemente más usarías.
     * Un ejemplo es `404`, para un response "Not Found".
     * Para errores genéricos del cliente, puedes usar simplemente `400`.
-* `500` y superiores son para errores del servidor. Casi nunca los usas directamente. Cuando algo sale mal en alguna parte de tu código de aplicación, o del servidor, automáticamente devolverá uno de estos códigos de estado.
+* `500 - 599` son para errores del servidor. Casi nunca los usas directamente. Cuando algo sale mal en alguna parte de tu código de aplicación, o del servidor, automáticamente devolverá uno de estos códigos de estado.
 
 /// tip | Consejo
 
-Para saber más sobre cada código de estado y qué código es para qué, revisa la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentación de <abbr title="Mozilla Developer Network">MDN</abbr> sobre códigos de estado HTTP</a>.
+Para saber más sobre cada código de estado y qué código es para qué, revisa la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentación de <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> sobre códigos de estado HTTP</a>.
 
 ///
 
-## Atajo para recordar los nombres
+## Atajo para recordar los nombres { #shortcut-to-remember-the-names }
 
 Veamos de nuevo el ejemplo anterior:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` es el código de estado para "Created".
 
@@ -82,13 +82,13 @@ Pero no tienes que memorizar lo que significa cada uno de estos códigos.
 
 Puedes usar las variables de conveniencia de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Son solo una conveniencia, mantienen el mismo número, pero de esa manera puedes usar el autocompletado del editor para encontrarlos:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | Nota Técnica
+/// note | Detalles técnicos
 
 También podrías usar `from starlette import status`.
 
@@ -96,6 +96,6 @@ También podrías usar `from starlette import status`.
 
 ///
 
-## Cambiando el valor por defecto
+## Cambiando el valor por defecto { #changing-the-default }
 
 Más adelante, en la [Guía de Usuario Avanzada](../advanced/response-change-status-code.md){.internal-link target=_blank}, verás cómo devolver un código de estado diferente al valor por defecto que estás declarando aquí.

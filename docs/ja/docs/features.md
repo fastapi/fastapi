@@ -1,54 +1,55 @@
-# 機能
+# 機能 { #features }
 
-## FastAPIの機能
+## FastAPIの機能 { #fastapi-features }
 
-**FastAPI** は以下の機能をもちます:
+**FastAPI** は次のものを提供します:
 
-### オープンスタンダード準拠
+### オープンスタンダード準拠 { #based-on-open-standards }
 
-* API作成のための<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>。これは、<abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>の宣言、パラメータ、ボディリクエスト、セキュリティなどを含んでいます。
-* <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSONスキーマ</strong></a>を使用したデータモデルのドキュメント自動生成（OpenAPIはJSONスキーマに基づいている）。
-* 綿密な調査の結果、上層に後付けするのではなく、これらの基準に基づいて設計されました。
+* API 作成のための <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>。<dfn title="別名: エンドポイント、ルート">path</dfn> <dfn title="別名: HTTP メソッド（POST、GET、PUT、DELETE など）">operations</dfn>、パラメータ、リクエストボディ、セキュリティなどの宣言を含みます。
+* <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> によるデータモデルの自動ドキュメント化（OpenAPI 自体が JSON Schema に基づいています）。
+* 入念な調査のうえ、これらの標準を中心に設計されています。後付けのレイヤーではありません。
 * これにより、多くの言語で自動 **クライアントコード生成** が可能です。
 
-### 自動ドキュメント生成
-対話的なAPIドキュメントと探索的なwebユーザーインターフェースを提供します。フレームワークはOpenAPIを基にしているため、いくつかのオプションがあり、デフォルトで2つ含まれています。
+### 自動ドキュメント { #automatic-docs }
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>で、インタラクティブな探索をしながら、ブラウザから直接APIを呼び出してテストが行えます。
+対話的な API ドキュメントと探索的な Web ユーザーインターフェース。フレームワークは OpenAPI に基づいているため、複数のオプションがあり、デフォルトで 2 つ含まれます。
+
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>。インタラクティブに探索しつつ、ブラウザから直接 API を呼び出してテストできます。
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>を使用したもう一つのAPIドキュメント生成。
+* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a> による代替の API ドキュメント。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 現代的なPython
+### 現代的なPythonのみ { #just-modern-python }
 
-FastAPIの機能はすべて、標準のPython 3.8型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
+すべて標準の **Python の型** 宣言（Pydantic に感謝）に基づいています。新しい構文を学ぶ必要はありません。標準的でモダンな Python だけです。
 
-（FastAPIを使用しない場合でも）Pythonの型の使用方法について簡単な復習が必要な場合は、短いチュートリアル（[Python Types](python-types.md){.internal-link target=_blank}）を参照してください。
+（FastAPI を使わない場合でも）Python の型の使い方を 2 分で復習したい場合は、短いチュートリアル [Python Types](python-types.md){.internal-link target=_blank} を参照してください。
 
-型を使用した標準的なPythonを記述します:
+型を使った標準的な Python を記述します:
 
 ```Python
 from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# 変数を str として宣言
+# そして関数内でエディタ支援を受ける
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Pydantic モデル
 class User(BaseModel):
     id: int
     name: str
     joined: date
 ```
 
-これは以下のように用いられます:
+これは次のように使えます:
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -62,143 +63,139 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | 情報
+/// info
 
-`**second_user_data` は以下を意味します：
+`**second_user_data` は次の意味です:
 
-`second_user_data`辞書のキーと値を直接、キーと値の引数として渡します。これは、`User(id=4, name="Mary", joined="2018-11-30")`と同等です。
+`second_user_data` 辞書のキーと値を、そのままキーバリュー引数として渡します。これは `User(id=4, name="Mary", joined="2018-11-30")` と同等です。
 
 ///
 
-### エディタのサポート
+### エディタのサポート { #editor-support }
 
-すべてのフレームワークは使いやすく直感的に使用できるように設計されており、すべての決定は開発を開始する前でも複数のエディターでテストされ、最高の開発体験が保証されます。
+フレームワーク全体が使いやすく直感的になるよう設計されており、最高の開発体験を確保するため、開発開始前から複数のエディタであらゆる判断が検証されています。
 
-前回のPython開発者調査では、<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">最も使用されている機能が「オートコンプリート」であることが明らかになりました。</a>
+Python 開発者調査では、<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">最もよく使われる機能の 1 つが「オートコンプリート」であることが明らかです</a>。
 
-**FastAPI** フレームワークは、この要求を満たすことを基本としています。オートコンプリートはどこでも機能します。
+**FastAPI** はその要求を満たすことを基盤にしています。オートコンプリートはどこでも機能します。
 
 ドキュメントに戻る必要はほとんどありません。
 
-エディターがどのように役立つかを以下に示します:
+エディタがどのように役立つかの例です:
 
-* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>の場合:
+* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a> の場合:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>の場合:
+* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> の場合:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-以前は不可能だと考えていたコードでさえ補完されます。例えば、リクエストからのJSONボディ（ネストされている可能性がある）内の `price`キーです。
+以前は不可能だと思っていたコードでも補完が得られます。例えば、リクエストから届く（ネストされている可能性のある）JSON ボディ内の `price` キーなどです。
 
-間違ったキー名を入力したり、ドキュメント間を行き来したり、上下にスクロールして`username`と`user_name`のどちらを使用したか調べたりする必要はもうありません。
+もう間違ったキー名を入力したり、ドキュメントを行き来したり、上下にスクロールして最終的に `username` と `user_name` のどちらを使ったのか探す必要はありません。
 
-### 簡潔
+### 簡潔 { #short }
 
-すべてに適切な**デフォルト**があり、オプションの構成ができます。必要なことを実行し、必要なAPIを定義するためにすべてのパラメーターを調整できます。
+すべてに妥当な **デフォルト** があり、どこでもオプションで構成できます。必要に応じてすべてのパラメータを微調整して、求める API を定義できます。
 
-ただし、デフォルトでもすべて **うまくいきます**。
+しかしデフォルトのままでも、すべて **うまく動きます**。
 
-### 検証
+### 検証 { #validation }
 
-* 以下の様な、ほとんどの（すべての？）Python **データ型**の検証:
-     * JSONオブジェクト（`dict`）
-     * 項目の型を定義するJSON配列（`list`）
-     * 最小長と最大長のある文字列（`str`）フィールド
-     * 最小値と最大値のある数値（`int`、` float`）
+* ほとんど（あるいはすべて？）の Python の **データ型** に対する検証:
+    * JSON オブジェクト（`dict`）。
+    * 項目の型を定義する JSON 配列（`list`）。
+    * 文字列（`str`）フィールドの最小/最大長。
+    * 数値（`int`、`float`）の最小/最大値、など。
 
-* よりエキゾチックな型の検証：
-     * URL
-     * Eメール
-     * UUID
-     * ...その他
+* よりエキゾチックな型の検証:
+    * URL。
+    * Email。
+    * UUID。
+    * ...その他。
 
-すべての検証は、確立された堅牢な **Pydantic** によって処理されます。
+すべての検証は、確立され堅牢な **Pydantic** によって処理されます。
 
-### セキュリティと認証
+### セキュリティと認証 { #security-and-authentication }
 
-セキュリティと認証が統合されています。 データベースまたはデータモデルについても妥協していません。
+セキュリティと認証が統合されています。データベースやデータモデルとの妥協はありません。
 
-以下のOpenAPIで定義されているすべてのセキュリティスキームを含む:
+OpenAPI で定義されたすべてのセキュリティスキームをサポートします:
 
-* HTTPベーシック
-* **OAuth2**（**JWTトークン**も使用）。 JWTを使用したOAuth2のチュートリアル（[OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}）を確認してください。
-* APIキー：
-     * ヘッダー
-     * クエリパラメータ
-     * クッキー、等
+* HTTP Basic。
+* **OAuth2**（**JWT トークン** も可）。チュートリアル [JWT を用いた OAuth2](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} を確認してください。
+* API キー（以下の場所）:
+    * ヘッダー。
+    * クエリパラメータ。
+    * クッキー、など。
 
-さらに、Starletteのすべてのセキュリティ機能も含みます（**セッションCookie**を含む）。
+さらに、Starlette のすべてのセキュリティ機能（**セッション Cookie** を含む）も利用できます。
 
-これらは、システム、データストア、リレーショナルデータベース、NoSQLデータベースなどと簡単に統合できる再利用可能なツールとコンポーネントとして構築されています。
+これらはすべて再利用可能なツールやコンポーネントとして構築されており、システム、データストア、リレーショナル/NoSQL データベース等と容易に統合できます。
 
-### 依存性の注入（Dependency Injection）
+### 依存性の注入 { #dependency-injection }
 
-FastAPIには非常に使いやすく、非常に強力な<abbr title='also known as "components", "resources", "services", "providers"'><strong>依存性の注入</strong></abbr>システムを備えています。
+FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title='別名: コンポーネント、リソース、サービス、プロバイダー'><strong>依存性の注入</strong></dfn> システムがあります。
 
-* 依存関係でさえも依存関係を持つことができ、階層または **依存関係の"グラフ"** を作成することができます。
+* 依存関係は依存関係を持つこともでき、階層または **依存関係の「グラフ」** を作成できます。
+* すべてフレームワークによって**自動的に処理**されます。
+* すべての依存関係はリクエストからデータを要求でき、*path operation* の制約と自動ドキュメントを**拡張**できます。
+* 依存関係で定義された *path operation* のパラメータについても**自動検証**されます。
+* 複雑なユーザー認証システム、**データベース接続** などのサポート。
+* **データベースやフロントエンド等との妥協は不要**。すべてと簡単に統合できます。
 
-* フレームワークによってすべて**自動的に処理**されます。
-* すべての依存関係はリクエストからのデータを要請できて、**path operationsの制約と自動ドキュメンテーションを拡張できます**。
-* 依存関係で定義された *path operation* パラメータも**自動検証**が可能です。
-* 複雑なユーザー認証システム、**データベース接続**などのサポート
-* **データベース、フロントエンドなどに対する妥協はありません**。それらすべてと簡単に統合できます。
+### 無制限の「プラグイン」 { #unlimited-plug-ins }
 
-### 無制限の「プラグイン」
+別の言い方をすれば、プラグインは不要で、必要なコードをインポートして使うだけです。
 
-他の方法では、それらを必要とせず、必要なコードをインポートして使用します。
+あらゆる統合は（依存関係を用いて）非常に簡単に使えるよう設計されており、*path operation* で使うのと同じ構造と構文で、2 行のコードでアプリケーション用の「プラグイン」を作れます。
 
-統合は非常に簡単に使用できるように設計されており（依存関係を用いて）、*path operations* で使用されているのと同じ構造と構文を使用して、2行のコードでアプリケーションの「プラグイン」を作成できます。
+### テスト済み { #tested }
 
+* 100% の <dfn title="自動的にテストされるコードの量">テストカバレッジ</dfn>。
+* 100% <dfn title="Python の型アノテーション。これにより、エディタや外部ツールからより良い支援が受けられます">型アノテーション付き</dfn>のコードベース。
+* 本番アプリケーションで使用されています。
 
-### テスト
+## Starletteの機能 { #starlette-features }
 
-* <abbr title = "自動的にテストされるコードの量">テストカバレッジ</abbr> 100%
-* <abbr title = "Python型アノテーション。これにより、ユーザーはより良いエディターと外部ツールのサポート受けられる。">型アノテーション</abbr>100%のコードベース
-* 本番アプリケーションで使用されます
+**FastAPI** は <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> と完全に互換性があり（かつそれに基づいています）。そのため、手元の Starlette の追加コードも動作します。
 
-## Starletteの機能
+`FastAPI` は実際には `Starlette` のサブクラスです。すでに Starlette を知っている、あるいは使っているなら、ほとんどの機能は同じように動作します。
 
-**FastAPI**は、<a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のStarletteコードがあれば、それも機能します。
+**FastAPI** では **Starlette** のすべての機能が利用できます（FastAPI は強化された Starlette にすぎません）:
 
-`FastAPI`は実際には`Starlette`のサブクラスです。したがって、Starletteをすでに知っているか使用している場合は、ほとんどの機能が同じように機能します。
+* 圧倒的なパフォーマンス。<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">利用可能な最速クラスの Python フレームワークの 1 つで、**NodeJS** や **Go** と同等です</a>。
+* **WebSocket** のサポート。
+* プロセス内バックグラウンドタスク。
+* 起動およびシャットダウンイベント。
+* HTTPX に基づくテストクライアント。
+* **CORS**、GZip、静的ファイル、ストリーミングレスポンス。
+* **セッションと Cookie** のサポート。
+* テストカバレッジ 100%。
+* 型アノテーション 100% のコードベース。
 
-**FastAPI**を使用すると、以下のような、**Starlette**のすべての機能を利用できます（FastAPIはStarletteを強化したものにすぎないため）:
+## Pydanticの機能 { #pydantic-features }
 
-* 見事なパフォーマンス。<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank"> **NodeJS**および**Go**に匹敵する、最速のPythonフレームワークの1つです。</a>
+**FastAPI** は <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> と完全に互換性があり（かつそれに基づいています）。そのため、手元の Pydantic の追加コードも動作します。
 
-* **WebSocket**のサポート
-* **GraphQL**のサポート
-* プロセス内バックグラウンドタスク
-* 起動およびシャットダウンイベント
-* `httpx`に基づいて構築されたテストクライアント
-* **CORS**、GZip、静的ファイル、ストリーミング応答
-* **セッションとCookie**のサポート
-* テストカバレッジ100%
-* 型アノテーション100%のコードベース
+Pydantic に基づく外部ライブラリ（データベース用の <abbr title="Object-Relational Mapper - オブジェクト関係マッパー">ORM</abbr>、<abbr title="Object-Document Mapper - オブジェクトドキュメントマッパー">ODM</abbr> など）も含まれます。
 
-## Pydanticの特徴
+これは、すべてが自動的に検証されるため、多くの場合、リクエストから取得したオブジェクトを **そのままデータベースに** 渡せることを意味します。
 
-**FastAPI**は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
+逆方向も同様で、多くの場合、データベースから取得したオブジェクトを **そのままクライアントに** 渡せます。
 
-データベースのために<abbr title = "Object-Relational Mapper">ORM</abbr>sや、<abbr title = "Object-Document Mapper">ODM</abbr>sなどの、Pydanticに基づく外部ライブラリを備えています。
+**FastAPI** では **Pydantic** のすべての機能が利用できます（FastAPI はデータ処理のすべてで Pydantic に基づいています）:
 
-これは、すべてが自動的に検証されるため、多くの場合、リクエストから取得したオブジェクトを**データベースに直接**渡すことができるということを意味しています。
-
-同じことがその逆にも当てはまり、多くの場合、データベースから取得したオブジェクトを**クライアントに直接**渡すことができます。
-
-**FastAPI**を使用すると、**Pydantic**のすべての機能を利用できます（FastAPIがPydanticに基づいてすべてのデータ処理を行っているため）。
-
-* **brainfuckなし**：
-    * スキーマ定義のためのマイクロ言語を新たに学習する必要はありません。
-    * Pythonの型を知っている場合は、既にPydanticの使用方法を知っているに等しいです。
-* ユーザーの **<abbr title = "コードエディターに似た統合開発環境">IDE</abbr>/<abbr title = "コードエラーをチェックするプログラム">リンター</abbr>/思考 とうまく連携します**：
-    * Pydanticのデータ構造は、ユーザーが定義するクラスの単なるインスタンスであるため、オートコンプリート、リンティング、mypy、およびユーザーの直感はすべて、検証済みのデータで適切に機能するはずです。
-* **複雑な構造**を検証：
-    * 階層的なPydanticモデルや、Pythonの「`typing`」の「`list`」と「`dict`」などの利用。
-    * バリデーターにより、複雑なデータスキーマを明確かつ簡単に定義、チェックし、JSONスキーマとして文書化できます。
-    * 深く**ネストされたJSON**オブジェクトを作成し、それらすべてを検証してアノテーションを付けることができます。
+* **brainfuck なし**：
+    * スキーマ定義のための新しいマイクロ言語を学ぶ必要はありません。
+    * Python の型を知っていれば、Pydantic の使い方もわかります。
+* **<abbr title="Integrated Development Environment - 統合開発環境: コードエディタに類似">IDE</abbr>/<dfn title="コードのエラーを検査するプログラム">リンター</dfn>/思考** と気持ちよく連携します：
+    * Pydantic のデータ構造は、あなたが定義するクラスの単なるインスタンスなので、オートコンプリート、リンティング、mypy、そしてあなたの直感が、検証済みデータに対して適切に機能します。
+* **複雑な構造** を検証：
+    * 階層的な Pydantic モデルや、Python の `typing` にある `List` や `Dict` などを利用できます。
+    * さらにバリデータにより、複雑なデータスキーマを明確かつ容易に定義・検査でき、JSON Schema として文書化できます。
+    * 深く **ネストされた JSON** オブジェクトを扱え、それらすべてを検証してアノテーションを付与できます。
 * **拡張可能**：
-    * Pydanticでは、カスタムデータ型を定義できます。または、バリデーターデコレーターで装飾されたモデルのメソッドを使用して検証を拡張できます。
+    * Pydantic ではカスタムデータ型を定義できますし、バリデータデコレーターで装飾したモデルメソッドで検証を拡張できます。
 * テストカバレッジ 100%。

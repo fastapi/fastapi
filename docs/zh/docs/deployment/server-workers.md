@@ -1,4 +1,4 @@
-# 服务器工作进程（Workers） - 使用 Uvicorn 的多工作进程模式
+# 服务器工作进程（Workers） - 使用 Uvicorn 的多工作进程模式 { #server-workers-uvicorn-with-workers }
 
 让我们回顾一下之前的部署概念：
 
@@ -17,7 +17,7 @@
 
 在本章节中，我将向您展示如何使用 `fastapi` 命令或直接使用 `uvicorn` 命令以**多工作进程模式**运行 **Uvicorn**。
 
-/// info
+/// info | 信息
 
 如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
 
@@ -25,7 +25,7 @@
 
 ///
 
-## 多个工作进程
+## 多个工作进程 { #multiple-workers }
 
 您可以使用 `--workers` 命令行选项来启动多个工作进程：
 
@@ -111,7 +111,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 您还可以看到它显示了每个进程的 **PID**，父进程（这是**进程管理器**）的 PID 为`27365`，每个工作进程的 PID 为：`27368`、`27369`， `27370`和`27367`。
 
-## 部署概念
+## 部署概念 { #deployment-concepts }
 
 在这里，您学习了如何使用多个**工作进程（workers）**来让应用程序的执行**并行化**，充分利用 CPU 的**多核性能**，并能够处理**更多的请求**。
 
@@ -124,13 +124,13 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 * **内存**
 * **启动之前的先前步骤**
 
-## 容器和 Docker
+## 容器和 Docker { #containers-and-docker }
 
 在关于 [容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank} 的下一章中，我将介绍一些可用于处理其他**部署概念**的策略。
 
 我将向您展示如何**从零开始构建自己的镜像**，以运行一个单独的 Uvicorn 进程。这个过程相对简单，并且在使用 **Kubernetes** 等分布式容器管理系统时，这通常是您需要采取的方法。
 
-## 回顾
+## 回顾 { #recap }
 
 您可以在使用 `fastapi` 或 `uvicorn` 命令时，通过 `--workers` CLI 选项启用多个工作进程（workers），以充分利用**多核 CPU**，以**并行运行多个进程**。
 

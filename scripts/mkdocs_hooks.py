@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, List, Union
+from typing import Any
 
 import material
 from mkdocs.config.defaults import MkDocsConfig
@@ -27,7 +27,18 @@ def get_missing_translation_content(docs_dir: str) -> str:
 
 
 @lru_cache
-def get_mkdocs_material_langs() -> List[str]:
+def get_translation_banner_content(docs_dir: str) -> str:
+    docs_dir_path = Path(docs_dir)
+    translation_banner_path = docs_dir_path / "translation-banner.md"
+    if not translation_banner_path.is_file():
+        translation_banner_path = (
+            docs_dir_path.parent.parent / "en" / "docs" / "translation-banner.md"
+        )
+    return translation_banner_path.read_text(encoding="utf-8")
+
+
+@lru_cache
+def get_mkdocs_material_langs() -> list[str]:
     material_path = Path(material.__file__).parent
     material_langs_path = material_path / "templates" / "partials" / "languages"
     langs = [file.stem for file in material_langs_path.glob("*.html")]
@@ -65,7 +76,7 @@ def resolve_file(*, item: str, files: Files, config: MkDocsConfig) -> None:
             )
 
 
-def resolve_files(*, items: List[Any], files: Files, config: MkDocsConfig) -> None:
+def resolve_files(*, items: list[Any], files: Files, config: MkDocsConfig) -> None:
     for item in items:
         if isinstance(item, str):
             resolve_file(item=item, files=files, config=config)
@@ -94,9 +105,9 @@ def on_files(files: Files, *, config: MkDocsConfig) -> Files:
 
 
 def generate_renamed_section_items(
-    items: List[Union[Page, Section, Link]], *, config: MkDocsConfig
-) -> List[Union[Page, Section, Link]]:
-    new_items: List[Union[Page, Section, Link]] = []
+    items: list[Page | Section | Link], *, config: MkDocsConfig
+) -> list[Page | Section | Link]:
+    new_items: list[Page | Section | Link] = []
     for item in items:
         if isinstance(item, Section):
             new_title = item.title
@@ -132,7 +143,7 @@ def on_pre_page(page: Page, *, config: MkDocsConfig, files: Files) -> Page:
 def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
-    # Set matadata["social"]["cards_layout_options"]["title"] to clean title (without
+    # Set metadata["social"]["cards_layout_options"]["title"] to clean title (without
     # permalink)
     title = page.title
     clean_title = title.split("{ #")[0]
@@ -151,4 +162,21 @@ def on_page_markdown(
         if markdown.startswith("#"):
             header, _, body = markdown.partition("\n\n")
         return f"{header}\n\n{missing_translation_content}\n\n{body}"
-    return markdown
+
+    docs_dir_path = Path(config.docs_dir)
+    en_docs_dir_path = docs_dir_path.parent.parent / "en/docs"
+
+    if docs_dir_path == en_docs_dir_path:
+        return markdown
+
+    # For translated pages add translation banner
+    translation_banner_content = get_translation_banner_content(config.docs_dir)
+    en_url = "https://fastapi.tiangolo.com/" + page.url.lstrip("/")
+    translation_banner_content = translation_banner_content.replace(
+        "ENGLISH_VERSION_URL", en_url
+    )
+    header = ""
+    body = markdown
+    if markdown.startswith("#"):
+        header, _, body = markdown.partition("\n\n")
+    return f"{header}\n\n{translation_banner_content}\n\n{body}"

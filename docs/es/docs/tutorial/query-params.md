@@ -1,8 +1,8 @@
-# Parámetros de Query
+# Parámetros de Query { #query-parameters }
 
 Cuando declaras otros parámetros de función que no son parte de los parámetros de path, son automáticamente interpretados como parámetros de "query".
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 La query es el conjunto de pares clave-valor que van después del `?` en una URL, separados por caracteres `&`.
 
@@ -24,11 +24,11 @@ Pero cuando los declaras con tipos de Python (en el ejemplo anterior, como `int`
 Todo el mismo proceso que se aplica para los parámetros de path también se aplica para los parámetros de query:
 
 * Soporte del editor (obviamente)
-* <abbr title="convirtiendo el string que viene de un request HTTP en datos de Python">"Parsing"</abbr> de datos
+* <dfn title="convirtiendo el string que viene de un request HTTP en datos de Python">"parsing"</dfn> de datos
 * Validación de datos
 * Documentación automática
 
-## Valores por defecto
+## Valores por defecto { #defaults }
 
 Como los parámetros de query no son una parte fija de un path, pueden ser opcionales y pueden tener valores por defecto.
 
@@ -57,11 +57,13 @@ Los valores de los parámetros en tu función serán:
 * `skip=20`: porque lo configuraste en la URL
 * `limit=10`: porque ese era el valor por defecto
 
-## Parámetros opcionales
+## Parámetros opcionales { #optional-parameters }
 
 De la misma manera, puedes declarar parámetros de query opcionales, estableciendo su valor por defecto en `None`:
 
 {* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+
+En este caso, el parámetro de función `q` será opcional y será `None` por defecto.
 
 /// check | Revisa
 
@@ -69,7 +71,7 @@ Además, nota que **FastAPI** es lo suficientemente inteligente para notar que e
 
 ///
 
-## Conversión de tipos en parámetros de query
+## Conversión de tipos en parámetros de query { #query-parameter-type-conversion }
 
 También puedes declarar tipos `bool`, y serán convertidos:
 
@@ -107,7 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.), tu función verá el parámetro `short` con un valor `bool` de `True`. De lo contrario, será `False`.
 
-## Múltiples parámetros de path y de query
+## Múltiples parámetros de path y de query { #multiple-path-and-query-parameters }
 
 Puedes declarar múltiples parámetros de path y de query al mismo tiempo, **FastAPI** sabe cuál es cuál.
 
@@ -117,7 +119,7 @@ Serán detectados por nombre:
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Parámetros de query requeridos
+## Parámetros de query requeridos { #required-query-parameters }
 
 Cuando declaras un valor por defecto para parámetros que no son de path (por ahora, solo hemos visto parámetros de query), entonces no es requerido.
 
@@ -125,7 +127,7 @@ Si no quieres agregar un valor específico pero solo hacer que sea opcional, est
 
 Pero cuando quieres hacer un parámetro de query requerido, simplemente no declares ningún valor por defecto:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Aquí el parámetro de query `needy` es un parámetro de query requerido de tipo `str`.
 

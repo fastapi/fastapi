@@ -1,8 +1,8 @@
-# クエリパラメータ
+# クエリパラメータ { #query-parameters }
 
-パスパラメータではない関数パラメータを宣言すると、それらは自動的に "クエリ" パラメータとして解釈されます。
+パスパラメータではない関数パラメータを宣言すると、それらは自動的に「クエリ」パラメータとして解釈されます。
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 クエリはURL内で `?` の後に続くキーとバリューの組で、 `&` で区切られています。
 
@@ -24,11 +24,11 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 パスパラメータに適用される処理と完全に同様な処理がクエリパラメータにも施されます:
 
 * エディターサポート (明らかに)
-* データ「<abbr title="HTTPリクエストで受け取った文字列をPythonデータへ変換する">解析</abbr>」
+* データ <dfn title="HTTP リクエストから来る文字列を Python のデータに変換すること">「解析」</dfn>
 * データバリデーション
 * 自動ドキュメント生成
 
-## デフォルト
+## デフォルト { #defaults }
 
 クエリパラメータはパスの固定部分ではないので、オプショナルとしたり、デフォルト値をもつことができます。
 
@@ -55,13 +55,13 @@ http://127.0.0.1:8000/items/?skip=20
 関数内のパラメータの値は以下の様になります:
 
 * `skip=20`: URL内にセットしたため
-* `limit=10`: デフォルト値
+* `limit=10`: デフォルト値だったため
 
-## オプショナルなパラメータ
+## オプショナルなパラメータ { #optional-parameters }
 
 同様に、デフォルト値を `None` とすることで、オプショナルなクエリパラメータを宣言できます:
 
-{* ../../docs_src/query_params/tutorial002.py hl[9] *}
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
 
@@ -71,11 +71,11 @@ http://127.0.0.1:8000/items/?skip=20
 
 ///
 
-## クエリパラメータの型変換
+## クエリパラメータの型変換 { #query-parameter-type-conversion }
 
-`bool` 型も宣言できます。これは以下の様に変換されます:
+`bool` 型も宣言でき、変換されます:
 
-{* ../../docs_src/query_params/tutorial003.py hl[9] *}
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
 この場合、以下にアクセスすると:
 
@@ -109,27 +109,28 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 もしくは、他の大文字小文字のバリエーション (アッパーケース、最初の文字だけアッパーケース、など)で、関数は `short` パラメータを `True` な `bool` 値として扱います。それ以外は `False` になります。
 
-## 複数のパスパラメータとクエリパラメータ
 
-複数のパスパラメータとクエリパラメータを同時に宣言できます。**FastAPI**は互いを区別できます。
+## 複数のパスパラメータとクエリパラメータ { #multiple-path-and-query-parameters }
+
+複数のパスパラメータとクエリパラメータを同時に宣言できます。**FastAPI**はどれがどれかを把握しています。
 
 そして特定の順序で宣言しなくてもよいです。
 
 名前で判別されます:
 
-{* ../../docs_src/query_params/tutorial004.py hl[8,10] *}
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## 必須のクエリパラメータ
+## 必須のクエリパラメータ { #required-query-parameters }
 
-パスパラメータ以外のパラメータ (今のところ、クエリパラメータのみ説明しました) のデフォルト値を宣言した場合、そのパラメータは必須ではなくなります。
+パスパラメータ以外のパラメータ (今のところ、クエリパラメータのみ見てきました) のデフォルト値を宣言した場合、そのパラメータは必須ではなくなります。
 
 特定の値を与えずにただオプショナルにしたい場合はデフォルト値を `None` にして下さい。
 
 しかしクエリパラメータを必須にしたい場合は、ただデフォルト値を宣言しなければよいです:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-ここで、クエリパラメータ `needy` は `str` 型の必須のクエリパラメータです
+ここで、クエリパラメータ `needy` は `str` 型の必須のクエリパラメータです。
 
 以下のURLをブラウザで開くと:
 
@@ -141,16 +142,17 @@ http://127.0.0.1:8000/items/foo-item
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null
+    }
+  ]
 }
 ```
 
@@ -169,9 +171,9 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-そして当然、あるパラメータを必須に、別のパラメータにデフォルト値を設定し、また別のパラメータをオプショナルにできます:
+そして当然、あるパラメータを必須に、あるパラメータにデフォルト値を設定し、またあるパラメータを完全にオプショナルにできます:
 
-{* ../../docs_src/query_params/tutorial006.py hl[10] *}
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
 この場合、3つのクエリパラメータがあります。:
 
@@ -181,6 +183,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 豆知識
 
-[パスパラメータ](path-params.md#_8){.internal-link target=_blank}と同様に `Enum` を使用できます。
+[パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
 
 ///

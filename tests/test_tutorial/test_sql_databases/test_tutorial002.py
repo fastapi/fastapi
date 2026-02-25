@@ -2,14 +2,14 @@ import importlib
 import warnings
 
 import pytest
-from dirty_equals import IsDict, IsInt
+from dirty_equals import IsInt
 from fastapi.testclient import TestClient
 from inline_snapshot import Is, snapshot
 from sqlalchemy import StaticPool
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.main import default_registry
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py310
 
 
 def clear_sqlmodel():
@@ -22,11 +22,7 @@ def clear_sqlmodel():
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial002",
-        pytest.param("tutorial002_py39", marks=needs_py39),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        "tutorial002_an",
-        pytest.param("tutorial002_an_py39", marks=needs_py39),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
 )
@@ -45,7 +41,7 @@ def get_client(request: pytest.FixtureRequest):
 
     with TestClient(mod.app) as c:
         yield c
-    # Clean up connection explicitely to avoid resource warning
+    # Clean up connection explicitly to avoid resource warning
     mod.engine.dispose()
 
 
@@ -375,19 +371,10 @@ def test_openapi_schema(client: TestClient):
                     "HeroCreate": {
                         "properties": {
                             "name": {"type": "string", "title": "Name"},
-                            "age": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Age",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Age",
-                                }
-                            ),
+                            "age": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Age",
+                            },
                             "secret_name": {"type": "string", "title": "Secret Name"},
                         },
                         "type": "object",
@@ -397,19 +384,10 @@ def test_openapi_schema(client: TestClient):
                     "HeroPublic": {
                         "properties": {
                             "name": {"type": "string", "title": "Name"},
-                            "age": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Age",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Age",
-                                }
-                            ),
+                            "age": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Age",
+                            },
                             "id": {"type": "integer", "title": "Id"},
                         },
                         "type": "object",
@@ -418,51 +396,26 @@ def test_openapi_schema(client: TestClient):
                     },
                     "HeroUpdate": {
                         "properties": {
-                            "name": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Name",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "string",
-                                    "title": "Name",
-                                }
-                            ),
-                            "age": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Age",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Age",
-                                }
-                            ),
-                            "secret_name": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Secret Name",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "string",
-                                    "title": "Secret Name",
-                                }
-                            ),
+                            "name": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Name",
+                            },
+                            "age": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Age",
+                            },
+                            "secret_name": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Secret Name",
+                            },
                         },
                         "type": "object",
                         "title": "HeroUpdate",
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

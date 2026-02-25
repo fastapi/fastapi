@@ -1,4 +1,4 @@
-# Segurança
+# Segurança { #security }
 
 Há várias formas de lidar segurança, autenticação e autorização.
 
@@ -10,11 +10,11 @@ Em muitos frameworks e sistemas, apenas lidar com segurança e autenticação ex
 
 Mas primeiro, vamos verificar alguns pequenos conceitos.
 
-## Está com pressa?
+## Está com pressa? { #in-a-hurry }
 
 Se você não se importa com qualquer um desses termos e só precisa adicionar segurança com autenticação baseada em usuário e senha _agora_, pule para os próximos capítulos.
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2 é uma especificação que define várias formas para lidar com autenticação e autorização.
 
@@ -24,7 +24,7 @@ Ela inclui uma forma para autenticação usando “third party”/aplicações d
 
 Isso é o que todos os sistemas com “Login with Facebook, Google, X (Twitter), GitHub” usam por baixo.
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 Havia um OAuth 1, que é bem diferente do OAuth2, e mais complexo, isso incluía diretamente as especificações de como criptografar a comunicação.
 
@@ -38,7 +38,7 @@ Na seção sobre **deployment** você irá ver como configurar HTTPS de modo gra
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect é outra especificação, baseada em **OAuth2**.
 
@@ -48,7 +48,7 @@ Por exemplo, o login do Google usa OpenID Connect (que por baixo dos panos usa O
 
 Mas o login do Facebook não tem suporte para OpenID Connect. Ele tem a própria implementação do OAuth2.
 
-### OpenID (não "OpenID Connect")
+### OpenID (não "OpenID Connect") { #openid-not-openid-connect }
 
 Houve também uma especificação “OpenID”. Ela tentou resolver a mesma coisa que a **OpenID Connect**, mas não baseada em OAuth2.
 
@@ -56,7 +56,7 @@ Então, ela foi um sistema adicional completo.
 
 Ela não é muito popular ou usada nos dias de hoje.
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI (anteriormente conhecido como Swagger) é a especificação aberta para a criação de APIs (agora parte da Linux Foundation).
 
@@ -88,7 +88,6 @@ OpenAPI define os seguintes esquemas de segurança:
 * `openIdConnect`: tem uma forma para definir como descobrir automaticamente o dado da autenticação OAuth2.
     * Essa descoberta automática é o que é definido na especificação OpenID Connect.
 
-
 /// tip | Dica
 
 Integração com outros provedores de autenticação/autorização como Google, Facebook, X (Twitter), GitHub, etc. é bem possível e relativamente fácil.
@@ -97,9 +96,9 @@ O problema mais complexo é criar um provedor de autenticação/autorização co
 
 ///
 
-## **FastAPI** utilitários
+## **FastAPI** utilitários { #fastapi-utilities }
 
-**FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplesmente usa esses mecanismos de segurança.
+**FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplificam o uso desses mecanismos de segurança.
 
 Nos próximos capítulos você irá ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas pelo **FastAPI**.
 

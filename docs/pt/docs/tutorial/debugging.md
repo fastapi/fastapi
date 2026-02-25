@@ -1,14 +1,14 @@
-# Depuração
+# Depuração { #debugging }
 
 Você pode conectar o depurador no seu editor, por exemplo, com o Visual Studio Code ou PyCharm.
 
-## Chamar `uvicorn`
+## Chamar `uvicorn` { #call-uvicorn }
 
-Em seu aplicativo FastAPI, importe e execute `uvicorn` diretamente:
+Em sua aplicação FastAPI, importe e execute `uvicorn` diretamente:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
-### Sobre `__name__ == "__main__"`
+### Sobre `__name__ == "__main__"` { #about-name-main }
 
 O objetivo principal de `__name__ == "__main__"` é ter algum código que seja executado quando seu arquivo for chamado com:
 
@@ -26,7 +26,7 @@ mas não é chamado quando outro arquivo o importa, como em:
 from myapp import app
 ```
 
-#### Mais detalhes
+#### Mais detalhes { #more-details }
 
 Digamos que seu arquivo se chama `myapp.py`.
 
@@ -62,7 +62,7 @@ from myapp import app
 # Mais um pouco de código
 ```
 
-nesse caso, a variável criada automaticamente dentro de `myapp.py` não terá a variável `__name__` com o valor `"__main__"`.
+nesse caso, a variável `__name__` criada automaticamente dentro de `myapp.py` não terá o valor `"__main__"`.
 
 Então, a linha:
 
@@ -78,9 +78,9 @@ Para mais informações, consulte <a href="https://docs.python.org/3/library/__m
 
 ///
 
-## Execute seu código com seu depurador
+## Execute seu código com seu depurador { #run-your-code-with-your-debugger }
 
-Como você está executando o servidor Uvicorn diretamente do seu código, você pode chamar seu programa Python (seu aplicativo FastAPI) diretamente do depurador.
+Como você está executando o servidor Uvicorn diretamente do seu código, você pode chamar seu programa Python (sua aplicação FastAPI) diretamente do depurador.
 
 ---
 

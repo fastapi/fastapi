@@ -15,7 +15,7 @@ Hierzu zählen beispielsweise:
 
 Importieren Sie zunächst `BackgroundTasks` und definieren Sie einen Parameter in Ihrer *Pfadoperation-Funktion* mit der Typdeklaration `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** erstellt für Sie das Objekt vom Typ `BackgroundTasks` und übergibt es als diesen Parameter.
 
@@ -31,13 +31,13 @@ In diesem Fall schreibt die Taskfunktion in eine Datei (den Versand einer E-Mail
 
 Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir die Funktion mit normalem `def`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Den Hintergrundtask hinzufügen { #add-the-background-task }
 
 Übergeben Sie innerhalb Ihrer *Pfadoperation-Funktion* Ihre Taskfunktion mit der Methode `.add_task()` an das *Hintergrundtasks*-Objekt:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` erhält als Argumente:
 

@@ -1,4 +1,4 @@
-# Entornos Virtuales
+# Entornos Virtuales { #virtual-environments }
 
 Cuando trabajas en proyectos de Python probablemente deberías usar un **entorno virtual** (o un mecanismo similar) para aislar los paquetes que instalas para cada proyecto.
 
@@ -26,7 +26,7 @@ Si estás listo para adoptar una **herramienta que gestiona todo** por ti (inclu
 
 ///
 
-## Crea un Proyecto
+## Crea un Proyecto { #create-a-project }
 
 Primero, crea un directorio para tu proyecto.
 
@@ -51,9 +51,9 @@ $ cd awesome-project
 
 </div>
 
-## Crea un Entorno Virtual
+## Crea un Entorno Virtual { #create-a-virtual-environment }
 
-Cuando empiezas a trabajar en un proyecto de Python **por primera vez**, crea un entorno virtual **<abbr title="hay otras opciones, esto es solo una guía sencilla">dentro de tu proyecto</abbr>**.
+Cuando empiezas a trabajar en un proyecto de Python **por primera vez**, crea un entorno virtual **<dfn title="hay otras opciones, esto es solo una guía sencilla">dentro de tu proyecto</dfn>**.
 
 /// tip | Consejo
 
@@ -114,7 +114,7 @@ Podrías crear el entorno virtual en un directorio diferente, pero hay una conve
 
 ///
 
-## Activa el Entorno Virtual
+## Activa el Entorno Virtual { #activate-the-virtual-environment }
 
 Activa el nuevo entorno virtual para que cualquier comando de Python que ejecutes o paquete que instales lo utilicen.
 
@@ -166,13 +166,13 @@ $ source .venv/Scripts/activate
 
 Cada vez que instales un **nuevo paquete** en ese entorno, **activa** el entorno de nuevo.
 
-Esto asegura que si usas un programa de **terminal (<abbr title="command line interface">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
+Esto asegura que si usas un programa de **terminal (<abbr title="command line interface – interfaz de línea de comandos">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
 
 ///
 
-## Verifica que el Entorno Virtual esté Activo
+## Revisa que el Entorno Virtual esté Activo { #check-the-virtual-environment-is-active }
 
-Verifica que el entorno virtual esté activo (el comando anterior funcionó).
+Revisa que el entorno virtual esté activo (el comando anterior funcionó).
 
 /// tip | Consejo
 
@@ -212,7 +212,7 @@ Si muestra el binario de `python` en `.venv\Scripts\python`, dentro de tu proyec
 
 ////
 
-## Actualiza `pip`
+## Actualiza `pip` { #upgrade-pip }
 
 /// tip | Consejo
 
@@ -242,7 +242,27 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## Añade `.gitignore`
+/// tip | Consejo
+
+A veces, podrías obtener un error **`No module named pip`** al intentar actualizar pip.
+
+Si esto pasa, instala y actualiza pip usando el siguiente comando:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+Este comando instalará pip si aún no está instalado y también se asegura de que la versión instalada de pip sea al menos tan reciente como la disponible en `ensurepip`.
+
+///
+
+## Añade `.gitignore` { #add-gitignore }
 
 Si estás usando **Git** (deberías), añade un archivo `.gitignore` para excluir todo en tu `.venv` de Git.
 
@@ -282,7 +302,7 @@ Ese comando creará un archivo `.gitignore` con el contenido:
 
 ///
 
-## Instala Paquetes
+## Instala Paquetes { #install-packages }
 
 Después de activar el entorno, puedes instalar paquetes en él.
 
@@ -294,7 +314,7 @@ Si necesitas actualizar una versión o agregar un nuevo paquete, **harías esto 
 
 ///
 
-### Instala Paquetes Directamente
+### Instala Paquetes Directamente { #install-packages-directly }
 
 Si tienes prisa y no quieres usar un archivo para declarar los requisitos de paquetes de tu proyecto, puedes instalarlos directamente.
 
@@ -333,7 +353,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Instala desde `requirements.txt`
+### Instala desde `requirements.txt` { #install-from-requirements-txt }
 
 Si tienes un `requirements.txt`, ahora puedes usarlo para instalar sus paquetes.
 
@@ -376,7 +396,7 @@ pydantic==2.8.0
 
 ///
 
-## Ejecuta Tu Programa
+## Ejecuta Tu Programa { #run-your-program }
 
 Después de activar el entorno virtual, puedes ejecutar tu programa, y usará el Python dentro de tu entorno virtual con los paquetes que instalaste allí.
 
@@ -390,7 +410,7 @@ Hello World
 
 </div>
 
-## Configura Tu Editor
+## Configura Tu Editor { #configure-your-editor }
 
 Probablemente usarías un editor, asegúrate de configurarlo para que use el mismo entorno virtual que creaste (probablemente lo autodetectará) para que puedas obtener autocompletado y errores en línea.
 
@@ -405,7 +425,7 @@ Normalmente solo tendrías que hacer esto **una vez**, cuando crees el entorno v
 
 ///
 
-## Desactiva el Entorno Virtual
+## Desactiva el Entorno Virtual { #deactivate-the-virtual-environment }
 
 Una vez que hayas terminado de trabajar en tu proyecto, puedes **desactivar** el entorno virtual.
 
@@ -419,7 +439,7 @@ $ deactivate
 
 De esta manera, cuando ejecutes `python` no intentará ejecutarse desde ese entorno virtual con los paquetes instalados allí.
 
-## Listo para Trabajar
+## Listo para Trabajar { #ready-to-work }
 
 Ahora estás listo para empezar a trabajar en tu proyecto.
 
@@ -431,7 +451,7 @@ Continúa leyendo. 👇🤓
 
 ///
 
-## Por qué Entornos Virtuales
+## Por qué Entornos Virtuales { #why-virtual-environments }
 
 Para trabajar con FastAPI necesitas instalar <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
 
@@ -441,7 +461,7 @@ Para instalar paquetes normalmente usarías el comando `pip` que viene con Pytho
 
 Sin embargo, si solo usas `pip` directamente, los paquetes se instalarían en tu **entorno global de Python** (la instalación global de Python).
 
-### El Problema
+### El Problema { #the-problem }
 
 Entonces, ¿cuál es el problema de instalar paquetes en el entorno global de Python?
 
@@ -524,7 +544,7 @@ Ahora, imagina eso con **muchos** otros **paquetes** de los que dependen todos t
 
 Además, dependiendo de tu sistema operativo (por ejemplo, Linux, Windows, macOS), podría haber venido con Python ya instalado. Y en ese caso probablemente tenía algunos paquetes preinstalados con algunas versiones específicas **necesitadas por tu sistema**. Si instalas paquetes en el entorno global de Python, podrías terminar **rompiendo** algunos de los programas que vinieron con tu sistema operativo.
 
-## Dónde se Instalan los Paquetes
+## Dónde se Instalan los Paquetes { #where-are-packages-installed }
 
 Cuando instalas Python, crea algunos directorios con algunos archivos en tu computadora.
 
@@ -550,7 +570,7 @@ Luego, **extraerá** todos esos archivos y los pondrá en un directorio en tu co
 
 Por defecto, pondrá esos archivos descargados y extraídos en el directorio que viene con tu instalación de Python, eso es el **entorno global**.
 
-## Qué son los Entornos Virtuales
+## Qué son los Entornos Virtuales { #what-are-virtual-environments }
 
 La solución a los problemas de tener todos los paquetes en el entorno global es usar un **entorno virtual para cada proyecto** en el que trabajas.
 
@@ -575,7 +595,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## Qué Significa Activar un Entorno Virtual
+## Qué Significa Activar un Entorno Virtual { #what-does-activating-a-virtual-environment-mean }
 
 Cuando activas un entorno virtual, por ejemplo con:
 
@@ -712,7 +732,7 @@ Un detalle importante es que pondrá el path del entorno virtual al **comienzo**
 
 Activar un entorno virtual también cambia un par de otras cosas, pero esta es una de las cosas más importantes que hace.
 
-## Verificando un Entorno Virtual
+## Revisando un Entorno Virtual { #checking-a-virtual-environment }
 
 Cuando revisas si un entorno virtual está activo, por ejemplo con:
 
@@ -764,7 +784,7 @@ Es útil poder revisar qué `python` se está usando. 🤓
 
 ///
 
-## Por qué Desactivar un Entorno Virtual
+## Por qué Desactivar un Entorno Virtual { #why-deactivate-a-virtual-environment }
 
 Por ejemplo, podrías estar trabajando en un proyecto `philosophers-stone`, **activar ese entorno virtual**, instalar paquetes y trabajar con ese entorno.
 
@@ -818,7 +838,7 @@ I solemnly swear 🐺
 
 </div>
 
-## Alternativas
+## Alternativas { #alternatives }
 
 Esta es una guía simple para comenzar y enseñarte cómo funciona todo **por debajo**.
 
@@ -835,7 +855,7 @@ Una vez que estés listo y quieras usar una herramienta para **gestionar todo el
 * Asegurarse de que tengas un conjunto **exacto** de paquetes y versiones para instalar, incluidas sus dependencias, para que puedas estar seguro de que puedes ejecutar tu proyecto en producción exactamente igual que en tu computadora mientras desarrollas, esto se llama **locking**
 * Y muchas otras cosas
 
-## Conclusión
+## Conclusión { #conclusion }
 
 Si leíste y comprendiste todo esto, ahora **sabes mucho más** sobre entornos virtuales que muchos desarrolladores por ahí. 🤓
 

@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
@@ -12,8 +10,8 @@ app = FastAPI()
 @dataclass
 class Item:
     name: str
-    price: Optional[float] = None
-    owner_ids: Optional[List[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/invalid", response_model=Item)
@@ -26,7 +24,7 @@ def get_innerinvalid():
     return {"name": "double invalid", "price": "foo", "owner_ids": ["foo", "bar"]}
 
 
-@app.get("/items/invalidlist", response_model=List[Item])
+@app.get("/items/invalidlist", response_model=list[Item])
 def get_invalidlist():
     return [
         {"name": "foo"},

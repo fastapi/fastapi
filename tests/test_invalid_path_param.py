@@ -1,5 +1,3 @@
-from typing import Dict, List, Tuple
-
 import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -13,7 +11,7 @@ def test_invalid_sequence():
             title: str
 
         @app.get("/items/{id}")
-        def read_items(id: List[Item]):
+        def read_items(id: list[Item]):
             pass  # pragma: no cover
 
 
@@ -25,7 +23,7 @@ def test_invalid_tuple():
             title: str
 
         @app.get("/items/{id}")
-        def read_items(id: Tuple[Item, Item]):
+        def read_items(id: tuple[Item, Item]):
             pass  # pragma: no cover
 
 
@@ -37,7 +35,7 @@ def test_invalid_dict():
             title: str
 
         @app.get("/items/{id}")
-        def read_items(id: Dict[str, Item]):
+        def read_items(id: dict[str, Item]):
             pass  # pragma: no cover
 
 

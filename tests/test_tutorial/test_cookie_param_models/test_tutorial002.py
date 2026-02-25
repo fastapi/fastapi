@@ -1,32 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import (
-    needs_py39,
-    needs_py310,
-    needs_pydanticv1,
-    needs_pydanticv2,
-    pydantic_snapshot,
-)
+from tests.utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002", marks=needs_pydanticv2),
-        pytest.param("tutorial002_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_an", marks=needs_pydanticv2),
-        pytest.param("tutorial002_an_py39", marks=[needs_py39, needs_pydanticv2]),
-        pytest.param("tutorial002_an_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_pv1", marks=[needs_pydanticv1, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_py310", marks=[needs_py310, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an", marks=[needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py39", marks=[needs_py39, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py310", marks=[needs_py310, needs_pydanticv1]),
+        pytest.param("tutorial002_py310", marks=[needs_py310]),
+        pytest.param("tutorial002_an_py310", marks=[needs_py310]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -65,31 +50,16 @@ def test_cookie_param_model_defaults(client: TestClient):
 def test_cookie_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == pydantic_snapshot(
-        v2=snapshot(
+    assert response.json() == {
+        "detail": [
             {
-                "detail": [
-                    {
-                        "type": "missing",
-                        "loc": ["cookie", "session_id"],
-                        "msg": "Field required",
-                        "input": {},
-                    }
-                ]
+                "type": "missing",
+                "loc": ["cookie", "session_id"],
+                "msg": "Field required",
+                "input": {},
             }
-        ),
-        v1=snapshot(
-            {
-                "detail": [
-                    {
-                        "type": "value_error.missing",
-                        "loc": ["cookie", "session_id"],
-                        "msg": "field required",
-                    }
-                ]
-            }
-        ),
-    )
+        ]
+    }
 
 
 def test_cookie_param_model_extra(client: TestClient):
@@ -99,30 +69,16 @@ def test_cookie_param_model_extra(client: TestClient):
         response = c.get("/items/")
     assert response.status_code == 422
     assert response.json() == snapshot(
-        IsDict(
-            {
-                "detail": [
-                    {
-                        "type": "extra_forbidden",
-                        "loc": ["cookie", "extra"],
-                        "msg": "Extra inputs are not permitted",
-                        "input": "track-me-here-too",
-                    }
-                ]
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "detail": [
-                    {
-                        "type": "value_error.extra",
-                        "loc": ["cookie", "extra"],
-                        "msg": "extra fields not permitted",
-                    }
-                ]
-            }
-        )
+        {
+            "detail": [
+                {
+                    "type": "extra_forbidden",
+                    "loc": ["cookie", "extra"],
+                    "msg": "Extra inputs are not permitted",
+                    "input": "track-me-here-too",
+                }
+            ]
+        }
     )
 
 
@@ -149,42 +105,22 @@ def test_openapi_schema(client: TestClient):
                                 "name": "fatebook_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": pydantic_snapshot(
-                                    v2=snapshot(
-                                        {
-                                            "anyOf": [
-                                                {"type": "string"},
-                                                {"type": "null"},
-                                            ],
-                                            "title": "Fatebook Tracker",
-                                        }
-                                    ),
-                                    v1=snapshot(
-                                        # TODO: remove when deprecating Pydantic v1
-                                        {
-                                            "type": "string",
-                                            "title": "Fatebook Tracker",
-                                        }
-                                    ),
-                                ),
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Fatebook Tracker",
+                                },
                             },
                             {
                                 "name": "googall_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "Googall Tracker",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "type": "string",
-                                        "title": "Googall Tracker",
-                                    }
-                                ),
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Googall Tracker",
+                                },
                             },
                         ],
                         "responses": {
@@ -223,6 +159,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

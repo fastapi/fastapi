@@ -1,31 +1,30 @@
-# Pythonの型の紹介
+# Pythonの型の紹介 { #python-types-intro }
 
-**Python 3.6以降** では「型ヒント」オプションがサポートされています。
+Python にはオプションの「型ヒント」（「型アノテーション」とも呼ばれます）がサポートされています。
 
-これらの **"型ヒント"** は変数の<abbr title="例: str, int, float, bool">型</abbr>を宣言することができる新しい構文です。（Python 3.6以降）
+これらの **「型ヒント」** やアノテーションは、変数の<dfn title="例えば: str、int、float、bool">型</dfn>を宣言できる特別な構文です。
 
-変数に型を宣言することでエディターやツールがより良いサポートを提供することができます。
+変数に型を宣言することで、エディターやツールがより良いサポートを提供できます。
 
-ここではPythonの型ヒントについての **クイックチュートリアル/リフレッシュ** で、**FastAPI**でそれらを使用するために必要な最低限のことだけをカバーしています。...実際には本当に少ないです。
+これは Python の型ヒントについての **クイックチュートリアル/リフレッシュ** にすぎません。**FastAPI** で使うために必要な最低限のことだけをカバーしています。...実際には本当に少ないです。
 
 **FastAPI** はすべてこれらの型ヒントに基づいており、多くの強みと利点を与えてくれます。
 
-しかしたとえまったく **FastAPI** を使用しない場合でも、それらについて少し学ぶことで利点を得ることができるでしょう。
+しかし、たとえ **FastAPI** をまったく使用しない場合でも、それらについて少し学ぶことで利点を得られます。
 
 /// note | 備考
 
-もしあなたがPythonの専門家で、すでに型ヒントについてすべて知っているのであれば、次の章まで読み飛ばしてください。
+もしあなたが Python の専門家で、すでに型ヒントについてすべて知っているのであれば、次の章まで読み飛ばしてください。
 
 ///
 
-## 動機
+## 動機 { #motivation }
 
 簡単な例から始めてみましょう:
 
-{* ../../docs_src/python_types/tutorial001.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
-
-このプログラムを実行すると以下が出力されます:
+このプログラムを呼び出すと、以下が出力されます:
 
 ```
 John Doe
@@ -33,14 +32,13 @@ John Doe
 
 この関数は以下のようなことを行います:
 
-* `first_name`と`last_name`を取得します。
-* `title()`を用いて、それぞれの最初の文字を大文字に変換します。
-* 真ん中にスペースを入れて<abbr title="次から次へと中身を入れて一つにまとめる">連結</abbr>します。
+* `first_name` と `last_name` を取得します。
+* `title()` を用いて、それぞれの最初の文字を大文字に変換します。
+* 真ん中にスペースを入れて<dfn title="1つにまとめます。片方の内容をもう片方の後ろに続けます。">連結</dfn>します。
 
-{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
-
-### 編集
+### 編集 { #edit-it }
 
 これはとても簡単なプログラムです。
 
@@ -50,21 +48,21 @@ John Doe
 
 しかし、そうすると「最初の文字を大文字に変換するあのメソッド」を呼び出す必要があります。
 
-それは`upper`でしたか？`uppercase`でしたか？それとも`first_uppercase`？または`capitalize`？
+それは `upper` でしたか？`uppercase` でしたか？`first_uppercase`？`capitalize`？
 
 そして、古くからプログラマーの友人であるエディタで自動補完を試してみます。
 
-関数の最初のパラメータ`first_name`を入力し、ドット(`.`)を入力してから、`Ctrl+Space`を押すと補完が実行されます。
+関数の最初のパラメータ `first_name` を入力し、ドット（`.`）を入力してから、`Ctrl+Space` を押すと補完が実行されます。
 
 しかし、悲しいことに、これはなんの役にも立ちません:
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image01.png">
+<img src="/img/python-types/image01.png">
 
-### 型の追加
+### 型の追加 { #add-types }
 
 先ほどのコードから一行変更してみましょう。
 
-以下の関数のパラメータ部分を:
+関数のパラメータである次の断片を、以下から:
 
 ```Python
     first_name, last_name
@@ -80,8 +78,7 @@ John Doe
 
 それが「型ヒント」です:
 
-{* ../../docs_src/python_types/tutorial002.py hl[1] *}
-
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
 これは、以下のようにデフォルト値を宣言するのと同じではありません:
 
@@ -95,41 +92,39 @@ John Doe
 
 そして、通常、型ヒントを追加しても、それらがない状態と起こることは何も変わりません。
 
-しかし今、あなたが再びその関数を作成している最中に、型ヒントを使っていると想像してみて下さい。
+しかし今、あなたが再びその関数を作成している最中に、型ヒントを使っていると想像してみてください。
 
-同じタイミングで`Ctrl+Space`で自動補完を実行すると、以下のようになります:
+同じタイミングで `Ctrl+Space` で自動補完を実行すると、以下のようになります:
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image02.png">
+<img src="/img/python-types/image02.png">
 
-これであれば、あなたは「ベルを鳴らす」一つを見つけるまで、オプションを見て、スクロールすることができます:
+これであれば、あなたは「ベルを鳴らす」ものを見つけるまで、オプションを見てスクロールできます:
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image03.png">
+<img src="/img/python-types/image03.png">
 
-## より強い動機
+## より強い動機 { #more-motivation }
 
 この関数を見てください。すでに型ヒントを持っています:
 
-{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
+エディタは変数の型を知っているので、補完だけでなく、エラーチェックをすることもできます:
 
-エディタは変数の型を知っているので、補完だけでなく、エラーチェックをすることもできます。
+<img src="/img/python-types/image04.png">
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image04.png">
+これで `age` を `str(age)` で文字列に変換して修正する必要があることがわかります:
 
-これで`age`を`str(age)`で文字列に変換して修正する必要があることがわかります:
+{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
-{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+## 型の宣言 { #declaring-types }
 
-
-## 型の宣言
-
-関数のパラメータとして、型ヒントを宣言している主な場所を確認しました。
+型ヒントを宣言する主な場所を見てきました。関数のパラメータです。
 
 これは **FastAPI** で使用する主な場所でもあります。
 
-### 単純な型
+### 単純な型 { #simple-types }
 
-`str`だけでなく、Pythonの標準的な型すべてを宣言することができます。
+`str` だけでなく、Python の標準的な型すべてを宣言できます。
 
 例えば、以下を使用可能です:
 
@@ -138,177 +133,216 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+
+### `typing` モジュール { #typing-module }
+
+いくつかの追加のユースケースでは、標準ライブラリの `typing` モジュールから何かをインポートする必要があるかもしれません。例えば「任意の型」を受け付けることを宣言したい場合、`typing` の `Any` を使えます:
+
+```python
+from typing import Any
 
 
-### 型パラメータを持つジェネリック型
+def some_function(data: Any):
+    print(data)
+```
 
-データ構造の中には、`dict`、`list`、`set`、そして`tuple`のように他の値を含むことができるものがあります。また内部の値も独自の型を持つことができます。
+### ジェネリック型 { #generic-types }
 
-これらの型や内部の型を宣言するには、Pythonの標準モジュール`typing`を使用します。
+一部の型は、角括弧内で「型パラメータ」を受け取り、内部の型を定義できます。例えば「文字列のリスト」は `list[str]` として宣言します。
 
-これらの型ヒントをサポートするために特別に存在しています。
+このように型パラメータを取れる型は **Generic types**（ジェネリクス）と呼ばれます。
 
-#### `List`
+次の組み込み型をジェネリクスとして（角括弧と内部の型で）使えます:
 
-例えば、`str`の`list`の変数を定義してみましょう。
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-`typing`から`List`をインポートします（大文字の`L`を含む）:
+#### List { #list }
 
-{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+例えば、`str` の `list` の変数を定義してみましょう。
 
+同じコロン（`:`）の構文で変数を宣言します。
 
-同じようにコロン（`:`）の構文で変数を宣言します。
+型として、`list` を指定します。
 
-型として、`List`を入力します。
+リストはいくつかの内部の型を含む型なので、それらを角括弧で囲みます:
 
-リストはいくつかの内部の型を含む型なので、それらを角括弧で囲んでいます。
+{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-{* ../../docs_src/python_types/tutorial006.py hl[4] *}
-
-
-/// tip | 豆知識
+/// info | 情報
 
 角括弧内の内部の型は「型パラメータ」と呼ばれています。
 
-この場合、`str`は`List`に渡される型パラメータです。
+この場合、`str` は `list` に渡される型パラメータです。
 
 ///
 
-つまり: 変数`items`は`list`であり、このリストの各項目は`str`です。
+つまり: 変数 `items` は `list` であり、このリストの各項目は `str` です。
 
 そうすることで、エディタはリストの項目を処理している間にもサポートを提供できます。
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image05.png">
+<img src="/img/python-types/image05.png">
 
-タイプがなければ、それはほぼ不可能です。
+型がなければ、それはほぼ不可能です。
 
-変数`item`はリスト`items`の要素の一つであることに注意してください。
+変数 `item` はリスト `items` の要素の一つであることに注意してください。
 
-それでも、エディタはそれが`str`であることを知っていて、そのためのサポートを提供しています。
+それでも、エディタはそれが `str` であることを知っていて、そのためのサポートを提供しています。
 
-#### `Tuple` と `Set`
+#### Tuple と Set { #tuple-and-set }
 
-`tuple`と`set`の宣言も同様です:
+`tuple` と `set` の宣言も同様です:
 
-{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
-
-
-つまり:
-
-* 変数`items_t`は`int`、`int`、`str`の3つの項目を持つ`tuple`です
-
-* 変数`items_s`はそれぞれの項目が`bytes`型である`set`です。
-
-#### `Dict`
-
-`dict`を宣言するためには、カンマ区切りで2つの型パラメータを渡します。
-
-最初の型パラメータは`dict`のキーです。
-
-２番目の型パラメータは`dict`の値です。
-
-{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
-
+{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
 
 つまり:
 
-* 変数`prices`は`dict`であり:
-    * この`dict`のキーは`str`型です。（つまり、各項目の名前）
-    * この`dict`の値は`float`型です。（つまり、各項目の価格）
+* 変数 `items_t` は `int`、別の `int`、`str` の 3 つの項目を持つ `tuple` です。
+* 変数 `items_s` は `set` であり、その各項目は `bytes` 型です。
 
-#### `Optional`
+#### Dict { #dict }
 
-また、`Optional`を使用して、変数が`str`のような型を持つことを宣言することもできますが、それは「オプション」であり、`None`にすることもできます。
+`dict` を定義するには、カンマ区切りで 2 つの型パラメータを渡します。
 
-```Python hl_lines="1 4"
-{!../../docs_src/python_types/tutorial009.py!}
+最初の型パラメータは `dict` のキーです。
+
+2 番目の型パラメータは `dict` の値です:
+
+{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+
+つまり:
+
+* 変数 `prices` は `dict` です:
+    * この `dict` のキーは `str` 型です（例えば、各項目の名前）。
+    * この `dict` の値は `float` 型です（例えば、各項目の価格）。
+
+#### Union { #union }
+
+変数が **複数の型のいずれか** になり得ることを宣言できます。例えば、`int` または `str` です。
+
+それを定義するには、両方の型を区切るために <dfn title="「ビット単位の OR 演算子」とも呼ばれますが、ここでの意味とは関係ありません。">縦棒（`|`）</dfn> を使います。
+
+これは「ユニオン（union）」と呼ばれます。変数がそれら 2 つの型の集合の和集合のいずれかになり得るからです。
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-ただの`str`の代わりに`Optional[str]`を使用することで、エディタは値が常に`str`であると仮定している場合に実際には`None`である可能性があるエラーを検出するのに役立ちます。
+これは `item` が `int` または `str` になり得ることを意味します.
 
-#### ジェネリック型
+#### `None` の可能性 { #possibly-none }
 
-以下のように角括弧で型パラメータを取る型を:
+値が `str` のような型を持つ可能性がある一方で、`None` にもなり得ることを宣言できます。
 
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
-* `Optional`
-* ...など
+//// tab | Python 3.10+
 
-**ジェネリック型** または **ジェネリクス** と呼びます。
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial009_py310.py!}
+```
 
-### 型としてのクラス
+////
+
+ただの `str` の代わりに `str | None` を使用することで、値が常に `str` であると仮定しているときに、実際には `None` である可能性もあるというエラーをエディタが検出するのに役立ちます。
+
+### 型としてのクラス { #classes-as-types }
 
 変数の型としてクラスを宣言することもできます。
 
-例えば、`Person`クラスという名前のクラスがあるとしましょう:
+名前を持つ `Person` クラスがあるとしましょう:
 
-{* ../../docs_src/python_types/tutorial010.py hl[1,2,3] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
 
+変数を `Person` 型として宣言できます:
 
-変数の型を`Person`として宣言することができます:
-
-{* ../../docs_src/python_types/tutorial010.py hl[6] *}
-
+{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
 
 そして、再び、すべてのエディタのサポートを得ることができます:
 
-<img src="https://fastapi.tiangolo.com/img/python-types/image06.png">
+<img src="/img/python-types/image06.png">
 
-## Pydanticのモデル
+これは「`one_person` はクラス `Person` の **インスタンス** である」ことを意味します。
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うためのPythonライブラリです。
+「`one_person` は `Person` という名前の **クラス** である」という意味ではありません。
+
+## Pydantic のモデル { #pydantic-models }
+
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うための Python ライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
 そして、それぞれの属性は型を持ちます。
 
-さらに、いくつかの値を持つクラスのインスタンスを作成すると、その値を検証し、適切な型に変換して（もしそうであれば）全てのデータを持つオブジェクトを提供してくれます。
+さらに、いくつかの値を持つクラスのインスタンスを作成すると、その値を検証し、適切な型に変換して（もしそうであれば）すべてのデータを持つオブジェクトを提供してくれます。
 
 また、その結果のオブジェクトですべてのエディタのサポートを受けることができます。
 
-Pydanticの公式ドキュメントから引用:
+Pydantic の公式ドキュメントからの例:
 
-{* ../../docs_src/python_types/tutorial011.py *}
-
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// info | 情報
 
-Pydanticについてより学びたい方は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">ドキュメントを参照してください</a>.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic の詳細はドキュメントを参照してください</a>。
 
 ///
 
-**FastAPI** はすべてPydanticをベースにしています。
+**FastAPI** はすべて Pydantic をベースにしています。
 
-すべてのことは[チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank}で実際に見ることができます。
+すべてのことは [チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank} で実際に見ることができます。
 
-## **FastAPI**での型ヒント
+## メタデータアノテーション付き型ヒント { #type-hints-with-metadata-annotations }
+
+Python には、`Annotated` を使って型ヒントに **追加の <dfn title="データに関するデータ。この場合は型に関する情報（例えば説明）。">メタデータ</dfn>** を付与できる機能もあります。
+
+`Annotated` は `typing` からインポートできます。
+
+{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+
+Python 自体は、この `Annotated` で何かをするわけではありません。また、エディタや他のツールにとっても、型は依然として `str` です。
+
+しかし、`Annotated` 内のこのスペースを使って、アプリケーションをどのように動作させたいかについての追加メタデータを **FastAPI** に提供できます。
+
+覚えておくべき重要な点は、`Annotated` に渡す **最初の「型パラメータ」** が **実際の型** であることです。残りは、他のツール向けのメタデータにすぎません。
+
+今のところは、`Annotated` が存在し、それが標準の Python であることを知っておけば十分です。😎
+
+後で、これがどれほど **強力** になり得るかを見ることになります。
+
+/// tip | 豆知識
+
+これが **標準の Python** であるという事実は、エディタで、使用しているツール（コードの解析やリファクタリングなど）とともに、**可能な限り最高の開発体験** が得られることを意味します。 ✨
+
+また、あなたのコードが他の多くの Python ツールやライブラリとも非常に互換性が高いことも意味します。 🚀
+
+///
+
+## **FastAPI** での型ヒント { #type-hints-in-fastapi }
 
 **FastAPI** はこれらの型ヒントを利用していくつかのことを行います。
 
-**FastAPI** では型ヒントを使って型パラメータを宣言すると以下のものが得られます:
+**FastAPI** では型ヒントを使ってパラメータを宣言すると以下のものが得られます:
 
-* **エディタサポート**.
-* **型チェック**.
+* **エディタサポート**。
+* **型チェック**。
 
-...そして **FastAPI** は同じように宣言をすると、以下のことを行います:
+...そして **FastAPI** は同じ宣言を使って、以下のことを行います:
 
-* **要件の定義**: リクエストパスパラメータ、クエリパラメータ、ヘッダー、ボディ、依存関係などから要件を定義します。
-* **データの変換**: リクエストのデータを必要な型に変換します。
-* **データの検証**: リクエストごとに:
+* **要件の定義**: リクエストのパスパラメータ、クエリパラメータ、ヘッダー、ボディ、依存関係などから要件を定義します。
+* **データの変換**: リクエストから必要な型にデータを変換します。
+* **データの検証**: 各リクエストから来るデータについて:
     * データが無効な場合にクライアントに返される **自動エラー** を生成します。
-* **ドキュメント** OpenAPIを使用したAPI:
-    * 自動的に対話型ドキュメントのユーザーインターフェイスで使用されます。
+* OpenAPI を使用して API を **ドキュメント化** します:
+    * これは自動の対話型ドキュメントのユーザーインターフェイスで使われます。
 
-すべてが抽象的に聞こえるかもしれません。心配しないでください。 この全ての動作は [チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank}で見ることができます。
+すべてが抽象的に聞こえるかもしれません。心配しないでください。 この全ての動作は [チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank} で見ることができます。
 
-重要なのは、Pythonの標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）１つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
+重要なのは、Python の標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）1 つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
 
 /// info | 情報
 
-すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`のチートシートを参照してください</a>
+すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` の「チートシート」</a> があります。
 
 ///

@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Info
-
-In Pydantic v1 war es im Hauptpackage enthalten. Jetzt wird es als unabhängiges Package verteilt, sodass Sie wählen können, ob Sie es installieren möchten oder nicht, falls Sie die Funktionalität nicht benötigen.
-
-///
-
 ### Das `Settings`-Objekt erstellen { #create-the-settings-object }
 
 Importieren Sie `BaseSettings` aus Pydantic und erstellen Sie eine Unterklasse, ganz ähnlich wie bei einem Pydantic-Modell.
@@ -60,23 +54,7 @@ Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute
 
 Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Info
-
-In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydantic_settings` importieren.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
-
-////
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Tipp
 
@@ -92,7 +70,7 @@ Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `
 
 Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Den Server ausführen { #run-the-server }
 
@@ -126,11 +104,11 @@ Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in
 
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 Und dann verwenden Sie diese in einer Datei `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Tipp
 
@@ -148,7 +126,7 @@ Dies könnte besonders beim Testen nützlich sein, da es sehr einfach ist, eine 
 
 Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
 
@@ -156,7 +134,7 @@ Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erste
 
 Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurückgibt.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Tipp
 
@@ -168,13 +146,13 @@ Im Moment nehmen Sie an, dass `get_settings()` eine normale Funktion ist.
 
 Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einfordern und es überall dort verwenden, wo wir es brauchen.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Einstellungen und Tests { #settings-and-testing }
 
 Dann wäre es sehr einfach, beim Testen ein anderes Einstellungsobjekt bereitzustellen, indem man eine Abhängigkeitsüberschreibung für `get_settings` erstellt:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_email` fest, wenn wir das neue `Settings`-Objekt erstellen, und geben dann dieses neue Objekt zurück.
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 Und dann aktualisieren Sie Ihre `config.py` mit:
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Tipp
 
 Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
-
-/// tip | Tipp
-
-Die Klasse `Config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 erfolgte die Konfiguration in einer internen Klasse `Config`, in Pydantic Version 2 erfolgt sie in einem Attribut `model_config`. Dieses Attribut akzeptiert ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>. Um automatische Codevervollständigung und Inline-Fehlerberichte zu erhalten, können Sie `SettingsConfigDict` importieren und verwenden, um dieses `dict` zu definieren.
 
 ///
 
@@ -270,7 +226,7 @@ würden wir dieses Objekt für jeden Request erstellen und die `.env`-Datei für
 
 Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Objekt nur einmal erstellt, nämlich beim ersten Aufruf. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Dann wird bei allen nachfolgenden Aufrufen von `get_settings()`, in den Abhängigkeiten für darauffolgende Requests, dasselbe Objekt zurückgegeben, das beim ersten Aufruf zurückgegeben wurde, anstatt den Code von `get_settings()` erneut auszuführen und ein neues `Settings`-Objekt zu erstellen.
 

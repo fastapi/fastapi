@@ -1,4 +1,4 @@
-# How To - Recetas
+# Cómo hacer - Recetas { #how-to-recipes }
 
 Aquí verás diferentes recetas o guías de "cómo hacer" para **varios temas**.
 
@@ -8,6 +8,6 @@ Si algo parece interesante y útil para tu proyecto, adelante y revísalo, pero 
 
 /// tip | Consejo
 
-Si quieres **aprender FastAPI** de una manera estructurada (recomendado), ve y lee el [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} capítulo por capítulo.
+Si quieres **aprender FastAPI** de una manera estructurada (recomendado), ve y lee el [Tutorial - Guía de Usuario](../tutorial/index.md){.internal-link target=_blank} capítulo por capítulo en su lugar.
 
 ///

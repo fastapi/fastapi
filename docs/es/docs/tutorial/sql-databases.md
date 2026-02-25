@@ -1,4 +1,4 @@
-# Bases de Datos SQL (Relacionales)
+# Bases de Datos SQL (Relacionales) { #sql-relational-databases }
 
 **FastAPI** no requiere que uses una base de datos SQL (relacional). Pero puedes utilizar **cualquier base de datos** que desees.
 
@@ -8,7 +8,7 @@ Aquí veremos un ejemplo usando <a href="https://sqlmodel.tiangolo.com/" class="
 
 /// tip | Consejo
 
-Puedes usar cualquier otro paquete de bases de datos SQL o NoSQL que quieras (en algunos casos llamadas <abbr title="Object Relational Mapper, un término elegante para un paquete donde algunas clases representan tablas SQL y las instances representan filas en esas tablas">"ORMs"</abbr>), FastAPI no te obliga a usar nada. 😎
+Puedes usar cualquier otro paquete de bases de datos SQL o NoSQL que quieras (en algunos casos llamadas <abbr title="Object Relational Mapper - Mapeador Objeto-Relacional: un término elegante para un paquete donde algunas clases representan tablas SQL y las instances representan filas en esas tablas">"ORMs"</abbr>), FastAPI no te obliga a usar nada. 😎
 
 ///
 
@@ -32,7 +32,7 @@ Hay un generador de proyectos oficial con **FastAPI** y **PostgreSQL** que inclu
 
 Este es un tutorial muy simple y corto, si deseas aprender sobre bases de datos en general, sobre SQL o más funcionalidades avanzadas, ve a la <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">documentación de SQLModel</a>.
 
-## Instalar `SQLModel`
+## Instalar `SQLModel` { #install-sqlmodel }
 
 Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego instala `sqlmodel`:
 
@@ -45,13 +45,13 @@ $ pip install sqlmodel
 
 </div>
 
-## Crear la App con un Solo Modelo
+## Crear la App con un Solo Modelo { #create-the-app-with-a-single-model }
 
 Primero crearemos la versión más simple de la aplicación con un solo modelo de **SQLModel**.
 
 Más adelante la mejoraremos aumentando la seguridad y versatilidad con **múltiples modelos** a continuación. 🤓
 
-### Crear Modelos
+### Crear Modelos { #create-models }
 
 Importa `SQLModel` y crea un modelo de base de datos:
 
@@ -65,13 +65,13 @@ Hay algunas diferencias:
 
 * `Field(primary_key=True)` le dice a SQLModel que `id` es la **clave primaria** en la base de datos SQL (puedes aprender más sobre claves primarias de SQL en la documentación de SQLModel).
 
-    Al tener el tipo como `int | None`, SQLModel sabrá que esta columna debe ser un `INTEGER` en la base de datos SQL y que debe ser `NULLABLE`.
+    Nota: Usamos `int | None` para el campo de clave primaria para que en el código Python podamos *crear un objeto sin un `id`* (`id=None`), asumiendo que la base de datos lo *generará al guardar*. SQLModel entiende que la base de datos proporcionará el `id` y *define la columna como un `INTEGER` no nulo* en el esquema de la base de datos. Consulta la <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">documentación de SQLModel sobre claves primarias</a> para más detalles.
 
 * `Field(index=True)` le dice a SQLModel que debe crear un **índice SQL** para esta columna, lo que permitirá búsquedas más rápidas en la base de datos cuando se lean datos filtrados por esta columna.
 
     SQLModel sabrá que algo declarado como `str` será una columna SQL de tipo `TEXT` (o `VARCHAR`, dependiendo de la base de datos).
 
-### Crear un Engine
+### Crear un Engine { #create-an-engine }
 
 Un `engine` de SQLModel (en el fondo, realmente es un `engine` de SQLAlchemy) es lo que **mantiene las conexiones** a la base de datos.
 
@@ -83,13 +83,13 @@ Usar `check_same_thread=False` permite a FastAPI usar la misma base de datos SQL
 
 No te preocupes, con la forma en que está estructurado el código, nos aseguraremos de usar **una sola *session* de SQLModel por request** más adelante, esto es realmente lo que intenta lograr el `check_same_thread`.
 
-### Crear las Tablas
+### Crear las Tablas { #create-the-tables }
 
 Luego añadimos una función que usa `SQLModel.metadata.create_all(engine)` para **crear las tablas** para todos los *modelos de tabla*.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
 
-### Crear una Dependencia de Session
+### Crear una Dependencia de Session { #create-a-session-dependency }
 
 Una **`Session`** es lo que almacena los **objetos en memoria** y lleva un seguimiento de cualquier cambio necesario en los datos, luego **usa el `engine`** para comunicarse con la base de datos.
 
@@ -99,7 +99,7 @@ Luego creamos una dependencia `Annotated` `SessionDep` para simplificar el resto
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-### Crear Tablas de Base de Datos al Arrancar
+### Crear Tablas de Base de Datos al Arrancar { #create-database-tables-on-startup }
 
 Crearemos las tablas de la base de datos cuando arranque la aplicación.
 
@@ -115,7 +115,7 @@ SQLModel tendrá utilidades de migración envolviendo Alembic, pero por ahora, p
 
 ///
 
-### Crear un Hero
+### Crear un Hero { #create-a-hero }
 
 Debido a que cada modelo de SQLModel también es un modelo de Pydantic, puedes usarlo en las mismas **anotaciones de tipos** que podrías usar en modelos de Pydantic.
 
@@ -125,29 +125,27 @@ De la misma manera, puedes declararlo como el **tipo de retorno** de la función
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
-</details>
-
 Aquí usamos la dependencia `SessionDep` (una `Session`) para añadir el nuevo `Hero` a la instance `Session`, comiteamos los cambios a la base de datos, refrescamos los datos en el `hero` y luego lo devolvemos.
 
-### Leer Heroes
+### Leer Heroes { #read-heroes }
 
 Podemos **leer** `Hero`s de la base de datos usando un `select()`. Podemos incluir un `limit` y `offset` para paginar los resultados.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-### Leer Un Hero
+### Leer Un Hero { #read-one-hero }
 
 Podemos **leer** un único `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-### Eliminar un Hero
+### Eliminar un Hero { #delete-a-hero }
 
 También podemos **eliminar** un `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
-### Ejecutar la App
+### Ejecutar la App { #run-the-app }
 
 Puedes ejecutar la aplicación:
 
@@ -167,7 +165,7 @@ Luego dirígete a la interfaz de `/docs`, verás que **FastAPI** está usando es
 <img src="/img/tutorial/sql-databases/image01.png">
 </div>
 
-## Actualizar la App con Múltiples Modelos
+## Actualizar la App con Múltiples Modelos { #update-the-app-with-multiple-models }
 
 Ahora vamos a **refactorizar** un poco esta aplicación para aumentar la **seguridad** y la **versatilidad**.
 
@@ -179,7 +177,7 @@ Además, creamos un `secret_name` para el héroe, pero hasta ahora, lo estamos d
 
 Arreglaremos estas cosas añadiendo unos **modelos extra**. Aquí es donde SQLModel brillará. ✨
 
-### Crear Múltiples Modelos
+### Crear Múltiples Modelos { #create-multiple-models }
 
 En **SQLModel**, cualquier clase de modelo que tenga `table=True` es un **modelo de tabla**.
 
@@ -187,7 +185,7 @@ Y cualquier clase de modelo que no tenga `table=True` es un **modelo de datos**,
 
 Con SQLModel, podemos usar **herencia** para **evitar duplicar** todos los campos en todos los casos.
 
-#### `HeroBase` - la clase base
+#### `HeroBase` - la clase base { #herobase-the-base-class }
 
 Comencemos con un modelo `HeroBase` que tiene todos los **campos que son compartidos** por todos los modelos:
 
@@ -196,7 +194,7 @@ Comencemos con un modelo `HeroBase` que tiene todos los **campos que son compart
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
 
-#### `Hero` - el *modelo de tabla*
+#### `Hero` - el *modelo de tabla* { #hero-the-table-model }
 
 Luego, crearemos `Hero`, el *modelo de tabla* real, con los **campos extra** que no siempre están en los otros modelos:
 
@@ -212,7 +210,7 @@ Debido a que `Hero` hereda de `HeroBase`, **también** tiene los **campos** decl
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
 
-#### `HeroPublic` - el *modelo de datos* público
+#### `HeroPublic` - el *modelo de datos* público { #heropublic-the-public-data-model }
 
 A continuación, creamos un modelo `HeroPublic`, este es el que será **devuelto** a los clientes de la API.
 
@@ -235,11 +233,10 @@ Todos los campos en `HeroPublic` son los mismos que en `HeroBase`, con `id` decl
 * `id`
 * `name`
 * `age`
-* `secret_name`
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
 
-#### `HeroCreate` - el *modelo de datos* para crear un héroe
+#### `HeroCreate` - el *modelo de datos* para crear un héroe { #herocreate-the-data-model-to-create-a-hero }
 
 Ahora creamos un modelo `HeroCreate`, este es el que **validará** los datos de los clientes.
 
@@ -263,7 +260,7 @@ Los campos de `HeroCreate` son:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
 
-#### `HeroUpdate` - el *modelo de datos* para actualizar un héroe
+#### `HeroUpdate` - el *modelo de datos* para actualizar un héroe { #heroupdate-the-data-model-to-update-a-hero }
 
 No teníamos una forma de **actualizar un héroe** en la versión anterior de la aplicación, pero ahora con **múltiples modelos**, podemos hacerlo. 🎉
 
@@ -281,7 +278,7 @@ Los campos de `HeroUpdate` son:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
 
-### Crear con `HeroCreate` y devolver un `HeroPublic`
+### Crear con `HeroCreate` y devolver un `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
 Ahora que tenemos **múltiples modelos**, podemos actualizar las partes de la aplicación que los usan.
 
@@ -303,19 +300,19 @@ Al declararlo en `response_model` le estamos diciendo a **FastAPI** que haga lo 
 
 ///
 
-### Leer Heroes con `HeroPublic`
+### Leer Heroes con `HeroPublic` { #read-heroes-with-heropublic }
 
 Podemos hacer lo mismo que antes para **leer** `Hero`s, nuevamente, usamos `response_model=list[HeroPublic]` para asegurar que los datos se validen y serialicen correctamente.
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
 
-### Leer Un Hero con `HeroPublic`
+### Leer Un Hero con `HeroPublic` { #read-one-hero-with-heropublic }
 
 Podemos **leer** un único héroe:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
 
-### Actualizar un Hero con `HeroUpdate`
+### Actualizar un Hero con `HeroUpdate` { #update-a-hero-with-heroupdate }
 
 Podemos **actualizar un héroe**. Para esto usamos una operación HTTP `PATCH`.
 
@@ -325,7 +322,7 @@ Luego usamos `hero_db.sqlmodel_update(hero_data)` para actualizar el `hero_db` c
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
 
-### Eliminar un Hero de Nuevo
+### Eliminar un Hero de Nuevo { #delete-a-hero-again }
 
 **Eliminar** un héroe se mantiene prácticamente igual.
 
@@ -333,7 +330,7 @@ No satisfaremos el deseo de refactorizar todo en este punto. 😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
-### Ejecutar la App de Nuevo
+### Ejecutar la App de Nuevo { #run-the-app-again }
 
 Puedes ejecutar la aplicación de nuevo:
 
@@ -353,8 +350,8 @@ Si vas a la interfaz de `/docs` de la API, verás que ahora está actualizada, y
 <img src="/img/tutorial/sql-databases/image02.png">
 </div>
 
-## Resumen
+## Resumen { #recap }
 
 Puedes usar <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> para interactuar con una base de datos SQL y simplificar el código con *modelos de datos* y *modelos de tablas*.
 
-Puedes aprender mucho más en la documentación de **SQLModel**, hay un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial sobre el uso de SQLModel con **FastAPI**</a>. 🚀
+Puedes aprender mucho más en la documentación de **SQLModel**, hay un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial más largo sobre el uso de SQLModel con **FastAPI**</a>. 🚀

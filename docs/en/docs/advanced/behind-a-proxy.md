@@ -53,7 +53,7 @@ This means that your **server** will trust a **proxy** running on the same host 
 
 For example, let's say you define a *path operation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
 
@@ -105,8 +105,6 @@ These headers preserve information about the original request that would otherwi
 * **X-Forwarded-Host**: The original host (`mysuperapp.com`)
 
 When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these headers and uses them, for example to generate the correct URLs in redirects.
-
-
 
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
@@ -170,7 +168,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 And now let's start our app:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py *}
 
 
 <div class="termy">
@@ -249,7 +247,7 @@ Even though all your code is written assuming there's just `/items/`.
 
 ...but your app only knows routes like `/items/` and has no idea about the `/api/v1` prefix.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 As a result, the app won't be able to match the routes correctly, and clients will get `404 Not Found` errors 😱.
 
@@ -411,7 +409,7 @@ Let's look at each of these approaches in detail.
 
 Let's now use the following app:
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py *}
 
 If your proxy removes the prefix before forwarding requests (like in Traefik configuration from [Stripping the prefix](#stripping-the-prefix){.internal-link target=_blank}), you should use the `--root-path` option of your ASGI server:
 
@@ -504,7 +502,7 @@ If the proxy keeps the prefix in the forwarded request:
 
 you can configure FastAPI like this:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 And run your ASGI server **without** `--root-path` option:
 
@@ -639,7 +637,7 @@ Here is an example Traefik configuration:
 
 You can then use middleware to read this header and dynamically set the correct `root_path`:
 
-{* ../../docs_src/behind_a_proxy/tutorial005.py hl[1:22] *}
+{* ../../docs_src/behind_a_proxy/tutorial005_py310.py hl[1:22] *}
 
 This allows a single FastAPI instance to handle requests under multiple prefixes, with `root_path` correctly set for each request.
 
@@ -706,7 +704,7 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Will generate an OpenAPI schema like:
 
@@ -749,11 +747,19 @@ The docs UI will interact with the server that you select.
 
 ///
 
+/// note | Technical Details
+
+The `servers` property in the OpenAPI specification is optional.
+
+If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely by default, which is the equivalent of a single server with a `url` value of `/`.
+
+///
+
 ### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 and then it won't include it in the OpenAPI schema.
 

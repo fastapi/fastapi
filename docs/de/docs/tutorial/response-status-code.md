@@ -8,7 +8,7 @@ Genauso wie Sie ein Responsemodell angeben können, können Sie auch den HTTP-St
 * `@app.delete()`
 * usw.
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Hinweis
 
@@ -66,7 +66,7 @@ Kurz gefasst:
 
 /// tip | Tipp
 
-Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet wird, sehen Sie sich die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a> an.
+Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet wird, sehen Sie sich die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla-Entwicklernetzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a> an.
 
 ///
 
@@ -74,7 +74,7 @@ Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet
 
 Lassen Sie uns das vorherige Beispiel noch einmal anschauen:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` ist der Statuscode für „Created“ („Erzeugt“).
 
@@ -82,7 +82,7 @@ Aber Sie müssen sich nicht merken, was jeder dieser Codes bedeutet.
 
 Sie können die Annehmlichkeit von Variablen aus `fastapi.status` nutzen.
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Diese sind nur eine Annehmlichkeit, sie enthalten dieselbe Zahl, aber so können Sie die Autovervollständigung Ihres Editors verwenden, um sie zu finden:
 

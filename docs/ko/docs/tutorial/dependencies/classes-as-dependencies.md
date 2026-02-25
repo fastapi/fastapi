@@ -1,30 +1,30 @@
-# 의존성으로서의 클래스
+# 의존성으로서의 클래스 { #classes-as-dependencies }
 
-**의존성 주입** 시스템에 대해 자세히 살펴보기 전에 이전 예제를 업그레이드 해보겠습니다.
+**의존성 주입** 시스템에 대해 더 깊이 살펴보기 전에, 이전 예제를 업그레이드해 보겠습니다.
 
-## 이전 예제의 `딕셔너리`
+## 이전 예제의 `dict` { #a-dict-from-the-previous-example }
 
-이전 예제에서, 우리는 의존성(의존 가능한) 함수에서 `딕셔너리`객체를 반환하고 있었습니다:
+이전 예제에서는 의존성("dependable")에서 `dict`를 반환하고 있었습니다:
 
-{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
-우리는 *경로 작동 함수*의 매개변수 `commons`에서 `딕셔너리` 객체를 얻습니다.
+하지만 그러면 *경로 처리 함수*의 매개변수 `commons`에서 `dict`를 받게 됩니다.
 
-그리고 우리는 에디터들이 `딕셔너리` 객체의 키나 밸류의 자료형을 알 수 없기 때문에 자동 완성과 같은 기능을 제공해 줄 수 없다는 것을 알고 있습니다.
+그리고 에디터는 `dict`의 키와 값 타입을 알 수 없기 때문에 `dict`에 대해서는 (완성 기능 같은) 많은 지원을 제공할 수 없다는 것을 알고 있습니다.
 
-더 나은 방법이 있을 것 같습니다...
+더 나은 방법이 있습니다...
 
-## 의존성으로 사용 가능한 것
+## 의존성이 되기 위한 조건 { #what-makes-a-dependency }
 
-지금까지 함수로 선언된 의존성을 봐왔습니다.
+지금까지는 함수로 선언된 의존성을 봤습니다.
 
-아마도 더 일반적이기는 하겠지만 의존성을 선언하는 유일한 방법은 아닙니다.
+하지만 그것만이 의존성을 선언하는 유일한 방법은 아닙니다(아마도 더 일반적이긴 하겠지만요).
 
-핵심 요소는 의존성이 "호출 가능"해야 한다는 것입니다
+핵심 요소는 의존성이 "호출 가능(callable)"해야 한다는 것입니다.
 
-파이썬에서의 "**호출 가능**"은 파이썬이 함수처럼 "호출"할 수 있는 모든 것입니다.
+파이썬에서 "**호출 가능(callable)**"이란 파이썬이 함수처럼 "호출"할 수 있는 모든 것입니다.
 
-따라서, 만약 당신이 `something`(함수가 아닐 수도 있음) 객체를 가지고 있고,
+따라서 `something`(함수가 _아닐_ 수도 있습니다)이라는 객체가 있고, 다음처럼 "호출"(실행)할 수 있다면:
 
 ```Python
 something()
@@ -36,11 +36,11 @@ something()
 something(some_argument, some_keyword_argument="foo")
 ```
 
-상기와 같은 방식으로 "호출(실행)" 할 수 있다면 "호출 가능"이 됩니다.
+그것은 "호출 가능(callable)"입니다.
 
-## 의존성으로서의 클래스
+## 의존성으로서의 클래스 { #classes-as-dependencies_1 }
 
-파이썬 클래스의 인스턴스를 생성하기 위해 사용하는 것과 동일한 문법을 사용한다는 걸 알 수 있습니다.
+파이썬 클래스의 인스턴스를 만들 때도 같은 문법을 사용한다는 것을 알 수 있을 겁니다.
 
 예를 들어:
 
@@ -53,125 +53,236 @@ class Cat:
 fluffy = Cat(name="Mr Fluffy")
 ```
 
-이 경우에 `fluffy`는 클래스 `Cat`의 인스턴스입니다. 그리고 우리는 `fluffy`를 만들기 위해서 `Cat`을 "호출"했습니다.
+이 경우 `fluffy`는 클래스 `Cat`의 인스턴스입니다.
 
-따라서, 파이썬 클래스는 **호출 가능**합니다.
+그리고 `fluffy`를 만들기 위해 `Cat`을 "호출"하고 있습니다.
 
-그래서 **FastAPI**에서는 파이썬 클래스를 의존성으로 사용할 수 있습니다.
+따라서 파이썬 클래스도 **호출 가능(callable)**합니다.
 
-FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래스 또는 다른 모든 것)과 정의된 매개변수들입니다.
+그러면 **FastAPI**에서는 파이썬 클래스를 의존성으로 사용할 수 있습니다.
 
-"호출 가능"한 것을 의존성으로서 **FastAPI**에 전달하면, 그 "호출 가능"한 것의 매개변수들을 분석한 후 이를 *경로 작동 함수*를 위한 매개변수와 동일한 방식으로 처리합니다. 하위-의존성 또한 같은 방식으로 처리합니다.
+FastAPI가 실제로 확인하는 것은 그것이 "호출 가능(callable)"(함수, 클래스, 또는 다른 무엇이든)한지와 정의된 매개변수들입니다.
 
-매개변수가 없는 "호출 가능"한 것 역시 매개변수가 없는 *경로 작동 함수*와 동일한 방식으로 적용됩니다.
+**FastAPI**에서 "호출 가능(callable)"한 것을 의존성으로 넘기면, 그 "호출 가능(callable)"한 것의 매개변수들을 분석하고 *경로 처리 함수*의 매개변수와 동일한 방식으로 처리합니다. 하위 의존성도 포함해서요.
 
-그래서, 우리는 위 예제에서의 `common_paramenters` 의존성을 클래스 `CommonQueryParams`로 바꿀 수 있습니다.
+이것은 매개변수가 전혀 없는 callable에도 적용됩니다. 매개변수가 없는 *경로 처리 함수*에 적용되는 것과 동일합니다.
 
-{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
+그러면 위의 의존성("dependable") `common_parameters`를 클래스 `CommonQueryParams`로 바꿀 수 있습니다:
 
-클래스의 인스턴스를 생성하는 데 사용되는 `__init__` 메서드에 주목하기 바랍니다:
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
 
-{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
+클래스의 인스턴스를 만들 때 사용하는 `__init__` 메서드에 주목하세요:
 
-...이전 `common_parameters`와 동일한 매개변수를 가집니다:
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
 
-{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
+...이전의 `common_parameters`와 동일한 매개변수를 가지고 있습니다:
 
-이 매개변수들은 **FastAPI**가 의존성을 "해결"하기 위해 사용할 것입니다
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
 
-함수와 클래스 두 가지 방식 모두, 아래 요소를 갖습니다:
+이 매개변수들이 **FastAPI**가 의존성을 "해결"하는 데 사용할 것들입니다.
 
-* `문자열`이면서 선택사항인 쿼리 매개변수 `q`.
-* 기본값이 `0`이면서 `정수형`인 쿼리 매개변수 `skip`
-* 기본값이 `100`이면서 `정수형`인 쿼리 매개변수 `limit`
+두 경우 모두 다음을 갖게 됩니다:
 
-두 가지 방식 모두, 데이터는 변환, 검증되고 OpenAPI 스키마에 문서화됩니다.
+* `str`인 선택적 쿼리 매개변수 `q`.
+* 기본값이 `0`인 `int` 쿼리 매개변수 `skip`.
+* 기본값이 `100`인 `int` 쿼리 매개변수 `limit`.
 
-## 사용해봅시다!
+두 경우 모두 데이터는 변환되고, 검증되며, OpenAPI 스키마에 문서화되는 등 여러 처리가 적용됩니다.
 
-이제 아래의 클래스를 이용해서 의존성을 정의할 수 있습니다.
+## 사용하기 { #use-it }
 
-{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
+이제 이 클래스를 사용해 의존성을 선언할 수 있습니다.
 
-**FastAPI**는 `CommonQueryParams` 클래스를 호출합니다. 이것은 해당 클래스의 "인스턴스"를 생성하고 그 인스턴스는 함수의 매개변수 `commons`로 전달됩니다.
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
 
-## 타입 힌팅 vs `Depends`
+**FastAPI**는 `CommonQueryParams` 클래스를 호출합니다. 그러면 해당 클래스의 "인스턴스"가 생성되고, 그 인스턴스가 함수의 매개변수 `commons`로 전달됩니다.
 
-위 코드에서 `CommonQueryParams`를 두 번 작성한 방식에 주목하십시오:
+## 타입 어노테이션 vs `Depends` { #type-annotation-vs-depends }
+
+위 코드에서 `CommonQueryParams`를 두 번 작성하는 방식에 주목하세요:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-마지막 `CommonQueryParams` 변수를 보면:
+////
+
+마지막 `CommonQueryParams`는, 다음에서:
 
 ```Python
-... = Depends(CommonQueryParams)
+... Depends(CommonQueryParams)
 ```
 
-... **FastAPI**가 실제로 어떤 것이 의존성인지 알기 위해서 사용하는 방법입니다.
-FastAPI는 선언된 매개변수들을 추출할 것이고 실제로 이 변수들을 호출할 것입니다.
+...**FastAPI**가 실제로 무엇이 의존성인지 알기 위해 사용하는 것입니다.
+
+FastAPI는 여기에서 선언된 매개변수들을 추출하고, 실제로 이것을 호출합니다.
 
 ---
 
-이 경우에, 첫번째 `CommonQueryParams` 변수를 보면:
+이 경우 첫 번째 `CommonQueryParams`는 다음에서:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, ...
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons: CommonQueryParams ...
 ```
 
-... **FastAPI**는 `CommonQueryParams` 변수에 어떠한 특별한 의미도 부여하지 않습니다. FastAPI는 이 변수를 데이터 변환, 검증 등에 활용하지 않습니다. (활용하려면 `= Depends(CommonQueryParams)`를 사용해야 합니다.)
+////
 
-사실 아래와 같이 작성해도 무관합니다:
+...**FastAPI**에 특별한 의미가 없습니다. FastAPI는 이를 데이터 변환, 검증 등에 사용하지 않습니다(그런 용도로는 `Depends(CommonQueryParams)`를 사용하고 있기 때문입니다).
+
+실제로는 이렇게만 작성해도 됩니다:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[Any, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons = Depends(CommonQueryParams)
 ```
 
-..전체적인 코드는 아래와 같습니다:
+////
 
-{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
+...다음과 같이요:
 
-그러나 자료형을 선언하면 에디터가 매개변수 `commons`로 전달될 것이 무엇인지 알게 되고, 이를 통해 코드 완성, 자료형 확인 등에 도움이 될 수 있으므로 권장됩니다.
+{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
 
-<!-- <img src="/img/tutorial/dependencies/image02.png"> -->
+하지만 타입을 선언하는 것을 권장합니다. 그러면 에디터가 매개변수 `commons`에 무엇이 전달되는지 알 수 있고, 코드 완성, 타입 체크 등에서 도움을 받을 수 있습니다:
 
-## 코드 단축
+<img src="/img/tutorial/dependencies/image02.png">
 
-그러나 여기 `CommonQueryParams`를 두 번이나 작성하는, 코드 반복이 있다는 것을 알 수 있습니다:
+## 단축 { #shortcut }
+
+하지만 `CommonQueryParams`를 두 번 작성하는 코드 반복이 있다는 것을 볼 수 있습니다:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-**FastAPI**는 *특히* 의존성이 **FastAPI**가 클래스 자체의 인스턴스를 생성하기 위해 "호출"하는 클래스인 경우, 조금 더 쉬운 방법을 제공합니다.
+////
 
-이러한 특정한 경우에는 아래처럼 사용할 수 있습니다:
+**FastAPI**는 이런 경우를 위한 단축 방법을 제공합니다. 이때 의존성은 *특히* **FastAPI**가 "호출"해서 클래스 자체의 인스턴스를 만들도록 하는 클래스입니다.
 
-이렇게 쓰는 것 대신:
+이 특정한 경우에는 다음과 같이 할 수 있습니다:
+
+다음처럼 작성하는 대신:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-...이렇게 쓸 수 있습니다.:
+////
+
+...이렇게 작성합니다:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends()]
+```
+
+////
+
+//// tab | Python 3.10+ Annotated 미사용
+
+/// tip | 팁
+
+가능하다면 `Annotated` 버전을 사용하는 것을 권장합니다.
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends()
 ```
 
-의존성을 매개변수의 타입으로 선언하는 경우 `Depends(CommonQueryParams)`처럼 클래스 이름 전체를 *다시* 작성하는 대신, 매개변수를 넣지 않은 `Depends()`의 형태로 사용할 수 있습니다.
+////
 
-아래에 같은 예제가 있습니다:
+의존성을 매개변수의 타입으로 선언하고, `Depends(CommonQueryParams)` 안에 클래스 전체를 *다시* 작성하는 대신 매개변수 없이 `Depends()`를 사용합니다.
 
-{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
+그러면 같은 예제는 다음처럼 보일 겁니다:
 
-...이렇게 코드를 단축하여도 **FastAPI**는 무엇을 해야하는지 알고 있습니다.
+{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+
+...그리고 **FastAPI**는 무엇을 해야 하는지 알게 됩니다.
 
 /// tip | 팁
 
-만약 이것이 도움이 되기보다 더 헷갈리게 만든다면, 잊어버리십시오. 이것이 반드시 필요한 것은 아닙니다.
+도움이 되기보다 더 헷갈린다면, 무시하세요. 이건 *필수*가 아닙니다.
 
-이것은 단지 손쉬운 방법일 뿐입니다. 왜냐하면 **FastAPI**는 코드 반복을 최소화할 수 있는 방법을 고민하기 때문입니다.
+그저 단축 방법일 뿐입니다. **FastAPI**는 코드 반복을 최소화하도록 도와주는 것을 중요하게 생각하기 때문입니다.
 
 ///

@@ -1,4 +1,4 @@
-# Configuración de Path Operation
+# Configuración de Path Operation { #path-operation-configuration }
 
 Hay varios parámetros que puedes pasar a tu *path operation decorator* para configurarlo.
 
@@ -8,7 +8,7 @@ Ten en cuenta que estos parámetros se pasan directamente al *path operation dec
 
 ///
 
-## Código de Estado del Response
+## Código de Estado del Response { #response-status-code }
 
 Puedes definir el `status_code` (HTTP) que se utilizará en el response de tu *path operation*.
 
@@ -28,7 +28,7 @@ También podrías usar `from starlette import status`.
 
 ///
 
-## Tags
+## Tags { #tags }
 
 Puedes añadir tags a tu *path operation*, pasando el parámetro `tags` con un `list` de `str` (comúnmente solo una `str`):
 
@@ -38,7 +38,7 @@ Serán añadidas al esquema de OpenAPI y usadas por las interfaces de documentac
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
-### Tags con Enums
+### Tags con Enums { #tags-with-enums }
 
 Si tienes una gran aplicación, podrías terminar acumulando **varias tags**, y querrías asegurarte de que siempre uses la **misma tag** para *path operations* relacionadas.
 
@@ -46,17 +46,17 @@ En estos casos, podría tener sentido almacenar las tags en un `Enum`.
 
 **FastAPI** soporta eso de la misma manera que con strings normales:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
-## Resumen y Descripción
+## Resumen y Descripción { #summary-and-description }
 
 Puedes añadir un `summary` y `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
-## Descripción desde docstring
+## Descripción desde docstring { #description-from-docstring }
 
-Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <abbr title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usada para documentación">docstring</abbr> de la función y **FastAPI** la leerá desde allí.
+Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <dfn title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usada para documentación">docstring</dfn> de la función y **FastAPI** la leerá desde allí.
 
 Puedes escribir <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
 
@@ -66,11 +66,11 @@ Será usado en la documentación interactiva:
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
-## Descripción del Response
+## Descripción del Response { #response-description }
 
 Puedes especificar la descripción del response con el parámetro `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Información
 
@@ -88,11 +88,11 @@ Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de 
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 
-## Deprecar una *path operation*
+## Deprecar una *path operation* { #deprecate-a-path-operation }
 
-Si necesitas marcar una *path operation* como <abbr title="obsoleta, se recomienda no usarla">deprecated</abbr>, pero sin eliminarla, pasa el parámetro `deprecated`:
+Si necesitas marcar una *path operation* como <dfn title="obsoleta, se recomienda no usarla">deprecated</dfn>, pero sin eliminarla, pasa el parámetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 Se marcará claramente como deprecado en la documentación interactiva:
 
@@ -102,6 +102,6 @@ Revisa cómo lucen las *path operations* deprecadas y no deprecadas:
 
 <img src="/img/tutorial/path-operation-configuration/image05.png">
 
-## Resumen
+## Resumen { #recap }
 
 Puedes configurar y añadir metadatos a tus *path operations* fácilmente pasando parámetros a los *path operation decorators*.

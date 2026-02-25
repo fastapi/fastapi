@@ -1,12 +1,12 @@
-# Requisições Personalizadas e Classes da APIRoute
+# Request e classe APIRoute personalizadas { #custom-request-and-apiroute-class }
 
-Em algum casos, você pode querer sobreescrever a lógica usada pelas classes `Request`e `APIRoute`.
+Em alguns casos, você pode querer sobrescrever a lógica usada pelas classes `Request` e `APIRoute`.
 
-Em particular, isso pode ser uma boa alternativa para uma lógica em um middleware
+Em particular, isso pode ser uma boa alternativa para uma lógica em um middleware.
 
 Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que ele seja processado pela sua aplicação.
 
-/// danger | Perigo
+/// danger | Cuidado
 
 Isso é um recurso "avançado".
 
@@ -14,7 +14,7 @@ Se você for um iniciante em **FastAPI** você deve considerar pular essa seçã
 
 ///
 
-## Casos de Uso
+## Casos de Uso { #use-cases }
 
 Alguns casos de uso incluem:
 
@@ -22,13 +22,13 @@ Alguns casos de uso incluem:
 * Descomprimir corpos de requisição comprimidos com gzip.
 * Registrar automaticamente todos os corpos de requisição.
 
-## Manipulando codificações de corpo de requisição personalizadas
+## Manipulando codificações de corpo de requisição personalizadas { #handling-custom-request-body-encodings }
 
 Vamos ver como usar uma subclasse personalizada de `Request` para descomprimir requisições gzip.
 
 E uma subclasse de `APIRoute` para usar essa classe de requisição personalizada.
 
-### Criar uma classe `GzipRequest` personalizada
+### Criar uma classe `GzipRequest` personalizada { #create-a-custom-gziprequest-class }
 
 /// tip | Dica
 
@@ -42,9 +42,9 @@ Se não houver `gzip` no cabeçalho, ele não tentará descomprimir o corpo.
 
 Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas ou não comprimidas.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
-### Criar uma classe `GzipRoute` personalizada
+### Criar uma classe `GzipRoute` personalizada { #create-a-custom-gziproute-class }
 
 Em seguida, criamos uma subclasse personalizada de `fastapi.routing.APIRoute` que fará uso do `GzipRequest`.
 
@@ -54,11 +54,11 @@ Esse método retorna uma função. E essa função é o que irá receber uma req
 
 Aqui nós usamos para criar um `GzipRequest` a partir da requisição original.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
 
 /// note | Detalhes Técnicos
 
-Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
+Um `Request` tem um atributo `request.scope`, que é apenas um `dict` do Python contendo os metadados relacionados à requisição.
 
 Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
 
@@ -78,7 +78,7 @@ Depois disso, toda a lógica de processamento é a mesma.
 
 Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisição será automaticamente descomprimido quando for carregado pelo **FastAPI** quando necessário.
 
-## Acessando o corpo da requisição em um manipulador de exceção
+## Acessando o corpo da requisição em um manipulador de exceção { #accessing-the-request-body-in-an-exception-handler }
 
 /// tip | Dica
 
@@ -92,18 +92,18 @@ Também podemos usar essa mesma abordagem para acessar o corpo da requisição e
 
 Tudo que precisamos fazer é manipular a requisição dentro de um bloco `try`/`except`:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
 
 Se uma exceção ocorrer, a instância `Request` ainda estará em escopo, então podemos ler e fazer uso do corpo da requisição ao lidar com o erro:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
 
-## Classe `APIRoute` personalizada em um router
+## Classe `APIRoute` personalizada em um router { #custom-apiroute-class-in-a-router }
 
-você também pode definir o parametro `route_class` de uma `APIRouter`;
+Você também pode definir o parâmetro `route_class` de uma `APIRouter`:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
 Nesse exemplo, as *operações de rota* sob o `router` irão usar a classe `TimedRoute` personalizada, e terão um cabeçalho extra `X-Response-Time` na resposta com o tempo que levou para gerar a resposta:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}

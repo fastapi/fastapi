@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.behind_a_proxy.tutorial005 import app
+from docs_src.behind_a_proxy.tutorial005_py310 import app
 
 client = TestClient(app)
 

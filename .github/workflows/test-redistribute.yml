@@ -12,26 +12,19 @@ on:
 jobs:
   test-redistribute:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package:
-          - fastapi
-          - fastapi-slim
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.10"
+          python-version-file: ".python-version"
       - name: Install build dependencies
         run: pip install build
       - name: Build source distribution
-        env:
-          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
         run: python -m build --sdist
       - name: Decompress source distribution
         run: |
@@ -40,9 +33,7 @@ jobs:
       - name: Install test dependencies
         run: |
           cd dist/fastapi*/
-          pip install -r requirements-tests.txt
-        env:
-          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
+          pip install --group tests --editable .[all]
       - name: Run source distribution tests
         run: |
           cd dist/fastapi*/

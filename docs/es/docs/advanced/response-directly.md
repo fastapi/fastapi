@@ -1,4 +1,4 @@
-# Devolver una Response Directamente
+# Devolver una Response Directamente { #return-a-response-directly }
 
 Cuando creas una *path operation* en **FastAPI**, normalmente puedes devolver cualquier dato desde ella: un `dict`, una `list`, un modelo de Pydantic, un modelo de base de datos, etc.
 
@@ -10,7 +10,7 @@ Pero puedes devolver un `JSONResponse` directamente desde tus *path operations*.
 
 Esto podría ser útil, por ejemplo, para devolver headers o cookies personalizados.
 
-## Devolver una `Response`
+## Devolver una `Response` { #return-a-response }
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de ella.
 
@@ -26,7 +26,7 @@ No hará ninguna conversión de datos con los modelos de Pydantic, no convertir�
 
 Esto te da mucha flexibilidad. Puedes devolver cualquier tipo de datos, sobrescribir cualquier declaración o validación de datos, etc.
 
-## Usar el `jsonable_encoder` en una `Response`
+## Usar el `jsonable_encoder` en una `Response` { #using-the-jsonable-encoder-in-a-response }
 
 Como **FastAPI** no realiza cambios en una `Response` que devuelves, tienes que asegurarte de que sus contenidos estén listos para ello.
 
@@ -34,9 +34,9 @@ Por ejemplo, no puedes poner un modelo de Pydantic en un `JSONResponse` sin prim
 
 Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos antes de pasarlos a un response:
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
-/// note | Nota
+/// note | Detalles técnicos
 
 También podrías usar `from starlette.responses import JSONResponse`.
 
@@ -44,7 +44,7 @@ También podrías usar `from starlette.responses import JSONResponse`.
 
 ///
 
-## Devolver una `Response` personalizada
+## Devolver una `Response` personalizada { #returning-a-custom-response }
 
 El ejemplo anterior muestra todas las partes que necesitas, pero aún no es muy útil, ya que podrías haber devuelto el `item` directamente, y **FastAPI** lo colocaría en un `JSONResponse` por ti, convirtiéndolo a un `dict`, etc. Todo eso por defecto.
 
@@ -54,9 +54,9 @@ Digamos que quieres devolver un response en <a href="https://en.wikipedia.org/wi
 
 Podrías poner tu contenido XML en un string, poner eso en un `Response`, y devolverlo:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
-## Notas
+## Notas { #notes }
 
 Cuando devuelves una `Response` directamente, sus datos no son validados, convertidos (serializados), ni documentados automáticamente.
 

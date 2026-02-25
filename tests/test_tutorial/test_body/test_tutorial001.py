@@ -2,8 +2,8 @@ import importlib
 from unittest.mock import patch
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -11,7 +11,6 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001",
         pytest.param("tutorial001_py310", marks=needs_py310),
     ],
 )
@@ -74,124 +73,67 @@ def test_post_with_str_float_description_tax(client: TestClient):
 def test_post_with_only_name(client: TestClient):
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "price"],
-                    "msg": "Field required",
-                    "input": {"name": "Foo"},
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "price"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "price"],
+                "msg": "Field required",
+                "input": {"name": "Foo"},
+            }
+        ]
+    }
 
 
 def test_post_with_only_name_price(client: TestClient):
     response = client.post("/items/", json={"name": "Foo", "price": "twenty"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "float_parsing",
-                    "loc": ["body", "price"],
-                    "msg": "Input should be a valid number, unable to parse string as a number",
-                    "input": "twenty",
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "price"],
-                    "msg": "value is not a valid float",
-                    "type": "type_error.float",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "float_parsing",
+                "loc": ["body", "price"],
+                "msg": "Input should be a valid number, unable to parse string as a number",
+                "input": "twenty",
+            }
+        ]
+    }
 
 
 def test_post_with_no_data(client: TestClient):
     response = client.post("/items/", json={})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "name"],
-                    "msg": "Field required",
-                    "input": {},
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "price"],
-                    "msg": "Field required",
-                    "input": {},
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "name"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "price"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "name"],
+                "msg": "Field required",
+                "input": {},
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "price"],
+                "msg": "Field required",
+                "input": {},
+            },
+        ]
+    }
 
 
 def test_post_with_none(client: TestClient):
     response = client.post("/items/", json=None)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_post_broken_body(client: TestClient):
@@ -201,67 +143,32 @@ def test_post_broken_body(client: TestClient):
         content="{some broken json}",
     )
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "json_invalid",
-                    "loc": ["body", 1],
-                    "msg": "JSON decode error",
-                    "input": {},
-                    "ctx": {
-                        "error": "Expecting property name enclosed in double quotes"
-                    },
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", 1],
-                    "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
-                    "type": "value_error.jsondecode",
-                    "ctx": {
-                        "msg": "Expecting property name enclosed in double quotes",
-                        "doc": "{some broken json}",
-                        "pos": 1,
-                        "lineno": 1,
-                        "colno": 2,
-                    },
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "json_invalid",
+                "loc": ["body", 1],
+                "msg": "JSON decode error",
+                "input": {},
+                "ctx": {"error": "Expecting property name enclosed in double quotes"},
+            }
+        ]
+    }
 
 
 def test_post_form_for_json(client: TestClient):
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "model_attributes_type",
-                    "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or object to extract fields from",
-                    "input": "name=Foo&price=50.5",
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body"],
-                    "msg": "value is not a valid dict",
-                    "type": "type_error.dict",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "model_attributes_type",
+                "loc": ["body"],
+                "msg": "Input should be a valid dictionary or object to extract fields from",
+                "input": "name=Foo&price=50.5",
+            }
+        ]
+    }
 
 
 def test_explicit_content_type(client: TestClient):
@@ -282,18 +189,12 @@ def test_geo_json(client: TestClient):
     assert response.status_code == 200, response.text
 
 
-def test_no_content_type_is_json(client: TestClient):
+def test_no_content_type_json(client: TestClient):
     response = client.post(
         "/items/",
         content='{"name": "Foo", "price": 50.5}',
     )
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "name": "Foo",
-        "description": None,
-        "price": 50.5,
-        "tax": None,
-    }
+    assert response.status_code == 422, response.text
 
 
 def test_wrong_headers(client: TestClient):
@@ -302,84 +203,46 @@ def test_wrong_headers(client: TestClient):
         "/items/", content=data, headers={"Content-Type": "text/plain"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "model_attributes_type",
-                    "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or object to extract fields from",
-                    "input": '{"name": "Foo", "price": 50.5}',
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body"],
-                    "msg": "value is not a valid dict",
-                    "type": "type_error.dict",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "model_attributes_type",
+                "loc": ["body"],
+                "msg": "Input should be a valid dictionary or object to extract fields from",
+                "input": '{"name": "Foo", "price": 50.5}',
+            }
+        ]
+    }
 
     response = client.post(
         "/items/", content=data, headers={"Content-Type": "application/geo+json-seq"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "model_attributes_type",
-                    "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or object to extract fields from",
-                    "input": '{"name": "Foo", "price": 50.5}',
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body"],
-                    "msg": "value is not a valid dict",
-                    "type": "type_error.dict",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "model_attributes_type",
+                "loc": ["body"],
+                "msg": "Input should be a valid dictionary or object to extract fields from",
+                "input": '{"name": "Foo", "price": 50.5}',
+            }
+        ]
+    }
+
     response = client.post(
         "/items/", content=data, headers={"Content-Type": "application/not-really-json"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "model_attributes_type",
-                    "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or object to extract fields from",
-                    "input": '{"name": "Foo", "price": 50.5}',
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body"],
-                    "msg": "value is not a valid dict",
-                    "type": "type_error.dict",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "model_attributes_type",
+                "loc": ["body"],
+                "msg": "Input should be a valid dictionary or object to extract fields from",
+                "input": '{"name": "Foo", "price": 50.5}',
+            }
+        ]
+    }
 
 
 def test_other_exceptions(client: TestClient):
@@ -391,99 +254,93 @@ def test_other_exceptions(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Create Item",
+                        "operationId": "create_item_items__post",
+                        "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Create Item",
-                    "operationId": "create_item_items__post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
-                            }
-                        },
-                        "required": True,
-                    },
+                    }
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "Item": {
-                    "title": "Item",
-                    "required": ["name", "price"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "price": {"title": "Price", "type": "number"},
-                        "description": IsDict(
-                            {
+            },
+            "components": {
+                "schemas": {
+                    "Item": {
+                        "title": "Item",
+                        "required": ["name", "price"],
+                        "type": "object",
+                        "properties": {
+                            "name": {"title": "Name", "type": "string"},
+                            "price": {"title": "Price", "type": "number"},
+                            "description": {
                                 "title": "Description",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
-                        "tax": IsDict(
-                            {
+                            },
+                            "tax": {
                                 "title": "Tax",
                                 "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
                     },
-                },
-            }
-        },
-    }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                }
+            },
+        }
+    )

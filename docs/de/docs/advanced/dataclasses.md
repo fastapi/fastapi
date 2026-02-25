@@ -1,10 +1,10 @@
-# Verwendung von Datenklassen { #using-dataclasses }
+# Datenklassen verwenden { #using-dataclasses }
 
 FastAPI basiert auf **Pydantic**, und ich habe Ihnen gezeigt, wie Sie Pydantic-Modelle verwenden können, um <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> zu deklarieren.
 
 Aber FastAPI unterstützt auf die gleiche Weise auch die Verwendung von <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>:
 
-{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
+{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
 Das ist dank **Pydantic** ebenfalls möglich, da es <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` intern unterstützt</a>.
 
@@ -32,7 +32,7 @@ Wenn Sie jedoch eine Menge Datenklassen herumliegen haben, ist dies ein guter Tr
 
 Sie können `dataclasses` auch im Parameter `response_model` verwenden:
 
-{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
+{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
 
 Die Datenklasse wird automatisch in eine Pydantic-Datenklasse konvertiert.
 
@@ -48,7 +48,7 @@ In einigen Fällen müssen Sie möglicherweise immer noch Pydantics Version von 
 
 In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.dataclasses` ersetzen, was einen direkten Ersatz darstellt:
 
-{* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
+{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. Wir importieren `field` weiterhin von Standard-`dataclasses`.
 
@@ -64,7 +64,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
 6. Hier geben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurück, das `items` enthält, welches eine Liste von Datenklassen ist.
 
-    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <abbr title="Konvertieren der Daten in ein übertragbares Format">serialisieren</abbr>.
+    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <dfn title="Konvertieren der Daten in ein übertragbares Format">Serialisieren</dfn>.
 
 7. Hier verwendet das `response_model` als Typannotation eine Liste von `Author`-Datenklassen.
 

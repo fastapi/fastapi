@@ -1,4 +1,4 @@
-# FastAPI CLI
+# FastAPI CLI { #fastapi-cli }
 
 **FastAPI CLI** es un programa de línea de comandos que puedes usar para servir tu aplicación FastAPI, gestionar tu proyecto FastAPI, y más.
 
@@ -54,13 +54,13 @@ Para producción usarías `fastapi run` en su lugar. 🚀
 
 Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, un servidor ASGI de alto rendimiento y listo para producción. 😎
 
-## `fastapi dev`
+## `fastapi dev` { #fastapi-dev }
 
 Ejecutar `fastapi dev` inicia el modo de desarrollo.
 
 Por defecto, **auto-reload** está habilitado, recargando automáticamente el servidor cuando realizas cambios en tu código. Esto consume muchos recursos y podría ser menos estable que cuando está deshabilitado. Deberías usarlo solo para desarrollo. También escucha en la dirección IP `127.0.0.1`, que es la IP para que tu máquina se comunique solo consigo misma (`localhost`).
 
-## `fastapi run`
+## `fastapi run` { #fastapi-run }
 
 Ejecutar `fastapi run` inicia FastAPI en modo de producción por defecto.
 

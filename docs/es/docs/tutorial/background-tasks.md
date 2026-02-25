@@ -1,4 +1,4 @@
-# Tareas en Segundo Plano
+# Tareas en Segundo Plano { #background-tasks }
 
 Puedes definir tareas en segundo plano para que se ejecuten *después* de devolver un response.
 
@@ -11,15 +11,15 @@ Esto incluye, por ejemplo:
 * Procesamiento de datos:
   * Por ejemplo, supongamos que recibes un archivo que debe pasar por un proceso lento, puedes devolver un response de "Accepted" (HTTP 202) y procesar el archivo en segundo plano.
 
-## Usando `BackgroundTasks`
+## Usando `BackgroundTasks` { #using-backgroundtasks }
 
 Primero, importa `BackgroundTasks` y define un parámetro en tu *path operation function* con una declaración de tipo de `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** creará el objeto de tipo `BackgroundTasks` por ti y lo pasará como ese parámetro.
 
-## Crear una función de tarea
+## Crear una función de tarea { #create-a-task-function }
 
 Crea una función para que se ejecute como la tarea en segundo plano.
 
@@ -31,13 +31,13 @@ En este caso, la función de tarea escribirá en un archivo (simulando el envío
 
 Y como la operación de escritura no usa `async` y `await`, definimos la función con un `def` normal:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
-## Agregar la tarea en segundo plano
+## Agregar la tarea en segundo plano { #add-the-background-task }
 
 Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *background tasks* con el método `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` recibe como argumentos:
 
@@ -45,7 +45,7 @@ Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *
 * Cualquier secuencia de argumentos que deba pasarse a la función de tarea en orden (`email`).
 * Cualquier argumento de palabras clave que deba pasarse a la función de tarea (`message="some notification"`).
 
-## Inyección de Dependencias
+## Inyección de Dependencias { #dependency-injection }
 
 Usar `BackgroundTasks` también funciona con el sistema de inyección de dependencias, puedes declarar un parámetro de tipo `BackgroundTasks` en varios niveles: en una *path operation function*, en una dependencia (dependable), en una sub-dependencia, etc.
 
@@ -59,7 +59,7 @@ Si hay un query en el request, se escribirá en el log en una tarea en segundo p
 
 Y luego otra tarea en segundo plano generada en la *path operation function* escribirá un mensaje usando el parámetro de path `email`.
 
-## Detalles Técnicos
+## Detalles Técnicos { #technical-details }
 
 La clase `BackgroundTasks` proviene directamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
@@ -71,7 +71,7 @@ Todavía es posible usar `BackgroundTask` solo en FastAPI, pero debes crear el o
 
 Puedes ver más detalles en <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">la documentación oficial de Starlette sobre Background Tasks</a>.
 
-## Advertencia
+## Advertencia { #caveat }
 
 Si necesitas realizar una computación intensa en segundo plano y no necesariamente necesitas que se ejecute por el mismo proceso (por ejemplo, no necesitas compartir memoria, variables, etc.), podrías beneficiarte del uso de otras herramientas más grandes como <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
 
@@ -79,6 +79,6 @@ Tienden a requerir configuraciones más complejas, un gestor de cola de mensajes
 
 Pero si necesitas acceder a variables y objetos de la misma app de **FastAPI**, o necesitas realizar pequeñas tareas en segundo plano (como enviar una notificación por email), simplemente puedes usar `BackgroundTasks`.
 
-## Resumen
+## Resumen { #recap }
 
 Importa y usa `BackgroundTasks` con parámetros en *path operation functions* y dependencias para agregar tareas en segundo plano.

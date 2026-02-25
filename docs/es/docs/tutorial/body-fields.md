@@ -1,8 +1,8 @@
-# Body - Campos
+# Body - Campos { #body-fields }
 
 De la misma manera que puedes declarar validaciones adicionales y metadatos en los parámetros de las *path operation function* con `Query`, `Path` y `Body`, puedes declarar validaciones y metadatos dentro de los modelos de Pydantic usando `Field` de Pydantic.
 
-## Importar `Field`
+## Importar `Field` { #import-field }
 
 Primero, tienes que importarlo:
 
@@ -14,7 +14,7 @@ Fíjate que `Field` se importa directamente desde `pydantic`, no desde `fastapi`
 
 ///
 
-## Declarar atributos del modelo
+## Declarar atributos del modelo { #declare-model-attributes }
 
 Después puedes utilizar `Field` con los atributos del modelo:
 
@@ -40,7 +40,7 @@ Observa cómo cada atributo del modelo con un tipo, un valor por defecto y `Fiel
 
 ///
 
-## Agregar información extra
+## Agregar información extra { #add-extra-information }
 
 Puedes declarar información extra en `Field`, `Query`, `Body`, etc. Y será incluida en el JSON Schema generado.
 
@@ -53,7 +53,7 @@ Como estas claves no necesariamente tienen que ser parte de la especificación d
 
 ///
 
-## Resumen
+## Resumen { #recap }
 
 Puedes utilizar `Field` de Pydantic para declarar validaciones adicionales y metadatos para los atributos del modelo.
 

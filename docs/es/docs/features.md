@@ -1,17 +1,17 @@
-# Funcionalidades
+# Funcionalidades { #features }
 
-## Funcionalidades de FastAPI
+## Funcionalidades de FastAPI { #fastapi-features }
 
 **FastAPI** te ofrece lo siguiente:
 
-### Basado en estándares abiertos
+### Basado en estándares abiertos { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para la creación de APIs, incluyendo declaraciones de <abbr title="también conocido como: endpoints, rutas">path</abbr> <abbr title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</abbr>, parámetros, request bodies, seguridad, etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para la creación de APIs, incluyendo declaraciones de <dfn title="también conocido como: endpoints, rutas">path</dfn> <dfn title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</dfn>, parámetros, request bodies, seguridad, etc.
 * Documentación automática de modelos de datos con <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ya que OpenAPI en sí mismo está basado en JSON Schema).
 * Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional.
 * Esto también permite el uso de **generación de código cliente automática** en muchos idiomas.
 
-### Documentación automática
+### Documentación automática { #automatic-docs }
 
 Interfaces web de documentación y exploración de APIs interactivas. Como el framework está basado en OpenAPI, hay múltiples opciones, 2 incluidas por defecto.
 
@@ -23,7 +23,7 @@ Interfaces web de documentación y exploración de APIs interactivas. Como el fr
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Solo Python moderno
+### Solo Python moderno { #just-modern-python }
 
 Todo está basado en declaraciones estándar de **tipos en Python** (gracias a Pydantic). Sin nueva sintaxis que aprender. Solo Python moderno estándar.
 
@@ -71,7 +71,7 @@ Pasa las claves y valores del dict `second_user_data` directamente como argument
 
 ///
 
-### Soporte del editor
+### Soporte del editor { #editor-support }
 
 Todo el framework fue diseñado para ser fácil e intuitivo de usar, todas las decisiones fueron probadas en múltiples editores incluso antes de comenzar el desarrollo, para asegurar la mejor experiencia de desarrollo.
 
@@ -95,18 +95,18 @@ Obtendrás autocompletado en código que podrías considerar imposible antes. Po
 
 No más escribir nombres de claves incorrectos, yendo de un lado a otro entre la documentación, o desplazándote hacia arriba y abajo para encontrar si finalmente usaste `username` o `user_name`.
 
-### Breve
+### Breve { #short }
 
-Tiene **valores predeterminados** sensatos para todo, con configuraciones opcionales en todas partes. Todos los parámetros se pueden ajustar finamente para hacer lo que necesitas y para definir el API que necesitas.
+Tiene **valores por defecto** sensatos para todo, con configuraciones opcionales en todas partes. Todos los parámetros se pueden ajustar finamente para hacer lo que necesitas y para definir el API que necesitas.
 
 Pero por defecto, todo **"simplemente funciona"**.
 
-### Validación
+### Validación { #validation }
 
 * Validación para la mayoría (¿o todas?) de los **tipos de datos** de Python, incluyendo:
     * Objetos JSON (`dict`).
-    * Array JSON (`list`) definiendo tipos de elementos.
-    * Campos de cadena de caracteres (`str`), definiendo longitudes mínimas y máximas.
+    * array JSON (`list`) definiendo tipos de elementos.
+    * Campos de string (`str`), definiendo longitudes mínimas y máximas.
     * Números (`int`, `float`) con valores mínimos y máximos, etc.
 
 * Validación para tipos más exóticos, como:
@@ -117,7 +117,7 @@ Pero por defecto, todo **"simplemente funciona"**.
 
 Toda la validación es manejada por **Pydantic**, una herramienta bien establecida y robusta.
 
-### Seguridad y autenticación
+### Seguridad y autenticación { #security-and-authentication }
 
 Seguridad y autenticación integradas. Sin ningún compromiso con bases de datos o modelos de datos.
 
@@ -134,30 +134,30 @@ Además de todas las características de seguridad de Starlette (incluyendo **co
 
 Todo construido como herramientas y componentes reutilizables que son fáciles de integrar con tus sistemas, almacenes de datos, bases de datos relacionales y NoSQL, etc.
 
-### Inyección de dependencias
+### Inyección de dependencias { #dependency-injection }
 
-FastAPI incluye un sistema de <abbr title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></abbr> extremadamente fácil de usar, pero extremadamente potente.
+FastAPI incluye un sistema de <dfn title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></dfn> extremadamente fácil de usar, pero extremadamente potente.
 
-* Incluso las dependencias pueden tener dependencias, creando una jerarquía o **"gráfico de dependencias"**.
+* Incluso las dependencias pueden tener dependencias, creando una jerarquía o **"grafo de dependencias"**.
 * Todo **manejado automáticamente** por el framework.
 * Todas las dependencias pueden requerir datos de los requests y **aumentar las restricciones de la path operation** y la documentación automática.
 * **Validación automática** incluso para los parámetros de *path operation* definidos en las dependencias.
 * Soporte para sistemas de autenticación de usuario complejos, **conexiones a bases de datos**, etc.
 * **Sin compromisos** con bases de datos, frontends, etc. Pero fácil integración con todos ellos.
 
-### "Plug-ins" ilimitados
+### "Plug-ins" ilimitados { #unlimited-plug-ins }
 
 O de otra manera, no hay necesidad de ellos, importa y usa el código que necesitas.
 
 Cualquier integración está diseñada para ser tan simple de usar (con dependencias) que puedes crear un "plug-in" para tu aplicación en 2 líneas de código usando la misma estructura y sintaxis utilizada para tus *path operations*.
 
-### Probado
+### Probado { #tested }
 
-* 100% de <abbr title="La cantidad de código que se prueba automáticamente">cobertura de tests</abbr>.
-* Código completamente <abbr title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotado con tipos</abbr>.
+* 100% de <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests</dfn>.
+* 100% <dfn title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</dfn> code base.
 * Usado en aplicaciones en producción.
 
-## Funcionalidades de Starlette
+## Funcionalidades de Starlette { #starlette-features }
 
 **FastAPI** es totalmente compatible con (y está basado en) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Así que, cualquier código adicional de Starlette que tengas, también funcionará.
 
@@ -173,13 +173,13 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 * **CORS**, GZip, archivos estáticos, responses en streaming.
 * Soporte para **Session y Cookie**.
 * Cobertura de tests del 100%.
-* Código completamente anotado con tipos.
+* code base 100% anotada con tipos.
 
-## Funcionalidades de Pydantic
+## Funcionalidades de Pydantic { #pydantic-features }
 
 **FastAPI** es totalmente compatible con (y está basado en) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
-Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s para bases de datos.
+Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper – Mapeador Objeto-Relacional">ORM</abbr>s, <abbr title="Object-Document Mapper – Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
 Esto también significa que, en muchos casos, puedes pasar el mismo objeto que obtienes de un request **directamente a la base de datos**, ya que todo se valida automáticamente.
 
@@ -190,7 +190,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Entorno de Desarrollo Integrado, similar a un editor de código">IDE</abbr>/<abbr title="Un programa que verifica errores de código">linter</abbr>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.

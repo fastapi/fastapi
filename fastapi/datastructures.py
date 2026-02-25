@@ -1,21 +1,14 @@
+from collections.abc import Callable, Mapping
 from typing import (
+    Annotated,
     Any,
     BinaryIO,
-    Callable,
-    Dict,
-    Iterable,
-    Optional,
-    Type,
     TypeVar,
     cast,
 )
 
 from annotated_doc import Doc
-from fastapi._compat import (
-    CoreSchema,
-    GetJsonSchemaHandler,
-    JsonSchemaValue,
-)
+from pydantic import GetJsonSchemaHandler
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
 from starlette.datastructures import FormData as FormData  # noqa: F401
@@ -23,7 +16,6 @@ from starlette.datastructures import Headers as Headers  # noqa: F401
 from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
-from typing_extensions import Annotated
 
 
 class UploadFile(StarletteUploadFile):
@@ -64,11 +56,11 @@ class UploadFile(StarletteUploadFile):
         BinaryIO,
         Doc("The standard Python file object (non-async)."),
     ]
-    filename: Annotated[Optional[str], Doc("The original file name.")]
-    size: Annotated[Optional[int], Doc("The size of the file in bytes.")]
+    filename: Annotated[str | None, Doc("The original file name.")]
+    size: Annotated[int | None, Doc("The size of the file in bytes.")]
     headers: Annotated[Headers, Doc("The headers of the request.")]
     content_type: Annotated[
-        Optional[str], Doc("The content type of the request, from the headers.")
+        str | None, Doc("The content type of the request, from the headers.")
     ]
 
     async def write(
@@ -138,36 +130,21 @@ class UploadFile(StarletteUploadFile):
         return await super().close()
 
     @classmethod
-    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
-        yield cls.validate
-
-    @classmethod
-    def validate(cls: Type["UploadFile"], v: Any) -> Any:
-        if not isinstance(v, StarletteUploadFile):
-            raise ValueError(f"Expected UploadFile, received: {type(v)}")
-        return v
-
-    @classmethod
     def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
         if not isinstance(__input_value, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
 
-    # TODO: remove when deprecating Pydantic v1
-    @classmethod
-    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
-        field_schema.update({"type": "string", "format": "binary"})
-
     @classmethod
     def __get_pydantic_json_schema__(
-        cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-    ) -> JsonSchemaValue:
-        return {"type": "string", "format": "binary"}
+        cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
+    ) -> dict[str, Any]:
+        return {"type": "string", "contentMediaType": "application/octet-stream"}
 
     @classmethod
     def __get_pydantic_core_schema__(
-        cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
-    ) -> CoreSchema:
+        cls, source: type[Any], handler: Callable[[Any], Mapping[str, Any]]
+    ) -> Mapping[str, Any]:
         from ._compat.v2 import with_info_plain_validator_function
 
         return with_info_plain_validator_function(cls._validate)

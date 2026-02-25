@@ -1,8 +1,8 @@
-# OpenAPI Condicional
+# OpenAPI condicional { #conditional-openapi }
 
 Si lo necesitaras, podrías usar configuraciones y variables de entorno para configurar OpenAPI condicionalmente según el entorno, e incluso desactivarlo por completo.
 
-## Sobre seguridad, APIs y documentación
+## Sobre seguridad, APIs y documentación { #about-security-apis-and-docs }
 
 Ocultar las interfaces de usuario de la documentación en producción *no debería* ser la forma de proteger tu API.
 
@@ -17,21 +17,21 @@ Si quieres asegurar tu API, hay varias cosas mejores que puedes hacer, por ejemp
 * Asegúrate de tener modelos Pydantic bien definidos para tus request bodies y responses.
 * Configura los permisos y roles necesarios usando dependencias.
 * Nunca guardes contraseñas en texto plano, solo hashes de contraseñas.
-* Implementa y utiliza herramientas criptográficas bien conocidas, como Passlib y JWT tokens, etc.
-* Añade controles de permisos más detallados con OAuth2 scopes donde sea necesario.
+* Implementa y utiliza herramientas criptográficas bien conocidas, como pwdlib y JWT tokens, etc.
+* Añade controles de permisos más detallados con Scopes de OAuth2 donde sea necesario.
 * ...etc.
 
 No obstante, podrías tener un caso de uso muy específico donde realmente necesites desactivar la documentación de la API para algún entorno (por ejemplo, para producción) o dependiendo de configuraciones de variables de entorno.
 
-## OpenAPI condicional desde configuraciones y variables de entorno
+## OpenAPI condicional desde configuraciones y variables de entorno { #conditional-openapi-from-settings-and-env-vars }
 
 Puedes usar fácilmente las mismas configuraciones de Pydantic para configurar tu OpenAPI generado y las interfaces de usuario de la documentación.
 
 Por ejemplo:
 
-{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
-Aquí declaramos la configuración `openapi_url` con el mismo valor predeterminado de `"/openapi.json"`.
+Aquí declaramos la configuración `openapi_url` con el mismo valor por defecto de `"/openapi.json"`.
 
 Y luego la usamos al crear la app de `FastAPI`.
 

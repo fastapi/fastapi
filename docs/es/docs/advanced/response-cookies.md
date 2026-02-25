@@ -1,12 +1,12 @@
-# Cookies de Response
+# Cookies de Response { #response-cookies }
 
-## Usar un parámetro `Response`
+## Usar un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function*.
 
 Y luego puedes establecer cookies en ese objeto de response *temporal*.
 
-{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Y entonces puedes devolver cualquier objeto que necesites, como normalmente lo harías (un `dict`, un modelo de base de datos, etc).
 
@@ -16,7 +16,7 @@ Y si declaraste un `response_model`, todavía se utilizará para filtrar y conve
 
 También puedes declarar el parámetro `Response` en las dependencias, y establecer cookies (y headers) en ellas.
 
-## Devolver una `Response` directamente
+## Devolver una `Response` directamente { #return-a-response-directly }
 
 También puedes crear cookies al devolver una `Response` directamente en tu código.
 
@@ -24,7 +24,7 @@ Para hacer eso, puedes crear un response como se describe en [Devolver un Respon
 
 Luego establece Cookies en ella, y luego devuélvela:
 
-{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip | Consejo
 
@@ -36,7 +36,7 @@ Y también que no estés enviando ningún dato que debería haber sido filtrado 
 
 ///
 
-### Más información
+### Más información { #more-info }
 
 /// note | Detalles Técnicos
 

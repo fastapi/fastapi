@@ -14,33 +14,13 @@ This will make `tags` be a list, although it doesn't declare the type of the ele
 
 But Python has a specific way to declare lists with internal types, or "type parameters":
 
-### Import typing's `List` { #import-typings-list }
-
-In Python 3.9 and above you can use the standard `list` to declare these type annotations as we'll see below. 💡
-
-But in Python versions before 3.9 (3.6 and above), you first need to import `List` from standard Python's `typing` module:
-
-{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
 ### Declare a `list` with a type parameter { #declare-a-list-with-a-type-parameter }
 
-To declare types that have type parameters (internal types), like `list`, `dict`, `tuple`:
-
-* If you are in a Python version lower than 3.9, import their equivalent version from the `typing` module
-* Pass the internal type(s) as "type parameters" using square brackets: `[` and `]`
-
-In Python 3.9 it would be:
+To declare types that have type parameters (internal types), like `list`, `dict`, `tuple`,
+pass the internal type(s) as "type parameters" using square brackets: `[` and `]`
 
 ```Python
 my_list: list[str]
-```
-
-In versions of Python before 3.9, it would be:
-
-```Python
-from typing import List
-
-my_list: List[str]
 ```
 
 That's all standard Python syntax for type declarations.
@@ -179,18 +159,12 @@ Notice how `Offer` has a list of `Item`s, which in turn have an optional list of
 If the top level value of the JSON body you expect is a JSON `array` (a Python `list`), you can declare the type in the parameter of the function, the same as in Pydantic models:
 
 ```Python
-images: List[Image]
-```
-
-or in Python 3.9 and above:
-
-```Python
 images: list[Image]
 ```
 
 as in:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Editor support everywhere { #editor-support-everywhere }
 
@@ -220,7 +194,7 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip
 

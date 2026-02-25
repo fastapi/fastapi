@@ -1,12 +1,12 @@
-# Obtener Usuario Actual
+# Obtener Usuario Actual { #get-current-user }
 
 En el capítulo anterior, el sistema de seguridad (que se basa en el sistema de inyección de dependencias) le estaba dando a la *path operation function* un `token` como un `str`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Pero eso aún no es tan útil. Vamos a hacer que nos dé el usuario actual.
 
-## Crear un modelo de usuario
+## Crear un modelo de usuario { #create-a-user-model }
 
 Primero, vamos a crear un modelo de usuario con Pydantic.
 
@@ -14,7 +14,7 @@ De la misma manera que usamos Pydantic para declarar cuerpos, podemos usarlo en 
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## Crear una dependencia `get_current_user`
+## Crear una dependencia `get_current_user` { #create-a-get-current-user-dependency }
 
 Vamos a crear una dependencia `get_current_user`.
 
@@ -26,13 +26,13 @@ De la misma manera que estábamos haciendo antes en la *path operation* directam
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## Obtener el usuario
+## Obtener el usuario { #get-the-user }
 
 `get_current_user` usará una función de utilidad (falsa) que creamos, que toma un token como un `str` y devuelve nuestro modelo de Pydantic `User`:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## Inyectar al usuario actual
+## Inyectar al usuario actual { #inject-the-current-user }
 
 Entonces ahora podemos usar el mismo `Depends` con nuestro `get_current_user` en la *path operation*:
 
@@ -44,7 +44,7 @@ Esto nos ayudará dentro de la función con todo el autocompletado y chequeo de 
 
 /// tip | Consejo
 
-Tal vez recuerdes que los cuerpos de request también se declaran con modelos de Pydantic.
+Tal vez recuerdes que los request bodies también se declaran con modelos de Pydantic.
 
 Aquí **FastAPI** no se confundirá porque estás usando `Depends`.
 
@@ -58,7 +58,7 @@ No estamos restringidos a tener solo una dependencia que pueda devolver ese tipo
 
 ///
 
-## Otros modelos
+## Otros modelos { #other-models }
 
 Ahora puedes obtener el usuario actual directamente en las *path operation functions* y manejar los mecanismos de seguridad a nivel de **Dependency Injection**, usando `Depends`.
 
@@ -74,7 +74,7 @@ Pero no estás limitado a usar algún modelo de datos, clase o tipo específico.
 
 Usa cualquier tipo de modelo, cualquier tipo de clase, cualquier tipo de base de datos que necesites para tu aplicación. **FastAPI** te cubre con el sistema de inyección de dependencias.
 
-## Tamaño del código
+## Tamaño del código { #code-size }
 
 Este ejemplo podría parecer extenso. Ten en cuenta que estamos mezclando seguridad, modelos de datos, funciones de utilidad y *path operations* en el mismo archivo.
 
@@ -92,7 +92,7 @@ Y todas estas miles de *path operations* pueden ser tan pequeñas como 3 líneas
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## Resumen
+## Resumen { #recap }
 
 Ahora puedes obtener el usuario actual directamente en tu *path operation function*.
 

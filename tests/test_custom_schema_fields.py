@@ -1,13 +1,8 @@
-from typing import Optional
+from typing import Annotated
 
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
-from typing_extensions import Annotated
-
-if PYDANTIC_V2:
-    from pydantic import WithJsonSchema
+from pydantic import BaseModel, WithJsonSchema
 
 app = FastAPI()
 
@@ -15,23 +10,15 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
 
-    if PYDANTIC_V2:
-        description: Annotated[
-            Optional[str], WithJsonSchema({"type": ["string", "null"]})
-        ] = None
+    description: Annotated[str | None, WithJsonSchema({"type": ["string", "null"]})] = (
+        None
+    )
 
-        model_config = {
-            "json_schema_extra": {
-                "x-something-internal": {"level": 4},
-            }
+    model_config = {
+        "json_schema_extra": {
+            "x-something-internal": {"level": 4},
         }
-    else:
-        description: Optional[str] = None  # type: ignore[no-redef]
-
-        class Config:
-            schema_extra = {
-                "x-something-internal": {"level": 4},
-            }
+    }
 
 
 @app.get("/foo", response_model=Item)
@@ -56,7 +43,7 @@ item_schema = {
         },
         "description": {
             "title": "Description",
-            "type": ["string", "null"] if PYDANTIC_V2 else "string",
+            "type": ["string", "null"],
         },
     },
 }

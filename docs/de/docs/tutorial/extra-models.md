@@ -22,21 +22,13 @@ Hier ist eine allgemeine Idee, wie die Modelle mit ihren Passwortfeldern aussehe
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-/// info | Info
+### Über `**user_in.model_dump()` { #about-user-in-model-dump }
 
-In Pydantic v1 hieß die Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber weiterhin unterstützt) und in `.model_dump()` umbenannt.
-
-Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, aber Sie sollten `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
-
-### Über `**user_in.dict()` { #about-user-in-dict }
-
-#### Die `.dict()`-Methode von Pydantic { #pydantics-dict }
+#### Pydantics `.model_dump()` { #pydantics-model-dump }
 
 `user_in` ist ein Pydantic-Modell der Klasse `UserIn`.
 
-Pydantic-Modelle haben eine `.dict()`-Methode, die ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit den Daten des Modells zurückgibt.
+Pydantic-Modelle haben eine `.model_dump()`-Methode, die ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit den Daten des Modells zurückgibt.
 
 Wenn wir also ein Pydantic-Objekt `user_in` erstellen, etwa so:
 
@@ -47,7 +39,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 und dann aufrufen:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 haben wir jetzt ein `dict` mit den Daten in der Variablen `user_dict` (es ist ein `dict` statt eines Pydantic-Modellobjekts).
@@ -103,20 +95,20 @@ UserInDB(
 
 #### Ein Pydantic-Modell aus dem Inhalt eines anderen { #a-pydantic-model-from-the-contents-of-another }
 
-Da wir im obigen Beispiel `user_dict` von `user_in.dict()` bekommen haben, wäre dieser Code:
+Da wir im obigen Beispiel `user_dict` von `user_in.model_dump()` bekommen haben, wäre dieser Code:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 gleichwertig zu:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
-... weil `user_in.dict()` ein `dict` ist, und dann lassen wir Python es „entpacken“, indem wir es an `UserInDB` mit vorangestelltem `**` übergeben.
+... weil `user_in.model_dump()` ein `dict` ist, und dann lassen wir Python es „entpacken“, indem wir es an `UserInDB` mit vorangestelltem `**` übergeben.
 
 Auf diese Weise erhalten wir ein Pydantic-Modell aus den Daten eines anderen Pydantic-Modells.
 
@@ -125,7 +117,7 @@ Auf diese Weise erhalten wir ein Pydantic-Modell aus den Daten eines anderen Pyd
 Und dann fügen wir das zusätzliche Schlüsselwort-Argument `hashed_password=hashed_password` hinzu, wie in:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ... was so ist wie:
@@ -180,7 +172,6 @@ Wenn Sie eine <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" 
 
 {* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
-
 ### `Union` in Python 3.10 { #union-in-python-3-10 }
 
 In diesem Beispiel übergeben wir `Union[PlaneItem, CarItem]` als Wert des Arguments `response_model`.
@@ -199,10 +190,9 @@ Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, 
 
 Auf die gleiche Weise können Sie Responses von Listen von Objekten deklarieren.
 
-Dafür verwenden Sie Pythons Standard-`typing.List` (oder nur `list` in Python 3.9 und höher):
+Dafür verwenden Sie Pythons Standard-`list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
-
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response mit beliebigem `dict` { #response-with-arbitrary-dict }
 
@@ -210,10 +200,9 @@ Sie können auch eine Response deklarieren, die ein beliebiges `dict` zurückgib
 
 Dies ist nützlich, wenn Sie die gültigen Feld-/Attributnamen nicht im Voraus kennen (die für ein Pydantic-Modell benötigt werden würden).
 
-In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.9 und höher):
+In diesem Fall können Sie `dict` verwenden:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
-
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Zusammenfassung { #recap }
 

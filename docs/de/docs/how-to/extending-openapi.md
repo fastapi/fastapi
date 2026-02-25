@@ -43,19 +43,19 @@ Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/
 
 Schreiben Sie zunächst wie gewohnt Ihre ganze **FastAPI**-Anwendung:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
 ### Das OpenAPI-Schema generieren { #generate-the-openapi-schema }
 
 Verwenden Sie dann dieselbe Hilfsfunktion, um das OpenAPI-Schema innerhalb einer `custom_openapi()`-Funktion zu generieren:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
 ### Das OpenAPI-Schema ändern { #modify-the-openapi-schema }
 
 Jetzt können Sie die ReDoc-Erweiterung hinzufügen und dem `info`-„Objekt“ im OpenAPI-Schema ein benutzerdefiniertes `x-logo` hinzufügen:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
 ### Zwischenspeichern des OpenAPI-Schemas { #cache-the-openapi-schema }
 
@@ -65,13 +65,13 @@ Auf diese Weise muss Ihre Anwendung das Schema nicht jedes Mal generieren, wenn 
 
 Es wird nur einmal generiert und dann wird dasselbe zwischengespeicherte Schema für die nächsten <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> verwendet.
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
 ### Die Methode überschreiben { #override-the-method }
 
 Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
 ### Es testen { #check-it }
 

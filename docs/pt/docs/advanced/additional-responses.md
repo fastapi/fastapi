@@ -1,6 +1,6 @@
-# Retornos Adicionais no OpenAPI
+# Retornos Adicionais no OpenAPI { #additional-responses-in-openapi }
 
-/// warning | Aviso
+/// warning | Atenção
 
 Este é um tema bem avançado.
 
@@ -14,7 +14,7 @@ Essas respostas adicionais serão incluídas no esquema do OpenAPI, e também ap
 
 Porém para as respostas adicionais, você deve garantir que está retornando um `Response` como por exemplo o `JSONResponse` diretamente, junto com o código de status e o conteúdo.
 
-## Retorno Adicional com `model`
+## Retorno Adicional com `model` { #additional-response-with-model }
 
 Você pode fornecer o parâmetro `responses` aos seus *decoradores de caminho*.
 
@@ -26,7 +26,7 @@ O **FastAPI** pegará este modelo, gerará o esquema JSON dele e incluirá no lo
 
 Por exemplo, para declarar um outro retorno com o status code `404` e um modelo do Pydantic chamado `Message`, você pode escrever:
 
-{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Nota
 
@@ -49,7 +49,7 @@ O local correto é:
 
 ///
 
-O retorno gerado no OpenAI para esta *operação de caminho* será:
+O retorno gerado no OpenAPI para esta *operação de rota* será:
 
 ```JSON hl_lines="3-12"
 {
@@ -169,13 +169,13 @@ Os esquemas são referenciados em outro local dentro do esquema OpenAPI:
 }
 ```
 
-## Media types adicionais para o retorno principal
+## Media types adicionais para o retorno principal { #additional-media-types-for-the-main-response }
 
 Você pode utilizar o mesmo parâmetro `responses` para adicionar diferentes media types para o mesmo retorno principal.
 
-Por exemplo, você pode adicionar um media type adicional de `image/png`, declarando que a sua *operação de caminho* pode retornar um objeto JSON (com o media type `application/json`) ou uma imagem PNG:
+Por exemplo, você pode adicionar um media type adicional de `image/png`, declarando que a sua *operação de rota* pode retornar um objeto JSON (com o media type `application/json`) ou uma imagem PNG:
 
-{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
 /// note | Nota
 
@@ -191,7 +191,7 @@ Porém se você especificou uma classe de retorno com o valor `None` como media 
 
 ///
 
-## Combinando informações
+## Combinando informações { #combining-information }
 
 Você também pode combinar informações de diferentes lugares, incluindo os parâmetros `response_model`, `status_code`, e `responses`.
 
@@ -203,15 +203,15 @@ Por exemplo, você pode declarar um retorno com o código de status `404` que ut
 
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
-{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Isso será combinado e incluído em seu OpenAPI, e disponibilizado na documentação da sua API:
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combinar retornos predefinidos e personalizados
+## Combinar retornos predefinidos e personalizados { #combine-predefined-responses-and-custom-ones }
 
-Você pode querer possuir alguns retornos predefinidos que são aplicados para diversas *operações de caminho*, porém você deseja combinar com retornos personalizados que são necessários para cada *operação de caminho*.
+Você pode querer possuir alguns retornos predefinidos que são aplicados para diversas *operações de rota*, porém você deseja combinar com retornos personalizados que são necessários para cada *operação de rota*.
 
 Para estes casos, você pode utilizar a técnica do Python de "desempacotamento" de um `dict` utilizando `**dict_to_unpack`:
 
@@ -233,15 +233,15 @@ Aqui, o `new_dict` terá todos os pares de chave-valor do `old_dict` mais o novo
 }
 ```
 
-Você pode utilizar essa técnica para reutilizar alguns retornos predefinidos nas suas *operações de caminho* e combiná-las com personalizações adicionais.
+Você pode utilizar essa técnica para reutilizar alguns retornos predefinidos nas suas *operações de rota* e combiná-las com personalizações adicionais.
 
 Por exemplo:
 
-{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
-## Mais informações sobre retornos OpenAPI
+## Mais informações sobre retornos OpenAPI { #more-information-about-openapi-responses }
 
 Para verificar exatamente o que você pode incluir nos retornos, você pode conferir estas seções na especificação do OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responsesObject" class="external-link" target="_blank">Objeto de Retorno OpenAPI</a>, inclui o `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responseObject" class="external-link" target="_blank">Objeto de Retorno OpenAPI</a>, você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Retornos do OpenAPI</a>, inclui o `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Retorno do OpenAPI</a>, você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.

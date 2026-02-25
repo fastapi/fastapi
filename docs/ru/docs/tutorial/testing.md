@@ -30,7 +30,7 @@ $ pip install httpx
 
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Подсказка
 
@@ -76,7 +76,7 @@ $ pip install httpx
 В файле `main.py` находится Ваше приложение **FastAPI**:
 
 
-{* ../../docs_src/app_testing/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Файл тестов { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 Так как оба файла находятся в одной директории, для импорта объекта приложения из файла `main` в файл `test_main` Вы можете использовать относительный импорт:
 
-{* ../../docs_src/app_testing/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...и писать дальше тесты, как и раньше.
@@ -119,65 +119,15 @@ $ pip install httpx
 
 Ещё есть операция `POST`, и она может вернуть несколько ошибок.
 
-Обе *операции пути* требуют наличия в запросе заголовка `X-Token`.
+Обе *операции пути* требуют наличия в запросе HTTP-заголовка `X-Token`.
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-По возможности используйте версию с `Annotated`.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Подсказка
-
-По возможности используйте версию с `Annotated`.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Расширенный файл тестов { #extended-testing-file }
 
 Теперь обновим файл `test_main.py`, добавив в него тестов:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
 Если Вы не знаете, как передать информацию в запросе, можете воспользоваться поисковиком (погуглить) и задать вопрос: "Как передать информацию в запросе с помощью `httpx`", можно даже спросить: "Как передать информацию в запросе с помощью `requests`", поскольку дизайн HTTPX основан на дизайне Requests.
@@ -189,7 +139,7 @@ $ pip install httpx
 * Передаёте *path*-параметры или *query*-параметры, вписав их непосредственно в строку URL.
 * Передаёте JSON в теле запроса, передав Python-объект (например: `dict`) через именованный параметр `json`.
 * Если же Вам необходимо отправить *форму с данными* вместо JSON, то используйте параметр `data` вместо `json`.
-* Для передачи *заголовков*, передайте объект `dict` через параметр `headers`.
+* Для передачи *HTTP-заголовков*, передайте объект `dict` через параметр `headers`.
 * Для передачи *cookies* также передайте `dict`, но через параметр `cookies`.
 
 Для получения дополнительной информации о передаче данных на бэкенд с помощью `httpx` или `TestClient` ознакомьтесь с <a href="https://www.python-httpx.org" class="external-link" target="_blank">документацией HTTPX</a>.

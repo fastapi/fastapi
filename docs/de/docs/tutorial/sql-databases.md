@@ -65,7 +65,7 @@ Es gibt ein paar Unterschiede:
 
 * `Field(primary_key=True)` sagt SQLModel, dass die `id` der **Primärschlüssel** in der SQL-Datenbank ist (Sie können mehr über SQL-Primärschlüssel in der SQLModel-Dokumentation erfahren).
 
-    Durch das Festlegen des Typs als `int | None` wird SQLModel wissen, dass diese Spalte ein `INTEGER` in der SQL-Datenbank sein sollte und dass sie `NULLABLE` sein sollte.
+    **Hinweis:** Wir verwenden für das Primärschlüsselfeld `int | None`, damit wir im Python-Code *ein Objekt ohne `id` erstellen* können (`id=None`), in der Annahme, dass die Datenbank sie *beim Speichern generiert*. SQLModel versteht, dass die Datenbank die `id` bereitstellt, und *definiert die Spalte im Datenbankschema als ein Nicht-Null-`INTEGER`*. Siehe die <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">SQLModel-Dokumentation zu Primärschlüsseln</a> für Details.
 
 * `Field(index=True)` sagt SQLModel, dass es einen **SQL-Index** für diese Spalte erstellen soll, was schnelleres Suchen in der Datenbank ermöglicht, wenn Daten mittels dieser Spalte gefiltert werden.
 

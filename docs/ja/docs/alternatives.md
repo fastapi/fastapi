@@ -1,8 +1,8 @@
-# 代替ツールから受けたインスピレーションと比較
+# 代替ツールから受けたインスピレーションと比較 { #alternatives-inspiration-and-comparisons }
 
 何が**FastAPI**にインスピレーションを与えたのか、他の代替ツールと比較してどうか、そしてそこから何を学んだのかについて。
 
-## はじめに
+## はじめに { #intro }
 
 **FastAPI**は、代替ツールのこれまでの働きがなければ存在しなかったでしょう。
 
@@ -12,17 +12,17 @@
 
 しかし、その時点では、これらの機能をすべて提供し、以前のツールから優れたアイデアを取り入れ、可能な限り最高の方法でそれらを組み合わせ、それまで利用できなかった言語機能 (Python 3.6以降の型ヒント) を利用したものを作る以外に選択肢はありませんでした。
 
-## 以前のツール
+## 以前のツール { #previous-tools }
 
-### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a>
+### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a> { #django }
 
 Pythonのフレームワークの中で最もポピュラーで、広く信頼されています。Instagramのようなシステムの構築に使われています。
 
 リレーショナルデータベース (MySQLやPostgreSQLなど) と比較的強固に結合されているので、NoSQLデータベース (Couchbase、MongoDB、Cassandraなど) をメインに利用することは簡単ではありません。
 
-バックエンドでHTMLを生成するために作られたものであり、現代的なフロントエンド (ReactやVue.js、Angularなど) や、他のシステム (IoTデバイスなど) と通信するAPIを構築するために作られたものではありません。
+バックエンドでHTMLを生成するために作られたものであり、現代的なフロントエンド (ReactやVue.js、Angularなど) や、他のシステム (<abbr title="Internet of Things - モノのインターネット">IoT</abbr>デバイスなど) と通信するAPIを構築するために作られたものではありません。
 
-### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
+### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
 Django REST Frameworkは、Djangoを下敷きにしてWeb APIを構築する柔軟なツールキットとして、APIの機能を向上させるために作られました。
 
@@ -42,7 +42,7 @@ Django REST Framework は Tom Christie によって作成されました。Starl
 
 ///
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a> { #flask }
 
 Flask は「マイクロフレームワーク」であり、データベースとの統合のようなDjangoがデフォルトで持つ多くの機能は含まれていません。
 
@@ -64,7 +64,7 @@ Flaskのシンプルさを考えると、APIを構築するのに適している
 
 ///
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a> { #requests }
 
 **FastAPI**は実際には**Requests**の代替ではありません。それらのスコープは大きく異なります。
 
@@ -80,7 +80,7 @@ Requestsは非常にシンプルかつ直感的なデザインで使いやすく
 
 公式サイトで以下のように言われているのは、それが理由です。
 
-> Requestsは今までで最もダウンロードされたPythonパッケージである
+> Requestsは史上最もダウンロードされたPythonパッケージのひとつです
 
 使い方はとても簡単です。例えば、`GET`リクエストを実行するには、このように書けば良いです:
 
@@ -88,7 +88,7 @@ Requestsは非常にシンプルかつ直感的なデザインで使いやすく
 response = requests.get("http://example.com/some/url")
 ```
 
-対応するFastAPIのパスオペレーションはこのようになります:
+対応するFastAPIのAPIのpath operationはこのようになります:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -106,7 +106,7 @@ def read_url():
 
 ///
 
-### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
+### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a> { #swagger-openapi }
 
 私がDjango REST Frameworkに求めていた主な機能は、APIの自動的なドキュメント生成でした。
 
@@ -131,13 +131,13 @@ def read_url():
 
 ///
 
-### Flask REST フレームワーク
+### Flask REST フレームワーク { #flask-rest-frameworks }
 
 いくつかのFlask RESTフレームワークがありますが、それらを調査してみたところ、多くのものが不適切な問題が残ったまま、中断されたり放置されていることがわかりました。
 
-### <a href="https://marshmallow.readthedocs.io/en/3.0/" class="external-link" target="_blank">Marshmallow</a>
+### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-APIシステムで必要とされる主な機能の一つに、コード (Python) からデータを取り出して、ネットワークを介して送れるものに変換するデータの「<abbr title="marshalling, conversion">シリアライゼーション</abbr>」があります。例えば、データベースのデータを含むオブジェクトをJSONオブジェクトに変換したり、`datetime` オブジェクトを文字列に変換するなどです。
+APIシステムで必要とされる主な機能の一つに、コード (Python) からデータを取り出して、ネットワークを介して送れるものに変換するデータの「<dfn title="別名: marshalling、変換">シリアライゼーション</dfn>」があります。例えば、データベースのデータを含むオブジェクトをJSONオブジェクトに変換したり、`datetime` オブジェクトを文字列に変換するなどです。
 
 APIが必要とするもう一つの大きな機能はデータのバリデーションであり、特定のパラメータが与えられた場合にデータが有効であることを確認することです。例えば、あるフィールドがランダムな文字列ではなく `int` であることなどです。これは特に受信するデータに対して便利です。
 
@@ -145,7 +145,7 @@ APIが必要とするもう一つの大きな機能はデータのバリデー�
 
 これらの機能は、Marshmallowが提供するものです。Marshmallowは素晴らしいライブラリで、私も以前に何度も使ったことがあります。
 
-しかし、それはPythonの型ヒントが存在する前に作られたものです。そのため、すべての<abbr title="データがどのように形成されるべきかの定義">スキーマ</abbr>を定義するためには、Marshmallowが提供する特定のユーティリティやクラスを使用する必要があります。
+しかし、それはPythonの型ヒントが存在する前に作られたものです。そのため、すべての<dfn title="データがどのように構成されるべきかの定義">スキーマ</dfn>を定義するためには、Marshmallowが提供する特定のユーティリティやクラスを使用する必要があります。
 
 /// check | **FastAPI**へ与えたインスピレーション
 
@@ -153,9 +153,9 @@ APIが必要とするもう一つの大きな機能はデータのバリデー�
 
 ///
 
-### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
+### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-APIに求められる他の大きな機能として、<abbr title="Pythonデータの読み込みと変換">受信したリクエストデータのパース</abbr>があります。
+APIに求められる他の大きな機能として、<dfn title="Pythonデータへの読み込みと変換">受信したリクエストデータのパース</dfn>があります。
 
 WebargsはFlaskをはじめとするいくつかのフレームワークの上にそれを提供するために作られたツールです。
 
@@ -175,7 +175,7 @@ Webargsは、Marshmallowと同じ開発者により作られました。
 
 ///
 
-### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
+### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a> { #apispec }
 
 MarshmallowとWebargsはバリデーション、パース、シリアライゼーションをプラグインとして提供しています。
 
@@ -205,7 +205,7 @@ OpenAPIという、APIについてのオープンな標準をサポートして�
 
 ///
 
-### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a>
+### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a> { #flask-apispec }
 
 Webargs、Marshmallow、APISpecを連携させたFlaskプラグインです。
 
@@ -237,7 +237,7 @@ Flask-apispecはMarshmallowと同じ開発者により作成されました。
 
 ///
 
-### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (と<a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
+### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (と<a href="https://angular.io/" class="external-link" target="_blank">Angular</a>) { #nestjs-and-angular }
 
 NestJSはAngularにインスパイアされたJavaScript (TypeScript) NodeJSフレームワークで、Pythonですらありません。
 
@@ -259,13 +259,13 @@ Angular 2にインスピレーションを受けた、統合された依存性�
 
 ///
 
-### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a>
+### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a> { #sanic }
 
 `asyncio`に基づいた、Pythonのフレームワークの中でも非常に高速なものの一つです。Flaskと非常に似た作りになっています。
 
 /// note | 技術詳細
 
-Pythonの`asyncio`ループの代わりに、`uvloop`が利用されています。それにより、非常に高速です。
+Pythonの`asyncio`ループの代わりに、<a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>が利用されています。それにより、非常に高速です。
 
 `Uvicorn`と`Starlette`に明らかなインスピレーションを与えており、それらは現在オープンなベンチマークにおいてSanicより高速です。
 
@@ -279,11 +279,9 @@ Pythonの`asyncio`ループの代わりに、`uvloop`が利用されています
 
 ///
 
-### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
+### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a> { #falcon }
 
 Falconはもう一つの高性能Pythonフレームワークで、ミニマムに設計されており、Hugのような他のフレームワークの基盤として動作します。
-
-Pythonのウェブフレームワーク標準規格 (WSGI) を使用していますが、それは同期的であるためWebSocketなどの利用には対応していません。とはいえ、それでも非常に高い性能を持っています。
 
 これは、「リクエスト」と「レスポンス」の2つのパラメータを受け取る関数を持つように設計されています。そして、リクエストからデータを「読み込み」、レスポンスにデータを「書き込み」ます。この設計のため、Python標準の型ヒントでリクエストのパラメータやボディを関数の引数として宣言することはできません。
 
@@ -299,7 +297,7 @@ Hug (HugはFalconをベースにしています) と一緒に、**FastAPI**が`r
 
 ///
 
-### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a>
+### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a> { #molten }
 
 **FastAPI**を構築する最初の段階でMoltenを発見しました。そして、それは非常に似たようなアイデアを持っています。
 
@@ -323,7 +321,7 @@ Pydanticのようなデータのバリデーション、シリアライゼーシ
 
 ///
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a> { #hug }
 
 Hugは、Pythonの型ヒントを利用してAPIパラメータの型宣言を実装した最初のフレームワークの1つです。これは素晴らしいアイデアで、他のツールが同じことをするきっかけとなりました。
 
@@ -353,7 +351,7 @@ Hugは、**FastAPI**がヘッダーやクッキーを設定するために関数
 
 ///
 
-### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
+### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5) { #apistar-0-5 }
 
 **FastAPI**を構築することを決める直前に、**APIStar**サーバーを見つけました。それは私が探していたものがほぼすべて含まれており、素晴らしいデザインでした。
 
@@ -401,9 +399,9 @@ APIStarはTom Christieにより開発されました。以下の開発者でも�
 
 ///
 
-## **FastAPI**が利用しているもの
+## **FastAPI**が利用しているもの { #used-by-fastapi }
 
-### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> { #pydantic }
 
 Pydanticは、Pythonの型ヒントを元にデータのバリデーション、シリアライゼーション、 (JSON Schemaを使用した) ドキュメントを定義するライブラリです。
 
@@ -419,9 +417,9 @@ Marshmallowに匹敵しますが、ベンチマークではMarshmallowよりも�
 
 ///
 
-### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starletteは、軽量な<abbr title="非同期Python webを構築するための新標準">ASGI</abbr>フレームワーク/ツールキットで、高性能な非同期サービスの構築に最適です。
+Starletteは、軽量な<dfn title="非同期Python Webアプリケーションを構築するための新しい標準">ASGI</dfn>フレームワーク/ツールキットで、高性能な非同期サービスの構築に最適です。
 
 非常にシンプルで直感的です。簡単に拡張できるように設計されており、モジュール化されたコンポーネントを持っています。
 
@@ -429,15 +427,14 @@ Starletteは、軽量な<abbr title="非同期Python webを構築するための
 
 * 非常に感動的な性能。
 * WebSocketのサポート。
-* GraphQLのサポート。
 * インプロセスのバックグラウンドタスク。
 * 起動およびシャットダウンイベント。
-* requestsに基づいて構築されたテストクライアント。
+* HTTPXに基づいて構築されたテストクライアント。
 * CORS、GZip、静的ファイル、ストリーミング応答。
 * セッションとクッキーのサポート。
 * 100%のテストカバレッジ。
 * 100%の型注釈付きコードベース。
-* ハードな依存関係はない。
+* ハードな依存関係は少ない。
 
 Starletteは、現在テストされているPythonフレームワークの中で最も速いフレームワークです。フレームワークではなくサーバーであるUvicornだけが上回っています。
 
@@ -465,7 +462,7 @@ webに関するコアな部分を全て扱います。その上に機能を追�
 
 ///
 
-### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
 
 Uvicornは非常に高速なASGIサーバーで、uvloopとhttptoolsにより構成されています。
 
@@ -477,12 +474,12 @@ Starletteや**FastAPI**のサーバーとして推奨されています。
 
 **FastAPI**アプリケーションを実行するメインのウェブサーバーである点。
 
-Gunicornと組み合わせることで、非同期でマルチプロセスなサーバーを持つことがきます。
+コマンドラインオプション `--workers` を使って、非同期のマルチプロセスサーバーにできます。
 
 詳細は[デプロイ](deployment/index.md){.internal-link target=_blank}の項目で確認してください。
 
 ///
 
-## ベンチマーク と スピード
+## ベンチマーク と スピード { #benchmarks-and-speed }
 
 Uvicorn、Starlette、FastAPIの違いを理解、比較、確認するには、[ベンチマーク](benchmarks.md){.internal-link target=_blank}を確認してください。

@@ -20,7 +20,7 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
 * Diese gibt ein Objekt vom Typ `HTTPBasicCredentials` zurück:
     * Es enthält den gesendeten `username` und das gesendete `password`.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 Wenn Sie versuchen, die URL zum ersten Mal zu öffnen (oder in der Dokumentation auf den Button „Execute“ zu klicken), wird der Browser Sie nach Ihrem Benutzernamen und Passwort fragen:
 
@@ -40,7 +40,7 @@ Um dies zu lösen, konvertieren wir zunächst den `username` und das `password` 
 
 Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass `credentials.username` `"stanleyjobson"` und `credentials.password` `"swordfish"` ist.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Dies wäre das gleiche wie:
 
@@ -104,4 +104,4 @@ So ist Ihr Anwendungscode, dank der Verwendung von `secrets.compare_digest()`, v
 
 Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben Sie eine `HTTPException` mit dem Statuscode 401 zurück (derselbe, der auch zurückgegeben wird, wenn keine Anmeldeinformationen angegeben werden) und fügen den Header `WWW-Authenticate` hinzu, damit der Browser die Anmeldeaufforderung erneut anzeigt:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

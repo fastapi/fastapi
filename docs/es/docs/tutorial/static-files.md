@@ -1,13 +1,13 @@
-# Archivos Estáticos
+# Archivos Estáticos { #static-files }
 
 Puedes servir archivos estáticos automáticamente desde un directorio utilizando `StaticFiles`.
 
-## Usa `StaticFiles`
+## Usa `StaticFiles` { #use-staticfiles }
 
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Detalles Técnicos
 
@@ -17,7 +17,7 @@ También podrías usar `from starlette.staticfiles import StaticFiles`.
 
 ///
 
-### Qué es "Montar"
+### Qué es "Montar" { #what-is-mounting }
 
 "Montar" significa agregar una aplicación completa "independiente" en un path específico, que luego se encargará de manejar todos los sub-paths.
 
@@ -25,7 +25,7 @@ Esto es diferente a usar un `APIRouter`, ya que una aplicación montada es compl
 
 Puedes leer más sobre esto en la [Guía de Usuario Avanzada](../advanced/index.md){.internal-link target=_blank}.
 
-## Detalles
+## Detalles { #details }
 
 El primer `"/static"` se refiere al sub-path en el que esta "sub-aplicación" será "montada". Por lo tanto, cualquier path que comience con `"/static"` será manejado por ella.
 
@@ -35,6 +35,6 @@ El `name="static"` le da un nombre que puede ser utilizado internamente por **Fa
 
 Todos estos parámetros pueden ser diferentes a "`static`", ajústalos según las necesidades y detalles específicos de tu propia aplicación.
 
-## Más info
+## Más info { #more-info }
 
 Para más detalles y opciones revisa <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">la documentación de Starlette sobre Archivos Estáticos</a>.

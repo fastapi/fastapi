@@ -6,7 +6,7 @@ Tests added here will be seen by all designers of language specific prompts.
 
 Use as follows:
 
-* Have a language specific prompt – `docs/{language code}/llm-prompt.md`.
+* Have a language specific prompt - `docs/{language code}/llm-prompt.md`.
 * Do a fresh translation of this document into your desired target language (see e.g. the `translate-page` command of the `translate.py`). This will create the translation under `docs/{language code}/docs/_llm-test.md`.
 * Check if things are okay in the translation.
 * If necessary, improve your language specific prompt, the general prompt, or the English document.
@@ -15,7 +15,7 @@ Use as follows:
 
 The tests:
 
-## Code snippets { #code-snippets}
+## Code snippets { #code-snippets }
 
 //// tab | Test
 
@@ -53,7 +53,7 @@ See for example section `### Quotes` in `docs/de/llm-prompt.md`.
 
 ////
 
-## Quotes in code snippets { #quotes-in-code-snippets}
+## Quotes in code snippets { #quotes-in-code-snippets }
 
 //// tab | Test
 
@@ -202,11 +202,6 @@ Here some things wrapped in HTML "abbr" elements (Some are invented):
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
 
-### The abbr gives an explanation { #the-abbr-gives-an-explanation }
-
-* <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>
-* <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>
-
 ### The abbr gives a full phrase and an explanation { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network: documentation for developers, written by the Firefox people">MDN</abbr>
@@ -223,6 +218,11 @@ Translations can add their own "abbr" elements which the LLM should not remove. 
 See section `### HTML abbr elements` in the general prompt in `scripts/translate.py`.
 
 ////
+
+## HTML "dfn" elements { #html-dfn-elements }
+
+* <dfn title="A group of machines that are configured to be connected and work together in some way.">cluster</dfn>
+* <dfn title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</dfn>
 
 ## Headings { #headings }
 

@@ -1,4 +1,4 @@
-# Eventos de Lifespan
+# Eventos de Lifespan { #lifespan-events }
 
 Puedes definir lógica (código) que debería ser ejecutada antes de que la aplicación **inicie**. Esto significa que este código será ejecutado **una vez**, **antes** de que la aplicación **comience a recibir requests**.
 
@@ -8,7 +8,7 @@ Debido a que este código se ejecuta antes de que la aplicación **comience** a 
 
 Esto puede ser muy útil para configurar **recursos** que necesitas usar para toda la app, y que son **compartidos** entre requests, y/o que necesitas **limpiar** después. Por ejemplo, un pool de conexiones a una base de datos, o cargando un modelo de machine learning compartido.
 
-## Caso de Uso
+## Caso de Uso { #use-case }
 
 Empecemos con un ejemplo de **caso de uso** y luego veamos cómo resolverlo con esto.
 
@@ -22,7 +22,7 @@ Podrías cargarlo en el nivel superior del módulo/archivo, pero eso también si
 
 Eso es lo que resolveremos, vamos a cargar el modelo antes de que los requests sean manejados, pero solo justo antes de que la aplicación comience a recibir requests, no mientras el código se está cargando.
 
-## Lifespan
+## Lifespan { #lifespan }
 
 Puedes definir esta lógica de *startup* y *shutdown* usando el parámetro `lifespan` de la app de `FastAPI`, y un "context manager" (te mostraré lo que es en un momento).
 
@@ -30,7 +30,7 @@ Comencemos con un ejemplo y luego veámoslo en detalle.
 
 Creamos una función asíncrona `lifespan()` con `yield` así:
 
-{* ../../docs_src/events/tutorial003.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
 Aquí estamos simulando la operación costosa de *startup* de cargar el modelo poniendo la función del (falso) modelo en el diccionario con modelos de machine learning antes del `yield`. Este código será ejecutado **antes** de que la aplicación **comience a tomar requests**, durante el *startup*.
 
@@ -44,25 +44,25 @@ Quizás necesites iniciar una nueva versión, o simplemente te cansaste de ejecu
 
 ///
 
-### Función de Lifespan
+### Función de Lifespan { #lifespan-function }
 
 Lo primero que hay que notar es que estamos definiendo una función asíncrona con `yield`. Esto es muy similar a las Dependencias con `yield`.
 
-{* ../../docs_src/events/tutorial003.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
 
 La primera parte de la función, antes del `yield`, será ejecutada **antes** de que la aplicación comience.
 
 Y la parte después del `yield` será ejecutada **después** de que la aplicación haya terminado.
 
-### Async Context Manager
+### Async Context Manager { #async-context-manager }
 
 Si revisas, la función está decorada con un `@asynccontextmanager`.
 
 Eso convierte a la función en algo llamado un "**async context manager**".
 
-{* ../../docs_src/events/tutorial003.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
 
-Un **context manager** en Python es algo que puedes usar en una declaración `with`, por ejemplo, `open()` puede ser usado como un context manager:
+Un **context manager** en Python es algo que puedes usar en un statement `with`, por ejemplo, `open()` puede ser usado como un context manager:
 
 ```Python
 with open("file.txt") as file:
@@ -82,9 +82,9 @@ En nuestro ejemplo de código arriba, no lo usamos directamente, pero se lo pasa
 
 El parámetro `lifespan` de la app de `FastAPI` toma un **async context manager**, por lo que podemos pasar nuestro nuevo `lifespan` async context manager a él.
 
-{* ../../docs_src/events/tutorial003.py hl[22] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
-## Eventos Alternativos (obsoleto)
+## Eventos Alternativos (obsoleto) { #alternative-events-deprecated }
 
 /// warning | Advertencia
 
@@ -100,11 +100,11 @@ Puedes definir manejadores de eventos (funciones) que necesitan ser ejecutadas a
 
 Estas funciones pueden ser declaradas con `async def` o `def` normal.
 
-### Evento `startup`
+### Evento `startup` { #startup-event }
 
 Para añadir una función que debería ejecutarse antes de que la aplicación inicie, declárala con el evento `"startup"`:
 
-{* ../../docs_src/events/tutorial001.py hl[8] *}
+{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
 En este caso, la función manejadora del evento `startup` inicializará los ítems de la "base de datos" (solo un `dict`) con algunos valores.
 
@@ -112,11 +112,11 @@ Puedes añadir más de un manejador de eventos.
 
 Y tu aplicación no comenzará a recibir requests hasta que todos los manejadores de eventos `startup` hayan completado.
 
-### Evento `shutdown`
+### Evento `shutdown` { #shutdown-event }
 
 Para añadir una función que debería ejecutarse cuando la aplicación se esté cerrando, declárala con el evento `"shutdown"`:
 
-{* ../../docs_src/events/tutorial002.py hl[6] *}
+{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 Aquí, la función manejadora del evento `shutdown` escribirá una línea de texto `"Application shutdown"` a un archivo `log.txt`.
 
@@ -138,7 +138,7 @@ Por eso, declaramos la función manejadora del evento con `def` estándar en vez
 
 ///
 
-### `startup` y `shutdown` juntos
+### `startup` y `shutdown` juntos { #startup-and-shutdown-together }
 
 Hay una gran posibilidad de que la lógica para tu *startup* y *shutdown* esté conectada, podrías querer iniciar algo y luego finalizarlo, adquirir un recurso y luego liberarlo, etc.
 
@@ -146,7 +146,7 @@ Hacer eso en funciones separadas que no comparten lógica o variables juntas es 
 
 Debido a eso, ahora se recomienda en su lugar usar el `lifespan` como se explicó arriba.
 
-## Detalles Técnicos
+## Detalles Técnicos { #technical-details }
 
 Solo un detalle técnico para los nerds curiosos. 🤓
 
@@ -160,6 +160,6 @@ Incluyendo cómo manejar el estado de lifespan que puede ser usado en otras áre
 
 ///
 
-## Sub Aplicaciones
+## Sub Aplicaciones { #sub-applications }
 
 🚨 Ten en cuenta que estos eventos de lifespan (startup y shutdown) solo serán ejecutados para la aplicación principal, no para [Sub Aplicaciones - Mounts](sub-applications.md){.internal-link target=_blank}.

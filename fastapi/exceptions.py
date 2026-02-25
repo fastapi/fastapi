@@ -1,10 +1,17 @@
-from typing import Any, Dict, Optional, Sequence, Type, Union
+from collections.abc import Mapping, Sequence
+from typing import Annotated, Any, TypedDict
 
 from annotated_doc import Doc
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated
+
+
+class EndpointContext(TypedDict, total=False):
+    function: str
+    path: str
+    file: str
+    line: int
 
 
 class HTTPException(StarletteHTTPException):
@@ -42,6 +49,9 @@ class HTTPException(StarletteHTTPException):
             Doc(
                 """
                 HTTP status code to send to the client.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ],
@@ -51,14 +61,21 @@ class HTTPException(StarletteHTTPException):
                 """
                 Any data to be sent to the client in the `detail` key of the JSON
                 response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ] = None,
         headers: Annotated[
-            Optional[Dict[str, str]],
+            Mapping[str, str] | None,
             Doc(
                 """
                 Any headers to send to the client in the response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#add-custom-headers)
+
                 """
             ),
         ] = None,
@@ -120,7 +137,7 @@ class WebSocketException(StarletteWebSocketException):
             ),
         ],
         reason: Annotated[
-            Union[str, None],
+            str | None,
             Doc(
                 """
                 The reason to close the WebSocket connection.
@@ -137,8 +154,8 @@ class WebSocketException(StarletteWebSocketException):
         super().__init__(code=code, reason=reason)
 
 
-RequestErrorModel: Type[BaseModel] = create_model("Request")
-WebSocketErrorModel: Type[BaseModel] = create_model("WebSocket")
+RequestErrorModel: type[BaseModel] = create_model("Request")
+WebSocketErrorModel: type[BaseModel] = create_model("WebSocket")
 
 
 class FastAPIError(RuntimeError):
@@ -147,31 +164,93 @@ class FastAPIError(RuntimeError):
     """
 
 
+class DependencyScopeError(FastAPIError):
+    """
+    A dependency declared that it depends on another dependency with an invalid
+    (narrower) scope.
+    """
+
+
 class ValidationException(Exception):
-    def __init__(self, errors: Sequence[Any]) -> None:
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        endpoint_ctx: EndpointContext | None = None,
+    ) -> None:
         self._errors = errors
+        self.endpoint_ctx = endpoint_ctx
+
+        ctx = endpoint_ctx or {}
+        self.endpoint_function = ctx.get("function")
+        self.endpoint_path = ctx.get("path")
+        self.endpoint_file = ctx.get("file")
+        self.endpoint_line = ctx.get("line")
 
     def errors(self) -> Sequence[Any]:
         return self._errors
 
+    def _format_endpoint_context(self) -> str:
+        if not (self.endpoint_file and self.endpoint_line and self.endpoint_function):
+            if self.endpoint_path:
+                return f"\n  Endpoint: {self.endpoint_path}"
+            return ""
+
+        context = f'\n  File "{self.endpoint_file}", line {self.endpoint_line}, in {self.endpoint_function}'
+        if self.endpoint_path:
+            context += f"\n    {self.endpoint_path}"
+        return context
+
+    def __str__(self) -> str:
+        message = f"{len(self._errors)} validation error{'s' if len(self._errors) != 1 else ''}:\n"
+        for err in self._errors:
+            message += f"  {err}\n"
+        message += self._format_endpoint_context()
+        return message.rstrip()
+
 
 class RequestValidationError(ValidationException):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
-        super().__init__(errors)
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        body: Any = None,
+        endpoint_ctx: EndpointContext | None = None,
+    ) -> None:
+        super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
 
 
 class WebSocketRequestValidationError(ValidationException):
-    pass
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        endpoint_ctx: EndpointContext | None = None,
+    ) -> None:
+        super().__init__(errors, endpoint_ctx=endpoint_ctx)
 
 
 class ResponseValidationError(ValidationException):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
-        super().__init__(errors)
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        body: Any = None,
+        endpoint_ctx: EndpointContext | None = None,
+    ) -> None:
+        super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
 
-    def __str__(self) -> str:
-        message = f"{len(self._errors)} validation errors:\n"
-        for err in self._errors:
-            message += f"  {err}\n"
-        return message
+
+class PydanticV1NotSupportedError(FastAPIError):
+    """
+    A pydantic.v1 model is used, which is no longer supported.
+    """
+
+
+class FastAPIDeprecationWarning(UserWarning):
+    """
+    A custom deprecation warning as DeprecationWarning is ignored
+    Ref: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries
+    """

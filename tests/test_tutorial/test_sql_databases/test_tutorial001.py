@@ -2,14 +2,14 @@ import importlib
 import warnings
 
 import pytest
-from dirty_equals import IsDict, IsInt
+from dirty_equals import IsInt
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from sqlalchemy import StaticPool
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.main import default_registry
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py310
 
 
 def clear_sqlmodel():
@@ -22,11 +22,7 @@ def clear_sqlmodel():
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001",
-        pytest.param("tutorial001_py39", marks=needs_py39),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -45,7 +41,7 @@ def get_client(request: pytest.FixtureRequest):
 
     with TestClient(mod.app) as c:
         yield c
-    # Clean up connection explicitely to avoid resource warning
+    # Clean up connection explicitly to avoid resource warning
     mod.engine.dispose()
 
 
@@ -320,33 +316,15 @@ def test_openapi_schema(client: TestClient):
                     },
                     "Hero": {
                         "properties": {
-                            "id": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Id",
-                                }
-                            ),
+                            "id": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Id",
+                            },
                             "name": {"type": "string", "title": "Name"},
-                            "age": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Age",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Age",
-                                }
-                            ),
+                            "age": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Age",
+                            },
                             "secret_name": {"type": "string", "title": "Secret Name"},
                         },
                         "type": "object",
@@ -355,6 +333,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

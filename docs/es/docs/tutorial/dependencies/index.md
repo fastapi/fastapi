@@ -1,10 +1,10 @@
-# Dependencias
+# Dependencias { #dependencies }
 
-**FastAPI** tiene un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso pero intuitivo.
+**FastAPI** tiene un sistema de **<dfn title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
 
 Está diseñado para ser muy simple de usar, y para hacer que cualquier desarrollador integre otros componentes con **FastAPI** de forma muy sencilla.
 
-## Qué es la "Inyección de Dependencias"
+## Qué es la "Inyección de Dependencias" { #what-is-dependency-injection }
 
 **"Inyección de Dependencias"** significa, en programación, que hay una manera para que tu código (en este caso, tus *path operation functions*) declare las cosas que necesita para funcionar y utilizar: "dependencias".
 
@@ -19,13 +19,13 @@ Esto es muy útil cuando necesitas:
 
 Todo esto, mientras minimizas la repetición de código.
 
-## Primeros Pasos
+## Primeros Pasos { #first-steps }
 
 Veamos un ejemplo muy simple. Será tan simple que no es muy útil, por ahora.
 
 Pero de esta manera podemos enfocarnos en cómo funciona el sistema de **Inyección de Dependencias**.
 
-### Crear una dependencia, o "dependable"
+### Crear una dependencia, o "dependable" { #create-a-dependency-or-dependable }
 
 Primero enfoquémonos en la dependencia.
 
@@ -61,11 +61,11 @@ Asegúrate de [Actualizar la versión de FastAPI](../../deployment/versions.md#u
 
 ///
 
-### Importar `Depends`
+### Importar `Depends` { #import-depends }
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
-### Declarar la dependencia, en el "dependant"
+### Declarar la dependencia, en el "dependant" { #declare-the-dependency-in-the-dependant }
 
 De la misma forma en que usas `Body`, `Query`, etc. con los parámetros de tu *path operation function*, usa `Depends` con un nuevo parámetro:
 
@@ -114,7 +114,7 @@ Solo la pasas a `Depends` y **FastAPI** sabe cómo hacer el resto.
 
 ///
 
-## Compartir dependencias `Annotated`
+## Compartir dependencias `Annotated` { #share-annotated-dependencies }
 
 En los ejemplos anteriores, ves que hay un poquito de **duplicación de código**.
 
@@ -138,9 +138,9 @@ Pero porque **FastAPI** está basado en los estándares de Python, incluido `Ann
 
 Las dependencias seguirán funcionando como se esperaba, y la **mejor parte** es que la **información de tipo se preservará**, lo que significa que tu editor podrá seguir proporcionándote **autocompletado**, **errores en línea**, etc. Lo mismo para otras herramientas como `mypy`.
 
-Esto será especialmente útil cuando lo uses en una **gran base de código** donde uses **las mismas dependencias** una y otra vez en **muchas *path operations***.
+Esto será especialmente útil cuando lo uses en una **gran code base** donde uses **las mismas dependencias** una y otra vez en **muchas *path operations***.
 
-## Usar `async` o no usar `async`
+## Usar `async` o no usar `async` { #to-async-or-not-to-async }
 
 Como las dependencias también serán llamadas por **FastAPI** (lo mismo que tus *path operation functions*), las mismas reglas aplican al definir tus funciones.
 
@@ -156,7 +156,7 @@ Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a
 
 ///
 
-## Integración con OpenAPI
+## Integración con OpenAPI { #integrated-with-openapi }
 
 Todas las declaraciones de request, validaciones y requisitos de tus dependencias (y sub-dependencias) se integrarán en el mismo esquema de OpenAPI.
 
@@ -164,7 +164,7 @@ Así, la documentación interactiva tendrá toda la información de estas depend
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-## Uso simple
+## Uso simple { #simple-usage }
 
 Si lo ves, las *path operation functions* se declaran para ser usadas siempre que un *path* y una *operación* coincidan, y luego **FastAPI** se encarga de llamar la función con los parámetros correctos, extrayendo los datos del request.
 
@@ -182,7 +182,7 @@ Otros términos comunes para esta misma idea de "inyección de dependencias" son
 * inyectables
 * componentes
 
-## Plug-ins de **FastAPI**
+## Plug-ins de **FastAPI** { #fastapi-plug-ins }
 
 Las integraciones y "plug-ins" pueden construirse usando el sistema de **Inyección de Dependencias**. Pero, de hecho, en realidad **no hay necesidad de crear "plug-ins"**, ya que al usar dependencias es posible declarar una cantidad infinita de integraciones e interacciones que se vuelven disponibles para tus *path operation functions*.
 
@@ -190,7 +190,7 @@ Y las dependencias se pueden crear de una manera muy simple e intuitiva que te p
 
 Verás ejemplos de esto en los próximos capítulos, sobre bases de datos relacionales y NoSQL, seguridad, etc.
 
-## Compatibilidad de **FastAPI**
+## Compatibilidad de **FastAPI** { #fastapi-compatibility }
 
 La simplicidad del sistema de inyección de dependencias hace que **FastAPI** sea compatible con:
 
@@ -203,7 +203,7 @@ La simplicidad del sistema de inyección de dependencias hace que **FastAPI** se
 * sistemas de inyección de datos de response
 * etc.
 
-## Simple y Poderoso
+## Simple y Poderoso { #simple-and-powerful }
 
 Aunque el sistema de inyección de dependencias jerárquico es muy simple de definir y usar, sigue siendo muy poderoso.
 
@@ -243,7 +243,7 @@ admin_user --> activate_user
 paying_user --> pro_items
 ```
 
-## Integrado con **OpenAPI**
+## Integrado con **OpenAPI** { #integrated-with-openapi_1 }
 
 Todas estas dependencias, al declarar sus requisitos, también añaden parámetros, validaciones, etc. a tus *path operations*.
 

@@ -1,25 +1,73 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-default_language_version:
-    python: python3.10
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-    -   id: check-added-large-files
-    -   id: check-toml
-    -   id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=750']
+        exclude: ^uv.lock$
+      - id: check-toml
+      - id: check-yaml
         args:
-        -   --unsafe
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.1
+        - --unsafe
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: local
     hooks:
-    -   id: ruff
+      - id: local-ruff-check
+        name: ruff check
+        entry: uv run ruff check --force-exclude --fix --exit-non-zero-on-fix
+        require_serial: true
+        language: unsupported
+        types: [python]
+
+      - id: local-ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude --exit-non-zero-on-format
+        require_serial: true
+        language: unsupported
+        types: [python]
+
+      - id: local-mypy
+        name: mypy check
+        entry: uv run mypy fastapi
+        require_serial: true
+        language: unsupported
+        pass_filenames: false
+
+      - id: add-permalinks-pages
+        language: unsupported
+        name: add-permalinks-pages
+        entry: uv run ./scripts/docs.py add-permalinks-pages
         args:
-        - --fix
-    -   id: ruff-format
-ci:
-    autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
-    autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate
+          - --update-existing
+        files: ^docs/en/docs/.*\.md$
+
+      - id: generate-readme
+        language: unsupported
+        name: generate README.md from index.md
+        entry: uv run ./scripts/docs.py generate-readme
+        files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
+        pass_filenames: false
+
+      - id: update-languages
+        language: unsupported
+        name: update languages
+        entry: uv run ./scripts/docs.py update-languages
+        files: ^docs/.*|scripts/docs\.py$
+        pass_filenames: false
+
+      - id: ensure-non-translated
+        language: unsupported
+        name: ensure non-translated files are not modified
+        entry: uv run ./scripts/docs.py ensure-non-translated
+        files: ^docs/(?!en/).*|^scripts/docs\.py$
+        pass_filenames: false
+
+      - id: fix-translations
+        language: unsupported
+        name: fix translations
+        entry: uv run ./scripts/translation_fixer.py fix-pages
+        files: ^docs/(?!en/).*/docs/.*\.md$

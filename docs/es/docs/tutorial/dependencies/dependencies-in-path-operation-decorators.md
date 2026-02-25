@@ -1,4 +1,4 @@
-# Dependencias en decoradores de *path operation*
+# Dependencias en decoradores de *path operation* { #dependencies-in-path-operation-decorators }
 
 En algunos casos realmente no necesitas el valor de retorno de una dependencia dentro de tu *path operation function*.
 
@@ -8,13 +8,13 @@ Pero aún necesitas que sea ejecutada/resuelta.
 
 Para esos casos, en lugar de declarar un parámetro de *path operation function* con `Depends`, puedes añadir una `list` de `dependencies` al decorador de *path operation*.
 
-## Agregar `dependencies` al decorador de *path operation*
+## Agregar `dependencies` al decorador de *path operation* { #add-dependencies-to-the-path-operation-decorator }
 
 El decorador de *path operation* recibe un argumento opcional `dependencies`.
 
 Debe ser una `list` de `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 Estas dependencias serán ejecutadas/resueltas de la misma manera que las dependencias normales. Pero su valor (si devuelven alguno) no será pasado a tu *path operation function*.
 
@@ -36,34 +36,34 @@ Pero en casos reales, al implementar seguridad, obtendrías más beneficios usan
 
 ///
 
-## Errores de dependencias y valores de retorno
+## Errores de dependencias y valores de retorno { #dependencies-errors-and-return-values }
 
 Puedes usar las mismas *funciones* de dependencia que usas normalmente.
 
-### Requisitos de dependencia
+### Requisitos de dependencia { #dependency-requirements }
 
 Pueden declarar requisitos de request (como headers) u otras sub-dependencias:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
-### Lanzar excepciones
+### Lanzar excepciones { #raise-exceptions }
 
 Estas dependencias pueden `raise` excepciones, igual que las dependencias normales:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
-### Valores de retorno
+### Valores de retorno { #return-values }
 
 Y pueden devolver valores o no, los valores no serán usados.
 
 Así que, puedes reutilizar una dependencia normal (que devuelve un valor) que ya uses en otro lugar, y aunque el valor no se use, la dependencia será ejecutada:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
-## Dependencias para un grupo de *path operations*
+## Dependencias para un grupo de *path operations* { #dependencies-for-a-group-of-path-operations }
 
 Más adelante, cuando leas sobre cómo estructurar aplicaciones más grandes ([Aplicaciones Más Grandes - Múltiples Archivos](../../tutorial/bigger-applications.md){.internal-link target=_blank}), posiblemente con múltiples archivos, aprenderás cómo declarar un único parámetro `dependencies` para un grupo de *path operations*.
 
-## Dependencias Globales
+## Dependencias Globales { #global-dependencies }
 
 A continuación veremos cómo añadir dependencias a toda la aplicación `FastAPI`, de modo que se apliquen a cada *path operation*.

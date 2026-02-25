@@ -1,19 +1,44 @@
+import importlib
+from types import ModuleType
+
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.websockets.tutorial003 import app, html
 
-client = TestClient(app)
+@pytest.fixture(
+    name="mod",
+    params=[
+        pytest.param("tutorial003_py310"),
+    ],
+)
+def get_mod(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.websockets.{request.param}")
+
+    return mod
 
 
-def test_get():
+@pytest.fixture(name="html")
+def get_html(mod: ModuleType):
+    return mod.html
+
+
+@pytest.fixture(name="client")
+def get_client(mod: ModuleType):
+    client = TestClient(mod.app)
+
+    return client
+
+
+def test_get(client: TestClient, html: str):
     response = client.get("/")
     assert response.text == html
 
 
-def test_websocket_handle_disconnection():
-    with client.websocket_connect("/ws/1234") as connection, client.websocket_connect(
-        "/ws/5678"
-    ) as connection_two:
+def test_websocket_handle_disconnection(client: TestClient):
+    with (
+        client.websocket_connect("/ws/1234") as connection,
+        client.websocket_connect("/ws/5678") as connection_two,
+    ):
         connection.send_text("Hello from 1234")
         data1 = connection.receive_text()
         assert data1 == "You wrote: Hello from 1234"

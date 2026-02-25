@@ -1,8 +1,8 @@
-# Simple OAuth2 con Password y Bearer
+# Simple OAuth2 con Password y Bearer { #simple-oauth2-with-password-and-bearer }
 
 Ahora vamos a construir a partir del capítulo anterior y agregar las partes faltantes para tener un flujo de seguridad completo.
 
-## Obtener el `username` y `password`
+## Obtener el `username` y `password` { #get-the-username-and-password }
 
 Vamos a usar las utilidades de seguridad de **FastAPI** para obtener el `username` y `password`.
 
@@ -18,7 +18,7 @@ Pero para la *path operation* de inicio de sesión, necesitamos usar estos nombr
 
 La especificación también establece que el `username` y `password` deben enviarse como form data (por lo que no hay JSON aquí).
 
-### `scope`
+### `scope` { #scope }
 
 La especificación también indica que el cliente puede enviar otro campo del formulario llamado "`scope`".
 
@@ -44,11 +44,11 @@ Para OAuth2 son solo strings.
 
 ///
 
-## Código para obtener el `username` y `password`
+## Código para obtener el `username` y `password` { #code-to-get-the-username-and-password }
 
 Ahora vamos a usar las utilidades proporcionadas por **FastAPI** para manejar esto.
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
 Primero, importa `OAuth2PasswordRequestForm`, y úsalo como una dependencia con `Depends` en la *path operation* para `/token`:
 
@@ -84,7 +84,7 @@ Pero como es un caso de uso común, se proporciona directamente por **FastAPI**,
 
 ///
 
-### Usa el form data
+### Usa el form data { #use-the-form-data }
 
 /// tip | Consejo
 
@@ -102,7 +102,7 @@ Para el error, usamos la excepción `HTTPException`:
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-### Revisa el password
+### Revisa el password { #check-the-password }
 
 En este punto tenemos los datos del usuario de nuestra base de datos, pero no hemos revisado el password.
 
@@ -112,7 +112,7 @@ Nunca deberías guardar passwords en texto plano, así que, usaremos el sistema 
 
 Si los passwords no coinciden, devolvemos el mismo error.
 
-#### Hashing de passwords
+#### Hashing de passwords { #password-hashing }
 
 "Hacer hash" significa: convertir algún contenido (un password en este caso) en una secuencia de bytes (solo un string) que parece un galimatías.
 
@@ -120,7 +120,7 @@ Siempre que pases exactamente el mismo contenido (exactamente el mismo password)
 
 Pero no puedes convertir del galimatías al password.
 
-##### Por qué usar hashing de passwords
+##### Por qué usar hashing de passwords { #why-use-password-hashing }
 
 Si tu base de datos es robada, el ladrón no tendrá los passwords en texto plano de tus usuarios, solo los hashes.
 
@@ -128,7 +128,7 @@ Entonces, el ladrón no podrá intentar usar esos mismos passwords en otro siste
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-#### Sobre `**user_dict`
+#### Sobre `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` significa:
 
@@ -146,11 +146,11 @@ UserInDB(
 
 /// info | Información
 
-Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
+Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
 
 ///
 
-## Devolver el token
+## Devolver el token { #return-the-token }
 
 El response del endpoint `token` debe ser un objeto JSON.
 
@@ -182,7 +182,7 @@ Para el resto, **FastAPI** lo maneja por ti.
 
 ///
 
-## Actualizar las dependencias
+## Actualizar las dependencias { #update-the-dependencies }
 
 Ahora vamos a actualizar nuestras dependencias.
 
@@ -214,11 +214,11 @@ Ese es el beneficio de los estándares...
 
 ///
 
-## Verlo en acción
+## Verlo en acción { #see-it-in-action }
 
 Abre la documentación interactiva: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-### Autenticar
+### Autenticar { #authenticate }
 
 Haz clic en el botón "Authorize".
 
@@ -234,7 +234,7 @@ Después de autenticarte en el sistema, lo verás así:
 
 <img src="/img/tutorial/security/image05.png">
 
-### Obtener tus propios datos de usuario
+### Obtener tus propios datos de usuario { #get-your-own-user-data }
 
 Ahora usa la operación `GET` con la path `/users/me`.
 
@@ -260,7 +260,7 @@ Si haces clic en el icono de candado y cierras sesión, y luego intentas la mism
 }
 ```
 
-### Usuario inactivo
+### Usuario inactivo { #inactive-user }
 
 Ahora prueba con un usuario inactivo, autentícate con:
 
@@ -278,7 +278,7 @@ Obtendrás un error de "Usuario inactivo", como:
 }
 ```
 
-## Recapitulación
+## Recapitulación { #recap }
 
 Ahora tienes las herramientas para implementar un sistema de seguridad completo basado en `username` y `password` para tu API.
 

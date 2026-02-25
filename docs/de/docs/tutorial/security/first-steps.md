@@ -20,7 +20,7 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Ausführen { #run-it }
 
@@ -111,7 +111,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 * Der Benutzer klickt im Frontend, um zu einem anderen Abschnitt der Frontend-Web-Anwendung zu gelangen.
 * Das Frontend muss weitere Daten von der API abrufen.
     * Es benötigt jedoch eine Authentifizierung für diesen bestimmten Endpunkt.
-    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer ` plus dem Token.
+    * Um sich also bei unserer API zu authentifizieren, sendet es einen `Authorization`-Header mit dem Wert `Bearer ` plus dem Token.
     * Wenn der Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
 
 ## **FastAPI**s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
@@ -134,7 +134,7 @@ In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen br
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | Tipp
 
@@ -172,7 +172,7 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 

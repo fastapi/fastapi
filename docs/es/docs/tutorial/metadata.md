@@ -1,8 +1,8 @@
-# Metadata y URLs de Docs
+# Metadata y URLs de Docs { #metadata-and-docs-urls }
 
 Puedes personalizar varias configuraciones de metadata en tu aplicación **FastAPI**.
 
-## Metadata para la API
+## Metadata para la API { #metadata-for-api }
 
 Puedes establecer los siguientes campos que se usan en la especificación OpenAPI y en las interfaces automáticas de documentación de la API:
 
@@ -18,7 +18,7 @@ Puedes establecer los siguientes campos que se usan en la especificación OpenAP
 
 Puedes configurarlos de la siguiente manera:
 
-{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | Consejo
 
@@ -30,15 +30,15 @@ Con esta configuración, la documentación automática de la API se vería así:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## Identificador de licencia
+## Identificador de licencia { #license-identifier }
 
 Desde OpenAPI 3.1.0 y FastAPI 0.99.0, también puedes establecer la `license_info` con un `identifier` en lugar de una `url`.
 
 Por ejemplo:
 
-{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
-## Metadata para etiquetas
+## Metadata para etiquetas { #metadata-for-tags }
 
 También puedes agregar metadata adicional para las diferentes etiquetas usadas para agrupar tus path operations con el parámetro `openapi_tags`.
 
@@ -52,13 +52,13 @@ Cada diccionario puede contener:
     * `description`: un `str` con una breve descripción para la documentación externa.
     * `url` (**requerido**): un `str` con la URL para la documentación externa.
 
-### Crear metadata para etiquetas
+### Crear metadata para etiquetas { #create-metadata-for-tags }
 
 Probemos eso en un ejemplo con etiquetas para `users` y `items`.
 
 Crea metadata para tus etiquetas y pásala al parámetro `openapi_tags`:
 
-{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Nota que puedes utilizar Markdown dentro de las descripciones, por ejemplo "login" se mostrará en negrita (**login**) y "fancy" se mostrará en cursiva (_fancy_).
 
@@ -68,11 +68,11 @@ No tienes que agregar metadata para todas las etiquetas que uses.
 
 ///
 
-### Usar tus etiquetas
+### Usar tus etiquetas { #use-your-tags }
 
 Usa el parámetro `tags` con tus *path operations* (y `APIRouter`s) para asignarlas a diferentes etiquetas:
 
-{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Información
 
@@ -80,19 +80,19 @@ Lee más sobre etiquetas en [Configuración de Path Operation](path-operation-co
 
 ///
 
-### Revisa la documentación
+### Revisa la documentación { #check-the-docs }
 
 Ahora, si revisas la documentación, mostrará toda la metadata adicional:
 
 <img src="/img/tutorial/metadata/image02.png">
 
-### Orden de las etiquetas
+### Orden de las etiquetas { #order-of-tags }
 
 El orden de cada diccionario de metadata de etiqueta también define el orden mostrado en la interfaz de documentación.
 
 Por ejemplo, aunque `users` iría después de `items` en orden alfabético, se muestra antes porque agregamos su metadata como el primer diccionario en la list.
 
-## URL de OpenAPI
+## URL de OpenAPI { #openapi-url }
 
 Por defecto, el esquema OpenAPI se sirve en `/openapi.json`.
 
@@ -100,11 +100,11 @@ Pero puedes configurarlo con el parámetro `openapi_url`.
 
 Por ejemplo, para configurarlo para que se sirva en `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 Si quieres deshabilitar el esquema OpenAPI completamente, puedes establecer `openapi_url=None`, eso también deshabilitará las interfaces de usuario de documentación que lo usan.
 
-## URLs de Docs
+## URLs de Docs { #docs-urls }
 
 Puedes configurar las dos interfaces de usuario de documentación incluidas:
 
@@ -117,4 +117,4 @@ Puedes configurar las dos interfaces de usuario de documentación incluidas:
 
 Por ejemplo, para configurar Swagger UI para que se sirva en `/documentation` y deshabilitar ReDoc:
 
-{* ../../docs_src/metadata/tutorial003.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

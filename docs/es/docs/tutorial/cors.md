@@ -1,8 +1,8 @@
-# CORS (Cross-Origin Resource Sharing)
+# CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS o "Cross-Origin Resource Sharing"</a> se refiere a situaciones en las que un frontend que se ejecuta en un navegador tiene código JavaScript que se comunica con un backend, y el backend está en un "origen" diferente al frontend.
 
-## Origen
+## Origen { #origin }
 
 Un origen es la combinación de protocolo (`http`, `https`), dominio (`myapp.com`, `localhost`, `localhost.tiangolo.com`) y puerto (`80`, `443`, `8080`).
 
@@ -14,7 +14,7 @@ Así que, todos estos son orígenes diferentes:
 
 Aunque todos están en `localhost`, usan protocolos o puertos diferentes, por lo tanto, son "orígenes" diferentes.
 
-## Pasos
+## Pasos { #steps }
 
 Entonces, digamos que tienes un frontend corriendo en tu navegador en `http://localhost:8080`, y su JavaScript está tratando de comunicarse con un backend corriendo en `http://localhost` (porque no especificamos un puerto, el navegador asumirá el puerto por defecto `80`).
 
@@ -24,7 +24,7 @@ Para lograr esto, el backend `:80` debe tener una lista de "orígenes permitidos
 
 En este caso, la lista tendría que incluir `http://localhost:8080` para que el frontend `:8080` funcione correctamente.
 
-## Comodines
+## Comodines { #wildcards }
 
 También es posible declarar la lista como `"*"` (un "comodín") para decir que todos están permitidos.
 
@@ -32,7 +32,7 @@ Pero eso solo permitirá ciertos tipos de comunicación, excluyendo todo lo que 
 
 Así que, para que todo funcione correctamente, es mejor especificar explícitamente los orígenes permitidos.
 
-## Usa `CORSMiddleware`
+## Usa `CORSMiddleware` { #use-corsmiddleware }
 
 Puedes configurarlo en tu aplicación **FastAPI** usando el `CORSMiddleware`.
 
@@ -46,7 +46,8 @@ También puedes especificar si tu backend permite:
 * Métodos HTTP específicos (`POST`, `PUT`) o todos ellos con el comodín `"*"`.
 * Headers HTTP específicos o todos ellos con el comodín `"*"`.
 
-{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
+
 
 Los parámetros predeterminados utilizados por la implementación de `CORSMiddleware` son restrictivos por defecto, por lo que necesitarás habilitar explícitamente orígenes, métodos o headers particulares para que los navegadores estén permitidos de usarlos en un contexto de Cross-Domain.
 
@@ -56,23 +57,26 @@ Se admiten los siguientes argumentos:
 * `allow_origin_regex` - Una cadena regex para coincidir con orígenes que deberían estar permitidos para hacer requests cross-origin. por ejemplo, `'https://.*\.example\.org'`.
 * `allow_methods` - Una lista de métodos HTTP que deberían estar permitidos para requests cross-origin. Por defecto es `['GET']`. Puedes usar `['*']` para permitir todos los métodos estándar.
 * `allow_headers` - Una lista de headers de request HTTP que deberían estar soportados para requests cross-origin. Por defecto es `[]`. Puedes usar `['*']` para permitir todos los headers. Los headers `Accept`, `Accept-Language`, `Content-Language` y `Content-Type` siempre están permitidos para <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">requests CORS simples</a>.
-* `allow_credentials` - Indica que las cookies deberían estar soportadas para requests cross-origin. Por defecto es `False`. Además, `allow_origins` no puede ser configurado a `['*']` para que las credenciales estén permitidas, los orígenes deben ser especificados.
+* `allow_credentials` - Indica que las cookies deberían estar soportadas para requests cross-origin. Por defecto es `False`.
+
+    Ninguno de `allow_origins`, `allow_methods` y `allow_headers` puede establecerse a `['*']` si `allow_credentials` está configurado a `True`. Todos deben ser <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">especificados explícitamente</a>.
+
 * `expose_headers` - Indica cualquier header de response que debería ser accesible para el navegador. Por defecto es `[]`.
 * `max_age` - Establece un tiempo máximo en segundos para que los navegadores almacenen en caché los responses CORS. Por defecto es `600`.
 
 El middleware responde a dos tipos particulares de request HTTP...
 
-### Requests de preflight CORS
+### Requests de preflight CORS { #cors-preflight-requests }
 
 Estos son cualquier request `OPTIONS` con headers `Origin` y `Access-Control-Request-Method`.
 
 En este caso, el middleware interceptará el request entrante y responderá con los headers CORS adecuados, y un response `200` o `400` con fines informativos.
 
-### Requests simples
+### Requests simples { #simple-requests }
 
 Cualquier request con un header `Origin`. En este caso, el middleware pasará el request a través de lo normal, pero incluirá los headers CORS adecuados en el response.
 
-## Más info
+## Más info { #more-info }
 
 Para más información sobre <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, revisa la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">documentación de CORS de Mozilla</a>.
 

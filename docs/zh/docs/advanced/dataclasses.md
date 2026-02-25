@@ -1,97 +1,87 @@
-# 使用数据类
+# 使用数据类 { #using-dataclasses }
 
-FastAPI 基于 **Pydantic** 构建，前文已经介绍过如何使用 Pydantic 模型声明请求与响应。
+FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydantic 模型声明请求与响应。
 
-但 FastAPI 还可以使用数据类（<a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>）：
+但 FastAPI 也支持以相同方式使用 <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>：
 
-{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
+{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-这还是借助于 **Pydantic** 及其<a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">内置的 `dataclasses`</a>。
+这仍然得益于 **Pydantic**，因为它对 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` 的内置支持</a>。
 
-因此，即便上述代码没有显式使用 Pydantic，FastAPI 仍会使用 Pydantic 把标准数据类转换为 Pydantic 数据类（`dataclasses`）。
+因此，即便上面的代码没有显式使用 Pydantic，FastAPI 也会使用 Pydantic 将那些标准数据类转换为 Pydantic 风格的 dataclasses。
 
 并且，它仍然支持以下功能：
 
 * 数据验证
 * 数据序列化
-* 数据存档等
+* 数据文档等
 
-数据类的和运作方式与 Pydantic 模型相同。实际上，它的底层使用的也是 Pydantic。
+这与使用 Pydantic 模型时的工作方式相同。而且底层实际上也是借助 Pydantic 实现的。
 
-/// info | 说明
+/// info | 信息
 
-注意，数据类不支持 Pydantic 模型的所有功能。
+请注意，数据类不能完成 Pydantic 模型能做的所有事情。
 
-因此，开发时仍需要使用 Pydantic 模型。
+因此，你可能仍然需要使用 Pydantic 模型。
 
-但如果数据类很多，这一技巧能给 FastAPI 开发 Web API 增添不少助力。🤓
+但如果你已有一堆数据类，这个技巧可以让它们很好地为使用 FastAPI 的 Web API 所用。🤓
 
 ///
 
-## `response_model` 使用数据类
+## 在 `response_model` 中使用数据类 { #dataclasses-in-response-model }
 
-在 `response_model` 参数中使用 `dataclasses`：
+你也可以在 `response_model` 参数中使用 `dataclasses`：
 
-{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
+{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
 
-本例把数据类自动转换为 Pydantic 数据类。
+该数据类会被自动转换为 Pydantic 的数据类。
 
-API 文档中也会显示相关概图：
+这样，它的模式会显示在 API 文档界面中：
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
-## 在嵌套数据结构中使用数据类
+## 在嵌套数据结构中使用数据类 { #dataclasses-in-nested-data-structures }
 
-您还可以把 `dataclasses` 与其它类型注解组合在一起，创建嵌套数据结构。
+你也可以把 `dataclasses` 与其它类型注解组合在一起，创建嵌套数据结构。
 
-还有一些情况也可以使用 Pydantic 的 `dataclasses`。例如，在 API 文档中显示错误。
+在某些情况下，你可能仍然需要使用 Pydantic 的 `dataclasses` 版本。例如，如果自动生成的 API 文档出现错误。
 
-本例把标准的 `dataclasses` 直接替换为 `pydantic.dataclasses`：
+在这种情况下，你可以直接把标准的 `dataclasses` 替换为 `pydantic.dataclasses`，它是一个可直接替换的实现：
 
-```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../docs_src/dataclasses/tutorial003.py!}
-```
+{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
 
-1. 本例依然要从标准的 `dataclasses` 中导入 `field`；
+1. 我们仍然从标准库的 `dataclasses` 导入 `field`。
+2. `pydantic.dataclasses` 是 `dataclasses` 的可直接替换版本。
+3. `Author` 数据类包含一个由 `Item` 数据类组成的列表。
+4. `Author` 数据类被用作 `response_model` 参数。
+5. 你可以将其它标准类型注解与数据类一起用作请求体。
 
-2. 使用 `pydantic.dataclasses` 直接替换 `dataclasses`；
+   在本例中，它是一个 `Item` 数据类列表。
+6. 这里我们返回一个字典，里面的 `items` 是一个数据类列表。
 
-3. `Author` 数据类包含 `Item` 数据类列表；
+   FastAPI 仍然能够将数据<dfn title="把数据转换为可以传输的格式">序列化</dfn>为 JSON。
+7. 这里的 `response_model` 使用了 “`Author` 数据类列表” 的类型注解。
 
-4. `Author` 数据类用于 `response_model` 参数；
+   同样，你可以将 `dataclasses` 与标准类型注解组合使用。
+8. 注意，这个 *路径操作函数* 使用的是常规的 `def` 而不是 `async def`。
 
-5. 其它带有数据类的标准类型注解也可以作为请求体；
+   一如既往，在 FastAPI 中你可以按需组合 `def` 和 `async def`。
 
-    本例使用的是 `Item` 数据类列表；
+   如果需要回顾何时用哪一个，请查看关于 [`async` 和 `await`](../async.md#in-a-hurry){.internal-link target=_blank} 的文档中的 _“急不可待？”_ 一节。
+9. 这个 *路径操作函数* 返回的不是数据类（当然也可以返回数据类），而是包含内部数据的字典列表。
 
-6. 这行代码返回的是包含 `items` 的字典，`items` 是数据类列表；
+   FastAPI 会使用（包含数据类的）`response_model` 参数来转换响应。
 
-    FastAPI 仍能把数据<abbr title="把数据转换为可以传输的格式">序列化</abbr>为 JSON；
+你可以将 `dataclasses` 与其它类型注解以多种不同方式组合，来构建复杂的数据结构。
 
-7. 这行代码中，`response_model` 的类型注解是 `Author` 数据类列表；
+更多细节请参考上面代码中的内联注释提示。
 
-    再一次，可以把 `dataclasses` 与标准类型注解一起使用；
+## 深入学习 { #learn-more }
 
-8. 注意，*路径操作函数*使用的是普通函数，不是异步函数；
+你还可以把 `dataclasses` 与其它 Pydantic 模型组合、从它们继承、把它们包含到你自己的模型中等。
 
-    与往常一样，在 FastAPI 中，可以按需组合普通函数与异步函数；
+想了解更多，请查看 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic 关于 dataclasses 的文档</a>。
 
-    如果不清楚何时使用异步函数或普通函数，请参阅**急不可待？**一节中对 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank" class="internal-link">`async` 与 `await`</a> 的说明；
+## 版本 { #version }
 
-9. *路径操作函数*返回的不是数据类（虽然它可以返回数据类），而是返回内含数据的字典列表；
-
-    FastAPI 使用（包含数据类的） `response_model` 参数转换响应。
-
-把 `dataclasses` 与其它类型注解组合在一起，可以组成不同形式的复杂数据结构。
-
-更多内容详见上述代码内的注释。
-
-## 深入学习
-
-您还可以把 `dataclasses` 与其它 Pydantic 模型组合在一起，继承合并的模型，把它们包含在您自己的模型里。
-
-详见 <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/" class="external-link" target="_blank">Pydantic 官档 - 数据类</a>。
-
-## 版本
-
-本章内容自 FastAPI `0.67.0` 版起生效。🔖
+自 FastAPI 版本 `0.67.0` 起可用。🔖

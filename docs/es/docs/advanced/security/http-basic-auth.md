@@ -1,4 +1,4 @@
-# HTTP Basic Auth
+# HTTP Basic Auth { #http-basic-auth }
 
 Para los casos más simples, puedes usar HTTP Basic Auth.
 
@@ -12,7 +12,7 @@ Eso le dice al navegador que muestre el prompt integrado para un nombre de usuar
 
 Luego, cuando escribes ese nombre de usuario y contraseña, el navegador los envía automáticamente en el header.
 
-## Simple HTTP Basic Auth
+## Simple HTTP Basic Auth { #simple-http-basic-auth }
 
 * Importa `HTTPBasic` y `HTTPBasicCredentials`.
 * Crea un "esquema de `security`" usando `HTTPBasic`.
@@ -20,13 +20,13 @@ Luego, cuando escribes ese nombre de usuario y contraseña, el navegador los env
 * Devuelve un objeto de tipo `HTTPBasicCredentials`:
   * Contiene el `username` y `password` enviados.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 Cuando intentas abrir la URL por primera vez (o haces clic en el botón "Execute" en la documentación) el navegador te pedirá tu nombre de usuario y contraseña:
 
 <img src="/img/tutorial/security/image12.png">
 
-## Revisa el nombre de usuario
+## Revisa el nombre de usuario { #check-the-username }
 
 Aquí hay un ejemplo más completo.
 
@@ -40,19 +40,19 @@ Para manejar eso, primero convertimos el `username` y `password` a `bytes` codif
 
 Luego podemos usar `secrets.compare_digest()` para asegurar que `credentials.username` es `"stanleyjobson"`, y que `credentials.password` es `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Esto sería similar a:
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # Devuelve algún error
     ...
 ```
 
 Pero al usar `secrets.compare_digest()` será seguro contra un tipo de ataques llamados "timing attacks".
 
-### Timing Attacks
+### Timing attacks { #timing-attacks }
 
 ¿Pero qué es un "timing attack"?
 
@@ -80,19 +80,19 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 Python tendrá que comparar todo `stanleyjobso` en ambos `stanleyjobsox` y `stanleyjobson` antes de darse cuenta de que ambas strings no son las mismas. Así que tomará algunos microsegundos extra para responder "Nombre de usuario o contraseña incorrectos".
 
-#### El tiempo de respuesta ayuda a los atacantes
+#### El tiempo de respuesta ayuda a los atacantes { #the-time-to-answer-helps-the-attackers }
 
 En ese punto, al notar que el servidor tardó algunos microsegundos más en enviar el response "Nombre de usuario o contraseña incorrectos", los atacantes sabrán que acertaron en _algo_, algunas de las letras iniciales eran correctas.
 
 Y luego pueden intentar de nuevo sabiendo que probablemente es algo más similar a `stanleyjobsox` que a `johndoe`.
 
-#### Un ataque "profesional"
+#### Un ataque "profesional" { #a-professional-attack }
 
 Por supuesto, los atacantes no intentarían todo esto a mano, escribirían un programa para hacerlo, posiblemente con miles o millones de pruebas por segundo. Y obtendrían solo una letra correcta adicional a la vez.
 
 Pero haciendo eso, en algunos minutos u horas, los atacantes habrían adivinado el nombre de usuario y la contraseña correctos, con la "ayuda" de nuestra aplicación, solo usando el tiempo tomado para responder.
 
-#### Arréglalo con `secrets.compare_digest()`
+#### Arréglalo con `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
 Pero en nuestro código estamos usando realmente `secrets.compare_digest()`.
 
@@ -100,8 +100,8 @@ En resumen, tomará el mismo tiempo comparar `stanleyjobsox` con `stanleyjobson`
 
 De esa manera, usando `secrets.compare_digest()` en el código de tu aplicación, será seguro contra todo este rango de ataques de seguridad.
 
-### Devuelve el error
+### Devuelve el error { #return-the-error }
 
 Después de detectar que las credenciales son incorrectas, regresa un `HTTPException` con un código de estado 401 (el mismo que se devuelve cuando no se proporcionan credenciales) y agrega el header `WWW-Authenticate` para que el navegador muestre el prompt de inicio de sesión nuevamente:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

@@ -20,7 +20,7 @@ Es ist das beliebteste Python-Framework und genießt großes Vertrauen. Es wird 
 
 Es ist relativ eng mit relationalen Datenbanken (wie MySQL oder PostgreSQL) gekoppelt, daher ist es nicht sehr einfach, eine NoSQL-Datenbank (wie Couchbase, MongoDB, Cassandra, usw.) als Hauptspeicherengine zu verwenden.
 
-Es wurde erstellt, um den HTML-Code im Backend zu generieren, nicht um APIs zu erstellen, die von einem modernen Frontend (wie React, Vue.js und Angular) oder von anderen Systemen (wie <abbr title="Internet of Things – Internet der Dinge">IoT</abbr>-Geräten) verwendet werden, um mit ihm zu kommunizieren.
+Es wurde erstellt, um den HTML-Code im Backend zu generieren, nicht um APIs zu erstellen, die von einem modernen Frontend (wie React, Vue.js und Angular) oder von anderen Systemen (wie <abbr title="Internet of Things - Internet der Dinge">IoT</abbr>-Geräten) verwendet werden, um mit ihm zu kommunizieren.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
@@ -82,7 +82,7 @@ Aus diesem Grund heißt es auf der offiziellen Website:
 
 > Requests ist eines der am häufigsten heruntergeladenen Python-Packages aller Zeiten
 
-Die Art und Weise, wie Sie es verwenden, ist sehr einfach. Um beispielsweise einen `GET`-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zu machen, würden Sie schreiben:
+Die Art und Weise, wie Sie es verwenden, ist sehr einfach. Um beispielsweise einen `GET`-<abbr title="Request - Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zu machen, würden Sie schreiben:
 
 ```Python
 response = requests.get("http://example.com/some/url")
@@ -137,7 +137,7 @@ Es gibt mehrere Flask REST Frameworks, aber nachdem ich die Zeit und Arbeit inve
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-Eine der von API-Systemen benötigten Hauptfunktionen ist die Daten-<abbr title="Auch „Marshalling“, „Konvertierung“ genannt">„Serialisierung“</abbr>, welche Daten aus dem Code (Python) entnimmt und in etwas umwandelt, was durch das Netzwerk gesendet werden kann. Beispielsweise das Konvertieren eines Objekts, welches Daten aus einer Datenbank enthält, in ein JSON-Objekt. Konvertieren von `datetime`-Objekten in Strings, usw.
+Eine der von API-Systemen benötigten Hauptfunktionen ist die Daten-<dfn title="auch genannt: Marshalling, Konvertierung">„Serialisierung“</dfn>, welche Daten aus dem Code (Python) entnimmt und in etwas umwandelt, was durch das Netzwerk gesendet werden kann. Beispielsweise das Konvertieren eines Objekts, welches Daten aus einer Datenbank enthält, in ein JSON-Objekt. Konvertieren von `datetime`-Objekten in Strings, usw.
 
 Eine weitere wichtige Funktion, benötigt von APIs, ist die Datenvalidierung, welche sicherstellt, dass die Daten unter gegebenen Umständen gültig sind. Zum Beispiel, dass ein Feld ein `int` ist und kein zufälliger String. Das ist besonders nützlich für hereinkommende Daten.
 
@@ -145,7 +145,7 @@ Ohne ein Datenvalidierungssystem müssten Sie alle Prüfungen manuell im Code du
 
 Für diese Funktionen wurde Marshmallow entwickelt. Es ist eine großartige Bibliothek und ich habe sie schon oft genutzt.
 
-Aber sie wurde erstellt, bevor Typhinweise in Python existierten. Um also ein <abbr title="die Definition, wie Daten geformt sein sollen">Schema</abbr> zu definieren, müssen Sie bestimmte Werkzeuge und Klassen verwenden, die von Marshmallow bereitgestellt werden.
+Aber sie wurde erstellt, bevor Typhinweise in Python existierten. Um also ein <dfn title="die Definition, wie Daten geformt sein sollen">Schema</dfn> zu definieren, müssen Sie bestimmte Werkzeuge und Klassen verwenden, die von Marshmallow bereitgestellt werden.
 
 /// check | Inspirierte **FastAPI**
 
@@ -155,7 +155,7 @@ Code zu verwenden, um „Schemas“ zu definieren, welche Datentypen und Validie
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-Eine weitere wichtige Funktion, die von APIs benötigt wird, ist das <abbr title="Lesen und Konvertieren nach Python-Daten">Parsen</abbr> von Daten aus eingehenden Requests.
+Eine weitere wichtige Funktion, die von APIs benötigt wird, ist das <dfn title="Lesen und Konvertieren nach Python-Daten">Parsen</dfn> von Daten aus eingehenden Requests.
 
 Webargs wurde entwickelt, um dieses für mehrere Frameworks, einschließlich Flask, bereitzustellen.
 
@@ -283,7 +283,7 @@ Aus diesem Grund basiert **FastAPI** auf Starlette, da dieses das schnellste ver
 
 Falcon ist ein weiteres leistungsstarkes Python-Framework. Es ist minimalistisch konzipiert und dient als Grundlage für andere Frameworks wie Hug.
 
-Es ist so konzipiert, dass es über Funktionen verfügt, welche zwei Parameter empfangen, einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">„Request“</abbr> und eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">„Response“</abbr>. Dann „lesen“ Sie Teile des Requests und „schreiben“ Teile der Response. Aufgrund dieses Designs ist es nicht möglich, Request-Parameter und -Bodys mit Standard-Python-Typhinweisen als Funktionsparameter zu deklarieren.
+Es ist so konzipiert, dass es über Funktionen verfügt, welche zwei Parameter empfangen, einen <abbr title="Request - Anfrage: Daten, die der Client zum Server sendet">„Request“</abbr> und eine <abbr title="Response - Antwort: Daten, die der Server zum anfragenden Client zurücksendet">„Response“</abbr>. Dann „lesen“ Sie Teile des Requests und „schreiben“ Teile der Response. Aufgrund dieses Designs ist es nicht möglich, Request-Parameter und -Bodys mit Standard-Python-Typhinweisen als Funktionsparameter zu deklarieren.
 
 Daher müssen Datenvalidierung, Serialisierung und Dokumentation im Code und nicht automatisch erfolgen. Oder sie müssen als Framework oberhalb von Falcon implementiert werden, so wie Hug. Dieselbe Unterscheidung findet auch in anderen Frameworks statt, die vom Design von Falcon inspiriert sind und ein Requestobjekt und ein Responseobjekt als Parameter haben.
 
@@ -419,7 +419,7 @@ Die gesamte Datenvalidierung, Datenserialisierung und automatische Modelldokumen
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette ist ein leichtgewichtiges <abbr title="Der neue Standard für die Erstellung asynchroner Python-Webanwendungen">ASGI</abbr>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
+Starlette ist ein leichtgewichtiges <dfn title="Der neue Standard für die Erstellung asynchroner Python-Webanwendungen">ASGI</dfn>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
 
 Es ist sehr einfach und intuitiv. Es ist so konzipiert, dass es leicht erweiterbar ist und über modulare Komponenten verfügt.
 

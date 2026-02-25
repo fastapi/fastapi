@@ -4,7 +4,7 @@
 
 ## `dict` из предыдущего примера { #a-dict-from-the-previous-example }
 
-В предыдущем примере мы возвращали `dict` из нашей зависимости:
+В предыдущем примере мы возвращали `dict` из нашей зависимости («dependable»):
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
@@ -67,7 +67,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Это относится и к вызываемым объектам без параметров. Работа с ними происходит точно так же, как и для *функций-обработчиков пути* без параметров.
 
-Теперь мы можем изменить зависимость `common_parameters`, указанную выше, на класс `CommonQueryParams`:
+Теперь мы можем изменить зависимость («dependable») `common_parameters`, указанную выше, на класс `CommonQueryParams`:
 
 {* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
 
@@ -101,7 +101,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Обратите внимание, что в приведенном выше коде мы два раза пишем `CommonQueryParams`:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 
@@ -137,7 +137,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 В этом случае первый `CommonQueryParams`, в:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 На самом деле можно написать просто:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 Но вы видите, что здесь мы имеем некоторое повторение кода, дважды написав `CommonQueryParams`:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 Вместо того чтобы писать:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...следует написать:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.8 non-Annotated
+//// tab | Python 3.10+ без Annotated
 
 /// tip | Подсказка
 

@@ -2,6 +2,7 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -9,7 +10,6 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003_05",
         pytest.param("tutorial003_05_py310", marks=needs_py310),
     ],
 )
@@ -35,74 +35,80 @@ def test_get_redirect(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/portal": {
-                "get": {
-                    "summary": "Get Portal",
-                    "operationId": "get_portal_portal_get",
-                    "parameters": [
-                        {
-                            "required": False,
-                            "schema": {
-                                "title": "Teleport",
-                                "type": "boolean",
-                                "default": False,
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/portal": {
+                    "get": {
+                        "summary": "Get Portal",
+                        "operationId": "get_portal_portal_get",
+                        "parameters": [
+                            {
+                                "required": False,
+                                "schema": {
+                                    "title": "Teleport",
+                                    "type": "boolean",
+                                    "default": False,
+                                },
+                                "name": "teleport",
+                                "in": "query",
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             },
-                            "name": "teleport",
-                            "in": "query",
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
                                     }
-                                }
+                                },
                             },
+                        },
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
                         },
                     },
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-            }
-        },
-    }
+            },
+        }
+    )

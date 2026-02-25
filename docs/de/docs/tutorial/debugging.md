@@ -6,7 +6,7 @@ Sie können den Debugger in Ihrem Editor verbinden, zum Beispiel mit Visual Stud
 
 Importieren und führen Sie `uvicorn` direkt in Ihrer FastAPI-Anwendung aus:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Über `__name__ == "__main__"` { #about-name-main }
 

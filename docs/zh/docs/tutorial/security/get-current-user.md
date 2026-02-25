@@ -1,23 +1,23 @@
-# 获取当前用户
+# 获取当前用户 { #get-current-user }
 
 上一章中，（基于依赖注入系统的）安全系统向*路径操作函数*传递了 `str` 类型的 `token`：
 
-{* ../../docs_src/security/tutorial001.py hl[10] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 但这并不实用。
 
 接下来，我们学习如何返回当前用户。
 
 
-## 创建用户模型
+## 创建用户模型 { #create-a-user-model }
 
 首先，创建 Pydantic 用户模型。
 
 与使用 Pydantic 声明请求体相同，并且可在任何位置使用：
 
-{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## 创建 `get_current_user` 依赖项
+## 创建 `get_current_user` 依赖项 { #create-a-get-current-user-dependency }
 
 创建 `get_current_user` 依赖项。
 
@@ -27,19 +27,19 @@
 
 与之前直接在路径操作中的做法相同，新的 `get_current_user` 依赖项从子依赖项 `oauth2_scheme` 中接收 `str` 类型的 `token`：
 
-{* ../../docs_src/security/tutorial002.py hl[25] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## 获取用户
+## 获取用户 { #get-the-user }
 
 `get_current_user` 使用创建的（伪）工具函数，该函数接收 `str` 类型的令牌，并返回 Pydantic 的 `User` 模型：
 
-{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## 注入当前用户
+## 注入当前用户 { #inject-the-current-user }
 
 在*路径操作* 的 `Depends` 中使用 `get_current_user`：
 
-{* ../../docs_src/security/tutorial002.py hl[31] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
 
 注意，此处把 `current_user` 的类型声明为 Pydantic 的 `User` 模型。
 
@@ -61,7 +61,7 @@
 
 ///
 
-## 其它模型
+## 其它模型 { #other-models }
 
 接下来，直接在*路径操作函数*中获取当前用户，并用 `Depends` 在**依赖注入**系统中处理安全机制。
 
@@ -78,7 +78,7 @@
 尽管使用应用所需的任何模型、类、数据库。**FastAPI** 通过依赖注入系统都能帮您搞定。
 
 
-## 代码大小
+## 代码大小 { #code-size }
 
 这个示例看起来有些冗长。毕竟这个文件同时包含了安全、数据模型的工具函数，以及路径操作等代码。
 
@@ -94,9 +94,9 @@
 
 所有*路径操作*只需 3 行代码就可以了：
 
-{* ../../docs_src/security/tutorial002.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## 小结
+## 小结 { #recap }
 
 现在，我们可以直接在*路径操作函数*中获取当前用户。
 

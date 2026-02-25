@@ -74,7 +74,7 @@ Make sure you use a supported label from the <a href="https://github.com/tiangol
 * `refactor`: Refactors
     * This is normally for changes to the internal code that don't change the behavior. Normally it improves maintainability, or enables future features, etc.
 * `upgrade`: Upgrades
-    * This is for upgrades to direct dependencies from the project, or extra optional dependencies, normally in `pyproject.toml`. So, things that would affect final users, they would end up receiving the upgrade in their code base once they update. But this is not for upgrades to internal dependencies used for development, testing, docs, etc. Those internal dependencies, normally in `requirements.txt` files or GitHub Action versions should be marked as `internal`, not `upgrade`.
+    * This is for upgrades to direct dependencies from the project, or extra optional dependencies, normally in `pyproject.toml`. So, things that would affect final users, they would end up receiving the upgrade in their code base once they update. But this is not for upgrades to internal dependencies used for development, testing, docs, etc. Those internal dependencies or GitHub Action versions should be marked as `internal`, not `upgrade`.
 * `docs`: Docs
     * Changes in docs. This includes updating the docs, fixing typos. But it doesn't include changes to translations.
     * You can normally quickly detect it by going to the "Files changed" tab in the PR and checking if the updated file(s) starts with `docs/en/docs`. The original version of the docs is always in English, so in `docs/en/docs`.
@@ -106,140 +106,30 @@ This way, we can notice when there are new translations ready, because they have
 
 ## Merge Translation PRs
 
-For Spanish, as I'm a native speaker and it's a language close to me, I will give it a final review myself and in most cases tweak the PR a bit before merging it.
+Translations are generated automatically with LLMs and scripts.
 
-For the other languages, confirm that:
+There's one GitHub Action that can be manually run to add or update translations for a language: <a href="https://github.com/fastapi/fastapi/actions/workflows/translate.yml" class="external-link" target="_blank">`translate.yml`</a>.
 
-* The title is correct following the instructions above.
+For these language translation PRs, confirm that:
+
+* The PR was automated (authored by @tiangolo), not made by another user.
 * It has the labels `lang-all` and `lang-{lang code}`.
-* The PR changes only one Markdown file adding a translation.
-    * Or in some cases, at most two files, if they are small, for the same language, and people reviewed them.
-    * If it's the first translation for that language, it will have additional `mkdocs.yml` files, for those cases follow the instructions below.
-* The PR doesn't add any additional or extraneous files.
-* The translation seems to have a similar structure as the original English file.
-* The translation doesn't seem to change the original content, for example with obvious additional documentation sections.
-* The translation doesn't use different Markdown structures, for example adding HTML tags when the original didn't have them.
-* The "admonition" sections, like `tip`, `info`, etc. are not changed or translated. For example:
-
-```
-/// tip
-
-This is a tip.
-
-///
-
-```
-
-looks like this:
-
-/// tip
-
-This is a tip.
-
-///
-
-...it could be translated as:
-
-```
-/// tip
-
-Esto es un consejo.
-
-///
-
-```
-
-...but needs to keep the exact `tip` keyword. If it was translated to `consejo`, like:
-
-```
-/// consejo
-
-Esto es un consejo.
-
-///
-
-```
-
-it would change the style to the default one, it would look like:
-
-/// consejo
-
-Esto es un consejo.
-
-///
-
-Those don't have to be translated, but if they are, they need to be written as:
-
-```
-/// tip | consejo
-
-Esto es un consejo.
-
-///
-
-```
-
-Which looks like:
-
-/// tip | consejo
-
-Esto es un consejo.
-
-///
-
-## First Translation PR
-
-When there's a first translation for a language, it will have a `docs/{lang code}/docs/index.md` translated file and a `docs/{lang code}/mkdocs.yml`.
-
-For example, for Bosnian, it would be:
-
-* `docs/bs/docs/index.md`
-* `docs/bs/mkdocs.yml`
-
-The `mkdocs.yml` file will have only the following content:
-
-```YAML
-INHERIT: ../en/mkdocs.yml
-```
-
-The language code would normally be in the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes" class="external-link" target="_blank">ISO 639-1 list of language codes</a>.
-
-In any case, the language code should be in the file <a href="https://github.com/fastapi/fastapi/blob/master/docs/language_names.yml" class="external-link" target="_blank">docs/language_names.yml</a>.
-
-There won't be yet a label for the language code, for example, if it was Bosnian, there wouldn't be a `lang-bs`. Before creating the label and adding it to the PR, create the GitHub Discussion:
-
-* Go to the <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">Translations GitHub Discussions</a>
-* Create a new discussion with the title `Bosnian Translations` (or the language name in English)
-* A description of:
-
-```Markdown
-## Bosnian translations
-
-This is the issue to track translations of the docs to Bosnian. 🚀
-
-Here are the [PRs to review with the label `lang-bs`](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-bs+label%3A%22awaiting-review%22). 🤓
-```
-
-Update "Bosnian" with the new language.
-
-And update the search link to point to the new language label that will be created, like `lang-bs`.
-
-Create and add the label to that new Discussion just created, like `lang-bs`.
-
-Then go back to the PR, and add the label, like `lang-bs`, and `lang-all` and `awaiting-review`.
-
-Now the GitHub action will automatically detect the label `lang-bs` and will post in that Discussion that this PR is waiting to be reviewed.
+* If the PR is approved by at least one native speaker, you can merge it.
 
 ## Review PRs
 
-If a PR doesn't explain what it does or why, ask for more information.
+* If a PR doesn't explain what it does or why, if it seems like it could be useful, ask for more information. Otherwise, feel free to close it.
 
-A PR should have a specific use case that it is solving.
+* If a PR seems to be spam, meaningless, only to change statistics (to appear as "contributor") or similar, you can simply mark it as `invalid`, and it will be automatically closed.
+
+* If a PR seems to be AI generated, and seems like reviewing it would take more time from you than the time it took to write the prompt, mark it as `maybe-ai`, and it will be automatically closed.
+
+* A PR should have a specific use case that it is solving.
 
 * If the PR is for a feature, it should have docs.
     * Unless it's a feature we want to discourage, like support for a corner case that we don't want users to use.
 * The docs should include a source example file, not write Python directly in Markdown.
-* If the source example(s) file can have different syntax for Python 3.8, 3.9, 3.10, there should be different versions of the file, and they should be shown in tabs in the docs.
+* If the source example(s) file can have different syntax for different Python versions, there should be different versions of the file, and they should be shown in tabs in the docs.
 * There should be tests testing the source example.
 * Before the PR is applied, the new tests should fail.
 * After applying the PR, the new tests should pass.
@@ -254,27 +144,12 @@ Every month, a GitHub Action updates the FastAPI People data. Those PRs look lik
 
 If the tests are passing, you can merge it right away.
 
-## External Links PRs
-
-When people add external links they edit this file <a href="https://github.com/fastapi/fastapi/blob/master/docs/en/data/external_links.yml" class="external-link" target="_blank">external_links.yml</a>.
-
-* Make sure the new link is in the correct category (e.g. "Podcasts") and language (e.g. "Japanese").
-* A new link should be at the top of its list.
-* The link URL should work (it should not return a 404).
-* The content of the link should be about FastAPI.
-* The new addition should have these fields:
-    * `author`: The name of the author.
-    * `link`: The URL with the content.
-    * `title`: The title of the link (the title of the article, podcast, etc).
-
-After checking all these things and ensuring the PR has the right labels, you can merge it.
-
 ## Dependabot PRs
 
 Dependabot will create PRs to update dependencies for several things, and those PRs all look similar, but some are way more delicate than others.
 
-* If the PR is for a direct dependency, so, Dependabot is modifying `pyproject.toml`, **don't merge it**. 😱 Let me check it first. There's a good chance that some additional tweaks or updates are needed.
-* If the PR updates one of the internal dependencies, for example it's modifying `requirements.txt` files, or GitHub Action versions, if the tests are passing, the release notes (shown in a summary in the PR) don't show any obvious potential breaking change, you can merge it. 😎
+* If the PR is for a direct dependency, so, Dependabot is modifying `pyproject.toml` in the main dependencies, **don't merge it**. 😱 Let me check it first. There's a good chance that some additional tweaks or updates are needed.
+* If the PR updates one of the internal dependencies, for example the group `dev` in `pyproject.toml`, or GitHub Action versions, if the tests are passing, the release notes (shown in a summary in the PR) don't show any obvious potential breaking change, you can merge it. 😎
 
 ## Mark GitHub Discussions Answers
 

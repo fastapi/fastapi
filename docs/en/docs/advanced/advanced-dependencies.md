@@ -18,7 +18,7 @@ Not the class itself (which is already a callable), but an instance of that clas
 
 To do that, we declare a method `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
 
@@ -26,7 +26,7 @@ In this case, this `__call__` is what **FastAPI** will use to check for addition
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
 
@@ -34,7 +34,7 @@ In this case, **FastAPI** won't ever touch or care about `__init__`, we will use
 
 We could create an instance of this class with:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip
 
@@ -70,11 +70,21 @@ If you understood all this, you already know how those utility tools for securit
 
 You most probably don't need these technical details.
 
-These details are useful mainly if you had a FastAPI application older than 0.118.0 and you are facing issues with dependencies with `yield`.
+These details are useful mainly if you had a FastAPI application older than 0.121.0 and you are facing issues with dependencies with `yield`.
 
 ///
 
 Dependencies with `yield` have evolved over time to account for the different use cases and to fix some issues, here's a summary of what has changed.
+
+### Dependencies with `yield` and `scope` { #dependencies-with-yield-and-scope }
+
+In version 0.121.0, FastAPI added support for `Depends(scope="function")` for dependencies with `yield`.
+
+Using `Depends(scope="function")`, the exit code after `yield` is executed right after the *path operation function* is finished, before the response is sent back to the client.
+
+And when using `Depends(scope="request")` (the default), the exit code after `yield` is executed after the response is sent.
+
+You can read more about it in the docs for [Dependencies with `yield` - Early exit and `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
 
 ### Dependencies with `yield` and `StreamingResponse`, Technical Details { #dependencies-with-yield-and-streamingresponse-technical-details }
 
@@ -110,7 +120,7 @@ The exit code, the automatic closing of the `Session` in:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
 
-...would be run after the the response finishes sending the slow data:
+...would be run after the response finishes sending the slow data:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
 
@@ -134,7 +144,7 @@ This was changed in version 0.110.0 to fix unhandled memory consumption from for
 
 ### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
 

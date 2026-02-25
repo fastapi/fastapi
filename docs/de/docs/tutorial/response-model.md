@@ -183,7 +183,7 @@ Es kann Fälle geben, bei denen Sie etwas zurückgeben, das kein gültiges Pydan
 
 Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, wie es später im Handbuch für fortgeschrittene Benutzer erläutert wird](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Unterklasse von) `Response` ist.
 
@@ -193,7 +193,7 @@ Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `
 
 Sie können auch eine Unterklasse von `Response` in der Typannotation verwenden.
 
-{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `Response` ist, und FastAPI sich um diesen einfachen Anwendungsfall automatisch kümmert.
 
@@ -201,7 +201,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z. B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typannotation zu erstellen, und scheitern.
 
-Das gleiche wird passieren, wenn Sie eine <abbr title="Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“">Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
+Das gleiche wird passieren, wenn Sie eine <dfn title="Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“">Union</dfn> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -249,20 +249,6 @@ Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wir
     "price": 50.2
 }
 ```
-
-/// info | Info
-
-In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
-
-Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
-
-/// info | Info
-
-FastAPI verwendet `.dict()` von Pydantic Modellen, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">mit dessen `exclude_unset`-Parameter</a>, um das zu erreichen.
-
-///
 
 /// info | Info
 

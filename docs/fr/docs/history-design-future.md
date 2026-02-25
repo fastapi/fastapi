@@ -1,4 +1,4 @@
-# Histoire, conception et avenir
+# Histoire, conception et avenir { #history-design-and-future }
 
 Il y a quelque temps, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un utilisateur de **FastAPI** a demandé</a> :
 
@@ -6,7 +6,7 @@ Il y a quelque temps, <a href="https://github.com/fastapi/fastapi/issues/3#issue
 
 Voici un petit bout de cette histoire.
 
-## Alternatives
+## Alternatives { #alternatives }
 
 Je crée des API avec des exigences complexes depuis plusieurs années (Machine Learning, systèmes distribués, jobs asynchrones, bases de données NoSQL, etc), en dirigeant plusieurs équipes de développeurs.
 
@@ -14,7 +14,7 @@ Dans ce cadre, j'ai dû étudier, tester et utiliser de nombreuses alternatives.
 
 L'histoire de **FastAPI** est en grande partie l'histoire de ses prédécesseurs.
 
-Comme dit dans la section [Alternatives](alternatives.md){.internal-link target=\_blank} :
+Comme dit dans la section [Alternatives](alternatives.md){.internal-link target=_blank} :
 
 <blockquote markdown="1">
 
@@ -28,7 +28,7 @@ Mais à un moment donné, il n'y avait pas d'autre option que de créer quelque 
 
 </blockquote>
 
-## Recherche
+## Recherche { #investigation }
 
 En utilisant toutes les alternatives précédentes, j'ai eu la chance d'apprendre de toutes, de prendre des idées, et de les combiner de la meilleure façon que j'ai pu trouver pour moi-même et les équipes de développeurs avec lesquelles j'ai travaillé.
 
@@ -38,9 +38,9 @@ De plus, la meilleure approche était d'utiliser des normes déjà existantes.
 
 Ainsi, avant même de commencer à coder **FastAPI**, j'ai passé plusieurs mois à étudier les spécifications d'OpenAPI, JSON Schema, OAuth2, etc. Comprendre leurs relations, leurs similarités et leurs différences.
 
-## Conception
+## Conception { #design }
 
-Ensuite, j'ai passé du temps à concevoir l'"API" de développeur que je voulais avoir en tant qu'utilisateur (en tant que développeur utilisant FastAPI).
+Ensuite, j'ai passé du temps à concevoir l'« API » de développeur que je voulais avoir en tant qu'utilisateur (en tant que développeur utilisant FastAPI).
 
 J'ai testé plusieurs idées dans les éditeurs Python les plus populaires : PyCharm, VS Code, les éditeurs basés sur Jedi.
 
@@ -48,11 +48,11 @@ D'après la dernière <a href="https://www.jetbrains.com/research/python-develop
 
 Cela signifie que **FastAPI** a été spécifiquement testé avec les éditeurs utilisés par 80% des développeurs Python. Et comme la plupart des autres éditeurs ont tendance à fonctionner de façon similaire, tous ses avantages devraient fonctionner pour pratiquement tous les éditeurs.
 
-Ainsi, j'ai pu trouver les meilleurs moyens de réduire autant que possible la duplication du code, d'avoir la complétion partout, les contrôles de type et d'erreur, etc.
+Ainsi, j'ai pu trouver les meilleurs moyens de réduire autant que possible la duplication du code, d'avoir l'autocomplétion partout, les contrôles de type et d'erreur, etc.
 
 Le tout de manière à offrir la meilleure expérience de développement à tous les développeurs.
 
-## Exigences
+## Exigences { #requirements }
 
 Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> pour ses avantages.
 
@@ -60,11 +60,11 @@ J'y ai ensuite contribué, pour le rendre entièrement compatible avec JSON Sche
 
 Pendant le développement, j'ai également contribué à <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, l'autre exigence clé.
 
-## Développement
+## Développement { #development }
 
 Au moment où j'ai commencé à créer **FastAPI** lui-même, la plupart des pièces étaient déjà en place, la conception était définie, les exigences et les outils étaient prêts, et la connaissance des normes et des spécifications était claire et fraîche.
 
-## Futur
+## Futur { #future }
 
 À ce stade, il est déjà clair que **FastAPI** et ses idées sont utiles pour de nombreuses personnes.
 
@@ -76,4 +76,4 @@ Mais il y a encore de nombreuses améliorations et fonctionnalités à venir.
 
 **FastAPI** a un grand avenir devant lui.
 
-Et [votre aide](help-fastapi.md){.internal-link target=\_blank} est grandement appréciée.
+Et [votre aide](help-fastapi.md){.internal-link target=_blank} est grandement appréciée.

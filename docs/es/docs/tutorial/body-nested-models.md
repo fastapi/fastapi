@@ -1,8 +1,8 @@
-# Cuerpo - Modelos Anidados
+# Cuerpo - Modelos Anidados { #body-nested-models }
 
 Con **FastAPI**, puedes definir, validar, documentar y usar modelos anidados de manera arbitraria (gracias a Pydantic).
 
-## Campos de lista
+## Campos de lista { #list-fields }
 
 Puedes definir un atributo como un subtipo. Por ejemplo, una `list` en Python:
 
@@ -10,37 +10,17 @@ Puedes definir un atributo como un subtipo. Por ejemplo, una `list` en Python:
 
 Esto hará que `tags` sea una lista, aunque no declare el tipo de los elementos de la lista.
 
-## Campos de lista con parámetro de tipo
+## Campos de lista con parámetro de tipo { #list-fields-with-type-parameter }
 
 Pero Python tiene una forma específica de declarar listas con tipos internos, o "parámetros de tipo":
 
-### Importar `List` de typing
+### Declarar una `list` con un parámetro de tipo { #declare-a-list-with-a-type-parameter }
 
-En Python 3.9 y superior, puedes usar el `list` estándar para declarar estas anotaciones de tipo como veremos a continuación. 💡
-
-Pero en versiones de Python anteriores a 3.9 (desde 3.6 en adelante), primero necesitas importar `List` del módulo `typing` estándar de Python:
-
-{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
-### Declarar una `list` con un parámetro de tipo
-
-Para declarar tipos que tienen parámetros de tipo (tipos internos), como `list`, `dict`, `tuple`:
-
-* Si estás en una versión de Python inferior a 3.9, importa su versión equivalente del módulo `typing`
-* Pasa el/los tipo(s) interno(s) como "parámetros de tipo" usando corchetes: `[` y `]`
-
-En Python 3.9 sería:
+Para declarar tipos que tienen parámetros de tipo (tipos internos), como `list`, `dict`, `tuple`,
+pasa el/los tipo(s) interno(s) como "parámetros de tipo" usando corchetes: `[` y `]`
 
 ```Python
 my_list: list[str]
-```
-
-En versiones de Python anteriores a 3.9, sería:
-
-```Python
-from typing import List
-
-my_list: List[str]
 ```
 
 Eso es toda la sintaxis estándar de Python para declaraciones de tipo.
@@ -51,7 +31,7 @@ Así, en nuestro ejemplo, podemos hacer que `tags` sea específicamente una "lis
 
 {* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
 
-## Tipos de conjunto
+## Tipos de conjunto { #set-types }
 
 Pero luego pensamos en ello, y nos damos cuenta de que los tags no deberían repetirse, probablemente serían strings únicos.
 
@@ -67,7 +47,7 @@ Y siempre que emitas esos datos, incluso si la fuente tenía duplicados, se emit
 
 Y también se anotará/documentará en consecuencia.
 
-## Modelos Anidados
+## Modelos Anidados { #nested-models }
 
 Cada atributo de un modelo Pydantic tiene un tipo.
 
@@ -77,13 +57,13 @@ Así que, puedes declarar "objetos" JSON anidados profundamente con nombres de a
 
 Todo eso, de manera arbitraria.
 
-### Definir un submodelo
+### Definir un submodelo { #define-a-submodel }
 
 Por ejemplo, podemos definir un modelo `Image`:
 
 {* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
 
-### Usar el submodelo como tipo
+### Usar el submodelo como tipo { #use-the-submodel-as-a-type }
 
 Y luego podemos usarlo como el tipo de un atributo:
 
@@ -112,7 +92,7 @@ Nuevamente, haciendo solo esa declaración, con **FastAPI** obtienes:
 * Validación de datos
 * Documentación automática
 
-## Tipos especiales y validación
+## Tipos especiales y validación { #special-types-and-validation }
 
 Además de tipos singulares normales como `str`, `int`, `float`, etc., puedes usar tipos singulares más complejos que heredan de `str`.
 
@@ -124,7 +104,7 @@ Por ejemplo, como en el modelo `Image` tenemos un campo `url`, podemos declararl
 
 El string será verificado para ser una URL válida, y documentado en JSON Schema / OpenAPI como tal.
 
-## Atributos con listas de submodelos
+## Atributos con listas de submodelos { #attributes-with-lists-of-submodels }
 
 También puedes usar modelos Pydantic como subtipos de `list`, `set`, etc.:
 
@@ -162,7 +142,7 @@ Nota cómo la clave `images` ahora tiene una lista de objetos de imagen.
 
 ///
 
-## Modelos anidados profundamente
+## Modelos anidados profundamente { #deeply-nested-models }
 
 Puedes definir modelos anidados tan profundamente como desees:
 
@@ -174,15 +154,9 @@ Observa cómo `Offer` tiene una lista de `Item`s, que a su vez tienen una lista 
 
 ///
 
-## Cuerpos de listas puras
+## Cuerpos de listas puras { #bodies-of-pure-lists }
 
 Si el valor superior del cuerpo JSON que esperas es un `array` JSON (una `list` en Python), puedes declarar el tipo en el parámetro de la función, al igual que en los modelos Pydantic:
-
-```Python
-images: List[Image]
-```
-
-o en Python 3.9 y superior:
 
 ```Python
 images: list[Image]
@@ -190,9 +164,9 @@ images: list[Image]
 
 como en:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
-## Soporte de editor en todas partes
+## Soporte de editor en todas partes { #editor-support-everywhere }
 
 Y obtienes soporte de editor en todas partes.
 
@@ -204,7 +178,7 @@ No podrías obtener este tipo de soporte de editor si estuvieras trabajando dire
 
 Pero tampoco tienes que preocuparte por ellos, los `dicts` entrantes se convierten automáticamente y tu salida se convierte automáticamente a JSON también.
 
-## Cuerpos de `dict`s arbitrarios
+## Cuerpos de `dict`s arbitrarios { #bodies-of-arbitrary-dicts }
 
 También puedes declarar un cuerpo como un `dict` con claves de algún tipo y valores de algún otro tipo.
 
@@ -220,7 +194,7 @@ Eso es lo que vamos a ver aquí.
 
 En este caso, aceptarías cualquier `dict` siempre que tenga claves `int` con valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Consejo
 
@@ -234,7 +208,7 @@ Y el `dict` que recibas como `weights` tendrá realmente claves `int` y valores 
 
 ///
 
-## Resumen
+## Resumen { #recap }
 
 Con **FastAPI** tienes la máxima flexibilidad proporcionada por los modelos Pydantic, manteniendo tu código simple, corto y elegante.
 

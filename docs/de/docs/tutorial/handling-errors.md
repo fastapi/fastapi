@@ -25,7 +25,7 @@ Um HTTP-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden
 
 ### `HTTPException` importieren { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### Eine `HTTPException` in Ihrem Code auslösen { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ Der Vorteil des Auslösens einer Exception gegenüber dem Zurückgeben eines Wer
 
 In diesem Beispiel lösen wir eine Exception mit einem Statuscode von `404` aus, wenn der Client einen Artikel mit einer nicht existierenden ID anfordert:
 
-{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### Die resultierende Response { #the-resulting-response }
 
@@ -77,11 +77,11 @@ Sie werden es wahrscheinlich nicht direkt in Ihrem Code verwenden müssen.
 
 Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie benutzerdefinierte Header hinzufügen:
 
-{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## Benutzerdefinierte Exceptionhandler installieren { #install-custom-exception-handlers }
 
-Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
+Sie können benutzerdefinierte <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Exceptionhandler mit den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
 
 Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 
@@ -89,7 +89,7 @@ Und Sie möchten diese Exception global mit FastAPI handhaben.
 
 Sie könnten einen benutzerdefinierten Exceptionhandler mit `@app.exception_handler()` hinzufügen:
 
-{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 Hier, wenn Sie `/unicorns/yolo` anfordern, wird die *Pfadoperation* eine `UnicornException` `raise`n.
 
@@ -127,7 +127,7 @@ Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und ve
 
 Der Exceptionhandler erhält einen `Request` und die Exception.
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 Wenn Sie nun zu `/items/foo` gehen, erhalten Sie anstelle des standardmäßigen JSON-Fehlers mit:
 
@@ -149,28 +149,9 @@ Wenn Sie nun zu `/items/foo` gehen, erhalten Sie anstelle des standardmäßigen 
 eine Textversion mit:
 
 ```
-1 validation error
-path -> item_id
-  value is not a valid integer (type=type_error.integer)
+Validation errors:
+Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
-
-#### `RequestValidationError` vs. `ValidationError` { #requestvalidationerror-vs-validationerror }
-
-/// warning | Achtung
-
-Dies sind technische Details, die Sie überspringen können, wenn sie für Sie jetzt nicht wichtig sind.
-
-///
-
-`RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
-
-**FastAPI** verwendet diesen so, dass, wenn Sie ein Pydantic-Modell in `response_model` verwenden und Ihre Daten einen Fehler haben, Sie den Fehler in Ihrem Log sehen.
-
-Aber der Client/Benutzer wird ihn nicht sehen. Stattdessen erhält der Client einen „Internal Server Error“ mit einem HTTP-Statuscode `500`.
-
-Es sollte so sein, denn wenn Sie einen Pydantic `ValidationError` in Ihrer *Response* oder irgendwo anders in Ihrem Code haben (nicht im *Request* des Clients), ist es tatsächlich ein Fehler in Ihrem Code.
-
-Und während Sie den Fehler beheben, sollten Ihre Clients/Benutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
 
 ### Überschreiben des `HTTPException`-Fehlerhandlers { #override-the-httpexception-error-handler }
 
@@ -178,7 +159,7 @@ Auf die gleiche Weise können Sie den `HTTPException`-Handler überschreiben.
 
 Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zurückgeben wollen:
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | Technische Details
 
@@ -188,13 +169,21 @@ Sie könnten auch `from starlette.responses import PlainTextResponse` verwenden.
 
 ///
 
+/// warning | Achtung
+
+Beachten Sie, dass der `RequestValidationError` Informationen über den Dateinamen und die Zeile enthält, in der der Validierungsfehler auftritt, sodass Sie ihn bei Bedarf mit den relevanten Informationen in Ihren Logs anzeigen können.
+
+Das bedeutet aber auch, dass, wenn Sie ihn einfach in einen String umwandeln und diese Informationen direkt zurückgeben, Sie möglicherweise ein paar Informationen über Ihr System preisgeben. Daher extrahiert und zeigt der Code hier jeden Fehler getrennt.
+
+///
+
 ### Verwenden des `RequestValidationError`-Bodys { #use-the-requestvalidationerror-body }
 
 Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen Daten.
 
 Sie könnten diesen während der Entwicklung Ihrer Anwendung verwenden, um den Body zu loggen und zu debuggen, ihn an den Benutzer zurückzugeben usw.
 
-{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 Versuchen Sie nun, einen ungültigen Artikel zu senden:
 
@@ -250,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Wenn Sie die Exception zusammen mit den gleichen Default-Exceptionhandlern von **FastAPI** verwenden möchten, können Sie die Default-Exceptionhandler aus `fastapi.exception_handlers` importieren und wiederverwenden:
 
-{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 In diesem Beispiel geben Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht aus, aber Sie verstehen das Prinzip. Sie können die Exception verwenden und dann einfach die Default-Exceptionhandler wiederverwenden.

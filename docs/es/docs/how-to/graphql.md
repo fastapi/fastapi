@@ -1,4 +1,4 @@
-# GraphQL
+# GraphQL { #graphql }
 
 Como **FastAPI** se basa en el estándar **ASGI**, es muy fácil integrar cualquier paquete de **GraphQL** que también sea compatible con ASGI.
 
@@ -14,7 +14,7 @@ Asegúrate de evaluar si los **beneficios** para tu caso de uso compensan los **
 
 ///
 
-## Paquetes de GraphQL
+## Paquetes de GraphQL { #graphql-libraries }
 
 Aquí algunos de los paquetes de **GraphQL** que tienen soporte **ASGI**. Podrías usarlos con **FastAPI**:
 
@@ -27,7 +27,7 @@ Aquí algunos de los paquetes de **GraphQL** que tienen soporte **ASGI**. Podrí
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
     * Con <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>
 
-## GraphQL con Strawberry
+## GraphQL con Strawberry { #graphql-with-strawberry }
 
 Si necesitas o quieres trabajar con **GraphQL**, <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> es el paquete **recomendado** ya que tiene un diseño muy similar al diseño de **FastAPI**, todo basado en **anotaciones de tipos**.
 
@@ -35,13 +35,13 @@ Dependiendo de tu caso de uso, podrías preferir usar un paquete diferente, pero
 
 Aquí tienes una pequeña vista previa de cómo podrías integrar Strawberry con FastAPI:
 
-{* ../../docs_src/graphql/tutorial001.py hl[3,22,25:26] *}
+{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
 
 Puedes aprender más sobre Strawberry en la <a href="https://strawberry.rocks/" class="external-link" target="_blank">documentación de Strawberry</a>.
 
 Y también la documentación sobre <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry con FastAPI</a>.
 
-## `GraphQLApp` viejo de Starlette
+## `GraphQLApp` viejo de Starlette { #older-graphqlapp-from-starlette }
 
 Las versiones anteriores de Starlette incluían una clase `GraphQLApp` para integrar con <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
 
@@ -53,7 +53,7 @@ Si necesitas GraphQL, aún te recomendaría revisar <a href="https://strawberry.
 
 ///
 
-## Aprende Más
+## Aprende Más { #learn-more }
 
 Puedes aprender más sobre **GraphQL** en la <a href="https://graphql.org/" class="external-link" target="_blank">documentación oficial de GraphQL</a>.
 

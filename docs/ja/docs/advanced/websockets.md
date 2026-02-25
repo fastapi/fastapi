@@ -1,10 +1,10 @@
-# WebSocket
+# WebSockets { #websockets }
 
-**FastAPI**で<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSocket</a>が使用できます。
+**FastAPI**で<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>が使用できます。
 
-## `WebSockets`のインストール
+## `websockets`のインストール { #install-websockets }
 
-まず `WebSockets`のインストールが必要です。
+[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成し、それを有効化してから、「WebSocket」プロトコルを簡単に使えるようにするPythonライブラリの`websockets`をインストールしてください。
 
 <div class="termy">
 
@@ -16,13 +16,13 @@ $ pip install websockets
 
 </div>
 
-## WebSocket クライアント
+## WebSockets クライアント { #websockets-client }
 
-### 本番環境
+### 本番環境 { #in-production }
 
 本番環境では、React、Vue.js、Angularなどの最新のフレームワークで作成されたフロントエンドを使用しているでしょう。
 
-そして、バックエンドとWebSocketを使用して通信するために、おそらくフロントエンドのユーティリティを使用することになるでしょう。
+そして、バックエンドとWebSocketsを使用して通信するために、おそらくフロントエンドのユーティリティを使用することになるでしょう。
 
 または、ネイティブコードでWebSocketバックエンドと直接通信するネイティブモバイルアプリケーションがあるかもしれません。
 
@@ -30,21 +30,21 @@ $ pip install websockets
 
 ---
 
-ただし、この例では非常にシンプルなHTML文書といくつかのJavaScriptを、すべてソースコードの中に入れて使用することにします。
+ただし、この例では非常にシンプルなHTML文書といくつかのJavaScriptを、すべて長い文字列の中に入れて使用することにします。
 
 もちろん、これは最適な方法ではありませんし、本番環境で使うことはないでしょう。
 
 本番環境では、上記の方法のいずれかの選択肢を採用することになるでしょう。
 
-しかし、これはWebSocketのサーバーサイドに焦点を当て、実用的な例を示す最も簡単な方法です。
+しかし、これはWebSocketsのサーバーサイドに焦点を当て、動作する例を示す最も簡単な方法です。
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
 
-## `websocket` を作成する
+## `websocket` を作成する { #create-a-websocket }
 
 **FastAPI** アプリケーションで、`websocket` を作成します。
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技術詳細
 
@@ -54,22 +54,22 @@ $ pip install websockets
 
 ///
 
-## メッセージの送受信
+## メッセージを待機して送信する { #await-for-messages-and-send-messages }
 
-WebSocketルートでは、 `await` を使ってメッセージの送受信ができます。
+WebSocketルートでは、メッセージを待機して送信するために `await` を使用できます。
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
 
 バイナリやテキストデータ、JSONデータを送受信できます。
 
-## 試してみる
+## 試してみる { #try-it }
 
-ファイル名が `main.py` である場合、以下の方法でアプリケーションを実行します。
+ファイル名が `main.py` である場合、以下でアプリケーションを実行します。
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -86,7 +86,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image02.png">
 
-そして、 WebSocketを使用した**FastAPI**アプリケーションが応答します。
+そして、 WebSocketsを使用した**FastAPI**アプリケーションが応答します。
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -96,7 +96,7 @@ $ uvicorn main:app --reload
 
 そして、これらの通信はすべて同じWebSocket接続を使用します。
 
-## 依存関係
+## `Depends` などの使用 { #using-depends-and-others }
 
 WebSocketエンドポイントでは、`fastapi` から以下をインポートして使用できます。
 
@@ -107,28 +107,26 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 * `Path`
 * `Query`
 
-これらは、他のFastAPI エンドポイント/*path operation* の場合と同じように機能します。
+これらは、他のFastAPI エンドポイント/*path operations* の場合と同じように機能します。
 
-{* ../../docs_src/websockets/tutorial002.py hl[58:65,68:83] *}
+{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info | 情報
 
-WebSocket で `HTTPException` を発生させることはあまり意味がありません。したがって、WebSocketの接続を直接閉じる方がよいでしょう。
+これはWebSocketであるため、`HTTPException` を発生させることはあまり意味がありません。代わりに `WebSocketException` を発生させます。
 
 クロージングコードは、<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">仕様で定義された有効なコード</a>の中から使用することができます。
 
-将来的には、どこからでも `raise` できる `WebSocketException` が用意され、専用の例外ハンドラを追加できるようになる予定です。これは、Starlette の <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> に依存するものです。
-
 ///
 
-### 依存関係を用いてWebSocketsを試してみる
+### 依存関係を用いてWebSocketsを試してみる { #try-the-websockets-with-dependencies }
 
-ファイル名が `main.py` である場合、以下の方法でアプリケーションを実行します。
+ファイル名が `main.py` である場合、以下でアプリケーションを実行します。
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -137,14 +135,14 @@ $ uvicorn main:app --reload
 
 ブラウザで <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> を開きます。
 
-クライアントが設定できる項目は以下の通りです。
+そこで、以下を設定できます。
 
 * パスで使用される「Item ID」
 * クエリパラメータとして使用される「Token」
 
 /// tip | 豆知識
 
-クエリ `token` は依存パッケージによって処理されることに注意してください。
+クエリ `token` は依存関係によって処理されることに注意してください。
 
 ///
 
@@ -152,11 +150,11 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image05.png">
 
-## 切断や複数クライアントへの対応
+## 切断や複数クライアントの処理 { #handling-disconnections-and-multiple-clients }
 
 WebSocket接続が閉じられると、 `await websocket.receive_text()` は例外 `WebSocketDisconnect` を発生させ、この例のようにキャッチして処理することができます。
 
-{* ../../docs_src/websockets/tutorial003.py hl[81:83] *}
+{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
 
 試してみるには、
 
@@ -174,15 +172,15 @@ Client #1596980209979 left the chat
 
 上記のアプリは、複数の WebSocket 接続に対してメッセージを処理し、ブロードキャストする方法を示すための最小限のシンプルな例です。
 
-しかし、すべての接続がメモリ内の単一のリストで処理されるため、プロセスの実行中にのみ機能し、単一のプロセスでのみ機能することに注意してください。
+しかし、すべてがメモリ内の単一のリストで処理されるため、プロセスの実行中にのみ機能し、単一のプロセスでのみ機能することに注意してください。
 
-もしFastAPIと簡単に統合できて、RedisやPostgreSQLなどでサポートされている、より堅牢なものが必要なら、<a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a> を確認してください。
+FastAPIと簡単に統合できて、RedisやPostgreSQLなどでサポートされている、より堅牢なものが必要なら、<a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a> を確認してください。
 
 ///
 
-## その他のドキュメント
+## 詳細情報 { #more-info }
 
 オプションの詳細については、Starletteのドキュメントを確認してください。
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank"> `WebSocket` クラス</a>
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">クラスベースのWebSocket処理</a>
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` クラス</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">クラスベースのWebSocket処理</a>.

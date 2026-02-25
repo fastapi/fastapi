@@ -1,10 +1,10 @@
-# Extender OpenAPI
+# Extender OpenAPI { #extending-openapi }
 
 Hay algunos casos en los que podrías necesitar modificar el esquema de OpenAPI generado.
 
 En esta sección verás cómo hacerlo.
 
-## El proceso normal
+## El proceso normal { #the-normal-process }
 
 El proceso normal (por defecto) es el siguiente.
 
@@ -33,31 +33,31 @@ El parámetro `summary` está disponible en OpenAPI 3.1.0 y versiones superiores
 
 ///
 
-## Sobrescribir los valores por defecto
+## Sobrescribir los valores por defecto { #overriding-the-defaults }
 
 Usando la información anterior, puedes usar la misma función de utilidad para generar el esquema de OpenAPI y sobrescribir cada parte que necesites.
 
 Por ejemplo, vamos a añadir <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">la extensión OpenAPI de ReDoc para incluir un logo personalizado</a>.
 
-### **FastAPI** normal
+### **FastAPI** normal { #normal-fastapi }
 
 Primero, escribe toda tu aplicación **FastAPI** como normalmente:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
-### Generar el esquema de OpenAPI
+### Generar el esquema de OpenAPI { #generate-the-openapi-schema }
 
 Luego, usa la misma función de utilidad para generar el esquema de OpenAPI, dentro de una función `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
-### Modificar el esquema de OpenAPI
+### Modificar el esquema de OpenAPI { #modify-the-openapi-schema }
 
 Ahora puedes añadir la extensión de ReDoc, agregando un `x-logo` personalizado al "objeto" `info` en el esquema de OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
-### Cachear el esquema de OpenAPI
+### Cachear el esquema de OpenAPI { #cache-the-openapi-schema }
 
 Puedes usar la propiedad `.openapi_schema` como un "cache", para almacenar tu esquema generado.
 
@@ -65,15 +65,15 @@ De esa forma, tu aplicación no tendrá que generar el esquema cada vez que un u
 
 Se generará solo una vez, y luego se usará el mismo esquema cacheado para las siguientes requests.
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
-### Sobrescribir el método
+### Sobrescribir el método { #override-the-method }
 
 Ahora puedes reemplazar el método `.openapi()` por tu nueva función.
 
-{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
-### Revisa
+### Revisa { #check-it }
 
 Una vez que vayas a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> verás que estás usando tu logo personalizado (en este ejemplo, el logo de **FastAPI**):
 

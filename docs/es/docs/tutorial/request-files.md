@@ -1,4 +1,4 @@
-# Archivos de Request
+# Archivos de Request { #request-files }
 
 Puedes definir archivos que serán subidos por el cliente utilizando `File`.
 
@@ -16,17 +16,17 @@ Esto es porque los archivos subidos se envían como "form data".
 
 ///
 
-## Importar `File`
+## Importar `File` { #import-file }
 
 Importa `File` y `UploadFile` desde `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
-## Definir Parámetros `File`
+## Definir Parámetros `File` { #define-file-parameters }
 
 Crea parámetros de archivo de la misma manera que lo harías para `Body` o `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Información
 
@@ -50,11 +50,11 @@ Ten en cuenta que esto significa que todo el contenido se almacenará en memoria
 
 Pero hay varios casos en los que podrías beneficiarte de usar `UploadFile`.
 
-## Parámetros de Archivo con `UploadFile`
+## Parámetros de Archivo con `UploadFile` { #file-parameters-with-uploadfile }
 
 Define un parámetro de archivo con un tipo de `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 Usar `UploadFile` tiene varias ventajas sobre `bytes`:
 
@@ -66,7 +66,7 @@ Usar `UploadFile` tiene varias ventajas sobre `bytes`:
 * Tiene una interfaz `async` <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">parecida a un archivo</a>.
 * Expone un objeto Python real <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que puedes pasar directamente a otros paquetes que esperan un objeto parecido a un archivo.
 
-### `UploadFile`
+### `UploadFile` { #uploadfile }
 
 `UploadFile` tiene los siguientes atributos:
 
@@ -109,7 +109,7 @@ El `UploadFile` de **FastAPI** hereda directamente del `UploadFile` de **Starlet
 
 ///
 
-## Qué es "Form Data"
+## Qué es "Form Data" { #what-is-form-data }
 
 La manera en que los forms de HTML (`<form></form>`) envían los datos al servidor normalmente utiliza una codificación "especial" para esos datos, es diferente de JSON.
 
@@ -121,7 +121,7 @@ Los datos de los forms normalmente se codifican usando el "media type" `applicat
 
 Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Si usas `File`, **FastAPI** sabrá que tiene que obtener los archivos de la parte correcta del cuerpo.
 
-Si deseas leer más sobre estas codificaciones y campos de formularios, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
+Si deseas leer más sobre estas codificaciones y campos de formularios, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
 
 ///
 
@@ -133,27 +133,27 @@ Esto no es una limitación de **FastAPI**, es parte del protocolo HTTP.
 
 ///
 
-## Subida de Archivos Opcional
+## Subida de Archivos Opcional { #optional-file-upload }
 
 Puedes hacer un archivo opcional utilizando anotaciones de tipos estándar y estableciendo un valor por defecto de `None`:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
-## `UploadFile` con Metadatos Adicionales
+## `UploadFile` con Metadatos Adicionales { #uploadfile-with-additional-metadata }
 
 También puedes usar `File()` con `UploadFile`, por ejemplo, para establecer metadatos adicionales:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
-## Subidas de Múltiples Archivos
+## Subidas de Múltiples Archivos { #multiple-file-uploads }
 
 Es posible subir varios archivos al mismo tiempo.
 
 Estarían asociados al mismo "campo de formulario" enviado usando "form data".
 
-Para usar eso, declara una lista de `bytes` o `UploadFile`:
+Para usar eso, declara una `list` de `bytes` o `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Recibirás, como se declaró, una `list` de `bytes` o `UploadFile`s.
 
@@ -165,12 +165,12 @@ También podrías usar `from starlette.responses import HTMLResponse`.
 
 ///
 
-### Subidas de Múltiples Archivos con Metadatos Adicionales
+### Subidas de Múltiples Archivos con Metadatos Adicionales { #multiple-file-uploads-with-additional-metadata }
 
 Y de la misma manera que antes, puedes usar `File()` para establecer parámetros adicionales, incluso para `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
-## Recapitulación
+## Recapitulación { #recap }
 
 Usa `File`, `bytes` y `UploadFile` para declarar archivos que se subirán en el request, enviados como form data.

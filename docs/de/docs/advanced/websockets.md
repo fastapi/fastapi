@@ -38,13 +38,13 @@ In der Produktion hätten Sie eine der oben genannten Optionen.
 
 Aber es ist der einfachste Weg, sich auf die Serverseite von WebSockets zu konzentrieren und ein funktionierendes Beispiel zu haben:
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Einen `websocket` erstellen { #create-a-websocket }
 
 Erstellen Sie in Ihrer **FastAPI**-Anwendung einen `websocket`:
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Technische Details
 
@@ -58,7 +58,7 @@ Sie könnten auch `from starlette.websockets import WebSocket` verwenden.
 
 In Ihrer WebSocket-Route können Sie Nachrichten `await`en und Nachrichten senden.
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
 
 Sie können Binär-, Text- und JSON-Daten empfangen und senden.
 
@@ -154,7 +154,7 @@ Damit können Sie den WebSocket verbinden und dann Nachrichten senden und empfan
 
 Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_text()` eine `WebSocketDisconnect`-Exception aus, die Sie dann wie in folgendem Beispiel abfangen und behandeln können.
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
 
 Zum Ausprobieren:
 

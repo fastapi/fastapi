@@ -1,6 +1,6 @@
 # Deployment-Konzepte { #deployments-concepts }
 
-Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zur **Bereitstellung Ihrer Anwendung** finden können.
+Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zum **Deployment Ihrer Anwendung** finden können.
 
 Einige wichtige Konzepte sind:
 
@@ -15,11 +15,11 @@ Wir werden sehen, wie diese sich auf das **Deployment** auswirken.
 
 Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu versorgen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
 
-Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen bereitstellen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
+Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen deployen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
 
-Durch die Berücksichtigung dieser Konzepte können Sie die beste Variante der Bereitstellung **Ihrer eigenen APIs** **evaluieren und konzipieren**.
+Durch die Berücksichtigung dieser Konzepte können Sie die beste Variante des Deployments **Ihrer eigenen APIs** **evaluieren und konzipieren**.
 
-In den nächsten Kapiteln werde ich Ihnen mehr **konkrete Rezepte** für die Bereitstellung von FastAPI-Anwendungen geben.
+In den nächsten Kapiteln werde ich Ihnen mehr **konkrete Rezepte** für das Deployment von FastAPI-Anwendungen geben.
 
 Aber schauen wir uns zunächst einmal diese grundlegenden **konzeptionellen Ideen** an. Diese Konzepte gelten auch für jede andere Art von Web-API. 💡
 
@@ -271,7 +271,7 @@ In diesem Fall müssen Sie sich darüber keine Sorgen machen. 🤷
 
 ### Beispiele für Strategien für Vorab-Schritte { #examples-of-previous-steps-strategies }
 
-Es hängt **stark** davon ab, wie Sie **Ihr System bereitstellen**, und hängt wahrscheinlich mit der Art und Weise zusammen, wie Sie Programme starten, Neustarts durchführen, usw.
+Es hängt **stark** davon ab, wie Sie **Ihr System deployen**, und hängt wahrscheinlich mit der Art und Weise zusammen, wie Sie Programme starten, Neustarts durchführen, usw.
 
 Hier sind einige mögliche Ideen:
 
@@ -307,7 +307,7 @@ Sie können einfache Tools wie `htop` verwenden, um die in Ihrem Server verwende
 
 ## Zusammenfassung { #recap }
 
-Sie haben hier einige der wichtigsten Konzepte gelesen, die Sie wahrscheinlich berücksichtigen müssen, wenn Sie entscheiden, wie Sie Ihre Anwendung bereitstellen:
+Sie haben hier einige der wichtigsten Konzepte gelesen, die Sie wahrscheinlich berücksichtigen müssen, wenn Sie entscheiden, wie Sie Ihre Anwendung deployen:
 
 * Sicherheit – HTTPS
 * Beim Hochfahren ausführen

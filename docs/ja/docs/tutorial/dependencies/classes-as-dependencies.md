@@ -1,12 +1,12 @@
-# 依存関係としてのクラス
+# 依存関係としてのクラス { #classes-as-dependencies }
 
 **依存性注入** システムを深く掘り下げる前に、先ほどの例をアップグレードしてみましょう。
 
-## 前の例の`dict`
+## 前の例の`dict` { #a-dict-from-the-previous-example }
 
 前の例では、依存関係（"dependable"）から`dict`を返していました:
 
-{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
 しかし、*path operation関数*のパラメータ`commons`に`dict`が含まれています。
 
@@ -14,7 +14,7 @@
 
 もっとうまくやれるはずです...。
 
-## 依存関係を作るもの
+## 依存関係を作るもの { #what-makes-a-dependency }
 
 これまでは、依存関係が関数として宣言されているのを見てきました。
 
@@ -38,7 +38,7 @@ something(some_argument, some_keyword_argument="foo")
 
 これを「呼び出し可能」なものと呼びます。
 
-## 依存関係としてのクラス
+## 依存関係としてのクラス { #classes-as-dependencies_1 }
 
 Pythonのクラスのインスタンスを作成する際に、同じ構文を使用していることに気づくかもしれません。
 
@@ -67,48 +67,66 @@ FastAPIが実際にチェックしているのは、それが「呼び出し可�
 
 それは、パラメータが全くない呼び出し可能なものにも適用されます。パラメータのない*path operation関数*と同じように。
 
-そこで、上で紹介した依存関係の`common_parameters`を`CommonQueryParams`クラスに変更します:
+そこで、上で紹介した依存関係の"dependable" `common_parameters`を`CommonQueryParams`クラスに変更します:
 
-{* ../../docs_src/dependencies/tutorial002.py hl[11,12,13,14,15] *}
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
 
 クラスのインスタンスを作成するために使用される`__init__`メソッドに注目してください:
 
-{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
 
 ...以前の`common_parameters`と同じパラメータを持っています:
 
-{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
 
 これらのパラメータは **FastAPI** が依存関係を「解決」するために使用するものです。
 
 どちらの場合も以下を持っています:
 
-* オプショナルの`q`クエリパラメータ。
-* `skip`クエリパラメータ、デフォルトは`0`。
-* `limit`クエリパラメータ、デフォルトは`100`。
+* `str`であるオプショナルの`q`クエリパラメータ。
+* デフォルトが`0`である`int`の`skip`クエリパラメータ。
+* デフォルトが`100`である`int`の`limit`クエリパラメータ。
 
 どちらの場合も、データは変換され、検証され、OpenAPIスキーマなどで文書化されます。
 
-## 使用
+## 使用 { #use-it }
 
 これで、このクラスを使用して依存関係を宣言することができます。
 
-{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
 
 **FastAPI** は`CommonQueryParams`クラスを呼び出します。これにより、そのクラスの「インスタンス」が作成され、インスタンスはパラメータ`commons`として関数に渡されます。
 
-## 型注釈と`Depends`
+## 型注釈と`Depends` { #type-annotation-vs-depends }
 
 上のコードでは`CommonQueryParams`を２回書いていることに注目してください:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
+////
+
 以下にある最後の`CommonQueryParams`:
 
 ```Python
-... = Depends(CommonQueryParams)
+... Depends(CommonQueryParams)
 ```
 
 ...は、**FastAPI** が依存関係を知るために実際に使用するものです。
@@ -119,33 +137,87 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 この場合、以下にある最初の`CommonQueryParams`:
 
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, ...
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
+
 ```Python
 commons: CommonQueryParams ...
 ```
 
-...は **FastAPI** に対して特別な意味をもちません。FastAPIはデータ変換や検証などには使用しません（それらのためには`= Depends(CommonQueryParams)`を使用しています）。
+////
+
+...は **FastAPI** に対して特別な意味をもちません。FastAPIはデータ変換や検証などには使用しません（それらのためには`Depends(CommonQueryParams)`を使用しています）。
 
 実際には以下のように書けばいいだけです:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[Any, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
 
 ```Python
 commons = Depends(CommonQueryParams)
 ```
 
+////
+
 以下にあるように:
 
-{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
 
 しかし、型を宣言することは推奨されています。そうすれば、エディタは`commons`のパラメータとして何が渡されるかを知ることができ、コードの補完や型チェックなどを行うのに役立ちます:
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/dependencies/image02.png">
+<img src="/img/tutorial/dependencies/image02.png">
 
-## ショートカット
+## ショートカット { #shortcut }
 
 しかし、ここでは`CommonQueryParams`を２回書くというコードの繰り返しが発生していることがわかります:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
+
+////
 
 依存関係が、クラス自体のインスタンスを作成するために**FastAPI**が「呼び出す」*特定の*クラスである場合、**FastAPI** はこれらのケースのショートカットを提供しています。
 
@@ -153,21 +225,57 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 以下のように書く代わりに:
 
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
+
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
+////
+
 ...以下のように書きます:
+
+//// tab | Python 3.10+
+
+```Python
+commons: Annotated[CommonQueryParams, Depends()]
+```
+
+////
+
+//// tab | Python 3.10+ 注釈なし
+
+/// tip | 豆知識
+
+可能であれば`Annotated`バージョンを使用することを推奨します。
+
+///
 
 ```Python
 commons: CommonQueryParams = Depends()
 ```
 
+////
+
 パラメータの型として依存関係を宣言し、`Depends()`の中でパラメータを指定せず、`Depends()`をその関数のパラメータの「デフォルト」値（`=`のあとの値）として使用することで、`Depends(CommonQueryParams)`の中でクラス全体を*もう一度*書かなくてもよくなります。
 
 同じ例では以下のようになります:
 
-{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
 
 ...そして **FastAPI** は何をすべきか知っています。
 

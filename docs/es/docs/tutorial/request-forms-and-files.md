@@ -1,4 +1,4 @@
-# Request Forms and Files
+# Formularios y archivos del request { #request-forms-and-files }
 
 Puedes definir archivos y campos de formulario al mismo tiempo usando `File` y `Form`.
 
@@ -14,15 +14,15 @@ $ pip install python-multipart
 
 ///
 
-## Importar `File` y `Form`
+## Importa `File` y `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
-## Definir parámetros `File` y `Form`
+## Define parámetros `File` y `Form` { #define-file-and-form-parameters }
 
 Crea parámetros de archivo y formulario de la misma manera que lo harías para `Body` o `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 Los archivos y campos de formulario se subirán como form data y recibirás los archivos y campos de formulario.
 
@@ -36,6 +36,6 @@ Esto no es una limitación de **FastAPI**, es parte del protocolo HTTP.
 
 ///
 
-## Resumen
+## Resumen { #recap }
 
 Usa `File` y `Form` juntos cuando necesites recibir datos y archivos en el mismo request.

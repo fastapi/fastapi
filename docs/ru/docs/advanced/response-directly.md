@@ -34,7 +34,7 @@
 
 В таких случаях вы можете использовать `jsonable_encoder` для преобразования данных перед передачей их в ответ:
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | Технические детали
 
@@ -54,7 +54,7 @@
 
 Вы можете поместить ваш XML-контент в строку, поместить её в `Response` и вернуть:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Примечания { #notes }
 

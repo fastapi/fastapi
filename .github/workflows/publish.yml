@@ -8,35 +8,22 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package:
-          - fastapi
-          - fastapi-slim
     permissions:
       id-token: write
+      contents: read
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.10"
-          # Issue ref: https://github.com/actions/setup-python/issues/436
-          # cache: "pip"
-          # cache-dependency-path: pyproject.toml
-      - name: Install build dependencies
-        run: pip install build
+          python-version-file: ".python-version"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
       - name: Build distribution
-        env:
-          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
-        run: python -m build
+        run: uv build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.13.0
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: uv publish

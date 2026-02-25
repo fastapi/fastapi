@@ -1,12 +1,12 @@
-# Cookies de Resposta
+# Cookies de Resposta { #response-cookies }
 
-## Usando um parâmetro `Response`
+## Use um parâmetro `Response` { #use-a-response-parameter }
 
 Você pode declarar um parâmetro do tipo `Response` na sua *função de operação de rota*.
 
 E então você pode definir cookies nesse objeto de resposta *temporário*.
 
-{* ../../docs_src/response_cookies/tutorial002.py hl[1,8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Em seguida, você pode retornar qualquer objeto que precise, como normalmente faria (um `dict`, um modelo de banco de dados, etc).
 
@@ -16,15 +16,15 @@ E se você declarou um `response_model`, ele ainda será usado para filtrar e co
 
 Você também pode declarar o parâmetro `Response` em dependências e definir cookies (e cabeçalhos) nelas.
 
-## Retornando uma `Response` diretamente
+## Retorne uma `Response` diretamente { #return-a-response-directly }
 
 Você também pode criar cookies ao retornar uma `Response` diretamente no seu código.
 
-Para fazer isso, você pode criar uma resposta como descrito em [Retornando uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
+Para fazer isso, você pode criar uma resposta como descrito em [Retorne uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
 
 Então, defina os cookies nela e a retorne:
 
-{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip | Dica
 
@@ -36,7 +36,7 @@ E também que você não esteja enviando nenhum dado que deveria ter sido filtra
 
 ///
 
-### Mais informações
+### Mais informações { #more-info }
 
 /// note | Detalhes Técnicos
 

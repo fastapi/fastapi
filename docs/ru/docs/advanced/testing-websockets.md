@@ -4,7 +4,7 @@
 
 Для этого используйте `TestClient` с менеджером контекста `with`, подключаясь к WebSocket:
 
-{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
 
 /// note | Примечание
 

@@ -1,4 +1,4 @@
-# Seguridad - Primeros pasos
+# Seguridad - Primeros pasos { #security-first-steps }
 
 Imaginemos que tienes tu API de **backend** en algún dominio.
 
@@ -12,17 +12,17 @@ Pero vamos a ahorrarte el tiempo de leer la larga especificación completa solo 
 
 Usemos las herramientas proporcionadas por **FastAPI** para manejar la seguridad.
 
-## Cómo se ve
+## Cómo se ve { #how-it-looks }
 
 Primero solo usemos el código y veamos cómo funciona, y luego volveremos para entender qué está sucediendo.
 
-## Crea `main.py`
+## Crea `main.py` { #create-main-py }
 
 Copia el ejemplo en un archivo `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
-## Ejecútalo
+## Ejecútalo { #run-it }
 
 /// info | Información
 
@@ -52,7 +52,7 @@ $ fastapi dev main.py
 
 </div>
 
-## Revisa
+## Revisa { #check-it }
 
 Ve a la documentación interactiva en: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -86,7 +86,7 @@ Puede ser utilizada por aplicaciones y sistemas de terceros.
 
 Y también puede ser utilizada por ti mismo, para depurar, revisar y probar la misma aplicación.
 
-## El flujo `password`
+## El flujo `password` { #the-password-flow }
 
 Ahora retrocedamos un poco y entendamos qué es todo eso.
 
@@ -112,7 +112,7 @@ Así que, revisémoslo desde ese punto de vista simplificado:
     * Así que, para autenticarse con nuestra API, envía un `header` `Authorization` con un valor de `Bearer ` más el token.
     * Si el token contiene `foobar`, el contenido del `header` `Authorization` sería: `Bearer foobar`.
 
-## `OAuth2PasswordBearer` de **FastAPI**
+## `OAuth2PasswordBearer` de **FastAPI** { #fastapis-oauth2passwordbearer }
 
 **FastAPI** proporciona varias herramientas, en diferentes niveles de abstracción, para implementar estas funcionalidades de seguridad.
 
@@ -132,7 +132,7 @@ En ese caso, **FastAPI** también te proporciona las herramientas para construir
 
 Cuando creamos una instance de la clase `OAuth2PasswordBearer` pasamos el parámetro `tokenUrl`. Este parámetro contiene la URL que el cliente (el frontend corriendo en el navegador del usuario) usará para enviar el `username` y `password` a fin de obtener un token.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | Consejo
 
@@ -166,11 +166,11 @@ oauth2_scheme(some, parameters)
 
 Así que, puede usarse con `Depends`.
 
-### Úsalo
+### Úsalo { #use-it }
 
 Ahora puedes pasar ese `oauth2_scheme` en una dependencia con `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Esta dependencia proporcionará un `str` que se asigna al parámetro `token` de la *path operation function*.
 
@@ -184,7 +184,7 @@ Todas las utilidades de seguridad que se integran con OpenAPI (y los docs autom�
 
 ///
 
-## Lo que hace
+## Lo que hace { #what-it-does }
 
 Irá y buscará en el request ese header `Authorization`, verificará si el valor es `Bearer ` más algún token, y devolverá el token como un `str`.
 
@@ -198,6 +198,6 @@ Puedes probarlo ya en los docs interactivos:
 
 Todavía no estamos verificando la validez del token, pero ya es un comienzo.
 
-## Resumen
+## Resumen { #recap }
 
 Así que, en solo 3 o 4 líneas adicionales, ya tienes alguna forma primitiva de seguridad.

@@ -1,4 +1,4 @@
-# Modelos de Parámetros Query
+# Modelos de Parámetros Query { #query-parameter-models }
 
 Si tienes un grupo de **parámetros query** que están relacionados, puedes crear un **modelo de Pydantic** para declararlos.
 
@@ -10,7 +10,7 @@ Esto es compatible desde la versión `0.115.0` de FastAPI. 🤓
 
 ///
 
-## Parámetros Query con un Modelo Pydantic
+## Parámetros Query con un Modelo Pydantic { #query-parameters-with-a-pydantic-model }
 
 Declara los **parámetros query** que necesitas en un **modelo de Pydantic**, y luego declara el parámetro como `Query`:
 
@@ -18,7 +18,7 @@ Declara los **parámetros query** que necesitas en un **modelo de Pydantic**, y 
 
 **FastAPI** **extraerá** los datos para **cada campo** de los **parámetros query** en el request y te proporcionará el modelo de Pydantic que definiste.
 
-## Revisa la Documentación
+## Revisa la Documentación { #check-the-docs }
 
 Puedes ver los parámetros query en la UI de documentación en `/docs`:
 
@@ -26,7 +26,7 @@ Puedes ver los parámetros query en la UI de documentación en `/docs`:
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## Prohibir Parámetros Query Extras
+## Prohibir Parámetros Query Extras { #forbid-extra-query-parameters }
 
 En algunos casos de uso especiales (probablemente no muy comunes), podrías querer **restringir** los parámetros query que deseas recibir.
 
@@ -57,7 +57,7 @@ Recibirán un response de **error** que les indica que el parámetro query `tool
 }
 ```
 
-## Resumen
+## Resumen { #summary }
 
 Puedes usar **modelos de Pydantic** para declarar **parámetros query** en **FastAPI**. 😎
 

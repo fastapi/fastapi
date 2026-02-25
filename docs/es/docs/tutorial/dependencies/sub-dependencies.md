@@ -1,4 +1,4 @@
-# Sub-dependencias
+# Sub-dependencias { #sub-dependencies }
 
 Puedes crear dependencias que tengan **sub-dependencias**.
 
@@ -6,7 +6,7 @@ Pueden ser tan **profundas** como necesites.
 
 **FastAPI** se encargará de resolverlas.
 
-## Primera dependencia "dependable"
+## Primera dependencia "dependable" { #first-dependency-dependable }
 
 Podrías crear una primera dependencia ("dependable") así:
 
@@ -16,7 +16,7 @@ Declara un parámetro de query opcional `q` como un `str`, y luego simplemente l
 
 Esto es bastante simple (no muy útil), pero nos ayudará a centrarnos en cómo funcionan las sub-dependencias.
 
-## Segunda dependencia, "dependable" y "dependant"
+## Segunda dependencia, "dependable" y "dependant" { #second-dependency-dependable-and-dependant }
 
 Luego puedes crear otra función de dependencia (un "dependable") que al mismo tiempo declare una dependencia propia (por lo que también es un "dependant"):
 
@@ -29,7 +29,7 @@ Centrémonos en los parámetros declarados:
 * También declara una `last_query` cookie opcional, como un `str`.
     * Si el usuario no proporcionó ningún query `q`, usamos el último query utilizado, que guardamos previamente en una cookie.
 
-## Usa la dependencia
+## Usa la dependencia { #use-the-dependency }
 
 Entonces podemos usar la dependencia con:
 
@@ -54,15 +54,15 @@ read_query["/items/"]
 query_extractor --> query_or_cookie_extractor --> read_query
 ```
 
-## Usando la misma dependencia múltiples veces
+## Usando la misma dependencia múltiples veces { #using-the-same-dependency-multiple-times }
 
 Si una de tus dependencias se declara varias veces para la misma *path operation*, por ejemplo, múltiples dependencias tienen una sub-dependencia común, **FastAPI** sabrá llamar a esa sub-dependencia solo una vez por request.
 
-Y guardará el valor devuelto en un <abbr title="Una utilidad/sistema para almacenar valores calculados/generados, para reutilizarlos en lugar de calcularlos nuevamente.">"cache"</abbr> y lo pasará a todos los "dependants" que lo necesiten en ese request específico, en lugar de llamar a la dependencia varias veces para el mismo request.
+Y guardará el valor devuelto en un <dfn title="Una utilidad/sistema para almacenar valores calculados/generados, para reutilizarlos en lugar de calcularlos nuevamente.">"caché"</dfn> y lo pasará a todos los "dependants" que lo necesiten en ese request específico, en lugar de llamar a la dependencia varias veces para el mismo request.
 
-En un escenario avanzado donde sabes que necesitas que la dependencia se llame en cada paso (posiblemente varias veces) en el mismo request en lugar de usar el valor "cache", puedes establecer el parámetro `use_cache=False` al usar `Depends`:
+En un escenario avanzado donde sabes que necesitas que la dependencia se llame en cada paso (posiblemente varias veces) en el mismo request en lugar de usar el valor "en caché", puedes establecer el parámetro `use_cache=False` al usar `Depends`:
 
-//// tab | Python 3.8+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.8+ sin Anotaciones
+//// tab | Python 3.10+ sin Anotaciones
 
 /// tip | Consejo
 
@@ -86,7 +86,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 ////
 
-## Resumen
+## Resumen { #recap }
 
 Aparte de todas las palabras rimbombantes usadas aquí, el sistema de **Inyección de Dependencias** es bastante simple.
 

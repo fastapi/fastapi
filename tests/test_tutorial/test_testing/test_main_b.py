@@ -3,16 +3,13 @@ from types import ModuleType
 
 import pytest
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="test_module",
     params=[
-        "app_b.test_main",
         pytest.param("app_b_py310.test_main", marks=needs_py310),
-        "app_b_an.test_main",
-        pytest.param("app_b_an_py39.test_main", marks=needs_py39),
         pytest.param("app_b_an_py310.test_main", marks=needs_py310),
     ],
 )

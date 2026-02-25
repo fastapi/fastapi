@@ -1,10 +1,10 @@
-# Usando Dataclasses
+# Usando Dataclasses { #using-dataclasses }
 
 FastAPI é construído em cima do **Pydantic**, e eu tenho mostrado como usar modelos Pydantic para declarar requisições e respostas.
 
 Mas o FastAPI também suporta o uso de <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> da mesma forma:
 
-{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
+{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
 Isso ainda é suportado graças ao **Pydantic**, pois ele tem <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">suporte interno para `dataclasses`</a>.
 
@@ -28,11 +28,11 @@ Mas se você tem um monte de dataclasses por aí, este é um truque legal para u
 
 ///
 
-## Dataclasses em `response_model`
+## Dataclasses em `response_model` { #dataclasses-in-response-model }
 
 Você também pode usar `dataclasses` no parâmetro `response_model`:
 
-{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
+{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
 
 A dataclass será automaticamente convertida para uma dataclass Pydantic.
 
@@ -40,7 +40,7 @@ Dessa forma, seu esquema aparecerá na interface de documentação da API:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
-## Dataclasses em Estruturas de Dados Aninhadas
+## Dataclasses em Estruturas de Dados Aninhadas { #dataclasses-in-nested-data-structures }
 
 Você também pode combinar `dataclasses` com outras anotações de tipo para criar estruturas de dados aninhadas.
 
@@ -48,9 +48,7 @@ Em alguns casos, você ainda pode ter que usar a versão do Pydantic das `datacl
 
 Nesse caso, você pode simplesmente trocar as `dataclasses` padrão por `pydantic.dataclasses`, que é um substituto direto:
 
-```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../docs_src/dataclasses/tutorial003.py!}
-```
+{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. Ainda importamos `field` das `dataclasses` padrão.
 
@@ -66,7 +64,7 @@ Nesse caso, você pode simplesmente trocar as `dataclasses` padrão por `pydanti
 
 6. Aqui estamos retornando um dicionário que contém `items`, que é uma lista de dataclasses.
 
-    O FastAPI ainda é capaz de <abbr title="converter os dados para um formato que pode ser transmitido">serializar</abbr> os dados para JSON.
+    O FastAPI ainda é capaz de <dfn title="converter os dados para um formato que pode ser transmitido">serializar</dfn> os dados para JSON.
 
 7. Aqui o `response_model` está usando uma anotação de tipo de uma lista de dataclasses `Author`.
 
@@ -86,12 +84,12 @@ Você pode combinar `dataclasses` com outras anotações de tipo em muitas combi
 
 Confira as dicas de anotação no código acima para ver mais detalhes específicos.
 
-## Saiba Mais
+## Saiba Mais { #learn-more }
 
 Você também pode combinar `dataclasses` com outros modelos Pydantic, herdar deles, incluí-los em seus próprios modelos, etc.
 
 Para saber mais, confira a <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">documentação do Pydantic sobre dataclasses</a>.
 
-## Versão
+## Versão { #version }
 
 Isso está disponível desde a versão `0.67.0` do FastAPI. 🔖

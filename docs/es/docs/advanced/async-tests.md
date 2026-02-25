@@ -1,4 +1,4 @@
-# Tests Asíncronos
+# Tests Asíncronos { #async-tests }
 
 Ya has visto cómo probar tus aplicaciones de **FastAPI** usando el `TestClient` proporcionado. Hasta ahora, solo has visto cómo escribir tests sincrónicos, sin usar funciones `async`.
 
@@ -6,11 +6,11 @@ Poder usar funciones asíncronas en tus tests puede ser útil, por ejemplo, cuan
 
 Veamos cómo podemos hacer que esto funcione.
 
-## pytest.mark.anyio
+## pytest.mark.anyio { #pytest-mark-anyio }
 
 Si queremos llamar funciones asíncronas en nuestros tests, nuestras funciones de test tienen que ser asíncronas. AnyIO proporciona un plugin útil para esto, que nos permite especificar que algunas funciones de test deben ser llamadas de manera asíncrona.
 
-## HTTPX
+## HTTPX { #httpx }
 
 Incluso si tu aplicación de **FastAPI** usa funciones `def` normales en lugar de `async def`, sigue siendo una aplicación `async` por debajo.
 
@@ -18,7 +18,7 @@ El `TestClient` hace algo de magia interna para llamar a la aplicación FastAPI 
 
 El `TestClient` está basado en <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, y afortunadamente, podemos usarlo directamente para probar la API.
 
-## Ejemplo
+## Ejemplo { #example }
 
 Para un ejemplo simple, consideremos una estructura de archivos similar a la descrita en [Aplicaciones Más Grandes](../tutorial/bigger-applications.md){.internal-link target=_blank} y [Testing](../tutorial/testing.md){.internal-link target=_blank}:
 
@@ -32,13 +32,13 @@ Para un ejemplo simple, consideremos una estructura de archivos similar a la des
 
 El archivo `main.py` tendría:
 
-{* ../../docs_src/async_tests/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 El archivo `test_main.py` tendría los tests para `main.py`, podría verse así ahora:
 
-{* ../../docs_src/async_tests/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
-## Ejecútalo
+## Ejecútalo { #run-it }
 
 Puedes ejecutar tus tests como de costumbre vía:
 
@@ -52,21 +52,21 @@ $ pytest
 
 </div>
 
-## En Detalle
+## En Detalle { #in-detail }
 
 El marcador `@pytest.mark.anyio` le dice a pytest que esta función de test debe ser llamada asíncronamente:
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | Consejo
 
-Note que la función de test ahora es `async def` en lugar de solo `def` como antes al usar el `TestClient`.
+Nota que la función de test ahora es `async def` en lugar de solo `def` como antes al usar el `TestClient`.
 
 ///
 
 Luego podemos crear un `AsyncClient` con la app y enviar requests asíncronos a ella, usando `await`.
 
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 Esto es equivalente a:
 
@@ -88,12 +88,12 @@ Si tu aplicación depende de eventos de lifespan, el `AsyncClient` no activará 
 
 ///
 
-## Otras Llamadas a Funciones Asíncronas
+## Otras Llamadas a Funciones Asíncronas { #other-asynchronous-function-calls }
 
 Al ser la función de test asíncrona, ahora también puedes llamar (y `await`) otras funciones `async` además de enviar requests a tu aplicación FastAPI en tus tests, exactamente como las llamarías en cualquier otro lugar de tu código.
 
 /// tip | Consejo
 
-Si encuentras un `RuntimeError: Task attached to a different loop` al integrar llamadas a funciones asíncronas en tus tests (por ejemplo, cuando usas <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MotorClient de MongoDB</a>), recuerda crear instances de objetos que necesiten un loop de eventos solo dentro de funciones async, por ejemplo, en un callback `'@app.on_event("startup")`.
+Si encuentras un `RuntimeError: Task attached to a different loop` al integrar llamadas a funciones asíncronas en tus tests (por ejemplo, cuando usas <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MotorClient de MongoDB</a>), recuerda crear instances de objetos que necesiten un loop de eventos solo dentro de funciones async, por ejemplo, en un callback `@app.on_event("startup")`.
 
 ///

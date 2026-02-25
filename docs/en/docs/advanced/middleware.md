@@ -57,13 +57,13 @@ Enforces that all incoming requests must either be `https` or `wss`.
 
 Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 The following arguments are supported:
 
@@ -78,7 +78,7 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 
 The middleware will handle both standard and streaming responses.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 The following arguments are supported:
 

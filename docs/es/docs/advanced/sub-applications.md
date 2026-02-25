@@ -1,34 +1,34 @@
-# Sub Aplicaciones - Mounts
+# Sub Aplicaciones - Mounts { #sub-applications-mounts }
 
 Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con su propio OpenAPI independiente y su propia interfaz de docs, puedes tener una aplicación principal y "montar" una (o más) sub-aplicación(es).
 
-## Montar una aplicación **FastAPI**
+## Montar una aplicación **FastAPI** { #mounting-a-fastapi-application }
 
 "Montar" significa añadir una aplicación completamente "independiente" en un path específico, que luego se encarga de manejar todo bajo ese path, con las _path operations_ declaradas en esa sub-aplicación.
 
-### Aplicación de nivel superior
+### Aplicación de nivel superior { #top-level-application }
 
 Primero, crea la aplicación principal de nivel superior de **FastAPI**, y sus *path operations*:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
-### Sub-aplicación
+### Sub-aplicación { #sub-application }
 
 Luego, crea tu sub-aplicación, y sus *path operations*.
 
 Esta sub-aplicación es solo otra aplicación estándar de FastAPI, pero es la que se "montará":
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
-### Montar la sub-aplicación
+### Montar la sub-aplicación { #mount-the-sub-application }
 
 En tu aplicación de nivel superior, `app`, monta la sub-aplicación, `subapi`.
 
 En este caso, se montará en el path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
-### Revisa la documentación automática de la API
+### Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
 Ahora, ejecuta el comando `fastapi` con tu archivo:
 
@@ -56,7 +56,7 @@ Verás la documentación automática de la API para la sub-aplicación, incluyen
 
 Si intentas interactuar con cualquiera de las dos interfaces de usuario, funcionarán correctamente, porque el navegador podrá comunicarse con cada aplicación o sub-aplicación específica.
 
-### Detalles Técnicos: `root_path`
+### Detalles Técnicos: `root_path` { #technical-details-root-path }
 
 Cuando montas una sub-aplicación como se describe arriba, FastAPI se encargará de comunicar el path de montaje para la sub-aplicación usando un mecanismo de la especificación ASGI llamado `root_path`.
 

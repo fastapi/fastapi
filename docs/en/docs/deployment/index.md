@@ -16,6 +16,8 @@ There are several ways to do it depending on your specific use case and the tool
 
 You could **deploy a server** yourself using a combination of tools, you could use a **cloud service** that does part of the work for you, or other possible options.
 
+For example, we, the team behind FastAPI, built <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>, to make deploying FastAPI apps to the cloud as streamlined as possible, with the same developer experience of working with FastAPI.
+
 I will show you some of the main concepts you should probably keep in mind when deploying a **FastAPI** application (although most of it applies to any other type of web application).
 
 You will see more details to keep in mind and some of the techniques to do it in the next sections. ✨

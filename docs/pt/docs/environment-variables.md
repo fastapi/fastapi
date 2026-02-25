@@ -1,4 +1,4 @@
-# Variáveis de Ambiente
+# Variáveis de Ambiente { #environment-variables }
 
 /// tip | Dica
 
@@ -10,7 +10,7 @@ Uma variável de ambiente (também conhecida como "**env var**") é uma variáve
 
 Variáveis de ambiente podem ser úteis para lidar com **configurações** do aplicativo, como parte da **instalação** do Python, etc.
 
-## Criar e Usar Variáveis de Ambiente
+## Criar e Usar Variáveis de Ambiente { #create-and-use-env-vars }
 
 Você pode **criar** e usar variáveis de ambiente no **shell (terminal)**, sem precisar do Python:
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Ler Variáveis de Ambiente no Python
+## Ler Variáveis de Ambiente no Python { #read-env-vars-in-python }
 
 Você também pode criar variáveis de ambiente **fora** do Python, no terminal (ou com qualquer outro método) e depois **lê-las no Python**.
 
@@ -157,7 +157,7 @@ Você pode ler mais sobre isso em <a href="https://12factor.net/config" class="e
 
 ///
 
-## Tipos e Validação
+## Tipos e Validação { #types-and-validation }
 
 Essas variáveis de ambiente só podem lidar com **strings de texto**, pois são externas ao Python e precisam ser compatíveis com outros programas e com o resto do sistema (e até mesmo com diferentes sistemas operacionais, como Linux, Windows, macOS).
 
@@ -165,7 +165,7 @@ Isso significa que **qualquer valor** lido em Python de uma variável de ambient
 
 Você aprenderá mais sobre como usar variáveis de ambiente para lidar com **configurações do aplicativo** no [Guia do Usuário Avançado - Configurações e Variáveis de Ambiente](./advanced/settings.md){.internal-link target=_blank}.
 
-## Variável de Ambiente `PATH`
+## Variável de Ambiente `PATH` { #path-environment-variable }
 
 Existe uma variável de ambiente **especial** chamada **`PATH`** que é usada pelos sistemas operacionais (Linux, macOS, Windows) para encontrar programas para executar.
 
@@ -209,7 +209,7 @@ Por exemplo, quando você digita `python` no terminal, o sistema operacional pro
 
 Se ele o encontrar, então ele o **usará**. Caso contrário, ele continua procurando nos **outros diretórios**.
 
-### Instalando o Python e Atualizando o `PATH`
+### Instalando o Python e Atualizando o `PATH` { #installing-python-and-updating-the-path }
 
 Durante a instalação do Python, você pode ser questionado sobre a atualização da variável de ambiente `PATH`.
 
@@ -287,7 +287,7 @@ $ C:\opt\custompython\bin\python
 
 Essas informações serão úteis ao aprender sobre [Ambientes Virtuais](virtual-environments.md){.internal-link target=_blank}.
 
-## Conclusão
+## Conclusão { #conclusion }
 
 Com isso, você deve ter uma compreensão básica do que são **variáveis ​​de ambiente** e como usá-las em Python.
 

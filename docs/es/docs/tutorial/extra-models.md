@@ -1,4 +1,4 @@
-# Modelos Extra
+# Modelos Extra { #extra-models }
 
 Continuando con el ejemplo anterior, será común tener más de un modelo relacionado.
 
@@ -16,27 +16,19 @@ Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos 
 
 ///
 
-## Múltiples modelos
+## Múltiples modelos { #multiple-models }
 
 Aquí tienes una idea general de cómo podrían ser los modelos con sus campos de contraseña y los lugares donde se utilizan:
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-/// info | Información
+### Acerca de `**user_in.model_dump()` { #about-user-in-model-dump }
 
-En Pydantic v1 el método se llamaba `.dict()`, fue deprecado (pero aún soportado) en Pydantic v2, y renombrado a `.model_dump()`.
-
-Los ejemplos aquí usan `.dict()` para compatibilidad con Pydantic v1, pero deberías usar `.model_dump()` en su lugar si puedes usar Pydantic v2.
-
-///
-
-### Acerca de `**user_in.dict()`
-
-#### `.dict()` de Pydantic
+#### `.model_dump()` de Pydantic { #pydantics-model-dump }
 
 `user_in` es un modelo Pydantic de la clase `UserIn`.
 
-Los modelos Pydantic tienen un método `.dict()` que devuelve un `dict` con los datos del modelo.
+Los modelos Pydantic tienen un método `.model_dump()` que devuelve un `dict` con los datos del modelo.
 
 Así que, si creamos un objeto Pydantic `user_in` como:
 
@@ -47,7 +39,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 y luego llamamos a:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 ahora tenemos un `dict` con los datos en la variable `user_dict` (es un `dict` en lugar de un objeto modelo Pydantic).
@@ -58,7 +50,7 @@ Y si llamamos a:
 print(user_dict)
 ```
 
-obtendremos un `dict` de Python con:
+obtendríamos un `dict` de Python con:
 
 ```Python
 {
@@ -69,7 +61,7 @@ obtendremos un `dict` de Python con:
 }
 ```
 
-#### Desempaquetando un `dict`
+#### Desempaquetando un `dict` { #unpacking-a-dict }
 
 Si tomamos un `dict` como `user_dict` y lo pasamos a una función (o clase) con `**user_dict`, Python lo "desempaquetará". Pasará las claves y valores del `user_dict` directamente como argumentos clave-valor.
 
@@ -101,31 +93,31 @@ UserInDB(
 )
 ```
 
-#### Un modelo Pydantic a partir del contenido de otro
+#### Un modelo Pydantic a partir del contenido de otro { #a-pydantic-model-from-the-contents-of-another }
 
-Como en el ejemplo anterior obtuvimos `user_dict` de `user_in.dict()`, este código:
+Como en el ejemplo anterior obtuvimos `user_dict` de `user_in.model_dump()`, este código:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 sería equivalente a:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
-...porque `user_in.dict()` es un `dict`, y luego hacemos que Python lo "desempaquete" al pasarlo a `UserInDB` con el prefijo `**`.
+...porque `user_in.model_dump()` es un `dict`, y luego hacemos que Python lo "desempaquete" al pasarlo a `UserInDB` con el prefijo `**`.
 
 Así, obtenemos un modelo Pydantic a partir de los datos en otro modelo Pydantic.
 
-#### Desempaquetando un `dict` y palabras clave adicionales
+#### Desempaquetando un `dict` y palabras clave adicionales { #unpacking-a-dict-and-extra-keywords }
 
 Y luego agregando el argumento de palabra clave adicional `hashed_password=hashed_password`, como en:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ...termina siendo como:
@@ -146,7 +138,7 @@ Las funciones adicionales de soporte `fake_password_hasher` y `fake_save_user` s
 
 ///
 
-## Reducir duplicación
+## Reducir duplicación { #reduce-duplication }
 
 Reducir la duplicación de código es una de las ideas centrales en **FastAPI**.
 
@@ -156,7 +148,7 @@ Y estos modelos están compartiendo muchos de los datos y duplicando nombres y t
 
 Podríamos hacerlo mejor.
 
-Podemos declarar un modelo `UserBase` que sirva como base para nuestros otros modelos. Y luego podemos hacer subclases de ese modelo que heredan sus atributos (declaraciones de tipo, validación, etc).
+Podemos declarar un modelo `UserBase` que sirva como base para nuestros otros modelos. Y luego podemos hacer subclases de ese modelo que heredan sus atributos (declaraciones de tipos, validación, etc).
 
 Toda la conversión de datos, validación, documentación, etc. seguirá funcionando normalmente.
 
@@ -164,13 +156,13 @@ De esa manera, podemos declarar solo las diferencias entre los modelos (con `pas
 
 {* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-## `Union` o `anyOf`
+## `Union` o `anyOf` { #union-or-anyof }
 
 Puedes declarar un response que sea la `Union` de dos o más tipos, eso significa que el response sería cualquiera de ellos.
 
 Se definirá en OpenAPI con `anyOf`.
 
-Para hacerlo, usa el type hint estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para hacerlo, usa la anotación de tipos estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 /// note | Nota
 
@@ -180,42 +172,39 @@ Al definir una <a href="https://docs.pydantic.dev/latest/concepts/types/#unions"
 
 {* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
-
-### `Union` en Python 3.10
+### `Union` en Python 3.10 { #union-in-python-3-10 }
 
 En este ejemplo pasamos `Union[PlaneItem, CarItem]` como el valor del argumento `response_model`.
 
-Porque lo estamos pasando como un **valor a un argumento** en lugar de ponerlo en una **anotación de tipo**, tenemos que usar `Union` incluso en Python 3.10.
+Porque lo estamos pasando como un **valor a un argumento** en lugar de ponerlo en una **anotación de tipos**, tenemos que usar `Union` incluso en Python 3.10.
 
-Si estuviera en una anotación de tipo podríamos haber usado la barra vertical, como:
+Si estuviera en una anotación de tipos podríamos haber usado la barra vertical, como:
 
 ```Python
 some_variable: PlaneItem | CarItem
 ```
 
-Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obtendríamos un error, porque Python intentaría realizar una **operación inválida** entre `PlaneItem` y `CarItem` en lugar de interpretar eso como una anotación de tipo.
+Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obtendríamos un error, porque Python intentaría realizar una **operación inválida** entre `PlaneItem` y `CarItem` en lugar de interpretar eso como una anotación de tipos.
 
-## Lista de modelos
+## Lista de modelos { #list-of-models }
 
 De la misma manera, puedes declarar responses de listas de objetos.
 
-Para eso, usa el `typing.List` estándar de Python (o simplemente `list` en Python 3.9 y posteriores):
+Para eso, usa la `list` estándar de Python:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
-
-## Response con `dict` arbitrario
+## Response con `dict` arbitrario { #response-with-arbitrary-dict }
 
 También puedes declarar un response usando un `dict` arbitrario plano, declarando solo el tipo de las claves y valores, sin usar un modelo Pydantic.
 
 Esto es útil si no conoces los nombres de los campos/atributos válidos (que serían necesarios para un modelo Pydantic) de antemano.
 
-En este caso, puedes usar `typing.Dict` (o solo `dict` en Python 3.9 y posteriores):
+En este caso, puedes usar `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
-
-## Recapitulación
+## Recapitulación { #recap }
 
 Usa múltiples modelos Pydantic y hereda libremente para cada caso.
 

@@ -1,13 +1,26 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Annotated, Any
 
 from annotated_doc import Doc
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated
+
+
+def _html_safe_json(value: Any) -> str:
+    """Serialize a value to JSON with HTML special characters escaped.
+
+    This prevents injection when the JSON is embedded inside a <script> tag.
+    """
+    return (
+        json.dumps(value)
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+        .replace("&", "\\u0026")
+    )
+
 
 swagger_ui_default_parameters: Annotated[
-    Dict[str, Any],
+    dict[str, Any],
     Doc(
         """
         Default configurations for Swagger UI.
@@ -34,6 +47,9 @@ def get_swagger_ui_html(
 
             This is normally done automatically by FastAPI using the default URL
             `/openapi.json`.
+
+            Read more about it in the
+            [FastAPI docs for Conditional OpenAPI](https://fastapi.tiangolo.com/how-to/conditional-openapi/#conditional-openapi-from-settings-and-env-vars)
             """
         ),
     ],
@@ -42,6 +58,9 @@ def get_swagger_ui_html(
         Doc(
             """
             The HTML `<title>` content, normally shown in the browser tab.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ],
@@ -52,6 +71,9 @@ def get_swagger_ui_html(
             The URL to use to load the Swagger UI JavaScript.
 
             It is normally set to a CDN URL.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js",
@@ -62,6 +84,9 @@ def get_swagger_ui_html(
             The URL to use to load the Swagger UI CSS.
 
             It is normally set to a CDN URL.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css",
@@ -74,28 +99,37 @@ def get_swagger_ui_html(
         ),
     ] = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             The OAuth2 redirect URL, it is normally automatically handled by FastAPI.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ] = None,
     init_oauth: Annotated[
-        Optional[Dict[str, Any]],
+        dict[str, Any] | None,
         Doc(
             """
             A dictionary with Swagger UI OAuth2 initialization configurations.
+
+            Read more about the available configuration options in the
+            [Swagger UI docs](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/).
             """
         ),
     ] = None,
     swagger_ui_parameters: Annotated[
-        Optional[Dict[str, Any]],
+        dict[str, Any] | None,
         Doc(
             """
             Configuration parameters for Swagger UI.
 
             It defaults to [swagger_ui_default_parameters][fastapi.openapi.docs.swagger_ui_default_parameters].
+
+            Read more about it in the
+            [FastAPI docs about how to Configure Swagger UI](https://fastapi.tiangolo.com/how-to/configure-swagger-ui/).
             """
         ),
     ] = None,
@@ -119,6 +153,7 @@ def get_swagger_ui_html(
     <!DOCTYPE html>
     <html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
     <link rel="shortcut icon" href="{swagger_favicon_url}">
     <title>{title}</title>
@@ -134,7 +169,7 @@ def get_swagger_ui_html(
     """
 
     for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+        html += f"{_html_safe_json(key)}: {_html_safe_json(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
@@ -148,7 +183,7 @@ def get_swagger_ui_html(
 
     if init_oauth:
         html += f"""
-        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
+        ui.initOAuth({_html_safe_json(jsonable_encoder(init_oauth))})
         """
 
     html += """
@@ -169,6 +204,9 @@ def get_redoc_html(
 
             This is normally done automatically by FastAPI using the default URL
             `/openapi.json`.
+
+            Read more about it in the
+            [FastAPI docs for Conditional OpenAPI](https://fastapi.tiangolo.com/how-to/conditional-openapi/#conditional-openapi-from-settings-and-env-vars)
             """
         ),
     ],
@@ -177,6 +215,9 @@ def get_redoc_html(
         Doc(
             """
             The HTML `<title>` content, normally shown in the browser tab.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ],
@@ -187,6 +228,9 @@ def get_redoc_html(
             The URL to use to load the ReDoc JavaScript.
 
             It is normally set to a CDN URL.
+
+            Read more about it in the
+            [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
     ] = "https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js",

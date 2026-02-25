@@ -6,7 +6,8 @@ Bei einigen Anwendungstypen möchten Sie möglicherweise Abhängigkeiten zur ges
 
 In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet:
 
-{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+
 
 Und alle Ideen aus dem Abschnitt über das [Hinzufügen von `dependencies` zu den *Pfadoperation-Dekoratoren*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} gelten weiterhin, aber in diesem Fall für alle *Pfadoperationen* in der App.
 

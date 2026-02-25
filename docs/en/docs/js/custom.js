@@ -81,8 +81,14 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+                const inputCommands = useLines
+                    .filter(line => line.type === "input")
+                    .map(line => line.value)
+                    .join("\n");
+                node.textContent = inputCommands;
                 const div = document.createElement("div");
-                node.replaceWith(div);
+                node.style.display = "none";
+                node.after(div);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,

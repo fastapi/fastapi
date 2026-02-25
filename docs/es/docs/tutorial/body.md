@@ -1,4 +1,4 @@
-# Request Body
+# Request Body { #request-body }
 
 Cuando necesitas enviar datos desde un cliente (digamos, un navegador) a tu API, los envías como un **request body**.
 
@@ -18,13 +18,13 @@ Como no se recomienda, la documentación interactiva con Swagger UI no mostrará
 
 ///
 
-## Importar `BaseModel` de Pydantic
+## Importar `BaseModel` de Pydantic { #import-pydantics-basemodel }
 
 Primero, necesitas importar `BaseModel` de `pydantic`:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## Crea tu modelo de datos
+## Crea tu modelo de datos { #create-your-data-model }
 
 Luego, declaras tu modelo de datos como una clase que hereda de `BaseModel`.
 
@@ -32,7 +32,8 @@ Usa tipos estándar de Python para todos los atributos:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo opcional.
+
+Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo solo opcional.
 
 Por ejemplo, el modelo anterior declara un “`object`” JSON (o `dict` en Python) como:
 
@@ -54,7 +55,7 @@ Por ejemplo, el modelo anterior declara un “`object`” JSON (o `dict` en Pyth
 }
 ```
 
-## Decláralo como un parámetro
+## Decláralo como un parámetro { #declare-it-as-a-parameter }
 
 Para añadirlo a tu *path operation*, decláralo de la misma manera que declaraste parámetros de path y query:
 
@@ -62,7 +63,7 @@ Para añadirlo a tu *path operation*, decláralo de la misma manera que declaras
 
 ...y declara su tipo como el modelo que creaste, `Item`.
 
-## Resultados
+## Resultados { #results }
 
 Con solo esa declaración de tipo en Python, **FastAPI** hará lo siguiente:
 
@@ -73,9 +74,9 @@ Con solo esa declaración de tipo en Python, **FastAPI** hará lo siguiente:
 * Proporcionar los datos recibidos en el parámetro `item`.
     * Como lo declaraste en la función como de tipo `Item`, también tendrás todo el soporte del editor (autocompletado, etc.) para todos los atributos y sus tipos.
 * Generar definiciones de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para tu modelo, que también puedes usar en cualquier otro lugar si tiene sentido para tu proyecto.
-* Esquemas que serán parte del esquema de OpenAPI generado y usados por la <abbr title="User Interfaces">UIs</abbr> de documentación automática.
+* Esos esquemas serán parte del esquema de OpenAPI generado y usados por las <abbr title="User Interfaces - Interfaces de usuario">UIs</abbr> de documentación automática.
 
-## Documentación automática
+## Documentación automática { #automatic-docs }
 
 Los JSON Schemas de tus modelos serán parte del esquema OpenAPI generado y se mostrarán en la documentación API interactiva:
 
@@ -85,7 +86,7 @@ Y también se utilizarán en la documentación API dentro de cada *path operatio
 
 <img src="/img/tutorial/body/image02.png">
 
-## Soporte del editor
+## Soporte del editor { #editor-support }
 
 En tu editor, dentro de tu función, obtendrás anotaciones de tipos y autocompletado en todas partes (esto no sucedería si recibieras un `dict` en lugar de un modelo de Pydantic):
 
@@ -121,13 +122,13 @@ Mejora el soporte del editor para modelos de Pydantic, con:
 
 ///
 
-## Usa el modelo
+## Usa el modelo { #use-the-model }
 
 Dentro de la función, puedes acceder a todos los atributos del objeto modelo directamente:
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-## Request body + parámetros de path
+## Request body + parámetros de path { #request-body-path-parameters }
 
 Puedes declarar parámetros de path y request body al mismo tiempo.
 
@@ -135,7 +136,8 @@ Puedes declarar parámetros de path y request body al mismo tiempo.
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## Request body + path + parámetros de query
+
+## Request body + path + parámetros de query { #request-body-path-query-parameters }
 
 También puedes declarar parámetros de **body**, **path** y **query**, todos al mismo tiempo.
 
@@ -147,18 +149,18 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 * Si el parámetro también se declara en el **path**, se utilizará como un parámetro de path.
 * Si el parámetro es de un **tipo singular** (como `int`, `float`, `str`, `bool`, etc.), se interpretará como un parámetro de **query**.
-* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **request body**.
+* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **body** de request.
 
 /// note | Nota
 
 FastAPI sabrá que el valor de `q` no es requerido debido al valor por defecto `= None`.
 
-El `str | None` (Python 3.10+) o `Union` en `Union[str, None]` (Python 3.8+) no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
+El `str | None` no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
 
 Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejor soporte y detecte errores.
 
 ///
 
-## Sin Pydantic
+## Sin Pydantic { #without-pydantic }
 
-Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Multiples Parametros: Valores singulares en body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Múltiples parámetros: Valores singulares en el body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.

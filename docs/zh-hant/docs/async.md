@@ -1,10 +1,10 @@
-# 並行與 async / await
+# 並行與 async / await { #concurrency-and-async-await }
 
 有關*路徑操作函式*的 `async def` 語法的細節與非同步 (asynchronous) 程式碼、並行 (concurrency) 與平行 (parallelism) 的一些背景知識。
 
-## 趕時間嗎?
+## 趕時間嗎? { #in-a-hurry }
 
-<abbr title="too long; didn't read（文長慎入）"><strong>TL;DR:</strong></abbr>
+<abbr title="too long; didn't read - 太長不看"><strong>TL;DR:</strong></abbr>
 
 如果你正在使用要求你以 `await` 語法呼叫的第三方函式庫，例如：
 
@@ -41,7 +41,7 @@ def results():
 
 ---
 
-如果你的應用程式不需要與外部資源進行任何通訊並等待其回應，請使用 `async def`。
+如果你的應用程式不需要與外部資源進行任何通訊並等待其回應，請使用 `async def`，即使內部不需要使用 `await` 也可以。
 
 ---
 
@@ -55,7 +55,7 @@ def results():
 
 但透過遵循上述步驟，它將能進行一些效能最佳化。
 
-## 技術細節
+## 技術細節 { #technical-details }
 
 現代版本的 Python 支援使用 **「協程」** 的 **`async` 和 `await`** 語法來寫 **「非同步程式碼」**。
 
@@ -65,7 +65,7 @@ def results():
 * **`async` 和 `await`**
 * **協程**
 
-## 非同步程式碼
+## 非同步程式碼 { #asynchronous-code }
 
 非同步程式碼僅意味著程式語言 💬 有辦法告訴電腦/程式 🤖 在程式碼中的某個點，它 🤖 需要等待某些事情完成。讓我們假設這些事情被稱為「慢速檔案」📝。
 
@@ -74,7 +74,7 @@ def results():
 接著程式 🤖 會在有空檔時回來查看是否有等待的工作已經完成，並執行必要的後續操作。
 
 接下來，它 🤖 完成第一個工作（例如我們的「慢速檔案」📝）並繼續執行相關的所有操作。
-這個「等待其他事情」通常指的是一些相對較慢的（與處理器和 RAM 記憶體的速度相比）的 <abbr title="Input and Output">I/O</abbr> 操作，比如說：
+這個「等待其他事情」通常指的是一些相對較慢的（與處理器和 RAM 記憶體的速度相比）的 <abbr title="Input and Output - 輸入與輸出">I/O</abbr> 操作，比如說：
 
 * 透過網路傳送來自用戶端的資料
 * 從網路接收來自用戶端的資料
@@ -85,7 +85,7 @@ def results():
 * 資料庫查詢
 * 等等
 
-由於大部分的執行時間都消耗在等待 <abbr title="輸入與輸出">I/O</abbr> 操作上，因此這些操作被稱為 "I/O 密集型" 操作。
+由於大部分的執行時間都消耗在等待 <abbr title="Input and Output - 輸入與輸出">I/O</abbr> 操作上，因此這些操作被稱為 "I/O 密集型" 操作。
 
 之所以稱為「非同步」，是因為電腦/程式不需要與那些耗時的任務「同步」，等待任務完成的精確時間，然後才能取得結果並繼續工作。
 
@@ -93,7 +93,7 @@ def results():
 
 相對於「非同步」（asynchronous），「同步」（synchronous）也常被稱作「順序性」（sequential），因為電腦/程式會依序執行所有步驟，即便這些步驟涉及等待，才會切換到其他任務。
 
-### 並行與漢堡
+### 並行與漢堡 { #concurrency-and-burgers }
 
 上述非同步程式碼的概念有時也被稱為「並行」，它不同於「平行」。
 
@@ -103,7 +103,7 @@ def results():
 
 為了理解差異，請想像以下有關漢堡的故事：
 
-### 並行漢堡
+### 並行漢堡 { #concurrent-burgers }
 
 你和你的戀人去速食店，排隊等候時，收銀員正在幫排在你前面的人點餐。😍
 
@@ -163,7 +163,7 @@ def results():
 
 然後你走向櫃檯 🔀，回到已經完成的最初任務 ⏯，拿起漢堡，說聲謝謝，並帶回桌上。這就結束了與櫃檯的互動步驟/任務 ⏹，接下來會產生一個新的任務，「吃漢堡」 🔀 ⏯，而先前的「拿漢堡」任務已經完成了 ⏹。
 
-### 平行漢堡
+### 平行漢堡 { #parallel-burgers }
 
 現在，讓我們來想像這裡不是「並行漢堡」，而是「平行漢堡」。
 
@@ -233,7 +233,7 @@ def results():
 
 所以，你不會想帶你的戀人 😍 一起去銀行辦事 🏦。
 
-### 漢堡結論
+### 漢堡結論 { #burger-conclusion }
 
 在「和戀人一起吃速食漢堡」的這個場景中，由於有大量的等待 🕙，使用並行系統 ⏸🔀⏯ 更有意義。
 
@@ -253,7 +253,7 @@ def results():
 
 你可以同時利用並行性和平行性，進一步提升效能，這比大多數已測試的 NodeJS 框架都更快，並且與 Go 語言相當，而 Go 是一種更接近 C 的編譯語言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">感謝 Starlette</a>）。
 
-### 並行比平行更好嗎？
+### 並行比平行更好嗎？ { #is-concurrency-better-than-parallelism }
 
 不是的！這不是故事的本意。
 
@@ -277,7 +277,7 @@ def results():
 
 在這個場景中，每個清潔工（包括你）都是一個處理器，完成工作的一部分。
 
-由於大多數的執行時間都花在實際的工作上（而不是等待），而電腦中的工作由 <abbr title="Central Processing Unit">CPU</abbr> 完成，因此這些問題被稱為「CPU 密集型」。
+由於大多數的執行時間都花在實際的工作上（而不是等待），而電腦中的工作由 <abbr title="Central Processing Unit - 中央處理器">CPU</abbr> 完成，因此這些問題被稱為「CPU 密集型」。
 
 ---
 
@@ -290,7 +290,7 @@ def results():
 * **機器學習**: 通常需要大量的「矩陣」和「向量」運算。想像一個包含數字的巨大電子表格，並所有的數字同時相乘;
 * **深度學習**: 這是機器學習的子領域，同樣適用。只不過這不僅僅是一張數字表格，而是大量的數據集合，並且在很多情況下，你會使用特殊的處理器來構建或使用這些模型。
 
-### 並行 + 平行: Web + 機器學習
+### 並行 + 平行: Web + 機器學習 { #concurrency-parallelism-web-machine-learning }
 
 使用 **FastAPI**，你可以利用並行的優勢，這在 Web 開發中非常常見（這也是 NodeJS 的最大吸引力）。
 
@@ -300,9 +300,9 @@ def results():
 
 想了解如何在生產環境中實現這種平行性，請參見 [部屬](deployment/index.md){.internal-link target=_blank}。
 
-## `async` 和 `await`
+## `async` 和 `await` { #async-and-await }
 
-現代 Python 版本提供一種非常直觀的方式定義非同步程式碼。這使得它看起來就像正常的「順序」程式碼，並在適當的時機「等待」。
+現代 Python 版本提供一種非常直觀的方式定義非同步程式碼。這使得它看起來就像正常的「順序」程式碼，並在適當的時機替你「等待」。
 
 當某個操作需要等待才能回傳結果，並且支援這些新的 Python 特性時，你可以像這樣編寫程式碼：
 
@@ -329,7 +329,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-使用 `async def`，Python Python 知道在該函式內需要注意 `await`，並且它可以「暫停」 ⏸ 執行該函式，然後執行其他任務 🔀 後回來。
+使用 `async def`，Python 知道在該函式內需要注意 `await`，並且它可以「暫停」 ⏸ 執行該函式，然後執行其他任務 🔀 後回來。
 
 當你想要呼叫 `async def` 函式時，必須使用「await」。因此，這樣寫將無法運行：
 
@@ -349,11 +349,11 @@ async def read_burgers():
     return burgers
 ```
 
-### 更多技術細節
+### 更多技術細節 { #more-technical-details }
 
 你可能已經注意到，`await` 只能在 `async def` 定義的函式內使用。
 
-但同時，使用 `async def` 定義的函式本身也必須被「等待」。所以，帶有 `async def` 函式只能在其他使用 `async def` 定義的函式內呼叫。
+但同時，使用 `async def` 定義的函式本身也必須被「等待」。所以，帶有 `async def` 的函式只能在其他使用 `async def` 定義的函式內呼叫。
 
 那麼，這就像「先有雞還是先有蛋」的問題，要如何呼叫第一個 `async` 函式呢？
 
@@ -361,35 +361,37 @@ async def read_burgers():
 
 但如果你想在沒有 FastAPI 的情況下使用 `async` / `await`，你也可以這樣做。
 
-### 編寫自己的非同步程式碼
+### 編寫自己的非同步程式碼 { #write-your-own-async-code }
 
-Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 實作的，這使得它們與 Python 標準函式庫相容 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>。
+Starlette（和 **FastAPI**）是基於 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 實作的，這使得它們與 Python 標準函式庫 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> 相容。
 
 特別是，你可以直接使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來處理更複雜的並行使用案例，這些案例需要你在自己的程式碼中使用更高階的模式。
 
-即使你不使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來撰寫自己的非同步應用程式，並獲得高相容性及一些好處（例如結構化並行）。
+即使你不使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來撰寫自己的非同步應用程式，並獲得高相容性及一些好處（例如「結構化並行」）。
 
-### 其他形式的非同步程式碼
+我另外在 AnyIO 之上做了一個薄封裝的函式庫，稍微改進型別註解以獲得更好的**自動補全**、**即時錯誤**等。同時它也提供友善的介紹與教學，幫助你**理解**並撰寫**自己的非同步程式碼**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。當你需要**將非同步程式碼與一般**（阻塞/同步）**程式碼整合**時，它特別實用。
+
+### 其他形式的非同步程式碼 { #other-forms-of-asynchronous-code }
 
 使用 `async` 和 `await` 的風格在語言中相對較新。
 
-但它使處理異步程式碼變得更加容易。
+但它使處理非同步程式碼變得更加容易。
 
 相同的語法（或幾乎相同的語法）最近也被包含在現代 JavaScript（無論是瀏覽器還是 NodeJS）中。
 
-但在此之前，處理異步程式碼要更加複雜和困難。
+但在此之前，處理非同步程式碼要更加複雜和困難。
 
 在較舊的 Python 版本中，你可能會使用多執行緒或 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但這些程式碼要更難以理解、調試和思考。
 
 在較舊的 NodeJS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致“回呼地獄”。
 
-## 協程
+## 協程 { #coroutines }
 
-**協程** 只是 `async def` 函式所回傳的非常特殊的事物名稱。Python 知道它是一個類似函式的東西，可以啟動它，並且在某個時刻它會結束，但它也可能在內部暫停 ⏸，只要遇到 `await`。
+「協程」只是 `async def` 函式所回傳的非常特殊的事物名稱。Python 知道它是一個類似函式的東西，可以啟動它，並且在某個時刻它會結束，但它也可能在內部暫停 ⏸，只要遇到 `await`。
 
 這種使用 `async` 和 `await` 的非同步程式碼功能通常被概括為「協程」。這與 Go 語言的主要特性「Goroutines」相似。
 
-## 結論
+## 結論 { #conclusion }
 
 讓我們再次回顧之前的句子：
 
@@ -397,9 +399,9 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 現在應該能明白其含意了。✨
 
-這些就是驅動 FastAPI（通過 Starlette）運作的原理，也讓它擁有如此驚人的效能。
+這些就是驅動 FastAPI（透過 Starlette）運作的原理，也讓它擁有如此驚人的效能。
 
-## 非常技術性的細節
+## 非常技術性的細節 { #very-technical-details }
 
 /// warning
 
@@ -411,23 +413,23 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 ///
 
-### 路徑操作函数
+### 路徑操作函式 { #path-operation-functions }
 
 當你使用 `def` 而不是 `async def` 宣告*路徑操作函式*時，該函式會在外部的執行緒池（threadpool）中執行，然後等待結果，而不是直接呼叫（因為這樣會阻塞伺服器）。
 
-如果你來自於其他不以這種方式運作的非同步框架，而且你習慣於使用普通的 `def` 定義僅進行簡單計算的*路徑操作函式*，目的是獲得微小的性能增益（大約 100 奈秒），請注意，在 FastAPI 中，效果會完全相反。在這些情況下，最好使用 `async def`除非你的*路徑操作函式*執行阻塞的 <abbr title="輸入/輸出：磁碟讀寫或網路通訊">I/O</abbr> 的程式碼。
+如果你來自於其他不以這種方式運作的非同步框架，而且你習慣於使用普通的 `def` 定義僅進行簡單計算的*路徑操作函式*，目的是獲得微小的性能增益（大約 100 奈秒），請注意，在 FastAPI 中，效果會完全相反。在這些情況下，最好使用 `async def`，除非你的*路徑操作函式*執行阻塞的 <abbr title="Input/Output - 輸入/輸出: 磁碟讀寫或網路通訊。">I/O</abbr> 的程式碼。
 
-不過，在這兩種情況下，**FastAPI** [仍然很快](index.md#_11){.internal-link target=_blank}至少與你之前的框架相當（或者更快）。
+不過，在這兩種情況下，**FastAPI** [仍然很快](index.md#performance){.internal-link target=_blank}，至少與你之前的框架相當（或者更快）。
 
-### 依賴項(Dependencies)
+### 依賴項(Dependencies) { #dependencies }
 
 同樣適用於[依賴項](tutorial/dependencies/index.md){.internal-link target=_blank}。如果依賴項是一個標準的 `def` 函式，而不是 `async def`，那麼它在外部的執行緒池被運行。
 
-### 子依賴項
+### 子依賴項 { #sub-dependencies }
 
-你可以擁有多個相互依賴的依賴項和[子依賴項](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} （作為函式定義的參數），其中一些可能是用 `async def` 宣告，也可能是用 `def` 宣告。它們仍然可以正常運作，用 `def` 定義的那些將會在外部的執行緒中呼叫（來自執行緒池），而不是被「等待」。
+你可以擁有多個相互依賴的依賴項和[子依賴項](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank}（作為函式定義的參數），其中一些可能是用 `async def` 宣告，也可能是用 `def` 宣告。它們仍然可以正常運作，用 `def` 定義的那些將會在外部的執行緒中呼叫（來自執行緒池），而不是被「等待」。
 
-### 其他輔助函式
+### 其他輔助函式 { #other-utility-functions }
 
 你可以直接呼叫任何使用 `def` 或 `async def` 建立的其他輔助函式，FastAPI 不會影響你呼叫它們的方式。
 
@@ -439,4 +441,4 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 再一次強調，這些都是非常技術性的細節，如果你特地在尋找這些資訊，這些內容可能會對你有幫助。
 
-否則，只需遵循上面提到的指引即可：<a href="#_1">趕時間嗎?</a>.
+否則，只需遵循上面提到的指引即可：<a href="#in-a-hurry">趕時間嗎?</a>。

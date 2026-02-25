@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Eine virtuelle Umgebung erstellen { #create-a-virtual-environment }
 
-Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
+Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<dfn title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</dfn>**.
 
 /// tip | Tipp
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Jedes Mal, wenn Sie ein **neues Paket** in dieser Umgebung installieren, aktivieren Sie die Umgebung erneut.
 
-So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="command line interface – Kommandozeileninterface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
+So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="command line interface - Kommandozeileninterface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
 
 ///
 
@@ -241,6 +241,26 @@ $ python -m pip install --upgrade pip
 ```
 
 </div>
+
+/// tip | Tipp
+
+Manchmal kann beim Versuch, `pip` zu aktualisieren, der Fehler **`No module named pip`** auftreten.
+
+Wenn das passiert, installieren und aktualisieren Sie `pip` mit dem folgenden Befehl:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+Dieser Befehl installiert `pip`, falls es noch nicht installiert ist, und stellt außerdem sicher, dass die installierte Version von `pip` mindestens so aktuell ist wie die in `ensurepip` verfügbare.
+
+///
 
 ## `.gitignore` hinzufügen { #add-gitignore }
 
@@ -619,7 +639,7 @@ $ source .venv/Scripts/activate
 
 Dieser Befehl erstellt oder ändert einige [Umgebungsvariablen](environment-variables.md){.internal-link target=_blank}, die für die nächsten Befehle verfügbar sein werden.
 
-Eine dieser Variablen ist die `PATH`-Variable.
+Eine dieser Variablen ist die `PATH`-Umgebungsvariable.
 
 /// tip | Tipp
 
@@ -629,7 +649,7 @@ Sie können mehr über die `PATH`-Umgebungsvariable im Abschnitt [Umgebungsvaria
 
 Das Aktivieren einer virtuellen Umgebung fügt deren Pfad `.venv/bin` (auf Linux und macOS) oder `.venv\Scripts` (auf Windows) zur `PATH`-Umgebungsvariable hinzu.
 
-Angenommen, die `PATH`-Variable sah vor dem Aktivieren der Umgebung so aus:
+Angenommen, die `PATH`-Umgebungsvariable sah vor dem Aktivieren der Umgebung so aus:
 
 //// tab | Linux, macOS
 
@@ -658,7 +678,7 @@ Das bedeutet, dass das System nach Programmen sucht in:
 
 ////
 
-Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Variable folgendermaßen aussehen:
+Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Umgebungsvariable folgendermaßen aussehen:
 
 //// tab | Linux, macOS
 
@@ -708,7 +728,7 @@ finden und dieses verwenden.
 
 ////
 
-Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Variable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
+Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Umgebungsvariable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
 
 Das Aktivieren einer virtuellen Umgebung ändert auch ein paar andere Dinge, aber dies ist eines der wichtigsten Dinge, die es tut.
 

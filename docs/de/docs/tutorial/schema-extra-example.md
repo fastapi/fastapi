@@ -8,35 +8,13 @@ Hier sind mehrere Möglichkeiten, das zu tun.
 
 Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, welche dem generierten JSON-Schema hinzugefügt werden.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
-
-////
 
 Diese zusätzlichen Informationen werden unverändert zum für dieses Modell ausgegebenen **JSON-Schema** hinzugefügt und in der API-Dokumentation verwendet.
 
-//// tab | Pydantic v2
-
-In Pydantic Version 2 würden Sie das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic-Dokumentation: Configuration</a>.
+Sie können das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic-Dokumentation: Configuration</a>.
 
 Sie können `json_schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
-
-////
-
-//// tab | Pydantic v1
-
-In Pydantic Version 1 würden Sie eine interne Klasse `Config` und `schema_extra` verwenden, wie beschrieben in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic-Dokumentation: Schema customization</a>.
-
-Sie können `schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
-
-////
 
 /// tip | Tipp
 
@@ -96,7 +74,7 @@ Sie können natürlich auch mehrere `examples` übergeben:
 
 Wenn Sie das tun, werden die Beispiele Teil des internen **JSON-Schemas** für diese Body-Daten.
 
-<abbr title="2023-08-26">Während dies geschrieben wird</abbr>, unterstützt Swagger UI, das für die Anzeige der Dokumentations-Benutzeroberfläche zuständige Tool, jedoch nicht die Anzeige mehrerer Beispiele für die Daten in **JSON Schema**. Aber lesen Sie unten für einen Workaround weiter.
+Nichtsdestotrotz unterstützt Swagger UI, das für die Anzeige der Dokumentations-Benutzeroberfläche zuständige Tool, zum <dfn title="2023-08-26">Zeitpunkt der Erstellung</dfn> nicht die Anzeige mehrerer Beispiele für die Daten in **JSON Schema**. Aber lesen Sie unten für einen Workaround weiter.
 
 ### OpenAPI-spezifische `examples` { #openapi-specific-examples }
 

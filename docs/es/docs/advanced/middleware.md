@@ -1,4 +1,4 @@
-# Middleware Avanzado
+# Middleware Avanzado { #advanced-middleware }
 
 En el tutorial principal leíste cómo agregar [Middleware Personalizado](../tutorial/middleware.md){.internal-link target=_blank} a tu aplicación.
 
@@ -6,9 +6,9 @@ Y luego también leíste cómo manejar [CORS con el `CORSMiddleware`](../tutoria
 
 En esta sección veremos cómo usar otros middlewares.
 
-## Agregando middlewares ASGI
+## Agregando middlewares ASGI { #adding-asgi-middlewares }
 
-Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>, puedes usar cualquier middleware ASGI.
+Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>, puedes usar cualquier middleware ASGI.
 
 Un middleware no tiene que estar hecho para FastAPI o Starlette para funcionar, siempre que siga la especificación ASGI.
 
@@ -39,7 +39,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `app.add_middleware()` recibe una clase de middleware como primer argumento y cualquier argumento adicional que se le quiera pasar al middleware.
 
-## Middlewares integrados
+## Middlewares integrados { #integrated-middlewares }
 
 **FastAPI** incluye varios middlewares para casos de uso común, veremos a continuación cómo usarlos.
 
@@ -51,40 +51,41 @@ Para los próximos ejemplos, también podrías usar `from starlette.middleware.s
 
 ///
 
-## `HTTPSRedirectMiddleware`
+## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
 Impone que todas las requests entrantes deben ser `https` o `wss`.
 
 Cualquier request entrante a `http` o `ws` será redirigida al esquema seguro.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
-## `TrustedHostMiddleware`
+## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Impone que todas las requests entrantes tengan correctamente configurado el header `Host`, para proteger contra ataques de HTTP Host Header.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Se soportan los siguientes argumentos:
 
 * `allowed_hosts` - Una list de nombres de dominio que deberían ser permitidos como nombres de host. Se soportan dominios comodín como `*.example.com` para hacer coincidir subdominios. Para permitir cualquier nombre de host, usa `allowed_hosts=["*"]` u omite el middleware.
+* `www_redirect` - Si se establece en True, las requests a versiones sin www de los hosts permitidos serán redirigidas a sus equivalentes con www. Por defecto es `True`.
 
 Si una request entrante no se valida correctamente, se enviará un response `400`.
 
-## `GZipMiddleware`
+## `GZipMiddleware` { #gzipmiddleware }
 
 Maneja responses GZip para cualquier request que incluya `"gzip"` en el header `Accept-Encoding`.
 
 El middleware manejará tanto responses estándar como en streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Se soportan los siguientes argumentos:
 
 * `minimum_size` - No comprimir con GZip responses que sean más pequeñas que este tamaño mínimo en bytes. Por defecto es `500`.
 * `compresslevel` - Usado durante la compresión GZip. Es un entero que varía de 1 a 9. Por defecto es `9`. Un valor más bajo resulta en una compresión más rápida pero archivos más grandes, mientras que un valor más alto resulta en una compresión más lenta pero archivos más pequeños.
 
-## Otros middlewares
+## Otros middlewares { #other-middlewares }
 
 Hay muchos otros middlewares ASGI.
 

@@ -50,14 +50,6 @@ If you want to receive partial updates, it's very useful to use the parameter `e
 
 Like `item.model_dump(exclude_unset=True)`.
 
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
 That would generate a `dict` with only the data that was set when creating the `item` model, excluding default values.
 
 Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
@@ -67,14 +59,6 @@ Then you can use this to generate a `dict` with only the data that was set (sent
 ### Using Pydantic's `update` parameter { #using-pydantics-update-parameter }
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
-
-/// info
-
-In Pydantic v1 the method was called `.copy()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_copy()`.
-
-The examples here use `.copy()` for compatibility with Pydantic v1, but you should use `.model_copy()` instead if you can use Pydantic v2.
-
-///
 
 Like `stored_item_model.model_copy(update=update_data)`:
 

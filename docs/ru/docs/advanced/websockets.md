@@ -38,13 +38,13 @@ $ pip install websockets
 
 Для примера нам нужен наиболее простой способ, который позволит сосредоточиться на серверной части веб‑сокетов и получить рабочий код:
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Создание `websocket` { #create-a-websocket }
 
 Создайте `websocket` в своем **FastAPI** приложении:
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Технические детали
 
@@ -58,7 +58,7 @@ $ pip install websockets
 
 Через эндпоинт веб-сокета вы можете получать и отправлять сообщения.
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
 
 Вы можете получать и отправлять двоичные, текстовые и JSON данные.
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 Если веб-сокет соединение закрыто, то `await websocket.receive_text()` вызовет исключение `WebSocketDisconnect`, которое можно поймать и обработать как в этом примере:
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
 
 Чтобы воспроизвести пример:
 

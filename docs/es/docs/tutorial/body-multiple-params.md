@@ -1,16 +1,14 @@
-# Cuerpo - Múltiples Parámetros
+# Cuerpo - Múltiples Parámetros { #body-multiple-parameters }
 
 Ahora que hemos visto cómo usar `Path` y `Query`, veamos usos más avanzados de las declaraciones del request body.
 
-## Mezclar `Path`, `Query` y parámetros del cuerpo
+## Mezclar `Path`, `Query` y parámetros del cuerpo { #mix-path-query-and-body-parameters }
 
 Primero, por supuesto, puedes mezclar las declaraciones de parámetros de `Path`, `Query` y del request body libremente y **FastAPI** sabrá qué hacer.
 
-Y también puedes declarar parámetros del cuerpo como opcionales, estableciendo el valor predeterminado a `None`:
+Y también puedes declarar parámetros del cuerpo como opcionales, estableciendo el valor por defecto a `None`:
 
 {* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
-
-## Múltiples parámetros del cuerpo
 
 /// note | Nota
 
@@ -18,7 +16,7 @@ Ten en cuenta que, en este caso, el `item` que se tomaría del cuerpo es opciona
 
 ///
 
-## Múltiples parámetros del cuerpo
+## Múltiples parámetros del cuerpo { #multiple-body-parameters }
 
 En el ejemplo anterior, las *path operations* esperarían un cuerpo JSON con los atributos de un `Item`, como:
 
@@ -64,7 +62,7 @@ Ten en cuenta que aunque el `item` se declaró de la misma manera que antes, aho
 
 Realizará la validación de los datos compuestos, y los documentará así para el esquema de OpenAPI y la documentación automática.
 
-## Valores singulares en el cuerpo
+## Valores singulares en el cuerpo { #singular-values-in-body }
 
 De la misma manera que hay un `Query` y `Path` para definir datos extra para parámetros de query y path, **FastAPI** proporciona un equivalente `Body`.
 
@@ -96,17 +94,11 @@ En este caso, **FastAPI** esperará un cuerpo como:
 
 Nuevamente, convertirá los tipos de datos, validará, documentará, etc.
 
-## Múltiples parámetros de cuerpo y query
+## Múltiples parámetros de cuerpo y query { #multiple-body-params-and-query }
 
 Por supuesto, también puedes declarar parámetros adicionales de query siempre que lo necesites, además de cualquier parámetro del cuerpo.
 
 Como, por defecto, los valores singulares se interpretan como parámetros de query, no tienes que añadir explícitamente un `Query`, solo puedes hacer:
-
-```Python
-q: Union[str, None] = None
-```
-
-O en Python 3.10 y superior:
 
 ```Python
 q: str | None = None
@@ -122,7 +114,7 @@ Por ejemplo:
 
 ///
 
-## Embeber un solo parámetro de cuerpo
+## Embeber un solo parámetro de cuerpo { #embed-a-single-body-parameter }
 
 Supongamos que solo tienes un único parámetro de cuerpo `item` de un modelo Pydantic `Item`.
 
@@ -162,7 +154,7 @@ en lugar de:
 }
 ```
 
-## Resumen
+## Resumen { #recap }
 
 Puedes añadir múltiples parámetros de cuerpo a tu *path operation function*, aunque un request solo puede tener un único cuerpo.
 

@@ -18,7 +18,7 @@ Aber für die Login-*Pfadoperation* müssen wir diese Namen verwenden, um mit de
 
 Die Spezifikation besagt auch, dass `username` und `password` als Formulardaten gesendet werden müssen (hier also kein JSON).
 
-### <abbr title="Geltungsbereich">`scope`</abbr> { #scope }
+### `scope` { #scope }
 
 Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" („Geltungsbereich“) senden kann.
 

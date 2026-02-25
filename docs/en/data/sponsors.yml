@@ -1,3 +1,7 @@
+keystone:
+  - url: https://fastapicloud.com
+    title: FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud.
+    img: https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png
 gold:
   - url: https://blockbee.io?ref=fastapi
     title: BlockBee Cryptocurrency Payment Gateway
@@ -26,6 +30,12 @@ gold:
   - url: https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi
     title: Deploy enterprise applications at startup speed
     img: https://fastapi.tiangolo.com/img/sponsors/railway.png
+  - url: https://serpapi.com/?utm_source=fastapi_website
+    title: "SerpApi: Web Search API"
+    img: https://fastapi.tiangolo.com/img/sponsors/serpapi.png
+  - url: https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page
+    title: "Greptile: The AI Code Reviewer"
+    img: https://fastapi.tiangolo.com/img/sponsors/greptile.png
 silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
@@ -55,9 +65,6 @@ bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
   #   img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
-  - url: https://lambdatest.com/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
-    title: LambdaTest, AI-Powered Cloud-based Test Orchestration Platform
-    img: https://fastapi.tiangolo.com/img/sponsors/lambdatest.png
-  - url: https://requestly.com/fastapi
-    title: All-in-one platform to Test, Mock and Intercept APIs. Built for speed, privacy and offline support.
-    img: https://fastapi.tiangolo.com/img/sponsors/requestly.png
+  - url: https://www.testmu.ai/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
+    title: TestMu AI. The Native AI-Agentic Cloud Platform to Supercharge Quality Engineering.
+    img: https://fastapi.tiangolo.com/img/sponsors/testmu.png
