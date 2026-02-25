@@ -5,6 +5,7 @@ import pytest
 from dirty_equals import AnyThing, IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel, BeforeValidator, field_validator
 
 app = FastAPI()
@@ -80,38 +81,40 @@ async def read_model_nullable_required(
     ],
 )
 def test_nullable_required_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": True,
-            "schema": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": True,
+                "schema": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                },
+                "name": "int-val",
+                "in": "header",
             },
-            "name": "int-val",
-            "in": "header",
-        },
-        {
-            "required": True,
-            "schema": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
+            {
+                "required": True,
+                "schema": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                },
+                "name": "str-val",
+                "in": "header",
             },
-            "name": "str-val",
-            "in": "header",
-        },
-        {
-            "required": True,
-            "schema": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
+            {
+                "required": True,
+                "schema": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                },
+                "name": "list-val",
+                "in": "header",
             },
-            "name": "list-val",
-            "in": "header",
-        },
-    ]
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -138,28 +141,30 @@ def test_nullable_required_missing(path: str):
         "Validator should not be called if the value is missing"
     )
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["header", "int-val"],
-                "msg": "Field required",
-                "input": AnyThing(),
-            },
-            {
-                "type": "missing",
-                "loc": ["header", "str-val"],
-                "msg": "Field required",
-                "input": AnyThing(),
-            },
-            {
-                "type": "missing",
-                "loc": ["header", "list-val"],
-                "msg": "Field required",
-                "input": AnyThing(),
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["header", "int-val"],
+                    "msg": "Field required",
+                    "input": AnyThing(),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["header", "str-val"],
+                    "msg": "Field required",
+                    "input": AnyThing(),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["header", "list-val"],
+                    "msg": "Field required",
+                    "input": AnyThing(),
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -293,41 +298,43 @@ async def read_model_nullable_non_required(
     ],
 )
 def test_nullable_non_required_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": False,
-            "schema": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "name": "int-val",
+                "in": "header",
             },
-            "name": "int-val",
-            "in": "header",
-        },
-        {
-            "required": False,
-            "schema": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+            {
+                "required": False,
+                "schema": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "name": "str-val",
+                "in": "header",
             },
-            "name": "str-val",
-            "in": "header",
-        },
-        {
-            "required": False,
-            "schema": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+            {
+                "required": False,
+                "schema": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "name": "list-val",
+                "in": "header",
             },
-            "name": "list-val",
-            "in": "header",
-        },
-    ]
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -488,42 +495,44 @@ async def read_model_nullable_with_non_null_default(
 )
 def test_nullable_with_non_null_default_schema(path: str):
     parameters = app.openapi()["paths"][path]["get"]["parameters"]
-    assert parameters == [
-        {
-            "required": False,
-            "schema": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                "default": -1,
+    assert parameters == snapshot(
+        [
+            {
+                "required": False,
+                "schema": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    "default": -1,
+                },
+                "name": "int-val",
+                "in": "header",
             },
-            "name": "int-val",
-            "in": "header",
-        },
-        {
-            "required": False,
-            "schema": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "default": "default",
+            {
+                "required": False,
+                "schema": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": "default",
+                },
+                "name": "str-val",
+                "in": "header",
             },
-            "name": "str-val",
-            "in": "header",
-        },
-        {
-            "required": False,
-            "schema": IsPartialDict(
-                {
-                    "title": "List Val",
-                    "anyOf": [
-                        {"type": "array", "items": {"type": "integer"}},
-                        {"type": "null"},
-                    ],
-                }
-            ),
-            "name": "list-val",
-            "in": "header",
-        },
-    ]
+            {
+                "required": False,
+                "schema": IsPartialDict(
+                    {
+                        "title": "List Val",
+                        "anyOf": [
+                            {"type": "array", "items": {"type": "integer"}},
+                            {"type": "null"},
+                        ],
+                    }
+                ),
+                "name": "list-val",
+                "in": "header",
+            },
+        ]
+    )
 
     if path == "/model-nullable-with-non-null-default":
         # Check default value for list_val param for model-based parameters only.

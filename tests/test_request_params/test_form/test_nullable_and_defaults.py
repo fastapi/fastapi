@@ -5,6 +5,7 @@ import pytest
 from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 from pydantic import BaseModel, BeforeValidator, field_validator
 
 from .utils import get_body_model_name
@@ -79,28 +80,30 @@ def test_nullable_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                },
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                },
+                "list_val": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                },
             },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-            },
-            "list_val": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-            },
-        },
-        "required": ["int_val", "str_val", "list_val"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["int_val", "str_val", "list_val"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -120,28 +123,30 @@ def test_nullable_required_missing(path: str):
         "Validator should not be called if the value is missing"
     )
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body", "int_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-            {
-                "type": "missing",
-                "loc": ["body", "str_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-            {
-                "type": "missing",
-                "loc": ["body", "list_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "int_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "str_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "list_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -218,22 +223,24 @@ def test_nullable_required_pass_empty_str_to_int_val_and_list_val(path: str):
         call([""]),  # list_val
     ]
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "input": "",
-                "loc": ["body", "int_val"],
-                "msg": "Input should be a valid integer, unable to parse string as an integer",
-                "type": "int_parsing",
-            },
-            {
-                "input": "",
-                "loc": ["body", "list_val", 0],
-                "msg": "Input should be a valid integer, unable to parse string as an integer",
-                "type": "int_parsing",
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "input": "",
+                    "loc": ["body", "int_val"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "type": "int_parsing",
+                },
+                {
+                    "input": "",
+                    "loc": ["body", "list_val", 0],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "type": "int_parsing",
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -326,30 +333,32 @@ def test_nullable_non_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "list_val": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
             },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
-            },
-            "list_val": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-                # "default": None, # `None` values are omitted in OpenAPI schema
-            },
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -445,16 +454,18 @@ def test_nullable_non_required_pass_empty_str_to_all(path: str):
         call([""]),  # list_val
     ]
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "input": "",
-                "loc": ["body", "list_val", 0],
-                "msg": "Input should be a valid integer, unable to parse string as an integer",
-                "type": "int_parsing",
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "input": "",
+                    "loc": ["body", "list_val", 0],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "type": "int_parsing",
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -547,33 +558,35 @@ async def read_model_nullable_with_non_null_default(
 def test_nullable_with_non_null_default_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
-    body_model = app.openapi()["components"]["schemas"][body_model_name]
+    body_model = openapi["components"]["schemas"][body_model_name]
 
-    assert body_model == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                "default": -1,
+    assert body_model == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    "default": -1,
+                },
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": "default",
+                },
+                "list_val": IsPartialDict(
+                    {
+                        "title": "List Val",
+                        "anyOf": [
+                            {"type": "array", "items": {"type": "integer"}},
+                            {"type": "null"},
+                        ],
+                    }
+                ),
             },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "default": "default",
-            },
-            "list_val": IsPartialDict(
-                {
-                    "title": "List Val",
-                    "anyOf": [
-                        {"type": "array", "items": {"type": "integer"}},
-                        {"type": "null"},
-                    ],
-                }
-            ),
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
     if path == "/model-nullable-with-non-null-default":
         # Check default value for list_val param for model-based parameters only.
@@ -691,16 +704,18 @@ def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
         call([""]),  # list_val
     ]
     assert response.status_code == 422, response.text  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
-        "detail": [
-            {
-                "input": "",
-                "loc": ["body", "list_val", 0],
-                "msg": "Input should be a valid integer, unable to parse string as an integer",
-                "type": "int_parsing",
-            },
-        ]
-    }
+    assert response.json() == snapshot(  # pragma: no cover
+        {
+            "detail": [
+                {
+                    "input": "",
+                    "loc": ["body", "list_val", 0],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "type": "int_parsing",
+                },
+            ]
+        }
+    )
     # TODO: Remove 'no cover' when the issue is fixed
 
 

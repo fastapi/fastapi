@@ -5,6 +5,7 @@ import pytest
 from dirty_equals import IsOneOf
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 from pydantic import BeforeValidator
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
@@ -70,24 +71,29 @@ def test_nullable_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "file": {
-                "title": "File",
-                "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "file": {
+                    "title": "File",
+                    "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
+                },
+                "files": {
+                    "title": "Files",
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {"type": "string", "format": "binary"},
+                        },
+                        {"type": "null"},
+                    ],
+                },
             },
-            "files": {
-                "title": "Files",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "string", "format": "binary"}},
-                    {"type": "null"},
-                ],
-            },
-        },
-        "required": ["file", "files"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["file", "files"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -107,22 +113,24 @@ def test_nullable_required_missing(path: str):
         "Validator should not be called if the value is missing"
     )
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body", "file"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-            {
-                "type": "missing",
-                "loc": ["body", "files"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "file"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "files"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -242,25 +250,30 @@ def test_nullable_non_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "file": {
-                "title": "File",
-                "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "file": {
+                    "title": "File",
+                    "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "files": {
+                    "title": "Files",
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {"type": "string", "format": "binary"},
+                        },
+                        {"type": "null"},
+                    ],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
             },
-            "files": {
-                "title": "Files",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "string", "format": "binary"}},
-                    {"type": "null"},
-                ],
-                # "default": None, # `None` values are omitted in OpenAPI schema
-            },
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -380,24 +393,32 @@ def test_nullable_with_non_null_default_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "file": {
-                "title": "File",
-                "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
-                "default": "default",  # <= Default value for file looks strange to me
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "file": {
+                    "title": "File",
+                    "anyOf": [
+                        {"type": "string", "format": "binary"},
+                        {"type": "null"},
+                    ],
+                    "default": "default",  # <= Default value here looks strange to me
+                },
+                "files": {
+                    "title": "Files",
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {"type": "string", "format": "binary"},
+                        },
+                        {"type": "null"},
+                    ],
+                },
             },
-            "files": {
-                "title": "Files",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "string", "format": "binary"}},
-                    {"type": "null"},
-                ],
-            },
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(

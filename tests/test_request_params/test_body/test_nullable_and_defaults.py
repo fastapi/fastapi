@@ -5,6 +5,7 @@ import pytest
 from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 from pydantic import BaseModel, BeforeValidator, field_validator
 
 from .utils import get_body_model_name
@@ -92,28 +93,30 @@ def test_nullable_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                },
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                },
+                "list_val": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                },
             },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-            },
-            "list_val": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-            },
-        },
-        "required": ["int_val", "str_val", "list_val"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["int_val", "str_val", "list_val"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -165,28 +168,30 @@ def test_nullable_required_missing(path: str):
     client = TestClient(app)
     response = client.post(path, json={})
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body", "int_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-            {
-                "type": "missing",
-                "loc": ["body", "str_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-            {
-                "type": "missing",
-                "loc": ["body", "list_val"],
-                "msg": "Field required",
-                "input": IsOneOf(None, {}),
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "int_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "str_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "list_val"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -205,16 +210,18 @@ def test_nullable_required_no_body(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body"],
-                "msg": "Field required",
-                "input": None,
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -229,16 +236,18 @@ def test_nullable_required_no_embed_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "input": None,
-                "loc": ["body"],
-                "msg": "Field required",
-                "type": "missing",
-            }
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "input": None,
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "type": "missing",
+                }
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -267,16 +276,18 @@ def test_nullable_required_no_embed_pass_empty_dict(
     client = TestClient(app)
     response = client.post(path, json={})
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "input": {},
-                "loc": ["body"],
-                "msg": msg,
-                "type": error_type,
-            }
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "input": {},
+                    "loc": ["body"],
+                    "msg": Is(msg),
+                    "type": Is(error_type),
+                }
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -487,30 +498,32 @@ def test_nullable_non_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
+    assert openapi["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
+                "list_val": {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                    # "default": None, # `None` values are omitted in OpenAPI schema
+                },
             },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                # "default": None, # `None` values are omitted in OpenAPI schema
-            },
-            "list_val": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-                # "default": None, # `None` values are omitted in OpenAPI schema
-            },
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -595,16 +608,18 @@ def test_nullable_non_required_no_body(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body"],
-                "msg": "Field required",
-                "input": None,
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -836,31 +851,33 @@ def test_nullable_with_non_null_default_schema(path: str):
     body_model_name = get_body_model_name(openapi, path)
     body_model = app.openapi()["components"]["schemas"][body_model_name]
 
-    assert body_model == {
-        "properties": {
-            "int_val": {
-                "title": "Int Val",
-                "anyOf": [{"type": "integer"}, {"type": "null"}],
-                "default": -1,
-            },
-            "str_val": {
-                "title": "Str Val",
-                "anyOf": [{"type": "string"}, {"type": "null"}],
-                "default": "default",
-            },
-            "list_val": IsPartialDict(
-                {
-                    "title": "List Val",
-                    "anyOf": [
-                        {"type": "array", "items": {"type": "integer"}},
-                        {"type": "null"},
-                    ],
+    assert body_model == snapshot(
+        {
+            "properties": {
+                "int_val": {
+                    "title": "Int Val",
+                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                    "default": -1,
                 },
-            ),
-        },
-        "title": body_model_name,
-        "type": "object",
-    }
+                "str_val": {
+                    "title": "Str Val",
+                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": "default",
+                },
+                "list_val": IsPartialDict(
+                    {
+                        "title": "List Val",
+                        "anyOf": [
+                            {"type": "array", "items": {"type": "integer"}},
+                            {"type": "null"},
+                        ],
+                    },
+                ),
+            },
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
     if path == "/model-nullable-with-non-null-default":
         # Check default value for list_val param for model-based parameters only.
@@ -949,16 +966,18 @@ def test_nullable_with_non_null_default_no_body(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body"],
-                "msg": "Field required",
-                "input": None,
-            },
-        ]
-    }
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
