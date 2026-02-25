@@ -31,15 +31,15 @@ FastAPI CLI will read the entrypoint in `pyproject.toml` to know where the FastA
 entrypoint = "my_app.main:app"
 ```
 
-This way the same command can be used without having to pass a path every time.
-
 ### Use `fastapi` with a path
 
-When adding the entrypoint to `pyproject.toml` is not possible, or the user explicitly asks not to, or it's running an independent small app, you can pass the path to the file to the `fastapi` command:
+When adding the entrypoint to `pyproject.toml` is not possible, or the user explicitly asks not to, or it's running an independent small app, you can pass the app file path to the `fastapi` command:
 
 ```bash
 fastapi dev my_app/main.py
 ```
+
+Prefer to set the entrypoint in `pyproject.toml` when possible.
 
 ## Use `Annotated`
 
@@ -128,9 +128,9 @@ async def read_item(current_user: dict = Depends(get_current_user)):
     return {"message": "Hello World"}
 ```
 
-## Do not use Ellipsis for *path operations*
+## Do not use Ellipsis for *path operations* or Pydantic models
 
-Do not use `...` as a default value for required parameters.
+Do not use `...` as a default value for required parameters, it's not needed and not recommended.
 
 Do this, without Ellipsis (`...`):
 
@@ -151,52 +151,24 @@ instead of this:
 
 ```python
 # DO NOT DO THIS
+from typing import Annotated
+
 from fastapi import FastAPI, Query
-
-app = FastAPI()
-
-
-@app.get("/items/")
-async def read_item(project_id: int = Query(...)):
-    return {"message": "Hello World"}
-```
-
-## Do not use Ellipsis for Pydantic models
-
-Do this, without Ellipsis (`...`):
-
-```python
-from fastapi import FastAPI
 from pydantic import BaseModel, Field
-
-app = FastAPI()
-
-
-class Item(BaseModel):
-    name: str
-    description: str | None = None
-    price: float = Field(gt=0)
-
-
-@app.post("/items/")
-async def create_item(item: Item):
-    return {"message": "Hello World"}
-```
-
-instead of this:
-
-```python
-# DO NOT DO THIS
-from fastapi import FastAPI
-from pydantic import BaseModel, Field
-
-app = FastAPI()
 
 
 class Item(BaseModel):
     name: str = ...
     description: str | None = None
     price: float = Field(..., gt=0)
+
+
+app = FastAPI()
+
+
+@app.get("/items/")
+async def read_item(project_id: Annotated[int, Query(...)]):
+    return {"message": "Hello World"}
 
 
 @app.post("/items/")
@@ -225,9 +197,9 @@ async def get_item() -> Item:
     return Item(name="Plumbus", description="All-purpose home device")
 ```
 
-**Important**: Return types or response models are what filter data ensuring no sensitive information is exposed. And they are used to serialize data with Pydantic, this is the main idea that can increase response performance.
+**Important**: Return types or response models are what filter data ensuring no sensitive information is exposed. And they are used to serialize data with Pydantic (in Rust), this is the main idea that can increase response performance.
 
-The return type doesn't have to be a Pydantic model, it could be a different type, like a list of Pydantic models, or a dict, etc.
+The return type doesn't have to be a Pydantic model, it could be a different type, like a list of integers, or a dict, etc.
 
 ### When to use `response_model` instead
 
@@ -288,7 +260,7 @@ Do not use `ORJSONResponse` or `UJSONResponse`, they are deprecated.
 
 Instead declare a return type or response model. Pydantic will handle the data serialization on the Rust side.
 
-### Including Routers
+## Including Routers
 
 When declaring routers, prefer to add router level parameters like prefix, tags, etc. to the router itself, instead of in `include_router()`.
 
@@ -417,24 +389,33 @@ app = FastAPI()
 
 
 @dataclass
-class CommonQueryParams:
-    q: str | None = None
-    skip: int = 0
+class DatabasePaginator:
+    offset: int = 0
     limit: int = 100
+    q: str | None = None
+
+    def get_page(self) -> dict:
+        # Simulate a page of data
+        return {
+            "offset": self.offset,
+            "limit": self.limit,
+            "q": self.q,
+            "items": [],
+        }
 
 
-def get_common_params(
-    q: str | None = None, skip: int = 0, limit: int = 100
-) -> CommonQueryParams:
-    return CommonQueryParams(q=q, skip=skip, limit=limit)
+def get_db_paginator(
+    offset: int = 0, limit: int = 100, q: str | None = None
+) -> DatabasePaginator:
+    return DatabasePaginator(offset=offset, limit=limit, q=q)
 
 
-CommonsDep = Annotated[CommonQueryParams, Depends(get_common_params)]
+PaginatorDep = Annotated[DatabasePaginator, Depends(get_db_paginator)]
 
 
 @app.get("/items/")
-async def read_items(commons: CommonsDep):
-    return {"q": commons.q, "skip": commons.skip, "limit": commons.limit}
+async def read_items(paginator: PaginatorDep):
+    return paginator.get_page()
 ```
 
 instead of this:
@@ -448,21 +429,30 @@ from fastapi import Depends, FastAPI
 app = FastAPI()
 
 
-class CommonQueryParams:
-    def __init__(self, q: str | None = None, skip: int = 0, limit: int = 100):
-        self.q = q
-        self.skip = skip
+class DatabasePaginator:
+    def __init__(self, offset: int = 0, limit: int = 100, q: str | None = None):
+        self.offset = offset
         self.limit = limit
+        self.q = q
+
+    def get_page(self) -> dict:
+        # Simulate a page of data
+        return {
+            "offset": self.offset,
+            "limit": self.limit,
+            "q": self.q,
+            "items": [],
+        }
 
 
 @app.get("/items/")
-async def read_items(commons: Annotated[CommonQueryParams, Depends()]):
-    return {"q": commons.q, "skip": commons.skip, "limit": commons.limit}
+async def read_items(paginator: Annotated[DatabasePaginator, Depends()]):
+    return paginator.get_page()
 ```
 
 ## Async vs Sync *path operations*
 
-Use `async` *path operations* only when fully certain that the logic called inside is compatible with async and await (it's called with `await`) or doesn't block.
+Use `async` *path operations* only when fully certain that the logic called inside is compatible with async and await (it's called with `await`) or that doesn't block.
 
 ```python
 from fastapi import FastAPI
@@ -539,9 +529,13 @@ def read_items():
     return {"message": result}
 ```
 
-## Use uv
+## Use uv, ruff, ty
 
 If uv is available, use it to manage dependencies.
+
+If Ruff is available, use it to lint and format the code. Consider enabling the FastAPI rules.
+
+If ty is available, use it to check types.
 
 ## SQLModel for SQL databases
 
@@ -589,7 +583,7 @@ async def create_items(items: ItemList):
 
 ```
 
-FastAPI supports these type annotations and will create a Pydantic `TypeAdapter` for them, so that types can work as normally.
+FastAPI supports these type annotations and will create a Pydantic `TypeAdapter` for them, so that types can work as normally and there's no need for the custom logic and types in RootModels.
 
 ## Use one HTTP operation per function
 
@@ -636,5 +630,4 @@ class Item(BaseModel):
 async def handle_items(request: Request):
     if request.method == "GET":
         return []
-    # ...
 ```
