@@ -403,7 +403,7 @@ def get_user_me(username: UserNameDep):
 
 Avoid creating class dependencies when possible.
 
-If a class is needed, instead create a regular function dependency that return a class instance.
+If a class is needed, instead create a regular function dependency that returns a class instance.
 
 Do this:
 
