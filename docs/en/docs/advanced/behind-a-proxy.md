@@ -188,7 +188,7 @@ $ fastapi run main.py --forwarded-allow-ips="*"
 ///
 
 Open `http://127.0.0.1:9999/items` in your browser.
-Your request will be redirected by FastAPI to `http://127.0.0.1:9999/items/` and you will see:
+Your request will be redirected by FastAPI to `http://127.0.0.1:8000/items/` and you will see:
 
 ```json
 ["plumbus","portal gun"]
