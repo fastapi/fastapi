@@ -76,14 +76,23 @@ def test_nullable_required_schema(path: str):
             "properties": {
                 "file": {
                     "title": "File",
-                    "anyOf": [{"type": "string", "contentMediaType": "application/octet-stream"}, {"type": "null"}],
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
+                        {"type": "null"},
+                    ],
                 },
                 "files": {
                     "title": "Files",
                     "anyOf": [
                         {
                             "type": "array",
-                            "items": {"type": "string", "contentMediaType": "application/octet-stream"},
+                            "items": {
+                                "type": "string",
+                                "contentMediaType": "application/octet-stream",
+                            },
                         },
                         {"type": "null"},
                     ],
@@ -255,7 +264,13 @@ def test_nullable_non_required_schema(path: str):
             "properties": {
                 "file": {
                     "title": "File",
-                    "anyOf": [{"type": "string", "contentMediaType": "application/octet-stream"}, {"type": "null"}],
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
+                        {"type": "null"},
+                    ],
                     # "default": None, # `None` values are omitted in OpenAPI schema
                 },
                 "files": {
@@ -263,7 +278,10 @@ def test_nullable_non_required_schema(path: str):
                     "anyOf": [
                         {
                             "type": "array",
-                            "items": {"type": "string", "contentMediaType": "application/octet-stream"},
+                            "items": {
+                                "type": "string",
+                                "contentMediaType": "application/octet-stream",
+                            },
                         },
                         {"type": "null"},
                     ],
@@ -399,7 +417,10 @@ def test_nullable_with_non_null_default_schema(path: str):
                 "file": {
                     "title": "File",
                     "anyOf": [
-                        {"type": "string", "contentMediaType": "application/octet-stream"},
+                        {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
                         {"type": "null"},
                     ],
                     "default": "default",  # <= Default value here looks strange to me
@@ -409,7 +430,10 @@ def test_nullable_with_non_null_default_schema(path: str):
                     "anyOf": [
                         {
                             "type": "array",
-                            "items": {"type": "string", "contentMediaType": "application/octet-stream"},
+                            "items": {
+                                "type": "string",
+                                "contentMediaType": "application/octet-stream",
+                            },
                         },
                         {"type": "null"},
                     ],
