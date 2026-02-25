@@ -224,7 +224,7 @@ async def get_item() -> Any:
     return {"name": "Foo", "description": "A very nice Item"}
 ```
 
-This can be in particular useful when filtering data to expose only the public fields, and avoid exposing sensitive information.
+This can be particularly useful when filtering data to expose only the public fields and avoid exposing sensitive information.
 
 ```python
 from typing import Any
