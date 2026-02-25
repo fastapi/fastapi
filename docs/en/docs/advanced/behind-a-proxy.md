@@ -355,8 +355,8 @@ Luckily, this problem isn't new - and the people who designed the ASGI specifica
 
 ASGI defines two fields that make it possible for applications to know where they are mounted and still handle requests correctly:
 
-* `path` – the full path requested by the client (including the prefix)
-* `root_path` – the mount point (the prefix itself) under which the app is served
+* `path` - the full path requested by the client (including the prefix)
+* `root_path` - the mount point (the prefix itself) under which the app is served
 
 With this information, the application always knows both:
 
