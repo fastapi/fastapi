@@ -18,11 +18,13 @@ from fastapi.exceptions import RequestValidationError, WebSocketRequestValidatio
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
+    get_asyncapi_html,
     get_redoc_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
 from fastapi.openapi.utils import get_openapi
+from fastapi.openapi.asyncapi_utils import get_asyncapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
@@ -446,6 +448,49 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "/redoc",
+        asyncapi_url: Annotated[
+            str | None,
+            Doc(
+                """
+                The URL where the AsyncAPI schema will be served from.
+
+                If you set it to `None`, no AsyncAPI schema will be served publicly, and
+                the default automatic endpoint `/asyncapi-docs` will also be disabled.
+
+                AsyncAPI is used to document WebSocket endpoints, similar to how OpenAPI
+                documents HTTP endpoints.
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(asyncapi_url="/api/v1/asyncapi.json")
+                ```
+                """
+            ),
+        ] = "/asyncapi.json",
+        asyncapi_docs_url: Annotated[
+            str | None,
+            Doc(
+                """
+                The URL where the AsyncAPI documentation UI will be served from.
+
+                If you set it to `None`, the AsyncAPI documentation UI will be disabled.
+
+                This provides an interactive UI for viewing WebSocket endpoint documentation,
+                similar to how `/docs` provides Swagger UI for HTTP endpoints.
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(asyncapi_docs_url="/async-docs")
+                ```
+                """
+            ),
+        ] = "/asyncapi-docs",
         swagger_ui_oauth2_redirect_url: Annotated[
             str | None,
             Doc(
@@ -886,6 +931,8 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.asyncapi_url = asyncapi_url
+        self.asyncapi_docs_url = asyncapi_docs_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -925,9 +972,13 @@ class FastAPI(Starlette):
             ),
         ] = "3.1.0"
         self.openapi_schema: dict[str, Any] | None = None
+        self.asyncapi_schema: dict[str, Any] | None = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+        if self.asyncapi_url:
+            assert self.title, "A title must be provided for AsyncAPI, e.g.: 'My API'"
+            assert self.version, "A version must be provided for AsyncAPI, e.g.: '2.1.0'"
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
@@ -1099,6 +1150,36 @@ class FastAPI(Starlette):
             )
         return self.openapi_schema
 
+    def asyncapi(self) -> dict[str, Any]:
+        """
+        Generate the AsyncAPI schema of the application. This is called by FastAPI
+        internally.
+
+        The first time it is called it stores the result in the attribute
+        `app.asyncapi_schema`, and next times it is called, it just returns that same
+        result. To avoid the cost of generating the schema every time.
+
+        If you need to modify the generated AsyncAPI schema, you could modify it.
+
+        AsyncAPI is used to document WebSocket endpoints, similar to how OpenAPI
+        documents HTTP endpoints.
+        """
+        if not self.asyncapi_schema:
+            self.asyncapi_schema = get_asyncapi(
+                title=self.title,
+                version=self.version,
+                asyncapi_version="2.6.0",
+                summary=self.summary,
+                description=self.description,
+                routes=self.routes,
+                servers=self.servers,
+                terms_of_service=self.terms_of_service,
+                contact=self.contact,
+                license_info=self.license_info,
+                external_docs=self.openapi_external_docs,
+            )
+        return self.asyncapi_schema
+
     def setup(self) -> None:
         if self.openapi_url:
 
@@ -1115,6 +1196,21 @@ class FastAPI(Starlette):
                 return JSONResponse(schema)
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
+        if self.asyncapi_url:
+
+            async def asyncapi(req: Request) -> JSONResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                schema = self.asyncapi()
+                if root_path and self.root_path_in_servers:
+                    server_urls = {s.get("url") for s in schema.get("servers", [])}
+                    if root_path not in server_urls:
+                        schema = dict(schema)
+                        schema["servers"] = [{"url": root_path}] + schema.get(
+                            "servers", []
+                        )
+                return JSONResponse(schema)
+
+            self.add_route(self.asyncapi_url, asyncapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
@@ -1123,12 +1219,16 @@ class FastAPI(Starlette):
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url = root_path + oauth2_redirect_url
+                asyncapi_docs_url = None
+                if self.asyncapi_docs_url:
+                    asyncapi_docs_url = root_path + self.asyncapi_docs_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=f"{self.title} - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
+                    asyncapi_docs_url=asyncapi_docs_url,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
@@ -1153,6 +1253,21 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+        if self.asyncapi_url and self.asyncapi_docs_url:
+
+            async def asyncapi_ui_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                asyncapi_url = root_path + self.asyncapi_url
+                docs_url = root_path + self.docs_url if self.docs_url else None
+                return get_asyncapi_html(
+                    asyncapi_url=asyncapi_url,
+                    title=f"{self.title} - AsyncAPI",
+                    docs_url=docs_url,
+                )
+
+            self.add_route(
+                self.asyncapi_docs_url, asyncapi_ui_html, include_in_schema=False
+            )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
