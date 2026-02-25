@@ -423,7 +423,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 </div>
 
-If you use Hypercorn, it also has the option `--root-path`.
+If you use Hypercorn, it also has the `--root-path` option.
 
 Here's what happens in this setup:
 
@@ -685,7 +685,7 @@ It's quite common mistake that people configure the ASGI server with `--root-pat
 
 When `root_path` is configured (using any of the methods described above), always make sure that:
 
-* ✅ You are accessing your server via revers proxy
+* ✅ You are accessing your server via reverse proxy
 * ✅ URL includes prefix
 
 ## Additional servers { #additional-servers }
