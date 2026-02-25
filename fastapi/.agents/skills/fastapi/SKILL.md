@@ -71,11 +71,6 @@ instead of:
 
 ```python
 # DO NOT DO THIS
-from fastapi import FastAPI, Path, Query
-
-app = FastAPI()
-
-
 @app.get("/items/{item_id}")
 async def read_item(
     item_id: int = Path(ge=1, description="The item ID"),
@@ -114,15 +109,6 @@ instead of:
 
 ```python
 # DO NOT DO THIS
-from fastapi import Depends, FastAPI
-
-app = FastAPI()
-
-
-def get_current_user():
-    return {"username": "johndoe"}
-
-
 @app.get("/items/")
 async def read_item(current_user: dict = Depends(get_current_user)):
     return {"message": "Hello World"}
@@ -138,25 +124,26 @@ Do this, without Ellipsis (`...`):
 from typing import Annotated
 
 from fastapi import FastAPI, Query
+from pydantic import BaseModel, Field
+
+
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+    price: float = Field(gt=0)
+
 
 app = FastAPI()
 
 
-@app.get("/items/")
-async def read_item(project_id: Annotated[int, Query()]):
-    return {"message": "Hello World"}
+@app.post("/items/")
+async def create_item(item: Item, project_id: Annotated[int, Query()]): ...
 ```
 
 instead of this:
 
 ```python
 # DO NOT DO THIS
-from typing import Annotated
-
-from fastapi import FastAPI, Query
-from pydantic import BaseModel, Field
-
-
 class Item(BaseModel):
     name: str = ...
     description: str | None = None
@@ -166,14 +153,8 @@ class Item(BaseModel):
 app = FastAPI()
 
 
-@app.get("/items/")
-async def read_item(project_id: Annotated[int, Query(...)]):
-    return {"message": "Hello World"}
-
-
 @app.post("/items/")
-async def create_item(item: Item):
-    return {"message": "Hello World"}
+async def create_item(item: Item, project_id: Annotated[int, Query(...)]): ...
 ```
 
 ## Return Type or Response Model
@@ -316,7 +297,7 @@ Use dependencies when:
 * Other dependencies need their results (it's a sub-dependency)
 * The logic can be shared by multiple endpoints to do things like error early, authentication, etc.
 * They need to handle cleanup (e.g., DB sessions, file handles), using dependencies with `yield`
-* Their logic needs request input data, like headers, query parameters, etc.
+* Their logic needs input data from the request, like headers, query parameters, etc.
 
 ### Dependencies with `yield` and `scope`
 
