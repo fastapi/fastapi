@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ✅ Fix all tests are skipped on Windows. PR [#14994](https://github.com/fastapi/fastapi/pull/14994) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.133.0
 
 ### Upgrades
