@@ -478,7 +478,7 @@ In case of doubt, or by default, use regular `def` functions, those will be run 
 
 The same rules apply to dependencies.
 
-Make sure blocking code is not run inside of `async` functions. The logic will work, but will damage heavily the performance.
+Make sure blocking code is not run inside of `async` functions. The logic will work, but will damage the performance heavily.
 
 ### Asyncer
 
