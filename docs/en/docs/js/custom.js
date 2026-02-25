@@ -175,17 +175,28 @@ function handleSponsorImages() {
 }
 
 function setupThemeImages() {
-    new MutationObserver(() => {
+    const updateImages = () => {
         const scheme = document.body.getAttribute("data-md-color-scheme");
         const isDark = scheme === "slate";
         document.querySelectorAll("picture[data-light-src][data-dark-src]").forEach((picture) => {
-            const src = isDark ? picture.dataset.darkSrc : picture.dataset.lightSrc;
+            const src = (isDark ? picture.dataset.darkSrc : picture.dataset.lightSrc);
             const source = picture.querySelector("source");
             const img = picture.querySelector("img");
-            if (source) source.srcset = src;
-            if (img) img.src = src;
+            if (source) {
+                source.srcset = src;
+            }
+            if (img) {
+                img.src = src;
+            }
         });
-    }).observe(document.body, { attributes: true, attributeFilter: ["data-md-color-scheme"] });
+    }
+
+    new MutationObserver(updateImages).observe(document.body, {
+        attributes: true,
+        attributeFilter: ["data-md-color-scheme"],
+    });
+
+    updateImages();
 }
 
 async function main() {
