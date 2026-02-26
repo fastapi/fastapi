@@ -555,6 +555,12 @@ async def _solve_generator(
 
 @dataclass
 class SolvedDependency:
+    """Result of resolving all dependencies for a request.
+
+    Returned by :func:`solve_dependencies` and consumed by the request
+    handler wrapper in :mod:`fastapi.routing`.
+    """
+
     values: dict[str, Any]
     errors: list[Any]
     background_tasks: StarletteBackgroundTasks | None
