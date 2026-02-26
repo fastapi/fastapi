@@ -61,9 +61,9 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from starlette import routing
-from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
+from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -446,9 +446,7 @@ def get_request_handler(
                         merged.tasks.extend(existing.tasks)
                     else:
                         merged.tasks.append(existing)
-                    merged.tasks.extend(
-                        solved_result.background_tasks.tasks
-                    )
+                    merged.tasks.extend(solved_result.background_tasks.tasks)
                     raw_response.background = merged
                 response = raw_response
             else:

@@ -3,7 +3,6 @@ from fastapi.testclient import TestClient
 from starlette.background import BackgroundTask
 from starlette.responses import JSONResponse
 
-
 results: list[str] = []
 
 
