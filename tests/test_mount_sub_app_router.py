@@ -52,7 +52,5 @@ def test_mount_preserved_in_routes():
     app = FastAPI()
     app.include_router(router)
 
-    mount_routes = [
-        r for r in app.routes if isinstance(r, Mount) and "/sub" in r.path
-    ]
+    mount_routes = [r for r in app.routes if isinstance(r, Mount) and "/sub" in r.path]
     assert len(mount_routes) == 1
