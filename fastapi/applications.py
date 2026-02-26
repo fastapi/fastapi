@@ -1,3 +1,4 @@
+import warnings
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
 from typing import (
@@ -14,7 +15,11 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    FastAPIDeprecationWarning,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -930,11 +935,13 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
-            logger.warning(
+            warnings.warn(
                 '"openapi_prefix" has been deprecated in favor of "root_path", which '
                 "follows more closely the ASGI standard, is simpler, and more "
                 "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
+                "https://fastapi.tiangolo.com/advanced/sub-applications/",
+                category=FastAPIDeprecationWarning,
+                stacklevel=2,
             )
         self.webhooks: Annotated[
             routing.APIRouter,
