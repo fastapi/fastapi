@@ -402,3 +402,28 @@ def test_get_asyncapi_direct():
     assert schema["asyncapi"] == "2.6.0"
     assert schema["info"]["title"] == "Test API"
     assert "/ws" in schema["channels"]
+
+
+def test_asyncapi_url_none_no_link_in_swagger():
+    """Test that Swagger UI doesn't show AsyncAPI link when asyncapi_url is None."""
+    app = FastAPI(
+        title="Test API",
+        version="1.0.0",
+        asyncapi_url=None,  # Explicitly disabled
+        # asyncapi_docs_url defaults to "/asyncapi-docs"
+    )
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    client = TestClient(app)
+    # Swagger UI should not show AsyncAPI link when asyncapi_url is None
+    response = client.get("/docs")
+    assert response.status_code == 200, response.text
+    assert "/asyncapi-docs" not in response.text
+
+    # AsyncAPI endpoint should not exist
+    response = client.get("/asyncapi-docs")
+    assert response.status_code == 404

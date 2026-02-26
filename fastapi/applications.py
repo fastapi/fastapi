@@ -1222,7 +1222,7 @@ class FastAPI(Starlette):
                 if oauth2_redirect_url:
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 asyncapi_docs_url = None
-                if self.asyncapi_docs_url:
+                if self.asyncapi_url and self.asyncapi_docs_url:
                     asyncapi_docs_url = root_path + self.asyncapi_docs_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
