@@ -172,6 +172,13 @@ class DependencyScopeError(FastAPIError):
 
 
 class ValidationException(Exception):
+    """Base exception for request data validation errors.
+
+    Stores validation errors and optional endpoint context for enhanced
+    error messages that include the source file, line, and path of the
+    endpoint that triggered the validation failure.
+    """
+
     def __init__(
         self,
         errors: Sequence[Any],
@@ -210,6 +217,13 @@ class ValidationException(Exception):
 
 
 class RequestValidationError(ValidationException):
+    """Raised when incoming request data fails validation.
+
+    Includes the request body that failed validation, accessible via the
+    ``body`` attribute. Handled by default to return a 422 Unprocessable
+    Entity response.
+    """
+
     def __init__(
         self,
         errors: Sequence[Any],
@@ -222,6 +236,13 @@ class RequestValidationError(ValidationException):
 
 
 class WebSocketRequestValidationError(ValidationException):
+    """Raised when incoming WebSocket request data fails validation.
+
+    Similar to ``RequestValidationError`` but for WebSocket endpoints.
+    Handled by default to close the WebSocket connection with a 1008
+    Policy Violation code.
+    """
+
     def __init__(
         self,
         errors: Sequence[Any],
@@ -232,6 +253,13 @@ class WebSocketRequestValidationError(ValidationException):
 
 
 class ResponseValidationError(ValidationException):
+    """Raised when outgoing response data fails validation.
+
+    Includes the response body that failed validation, accessible via
+    the ``body`` attribute. This is raised when a response model is set
+    and the returned data does not match it.
+    """
+
     def __init__(
         self,
         errors: Sequence[Any],
