@@ -13,3 +13,21 @@ from .oauth2 import OAuth2PasswordRequestForm as OAuth2PasswordRequestForm
 from .oauth2 import OAuth2PasswordRequestFormStrict as OAuth2PasswordRequestFormStrict
 from .oauth2 import SecurityScopes as SecurityScopes
 from .open_id_connect_url import OpenIdConnect as OpenIdConnect
+
+__all__ = [
+    "APIKeyCookie",
+    "APIKeyHeader",
+    "APIKeyQuery",
+    "HTTPAuthorizationCredentials",
+    "HTTPBasic",
+    "HTTPBasicCredentials",
+    "HTTPBearer",
+    "HTTPDigest",
+    "OAuth2",
+    "OAuth2AuthorizationCodeBearer",
+    "OAuth2PasswordBearer",
+    "OAuth2PasswordRequestForm",
+    "OAuth2PasswordRequestFormStrict",
+    "OpenIdConnect",
+    "SecurityScopes",
+]
