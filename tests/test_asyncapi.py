@@ -427,3 +427,27 @@ def test_asyncapi_url_none_no_link_in_swagger():
     # AsyncAPI endpoint should not exist
     response = client.get("/asyncapi-docs")
     assert response.status_code == 404
+
+
+def test_asyncapi_with_root_path_in_servers():
+    """Test AsyncAPI schema includes root_path in servers when root_path_in_servers is True."""
+    app = FastAPI(
+        title="Test API",
+        version="1.0.0",
+        root_path_in_servers=True,
+    )
+
+    @app.websocket("/ws")
+    async def websocket_endpoint(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    # Use TestClient with root_path to trigger the root_path logic
+    client = TestClient(app, root_path="/api/v1")
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert "servers" in schema
+    # Root path should be added to servers
+    server_urls = [s["url"] for s in schema["servers"]]
+    assert "/api/v1" in server_urls
