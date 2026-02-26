@@ -4,15 +4,15 @@ The official [**FastAPI extension**](https://marketplace.visualstudio.com/items?
 
 For more details about the extension, refer to the README on the [GitHub repository](https://github.com/fastapi/fastapi-vscode).
 
-## Setup and Installation
+## Setup and Installation { #setup-and-installation }
 
 The FastAPI extension is available for both [VS Code](https://code.visualstudio.com/) and [Cursor](https://www.cursor.com/). It can be installed directly from the Extensions panel in each editor by searching for "FastAPI" and selecting the extension published by FastAPI Labs. The extension also works in browser-based editors such as [vscode.dev](https://vscode.dev) and [github.dev](https://github.dev).
 
-### Application Discovery
+### Application Discovery { #application-discovery }
 
 By default, the extension will automatically discover FastAPI applications in your workspace by scanning for files that instantiate `FastAPI()`. If auto-detection doesn't work for your project structure, you can specify an entrypoint via `[tool.fastapi]` in `pyproject.toml` or the `fastapi.entryPoint` VS Code setting using module notation (e.g. `myapp.main:app`).
 
-## Features
+## Features { #features }
 
 - **Path Operation Explorer** — A sidebar tree view of all routes in your application; click to jump to any route or router definition.
 - **Route Search** — Search routes by path, method, or name with `Ctrl+Shift+E` (`Cmd+Shift+E` on Mac).
