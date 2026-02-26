@@ -68,4 +68,7 @@ def test_three_methods_unique_operation_ids():
     assert "get" in get_op["operationId"]
     assert "post" in post_op["operationId"]
     assert "delete" in delete_op["operationId"]
-    assert len({get_op["operationId"], post_op["operationId"], delete_op["operationId"]}) == 3
+    assert (
+        len({get_op["operationId"], post_op["operationId"], delete_op["operationId"]})
+        == 3
+    )
