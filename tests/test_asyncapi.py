@@ -18,6 +18,10 @@ def test_asyncapi_schema():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
+    with client.websocket_connect("/ws/foo"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -38,6 +42,9 @@ def test_asyncapi_no_websockets():
         return {"message": "Hello World"}
 
     client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -55,6 +62,9 @@ def test_asyncapi_caching():
         await websocket.accept()
         await websocket.close()
 
+    client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     schema1 = app.asyncapi()
     schema2 = app.asyncapi()
     # Should return the same object (identity check)
@@ -71,6 +81,8 @@ def test_asyncapi_ui():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi-docs")
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
@@ -88,6 +100,8 @@ def test_asyncapi_ui_navigation():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi-docs")
     assert response.status_code == 200, response.text
     # Should contain link to OpenAPI docs
@@ -109,6 +123,11 @@ def test_swagger_ui_asyncapi_navigation():
         await websocket.close()
 
     client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/docs")
     assert response.status_code == 200, response.text
     # Should contain link to AsyncAPI docs
@@ -131,6 +150,8 @@ def test_asyncapi_custom_urls():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     # Test custom JSON endpoint
     response = client.get("/custom/asyncapi.json")
     assert response.status_code == 200, response.text
@@ -163,6 +184,8 @@ def test_asyncapi_disabled():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     # Endpoints should return 404
     response = client.get("/asyncapi.json")
     assert response.status_code == 404
@@ -180,6 +203,8 @@ def test_asyncapi_channel_structure():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -209,6 +234,12 @@ def test_asyncapi_multiple_websockets():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws1"):
+        pass
+    with client.websocket_connect("/ws2"):
+        pass
+    with client.websocket_connect("/ws3/bar"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -233,6 +264,8 @@ def test_asyncapi_with_metadata():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -256,6 +289,8 @@ def test_asyncapi_ui_no_docs_url():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi-docs")
     assert response.status_code == 200, response.text
     # Should not contain link to /docs if docs_url is None
@@ -277,6 +312,8 @@ def test_asyncapi_with_servers():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -302,6 +339,8 @@ def test_asyncapi_with_all_metadata():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -337,6 +376,8 @@ def test_asyncapi_with_external_docs():
     }
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -357,6 +398,8 @@ def test_asyncapi_channel_with_route_name():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
@@ -376,6 +419,9 @@ def test_get_asyncapi_channel_direct():
         await websocket.accept()
         await websocket.close()
 
+    client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     # Get the route from the app
     route = next(r for r in app.routes if isinstance(r, routing.APIWebSocketRoute))
     channel = get_asyncapi_channel(route=route)
@@ -394,6 +440,9 @@ def test_get_asyncapi_direct():
         await websocket.accept()
         await websocket.close()
 
+    client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     schema = get_asyncapi(
         title=app.title,
         version=app.version,
@@ -419,6 +468,8 @@ def test_asyncapi_url_none_no_link_in_swagger():
         await websocket.close()
 
     client = TestClient(app)
+    with client.websocket_connect("/ws"):
+        pass
     # Swagger UI should not show AsyncAPI link when asyncapi_url is None
     response = client.get("/docs")
     assert response.status_code == 200, response.text
@@ -444,6 +495,8 @@ def test_asyncapi_with_root_path_in_servers():
 
     # Use TestClient with root_path to trigger the root_path logic
     client = TestClient(app, root_path="/api/v1")
+    with client.websocket_connect("/ws"):
+        pass
     response = client.get("/asyncapi.json")
     assert response.status_code == 200, response.text
     schema = response.json()
