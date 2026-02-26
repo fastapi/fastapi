@@ -98,6 +98,12 @@ ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
 def generate_encoders_by_class_tuples(
     type_encoder_map: dict[Any, Callable[[Any], Any]],
 ) -> dict[Callable[[Any], Any], tuple[Any, ...]]:
+    """Invert a ``{type: encoder}`` mapping to ``{encoder: (types...)}``.
+
+    This allows :func:`jsonable_encoder` to perform efficient
+    ``isinstance`` checks against all types that share the same encoder
+    function in a single call.
+    """
     encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultdict(
         tuple
     )

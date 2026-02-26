@@ -18,12 +18,15 @@ _T = TypeVar("_T")
 async def contextmanager_in_threadpool(
     cm: AbstractContextManager[_T],
 ) -> AsyncGenerator[_T, None]:
-    # blocking __exit__ from running waiting on a free thread
-    # can create race conditions/deadlocks if the context manager itself
-    # has its own internal pool (e.g. a database connection pool)
-    # to avoid this we let __exit__ run without a capacity limit
-    # since we're creating a new limiter for each call, any non-zero limit
-    # works (1 is arbitrary)
+    """Run a synchronous context manager in a thread pool.
+
+    Enters and exits the context manager in a worker thread so that
+    blocking ``__enter__`` / ``__exit__`` calls do not block the async
+    event loop.  The ``__exit__`` call uses its own
+    :class:`~anyio.CapacityLimiter` to avoid deadlocks when the context
+    manager holds resources from a bounded pool (e.g. database
+    connections).
+    """
     exit_limiter = CapacityLimiter(1)
     try:
         yield await run_in_threadpool(cm.__enter__)
