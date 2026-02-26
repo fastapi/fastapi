@@ -20,7 +20,6 @@ from fastapi.exceptions import (
     RequestValidationError,
     WebSocketRequestValidationError,
 )
-from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
