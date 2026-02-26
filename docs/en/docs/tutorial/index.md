@@ -86,7 +86,7 @@ If you want to install the standard dependencies but without the `fastapi-cloud-
 
 /// tip
 
-FastAPI has an <a href="https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode" class="external-link" target="_blank">official extension for VS Code</a>, which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation, and FastAPI Cloud deployment — all from your editor.
+FastAPI has an <a href="https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode" class="external-link" target="_blank">official extension for VS Code</a>, which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests, and FastAPI Cloud deployment and logs — all from your editor.
 
 ///
 
