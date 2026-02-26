@@ -61,6 +61,7 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from starlette import routing
+from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
@@ -436,6 +437,19 @@ def get_request_handler(
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = solved_result.background_tasks
+                elif solved_result.background_tasks is not None:
+                    # Merge injected background tasks with the response's
+                    # existing background task(s) so neither set is lost
+                    existing = raw_response.background
+                    merged = StarletteBackgroundTasks()
+                    if isinstance(existing, StarletteBackgroundTasks):
+                        merged.tasks.extend(existing.tasks)
+                    else:
+                        merged.tasks.append(existing)
+                    merged.tasks.extend(
+                        solved_result.background_tasks.tasks
+                    )
+                    raw_response.background = merged
                 response = raw_response
             else:
                 response_args: dict[str, Any] = {
