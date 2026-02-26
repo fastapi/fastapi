@@ -195,6 +195,7 @@ nav:
     - advanced/json-base64-bytes.md
     - advanced/strict-content-type.md
   - fastapi-cli.md
+  - editor-support.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
