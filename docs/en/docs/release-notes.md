@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Update Library Agent Skill with streaming responses. PR [#15024](https://github.com/fastapi/fastapi/pull/15024) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for responses and new stream with `yield`. PR [#15023](https://github.com/fastapi/fastapi/pull/15023) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add `await` in `StreamingResponse` code example to allow cancellation. PR [#14681](https://github.com/fastapi/fastapi/pull/14681) by [@casperdcl](https://github.com/casperdcl).
 * 📝 Rename `docs_src/websockets` to `docs_src/websockets_` to avoid import errors. PR [#14979](https://github.com/fastapi/fastapi/pull/14979) by [@YuriiMotov](https://github.com/YuriiMotov).
