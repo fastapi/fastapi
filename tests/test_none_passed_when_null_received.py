@@ -1,5 +1,4 @@
 import sys
-from typing import Optional, Union
 
 import pytest
 from dirty_equals import IsDict
@@ -28,7 +27,7 @@ if sys.hexversion >= 0x3090000:
 
     @app.post("/api2")
     def api2(
-        integer_or_null: Annotated[Optional[int], Body(embed=True)] = DEFAULT,
+        integer_or_null: Annotated[int | None, Body(embed=True)] = DEFAULT,
     ) -> dict:
         return {"received": integer_or_null}
 
@@ -36,7 +35,7 @@ if sys.hexversion >= 0x3090000:
 
     @app.post("/api3")
     def api3(
-        integer_or_null: Annotated[Union[int, None], Body(embed=True)] = DEFAULT,
+        integer_or_null: Annotated[int | None, Body(embed=True)] = DEFAULT,
     ) -> dict:
         return {"received": integer_or_null}
 
@@ -44,7 +43,7 @@ if sys.hexversion >= 0x3090000:
 
 
 @app.post("/api4")
-def api4(integer_or_null: Optional[int] = Body(embed=True, default=DEFAULT)) -> dict:
+def api4(integer_or_null: int | None = Body(embed=True, default=DEFAULT)) -> dict:
     return {"received": integer_or_null}
 
 
