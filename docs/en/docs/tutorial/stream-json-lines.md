@@ -1,6 +1,10 @@
 # Stream JSON Lines { #stream-json-lines }
 
-You could have a sequence of data that you would like to send in a **stream**, which means that your app will start sending the data to the client without waiting for the entire sequence to be ready.
+You could have a sequence of data that you would like to send in a "**stream**", you could do it with **JSON Lines**.
+
+## What is a Stream? { #what-is-a-stream }
+
+"**Streaming**" data means that your app will start sending data items to the client without waiting for the entire sequence of items to be ready.
 
 So, it will send the first item, the client will receive and start processing it, and you might still be producing the next item.
 
@@ -36,7 +40,7 @@ A response would have a content type of `application/jsonl` (instead of `applica
 {"name": "Meeseeks Box", "description": "A box that summons a Meeseeks."}
 ```
 
-It's very similar to a JSON array (equivalent of a Python list), but instead of being wrapped in `[]` and having `,` between the items, it has one JSON object per line, they are separated by a new line.
+It's very similar to a JSON array (equivalent of a Python list), but instead of being wrapped in `[]` and having `,` between the items, it has **one JSON object per line**, they are separated by a new line character.
 
 /// info
 
@@ -46,9 +50,9 @@ The important point is that your app will be able to produce each line in turn, 
 
 /// note | Technical Details
 
-Because each JSON object will be separated by a new line, they can't contain literal new lines in their content, but they can contain escaped new lines (`\n`), which is part of the JSON standard.
+Because each JSON object will be separated by a new line, they can't contain literal new line characters in their content, but they can contain escaped new lines (`\n`), which is part of the JSON standard.
 
-But normally you won't have to worry about it, continue reading. 🤓
+But normally you won't have to worry about it, it's done automatically, continue reading. 🤓
 
 ///
 
@@ -68,11 +72,11 @@ To stream JSON Lines with FastAPI you can, instead of using `return` in your *pa
 
 {* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
 
-If each JSON item you want to send back is of type `Item` (a Pydantic model), you can declare the return type as `AsyncIterable[Item]` if it's an `async` function:
+If each JSON item you want to send back is of type `Item` (a Pydantic model) and it's an async function, you can declare the return type as `AsyncIterable[Item]`:
 
 {* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
 
-Declaring the return type, FastAPI will use it to **validate** the data, **document** it in OpenAPI, **filter** it, and **serialize** it using Pydantic.
+If you declare the return type, FastAPI will use it to **validate** the data, **document** it in OpenAPI, **filter** it, and **serialize** it using Pydantic.
 
 /// tip
 
