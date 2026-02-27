@@ -14,6 +14,7 @@ class Item(BaseModel):
 items = [
     Item(name="Plumbus", description="A multi-purpose household device."),
     Item(name="Portal Gun", description="A portal opening device."),
+    Item(name="Meeseeks Box", description="A box that summons a Meeseeks."),
 ]
 
 
