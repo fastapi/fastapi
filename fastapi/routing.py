@@ -28,6 +28,7 @@ from typing import (
     TypeVar,
 )
 
+import anyio
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import (
@@ -486,6 +487,9 @@ def get_request_handler(
                     async def _async_stream_jsonl() -> AsyncIterator[bytes]:
                         async for item in gen:
                             yield _serialize_item(item)
+                            # To allow for cancellation to trigger
+                            # Ref: https://github.com/fastapi/fastapi/issues/14680
+                            await anyio.sleep(0)
 
                     stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
                         _async_stream_jsonl()
@@ -507,6 +511,18 @@ def get_request_handler(
             elif dependant.is_async_gen_callable or dependant.is_gen_callable:
                 # Raw streaming with explicit response_class (e.g. StreamingResponse)
                 gen = dependant.call(**solved_result.values)
+                if dependant.is_async_gen_callable:
+
+                    async def _async_stream_raw(
+                        async_gen: AsyncIterator[Any],
+                    ) -> AsyncIterator[Any]:
+                        async for chunk in async_gen:
+                            yield chunk
+                            # To allow for cancellation to trigger
+                            # Ref: https://github.com/fastapi/fastapi/issues/14680
+                            await anyio.sleep(0)
+
+                    gen = _async_stream_raw(gen)
                 response_args = _build_response_args(
                     status_code=status_code, solved_result=solved_result
                 )
