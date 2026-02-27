@@ -10,6 +10,7 @@ hide:
 ### Features
 
 * ✨ Add support for streaming JSON Lines and binary data with `yield`. PR [#15022](https://github.com/fastapi/fastapi/pull/15022) by [@tiangolo](https://github.com/tiangolo).
+    * This also upgrades Starlette from `>=0.40.0` to `>=0.46.0`, as it's needed to properly unrwap and re-raise excepitons from exception groups.
 
 ### Docs
 
