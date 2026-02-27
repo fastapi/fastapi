@@ -1,5 +1,5 @@
 import json
-from collections.abc import AsyncIterable, Iterable
+from typing import AsyncIterable, Iterable  # noqa: UP035 to test coverage
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -27,7 +27,6 @@ client = TestClient(app)
 
 
 def test_stream_bare_async_iterable():
-    """Test that bare AsyncIterable (no type args) works and streams JSONL."""
     response = client.get("/items/stream-bare-async")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/jsonl"
@@ -36,7 +35,6 @@ def test_stream_bare_async_iterable():
 
 
 def test_stream_bare_sync_iterable():
-    """Test that bare Iterable (no type args) works and streams JSONL."""
     response = client.get("/items/stream-bare-sync")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/jsonl"
