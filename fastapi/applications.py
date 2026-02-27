@@ -17,9 +17,9 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
-from fastapi.openapi.asyncapi_utils import get_asyncapi
+from fastapi.asyncapi.docs import get_asyncapi_html
+from fastapi.asyncapi.utils import get_asyncapi
 from fastapi.openapi.docs import (
-    get_asyncapi_html,
     get_redoc_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,

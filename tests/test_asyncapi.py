@@ -1,6 +1,7 @@
-from fastapi import FastAPI, WebSocket
-from fastapi.openapi.asyncapi_utils import get_asyncapi, get_asyncapi_channel
+from fastapi import APIRouter, Body, Depends, FastAPI, WebSocket
+from fastapi.asyncapi.utils import get_asyncapi, get_asyncapi_channel
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 
 def test_asyncapi_schema():
@@ -478,6 +479,115 @@ def test_asyncapi_url_none_no_link_in_swagger():
     # AsyncAPI endpoint should not exist
     response = client.get("/asyncapi-docs")
     assert response.status_code == 404
+
+
+def test_asyncapi_components_and_message_payload():
+    """Test AsyncAPI schema includes components/schemas and message payload when models are used."""
+    app = FastAPI(title="Test API", version="1.0.0")
+
+    class QueryMessage(BaseModel):
+        """Message sent on /query channel."""
+
+        text: str
+        limit: int = 10
+
+    def get_query_message(
+        msg: QueryMessage = Body(default=QueryMessage(text="", limit=10))
+    ) -> QueryMessage:
+        return msg
+
+    @app.websocket("/query")
+    async def query_ws(websocket: WebSocket, msg: QueryMessage = Depends(get_query_message)):
+        await websocket.accept()
+        await websocket.close()
+
+    # Connect to websocket so handler and dependency are covered (body default used)
+    client = TestClient(app)
+    with client.websocket_connect("/query"):
+        pass
+
+    # Generate schema and assert components
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+
+    # Should have components with schemas (reusable model definitions)
+    assert "components" in schema
+    assert "schemas" in schema["components"]
+    assert "QueryMessage" in schema["components"]["schemas"]
+    query_schema = schema["components"]["schemas"]["QueryMessage"]
+    assert query_schema.get("title") == "QueryMessage"
+    assert "text" in query_schema.get("properties", {})
+    assert "limit" in query_schema.get("properties", {})
+
+    # Channel messages should reference the payload schema
+    channel = schema["channels"]["/query"]
+    for operation_key in ("subscribe", "publish"):
+        msg_spec = channel[operation_key]["message"]
+        assert msg_spec["contentType"] == "application/json"
+        assert "payload" in msg_spec
+        assert msg_spec["payload"] == {"$ref": "#/components/schemas/QueryMessage"}
+
+
+def test_asyncapi_explicit_subscribe_publish_schema():
+    """Test AsyncAPI schema when websocket uses subscribe_schema and publish_schema (no Body in deps).
+
+    Covers: components/schemas built from explicit subscribe_schema/publish_schema ModelFields,
+    and channel message payloads set from explicit subscribe_model/publish_model $refs.
+    """
+    app = FastAPI(title="Test API", version="1.0.0")
+    router = APIRouter()
+
+    class ClientMessage(BaseModel):
+        """Message the client sends."""
+
+        action: str
+        payload: str = ""
+
+    class ServerMessage(BaseModel):
+        """Message the server sends."""
+
+        event: str
+        data: dict = {}
+
+    @router.websocket(
+        "/chat",
+        subscribe_schema=ClientMessage,
+        publish_schema=ServerMessage,
+    )
+    async def chat_ws(websocket: WebSocket):
+        await websocket.accept()
+        await websocket.close()
+
+    app.include_router(router)
+    client = TestClient(app)
+    with client.websocket_connect("/chat"):
+        pass
+
+    response = client.get("/asyncapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+
+    # Components should include both models (from explicit subscribe_schema/publish_schema ModelFields)
+    assert "components" in schema
+    assert "schemas" in schema["components"]
+    assert "ClientMessage" in schema["components"]["schemas"]
+    assert "ServerMessage" in schema["components"]["schemas"]
+    client_schema = schema["components"]["schemas"]["ClientMessage"]
+    server_schema = schema["components"]["schemas"]["ServerMessage"]
+    assert client_schema.get("title") == "ClientMessage"
+    assert "action" in client_schema.get("properties", {})
+    assert server_schema.get("title") == "ServerMessage"
+    assert "event" in server_schema.get("properties", {})
+
+    # Channel subscribe/publish should use explicit $refs (subscribe_model / publish_model path)
+    channel = schema["channels"]["/chat"]
+    sub_msg = channel["subscribe"]["message"]
+    pub_msg = channel["publish"]["message"]
+    assert sub_msg["contentType"] == "application/json"
+    assert sub_msg["payload"] == {"$ref": "#/components/schemas/ClientMessage"}
+    assert pub_msg["contentType"] == "application/json"
+    assert pub_msg["payload"] == {"$ref": "#/components/schemas/ServerMessage"}
 
 
 def test_asyncapi_with_root_path_in_servers():

@@ -541,11 +541,15 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         name: str | None = None,
         dependencies: Sequence[params.Depends] | None = None,
         dependency_overrides_provider: Any | None = None,
+        subscribe_schema: type[Any] | None = None,
+        publish_schema: type[Any] | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
+        self.subscribe_schema = subscribe_schema
+        self.publish_schema = publish_schema
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(
             path=self.path_format, call=self.endpoint, scope="function"
@@ -1214,6 +1218,8 @@ class APIRouter(routing.Router):
         name: str | None = None,
         *,
         dependencies: Sequence[params.Depends] | None = None,
+        subscribe_schema: type[Any] | None = None,
+        publish_schema: type[Any] | None = None,
     ) -> None:
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -1225,6 +1231,8 @@ class APIRouter(routing.Router):
             name=name,
             dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            subscribe_schema=subscribe_schema,
+            publish_schema=publish_schema,
         )
         self.routes.append(route)
 
@@ -1259,6 +1267,25 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        subscribe_schema: Annotated[
+            type[Any] | None,
+            Doc(
+                """
+                Pydantic model for messages the client sends (subscribe operation).
+                Used to generate AsyncAPI message payload schema when the route
+                does not use Body() in dependencies.
+                """
+            ),
+        ] = None,
+        publish_schema: Annotated[
+            type[Any] | None,
+            Doc(
+                """
+                Pydantic model for messages the server sends (publish operation).
+                Used to generate AsyncAPI message payload schema.
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Decorate a WebSocket function.
@@ -1289,7 +1316,12 @@ class APIRouter(routing.Router):
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(
-                path, func, name=name, dependencies=dependencies
+                path,
+                func,
+                name=name,
+                dependencies=dependencies,
+                subscribe_schema=subscribe_schema,
+                publish_schema=publish_schema,
             )
             return func
 
@@ -1543,6 +1575,8 @@ class APIRouter(routing.Router):
                     route.endpoint,
                     dependencies=current_dependencies,
                     name=route.name,
+                    subscribe_schema=route.subscribe_schema,
+                    publish_schema=route.publish_schema,
                 )
             elif isinstance(route, routing.WebSocketRoute):
                 self.add_websocket_route(
