@@ -22,6 +22,7 @@ def get_client(request: pytest.FixtureRequest):
 expected_items = [
     {"name": "Plumbus", "description": "A multi-purpose household device."},
     {"name": "Portal Gun", "description": "A portal opening device."},
+    {"name": "Meeseeks Box", "description": "A box that summons a Meeseeks."},
 ]
 
 
