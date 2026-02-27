@@ -26,6 +26,7 @@ def get_client(mod):
     [
         "/image/stream",
         "/image/stream-no-async",
+        "/image/stream-no-async-yield-from",
         "/image/stream-no-annotation",
         "/image/stream-no-async-no-annotation",
     ],
@@ -63,6 +64,20 @@ def test_openapi_schema(client: TestClient):
                     "get": {
                         "summary": "Stream Image No Async",
                         "operationId": "stream_image_no_async_image_stream_no_async_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "image/png": {"schema": {"type": "string"}}
+                                },
+                            }
+                        },
+                    }
+                },
+                "/image/stream-no-async-yield-from": {
+                    "get": {
+                        "summary": "Stream Image No Async Yield From",
+                        "operationId": "stream_image_no_async_yield_from_image_stream_no_async_yield_from_get",
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
