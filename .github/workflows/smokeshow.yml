@@ -28,7 +28,7 @@ jobs:
             pyproject.toml
             uv.lock
       - run: uv sync --locked --no-dev --group github-actions
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: coverage-html
           path: htmlcov
