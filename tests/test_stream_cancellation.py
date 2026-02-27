@@ -48,7 +48,7 @@ async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
     async def receive():  # type: ignore[no-untyped-def]
         # Simulate a client that never disconnects, rely on cancellation
         await anyio.sleep(float("inf"))
-        return {"type": "http.disconnect"}
+        return {"type": "http.disconnect"}  # pragma: no cover
 
     async def send(message: dict) -> None:  # type: ignore[type-arg]
         if message["type"] == "http.response.body":
