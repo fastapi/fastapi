@@ -369,11 +369,17 @@ def get_openapi_path(
                         )
                     else:
                         response_schema = {}
-                operation.setdefault("responses", {}).setdefault(
+
+                route_responses = {str(k): v for k, v in route.responses.items()}
+                if status_code not in route_responses or not route_responses.get(
                     status_code, {}
-                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                    "schema"
-                ] = response_schema
+                ).get("superimpose"):
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {}).setdefault(
+                        route_response_media_type, {}
+                    )["schema"] = response_schema
+
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
@@ -382,6 +388,7 @@ def get_openapi_path(
                 ) in route.responses.items():
                     process_response = copy.deepcopy(additional_response)
                     process_response.pop("model", None)
+                    process_response.pop("superimpose", None)
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
                         status_code_key = "default"
