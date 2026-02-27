@@ -48,7 +48,7 @@ from fastapi.dependencies.models import Dependant
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
-from fastapi.types import DependencyCacheKey
+from fastapi.types import DependencyCacheKey, DependencyOverridesProvider
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
@@ -569,7 +569,7 @@ async def solve_dependencies(
     body: dict[str, Any] | FormData | None = None,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
-    dependency_overrides_provider: Any | None = None,
+    dependency_overrides_provider: DependencyOverridesProvider | None = None,
     dependency_cache: dict[DependencyCacheKey, Any] | None = None,
     # TODO: remove this parameter later, no longer used, not removing it yet as some
     # people might be monkey patching this function (although that's not supported)
@@ -601,9 +601,9 @@ async def solve_dependencies(
             and dependency_overrides_provider.dependency_overrides
         ):
             original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
+            call = dependency_overrides_provider.dependency_overrides.get(
+                original_call, original_call
+            )
             use_path: str = sub_dependant.path  # type: ignore
             use_sub_dependant = get_dependant(
                 path=use_path,
