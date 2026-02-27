@@ -4,10 +4,12 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from docs_src.background_tasks.tutorial001_py310 import app
+from tests.utils import workdir_lock
 
 client = TestClient(app)
 
 
+@workdir_lock
 def test():
     log = Path("log.txt")
     if log.is_file():

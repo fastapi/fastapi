@@ -5,6 +5,8 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
+from tests.utils import workdir_lock
+
 
 @pytest.fixture(scope="module")
 def client():
@@ -20,17 +22,20 @@ def client():
     static_dir.rmdir()
 
 
+@workdir_lock
 def test_static_files(client: TestClient):
     response = client.get("/static/sample.txt")
     assert response.status_code == 200, response.text
     assert response.text == "This is a sample static file."
 
 
+@workdir_lock
 def test_static_files_not_found(client: TestClient):
     response = client.get("/static/non_existent_file.txt")
     assert response.status_code == 404, response.text
 
 
+@workdir_lock
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
