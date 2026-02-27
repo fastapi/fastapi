@@ -42,7 +42,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0",
+    "starlette>=0.46.0",
     "pydantic>=2.7.0",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
