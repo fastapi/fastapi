@@ -50,19 +50,19 @@ You can create a custom sub-class of `StreamingResponse` that sets the `Content-
 
 For example, you can create a `PNGStreamingResponse` that sets the `Content-Type` header to `image/png` using the `media_type` attribute:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,15:16] hl[16] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
 
 Then you can use this new class in `response_class=PNGStreamingResponse` in your *path operation function*:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[19:22] hl[19] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:26] hl[23] *}
 
 ### Simulate a File { #simulate-a-file }
 
 In this example, we are simulating a file with `io.BytesIO`, which is a file-like object that lives only in memory, but lets us use the same interface.
 
-For example, we can iterate over it as we could with a file.
+For example, we can iterate over it to consume its contents, as we could with a file.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:22] hl[3,10,21] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:26] hl[3,12:13,25] *}
 
 /// note | Technical Details
 
@@ -74,7 +74,7 @@ Only so that it can live in the same file for this example and you can copy it a
 
 ### Files and Async { #files-and-async }
 
-In most cases, file-like objects and interfaces are not compatible by default with async and await.
+In most cases, file-like objects are not compatible with async and await by default.
 
 For example, they don't have an `await file.read()`, or `async for chunk in file`.
 
@@ -90,7 +90,7 @@ But in many cases reading a file or a file-like object would block.
 
 To avoid blocking the event loop, you can simply declare the *path operation function* with regular `def` instead of `async def`, that way FastAPI will run it on a threadpool worker, to avoid blocking the main loop.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[25:28] hl[26] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[29:32] hl[30] *}
 
 /// tip
 
