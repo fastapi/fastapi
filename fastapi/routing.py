@@ -436,6 +436,31 @@ def get_request_handler(
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = solved_result.background_tasks
+                elif solved_result.background_tasks:
+                    from starlette.background import BackgroundTask, BackgroundTasks
+
+                    # Create a new BackgroundTasks to hold both
+                    combined_tasks = BackgroundTasks()
+
+                    # Add existing response tasks
+                    if isinstance(raw_response.background, BackgroundTasks):
+                        combined_tasks.tasks.extend(raw_response.background.tasks)
+                    elif isinstance(raw_response.background, BackgroundTask):
+                        combined_tasks.tasks.append(raw_response.background)
+
+                    # Add dependency tasks
+                    # solved_result.background_tasks is always BackgroundTasks (from dependencies/utils.py)
+                    if isinstance(solved_result.background_tasks, BackgroundTasks):
+                        combined_tasks.tasks.extend(
+                            solved_result.background_tasks.tasks
+                        )
+                    elif isinstance(
+                        solved_result.background_tasks, BackgroundTask
+                    ):  # pragma: no cover
+                        # Should not happen for BackgroundTasks dependency but safe to handle
+                        combined_tasks.tasks.append(solved_result.background_tasks)
+
+                    raw_response.background = combined_tasks
                 response = raw_response
             else:
                 response_args: dict[str, Any] = {
