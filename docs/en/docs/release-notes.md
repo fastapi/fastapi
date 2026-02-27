@@ -9,6 +9,88 @@ hide:
 
 ### Docs
 
+* 📝 Rename `docs_src/websockets` to `docs_src/websockets_` to avoid import errors. PR [#14979](https://github.com/fastapi/fastapi/pull/14979) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔨 Run tests with `pytest-xdist` and `pytest-cov`. PR [#14992](https://github.com/fastapi/fastapi/pull/14992) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.133.1
+
+### Features
+
+* 🔧 Add FastAPI Agents Skill. PR [#14982](https://github.com/fastapi/fastapi/pull/14982) by [@tiangolo](https://github.com/tiangolo).
+    * Read more about it in [Library Agent Skills](https://tiangolo.com/ideas/library-agent-skills/).
+
+### Internal
+
+* ✅ Fix all tests are skipped on Windows. PR [#14994](https://github.com/fastapi/fastapi/pull/14994) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.133.0
+
+### Upgrades
+
+* ⬆️ Add support for Starlette 1.0.0+. PR [#14987](https://github.com/fastapi/fastapi/pull/14987) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.132.1
+
+### Refactors
+
+* ♻️ Refactor logic to handle OpenAPI and Swagger UI escaping data. PR [#14986](https://github.com/fastapi/fastapi/pull/14986) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#14972](https://github.com/fastapi/fastapi/pull/14972) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Allow skipping `benchmark` job in `test` workflow. PR [#14974](https://github.com/fastapi/fastapi/pull/14974) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.132.0
+
+### Breaking Changes
+
+* 🔒️ Add `strict_content_type` checking for JSON requests. PR [#14978](https://github.com/fastapi/fastapi/pull/14978) by [@tiangolo](https://github.com/tiangolo).
+    * Now FastAPI checks, by default, that JSON requests have a `Content-Type` header with a valid JSON value, like `application/json`, and rejects requests that don't.
+    * If the clients for your app don't send a valid `Content-Type` header you can disable this with `strict_content_type=False`.
+    * Check the new docs: [Strict Content-Type Checking](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+
+### Internal
+
+* ⬆ Bump flask from 3.1.2 to 3.1.3. PR [#14949](https://github.com/fastapi/fastapi/pull/14949) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Update all dependencies to use `griffelib` instead of `griffe`. PR [#14973](https://github.com/fastapi/fastapi/pull/14973) by [@svlandeg](https://github.com/svlandeg).
+* 🔨 Fix `FastAPI People` workflow. PR [#14951](https://github.com/fastapi/fastapi/pull/14951) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Do not run codspeed with coverage as it's not tracked. PR [#14966](https://github.com/fastapi/fastapi/pull/14966) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Do not include benchmark tests in coverage to speed up coverage processing. PR [#14965](https://github.com/fastapi/fastapi/pull/14965) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.131.0
+
+### Breaking Changes
+
+* 🗑️ Deprecate `ORJSONResponse` and `UJSONResponse`. PR [#14964](https://github.com/fastapi/fastapi/pull/14964) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.130.0
+
+### Features
+
+* ✨ Serialize JSON response with Pydantic (in Rust), when there's a Pydantic return type or response model. PR [#14962](https://github.com/fastapi/fastapi/pull/14962) by [@tiangolo](https://github.com/tiangolo).
+    * This results in 2x (or more) performance increase for JSON responses.
+    * New docs: [Custom Response - JSON Performance](https://fastapi.tiangolo.com/advanced/custom-response/#json-performance).
+
+## 0.129.2
+
+### Internal
+
+* ⬆️ Upgrade pytest. PR [#14959](https://github.com/fastapi/fastapi/pull/14959) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix CI, do not attempt to publish `fastapi-slim`. PR [#14958](https://github.com/fastapi/fastapi/pull/14958) by [@tiangolo](https://github.com/tiangolo).
+* ➖ Drop support for `fastapi-slim`, no more versions will be released, use only `"fastapi[standard]"` or `fastapi`. PR [#14957](https://github.com/fastapi/fastapi/pull/14957) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update pyproject.toml, remove unneeded lines. PR [#14956](https://github.com/fastapi/fastapi/pull/14956) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.129.1
+
+### Fixes
+
+* ♻️ Fix JSON Schema for bytes, use `"contentMediaType": "application/octet-stream"` instead of `"format": "binary"`. PR [#14953](https://github.com/fastapi/fastapi/pull/14953) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
 * 🔨 Add Kapa.ai widget (AI chatbot). PR [#14938](https://github.com/fastapi/fastapi/pull/14938) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove Python 3.9 specific files, no longer needed after updating translations. PR [#14931](https://github.com/fastapi/fastapi/pull/14931) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for JWT to prevent timing attacks. PR [#14908](https://github.com/fastapi/fastapi/pull/14908) by [@tiangolo](https://github.com/tiangolo).
@@ -31,6 +113,7 @@ hide:
 
 ### Internal
 
+* 👷 Always run tests on push to `master` branch and when run by scheduler. PR [#14940](https://github.com/fastapi/fastapi/pull/14940) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🎨 Upgrade typing syntax for Python 3.10. PR [#14932](https://github.com/fastapi/fastapi/pull/14932) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump cryptography from 46.0.4 to 46.0.5. PR [#14892](https://github.com/fastapi/fastapi/pull/14892) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pillow from 12.1.0 to 12.1.1. PR [#14899](https://github.com/fastapi/fastapi/pull/14899) by [@dependabot[bot]](https://github.com/apps/dependabot).

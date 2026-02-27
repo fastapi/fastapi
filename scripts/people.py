@@ -5,6 +5,7 @@ import time
 from collections import Counter
 from collections.abc import Container
 from datetime import datetime, timedelta, timezone
+from math import ceil
 from pathlib import Path
 from typing import Any
 
@@ -15,12 +16,63 @@ from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
 
 github_graphql_url = "https://api.github.com/graphql"
-questions_category_id = "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDAxNDM0"
+questions_category_id = "DIC_kwDOCZduT84B6E2a"
+
+
+POINTS_PER_MINUTE_LIMIT = 84  # 5000 points per hour
+
+
+class RateLimiter:
+    def __init__(self) -> None:
+        self.last_query_cost: int = 1
+        self.remaining_points: int = 5000
+        self.reset_at: datetime = datetime.fromtimestamp(0, timezone.utc)
+        self.last_request_start_time: datetime = datetime.fromtimestamp(0, timezone.utc)
+        self.speed_multiplier: float = 1.0
+
+    def __enter__(self) -> "RateLimiter":
+        now = datetime.now(tz=timezone.utc)
+
+        # Handle primary rate limits
+        primary_limit_wait_time = 0.0
+        if self.remaining_points <= self.last_query_cost:
+            primary_limit_wait_time = (self.reset_at - now).total_seconds() + 2
+            logging.warning(
+                f"Approaching GitHub API rate limit, remaining points: {self.remaining_points}, "
+                f"reset time in {primary_limit_wait_time} seconds"
+            )
+
+        # Handle secondary rate limits
+        secondary_limit_wait_time = 0.0
+        points_per_minute = POINTS_PER_MINUTE_LIMIT * self.speed_multiplier
+        interval = 60 / (points_per_minute / self.last_query_cost)
+        time_since_last_request = (now - self.last_request_start_time).total_seconds()
+        if time_since_last_request < interval:
+            secondary_limit_wait_time = interval - time_since_last_request
+
+        final_wait_time = ceil(max(primary_limit_wait_time, secondary_limit_wait_time))
+        logging.info(f"Sleeping for {final_wait_time} seconds to respect rate limit")
+        time.sleep(max(final_wait_time, 1))
+
+        self.last_request_start_time = datetime.now(tz=timezone.utc)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        pass
+
+    def update_request_info(self, cost: int, remaining: int, reset_at: str) -> None:
+        self.last_query_cost = cost
+        self.remaining_points = remaining
+        self.reset_at = datetime.fromisoformat(reset_at.replace("Z", "+00:00"))
+
+
+rate_limiter = RateLimiter()
+
 
 discussions_query = """
 query Q($after: String, $category_id: ID) {
   repository(name: "fastapi", owner: "fastapi") {
-    discussions(first: 100, after: $after, categoryId: $category_id) {
+    discussions(first: 30, after: $after, categoryId: $category_id) {
       edges {
         cursor
         node {
@@ -57,6 +109,11 @@ query Q($after: String, $category_id: ID) {
         }
       }
     }
+  }
+  rateLimit {
+    cost
+    remaining
+    resetAt
   }
 }
 """
@@ -120,7 +177,7 @@ class Settings(BaseSettings):
     github_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
-    sleep_interval: int = 5
+    speed_multiplier: float = 1.0
 
 
 def get_graphql_response(
@@ -158,11 +215,18 @@ def get_graphql_question_discussion_edges(
     settings: Settings,
     after: str | None = None,
 ) -> list[DiscussionsEdge]:
-    data = get_graphql_response(
-        settings=settings,
-        query=discussions_query,
-        after=after,
-        category_id=questions_category_id,
+    with rate_limiter:
+        data = get_graphql_response(
+            settings=settings,
+            query=discussions_query,
+            after=after,
+            category_id=questions_category_id,
+        )
+
+    rate_limiter.update_request_info(
+        cost=data["data"]["rateLimit"]["cost"],
+        remaining=data["data"]["rateLimit"]["remaining"],
+        reset_at=data["data"]["rateLimit"]["resetAt"],
     )
     graphql_response = DiscussionsResponse.model_validate(data)
     return graphql_response.data.repository.discussions.edges
@@ -185,8 +249,6 @@ def get_discussion_nodes(settings: Settings) -> list[DiscussionsNode]:
         for discussion_edge in discussion_edges:
             discussion_nodes.append(discussion_edge.node)
         last_edge = discussion_edges[-1]
-        # Handle GitHub secondary rate limits, requests per minute
-        time.sleep(settings.sleep_interval)
         discussion_edges = get_graphql_question_discussion_edges(
             settings=settings, after=last_edge.cursor
         )
@@ -318,6 +380,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
+    rate_limiter.speed_multiplier = settings.speed_multiplier
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 

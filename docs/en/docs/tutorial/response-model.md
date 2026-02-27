@@ -13,6 +13,7 @@ FastAPI will use this return type to:
 * Add a **JSON Schema** for the response, in the OpenAPI *path operation*.
     * This will be used by the **automatic docs**.
     * It will also be used by automatic client code generation tools.
+* **Serialize** the returned data to JSON using Pydantic, which is written in **Rust**, so it will be **much faster**.
 
 But most importantly:
 

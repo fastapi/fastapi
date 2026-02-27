@@ -35,7 +35,11 @@ def test_required_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p": {"title": "P", "type": "string", "format": "binary"},
+            "p": {
+                "title": "P",
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+            },
         },
         "required": ["p"],
         "title": body_model_name,
@@ -109,7 +113,11 @@ def test_required_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_alias": {"title": "P Alias", "type": "string", "format": "binary"},
+            "p_alias": {
+                "title": "P Alias",
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+            },
         },
         "required": ["p_alias"],
         "title": body_model_name,
@@ -216,7 +224,7 @@ def test_required_validation_alias_schema(path: str):
             "p_val_alias": {
                 "title": "P Val Alias",
                 "type": "string",
-                "format": "binary",
+                "contentMediaType": "application/octet-stream",
             },
         },
         "required": ["p_val_alias"],
@@ -329,7 +337,7 @@ def test_required_alias_and_validation_alias_schema(path: str):
             "p_val_alias": {
                 "title": "P Val Alias",
                 "type": "string",
-                "format": "binary",
+                "contentMediaType": "application/octet-stream",
             },
         },
         "required": ["p_val_alias"],

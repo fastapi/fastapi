@@ -27,7 +27,7 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
 )
 from pydantic._internal._typing_extra import eval_type_lenient
 from pydantic.fields import FieldInfo as FieldInfo
-from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
+from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined
@@ -39,6 +39,23 @@ from pydantic_core.core_schema import (
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
 evaluate_forwardref = eval_type_lenient
+
+
+class GenerateJsonSchema(_GenerateJsonSchema):
+    # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
+    # and dropping support for any version of Pydantic before that one (so, in a very long time)
+    def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
+        json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
+        bytes_mode = (
+            self._config.ser_json_bytes
+            if self.mode == "serialization"
+            else self._config.val_json_bytes
+        )
+        if bytes_mode == "base64":
+            json_schema["contentEncoding"] = "base64"
+        self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
+        return json_schema
+
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -174,6 +191,32 @@ class ModelField:
         return self._type_adapter.dump_python(
             value,
             mode=mode,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
+
+    def serialize_json(
+        self,
+        value: Any,
+        *,
+        include: IncEx | None = None,
+        exclude: IncEx | None = None,
+        by_alias: bool = True,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+    ) -> bytes:
+        # What calls this code passes a value that already called
+        # self._type_adapter.validate_python(value)
+        # This uses Pydantic's dump_json() which serializes directly to JSON
+        # bytes in one pass (via Rust), avoiding the intermediate Python dict
+        # step of dump_python(mode="json") + json.dumps().
+        return self._type_adapter.dump_json(
+            value,
             include=include,
             exclude=exclude,
             by_alias=by_alias,

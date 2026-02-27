@@ -37,7 +37,10 @@ def test_list_schema(path: str):
         "properties": {
             "p": {
                 "type": "array",
-                "items": {"type": "string", "format": "binary"},
+                "items": {
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
                 "title": "P",
             },
         },
@@ -115,7 +118,10 @@ def test_list_alias_schema(path: str):
         "properties": {
             "p_alias": {
                 "type": "array",
-                "items": {"type": "string", "format": "binary"},
+                "items": {
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
                 "title": "P Alias",
             },
         },
@@ -221,7 +227,10 @@ def test_list_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "type": "array",
-                "items": {"type": "string", "format": "binary"},
+                "items": {
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
                 "title": "P Val Alias",
             },
         },
@@ -338,7 +347,10 @@ def test_list_alias_and_validation_alias_schema(path: str):
         "properties": {
             "p_val_alias": {
                 "type": "array",
-                "items": {"type": "string", "format": "binary"},
+                "items": {
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
                 "title": "P Val Alias",
             },
         },
