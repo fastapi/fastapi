@@ -1,11 +1,10 @@
 from collections.abc import Sequence
 from typing import Any
 
-from pydantic import BaseModel
-
 from fastapi import routing
 from fastapi.asyncapi.constants import ASYNCAPI_VERSION, REF_PREFIX
 from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
 from starlette.routing import BaseRoute
 
 
@@ -52,9 +51,8 @@ def _get_fields_from_websocket_routes(
     routes: Sequence[BaseRoute],
 ) -> list[Any]:
     """Collect body (ModelField) params from WebSocket routes for schema generation."""
-    from fastapi.dependencies.utils import get_flat_dependant
-
     from fastapi._compat import ModelField
+    from fastapi.dependencies.utils import get_flat_dependant
     from pydantic.fields import FieldInfo
 
     fields: list[Any] = []
@@ -69,7 +67,12 @@ def _get_fields_from_websocket_routes(
             getattr(route, "subscribe_schema", None),
             getattr(route, "publish_schema", None),
         ):
-            if model is not None and isinstance(model, type) and issubclass(model, BaseModel) and model not in seen_models:
+            if (
+                model is not None
+                and isinstance(model, type)
+                and issubclass(model, BaseModel)
+                and model not in seen_models
+            ):
                 seen_models.add(model)
                 fields.append(
                     ModelField(
@@ -164,9 +167,17 @@ def get_asyncapi(
             # Explicit subscribe_schema / publish_schema (e.g. when route has no Body() in Depends)
             subscribe_model = getattr(route, "subscribe_schema", None)
             publish_model = getattr(route, "publish_schema", None)
-            if subscribe_model is not None and isinstance(subscribe_model, type) and issubclass(subscribe_model, BaseModel):
+            if (
+                subscribe_model is not None
+                and isinstance(subscribe_model, type)
+                and issubclass(subscribe_model, BaseModel)
+            ):
                 sub_schema = {"$ref": f"{REF_PREFIX}{subscribe_model.__name__}"}
-            if publish_model is not None and isinstance(publish_model, type) and issubclass(publish_model, BaseModel):
+            if (
+                publish_model is not None
+                and isinstance(publish_model, type)
+                and issubclass(publish_model, BaseModel)
+            ):
                 pub_schema = {"$ref": f"{REF_PREFIX}{publish_model.__name__}"}
             # Fall back to first body param (Depends with Body()) for both if not set
             if sub_schema is None or pub_schema is None:

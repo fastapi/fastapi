@@ -8,6 +8,8 @@ from typing import (
 
 from annotated_doc import Doc
 from fastapi import routing
+from fastapi.asyncapi.docs import get_asyncapi_html
+from fastapi.asyncapi.utils import get_asyncapi
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -17,8 +19,6 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
-from fastapi.asyncapi.docs import get_asyncapi_html
-from fastapi.asyncapi.utils import get_asyncapi
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,

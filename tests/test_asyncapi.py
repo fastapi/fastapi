@@ -492,12 +492,14 @@ def test_asyncapi_components_and_message_payload():
         limit: int = 10
 
     def get_query_message(
-        msg: QueryMessage = Body(default=QueryMessage(text="", limit=10))
+        msg: QueryMessage = Body(default=QueryMessage(text="", limit=10)),
     ) -> QueryMessage:
         return msg
 
     @app.websocket("/query")
-    async def query_ws(websocket: WebSocket, msg: QueryMessage = Depends(get_query_message)):
+    async def query_ws(
+        websocket: WebSocket, msg: QueryMessage = Depends(get_query_message)
+    ):
         await websocket.accept()
         await websocket.close()
 
