@@ -138,6 +138,14 @@ Takes some data and returns an `application/json` encoded response.
 
 This is the default response used in **FastAPI**, as you read above.
 
+/// note | Technical Details
+
+But if you declare a response model or return type, that will be used directly to serialize the data to JSON, and a response with the right media type for JSON will be returned directly, without using the `JSONResponse` class.
+
+This is the ideal way to get the best performance.
+
+///
+
 ### `RedirectResponse` { #redirectresponse }
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
@@ -165,7 +173,7 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 ### `StreamingResponse` { #streamingresponse }
 
-Takes an async generator or a normal generator/iterator and streams the response body.
+Takes an async generator or a normal generator/iterator (a function with `yield`) and streams the response body.
 
 {* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
 
@@ -179,27 +187,11 @@ This would be even more important with large or infinite streams.
 
 ///
 
-#### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
-
-If you have a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
-
-That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
-
-This includes many libraries to interact with cloud storage, video processing, and others.
-
-{* ../../docs_src/custom_response/tutorial008_py310.py hl[2,10:12,14] *}
-
-1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
-2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
-3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function (`iterfile`).
-
-    So, it is a generator function that transfers the "generating" work to something else internally.
-
-    By doing it this way, we can put it in a `with` block, and that way, ensure that the file-like object is closed after finishing.
-
 /// tip
 
-Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+Instead of returning a `StreamingResponse` directly, you should probably follow the style in [Stream Data](./stream-data.md){.internal-link target=_blank}, it's much more convenient and handles cancellation behind the scenes for you.
+
+If you are streaming JSON Lines, follow the [Stream JSON Lines](../tutorial/stream-json-lines.md){.internal-link target=_blank} tutorial.
 
 ///
 

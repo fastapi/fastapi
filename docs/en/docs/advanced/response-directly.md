@@ -16,7 +16,7 @@ You will normally have much better performance using a [Response Model](../tutor
 
 ## Return a `Response` { #return-a-response }
 
-You can return any `Response` or any sub-class of it.
+You can return a `Response` or any sub-class of it.
 
 /// info
 
@@ -28,7 +28,9 @@ And when you return a `Response`, **FastAPI** will pass it directly.
 
 It won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.
 
-This gives you a lot of flexibility. You can return any data type, override any data declaration or validation, etc.
+This gives you a lot of **flexibility**. You can return any data type, override any data declaration or validation, etc.
+
+It also gives you a lot of **responsibility**. You have to make sure that the data you return is correct, in the correct format, that it can be serialized, etc.
 
 ## Using the `jsonable_encoder` in a `Response` { #using-the-jsonable-encoder-in-a-response }
 
@@ -62,15 +64,15 @@ You could put your XML content in a string, put that in a `Response`, and return
 
 ## How a Response Model Works { #how-a-response-model-works }
 
-When you declare a [Response Model](../tutorial/response-model.md){.internal-link target=_blank} in a path operation, **FastAPI** will use it to serialize the data to JSON, using Pydantic.
+When you declare a [Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank} in a path operation, **FastAPI** will use it to serialize the data to JSON, using Pydantic.
 
 {* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
 
 As that will happen on the Rust side, the performance will be much better than if it was done with regular Python and the `JSONResponse` class.
 
-When using a response model FastAPI won't use the `jsonable_encoder` to convert the data (which would be slower) nor the `JSONResponse` class.
+When using a `response_model` or return type, FastAPI won't use the `jsonable_encoder` to convert the data (which would be slower) nor the `JSONResponse` class.
 
-Instead it takes the JSON bytes generated with Pydantic using the response model and returns a `Response` with the right media type for JSON directly (`application/json`).
+Instead it takes the JSON bytes generated with Pydantic using the response model (or return type) and returns a `Response` with the right media type for JSON directly (`application/json`).
 
 ## Notes { #notes }
 
