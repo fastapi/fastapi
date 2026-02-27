@@ -355,25 +355,40 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if route_response_media_type and is_body_allowed_for_status_code(
-                route.status_code
-            ):
-                response_schema = {"type": "string"}
-                if lenient_issubclass(current_response_class, JSONResponse):
-                    if route.response_field:
-                        response_schema = get_schema_from_model_field(
-                            field=route.response_field,
+            if is_body_allowed_for_status_code(route.status_code):
+                # Check for JSONL streaming (generator endpoints)
+                if route.is_json_stream:
+                    jsonl_content: dict[str, Any] = {}
+                    if route.stream_item_field:
+                        item_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
                         )
+                        jsonl_content["itemSchema"] = item_schema
                     else:
-                        response_schema = {}
-                operation.setdefault("responses", {}).setdefault(
-                    status_code, {}
-                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                    "schema"
-                ] = response_schema
+                        jsonl_content["itemSchema"] = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                elif route_response_media_type:
+                    response_schema = {"type": "string"}
+                    if lenient_issubclass(current_response_class, JSONResponse):
+                        if route.response_field:
+                            response_schema = get_schema_from_model_field(
+                                field=route.response_field,
+                                model_name_map=model_name_map,
+                                field_mapping=field_mapping,
+                                separate_input_output_schemas=separate_input_output_schemas,
+                            )
+                        else:
+                            response_schema = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {}).setdefault(
+                        route_response_media_type, {}
+                    )["schema"] = response_schema
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
@@ -453,9 +468,9 @@ def get_fields_from_routes(
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
     for route in routes:
-        if getattr(route, "include_in_schema", None) and isinstance(
-            route, routing.APIRoute
-        ):
+        if not isinstance(route, routing.APIRoute):
+            continue
+        if route.include_in_schema:
             if route.body_field:
                 assert isinstance(route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
@@ -465,6 +480,8 @@ def get_fields_from_routes(
                 responses_from_routes.append(route.response_field)
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
+            if route.stream_item_field:
+                responses_from_routes.append(route.stream_item_field)
             if route.callbacks:
                 callback_flat_models.extend(get_fields_from_routes(route.callbacks))
             params = get_flat_params(route.dependant)
