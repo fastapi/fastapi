@@ -2,7 +2,6 @@
 Test that async streaming endpoints can be cancelled without hanging.
 
 Ref: https://github.com/fastapi/fastapi/issues/14680
-
 """
 
 from collections.abc import AsyncIterable
