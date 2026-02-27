@@ -167,7 +167,17 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+
+/// note | Technical Details
+
+An `async` task can only be cancelled when it reaches an `await`. If there is no `await`, the generator (function with `yield`) can not be cancelled properly and may keep running even after cancellation is requested.
+
+Since this small example does not need any `await` statements, we add an `await anyio.sleep(0)` to give the event loop a chance to handle cancellation.
+
+This would be even more important with large or infinite streams.
+
+///
 
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
