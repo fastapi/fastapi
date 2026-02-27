@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.134.0
+
 ### Features
 
 * ✨ Add support for streaming JSON Lines and binary data with `yield`. PR [#15022](https://github.com/fastapi/fastapi/pull/15022) by [@tiangolo](https://github.com/tiangolo).
