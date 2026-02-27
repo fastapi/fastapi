@@ -9,6 +9,8 @@ needs_py314 = pytest.mark.skipif(
     sys.version_info < (3, 14), reason="requires python3.14+"
 )
 
+workdir_lock = pytest.mark.xdist_group("workdir_lock")
+
 
 def skip_module_if_py_gte_314():
     """Skip entire module on Python 3.14+ at import time."""
