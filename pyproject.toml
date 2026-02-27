@@ -163,7 +163,7 @@ github-actions = [
 tests = [
     { include-group = "docs-tests" },
     "anyio[trio] >=3.2.1,<5.0.0",
-    "coverage[toml] >=6.5.0,<8.0",
+    "coverage[toml] >=7.13,<8.0",
     "dirty-equals >=0.9.0",
     "flask >=3.0.0,<4.0.0",
     "inline-snapshot >=0.21.1",
@@ -178,6 +178,10 @@ tests = [
     "types-orjson >=3.6.2",
     "types-ujson >=5.10.0.20240515",
     "a2wsgi >=1.9.0,<=2.0.0",
+    "pytest-xdist[psutil]>=2.5.0",
+    "pytest-cov>=4.0.0",
+    "pytest-sugar>=1.0.0",
+    "pytest-timeout>=2.4.0",
 ]
 translations = [
     "gitpython >=3.1.46",
@@ -229,6 +233,7 @@ strict_xfail = true
 filterwarnings = [
     "error",
 ]
+timeout = "20"
 
 [tool.coverage.run]
 parallel = true
@@ -240,7 +245,6 @@ source = [
 ]
 relative_files = true
 context = '${CONTEXT}'
-dynamic_context = "test_function"
 omit = [
     "tests/benchmarks/*",
     "docs_src/response_model/tutorial003_04_py39.py",
