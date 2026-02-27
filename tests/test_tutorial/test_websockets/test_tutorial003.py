@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
     ],
 )
 def get_mod(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.websockets.{request.param}")
+    mod = importlib.import_module(f"docs_src.websockets_.{request.param}")
 
     return mod
 
