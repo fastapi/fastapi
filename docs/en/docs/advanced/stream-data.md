@@ -54,7 +54,7 @@ For example, you can create a `PNGStreamingResponse` that sets the `Content-Type
 
 Then you can use this new class in `response_class=PNGStreamingResponse` in your *path operation function*:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:26] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
 
 ### Simulate a File { #simulate-a-file }
 
@@ -62,7 +62,7 @@ In this example, we are simulating a file with `io.BytesIO`, which is a file-lik
 
 For example, we can iterate over it to consume its contents, as we could with a file.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:26] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Technical Details
 
@@ -71,6 +71,10 @@ The other two variables, `image_base64` and `binary_image`, are an image encoded
 Only so that it can live in the same file for this example and you can copy it and run it as is. 🥚
 
 ///
+
+By using a `with` block, we make sure that the file-like object is closed after the generator function (the function with `yield`) is done. So, after it finishes sending the response.
+
+It wouldn't be that important in this specific example because it's a fake in-memory file (with `io.BytesIO`), but with a real file, it would be important to make sure the file is closed after the work with it is done.
 
 ### Files and Async { #files-and-async }
 
@@ -90,10 +94,18 @@ But in many cases reading a file or a file-like object would block.
 
 To avoid blocking the event loop, you can simply declare the *path operation function* with regular `def` instead of `async def`, that way FastAPI will run it on a threadpool worker, to avoid blocking the main loop.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[29:32] hl[30] *}
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
 
 /// tip
 
 If you need to call blocking code from inside of an async function, or an async function from inside of a blocking function, you could use <a href="https://asyncer.tiangolo.com" class="external-link" target="_blank">Asyncer</a>, a sibling library to FastAPI.
 
 ///
+
+### `yield from` { #yield-from }
+
+When you are iterating over something, like a file-like object, and then you are doing `yield` for each item, you could also use `yield from` to yield each item directly and skip the `for` loop.
+
+This is not particular to FastAPI, it's just Python, but it's a nice trick to know. 😎
+
+{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
