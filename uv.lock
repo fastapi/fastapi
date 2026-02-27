@@ -1259,7 +1259,7 @@ requires-dist = [
     { name = "python-multipart", marker = "extra == 'standard'", specifier = ">=0.0.18" },
     { name = "python-multipart", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=0.0.18" },
     { name = "pyyaml", marker = "extra == 'all'", specifier = ">=5.3.1" },
-    { name = "starlette", specifier = ">=0.40.0" },
+    { name = "starlette", specifier = ">=0.46.0" },
     { name = "typing-extensions", specifier = ">=4.8.0" },
     { name = "typing-inspection", specifier = ">=0.4.2" },
     { name = "uvicorn", extras = ["standard"], marker = "extra == 'all'", specifier = ">=0.12.0" },

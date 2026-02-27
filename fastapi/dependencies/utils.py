@@ -1,7 +1,17 @@
 import dataclasses
 import inspect
 import sys
-from collections.abc import Callable, Mapping, Sequence
+from collections.abc import (
+    AsyncGenerator,
+    AsyncIterable,
+    AsyncIterator,
+    Callable,
+    Generator,
+    Iterable,
+    Iterator,
+    Mapping,
+    Sequence,
+)
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -249,6 +259,26 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
 
     globalns = getattr(unwrapped, "__globals__", {})
     return get_typed_annotation(annotation, globalns)
+
+
+_STREAM_ORIGINS = {
+    AsyncIterable,
+    AsyncIterator,
+    AsyncGenerator,
+    Iterable,
+    Iterator,
+    Generator,
+}
+
+
+def get_stream_item_type(annotation: Any) -> Any | None:
+    origin = get_origin(annotation)
+    if origin is not None and origin in _STREAM_ORIGINS:
+        type_args = get_args(annotation)
+        if type_args:
+            return type_args[0]
+        return Any
+    return None
 
 
 def get_dependant(

@@ -42,7 +42,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0",
+    "starlette>=0.46.0",
     "pydantic>=2.7.0",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
@@ -321,6 +321,9 @@ ignore = [
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
 "docs_src/json_base64_bytes/tutorial001_py310.py" = ["UP012"]
+"docs_src/stream_json_lines/tutorial001_py310.py" = ["UP028"]
+"docs_src/stream_data/tutorial001_py310.py" = ["UP028"]
+"docs_src/stream_data/tutorial002_py310.py" = ["UP028"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
