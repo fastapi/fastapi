@@ -53,7 +53,7 @@ class OAuth2PasswordRequestForm:
     You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
-    know that that it is application specific, it's not part of the specification.
+    know that it is application specific, it's not part of the specification.
     """
 
     def __init__(
@@ -207,7 +207,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
-    know that that it is application specific, it's not part of the specification.
+    know that it is application specific, it's not part of the specification.
 
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
