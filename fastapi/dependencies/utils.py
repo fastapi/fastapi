@@ -622,22 +622,17 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
+    dependency_overrides: dict[Callable[..., Any], Callable[..., Any]] = getattr(
+        dependency_overrides_provider, "dependency_overrides", {}
+    )
     for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        call = sub_dependant.call
+        call = cast(Callable[..., Any], sub_dependant.call)
         use_sub_dependant = sub_dependant
-        if (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
-            use_path: str = sub_dependant.path  # type: ignore
+        if dependency_overrides and (overridden_call := dependency_overrides.get(call)):
+            call = overridden_call
             use_sub_dependant = get_dependant(
-                path=use_path,
-                call=call,
+                path=cast(str, sub_dependant.path),
+                call=overridden_call,
                 name=sub_dependant.name,
                 parent_oauth_scopes=sub_dependant.oauth_scopes,
                 scope=sub_dependant.scope,
