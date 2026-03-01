@@ -337,76 +337,93 @@ def get_openapi_path(
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
-            if route.status_code is not None:
-                status_code = str(route.status_code)
+
+            if route.return_response_classes:
+                if route.return_response_models:
+                    response_classes = (
+                        current_response_class,
+                        *route.return_response_classes,
+                    )
+                else:
+                    response_classes = route.return_response_classes
             else:
-                # It would probably make more sense for all response classes to have an
-                # explicit default status_code, and to extract it from them, instead of
-                # doing this inspection tricks, that would probably be in the future
-                # TODO: probably make status_code a default class attribute for all
-                # responses in Starlette
-                response_signature = inspect.signature(current_response_class.__init__)
-                status_code_param = response_signature.parameters.get("status_code")
-                if status_code_param is not None:
-                    if isinstance(status_code_param.default, int):
-                        status_code = str(status_code_param.default)
-            operation.setdefault("responses", {}).setdefault(status_code, {})[
-                "description"
-            ] = route.response_description
-            if is_body_allowed_for_status_code(route.status_code):
-                # Check for JSONL streaming (generator endpoints)
-                if route.is_json_stream:
-                    jsonl_content: dict[str, Any] = {}
-                    if route.stream_item_field:
-                        item_schema = get_schema_from_model_field(
-                            field=route.stream_item_field,
-                            model_name_map=model_name_map,
-                            field_mapping=field_mapping,
-                            separate_input_output_schemas=separate_input_output_schemas,
-                        )
-                        jsonl_content["itemSchema"] = item_schema
-                    else:
-                        jsonl_content["itemSchema"] = {}
-                    operation.setdefault("responses", {}).setdefault(
-                        status_code, {}
-                    ).setdefault("content", {})["application/jsonl"] = jsonl_content
-                elif route.is_sse_stream:
-                    sse_content: dict[str, Any] = {}
-                    item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
-                    if route.stream_item_field:
-                        content_schema = get_schema_from_model_field(
-                            field=route.stream_item_field,
-                            model_name_map=model_name_map,
-                            field_mapping=field_mapping,
-                            separate_input_output_schemas=separate_input_output_schemas,
-                        )
-                        item_schema["required"] = ["data"]
-                        item_schema["properties"]["data"] = {
-                            "type": "string",
-                            "contentMediaType": "application/json",
-                            "contentSchema": content_schema,
-                        }
-                    sse_content["itemSchema"] = item_schema
-                    operation.setdefault("responses", {}).setdefault(
-                        status_code, {}
-                    ).setdefault("content", {})["text/event-stream"] = sse_content
-                elif route_response_media_type:
-                    response_schema = {"type": "string"}
-                    if lenient_issubclass(current_response_class, JSONResponse):
-                        if route.response_field:
-                            response_schema = get_schema_from_model_field(
-                                field=route.response_field,
+                response_classes = (current_response_class,)
+
+            for response_class in response_classes:
+                if route.status_code is not None:
+                    status_code = str(route.status_code)
+                else:
+                    # It would probably make more sense for all response classes to have an
+                    # explicit default status_code, and to extract it from them, instead of
+                    # doing this inspection tricks, that would probably be in the future
+                    # TODO: probably make status_code a default class attribute for all
+                    # responses in Starlette
+                    response_signature = inspect.signature(response_class.__init__)
+                    status_code_param = response_signature.parameters.get("status_code")
+                    if status_code_param is not None:
+                        if isinstance(status_code_param.default, int):
+                            status_code = str(status_code_param.default)
+                operation.setdefault("responses", {}).setdefault(status_code, {})[
+                    "description"
+                ] = route.response_description
+
+                if is_body_allowed_for_status_code(route.status_code):
+                    return_response_media_type: str | None = response_class.media_type
+
+                    # Check for JSONL streaming (generator endpoints)
+                    if route.is_json_stream:
+                        jsonl_content: dict[str, Any] = {}
+                        if route.stream_item_field:
+                            item_schema = get_schema_from_model_field(
+                                field=route.stream_item_field,
                                 model_name_map=model_name_map,
                                 field_mapping=field_mapping,
                                 separate_input_output_schemas=separate_input_output_schemas,
                             )
+                            jsonl_content["itemSchema"] = item_schema
                         else:
-                            response_schema = {}
-                    operation.setdefault("responses", {}).setdefault(
-                        status_code, {}
-                    ).setdefault("content", {}).setdefault(
-                        route_response_media_type, {}
-                    )["schema"] = response_schema
+                            jsonl_content["itemSchema"] = {}
+                        operation.setdefault("responses", {}).setdefault(
+                            status_code, {}
+                        ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                    elif route.is_sse_stream:
+                        sse_content: dict[str, Any] = {}
+                        item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
+                        if route.stream_item_field:
+                            content_schema = get_schema_from_model_field(
+                                field=route.stream_item_field,
+                                model_name_map=model_name_map,
+                                field_mapping=field_mapping,
+                                separate_input_output_schemas=separate_input_output_schemas,
+                            )
+                            item_schema["required"] = ["data"]
+                            item_schema["properties"]["data"] = {
+                                "type": "string",
+                                "contentMediaType": "application/json",
+                                "contentSchema": content_schema,
+                            }
+                        sse_content["itemSchema"] = item_schema
+                        operation.setdefault("responses", {}).setdefault(
+                            status_code, {}
+                        ).setdefault("content", {})["text/event-stream"] = sse_content
+                    elif return_response_media_type:
+                        response_schema = {"type": "string"}
+                        if lenient_issubclass(response_class, JSONResponse):
+                            if route.response_field:
+                                response_schema = get_schema_from_model_field(
+                                    field=route.response_field,
+                                    model_name_map=model_name_map,
+                                    field_mapping=field_mapping,
+                                    separate_input_output_schemas=separate_input_output_schemas,
+                                )
+                            else:
+                                response_schema = {}
+                        operation.setdefault("responses", {}).setdefault(
+                            status_code, {}
+                        ).setdefault("content", {}).setdefault(
+                            return_response_media_type, {}
+                        )["schema"] = response_schema
+
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
