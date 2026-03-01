@@ -251,6 +251,9 @@ omit = [
     "docs_src/response_model/tutorial003_04_py310.py",
     "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
     "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
+    # Only run (and cover) on Python 3.14+
+    "docs_src/dependencies/tutorial008_an_py310.py",
+    "tests/test_stringified_annotation_dependency_py314.py",
     # Pydantic v1 migration, no longer tested
     "docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py",
     "docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py",
