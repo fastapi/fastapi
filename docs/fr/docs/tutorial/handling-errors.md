@@ -205,13 +205,11 @@ Vous recevrez une réponse vous indiquant que les données sont invalides et con
         "size"
       ],
       "msg": "value is not a valid integer",
-      "type": "type_error.integer"
+      "type": "type_error.integer",
+      "input": "XL"
     }
   ],
-  "body": {
-    "title": "towel",
-    "size": "XL"
-  }
+  "body": "{\n  \"title\": \"towel\",\n  \"size\": \"XL\"\n}"
 }
 ```
 

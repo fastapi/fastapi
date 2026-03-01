@@ -174,6 +174,21 @@ class ModelField:
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 
+    def validate_json(
+        self,
+        data: bytes,
+        loc: tuple[str, ...] = (),
+    ) -> tuple[Any, list[dict[str, Any]]]:
+        try:
+            return (
+                self._type_adapter.validate_json(data),
+                [],
+            )
+        except ValidationError as exc:
+            return None, _regenerate_error_with_loc(
+                errors=exc.errors(include_url=False), loc_prefix=loc
+            )
+
     def serialize(
         self,
         value: Any,

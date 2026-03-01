@@ -2,7 +2,6 @@ import contextlib
 import email.message
 import functools
 import inspect
-import json
 import types
 from collections.abc import (
     AsyncIterator,
@@ -33,7 +32,6 @@ from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import (
     ModelField,
-    Undefined,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -285,7 +283,7 @@ async def serialize_response(
 ) -> Any:
     if field:
         if is_coroutine:
-            value, errors = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, loc=("response",))
         else:
             value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
@@ -396,44 +394,26 @@ def get_request_handler(
         # Read body and auto-close files
         try:
             body: Any = None
+            is_body_json = False
             if body_field:
                 if is_body_form:
                     body = await request.form()
                     file_stack.push_async_callback(body.close)
                 else:
-                    body_bytes = await request.body()
-                    if body_bytes:
-                        json_body: Any = Undefined
+                    body = await request.body() or None
+                    if body:
                         content_type_value = request.headers.get("content-type")
                         if not content_type_value:
                             if not actual_strict_content_type:
-                                json_body = await request.json()
+                                is_body_json = True
                         else:
                             message = email.message.Message()
                             message["content-type"] = content_type_value
                             if message.get_content_maintype() == "application":
                                 subtype = message.get_content_subtype()
-                                if subtype == "json" or subtype.endswith("+json"):
-                                    json_body = await request.json()
-                        if json_body != Undefined:
-                            body = json_body
-                        else:
-                            body = body_bytes
-        except json.JSONDecodeError as e:
-            validation_error = RequestValidationError(
-                [
-                    {
-                        "type": "json_invalid",
-                        "loc": ("body", e.pos),
-                        "msg": "JSON decode error",
-                        "input": {},
-                        "ctx": {"error": e.msg},
-                    }
-                ],
-                body=e.doc,
-                endpoint_ctx=endpoint_ctx,
-            )
-            raise validation_error from e
+                                is_body_json = subtype == "json" or subtype.endswith(
+                                    "+json"
+                                )
         except HTTPException:
             # If a middleware raises an HTTPException, it should be raised again
             raise
@@ -453,6 +433,7 @@ def get_request_handler(
             request=request,
             dependant=dependant,
             body=body,
+            is_body_json=is_body_json,
             dependency_overrides_provider=dependency_overrides_provider,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
