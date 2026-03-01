@@ -155,12 +155,12 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         name=dependant.name,
         call=dependant.call,
-        request_param_name=dependant.request_param_name,
-        websocket_param_name=dependant.websocket_param_name,
-        http_connection_param_name=dependant.http_connection_param_name,
-        response_param_name=dependant.response_param_name,
-        background_tasks_param_name=dependant.background_tasks_param_name,
-        security_scopes_param_name=dependant.security_scopes_param_name,
+        request_param_names=dependant.request_param_names.copy(),
+        websocket_param_names=dependant.websocket_param_names.copy(),
+        http_connection_param_names=dependant.http_connection_param_names.copy(),
+        response_param_names=dependant.response_param_names.copy(),
+        background_tasks_param_names=dependant.background_tasks_param_names.copy(),
+        security_scopes_param_names=dependant.security_scopes_param_names.copy(),
         own_oauth_scopes=dependant.own_oauth_scopes,
         parent_oauth_scopes=use_parent_oauth_scopes,
         use_cache=dependant.use_cache,
@@ -360,22 +360,22 @@ def add_non_field_param_to_dependency(
     *, param_name: str, type_annotation: Any, dependant: Dependant
 ) -> bool | None:
     if lenient_issubclass(type_annotation, Request):
-        dependant.request_param_name = param_name
+        dependant.request_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, WebSocket):
-        dependant.websocket_param_name = param_name
+        dependant.websocket_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, HTTPConnection):
-        dependant.http_connection_param_name = param_name
+        dependant.http_connection_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, Response):
-        dependant.response_param_name = param_name
+        dependant.response_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, StarletteBackgroundTasks):
-        dependant.background_tasks_param_name = param_name
+        dependant.background_tasks_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, SecurityScopes):
-        dependant.security_scopes_param_name = param_name
+        dependant.security_scopes_param_names.add(param_name)
         return True
     return None
 
@@ -707,22 +707,25 @@ async def solve_dependencies(
         )
         values.update(body_values)
         errors.extend(body_errors)
-    if dependant.http_connection_param_name:
-        values[dependant.http_connection_param_name] = request
-    if dependant.request_param_name and isinstance(request, Request):
-        values[dependant.request_param_name] = request
-    elif dependant.websocket_param_name and isinstance(request, WebSocket):
-        values[dependant.websocket_param_name] = request
-    if dependant.background_tasks_param_name:
+    for name in dependant.http_connection_param_names:
+        values[name] = request
+    if isinstance(request, Request):
+        for name in dependant.request_param_names:
+            values[name] = request
+    elif isinstance(request, WebSocket):
+        for name in dependant.websocket_param_names:
+            values[name] = request
+    if dependant.background_tasks_param_names:
         if background_tasks is None:
             background_tasks = BackgroundTasks()
-        values[dependant.background_tasks_param_name] = background_tasks
-    if dependant.response_param_name:
-        values[dependant.response_param_name] = response
-    if dependant.security_scopes_param_name:
-        values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.oauth_scopes
-        )
+        for name in dependant.background_tasks_param_names:
+            values[name] = background_tasks
+    for name in dependant.response_param_names:
+        values[name] = response
+    if dependant.security_scopes_param_names:
+        security_scope = SecurityScopes(scopes=dependant.oauth_scopes)
+        for name in dependant.security_scopes_param_names:
+            values[name] = security_scope
     return SolvedDependency(
         values=values,
         errors=errors,
