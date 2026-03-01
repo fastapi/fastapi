@@ -54,6 +54,7 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
+from fastapi.datastructures import UploadFile as FastAPIUploadFile
 from fastapi.dependencies.models import Dependant
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
@@ -915,23 +916,25 @@ async def _extract_form_body(
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
-        if (
-            isinstance(field_info, params.File)
-            and is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
-            and isinstance(value, UploadFile)
-        ):
-            value = await value.read()
-        elif (
-            is_bytes_sequence_annotation(field.field_info.annotation)
-            and isinstance(field_info, params.File)
-            and value_is_sequence(value)
-        ):
-            # For types
-            assert isinstance(value, sequence_types)
-            results: list[bytes | str] = []
-            for sub_value in value:
-                results.append(await sub_value.read())
-            value = serialize_sequence_value(field=field, value=results)
+        if isinstance(field_info, params.File) and isinstance(value, UploadFile):
+            if is_bytes_or_nonable_bytes_annotation(field.field_info.annotation):
+                value = await value.read()
+            else:
+                value = FastAPIUploadFile.from_starlette(value)
+        elif isinstance(field_info, params.File) and value_is_sequence(value):
+            if is_bytes_sequence_annotation(field.field_info.annotation):
+                # For types
+                assert isinstance(value, sequence_types)
+                results: list[bytes | str] = []
+                for sub_value in value:
+                    results.append(await sub_value.read())
+                value = serialize_sequence_value(field=field, value=results)
+            else:
+                value = [
+                    FastAPIUploadFile.from_starlette(sub_value)
+                    for sub_value in value
+                    if isinstance(sub_value, UploadFile)
+                ]
         if value is not None:
             values[get_validation_alias(field)] = value
     field_aliases = {get_validation_alias(field) for field in body_fields}
