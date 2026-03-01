@@ -7,9 +7,12 @@ hide:
 
 ## Latest Changes
 
+## 0.135.0
+
 ### Features
 
 * ✨ Add support for Server Sent Events. PR [#15030](https://github.com/fastapi/fastapi/pull/15030) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Server-Sent Events (SSE)](https://fastapi.tiangolo.com/tutorial/server-sent-events/).
 
 ## 0.134.0
 
