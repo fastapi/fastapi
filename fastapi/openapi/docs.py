@@ -250,6 +250,16 @@ def get_redoc_html(
             """
         ),
     ] = True,
+    redoc_ui_parameters: Annotated[
+        Optional[Dict[str, Any]],
+        Doc(
+            """
+            Configuration parameters for ReDoc
+
+            It defaults to None.
+            """
+        ),
+    ] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML response that loads ReDoc for the alternative
@@ -261,6 +271,11 @@ def get_redoc_html(
     Read more about it in the
     [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).
     """
+    config_string = ""
+    if redoc_ui_parameters:
+        for key, value in redoc_ui_parameters.items():
+            config_string += f' {key}="{value}"'
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -290,7 +305,7 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc spec-url="{openapi_url}"{config_string}></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>

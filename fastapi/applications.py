@@ -446,6 +446,15 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "/redoc",
+        redoc_ui_parameters: Annotated[
+            Optional[Dict[str, Any]],
+            Doc(
+                """
+                Parameters to configure ReDoc documentation (by default at `/redoc`).
+                Use kebab-case for [parameters](https://redocly.com/docs/redoc/config).
+                """
+            ),
+        ] = None,
         swagger_ui_oauth2_redirect_url: Annotated[
             str | None,
             Doc(
@@ -886,6 +895,7 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.redoc_ui_parameters = redoc_ui_parameters
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -1149,7 +1159,9 @@ class FastAPI(Starlette):
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
-                    openapi_url=openapi_url, title=f"{self.title} - ReDoc"
+                    openapi_url=openapi_url,
+                    title=f"{self.title} - ReDoc",
+                    redoc_ui_parameters=self.redoc_ui_parameters,
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
