@@ -27,6 +27,7 @@ from typing import (
     Any,
     TypeVar,
 )
+from weakref import WeakKeyDictionary
 
 import anyio
 from annotated_doc import Doc
@@ -243,15 +244,17 @@ class _DefaultLifespan:
 
 
 # Cache for endpoint context to avoid re-extracting on every request
-_endpoint_context_cache: dict[int, EndpointContext] = {}
+_endpoint_context_cache: WeakKeyDictionary[Any, EndpointContext] = WeakKeyDictionary()
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
-    func_id = id(func)
-
-    if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+    try:
+        cached = _endpoint_context_cache.get(func)
+    except TypeError:
+        cached = None
+    if cached is not None:
+        return cached
 
     try:
         ctx: EndpointContext = {}
@@ -265,7 +268,10 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     except Exception:
         ctx = EndpointContext()
 
-    _endpoint_context_cache[func_id] = ctx
+    try:
+        _endpoint_context_cache[func] = ctx
+    except TypeError:
+        pass
     return ctx
 
 
