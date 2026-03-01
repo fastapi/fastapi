@@ -105,7 +105,7 @@ def request_response(
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
 
-        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        async def inner_app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
             async with AsyncExitStack() as request_stack:
@@ -126,7 +126,7 @@ def request_response(
                 )
 
         # Same as in Starlette
-        await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+        await wrap_app_handling_exceptions(inner_app, request)(scope, receive, send)
 
     return app
 
@@ -144,7 +144,7 @@ def websocket_session(
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         session = WebSocket(scope, receive=receive, send=send)
 
-        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        async def inner_app(scope: Scope, receive: Receive, send: Send) -> None:
             async with AsyncExitStack() as request_stack:
                 scope["fastapi_inner_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
@@ -152,7 +152,7 @@ def websocket_session(
                     await func(session)
 
         # Same as in Starlette
-        await wrap_app_handling_exceptions(app, session)(scope, receive, send)
+        await wrap_app_handling_exceptions(inner_app, session)(scope, receive, send)
 
     return app
 
