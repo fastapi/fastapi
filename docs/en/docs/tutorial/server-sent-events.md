@@ -107,7 +107,7 @@ This is useful for protocols like <a href="https://modelcontextprotocol.io" clas
 
 FastAPI implements some SSE best practices out of the box.
 
-* Send a **"keep alive" comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes" class="external-link" target="_blank">HTML specification: Server-Sent Events</a>.
+* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes" class="external-link" target="_blank">HTML specification: Server-Sent Events</a>.
 * Set the `Cache-Control: no-cache` header to **prevent caching** of the stream.
 * Set a special header `X-Accel-Buffering: no` to **prevent buffering** in some proxies like Nginx.
 
