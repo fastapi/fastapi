@@ -25,12 +25,16 @@ process = subprocess.Popen(
     ["fastapi", "run", "docs_src/sql_databases/tutorial002.py"],
 )
 try:
-    for _ in range(3):
+    for _ in range(10):
         try:
-            response = httpx.get("http://localhost:8000/docs")
+            response = httpx.get("http://localhost:8000/docs", timeout=1)
+            if response.status_code == 200:
+                break
         except httpx.ConnectError:
             time.sleep(1)
-            break
+    else:
+        raise RuntimeError("Server did not start in time")
+
     with sync_playwright() as playwright:
         run(playwright)
 finally:
