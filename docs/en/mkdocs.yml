@@ -111,32 +111,38 @@ nav:
   - Tutorial - User Guide:
     - tutorial/index.md
     - tutorial/first-steps.md
-    - tutorial/path-params.md
-    - tutorial/query-params.md
-    - tutorial/body.md
-    - tutorial/query-params-str-validations.md
-    - tutorial/path-params-numeric-validations.md
-    - tutorial/query-param-models.md
-    - tutorial/body-multiple-params.md
-    - tutorial/body-fields.md
-    - tutorial/body-nested-models.md
+    - Path:
+      - tutorial/path-params.md
+      - tutorial/path-params-numeric-validations.md
+    - Query:
+      - tutorial/query-params.md
+      - tutorial/query-params-str-validations.md
+      - tutorial/query-param-models.md
+    - Body:
+      - tutorial/body.md
+      - tutorial/body-multiple-params.md
+      - tutorial/body-fields.md
+      - tutorial/body-nested-models.md
+      - tutorial/body-updates.md
+    - Cookie:
+      - tutorial/cookie-params.md
+      - tutorial/cookie-param-models.md
+    - Header:
+      - tutorial/header-params.md
+      - tutorial/header-param-models.md
+    - Form and File:
+      - tutorial/request-forms.md
+      - tutorial/request-form-models.md
+      - tutorial/request-files.md
+      - tutorial/request-forms-and-files.md
     - tutorial/schema-extra-example.md
     - tutorial/extra-data-types.md
-    - tutorial/cookie-params.md
-    - tutorial/header-params.md
-    - tutorial/cookie-param-models.md
-    - tutorial/header-param-models.md
     - tutorial/response-model.md
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
-    - tutorial/request-forms.md
-    - tutorial/request-form-models.md
-    - tutorial/request-files.md
-    - tutorial/request-forms-and-files.md
     - tutorial/handling-errors.md
     - tutorial/path-operation-configuration.md
     - tutorial/encoder.md
-    - tutorial/body-updates.md
     - Dependencies:
       - tutorial/dependencies/index.md
       - tutorial/dependencies/classes-as-dependencies.md
