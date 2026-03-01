@@ -1,7 +1,7 @@
 import dataclasses
 import datetime
 from collections import defaultdict, deque
-from collections.abc import Callable
+from collections.abc import Callable, Mapping, Sequence
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -15,7 +15,10 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Annotated, Any
+from typing import (
+    Annotated,
+    Any,
+)
 from uuid import UUID
 
 from annotated_doc import Doc
@@ -27,10 +30,22 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
 
+# Dropped support for Pydantic v1 so we can remove the try-except import and the related code
+from pydantic_extra_types import color as et_color
+
 from ._compat import (
     Url,
     is_pydantic_v1_model_instance,
 )
+
+encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {et_color.Color: str}
+
+try:
+    from pydantic_extra_types import coordinate
+
+    encoders_by_extra_type[coordinate.Coordinate] = str
+except ImportError:
+    pass
 
 
 # Taken from Pydantic v1 as is
@@ -106,7 +121,9 @@ def generate_encoders_by_class_tuples(
     return encoders_by_class_tuples
 
 
-encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
+encoders_by_class_tuples = generate_encoders_by_class_tuples(
+    ENCODERS_BY_TYPE | encoders_by_extra_type
+)
 
 
 def jsonable_encoder(
@@ -198,6 +215,18 @@ def jsonable_encoder(
             """
         ),
     ] = True,
+    named_tuple_as_dict: Annotated[
+        bool,
+        Doc(
+            """
+            Whether to encode named tuples as dicts instead of lists.
+
+            This is useful when you want to preserve the field names of named tuples
+            in the JSON output, which can make it easier to understand and work with
+            the data on the client side.
+            """
+        ),
+    ] = False,
 ) -> Any:
     """
     Convert any object to something that can be encoded in JSON.
@@ -239,6 +268,10 @@ def jsonable_encoder(
             exclude_defaults=exclude_defaults,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+    # The extra types have their own encoders, so we check for them before checking for dataclasses,
+    # because some of them are also dataclasses, and we want to use their custom encoders instead of encoding them as dataclasses.
+    if type(obj) in encoders_by_extra_type:
+        return encoders_by_extra_type[type(obj)](obj)
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
@@ -261,7 +294,7 @@ def jsonable_encoder(
         return obj
     if isinstance(obj, PydanticUndefinedType):
         return None
-    if isinstance(obj, dict):
+    if isinstance(obj, Mapping):
         encoded_dict = {}
         allowed_keys = set(obj.keys())
         if include is not None:
@@ -296,7 +329,28 @@ def jsonable_encoder(
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
+
+    # Check if it's a named tuple, and if so, encode it as a dict (instead of a list) if `named_tuple_as_dict` is `True`.
+    if (
+        named_tuple_as_dict
+        and getattr(obj, "_asdict", None) is not None
+        and callable(obj._asdict)
+    ):
+        return jsonable_encoder(
+            obj._asdict(),
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+
+    # Note that we check for `Sequence` and not `list` because we want to support any kind of sequence, like `list`, `tuple`, `set`, etc.
+    # Also, we check that it's not a `bytes` object, because `bytes` is also a `Sequence`, but we want to rely on the TYPE_ENCODERS for `bytes` and avoid code duplication.
+    if isinstance(obj, (Sequence, GeneratorType)) and not isinstance(obj, bytes):
         encoded_list = []
         for item in obj:
             encoded_list.append(
