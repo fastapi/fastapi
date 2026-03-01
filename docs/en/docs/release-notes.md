@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `docs/en/docs/_llm-test.md`. PR [#15007](https://github.com/fastapi/fastapi/pull/15007) by [@adityagiri3600](https://github.com/adityagiri3600).
 * 📝 Update Skill, optimize context, trim and refactor into references. PR [#15031](https://github.com/fastapi/fastapi/pull/15031) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
