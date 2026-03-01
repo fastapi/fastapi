@@ -1,3 +1,4 @@
+import hashlib
 import re
 import warnings
 from collections.abc import Sequence
@@ -413,11 +414,25 @@ def normalize_name(name: str) -> str:
     return re.sub(r"[^a-zA-Z0-9.\-_]", "_", name)
 
 
+def get_long_model_name(model: TypeModelOrEnum) -> str:
+    return f"{model.__qualname__}_{hashlib.sha1(model.__module__.encode()).hexdigest()}"
+
+
 def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str]:
     name_model_map = {}
+    conflicting_names: set[str] = set()
     for model in unique_models:
         model_name = normalize_name(model.__name__)
-        name_model_map[model_name] = model
+        if model_name in conflicting_names:
+            model_name = get_long_model_name(model)
+            name_model_map[model_name] = model
+        elif model_name in name_model_map:
+            conflicting_names.add(model_name)
+            conflicting_model = name_model_map.pop(model_name)
+            name_model_map[get_long_model_name(conflicting_model)] = conflicting_model
+            name_model_map[get_long_model_name(model)] = model
+        else:
+            name_model_map[model_name] = model
     return {v: k for k, v in name_model_map.items()}
 
 
