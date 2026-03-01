@@ -33,8 +33,8 @@ class EventSourceResponse(StreamingResponse):
     media_type = "text/event-stream"
 
 
-def _check_id_no_null(v: int | str | None) -> int | str | None:
-    if v is not None and "\0" in str(v):
+def _check_id_no_null(v: str | None) -> str | None:
+    if v is not None and "\0" in v:
         raise ValueError("SSE 'id' must not contain null characters")
     return v
 
@@ -96,7 +96,7 @@ class ServerSentEvent(BaseModel):
         ),
     ] = None
     id: Annotated[
-        int | str | None,
+        str | None,
         AfterValidator(_check_id_no_null),
         Doc(
             """
@@ -162,7 +162,7 @@ def format_sse_event(
         ),
     ] = None,
     id: Annotated[
-        int | str | None,
+        str | None,
         Doc(
             """
             Optional event ID (`id:` field).
