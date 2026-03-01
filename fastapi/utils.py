@@ -96,7 +96,12 @@ def generate_unique_id(route: "APIRoute") -> str:
     operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
-    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    # Use a deterministic method for the operation ID.
+    # Prefer non-HEAD methods since HEAD is often auto-added for GET routes.
+    # Sort to ensure consistent ordering across Python versions.
+    methods = sorted(route.methods)
+    method = next((m for m in methods if m != "HEAD"), methods[0])
+    operation_id = f"{operation_id}_{method.lower()}"
     return operation_id
 
 
