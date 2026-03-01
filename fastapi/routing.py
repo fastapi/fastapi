@@ -84,6 +84,7 @@ from starlette.routing import (
     get_name,
 )
 from starlette.routing import Mount as Mount  # noqa
+from starlette.staticfiles import StaticFiles
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
@@ -1270,6 +1271,20 @@ class APIRouter(routing.Router):
         self.generate_unique_id_function = generate_unique_id_function
         self.strict_content_type = strict_content_type
 
+    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        """
+        Mount a StaticFiles instance.
+        Will raise a FastAPIError exception if app is not an instance of StaticFiles.
+        """
+        if not isinstance(app, StaticFiles):
+            raise FastAPIError(
+                "APIRouter does not support mounting ASGI applications other than StaticFiles."
+            )
+        self._mount(path=self.prefix + path, app=app, name=name)
+
+    def _mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        super().mount(path=path, app=app, name=name)
+
     def route(
         self,
         path: str,
@@ -1775,6 +1790,11 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+            elif (  # fmt: skip
+                isinstance(route, routing.Mount) and isinstance(route.app, StaticFiles)
+            ):
+                self.mount(prefix + route.path, route.app, name=route.name)
+
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
