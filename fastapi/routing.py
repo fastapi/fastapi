@@ -420,6 +420,14 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
+            start_pos = max(0, e.pos - 40)
+            end_pos = min(len(e.doc), e.pos + 40)
+            error_snippet = e.doc[start_pos:end_pos]
+            if start_pos > 0:
+                error_snippet = "..." + error_snippet
+            if end_pos < len(e.doc):
+                error_snippet = error_snippet + "..."
+
             validation_error = RequestValidationError(
                 [
                     {
@@ -427,7 +435,13 @@ def get_request_handler(
                         "loc": ("body", e.pos),
                         "msg": "JSON decode error",
                         "input": {},
-                        "ctx": {"error": e.msg},
+                        "ctx": {
+                            "error": e.msg,
+                            "position": e.pos,
+                            "line": e.lineno - 1,
+                            "column": e.colno - 1,
+                            "snippet": error_snippet,
+                        },
                     }
                 ],
                 body=e.doc,
