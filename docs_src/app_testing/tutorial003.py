@@ -1,9 +1,11 @@
 from contextlib import asynccontextmanager
+from typing import Any
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-items = {}
+# Use typing.Dict for compatibility with older Python versions
+items: dict[str, Any] = {}
 
 
 @asynccontextmanager
