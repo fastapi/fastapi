@@ -4,6 +4,7 @@ import functools
 import inspect
 import json
 import types
+import weakref
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -242,16 +243,19 @@ class _DefaultLifespan:
         return self
 
 
-# Cache for endpoint context to avoid re-extracting on every request
-_endpoint_context_cache: dict[int, EndpointContext] = {}
+# Cache for endpoint context to avoid re-extracting on every request.
+# Uses WeakKeyDictionary so entries are automatically evicted when the endpoint
+# function is garbage collected (e.g., when a dynamically created FastAPI app is
+# destroyed), preventing both memory leaks and stale-ID lookups.
+_endpoint_context_cache: weakref.WeakKeyDictionary[
+    Callable[..., Any], EndpointContext
+] = weakref.WeakKeyDictionary()
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
-    func_id = id(func)
-
-    if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+    if func in _endpoint_context_cache:
+        return _endpoint_context_cache[func]
 
     try:
         ctx: EndpointContext = {}
@@ -265,7 +269,7 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     except Exception:
         ctx = EndpointContext()
 
-    _endpoint_context_cache[func_id] = ctx
+    _endpoint_context_cache[func] = ctx
     return ctx
 
 
