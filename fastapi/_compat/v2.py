@@ -30,7 +30,7 @@ from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined
+from pydantic_core import PydanticUndefined, PydanticUndefinedType
 from pydantic_core import Url as Url
 from pydantic_core.core_schema import (
     with_info_plain_validator_function as with_info_plain_validator_function,
@@ -38,6 +38,7 @@ from pydantic_core.core_schema import (
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
+UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
 
 
