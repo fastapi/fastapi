@@ -1,6 +1,7 @@
 from typing import Any
 
 from fastapi.exceptions import FastAPIDeprecationWarning
+from fastapi.sse import EventSourceResponse as EventSourceResponse  # noqa
 from starlette.responses import FileResponse as FileResponse  # noqa
 from starlette.responses import HTMLResponse as HTMLResponse  # noqa
 from starlette.responses import JSONResponse as JSONResponse  # noqa
