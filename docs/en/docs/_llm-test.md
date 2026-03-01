@@ -166,7 +166,7 @@ See sections `### Special blocks` and `### Tab blocks` in the general prompt in 
 
 //// tab | Test
 
-The link text should get translated, the link address should remain unchaged:
+The link text should get translated, the link address should remain unchanged:
 
 * [Link to heading above](#code-snippets)
 * [Internal link](index.md#installation){.internal-link target=_blank}
