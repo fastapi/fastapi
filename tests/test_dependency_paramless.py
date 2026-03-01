@@ -27,14 +27,14 @@ def process_auth(
 
 @app.get("/get-credentials")
 def get_credentials(
-    credentials: Annotated[dict, Security(process_auth, scopes=["a", "b"])],
+    credentials: Annotated[dict, Security(process_auth, oauth_scopes=["a", "b"])],
 ):
     return credentials
 
 
 @app.get(
     "/parameterless-with-scopes",
-    dependencies=[Security(process_auth, scopes=["a", "b"])],
+    dependencies=[Security(process_auth, oauth_scopes=["a", "b"])],
 )
 def get_parameterless_with_scopes():
     return {"status": "ok"}

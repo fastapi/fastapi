@@ -1,9 +1,11 @@
-from collections.abc import Callable, Sequence
+import warnings
+from collections.abc import Callable
 from typing import Annotated, Any, Literal
 
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
+from fastapi.exceptions import FastAPIError
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
 from typing_extensions import deprecated
@@ -2367,6 +2369,16 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
+
+    # Handle case when `scope` parameter value is invalid
+    if scope not in ("function", "request", None):
+        raise FastAPIError(
+            "Invalid value for 'scope' parameter in Depends(). "
+            "Expected 'function', 'request', or None. "
+            f'Did you mean to use Security(dependency_fn, oauth_scopes="{scope}") '
+            "to specify OAuth2 scopes instead?"
+        )
+
     return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
 
 
@@ -2386,8 +2398,24 @@ def Security(  # noqa: N802
         ),
     ] = None,
     *,
+    oauth_scopes: Annotated[
+        list[str] | tuple[str, ...] | set[str] | frozenset[str] | None,
+        Doc(
+            """
+            OAuth2 scopes required for the *path operation* that uses this Security
+            dependency.
+
+            The term "scope" comes from the OAuth2 specification, it seems to be
+            intentionally vague and interpretable. It normally refers to permissions,
+            in cases to roles.
+
+            These scopes are integrated with OpenAPI (and the API docs at `/docs`).
+            So they are visible in the OpenAPI specification.
+            """
+        ),
+    ] = None,
     scopes: Annotated[
-        Sequence[str] | None,
+        list[str] | tuple[str, ...] | set[str] | frozenset[str] | None,
         Doc(
             """
             OAuth2 scopes required for the *path operation* that uses this Security
@@ -2402,6 +2430,48 @@ def Security(  # noqa: N802
 
             Read more about it in the
             [FastAPI docs about OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/)
+
+            This parameter is deprecated in favor of `oauth_scopes`.
+            """
+        ),
+        deprecated(
+            """
+            In order to avoid confusion with `scope` parameter, the `scopes` parameter
+            is deprecated in favor of `oauth_scopes`.
+
+            To specify dependency scope for dependencies with `yield` use `scope` parameter:
+
+            ```python
+            Security(dependency_fn, scope="function")
+            ```
+
+            To specify OAuth2 scopes use `oauth_scopes` parameter:
+
+            ```python
+            Security(dependency_fn, oauth_scopes=["items", "users"])
+            ```
+
+            &#8203;
+            """
+        ),
+    ] = None,
+    scope: Annotated[
+        Literal["function", "request"] | None,
+        Doc(
+            """
+            Mainly for dependencies with `yield`, define when the dependency function
+            should start (the code before `yield`) and when it should end (the code
+            after `yield`).
+
+            * `"function"`: start the dependency before the *path operation function*
+                that handles the request, end the dependency after the *path operation
+                function* ends, but **before** the response is sent back to the client.
+                So, the dependency function will be executed **around** the *path operation
+                **function***.
+            * `"request"`: start the dependency before the *path operation function*
+                that handles the request (similar to when using `"function"`), but end
+                **after** the response is sent back to the client. So, the dependency
+                function will be executed **around** the **request** and response cycle.
             """
         ),
     ] = None,
@@ -2427,8 +2497,8 @@ def Security(  # noqa: N802
     Declare a FastAPI Security dependency.
 
     The only difference with a regular dependency is that it can declare OAuth2
-    scopes that will be integrated with OpenAPI and the automatic UI docs (by default
-    at `/docs`).
+    scopes (`oauth_scopes` parameter) that will be integrated with OpenAPI and the
+    automatic UI docs (by default at `/docs`).
 
     It takes a single "dependable" callable (like a function).
 
@@ -2453,9 +2523,58 @@ def Security(  # noqa: N802
 
     @app.get("/users/me/items/")
     async def read_own_items(
-        current_user: Annotated[User, Security(get_current_active_user, scopes=["items"])]
+        current_user: Annotated[
+            User, Security(get_current_active_user, oauth_scopes=["items"])
+        ]
     ):
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+
+    if scopes is not None:
+        warnings.warn(
+            (
+                "The 'scopes' parameter in Security() is deprecated in favor of "
+                "'oauth_scopes' in order to avoid confusion with 'scope' parameter."
+            ),
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
+    # Handle case when `scopes="function"` is mistakenly used instead of `scope="function"`
+    if isinstance(scopes, str) and (scopes in ("function", "request")):
+        raise FastAPIError(
+            "Invalid value for the 'scopes' parameter in Security(). "
+            "Expected a sequence of strings (e.g., ['admin', 'user']), but received "
+            "a single string. "
+            f'Did you mean to use scope="{scopes}" to specify when the exit code '
+            "of dependencies with yield should run? "
+        )
+
+    oauth_scopes_param = "oauth_scopes" if (oauth_scopes is not None) else "scopes"
+    oauth_scopes = oauth_scopes or scopes
+
+    # Handle case when single string is passed to `scopes` or `oauth_scopes` instead of
+    # a list of strings
+    if isinstance(oauth_scopes, str):
+        raise FastAPIError(
+            f"Invalid value for the '{oauth_scopes_param}' parameter in Security(). "
+            "Expected a sequence of strings (e.g., ['admin', 'user']), but received a "
+            "single string. Wrap it in a list: oauth_scopes=['your_scope'] instead of "
+            "oauth_scopes='your_scope'."
+        )
+
+    # Handle case when `scope` parameter value is invalid
+    if scope not in ("function", "request", None):
+        raise FastAPIError(
+            "Invalid value for 'scope' parameter in Security(). "
+            "Expected 'function', 'request', or None. "
+            f'Did you mean oauth_scopes="{scope}" to specify OAuth2 scopes instead?'
+        )
+
+    return params.Security(
+        dependency=dependency,
+        oauth_scopes=oauth_scopes,
+        use_cache=use_cache,
+        scope=scope,
+    )
