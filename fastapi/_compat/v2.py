@@ -25,7 +25,7 @@ from pydantic import ValidationError as ValidationError
 from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
-from pydantic._internal._typing_extra import eval_type_lenient
+from pydantic._internal._typing_extra import annotated_type, eval_type_lenient
 from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
@@ -382,7 +382,7 @@ def create_body_model(
 def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     model_fields: list[ModelField] = []
     for name, field_info in model.model_fields.items():
-        type_ = field_info.annotation
+        type_ = annotated_type(field_info.annotation) or field_info.annotation
         if lenient_issubclass(type_, (BaseModel, dict)) or is_dataclass(type_):
             model_config = None
         else:
