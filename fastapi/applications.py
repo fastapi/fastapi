@@ -863,6 +863,17 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        router_class: Annotated[
+            Type[routing.APIRouter],
+            Doc(
+                """
+                The default router class to be used.
+
+                Read more in the
+                [FastAPI docs for Custom Router](Bigger Applications - Multiple Files).
+                """
+            ),
+        ] = routing.APIRouter,
         **extra: Annotated[
             Any,
             Doc(
@@ -947,7 +958,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ] = webhooks or routing.APIRouter()
+        ] = webhooks or router_class()
         self.root_path = root_path or openapi_prefix
         self.state: Annotated[
             State,
@@ -983,7 +994,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
-        self.router: routing.APIRouter = routing.APIRouter(
+        self.router: routing.APIRouter = router_class(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
