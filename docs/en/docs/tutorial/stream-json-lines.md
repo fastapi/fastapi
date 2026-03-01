@@ -100,6 +100,6 @@ You can also omit the return type. FastAPI will then use the [`jsonable_encoder`
 
 {* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
 
-## Server Sent Events (SSE) { #server-sent-events-sse }
+## Server-Sent Events (SSE) { #server-sent-events-sse }
 
-A future version of FastAPI will also have first-class support for Server Sent Events (SSE), which are quite similar, but with a couple of extra details. 🤓
+FastAPI also has first-class support for Server-Sent Events (SSE), which are quite similar but with a couple of extra details. You can learn about them in the next chapter: [Server-Sent Events (SSE)](server-sent-events.md){.internal-link target=_blank}. 🤓
