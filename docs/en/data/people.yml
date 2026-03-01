@@ -1,15 +1,15 @@
 maintainers:
 - login: tiangolo
-  answers: 1923
+  answers: 1925
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 experts:
 - login: tiangolo
-  count: 1923
+  count: 1925
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 - login: YuriiMotov
-  count: 1107
+  count: 1120
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 - login: github-actions
@@ -53,7 +53,7 @@ experts:
   avatarUrl: https://avatars.githubusercontent.com/u/331403?v=4
   url: https://github.com/phy25
 - login: JavierSanchezCastro
-  count: 106
+  count: 107
   avatarUrl: https://avatars.githubusercontent.com/u/72013291?u=ae5679e6bd971d9d98cd5e76e8683f83642ba950&v=4
   url: https://github.com/JavierSanchezCastro
 - login: luzzodev
@@ -246,7 +246,7 @@ experts:
   url: https://github.com/mattmess1221
 last_month_experts:
 - login: YuriiMotov
-  count: 20
+  count: 31
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 - login: Toygarmetu
@@ -254,16 +254,20 @@ last_month_experts:
   avatarUrl: https://avatars.githubusercontent.com/u/92878791?u=538530cb6d5554e71f9c28709d794db9a74d23d9&v=4
   url: https://github.com/Toygarmetu
 - login: JavierSanchezCastro
-  count: 4
+  count: 5
   avatarUrl: https://avatars.githubusercontent.com/u/72013291?u=ae5679e6bd971d9d98cd5e76e8683f83642ba950&v=4
   url: https://github.com/JavierSanchezCastro
+- login: tiangolo
+  count: 3
+  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
+  url: https://github.com/tiangolo
 - login: valentinDruzhinin
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
   url: https://github.com/valentinDruzhinin
 three_months_experts:
 - login: YuriiMotov
-  count: 77
+  count: 91
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 - login: tiangolo
@@ -286,14 +290,14 @@ three_months_experts:
   count: 4
   avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
   url: https://github.com/valentinDruzhinin
-- login: RichieB2B
-  count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/1461970?u=edaa57d1077705244ea5c9244f4783d94ff11f12&v=4
-  url: https://github.com/RichieB2B
 - login: sachinh35
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/21972708?u=8560b97b8b41e175f476270b56de8a493b84f302&v=4
   url: https://github.com/sachinh35
+- login: RichieB2B
+  count: 3
+  avatarUrl: https://avatars.githubusercontent.com/u/1461970?u=edaa57d1077705244ea5c9244f4783d94ff11f12&v=4
+  url: https://github.com/RichieB2B
 - login: EmmanuelNiyonshuti
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/142030687?u=ab131d5ad4670280a978f489babe71c9bf9c1097&v=4
@@ -326,13 +330,9 @@ three_months_experts:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/142113?u=bf10f10080026346b092633c380977b61cee0d9c&v=4
   url: https://github.com/florentx
-- login: JunjieAraoXiong
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/167785867?u=b69afe090c8bf5fd73f2d23fc3a887b28f68f192&v=4
-  url: https://github.com/JunjieAraoXiong
 six_months_experts:
 - login: YuriiMotov
-  count: 150
+  count: 163
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 - login: tiangolo
@@ -348,7 +348,7 @@ six_months_experts:
   avatarUrl: https://avatars.githubusercontent.com/u/155247530?u=645169bc81856b7f1bd20090ecb0171a56dcbeb4&v=4
   url: https://github.com/engripaye
 - login: JavierSanchezCastro
-  count: 12
+  count: 13
   avatarUrl: https://avatars.githubusercontent.com/u/72013291?u=ae5679e6bd971d9d98cd5e76e8683f83642ba950&v=4
   url: https://github.com/JavierSanchezCastro
 - login: Toygarmetu
@@ -403,14 +403,14 @@ six_months_experts:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/1482917?u=666f39197a88cfa38b8bd78d39ef04d95c948b6b&v=4
   url: https://github.com/pankeshpatel
-- login: huynguyengl99
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/49433085?u=7b626115686c5d97a2a32a03119f5300e425cc9f&v=4
-  url: https://github.com/huynguyengl99
 - login: EmmanuelNiyonshuti
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/142030687?u=ab131d5ad4670280a978f489babe71c9bf9c1097&v=4
   url: https://github.com/EmmanuelNiyonshuti
+- login: huynguyengl99
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/49433085?u=7b626115686c5d97a2a32a03119f5300e425cc9f&v=4
+  url: https://github.com/huynguyengl99
 - login: davidbrochart
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/4711805?u=d39696d995a9e02ec3613ffb2f62b20b14f92f26&v=4
@@ -469,29 +469,29 @@ six_months_experts:
   url: https://github.com/profatsky
 one_year_experts:
 - login: YuriiMotov
-  count: 906
+  count: 918
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 - login: luzzodev
-  count: 62
+  count: 60
   avatarUrl: https://avatars.githubusercontent.com/u/27291415?u=5607ae1ce75c5f54f09500ca854227f7bfd2033b&v=4
   url: https://github.com/luzzodev
 - login: tiangolo
-  count: 30
+  count: 31
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 - login: valentinDruzhinin
   count: 30
   avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
   url: https://github.com/valentinDruzhinin
-- login: alv2017
-  count: 19
-  avatarUrl: https://avatars.githubusercontent.com/u/31544722?v=4
-  url: https://github.com/alv2017
 - login: JavierSanchezCastro
-  count: 18
+  count: 19
   avatarUrl: https://avatars.githubusercontent.com/u/72013291?u=ae5679e6bd971d9d98cd5e76e8683f83642ba950&v=4
   url: https://github.com/JavierSanchezCastro
+- login: alv2017
+  count: 17
+  avatarUrl: https://avatars.githubusercontent.com/u/31544722?v=4
+  url: https://github.com/alv2017
 - login: engripaye
   count: 14
   avatarUrl: https://avatars.githubusercontent.com/u/155247530?u=645169bc81856b7f1bd20090ecb0171a56dcbeb4&v=4
@@ -508,6 +508,10 @@ one_year_experts:
   count: 8
   avatarUrl: https://avatars.githubusercontent.com/u/92878791?u=538530cb6d5554e71f9c28709d794db9a74d23d9&v=4
   url: https://github.com/Toygarmetu
+- login: raceychan
+  count: 6
+  avatarUrl: https://avatars.githubusercontent.com/u/75417963?u=060c62870ec5a791765e63ac20d8885d11143786&v=4
+  url: https://github.com/raceychan
 - login: yinziyan1206
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/37829370?u=da44ca53aefd5c23f346fab8e9fd2e108294c179&v=4
@@ -516,10 +520,6 @@ one_year_experts:
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/7353520?u=df8a3f06ba8f55ae1967a3e2d5ed882903a4e330&v=4
   url: https://github.com/Kludex
-- login: raceychan
-  count: 6
-  avatarUrl: https://avatars.githubusercontent.com/u/75417963?u=060c62870ec5a791765e63ac20d8885d11143786&v=4
-  url: https://github.com/raceychan
 - login: ceb10n
   count: 5
   avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
@@ -588,10 +588,18 @@ one_year_experts:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/210023470?u=c25d66addf36a747bd9fab773c4a6e7b238f45d4&v=4
   url: https://github.com/Jelle-tenB
-- login: jgould22
-  count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/4335847?u=ed77f67e0bb069084639b24d812dbb2a2b1dc554&v=4
-  url: https://github.com/jgould22
+- login: Garrett-R
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/6614695?u=c128fd775002882f6e391bda5a89d1bdc5bdf45f&v=4
+  url: https://github.com/Garrett-R
+- login: TaigoFr
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/17792131?u=372b27056ec82f1ae03d8b3f37ef55b04a7cfdd1&v=4
+  url: https://github.com/TaigoFr
+- login: EmmanuelNiyonshuti
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/142030687?u=ab131d5ad4670280a978f489babe71c9bf9c1097&v=4
+  url: https://github.com/EmmanuelNiyonshuti
 - login: stan-dot
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/56644812?u=a7dd773084f1c17c5f05019cc25a984e24873691&v=4
@@ -604,10 +612,6 @@ one_year_experts:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/49433085?u=7b626115686c5d97a2a32a03119f5300e425cc9f&v=4
   url: https://github.com/huynguyengl99
-- login: EmmanuelNiyonshuti
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/142030687?u=ab131d5ad4670280a978f489babe71c9bf9c1097&v=4
-  url: https://github.com/EmmanuelNiyonshuti
 - login: Ale-Cas
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/64859146?u=d52a6ecf8d83d2927e2ae270bdfcc83495dba8c9&v=4
@@ -704,7 +708,3 @@ one_year_experts:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/24671280?u=7ea0d9bfe46cf762594d62fd2f3c6d3813c3584c&v=4
   url: https://github.com/XieJiSS
-- login: profatsky
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/92920843?u=81e54bb0b613c171f7cd0ab3cbb58873782c9c9c&v=4
-  url: https://github.com/profatsky

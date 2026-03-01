@@ -38,13 +38,13 @@ Na produção, você teria uma das opções acima.
 
 Mas é a maneira mais simples de focar no lado do servidor de WebSockets e ter um exemplo funcional:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Crie um `websocket` { #create-a-websocket }
 
 Em sua aplicação **FastAPI**, crie um `websocket`:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Detalhes Técnicos
 
@@ -58,7 +58,7 @@ A **FastAPI** fornece o mesmo `WebSocket` diretamente apenas como uma conveniên
 
 Em sua rota WebSocket você pode esperar (`await`) por mensagens e enviar mensagens.
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 Você pode receber e enviar dados binários, de texto e JSON.
 
@@ -109,7 +109,7 @@ Nos endpoints WebSocket você pode importar do `fastapi` e usar:
 
 Eles funcionam da mesma forma que para outros endpoints FastAPI/*operações de rota*:
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info | Informação
 
@@ -154,7 +154,7 @@ Com isso você pode conectar o WebSocket e então enviar e receber mensagens:
 
 Quando uma conexão WebSocket é fechada, o `await websocket.receive_text()` levantará uma exceção `WebSocketDisconnect`, que você pode então capturar e lidar como neste exemplo.
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 Para testar:
 
