@@ -1129,6 +1129,14 @@ class APIRouter(routing.Router):
                 Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
                 """
             ),
+            deprecated(
+                """
+                **Attention**: This parameter is deprecated.
+
+                The recommended approach for managing startup and shutdown
+                is by utilizing the lifespan parameter within the APIRouter.
+                """
+            ),
         ] = None,
         on_shutdown: Annotated[
             Sequence[Callable[[], Any]] | None,
@@ -1140,6 +1148,14 @@ class APIRouter(routing.Router):
 
                 Read more in the
                 [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+            deprecated(
+                """
+                **Attention**: This parameter is deprecated.
+
+                The recommended approach for managing startup and shutdown
+                is by utilizing the lifespan parameter within the APIRouter.
                 """
             ),
         ] = None,
