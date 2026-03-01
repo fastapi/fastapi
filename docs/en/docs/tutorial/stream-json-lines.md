@@ -2,6 +2,12 @@
 
 You could have a sequence of data that you would like to send in a "**stream**", you could do it with **JSON Lines**.
 
+/// info
+
+Added in FastAPI 0.134.0.
+
+///
+
 ## What is a Stream? { #what-is-a-stream }
 
 "**Streaming**" data means that your app will start sending data items to the client without waiting for the entire sequence of items to be ready.

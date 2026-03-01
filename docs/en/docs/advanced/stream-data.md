@@ -4,6 +4,12 @@ If you want to stream data that can be structured as JSON, you should [Stream JS
 
 But if you want to **stream pure binary data** or strings, here's how you can do it.
 
+/// info
+
+Added in FastAPI 0.134.0.
+
+///
+
 ## Use Cases { #use-cases }
 
 You could use this if you want to stream pure strings, for example directly from the output of an **AI LLM** service.
