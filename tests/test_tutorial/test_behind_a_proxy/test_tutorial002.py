@@ -7,9 +7,13 @@ client = TestClient(app)
 
 
 def test_main():
-    response = client.get("/app")
+    response = client.get("/api/v1/app")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World", "root_path": "/api/v1"}
+    assert response.json() == {
+        "message": "Hello World",
+        "path": "/api/v1/app",
+        "root_path": "/api/v1",
+    }
 
 
 def test_openapi():

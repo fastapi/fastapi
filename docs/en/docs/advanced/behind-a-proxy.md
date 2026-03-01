@@ -40,6 +40,15 @@ $ fastapi run --forwarded-allow-ips="*"
 
 </div>
 
+/// note
+
+The default value for the `--forwarded-allow-ips` option is `127.0.0.1`.
+
+This means that your **server** will trust a **proxy** running on the same host and will accept headers added by that **proxy**.
+
+///
+
+
 ### Redirects with HTTPS { #redirects-with-https }
 
 For example, let's say you define a *path operation* `/items/`:
@@ -97,161 +106,9 @@ These headers preserve information about the original request that would otherwi
 
 When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these headers and uses them, for example to generate the correct URLs in redirects.
 
-## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
-
-You could have a proxy that adds a path prefix to your application.
-
-In these cases you can use `root_path` to configure your application.
-
-The `root_path` is a mechanism provided by the ASGI specification (that FastAPI is built on, through Starlette).
-
-The `root_path` is used to handle these specific cases.
-
-And it's also used internally when mounting sub-applications.
-
-Having a proxy with a stripped path prefix, in this case, means that you could declare a path at `/app` in your code, but then, you add a layer on top (the proxy) that would put your **FastAPI** application under a path like `/api/v1`.
-
-In this case, the original path `/app` would actually be served at `/api/v1/app`.
-
-Even though all your code is written assuming there's just `/app`.
-
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
-
-And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
-
-Up to here, everything would work as normally.
-
-But then, when you open the integrated docs UI (the frontend), it would expect to get the OpenAPI schema at `/openapi.json`, instead of `/api/v1/openapi.json`.
-
-So, the frontend (that runs in the browser) would try to reach `/openapi.json` and wouldn't be able to get the OpenAPI schema.
-
-Because we have a proxy with a path prefix of `/api/v1` for our app, the frontend needs to fetch the OpenAPI schema at `/api/v1/openapi.json`.
-
-```mermaid
-graph LR
-
-browser("Browser")
-proxy["Proxy on http://0.0.0.0:9999/api/v1/app"]
-server["Server on http://127.0.0.1:8000/app"]
-
-browser --> proxy
-proxy --> server
-```
-
-/// tip
-
-The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
-
-///
-
-The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
-
-```JSON hl_lines="4-8"
-{
-    "openapi": "3.1.0",
-    // More stuff here
-    "servers": [
-        {
-            "url": "/api/v1"
-        }
-    ],
-    "paths": {
-            // More stuff here
-    }
-}
-```
-
-In this example, the "Proxy" could be something like **Traefik**. And the server would be something like FastAPI CLI with **Uvicorn**, running your FastAPI application.
-
-### Providing the `root_path` { #providing-the-root-path }
-
-To achieve this, you can use the command line option `--root-path` like:
-
-<div class="termy">
-
-```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-If you use Hypercorn, it also has the option `--root-path`.
-
-/// note | Technical Details
-
-The ASGI specification defines a `root_path` for this use case.
-
-And the `--root-path` command line option provides that `root_path`.
-
-///
-
-### Checking the current `root_path` { #checking-the-current-root-path }
-
-You can get the current `root_path` used by your application for each request, it is part of the `scope` dictionary (that's part of the ASGI spec).
-
-Here we are including it in the message just for demonstration purposes.
-
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
-
-Then, if you start Uvicorn with:
-
-<div class="termy">
-
-```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-The response would be something like:
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }
-
-Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
-
-{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
-
-Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
-
-### About `root_path` { #about-root-path }
-
-Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
-
-But if you go with your browser to <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-So, it won't expect to be accessed at `http://127.0.0.1:8000/api/v1/app`.
-
-Uvicorn will expect the proxy to access Uvicorn at `http://127.0.0.1:8000/app`, and then it would be the proxy's responsibility to add the extra `/api/v1` prefix on top.
-
-## About proxies with a stripped path prefix { #about-proxies-with-a-stripped-path-prefix }
-
-Keep in mind that a proxy with stripped path prefix is only one of the ways to configure it.
-
-Probably in many cases the default will be that the proxy doesn't have a stripped path prefix.
-
-In a case like that (without a stripped path prefix), the proxy would listen on something like `https://myawesomeapp.com`, and then if the browser goes to `https://myawesomeapp.com/api/v1/app` and your server (e.g. Uvicorn) listens on `http://127.0.0.1:8000` the proxy (without a stripped path prefix) would access Uvicorn at the same path: `http://127.0.0.1:8000/api/v1/app`.
-
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
-You can easily run the experiment locally with a stripped path prefix using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+You can easily run the configuration with reverse proxy and ASGI application behind it locally using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
 
 <a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Download Traefik</a>, it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
@@ -277,7 +134,148 @@ We are using port 9999 instead of the standard HTTP port 80 so that you don't ha
 
 Now create that other file `routes.toml`:
 
-```TOML hl_lines="5  12  20"
+```TOML hl_lines="8  15"
+[http]
+
+  [http.routers]
+
+    [http.routers.app-http]
+      entryPoints = ["http"]
+      service = "app"
+      rule = "PathPrefix(`/`)"
+
+  [http.services]
+
+    [http.services.app]
+      [http.services.app.loadBalancer]
+        [[http.services.app.loadBalancer.servers]]
+          url = "http://127.0.0.1:8000"
+```
+
+This file configures Traefik to forward all requests (``rule = "PathPrefix(`/`)"``) to your Uvicorn running on `http://127.0.0.1:8000`.
+
+Now start Traefik:
+
+<div class="termy">
+
+```console
+$ ./traefik --configFile=traefik.toml
+
+INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
+```
+
+</div>
+
+And now let's start our app:
+
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py *}
+
+
+<div class="termy">
+
+```console
+$ fastapi run main.py --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+/// note
+
+`--forwarded-allow-ips="*"` option is redundant in this case since Uvicorn trusts **proxy** running on the same host by-default.
+
+///
+
+Open `http://127.0.0.1:9999/items` in your browser.
+Your request will be redirected by FastAPI to `http://127.0.0.1:8000/items/` and you will see:
+
+```json
+["plumbus","portal gun"]
+```
+
+## Serve the app under a path prefix { #serve-the-app-under-a-path-prefix }
+
+In production, you might want to serve your FastAPI application under a URL prefix, such as:
+
+```
+https://example.com/api/v1
+```
+
+instead of serving it directly at the root of the domain.
+
+### Why serve under a prefix? { #why-serve-under-a-prefix }
+
+This is common when:
+
+* You host several applications on the same host and port - for example, an API, a dashboard, and an admin panel, all behind the same domain.
+Serving them under different prefixes (like `/api`, `/dashboard`, and `/admin`) helps you avoid setting up multiple domains or ports and prevents cross-origin (CORS) issues.
+* You deploy multiple API versions (e.g. `/v1`, `/v2`) side by side to ensure backward compatibility while rolling out new features.
+
+Hosting under a prefix keeps everything accessible under a single base URL (like `https://example.com`), simplifying proxy, SSL, and frontend configuration.
+
+### Routing requests through a reverse proxy { #routing-requests-through-a-reverse-proxy }
+
+In these setups, you typically run your FastAPI app behind the same reverse proxy such as Traefik, Nginx, Caddy, or an API Gateway.
+The proxy is configured to route requests under a specific path prefix.
+
+For example, using a Traefik router:
+
+```TOML hl_lines="8"
+[http]
+
+  [http.routers]
+
+    [http.routers.app-http]
+      entryPoints = ["http"]
+      service = "app"
+      rule = "PathPrefix(`/api/v1`)"
+
+  [http.services]
+
+    [http.services.app]
+      [http.services.app.loadBalancer]
+        [[http.services.app.loadBalancer.servers]]
+          url = "http://127.0.0.1:8000"
+```
+
+This router config tells Traefik to forward all requests starting with `/api/v1` to your FastAPI service.
+
+In this case, the original path `/items/` would actually be served at `/api/v1/items/`.
+
+Even though all your code is written assuming there's just `/items/`.
+
+...but your app only knows routes like `/items/` and has no idea about the `/api/v1` prefix.
+
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+
+As a result, the app won't be able to match the routes correctly, and clients will get `404 Not Found` errors 😱.
+
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant T as Traefik Proxy on 0.0.0.0:9999
+    participant F as FastAPI App on 127.0.0.1:8000
+
+    U->>T: GET 'http://127.0.0.1:9999/api/v1/items/'
+    T->>F: Forwards request to 'http://127.0.0.1:8000/api/v1/items/'
+    F-->>T: 404 Not Found (FastAPI app only knows '/items/', not '/api/v1/items/')
+    T-->>U: 404 Not Found
+```
+
+/// tip
+
+The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
+
+///
+
+### Stripping the prefix { #stripping-the-prefix }
+
+One simple way to solve the problem described above is to configure the proxy to strip the prefix before forwarding the request to the app.
+For example, if the client requests `/api/v1/items/`, the proxy forwards it as just `/items/`.
+
+```TOML hl_lines="2-5 13"
 [http]
   [http.middlewares]
 
@@ -300,23 +298,120 @@ Now create that other file `routes.toml`:
           url = "http://127.0.0.1:8000"
 ```
 
-This file configures Traefik to use the path prefix `/api/v1`.
+The proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/items/`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
-And then Traefik will redirect its requests to your Uvicorn running on `http://127.0.0.1:8000`.
+Now the app's **routing** works perfectly - `/items/` matches exactly as expected. 🎉
 
-Now start Traefik:
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant T as Traefik Proxy on 0.0.0.0:9999
+    participant F as FastAPI App on 127.0.0.1:8000
 
-<div class="termy">
-
-```console
-$ ./traefik --configFile=traefik.toml
-
-INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
+    U->>T: GET 'http://127.0.0.1:9999/api/v1/items/'
+    T->>F: Forwards request to 'http://127.0.0.1:8000/items/' (prefix '/api/v1' is stripped)
+    F-->>T: 200 OK
+    T-->>U: 200 OK
 ```
 
-</div>
+But... something is still off...
 
-And now start your app, using the `--root-path` option:
+### When the app doesn't know it's running under a prefix { #when-the-app-doesnt-know-its-running-under-a-prefix }
+
+While stripping the prefix by the proxy fixes incoming requests, the app still doesn't know that it's being served under `/api/v1`.
+So any URLs generated inside the app - like those from `url_for()`, URL of `openapi.json` in docs, or redirects - will miss the prefix.
+Clients will get links like `/items/` instead of `/api/v1/items/`, breaking navigation and documentation.
+
+Let's look closer at the problem with URL of `openapi.json` in docs.
+
+When you open the integrated docs UI (the frontend), it expects to get the OpenAPI schema at `/openapi.json`.
+But, since your app is served under the `/api/v1` prefix, the correct URL of `openapi.json` would be `/api/v1/openapi.json`.
+
+So the frontend, running in the browser, will try to reach `/openapi.json` and fail to get the OpenAPI schema.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant T as Traefik Proxy on 0.0.0.0:9999
+    participant F as FastAPI App on 127.0.0.1:8000
+
+    U->>T: GET 'http://128.0.0.1:9999/api/v1/docs'
+    T->>F: Forwards to 'http://127.0.0.1:8000/docs' (prefix stripped)
+    F-->>T: 200 OK (Swagger UI page content)
+    T-->>U: 200 OK
+
+    Note over U: Swagger UI page automatically requests OpenAPI schema
+    U->>T: (Browser) GET 'http://127.0.0.1:9999/openapi.json'
+    T-->>U: 404 Not Found (no matching router for this path)
+```
+
+<img src="/img/tutorial/behind-a-proxy/image01.png">
+
+At this point, it becomes clear that we need to tell the app the path prefix on which it's running. So that it could use this prefix to create working URLs.
+
+Luckily, this problem isn't new - and the people who designed the ASGI specification have already thought about it.
+
+### Understanding `root_path` in ASGI { #understanding-root-path-in-asgi }
+
+ASGI defines two fields that make it possible for applications to know where they are mounted and still handle requests correctly:
+
+* `path` - the full path requested by the client (including the prefix)
+* `root_path` - the mount point (the prefix itself) under which the app is served
+
+With this information, the application always knows both:
+
+* what the user actually requested (`path`), and
+* where the app lives in the larger URL structure (`root_path`).
+
+For example, if the client requests:
+
+```
+/api/v1/items/
+```
+
+the ASGI server should pass this to the app as:
+
+```
+{
+    "path": "/api/v1/items/",
+    "root_path": "/api/v1",
+    ...
+}
+```
+
+This allows the app to:
+
+* Match routes correctly (`/items/` inside the app).
+* Generate proper URLs and redirects that include the prefix (`/api/v1/items/`).
+
+This is the elegant mechanism that makes it possible for ASGI applications - including FastAPI - to work smoothly behind reverse proxies or under nested paths without needing to rewrite routes manually.
+
+### Providing the `root_path` { #providing-the-root-path }
+
+So, the ASGI scope needs to contain the correct `path` and `root_path`.
+But... who is actually responsible for setting them? 🤔
+
+As you may recall, there are three main components involved in serving your FastAPI application:
+
+* **Reverse proxy** (like Traefik or Nginx) - receives client requests first and passes them to the ASGI server.
+* **ASGI server** (like Uvicorn or Hypercorn) - runs your FastAPI application and manages the ASGI lifecycle.
+* **ASGI app** itself (the app you're building with FastAPI, your favorite framework) - handles routing, generates URLs, and processes requests.
+
+There are a few common ways these components can work together to ensure `root_path` is set correctly:
+
+1. The proxy strips the prefix, and the ASGI server (e.g., Uvicorn) adds it back and sets `root_path` in the ASGI `scope`.
+2. The proxy keeps the prefix and forwards requests as-is, while the ASGI app is started with the correct `root_path` parameter.
+3. The proxy keeps the prefix but also sends an `X-Forwarded-Prefix` header, and a middleware in the app uses that header to dynamically set `root_path`.
+
+Let's look at each of these approaches in detail.
+
+#### Uvicorn `--root-path` (proxy strips prefix) { #uvicorn-root-path-proxy-strips-prefix }
+
+Let's now use the following app:
+
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py *}
+
+If your proxy removes the prefix before forwarding requests (like in Traefik configuration from [Stripping the prefix](#stripping-the-prefix){.internal-link target=_blank}), you should use the `--root-path` option of your ASGI server:
 
 <div class="termy">
 
@@ -328,61 +423,270 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 </div>
 
-### Check the responses { #check-the-responses }
+If you use Hypercorn, it also has the `--root-path` option.
 
-Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, you will see the normal response:
+Here's what happens in this setup:
+
+* User requests `http://127.0.0.1:9999/api/v1/app`
+* The proxy removes the `/api/v1` prefix and sends `/app` to the ASGI server (Uvicorn).
+* Uvicorn adds the `/api/v1` prefix to `path` and sets `root_path` to `/api/v1` in the ASGI scope.
+* Your FastAPI app receives:
+
+```
+{
+    "path": "/api/v1/app",
+    "root_path": "/api/v1",
+}
+```
+
+✅ This is fully compliant with the ASGI specification.
+
+FastAPI automatically respects `root_path` in the scope when matching routes or generating URLs.
+
+Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+
+The response will look something like this:
 
 ```JSON
 {
     "message": "Hello World",
+    "path": "/api/v1/app",
     "root_path": "/api/v1"
 }
 ```
 
-/// tip
+/// warning | Attention
 
-Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
+Don't forget - this setup assumes your proxy **removes** the `/api/v1` prefix before forwarding requests to the app.
+
+If the proxy **doesn't strip** the prefix, you will end up with duplicated paths like `/api/v1/api/v1/app`.
+
+And if you run the server **without a proxy at all**, your app will still handle requests to URLs like `/app`,
+but URL generation, redirects, and the interactive docs will break due to the missing prefix configuration.
 
 ///
 
-And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+/// tip
 
-We get the same response:
+This is the most straightforward and common approach.
+You should probably use it unless you have a specific reason to do otherwise.
+
+///
+
+Unfortunately, not all ASGI servers support a `--root-path` option or automatically adjust the `path` in the ASGI scope.
+If your server doesn't, you can use one of the alternative approaches described below.
+
+#### Passing `root_path` as an argument to FastAPI (proxy keeps prefix) { #passing-root-path-as-an-argument-to-fastapi-proxy-keeps-prefix }
+
+If the proxy keeps the prefix in the forwarded request:
+
+```TOML
+[http]
+
+  [http.routers]
+
+    [http.routers.app-http]
+      entryPoints = ["http"]
+      service = "app"
+      rule = "PathPrefix(`/api/v1`)"
+
+  [http.services]
+
+    [http.services.app]
+      [http.services.app.loadBalancer]
+        [[http.services.app.loadBalancer.servers]]
+          url = "http://127.0.0.1:8000"
+```
+
+(don't forget to restart Traefik to apply new config)
+
+you can configure FastAPI like this:
+
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
+
+And run your ASGI server **without** `--root-path` option:
+
+<div class="termy">
+
+```console
+$ fastapi run main.py --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+In this setup:
+
+* User requests `http://127.0.0.1:9999/api/v1/app`
+* The proxy sends `/api/v1/app` to the ASGI server (Uvicorn)
+* ASGI server passes `/api/v1/app` to your app
+* FastAPI uses the `root_path` parameter to adjust the ASGI scope so that routing, redirects, and URL generation work correctly.
+
+Without the `root_path` parameter, the incoming scope from the ASGI server looks like this:
+
+```
+{
+    "path": "/api/v1/app",
+    "root_path": "",
+}
+```
+
+This scope is not compliant with the ASGI specification.
+
+But thanks to the `root_path` parameter, FastAPI corrects the scope to:
+
+```
+{
+    "path": "/api/v1/app",
+    "root_path": "/api/v1",
+}
+```
+
+Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+
+The response will look something like this:
 
 ```JSON
 {
     "message": "Hello World",
+    "path": "/api/v1/app",
     "root_path": "/api/v1"
 }
 ```
 
-but this time at the URL with the prefix path provided by the proxy: `/api/v1`.
+/// warning | Attention
 
-Of course, the idea here is that everyone would access the app through the proxy, so the version with the path prefix `/api/v1` is the "correct" one.
+Don't forget - this setup assumes your app runs behind a proxy that **keeps (adds)** the `/api/v1` prefix when forwarding requests.
 
-And the version without the path prefix (`http://127.0.0.1:8000/app`), provided by Uvicorn directly, would be exclusively for the _proxy_ (Traefik) to access it.
+If the proxy **strips the prefix** or **doesn't add it at all**, your app might seem to work for some routes, but features like interactive docs, mounted sub-applications, and redirects will fail.
 
-That demonstrates how the Proxy (Traefik) uses the path prefix and how the server (Uvicorn) uses the `root_path` from the option `--root-path`.
+If you encounter strange issues with this configuration, double-check your proxy settings.
 
-### Check the docs UI { #check-the-docs-ui }
+///
 
-But here's the fun part. ✨
+/// note
 
-The "official" way to access the app would be through the proxy with the path prefix that we defined. So, as we would expect, if you try the docs UI served by Uvicorn directly, without the path prefix in the URL, it won't work, because it expects to be accessed through the proxy.
+Use this approach when your ASGI server doesn't support a `--root-path` option, or if you need to configure your reverse proxy to keep the prefix in the path.
 
-You can check it at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Otherwise, prefer using the `--root-path` approach [described above](#uvicorn-root-path-proxy-strips-prefix){.internal-link target=_blank}.
 
-<img src="/img/tutorial/behind-a-proxy/image01.png">
+///
 
-But if we access the docs UI at the "official" URL using the proxy with port `9999`, at `/api/v1/docs`, it works correctly! 🎉
+#### Using `X-Forwarded-Prefix` header { #using-x-forwarded-prefix-header }
 
-You can check it at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+This is another common approach. It's the most flexible, but requires more complex initial configuration.
 
-<img src="/img/tutorial/behind-a-proxy/image02.png">
+/// warning
 
-Right as we wanted it. ✔️
+This is a more advanced approach. In most cases, you should use the `--root-path` option [described above](#uvicorn-root-path-proxy-strips-prefix){.internal-link target=_blank}.
 
-This is because FastAPI uses this `root_path` to create the default `server` in OpenAPI with the URL provided by `root_path`.
+///
+
+Imagine the prefix you use to serve the app might change over time. With the `--root-path` approach, you would need to update both the proxy configuration and the ASGI server command each time the prefix changes.
+
+Or, suppose you want to serve your app under multiple prefixes, such as `/api/v1` and `/backend/v1`. You would then need multiple instances of your app configured with different `--root-path` values - not ideal.
+
+There is a better solution for this!
+
+💡 Configure your reverse proxy to send the mount prefix in a header, e.g.:
+
+```
+X-Forwarded-Prefix: /api/v1
+```
+
+Here is an example Traefik configuration:
+
+```TOML
+[http]
+
+  [http.routers]
+
+    [http.routers.app-api-v1]
+      entryPoints = ["http"]
+      service = "app"
+      rule = "PathPrefix(`/api/v1`)"
+      middlewares = ["prefix-api-v1"]
+
+    [http.routers.app-backend-v1]
+      entryPoints = ["http"]
+      service = "app"
+      rule = "PathPrefix(`/backend/v1`)"
+      middlewares = ["prefix-backend-v1"]
+
+  [http.services]
+
+    [http.services.app.loadBalancer]
+      [[http.services.app.loadBalancer.servers]]
+        url = "http://127.0.0.1:8000"
+
+  [http.middlewares]
+
+    [http.middlewares.prefix-api-v1.headers.customRequestHeaders]
+      X-Forwarded-Prefix = "/api/v1"
+
+    [http.middlewares.prefix-backend-v1.headers.customRequestHeaders]
+      X-Forwarded-Prefix = "/backend/v1"
+```
+
+/// note
+
+`X-Forwarded-Prefix` is not a part of any standard, but it is widely recognized for informing an app of its URL path prefix.
+
+///
+
+You can then use middleware to read this header and dynamically set the correct `root_path`:
+
+{* ../../docs_src/behind_a_proxy/tutorial005_py310.py hl[1:22] *}
+
+This allows a single FastAPI instance to handle requests under multiple prefixes, with `root_path` correctly set for each request.
+
+Run the server without `--root-path` option:
+
+<div class="termy">
+
+```console
+$ fastapi run main.py --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+
+```json
+{
+    "message": "Hello World",
+    "path": "/api/v1/app",
+    "root_path": "/api/v1"
+}
+```
+
+Now, go to <a href="http://127.0.0.1:9999/backend/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/backend/v1/app</a>
+
+```json
+{
+    "message": "Hello World",
+    "path": "/backend/v1/app",
+    "root_path": "/backend/v1"
+}
+```
+
+The same FastAPI instance now handles requests for multiple prefixes, using the correct `root_path` each time. 🎉
+
+#### Important note { #important-note }
+
+Of course, the idea here is that everyone would access the app through the proxy (`http://192.168.0.1:9999` in our configuration), and the the URLs requested by user would contain the path prefix `/api/v1`.
+
+And URLs without the path prefix (`http://127.0.0.1:8000/app`), provided by Uvicorn directly, would be exclusively for the _proxy_ (Traefik) to access it.
+
+It's quite common mistake that people configure the ASGI server with `--root-path` option and then attempt to access it directly (without reverse proxy).
+
+When `root_path` is configured (using any of the methods described above), always make sure that:
+
+* ✅ You are accessing your server via reverse proxy
+* ✅ URL includes prefix
 
 ## Additional servers { #additional-servers }
 
