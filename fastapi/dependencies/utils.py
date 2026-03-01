@@ -359,6 +359,7 @@ def get_dependant(
 def add_non_field_param_to_dependency(
     *, param_name: str, type_annotation: Any, dependant: Dependant
 ) -> bool | None:
+    type_annotation = get_origin(type_annotation) or type_annotation
     if lenient_issubclass(type_annotation, Request):
         dependant.request_param_name = param_name
         return True
@@ -483,7 +484,7 @@ def analyze_param(
     # Only apply special handling when there's no explicit Depends - if there's a Depends,
     # the dependency will be called and its return value used instead of the special injection
     if depends is None and lenient_issubclass(
-        type_annotation,
+        get_origin(type_annotation) or type_annotation,
         (
             Request,
             WebSocket,
