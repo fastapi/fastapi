@@ -340,6 +340,7 @@ def get_openapi_path(
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
+            status_code = "200"
             if route.status_code is not None:
                 status_code = str(route.status_code)
             else:
