@@ -41,3 +41,23 @@ def test_invalid_response_model_sub_type_in_responses_raises():
         @app.get("/", responses={"500": {"model": list[NonPydanticModel]}})
         def read_root():
             pass  # pragma: nocover
+
+
+def test_invalid_response_model_optional_raises():
+
+    with pytest.raises(FastAPIError):
+        app = FastAPI()
+
+        @app.get("/", response_model=NonPydanticModel | None)
+        def read_root():
+            pass  # pragma: nocover
+
+
+def test_invalid_response_model_dict_raises():
+
+    with pytest.raises(FastAPIError):
+        app = FastAPI()
+
+        @app.get("/", response_model=dict[str, NonPydanticModel])
+        def read_root():
+            pass  # pragma: nocover
