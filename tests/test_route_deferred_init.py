@@ -11,6 +11,7 @@ deferred_keys = [
     "response_fields",
     "body_field",
     "response_field",
+    "stream_item_field",
     "dependant",
     "_flat_dependant",
     "_embed_body_fields",

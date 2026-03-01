@@ -979,9 +979,7 @@ class APIRoute(routing.Route):
 
     @property
     def is_json_stream(self) -> bool:
-        return self.is_generator and isinstance(
-            self.response_class, DefaultPlaceholder
-        )
+        return self.is_generator and isinstance(self.response_class, DefaultPlaceholder)
 
     @cached_property
     def _flat_dependant(self) -> Dependant:
@@ -1012,7 +1010,6 @@ class APIRoute(routing.Route):
         _ = self.response_field
         _ = self.response_fields
         _ = self.stream_item_field
-
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
