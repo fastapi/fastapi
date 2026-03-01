@@ -176,7 +176,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --locked --no-dev --group tests --extra all
       - name: Get coverage files
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: coverage-*
           path: coverage
