@@ -1270,6 +1270,20 @@ class APIRouter(routing.Router):
         self.generate_unique_id_function = generate_unique_id_function
         self.strict_content_type = strict_content_type
 
+    def mount(
+        self,
+        path: str,
+        app: ASGIApp,
+        name: Optional[str] = None,
+    ) -> None:
+        """
+        Mount a sub-application or ASGI app at the given path.
+
+        The router's prefix is automatically applied to the mount path.
+        """
+        # Apply the router's prefix to the mount path
+        super().mount(self.prefix + path, app, name=name)
+
     def route(
         self,
         path: str,
@@ -1775,6 +1789,9 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+            elif isinstance(route, Mount):
+                # Handle mounted sub-applications by re-mounting with the prefix
+                self.mount(prefix + route.path, route.app, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
