@@ -29,6 +29,7 @@ from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
+from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
@@ -372,6 +373,26 @@ def get_openapi_path(
                     operation.setdefault("responses", {}).setdefault(
                         status_code, {}
                     ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                elif route.is_sse_stream:
+                    sse_content: dict[str, Any] = {}
+                    item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
+                    if route.stream_item_field:
+                        content_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
+                            model_name_map=model_name_map,
+                            field_mapping=field_mapping,
+                            separate_input_output_schemas=separate_input_output_schemas,
+                        )
+                        item_schema["required"] = ["data"]
+                        item_schema["properties"]["data"] = {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": content_schema,
+                        }
+                    sse_content["itemSchema"] = item_schema
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["text/event-stream"] = sse_content
                 elif route_response_media_type:
                     response_schema = {"type": "string"}
                     if lenient_issubclass(current_response_class, JSONResponse):

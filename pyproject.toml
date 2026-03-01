@@ -324,6 +324,7 @@ ignore = [
 "docs_src/stream_json_lines/tutorial001_py310.py" = ["UP028"]
 "docs_src/stream_data/tutorial001_py310.py" = ["UP028"]
 "docs_src/stream_data/tutorial002_py310.py" = ["UP028"]
+"docs_src/server_sent_events/tutorial001_py310.py" = ["UP028"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]

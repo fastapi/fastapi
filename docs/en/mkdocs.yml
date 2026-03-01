@@ -155,6 +155,7 @@ nav:
     - tutorial/sql-databases.md
     - tutorial/bigger-applications.md
     - tutorial/stream-json-lines.md
+    - tutorial/server-sent-events.md
     - tutorial/background-tasks.md
     - tutorial/metadata.md
     - tutorial/static-files.md
