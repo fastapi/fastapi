@@ -9,7 +9,9 @@ auth_code_router = APIRouter()
 
 
 @auth_code_router.get("/private-route")
-async def private_route(token: str | None = Security(auth_code_scheme, scopes=["admin"])):
+async def private_route(
+    token: str | None = Security(auth_code_scheme, scopes=["admin"]),
+):
     return {"token": token}
 
 
@@ -39,7 +41,9 @@ def test_oauth2_authorization_code_bearer_lazy_initialize():
     authorization_code_flow = openapi.json()["components"]["securitySchemes"][
         "OAuth2AuthorizationCodeBearer"
     ]["flows"]["authorizationCode"]
-    assert authorization_code_flow["authorizationUrl"] == "https://example.com/authorize"
+    assert (
+        authorization_code_flow["authorizationUrl"] == "https://example.com/authorize"
+    )
     assert authorization_code_flow["tokenUrl"] == "https://example.com/oauth/token"
     assert authorization_code_flow["scopes"] == {"admin": "Admin access"}
 
