@@ -398,6 +398,13 @@ class OAuth2(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
+    def _set_flows(
+        self,
+        *,
+        flows: OAuthFlowsModel | dict[str, dict[str, Any]],
+    ) -> None:
+        self.model.flows = cast(OAuthFlowsModel, flows)
+
     def make_not_authenticated_error(self) -> HTTPException:
         """
         The OAuth 2 specification doesn't define the challenge that should be used,
@@ -452,7 +459,7 @@ class OAuth2PasswordBearer(OAuth2):
                 [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
-        ],
+        ] = "",
         scheme_name: Annotated[
             str | None,
             Doc(
@@ -514,6 +521,21 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
     ):
+        super().__init__(
+            flows=OAuthFlowsModel(),
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
+        self.initialize(tokenUrl=tokenUrl, refreshUrl=refreshUrl, scopes=scopes)
+
+    def initialize(
+        self,
+        *,
+        tokenUrl: str,
+        refreshUrl: str | None = None,
+        scopes: dict[str, str] | None = None,
+    ) -> None:
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
@@ -526,12 +548,7 @@ class OAuth2PasswordBearer(OAuth2):
                 },
             )
         )
-        super().__init__(
-            flows=flows,
-            scheme_name=scheme_name,
-            description=description,
-            auto_error=auto_error,
-        )
+        super()._set_flows(flows=flows)
 
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
@@ -552,7 +569,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
 
     def __init__(
         self,
-        authorizationUrl: str,
+        authorizationUrl: str = "",
         tokenUrl: Annotated[
             str,
             Doc(
@@ -560,7 +577,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 The URL to obtain the OAuth2 token.
                 """
             ),
-        ],
+        ] = "",
         refreshUrl: Annotated[
             str | None,
             Doc(
@@ -619,6 +636,27 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = True,
     ):
+        super().__init__(
+            flows=OAuthFlowsModel(),
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
+        self.initialize(
+            authorizationUrl=authorizationUrl,
+            tokenUrl=tokenUrl,
+            refreshUrl=refreshUrl,
+            scopes=scopes,
+        )
+
+    def initialize(
+        self,
+        *,
+        authorizationUrl: str,
+        tokenUrl: str,
+        refreshUrl: str | None = None,
+        scopes: dict[str, str] | None = None,
+    ) -> None:
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
@@ -632,12 +670,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 },
             )
         )
-        super().__init__(
-            flows=flows,
-            scheme_name=scheme_name,
-            description=description,
-            auto_error=auto_error,
-        )
+        super()._set_flows(flows=flows)
 
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
