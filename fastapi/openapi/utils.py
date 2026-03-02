@@ -348,7 +348,7 @@ def get_openapi_path(
                         *route.return_response_classes,
                     )
                 else:
-                    response_classes = route.return_response_classes
+                    response_classes = tuple(route.return_response_classes)
             else:
                 response_classes = (current_response_class,)
 
