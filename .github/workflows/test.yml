@@ -107,7 +107,7 @@ jobs:
         run: uv pip install "git+https://github.com/Kludex/starlette@main"
       - run: mkdir coverage
       - name: Test
-        run: uv run --no-sync bash scripts/test.sh
+        run: uv run --no-sync bash scripts/test-cov.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
