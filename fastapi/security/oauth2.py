@@ -403,7 +403,7 @@ class OAuth2(SecurityBase):
         *,
         flows: OAuthFlowsModel | dict[str, dict[str, Any]],
     ) -> None:
-        self.model.flows = cast(OAuthFlowsModel, flows)
+        cast(OAuth2Model, self.model).flows = cast(OAuthFlowsModel, flows)
 
     def make_not_authenticated_error(self) -> HTTPException:
         """
