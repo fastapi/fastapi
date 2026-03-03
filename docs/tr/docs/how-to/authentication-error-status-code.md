@@ -8,7 +8,7 @@ Ancak herhangi bir nedenle client'larınız eski davranışa bağlıysa, securit
 
 Örneğin, varsayılan `401 Unauthorized` hatası yerine `403 Forbidden` hatası döndüren bir `HTTPBearer` alt sınıfı oluşturabilirsiniz:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py39.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
 
 /// tip | İpucu
 

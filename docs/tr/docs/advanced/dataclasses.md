@@ -64,7 +64,7 @@ Bu durumda standart `dataclasses` yerine, drop-in replacement olan `pydantic.dat
 
 6. Burada `items` içeren bir dictionary döndürüyoruz; `items` bir dataclass listesi.
 
-    FastAPI, veriyi JSON'a <abbr title="converting the data to a format that can be transmitted - veriyi aktarılabilir bir formata dönüştürme">serializing</abbr> etmeyi yine başarır.
+    FastAPI, veriyi JSON'a <dfn title="veriyi aktarılabilir bir formata dönüştürme">serileştirme</dfn>yi yine başarır.
 
 7. Burada `response_model`, `Author` dataclass'larından oluşan bir listenin type annotation'ını kullanıyor.
 

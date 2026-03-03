@@ -6,7 +6,7 @@ from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import Optional, TypedDict
+from typing import TypedDict
 
 import pytest
 from fastapi._compat import Undefined
@@ -57,7 +57,7 @@ class RoleEnum(Enum):
 
 
 class ModelWithConfig(BaseModel):
-    role: Optional[RoleEnum] = None
+    role: RoleEnum | None = None
 
     model_config = {"use_enum_values": True}
 

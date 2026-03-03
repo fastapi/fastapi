@@ -8,7 +8,7 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Nota
 
@@ -66,7 +66,7 @@ Resumidamente:
 
 /// tip | Dica
 
-Para saber mais sobre cada código de status e qual código serve para quê, verifique a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentação do <abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP</a>.
+Para saber mais sobre cada código de status e qual código serve para quê, verifique a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentação do <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP</a>.
 
 ///
 
@@ -74,7 +74,7 @@ Para saber mais sobre cada código de status e qual código serve para quê, ver
 
 Vamos ver o exemplo anterior novamente:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` é o código de status para "Criado".
 
@@ -82,7 +82,7 @@ Mas você não precisa memorizar o que cada um desses códigos significa.
 
 Você pode usar as variáveis de conveniência de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa forma você pode usar o preenchimento automático do editor para encontrá-los:
 

@@ -46,7 +46,7 @@ Podrías usar ese comando, por ejemplo, para iniciar tu app **FastAPI** en un co
 
 Vamos a profundizar un poquito en los detalles.
 
-FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface – Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>. FastAPI es un framework web ASGI.
+FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>. FastAPI es un framework web ASGI.
 
 Lo principal que necesitas para ejecutar una aplicación **FastAPI** (o cualquier otra aplicación ASGI) en una máquina de servidor remota es un programa de servidor ASGI como **Uvicorn**, que es el que viene por defecto en el comando `fastapi`.
 

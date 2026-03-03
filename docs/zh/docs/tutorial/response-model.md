@@ -183,7 +183,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 最常见的情况是[直接返回 Response，详见进阶文档](../advanced/response-directly.md){.internal-link target=_blank}。
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 这个简单场景 FastAPI 会自动处理，因为返回类型注解是 `Response`（或其子类）。
 
@@ -193,7 +193,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 你也可以在类型注解中使用 `Response` 的子类：
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 这同样可行，因为 `RedirectResponse` 是 `Response` 的子类，FastAPI 会自动处理这个简单场景。
 
@@ -201,7 +201,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 但当你返回其他任意对象（如数据库对象）而它不是有效的 Pydantic 类型，并在函数中按此进行了注解时，FastAPI 会尝试基于该类型注解创建一个 Pydantic 响应模型，但会失败。
 
-如果你有一个在多个类型之间的<abbr title="多个类型的联合表示“这些类型中的任意一个”">联合类型</abbr>，其中一个或多个不是有效的 Pydantic 类型，也会发生同样的情况，例如这个会失败 💥：
+如果你有一个在多个类型之间的<dfn title="多个类型的联合表示“这些类型中的任意一个”。">联合类型</dfn>，其中一个或多个不是有效的 Pydantic 类型，也会发生同样的情况，例如这个会失败 💥：
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

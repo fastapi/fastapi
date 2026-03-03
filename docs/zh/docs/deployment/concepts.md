@@ -190,7 +190,7 @@
 
 ### 工作进程和端口 { #worker-processes-and-ports }
 
-还记得文档 [About HTTPS](https.md){.internal-link target=_blank} 中只有一个进程可以侦听服务器中的端口和 IP 地址的一种组合吗？
+还记得文档 [关于 HTTPS](https.md){.internal-link target=_blank} 中只有一个进程可以侦听服务器中的端口和 IP 地址的一种组合吗？
 
 现在仍然是对的。
 

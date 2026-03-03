@@ -141,16 +141,16 @@ def hello_world():
 
 ## Simple code includes { #simple-code-includes }
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
-{* ../../docs_src/python_types/tutorial002_py39.py *}
+{* ../../docs_src/python_types/tutorial002_py310.py *}
 
 
 ## Code includes with highlighting { #code-includes-with-highlighting }
 
-{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-{* ../../docs_src/python_types/tutorial006_py39.py hl[10] *}
+{* ../../docs_src/python_types/tutorial006_py310.py hl[10] *}
 
 
 ## Code includes with line ranges { #code-includes-with-line-ranges }
@@ -169,19 +169,19 @@ def hello_world():
 
 ## Code includes qith title { #code-includes-with-title }
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 ## Code includes with unknown attributes { #code-includes-with-unknown-attributes }
 
-{* ../../docs_src/python_types/tutorial001_py39.py unknown[123] *}
+{* ../../docs_src/python_types/tutorial001_py310.py unknown[123] *}
 
 ## Some more code includes to test fixing { #some-more-code-includes-to-test-fixing }
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
 

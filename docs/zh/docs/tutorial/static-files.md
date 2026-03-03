@@ -7,9 +7,9 @@
 * 导入 `StaticFiles`。
 * 将一个 `StaticFiles()` 实例“挂载”（Mount）到指定路径。
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
-/// note | 注意
+/// note | 技术细节
 
 你也可以用 `from starlette.staticfiles import StaticFiles`。
 

@@ -4,7 +4,7 @@
 
 你可以在 *路径操作函数* 中定义一个类型为 `Response` 的参数，这样你就可以在这个临时响应对象中设置cookie了。
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 而且你还可以根据你的需要响应不同的对象，比如常用的 `dict`，数据库model等。
 
@@ -22,9 +22,9 @@
 
 然后设置Cookies，并返回：
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip
+/// tip | 提示
 
 需要注意，如果你直接反馈一个response对象，而不是使用`Response`入参，FastAPI则会直接反馈你封装的response对象。
 

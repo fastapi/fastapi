@@ -137,7 +137,7 @@ There are several Flask REST frameworks, but after investing the time and work i
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-One of the main features needed by API systems is data "<abbr title="also called marshalling, conversion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
+One of the main features needed by API systems is data "<dfn title="also called marshalling, conversion">serialization</dfn>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
 Another big feature needed by APIs is data validation, making sure that the data is valid, given certain parameters. For example, that some field is an `int`, and not some random string. This is especially useful for incoming data.
 
@@ -145,7 +145,7 @@ Without a data validation system, you would have to do all the checks by hand, i
 
 These features are what Marshmallow was built to provide. It is a great library, and I have used it a lot before.
 
-But it was created before there existed Python type hints. So, to define every <abbr title="the definition of how data should be formed">schema</abbr> you need to use specific utils and classes provided by Marshmallow.
+But it was created before there existed Python type hints. So, to define every <dfn title="the definition of how data should be formed">schema</dfn> you need to use specific utils and classes provided by Marshmallow.
 
 /// check | Inspired **FastAPI** to
 
@@ -155,7 +155,7 @@ Use code to define "schemas" that provide data types and validation, automatical
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-Another big feature required by APIs is <abbr title="reading and converting to Python data">parsing</abbr> data from incoming requests.
+Another big feature required by APIs is <dfn title="reading and converting to Python data">parsing</dfn> data from incoming requests.
 
 Webargs is a tool that was made to provide that on top of several frameworks, including Flask.
 
@@ -419,7 +419,7 @@ Handle all the data validation, data serialization and automatic model documenta
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web applications">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
+Starlette is a lightweight <dfn title="The new standard for building asynchronous Python web applications">ASGI</dfn> framework/toolkit, which is ideal for building high-performance asyncio services.
 
 It is very simple and intuitive. It's designed to be easily extensible, and have modular components.
 

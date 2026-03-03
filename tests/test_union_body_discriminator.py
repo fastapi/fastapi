@@ -1,10 +1,9 @@
-from typing import Annotated, Any, Union
+from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
-from typing_extensions import Literal
 
 
 def test_discriminator_pydantic_v2() -> None:
@@ -21,7 +20,7 @@ def test_discriminator_pydantic_v2() -> None:
         price: float
 
     Item = Annotated[
-        Union[Annotated[FirstItem, Tag("first")], Annotated[OtherItem, Tag("other")]],
+        Annotated[FirstItem, Tag("first")] | Annotated[OtherItem, Tag("other")],
         Field(discriminator="value"),
     ]
 

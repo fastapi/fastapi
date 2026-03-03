@@ -27,7 +27,7 @@ Para converter qualquer dado para um formato compatível com JSON, leia a seçã
 
 ## OpenAPI Metadata - Docs { #openapi-metadata-docs }
 
-Para adicionar metadados ao seu esquema OpenAPI, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md){.internal-link target=_blank}.
+Para adicionar metadados ao seu esquema OpenAPI, incluindo licença, versão, contato, etc, leia a seção [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md){.internal-link target=_blank}.
 
 ## OpenAPI com URL customizada { #openapi-custom-url }
 

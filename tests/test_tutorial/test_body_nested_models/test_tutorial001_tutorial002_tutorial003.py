@@ -3,7 +3,7 @@ import importlib
 import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 
 from ...utils import needs_py310
 
@@ -17,11 +17,8 @@ SET_OF_STR_SCHEMA = {"type": "array", "items": {"type": "string"}, "uniqueItems"
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
     ],
 )
@@ -212,7 +209,7 @@ def test_openapi_schema(client: TestClient, mod_name: str):
                                 "title": "Tax",
                                 "anyOf": [{"type": "number"}, {"type": "null"}],
                             },
-                            "tags": tags_schema,
+                            "tags": Is(tags_schema),
                         },
                         "required": [
                             "name",

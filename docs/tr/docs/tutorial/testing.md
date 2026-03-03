@@ -12,7 +12,7 @@ Bununla birlikte **FastAPI** ile <a href="https://docs.pytest.org/" class="exter
 
 `TestClient` kullanmak için önce <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>'i kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Bir [Sanal Ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
 
 ```console
 $ pip install httpx
@@ -30,7 +30,7 @@ Adı `test_` ile başlayan fonksiyonlar oluşturun (bu, `pytest`'in standart kon
 
 Kontrol etmeniz gereken şeyler için standart Python ifadeleriyle basit `assert` satırları yazın (bu da `pytest` standardıdır).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | İpucu
 
@@ -52,7 +52,7 @@ Bu sayede `pytest`'i ek bir karmaşıklık olmadan doğrudan kullanabilirsiniz.
 
 /// tip | İpucu
 
-FastAPI uygulamanıza request göndermenin dışında testlerinizde `async` fonksiyonlar çağırmak istiyorsanız (örn. asenkron veritabanı fonksiyonları), ileri seviye bölümdeki [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} dokümanına göz atın.
+FastAPI uygulamanıza request göndermenin dışında testlerinizde `async` fonksiyonlar çağırmak istiyorsanız (örn. asenkron veritabanı fonksiyonları), ileri seviye bölümdeki [Asenkron Testler](../advanced/async-tests.md){.internal-link target=_blank} dokümanına göz atın.
 
 ///
 
@@ -64,7 +64,7 @@ Ayrıca **FastAPI** uygulamanız birden fazla dosya/modül vb. ile de oluşturul
 
 ### **FastAPI** Uygulama Dosyası { #fastapi-app-file }
 
-[Bigger Applications](bigger-applications.md){.internal-link target=_blank}'te anlatılan şekilde bir dosya yapınız olduğunu varsayalım:
+[Daha Büyük Uygulamalar](bigger-applications.md){.internal-link target=_blank}'te anlatılan şekilde bir dosya yapınız olduğunu varsayalım:
 
 ```
 .
@@ -75,7 +75,7 @@ Ayrıca **FastAPI** uygulamanız birden fazla dosya/modül vb. ile de oluşturul
 
 `main.py` dosyasında **FastAPI** uygulamanız bulunuyor olsun:
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Test Dosyası { #testing-file }
 
@@ -91,7 +91,7 @@ Sonra testlerinizin olduğu bir `test_main.py` dosyanız olabilir. Bu dosya ayn�
 
 Bu dosya aynı package içinde olduğu için, `main` modülünden (`main.py`) `app` nesnesini import etmek üzere relative import kullanabilirsiniz:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 ...ve test kodunu da öncekiyle aynı şekilde yazabilirsiniz.
 
@@ -145,7 +145,7 @@ Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient
 
 `TestClient`'ın Pydantic model'lerini değil, JSON'a dönüştürülebilen verileri aldığını unutmayın.
 
-Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya göndermek istiyorsanız, [JSON Compatible Encoder](encoder.md){.internal-link target=_blank} içinde açıklanan `jsonable_encoder`'ı kullanabilirsiniz.
+Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya göndermek istiyorsanız, [JSON Uyumlu Encoder](encoder.md){.internal-link target=_blank} içinde açıklanan `jsonable_encoder`'ı kullanabilirsiniz.
 
 ///
 
@@ -153,7 +153,7 @@ Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya
 
 Bundan sonra yapmanız gereken tek şey `pytest`'i kurmaktır.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Bir [Sanal Ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
 
 <div class="termy">
 
