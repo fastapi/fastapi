@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pydantic-ai from 1.62.0 to 1.63.0. PR [#15035](https://github.com/fastapi/fastapi/pull/15035) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pytest-codspeed from 4.2.0 to 4.3.0. PR [#15034](https://github.com/fastapi/fastapi/pull/15034) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump strawberry-graphql from 0.291.2 to 0.307.1. PR [#15033](https://github.com/fastapi/fastapi/pull/15033) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typer from 0.21.1 to 0.24.1. PR [#15032](https://github.com/fastapi/fastapi/pull/15032) by [@dependabot[bot]](https://github.com/apps/dependabot).
