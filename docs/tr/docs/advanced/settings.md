@@ -54,7 +54,7 @@ Pydantic model'lerinde olduğu gibi, type annotation'larla (ve gerekirse default
 
 Pydantic model'lerinde kullandığınız aynı doğrulama özelliklerini ve araçlarını burada da kullanabilirsiniz; örneğin farklı veri tipleri ve `Field()` ile ek doğrulamalar.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | İpucu
 
@@ -70,7 +70,7 @@ Sonrasında veriyi dönüştürür ve doğrular. Böylece `settings` nesnesini k
 
 Daha sonra uygulamanızda yeni `settings` nesnesini kullanabilirsiniz:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Server'ı çalıştırın { #run-the-server }
 
@@ -104,11 +104,11 @@ Böylece `admin_email` ayarı `"deadpool@example.com"` olur.
 
 Örneğin `config.py` adında bir dosyanız şu şekilde olabilir:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 Ve ardından bunu `main.py` dosyasında kullanabilirsiniz:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | İpucu
 
@@ -126,7 +126,7 @@ Bu özellikle test sırasında çok işe yarar; çünkü bir dependency'yi kendi
 
 Bir önceki örnekten devam edersek, `config.py` dosyanız şöyle görünebilir:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz.
 
@@ -134,7 +134,7 @@ Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz
 
 Şimdi, yeni bir `config.Settings()` döndüren bir dependency oluşturuyoruz.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | İpucu
 
@@ -146,13 +146,13 @@ Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz
 
 Sonra bunu dependency olarak *path operation function*'dan talep edebilir ve ihtiyaç duyduğumuz her yerde kullanabiliriz.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Ayarlar ve test { #settings-and-testing }
 
 Ardından, `get_settings` için bir dependency override oluşturarak test sırasında farklı bir settings nesnesi sağlamak çok kolay olur:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 Dependency override içinde, yeni `Settings` nesnesini oluştururken `admin_email` için yeni bir değer ayarlarız ve sonra bu yeni nesneyi döndürürüz.
 
@@ -193,7 +193,7 @@ APP_NAME="ChimichangApp"
 
 Ardından `config.py` dosyanızı şöyle güncelleyin:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | İpucu
 
@@ -226,7 +226,7 @@ bu nesneyi her request için oluştururduk ve `.env` dosyasını her request'te 
 
 Fakat en üstte `@lru_cache` decorator'ünü kullandığımız için `Settings` nesnesi yalnızca bir kez, ilk çağrıldığı anda oluşturulur. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Sonraki request'lerde dependency'ler içinden `get_settings()` çağrıldığında, `get_settings()`'in iç kodu tekrar çalıştırılıp yeni bir `Settings` nesnesi yaratılmak yerine, ilk çağrıda döndürülen aynı nesne tekrar tekrar döndürülür.
 

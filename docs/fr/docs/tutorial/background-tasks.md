@@ -15,11 +15,13 @@ Cela comprend, par exemple :
 
 Pour commencer, importez `BackgroundTasks` et définissez un paramètre dans votre *fonction de chemin d'accès* avec `BackgroundTasks` comme type déclaré.
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** créera l'objet de type `BackgroundTasks` pour vous et le passera comme paramètre.
 
 ## Créer une fonction de tâche { #create-a-task-function }
+
+Créez une fonction à exécuter comme tâche d'arrière-plan.
 
 Une fonction à exécuter comme tâche d'arrière-plan est juste une fonction standard qui peut recevoir des paramètres.
 
@@ -29,13 +31,13 @@ Dans cet exemple, la fonction de tâche écrira dans un fichier (afin de simuler
 
 L'opération d'écriture n'utilisant ni `async` ni `await`, on définit la fonction avec un `def` normal.
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Ajouter une tâche d'arrière-plan { #add-the-background-task }
 
 Dans votre *fonction de chemin d'accès*, passez votre fonction de tâche à l'objet de type `BackgroundTasks` (`background_tasks` ici) grâce à la méthode `.add_task()` :
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` reçoit comme arguments :
 

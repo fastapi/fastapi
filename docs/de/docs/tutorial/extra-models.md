@@ -190,9 +190,9 @@ Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, 
 
 Auf die gleiche Weise können Sie Responses von Listen von Objekten deklarieren.
 
-Dafür verwenden Sie Pythons Standard-`typing.List` (oder nur `list` in Python 3.9 und höher):
+Dafür verwenden Sie Pythons Standard-`list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response mit beliebigem `dict` { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ Sie können auch eine Response deklarieren, die ein beliebiges `dict` zurückgib
 
 Dies ist nützlich, wenn Sie die gültigen Feld-/Attributnamen nicht im Voraus kennen (die für ein Pydantic-Modell benötigt werden würden).
 
-In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.9 und höher):
+In diesem Fall können Sie `dict` verwenden:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Zusammenfassung { #recap }
 

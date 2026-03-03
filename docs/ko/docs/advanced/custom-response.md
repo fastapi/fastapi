@@ -30,7 +30,7 @@
 
 하지만 반환하는 내용이 **JSON으로 직렬화 가능**하다고 확신하는 경우, 해당 내용을 응답 클래스에 직접 전달할 수 있으며, FastAPI가 반환 내용을 `jsonable_encoder`를 통해 처리한 뒤 응답 클래스에 전달하는 오버헤드를 피할 수 있습니다.
 
-{* ../../docs_src/custom_response/tutorial001b_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial001b_py310.py hl[2,7] *}
 
 /// info | 정보
 
@@ -55,7 +55,7 @@
 * `HTMLResponse`를 임포트 합니다.
 * *경로 처리 데코레이터*의 `response_class` 매개변수로 `HTMLResponse`를 전달합니다.
 
-{* ../../docs_src/custom_response/tutorial002_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
 /// info | 정보
 
@@ -73,7 +73,7 @@
 
 위의 예제와 동일하게 `HTMLResponse`를 반환하는 코드는 다음과 같을 수 있습니다:
 
-{* ../../docs_src/custom_response/tutorial003_py39.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
 
 /// warning | 경고
 
@@ -97,7 +97,7 @@
 
 예를 들어, 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/custom_response/tutorial004_py39.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
 
 이 예제에서, `generate_html_response()` 함수는 HTML을 `str`로 반환하는 대신 이미 `Response`를 생성하고 반환합니다.
 
@@ -136,7 +136,7 @@
 
 FastAPI (실제로는 Starlette)가 자동으로 Content-Length 헤더를 포함시킵니다. 또한 `media_type`에 기반하여 Content-Type 헤더를 포함하며, 텍스트 타입의 경우 문자 집합을 추가 합니다.
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -146,7 +146,7 @@ FastAPI (실제로는 Starlette)가 자동으로 Content-Length 헤더를 포함
 
 텍스트 또는 바이트를 받아 일반 텍스트 응답을 반환합니다.
 
-{* ../../docs_src/custom_response/tutorial005_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -180,7 +180,7 @@ FastAPI (실제로는 Starlette)가 자동으로 Content-Length 헤더를 포함
 
 ///
 
-{* ../../docs_src/custom_response/tutorial001_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial001_py310.py hl[2,7] *}
 
 /// tip | 팁
 
@@ -194,14 +194,14 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 `RedirectResponse`를 직접 반환할 수 있습니다.
 
-{* ../../docs_src/custom_response/tutorial006_py39.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
 
 ---
 
 또는 `response_class` 매개변수에서 사용할 수도 있습니다:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 
 이 경우, *경로 처리* 함수에서 URL을 직접 반환할 수 있습니다.
 
@@ -211,13 +211,13 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 `status_code` 매개변수를 `response_class` 매개변수와 함께 사용할 수도 있습니다:
 
-{* ../../docs_src/custom_response/tutorial006c_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 비동기 제너레이터 또는 일반 제너레이터/이터레이터를 받아 응답 본문을 스트리밍 합니다.
 
-{* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
 
 #### 파일과 같은 객체를 사용한 `StreamingResponse` { #using-streamingresponse-with-file-like-objects }
 
@@ -227,7 +227,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 이 방식은 클라우드 스토리지, 비디오 처리 등의 다양한 라이브러리와 함께 사용할 수 있습니다.
 
-{* ../../docs_src/custom_response/tutorial008_py39.py hl[2,10:12,14] *}
+{* ../../docs_src/custom_response/tutorial008_py310.py hl[2,10:12,14] *}
 
 1. 이것이 제너레이터 함수입니다. `yield` 문을 포함하고 있으므로 "제너레이터 함수"입니다.
 2. `with` 블록을 사용함으로써, 제너레이터 함수가 완료된 후 파일과 같은 객체가 닫히도록 합니다. 즉, 응답 전송이 끝난 후 닫힙니다.
@@ -256,11 +256,11 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 파일 응답에는 적절한 `Content-Length`, `Last-Modified`, 및 `ETag` 헤더가 포함됩니다.
 
-{* ../../docs_src/custom_response/tutorial009_py39.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
 또한 `response_class` 매개변수를 사용할 수도 있습니다:
 
-{* ../../docs_src/custom_response/tutorial009b_py39.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
 이 경우, 경로 처리 함수에서 파일 경로를 직접 반환할 수 있습니다.
 
@@ -274,7 +274,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 `CustomORJSONResponse`를 생성할 수 있습니다. 여기서 핵심은 `Response.render(content)` 메서드를 생성하여 내용을 `bytes`로 반환하는 것입니다:
 
-{* ../../docs_src/custom_response/tutorial009c_py39.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
 
 이제 다음 대신:
 
@@ -300,7 +300,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 아래 예제에서 **FastAPI**는 모든 *경로 처리*에서 기본적으로 `JSONResponse` 대신 `ORJSONResponse`를 사용합니다.
 
-{* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
 /// tip | 팁
 

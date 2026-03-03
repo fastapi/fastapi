@@ -14,7 +14,7 @@ The *path operation decorator* receives an optional argument `dependencies`.
 
 It should be a `list` of `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 These dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
 
@@ -44,13 +44,13 @@ You can use the same dependency *functions* you use normally.
 
 They can declare request requirements (like headers) or other sub-dependencies:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
 ### Raise exceptions { #raise-exceptions }
 
 These dependencies can `raise` exceptions, the same as normal dependencies:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
 ### Return values { #return-values }
 
@@ -58,7 +58,7 @@ And they can return values or not, the values won't be used.
 
 So, you can reuse a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
 ## Dependencies for a group of *path operations* { #dependencies-for-a-group-of-path-operations }
 

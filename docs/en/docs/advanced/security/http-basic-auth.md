@@ -20,7 +20,7 @@ Then, when you type that username and password, the browser sends them in the he
 * It returns an object of type `HTTPBasicCredentials`:
     * It contains the `username` and `password` sent.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 When you try to open the URL for the first time (or click the "Execute" button in the docs) the browser will ask you for your username and password:
 
@@ -40,7 +40,7 @@ To handle that, we first convert the `username` and `password` to `bytes` encodi
 
 Then we can use `secrets.compare_digest()` to ensure that `credentials.username` is `"stanleyjobson"`, and that `credentials.password` is `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 This would be similar to:
 
@@ -104,4 +104,4 @@ That way, using `secrets.compare_digest()` in your application code, it will be 
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

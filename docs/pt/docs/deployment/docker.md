@@ -14,7 +14,7 @@ Está com pressa e já sabe dessas coisas? Pode ir direto para o [`Dockerfile` a
 <summary>Visualização do Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ Agora, no mesmo diretório do projeto, crie um arquivo `Dockerfile` com:
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ Se seu FastAPI for um único arquivo, por exemplo, `main.py` sem um diretório `
 Então você só teria que alterar os caminhos correspondentes para copiar o arquivo dentro do `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Sem usar contêineres, fazer aplicativos executarem na inicialização e com rei
 
 ## Replicação - Número de Processos { #replication-number-of-processes }
 
-Se você tiver um <abbr title="Um grupo de máquinas que são configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</abbr> de máquinas com **Kubernetes**, Docker Swarm Mode, Nomad ou outro sistema complexo semelhante para gerenciar contêineres distribuídos em várias máquinas, então provavelmente desejará **lidar com a replicação** no **nível do cluster** em vez de usar um **gerenciador de processos** (como Uvicorn com workers) em cada contêiner.
+Se você tiver um <dfn title="Um grupo de máquinas que são configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</dfn> de máquinas com **Kubernetes**, Docker Swarm Mode, Nomad ou outro sistema complexo semelhante para gerenciar contêineres distribuídos em várias máquinas, então provavelmente desejará **lidar com a replicação** no **nível do cluster** em vez de usar um **gerenciador de processos** (como Uvicorn com workers) em cada contêiner.
 
 Um desses sistemas de gerenciamento de contêineres distribuídos como o Kubernetes normalmente tem alguma maneira integrada de lidar com a **replicação de contêineres** enquanto ainda oferece **balanceamento de carga** para as solicitações recebidas. Tudo no **nível do cluster**.
 
@@ -499,7 +499,7 @@ Claro, existem **casos especiais** em que você pode querer ter **um contêiner*
 Nesses casos, você pode usar a opção de linha de comando `--workers` para definir o número de workers que deseja executar:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -570,7 +570,7 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 ### Imagem Docker base { #base-docker-image }
 
-Antes havia uma imagem oficial do FastAPI para Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi-docker</a>. Mas agora ela está descontinuada. ⛔️
+Antes havia uma imagem oficial do FastAPI para Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Mas agora ela está descontinuada. ⛔️
 
 Você provavelmente **não** deve usar essa imagem base do Docker (ou qualquer outra semelhante).
 

@@ -13,6 +13,7 @@ FastAPI will use this return type to:
 * Add a **JSON Schema** for the response, in the OpenAPI *path operation*.
     * This will be used by the **automatic docs**.
     * It will also be used by automatic client code generation tools.
+* **Serialize** the returned data to JSON using Pydantic, which is written in **Rust**, so it will be **much faster**.
 
 But most importantly:
 
@@ -183,7 +184,7 @@ There might be cases where you return something that is not a valid Pydantic fie
 
 The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.
 
@@ -193,7 +194,7 @@ And tools will also be happy because both `RedirectResponse` and `JSONResponse` 
 
 You can also use a subclass of `Response` in the type annotation:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 This will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case.
 
@@ -201,7 +202,7 @@ This will also work because `RedirectResponse` is a subclass of `Response`, and 
 
 But when you return some other arbitrary object that is not a valid Pydantic type (e.g. a database object) and you annotate it like that in the function, FastAPI will try to create a Pydantic response model from that type annotation, and will fail.
 
-The same would happen if you had something like a <abbr title='A union between multiple types means "any of these types".'>union</abbr> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
+The same would happen if you had something like a <dfn title='A union between multiple types means "any of these types".'>union</dfn> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

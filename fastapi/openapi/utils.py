@@ -3,7 +3,7 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
-from typing import Any, Optional, Union, cast
+from typing import Any, Literal, cast
 
 from fastapi import routing
 from fastapi._compat import (
@@ -29,6 +29,7 @@ from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
+from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
@@ -38,7 +39,6 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
-from typing_extensions import Literal
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -180,13 +180,13 @@ def _get_openapi_operation_parameters(
 
 def get_openapi_operation_request_body(
     *,
-    body_field: Optional[ModelField],
+    body_field: ModelField | None,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
-) -> Optional[dict[str, Any]]:
+) -> dict[str, Any] | None:
     if not body_field:
         return None
     assert isinstance(body_field, ModelField)
@@ -279,7 +279,7 @@ def get_openapi_path(
     else:
         current_response_class = route.response_class
     assert current_response_class, "A response class is needed to generate OpenAPI"
-    route_response_media_type: Optional[str] = current_response_class.media_type
+    route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
             operation = get_openapi_operation_metadata(
@@ -356,25 +356,60 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if route_response_media_type and is_body_allowed_for_status_code(
-                route.status_code
-            ):
-                response_schema = {"type": "string"}
-                if lenient_issubclass(current_response_class, JSONResponse):
-                    if route.response_field:
-                        response_schema = get_schema_from_model_field(
-                            field=route.response_field,
+            if is_body_allowed_for_status_code(route.status_code):
+                # Check for JSONL streaming (generator endpoints)
+                if route.is_json_stream:
+                    jsonl_content: dict[str, Any] = {}
+                    if route.stream_item_field:
+                        item_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
                         )
+                        jsonl_content["itemSchema"] = item_schema
                     else:
-                        response_schema = {}
-                operation.setdefault("responses", {}).setdefault(
-                    status_code, {}
-                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                    "schema"
-                ] = response_schema
+                        jsonl_content["itemSchema"] = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                elif route.is_sse_stream:
+                    sse_content: dict[str, Any] = {}
+                    item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
+                    if route.stream_item_field:
+                        content_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
+                            model_name_map=model_name_map,
+                            field_mapping=field_mapping,
+                            separate_input_output_schemas=separate_input_output_schemas,
+                        )
+                        item_schema["required"] = ["data"]
+                        item_schema["properties"]["data"] = {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": content_schema,
+                        }
+                    sse_content["itemSchema"] = item_schema
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["text/event-stream"] = sse_content
+                elif route_response_media_type:
+                    response_schema = {"type": "string"}
+                    if lenient_issubclass(current_response_class, JSONResponse):
+                        if route.response_field:
+                            response_schema = get_schema_from_model_field(
+                                field=route.response_field,
+                                model_name_map=model_name_map,
+                                field_mapping=field_mapping,
+                                separate_input_output_schemas=separate_input_output_schemas,
+                            )
+                        else:
+                            response_schema = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {}).setdefault(
+                        route_response_media_type, {}
+                    )["schema"] = response_schema
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
@@ -393,7 +428,7 @@ def get_openapi_path(
                         "An additional response must be a dict"
                     )
                     field = route.response_fields.get(additional_status_code)
-                    additional_field_schema: Optional[dict[str, Any]] = None
+                    additional_field_schema: dict[str, Any] | None = None
                     if field:
                         additional_field_schema = get_schema_from_model_field(
                             field=field,
@@ -408,7 +443,7 @@ def get_openapi_path(
                             .setdefault("schema", {})
                         )
                         deep_dict_update(additional_schema, additional_field_schema)
-                    status_text: Optional[str] = status_code_ranges.get(
+                    status_text: str | None = status_code_ranges.get(
                         str(additional_status_code).upper()
                     ) or http.client.responses.get(int(additional_status_code))
                     description = (
@@ -454,9 +489,9 @@ def get_fields_from_routes(
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
     for route in routes:
-        if getattr(route, "include_in_schema", None) and isinstance(
-            route, routing.APIRoute
-        ):
+        if not isinstance(route, routing.APIRoute):
+            continue
+        if route.include_in_schema:
             if route.body_field:
                 assert isinstance(route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
@@ -466,6 +501,8 @@ def get_fields_from_routes(
                 responses_from_routes.append(route.response_field)
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
+            if route.stream_item_field:
+                responses_from_routes.append(route.stream_item_field)
             if route.callbacks:
                 callback_flat_models.extend(get_fields_from_routes(route.callbacks))
             params = get_flat_params(route.dependant)
@@ -482,17 +519,17 @@ def get_openapi(
     title: str,
     version: str,
     openapi_version: str = "3.1.0",
-    summary: Optional[str] = None,
-    description: Optional[str] = None,
+    summary: str | None = None,
+    description: str | None = None,
     routes: Sequence[BaseRoute],
-    webhooks: Optional[Sequence[BaseRoute]] = None,
-    tags: Optional[list[dict[str, Any]]] = None,
-    servers: Optional[list[dict[str, Union[str, Any]]]] = None,
-    terms_of_service: Optional[str] = None,
-    contact: Optional[dict[str, Union[str, Any]]] = None,
-    license_info: Optional[dict[str, Union[str, Any]]] = None,
+    webhooks: Sequence[BaseRoute] | None = None,
+    tags: list[dict[str, Any]] | None = None,
+    servers: list[dict[str, str | Any]] | None = None,
+    terms_of_service: str | None = None,
+    contact: dict[str, str | Any] | None = None,
+    license_info: dict[str, str | Any] | None = None,
     separate_input_output_schemas: bool = True,
-    external_docs: Optional[dict[str, Any]] = None,
+    external_docs: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     info: dict[str, Any] = {"title": title, "version": version}
     if summary:

@@ -29,7 +29,7 @@ Ama bazı özel durumlarda `Request` nesnesini almak faydalıdır.
 
 Bunun için request'e doğrudan erişmeniz gerekir.
 
-{* ../../docs_src/using_request_directly/tutorial001_py39.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
 Tipi `Request` olan bir *path operation function* parameter'ı tanımladığınızda **FastAPI**, o parameter'a `Request` nesnesini geçmesi gerektiğini anlar.
 

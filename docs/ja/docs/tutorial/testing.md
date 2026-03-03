@@ -30,7 +30,7 @@ $ pip install httpx
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します (これも `pytest` の標準です)。
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 豆知識
 
@@ -76,7 +76,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 ファイル `main.py` に **FastAPI** アプリがあります:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### テストファイル { #testing-file }
 
@@ -92,7 +92,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 このファイルは同じパッケージ内にあるため、相対インポートを使って `main` モジュール (`main.py`) からオブジェクト `app` をインポートできます:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...そして、これまでと同じようにテストコードを書けます。

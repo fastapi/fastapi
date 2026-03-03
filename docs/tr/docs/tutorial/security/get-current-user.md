@@ -2,7 +2,7 @@
 
 Önceki bölümde güvenlik sistemi (dependency injection sistemine dayanır) *path operation function*'a `str` olarak bir `token` veriyordu:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Ancak bu hâlâ pek kullanışlı değil.
 

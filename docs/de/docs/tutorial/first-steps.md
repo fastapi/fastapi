@@ -2,7 +2,7 @@
 
 Die einfachste FastAPI-Datei könnte wie folgt aussehen:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Kopieren Sie das in eine Datei `main.py`.
 
@@ -183,7 +183,7 @@ Das war's! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
 
 ### Schritt 1: `FastAPI` importieren { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` ist eine Python-Klasse, die die gesamte Funktionalität für Ihre API bereitstellt.
 
@@ -197,7 +197,7 @@ Sie können alle <a href="https://www.starlette.dev/" class="external-link" targ
 
 ### Schritt 2: Erzeugen einer `FastAPI`-„Instanz“ { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 In diesem Beispiel ist die Variable `app` eine „Instanz“ der Klasse `FastAPI`.
 
@@ -266,12 +266,12 @@ Wir werden sie auch „**Operationen**“ nennen.
 
 #### Definieren eines *Pfadoperation-Dekorators* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> zuständig ist, die an:
 
 * den Pfad `/`
-* unter der Verwendung der <abbr title="eine HTTP-GET-Methode"><code>get</code>-Operation</abbr> gehen
+* unter der Verwendung der <dfn title="eine HTTP-GET-Methode"><code>get</code>-Operation</dfn> gehen
 
 /// info | `@decorator` Info
 
@@ -320,7 +320,7 @@ Das ist unsere „**Pfadoperation-Funktion**“:
 * **Operation**: ist `get`.
 * **Funktion**: ist die Funktion direkt unter dem „Dekorator“ (unter `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Dies ist eine Python-Funktion.
 
@@ -332,7 +332,7 @@ In diesem Fall handelt es sich um eine `async`-Funktion.
 
 Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Hinweis
 
@@ -342,7 +342,7 @@ Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *„In Eile?“*](../as
 
 ### Schritt 5: den Inhalt zurückgeben { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Sie können ein `dict`, eine `list`, einzelne Werte wie `str`, `int`, usw. zurückgeben.
 

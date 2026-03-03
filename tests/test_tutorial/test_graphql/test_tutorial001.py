@@ -10,7 +10,7 @@ warnings.filterwarnings(
     category=DeprecationWarning,
 )
 
-from docs_src.graphql_.tutorial001_py39 import app  # noqa: E402
+from docs_src.graphql_.tutorial001_py310 import app  # noqa: E402
 
 
 @pytest.fixture(name="client")

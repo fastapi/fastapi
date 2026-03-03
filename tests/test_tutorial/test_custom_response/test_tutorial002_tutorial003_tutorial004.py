@@ -2,15 +2,15 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 
 
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial002_py39"),
-        pytest.param("tutorial003_py39"),
-        pytest.param("tutorial004_py39"),
+        pytest.param("tutorial002_py310"),
+        pytest.param("tutorial003_py310"),
+        pytest.param("tutorial004_py310"),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest) -> str:
@@ -59,7 +59,7 @@ def test_openapi_schema(client: TestClient, mod_name: str):
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": response_content,
+                                "content": Is(response_content),
                             }
                         },
                         "summary": "Read Items",

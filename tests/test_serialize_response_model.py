@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
@@ -9,8 +7,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str = Field(alias="aliased_name")
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/valid", response_model=Item)

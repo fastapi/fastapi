@@ -18,7 +18,7 @@ OpenAPI仕様および自動APIドキュメントUIで使用される次のフ�
 
 以下のように設定できます:
 
-{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | 豆知識
 
@@ -36,7 +36,7 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 例:
 
-{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## タグのメタデータ { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 タグのメタデータを作成し、それを `openapi_tags` パラメータに渡します:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 説明の中でMarkdownを使用できることに注意してください。たとえば「login」は太字 (**login**) で表示され、「fancy」は斜体 (_fancy_) で表示されます。
 
@@ -72,7 +72,7 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 *path operation*（および `APIRouter`）の `tags` パラメータを使用して、それらを異なるタグに割り当てます:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | 情報
 
@@ -100,7 +100,7 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 たとえば、`/api/v1/openapi.json` で提供されるように設定するには:
 
-{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 OpenAPIスキーマを完全に無効にする場合は、`openapi_url=None` を設定できます。これにより、それを使用するドキュメントUIも無効になります。
 
@@ -117,4 +117,4 @@ OpenAPIスキーマを完全に無効にする場合は、`openapi_url=None` を
 
 たとえば、`/documentation` でSwagger UIが提供されるように設定し、ReDocを無効にするには:
 
-{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

@@ -8,10 +8,10 @@ FastAPI 버전 `0.122.0`부터는 더 적절한 HTTP 상태 코드 `401 Unauthor
 
 예를 들어, 기본값인 `401 Unauthorized` 오류 대신 `403 Forbidden` 오류를 반환하는 `HTTPBearer`의 서브클래스를 만들 수 있습니다:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py39.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
 
 /// tip | 팁
 
-함수는 예외를 `raise`하는 것이 아니라 예외 인스턴스를 `return`한다는 점에 유의하세요. 예외를 발생시키는(`raise`) 작업은 내부 코드의 나머지 부분에서 수행됩니다.
+함수는 예외를 `return`하는 것이지 `raise`하지 않는다는 점에 유의하세요. 예외를 발생시키는(`raise`) 작업은 내부 코드의 나머지 부분에서 수행됩니다.
 
 ///

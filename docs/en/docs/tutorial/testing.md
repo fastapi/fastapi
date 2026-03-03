@@ -30,7 +30,7 @@ Use the `TestClient` object the same way as you do with `httpx`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip
 
@@ -76,7 +76,7 @@ Let's say you have a file structure as described in [Bigger Applications](bigger
 In the file `main.py` you have your **FastAPI** app:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Testing file { #testing-file }
 
@@ -92,7 +92,7 @@ Then you could have a file `test_main.py` with your tests. It could live on the 
 
 Because this file is in the same package, you can use relative imports to import the object `app` from the `main` module (`main.py`):
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...and have the code for the tests just like before.

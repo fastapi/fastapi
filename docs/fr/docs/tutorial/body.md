@@ -10,7 +10,7 @@ Pour déclarer un corps de **requête**, on utilise les modèles de <a href="htt
 
 /// info
 
-Pour envoyer de la donnée, vous devriez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
+Pour envoyer de la donnée, vous devez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
 
 Envoyer un corps dans une requête `GET` a un comportement non défini dans les spécifications, cela est néanmoins supporté par **FastAPI**, seulement pour des cas d'utilisation très complexes/extrêmes.
 
@@ -56,7 +56,7 @@ Par exemple, le modèle ci-dessus déclare un JSON « `object` » (ou `dict` P
 
 ## Le déclarer comme paramètre { #declare-it-as-a-parameter }
 
-Pour l'ajouter à votre *opération de chemin*, déclarez-le comme vous déclareriez des paramètres de chemin ou de requête :
+Pour l'ajouter à votre *chemin d'accès*, déclarez-le comme vous déclareriez des paramètres de chemin ou de requête :
 
 {* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
@@ -81,7 +81,7 @@ Les schémas JSON de vos modèles seront intégrés au schéma OpenAPI global de
 
 <img src="/img/tutorial/body/image01.png">
 
-Et seront aussi utilisés dans chaque *opération de chemin* de la documentation utilisant ces modèles :
+Et seront aussi utilisés dans chaque *chemin d'accès* de la documentation utilisant ces modèles :
 
 <img src="/img/tutorial/body/image02.png">
 
@@ -115,7 +115,7 @@ Ce qui améliore le support pour les modèles Pydantic avec :
 
 * de l'autocomplétion
 * des vérifications de type
-* du « refactoring » (ou remaniement de code)
+* du « refactoring »
 * de la recherche
 * des inspections
 
@@ -129,7 +129,7 @@ Dans la fonction, vous pouvez accéder à tous les attributs de l'objet du modè
 
 ## Corps de la requête + paramètres de chemin { #request-body-path-parameters }
 
-Vous pouvez déclarer des paramètres de chemin et un corps de requête pour la même *opération de chemin*.
+Vous pouvez déclarer des paramètres de chemin et un corps de requête pour la même *chemin d'accès*.
 
 **FastAPI** est capable de reconnaître que les paramètres de la fonction qui correspondent aux paramètres de chemin doivent être **récupérés depuis le chemin**, et que les paramètres de fonctions déclarés comme modèles Pydantic devraient être **récupérés depuis le corps de la requête**.
 
@@ -137,7 +137,7 @@ Vous pouvez déclarer des paramètres de chemin et un corps de requête pour la 
 
 ## Corps de la requête + paramètres de chemin et de requête { #request-body-path-query-parameters }
 
-Vous pouvez aussi déclarer un **corps**, et des paramètres de **chemin** et de **requête** dans la même *opération de chemin*.
+Vous pouvez aussi déclarer un **corps**, et des paramètres de **chemin** et de **requête** dans la même *chemin d'accès*.
 
 **FastAPI** saura reconnaître chacun d'entre eux et récupérer la bonne donnée au bon endroit.
 
@@ -153,7 +153,7 @@ Les paramètres de la fonction seront reconnus comme tel :
 
 **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
 
-L'annotation de type `str | None` (Python 3.10+) ou `Union` dans `Union[str, None]` (Python 3.9+) n'est pas utilisée par **FastAPI** pour déterminer que la valeur n'est pas requise, il le saura parce qu'elle a une valeur par défaut `= None`.
+L'annotation de type `str | None` n'est pas utilisée par **FastAPI** pour déterminer que la valeur n'est pas requise, il le saura parce qu'elle a une valeur par défaut `= None`.
 
 Mais ajouter ces annotations de type permettra à votre éditeur de vous offrir un meilleur support et de détecter des erreurs.
 

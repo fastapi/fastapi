@@ -20,7 +20,7 @@ HTTP Basic Auth에서는 애플리케이션이 사용자명과 비밀번호가 �
 * `HTTPBasicCredentials` 타입의 객체를 반환합니다:
     * 전송된 `username`과 `password`를 포함합니다.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 처음으로 URL을 열어보면(또는 문서에서 "Execute" 버튼을 클릭하면) 브라우저가 사용자명과 비밀번호를 물어봅니다:
 
@@ -40,13 +40,13 @@ dependency를 사용해 사용자명과 비밀번호가 올바른지 확인하�
 
 그런 다음 `secrets.compare_digest()`를 사용해 `credentials.username`이 `"stanleyjobson"`이고 `credentials.password`가 `"swordfish"`인지 확실히 확인할 수 있습니다.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 이는 다음과 비슷합니다:
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # 어떤 오류를 반환
     ...
 ```
 
@@ -104,4 +104,4 @@ Python은 두 문자열이 같지 않다는 것을 알아차리기 전까지 `st
 
 자격 증명이 올바르지 않다고 판단되면, 상태 코드 401(자격 증명이 제공되지 않았을 때와 동일)을 사용하는 `HTTPException`을 반환하고 브라우저가 로그인 프롬프트를 다시 표시하도록 `WWW-Authenticate` 헤더를 추가하세요:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

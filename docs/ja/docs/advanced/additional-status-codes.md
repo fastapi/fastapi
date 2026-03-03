@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning | 注意
+/// warning
 
 上の例のように `Response` を直接返すと、それはそのまま返されます。
 
@@ -38,4 +38,4 @@
 
 追加のステータスコードとレスポンスを直接返す場合、それらは OpenAPI スキーマ（API ドキュメント）には含まれません。FastAPI には、事前に何が返されるかを知る方法がないからです。
 
-しかし、[Additional Responses](additional-responses.md){.internal-link target=_blank} を使ってコード内にドキュメント化できます。
+しかし、[追加のレスポンス](additional-responses.md){.internal-link target=_blank} を使ってコード内にドキュメント化できます。

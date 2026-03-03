@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -9,7 +7,7 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    name: Optional[str] = None
+    name: str | None = None
 
 
 class OtherItem(BaseModel):
@@ -17,7 +15,7 @@ class OtherItem(BaseModel):
 
 
 @app.post("/items/")
-def save_union_body(item: Union[OtherItem, Item]):
+def save_union_body(item: OtherItem | Item):
     return {"item": item}
 
 

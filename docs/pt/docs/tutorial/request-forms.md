@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Importe `Form` de `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## Defina parâmetros de `Form` { #define-form-parameters }
 
 Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 
-A <abbr title="specification – especificação">spec</abbr> exige que os campos sejam exatamente nomeados como `username` e `password` e sejam enviados como campos de formulário, não JSON.
+A <dfn title="especificação">especificação</dfn> exige que os campos sejam exatamente nomeados como `username` e `password` e sejam enviados como campos de formulário, não JSON.
 
 Com `Form` você pode declarar as mesmas configurações que com `Body` (e `Query`, `Path`, `Cookie`), incluindo validação, exemplos, um alias (por exemplo, `user-name` em vez de `username`), etc.
 

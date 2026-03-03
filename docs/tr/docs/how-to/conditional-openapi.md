@@ -4,9 +4,9 @@ Gerekirse, ayarlar ve environment variable'ları kullanarak OpenAPI'yi ortama g�
 
 ## Güvenlik, API'ler ve dokümantasyon hakkında { #about-security-apis-and-docs }
 
-Production ortamında dokümantasyon arayüzlerini gizlemek, API'nizi korumanın yolu *olmamalıdır*.
+Production ortamında dokümantasyon arayüzlerini gizlemek, API'nizi korumanın yolu olmamalıdır.
 
-Bu, API'nize ekstra bir güvenlik katmanı eklemez; *path operation*'lar bulundukları yerde yine erişilebilir olacaktır.
+Bu, API'nize ekstra bir güvenlik katmanı eklemez; path operation'lar bulundukları yerde yine erişilebilir olacaktır.
 
 Kodunuzda bir güvenlik açığı varsa, o açık yine var olmaya devam eder.
 
@@ -29,7 +29,7 @@ Yine de, bazı ortamlarda (örn. production) veya environment variable'lardan ge
 
 Örneğin:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Burada `openapi_url` ayarını, varsayılanı `"/openapi.json"` olacak şekilde tanımlıyoruz.
 

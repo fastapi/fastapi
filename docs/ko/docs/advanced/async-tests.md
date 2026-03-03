@@ -32,11 +32,11 @@
 
 `main.py` 파일은 다음과 같습니다:
 
-{* ../../docs_src/async_tests/app_a_py39/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 `test_main.py` 파일에는 `main.py`에 대한 테스트가 있으며, 이제 다음과 같이 보일 수 있습니다:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## 실행하기 { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 `@pytest.mark.anyio` 마커는 pytest에게 이 테스트 함수가 비동기로 호출되어야 한다고 알려줍니다:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | 팁
 
@@ -66,7 +66,7 @@ $ pytest
 
 그 다음 앱으로 `AsyncClient`를 만들고, `await`를 사용해 비동기 요청을 보낼 수 있습니다.
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 이는 다음과 동등합니다:
 

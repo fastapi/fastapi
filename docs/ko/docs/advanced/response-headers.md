@@ -6,7 +6,7 @@
 
 그런 다음, 여러분은 해당 *임시* 응답 객체에서 헤더를 설정할 수 있습니다.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 그 후, 일반적으로 사용하듯이 필요한 객체(`dict`, 데이터베이스 모델 등)를 반환할 수 있습니다.
 
@@ -20,15 +20,15 @@
 
 `Response`를 직접 반환할 때에도 헤더를 추가할 수 있습니다.
 
-[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요.
+[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | 기술 세부사항
 
 `from starlette.responses import Response`나 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
-**FastAPI**는 해당 *임시* 응답에서 헤더(쿠키와 상태 코드도 포함)를 추출하여, 여러분이 반환한 값을 포함하는 최종 응답에 `response_model`로 필터링된 값을 넣습니다.
+**FastAPI**는 개발자인 여러분의 편의를 위해 `starlette.responses`와 동일한 것을 `fastapi.responses`로도 제공합니다. 하지만 사용 가능한 대부분의 응답은 Starlette에서 직접 제공합니다.
 
 그리고 `Response`는 헤더와 쿠키를 설정하는 데 자주 사용될 수 있으므로, **FastAPI**는 `fastapi.Response`로도 이를 제공합니다.
 

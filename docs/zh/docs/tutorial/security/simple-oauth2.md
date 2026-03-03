@@ -6,9 +6,9 @@
 
 首先，使用 **FastAPI** 安全工具获取 `username` 和 `password`。
 
-OAuth2 规范要求使用**密码流**时，客户端或用户必须以表单数据形式发送 `username` 和 `password` 字段。
+OAuth2 规范要求使用“密码流”时，客户端或用户必须以表单数据形式发送 `username` 和 `password` 字段。
 
-并且，这两个字段必须命名为 `username` 和 `password` ，不能使用 `user-name` 或 `email` 等其它名称。
+并且，这两个字段必须命名为 `username` 和 `password`，不能使用 `user-name` 或 `email` 等其它名称。
 
 不过也不用担心，前端仍可以显示终端用户所需的名称。
 
@@ -74,7 +74,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 /// info | 信息
 
-`OAuth2PasswordRequestForm` 与 `OAuth2PasswordBearer` 一样，都不是 FastAPI 的特殊类。
+`OAuth2PasswordRequestForm` 并不像 `OAuth2PasswordBearer` 那样是 **FastAPI** 的特殊类。
 
 **FastAPI** 把 `OAuth2PasswordBearer` 识别为安全方案。因此，可以通过这种方式把它添加至 OpenAPI。
 
@@ -200,7 +200,7 @@ UserInDB(
 
 此处返回值为 `Bearer` 的响应头 `WWW-Authenticate` 也是规范的一部分。
 
-任何 401**UNAUTHORIZED**HTTP（错误）状态码都应返回 `WWW-Authenticate` 响应头。
+任何 401“UNAUTHORIZED”HTTP（错误）状态码都应返回 `WWW-Authenticate` 响应头。
 
 本例中，因为使用的是 Bearer Token，该响应头的值应为 `Bearer`。
 
@@ -220,7 +220,7 @@ UserInDB(
 
 ### 身份验证 { #authenticate }
 
-点击**Authorize**按钮。
+点击“Authorize”按钮。
 
 使用以下凭证：
 
@@ -286,4 +286,4 @@ UserInDB(
 
 唯一欠缺的是，它仍然不是真的**安全**。
 
-下一章，介绍使用密码哈希支持库与 <abbr title="JSON Web Tokens - JSON Web 令牌">JWT</abbr> 令牌实现真正的安全机制。
+下一章你将看到如何使用安全的密码哈希库和 <abbr title="JSON Web Tokens - JSON Web 令牌">JWT</abbr> 令牌。

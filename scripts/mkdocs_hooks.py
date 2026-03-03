@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 import material
 from mkdocs.config.defaults import MkDocsConfig
@@ -105,9 +105,9 @@ def on_files(files: Files, *, config: MkDocsConfig) -> Files:
 
 
 def generate_renamed_section_items(
-    items: list[Union[Page, Section, Link]], *, config: MkDocsConfig
-) -> list[Union[Page, Section, Link]]:
-    new_items: list[Union[Page, Section, Link]] = []
+    items: list[Page | Section | Link], *, config: MkDocsConfig
+) -> list[Page | Section | Link]:
+    new_items: list[Page | Section | Link] = []
     for item in items:
         if isinstance(item, Section):
             new_title = item.title
