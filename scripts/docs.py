@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Any
+from typing import Any1
 
 import mkdocs.utils
 import typer
@@ -23,7 +23,6 @@ SUPPORTED_LANGS = {
     "de",
     "en",
     "es",
-    "fr",
     "ja",
     "ko",
     "pt",
