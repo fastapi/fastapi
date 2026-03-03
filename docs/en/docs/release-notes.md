@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump actions/download-artifact from 7 to 8. PR [#15020](https://github.com/fastapi/fastapi/pull/15020) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/upload-artifact from 6 to 7. PR [#15019](https://github.com/fastapi/fastapi/pull/15019) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.135.1
