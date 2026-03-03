@@ -39,6 +39,7 @@ def test_swagger_ui_html(client: TestClient, path_prefix: str):
     assert f"{path_prefix}/docs/oauth2-redirect" in response.text
 
 
+@workdir_lock
 def test_openapi_json(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/openapi.json")
     assert response.request.url == f"http://server{path_prefix}/openapi.json"
