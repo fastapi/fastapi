@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump strawberry-graphql from 0.291.2 to 0.307.1. PR [#15033](https://github.com/fastapi/fastapi/pull/15033) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typer from 0.21.1 to 0.24.1. PR [#15032](https://github.com/fastapi/fastapi/pull/15032) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/download-artifact from 7 to 8. PR [#15020](https://github.com/fastapi/fastapi/pull/15020) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/upload-artifact from 6 to 7. PR [#15019](https://github.com/fastapi/fastapi/pull/15019) by [@dependabot[bot]](https://github.com/apps/dependabot).
