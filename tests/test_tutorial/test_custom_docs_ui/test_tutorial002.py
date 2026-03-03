@@ -4,6 +4,8 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from tests.utils import workdir_lock
+
 
 @pytest.fixture(
     params=["", "/api"],
@@ -26,6 +28,7 @@ def client(path_prefix: str):
     static_dir.rmdir()
 
 
+@workdir_lock
 def test_swagger_ui_html(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/docs")
     assert response.request.url == f"http://server{path_prefix}/docs"
@@ -35,6 +38,7 @@ def test_swagger_ui_html(client: TestClient, path_prefix: str):
     assert f"{path_prefix}/docs/oauth2-redirect" in response.text
 
 
+@workdir_lock
 def test_openapi_json(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/openapi.json")
     assert response.request.url == f"http://server{path_prefix}/openapi.json"
@@ -42,6 +46,7 @@ def test_openapi_json(client: TestClient, path_prefix: str):
     assert response.json()["openapi"] == "3.1.0"
 
 
+@workdir_lock
 def test_swagger_ui_oauth2_redirect_html(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/docs/oauth2-redirect")
     assert response.request.url == f"http://server{path_prefix}/docs/oauth2-redirect"
@@ -49,6 +54,7 @@ def test_swagger_ui_oauth2_redirect_html(client: TestClient, path_prefix: str):
     assert "window.opener.swaggerUIRedirectOauth2" in response.text
 
 
+@workdir_lock
 def test_redoc_html(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/redoc")
     assert response.request.url == f"http://server{path_prefix}/redoc"
@@ -57,6 +63,7 @@ def test_redoc_html(client: TestClient, path_prefix: str):
     assert f"{path_prefix}/openapi.json" in response.text
 
 
+@workdir_lock
 def test_api(client: TestClient, path_prefix: str):
     response = client.get(f"{path_prefix}/users/john")
     assert response.request.url == f"http://server{path_prefix}/users/john"

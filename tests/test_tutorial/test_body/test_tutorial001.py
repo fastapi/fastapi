@@ -189,18 +189,12 @@ def test_geo_json(client: TestClient):
     assert response.status_code == 200, response.text
 
 
-def test_no_content_type_is_json(client: TestClient):
+def test_no_content_type_json(client: TestClient):
     response = client.post(
         "/items/",
         content='{"name": "Foo", "price": 50.5}',
     )
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "name": "Foo",
-        "description": None,
-        "price": 50.5,
-        "tax": None,
-    }
+    assert response.status_code == 422, response.text
 
 
 def test_wrong_headers(client: TestClient):

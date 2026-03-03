@@ -134,7 +134,10 @@ def test_openapi_schema(client: TestClient):
                             "file": {
                                 "title": "File",
                                 "anyOf": [
-                                    {"type": "string", "format": "binary"},
+                                    {
+                                        "type": "string",
+                                        "contentMediaType": "application/octet-stream",
+                                    },
                                     {"type": "null"},
                                 ],
                             }
@@ -147,7 +150,10 @@ def test_openapi_schema(client: TestClient):
                             "file": {
                                 "title": "File",
                                 "anyOf": [
-                                    {"type": "string", "format": "binary"},
+                                    {
+                                        "type": "string",
+                                        "contentMediaType": "application/octet-stream",
+                                    },
                                     {"type": "null"},
                                 ],
                             }

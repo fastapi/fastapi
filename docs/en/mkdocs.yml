@@ -154,6 +154,8 @@ nav:
     - tutorial/cors.md
     - tutorial/sql-databases.md
     - tutorial/bigger-applications.md
+    - tutorial/stream-json-lines.md
+    - tutorial/server-sent-events.md
     - tutorial/background-tasks.md
     - tutorial/metadata.md
     - tutorial/static-files.md
@@ -161,6 +163,7 @@ nav:
     - tutorial/debugging.md
   - Advanced User Guide:
     - advanced/index.md
+    - advanced/stream-data.md
     - advanced/path-operation-advanced-configuration.md
     - advanced/additional-status-codes.md
     - advanced/response-directly.md
@@ -192,6 +195,8 @@ nav:
     - advanced/wsgi.md
     - advanced/generate-clients.md
     - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
@@ -342,5 +347,6 @@ extra_css:
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py

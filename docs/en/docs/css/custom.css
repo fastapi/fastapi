@@ -61,6 +61,10 @@ a.internal-link::after {
   padding-bottom: 2em;
 }
 
+.md-footer-meta .md-social {
+  padding-right: 4rem;
+}
+
 .user-list {
   display: flex;
   flex-wrap: wrap;
