@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add dates to release notes. PR [#15001](https://github.com/fastapi/fastapi/pull/15001) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
 * ⬆ Bump werkzeug from 3.1.5 to 3.1.6. PR [#14948](https://github.com/fastapi/fastapi/pull/14948) by [@dependabot[bot]](https://github.com/apps/dependabot).
