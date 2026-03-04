@@ -297,7 +297,7 @@ FastAPI (фактически Starlette) автоматически добави
 
 Параметр, который это определяет, — `default_response_class`.
 
-В примере ниже **FastAPI** будет использовать `ORJSONResponse` по умолчанию во всех операциях пути вместо `JSONResponse`.
+В примере ниже **FastAPI** будет использовать `HTMLResponse` по умолчанию во всех операциях пути вместо `JSONResponse`.
 
 {* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
