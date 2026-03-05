@@ -8,7 +8,7 @@ It will use the default status code or the one you set in your *path operation*.
 
 If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.
 
-For example, let's say that you want to have a *path operation* that allows to update items, and returns HTTP status codes of 200 "OK" when successful.
+For example, let's say that you want to have a *path operation* that allows you to update items, and returns HTTP status codes of 200 "OK" when successful.
 
 But you also want it to accept new items. And when the items didn't exist before, it creates them, and returns an HTTP status code of 201 "Created".
 
