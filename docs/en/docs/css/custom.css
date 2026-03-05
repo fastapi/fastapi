@@ -32,15 +32,16 @@
   display: none;
 }
 
-/* External links: absolute URLs opening in new tab
+/* External links: detected by JS comparing origin to site origin
+   JS sets data-external-link on links pointing outside the site
    Skip image links, .no-link-icon, and .announce-link */
-a[target="_blank"][href^="http"]:not(:has(img)):not(.no-link-icon):not(.announce-link) {
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link) {
   /* For right to left languages */
   direction: ltr;
   display: inline-block;
 }
 
-a[target="_blank"][href^="http"]:not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
   content: "";
   display: inline-block;
   width: 0.75em;
@@ -57,19 +58,20 @@ a[target="_blank"][href^="http"]:not(:has(img)):not(.no-link-icon):not(.announce
   mask-repeat: no-repeat;
 }
 
-a[target="_blank"][href^="http"]:not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
   opacity: 0.85;
 }
 
-/* Internal links opening in new tab: relative URLs with target=_blank
+/* Internal links opening in new tab: same-origin links with target=_blank
+   JS sets data-internal-link on links pointing to the same site origin
    Skip image links, .no-link-icon, and .announce-link */
-a[target="_blank"]:not([href^="http"]):not(:has(img)):not(.no-link-icon):not(.announce-link) {
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link) {
   /* For right to left languages */
   direction: ltr;
   display: inline-block;
 }
 
-a[target="_blank"]:not([href^="http"]):not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
   content: "";
   display: inline-block;
   width: 0.75em;
@@ -86,7 +88,7 @@ a[target="_blank"]:not([href^="http"]):not(:has(img)):not(.no-link-icon):not(.an
   mask-repeat: no-repeat;
 }
 
-a[target="_blank"]:not([href^="http"]):not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
   opacity: 0.85;
 }
 
