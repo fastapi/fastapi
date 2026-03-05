@@ -1,14 +1,14 @@
 # Development - Contributing
 
-First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=_blank}.
+First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md).
 
 ## Developing
 
-If you already cloned the <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the [fastapi repository](https://github.com/fastapi/fastapi) and you want to deep dive in the code, here are some guidelines to set up your environment.
 
 ### Install requirements
 
-Create a virtual environment and install the required packages with <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Create a virtual environment and install the required packages with [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -112,7 +112,7 @@ $ mkdocs serve --dev-addr 127.0.0.1:8008
 
 The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
 
-But you can also use <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, and you will get autocompletion in your terminal for the commands after installing completion.
+But you can also use [Typer CLI](https://typer.tiangolo.com/typer-cli/), and you will get autocompletion in your terminal for the commands after installing completion.
 
 If you install Typer CLI, you can install completion with:
 
@@ -129,7 +129,7 @@ Completion will take effect once you restart the terminal.
 
 ### Docs Structure
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+The documentation uses [MkDocs](https://www.mkdocs.org/).
 
 And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
 
@@ -183,31 +183,31 @@ Translation pull requests are made by LLMs guided with prompts designed by the F
 
 #### LLM Prompt per Language
 
-Each language has a directory: <a href="https://github.com/fastapi/fastapi/tree/master/docs" class="external-link" target="_blank">https://github.com/fastapi/fastapi/tree/master/docs</a>, in it you can see a file `llm-prompt.md` with the prompt specific for that language.
+Each language has a directory: [https://github.com/fastapi/fastapi/tree/master/docs](https://github.com/fastapi/fastapi/tree/master/docs), in it you can see a file `llm-prompt.md` with the prompt specific for that language.
 
-For example, for Spanish, the prompt is at: <a href="https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md" class="external-link" target="_blank">`docs/es/llm-prompt.md`</a>.
+For example, for Spanish, the prompt is at: [`docs/es/llm-prompt.md`](https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md).
 
 If you see mistakes in your language, you can make suggestions to the prompt in that file for your language, and request the specific pages you would like to re-generate after the changes.
 
 #### Reviewing Translation PRs
 
-You can also check the currently <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
+You can also check the currently [existing pull requests](https://github.com/fastapi/fastapi/pulls) for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review).
 
 When reviewing a pull request, it's better not to suggest changes in the same pull request, because it is LLM generated, and it won't be possible to make sure that small individual changes are replicated in other similar sections, or that they are preserved when translating the same content again.
 
-Instead of adding suggestions to the translation PR, make the suggestions to the LLM prompt file for that language, in a new PR. For example, for Spanish, the LLM prompt file is at: <a href="https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md" class="external-link" target="_blank">`docs/es/llm-prompt.md`</a>.
+Instead of adding suggestions to the translation PR, make the suggestions to the LLM prompt file for that language, in a new PR. For example, for Spanish, the LLM prompt file is at: [`docs/es/llm-prompt.md`](https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md).
 
 /// tip
 
-Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+Check the docs about [adding a pull request review](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews) to approve it or request changes.
 
 ///
 
 #### Subscribe to Notifications for Your Language
 
-Check if there's a <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
+Check if there's a [GitHub Discussion](https://github.com/fastapi/fastapi/discussions/categories/translations) to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
+To check the 2-letter code for the language you want to translate, you can use the table [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 #### Request a New Language
 
@@ -240,7 +240,7 @@ The same applies to comments and descriptions, please don't copy paste the conte
 
 ### Human Effort Denial of Service
 
-Using automated tools and AI to submit PRs or comments that we have to carefully review and handle would be the equivalent of a <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" class="external-link" target="_blank">Denial-of-service attack</a> on our human effort.
+Using automated tools and AI to submit PRs or comments that we have to carefully review and handle would be the equivalent of a [Denial-of-service attack](https://en.wikipedia.org/wiki/Denial-of-service_attack) on our human effort.
 
 It would be very little effort from the person submitting the PR (an LLM prompt) that generates a large amount of effort on our side (carefully reviewing code).
 

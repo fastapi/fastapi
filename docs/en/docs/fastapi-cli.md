@@ -52,7 +52,7 @@ FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatic
 
 For production you would use `fastapi run` instead. 🚀
 
-Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, a high-performance, production-ready, ASGI server. 😎
+Internally, **FastAPI CLI** uses [Uvicorn](https://www.uvicorn.dev), a high-performance, production-ready, ASGI server. 😎
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -70,6 +70,6 @@ In most cases you would (and should) have a "termination proxy" handling HTTPS f
 
 /// tip
 
-You can learn more about it in the [deployment documentation](deployment/index.md){.internal-link target=_blank}.
+You can learn more about it in the [deployment documentation](deployment/index.md).
 
 ///

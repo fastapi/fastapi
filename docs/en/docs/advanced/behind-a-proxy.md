@@ -16,9 +16,9 @@ But for security, as the server doesn't know it is behind a trusted proxy, it wo
 
 The proxy headers are:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -69,7 +69,7 @@ https://mysuperapp.com/items/
 
 /// tip
 
-If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md){.internal-link target=_blank}.
+If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md).
 
 ///
 
@@ -108,9 +108,9 @@ When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these
 
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
-You can easily run the configuration with reverse proxy and ASGI application behind it locally using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+You can easily run the configuration with reverse proxy and ASGI application behind it locally using [https://docs.traefik.io/](Traefik).
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Download Traefik</a>, it's a single binary, you can extract the compressed file and run it directly from the terminal.
+[https://github.com/containous/traefik/releases](Download Traefik), it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
 Then create a file `traefik.toml` with:
 
@@ -411,7 +411,7 @@ Let's now use the following app:
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py *}
 
-If your proxy removes the prefix before forwarding requests (like in Traefik configuration from [Stripping the prefix](#stripping-the-prefix){.internal-link target=_blank}), you should use the `--root-path` option of your ASGI server:
+If your proxy removes the prefix before forwarding requests (like in Traefik configuration from [Stripping the prefix](#stripping-the-prefix)), you should use the `--root-path` option of your ASGI server:
 
 <div class="termy">
 
@@ -443,7 +443,7 @@ Here's what happens in this setup:
 
 FastAPI automatically respects `root_path` in the scope when matching routes or generating URLs.
 
-Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+Open your browser and go to [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app)
 
 The response will look something like this:
 
@@ -543,7 +543,7 @@ But thanks to the `root_path` parameter, FastAPI corrects the scope to:
 }
 ```
 
-Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+Open your browser and go to [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app)
 
 The response will look something like this:
 
@@ -569,7 +569,7 @@ If you encounter strange issues with this configuration, double-check your proxy
 
 Use this approach when your ASGI server doesn't support a `--root-path` option, or if you need to configure your reverse proxy to keep the prefix in the path.
 
-Otherwise, prefer using the `--root-path` approach [described above](#uvicorn-root-path-proxy-strips-prefix){.internal-link target=_blank}.
+Otherwise, prefer using the `--root-path` approach [described above](#uvicorn-root-path-proxy-strips-prefix).
 
 ///
 
@@ -579,7 +579,7 @@ This is another common approach. It's the most flexible, but requires more compl
 
 /// warning
 
-This is a more advanced approach. In most cases, you should use the `--root-path` option [described above](#uvicorn-root-path-proxy-strips-prefix){.internal-link target=_blank}.
+This is a more advanced approach. In most cases, you should use the `--root-path` option [described above](#uvicorn-root-path-proxy-strips-prefix).
 
 ///
 
@@ -653,7 +653,7 @@ $ fastapi run main.py --forwarded-allow-ips="*"
 
 </div>
 
-Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>
+Open your browser and go to [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app)
 
 ```json
 {
@@ -663,7 +663,7 @@ Open your browser and go to <a href="http://127.0.0.1:9999/api/v1/app" class="ex
 }
 ```
 
-Now, go to <a href="http://127.0.0.1:9999/backend/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/backend/v1/app</a>
+Now, go to [http://127.0.0.1:9999/backend/v1/app](http://127.0.0.1:9999/backend/v1/app)
 
 ```json
 {
@@ -737,7 +737,7 @@ Notice the auto-generated server with a `url` value of `/api/v1`, taken from the
 
 ///
 
-In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
+In the docs UI at [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) it would look like:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -765,6 +765,6 @@ and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application { #mounting-a-sub-application }
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md)) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 
 FastAPI will internally use the `root_path` smartly, so it will just work. ✨

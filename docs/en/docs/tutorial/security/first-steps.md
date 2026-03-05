@@ -26,11 +26,11 @@ Copy the example in a file `main.py`:
 
 /// info
 
-The <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
+The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
 
 However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
 
-To install it manually, make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it with:
+To install it manually, make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install it with:
 
 ```console
 $ pip install python-multipart
@@ -54,7 +54,7 @@ $ fastapi dev main.py
 
 ## Check it { #check-it }
 
-Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Go to the interactive docs at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see something like this:
 
@@ -140,7 +140,7 @@ Here `tokenUrl="token"` refers to a relative URL `token` that we haven't created
 
 Because we are using a relative URL, if your API was located at `https://example.com/`, then it would refer to `https://example.com/token`. But if your API was located at `https://example.com/api/v1/`, then it would refer to `https://example.com/api/v1/token`.
 
-Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md).
 
 ///
 
