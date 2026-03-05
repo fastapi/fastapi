@@ -1,18 +1,18 @@
 # Testing { #testing }
 
-Thanks to <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
+Thanks to [Starlette](https://www.starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
 
-It is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, which in turn is designed based on Requests, so it's very familiar and intuitive.
+It is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.
 
-With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
+With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.
 
 ## Using `TestClient` { #using-testclient }
 
 /// info
 
-To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ You could also use `from starlette.testclient import TestClient`.
 
 /// tip
 
-If you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} in the advanced tutorial.
+If you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md) in the advanced tutorial.
 
 ///
 
@@ -64,7 +64,7 @@ And your **FastAPI** application might also be composed of several files/modules
 
 ### **FastAPI** app file { #fastapi-app-file }
 
-Let's say you have a file structure as described in [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
+Let's say you have a file structure as described in [Bigger Applications](bigger-applications.md):
 
 ```
 .
@@ -142,13 +142,13 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a>.
+For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the [HTTPX documentation](https://www.python-httpx.org).
 
 /// info
 
 Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
 
-If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` described in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` described in [JSON Compatible Encoder](encoder.md).
 
 ///
 
@@ -156,7 +156,7 @@ If you have a Pydantic model in your test and you want to send its data to the a
 
 After that, you just need to install `pytest`.
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
 
 <div class="termy">
 

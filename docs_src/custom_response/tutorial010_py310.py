@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import HTMLResponse
 
-app = FastAPI(default_response_class=ORJSONResponse)
+app = FastAPI(default_response_class=HTMLResponse)
 
 
 @app.get("/items/")
 async def read_items():
-    return [{"item_id": "Foo"}]
+    return "<h1>Items</h1><p>This is a list of items.</p>"

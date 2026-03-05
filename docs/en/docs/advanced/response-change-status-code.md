@@ -1,6 +1,6 @@
 # Response - Change Status Code { #response-change-status-code }
 
-You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
+You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md).
 
 But in some cases you need to return a different status code than the default.
 

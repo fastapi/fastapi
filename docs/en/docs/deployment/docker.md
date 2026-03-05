@@ -1,6 +1,6 @@
 # FastAPI in Containers - Docker { #fastapi-in-containers-docker }
 
-When deploying FastAPI applications a common approach is to build a **Linux container image**. It's normally done using <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. You can then deploy that container image in one of a few possible ways.
+When deploying FastAPI applications a common approach is to build a **Linux container image**. It's normally done using [**Docker**](https://www.docker.com/). You can then deploy that container image in one of a few possible ways.
 
 Using Linux containers has several advantages including **security**, **replicability**, **simplicity**, and others.
 
@@ -60,16 +60,16 @@ And the **container** itself (in contrast to the **container image**) is the act
 
 Docker has been one of the main tools to create and manage **container images** and **containers**.
 
-And there's a public <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> with pre-made **official container images** for many tools, environments, databases, and applications.
+And there's a public [Docker Hub](https://hub.docker.com/) with pre-made **official container images** for many tools, environments, databases, and applications.
 
-For example, there's an official <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a>.
+For example, there's an official [Python Image](https://hub.docker.com/_/python).
 
 And there are many other images for different things like databases, for example for:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), etc.
 
 By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases, you can use the **official images**, and just configure them with environment variables.
 
@@ -111,7 +111,7 @@ It would depend mainly on the tool you use to **install** those requirements.
 
 The most common way to do it is to have a file `requirements.txt` with the package names and their versions, one per line.
 
-You would of course use the same ideas you read in [About FastAPI versions](versions.md){.internal-link target=_blank} to set the ranges of versions.
+You would of course use the same ideas you read in [About FastAPI versions](versions.md) to set the ranges of versions.
 
 For example, your `requirements.txt` could look like:
 
@@ -238,7 +238,7 @@ Make sure to **always** use the **exec form** of the `CMD` instruction, as expla
 
 #### Use `CMD` - Exec Form { #use-cmd-exec-form }
 
-The <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker instruction can be written using two forms:
+The [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) Docker instruction can be written using two forms:
 
 ✅ **Exec** form:
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md){.internal-link target=_blank} are triggered.
+Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md) are triggered.
 
-You can read more about it in the <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker docs for shell and exec form</a>.
+You can read more about it in the [Docker docs for shell and exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
-This can be quite noticeable when using `docker compose`. See this Docker Compose FAQ section for more technical details: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>.
+This can be quite noticeable when using `docker compose`. See this Docker Compose FAQ section for more technical details: [Why do my services take 10 seconds to recreate or stop?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### Directory Structure { #directory-structure }
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Check it { #check-it }
 
-You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).
+You should be able to check it in your Docker container's URL, for example: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) or [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (or equivalent, using your Docker host).
 
 You will see something like:
 
@@ -362,17 +362,17 @@ You will see something like:
 
 ## Interactive API docs { #interactive-api-docs }
 
-Now you can go to <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> or <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (or equivalent, using your Docker host).
+Now you can go to [http://192.168.99.100/docs](http://192.168.99.100/docs) or [http://127.0.0.1/docs](http://127.0.0.1/docs) (or equivalent, using your Docker host).
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## Alternative API docs { #alternative-api-docs }
 
-And you can also go to <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (or equivalent, using your Docker host).
+And you can also go to [http://192.168.99.100/redoc](http://192.168.99.100/redoc) or [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (or equivalent, using your Docker host).
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -413,7 +413,7 @@ When you pass the file to `fastapi run` it will detect automatically that it is 
 
 ## Deployment Concepts { #deployment-concepts }
 
-Let's talk again about some of the same [Deployment Concepts](concepts.md){.internal-link target=_blank} in terms of containers.
+Let's talk again about some of the same [Deployment Concepts](concepts.md) in terms of containers.
 
 Containers are mainly a tool to simplify the process of **building and deploying** an application, but they don't enforce a particular approach to handle these **deployment concepts**, and there are several possible strategies.
 
@@ -432,7 +432,7 @@ Let's review these **deployment concepts** in terms of containers:
 
 If we focus just on the **container image** for a FastAPI application (and later the running **container**), HTTPS normally would be handled **externally** by another tool.
 
-It could be another container, for example with <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, handling **HTTPS** and **automatic** acquisition of **certificates**.
+It could be another container, for example with [Traefik](https://traefik.io/), handling **HTTPS** and **automatic** acquisition of **certificates**.
 
 /// tip
 
@@ -558,7 +558,7 @@ If you have **multiple containers**, probably each one running a **single proces
 
 /// info
 
-If you are using Kubernetes, this would probably be an <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+If you are using Kubernetes, this would probably be an [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
 ///
 
@@ -570,7 +570,7 @@ If you have a simple setup, with a **single container** that then starts multipl
 
 ### Base Docker Image { #base-docker-image }
 
-There used to be an official FastAPI Docker image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. But it is now deprecated. ⛔️
+There used to be an official FastAPI Docker image: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). But it is now deprecated. ⛔️
 
 You should probably **not** use this base Docker image (or any other similar one).
 
@@ -600,7 +600,7 @@ For example:
 
 ## Docker Image with `uv` { #docker-image-with-uv }
 
-If you are using <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> to install and manage your project, you can follow their <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker guide</a>.
+If you are using [uv](https://github.com/astral-sh/uv) to install and manage your project, you can follow their [uv Docker guide](https://docs.astral.sh/uv/guides/integration/docker/).
 
 ## Recap { #recap }
 

@@ -32,7 +32,7 @@ It might also help avoid confusion for new developers that see an unused paramet
 
 In this example we use invented custom headers `X-Key` and `X-Token`.
 
-But in real cases, when implementing security, you would get more benefits from using the integrated [Security utilities (the next chapter)](../security/index.md){.internal-link target=_blank}.
+But in real cases, when implementing security, you would get more benefits from using the integrated [Security utilities (the next chapter)](../security/index.md).
 
 ///
 
@@ -62,7 +62,7 @@ So, you can reuse a normal dependency (that returns a value) you already use som
 
 ## Dependencies for a group of *path operations* { #dependencies-for-a-group-of-path-operations }
 
-Later, when reading about how to structure bigger applications ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), possibly with multiple files, you will learn how to declare a single `dependencies` parameter for a group of *path operations*.
+Later, when reading about how to structure bigger applications ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md)), possibly with multiple files, you will learn how to declare a single `dependencies` parameter for a group of *path operations*.
 
 ## Global Dependencies { #global-dependencies }
 

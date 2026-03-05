@@ -45,7 +45,7 @@ jobs:
         run: |
           rm -rf ./site
           mkdir ./site
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           path: ./site/
           pattern: docs-site-*

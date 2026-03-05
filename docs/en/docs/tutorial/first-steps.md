@@ -58,7 +58,7 @@ That line shows the URL where your app is being served on your local machine.
 
 ### Check it { #check-it }
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Open your browser at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 You will see the JSON response as:
 
@@ -68,17 +68,17 @@ You will see the JSON response as:
 
 ### Interactive API docs { #interactive-api-docs }
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Alternative API docs { #alternative-api-docs }
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ A "schema" is a definition or description of something. Not the code that implem
 
 #### API "schema" { #api-schema }
 
-In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
+In this case, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) is a specification that dictates how to define a schema of your API.
 
 This schema definition includes your API paths, the possible parameters they take, etc.
 
@@ -110,7 +110,7 @@ OpenAPI defines an API schema for your API. And that schema includes definitions
 
 If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+You can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 It will show a JSON starting with something like:
 
@@ -145,7 +145,7 @@ You could also use it to generate code automatically, for clients that communica
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 
-You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
 
 If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
 
@@ -191,7 +191,7 @@ That's it! Now you can access your app at that URL. ✨
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+You can use all the [Starlette](https://www.starlette.dev/) functionality with `FastAPI` too.
 
 ///
 
@@ -336,7 +336,7 @@ You could also define it as a normal function instead of `async def`:
 
 /// note
 
-If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry).
 
 ///
 
@@ -352,11 +352,11 @@ There are many other objects and models that will be automatically converted to 
 
 ### Step 6: Deploy it { #step-6-deploy-it }
 
-Deploy your app to **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** with one command: `fastapi deploy`. 🎉
+Deploy your app to **[FastAPI Cloud](https://fastapicloud.com)** with one command: `fastapi deploy`. 🎉
 
 #### About FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**.
 
 It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
 
