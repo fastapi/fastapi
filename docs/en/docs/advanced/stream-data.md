@@ -1,6 +1,6 @@
 # Stream Data { #stream-data }
 
-If you want to stream data that can be structured as JSON, you should [Stream JSON Lines](../tutorial/stream-json-lines.md){.internal-link target=_blank}.
+If you want to stream data that can be structured as JSON, you should [Stream JSON Lines](../tutorial/stream-json-lines.md).
 
 But if you want to **stream pure binary data** or strings, here's how you can do it.
 
@@ -104,7 +104,7 @@ To avoid blocking the event loop, you can simply declare the *path operation fun
 
 /// tip
 
-If you need to call blocking code from inside of an async function, or an async function from inside of a blocking function, you could use <a href="https://asyncer.tiangolo.com" class="external-link" target="_blank">Asyncer</a>, a sibling library to FastAPI.
+If you need to call blocking code from inside of an async function, or an async function from inside of a blocking function, you could use [Asyncer](https://asyncer.tiangolo.com), a sibling library to FastAPI.
 
 ///
 

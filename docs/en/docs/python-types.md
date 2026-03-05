@@ -269,7 +269,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+[Pydantic](https://docs.pydantic.dev/) is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -285,13 +285,13 @@ An example from the official Pydantic docs:
 
 /// info
 
-To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+To learn more about [Pydantic, check its docs](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md).
 
 ## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md).
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
 /// info
 
-If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+If you already went through all the tutorial and came back to see more about types, a good resource is [the "cheat sheet" from `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

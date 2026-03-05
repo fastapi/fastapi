@@ -15,7 +15,7 @@ A "middleware" is a function that works with every **request** before it is proc
 
 If you have dependencies with `yield`, the exit code will run *after* the middleware.
 
-If there were any background tasks (covered in the [Background Tasks](background-tasks.md){.internal-link target=_blank} section, you will see it later), they will run *after* all the middleware.
+If there were any background tasks (covered in the [Background Tasks](background-tasks.md) section, you will see it later), they will run *after* all the middleware.
 
 ///
 
@@ -35,9 +35,9 @@ The middleware function receives:
 
 /// tip
 
-Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the `X-` prefix</a>.
+Keep in mind that custom proprietary headers can be added [using the `X-` prefix](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) using the parameter `expose_headers` documented in <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md)) using the parameter `expose_headers` documented in [Starlette's CORS docs](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -61,7 +61,7 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 
 /// tip
 
-Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> instead of `time.time()` because it can be more precise for these use cases. 🤓
+Here we use [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) instead of `time.time()` because it can be more precise for these use cases. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ This stacking behavior ensures that middlewares are executed in a predictable an
 
 ## Other middlewares { #other-middlewares }
 
-You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
+You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md).
 
 You will read about how to handle <abbr title="Cross-Origin Resource Sharing">CORS</abbr> with a middleware in the next section.

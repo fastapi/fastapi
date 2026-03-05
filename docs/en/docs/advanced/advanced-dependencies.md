@@ -132,7 +132,7 @@ If you have this specific use case using SQLModel (or SQLAlchemy), you could exp
 
 That way the session would release the database connection, so other requests could use it.
 
-If you have a different use case that needs to exit early from a dependency with `yield`, please create a <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Question</a> with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
+If you have a different use case that needs to exit early from a dependency with `yield`, please create a [GitHub Discussion Question](https://github.com/fastapi/fastapi/discussions/new?category=questions) with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
 
 If there are compelling use cases for early closing in dependencies with `yield`, I would consider adding a new way to opt in to early closing.
 
@@ -144,7 +144,7 @@ This was changed in version 0.110.0 to fix unhandled memory consumption from for
 
 ### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers) would have already run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
 

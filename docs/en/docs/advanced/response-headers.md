@@ -20,7 +20,7 @@ You can also declare the `Response` parameter in dependencies, and set headers (
 
 You can also add headers when you return a `Response` directly.
 
-Create a response as described in [Return a Response Directly](response-directly.md){.internal-link target=_blank} and pass the headers as an additional parameter:
+Create a response as described in [Return a Response Directly](response-directly.md) and pass the headers as an additional parameter:
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 ## Custom Headers { #custom-headers }
 
-Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the `X-` prefix</a>.
+Keep in mind that custom proprietary headers can be added [using the `X-` prefix](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), using the parameter `expose_headers` documented in <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), using the parameter `expose_headers` documented in [Starlette's CORS docs](https://www.starlette.dev/middleware/#corsmiddleware).
