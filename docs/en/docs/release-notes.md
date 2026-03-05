@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update links in docs to no longer use the classes external-link and internal-link. PR [#15061](https://github.com/fastapi/fastapi/pull/15061) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Add JS and CSS handling for automatic `target=_blank` for links in docs. PR [#15063](https://github.com/fastapi/fastapi/pull/15063) by [@tiangolo](https://github.com/tiangolo).
 * 💄 Update styles for internal and external links in new tab. PR [#15058](https://github.com/fastapi/fastapi/pull/15058) by [@tiangolo](https://github.com/tiangolo).
 * 📝  Add documentation for the FastAPI VS Code extension. PR [#15008](https://github.com/fastapi/fastapi/pull/15008) by [@savannahostrowski](https://github.com/savannahostrowski).
