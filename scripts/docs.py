@@ -66,6 +66,15 @@ code_block3_pattern = re.compile(r"^\s*```")
 code_block4_pattern = re.compile(r"^\s*````")
 
 
+# Pattern to match markdown links: [text](url) → text
+md_link_pattern = re.compile(r"\[([^\]]+)\]\([^)]+\)")
+
+
+def strip_markdown_links(text: str) -> str:
+    """Replace markdown links with just their visible text."""
+    return md_link_pattern.sub(r"\1", text)
+
+
 class VisibleTextExtractor(HTMLParser):
     """Extract visible text from a string with HTML tags."""
 
@@ -688,7 +697,11 @@ def add_permalinks_page(path: Path, update_existing: bool = False):
             if match:
                 hashes, title, _permalink = match.groups()
                 if (not _permalink) or update_existing:
-                    slug = slugify(visible_text_extractor.extract_visible_text(title))
+                    slug = slugify(
+                        visible_text_extractor.extract_visible_text(
+                            strip_markdown_links(title)
+                        )
+                    )
                     if slug in permalinks:
                         # If the slug is already used, append a number to make it unique
                         count = 1

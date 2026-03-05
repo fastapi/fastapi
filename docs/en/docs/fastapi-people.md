@@ -16,12 +16,12 @@ This is me:
 <div class="user-list user-list-center">
 {% for user in people.maintainers %}
 
-<div class="user"><a href="{{ contributors.tiangolo.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ contributors.tiangolo.avatarUrl }}"/></div><div class="title">@{{ contributors.tiangolo.login }}</div></a> <div class="count">Answers: {{ user.answers }}</div><div class="count">Pull Requests: {{ contributors.tiangolo.count }}</div></div>
+<div class="user"><a href="{{ contributors.tiangolo.url }}"><div class="avatar-wrapper"><img src="{{ contributors.tiangolo.avatarUrl }}"/></div><div class="title">@{{ contributors.tiangolo.login }}</div></a> <div class="count">Answers: {{ user.answers }}</div><div class="count">Pull Requests: {{ contributors.tiangolo.count }}</div></div>
 {% endfor %}
 
 </div>
 
-I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author).
 
 ...But here I want to show you the community.
 
@@ -31,10 +31,10 @@ I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - 
 
 These are the people that:
 
-* [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
-* [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Review Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
-* Help [manage the repository](management-tasks.md){.internal-link target=_blank} (team members).
+* [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github).
+* [Create Pull Requests](help-fastapi.md#create-a-pull-request).
+* Review Pull Requests, [especially important for translations](contributing.md#translations).
+* Help [manage the repository](management-tasks.md) (team members).
 
 All these tasks help maintain the repository.
 
@@ -44,23 +44,23 @@ A round of applause to them. 👏 🙇
 
 This is the current list of team members. 😎
 
-They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md){.internal-link target=_blank} and together we  [manage the FastAPI repository](./management.md){.internal-link target=_blank}.
+They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md) and together we  [manage the FastAPI repository](./management.md).
 
 <div class="user-list user-list-center">
 
 {% for user in members["members"] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatar_url }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatar_url }}"/></div><div class="title">@{{ user.login }}</div></a></div>
 
 {% endfor %}
 
 </div>
 
-Although the team members have the permissions to perform privileged tasks, all the [help from others maintaining FastAPI](./help-fastapi.md#help-maintain-fastapi){.internal-link target=_blank} is very much appreciated! 🙇‍♂️
+Although the team members have the permissions to perform privileged tasks, all the [help from others maintaining FastAPI](./help-fastapi.md#help-maintain-fastapi) is very much appreciated! 🙇‍♂️
 
 ## FastAPI Experts
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🙇
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github). 🙇
 
 They have proven to be **FastAPI Experts** by helping many others. ✨
 
@@ -68,7 +68,7 @@ They have proven to be **FastAPI Experts** by helping many others. ✨
 
 You could become an official FastAPI Expert too!
 
-Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github). 🤓
 
 ///
 
@@ -82,7 +82,7 @@ You can see the **FastAPI Experts** for:
 
 ### FastAPI Experts - Last Month
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. 🤓
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github) during the last month. 🤓
 
 <div class="user-list user-list-center">
 
@@ -90,7 +90,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -100,7 +100,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 ### FastAPI Experts - 3 Months
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. 😎
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github) during the last 3 months. 😎
 
 <div class="user-list user-list-center">
 
@@ -108,7 +108,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -118,7 +118,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 ### FastAPI Experts - 6 Months
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. 🧐
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github) during the last 6 months. 🧐
 
 <div class="user-list user-list-center">
 
@@ -126,7 +126,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -136,7 +136,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 ### FastAPI Experts - 1 Year
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. 🧑‍🔬
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github) during the last year. 🧑‍🔬
 
 <div class="user-list user-list-center">
 
@@ -144,7 +144,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -156,7 +156,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 Here are the all time **FastAPI Experts**. 🤓🤯
 
-These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*. 🧙
+These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github) through *all time*. 🧙
 
 <div class="user-list user-list-center">
 
@@ -164,7 +164,7 @@ These are the users that have [helped others the most with questions in GitHub](
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -176,7 +176,7 @@ These are the users that have [helped others the most with questions in GitHub](
 
 Here are the **Top Contributors**. 👷
 
-These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} that have been *merged*.
+These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request) that have been *merged*.
 
 They have contributed source code, documentation, etc. 📦
 
@@ -186,7 +186,7 @@ They have contributed source code, documentation, etc. 📦
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -194,20 +194,20 @@ They have contributed source code, documentation, etc. 📦
 
 </div>
 
-There are hundreds of other contributors, you can see them all in the <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
+There are hundreds of other contributors, you can see them all in the [FastAPI GitHub Contributors page](https://github.com/fastapi/fastapi/graphs/contributors). 👷
 
 ## Top Translation Reviewers
 
 These users are the **Top Translation Reviewers**. 🕵️
 
-Translation reviewers have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
+Translation reviewers have the [**power to approve translations**](contributing.md#translations) of the documentation. Without them, there wouldn't be documentation in several other languages.
 
 <div class="user-list user-list-center">
 {% for user in (translation_reviewers.values() | list)[:50] %}
 
 {% if user.login not in skip_users %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 
 {% endif %}
 
@@ -219,7 +219,7 @@ Translation reviewers have the [**power to approve translations**](contributing.
 
 These are the **Sponsors**. 😎
 
-They are supporting my work with **FastAPI** (and others), mainly through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+They are supporting my work with **FastAPI** (and others), mainly through [GitHub Sponsors](https://github.com/sponsors/tiangolo).
 
 {% if sponsors %}
 
@@ -228,7 +228,7 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 ### Gold Sponsors
 
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -237,7 +237,7 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 ### Silver Sponsors
 
 {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -246,7 +246,7 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 ### Bronze Sponsors
 
 {% for sponsor in sponsors.bronze -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -262,7 +262,7 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 {% for user in group %}
 {% if user.login not in sponsors_badge.logins %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+<div class="user"><a href="{{ user.url }}"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
 
 {% endif %}
 {% endfor %}
@@ -278,7 +278,7 @@ The main intention of this page is to highlight the effort of the community to h
 
 Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with questions and reviewing Pull Requests with translations.
 
-The data is calculated each month, you can read the <a href="https://github.com/fastapi/fastapi/blob/master/scripts/" class="external-link" target="_blank">source code here</a>.
+The data is calculated each month, you can read the [source code here](https://github.com/fastapi/fastapi/blob/master/scripts/).
 
 Here I'm also highlighting contributions from sponsors.
 

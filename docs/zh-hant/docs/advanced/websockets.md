@@ -38,13 +38,13 @@ $ pip install websockets
 
 但這是能讓我們專注於 WebSocket 伺服端並跑起一個可運作範例的最簡單方式：
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## 建立一個 `websocket` { #create-a-websocket }
 
 在你的 **FastAPI** 應用中，建立一個 `websocket`：
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技術細節
 
@@ -58,7 +58,7 @@ $ pip install websockets
 
 在你的 WebSocket 路由中，你可以 `await` 接收訊息並傳送訊息。
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 你可以接收與傳送二進位、文字與 JSON 資料。
 
@@ -109,7 +109,7 @@ $ fastapi dev main.py
 
 它們的運作方式與其他 FastAPI 端點/*路徑操作* 相同：
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 當 WebSocket 連線關閉時，`await websocket.receive_text()` 會拋出 `WebSocketDisconnect` 例外，你可以像範例中那樣捕捉並處理。
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 試用方式：
 

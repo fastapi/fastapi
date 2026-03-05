@@ -213,7 +213,7 @@ def Path(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -221,7 +221,7 @@ def Path(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -572,7 +572,7 @@ def Query(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -580,7 +580,7 @@ def Query(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -894,7 +894,7 @@ def Header(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -902,7 +902,7 @@ def Header(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1200,7 +1200,7 @@ def Cookie(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1208,7 +1208,7 @@ def Cookie(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1528,7 +1528,7 @@ def Body(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1536,7 +1536,7 @@ def Body(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1844,7 +1844,7 @@ def Form(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -1852,7 +1852,7 @@ def Form(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -2159,7 +2159,7 @@ def File(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of digits allowed for decimal values.
             """
         ),
     ] = _Unset,
@@ -2167,7 +2167,7 @@ def File(  # noqa: N802
         int | None,
         Doc(
             """
-            Maximum number of decimal places allowed for numbers.
+            Maximum number of decimal places allowed for decimal values.
             """
         ),
     ] = _Unset,
