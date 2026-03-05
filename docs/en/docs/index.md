@@ -44,7 +44,7 @@ The key features are:
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" target="_blank">JSON Schema</a>.
 
 <small>* estimation based on tests conducted by an internal development team, building production applications.</small>
 
@@ -69,7 +69,7 @@ The key features are:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" target="_blank">Other sponsors</a>
 
 ## Opinions { #opinions }
 
@@ -119,7 +119,7 @@ The key features are:
 
 ## FastAPI mini documentary { #fastapi-mini-documentary }
 
-There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI mini documentary</a> released at the end of 2025, you can watch it online:
+There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank">FastAPI mini documentary</a> released at the end of 2025, you can watch it online:
 
 <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
@@ -127,7 +127,7 @@ There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" target="_blank">**Typer**</a>.
 
 **Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
 
@@ -135,12 +135,12 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 FastAPI stands on the shoulders of giants:
 
-* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+* <a href="https://www.starlette.dev/" target="_blank">Starlette</a> for the web parts.
+* <a href="https://docs.pydantic.dev/" target="_blank">Pydantic</a> for the data parts.
 
 ## Installation { #installation }
 
-Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
+Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" target="_blank">virtual environment</a> and then install FastAPI:
 
 <div class="termy">
 
@@ -237,7 +237,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>About the command <code>fastapi dev main.py</code>...</summary>
 
-The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
+The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using <a href="https://www.uvicorn.dev" target="_blank">Uvicorn</a>.
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
@@ -247,7 +247,7 @@ You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-
 
 ### Check it { #check-it }
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
 You will see the JSON response as:
 
@@ -264,17 +264,17 @@ You already created an API that:
 
 ### Interactive API docs { #interactive-api-docs }
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Alternative API docs { #alternative-api-docs }
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -316,7 +316,7 @@ The `fastapi dev` server should reload automatically.
 
 ### Interactive API docs upgrade { #interactive-api-docs-upgrade }
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 * The interactive API documentation will be automatically updated, including the new body:
 
@@ -332,7 +332,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 ### Alternative API docs upgrade { #alternative-api-docs-upgrade }
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
@@ -442,7 +442,7 @@ For a more complete example including more features, see the <a href="https://fa
 * A very powerful and easy to use **<dfn title="also known as components, resources, providers, services, injectables">Dependency Injection</dfn>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-* **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
+* **GraphQL** integration with <a href="https://strawberry.rocks" target="_blank">Strawberry</a> and other libraries.
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
     * extremely easy tests based on HTTPX and `pytest`
@@ -452,7 +452,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 
-You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
+You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
 
 If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
 
@@ -488,7 +488,7 @@ That's it! Now you can access your app at that URL. ✨
 
 #### About FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
+**<a href="https://fastapicloud.com" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
 
 It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
 
@@ -504,9 +504,9 @@ Follow your cloud provider's guides to deploy FastAPI apps with them. 🤓
 
 ## Performance { #performance }
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" target="_blank">Benchmarks</a>.
 
 ## Dependencies { #dependencies }
 
@@ -530,7 +530,7 @@ Used by FastAPI:
 
 * <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli[standard]` - to provide the `fastapi` command.
-    * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+    * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" target="_blank">FastAPI Cloud</a>.
 
 ### Without `standard` Dependencies { #without-standard-dependencies }
 

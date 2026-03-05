@@ -62,7 +62,7 @@ Using it in your editor is what really shows you the benefits of FastAPI, seeing
 
 The first step is to install FastAPI.
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then **install FastAPI**:
+Make sure you create a [virtual environment](../virtual-environments.md){target=_blank}, activate it, and then **install FastAPI**:
 
 <div class="termy">
 
@@ -76,7 +76,7 @@ $ pip install "fastapi[standard]"
 
 /// note
 
-When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAPI Cloud](https://fastapicloud.com){target=_blank}.
 
 If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
 
@@ -86,7 +86,7 @@ If you want to install the standard dependencies but without the `fastapi-cloud-
 
 /// tip
 
-FastAPI has an <a href="https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode" class="external-link" target="_blank">official extension for VS Code</a> (and Cursor), which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests (jump to definition from tests), and FastAPI Cloud deployment and logs, all from your editor.
+FastAPI has an [official extension for VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode){target=_blank} (and Cursor), which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests (jump to definition from tests), and FastAPI Cloud deployment and logs, all from your editor.
 
 ///
 
