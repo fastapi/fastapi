@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝  Add documentation for the FastAPI VS Code extension. PR [#15008](https://github.com/fastapi/fastapi/pull/15008) by [@savannahostrowski](https://github.com/savannahostrowski).
 * 📝 Fix doctrings for `max_digits` and `decimal_places`. PR [#14944](https://github.com/fastapi/fastapi/pull/14944) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Add dates to release notes. PR [#15001](https://github.com/fastapi/fastapi/pull/15001) by [@YuriiMotov](https://github.com/YuriiMotov).
 
