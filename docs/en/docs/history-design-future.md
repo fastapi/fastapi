@@ -1,6 +1,6 @@
 # History, Design and Future { #history-design-and-future }
 
-Some time ago, [a **FastAPI** user asked](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920){target=_blank}:
+Some time ago, [a **FastAPI** user asked](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > What’s the history of this project? It seems to have come from nowhere to awesome in a few weeks [...]
 
@@ -14,7 +14,7 @@ As part of that, I needed to investigate, test and use many alternatives.
 
 The history of **FastAPI** is in great part the history of its predecessors.
 
-As said in the section [Alternatives](alternatives.md){target=_blank}:
+As said in the section [Alternatives](alternatives.md):
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@ Then I spent some time designing the developer "API" I wanted to have as a user 
 
 I tested several ideas in the most popular Python editors: PyCharm, VS Code, Jedi based editors.
 
-By the last [Python Developer Survey](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools){target=_blank}, that covers about 80% of the users.
+By the last [Python Developer Survey](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools), that covers about 80% of the users.
 
 It means that **FastAPI** was specifically tested with the editors used by 80% of the Python developers. And as most of the other editors tend to work similarly, all its benefits should work for virtually all editors.
 
@@ -54,11 +54,11 @@ All in a way that provided the best development experience for all the developer
 
 ## Requirements { #requirements }
 
-After testing several alternatives, I decided that I was going to use [**Pydantic**](https://docs.pydantic.dev/){target=_blank} for its advantages.
+After testing several alternatives, I decided that I was going to use [**Pydantic**](https://docs.pydantic.dev/) for its advantages.
 
 Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
 
-During the development, I also contributed to [**Starlette**](https://www.starlette.dev/){target=_blank}, the other key requirement.
+During the development, I also contributed to [**Starlette**](https://www.starlette.dev/), the other key requirement.
 
 ## Development { #development }
 
@@ -76,4 +76,4 @@ But still, there are many improvements and features to come.
 
 **FastAPI** has a great future ahead.
 
-And [your help](help-fastapi.md){target=_blank} is greatly appreciated.
+And [your help](help-fastapi.md) is greatly appreciated.

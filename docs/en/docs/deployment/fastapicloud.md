@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-You can deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com){target=_blank} with **one command**, go and join the waiting list if you haven't. 🚀
+You can deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with **one command**, go and join the waiting list if you haven't. 🚀
 
 ## Login { #login }
 
@@ -40,7 +40,7 @@ That's it! Now you can access your app at that URL. ✨
 
 ## About FastAPI Cloud { #about-fastapi-cloud }
 
-**[FastAPI Cloud](https://fastapicloud.com){target=_blank}** is built by the same author and team behind **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**.
 
 It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
 

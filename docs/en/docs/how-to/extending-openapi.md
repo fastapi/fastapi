@@ -37,7 +37,7 @@ The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by Fa
 
 Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.
 
-For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo){target=_blank}.
+For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Normal **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@ Now you can replace the `.openapi()` method with your new function.
 
 ### Check it { #check-it }
 
-Once you go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc){target=_blank} you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
+Once you go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

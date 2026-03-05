@@ -52,11 +52,11 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 
 There are several alternatives, including:
 
-* [Uvicorn](https://www.uvicorn.dev/){target=_blank}: a high performance ASGI server.
-* [Hypercorn](https://hypercorn.readthedocs.io/){target=_blank}: an ASGI server compatible with HTTP/2 and Trio among other features.
-* [Daphne](https://github.com/django/daphne){target=_blank}: the ASGI server built for Django Channels.
-* [Granian](https://github.com/emmett-framework/granian){target=_blank}: A Rust HTTP server for Python applications.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/){target=_blank}: NGINX Unit is a lightweight and versatile web application runtime.
+* [Uvicorn](https://www.uvicorn.dev/): a high performance ASGI server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): an ASGI server compatible with HTTP/2 and Trio among other features.
+* [Daphne](https://github.com/django/daphne): the ASGI server built for Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): A Rust HTTP server for Python applications.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit is a lightweight and versatile web application runtime.
 
 ## Server Machine and Server Program { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ When you install FastAPI, it comes with a production server, Uvicorn, and you ca
 
 But you can also install an ASGI server manually.
 
-Make sure you create a [virtual environment](../virtual-environments.md){target=_blank}, activate it, and then you can install the server application.
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then you can install the server application.
 
 For example, to install Uvicorn:
 

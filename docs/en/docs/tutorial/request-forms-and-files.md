@@ -4,9 +4,9 @@ You can define files and form fields at the same time using `File` and `Form`.
 
 /// info
 
-To receive uploaded files and/or form data, first install [`python-multipart`](https://github.com/Kludex/python-multipart){target=_blank}.
+To receive uploaded files and/or form data, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Make sure you create a [virtual environment](../virtual-environments.md){target=_blank}, activate it, and then install it, for example:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
 
 ```console
 $ pip install python-multipart

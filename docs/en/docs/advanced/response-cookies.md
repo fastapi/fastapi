@@ -20,7 +20,7 @@ You can also declare the `Response` parameter in dependencies, and set cookies (
 
 You can also create cookies when returning a `Response` directly in your code.
 
-To do that, you can create a response as described in [Return a Response Directly](response-directly.md){target=_blank}.
+To do that, you can create a response as described in [Return a Response Directly](response-directly.md).
 
 Then set Cookies in it, and then return it:
 
@@ -48,4 +48,4 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 ///
 
-To see all the available parameters and options, check the [documentation in Starlette](https://www.starlette.dev/responses/#set-cookie){target=_blank}.
+To see all the available parameters and options, check the [documentation in Starlette](https://www.starlette.dev/responses/#set-cookie).

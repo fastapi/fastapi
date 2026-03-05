@@ -8,11 +8,11 @@ In this guide, you'll learn how to generate a **TypeScript SDK** for your FastAP
 
 ## Open Source SDK Generators { #open-source-sdk-generators }
 
-A versatile option is the [OpenAPI Generator](https://openapi-generator.tech/){target=_blank}, which supports **many programming languages** and can generate SDKs from your OpenAPI specification.
+A versatile option is the [OpenAPI Generator](https://openapi-generator.tech/), which supports **many programming languages** and can generate SDKs from your OpenAPI specification.
 
-For **TypeScript clients**, [Hey API](https://heyapi.dev/){target=_blank} is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
+For **TypeScript clients**, [Hey API](https://heyapi.dev/) is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
 
-You can discover more SDK generators on [OpenAPI.Tools](https://openapi.tools/#sdk){target=_blank}.
+You can discover more SDK generators on [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip
 
@@ -24,15 +24,15 @@ FastAPI automatically generates **OpenAPI 3.1** specifications, so any tool you 
 
 This section highlights **venture-backed** and **company-supported** solutions from companies that sponsor FastAPI. These products provide **additional features** and **integrations** on top of high-quality generated SDKs.
 
-By ✨ [**sponsoring FastAPI**](../help-fastapi.md#sponsor-the-author){target=_blank} ✨, these companies help ensure the framework and its **ecosystem** remain healthy and **sustainable**.
+By ✨ [**sponsoring FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, these companies help ensure the framework and its **ecosystem** remain healthy and **sustainable**.
 
 Their sponsorship also demonstrates a strong commitment to the FastAPI **community** (you), showing that they care not only about offering a **great service** but also about supporting a **robust and thriving framework**, FastAPI. 🙇
 
 For example, you might want to try:
 
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship){target=_blank}
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral){target=_blank}
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi){target=_blank}
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Some of these solutions may also be open source or offer free tiers, so you can try them without a financial commitment. Other commercial SDK generators are available and can be found online. 🤓
 
@@ -66,7 +66,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 This will generate a TypeScript SDK in `./src/client`.
 
-You can learn how to [install `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started){target=_blank} and read about the [generated output](https://heyapi.dev/openapi-ts/output){target=_blank} on their website.
+You can learn how to [install `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started) and read about the [generated output](https://heyapi.dev/openapi-ts/output) on their website.
 
 ### Using the SDK { #using-the-sdk }
 

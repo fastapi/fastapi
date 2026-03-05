@@ -74,7 +74,7 @@ will not be executed.
 
 /// info
 
-For more information, check [the official Python docs](https://docs.python.org/3/library/__main__.html){target=_blank}.
+For more information, check [the official Python docs](https://docs.python.org/3/library/__main__.html).
 
 ///
 

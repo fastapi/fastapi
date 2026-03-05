@@ -4,7 +4,7 @@ Templates, while typically come with a specific setup, are designed to be flexib
 
 You can use this template to get started, as it includes a lot of the initial set up, security, database and some API endpoints already done for you.
 
-GitHub Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template){target=_blank}
+GitHub Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Template - Technology Stack and Features { #full-stack-fastapi-template-technology-stack-and-features }
 
