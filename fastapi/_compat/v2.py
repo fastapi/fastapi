@@ -45,16 +45,25 @@ class GenerateJsonSchema(_GenerateJsonSchema):
     # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
     # and dropping support for any version of Pydantic before that one (so, in a very long time)
     def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
-        json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
-        bytes_mode = (
-            self._config.ser_json_bytes
-            if self.mode == "serialization"
-            else self._config.val_json_bytes
-        )
-        if bytes_mode == "base64":
-            json_schema["contentEncoding"] = "base64"
+        is_file_upload = schema.get("metadata", {}).get("fastapi_file_upload", False)
+        if is_file_upload:
+            json_schema: JsonSchemaValue = {
+                "type": "string",
+                "format": "binary",
+                "contentMediaType": "application/octet-stream",
+            }
         else:
-            json_schema["format"] = "binary"  # For compatibility with OAS 3.0
+            json_schema = {
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+            }
+            bytes_mode = (
+                self._config.ser_json_bytes
+                if self.mode == "serialization"
+                else self._config.val_json_bytes
+            )
+            if bytes_mode == "base64":
+                json_schema["contentEncoding"] = "base64"
         self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
         return json_schema
 
