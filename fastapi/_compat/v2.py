@@ -53,6 +53,8 @@ class GenerateJsonSchema(_GenerateJsonSchema):
         )
         if bytes_mode == "base64":
             json_schema["contentEncoding"] = "base64"
+        else:
+            json_schema["format"] = "binary"  # For compatibility with OAS 3.0
         self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
         return json_schema
 
