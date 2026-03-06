@@ -2,7 +2,7 @@ import warnings
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from enum import Enum
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, cast
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
@@ -668,7 +668,7 @@ class _FileUploadMarker:
     def __get_pydantic_core_schema__(
         cls, source: type[Any], handler: Any
     ) -> dict[str, Any]:
-        schema = handler(source)
+        schema = cast(dict[str, Any], handler(source))
 
         # Find the inner type schema (if nullable or list)
         inner_type_schema = schema
