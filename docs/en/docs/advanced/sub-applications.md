@@ -42,13 +42,13 @@ $ fastapi dev main.py
 
 </div>
 
-And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+And open the docs at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see the automatic API docs for the main app, including only its own _path operations_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-And then, open the docs for the sub-application, at <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+And then, open the docs for the sub-application, at [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 You will see the automatic API docs for the sub-application, including only its own _path operations_, all under the correct sub-path prefix `/subapi`:
 
@@ -64,4 +64,4 @@ That way, the sub-application will know to use that path prefix for the docs UI.
 
 And the sub-application could also have its own mounted sub-applications and everything would work correctly, because FastAPI handles all these `root_path`s automatically.
 
-You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md).

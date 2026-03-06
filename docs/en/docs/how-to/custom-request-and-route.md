@@ -18,7 +18,7 @@ If you are just starting with **FastAPI** you might want to skip this section.
 
 Some use cases include:
 
-* Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Converting non-JSON request bodies to JSON (e.g. [`msgpack`](https://msgpack.org/index.html)).
 * Decompressing gzip-compressed request bodies.
 * Automatically logging all request bodies.
 
@@ -32,7 +32,7 @@ And an `APIRoute` subclass to use that custom request class.
 
 /// tip
 
-This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware).
 
 ///
 
@@ -66,7 +66,7 @@ The `scope` `dict` and `receive` function are both part of the ASGI specificatio
 
 And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
 
-To learn more about the `Request` check <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+To learn more about the `Request` check [Starlette's docs about Requests](https://www.starlette.dev/requests/).
 
 ///
 
@@ -82,7 +82,7 @@ But because of our changes in `GzipRequest.body`, the request body will be autom
 
 /// tip
 
-To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 But this example is still valid and it shows how to interact with the internal components.
 

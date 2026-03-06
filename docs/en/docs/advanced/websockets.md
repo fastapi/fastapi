@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
+You can use [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) with **FastAPI**.
 
 ## Install `websockets` { #install-websockets }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library that makes it easy to use the "WebSocket" protocol):
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and install `websockets` (a Python library that makes it easy to use the "WebSocket" protocol):
 
 <div class="termy">
 
@@ -76,7 +76,7 @@ $ fastapi dev main.py
 
 </div>
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Open your browser at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 You will see a simple page like:
 
@@ -115,7 +115,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 
 As this is a WebSocket it doesn't really make sense to raise an `HTTPException`, instead we raise a `WebSocketException`.
 
-You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
+You can use a closing code from the [valid codes defined in the specification](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 ///
 
@@ -133,7 +133,7 @@ $ fastapi dev main.py
 
 </div>
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Open your browser at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 There you can set:
 
@@ -174,7 +174,7 @@ The app above is a minimal and simple example to demonstrate how to handle and b
 
 But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
 
-If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check [encode/broadcaster](https://github.com/encode/broadcaster).
 
 ///
 
@@ -182,5 +182,5 @@ If you need something easy to integrate with FastAPI but that is more robust, su
 
 To learn more about the options, check Starlette's documentation for:
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
+* [The `WebSocket` class](https://www.starlette.dev/websockets/).
+* [Class-based WebSocket handling](https://www.starlette.dev/endpoints/#websocketendpoint).

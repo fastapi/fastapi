@@ -2,7 +2,7 @@
 
 You can stream data to the client using **Server-Sent Events** (SSE).
 
-This is similar to [Stream JSON Lines](stream-json-lines.md){.internal-link target=_blank}, but uses the `text/event-stream` format, which is supported natively by browsers with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventSource" class="external-link" target="_blank">`EventSource` API</a>.
+This is similar to [Stream JSON Lines](stream-json-lines.md), but uses the `text/event-stream` format, which is supported natively by browsers with the [`EventSource` API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource).
 
 /// info
 
@@ -29,7 +29,7 @@ SSE is commonly used for AI chat streaming, live notifications, logs and observa
 
 /// tip
 
-If you want to stream binary data, for example video or audio, check the advanced guide: [Stream Data](../advanced/stream-data.md){.internal-link target=_blank}.
+If you want to stream binary data, for example video or audio, check the advanced guide: [Stream Data](../advanced/stream-data.md).
 
 ///
 
@@ -65,7 +65,7 @@ As in this case the function is not async, the right return type would be `Itera
 
 ### No Return Type { #no-return-type }
 
-You can also omit the return type. FastAPI will use the [`jsonable_encoder`](./encoder.md){.internal-link target=_blank} to convert the data and send it.
+You can also omit the return type. FastAPI will use the [`jsonable_encoder`](./encoder.md) to convert the data and send it.
 
 {* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
 
@@ -105,7 +105,7 @@ You can read it as a header parameter and use it to resume the stream from where
 
 SSE works with **any HTTP method**, not just `GET`.
 
-This is useful for protocols like <a href="https://modelcontextprotocol.io" class="external-link" target="_blank">MCP</a> that stream SSE over `POST`:
+This is useful for protocols like [MCP](https://modelcontextprotocol.io) that stream SSE over `POST`:
 
 {* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
 
@@ -113,7 +113,7 @@ This is useful for protocols like <a href="https://modelcontextprotocol.io" clas
 
 FastAPI implements some SSE best practices out of the box.
 
-* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes" class="external-link" target="_blank">HTML specification: Server-Sent Events</a>.
+* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the [HTML specification: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes).
 * Set the `Cache-Control: no-cache` header to **prevent caching** of the stream.
 * Set a special header `X-Accel-Buffering: no` to **prevent buffering** in some proxies like Nginx.
 

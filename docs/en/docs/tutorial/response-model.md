@@ -74,9 +74,9 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 /// info
 
-To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
+To use `EmailStr`, first install [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
 
 ```console
 $ pip install email-validator
@@ -182,7 +182,7 @@ There might be cases where you return something that is not a valid Pydantic fie
 
 ### Return a Response Directly { #return-a-response-directly }
 
-The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
+The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -258,7 +258,7 @@ You can also use:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-as described in <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+as described in [the Pydantic docs](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) for `exclude_defaults` and `exclude_none`.
 
 ///
 
