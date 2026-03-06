@@ -18,7 +18,7 @@ Puedes establecer los siguientes campos que se usan en la especificación OpenAP
 
 Puedes configurarlos de la siguiente manera:
 
-{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | Consejo
 
@@ -36,7 +36,7 @@ Desde OpenAPI 3.1.0 y FastAPI 0.99.0, también puedes establecer la `license_inf
 
 Por ejemplo:
 
-{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## Metadata para etiquetas { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ Probemos eso en un ejemplo con etiquetas para `users` y `items`.
 
 Crea metadata para tus etiquetas y pásala al parámetro `openapi_tags`:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Nota que puedes utilizar Markdown dentro de las descripciones, por ejemplo "login" se mostrará en negrita (**login**) y "fancy" se mostrará en cursiva (_fancy_).
 
@@ -72,7 +72,7 @@ No tienes que agregar metadata para todas las etiquetas que uses.
 
 Usa el parámetro `tags` con tus *path operations* (y `APIRouter`s) para asignarlas a diferentes etiquetas:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Información
 
@@ -100,7 +100,7 @@ Pero puedes configurarlo con el parámetro `openapi_url`.
 
 Por ejemplo, para configurarlo para que se sirva en `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 Si quieres deshabilitar el esquema OpenAPI completamente, puedes establecer `openapi_url=None`, eso también deshabilitará las interfaces de usuario de documentación que lo usan.
 
@@ -117,4 +117,4 @@ Puedes configurar las dos interfaces de usuario de documentación incluidas:
 
 Por ejemplo, para configurar Swagger UI para que se sirva en `/documentation` y deshabilitar ReDoc:
 
-{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

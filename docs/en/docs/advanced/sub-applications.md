@@ -10,7 +10,7 @@ If you need to have two independent FastAPI applications, with their own indepen
 
 First, create the main, top-level, **FastAPI** application, and its *path operations*:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### Sub-application { #sub-application }
 
@@ -18,7 +18,7 @@ Then, create your sub-application, and its *path operations*.
 
 This sub-application is just another standard FastAPI application, but this is the one that will be "mounted":
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### Mount the sub-application { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@ In your top-level application, `app`, mount the sub-application, `subapi`.
 
 In this case, it will be mounted at the path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### Check the automatic API docs { #check-the-automatic-api-docs }
 
@@ -42,13 +42,13 @@ $ fastapi dev main.py
 
 </div>
 
-And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+And open the docs at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see the automatic API docs for the main app, including only its own _path operations_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-And then, open the docs for the sub-application, at <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+And then, open the docs for the sub-application, at [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 You will see the automatic API docs for the sub-application, including only its own _path operations_, all under the correct sub-path prefix `/subapi`:
 
@@ -64,4 +64,4 @@ That way, the sub-application will know to use that path prefix for the docs UI.
 
 And the sub-application could also have its own mounted sub-applications and everything would work correctly, because FastAPI handles all these `root_path`s automatically.
 
-You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md).

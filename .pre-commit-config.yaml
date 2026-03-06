@@ -30,6 +30,13 @@ repos:
         language: unsupported
         types: [python]
 
+      - id: local-mypy
+        name: mypy check
+        entry: uv run mypy fastapi
+        require_serial: true
+        language: unsupported
+        pass_filenames: false
+
       - id: add-permalinks-pages
         language: unsupported
         name: add-permalinks-pages

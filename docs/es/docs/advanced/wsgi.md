@@ -2,17 +2,33 @@
 
 Puedes montar aplicaciones WSGI como viste con [Sub Aplicaciones - Mounts](sub-applications.md){.internal-link target=_blank}, [Detrás de un Proxy](behind-a-proxy.md){.internal-link target=_blank}.
 
-Para eso, puedes usar `WSGIMiddleware` y usarlo para envolver tu aplicación WSGI, por ejemplo, Flask, Django, etc.
+Para eso, puedes usar el `WSGIMiddleware` y usarlo para envolver tu aplicación WSGI, por ejemplo, Flask, Django, etc.
 
 ## Usando `WSGIMiddleware` { #using-wsgimiddleware }
 
-Necesitas importar `WSGIMiddleware`.
+/// info | Información
+
+Esto requiere instalar `a2wsgi`, por ejemplo con `pip install a2wsgi`.
+
+///
+
+Necesitas importar `WSGIMiddleware` de `a2wsgi`.
 
 Luego envuelve la aplicación WSGI (p. ej., Flask) con el middleware.
 
 Y luego móntala bajo un path.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+
+/// note | Nota
+
+Anteriormente, se recomendaba usar `WSGIMiddleware` de `fastapi.middleware.wsgi`, pero ahora está deprecado.
+
+Se aconseja usar el paquete `a2wsgi` en su lugar. El uso sigue siendo el mismo.
+
+Solo asegúrate de tener instalado el paquete `a2wsgi` e importar `WSGIMiddleware` correctamente desde `a2wsgi`.
+
+///
 
 ## Revisa { #check-it }
 

@@ -15,7 +15,7 @@ Isso inclui, por exemplo:
 
 Primeiro, importe `BackgroundTasks` e defina um parâmetro na sua *função de operação de rota* com uma declaração de tipo `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 O **FastAPI** criará o objeto do tipo `BackgroundTasks` para você e o passará como esse parâmetro.
 
@@ -31,13 +31,13 @@ Neste caso, a função da tarefa escreverá em um arquivo (simulando o envio de 
 
 E como a operação de escrita não usa `async` e `await`, definimos a função com um `def` normal:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Adicione a tarefa em segundo plano { #add-the-background-task }
 
 Dentro da sua *função de operação de rota*, passe sua função de tarefa para o objeto de *tarefas em segundo plano* com o método `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 O `.add_task()` recebe como argumentos:
 

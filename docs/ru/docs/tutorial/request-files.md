@@ -20,13 +20,13 @@ $ pip install python-multipart
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## Определите параметры `File` { #define-file-parameters }
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Дополнительная информация
 
@@ -54,7 +54,7 @@ $ pip install python-multipart
 
 Определите параметр файла с типом `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -122,7 +122,7 @@ contents = myfile.file.read()
 
 Но когда форма включает файлы, она кодируется как multipart/form-data. Если вы используете `File`, **FastAPI** будет знать, что ему нужно получить файлы из нужной части тела.
 
-Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Сеть разработчиков Mozilla">MDN</abbr> web docs for <code>POST</code></a>.
+Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> web docs for <code>POST</code></a>.
 
 ///
 
@@ -144,7 +144,7 @@ contents = myfile.file.read()
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Загрузка нескольких файлов { #multiple-file-uploads }
 
@@ -154,7 +154,7 @@ contents = myfile.file.read()
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Вы получите, как и было объявлено, список `list` из `bytes` или `UploadFile`.
 
@@ -170,7 +170,7 @@ contents = myfile.file.read()
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Резюме { #recap }
 

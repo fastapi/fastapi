@@ -1,8 +1,8 @@
-# 条件付き OpenAPI
+# 条件付き OpenAPI { #conditional-openapi }
 
 必要であれば、設定と環境変数を利用して、環境に応じて条件付きでOpenAPIを構成することが可能です。また、完全にOpenAPIを無効にすることもできます。
 
-## セキュリティとAPI、およびドキュメントについて
+## セキュリティとAPI、およびドキュメントについて { #about-security-apis-and-docs }
 
 本番環境においてドキュメントのUIを非表示にすることによって、APIを保護しようと *すべきではありません*。
 
@@ -10,26 +10,26 @@
 
 もしセキュリティ上の欠陥がソースコードにあるならば、それは存在したままです。
 
-ドキュメンテーションを非表示にするのは、単にあなたのAPIへのアクセス方法を難解にするだけでなく、同時にあなた自身の本番環境でのAPIのデバッグを困難にしてしまう可能性があります。単純に、 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a> の一つの形態として考えられるでしょう。
+ドキュメンテーションを非表示にするのは、単にあなたのAPIへのアクセス方法を難解にするだけでなく、同時にあなた自身の本番環境でのAPIのデバッグを困難にしてしまう可能性があります。単純に、 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">秘匿によるセキュリティ</a> の一つの形態として考えられるでしょう。
 
 もしあなたのAPIのセキュリティを強化したいなら、いくつかのよりよい方法があります。例を示すと、
 
 * リクエストボディとレスポンスのためのPydanticモデルの定義を見直す。
 * 依存関係に基づきすべての必要なパーミッションとロールを設定する。
 * パスワードを絶対に平文で保存しない。パスワードハッシュのみを保存する。
-* PasslibやJWTトークンに代表される、よく知られた暗号化ツールを使って実装する。
+* pwdlibやJWTトークンに代表される、よく知られた暗号化ツールを使って実装する。
 * そして必要なところでは、もっと細かいパーミッション制御をOAuth2スコープを使って行う。
-* など
+* ...など
 
 それでも、例えば本番環境のような特定の環境のみで、あるいは環境変数の設定によってAPIドキュメントをどうしても無効にしたいという、非常に特殊なユースケースがあるかもしれません。
 
-## 設定と環境変数による条件付き OpenAPI
+## 設定と環境変数による条件付き OpenAPI { #conditional-openapi-from-settings-and-env-vars }
 
 生成するOpenAPIとドキュメントUIの構成は、共通のPydanticの設定を使用して簡単に切り替えられます。
 
 例えば、
 
-{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 ここでは `openapi_url` の設定を、デフォルトの `"/openapi.json"` のまま宣言しています。
 

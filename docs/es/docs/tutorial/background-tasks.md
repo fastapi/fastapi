@@ -15,7 +15,7 @@ Esto incluye, por ejemplo:
 
 Primero, importa `BackgroundTasks` y define un parámetro en tu *path operation function* con una declaración de tipo de `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** creará el objeto de tipo `BackgroundTasks` por ti y lo pasará como ese parámetro.
 
@@ -31,13 +31,13 @@ En este caso, la función de tarea escribirá en un archivo (simulando el envío
 
 Y como la operación de escritura no usa `async` y `await`, definimos la función con un `def` normal:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Agregar la tarea en segundo plano { #add-the-background-task }
 
 Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *background tasks* con el método `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` recibe como argumentos:
 

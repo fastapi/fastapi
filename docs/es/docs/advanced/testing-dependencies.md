@@ -14,11 +14,11 @@ Un ejemplo podría ser que tienes un proveedor de autenticación externo al que 
 
 Le envías un token y te devuelve un usuario autenticado.
 
-Este proveedor podría estar cobrándote por cada request, y llamarlo podría tomar más tiempo adicional que si tuvieras un usuario de prueba fijo para los tests.
+Este proveedor podría estar cobrándote por cada request, y llamarlo podría tomar más tiempo adicional que si tuvieras un usuario mock fijo para los tests.
 
 Probablemente quieras probar el proveedor externo una vez, pero no necesariamente llamarlo para cada test que se realice.
 
-En este caso, puedes sobrescribir la dependencia que llama a ese proveedor y usar una dependencia personalizada que devuelva un usuario de prueba, solo para tus tests.
+En este caso, puedes sobrescribir la dependencia que llama a ese proveedor y usar una dependencia personalizada que devuelva un usuario mock, solo para tus tests.
 
 ### Usa el atributo `app.dependency_overrides` { #use-the-app-dependency-overrides-attribute }
 
@@ -40,7 +40,7 @@ FastAPI todavía podrá sobrescribirla.
 
 ///
 
-Entonces puedes restablecer las dependencias sobreescritas configurando `app.dependency_overrides` para que sea un `dict` vacío:
+Entonces puedes restablecer las dependencias sobreescritas (eliminarlas) configurando `app.dependency_overrides` para que sea un `dict` vacío:
 
 ```Python
 app.dependency_overrides = {}

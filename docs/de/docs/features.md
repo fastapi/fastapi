@@ -6,7 +6,7 @@
 
 ### Basiert auf offenen Standards { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>-<abbr title="auch bekannt als HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, <abbr title="Anfragekörper">Requestbodys</abbr>, Sicherheit, usw.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <dfn title="auch bekannt als: Endpunkte, Routen">Pfad</dfn>-<dfn title="auch bekannt als HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</dfn>, Parametern, <abbr title="Anfragekörper">Requestbodys</abbr>, Sicherheit, usw.
 * Automatische Dokumentation der Datenmodelle mit <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (da OpenAPI selbst auf JSON Schema basiert).
 * Um diese Standards herum entworfen, nach sorgfältigem Studium. Statt einer nachträglichen Schicht darüber.
 * Dies ermöglicht auch automatische **Client-Code-Generierung** in vielen Sprachen.
@@ -136,7 +136,7 @@ Alles als wiederverwendbare Tools und Komponenten gebaut, die einfach in Ihre Sy
 
 ### Dependency Injection { #dependency-injection }
 
-FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abbr title='auch bekannt als „Komponenten“, „Resourcen“, „Dienste“, „Dienstanbieter“'><strong>Dependency Injection</strong></abbr> System.
+FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <dfn title='auch bekannt als: "Komponenten", "Resourcen", "Dienste", "Dienstanbieter"'><strong>Dependency Injection</strong></dfn> System.
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **„Graph“ von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.
@@ -153,8 +153,8 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 
 ### Getestet { #tested }
 
-* 100 % <abbr title="Der Prozentsatz an Code, der automatisch getestet wird">Testabdeckung</abbr>.
-* 100 % <abbr title="Python-Typannotationen, mit denen Ihr Editor und andere externe Werkzeuge Sie besser unterstützen können">Typen annotiert</abbr>.
+* 100 % <dfn title="Der Prozentsatz an Code, der automatisch getestet wird">Testabdeckung</dfn>.
+* 100 % <dfn title="Python-Typannotationen, mit denen Ihr Editor und andere externe Werkzeuge Sie besser unterstützen können">Typen annotiert</dfn>.
 * Verwendet in Produktionsanwendungen.
 
 ## Starlette Merkmale { #starlette-features }
@@ -179,7 +179,7 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 
 **FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, wenn Sie eigenen Pydantic Quellcode haben, funktioniert der.
 
-Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper – Objektrelationaler Abbilder">ORM</abbr>s, <abbr title="Object-Document Mapper – Objekt-Dokument-Abbilder">ODM</abbr>s für Datenbanken.
+Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper - Objektrelationaler Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper - Objekt-Dokument-Mapper">ODM</abbr>s für Datenbanken.
 
 Daher können Sie in vielen Fällen das Objekt eines Requests **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
 
@@ -190,7 +190,7 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
 * **Kein Kopfzerbrechen**:
     * Keine neue Schemadefinition-Mikrosprache zu lernen.
     * Wenn Sie Pythons Typen kennen, wissen Sie, wie man Pydantic verwendet.
-* Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrated Development Environment – Integrierte Entwicklungsumgebung: Ähnlich einem Code-Editor">IDE</abbr>/<abbr title="Ein Programm, das Fehler im Quellcode sucht">Linter</abbr>/Gehirn**:
+* Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrated Development Environment - Integrierte Entwicklungsumgebung: Ähnlich einem Code-Editor">IDE</abbr>/<dfn title="Ein Programm, das Fehler im Quellcode sucht">Linter</dfn>/Gehirn**:
     * Weil Pydantics Datenstrukturen einfach nur Instanzen ihrer definierten Klassen sind; Autovervollständigung, Linting, mypy und Ihre Intuition sollten alle einwandfrei mit Ihren validierten Daten funktionieren.
 * Validierung von **komplexen Strukturen**:
     * Benutzung von hierarchischen Pydantic-Modellen, Python-`typing`s `List` und `Dict`, etc.

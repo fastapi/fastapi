@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Crea un Entorno Virtual { #create-a-virtual-environment }
 
-Cuando empiezas a trabajar en un proyecto de Python **por primera vez**, crea un entorno virtual **<abbr title="hay otras opciones, esto es solo una guía sencilla">dentro de tu proyecto</abbr>**.
+Cuando empiezas a trabajar en un proyecto de Python **por primera vez**, crea un entorno virtual **<dfn title="hay otras opciones, esto es solo una guía sencilla">dentro de tu proyecto</dfn>**.
 
 /// tip | Consejo
 
@@ -170,9 +170,9 @@ Esto asegura que si usas un programa de **terminal (<abbr title="command line in
 
 ///
 
-## Verifica que el Entorno Virtual esté Activo { #check-the-virtual-environment-is-active }
+## Revisa que el Entorno Virtual esté Activo { #check-the-virtual-environment-is-active }
 
-Verifica que el entorno virtual esté activo (el comando anterior funcionó).
+Revisa que el entorno virtual esté activo (el comando anterior funcionó).
 
 /// tip | Consejo
 
@@ -732,7 +732,7 @@ Un detalle importante es que pondrá el path del entorno virtual al **comienzo**
 
 Activar un entorno virtual también cambia un par de otras cosas, pero esta es una de las cosas más importantes que hace.
 
-## Verificando un Entorno Virtual { #checking-a-virtual-environment }
+## Revisando un Entorno Virtual { #checking-a-virtual-environment }
 
 Cuando revisas si un entorno virtual está activo, por ejemplo con:
 

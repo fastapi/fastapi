@@ -2,7 +2,7 @@
 
 De la misma manera que puedes declarar más validaciones y metadatos para los parámetros de query con `Query`, puedes declarar el mismo tipo de validaciones y metadatos para los parámetros de path con `Path`.
 
-## Importar Path { #import-path }
+## Importar `Path` { #import-path }
 
 Primero, importa `Path` de `fastapi`, e importa `Annotated`:
 
@@ -46,19 +46,19 @@ Y no necesitas declarar nada más para ese parámetro, así que realmente no nec
 
 Pero aún necesitas usar `Path` para el parámetro de path `item_id`. Y no quieres usar `Annotated` por alguna razón.
 
-Python se quejará si pones un valor con un "default" antes de un valor que no tenga un "default".
+Python se quejará si pones un valor con "por defecto" antes de un valor que no tenga "por defecto".
 
-Pero puedes reordenarlos y poner el valor sin un default (el parámetro de query `q`) primero.
+Pero puedes reordenarlos y poner el valor sin un valor por defecto (el parámetro de query `q`) primero.
 
-No importa para **FastAPI**. Detectará los parámetros por sus nombres, tipos y declaraciones por defecto (`Query`, `Path`, etc.), no le importa el orden.
+No importa para **FastAPI**. Detectará los parámetros por sus nombres, tipos y declaraciones por defecto (`Query`, `Path`, etc), no le importa el orden.
 
 Así que puedes declarar tu función como:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
 Pero ten en cuenta que si usas `Annotated`, no tendrás este problema, no importará ya que no estás usando los valores por defecto de los parámetros de la función para `Query()` o `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## Ordena los parámetros como necesites, trucos { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ Pasa `*`, como el primer parámetro de la función.
 
 Python no hará nada con ese `*`, pero sabrá que todos los parámetros siguientes deben ser llamados como argumentos de palabras clave (parejas key-value), también conocidos como <abbr title="De: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Incluso si no tienen un valor por defecto.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### Mejor con `Annotated` { #better-with-annotated }
 
 Ten en cuenta que si usas `Annotated`, como no estás usando valores por defecto de los parámetros de la función, no tendrás este problema y probablemente no necesitarás usar `*`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## Validaciones numéricas: mayor o igual { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Con `Query` y `Path` (y otros que verás más adelante) puedes declarar restricc
 
 Aquí, con `ge=1`, `item_id` necesitará ser un número entero "`g`reater than or `e`qual" a `1`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## Validaciones numéricas: mayor que y menor o igual { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,19 +106,19 @@ Lo mismo aplica para:
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## Validaciones numéricas: flotantes, mayor y menor { #number-validations-floats-greater-than-and-less-than }
 
 Las validaciones numéricas también funcionan para valores `float`.
 
-Aquí es donde se convierte en importante poder declarar <abbr title="greater than – mayor que"><code>gt</code></abbr> y no solo <abbr title="greater than or equal – mayor o igual que"><code>ge</code></abbr>. Ya que con esto puedes requerir, por ejemplo, que un valor sea mayor que `0`, incluso si es menor que `1`.
+Aquí es donde se convierte en importante poder declarar <abbr title="greater than - mayor que"><code>gt</code></abbr> y no solo <abbr title="greater than or equal - mayor o igual que"><code>ge</code></abbr>. Ya que con esto puedes requerir, por ejemplo, que un valor sea mayor que `0`, incluso si es menor que `1`.
 
 Así, `0.5` sería un valor válido. Pero `0.0` o `0` no lo serían.
 
-Y lo mismo para <abbr title="less than – menor que"><code>lt</code></abbr>.
+Y lo mismo para <abbr title="less than - menor que"><code>lt</code></abbr>.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## Resumen { #recap }
 

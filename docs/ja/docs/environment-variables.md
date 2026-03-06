@@ -1,18 +1,18 @@
-# 環境変数
+# 環境変数 { #environment-variables }
 
-/// tip
+/// tip | 豆知識
 
 もし、「環境変数」とは何か、それをどう使うかを既に知っている場合は、このセクションをスキップして構いません。
 
 ///
 
-環境変数（**env var**とも呼ばれる）はPythonコードの**外側**、つまり**OS**に存在する変数で、Pythonから読み取ることができます。（他のプログラムでも同様に読み取れます。）
+環境変数（「**env var**」とも呼ばれます）とは、Pythonコードの**外側**、つまり**オペレーティングシステム**に存在する変数で、Pythonコード（または他のプログラム）から読み取れます。
 
-環境変数は、アプリケーションの**設定**の管理や、Pythonの**インストール**などに役立ちます。
+環境変数は、アプリケーションの**設定**の扱い、Pythonの**インストール**の一部などで役立ちます。
 
-## 環境変数の作成と使用
+## 環境変数の作成と使用 { #create-and-use-env-vars }
 
-環境変数は**シェル（ターミナル）**内で**作成**して使用でき、それらにPythonは不要です。
+環境変数は、Pythonを必要とせず、**シェル（ターミナル）**で**作成**して使用できます。
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -36,7 +36,6 @@ Hello Wade Wilson
 
 <div class="termy">
 
-
 ```console
 // Create an env var MY_NAME
 $ $Env:MY_NAME = "Wade Wilson"
@@ -51,9 +50,9 @@ Hello Wade Wilson
 
 ////
 
-## Pythonで環境変数を読み取る
+## Pythonで環境変数を読み取る { #read-env-vars-in-python }
 
-環境変数をPythonの**外側**、ターミナル（や他の方法）で作成し、**Python内で読み取る**こともできます。
+環境変数はPythonの**外側**（ターミナル、またはその他の方法）で作成し、その後に**Pythonで読み取る**こともできます。
 
 例えば、以下のような`main.py`ファイルを用意します:
 
@@ -64,11 +63,11 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip
+/// tip | 豆知識
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> の第2引数は、デフォルトで返される値を指定します。
+<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> の第2引数は、デフォルトで返される値です。
 
-この引数を省略するとデフォルト値として`None`が返されますが、ここではデフォルト値として`"World"`を指定しています。
+指定しない場合、デフォルトは`None`ですが、ここでは使用するデフォルト値として`"World"`を指定しています。
 
 ///
 
@@ -128,11 +127,11 @@ Hello Wade Wilson from Python
 
 ////
 
-環境変数はコードの外側で設定し、内側から読み取ることができるので、他のファイルと一緒に（`git`に）保存する必要がありません。そのため、環境変数をコンフィグレーションや**設定**に使用することが一般的です。
+環境変数はコードの外側で設定でき、コードから読み取れ、他のファイルと一緒に（`git`に）保存（コミット）する必要がないため、設定や**settings**に使うのが一般的です。
 
-また、**特定のプログラムの呼び出し**のための環境変数を、そのプログラムのみ、その実行中に限定して利用できるよう作成できます。
+また、**特定のプログラムの呼び出し**のためだけに、そのプログラムでのみ、実行中の間だけ利用できる環境変数を作成することもできます。
 
-そのためには、プログラム起動コマンドと同じコマンドライン上の、起動コマンド直前で環境変数を作成してください。
+そのためには、同じ行で、プログラム自体の直前に作成してください。
 
 <div class="termy">
 
@@ -152,25 +151,25 @@ Hello World from Python
 
 </div>
 
-/// tip
+/// tip | 豆知識
 
-詳しくは <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> を参照してください。
+詳しくは <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: 設定</a> を参照してください。
 
 ///
 
-## 型とバリデーション
+## 型とバリデーション { #types-and-validation }
 
-環境変数は**テキスト文字列**のみを扱うことができます。これは、環境変数がPython外部に存在し、他のプログラムやシステム全体（Linux、Windows、macOS間の互換性を含む）と連携する必要があるためです。
+これらの環境変数が扱えるのは**テキスト文字列**のみです。環境変数はPythonの外部にあり、他のプログラムやシステム全体（Linux、Windows、macOSなど異なるオペレーティングシステム間も）との互換性が必要になるためです。
 
-つまり、Pythonが環境変数から読み取る**あらゆる値**は **`str`型となり**、他の型への変換やバリデーションはコード内で行う必要があります。
+つまり、環境変数からPythonで読み取る**あらゆる値**は **`str`になり**、他の型への変換やバリデーションはコード内で行う必要があります。
 
-環境変数を使用して**アプリケーション設定**を管理する方法については、[高度なユーザーガイド - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank}で詳しく学べます。
+環境変数を使って**アプリケーション設定**を扱う方法については、[高度なユーザーガイド - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank} で詳しく学べます。
 
-## `PATH`環境変数
+## `PATH`環境変数 { #path-environment-variable }
 
-**`PATH`**という**特別な**環境変数があります。この環境変数は、OS（Linux、macOS、Windows）が実行するプログラムを発見するために使用されます。
+**`PATH`**という**特別な**環境変数があります。これはオペレーティングシステム（Linux、macOS、Windows）が実行するプログラムを見つけるために使用されます。
 
-`PATH`変数は、複数のディレクトリのパスから成る長い文字列です。このパスはLinuxやMacOSの場合は`:`で、Windowsの場合は`;`で区切られています。
+変数`PATH`の値は長い文字列で、LinuxとmacOSではコロン`:`、Windowsではセミコロン`;`で区切られたディレクトリで構成されます。
 
 例えば、`PATH`環境変数は次のような文字列かもしれません:
 
@@ -180,7 +179,7 @@ Hello World from Python
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-これは、OSはプログラムを見つけるために以下のディレクトリを探す、ということを意味します:
+これは、システムが次のディレクトリでプログラムを探すことを意味します:
 
 * `/usr/local/bin`
 * `/usr/bin`
@@ -196,7 +195,7 @@ Hello World from Python
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32
 ```
 
-これは、OSはプログラムを見つけるために以下のディレクトリを探す、ということを意味します:
+これは、システムが次のディレクトリでプログラムを探すことを意味します:
 
 * `C:\Program Files\Python312\Scripts`
 * `C:\Program Files\Python312`
@@ -204,63 +203,61 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 ////
 
-ターミナル上で**コマンド**を入力すると、 OSはそのプログラムを見つけるために、`PATH`環境変数のリストに記載された**それぞれのディレクトリを探し**ます。
+ターミナル上で**コマンド**を入力すると、オペレーティングシステムは`PATH`環境変数に記載された**それぞれのディレクトリ**の中からプログラムを**探し**ます。
 
-例えば、ターミナル上で`python`を入力すると、OSは`python`によって呼ばれるプログラムを見つけるために、そのリストの**先頭のディレクトリ**を最初に探します。
+例えば、ターミナルで`python`と入力すると、オペレーティングシステムはそのリストの**最初のディレクトリ**で`python`というプログラムを探します。
 
-OSは、もしそのプログラムをそこで発見すれば**実行し**ますが、そうでなければリストの**他のディレクトリ**を探していきます。
+見つかればそれを**使用**します。見つからなければ、**他のディレクトリ**を探し続けます。
 
-### PythonのインストールとPATH環境変数の更新
+### Pythonのインストールと`PATH`の更新 { #installing-python-and-updating-the-path }
 
-Pythonのインストール時に`PATH`環境変数を更新したいか聞かれるかもしれません。
+Pythonのインストール時に、`PATH`環境変数を更新するかどうかを尋ねられるかもしれません。
 
-/// tab | Linux, macOS
+//// tab | Linux, macOS
 
-Pythonをインストールして、そのプログラムが`/opt/custompython/bin`というディレクトリに配置されたとします。
+Pythonをインストールして、その結果`/opt/custompython/bin`というディレクトリに配置されたとします。
 
-もし、`PATH`環境変数を更新するように答えると、`PATH`環境変数に`/opt/custompython/bin`が追加されます。
+`PATH`環境変数を更新することに同意すると、インストーラーは`PATH`環境変数に`/opt/custompython/bin`を追加します。
 
-`PATH`環境変数は以下のように更新されるでしょう：
+例えば次のようになります:
 
-``` plaintext
+```plaintext
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
 ```
 
-このようにして、ターミナルで`python`と入力したときに、OSは`/opt/custompython/bin`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
+このようにして、ターミナルで`python`と入力すると、システムは`/opt/custompython/bin`（最後のディレクトリ）にあるPythonプログラムを見つけ、それを使用します。
 
-///
+////
 
-/// tab | Windows
+//// tab | Windows
 
-Pythonをインストールして、そのプログラムが`C:\opt\custompython\bin`というディレクトリに配置されたとします。
+Pythonをインストールして、その結果`C:\opt\custompython\bin`というディレクトリに配置されたとします。
 
-もし、`PATH`環境変数を更新するように答えると、`PATH`環境変数に`C:\opt\custompython\bin`が追加されます。
-
-`PATH`環境変数は以下のように更新されるでしょう：
+`PATH`環境変数を更新することに同意すると、インストーラーは`PATH`環境変数に`C:\opt\custompython\bin`を追加します。
 
 ```plaintext
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
-このようにして、ターミナルで`python`と入力したときに、OSは`C:\opt\custompython\bin\python`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
+このようにして、ターミナルで`python`と入力すると、システムは`C:\opt\custompython\bin`（最後のディレクトリ）にあるPythonプログラムを見つけ、それを使用します。
 
-///
+////
 
-つまり、ターミナルで以下のコマンドを入力すると：
+つまり、ターミナルで次のように入力すると:
 
 <div class="termy">
 
-``` console
+```console
 $ python
 ```
 
 </div>
 
-/// tab | Linux, macOS
+//// tab | Linux, macOS
 
-OSは`/opt/custompython/bin`にある`python`プログラムを**見つけ**て実行します。
+システムは`/opt/custompython/bin`にある`python`プログラムを**見つけ**て実行します。
 
-これは、次のコマンドを入力した場合とほとんど同等です：
+これは、次のように入力するのとおおむね同等です:
 
 <div class="termy">
 
@@ -270,13 +267,13 @@ $ /opt/custompython/bin/python
 
 </div>
 
-///
+////
 
-/// tab | Windows
+//// tab | Windows
 
-OSは`C:\opt\custompython\bin\python`にある`python`プログラムを**見つけ**て実行します。
+システムは`C:\opt\custompython\bin\python`にある`python`プログラムを**見つけ**て実行します。
 
-これは、次のコマンドを入力した場合とほとんど同等です：
+これは、次のように入力するのとおおむね同等です:
 
 <div class="termy">
 
@@ -286,16 +283,16 @@ $ C:\opt\custompython\bin\python
 
 </div>
 
-///
+////
 
-この情報は、[Virtual Environments](virtual-environments.md) について学ぶ際にも役立ちます。
+この情報は、[Virtual Environments](virtual-environments.md){.internal-link target=_blank} について学ぶ際にも役立ちます。
 
-## まとめ
+## まとめ { #conclusion }
 
 これで、**環境変数**とは何か、Pythonでどのように使用するかについて、基本的な理解が得られたはずです。
 
-環境変数についての詳細は、<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia: Environment Variable</a> を参照してください。
+環境変数についての詳細は、<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia の環境変数</a> も参照してください。
 
-環境変数の用途や適用方法が最初は直感的ではないかもしれませんが、開発中のさまざまなシナリオで繰り返し登場します。そのため、基本を知っておくことが重要です。
+多くの場合、環境変数がどのように役立ち、すぐに適用できるのかはあまり明確ではありません。しかし、開発中のさまざまなシナリオで何度も登場するため、知っておくとよいでしょう。
 
-たとえば、この情報は次のセクションで扱う[Virtual Environments](virtual-environments.md)にも関連します。
+例えば、次のセクションの[Virtual Environments](virtual-environments.md)でこの情報が必要になります。
