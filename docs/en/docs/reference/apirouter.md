@@ -12,6 +12,7 @@ from fastapi import APIRouter
     options:
         members:
             - websocket
+            - add_exception_handler
             - include_router
             - get
             - put
