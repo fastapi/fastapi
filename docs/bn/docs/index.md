@@ -8,7 +8,7 @@
   <a href="https://fastapi.tiangolo.com/bn"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI ফ্রেমওয়ার্ক, উচ্চ পারফরম্যান্স সম্পন্ন, শেখা সহজ, দ্রুত কোড করা যায়, প্রোডাকশনের জন্য প্রস্তুত</em>
+    <em>FastAPI ফ্রেমওয়ার্ক, হাই-পারফরম্যান্স বা অত্যন্ত দ্রুতগতিসম্পন্ন, শেখা সহজ, দ্রুত কোড করা যায়, প্রোডাকশনের জন্য প্রস্তুত</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -27,23 +27,25 @@
 
 ---
 
-**ডকুমেন্টেশন**: <a href="https://fastapi.tiangolo.com/bn" target="_blank">https://fastapi.tiangolo.com/bn</a>
+**ডকুমেন্টেশন**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com/bn</a>
+
+**বাংলা ডকুমেন্টেশন**: <a href="https://fastapi.tiangolo.com/bn" target="_blank">https://fastapi.tiangolo.com/bn</a>
 
 **সোর্স কোড**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI হলো Python দিয়ে API তৈরির একটি আধুনিক, দ্রুত (উচ্চ-পারফরম্যান্স সম্পন্ন) ওয়েব ফ্রেমওয়ার্ক, যা স্ট্যান্ডার্ড Python টাইপ হিন্টের উপর ভিত্তি করে তৈরি।
+FastAPI হলো Python ভিত্তিক API তৈরির একটি আধুনিক, দ্রুত (উচ্চ-পারফরম্যান্স সম্পন্ন) ওয়েব ফ্রেমওয়ার্ক, যা স্ট্যান্ডার্ড Python টাইপ হিন্টের উপর ভিত্তি করে তৈরি।
 
 মূল বৈশিষ্ট্যগুলো হলো:
 
-* **দ্রুত**: **NodeJS** এবং **Go**-এর সমতুল্য অত্যন্ত উচ্চ পারফরম্যান্স সম্পন্ন (Starlette এবং Pydantic-এর কল্যাণে)। [সবচেয়ে দ্রুত Python ফ্রেমওয়ার্কগুলোর একটি](#performance)।
-* **দ্রুত কোড করা যায়**: ফিচার ডেভেলপমেন্টের গতি প্রায় ২০০% থেকে ৩০০% বৃদ্ধি পায়। *
+* **দ্রুত**: **NodeJS** এবং **Go**-এর সমতুল্য হাই-পারফরম্যান্স বা অত্যন্ত দ্রুতগতিসম্পন্ন (Starlette এবং Pydantic-এর কল্যাণে)। [সবচেয়ে দ্রুত Python ফ্রেমওয়ার্কগুলোর একটি](#performance)।
+* **দ্রুত কোডিং**: ফিচার ডেভেলপমেন্টের গতি প্রায় ২০০% থেকে ৩০০% বৃদ্ধি পায়। *
 * **কম বাগ**: ডেভেলপারদের করা ভুল বা কোডিং ত্রুটি প্রায় ৪০% কমে যায়। *
-* **স্বজ্ঞাত**: চমৎকার এডিটর সাপোর্ট। <dfn title="also known as auto-complete, autocompletion, IntelliSense">Completion</dfn> সর্বত্র। ডিবাগিং-এ কম সময়।
-* **সহজ**: ব্যবহার এবং শেখা সহজ হওয়ার জন্য ডিজাইন করা হয়েছে। ডকস পড়তে কম সময়।
-* **সংক্ষিপ্ত**: কোড ডুপ্লিকেশন কম। প্রতিটি প্যারামিটার ডিক্লারেশন থেকে একাধিক ফিচার। কম বাগ।
-* **শক্তিশালী**: প্রোডাকশন-রেডি কোড পান। স্বয়ংক্রিয় ইন্টারেক্টিভ ডকুমেন্টেশনসহ।
+* **স্বজ্ঞাত**: চমৎকার এডিটর সাপোর্ট এবং সবখানে অটো-কমপ্লিশন সুবিধা থাকায় ডিবাগিংয়ে সময় কম লাগে।
+* **সহজ**: ব্যবহার এবং শেখা সহজ হওয়ার জন্য ডিজাইন করা হয়েছে। ডকুমেন্টেশন পড়ার পেছনে কম সময় ব্যয় হয়।
+* **সংক্ষিপ্ত**: কোড ডুপ্লিকেশন কম। প্রতিটি প্যারামিটার ডিক্লারেশন থেকেই অনেকগুলো ফিচার পাওয়া যায়। কম বাগ।
+* **শক্তিশালী**: স্বয়ংক্রিয় ইন্টারেক্টিভ ডকুমেন্টেশনসহ প্রোডাকশন-রেডি কোড তৈরি করুন।
 * **স্ট্যান্ডার্ড-ভিত্তিক**: API-এর জন্য উন্মুক্ত মানদণ্ডের উপর ভিত্তি করে (এবং সম্পূর্ণ সামঞ্জস্যপূর্ণ): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (পূর্বে Swagger নামে পরিচিত) এবং <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>।
 
 <small>* একটি অভ্যন্তরীণ ডেভেলপমেন্ট টিম দ্বারা পরিচালিত পরীক্ষার উপর ভিত্তি করে অনুমান, যারা প্রোডাকশন অ্যাপ্লিকেশন তৈরি করছিল।</small>
@@ -91,13 +93,13 @@ FastAPI হলো Python দিয়ে API তৈরির একটি আধ
 
 ---
 
-"_**FastAPI** নিয়ে আমি অত্যন্ত উত্তেজিত। এটি এত মজার!_"
+"_**FastAPI** নিয়ে আমি অত্যন্ত উদ্দীপিত। এটি এত মজার!_"
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_সৎভাবে বলতে গেলে, আপনি যা তৈরি করেছেন তা সত্যিই শক্ত এবং পালিশ দেখাচ্ছে। অনেক দিক থেকে, এটাই আমি **Hug** হতে চেয়েছিলাম — কেউ সেটি তৈরি করছে দেখা সত্যিই অনুপ্রেরণাদায়ক।_"
+"_সৎভাবে বলতে গেলে, আপনি যা তৈরি করেছেন তা সত্যিই সলিড এবং পালিশ দেখাচ্ছে। অনেক দিক থেকে, এটাই আমি **Hug** হতে চেয়েছিলাম — কেউ সেটি তৈরি করছে দেখা সত্যিই অনুপ্রেরণাদায়ক।_"
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
@@ -131,9 +133,9 @@ FastAPI হলো Python দিয়ে API তৈরির একটি আধ
 
 **Typer** হলো FastAPI-এর ছোট ভাই। এবং এটি **CLI-এর FastAPI** হতে উদ্দেশ্যপ্রণোদিত। ⌨️ 🚀
 
-## প্রয়োজনীয়তা { #requirements }
+## রিকোয়ারমেন্ট { #requirements }
 
-FastAPI দিগগজদের কাঁধে দাঁড়িয়ে আছে:
+FastAPI শক্তিশালী টেকনোলজির ওপর ভিত্তি করে তৈরি:
 
 * ওয়েব অংশের জন্য <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>।
 * ডেটা অংশের জন্য <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>।
@@ -199,7 +201,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **নোট**:
 
-যদি আপনি না জানেন, ডকসে <a href="https://fastapi.tiangolo.com/bn/async/#in-a-hurry" target="_blank">`async` এবং `await` সম্পর্কে _"তাড়া আছে?"_ বিভাগটি</a> দেখুন।
+যদি আপনি না জানেন, ডকসে <a href="https://fastapi.tiangolo.com/bn/async/#in-a-hurry" target="_blank">`async` এবং `await` সম্পর্কে _"দ্রুত শুরু করতে চান?"_ বিভাগটি</a> দেখুন।
 
 </details>
 
@@ -365,10 +367,10 @@ item: Item
 * এডিটর সাপোর্ট, যার মধ্যে রয়েছে:
     * Completion।
     * Type check।
-* ডেটা যাচাইকরণ:
+* ডেটা যাচাইকরণ (Validation):
     * ডেটা অবৈধ হলে স্বয়ংক্রিয় এবং স্পষ্ট ত্রুটি।
     * গভীরভাবে নেস্টেড JSON অবজেক্টের জন্যও যাচাইকরণ।
-* ইনপুট ডেটার <dfn title="also known as: serialization, parsing, marshalling">রূপান্তর</dfn>: নেটওয়ার্ক থেকে Python ডেটা এবং type-এ রূপান্তর। নিচ থেকে পড়া:
+* ইনপুট ডেটার <dfn title="also known as: serialization, parsing, marshalling">রূপান্তর</dfn>: নেটওয়ার্ক থেকে Python ডেটা এবং type-এ রূপান্তর। নিচের উৎসগুলো থেকে ডাটা নেওয়া হয়:
     * JSON।
     * Path parameter।
     * Query parameter।
@@ -409,7 +411,7 @@ item: Item
 
 ---
 
-আমরা শুধু উপরিভাগ দেখলাম, কিন্তু আপনি ইতিমধ্যে এটি কীভাবে কাজ করে তার ধারণা পেয়েছেন।
+আমরা কেবল প্রাথমিক কিছু বিষয় বা শুরুটা দেখলাম, কিন্তু আপনি ইতিমধ্যে এটি কীভাবে কাজ করে তার ধারণা পেয়েছেন।
 
 নিচের লাইনটি পরিবর্তন করার চেষ্টা করুন:
 
@@ -435,7 +437,7 @@ item: Item
 
 আরও বৈশিষ্ট্য সহ আরও সম্পূর্ণ উদাহরণের জন্য, <a href="https://fastapi.tiangolo.com/bn/tutorial/">Tutorial - User Guide</a> দেখুন।
 
-**স্পয়লার সতর্কতা**: tutorial - user guide-এ রয়েছে:
+**একনজরে অন্যান্য গুরুত্বপূর্ণ ফিচার**: tutorial - user guide-এ রয়েছে:
 
 * **header**, **cookie**, **form field** এবং **file** সহ বিভিন্ন জায়গা থেকে **parameter** ডিক্লারেশন।
 * `maximum_length` বা `regex`-এর মতো **validation constraint** কীভাবে সেট করবেন।
@@ -479,7 +481,7 @@ Deploying to FastAPI Cloud...
 
 ✅ Deployment successful!
 
-🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+✅ সবকিছু প্রস্তুত! আপনার অ্যাপ এখন লাইভ: https://myapp.fastapicloud.dev
 ```
 
 </div>
