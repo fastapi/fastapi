@@ -227,6 +227,22 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = _get_signature(call)
     unwrapped = inspect.unwrap(call)
     globalns = getattr(unwrapped, "__globals__", {})
+
+    # Get updated globalns from the module (in case classes were defined after the function)
+    # This is needed for forward references when using `from __future__ import annotations`
+    module_name = getattr(unwrapped, "__module__", None)
+    if module_name:
+        import importlib
+
+        try:
+            module = importlib.import_module(module_name)
+            # Merge module namespace with function's globalns
+            # Function's globalns takes precedence for imports made in the function's scope
+            updated_globalns = {**vars(module), **globalns}
+            globalns = updated_globalns
+        except Exception:
+            pass
+
     typed_params = [
         inspect.Parameter(
             name=param.name,
@@ -242,11 +258,117 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
+        # Special handling for Annotated types with forward references
+        # When using `from __future__ import annotations`, the entire annotation
+        # becomes a string like "Annotated[SomeClass, Depends(func)]"
+        # We try to partially resolve it to preserve the Annotated structure
+        if annotation.startswith("Annotated["):
+            try:
+                # Try to evaluate the full annotation with available globalns
+                evaluated = evaluate_forwardref(
+                    ForwardRef(annotation), globalns, globalns
+                )
+                # If evaluation succeeds and it's an Annotated type, return it
+                if get_origin(evaluated) is Annotated:
+                    return evaluated
+                # If evaluation returns a ForwardRef, try partial resolution
+                if isinstance(evaluated, ForwardRef) or (
+                    hasattr(evaluated, "__forward_arg__")
+                ):
+                    # Try to parse and construct Annotated manually
+                    partial = _try_resolve_annotated_string(annotation, globalns)
+                    if partial is not None:
+                        return partial
+            except Exception:
+                # Try partial resolution as fallback
+                partial = _try_resolve_annotated_string(annotation, globalns)
+                if partial is not None:
+                    return partial
+
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
         if annotation is type(None):
             return None
     return annotation
+
+
+def _try_resolve_annotated_string(annotation_str: str, globalns: dict[str, Any]) -> Any:
+    """
+    Try to partially resolve an Annotated string annotation.
+
+    When we have "Annotated[ForwardRef, metadata1, metadata2]" and ForwardRef
+    can't be resolved, we still want to preserve the Annotated structure with
+    the metadata (like Depends) so that FastAPI can extract dependencies.
+
+    IMPORTANT: This function ONLY returns a value when the metadata is a Depends
+    instance, because replacing the type with Any would break type detection for
+    other parameter types (File, Form, Query, etc.).
+    """
+    # Remove "Annotated[" prefix and trailing "]"
+    if not annotation_str.startswith("Annotated[") or not annotation_str.endswith("]"):
+        return None
+
+    inner = annotation_str[len("Annotated[") : -1]
+
+    # Find the first comma that's not inside brackets
+    # This separates the type from the metadata
+    bracket_depth = 0
+    paren_depth = 0
+    first_comma_idx = -1
+    for i, char in enumerate(inner):
+        if char == "[":
+            bracket_depth += 1
+        elif char == "]":
+            bracket_depth -= 1
+        elif char == "(":
+            paren_depth += 1
+        elif char == ")":
+            paren_depth -= 1
+        elif char == "," and bracket_depth == 0 and paren_depth == 0:
+            first_comma_idx = i
+            break
+
+    if first_comma_idx == -1:
+        return None
+
+    type_part = inner[:first_comma_idx].strip()
+    metadata_part = inner[first_comma_idx + 1 :].strip()
+
+    # Try to evaluate the metadata parts
+    # The metadata is usually Depends(func), Query(), etc.
+    try:
+        # Create a safe evaluation context with FastAPI params
+        eval_globals = {**globalns}
+
+        # Try to evaluate the metadata
+        # Note: we use eval here because the metadata is a valid Python expression
+        # that should be evaluable in the context of the module
+        metadata_value = eval(metadata_part, eval_globals)  # noqa: S307
+
+        # ONLY return Annotated[..., metadata] for Depends
+        # For other metadata types (File, Form, Query, etc.), we need the actual type
+        # to correctly identify the parameter kind, so return None to let the
+        # original logic handle it
+        if not isinstance(metadata_value, params.Depends):
+            return None
+
+        # Try to resolve the type part
+        try:
+            resolved_type = evaluate_forwardref(
+                ForwardRef(type_part), globalns, globalns
+            )
+        except Exception:
+            resolved_type = None
+
+        # Construct the Annotated type
+        if resolved_type is None or isinstance(resolved_type, ForwardRef):
+            # Keep Any as the type since this is a Depends and the actual type
+            # will be resolved from the dependency function's return annotation
+            return Annotated[Any, metadata_value]
+        else:
+            return Annotated[resolved_type, metadata_value]
+    except Exception:
+        return None
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
