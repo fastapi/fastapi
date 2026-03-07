@@ -282,6 +282,11 @@ def get_openapi_path(
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
+            # Skip auto-added HEAD method in OpenAPI when it's paired with GET.
+            # HEAD is automatically supported for all GET endpoints per HTTP semantics.
+            # But explicit HEAD-only routes should still appear in the schema.
+            if method == "HEAD" and "GET" in route.methods:
+                continue
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
