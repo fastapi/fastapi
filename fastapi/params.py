@@ -1,5 +1,5 @@
 import warnings
-from collections.abc import Callable, Sequence
+from collections.abc import Callable
 from dataclasses import dataclass
 from enum import Enum
 from typing import Annotated, Any, Literal
@@ -752,4 +752,4 @@ class Depends:
 
 @dataclass(frozen=True)
 class Security(Depends):
-    scopes: Sequence[str] | None = None
+    oauth_scopes: list[str] | tuple[str, ...] | set[str] | frozenset[str] | None = None
