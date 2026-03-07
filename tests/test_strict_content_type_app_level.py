@@ -23,22 +23,22 @@ client_lax = TestClient(app_lax)
 
 def test_default_strict_rejects_no_content_type():
     response = client_default.post("/items/", content='{"key": "value"}')
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
 
 
 def test_default_strict_accepts_json_content_type():
     response = client_default.post("/items/", json={"key": "value"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"key": "value"}
 
 
 def test_lax_accepts_no_content_type():
     response = client_lax.post("/items/", content='{"key": "value"}')
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"key": "value"}
 
 
 def test_lax_accepts_json_content_type():
     response = client_lax.post("/items/", json={"key": "value"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"key": "value"}
