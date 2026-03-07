@@ -1,12 +1,13 @@
 import warnings
-from collections import deque
+from collections import deque, namedtuple
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import TypedDict
+from typing import NamedTuple, TypedDict
 
 import pytest
 from fastapi._compat import Undefined
@@ -311,3 +312,124 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+def test_encode_sequence():
+    class SequenceModel(Sequence[str]):
+        def __init__(self, items: list[str]):
+            self._items = items
+
+        def __getitem__(self, index: int | slice) -> str | Sequence[str]:
+            return self._items[index]
+
+        def __len__(self) -> int:
+            return len(self._items)
+
+    seq = SequenceModel(["item1", "item2", "item3"])
+    assert len(seq) == 3
+    assert jsonable_encoder(seq) == ["item1", "item2", "item3"]
+
+
+def test_encode_bytes():
+    assert jsonable_encoder(b"hello") == "hello"
+
+
+def test_encode_bytes_in_dict():
+    data = {"content": b"hello", "name": "test"}
+    assert jsonable_encoder(data) == {"content": "hello", "name": "test"}
+
+
+def test_encode_list_of_bytes():
+    data = [b"hello", b"world"]
+    assert jsonable_encoder(data) == ["hello", "world"]
+
+
+def test_encode_generator():
+    def gen():
+        yield 1
+        yield 2
+        yield 3
+
+    assert jsonable_encoder(gen()) == [1, 2, 3]
+
+
+def test_encode_generator_of_bytes():
+    def gen():
+        yield b"hello"
+        yield b"world"
+
+    assert jsonable_encoder(gen()) == ["hello", "world"]
+
+
+def test_encode_named_tuple_as_list():
+    Point = namedtuple("Point", ["x", "y"])
+    p = Point(1, 2)
+    assert jsonable_encoder(p) == [1, 2]
+
+
+def test_encode_named_tuple_as_dict():
+    Point = namedtuple("Point", ["x", "y"])
+    p = Point(1, 2)
+    assert jsonable_encoder(p, named_tuple_as_dict=True) == {"x": 1, "y": 2}
+
+
+def test_encode_typed_named_tuple_as_list():
+    class Point(NamedTuple):
+        x: int
+        y: int
+
+    p = Point(1, 2)
+    assert jsonable_encoder(p) == [1, 2]
+
+
+def test_encode_typed_named_tuple_as_dict():
+    class Point(NamedTuple):
+        x: int
+        y: int
+
+    p = Point(1, 2)
+    assert jsonable_encoder(p, named_tuple_as_dict=True) == {"x": 1, "y": 2}
+
+
+def test_encode_sqlalchemy_safe_filters_sa_keys():
+    data = {"name": "test", "_sa_instance_state": "internal"}
+    assert jsonable_encoder(data, sqlalchemy_safe=True) == {"name": "test"}
+    assert jsonable_encoder(data, sqlalchemy_safe=False) == {
+        "name": "test",
+        "_sa_instance_state": "internal",
+    }
+
+
+def test_encode_sqlalchemy_row_as_list():
+    sa = pytest.importorskip("sqlalchemy")
+    engine = sa.create_engine("sqlite:///:memory:")
+    with engine.connect() as conn:
+        row = conn.execute(sa.text("SELECT 1 AS x, 2 AS y")).fetchone()
+    engine.dispose()
+    assert row is not None
+    assert jsonable_encoder(row) == [1, 2]
+
+
+def test_encode_sqlalchemy_row_as_dict():
+    sa = pytest.importorskip("sqlalchemy")
+    engine = sa.create_engine("sqlite:///:memory:")
+    with engine.connect() as conn:
+        row = conn.execute(sa.text("SELECT 1 AS x, 2 AS y")).fetchone()
+    engine.dispose()
+    assert row is not None
+    assert jsonable_encoder(row, named_tuple_as_dict=True) == {"x": 1, "y": 2}
+
+
+def test_encode_pydantic_extra_types_coordinate():
+    coordinate = pytest.importorskip("pydantic_extra_types.coordinate")
+    coord = coordinate.Coordinate(latitude=1.0, longitude=2.0)
+    # Dataclass output shouldn't be the result
+    assert jsonable_encoder(coord) != {"latitude": 1.0, "longitude": 2.0}
+    # The custom encoder should be the result
+    assert jsonable_encoder(coord) == str(coord)
+
+
+def test_encode_pydantic_extra_types_color():
+    et_color = pytest.importorskip("pydantic_extra_types.color")
+    color = et_color.Color("red")
+    assert jsonable_encoder(color) == str(color)
