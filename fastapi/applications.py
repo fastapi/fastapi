@@ -11,10 +11,15 @@ from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
+    request_malformed_exception_handler,
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestMalformedError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -1003,6 +1008,9 @@ class FastAPI(Starlette):
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
+        self.exception_handlers.setdefault(
+            RequestMalformedError, request_malformed_exception_handler
+        )
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
