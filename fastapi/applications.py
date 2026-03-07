@@ -1159,6 +1159,9 @@ class FastAPI(Starlette):
             scope["root_path"] = self.root_path
         await super().__call__(scope, receive, send)
 
+    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        self.router._mount(path, app=app, name=name)
+
     def add_api_route(
         self,
         path: str,
