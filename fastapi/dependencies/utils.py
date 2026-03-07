@@ -748,7 +748,11 @@ def _is_json_field(field: ModelField) -> bool:
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: str | None = None,
+    *,
+    default_on_missing: bool = True,
 ) -> Any:
     alias = alias or get_validation_alias(field)
     if (
@@ -773,8 +777,9 @@ def _get_multidict_value(
     ):
         if field.field_info.is_required():
             return
-        else:
+        if default_on_missing:
             return deepcopy(field.default)
+        return None
     return value
 
 
@@ -958,6 +963,7 @@ async def request_body_to_args(
     body_to_process = received_body
 
     fields_to_extract: list[ModelField] = body_fields
+    provided_form_fields: set[str] | None = None
 
     if (
         single_not_embedded_field
@@ -965,6 +971,17 @@ async def request_body_to_args(
         and isinstance(received_body, FormData)
     ):
         fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
+        provided_form_fields = {
+            field.name
+            for field in fields_to_extract
+            if _get_multidict_value(
+                field,
+                received_body,
+                alias=get_validation_alias(field),
+                default_on_missing=False,
+            )
+            is not None
+        }
 
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(fields_to_extract, received_body)
@@ -974,6 +991,12 @@ async def request_body_to_args(
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=body_to_process, values=values, loc=loc
         )
+        if (
+            provided_form_fields is not None
+            and not errors_
+            and isinstance(v_, BaseModel)
+        ):
+            v_.__pydantic_fields_set__ = provided_form_fields
         return {first_field.name: v_}, errors_
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
