@@ -222,11 +222,23 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 ### Required, can be `None` { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+You can declare that a parameter can accept `None`, but that it's still required. This forces clients to send the parameter, even if the value is `None` or `null`.
 
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+In FastAPI, a parameter is required when it has no default value. Using `...` as the default value also marks it as required.
+
+At the same time, if the type annotation includes `None`, like `str | None`, the parameter is nullable and can accept `None`.
+
+So, with `Annotated[str | None, Query(min_length=3)] = ...`, the client must send the parameter, but the value can still be `None`:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+/// tip
+
+If you use `None` as the default value, for example `q: Annotated[str | None, Query(min_length=3)] = None`, the parameter becomes optional.
+
+If you use `...` as the default value, for example `q: Annotated[str | None, Query(min_length=3)] = ...`, the parameter remains required even though the type allows `None`.
+
+///
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
