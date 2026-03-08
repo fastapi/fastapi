@@ -277,6 +277,24 @@ def test_sse_on_router_included_in_app(client: TestClient):
     assert len(data_lines) == 2
 
 
+def test_sse_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-typed")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_jsonl_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-jsonl")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/jsonl"
+    lines = response.text.strip().split("\n")
+    assert len(lines) == 3
+
+
 def test_sse_router_typed_openapi_schema(client: TestClient):
     """Typed SSE endpoint on a router should preserve itemSchema with contentSchema."""
     response = client.get("/openapi.json")
