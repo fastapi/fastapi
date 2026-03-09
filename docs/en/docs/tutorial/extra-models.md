@@ -166,7 +166,7 @@ To do that, use the standard Python union syntax:
 
 /// note
 
-When defining a union, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `PlaneItem | CarItem`.
+When defining a [union](https://docs.pydantic.dev/latest/concepts/unions/), include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `PlaneItem | CarItem`.
 
 ///
 
