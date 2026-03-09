@@ -57,7 +57,7 @@ FastAPI added support for `Annotated` (and started recommending it) in version 0
 
 If you have an older version, you would get errors when trying to use `Annotated`.
 
-Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions) to at least 0.95.1 before using `Annotated`.
 
 ///
 
@@ -152,7 +152,7 @@ It doesn't matter. **FastAPI** will know what to do.
 
 /// note
 
-If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
+If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry) section about `async` and `await` in the docs.
 
 ///
 

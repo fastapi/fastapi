@@ -22,7 +22,7 @@ If you have an old FastAPI app with Pydantic v1, here I'll show you how to migra
 
 ## Official Guide { #official-guide }
 
-Pydantic has an official <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Migration Guide</a> from v1 to v2.
+Pydantic has an official [Migration Guide](https://docs.pydantic.dev/latest/migration/) from v1 to v2.
 
 It also includes what has changed, how validations are now more correct and strict, possible caveats, etc.
 
@@ -30,7 +30,7 @@ You can read it to understand better what has changed.
 
 ## Tests { #tests }
 
-Make sure you have [tests](../tutorial/testing.md){.internal-link target=_blank} for your app and you run them on continuous integration (CI).
+Make sure you have [tests](../tutorial/testing.md) for your app and you run them on continuous integration (CI).
 
 This way, you can do the upgrade and make sure everything is still working as expected.
 
@@ -38,7 +38,7 @@ This way, you can do the upgrade and make sure everything is still working as ex
 
 In many cases, when you use regular Pydantic models without customizations, you will be able to automate most of the process of migrating from Pydantic v1 to Pydantic v2.
 
-You can use <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> from the same Pydantic team.
+You can use [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) from the same Pydantic team.
 
 This tool will help you to automatically change most of the code that needs to be changed.
 

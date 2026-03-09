@@ -11,7 +11,7 @@ Use as follows:
 * Check if things are okay in the translation.
 * If necessary, improve your language specific prompt, the general prompt, or the English document.
 * Then manually fix the remaining issues in the translation, so that it is a good translation.
-* Retranslate, having the good translation in place. The ideal result would be that the LLM makes no changes anymore to the translation. That means that the general prompt and your language specific prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
+* Retranslate, having the good translation in place. The ideal result would be that the LLM makes no changes anymore to the translation. That means that the general prompt and your language specific prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that [LLMs are not deterministic algorithms](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 The tests:
 
@@ -169,15 +169,15 @@ See sections `### Special blocks` and `### Tab blocks` in the general prompt in 
 The link text should get translated, the link address should remain unchanged:
 
 * [Link to heading above](#code-snippets)
-* [Internal link](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">External link</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link to a style</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link to a script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link to an image</a>
+* [Internal link](index.md#installation)
+* [External link](https://sqlmodel.tiangolo.com/)
+* [Link to a style](https://fastapi.tiangolo.com/css/styles.css)
+* [Link to a script](https://fastapi.tiangolo.com/js/logic.js)
+* [Link to an image](https://fastapi.tiangolo.com/img/foo.jpg)
 
 The link text should get translated, the link address should point to the translation:
 
-* <a href="https://fastapi.tiangolo.com/" class="external-link" target="_blank">FastAPI link</a>
+* [FastAPI link](https://fastapi.tiangolo.com/)
 
 ////
 
