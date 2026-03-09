@@ -6,7 +6,7 @@
 
 ### 基于开放标准 { #based-on-open-standards }
 
-* 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>，包含对<abbr title="也被叫做: endpoints, routes">路径</abbr> <abbr title="也叫做 HTTP 方法，如 POST、GET、PUT、DELETE">操作</abbr>、参数、请求体、安全等的声明。
+* 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>，包含对<dfn title="也称为：端点、路由">路径</dfn> <dfn title="也称为 HTTP 方法，如 POST、GET、PUT、DELETE">操作</dfn>、参数、请求体、安全等的声明。
 * 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> 自动生成数据模型文档（因为 OpenAPI 本身就是基于 JSON Schema 的）。
 * 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
 * 这也允许了在很多语言中自动**生成客户端代码**。
@@ -137,7 +137,7 @@ OpenAPI 中定义的安全模式，包括：
 
 ### 依赖注入 { #dependency-injection }
 
-FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫做 "components", "resources", "services", "providers"'><strong>依赖注入</strong></abbr>系统。
+FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为 "components"、"resources"、"services"、"providers"'><strong>依赖注入</strong></dfn>系统。
 
 * 甚至依赖也可以有依赖，创建一个层级或者**“图”依赖**。
 * 所有**自动化处理**都由框架完成。
@@ -154,8 +154,8 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 
 ### 测试 { #tested }
 
-* 100% <abbr title="自动测试的代码量">测试覆盖</abbr>。
-* 代码库100% <abbr title="Python类型注解，有了这个你的编辑器和外部工具可以给你更好的支持">类型注释</abbr>。
+* 100% <dfn title="自动测试的代码量">测试覆盖</dfn>。
+* 代码库100% <dfn title="Python 类型注解，有了这个你的编辑器和外部工具可以给你更好的支持">类型注释</dfn>。
 * 用于生产应用。
 
 ## Starlette 特性 { #starlette-features }
@@ -186,10 +186,10 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 
 通过 **FastAPI** 你可以获得所有 **Pydantic**（FastAPI 基于 Pydantic 做了所有的数据处理）：
 
-* **更简单**：
+* **不烧脑**：
     * 没有新的模式定义 micro-language 需要学习。
     * 如果你知道 Python types，你就知道如何使用 Pydantic。
-* 和你 **<abbr title="集成开发环境，和代码编辑器类似">IDE</abbr>/<abbr title="一个检查代码错误的程序">linter</abbr>/brain** 适配:
+* 和你 **<abbr title="Integrated Development Environment - 集成开发环境: 类似于代码编辑器">IDE</abbr>/<dfn title="一个检查代码错误的程序">linter</dfn>/brain** 适配:
     * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。
 * 验证**复杂结构**:
     * 使用分层的 Pydantic 模型，Python `typing` 的 `List` 和 `Dict` 等等。

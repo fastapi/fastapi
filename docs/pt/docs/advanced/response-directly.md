@@ -2,7 +2,7 @@
 
 Quando você cria uma *operação de rota* no **FastAPI** você pode retornar qualquer dado nela: um dicionário (`dict`), uma lista (`list`), um modelo do Pydantic ou do seu banco de dados, etc.
 
-Por padrão, o **FastAPI** irá converter automaticamente o valor do retorno para JSON utilizando o `jsonable_encoder` explicado em [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+Por padrão, o **FastAPI** irá converter automaticamente o valor do retorno para JSON utilizando o `jsonable_encoder` explicado em [Codificador Compatível com JSON](../tutorial/encoder.md){.internal-link target=_blank}.
 
 Então, por baixo dos panos, ele incluiria esses dados compatíveis com JSON (e.g. um `dict`) dentro de uma `JSONResponse` que é utilizada para enviar uma resposta para o cliente.
 
@@ -54,7 +54,7 @@ Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.o
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Notas { #notes }
 

@@ -46,17 +46,17 @@
 
 在某些特殊使用情况下（可能并不常见），您可能希望**限制**您想要接收的 cookie。
 
-您的 API 现在可以控制自己的 <abbr title="顺带一提，这是一个笑话。它与 cookie 同意无关，但现在连API都能拒绝那些可怜的 cookie，真是太有意思了。来，吃块小饼干（cookie）吧。🍪">cookie 同意</abbr>。🤪🍪
+您的 API 现在可以控制自己的 <dfn title="只是个玩笑，别当真。和 cookie 同意无关，不过连 API 现在都能拒绝可怜的 cookie，挺好玩的。来，吃块小饼干吧。🍪">cookie 同意</dfn>。🤪🍪
 
 您可以使用 Pydantic 的模型配置来禁止（ `forbid` ）任何额外（ `extra` ）字段：
 
 {* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
-如果客户尝试发送一些**额外的 cookie**，他们将收到**错误**响应。
+如果客户端尝试发送一些**额外的 cookie**，他们将收到**错误**响应。
 
-可怜的 cookie 通知条，费尽心思为了获得您的同意，却被<abbr title="这又是一个笑话，别管我了，给您的小饼干（cookie）配上点咖啡吧。☕">API 拒绝了</abbr>。🍪
+可怜的 cookie 通知条，费尽心思为了获得您的同意，却被<dfn title="又是个玩笑，别理我。给你的小饼干配点咖啡吧。☕">API 拒绝了</dfn>。🍪
 
-例如，如果客户端尝试发送一个值为 `good-list-please` 的 `santa_tracker` cookie，客户端将收到一个**错误**响应，告知他们 `santa_tracker` <abbr title="圣诞老人（Santa）不赞成没有小饼干（cookie）。🎅 好吧，不会再开 cookie 的玩笑了。">cookie 是不允许的</abbr>：
+例如，如果客户端尝试发送一个值为 `good-list-please` 的 `santa_tracker` cookie，客户端将收到一个**错误**响应，告知他们 `santa_tracker` <dfn title="圣诞老人不赞成没有小饼干。🎅 好吧，不再讲 cookie 的笑话了。">cookie 是不允许的</dfn>：
 
 ```json
 {
@@ -73,4 +73,4 @@
 
 ## 总结 { #summary }
 
-您可以使用 **Pydantic 模型**在 **FastAPI** 中声明 <abbr title="走之前再来块小饼干吧。 🍪">**cookie**</abbr>。😎
+您可以使用 **Pydantic 模型**在 **FastAPI** 中声明 <dfn title="临走前再吃一块小饼干吧。🍪">**cookie**</dfn>。😎

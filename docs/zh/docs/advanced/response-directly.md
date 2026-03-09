@@ -36,7 +36,7 @@
 
 {* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
-/// note | 注意
+/// note | 技术细节
 
 你也可以使用 `from starlette.responses import JSONResponse`。
 
@@ -54,7 +54,7 @@
 
 你可以把你的 XML 内容放到一个字符串中，放到一个 `Response` 中，然后返回：
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## 说明 { #notes }
 

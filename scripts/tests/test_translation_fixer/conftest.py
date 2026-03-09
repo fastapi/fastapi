@@ -10,9 +10,17 @@ skip_on_windows = pytest.mark.skipif(
 )
 
 
-def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
+THIS_DIR = Path(__file__).parent.resolve()
+
+
+def pytest_collection_modifyitems(config, items: list[pytest.Item]) -> None:
+    if sys.platform != "win32":
+        return
+
     for item in items:
-        item.add_marker(skip_on_windows)
+        item_path = Path(item.fspath).resolve()
+        if item_path.is_relative_to(THIS_DIR):
+            item.add_marker(skip_on_windows)
 
 
 @pytest.fixture(name="runner")

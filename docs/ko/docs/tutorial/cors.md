@@ -46,7 +46,7 @@
 * 특정 HTTP 메서드(`POST`, `PUT`) 또는 와일드카드 `"*"`를 사용한 모든 메서드.
 * 특정 HTTP 헤더 또는 와일드카드 `"*"`를 사용한 모든 헤더.
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 
 `CORSMiddleware` 구현에서 사용하는 기본 매개변수는 기본적으로 제한적이므로, 브라우저가 Cross-Domain 컨텍스트에서 특정 출처, 메서드 또는 헤더를 사용할 수 있도록 하려면 이를 명시적으로 활성화해야 합니다.
@@ -78,7 +78,7 @@
 
 ## 더 많은 정보 { #more-info }
 
-<abbr title="Cross-Origin Resource Sharing – 교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하세요.
+<abbr title="Cross-Origin Resource Sharing - 교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하세요.
 
 /// note | 기술 세부사항
 

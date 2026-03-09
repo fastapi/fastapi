@@ -64,9 +64,9 @@ O "MINOR" é o número do meio, por exemplo, em `0.2.3`, a versão MINOR é `2`.
 
 ## Atualizando as versões do FastAPI { #upgrading-the-fastapi-versions }
 
-Você deve adicionar testes para a sua aplicação.
+Você deveria adicionar testes para a sua aplicação.
 
-Com **FastAPI** isso é muito fácil (graças ao Starlette), veja a documentação: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+Com **FastAPI** isso é muito fácil (graças ao Starlette), veja a documentação: [Testes](../tutorial/testing.md){.internal-link target=_blank}
 
 Depois que você tiver testes, você pode atualizar a sua versão do **FastAPI** para uma mais recente e se certificar de que todo o seu código está funcionando corretamente executando seus testes.
 

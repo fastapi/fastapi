@@ -46,7 +46,7 @@ Bu, çoğu durumda işinizi görür. 😎
 
 Şimdi biraz daha detaya inelim.
 
-FastAPI, Python web framework'leri ve sunucularını inşa etmek için kullanılan <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> adlı bir standardı kullanır. FastAPI bir ASGI web framework'üdür.
+FastAPI, Python web framework'leri ve sunucularını inşa etmek için kullanılan <abbr title="Asynchronous Server Gateway Interface - Asenkron Sunucu Ağ Geçidi Arayüzü">ASGI</abbr> adlı bir standardı kullanır. FastAPI bir ASGI web framework'üdür.
 
 Uzak bir sunucu makinesinde **FastAPI** uygulamasını (veya herhangi bir ASGI uygulamasını) çalıştırmak için gereken ana şey, **Uvicorn** gibi bir ASGI server programıdır. `fastapi` komutuyla varsayılan olarak gelen de budur.
 
@@ -74,7 +74,7 @@ FastAPI'yi kurduğunuzda, production sunucusu olarak Uvicorn da beraberinde geli
 
 Ancak bir ASGI server'ı manuel olarak da kurabilirsiniz.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden emin olun; ardından server uygulamasını kurabilirsiniz.
+Bir [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden emin olun; ardından server uygulamasını kurabilirsiniz.
 
 Örneğin Uvicorn'u kurmak için:
 

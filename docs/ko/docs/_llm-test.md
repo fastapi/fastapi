@@ -35,7 +35,7 @@
 
 //// tab | 테스트
 
-어제 제 친구가 이렇게 썼습니다: "If you spell incorrectly correctly, you have spelled it incorrectly". 이에 저는 이렇게 답했습니다: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"".
+어제 제 친구가 이렇게 썼습니다: "If you spell incorrectly correctly, you have spelled it incorrectly". 이에 저는 이렇게 답했습니다: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
 /// note | 참고
 
@@ -256,15 +256,15 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 //// tab | 테스트
 
-* 당신
-* 당신의
+* 여러분
+* 여러분의
 
 * 예: (e.g.)
 * 등 (etc.)
 
-* `int`로서의 `foo`
-* `str`로서의 `bar`
-* `list`로서의 `baz`
+* `foo`로서의 `int`
+* `bar`로서의 `str`
+* `baz`로서의 `list`
 
 * 튜토리얼 - 사용자 가이드
 * 고급 사용자 가이드

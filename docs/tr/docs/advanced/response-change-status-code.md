@@ -20,7 +20,7 @@ Bu tür durumlarda bir `Response` parametresi kullanabilirsiniz.
 
 Ardından bu *geçici (temporal)* `Response` nesnesi üzerinde `status_code` değerini ayarlayabilirsiniz.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 Sonrasında, normalde yaptığınız gibi ihtiyacınız olan herhangi bir nesneyi döndürebilirsiniz (`dict`, bir veritabanı modeli, vb.).
 

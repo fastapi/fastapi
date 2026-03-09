@@ -46,7 +46,7 @@
 
 特定の（あまり一般的ではないかもしれない）ケースで、受け付けるクッキーを**制限**する必要があるかもしれません。
 
-あなたのAPIは独自の <abbr title="念のためですが、これはジョークです。クッキー同意とは関係ありませんが、APIでさえ不適切なクッキーを拒否できるとは愉快ですね。クッキーでも食べてください。🍪 （原文: This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪）">クッキー同意</abbr> を管理する能力を持っています。 🤪🍪
+あなたのAPIは独自の <dfn title="念のためですが、これはジョークです。クッキー同意とは関係ありませんが、APIでさえ今やかわいそうなクッキーを拒否できるのは面白いですね。クッキーでもどうぞ。🍪">クッキー同意</dfn> を管理する能力を持っています。 🤪🍪
 
 Pydanticのモデルの Configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
 
@@ -54,9 +54,9 @@ Pydanticのモデルの Configuration を利用して、 `extra` フィールド
 
 もしクライアントが**余分なクッキー**を送ろうとすると、**エラー**レスポンスが返されます。
 
-<abbr title="これもジョークです。気にしないでください。クッキーのお供にコーヒーでも飲んでください。☕ （原文: This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕）">どうせAPIに拒否されるのに</abbr>あなたの同意を得ようと精一杯努力する可哀想なクッキーバナーたち... 🍪
+<dfn title="これもジョークです。気にしないでください。クッキーのお供にコーヒーでもどうぞ。☕">どうせAPIに拒否されるのに</dfn>あなたの同意を得ようと精一杯努力する可哀想なクッキーバナーたち... 🍪
 
-例えば、クライアントがクッキー `santa_tracker` を `good-list-please` という値で送ろうとすると、`santa_tracker` という <abbr title="サンタはクッキー不足を良しとはしないでしょう。🎅 はい、クッキージョークはもう止めておきます。（原文: Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.）">クッキーが許可されていない</abbr> ことを通知する**エラー**レスポンスが返されます:
+例えば、クライアントがクッキー `santa_tracker` を `good-list-please` という値で送ろうとすると、`santa_tracker` という <dfn title="サンタはクッキー不足を良しとしません。🎅 はい、クッキージョークはこれでおしまい。">クッキーが許可されていない</dfn> ことを通知する**エラー**レスポンスが返されます:
 
 ```json
 {
@@ -73,4 +73,4 @@ Pydanticのモデルの Configuration を利用して、 `extra` フィールド
 
 ## まとめ { #summary }
 
-**FastAPI**では、<abbr title="帰ってしまう前に最後のクッキーをどうぞ。🍪 （原文: Have a last cookie before you go. 🍪）">**クッキー**</abbr>を宣言するために、**Pydanticモデル**を使用できます。😎
+**FastAPI**では、<dfn title="帰る前に最後のクッキーをどうぞ。🍪">**クッキー**</dfn>を宣言するために、**Pydanticモデル**を使用できます。😎

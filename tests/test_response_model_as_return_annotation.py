@@ -1,5 +1,3 @@
-from typing import Union
-
 import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIError, ResponseValidationError
@@ -216,7 +214,7 @@ def no_response_model_annotation_forward_ref_list_of_model() -> "list[User]":
 
 @app.get(
     "/response_model_union-no_annotation-return_model1",
-    response_model=Union[User, Item],
+    response_model=User | Item,
 )
 def response_model_union_no_annotation_return_model1():
     return DBUser(name="John", surname="Doe", password_hash="secret")
@@ -224,19 +222,19 @@ def response_model_union_no_annotation_return_model1():
 
 @app.get(
     "/response_model_union-no_annotation-return_model2",
-    response_model=Union[User, Item],
+    response_model=User | Item,
 )
 def response_model_union_no_annotation_return_model2():
     return Item(name="Foo", price=42.0)
 
 
 @app.get("/no_response_model-annotation_union-return_model1")
-def no_response_model_annotation_union_return_model1() -> Union[User, Item]:
+def no_response_model_annotation_union_return_model1() -> User | Item:
     return DBUser(name="John", surname="Doe", password_hash="secret")
 
 
 @app.get("/no_response_model-annotation_union-return_model2")
-def no_response_model_annotation_union_return_model2() -> Union[User, Item]:
+def no_response_model_annotation_union_return_model2() -> User | Item:
     return Item(name="Foo", price=42.0)
 
 
@@ -503,7 +501,7 @@ def test_invalid_response_model_field():
     with pytest.raises(FastAPIError) as e:
 
         @app.get("/")
-        def read_root() -> Union[Response, None]:
+        def read_root() -> Response | None:
             return Response(content="Foo")  # pragma: no cover
 
     assert "valid Pydantic field type" in e.value.args[0]

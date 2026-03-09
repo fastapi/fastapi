@@ -26,7 +26,7 @@
 
 例如，要声明另一个状态码为 `404` 且具有 Pydantic 模型 `Message` 的响应，你可以这样写：
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | 注意
 
@@ -203,7 +203,7 @@
 
 以及一个状态码为 `200` 的响应，它使用你的 `response_model`，但包含自定义的 `example`：
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 所有这些都会被合并并包含到你的 OpenAPI 中，并显示在 API 文档里：
 

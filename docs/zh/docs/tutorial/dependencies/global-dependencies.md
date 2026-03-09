@@ -6,7 +6,7 @@
 
 这样一来，就可以为所有*路径操作*应用该依赖项：
 
-{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
 
 [将 `dependencies` 添加到*路径操作装饰器*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} 一章的思路均适用于全局依赖项， 在本例中，这些依赖项可以用于应用中的所有*路径操作*。
 

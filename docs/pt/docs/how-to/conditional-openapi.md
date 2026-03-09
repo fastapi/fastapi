@@ -29,13 +29,13 @@ Você pode usar facilmente as mesmas configurações do Pydantic para configurar
 
 Por exemplo:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Aqui declaramos a configuração `openapi_url` com o mesmo padrão de `"/openapi.json"`.
 
 E então a usamos ao criar a aplicação `FastAPI`.
 
-Então você pode desabilitar o OpenAPI (incluindo a documentação da interface do usuário) definindo a variável de ambiente `OPENAPI_URL` como uma string vazia, como:
+Então você pode desabilitar o OpenAPI (incluindo a documentação da interface do usuário) definindo a variável de ambiente `OPENAPI_URL` como a string vazia, como:
 
 <div class="termy">
 

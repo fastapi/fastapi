@@ -163,7 +163,7 @@ images: list[Image]
 
 например так:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Поддержка редактора кода везде { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ images: list[Image]
 
 В этом случае вы принимаете любой `dict`, пока у него есть ключи типа `int` со значениями типа `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Совет
 

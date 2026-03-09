@@ -58,11 +58,11 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 같은 *경로 처리*에 대해 의존성 중 하나가 여러 번 선언되는 경우(예: 여러 의존성이 공통 하위 의존성을 갖는 경우), **FastAPI**는 그 하위 의존성을 요청당 한 번만 호출해야 한다는 것을 알고 있습니다.
 
-그리고 같은 요청에 대해 동일한 의존성을 여러 번 호출하는 대신, 반환값을 <abbr title="계산/생성된 값을 저장해 두었다가, 다시 계산하지 않고 재사용하기 위한 유틸리티/시스템.">"cache"</abbr>에 저장하고, 그 요청에서 해당 값이 필요한 모든 "dependants"에 전달합니다.
+그리고 같은 요청에 대해 동일한 의존성을 여러 번 호출하는 대신, 반환값을 <dfn title="계산/생성된 값을 저장해 두었다가, 다시 계산하지 않고 재사용하기 위한 유틸리티/시스템.">"캐시"</dfn>에 저장하고, 그 요청에서 해당 값이 필요한 모든 "dependants"에 전달합니다.
 
 고급 시나리오로, 같은 요청에서 "cached" 값을 쓰는 대신 매 단계마다(아마도 여러 번) 의존성이 호출되어야 한다는 것을 알고 있다면, `Depends`를 사용할 때 `use_cache=False` 파라미터를 설정할 수 있습니다:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.9+ 비 Annotated
+//// tab | Python 3.10+ 비 Annotated
 
 /// tip | 팁
 

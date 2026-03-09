@@ -6,7 +6,7 @@ Visual Studio Code veya PyCharm gibi editörünüzde debugger'ı bağlayabilirsi
 
 FastAPI uygulamanızda `uvicorn`'ı import edip doğrudan çalıştırın:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### `__name__ == "__main__"` Hakkında { #about-name-main }
 

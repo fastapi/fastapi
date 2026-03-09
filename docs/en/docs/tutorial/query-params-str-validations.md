@@ -35,13 +35,13 @@ FastAPI added support for `Annotated` (and started recommending it) in version 0
 
 If you have an older version, you would get errors when trying to use `Annotated`.
 
-Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions) to at least 0.95.1 before using `Annotated`.
 
 ///
 
 ## Use `Annotated` in the type for the `q` parameter { #use-annotated-in-the-type-for-the-q-parameter }
 
-Remember I told you before that `Annotated` can be used to add metadata to your parameters in the [Python Types Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
+Remember I told you before that `Annotated` can be used to add metadata to your parameters in the [Python Types Intro](../python-types.md#type-hints-with-metadata-annotations)?
 
 Now it's the time to use it with FastAPI. 🚀
 
@@ -158,7 +158,7 @@ You could **call** that same function in **other places** without FastAPI, and i
 
 When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other places**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
 
-Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Add more validations { #add-more-validations }
 
@@ -188,7 +188,7 @@ You can, of course, use default values other than `None`.
 
 Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note
 
@@ -218,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### Required, can be `None` { #required-can-be-none }
 
@@ -269,7 +269,7 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 You can also define a default `list` of values if none are provided:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 If you go to:
 
@@ -292,7 +292,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 
 You can also use `list` directly instead of `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note
 
@@ -370,11 +370,11 @@ There could be cases where you need to do some **custom validation** that can't 
 
 In those cases, you can use a **custom validator function** that is applied after the normal validation (e.g. after validating that the value is a `str`).
 
-You can achieve that using <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic's `AfterValidator`</a> inside of `Annotated`.
+You can achieve that using [Pydantic's `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) inside of `Annotated`.
 
 /// tip
 
-Pydantic also has <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> and others. 🤓
+Pydantic also has [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) and others. 🤓
 
 ///
 

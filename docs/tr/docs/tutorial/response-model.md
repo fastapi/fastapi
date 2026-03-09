@@ -97,7 +97,7 @@ Artık bir browser password ile user oluşturduğunda, API response içinde ayn�
 
 Bu örnekte sorun olmayabilir; çünkü password’ü gönderen kullanıcı zaten aynı kişi.
 
-Ancak aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
+Namun ancak aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
 
 /// danger
 
@@ -183,7 +183,7 @@ Bazı durumlarda Pydantic field olarak geçerli olmayan bir şey döndürebilir 
 
 En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Bu basit durum FastAPI tarafından otomatik olarak ele alınır; çünkü dönüş tipi annotation’ı `Response` class’ıdır (veya onun bir subclass’ı).
 
@@ -193,7 +193,7 @@ Araçlar da memnun olur; çünkü hem `RedirectResponse` hem `JSONResponse`, `Re
 
 Type annotation içinde `Response`’un bir subclass’ını da kullanabilirsiniz:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Bu da çalışır; çünkü `RedirectResponse`, `Response`’un subclass’ıdır ve FastAPI bu basit durumu otomatik olarak yönetir.
 
@@ -201,7 +201,7 @@ Bu da çalışır; çünkü `RedirectResponse`, `Response`’un subclass’ıdı
 
 Ancak geçerli bir Pydantic tipi olmayan başka rastgele bir obje (ör. bir veritabanı objesi) döndürür ve fonksiyonu da öyle annotate ederseniz, FastAPI bu type annotation’dan bir Pydantic response model oluşturmaya çalışır ve başarısız olur.
 
-Aynı şey, farklı tipler arasında bir <abbr title='Birden fazla tip arasında union, "bu tiplerden herhangi biri" anlamına gelir.'>union</abbr> kullandığınızda ve bu tiplerden biri veya birkaçı geçerli bir Pydantic tipi değilse de olur; örneğin şu kullanım patlar 💥:
+Aynı şey, farklı tipler arasında bir <dfn title="Birden fazla tip arasındaki bir birleşim, 'bu tiplerden herhangi biri' anlamına gelir.">birleşim</dfn> kullandığınızda ve bu tiplerden biri veya birkaçı geçerli bir Pydantic tipi değilse de olur; örneğin şu kullanım patlar 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

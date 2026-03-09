@@ -40,7 +40,7 @@ Les principales fonctionnalités sont :
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
 * **Rapide à coder** : augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
 * **Moins de bugs** : réduit d'environ 40 % les erreurs induites par le développeur. *
-* **Intuitif** : excellente compatibilité avec les éditeurs. <abbr title="également appelé autocomplétion, IntelliSense">Autocomplétion</abbr> partout. Moins de temps passé à déboguer.
+* **Intuitif** : excellente compatibilité avec les éditeurs. <dfn title="également connu sous le nom de : auto-complétion, autocomplétion, IntelliSense">Autocomplétion</dfn> partout. Moins de temps passé à déboguer.
 * **Facile** : conçu pour être facile à utiliser et à apprendre. Moins de temps passé à lire les documents.
 * **Concis** : diminue la duplication de code. Plusieurs fonctionnalités à partir de chaque déclaration de paramètre. Moins de bugs.
 * **Robuste** : obtenez un code prêt pour la production. Avec une documentation interactive automatique.
@@ -368,7 +368,7 @@ item: Item
 * La validation des données :
     * des erreurs automatiques et claires lorsque les données ne sont pas valides.
     * une validation même pour les objets JSON profondément imbriqués.
-* <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">Conversion</abbr> des données d'entrée : venant du réseau vers les données et types Python. Lecture depuis :
+* <dfn title="également connu sous le nom de : sérialisation, parsing, marshalling">Conversion</dfn> des données d'entrée : venant du réseau vers les données et types Python. Lecture depuis :
     * JSON.
     * Paramètres de chemin.
     * Paramètres de requête.
@@ -376,7 +376,7 @@ item: Item
     * En-têtes.
     * Formulaires.
     * Fichiers.
-* <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">Conversion</abbr> des données de sortie : conversion des données et types Python en données réseau (au format JSON) :
+* <dfn title="également connu sous le nom de : sérialisation, parsing, marshalling">Conversion</dfn> des données de sortie : conversion des données et types Python en données réseau (au format JSON) :
     * Conversion des types Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * Objets `datetime`.
     * Objets `UUID`.
@@ -439,7 +439,7 @@ Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a hre
 
 * Déclaration de **paramètres** provenant d'autres emplacements comme : **en-têtes**, **cookies**, **champs de formulaire** et **fichiers**.
 * Comment définir des **contraintes de validation** comme `maximum_length` ou `regex`.
-* Un système **<abbr title="aussi connu sous le nom de composants, ressources, fournisseurs, services, injectables">d'injection de dépendances</abbr>** très puissant et facile à utiliser.
+* Un système **<dfn title="également connu sous le nom de : composants, ressources, fournisseurs, services, injectables">d'injection de dépendances</dfn>** très puissant et facile à utiliser.
 * Sécurité et authentification, y compris la prise en charge de **OAuth2** avec des **JWT tokens** et l'authentification **HTTP Basic**.
 * Des techniques plus avancées (mais tout aussi faciles) pour déclarer des **modèles JSON profondément imbriqués** (grâce à Pydantic).
 * Intégration **GraphQL** avec <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> et d'autres bibliothèques.
@@ -524,7 +524,7 @@ Utilisées par Starlette :
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Obligatoire si vous souhaitez utiliser le `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez prendre en charge l’<abbr title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</abbr> de formulaires avec `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez prendre en charge l’<dfn title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</dfn> de formulaires avec `request.form()`.
 
 Utilisées par FastAPI :
 

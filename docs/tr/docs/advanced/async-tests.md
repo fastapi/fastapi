@@ -32,11 +32,11 @@ Basit bir örnek için, [Bigger Applications](../tutorial/bigger-applications.md
 
 `main.py` dosyası şöyle olur:
 
-{* ../../docs_src/async_tests/app_a_py39/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 `test_main.py` dosyasında `main.py` için testler yer alır, artık şöyle görünebilir:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## Çalıştırma { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 `@pytest.mark.anyio` marker'ı, pytest'e bu test fonksiyonunun asenkron olarak çağrılması gerektiğini söyler:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | İpucu
 
@@ -66,7 +66,7 @@ Test fonksiyonu artık `TestClient` kullanırken eskiden olduğu gibi sadece `de
 
 Ardından app ile bir `AsyncClient` oluşturup `await` kullanarak ona async request'ler gönderebiliriz.
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 Bu, şu kullanıma denktir:
 

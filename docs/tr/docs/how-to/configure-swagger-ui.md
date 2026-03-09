@@ -18,7 +18,7 @@ Ayarları değiştirmeden bırakırsanız, syntax highlighting varsayılan olara
 
 Ancak `syntaxHighlight` değerini `False` yaparak devre dışı bırakabilirsiniz:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
 ...ve ardından Swagger UI artık syntax highlighting'i göstermeyecektir:
 
@@ -28,7 +28,7 @@ Ancak `syntaxHighlight` değerini `False` yaparak devre dışı bırakabilirsini
 
 Aynı şekilde, `"syntaxHighlight.theme"` anahtarıyla (ortasında bir nokta olduğuna dikkat edin) syntax highlighting temasını ayarlayabilirsiniz:
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
 Bu yapılandırma, syntax highlighting renk temasını değiştirir:
 
@@ -46,13 +46,13 @@ FastAPI, çoğu kullanım senaryosu için uygun bazı varsayılan yapılandırma
 
 Örneğin `deepLinking`'i devre dışı bırakmak için `swagger_ui_parameters`'a şu ayarları geçebilirsiniz:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
 
 ## Diğer Swagger UI Parametreleri { #other-swagger-ui-parameters }
 
 Kullanabileceğiniz diğer tüm olası yapılandırmaları görmek için, resmi <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI parametreleri dokümantasyonunu</a> okuyun.
 
-## Yalnızca JavaScript ayarları { #javascript-only-settings }
+## Yalnızca JavaScript Ayarları { #javascript-only-settings }
 
 Swagger UI ayrıca bazı yapılandırmaların **yalnızca JavaScript** nesneleri olmasına izin verir (örneğin JavaScript fonksiyonları).
 

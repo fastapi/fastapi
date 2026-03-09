@@ -64,7 +64,7 @@ En ese caso, simplemente puedes intercambiar los `dataclasses` estándar con `py
 
 6. Aquí estamos regresando un diccionario que contiene `items`, que es una lista de dataclasses.
 
-    FastAPI todavía es capaz de <abbr title="convertir los datos a un formato que pueda transmitirse">serializar</abbr> los datos a JSON.
+    FastAPI todavía es capaz de <dfn title="convertir los datos a un formato que pueda transmitirse">serializar</dfn> los datos a JSON.
 
 7. Aquí el `response_model` está usando una anotación de tipo de una lista de dataclasses `Author`.
 

@@ -27,7 +27,7 @@ Bu bir code snippet: `foo`. Bu da başka bir code snippet: `bar`. Bir tane daha:
 
 Code snippet'lerin içeriği olduğu gibi bırakılmalıdır.
 
-`script/translate.py` içindeki genel prompt'ta `### Content of code snippets` bölümüne bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### Content of code snippets` bölümüne bakın.
 
 ////
 
@@ -116,7 +116,7 @@ works(foo="bar")  # This works 🎉
 
 Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır (comments).
 
-`script/translate.py` içindeki genel prompt'ta `### Content of code blocks` bölümüne bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### Content of code blocks` bölümüne bakın.
 
 ////
 
@@ -125,31 +125,31 @@ Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır
 //// tab | Test
 
 /// info | Bilgi
-Some text
+Bazı metin
 ///
 
 /// note | Not
-Some text
+Bazı metin
 ///
 
 /// note | Teknik Detaylar
-Some text
+Bazı metin
 ///
 
 /// check | Ek bilgi
-Some text
+Bazı metin
 ///
 
 /// tip | İpucu
-Some text
+Bazı metin
 ///
 
 /// warning | Uyarı
-Some text
+Bazı metin
 ///
 
 /// danger | Tehlike
-Some text
+Bazı metin
 ///
 
 ////
@@ -158,7 +158,7 @@ Some text
 
 Sekmelerin ve `Info`/`Note`/`Warning`/vb. blokların başlığı, dikey çizgiden (`|`) sonra çeviri olarak eklenmelidir.
 
-`script/translate.py` içindeki genel prompt'ta `### Special blocks` ve `### Tab blocks` bölümlerine bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### Special blocks` ve `### Tab blocks` bölümlerine bakın.
 
 ////
 
@@ -170,10 +170,10 @@ Link metni çevrilmelidir, link adresi değişmeden kalmalıdır:
 
 * [Yukarıdaki başlığa link](#code-snippets)
 * [Internal link](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">External link</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link to a style</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link to a script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link to an image</a>
+* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Harici link</a>
+* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Bir stile bağlantı</a>
+* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Bir betiğe bağlantı</a>
+* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Bir görsele bağlantı</a>
 
 Link metni çevrilmelidir, link adresi çeviriye işaret etmelidir:
 
@@ -185,7 +185,7 @@ Link metni çevrilmelidir, link adresi çeviriye işaret etmelidir:
 
 Link'ler çevrilmelidir, ancak adresleri değişmeden kalmalıdır. Bir istisna, FastAPI dokümantasyonunun sayfalarına verilen mutlak link'lerdir. Bu durumda link, çeviriye işaret etmelidir.
 
-`script/translate.py` içindeki genel prompt'ta `### Links` bölümüne bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### Links` bölümüne bakın.
 
 ////
 
@@ -199,13 +199,8 @@ Burada HTML "abbr" öğeleriyle sarılmış bazı şeyler var (bazıları uydurm
 
 * <abbr title="Getting Things Done - İşleri Bitirme">GTD</abbr>
 * <abbr title="less than - küçüktür"><code>lt</code></abbr>
-* <abbr title="XML Web Token - XML Web Token">XWT</abbr>
+* <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface - Paralel Sunucu Gateway Interface">PSGI</abbr>
-
-### abbr bir açıklama verir { #the-abbr-gives-an-explanation }
-
-* <abbr title="Bir şekilde birbirine bağlanacak ve birlikte çalışacak şekilde yapılandırılmış makinelerden oluşan bir grup.">cluster</abbr>
-* <abbr title="Girdi ve çıktı katmanları arasında çok sayıda gizli katman içeren yapay sinir ağlarını kullanan; böylece kapsamlı bir iç yapı geliştiren bir machine learning yöntemi">Deep Learning</abbr>
 
 ### abbr tam bir ifade ve bir açıklama verir { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
@@ -220,9 +215,14 @@ Burada HTML "abbr" öğeleriyle sarılmış bazı şeyler var (bazıları uydurm
 
 Çeviriler, LLM'nin kaldırmaması gereken kendi "abbr" öğelerini ekleyebilir. Örneğin İngilizce kelimeleri açıklamak için.
 
-`script/translate.py` içindeki genel prompt'ta `### HTML abbr elements` bölümüne bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### HTML abbr elements` bölümüne bakın.
 
 ////
+
+## HTML "dfn" öğeleri { #html-dfn-elements }
+
+* <dfn title="Bir şekilde birbirine bağlanacak ve birlikte çalışacak şekilde yapılandırılmış makinelerden oluşan bir grup.">küme</dfn>
+* <dfn title="Girdi ve çıktı katmanları arasında çok sayıda gizli katman içeren yapay sinir ağlarını kullanan; böylece kapsamlı bir iç yapı geliştiren bir makine öğrenmesi yöntemi">Derin Öğrenme</dfn>
 
 ## Başlıklar { #headings }
 
@@ -246,7 +246,7 @@ Tekrar merhaba.
 
 Başlıklarla ilgili tek katı kural, LLM'nin süslü parantezler içindeki hash kısmını değiştirmemesidir; böylece link'ler bozulmaz.
 
-`script/translate.py` içindeki genel prompt'ta `### Headings` bölümüne bakın.
+`scripts/translate.py` içindeki genel prompt'ta `### Headings` bölümüne bakın.
 
 Dile özel bazı talimatlar için örneğin `docs/de/llm-prompt.md` içindeki `### Headings` bölümüne bakın.
 

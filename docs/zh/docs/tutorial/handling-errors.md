@@ -25,7 +25,7 @@
 
 ### 导入 `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### 在代码中触发 `HTTPException` { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@
 
 本例中，客户端用不存在的 `ID` 请求 `item` 时，触发状态码为 `404` 的异常：
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### 响应结果 { #the-resulting-response }
 
@@ -77,7 +77,7 @@
 
 但在某些高级场景中需要时，你可以添加自定义响应头：
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## 安装自定义异常处理器 { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@
 
 此时，可以用 `@app.exception_handler()` 添加自定义异常处理器：
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 这里，请求 `/unicorns/yolo` 时，路径操作会触发 `UnicornException`。
 
@@ -127,7 +127,7 @@
 
 异常处理器会接收 `Request` 和该异常。
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 现在，访问 `/items/foo` 时，默认的 JSON 错误为：
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 例如，只为这些错误返回纯文本响应，而不是 JSON：
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | 技术细节
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 开发时，你可以用它来记录请求体、调试错误，或返回给用户等。
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 现在试着发送一个无效的 `item`，例如：
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 如果你想在自定义处理后仍复用 **FastAPI** 的默认异常处理器，可以从 `fastapi.exception_handlers` 导入并复用这些默认处理器：
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 虽然本例只是用非常夸张的信息打印了错误，但足以说明：你可以先处理异常，然后再复用默认的异常处理器。

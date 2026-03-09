@@ -1,6 +1,6 @@
 # Dependências em decoradores de operações de rota { #dependencies-in-path-operation-decorators }
 
-Em alguns casos você não precisa necessariamente retornar o valor de uma dependência dentro de uma *função de operação de rota*.
+Em alguns casos você não precisa necessariamente do valor de retorno de uma dependência dentro de uma *função de operação de rota*.
 
 Ou a dependência não retorna nenhum valor.
 
@@ -14,7 +14,7 @@ O *decorador da operação de rota* recebe um argumento opcional `dependencies`.
 
 Ele deve ser uma lista de `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 Essas dependências serão executadas/resolvidas da mesma forma que dependências comuns. Mas o valor delas (se existir algum) não será passado para a sua *função de operação de rota*.
 
@@ -44,13 +44,13 @@ Você pode utilizar as mesmas *funções* de dependências que você usaria norm
 
 Dependências podem declarar requisitos de requisições (como cabeçalhos) ou outras subdependências:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
 ### Levantar exceções { #raise-exceptions }
 
 Essas dependências podem `raise` exceções, da mesma forma que dependências comuns:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
 ### Valores de retorno { #return-values }
 
@@ -58,7 +58,7 @@ E elas também podem ou não retornar valores, eles não serão utilizados.
 
 Então, você pode reutilizar uma dependência comum (que retorna um valor) que já seja utilizada em outro lugar, e mesmo que o valor não seja utilizado, a dependência será executada:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
 ## Dependências para um grupo de *operações de rota* { #dependencies-for-a-group-of-path-operations }
 
