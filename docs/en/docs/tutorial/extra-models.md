@@ -12,7 +12,7 @@ This is especially the case for user models, because:
 
 Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
-If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing).
 
 ///
 

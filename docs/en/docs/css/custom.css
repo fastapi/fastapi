@@ -32,24 +32,70 @@
   display: none;
 }
 
-a.external-link {
+/* External links: detected by JS comparing origin to site origin
+   JS sets data-external-link on links pointing outside the site
+   Skip image links, .no-link-icon, and .announce-link */
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link) {
   /* For right to left languages */
   direction: ltr;
   display: inline-block;
 }
 
-a.external-link::after {
-  /* \00A0 is a non-breaking space
-        to make the mark be on the same line as the link
-    */
-  content: "\00A0[↪]";
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
+  content: "";
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-left: 0.25em;
+  vertical-align: middle;
+  opacity: 0.55;
+  background: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
-a.internal-link::after {
-  /* \00A0 is a non-breaking space
-        to make the mark be on the same line as the link
-    */
-  content: "\00A0↪";
+a[data-external-link]:not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
+  opacity: 0.85;
+}
+
+/* Internal links opening in new tab: same-origin links with target=_blank
+   JS sets data-internal-link on links pointing to the same site origin
+   Skip image links, .no-link-icon, and .announce-link */
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link) {
+  /* For right to left languages */
+  direction: ltr;
+  display: inline-block;
+}
+
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link)::after {
+  content: "";
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-left: 0.25em;
+  vertical-align: middle;
+  opacity: 0.55;
+  background: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='7' width='14' height='14' rx='2'/%3E%3Cpath d='M7 3h14v14'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='7' width='14' height='14' rx='2'/%3E%3Cpath d='M7 3h14v14'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.announce-link):hover::after {
+  opacity: 0.85;
+}
+
+/* Disable link icons in footer and header nav */
+.md-footer a::after,
+.md-header a::after {
+  content: none !important;
 }
 
 .shadow {

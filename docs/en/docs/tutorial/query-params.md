@@ -183,6 +183,6 @@ In this case, there are 3 query parameters:
 
 /// tip
 
-You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values).
 
 ///
