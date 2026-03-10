@@ -635,7 +635,7 @@ def get_request_handler(
                 else:
 
                     def _sync_stream_jsonl() -> Iterator[bytes]:
-                        for item in gen:
+                        for item in gen:  # ty: ignore[not-iterable]
                             yield _serialize_item(item)
 
                     jsonl_stream_content = _sync_stream_jsonl()
