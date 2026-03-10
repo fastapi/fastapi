@@ -100,7 +100,7 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__
+            from multipart import __version__  # type: ignore[no-redef,import-untyped]  # ty: ignore[unused-ignore-comment]
 
             assert __version__
             try:
