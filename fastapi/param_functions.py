@@ -34,7 +34,7 @@ def Path(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     alias: Annotated[
         str | None,
         Doc(
@@ -54,7 +54,7 @@ def Path(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -190,7 +190,7 @@ def Path(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -198,7 +198,7 @@ def Path(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -206,7 +206,7 @@ def Path(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -214,7 +214,7 @@ def Path(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -222,7 +222,7 @@ def Path(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -240,7 +240,7 @@ def Path(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -378,7 +378,7 @@ def Query(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     alias: Annotated[
         str | None,
         Doc(
@@ -401,7 +401,7 @@ def Query(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -549,7 +549,7 @@ def Query(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -557,7 +557,7 @@ def Query(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -565,7 +565,7 @@ def Query(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -573,7 +573,7 @@ def Query(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -581,7 +581,7 @@ def Query(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -599,7 +599,7 @@ def Query(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -719,7 +719,7 @@ def Header(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     alias: Annotated[
         str | None,
         Doc(
@@ -739,7 +739,7 @@ def Header(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -871,7 +871,7 @@ def Header(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -879,7 +879,7 @@ def Header(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -887,7 +887,7 @@ def Header(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -895,7 +895,7 @@ def Header(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -903,7 +903,7 @@ def Header(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -921,7 +921,7 @@ def Header(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1036,7 +1036,7 @@ def Cookie(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     alias: Annotated[
         str | None,
         Doc(
@@ -1056,7 +1056,7 @@ def Cookie(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1177,7 +1177,7 @@ def Cookie(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1185,7 +1185,7 @@ def Cookie(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1193,7 +1193,7 @@ def Cookie(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1201,7 +1201,7 @@ def Cookie(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1209,7 +1209,7 @@ def Cookie(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1227,7 +1227,7 @@ def Cookie(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1341,7 +1341,7 @@ def Body(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     embed: Annotated[
         bool | None,
         Doc(
@@ -1384,7 +1384,7 @@ def Body(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1505,7 +1505,7 @@ def Body(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1513,7 +1513,7 @@ def Body(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1521,7 +1521,7 @@ def Body(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1529,7 +1529,7 @@ def Body(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1537,7 +1537,7 @@ def Body(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1555,7 +1555,7 @@ def Body(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1671,7 +1671,7 @@ def Form(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     media_type: Annotated[
         str,
         Doc(
@@ -1700,7 +1700,7 @@ def Form(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1821,7 +1821,7 @@ def Form(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1829,7 +1829,7 @@ def Form(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1837,7 +1837,7 @@ def Form(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1845,7 +1845,7 @@ def Form(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1853,7 +1853,7 @@ def Form(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1871,7 +1871,7 @@ def Form(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1986,7 +1986,7 @@ def File(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     media_type: Annotated[
         str,
         Doc(
@@ -2015,7 +2015,7 @@ def File(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -2136,7 +2136,7 @@ def File(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -2144,7 +2144,7 @@ def File(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -2152,7 +2152,7 @@ def File(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     max_digits: Annotated[
         int | None,
         Doc(
@@ -2160,7 +2160,7 @@ def File(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -2168,7 +2168,7 @@ def File(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -2186,7 +2186,7 @@ def File(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,
+    ] = _Unset,  # ty: ignore[invalid-parameter-default]
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(

@@ -31,10 +31,10 @@ class Param(FieldInfo):  # type: ignore[misc]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -53,11 +53,11 @@ class Param(FieldInfo):  # type: ignore[misc]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -65,7 +65,7 @@ class Param(FieldInfo):  # type: ignore[misc]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -142,10 +142,10 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = ...,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -164,11 +164,11 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -176,7 +176,7 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -226,10 +226,10 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -248,11 +248,11 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -260,7 +260,7 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -308,10 +308,10 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         convert_underscores: bool = True,
@@ -331,11 +331,11 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -343,7 +343,7 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -392,10 +392,10 @@ class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -414,11 +414,11 @@ class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -426,7 +426,7 @@ class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -472,12 +472,12 @@ class Body(FieldInfo):  # type: ignore[misc]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         embed: bool | None = None,
         media_type: str = "application/json",
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -496,11 +496,11 @@ class Body(FieldInfo):  # type: ignore[misc]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -508,7 +508,7 @@ class Body(FieldInfo):  # type: ignore[misc]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -584,11 +584,11 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         media_type: str = "application/x-www-form-urlencoded",
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -607,11 +607,11 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -619,7 +619,7 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -666,11 +666,11 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         self,
         default: Any = Undefined,
         *,
-        default_factory: Callable[[], Any] | None = _Unset,
+        default_factory: Callable[[], Any] | None = _Unset,  # ty: ignore[invalid-parameter-default]
         annotation: Any | None = None,
         media_type: str = "multipart/form-data",
         alias: str | None = None,
-        alias_priority: int | None = _Unset,
+        alias_priority: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         validation_alias: str | AliasPath | AliasChoices | None = None,
         serialization_alias: str | None = None,
         title: str | None = None,
@@ -689,11 +689,11 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             ),
         ] = None,
         discriminator: str | None = None,
-        strict: bool | None = _Unset,
-        multiple_of: float | None = _Unset,
-        allow_inf_nan: bool | None = _Unset,
-        max_digits: int | None = _Unset,
-        decimal_places: int | None = _Unset,
+        strict: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        multiple_of: float | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        allow_inf_nan: bool | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        max_digits: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
+        decimal_places: int | None = _Unset,  # ty: ignore[invalid-parameter-default]
         examples: list[Any] | None = None,
         example: Annotated[
             Any | None,
@@ -701,7 +701,7 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,
+        ] = _Unset,  # ty: ignore[invalid-parameter-default]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
