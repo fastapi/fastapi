@@ -240,7 +240,7 @@ def Path(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -599,7 +599,7 @@ def Query(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -921,7 +921,7 @@ def Header(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1227,7 +1227,7 @@ def Cookie(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1555,7 +1555,7 @@ def Body(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -1871,7 +1871,7 @@ def Form(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(
@@ -2186,7 +2186,7 @@ def File(  # noqa: N802
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     openapi_examples: Annotated[
         dict[str, Example] | None,
         Doc(

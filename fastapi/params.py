@@ -65,7 +65,7 @@ class Param(FieldInfo):  # type: ignore[misc]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -176,7 +176,7 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -260,7 +260,7 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -343,7 +343,7 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -426,7 +426,7 @@ class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -508,7 +508,7 @@ class Body(FieldInfo):  # type: ignore[misc]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -619,7 +619,7 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
@@ -701,7 +701,7 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
                 "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
                 "although still supported. Use examples instead."
             ),
-        ] = _Unset,  # ty: ignore[invalid-parameter-default]
+        ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
