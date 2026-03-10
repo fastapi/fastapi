@@ -1006,11 +1006,10 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
-        self.exception_handlers.setdefault(
-            WebSocketRequestValidationError,
-            # Starlette still has incorrect type specification for the handlers
-            websocket_request_validation_exception_handler,  # type: ignore  # ty: ignore[unused-ignore-comment]
-        )
+
+        # Starlette still has incorrect type specification for the handlers
+        self.exception_handlers.setdefault(WebSocketRequestValidationError, websocket_request_validation_exception_handler) # type: ignore
+
 
         self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
