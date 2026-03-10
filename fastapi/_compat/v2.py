@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
-from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
+from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
 from pydantic._internal._typing_extra import eval_type_lenient  # ty: ignore[deprecated]
@@ -438,7 +438,7 @@ def get_flat_models_from_annotation(
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)):
                 if arg not in known_models:
-                    known_models.add(arg)  # type: ignore[arg-type]
+                    known_models.add(arg)  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
                     if lenient_issubclass(arg, BaseModel):
                         get_flat_models_from_model(arg, known_models=known_models)
             else:

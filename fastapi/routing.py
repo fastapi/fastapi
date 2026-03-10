@@ -100,7 +100,7 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
+        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore  # ty: ignore[unused-ignore-comment]
     )
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -908,7 +908,7 @@ class APIRoute(routing.Route):
                 mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore
+            self.response_field = None  # type: ignore  # ty: ignore[unused-ignore-comment]
         if self.stream_item_type:
             stream_item_name = "StreamItem_" + self.unique_id
             self.stream_item_field: ModelField | None = create_model_field(
