@@ -101,7 +101,7 @@ def request_response(
     """
     f: Callable[[Request], Awaitable[Response]] = (
         func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore  # ty: ignore[unused-ignore-comment]
-    )
+    )  # ty: ignore
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -453,7 +453,7 @@ def get_request_handler(
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
-            body=body,
+            body=body,  # ty: ignore[invalid-argument-type]
             dependency_overrides_provider=dependency_overrides_provider,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
