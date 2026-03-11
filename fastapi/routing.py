@@ -932,10 +932,11 @@ class APIRoute(routing.Route):
                 response_model = None
             else:
                 stream_item = get_stream_item_type(return_annotation)
-                if stream_item is not None:
-                    # Extract item type for JSONL or SSE streaming when
-                    # response_class is DefaultPlaceholder (JSONL) or
-                    # EventSourceResponse (SSE).
+                if stream_item is not None and is_generator:
+                    # Extract item type for JSONL or SSE streaming for
+                    # generator endpoints when response_class is
+                    # DefaultPlaceholder (JSONL) or EventSourceResponse
+                    # (SSE).
                     # ServerSentEvent is excluded: it's a transport
                     # wrapper, not a data model, so it shouldn't feed
                     # into validation or OpenAPI schema generation.
