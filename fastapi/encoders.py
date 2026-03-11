@@ -22,7 +22,7 @@ from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color   # ty: ignore[deprecated]
+from pydantic.color import Color  # ty: ignore[deprecated]
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
@@ -67,7 +67,7 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
 
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
-    Color: str,   # ty: ignore[deprecated]
+    Color: str,  # ty: ignore[deprecated]
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
