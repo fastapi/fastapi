@@ -254,9 +254,7 @@ class _LenientDict(dict):
         return Any
 
 
-def _try_resolve_annotated(
-    annotation_str: str, globalns: dict[str, Any]
-) -> Any | None:
+def _try_resolve_annotated(annotation_str: str, globalns: dict[str, Any]) -> Any | None:
     """Resolve an ``Annotated`` string annotation, tolerating missing names.
 
     Returns the evaluated ``Annotated`` type when the metadata contains a
