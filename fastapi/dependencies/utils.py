@@ -240,8 +240,58 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+class _LenientDict(dict):
+    """Dict subclass where missing keys resolve to Any.
+
+    Used as an eval namespace so that undefined forward references (e.g. a
+    class defined later in the module) evaluate to ``Any`` instead of raising
+    ``NameError``.  This preserves the ``Annotated`` structure and lets
+    FastAPI extract dependency metadata even when the concrete type is not yet
+    available.
+    """
+
+    def __missing__(self, key: str) -> type:
+        return Any
+
+
+def _try_resolve_annotated(
+    annotation_str: str, globalns: dict[str, Any]
+) -> Any | None:
+    """Resolve an ``Annotated`` string annotation, tolerating missing names.
+
+    Returns the evaluated ``Annotated`` type when the metadata contains a
+    ``Depends`` instance, or ``None`` so the caller falls through to the
+    default resolution path.
+    """
+    # 1) Strict evaluation – works when every name is already defined.
+    try:
+        ref = ForwardRef(annotation_str)
+        evaluated = evaluate_forwardref(ref, globalns, globalns)
+        if get_origin(evaluated) is Annotated:
+            return evaluated
+    except Exception:
+        pass
+
+    # 2) Lenient evaluation – undefined names become ``Any``.
+    try:
+        lenient_ns = _LenientDict(globalns)
+        evaluated = eval(annotation_str, lenient_ns)  # noqa: S307
+        if get_origin(evaluated) is Annotated:
+            args = get_args(evaluated)
+            if any(isinstance(a, params.Depends) for a in args[1:]):
+                return evaluated
+    except Exception:
+        pass
+
+    return None
+
+
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
+        if annotation.startswith("Annotated["):
+            result = _try_resolve_annotated(annotation, globalns)
+            if result is not None:
+                return result
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
         if annotation is type(None):
