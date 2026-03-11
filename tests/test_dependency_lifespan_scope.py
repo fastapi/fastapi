@@ -119,7 +119,7 @@ def test_lifespan_dependency_cannot_depend_on_request_scope() -> None:
     ) -> dict[str, int]:
         return {"y": y}
 
-    app = FastAPI()
+    app = FastAPI()  # pragma: no cover
     with pytest.raises(DependencyScopeError) as exc_info:
         app.get("/")(root)
     assert "lifespan" in str(exc_info.value) and "cannot depend" in str(exc_info.value)
@@ -169,7 +169,7 @@ def test_lifespan_dependency_not_initialized_raises() -> None:
     """Request that needs a lifespan dep which was not run (e.g. mounted sub-app) raises."""
 
     def lifespan_dep() -> str:
-        yield "conn"
+        yield "conn"  # pragma: no cover
 
     sub_app = FastAPI()
 
