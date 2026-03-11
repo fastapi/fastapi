@@ -828,8 +828,9 @@ def request_params_to_args(
 
     for key in received_params.keys():
         if key not in processed_keys:
-            if hasattr(received_params, "getlist"):
-                value = received_params.getlist(key)
+            getlist = getattr(received_params, "getlist", None)
+            if callable(getlist):
+                value = getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
                     params_to_process[key] = value[0]
                 else:
