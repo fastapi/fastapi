@@ -1,6 +1,6 @@
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import Annotated, Any, TypeVar, cast
+from typing import Annotated, Any, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -1033,7 +1033,9 @@ class FastAPI(Starlette):
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware, handlers=exception_handlers, debug=debug  # type: ignore[invalid-argument-type]
+                    ExceptionMiddleware,
+                    handlers=exception_handlers,
+                    debug=debug,  # type: ignore[invalid-argument-type]
                 ),
                 # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
                 # Before this was also used for closing dependencies with yield but
