@@ -117,7 +117,7 @@ def test_lifespan_dependency_cannot_depend_on_request_scope() -> None:
     def root(
         y: Annotated[int, Depends(lifespan_dep, scope="lifespan")],
     ) -> dict[str, int]:
-        return {"y": y}
+        return {"y": y}  # pragma: no cover
 
     app = FastAPI()  # pragma: no cover
     with pytest.raises(DependencyScopeError) as exc_info:
