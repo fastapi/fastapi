@@ -211,8 +211,7 @@ def jsonable_encoder(
     Read more about it in the
     [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
     """
-    custom_encoder = custom_encoder or {}
-    if custom_encoder:
+    if custom_encoder is not None:
         if type(obj) in custom_encoder:
             return custom_encoder[type(obj)](obj)
         else:
