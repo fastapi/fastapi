@@ -73,7 +73,7 @@ def test_try_resolve_strict_success():
     """Fully resolvable annotation returns immediately via strict eval."""
 
     def dep() -> str:
-        return "ok"
+        return "ok"  # pragma: no cover
 
     ns = {"Annotated": Annotated, "str": str, "Depends": Depends, "dep": dep}
     result = _try_resolve_annotated("Annotated[str, Depends(dep)]", ns)
@@ -90,7 +90,7 @@ def test_try_resolve_lenient_with_depends():
     """Unresolvable type + Depends → Annotated[Any, Depends(...)]."""
 
     def dep() -> str:
-        return "ok"
+        return "ok"  # pragma: no cover
 
     ns = {"Annotated": Annotated, "Depends": Depends, "dep": dep}
     result = _try_resolve_annotated("Annotated[MissingClass, Depends(dep)]", ns)
@@ -146,7 +146,7 @@ def test_get_typed_annotation_annotated_with_result():
     """Annotated string that resolves via _try_resolve_annotated."""
 
     def dep() -> str:
-        return "ok"
+        return "ok"  # pragma: no cover
 
     ns = {"Annotated": Annotated, "str": str, "Depends": Depends, "dep": dep}
     result = get_typed_annotation("Annotated[str, Depends(dep)]", ns)
