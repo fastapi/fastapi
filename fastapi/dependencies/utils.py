@@ -33,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,
+    evaluate_forwardref,  # ty: ignore[deprecated]
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -245,7 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)
+        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
         if annotation is type(None):
             return None
     return annotation
@@ -323,7 +323,7 @@ def get_dependant(
             ):
                 assert dependant.call
                 raise DependencyScopeError(
-                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    f'The dependency "{dependant.call.__name__}" has a scope of '  # ty: ignore[unresolved-attribute]
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
             sub_own_oauth_scopes: list[str] = []
