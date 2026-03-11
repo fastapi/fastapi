@@ -1,9 +1,12 @@
+import inspect
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum
 from typing import (
     Annotated,
     Any,
     TypeVar,
+    cast,
 )
 
 from annotated_doc import Doc
@@ -40,6 +43,52 @@ from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope,
 from typing_extensions import deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
+
+# Attribute name on the router used to run lifespan-scoped dependencies at startup.
+FASTAPI_LIFESPAN_DEPENDENCY_CACHE = "fastapi_lifespan_dependency_cache"
+
+
+def _wrap_lifespan_with_dependency_cache(original: Any) -> Any:
+    """Wrap the user's lifespan to run and cache lifespan-scoped dependencies.
+
+    The caller must pass an original that, when called with (app), returns an
+    async context manager (e.g. from @asynccontextmanager or APIRouter-style
+    normalization of async/sync gen functions).
+    """
+
+    def wrapped(app: Any) -> Any:
+        @asynccontextmanager
+        async def cm() -> Any:
+            # Resolve FastAPI app: framework may pass FastAPI (has .router) or router (has ._fastapi_app).
+            fastapi_app = (
+                app if hasattr(app, "router") else getattr(app, "_fastapi_app", None)
+            )
+            stack: AsyncExitStack | None = None
+            orig_cm = original(app)
+            try:
+                if fastapi_app is not None:
+                    stack = AsyncExitStack()
+                    await stack.__aenter__()
+                    cache: dict[Any, Any] = {}
+                    router = getattr(app, "router", app)
+                    await routing._run_lifespan_dependencies(router, cache, stack)
+                    setattr(
+                        fastapi_app.state,
+                        FASTAPI_LIFESPAN_DEPENDENCY_CACHE,
+                        cache,
+                    )
+                yield await orig_cm.__aenter__()
+            finally:
+                import sys
+
+                exc_type, exc_val, exc_tb = sys.exc_info()
+                await orig_cm.__aexit__(exc_type, exc_val, exc_tb)
+                if stack is not None:
+                    await stack.__aexit__(exc_type, exc_val, exc_tb)
+
+        return cm()
+
+    return wrapped
 
 
 class FastAPI(Starlette):
@@ -983,13 +1032,38 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
+        # Normalize so that _inner_lifespan(app) always returns an async context manager.
+        _inner_lifespan: Callable[[Any], Any]
+        if lifespan is None:
+
+            def _default_lifespan(app: Any) -> Any:
+                return routing._DefaultLifespan(
+                    cast(routing.APIRouter, getattr(app, "router", app))
+                )
+
+            _inner_lifespan = _default_lifespan
+        elif inspect.isasyncgenfunction(lifespan):
+
+            def _async_gen_lifespan(app: Any) -> Any:
+                return asynccontextmanager(lifespan)(app)
+
+            _inner_lifespan = _async_gen_lifespan
+        elif inspect.isgeneratorfunction(lifespan):
+
+            def _sync_gen_lifespan(app: Any) -> Any:
+                return routing._wrap_gen_lifespan_context(lifespan)(app)
+
+            _inner_lifespan = _sync_gen_lifespan
+        else:
+            _inner_lifespan = cast(Callable[[Any], Any], lifespan)
+        _lifespan = _wrap_lifespan_with_dependency_cache(_inner_lifespan)
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
-            lifespan=lifespan,
+            lifespan=_lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
             callbacks=callbacks,
@@ -999,6 +1073,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             strict_content_type=strict_content_type,
         )
+        setattr(self.router, "_fastapi_app", self)  # noqa: B010
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)

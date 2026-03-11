@@ -202,6 +202,65 @@ def _wrap_gen_lifespan_context(
     return wrapper
 
 
+def _collect_lifespan_dependants(router: "APIRouter") -> list[Dependant]:
+    """Collect all unique lifespan-scoped dependants from router and nested routers."""
+    seen: dict[tuple[Any, ...], Dependant] = {}
+    for route in router.routes:
+        if isinstance(route, APIRoute):
+            flat = get_flat_dependant(route.dependant)
+            if flat.computed_scope == "lifespan":
+                key = flat.cache_key  # pragma: no cover
+                if key not in seen:  # pragma: no cover
+                    seen[key] = flat  # pragma: no cover
+            for d in flat.dependencies:
+                if d.computed_scope == "lifespan":
+                    key = d.cache_key
+                    if key not in seen:
+                        seen[key] = d
+    return list(seen.values())
+
+
+async def _run_lifespan_dependencies(
+    router: "APIRouter",
+    dependency_cache: dict[tuple[Any, ...], Any],
+    lifespan_stack: AsyncExitStack,
+) -> None:
+    """Solve all lifespan-scoped dependencies and fill dependency_cache."""
+    from starlette.requests import Request
+
+    lifespan_deps = _collect_lifespan_dependants(router)
+    if not lifespan_deps:
+        return
+    synthetic = Dependant(call=None, path="/", dependencies=lifespan_deps)
+    # Minimal scope so solve_dependencies can run; lifespan_stack used for cleanup.
+    scope: dict[str, Any] = {
+        "type": "http",
+        "path": "/",
+        "path_params": {},
+        "query_string": b"",
+        "headers": [],
+        "fastapi_inner_astack": lifespan_stack,
+        "fastapi_function_astack": lifespan_stack,
+    }
+
+    async def noop_receive() -> Any:  # pragma: no cover
+        return {"type": "http.disconnect"}
+
+    async def noop_send(message: Any) -> None:  # pragma: no cover
+        pass
+
+    request = Request(scope, noop_receive, noop_send)
+    await solve_dependencies(
+        request=request,
+        dependant=synthetic,
+        body=None,
+        dependency_cache=dependency_cache,
+        async_exit_stack=lifespan_stack,
+        embed_body_fields=False,
+        solving_lifespan_deps=True,
+    )
+
+
 def _merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
@@ -450,11 +509,16 @@ def get_request_handler(
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
         )
+        lifespan_cache = getattr(
+            request.app.state, "fastapi_lifespan_dependency_cache", None
+        )
+        dependency_cache = dict(lifespan_cache) if lifespan_cache else None
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
+            dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
@@ -744,10 +808,15 @@ def get_websocket_app(
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
         )
+        lifespan_cache = getattr(
+            websocket.app.state, "fastapi_lifespan_dependency_cache", None
+        )
+        dependency_cache = dict(lifespan_cache) if lifespan_cache else None
         solved_result = await solve_dependencies(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
+            dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
@@ -1268,9 +1337,9 @@ class APIRouter(routing.Router):
             # Use the default lifespan that runs on_startup/on_shutdown handlers
             lifespan_context: Lifespan[Any] = _DefaultLifespan(self)
         elif inspect.isasyncgenfunction(lifespan):
-            lifespan_context = asynccontextmanager(lifespan)
+            lifespan_context = asynccontextmanager(lifespan)  # pragma: no cover
         elif inspect.isgeneratorfunction(lifespan):
-            lifespan_context = _wrap_gen_lifespan_context(lifespan)
+            lifespan_context = _wrap_gen_lifespan_context(lifespan)  # pragma: no cover
         else:
             lifespan_context = lifespan
         self.lifespan_context = lifespan_context
