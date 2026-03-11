@@ -1,10 +1,6 @@
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import (
-    Annotated,
-    Any,
-    TypeVar,
-)
+from typing import Annotated, Any, TypeVar, cast
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -1033,11 +1029,11 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # type: ignore[invalid-argument-type]
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                    ExceptionMiddleware, handlers=exception_handlers, debug=debug  # type: ignore[invalid-argument-type]
                 ),
                 # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
                 # Before this was also used for closing dependencies with yield but
@@ -1058,7 +1054,7 @@ class FastAPI(Starlette):
                 # user middlewares, the same context is used.
                 # This is currently not needed, only for closing files, but used to be
                 # important when dependencies with yield were closed here.
-                Middleware(AsyncExitStackMiddleware),
+                Middleware(AsyncExitStackMiddleware),  # type: ignore[invalid-argument-type]
             ]
         )
 
@@ -4640,7 +4636,7 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)  # type: ignore[arg-type]
             return func
 
         return decorator
