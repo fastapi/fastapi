@@ -240,7 +240,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
-class _LenientDict(dict):
+class _LenientDict(dict[str, Any]):
     """Dict subclass where missing keys resolve to Any.
 
     Used as an eval namespace so that undefined forward references (e.g. a
