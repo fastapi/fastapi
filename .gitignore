@@ -30,6 +30,3 @@ archive.zip
 .DS_Store
 
 .codspeed
-
-# RubberDuck indexer config (contains auth token)
-.rubberduck/
