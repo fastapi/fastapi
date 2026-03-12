@@ -42,7 +42,7 @@ Undefined = PydanticUndefined
 # eval_type_lenient has been deprecated since Pydantic v2.10.0b1 (PR #10530)
 evaluate_forwardref = getattr(_pydantic_typing_extra, "try_eval_type", None)
 if evaluate_forwardref is None:
-    evaluate_forwardref = getattr(_pydantic_typing_extra, "eval_type_lenient")
+    evaluate_forwardref = _pydantic_typing_extra.eval_type_lenient
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
