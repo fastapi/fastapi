@@ -43,6 +43,7 @@ Undefined = PydanticUndefined
 evaluate_forwardref = getattr(_pydantic_typing_extra, "try_eval_type", None)
 if evaluate_forwardref is None:
     evaluate_forwardref = _pydantic_typing_extra.eval_type_lenient
+assert evaluate_forwardref is not None
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
