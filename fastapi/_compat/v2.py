@@ -160,10 +160,12 @@ class ModelField:
     def validate(
         self,
         value: Any,
-        values: dict[str, Any] = {},  # noqa: B006
+        values: dict[str, Any] = None,  # noqa: B006
         *,
         loc: tuple[int | str, ...] = (),
     ) -> tuple[Any, list[dict[str, Any]]]:
+        if values is None:
+            values = {}
         try:
             return (
                 self._type_adapter.validate_python(value, from_attributes=True),
