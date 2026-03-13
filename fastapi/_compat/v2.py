@@ -41,7 +41,7 @@ Undefined = PydanticUndefined
 
 # pydantic.color.Color is deprecated since v2.0b3
 try:
-    from pydantic_extra_types import Color
+    from pydantic_extra_types.color import Color
 except ImportError:
     from pydantic.color import Color  # noqa: F401
 
