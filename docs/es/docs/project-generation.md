@@ -6,7 +6,7 @@ Puedes usar esta plantilla para comenzar, ya que incluye gran parte de la config
 
 Repositorio de GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Plantilla Full Stack FastAPI</a>
 
-## Plantilla Full Stack FastAPI - Tecnología y Funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
+## Plantilla Full Stack FastAPI - Stack de tecnología y funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/es) para la API del backend en Python.
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).

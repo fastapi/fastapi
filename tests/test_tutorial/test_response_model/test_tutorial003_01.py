@@ -10,7 +10,6 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial003_01_py39"),
         pytest.param("tutorial003_01_py310", marks=needs_py310),
     ],
 )
@@ -139,6 +138,8 @@ def test_openapi_schema(client: TestClient):
                         "required": ["loc", "msg", "type"],
                         "type": "object",
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "title": "Location",
                                 "type": "array",

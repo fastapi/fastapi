@@ -1,23 +1,20 @@
-# コンテナ内のFastAPI - Docker
+# コンテナ内のFastAPI - Docker { #fastapi-in-containers-docker }
 
-FastAPIアプリケーションをデプロイする場合、一般的なアプローチは**Linuxコンテナ・イメージ**をビルドすることです。
-
-基本的には <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>を用いて行われます。生成されたコンテナ・イメージは、いくつかの方法のいずれかでデプロイできます。
+FastAPIアプリケーションをデプロイする場合、一般的なアプローチは**Linuxコンテナ・イメージ**をビルドすることです。基本的には <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>を用いて行われます。生成されたコンテナ・イメージは、いくつかの方法のいずれかでデプロイできます。
 
 Linuxコンテナの使用には、**セキュリティ**、**反復可能性（レプリカビリティ）**、**シンプリシティ**など、いくつかの利点があります。
 
-/// tip
+/// tip | 豆知識
 
-TODO: なぜか遷移できない
 お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#build-a-docker-image-for-fastapi)へジャンプしてください。
 
 ///
 
 <details>
-<summary>Dockerfile プレビュー 👀</summary>
+<summary>Dockerfile Preview 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -27,15 +24,15 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./app /code/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 # If running behind a proxy like Nginx or Traefik add --proxy-headers
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
+# CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
 </details>
 
-## コンテナとは何か
+## コンテナとは何か { #what-is-a-container }
 
 コンテナ（主にLinuxコンテナ）は、同じシステム内の他のコンテナ（他のアプリケーションやコンポーネント）から隔離された状態を保ちながら、すべての依存関係や必要なファイルを含むアプリケーションをパッケージ化する非常に**軽量**な方法です。
 
@@ -45,7 +42,7 @@ Linuxコンテナは、ホスト（マシン、仮想マシン、クラウドサ
 
 コンテナはまた、独自の**分離された**実行プロセス（通常は1つのプロセスのみ）や、ファイルシステム、ネットワークを持ちます。 このことはデプロイ、セキュリティ、開発などを簡素化させます。
 
-## コンテナ・イメージとは何か
+## コンテナ・イメージとは何か { #what-is-a-container-image }
 
 **コンテナ**は、**コンテナ・イメージ**から実行されます。
 
@@ -53,23 +50,17 @@ Linuxコンテナは、ホスト（マシン、仮想マシン、クラウドサ
 
 保存された静的コンテンツである「**コンテナイメージ**」とは対照的に、「**コンテナ**」は通常、実行中のインスタンス、つまり**実行**されているものを指します。
 
-**コンテナ**が起動され実行されるとき（**コンテナイメージ**から起動されるとき）、ファイルや環境変数などが作成されたり変更されたりする可能性があります。
-
-これらの変更はそのコンテナ内にのみ存在しますが、基盤となるコンテナ・イメージには残りません（ディスクに保存されません）。
+**コンテナ**が起動され実行されるとき（**コンテナイメージ**から起動されるとき）、ファイルや環境変数などが作成されたり変更されたりする可能性があります。これらの変更はそのコンテナ内にのみ存在しますが、基盤となるコンテナ・イメージには残りません（ディスクに保存されません）。
 
 コンテナイメージは **プログラム** ファイルやその内容、例えば `python` と `main.py` ファイルに匹敵します。
 
-そして、**コンテナ**自体は（**コンテナイメージ**とは対照的に）イメージをもとにした実際の実行中のインスタンスであり、**プロセス**に匹敵します。
+そして、**コンテナ**自体は（**コンテナイメージ**とは対照的に）イメージをもとにした実際の実行中のインスタンスであり、**プロセス**に匹敵します。実際、コンテナが実行されているのは、**プロセスが実行されている**ときだけです（通常は単一のプロセスだけです）。 コンテナ内で実行中のプロセスがない場合、コンテナは停止します。
 
-実際、コンテナが実行されているのは、**プロセスが実行されている**ときだけです（通常は単一のプロセスだけです）。 コンテナ内で実行中のプロセスがない場合、コンテナは停止します。
-
-## コンテナ・イメージ
+## コンテナ・イメージ { #container-images }
 
 Dockerは、**コンテナ・イメージ**と**コンテナ**を作成・管理するための主要なツールの1つです。
 
-そして、DockerにはDockerイメージ（コンテナ）を共有する<a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>というものがあります。
-
-Docker Hubは 多くのツールや環境、データベース、アプリケーションに対応している予め作成された**公式のコンテナ・イメージ**をパブリックに提供しています。
+そして、多くのツールや環境、データベース、アプリケーションに対応している予め作成された**公式のコンテナ・イメージ**をパブリックに提供している<a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>というものがあります。
 
 例えば、公式イメージの1つに<a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a>があります。
 
@@ -88,7 +79,7 @@ Docker Hubは 多くのツールや環境、データベース、アプリケー
 
 すべてのコンテナ管理システム（DockerやKubernetesなど）には、こうしたネットワーキング機能が統合されています。
 
-## コンテナとプロセス
+## コンテナとプロセス { #containers-and-processes }
 
 通常、**コンテナ・イメージ**はそのメタデータに**コンテナ**の起動時に実行されるデフォルトのプログラムまたはコマンドと、そのプログラムに渡されるパラメータを含みます。コマンドラインでの操作とよく似ています。
 
@@ -100,7 +91,7 @@ Docker Hubは 多くのツールや環境、データベース、アプリケー
 
 しかし、**少なくとも1つの実行中のプロセス**がなければ、実行中のコンテナを持つことはできないです。メイン・プロセスが停止すれば、コンテナも停止します。
 
-## Build a Docker Image for FastAPI
+## FastAPI用のDockerイメージをビルドする { #build-a-docker-image-for-fastapi }
 
 ということで、何か作りましょう！🚀
 
@@ -112,7 +103,7 @@ FastAPI用の**Dockerイメージ**を、**公式Python**イメージに基づ�
 * **Raspberry Pi**で実行する場合
 * コンテナ・イメージを実行してくれるクラウド・サービスなどを利用する場合
 
-### パッケージ要件（package requirements）
+### パッケージ要件 { #package-requirements }
 
 アプリケーションの**パッケージ要件**は通常、何らかのファイルに記述されているはずです。
 
@@ -125,9 +116,8 @@ FastAPI用の**Dockerイメージ**を、**公式Python**イメージに基づ�
 例えば、`requirements.txt` は次のようになります：
 
 ```
-fastapi>=0.68.0,<0.69.0
-pydantic>=1.8.0,<2.0.0
-uvicorn>=0.15.0,<0.16.0
+fastapi[standard]>=0.113.0,<0.114.0
+pydantic>=2.7.0,<3.0.0
 ```
 
 そして通常、例えば `pip` を使ってこれらのパッケージの依存関係をインストールします：
@@ -137,28 +127,24 @@ uvicorn>=0.15.0,<0.16.0
 ```console
 $ pip install -r requirements.txt
 ---> 100%
-Successfully installed fastapi pydantic uvicorn
+Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info
+/// info | 情報
 
 パッケージの依存関係を定義しインストールするためのフォーマットやツールは他にもあります。
 
-Poetryを使った例は、後述するセクションでご紹介します。👇
-
 ///
 
-### **FastAPI**コードを作成する
+### **FastAPI**コードを作成する { #create-the-fastapi-code }
 
-* `app` ディレクトリを作成し、その中に入ります
-* 空のファイル `__init__.py` を作成します
-* `main.py` ファイルを作成します：
+* `app` ディレクトリを作成し、その中に入ります。
+* 空のファイル `__init__.py` を作成します。
+* 次の内容で `main.py` ファイルを作成します：
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -170,32 +156,32 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-### Dockerfile
+### Dockerfile { #dockerfile }
 
 同じプロジェクト・ディレクトリに`Dockerfile`というファイルを作成します：
 
 ```{ .dockerfile .annotate }
-# (1)
-FROM python:3.9
+# (1)!
+FROM python:3.14
 
-# (2)
+# (2)!
 WORKDIR /code
 
-# (3)
+# (3)!
 COPY ./requirements.txt /code/requirements.txt
 
-# (4)
+# (4)!
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (5)
+# (5)!
 COPY ./app /code/app
 
-# (6)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# (6)!
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 1. 公式のPythonベースイメージから始めます
@@ -211,9 +197,10 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
     このファイルは**頻繁には変更されない**ので、Dockerはこのステップではそれを検知し**キャッシュ**を使用し、次のステップでもキャッシュを有効にします。
 
 4. 要件ファイルにあるパッケージの依存関係をインストールします
+
     `--no-cache-dir` オプションはダウンロードしたパッケージをローカルに保存しないように `pip` に指示します。これは、同じパッケージをインストールするために `pip` を再度実行する場合にのみ有効ですが、コンテナで作業する場合はそうではないです。
 
-    /// note
+    /// note | 備考
 
     `--no-cache-dir`は`pip`に関連しているだけで、Dockerやコンテナとは何の関係もないです。
 
@@ -225,25 +212,55 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     このステップでキャッシュを使用すると、開発中にイメージを何度もビルドする際に、**毎回**すべての依存関係を**ダウンロードしてインストールする**代わりに多くの**時間**を**節約**できます。
 
-5. ./app` ディレクトリを `/code` ディレクトリの中にコピーする。
+5. `./app` ディレクトリを `/code` ディレクトリの中にコピーする。
 
     これには**最も頻繁に変更される**すべてのコードが含まれているため、Dockerの**キャッシュ**は**これ以降のステップ**に簡単に使用されることはありません。
 
     そのため、コンテナイメージのビルド時間を最適化するために、`Dockerfile`の **最後** にこれを置くことが重要です。
 
-6. `uvicorn`サーバーを実行するための**コマンド**を設定します
+6. 内部でUvicornを使用する `fastapi run` を使うための**コマンド**を設定します
 
     `CMD` は文字列のリストを取り、それぞれの文字列はスペースで区切られたコマンドラインに入力するものです。
 
     このコマンドは **現在の作業ディレクトリ**から実行され、上記の `WORKDIR /code` にて設定した `/code` ディレクトリと同じです。
 
-    そのためプログラムは `/code` で開始しその中にあなたのコードがある `./app` ディレクトリがあるので、**Uvicorn** は `app.main` から `app` を参照し、**インポート** することができます。
+/// tip | 豆知識
 
-/// tip
-
-コード内の"+"の吹き出しをクリックして、各行が何をするのかをレビューしてください。👆
+コード内の各番号バブルをクリックして、各行が何をするのかをレビューしてください。👆
 
 ///
+
+/// warning | 注意
+
+以下で説明する通り、`CMD` 命令は**常に** **exec形式**を使用してください。
+
+///
+
+#### `CMD` を使う - Exec形式 { #use-cmd-exec-form }
+
+Docker命令 <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> は2つの形式で書けます：
+
+✅ **Exec** 形式：
+
+```Dockerfile
+# ✅ Do this
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+```
+
+⛔️ **Shell** 形式：
+
+```Dockerfile
+# ⛔️ Don't do this
+CMD fastapi run app/main.py --port 80
+```
+
+FastAPIが正常にシャットダウンでき、[lifespan events](../advanced/events.md){.internal-link target=_blank}がトリガーされるように、常に **exec** 形式を使用してください。
+
+詳しくは、<a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell形式とexec形式に関するDockerドキュメント</a>をご覧ください。
+
+これは `docker compose` を使用する場合にかなり目立つことがあります。より技術的な詳細は、このDocker ComposeのFAQセクションをご覧ください：<a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>。
+
+#### ディレクトリ構造 { #directory-structure }
 
 これで、次のようなディレクトリ構造になるはずです：
 
@@ -256,17 +273,15 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 └── requirements.txt
 ```
 
-#### TLS Termination Proxyの裏側
+#### TLS Termination Proxyの裏側 { #behind-a-tls-termination-proxy }
 
-Nginx や Traefik のような TLS Termination Proxy (ロードバランサ) の後ろでコンテナを動かしている場合は、`--proxy-headers`オプションを追加します。
-
-このオプションは、Uvicornにプロキシ経由でHTTPSで動作しているアプリケーションに対して、送信されるヘッダを信頼するよう指示します。
+Nginx や Traefik のような TLS Termination Proxy (ロードバランサ) の後ろでコンテナを動かしている場合は、`--proxy-headers`オプションを追加します。これにより、（FastAPI CLI経由で）Uvicornに対して、そのプロキシから送信されるヘッダを信頼し、アプリケーションがHTTPSの裏で実行されていることなどを示すよう指示します。
 
 ```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 ```
 
-#### Dockerキャッシュ
+#### Dockerキャッシュ { #docker-cache }
 
 この`Dockerfile`には重要なトリックがあり、まず**依存関係だけのファイル**をコピーします。その理由を説明します。
 
@@ -300,11 +315,11 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 ```
 
-### Dockerイメージをビルドする
+### Dockerイメージをビルドする { #build-the-docker-image }
 
 すべてのファイルが揃ったので、コンテナ・イメージをビルドしましょう。
 
-* プロジェクトディレクトリに移動します（`Dockerfile`がある場所で、`app`ディレクトリがあります）
+* プロジェクトディレクトリに移動します（`Dockerfile`がある場所で、`app`ディレクトリがあります）。
 * FastAPI イメージをビルドします：
 
 <div class="termy">
@@ -317,7 +332,7 @@ $ docker build -t myimage .
 
 </div>
 
-/// tip
+/// tip | 豆知識
 
 末尾の `.` に注目してほしいです。これは `./` と同じ意味です。 これはDockerにコンテナイメージのビルドに使用するディレクトリを指示します。
 
@@ -325,7 +340,7 @@ $ docker build -t myimage .
 
 ///
 
-### Dockerコンテナの起動する
+### Dockerコンテナの起動する { #start-the-docker-container }
 
 * イメージに基づいてコンテナを実行します：
 
@@ -337,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-## 確認する
+## 確認する { #check-it }
 
 Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> や <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (またはそれに相当するDockerホストを使用したもの）といったURLで確認できるはずです。
 
@@ -347,7 +362,7 @@ Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="
 {"item_id": 5, "q": "somequery"}
 ```
 
-## インタラクティブなAPIドキュメント
+## インタラクティブなAPIドキュメント { #interactive-api-docs }
 
 これらのURLにもアクセスできます:  <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> や <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (またはそれに相当するDockerホストを使用したもの）
 
@@ -355,7 +370,7 @@ Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## 代替のAPIドキュメント
+## 代替のAPIドキュメント { #alternative-api-docs }
 
 また、<a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> や <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (またはそれに相当するDockerホストを使用したもの）にもアクセスできます。
 
@@ -363,9 +378,10 @@ Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## 単一ファイルのFastAPIでDockerイメージをビルドする
+## 単一ファイルのFastAPIでDockerイメージをビルドする { #build-a-docker-image-with-a-single-file-fastapi }
 
 FastAPI が単一のファイル、例えば `./app` ディレクトリのない `main.py` の場合、ファイル構造は次のようになります：
+
 ```
 .
 ├── Dockerfile
@@ -376,7 +392,7 @@ FastAPI が単一のファイル、例えば `./app` ディレクトリのない
 そうすれば、`Dockerfile`の中にファイルをコピーするために、対応するパスを変更するだけでよいです：
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -384,43 +400,43 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (1)
+# (1)!
 COPY ./main.py /code/
 
-# (2)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+# (2)!
+CMD ["fastapi", "run", "main.py", "--port", "80"]
 ```
 
-1. main.py`ファイルを `/code` ディレクトリに直接コピーします。
+1. `main.py`ファイルを `/code` ディレクトリに直接コピーします（`./app` ディレクトリなし）。
 
-2. Uvicornを実行し、`main`から`app`オブジェクトをインポートするように指示します（`app.main`からインポートするのではなく）。
+2. 単一ファイル `main.py` 内のアプリケーションを配信するために `fastapi run` を使用します。
 
-次にUvicornコマンドを調整して、`app.main` の代わりに新しいモジュール `main` を使用し、FastAPIオブジェクトである `app` をインポートします。
+`fastapi run` にファイルを渡すと、それがパッケージの一部ではなく単一ファイルであることを自動的に検出し、インポートしてFastAPIアプリを配信する方法を判断します。😎
 
-## デプロイメントのコンセプト
+## デプロイメントのコンセプト { #deployment-concepts }
 
 コンテナという観点から、[デプロイのコンセプト](concepts.md){.internal-link target=_blank}に共通するいくつかについて、もう一度説明しましょう。
 
-コンテナは主に、アプリケーションの**ビルドとデプロイ**のプロセスを簡素化するためのツールですが、これらの**デプロイのコンセプト**を扱うための特定のアプローチを強制するものではないです。
+コンテナは主に、アプリケーションの**ビルドとデプロイ**のプロセスを簡素化するためのツールですが、これらの**デプロイのコンセプト**を扱うための特定のアプローチを強制するものではなく、いくつかの戦略があります。
 
 **良いニュース**は、それぞれの異なる戦略には、すべてのデプロイメントのコンセプトをカバーする方法があるということです。🎉
 
 これらの**デプロイメントのコンセプト**をコンテナの観点から見直してみましょう：
 
-* セキュリティ - HTTPS
+* HTTPS
 * 起動時の実行
 * 再起動
-* **レプリケーション（実行中のプロセス数）**
+* レプリケーション（実行中のプロセス数）
 * メモリ
 * 開始前の事前ステップ
 
-## HTTPS
+## HTTPS { #https }
 
 FastAPI アプリケーションの **コンテナ・イメージ**（および後で実行中の **コンテナ**）だけに焦点を当てると、通常、HTTPSは別のツールを用いて**外部で**処理されます。
 
 例えば<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>のように、**HTTPS**と**証明書**の**自動**取得を扱う別のコンテナである可能性もあります。
 
-/// tip
+/// tip | 豆知識
 
 TraefikはDockerやKubernetesなどと統合されているので、コンテナ用のHTTPSの設定や構成はとても簡単です。
 
@@ -428,7 +444,7 @@ TraefikはDockerやKubernetesなどと統合されているので、コンテナ
 
 あるいは、（コンテナ内でアプリケーションを実行しながら）クラウド・プロバイダーがサービスの1つとしてHTTPSを処理することもできます。
 
-## 起動時および再起動時の実行
+## 起動時および再起動時の実行 { #running-on-startup-and-restarts }
 
 通常、コンテナの**起動と実行**を担当する別のツールがあります。
 
@@ -438,21 +454,21 @@ TraefikはDockerやKubernetesなどと統合されているので、コンテナ
 
 コンテナを使わなければ、アプリケーションを起動時や再起動時に実行させるのは面倒で難しいかもしれません。しかし、**コンテナ**で作業する場合、ほとんどのケースでその機能はデフォルトで含まれています。✨
 
-## レプリケーション - プロセス数
+## レプリケーション - プロセス数 { #replication-number-of-processes }
 
-**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<abbr title="何らかの方法で接続され、一緒に動作するように構成されたマシンのグループ">クラスター</abbr>を構成している場合、 各コンテナで（Workerを持つGunicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
+**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<dfn title="ある方法で接続され、連携して動作するように構成されたマシンの集まり">クラスタ</dfn>を構成している場合、 各コンテナで（Workerを持つUvicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
 
 Kubernetesのような分散コンテナ管理システムの1つは通常、入ってくるリクエストの**ロードバランシング**をサポートしながら、**コンテナのレプリケーション**を処理する統合された方法を持っています。このことはすべて**クラスタレベル**にてです。
 
-そのような場合、UvicornワーカーでGunicornのようなものを実行するのではなく、[上記の説明](#dockerfile)のように**Dockerイメージをゼロから**ビルドし、依存関係をインストールして、**単一のUvicornプロセス**を実行したいでしょう。
+そのような場合、[上記の説明](#dockerfile)のように**Dockerイメージをゼロから**ビルドし、依存関係をインストールして、**単一のUvicornプロセス**を実行したいでしょう。複数のUvicornワーカーを使う代わりにです。
 
-### ロードバランサー
+### ロードバランサー { #load-balancer }
 
 コンテナを使用する場合、通常はメイン・ポート**でリスニング**しているコンポーネントがあるはずです。それはおそらく、**HTTPS**を処理するための**TLS Termination Proxy**でもある別のコンテナであったり、同様のツールであったりするでしょう。
 
 このコンポーネントはリクエストの **負荷** を受け、 (うまくいけば) その負荷を**バランスよく** ワーカーに分配するので、一般に **ロードバランサ** とも呼ばれます。
 
-/// tip
+/// tip | 豆知識
 
 HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネントは、おそらく**ロードバランサー**にもなるでしょう。
 
@@ -460,7 +476,7 @@ HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネン�
 
 そしてコンテナで作業する場合、コンテナの起動と管理に使用する同じシステムには、**ロードバランサー**（**TLS Termination Proxy**の可能性もある）から**ネットワーク通信**（HTTPリクエストなど）をアプリのあるコンテナ（複数可）に送信するための内部ツールが既にあるはずです。
 
-### 1つのロードバランサー - 複数のワーカーコンテナー
+### 1つのロードバランサー - 複数のワーカーコンテナー { #one-load-balancer-multiple-worker-containers }
 
 **Kubernetes**や同様の分散コンテナ管理システムで作業する場合、その内部のネットワーキングのメカニズムを使用することで、メインの**ポート**でリッスンしている単一の**ロードバランサー**が、アプリを実行している可能性のある**複数のコンテナ**に通信（リクエスト）を送信できるようになります。
 
@@ -470,56 +486,61 @@ HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネン�
 
 そして通常、この**ロードバランサー**は、クラスタ内の*他の*アプリケーション（例えば、異なるドメインや異なるURLパスのプレフィックスの配下）へのリクエストを処理することができ、その通信をクラスタ内で実行されている*他の*アプリケーションのための適切なコンテナに送信します。
 
-### 1コンテナにつき1プロセス
+### 1コンテナにつき1プロセス { #one-process-per-container }
 
 この種のシナリオでは、すでにクラスタ・レベルでレプリケーションを処理しているため、おそらくコンテナごとに**単一の（Uvicorn）プロセス**を持ちたいでしょう。
 
-この場合、Uvicornワーカーを持つGunicornのようなプロセスマネージャーや、Uvicornワーカーを使うUvicornは**避けたい**でしょう。**コンテナごとにUvicornのプロセスは1つだけ**にしたいでしょう（おそらく複数のコンテナが必要でしょう）。
+この場合、例えばコマンドラインオプションの `--workers` で、コンテナ内に複数のワーカーを持つことは**避けたい**でしょう。**コンテナごとにUvicornのプロセスは1つだけ**にしたいでしょう（おそらく複数のコンテナが必要でしょう）。
 
-（GunicornやUvicornがUvicornワーカーを管理するように）コンテナ内に別のプロセスマネージャーを持つことは、クラスターシステムですでに対処しているであろう**不要な複雑さ**を追加するだけです。
+（複数のワーカーの場合のように）コンテナ内に別のプロセスマネージャーを持つことは、クラスターシステムですでに対処しているであろう**不要な複雑さ**を追加するだけです。
 
-### Containers with Multiple Processes and Special Cases
+### 複数プロセスのコンテナと特殊なケース { #containers-with-multiple-processes-and-special-cases }
 
-もちろん、**特殊なケース**として、**Gunicornプロセスマネージャ**を持つ**コンテナ**内で複数の**Uvicornワーカープロセス**を起動させたい場合があります。
+もちろん、**特殊なケース**として、**コンテナ**内で複数の**Uvicornワーカープロセス**を起動させたい場合があります。
 
-このような場合、**公式のDockerイメージ**を使用することができます。このイメージには、複数の**Uvicornワーカープロセス**を実行するプロセスマネージャとして**Gunicorn**が含まれており、現在のCPUコアに基づいてワーカーの数を自動的に調整するためのデフォルト設定がいくつか含まれています。詳しくは後述の[Gunicornによる公式Dockerイメージ - Uvicorn](#gunicorndocker-uvicorn)で説明します。
+そのような場合、`--workers` コマンドラインオプションを使って、実行したいワーカー数を設定できます：
+
+```{ .dockerfile .annotate }
+FROM python:3.14
+
+WORKDIR /code
+
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./app /code/app
+
+# (1)!
+CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
+```
+
+1. ここでは `--workers` コマンドラインオプションを使って、ワーカー数を4に設定しています。
 
 以下は、それが理にかなっている場合の例です：
 
-#### シンプルなアプリケーション
+#### シンプルなアプリ { #a-simple-app }
 
-アプリケーションを**シンプル**な形で実行する場合、プロセス数の細かい調整が必要ない場合、自動化されたデフォルトを使用するだけで、コンテナ内にプロセスマネージャが必要かもしれません。例えば、公式Dockerイメージでシンプルな設定が可能です。
+アプリケーションが、クラスタではなく**単一サーバ**で実行できるほど**シンプル**である場合、コンテナ内にプロセスマネージャが欲しくなることがあります。
 
-#### Docker Compose
+#### Docker Compose { #docker-compose }
 
-Docker Composeで**シングルサーバ**（クラスタではない）にデプロイすることもできますので、共有ネットワークと**ロードバランシング**を維持しながら（Docker Composeで）コンテナのレプリケーションを管理する簡単な方法はないでしょう。
+Docker Composeで**単一サーバ**（クラスタではない）にデプロイすることもできますので、共有ネットワークと**ロードバランシング**を維持しながら（Docker Composeで）コンテナのレプリケーションを管理する簡単な方法はないでしょう。
 
 その場合、**単一のコンテナ**で、**プロセスマネージャ**が内部で**複数のワーカープロセス**を起動するようにします。
 
-#### Prometheusとその他の理由
-
-また、**1つのコンテナ**に**1つのプロセス**を持たせるのではなく、**1つのコンテナ**に**複数のプロセス**を持たせる方が簡単だという**他の理由**もあるでしょう。
-
-例えば、(セットアップにもよりますが)Prometheusエクスポーターのようなツールを同じコンテナ内に持つことができます。
-
-この場合、**複数のコンテナ**があると、デフォルトでは、Prometheusが**メトリクスを**読みに来たとき、すべてのレプリケートされたコンテナの**蓄積されたメトリクス**を取得するのではなく、毎回**単一のコンテナ**（その特定のリクエストを処理したコンテナ）のものを取得することになります。
-
-その場合、**複数のプロセス**を持つ**1つのコンテナ**を用意し、同じコンテナ上のローカルツール（例えばPrometheusエクスポーター）がすべての内部プロセスのPrometheusメトリクスを収集し、その1つのコンテナ上でそれらのメトリクスを公開する方がシンプルかもしれません。
-
 ---
 
-重要なのは、盲目的に従わなければならない普遍のルールはないということです。
-
-これらのアイデアは、**あなた自身のユースケース**を評価し、あなたのシステムに最適なアプローチを決定するために使用することができます：
+重要なのは、これらのどれも、盲目的に従わなければならない「**絶対的なルール**」ではないということです。これらのアイデアは、**あなた自身のユースケース**を評価し、あなたのシステムに最適なアプローチを決定するために使用できます。次の概念をどう管理するかを確認してください：
 
 * セキュリティ - HTTPS
 * 起動時の実行
 * 再起動
-* **レプリケーション（実行中のプロセス数）**
+* レプリケーション（実行中のプロセス数）
 * メモリ
 * 開始前の事前ステップ
 
-## メモリー
+## メモリ { #memory }
 
 コンテナごとに**単一のプロセスを実行する**と、それらのコンテナ（レプリケートされている場合は1つ以上）によって消費される多かれ少なかれ明確に定義された、安定し制限された量のメモリを持つことになります。
 
@@ -531,109 +552,47 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 しかし、**多くのメモリを使用**している場合（たとえば**機械学習**モデルなど）、どれだけのメモリを消費しているかを確認し、**各マシンで実行するコンテナの数**を調整する必要があります（そしておそらくクラスタにマシンを追加します）。
 
-**コンテナごとに複数のプロセス**を実行する場合（たとえば公式のDockerイメージで）、起動するプロセスの数が**利用可能なメモリ以上に消費しない**ようにする必要があります。
+**コンテナごとに複数のプロセス**を実行する場合、起動するプロセスの数が**利用可能なメモリ以上に消費しない**ようにする必要があります。
 
-## 開始前の事前ステップとコンテナ
+## 開始前の事前ステップとコンテナ { #previous-steps-before-starting-and-containers }
 
 コンテナ（DockerやKubernetesなど）を使っている場合、主に2つのアプローチがあります。
 
-### 複数のコンテナ
+### 複数のコンテナ { #multiple-containers }
 
-複数の**コンテナ**があり、おそらくそれぞれが**単一のプロセス**を実行している場合（**Kubernetes**クラスタなど）、レプリケートされたワーカーコンテナを実行する**前に**、単一のコンテナで**事前のステップ**の作業を行う**別のコンテナ**を持ちたいと思うでしょう。
+複数の**コンテナ**があり、おそらくそれぞれが**単一のプロセス**を実行している場合（例えば、**Kubernetes**クラスタなど）、レプリケートされたワーカーコンテナを実行する**前に**、単一のコンテナで**事前のステップ**の作業を行う**別のコンテナ**を持ちたいと思うでしょう。
 
-/// info
+/// info | 情報
 
-もしKubernetesを使用している場合, これはおそらく<a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init コンテナ</a>でしょう。
-
-///
-
-ユースケースが事前のステップを**並列で複数回**実行するのに問題がない場合（例：データベースの準備チェック）、メインプロセスを開始する前に、それらのステップを各コンテナに入れることが可能です。
-
-### 単一コンテナ
-
-単純なセットアップで、**単一のコンテナ**で複数の**ワーカー・プロセス**（または1つのプロセスのみ）を起動する場合、アプリでプロセスを開始する直前に、同じコンテナで事前のステップを実行できます。公式Dockerイメージは、内部的にこれをサポートしています。
-
-## Gunicornによる公式Dockerイメージ - Uvicorn
-
-前の章で詳しく説明したように、Uvicornワーカーで動作するGunicornを含む公式のDockerイメージがあります： [Server Workers - Gunicorn と Uvicorn](server-workers.md){.internal-link target=_blank}で詳しく説明しています。
-
-このイメージは、主に上記で説明した状況で役に立つでしょう： [複数のプロセスと特殊なケースを持つコンテナ（Containers with Multiple Processes and Special Cases）](#containers-with-multiple-processes-and-special-cases)
-
-* <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
-
-/// warning
-
-このベースイメージや類似のイメージは**必要ない**可能性が高いので、[上記の: FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi)のようにゼロからイメージをビルドする方が良いでしょう。
+もしKubernetesを使用している場合, これはおそらく<a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>でしょう。
 
 ///
 
-このイメージには、利用可能なCPUコアに基づいて**ワーカー・プロセスの数**を設定する**オートチューニング**メカニズムが含まれています。
+ユースケースが事前のステップを**並列で複数回**実行するのに問題がない場合（例：データベースマイグレーションを実行するのではなく、データベースの準備ができたかをチェックするだけの場合）、メインプロセスを開始する直前に、それらのステップを各コンテナに入れることも可能です。
 
-これは**賢明なデフォルト**を備えていますが、**環境変数**や設定ファイルを使ってすべての設定を変更したり更新したりすることができます。
+### 単一コンテナ { #single-container }
 
-また、スクリプトで<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**開始前の事前ステップ**</a>を実行することもサポートしている。
+単純なセットアップで、**単一のコンテナ**で複数の**ワーカープロセス**（または1つのプロセスのみ）を起動する場合、アプリでプロセスを開始する直前に、同じコンテナで事前のステップを実行できます。
 
-/// tip
+### ベースDockerイメージ { #base-docker-image }
 
-すべての設定とオプションを見るには、Dockerイメージのページをご覧ください: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
+以前は、公式のFastAPI Dockerイメージがありました：<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>。しかし、現在は非推奨です。⛔️
+
+おそらく、このベースDockerイメージ（またはその他の類似のもの）は**使用しない**方がよいでしょう。
+
+すでに**Kubernetes**（または他のもの）を使用していて、複数の**コンテナ**で、クラスタレベルで**レプリケーション**を設定している場合。そのような場合は、上記で説明したように**ゼロから**イメージを構築する方がよいでしょう：[FastAPI用のDockerイメージをビルドする](#build-a-docker-image-for-fastapi)。
+
+また、複数のワーカーが必要な場合は、単純に `--workers` コマンドラインオプションを使用できます。
+
+/// note | 技術詳細
+
+このDockerイメージは、Uvicornが停止したワーカーの管理と再起動をサポートしていなかった頃に作成されたため、Uvicornと一緒にGunicornを使う必要がありました。これは、GunicornにUvicornワーカープロセスの管理と再起動をさせるだけのために、かなりの複雑さを追加していました。
+
+しかし現在は、Uvicorn（および `fastapi` コマンド）が `--workers` をサポートしているため、自分でビルドする代わりにベースDockerイメージを使う理由はありません（コード量もだいたい同じです 😅）。
 
 ///
 
-### 公式Dockerイメージのプロセス数
-
-このイメージの**プロセス数**は、利用可能なCPU**コア**から**自動的に計算**されます。
-
-つまり、CPUから可能な限り**パフォーマンス**を**引き出そう**とします。
-
-また、**環境変数**などを使った設定で調整することもできます。
-
-しかし、プロセスの数はコンテナが実行しているCPUに依存するため、**消費されるメモリの量**もそれに依存することになります。
-
-そのため、（機械学習モデルなどで）大量のメモリを消費するアプリケーションで、サーバーのCPUコアが多いが**メモリが少ない**場合、コンテナは利用可能なメモリよりも多くのメモリを使おうとすることになります。
-
-その結果、パフォーマンスが大幅に低下する（あるいはクラッシュする）可能性があります。🚨
-
-### Dockerfileを作成する
-
-この画像に基づいて`Dockerfile`を作成する方法を以下に示します：
-
-```Dockerfile
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app
-```
-
-### より大きなアプリケーション
-
-[複数のファイルを持つ大きなアプリケーション](../tutorial/bigger-applications.md){.internal-link target=_blank}を作成するセクションに従った場合、`Dockerfile`は次のようになります：
-
-```Dockerfile hl_lines="7"
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app/app
-```
-
-### いつ使うのか
-
-おそらく、**Kubernetes**（または他のもの）を使用していて、すでにクラスタレベルで複数の**コンテナ**で**レプリケーション**を設定している場合は、この公式ベースイメージ（または他の類似のもの）は**使用すべきではありません**。
-
-そのような場合は、上記のように**ゼロから**イメージを構築する方がよいでしょう： [FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi) を参照してください。
-
-このイメージは、主に上記の[複数のプロセスと特殊なケースを持つコンテナ（Containers with Multiple Processes and Special Cases）](#containers-with-multiple-processes-and-special-cases)で説明したような特殊なケースで役に立ちます。
-
-例えば、アプリケーションが**シンプル**で、CPUに応じたデフォルトのプロセス数を設定すればうまくいく場合や、クラスタレベルでレプリケーションを手動で設定する手間を省きたい場合、アプリで複数のコンテナを実行しない場合などです。
-
-または、**Docker Compose**でデプロイし、単一のサーバで実行している場合などです。
-
-## コンテナ・イメージのデプロイ
+## コンテナ・イメージのデプロイ { #deploy-the-container-image }
 
 コンテナ（Docker）イメージを手に入れた後、それをデプロイするにはいくつかの方法があります。
 
@@ -645,104 +604,21 @@ COPY ./app /app/app
 * Nomadのような別のツール
 * コンテナ・イメージをデプロイするクラウド・サービス
 
-## Poetryを利用したDockerイメージ
+## `uv` を使ったDockerイメージ { #docker-image-with-uv }
 
-もしプロジェクトの依存関係を管理するために<a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a>を利用する場合、マルチステージビルドを使うと良いでしょう。
+<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> を使ってプロジェクトのインストールと管理をしている場合は、<a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker guide</a>に従ってください。
 
-```{ .dockerfile .annotate }
-# (1)
-FROM python:3.9 as requirements-stage
-
-# (2)
-WORKDIR /tmp
-
-# (3)
-RUN pip install poetry
-
-# (4)
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-
-# (5)
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-
-# (6)
-FROM python:3.9
-
-# (7)
-WORKDIR /code
-
-# (8)
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
-
-# (9)
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-# (10)
-COPY ./app /code/app
-
-# (11)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
-```
-
-1. これは最初のステージで、`requirements-stage`と名付けられます
-2. `/tmp` を現在の作業ディレクトリに設定します
-    ここで `requirements.txt` というファイルを生成します。
-
-3. このDockerステージにPoetryをインストールします
-
-4. pyproject.toml`と`poetry.lock`ファイルを`/tmp` ディレクトリにコピーします
-
-    `./poetry.lock*`（末尾に`*`）を使用するため、そのファイルがまだ利用できない場合でもクラッシュすることはないです。
-5. requirements.txt`ファイルを生成します
-
-6. これは最後のステージであり、ここにあるものはすべて最終的なコンテナ・イメージに保存されます
-7. 現在の作業ディレクトリを `/code` に設定します
-8. `requirements.txt`ファイルを `/code` ディレクトリにコピーします
-    このファイルは前のDockerステージにしか存在しないため、`--from-requirements-stage`を使ってコピーします。
-9. 生成された `requirements.txt` ファイルにあるパッケージの依存関係をインストールします
-10. app` ディレクトリを `/code` ディレクトリにコピーします
-11. uvicorn` コマンドを実行して、`app.main` からインポートした `app` オブジェクトを使用するように指示します
-/// tip
-
-"+"の吹き出しをクリックすると、それぞれの行が何をするのかを見ることができます
-
-///
-
-**Dockerステージ**は`Dockerfile`の一部で、**一時的なコンテナイメージ**として動作します。
-
-最初のステージは **Poetryのインストール**と Poetry の `pyproject.toml` ファイルからプロジェクトの依存関係を含む**`requirements.txt`を生成**するためだけに使用されます。
-
-この `requirements.txt` ファイルは後半の **次のステージ**で `pip` と共に使用されます。
-
-最終的なコンテナイメージでは、**最終ステージ**のみが保存されます。前のステージは破棄されます。
-
-Poetryを使用する場合、**Dockerマルチステージビルド**を使用することは理にかなっています。
-
-なぜなら、最終的なコンテナイメージにPoetryとその依存関係がインストールされている必要はなく、**必要なのは**プロジェクトの依存関係をインストールするために生成された `requirements.txt` ファイルだけだからです。
-
-そして次の（そして最終的な）ステージでは、前述とほぼ同じ方法でイメージをビルドします。
-
-### TLS Termination Proxyの裏側 - Poetry
-
-繰り返しになりますが、NginxやTraefikのようなTLS Termination Proxy（ロードバランサー）の後ろでコンテナを動かしている場合は、`--proxy-headers`オプションをコマンドに追加します：
-
-```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
-```
-
-## まとめ
+## まとめ { #recap }
 
 コンテナ・システム（例えば**Docker**や**Kubernetes**など）を使えば、すべての**デプロイメントのコンセプト**を扱うのがかなり簡単になります：
 
-* セキュリティ - HTTPS
+* HTTPS
 * 起動時の実行
 * 再起動
-* **レプリケーション（実行中のプロセス数）**
+* レプリケーション（実行中のプロセス数）
 * メモリ
 * 開始前の事前ステップ
 
 ほとんどの場合、ベースとなるイメージは使用せず、公式のPython Dockerイメージをベースにした**コンテナイメージをゼロからビルド**します。
 
-`Dockerfile`と**Dockerキャッシュ**内の命令の**順番**に注意することで、**ビルド時間を最小化**することができ、生産性を最大化することができます（そして退屈を避けることができます）。😎
-
-特別なケースでは、FastAPI用の公式Dockerイメージを使いたいかもしれません。🤓
+`Dockerfile`と**Dockerキャッシュ**内の命令の**順番**に注意することで、**ビルド時間を最小化**し、生産性を最大化できます（そして退屈を避けることができます）。😎

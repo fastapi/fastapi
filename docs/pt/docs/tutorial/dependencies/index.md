@@ -1,6 +1,6 @@
 # Dependências { #dependencies }
 
-O **FastAPI** possui um poderoso, mas intuitivo sistema de **<abbr title="também conhecidos como: componentes, recursos, provedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
+O **FastAPI** possui um poderoso, mas intuitivo sistema de **<dfn title="também conhecida como: componentes, recursos, provedores, serviços, injetáveis">Injeção de Dependência</dfn>**.
 
 Esse sistema foi pensado para ser fácil de usar, e permitir que qualquer desenvolvedor possa integrar facilmente outros componentes ao **FastAPI**.
 
@@ -25,7 +25,7 @@ Vamos ver um exemplo simples. Tão simples que não será muito útil, por enqua
 
 Mas dessa forma podemos focar em como o sistema de **Injeção de Dependência** funciona.
 
-### Criando uma dependência, ou "injetável" { #create-a-dependency-or-dependable }
+### Criando uma dependência, ou "dependable" { #create-a-dependency-or-dependable }
 
 Primeiro vamos focar na dependência.
 
@@ -89,7 +89,7 @@ Você verá quais outras "coisas", além de funções, podem ser usadas como dep
 
 Sempre que uma nova requisição for realizada, o **FastAPI** se encarrega de:
 
-* Chamar sua dependência ("injetável") com os parâmetros corretos.
+* Chamar sua dependência ("dependable") com os parâmetros corretos.
 * Obter o resultado da função.
 * Atribuir esse resultado para o parâmetro em sua *função de operação de rota*.
 
@@ -186,7 +186,7 @@ Outros termos comuns para essa mesma ideia de "injeção de dependência" são:
 
 Integrações e "plug-ins" podem ser construídos com o sistema de **Injeção de Dependência**. Mas na verdade, **não há necessidade de criar "plug-ins"**, já que utilizando dependências é possível declarar um número infinito de integrações e interações que se tornam disponíveis para as suas *funções de operação de rota*.
 
-E as dependências pode ser criadas de uma forma bastante simples e intuitiva que permite que você importe apenas os pacotes Python que forem necessários, e integrá-los com as funções de sua API em algumas linhas de código, *literalmente*.
+E as dependências podem ser criadas de uma forma bastante simples e intuitiva que permite que você importe apenas os pacotes Python que forem necessários, e integrá-los com as funções de sua API em algumas linhas de código, *literalmente*.
 
 Você verá exemplos disso nos próximos capítulos, acerca de bancos de dados relacionais e NoSQL, segurança, etc.
 
@@ -199,7 +199,7 @@ A simplicidade do sistema de injeção de dependência do **FastAPI** faz ele co
 * pacotes externos
 * APIs externas
 * sistemas de autenticação e autorização
-* istemas de monitoramento de uso para APIs
+* sistemas de monitoramento de uso para APIs
 * sistemas de injeção de dados de resposta
 * etc.
 
@@ -209,7 +209,7 @@ Mesmo que o sistema hierárquico de injeção de dependência seja simples de de
 
 Você pode definir dependências que por sua vez definem suas próprias dependências.
 
-No fim, uma árvore hierárquica de dependências é criadas, e o sistema de **Injeção de Dependência** toma conta de resolver todas essas dependências (e as sub-dependências delas) para você, e provê (injeta) os resultados em cada passo.
+Por fim, uma árvore hierárquica de dependências é criada, e o sistema de **Injeção de Dependência** toma conta de resolver todas essas dependências (e as sub-dependências delas) para você, e provê (injeta) os resultados em cada passo.
 
 Por exemplo, vamos supor que você possua 4 endpoints na sua API (*operações de rota*):
 

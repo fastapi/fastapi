@@ -1,4 +1,4 @@
-# エラーハンドリング
+# エラーハンドリング { #handling-errors }
 
 APIを使用しているクライアントにエラーを通知する必要がある状況はたくさんあります。
 
@@ -19,15 +19,15 @@ APIを使用しているクライアントにエラーを通知する必要が�
 
 **"404 Not Found"** のエラー（およびジョーク）を覚えていますか？
 
-## `HTTPException`の使用
+## `HTTPException`の使用 { #use-httpexception }
 
 HTTPレスポンスをエラーでクライアントに返すには、`HTTPException`を使用します。
 
-### `HTTPException`のインポート
+### `HTTPException`のインポート { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
-### コード内での`HTTPException`の発生
+### コード内での`HTTPException`の発生 { #raise-an-httpexception-in-your-code }
 
 `HTTPException`は通常のPythonの例外であり、APIに関連するデータを追加したものです。
 
@@ -39,9 +39,9 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 この例では、クライアントが存在しないIDでアイテムを要求した場合、`404`のステータスコードを持つ例外を発生させます:
 
-{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
-### レスポンス結果
+### レスポンス結果 { #the-resulting-response }
 
 クライアントが`http://example.com/items/foo`（`item_id` `"foo"`）をリクエストすると、HTTPステータスコードが200で、以下のJSONレスポンスが返されます:
 
@@ -69,7 +69,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 ///
 
-## カスタムヘッダーの追加
+## カスタムヘッダーの追加 { #add-custom-headers }
 
 例えば、いくつかのタイプのセキュリティのために、HTTPエラーにカスタムヘッダを追加できると便利な状況がいくつかあります。
 
@@ -77,9 +77,9 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 しかし、高度なシナリオのために必要な場合には、カスタムヘッダーを追加することができます:
 
-{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
-## カスタム例外ハンドラのインストール
+## カスタム例外ハンドラのインストール { #install-custom-exception-handlers }
 
 カスタム例外ハンドラは<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
 
@@ -89,7 +89,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 カスタム例外ハンドラを`@app.exception_handler()`で追加することができます:
 
-{* ../../docs_src/handling_errors/tutorial003.py hl[5,6,7,13,14,15,16,17,18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 ここで、`/unicorns/yolo`をリクエストすると、*path operation*は`UnicornException`を`raise`します。
 
@@ -109,7 +109,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 ///
 
-## デフォルトの例外ハンドラのオーバーライド
+## デフォルトの例外ハンドラのオーバーライド { #override-the-default-exception-handlers }
 
 **FastAPI** にはいくつかのデフォルトの例外ハンドラがあります。
 
@@ -117,7 +117,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 これらの例外ハンドラを独自のものでオーバーライドすることができます。
 
-### リクエスト検証の例外のオーバーライド
+### リクエスト検証の例外のオーバーライド { #override-request-validation-exceptions }
 
 リクエストに無効なデータが含まれている場合、**FastAPI** は内部的に`RequestValidationError`を発生させます。
 
@@ -125,11 +125,11 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 これをオーバーライドするには`RequestValidationError`をインポートして`@app.exception_handler(RequestValidationError)`と一緒に使用して例外ハンドラをデコレートします。
 
-この例外ハンドラは`Requset`と例外を受け取ります。
+この例外ハンドラは`Request`と例外を受け取ります。
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[2,14,15,16] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
-これで、`/items/foo`にアクセスすると、デフォルトのJSONエラーの代わりに以下が返されます:
+これで、`/items/foo`にアクセスすると、以下のデフォルトのJSONエラーの代わりに:
 
 ```JSON
 {
@@ -146,39 +146,20 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 }
 ```
 
-以下のようなテキスト版を取得します:
+以下のテキスト版を取得します:
 
 ```
-1 validation error
-path -> item_id
-  value is not a valid integer (type=type_error.integer)
+Validation errors:
+Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
 
-#### `RequestValidationError`と`ValidationError`
-
-/// warning | 注意
-
-これらは今のあなたにとって重要でない場合は省略しても良い技術的な詳細です。
-
-///
-
-`RequestValidationError`はPydanticの<a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>のサブクラスです。
-
-**FastAPI** は`response_model`でPydanticモデルを使用していて、データにエラーがあった場合、ログにエラーが表示されるようにこれを使用しています。
-
-しかし、クライアントやユーザーはそれを見ることはありません。その代わりに、クライアントはHTTPステータスコード`500`の「Internal Server Error」を受け取ります。
-
-*レスポンス*やコードのどこか（クライアントの*リクエスト*ではなく）にPydanticの`ValidationError`がある場合、それは実際にはコードのバグなのでこのようにすべきです。
-
-また、あなたがそれを修正している間は、セキュリティの脆弱性が露呈する場合があるため、クライアントやユーザーがエラーに関する内部情報にアクセスできないようにしてください。
-
-### エラーハンドラ`HTTPException`のオーバーライド
+### `HTTPException`エラーハンドラのオーバーライド { #override-the-httpexception-error-handler }
 
 同様に、`HTTPException`ハンドラをオーバーライドすることもできます。
 
 例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[3,4,9,10,11,22] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | 技術詳細
 
@@ -188,13 +169,21 @@ path -> item_id
 
 ///
 
-### `RequestValidationError`のボディの使用
+/// warning | 注意
+
+`RequestValidationError`には、検証エラーが発生したファイル名と行番号の情報が含まれているため、必要であれば関連情報と一緒にログに表示できます。
+
+しかし、そのまま文字列に変換して直接その情報を返すと、システムに関する情報が多少漏えいする可能性があります。そのため、ここではコードが各エラーを個別に抽出して表示します。
+
+///
+
+### `RequestValidationError`のボディの使用 { #use-the-requestvalidationerror-body }
 
 `RequestValidationError`には無効なデータを含む`body`が含まれています。
 
-アプリ開発中に本体のログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
+アプリ開発中にボディのログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
 
-{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 ここで、以下のような無効な項目を送信してみてください:
 
@@ -207,7 +196,7 @@ path -> item_id
 
 受信したボディを含むデータが無効であることを示すレスポンスが表示されます:
 
-```JSON hl_lines="12 13 14 15"
+```JSON hl_lines="12-15"
 {
   "detail": [
     {
@@ -226,36 +215,30 @@ path -> item_id
 }
 ```
 
-#### FastAPIの`HTTPException`とStarletteの`HTTPException`
+#### FastAPIの`HTTPException`とStarletteの`HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI**は独自の`HTTPException`を持っています。
 
-また、 **FastAPI**のエラークラス`HTTPException`はStarletteのエラークラス`HTTPException`を継承しています。
+また、 **FastAPI**の`HTTPException`エラークラスはStarletteの`HTTPException`エラークラスを継承しています。
 
-唯一の違いは、**FastAPI** の`HTTPException`はレスポンスに含まれるヘッダを追加できることです。
-
-これはOAuth 2.0といくつかのセキュリティユーティリティのために内部的に必要とされ、使用されています。
+唯一の違いは、**FastAPI** の`HTTPException`は`detail`フィールドにJSONに変換可能な任意のデータを受け付けるのに対し、Starletteの`HTTPException`は文字列のみを受け付けることです。
 
 そのため、コード内では通常通り **FastAPI** の`HTTPException`を発生させ続けることができます。
 
-しかし、例外ハンドラを登録する際には、Starletteの`HTTPException`を登録しておく必要があります。
+しかし、例外ハンドラを登録する際には、Starletteの`HTTPException`に対して登録しておく必要があります。
 
-これにより、Starletteの内部コードやStarletteの拡張機能やプラグインの一部が`HTTPException`を発生させた場合、ハンドラがそれをキャッチして処理することができるようになります。
+これにより、Starletteの内部コードやStarletteの拡張機能やプラグインの一部がStarletteの`HTTPException`を発生させた場合、ハンドラがそれをキャッチして処理できるようになります。
 
-以下の例では、同じコード内で両方の`HTTPException`を使用できるようにするために、Starletteの例外の名前を`StarletteHTTPException`に変更しています:
+この例では、同じコード内で両方の`HTTPException`を使用できるようにするために、Starletteの例外を`StarletteHTTPException`にリネームしています:
 
 ```Python
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### **FastAPI** の例外ハンドラの再利用
+### **FastAPI** の例外ハンドラの再利用 { #reuse-fastapis-exception-handlers }
 
-また、何らかの方法で例外を使用することもできますが、**FastAPI** から同じデフォルトの例外ハンドラを使用することもできます。
+**FastAPI** から同じデフォルトの例外ハンドラと一緒に例外を使用したい場合は、`fastapi.exception_handlers`からデフォルトの例外ハンドラをインポートして再利用できます:
 
-デフォルトの例外ハンドラを`fastapi.exception_handlers`からインポートして再利用することができます:
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
-{* ../../docs_src/handling_errors/tutorial006.py hl[2,3,4,5,15,21] *}
-
-この例では、非常に表現力のあるメッセージでエラーを`print`しています。
-
-しかし、例外を使用して、デフォルトの例外ハンドラを再利用することができるということが理解できます。
+この例では、非常に表現力のあるメッセージでエラーを`print`しているだけですが、要点は理解できるはずです。例外を使用し、その後デフォルトの例外ハンドラを再利用できます。

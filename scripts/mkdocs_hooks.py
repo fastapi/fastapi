@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 import material
 from mkdocs.config.defaults import MkDocsConfig
@@ -24,6 +24,17 @@ def get_missing_translation_content(docs_dir: str) -> str:
     docs_dir_path = Path(docs_dir)
     missing_translation_path = docs_dir_path.parent.parent / "missing-translation.md"
     return missing_translation_path.read_text(encoding="utf-8")
+
+
+@lru_cache
+def get_translation_banner_content(docs_dir: str) -> str:
+    docs_dir_path = Path(docs_dir)
+    translation_banner_path = docs_dir_path / "translation-banner.md"
+    if not translation_banner_path.is_file():
+        translation_banner_path = (
+            docs_dir_path.parent.parent / "en" / "docs" / "translation-banner.md"
+        )
+    return translation_banner_path.read_text(encoding="utf-8")
 
 
 @lru_cache
@@ -94,9 +105,9 @@ def on_files(files: Files, *, config: MkDocsConfig) -> Files:
 
 
 def generate_renamed_section_items(
-    items: list[Union[Page, Section, Link]], *, config: MkDocsConfig
-) -> list[Union[Page, Section, Link]]:
-    new_items: list[Union[Page, Section, Link]] = []
+    items: list[Page | Section | Link], *, config: MkDocsConfig
+) -> list[Page | Section | Link]:
+    new_items: list[Page | Section | Link] = []
     for item in items:
         if isinstance(item, Section):
             new_title = item.title
@@ -151,4 +162,21 @@ def on_page_markdown(
         if markdown.startswith("#"):
             header, _, body = markdown.partition("\n\n")
         return f"{header}\n\n{missing_translation_content}\n\n{body}"
-    return markdown
+
+    docs_dir_path = Path(config.docs_dir)
+    en_docs_dir_path = docs_dir_path.parent.parent / "en/docs"
+
+    if docs_dir_path == en_docs_dir_path:
+        return markdown
+
+    # For translated pages add translation banner
+    translation_banner_content = get_translation_banner_content(config.docs_dir)
+    en_url = "https://fastapi.tiangolo.com/" + page.url.lstrip("/")
+    translation_banner_content = translation_banner_content.replace(
+        "ENGLISH_VERSION_URL", en_url
+    )
+    header = ""
+    body = markdown
+    if markdown.startswith("#"):
+        header, _, body = markdown.partition("\n\n")
+    return f"{header}\n\n{translation_banner_content}\n\n{body}"

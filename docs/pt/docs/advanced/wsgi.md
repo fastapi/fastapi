@@ -6,13 +6,29 @@ Para isso, você pode utilizar o `WSGIMiddleware` para encapsular a sua aplicaç
 
 ## Usando `WSGIMiddleware` { #using-wsgimiddleware }
 
-Você precisa importar o `WSGIMiddleware`.
+/// info | Informação
+
+Isso requer instalar `a2wsgi`, por exemplo com `pip install a2wsgi`.
+
+///
+
+Você precisa importar o `WSGIMiddleware` de `a2wsgi`.
 
 Em seguida, encapsule a aplicação WSGI (e.g. Flask) com o middleware.
 
 E então monte isso sob um path.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+
+/// note | Nota
+
+Anteriormente, recomendava-se usar `WSGIMiddleware` de `fastapi.middleware.wsgi`, mas agora está descontinuado.
+
+É aconselhável usar o pacote `a2wsgi` em seu lugar. O uso permanece o mesmo.
+
+Apenas certifique-se de que o pacote `a2wsgi` está instalado e importe `WSGIMiddleware` corretamente de `a2wsgi`.
+
+///
 
 ## Confira { #check-it }
 

@@ -4,19 +4,22 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from tests.utils import workdir_lock
+
 
 @pytest.fixture(scope="module")
 def client():
     static_dir: Path = Path(os.getcwd()) / "static"
     print(static_dir)
     static_dir.mkdir(exist_ok=True)
-    from docs_src.custom_docs_ui.tutorial002_py39 import app
+    from docs_src.custom_docs_ui.tutorial002_py310 import app
 
     with TestClient(app) as client:
         yield client
     static_dir.rmdir()
 
 
+@workdir_lock
 def test_swagger_ui_html(client: TestClient):
     response = client.get("/docs")
     assert response.status_code == 200, response.text
@@ -24,18 +27,21 @@ def test_swagger_ui_html(client: TestClient):
     assert "/static/swagger-ui.css" in response.text
 
 
+@workdir_lock
 def test_swagger_ui_oauth2_redirect_html(client: TestClient):
     response = client.get("/docs/oauth2-redirect")
     assert response.status_code == 200, response.text
     assert "window.opener.swaggerUIRedirectOauth2" in response.text
 
 
+@workdir_lock
 def test_redoc_html(client: TestClient):
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     assert "/static/redoc.standalone.js" in response.text
 
 
+@workdir_lock
 def test_api(client: TestClient):
     response = client.get("/users/john")
     assert response.status_code == 200, response.text

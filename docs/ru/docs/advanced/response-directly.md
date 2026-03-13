@@ -54,7 +54,7 @@
 
 Вы можете поместить ваш XML-контент в строку, поместить её в `Response` и вернуть:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Примечания { #notes }
 

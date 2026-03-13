@@ -1,47 +1,66 @@
-# メタデータとドキュメントのURL
+# メタデータとドキュメントのURL { #metadata-and-docs-urls }
 
-**FastAPI** アプリケーションのいくつかのメタデータの設定をカスタマイズできます。
+**FastAPI** アプリケーションのいくつかのメタデータ設定をカスタマイズできます。
 
-## タイトル、説明文、バージョン
+## APIのメタデータ { #metadata-for-api }
 
-以下を設定できます:
+OpenAPI仕様および自動APIドキュメントUIで使用される次のフィールドを設定できます:
 
-* **タイトル**: OpenAPIおよび自動APIドキュメントUIでAPIのタイトル/名前として使用される。
-* **説明文**: OpenAPIおよび自動APIドキュメントUIでのAPIの説明文。
-* **バージョン**: APIのバージョン。例: `v2` または `2.5.0`。
-     *たとえば、以前のバージョンのアプリケーションがあり、OpenAPIも使用している場合に便利です。
+| パラメータ | 型 | 説明 |
+|------------|------|-------------|
+| `title` | `str` | APIのタイトルです。 |
+| `summary` | `str` | APIの短い要約です。 <small>OpenAPI 3.1.0、FastAPI 0.99.0 以降で利用できます。</small> |
+| `description` | `str` | APIの短い説明です。Markdownを使用できます。 |
+| `version` | `string` | APIのバージョンです。これはOpenAPIのバージョンではなく、あなた自身のアプリケーションのバージョンです。たとえば `2.5.0` です。 |
+| `terms_of_service` | `str` | APIの利用規約へのURLです。指定する場合、URLである必要があります。 |
+| `contact` | `dict` | 公開されるAPIの連絡先情報です。複数のフィールドを含められます。 <details><summary><code>contact</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>連絡先の個人/組織を識別する名前です。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>連絡先情報を指すURLです。URL形式である必要があります。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>連絡先の個人/組織のメールアドレスです。メールアドレス形式である必要があります。</td></tr></tbody></table></details> |
+| `license_info` | `dict` | 公開されるAPIのライセンス情報です。複数のフィールドを含められます。 <details><summary><code>license_info</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必須</strong>（<code>license_info</code> が設定されている場合）。APIに使用されるライセンス名です。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>APIの <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> ライセンス式です。<code>identifier</code> フィールドは <code>url</code> フィールドと同時に指定できません。 <small>OpenAPI 3.1.0、FastAPI 0.99.0 以降で利用できます。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>APIに使用されるライセンスへのURLです。URL形式である必要があります。</td></tr></tbody></table></details> |
 
-これらを設定するには、パラメータ `title`、`description`、`version` を使用します:
+以下のように設定できます:
 
-{* ../../docs_src/metadata/tutorial001.py hl[4:6] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
-この設定では、自動APIドキュメントは以下の様になります:
+/// tip | 豆知識
+
+`description` フィールドにはMarkdownを書けて、出力ではレンダリングされます。
+
+///
+
+この設定では、自動APIドキュメントは以下のようになります:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## タグのためのメタデータ
+## ライセンス識別子 { #license-identifier }
 
-さらに、パラメータ `openapi_tags` を使うと、path operations をグループ分けするための複数のタグに関するメタデータを追加できます。
+OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` の代わりに `identifier` で設定することもできます。
 
-それぞれのタグ毎にひとつの辞書を含むリストをとります。
+例:
 
-それぞれの辞書は以下をもつことができます:
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
-* `name` (**必須**): *path operations* および `APIRouter` の `tags` パラメーターで使用するのと同じタグ名である `str`。
-* `description`: タグの簡単な説明文である `str`。 Markdownで記述でき、ドキュメントUIに表示されます。
-* `externalDocs`: 外部ドキュメントを説明するための `dict`:
-    * `description`: 外部ドキュメントの簡単な説明文である `str`。
-    * `url` (**必須**): 外部ドキュメントのURLである `str`。
+## タグのメタデータ { #metadata-for-tags }
 
-### タグのためのメタデータの作成
+パラメータ `openapi_tags` を使うと、path operation をグループ分けするために使用する各タグに追加のメタデータを追加できます。
 
-`users` と `items` のタグを使った例でメタデータの追加を試してみましょう。
+それぞれのタグごとに1つの辞書を含むリストを取ります。
 
-タグのためのメタデータを作成し、それを `openapi_tags` パラメータに渡します。
+それぞれの辞書は以下を含められます:
 
-{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
+* `name` (**必須**): *path operation* および `APIRouter` の `tags` パラメータで使用するのと同じタグ名の `str`。
+* `description`: タグの短い説明の `str`。Markdownを含められ、ドキュメントUIに表示されます。
+* `externalDocs`: 外部ドキュメントを説明する `dict`。以下を含みます:
+    * `description`: 外部ドキュメントの短い説明の `str`。
+    * `url` (**必須**): 外部ドキュメントのURLの `str`。
 
-説明文 (description) の中で Markdown を使用できることに注意してください。たとえば、「login」は太字 (**login**) で表示され、「fancy」は斜体 (_fancy_) で表示されます。
+### タグのメタデータの作成 { #create-metadata-for-tags }
+
+`users` と `items` のタグを使った例で試してみましょう。
+
+タグのメタデータを作成し、それを `openapi_tags` パラメータに渡します:
+
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
+
+説明の中でMarkdownを使用できることに注意してください。たとえば「login」は太字 (**login**) で表示され、「fancy」は斜体 (_fancy_) で表示されます。
 
 /// tip | 豆知識
 
@@ -49,31 +68,31 @@
 
 ///
 
-### 自作タグの使用
+### タグの使用 { #use-your-tags }
 
-`tags` パラメーターを使用して、それぞれの *path operations* (および `APIRouter`) を異なるタグに割り当てます:
+*path operation*（および `APIRouter`）の `tags` パラメータを使用して、それらを異なるタグに割り当てます:
 
-{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | 情報
 
-タグのより詳しい説明を知りたい場合は [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank} を参照して下さい。
+タグの詳細は [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank} を参照してください。
 
 ///
 
-### ドキュメントの確認
+### ドキュメントの確認 { #check-the-docs }
 
-ここで、ドキュメントを確認すると、追加したメタデータがすべて表示されます:
+ここでドキュメントを確認すると、追加したメタデータがすべて表示されます:
 
 <img src="/img/tutorial/metadata/image02.png">
 
-### タグの順番
+### タグの順番 { #order-of-tags }
 
 タグのメタデータ辞書の順序は、ドキュメントUIに表示される順序の定義にもなります。
 
-たとえば、`users` はアルファベット順では `items` の後に続きます。しかし、リストの最初に `users` のメタデータ辞書を追加したため、ドキュメントUIでは `users` が先に表示されます。
+たとえば、`users` はアルファベット順では `items` の後に続きますが、リストの最初の辞書としてメタデータを追加したため、それより前に表示されます。
 
-## OpenAPI URL
+## OpenAPI URL { #openapi-url }
 
 デフォルトでは、OpenAPIスキーマは `/openapi.json` で提供されます。
 
@@ -81,21 +100,21 @@
 
 たとえば、`/api/v1/openapi.json` で提供されるように設定するには:
 
-{* ../../docs_src/metadata/tutorial002.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 OpenAPIスキーマを完全に無効にする場合は、`openapi_url=None` を設定できます。これにより、それを使用するドキュメントUIも無効になります。
 
-## ドキュメントのURL
+## ドキュメントのURL { #docs-urls }
 
-以下の2つのドキュメントUIを構築できます:
+含まれている2つのドキュメントUIを設定できます:
 
 * **Swagger UI**: `/docs` で提供されます。
-     * URL はパラメータ `docs_url` で設定できます。
-     * `docs_url=None` を設定することで無効にできます。
-* ReDoc: `/redoc` で提供されます。
-     * URL はパラメータ `redoc_url` で設定できます。
-     * `redoc_url=None` を設定することで無効にできます。
+    * URL はパラメータ `docs_url` で設定できます。
+    * `docs_url=None` を設定することで無効にできます。
+* **ReDoc**: `/redoc` で提供されます。
+    * URL はパラメータ `redoc_url` で設定できます。
+    * `redoc_url=None` を設定することで無効にできます。
 
 たとえば、`/documentation` でSwagger UIが提供されるように設定し、ReDocを無効にするには:
 
-{* ../../docs_src/metadata/tutorial003.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

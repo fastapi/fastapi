@@ -2,7 +2,7 @@
 
 In the previous chapter the security system (which is based on the dependency injection system) was giving the *path operation function* a `token` as a `str`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 But that is still not that useful.
 

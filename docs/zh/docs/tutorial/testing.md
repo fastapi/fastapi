@@ -1,4 +1,4 @@
-# 测试
+# 测试 { #testing }
 
 感谢 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>，测试**FastAPI** 应用轻松又愉快。
 
@@ -6,17 +6,21 @@
 
 有了它，你可以直接与**FastAPI**一起使用 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>。
 
-## 使用 `TestClient`
+## 使用 `TestClient` { #using-testclient }
 
 /// info | 信息
 
-要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>。
 
-例：`pip install httpx`.
+确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+
+```console
+$ pip install httpx
+```
 
 ///
 
-导入 `TestClient`.
+导入 `TestClient`。
 
 通过传入你的**FastAPI**应用创建一个 `TestClient` 。
 
@@ -26,7 +30,7 @@
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
-{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 提示
 
@@ -52,13 +56,13 @@
 
 ///
 
-## 分离测试
+## 分离测试 { #separating-tests }
 
 在实际应用中，你可能会把你的测试放在另一个文件里。
 
 您的**FastAPI**应用程序也可能由一些文件/模块组成等等。
 
-### **FastAPI** app 文件
+### **FastAPI** app 文件 { #fastapi-app-file }
 
 假设你有一个像 [更大的应用](bigger-applications.md){.internal-link target=_blank} 中所描述的文件结构:
 
@@ -72,9 +76,9 @@
 在 `main.py` 文件中你有一个 **FastAPI** app:
 
 
-{* ../../docs_src/app_testing/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
-### 测试文件
+### 测试文件 { #testing-file }
 
 然后你会有一个包含测试的文件 `test_main.py` 。app可以像Python包那样存在（一样是目录，但有个 `__init__.py` 文件）：
 
@@ -88,15 +92,15 @@
 
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
-{* ../../docs_src/app_testing/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 ...然后测试代码和之前一样的。
 
-## 测试：扩展示例
+## 测试：扩展示例 { #testing-extended-example }
 
 现在让我们扩展这个例子，并添加更多细节，看下如何测试不同部分。
 
-### 扩展后的 **FastAPI** app 文件
+### 扩展后的 **FastAPI** app 文件 { #extended-fastapi-app-file }
 
 让我们继续之前的文件结构：
 
@@ -116,63 +120,13 @@
 
 所有*路径操作* 都需要一个`X-Token` 头。
 
-//// tab | Python 3.10+
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | 提示
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
-
-### 扩展后的测试文件
+### 扩展后的测试文件 { #extended-testing-file }
 
 然后您可以使用扩展后的测试更新`test_main.py`：
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx`做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
 
@@ -196,9 +150,11 @@ Prefer to use the `Annotated` version if possible.
 
 ///
 
-## 运行起来
+## 运行起来 { #run-it }
 
-之后，你只需要安装 `pytest`:
+之后，你只需要安装 `pytest`。
+
+确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
 
 <div class="termy">
 

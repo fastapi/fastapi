@@ -1,4 +1,4 @@
-# レスポンスを直接返す
+# レスポンスを直接返す { #return-a-response-directly }
 
 **FastAPI** の *path operation* では、通常は任意のデータを返すことができます: 例えば、 `dict`、`list`、Pydanticモデル、データベースモデルなどです。
 
@@ -10,7 +10,7 @@
 
 これは例えば、カスタムヘッダーやcookieを返すときに便利です。
 
-## `Response` を返す
+## `Response` を返す { #return-a-response }
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
@@ -26,7 +26,7 @@
 
 これは多くの柔軟性を提供します。任意のデータ型を返したり、任意のデータ宣言やバリデーションをオーバーライドできます。
 
-## `jsonable_encoder` を `Response` の中で使う
+## `jsonable_encoder` を `Response` の中で使う { #using-the-jsonable-encoder-in-a-response }
 
 **FastAPI** はあなたが返す `Response` に対して何も変更を加えないので、コンテンツが準備できていることを保証しなければなりません。
 
@@ -34,7 +34,7 @@
 
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | 技術詳細
 
@@ -44,7 +44,7 @@
 
 ///
 
-## カスタム `Response` を返す
+## カスタム `Response` を返す { #returning-a-custom-response }
 
 上記の例では必要な部分を全て示していますが、あまり便利ではありません。`item` を直接返すことができるし、**FastAPI** はそれを `dict` に変換して `JSONResponse`　に含めてくれるなど。すべて、デフォルトの動作です。
 
@@ -54,9 +54,9 @@
 
 XMLを文字列にし、`Response` に含め、それを返します。
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
-## 備考
+## 備考 { #notes }
 
 `Response` を直接返す場合、バリデーションや、変換 (シリアライズ) や、自動ドキュメントは行われません。
 
