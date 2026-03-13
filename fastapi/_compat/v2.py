@@ -43,7 +43,7 @@ Undefined = PydanticUndefined
 try:
     from pydantic_extra_types.color import Color
 except ImportError:
-    from pydantic.color import (  # type: ignore[assignment]
+    from pydantic.color import (  # type: ignore[assignment]  # pragma: no cover
         Color,  # noqa: F401  # pragma: no cover
     )
 
