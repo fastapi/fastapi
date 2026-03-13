@@ -322,8 +322,9 @@ def get_dependant(
                 and param_details.depends.scope == "function"
             ):
                 assert dependant.call
+                call_name = getattr(dependant.call, "__name__", "<unnamed_callable>")
                 raise DependencyScopeError(
-                    f'The dependency "{dependant.call.__name__}" has a scope of '  # ty: ignore[unresolved-attribute]
+                    f'The dependency "{call_name}" has a scope of '
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
             sub_own_oauth_scopes: list[str] = []
