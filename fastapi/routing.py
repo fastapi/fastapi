@@ -26,6 +26,7 @@ from typing import (
     Annotated,
     Any,
     TypeVar,
+    cast,
 )
 
 import anyio
@@ -75,6 +76,7 @@ from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response, StreamingResponse
@@ -455,7 +457,7 @@ def get_request_handler(
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
-            body=body,  # ty: ignore[invalid-argument-type]
+            body=cast(dict[str, Any] | FormData | bytes | None, body),
             dependency_overrides_provider=dependency_overrides_provider,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,

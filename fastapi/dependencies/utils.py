@@ -598,7 +598,7 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: dict[str, Any] | FormData | None = None,
+    body: dict[str, Any] | FormData | bytes | None = None,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -950,7 +950,7 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: dict[str, Any] | FormData | None,
+    received_body: dict[str, Any] | FormData | bytes | None,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -981,7 +981,7 @@ async def request_body_to_args(
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
         value: Any | None = None
-        if body_to_process is not None:
+        if body_to_process is not None and not isinstance(body_to_process, bytes):
             try:
                 value = body_to_process.get(get_validation_alias(field))
             # If the received body is a list, not a dict
