@@ -100,7 +100,6 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-    f: Callable[[Request], Awaitable[Response]] = (
         func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
         if is_async_callable(func)
         else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
