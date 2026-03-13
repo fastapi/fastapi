@@ -42,9 +42,9 @@ Undefined = PydanticUndefined
 
 def define_forwardref() -> Callable[..., Any]:
     # eval_type_lenient has been deprecated since Pydantic v2.10.0b1 (PR #10530)
-    eval_type = getattr(_pydantic_typing_extra, "try_eval_type", None)
-    if eval_type is not None:
-        return cast(Callable[..., Any], eval_type)
+    try_eval_type = getattr(_pydantic_typing_extra, "try_eval_type", None)
+    if try_eval_type is not None:
+        return lambda *args: try_eval_type(*args)[0]
     return _pydantic_typing_extra.eval_type_lenient
 
 
