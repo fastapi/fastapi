@@ -4,11 +4,10 @@ from typing import Annotated, Any, Literal
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
+from fastapi.datastructures import _Unset
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
 from typing_extensions import deprecated
-
-_Unset: Any = Undefined
 
 
 def Path(  # noqa: N802
@@ -34,7 +33,7 @@ def Path(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     alias: Annotated[
         str | None,
         Doc(
@@ -54,7 +53,7 @@ def Path(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -190,7 +189,7 @@ def Path(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -198,7 +197,7 @@ def Path(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -206,7 +205,7 @@ def Path(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -214,7 +213,7 @@ def Path(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -222,7 +221,7 @@ def Path(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -378,7 +377,7 @@ def Query(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     alias: Annotated[
         str | None,
         Doc(
@@ -401,7 +400,7 @@ def Query(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -549,7 +548,7 @@ def Query(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -557,7 +556,7 @@ def Query(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -565,7 +564,7 @@ def Query(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -573,7 +572,7 @@ def Query(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -581,7 +580,7 @@ def Query(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -719,7 +718,7 @@ def Header(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     alias: Annotated[
         str | None,
         Doc(
@@ -739,7 +738,7 @@ def Header(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -871,7 +870,7 @@ def Header(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -879,7 +878,7 @@ def Header(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -887,7 +886,7 @@ def Header(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -895,7 +894,7 @@ def Header(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -903,7 +902,7 @@ def Header(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1036,7 +1035,7 @@ def Cookie(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     alias: Annotated[
         str | None,
         Doc(
@@ -1056,7 +1055,7 @@ def Cookie(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1177,7 +1176,7 @@ def Cookie(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1185,7 +1184,7 @@ def Cookie(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1193,7 +1192,7 @@ def Cookie(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1201,7 +1200,7 @@ def Cookie(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1209,7 +1208,7 @@ def Cookie(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1341,7 +1340,7 @@ def Body(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     embed: Annotated[
         bool | None,
         Doc(
@@ -1384,7 +1383,7 @@ def Body(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1505,7 +1504,7 @@ def Body(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1513,7 +1512,7 @@ def Body(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1521,7 +1520,7 @@ def Body(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1529,7 +1528,7 @@ def Body(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1537,7 +1536,7 @@ def Body(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1671,7 +1670,7 @@ def Form(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     media_type: Annotated[
         str,
         Doc(
@@ -1700,7 +1699,7 @@ def Form(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -1821,7 +1820,7 @@ def Form(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -1829,7 +1828,7 @@ def Form(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -1837,7 +1836,7 @@ def Form(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -1845,7 +1844,7 @@ def Form(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -1853,7 +1852,7 @@ def Form(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
@@ -1986,7 +1985,7 @@ def File(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     media_type: Annotated[
         str,
         Doc(
@@ -2015,7 +2014,7 @@ def File(  # noqa: N802
             Priority of the alias. This affects whether an alias generator is used.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -2136,7 +2135,7 @@ def File(  # noqa: N802
             If `True`, strict validation is applied to the field.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     multiple_of: Annotated[
         float | None,
         Doc(
@@ -2144,7 +2143,7 @@ def File(  # noqa: N802
             Value must be a multiple of this. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     allow_inf_nan: Annotated[
         bool | None,
         Doc(
@@ -2152,7 +2151,7 @@ def File(  # noqa: N802
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     max_digits: Annotated[
         int | None,
         Doc(
@@ -2160,7 +2159,7 @@ def File(  # noqa: N802
             Maximum number of digits allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     decimal_places: Annotated[
         int | None,
         Doc(
@@ -2168,7 +2167,7 @@ def File(  # noqa: N802
             Maximum number of decimal places allowed for decimal values.
             """
         ),
-    ] = _Unset,  # ty: ignore[invalid-parameter-default]
+    ] = _Unset,
     examples: Annotated[
         list[Any] | None,
         Doc(
