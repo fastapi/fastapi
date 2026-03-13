@@ -31,7 +31,7 @@ process = subprocess.Popen(
 try:
     for _ in range(3):
         try:
-            response = httpx.get("http://localhost:8000/docs")
+            response = httpx.get("http://localhost:8000/docs", timeout=10.0)
         except httpx.ConnectError:
             time.sleep(1)
             break
