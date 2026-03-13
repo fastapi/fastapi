@@ -829,9 +829,8 @@ def request_params_to_args(
 
     for key in received_params.keys():
         if key not in processed_keys:
-            getlist = getattr(received_params, "getlist", None)
-            if callable(getlist):
-                value = getlist(key)
+            if isinstance(received_params, (ImmutableMultiDict, Headers)):
+                value = received_params.getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
                     params_to_process[key] = value[0]
                 else:
