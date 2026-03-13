@@ -43,7 +43,9 @@ Undefined = PydanticUndefined
 try:
     from pydantic_extra_types.color import Color
 except ImportError:
-    from pydantic.color import Color  # type: ignore[assignment]    # noqa: F401
+    from pydantic.color import (
+        Color,  # type: ignore[assignment]   # noqa: F401  # pragma: no cover
+    )
 
 
 def define_forwardref() -> Callable[..., Any]:
