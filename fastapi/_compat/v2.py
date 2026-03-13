@@ -39,6 +39,12 @@ from pydantic_core.core_schema import (
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
 
+# pydantic.color.Color is deprecated since v2.0b3
+try:
+    from pydantic_extra_types import Color
+except ImportError:
+    from pydantic.color import Color  # noqa: F401
+
 
 def define_forwardref() -> Callable[..., Any]:
     # eval_type_lenient has been deprecated since Pydantic v2.10.0b1 (PR #10530)
