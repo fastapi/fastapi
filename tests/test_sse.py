@@ -96,6 +96,18 @@ async def stream_events():
     yield {"msg": "world"}
 
 
+@router.get("/events-typed", response_class=EventSourceResponse)
+async def stream_events_typed() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
+
+
+@router.get("/events-jsonl")
+async def stream_events_jsonl() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
+
+
 app.include_router(router, prefix="/api")
 
 
@@ -263,6 +275,67 @@ def test_sse_on_router_included_in_app(client: TestClient):
         line for line in response.text.strip().split("\n") if line.startswith("data: ")
     ]
     assert len(data_lines) == 2
+
+
+def test_sse_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-typed")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_jsonl_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-jsonl")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/jsonl"
+    lines = response.text.strip().split("\n")
+    assert len(lines) == 3
+
+
+def test_sse_router_typed_openapi_schema(client: TestClient):
+    """Typed SSE endpoint on a router should preserve itemSchema with contentSchema."""
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    sse_response = paths["/api/events-typed"]["get"]["responses"]["200"]
+    assert sse_response == {
+        "description": "Successful Response",
+        "content": {
+            "text/event-stream": {
+                "itemSchema": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": {"$ref": "#/components/schemas/Item"},
+                        },
+                        "event": {"type": "string"},
+                        "id": {"type": "string"},
+                        "retry": {"type": "integer", "minimum": 0},
+                    },
+                    "required": ["data"],
+                }
+            }
+        },
+    }
+
+
+def test_jsonl_router_typed_openapi_schema(client: TestClient):
+    """Typed JSONL endpoint on a router should preserve itemSchema."""
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    jsonl_response = paths["/api/events-jsonl"]["get"]["responses"]["200"]
+    assert jsonl_response == {
+        "description": "Successful Response",
+        "content": {
+            "application/jsonl": {"itemSchema": {"$ref": "#/components/schemas/Item"}}
+        },
+    }
 
 
 # Keepalive ping tests
