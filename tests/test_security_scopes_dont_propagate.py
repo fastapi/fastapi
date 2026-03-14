@@ -16,8 +16,8 @@ async def security2(scopes: SecurityScopes):
 
 
 async def dep3(
-    dep1: Annotated[list[str], Security(security1, scopes=["scope1"])],
-    dep2: Annotated[list[str], Security(security2, scopes=["scope2"])],
+    dep1: Annotated[list[str], Security(security1, oauth_scopes=["scope1"])],
+    dep2: Annotated[list[str], Security(security2, oauth_scopes=["scope2"])],
 ):
     return {"dep1": dep1, "dep2": dep2}
 
@@ -27,7 +27,7 @@ app = FastAPI()
 
 @app.get("/scopes")
 def get_scopes(
-    dep3: Annotated[dict[str, Any], Security(dep3, scopes=["scope3"])],
+    dep3: Annotated[dict[str, Any], Security(dep3, oauth_scopes=["scope3"])],
 ):
     return dep3
 
