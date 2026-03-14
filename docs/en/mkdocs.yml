@@ -338,6 +338,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /ur/
+    name: ur - اردو
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
