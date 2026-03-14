@@ -267,7 +267,7 @@ CMD fastapi run app/main.py --port 80
 ```
 .
 ├── app
-│   ├── __init__.py
+│   ├── __init__.py
 │   └── main.py
 ├── Dockerfile
 └── requirements.txt

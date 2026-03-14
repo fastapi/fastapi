@@ -177,7 +177,7 @@ Tabs اور `Info`/`Note`/`Warning` وغیرہ بلاکس میں عمودی خط
 
 لنک کا متن ترجمہ ہونا چاہیے، لنک کا پتہ ترجمے کی طرف اشارہ کرنا چاہیے:
 
-* [FastAPI لنک](https://fastapi.tiangolo.com/)
+* [FastAPI لنک](https://fastapi.tiangolo.com/ur/)
 
 ////
 

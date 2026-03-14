@@ -69,8 +69,8 @@ $ pip install httpx
 ```
 .
 ├── app
-│   ├── __init__.py
-│   └── main.py
+│   ├── __init__.py
+│   └── main.py
 ```
 
 فائل `main.py` میں آپ کی **FastAPI** app ہے:
@@ -84,9 +84,9 @@ $ pip install httpx
 ``` hl_lines="5"
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── test_main.py
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
 ```
 
 چونکہ یہ فائل اسی package میں ہے، آپ `main` module (`main.py`) سے object `app` import کرنے کے لیے relative imports استعمال کر سکتے ہیں:
@@ -106,9 +106,9 @@ $ pip install httpx
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── test_main.py
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
 ```
 
 فرض کریں اب فائل `main.py` آپ کی **FastAPI** app کے ساتھ کچھ اور **path operations** رکھتی ہے۔

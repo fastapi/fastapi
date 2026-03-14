@@ -25,9 +25,9 @@
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── test_main.py
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
 ```
 
 `main.py` فائل میں ہوگا:

@@ -4,7 +4,7 @@
 
 اس میں اصل معنی کی غلط تشریح یا غیر فطری زبان جیسی خامیاں ہو سکتی ہیں۔ 🤖
 
-آپ [مصنوعی ذہانت LLM کو بہتر رہنمائی دینے میں ہماری مدد کر کے](https://fastapi.tiangolo.com/contributing/#translations) اس ترجمے کو بہتر بنا سکتے ہیں۔
+آپ [مصنوعی ذہانت LLM کو بہتر رہنمائی دینے میں ہماری مدد کر کے](https://fastapi.tiangolo.com/ur/contributing/#translations) اس ترجمے کو بہتر بنا سکتے ہیں۔
 
 [انگریزی نسخہ](ENGLISH_VERSION_URL)
 

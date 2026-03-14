@@ -80,8 +80,8 @@ JavaScript اور CSS خود host کرنا مفید ہو سکتا ہے اگر، 
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
+│   ├── __init__.py
+│   ├── main.py
 └── static/
 ```
 
@@ -105,8 +105,8 @@ Docs کے لیے ضروری static فائلیں ڈاؤن لوڈ کریں اور 
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
+│   ├── __init__.py
+│   ├── main.py
 └── static
     ├── redoc.standalone.js
     ├── swagger-ui-bundle.js

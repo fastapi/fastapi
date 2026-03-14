@@ -78,8 +78,8 @@ from main import app
 ```
 .
 ├── backend
-│   ├── main.py
-│   ├── __init__.py
+│   ├── main.py
+│   ├── __init__.py
 ```
 
 تو آپ `entrypoint` اس طرح سیٹ کریں گے:
