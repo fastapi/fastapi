@@ -24,7 +24,7 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/cookie_param_models/tutorial001.py"]
+    ["fastapi", "run", "docs_src/cookie_param_models/tutorial001.py"], shell=False
 )
 try:
     for _ in range(3):
