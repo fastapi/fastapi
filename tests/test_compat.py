@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
@@ -5,7 +7,7 @@ from fastapi._compat import (
 )
 from fastapi._compat.shared import is_bytes_sequence_annotation
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 from pydantic.fields import FieldInfo
 
 
@@ -130,3 +132,53 @@ def test_serialize_sequence_value_with_none_first_in_union():
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]
     assert isinstance(result, list)
+
+
+def test_get_model_fields_annotated_basemodel():
+    """
+    get_model_fields must not raise when a field annotation is Annotated[SomeBaseModel, ...].
+
+    RootModel stores its root field annotation verbatim, so for
+    RootModel[Annotated[Item, Field(...)]] the annotation is
+    Annotated[Item, FieldInfo(...)].  Before the fix, lenient_issubclass
+    returned False for the Annotated wrapper, causing model_config to be
+    forwarded to TypeAdapter, which Pydantic rejects for BaseModel types.
+    """
+    from fastapi._compat import v2
+
+    class Item(BaseModel):
+        name: str
+
+    class Wrapper(RootModel[Annotated[Item, Field(description="an item")]]):
+        pass
+
+    # Must not raise PydanticUserError
+    fields = v2.get_model_fields(Wrapper)
+    assert len(fields) == 1
+    assert fields[0].name == "root"
+
+
+def test_get_model_fields_annotated_basemodel_openapi():
+    """
+    OpenAPI schema generation must not crash when a response model is a
+    RootModel whose root annotation is Annotated[SomeBaseModel, Field(...)].
+    """
+    from fastapi.openapi.utils import get_openapi
+
+    class Item(BaseModel):
+        name: str
+
+    class Wrapper(RootModel[Annotated[Item, Field(description="an item")]]):
+        pass
+
+    app = FastAPI()
+
+    @app.get("/test", response_model=Wrapper)
+    def endpoint():
+        return Wrapper(root=Item(name="foo"))
+
+    client = TestClient(app)
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert "/test" in schema["paths"]
