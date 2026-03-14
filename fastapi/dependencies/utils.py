@@ -930,7 +930,10 @@ async def _extract_form_body(
             assert isinstance(value, sequence_types)
             results: list[bytes | str] = []
             for sub_value in value:
-                results.append(await sub_value.read())
+                if isinstance(sub_value, UploadFile):
+                    results.append(await sub_value.read())
+                else:
+                    results.append(sub_value)
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[get_validation_alias(field)] = value
