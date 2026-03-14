@@ -18,7 +18,7 @@ from fastapi._compat import (
 from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
-    _get_flat_fields_from_params,
+    _get_flat_fields_from_params_with_origin,
     get_flat_dependant,
     get_flat_params,
     get_validation_alias,
@@ -36,7 +36,6 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 
@@ -116,25 +115,22 @@ def _get_openapi_operation_parameters(
 ) -> list[dict[str, Any]]:
     parameters = []
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    path_params = _get_flat_fields_from_params_with_origin(flat_dependant.path_params)
+    query_params = _get_flat_fields_from_params_with_origin(flat_dependant.query_params)
+    header_params = _get_flat_fields_from_params_with_origin(
+        flat_dependant.header_params
+    )
+    cookie_params = _get_flat_fields_from_params_with_origin(
+        flat_dependant.cookie_params
+    )
     parameter_groups = [
         (ParamTypes.path, path_params),
         (ParamTypes.query, query_params),
         (ParamTypes.header, header_params),
         (ParamTypes.cookie, cookie_params),
     ]
-    default_convert_underscores = True
-    if len(flat_dependant.header_params) == 1:
-        first_field = flat_dependant.header_params[0]
-        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
-            default_convert_underscores = getattr(
-                first_field.field_info, "convert_underscores", True
-            )
     for param_type, param_group in parameter_groups:
-        for param in param_group:
+        for param, base_field in param_group:
             field_info = param.field_info
             # field_info = cast(Param, field_info)
             if not getattr(field_info, "include_in_schema", True):
@@ -149,7 +145,7 @@ def _get_openapi_operation_parameters(
             convert_underscores = getattr(
                 param.field_info,
                 "convert_underscores",
-                default_convert_underscores,
+                getattr(base_field.field_info, "convert_underscores", True),
             )
             if (
                 param_type == ParamTypes.header
