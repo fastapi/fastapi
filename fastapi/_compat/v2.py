@@ -22,10 +22,10 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
-from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
+from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
-from pydantic._internal._typing_extra import eval_type_lenient
+from pydantic._internal._typing_extra import eval_type_lenient  # ty: ignore[deprecated]
 from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
@@ -38,7 +38,7 @@ from pydantic_core.core_schema import (
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-evaluate_forwardref = eval_type_lenient
+evaluate_forwardref = eval_type_lenient  # ty: ignore[deprecated]
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
@@ -148,7 +148,7 @@ class ModelField:
                 Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[annotated_args],
+                Annotated[annotated_args],  # ty: ignore[invalid-type-form]
                 config=self.config,
             )
 
@@ -438,7 +438,7 @@ def get_flat_models_from_annotation(
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)):
                 if arg not in known_models:
-                    known_models.add(arg)  # type: ignore[arg-type]
+                    known_models.add(arg)  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
                     if lenient_issubclass(arg, BaseModel):
                         get_flat_models_from_model(arg, known_models=known_models)
             else:
