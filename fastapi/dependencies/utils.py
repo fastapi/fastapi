@@ -774,6 +774,11 @@ def _get_multidict_value(
         if field.field_info.is_required():
             return
         else:
+            # For FormData, return None to let Pydantic handle defaults
+            # This preserves model_fields_set metadata correctly
+            if isinstance(values, FormData):
+                return
+            # For non-FormData (Query, Header, Cookie), keep existing behavior
             return deepcopy(field.default)
     return value
 
