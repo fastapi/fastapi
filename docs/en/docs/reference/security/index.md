@@ -21,6 +21,7 @@ from fastapi.security import (
     OAuth2,
     OAuth2AuthorizationCodeBearer,
     OAuth2PasswordBearer,
+    OAuth2ClientCredentials,
     OAuth2PasswordRequestForm,
     OAuth2PasswordRequestFormStrict,
     OpenIdConnect,
@@ -59,6 +60,8 @@ Read more about them in the [FastAPI docs about Security](https://fastapi.tiango
 ::: fastapi.security.OAuth2AuthorizationCodeBearer
 
 ::: fastapi.security.OAuth2PasswordBearer
+
+::: fastapi.security.OAuth2ClientCredentials
 
 ## OAuth2 Password Form
 
