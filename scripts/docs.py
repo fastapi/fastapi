@@ -30,6 +30,7 @@ SUPPORTED_LANGS = {
     "ru",
     "tr",
     "uk",
+    "ur",
     "zh",
     "zh-hant",
 }
