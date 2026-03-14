@@ -254,6 +254,12 @@ Inspired by Termynal's CSS tricks with modifications
           box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
 }
 
+.doc-param-details .highlight {
+  overflow-x: auto;
+  width: 0;
+  min-width: 100%;
+}
+
 .md-typeset dfn {
   border-bottom: .05rem dotted var(--md-default-fg-color--light);
   cursor: help;
