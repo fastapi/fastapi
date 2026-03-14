@@ -143,7 +143,7 @@ class OAuth2PasswordRequestForm:
             Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
-                If there's a `client_password` (and a `client_id`), they can be sent
+                If there's a `client_secret` (and a `client_id`), they can be sent
                 as part of the form fields. But the OAuth2 specification recommends
                 sending the `client_id` and `client_secret` (if any) using HTTP Basic
                 auth.
@@ -309,7 +309,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             Form(),
             Doc(
                 """
-                If there's a `client_password` (and a `client_id`), they can be sent
+                If there's a `client_secret` (and a `client_id`), they can be sent
                 as part of the form fields. But the OAuth2 specification recommends
                 sending the `client_id` and `client_secret` (if any) using HTTP Basic
                 auth.
