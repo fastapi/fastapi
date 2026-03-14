@@ -33,9 +33,7 @@ def test_warn_when_response_background_overwrites_injected_tasks():
         resp = client.get("/")
 
     assert resp.status_code == 200
-    bg_warnings = [
-        w for w in caught if "background" in str(w.message).lower()
-    ]
+    bg_warnings = [w for w in caught if "background" in str(w.message).lower()]
     assert len(bg_warnings) == 1
     assert issubclass(bg_warnings[0].category, UserWarning)
 
@@ -61,9 +59,7 @@ def test_no_warn_when_response_has_no_background():
         resp = client.get("/")
 
     assert resp.status_code == 200
-    bg_warnings = [
-        w for w in caught if "background" in str(w.message).lower()
-    ]
+    bg_warnings = [w for w in caught if "background" in str(w.message).lower()]
     assert len(bg_warnings) == 0
     # The injected task should have run
     assert executed == [True]
@@ -89,8 +85,6 @@ def test_no_warn_when_no_injected_background_tasks():
         resp = client.get("/")
 
     assert resp.status_code == 200
-    bg_warnings = [
-        w for w in caught if "background" in str(w.message).lower()
-    ]
+    bg_warnings = [w for w in caught if "background" in str(w.message).lower()]
     assert len(bg_warnings) == 0
     assert executed == [True]
