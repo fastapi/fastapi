@@ -215,9 +215,11 @@ def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
         # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
         # e.g. dependency return types
         if sys.version_info >= (3, 14):
-            from annotationlib import Format
+            from annotationlib import Format  # pragma: no cover
 
-            signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
+            signature = inspect.signature(  # pragma: no cover
+                call, annotation_format=Format.FORWARDREF
+            )
         else:
             signature = inspect.signature(call)
     return signature
@@ -289,7 +291,7 @@ def get_dependant(
     own_oauth_scopes: list[str] | None = None,
     parent_oauth_scopes: list[str] | None = None,
     use_cache: bool = True,
-    scope: Literal["function", "request"] | None = None,
+    scope: Literal["function", "request", "lifespan"] | None = None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -323,6 +325,21 @@ def get_dependant(
                 raise DependencyScopeError(
                     f'The dependency "{dependant.call.__name__}" has a scope of '
                     '"request", it cannot depend on dependencies with scope "function".'
+                )
+            # Lifespan-scoped dependencies can only depend on other lifespan-scoped deps.
+            if (
+                dependant.computed_scope == "lifespan"
+                and param_details.depends.scope
+                not in (
+                    None,
+                    "lifespan",
+                )
+            ):
+                assert dependant.call
+                raise DependencyScopeError(
+                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    '"lifespan", it cannot depend on dependencies with scope '
+                    f'"{param_details.depends.scope}".'
                 )
             sub_own_oauth_scopes: list[str] = []
             if isinstance(param_details.depends, params.Security):
@@ -605,6 +622,7 @@ async def solve_dependencies(
     # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
+    solving_lifespan_deps: bool = False,
 ) -> SolvedDependency:
     request_astack = request.scope.get("fastapi_inner_astack")
     assert isinstance(request_astack, AsyncExitStack), (
@@ -653,6 +671,7 @@ async def solve_dependencies(
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
+            solving_lifespan_deps=solving_lifespan_deps,
         )
         background_tasks = solved_result.background_tasks
         if solved_result.errors:
@@ -660,6 +679,30 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
+        elif sub_dependant.computed_scope == "lifespan":
+            # At request time, lifespan deps must come from cache (set at startup).
+            if sub_dependant.cache_key in dependency_cache:
+                solved = dependency_cache[sub_dependant.cache_key]  # pragma: no cover
+            elif solving_lifespan_deps:
+                # At startup: run the lifespan dep; request_astack is the lifespan stack.
+                if (
+                    use_sub_dependant.is_gen_callable
+                    or use_sub_dependant.is_async_gen_callable
+                ):
+                    solved = await _solve_generator(
+                        dependant=use_sub_dependant,
+                        stack=request_astack,
+                        sub_values=solved_result.values,
+                    )
+                elif use_sub_dependant.is_coroutine_callable:
+                    solved = await call(**solved_result.values)
+                else:
+                    solved = await run_in_threadpool(call, **solved_result.values)
+            else:
+                raise DependencyScopeError(
+                    "Lifespan-scoped dependency was not initialized at application startup. "
+                    "Ensure the application lifespan runs and populates lifespan dependencies."
+                )
         elif (
             use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable
         ):
