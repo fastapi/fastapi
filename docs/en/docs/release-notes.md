@@ -19,6 +19,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump dorny/paths-filter from 3 to 4. PR [#15106](https://github.com/fastapi/fastapi/pull/15106) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cairosvg from 2.8.2 to 2.9.0. PR [#15108](https://github.com/fastapi/fastapi/pull/15108) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyjwt from 2.11.0 to 2.12.0. PR [#15110](https://github.com/fastapi/fastapi/pull/15110) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 26.1.0 to 26.3.1. PR [#15100](https://github.com/fastapi/fastapi/pull/15100) by [@dependabot[bot]](https://github.com/apps/dependabot).
