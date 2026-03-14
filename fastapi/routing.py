@@ -94,6 +94,7 @@ from typing_extensions import deprecated
 # dependencies' AsyncExitStack
 def request_response(
     func: Callable[[Request], Awaitable[Response] | Response],
+    exception_handlers: dict[int | type[Exception], Callable[..., Any]] | None = None,
 ) -> ASGIApp:
     """
     Takes a function or coroutine `func(request) -> response`,
@@ -104,6 +105,18 @@ def request_response(
     )
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        if exception_handlers:
+            existing_exc, existing_status = scope.get(
+                "starlette.exception_handlers", ({}, {})
+            )
+            merged_exc = {**existing_exc}
+            merged_status = {**existing_status}
+            for key, handler in exception_handlers.items():
+                if isinstance(key, int):
+                    merged_status[key] = handler
+                else:
+                    merged_exc[key] = handler
+            scope["starlette.exception_handlers"] = (merged_exc, merged_status)
         request = Request(scope, receive, send)
 
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -136,6 +149,7 @@ def request_response(
 # dependencies' AsyncExitStack
 def websocket_session(
     func: Callable[[WebSocket], Awaitable[None]],
+    exception_handlers: dict[int | type[Exception], Callable[..., Any]] | None = None,
 ) -> ASGIApp:
     """
     Takes a coroutine `func(session)`, and returns an ASGI application.
@@ -143,6 +157,18 @@ def websocket_session(
     # assert asyncio.iscoroutinefunction(func), "WebSocket endpoints must be async"
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        if exception_handlers:
+            existing_exc, existing_status = scope.get(
+                "starlette.exception_handlers", ({}, {})
+            )
+            merged_exc = {**existing_exc}
+            merged_status = {**existing_status}
+            for key, handler in exception_handlers.items():
+                if isinstance(key, int):
+                    merged_status[key] = handler
+                else:
+                    merged_exc[key] = handler
+            scope["starlette.exception_handlers"] = (merged_exc, merged_status)
         session = WebSocket(scope, receive=receive, send=send)
 
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -771,11 +797,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         name: str | None = None,
         dependencies: Sequence[params.Depends] | None = None,
         dependency_overrides_provider: Any | None = None,
+        exception_handlers: dict[int | type[Exception], Callable[..., Any]]
+        | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
+        self.exception_handlers = exception_handlers or {}
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(
             path=self.path_format, call=self.endpoint, scope="function"
@@ -794,7 +823,8 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 embed_body_fields=self._embed_body_fields,
-            )
+            ),
+            exception_handlers=self.exception_handlers or None,
         )
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
@@ -836,9 +866,12 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Callable[["APIRoute"], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
+        exception_handlers: dict[int | type[Exception], Callable[..., Any]]
+        | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        self.exception_handlers = exception_handlers or {}
         self.stream_item_type: Any | None = None
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
@@ -969,7 +1002,10 @@ class APIRoute(routing.Route):
         self.is_json_stream = is_generator and isinstance(
             response_class, DefaultPlaceholder
         )
-        self.app = request_response(self.get_route_handler())
+        self.app = request_response(
+            self.get_route_handler(),
+            exception_handlers=self.exception_handlers or None,
+        )
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
@@ -1262,6 +1298,18 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(True),
+        exception_handlers: Annotated[
+            dict[int | type[Exception], Callable[..., Any]] | None,
+            Doc(
+                """
+                A dictionary of exception handlers scoped to this router.
+
+                Keys can be exception classes or HTTP status codes. Handlers
+                defined here will override app-level exception handlers for
+                routes within this router.
+                """
+            ),
+        ] = None,
     ) -> None:
         # Determine the lifespan context to use
         if lifespan is None:
@@ -1309,6 +1357,16 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
         self.strict_content_type = strict_content_type
+        self.exception_handlers: dict[int | type[Exception], Callable[..., Any]] = (
+            {} if exception_handlers is None else dict(exception_handlers)
+        )
+
+    def add_exception_handler(
+        self,
+        exc_class_or_status_code: int | type[Exception],
+        handler: Callable[..., Any],
+    ) -> None:
+        self.exception_handlers[exc_class_or_status_code] = handler
 
     def route(
         self,
@@ -1360,6 +1418,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
+        exception_handlers: dict[int | type[Exception], Callable[..., Any]]
+        | None = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1379,6 +1439,11 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+        current_exception_handlers: dict[int | type[Exception], Callable[..., Any]] = (
+            dict(self.exception_handlers)
+        )
+        if exception_handlers:
+            current_exception_handlers.update(exception_handlers)
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -1409,6 +1474,7 @@ class APIRouter(routing.Router):
             strict_content_type=get_value_or_default(
                 strict_content_type, self.strict_content_type
             ),
+            exception_handlers=current_exception_handlers or None,
         )
         self.routes.append(route)
 
@@ -1481,10 +1547,17 @@ class APIRouter(routing.Router):
         name: str | None = None,
         *,
         dependencies: Sequence[params.Depends] | None = None,
+        exception_handlers: dict[int | type[Exception], Callable[..., Any]]
+        | None = None,
     ) -> None:
         current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
+        current_exception_handlers: dict[int | type[Exception], Callable[..., Any]] = (
+            dict(self.exception_handlers)
+        )
+        if exception_handlers:
+            current_exception_handlers.update(exception_handlers)
 
         route = APIWebSocketRoute(
             self.prefix + path,
@@ -1492,6 +1565,7 @@ class APIRouter(routing.Router):
             name=name,
             dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            exception_handlers=current_exception_handlers or None,
         )
         self.routes.append(route)
 
@@ -1755,6 +1829,13 @@ class APIRouter(routing.Router):
                     generate_unique_id_function,
                     self.generate_unique_id_function,
                 )
+                current_exception_handlers: dict[
+                    int | type[Exception], Callable[..., Any]
+                ] = {}
+                if router.exception_handlers:
+                    current_exception_handlers.update(router.exception_handlers)
+                if route.exception_handlers:
+                    current_exception_handlers.update(route.exception_handlers)
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -1789,6 +1870,7 @@ class APIRouter(routing.Router):
                         router.strict_content_type,
                         self.strict_content_type,
                     ),
+                    exception_handlers=current_exception_handlers or None,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
@@ -1805,11 +1887,17 @@ class APIRouter(routing.Router):
                     current_dependencies.extend(dependencies)
                 if route.dependencies:
                     current_dependencies.extend(route.dependencies)
+                current_exception_handlers = {}
+                if router.exception_handlers:
+                    current_exception_handlers.update(router.exception_handlers)
+                if route.exception_handlers:
+                    current_exception_handlers.update(route.exception_handlers)
                 self.add_api_websocket_route(
                     prefix + route.path,
                     route.endpoint,
                     dependencies=current_dependencies,
                     name=route.name,
+                    exception_handlers=current_exception_handlers or None,
                 )
             elif isinstance(route, routing.WebSocketRoute):
                 self.add_websocket_route(

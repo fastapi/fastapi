@@ -173,6 +173,7 @@ nav:
     - advanced/response-headers.md
     - advanced/response-change-status-code.md
     - advanced/advanced-dependencies.md
+    - advanced/router-exception-handlers.md
     - Advanced Security:
       - advanced/security/index.md
       - advanced/security/oauth2-scopes.md
