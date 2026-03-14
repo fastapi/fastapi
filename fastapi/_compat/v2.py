@@ -383,7 +383,14 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     model_fields: list[ModelField] = []
     for name, field_info in model.model_fields.items():
         type_ = field_info.annotation
-        if lenient_issubclass(type_, (BaseModel, dict)) or is_dataclass(type_):
+        # Unwrap Annotated[T, ...] to T before the issubclass check.
+        # For RootModel fields and similar, pydantic may store the annotation
+        # as Annotated[SomeBaseModel, FieldInfo(...)]. lenient_issubclass does
+        # not recognise the Annotated wrapper as a BaseModel subclass, so
+        # model_config would be passed to TypeAdapter, which Pydantic rejects
+        # when the inner type is a BaseModel/dataclass/TypedDict.
+        check_type = get_args(type_)[0] if get_origin(type_) is Annotated else type_
+        if lenient_issubclass(check_type, (BaseModel, dict)) or is_dataclass(check_type):
             model_config = None
         else:
             model_config = model.model_config
