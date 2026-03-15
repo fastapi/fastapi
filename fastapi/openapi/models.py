@@ -16,11 +16,11 @@ from typing_extensions import deprecated as typing_deprecated
 try:
     import email_validator
 
-    assert email_validator  # make autoflake ignore the unused import
+    assert email_validator  # Make autoflake ignore the unused import
     from pydantic import EmailStr
-except ImportError:  # pragma: no cover
+except ImportError:  # Pragma: no cover
 
-    class EmailStr(str):  # type: ignore
+    class EmailStr(str):  # Type: ignore
         @classmethod
         def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate
@@ -215,7 +215,7 @@ class Example(TypedDict, total=False):
     value: Any | None
     externalValue: AnyUrl | None
 
-    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]
+    __pydantic_config__ = {"extra": "allow"}  # Type: ignore[misc]
 
 
 class ParameterInType(Enum):
