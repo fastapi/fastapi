@@ -49,6 +49,11 @@ def _wrap_lifespan_with_dependency_cache(original: Any) -> Any:
         @asynccontextmanager
         async def cm() -> Any:
             fastapi_app = getattr(app, "_fastapi_app", None)
+            if fastapi_app is None and hasattr(app, "router"):
+                router = getattr(app, "router", None)
+                if router is not None and getattr(router, "_fastapi_app", None) is app:
+                    fastapi_app = app
+            router_for_deps = getattr(app, "router", app)
             stack: AsyncExitStack | None = None
             orig_cm = original(app)
             try:
@@ -56,7 +61,9 @@ def _wrap_lifespan_with_dependency_cache(original: Any) -> Any:
                     stack = AsyncExitStack()
                     await stack.__aenter__()
                     cache: dict[Any, Any] = {}
-                    await routing._run_lifespan_dependencies(app, cache, stack)
+                    await routing._run_lifespan_dependencies(
+                        router_for_deps, cache, stack
+                    )
                     setattr(
                         fastapi_app.state,
                         FASTAPI_LIFESPAN_DEPENDENCY_CACHE,
@@ -1020,7 +1027,7 @@ class FastAPI(Starlette):
         _inner_lifespan = (
             lifespan
             if lifespan is not None
-            else (lambda app: routing._DefaultLifespan(app))
+            else (lambda app: routing._DefaultLifespan(app.router))
         )
         _lifespan = _wrap_lifespan_with_dependency_cache(_inner_lifespan)
         self.router: routing.APIRouter = routing.APIRouter(

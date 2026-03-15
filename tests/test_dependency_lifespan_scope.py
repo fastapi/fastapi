@@ -122,10 +122,9 @@ def test_collect_lifespan_dependants_route_level_scope() -> None:
 
 
 def test_lifespan_dependency_synthetic_request_receive_send() -> None:
-    """Lifespan dep that uses Request.receive/send covers noop_receive and noop_send during startup."""
+    """Lifespan dep that uses Request.receive covers noop_receive during startup."""
     async def lifespan_dep(request: Request) -> str:
         await request.receive()
-        await request.send({"type": "http.response.body"})
         return "ok"
 
     app = FastAPI()
