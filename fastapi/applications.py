@@ -1,4 +1,5 @@
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum
 from typing import Annotated, Any, TypeVar
 
@@ -36,6 +37,43 @@ from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope,
 from typing_extensions import deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
+
+# Attribute name on the router used to run lifespan-scoped dependencies at startup.
+FASTAPI_LIFESPAN_DEPENDENCY_CACHE = "fastapi_lifespan_dependency_cache"
+
+
+def _wrap_lifespan_with_dependency_cache(original: Any) -> Any:
+    """Wrap the user's lifespan to run and cache lifespan-scoped dependencies."""
+
+    def wrapped(app: Any) -> Any:
+        @asynccontextmanager
+        async def cm() -> Any:
+            fastapi_app = getattr(app, "_fastapi_app", None)
+            stack: AsyncExitStack | None = None
+            orig_cm = original(app)
+            try:
+                if fastapi_app is not None:
+                    stack = AsyncExitStack()
+                    await stack.__aenter__()
+                    cache: dict[Any, Any] = {}
+                    await routing._run_lifespan_dependencies(app, cache, stack)
+                    setattr(
+                        fastapi_app.state,
+                        FASTAPI_LIFESPAN_DEPENDENCY_CACHE,
+                        cache,
+                    )
+                yield await orig_cm.__aenter__()
+            finally:
+                import sys
+
+                exc_type, exc_val, exc_tb = sys.exc_info()
+                await orig_cm.__aexit__(exc_type, exc_val, exc_tb)
+                if stack is not None:
+                    await stack.__aexit__(exc_type, exc_val, exc_tb)
+
+        return cm()
+
+    return wrapped
 
 
 class FastAPI(Starlette):
@@ -979,13 +1017,19 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
+        _inner_lifespan = (
+            lifespan
+            if lifespan is not None
+            else (lambda app: routing._DefaultLifespan(app))
+        )
+        _lifespan = _wrap_lifespan_with_dependency_cache(_inner_lifespan)
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
-            lifespan=lifespan,
+            lifespan=_lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
             callbacks=callbacks,
@@ -995,6 +1039,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             strict_content_type=strict_content_type,
         )
+        self.router._fastapi_app = self
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
