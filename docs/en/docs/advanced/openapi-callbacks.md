@@ -35,7 +35,7 @@ This part is pretty normal, most of the code is probably already familiar to you
 
 /// tip
 
-The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
+The `callback_url` query parameter uses a Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type.
 
 ///
 
@@ -66,7 +66,7 @@ This example doesn't implement the callback itself (that could be just a line of
 
 The actual callback is just an HTTP request.
 
-When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+When implementing the callback yourself, you could use something like [HTTPX](https://www.python-httpx.org) or [Requests](https://requests.readthedocs.io/).
 
 ///
 
@@ -106,11 +106,11 @@ It should look just like a normal FastAPI *path operation*:
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression { #the-callback-path-expression }
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -179,7 +179,7 @@ Notice that you are not passing the router itself (`invoices_callback_router`) t
 
 ### Check the docs { #check-the-docs }
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
 
