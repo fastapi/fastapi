@@ -179,3 +179,8 @@ def Default(value: DefaultType) -> DefaultType:
     if the overridden default value was truthy.
     """
     return DefaultPlaceholder(value)  # type: ignore
+
+
+# Sentinel for "parameter not provided" in Param/FieldInfo.
+# Typed as None to satisfy ty
+_Unset = Default(None)
