@@ -22,7 +22,7 @@ from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color
+from pydantic.color import Color  # ty: ignore[deprecated]
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
@@ -67,7 +67,7 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
 
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
-    Color: str,
+    Color: str,  # ty: ignore[deprecated]
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -220,9 +220,9 @@ def jsonable_encoder(
                 if isinstance(obj, encoder_type):
                     return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
-        include = set(include)  # type: ignore[assignment]
+        include = set(include)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
-        exclude = set(exclude)  # type: ignore[assignment]
+        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",
