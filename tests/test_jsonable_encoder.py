@@ -225,6 +225,25 @@ def test_custom_encoders():
     assert encoded_instance2["dt_field"] == instance["dt_field"].isoformat()
 
 
+def test_custom_encoders_for_pydantic_model_arbitrary_type():
+    class CustomType:
+        def __init__(self, value: str):
+            self.value = value
+
+    class ModelWithCustomType(BaseModel):
+        custom: CustomType
+
+        model_config = {"arbitrary_types_allowed": True}
+
+    instance = ModelWithCustomType(custom=CustomType("encoded"))
+
+    encoded_instance = jsonable_encoder(
+        instance,
+        custom_encoder={CustomType: lambda o: {"value": o.value}},
+    )
+    assert encoded_instance == {"custom": {"value": "encoded"}}
+
+
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
         return v.value.lower()

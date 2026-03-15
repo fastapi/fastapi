@@ -224,8 +224,11 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
     if isinstance(obj, BaseModel):
+        model_dump_mode: str = "json"
+        if custom_encoder:
+            model_dump_mode = "python"
         obj_dict = obj.model_dump(
-            mode="json",
+            mode=model_dump_mode,
             include=include,
             exclude=exclude,
             by_alias=by_alias,
@@ -237,6 +240,7 @@ def jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
+            custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
