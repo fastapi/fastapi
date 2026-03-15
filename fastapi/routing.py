@@ -26,6 +26,7 @@ from typing import (
     Annotated,
     Any,
     TypeVar,
+    cast,
 )
 
 import anyio
@@ -75,6 +76,7 @@ from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response, StreamingResponse
@@ -100,8 +102,10 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
-    )
+        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        if is_async_callable(func)
+        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
+    )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -517,7 +521,7 @@ def get_request_handler(
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
-            body=body,
+            body=cast(dict[str, Any] | FormData | bytes | None, body),
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
@@ -700,7 +704,7 @@ def get_request_handler(
                 else:
 
                     def _sync_stream_jsonl() -> Iterator[bytes]:
-                        for item in gen:
+                        for item in gen:  # ty: ignore[not-iterable]
                             yield _serialize_item(item)
 
                     jsonl_stream_content = _sync_stream_jsonl()
@@ -978,7 +982,7 @@ class APIRoute(routing.Route):
                 mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore
+            self.response_field = None  # type: ignore  # ty: ignore[unused-ignore-comment]
         if self.stream_item_type:
             stream_item_name = "StreamItem_" + self.unique_id
             self.stream_item_field: ModelField | None = create_model_field(

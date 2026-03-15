@@ -1,10 +1,6 @@
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import (
-    Annotated,
-    Any,
-    TypeVar,
-)
+from typing import Annotated, Any, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -1006,11 +1002,12 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
+
+        # Starlette still has incorrect type specification for the handlers
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
-            # Starlette still has incorrect type specification for the handlers
-            websocket_request_validation_exception_handler,  # type: ignore
-        )
+            websocket_request_validation_exception_handler,  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+        )  # ty: ignore[no-matching-overload]
 
         self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
@@ -1032,11 +1029,13 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                    ExceptionMiddleware,  # ty: ignore[invalid-argument-type]
+                    handlers=exception_handlers,
+                    debug=debug,
                 ),
                 # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
                 # Before this was also used for closing dependencies with yield but
@@ -1057,7 +1056,7 @@ class FastAPI(Starlette):
                 # user middlewares, the same context is used.
                 # This is currently not needed, only for closing files, but used to be
                 # important when dependencies with yield were closed here.
-                Middleware(AsyncExitStackMiddleware),
+                Middleware(AsyncExitStackMiddleware),  # ty: ignore[invalid-argument-type]
             ]
         )
 
@@ -4596,7 +4595,7 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
-        return self.router.on_event(event_type)
+        return self.router.on_event(event_type)  # ty: ignore[deprecated]
 
     def middleware(
         self,
@@ -4639,7 +4638,7 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)  # ty: ignore[invalid-argument-type]
             return func
 
         return decorator

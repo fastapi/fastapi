@@ -177,6 +177,7 @@ tests = [
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
+    "ty>=0.0.9",
     "types-orjson >=3.6.2",
     "types-ujson >=5.10.0.20240515",
     "a2wsgi >=1.9.0,<=2.0.0",
