@@ -10,6 +10,26 @@ Keep existing translations as they are if the term is already translated.
 
 When translating documentation into Portuguese, use neutral and widely understandable language. Although Portuguese originated in Portugal and has its largest number of speakers in Brazil, it is also an official language in several countries and regions, such as Equatorial Guinea, Mozambique, Angola, Cape Verde, and São Tomé and Príncipe. Avoid words or expressions that are specific to a single country or region.
 
+Only keep parentheses if they exist in the source text. Do not add parentheses to terms that do not have them.
+
+### Avoiding Repetition in Translation
+
+When translating sentences, avoid unnecessary repetition of words or phrases that are implied in context.
+- Merge repeated words naturally while keeping the meaning.
+- Do **not** introduce extra words to replace repeated phrases unnecessarily.
+- Keep translations fluent and concise, but maintain the original meaning.
+
+**Example:**
+
+Source:
+Let's see how that works and how to change it if you need to do that.
+
+Avoid translating literally as:
+Vamos ver como isso funciona e como alterar isso se você precisar fazer isso.
+
+Better translation:
+Vamos ver como isso funciona e como alterar se você precisar.
+
 ---
 
 For the next terms, use the following translations:
@@ -22,10 +42,11 @@ For the next terms, use the following translations:
 * /// note: /// note | Nota
 * /// tip: /// tip | Dica
 * /// warning: /// warning | Atenção
-* (you should): (você deveria)
+* you should: você deveria
 * async context manager: gerenciador de contexto assíncrono
 * autocomplete: autocompletar
 * autocompletion: preenchimento automático
+* auto-completion: preenchimento automático
 * bug: bug
 * context manager: gerenciador de contexto
 * cross domain: cross domain (do not translate to "domínio cruzado")

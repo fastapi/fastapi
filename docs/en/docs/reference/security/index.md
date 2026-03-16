@@ -28,6 +28,8 @@ from fastapi.security import (
 )
 ```
 
+Read more about them in the [FastAPI docs about Security](https://fastapi.tiangolo.com/tutorial/security/).
+
 ## API Key Security Schemes
 
 ::: fastapi.security.APIKeyCookie

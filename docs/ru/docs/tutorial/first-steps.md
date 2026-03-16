@@ -2,7 +2,7 @@
 
 Самый простой файл FastAPI может выглядеть так:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Скопируйте это в файл `main.py`.
 
@@ -183,7 +183,7 @@ Deploying to FastAPI Cloud...
 
 ### Шаг 1: импортируйте `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` — это класс на Python, который предоставляет всю функциональность для вашего API.
 
@@ -197,7 +197,7 @@ Deploying to FastAPI Cloud...
 
 ### Шаг 2: создайте экземпляр `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Здесь переменная `app` будет экземпляром класса `FastAPI`.
 
@@ -266,12 +266,12 @@ https://example.com/items/foo
 
 #### Определите *декоратор операции пути (path operation decorator)* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")` сообщает **FastAPI**, что функция прямо под ним отвечает за обработку запросов, поступающих:
 
 * по пути `/`
-* с использованием <abbr title="метод HTTP GET"><code>get</code> операции</abbr>
+* с использованием <dfn title="метод HTTP GET"><code>get</code> операции</dfn>
 
 /// info | Информация о `@decorator`
 
@@ -320,7 +320,7 @@ https://example.com/items/foo
 * **операция**: `get`.
 * **функция**: функция ниже «декоратора» (ниже `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Это функция на Python.
 
@@ -332,7 +332,7 @@ https://example.com/items/foo
 
 Вы также можете определить её как обычную функцию вместо `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Примечание
 
@@ -342,7 +342,7 @@ https://example.com/items/foo
 
 ### Шаг 5: верните содержимое { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Вы можете вернуть `dict`, `list`, отдельные значения `str`, `int` и т.д.
 

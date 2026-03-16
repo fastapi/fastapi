@@ -1,24 +1,24 @@
-# Body - Paramètres multiples
+# Body - Paramètres multiples { #body-multiple-parameters }
 
-Maintenant que nous avons vu comment manipuler `Path` et `Query`, voyons comment faire pour le corps d'une requête, communément désigné par le terme anglais "body".
+Maintenant que nous avons vu comment utiliser `Path` et `Query`, voyons des usages plus avancés des déclarations de paramètres du corps de la requête.
 
-## Mélanger les paramètres `Path`, `Query` et body
+## Mélanger les paramètres `Path`, `Query` et du corps de la requête { #mix-path-query-and-body-parameters }
 
-Tout d'abord, sachez que vous pouvez mélanger les déclarations des paramètres `Path`, `Query` et body, **FastAPI** saura quoi faire.
+Tout d'abord, sachez que vous pouvez mélanger librement les déclarations des paramètres `Path`, `Query` et du corps de la requête, **FastAPI** saura quoi faire.
 
-Vous pouvez également déclarer des paramètres body comme étant optionnels, en leur assignant une valeur par défaut à `None` :
+Et vous pouvez également déclarer des paramètres du corps de la requête comme étant optionnels, en leur assignant une valeur par défaut à `None` :
 
 {* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
-/// note
+/// note | Remarque
 
-Notez que, dans ce cas, le paramètre `item` provenant du `Body` est optionnel (sa valeur par défaut est `None`).
+Notez que, dans ce cas, l'élément `item` récupéré depuis le corps de la requête est optionnel. Comme sa valeur par défaut est `None`.
 
 ///
 
-## Paramètres multiples du body
+## Paramètres multiples du corps de la requête { #multiple-body-parameters }
 
-Dans l'exemple précédent, les opérations de routage attendaient un body JSON avec les attributs d'un `Item`, par exemple :
+Dans l'exemple précédent, les chemins d'accès attendraient un corps de la requête JSON avec les attributs d'un `Item`, par exemple :
 
 ```JSON
 {
@@ -29,13 +29,13 @@ Dans l'exemple précédent, les opérations de routage attendaient un body JSON 
 }
 ```
 
-Mais vous pouvez également déclarer plusieurs paramètres provenant de body, par exemple `item` et `user` simultanément :
+Mais vous pouvez également déclarer plusieurs paramètres provenant du corps de la requête, par exemple `item` et `user` :
 
 {* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-Dans ce cas, **FastAPI** détectera qu'il y a plus d'un paramètre dans le body (chacun correspondant à un modèle Pydantic).
+Dans ce cas, **FastAPI** détectera qu'il y a plus d'un paramètre du corps de la requête dans la fonction (il y a deux paramètres qui sont des modèles Pydantic).
 
-Il utilisera alors les noms des paramètres comme clés, et s'attendra à recevoir quelque chose de semblable à :
+Il utilisera alors les noms des paramètres comme clés (noms de champs) dans le corps de la requête, et s'attendra à recevoir un corps de la requête semblable à :
 
 ```JSON
 {
@@ -52,29 +52,29 @@ Il utilisera alors les noms des paramètres comme clés, et s'attendra à recevo
 }
 ```
 
-/// note
+/// note | Remarque
 
-"Notez que, bien que nous ayons déclaré le paramètre `item` de la même manière que précédemment, il est maintenant associé à la clé `item` dans le corps de la requête."`.
+Notez que, bien que `item` ait été déclaré de la même manière qu'auparavant, il est désormais attendu à l'intérieur du corps de la requête sous la clé `item`.
 
 ///
 
-**FastAPI** effectue la conversion de la requête de façon transparente, de sorte que les objets `item` et `user` se trouvent correctement définis.
+**FastAPI** effectuera la conversion automatique depuis la requête, de sorte que le paramètre `item` reçoive son contenu spécifique, et de même pour `user`.
 
-Il effectue également la validation des données (même imbriquées les unes dans les autres), et permet de les documenter correctement (schéma OpenAPI et documentation auto-générée).
+Il effectuera la validation des données composées, et les documentera ainsi pour le schéma OpenAPI et la documentation automatique.
 
-## Valeurs scalaires dans le body
+## Valeurs singulières dans le corps de la requête { #singular-values-in-body }
 
-De la même façon qu'il existe `Query` et `Path` pour définir des données supplémentaires pour les paramètres query et path, **FastAPI** fournit un équivalent `Body`.
+De la même façon qu'il existe `Query` et `Path` pour définir des données supplémentaires pour les paramètres de requête et de chemin, **FastAPI** fournit un équivalent `Body`.
 
-Par exemple, en étendant le modèle précédent, vous pouvez vouloir ajouter un paramètre `importance` dans le même body, en plus des paramètres `item` et `user`.
+Par exemple, en étendant le modèle précédent, vous pourriez décider d'avoir une autre clé `importance` dans le même corps de la requête, en plus de `item` et `user`.
 
-Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.github.com/fr/graphql/reference/scalars), **FastAPI** supposera qu'il s'agit d'un paramètre de requête (`Query`).
+Si vous le déclarez tel quel, comme c'est une valeur singulière, **FastAPI** supposera qu'il s'agit d'un paramètre de requête.
 
-Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant `Body` :
+Mais vous pouvez indiquer à **FastAPI** de la traiter comme une autre clé du corps de la requête en utilisant `Body` :
 
 {* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-Dans ce cas, **FastAPI** s'attendra à un body semblable à :
+Dans ce cas, **FastAPI** s'attendra à un corps de la requête semblable à :
 
 ```JSON
 {
@@ -92,19 +92,13 @@ Dans ce cas, **FastAPI** s'attendra à un body semblable à :
 }
 ```
 
-Encore une fois, cela convertira les types de données, les validera, permettra de générer la documentation, etc...
+Encore une fois, il convertira les types de données, validera, documentera, etc.
 
-## Paramètres multiples body et query
+## Paramètres multiples du corps de la requête et paramètres de requête { #multiple-body-params-and-query }
 
-Bien entendu, vous pouvez déclarer autant de paramètres que vous le souhaitez, en plus des paramètres body déjà déclarés.
+Bien entendu, vous pouvez également déclarer des paramètres de requête supplémentaires quand vous en avez besoin, en plus de tout paramètre du corps de la requête.
 
-Par défaut, les valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) sont interprétées comme des paramètres query, donc inutile d'ajouter explicitement `Query`. Vous pouvez juste écrire :
-
-```Python
-q: Union[str, None] = None
-```
-
-Ou bien, en Python 3.10 et supérieur :
+Comme, par défaut, les valeurs singulières sont interprétées comme des paramètres de requête, vous n'avez pas besoin d'ajouter explicitement `Query`, vous pouvez simplement écrire :
 
 ```Python
 q: str | None = None
@@ -112,31 +106,31 @@ q: str | None = None
 
 Par exemple :
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[27] *}
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 /// info
 
-`Body` possède les mêmes paramètres de validation additionnels et de gestion des métadonnées que `Query` et `Path`, ainsi que d'autres que nous verrons plus tard.
+`Body` possède également les mêmes paramètres supplémentaires de validation et de métadonnées que `Query`, `Path` et d'autres que vous verrez plus tard.
 
 ///
 
-## Inclure un paramètre imbriqué dans le body
+## Intégrer un seul paramètre du corps de la requête { #embed-a-single-body-parameter }
 
-Disons que vous avez seulement un paramètre `item` dans le body, correspondant à un modèle Pydantic `Item`.
+Supposons que vous n'ayez qu'un seul paramètre `item` dans le corps de la requête, provenant d'un modèle Pydantic `Item`.
 
-Par défaut, **FastAPI** attendra sa déclaration directement dans le body.
+Par défaut, **FastAPI** attendra alors son contenu directement.
 
-Cependant, si vous souhaitez qu'il interprête correctement un JSON avec une clé `item` associée au contenu du modèle, comme cela serait le cas si vous déclariez des paramètres body additionnels, vous pouvez utiliser le paramètre spécial `embed` de `Body` :
+Mais si vous voulez qu'il attende un JSON avec une clé `item` contenant le contenu du modèle, comme lorsqu'on déclare des paramètres supplémentaires du corps de la requête, vous pouvez utiliser le paramètre spécial `embed` de `Body` :
 
 ```Python
 item: Item = Body(embed=True)
 ```
 
-Voici un exemple complet :
+comme dans :
 
 {* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
-Dans ce cas **FastAPI** attendra un body semblable à :
+Dans ce cas **FastAPI** s'attendra à un corps de la requête semblable à :
 
 ```JSON hl_lines="2"
 {
@@ -160,12 +154,12 @@ au lieu de :
 }
 ```
 
-## Pour résumer
+## Récapitulatif { #recap }
 
-Vous pouvez ajouter plusieurs paramètres body dans votre fonction de routage, même si une requête ne peut avoir qu'un seul body.
+Vous pouvez ajouter plusieurs paramètres du corps de la requête à votre fonction de chemin d'accès, même si une requête ne peut avoir qu'un seul corps de la requête.
 
-Cependant, **FastAPI** se chargera de faire opérer sa magie, afin de toujours fournir à votre fonction des données correctes, les validera et documentera le schéma associé.
+Mais **FastAPI** s'en chargera, vous fournira les bonnes données dans votre fonction, et validera et documentera le schéma correct dans le chemin d'accès.
 
-Vous pouvez également déclarer des valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) à recevoir dans le body.
+Vous pouvez également déclarer des valeurs singulières à recevoir dans le corps de la requête.
 
-Et vous pouvez indiquer à **FastAPI** d'inclure le body dans une autre variable, même lorsqu'un seul paramètre est déclaré.
+Et vous pouvez indiquer à **FastAPI** d'intégrer le corps de la requête sous une clé même lorsqu'un seul paramètre est déclaré.

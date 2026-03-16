@@ -1,4 +1,4 @@
-# Server Workers - Gunicorn と Uvicorn
+# Server Workers - ワーカー付きUvicorn { #server-workers-uvicorn-with-workers }
 
 前回のデプロイメントのコンセプトを振り返ってみましょう：
 
@@ -9,124 +9,79 @@
 * メモリ
 * 開始前の事前ステップ
 
-ここまでのドキュメントのチュートリアルでは、おそらくUvicornのような**サーバープログラム**を**単一のプロセス**で実行しています。
+ここまでのドキュメントのチュートリアルでは、おそらく `fastapi` コマンドなど（Uvicornを実行するもの）を使って、**単一のプロセス**として動作する**サーバープログラム**を実行してきたはずです。
 
 アプリケーションをデプロイする際には、**複数のコア**を利用し、そしてより多くのリクエストを処理できるようにするために、プロセスの**レプリケーション**を持つことを望むでしょう。
 
 前のチャプターである[デプロイメントのコンセプト](concepts.md){.internal-link target=_blank}にて見てきたように、有効な戦略がいくつかあります。
 
-ここでは<a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a>が**Uvicornのワーカー・プロセス**を管理する場合の使い方について紹介していきます。
+ここでは、`fastapi` コマンド、または `uvicorn` コマンドを直接使って、**ワーカープロセス**付きの **Uvicorn** を使う方法を紹介します。
 
-/// info
+/// info | 情報
 
-<!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
-DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}
+DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}。
 
-特に**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**、**コンテナごとに単一のUvicornプロセス**を実行することになりますが、それについてはこの章の後半で説明します。
+特に**Kubernetes**上で実行する場合は、おそらくワーカーは使わず、代わりに**コンテナごとに単一のUvicornプロセス**を実行したいはずですが、それについてはその章の後半で説明します。
 
 ///
 
-## GunicornによるUvicornのワーカー・プロセスの管理
+## 複数ワーカー { #multiple-workers }
 
-**Gunicorn**は**WSGI標準**のアプリケーションサーバーです。このことは、GunicornはFlaskやDjangoのようなアプリケーションにサービスを提供できることを意味します。Gunicornそれ自体は**FastAPI**と互換性がないですが、というのもFastAPIは最新の**<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">ASGI 標準</a>**を使用しているためです。
+`--workers` コマンドラインオプションで複数のワーカーを起動できます。
 
-しかし、Gunicornは**プロセスマネージャー**として動作し、ユーザーが特定の**ワーカー・プロセスクラス**を使用するように指示することができます。するとGunicornはそのクラスを使い1つ以上の**ワーカー・プロセス**を開始します。
+//// tab | `fastapi`
 
-そして**Uvicorn**には**Gunicorn互換のワーカークラス**があります。
-
-この組み合わせで、Gunicornは**プロセスマネージャー**として動作し、**ポート**と**IP**をリッスンします。そして、**Uvicornクラス**を実行しているワーカー・プロセスに通信を**転送**します。
-
-そして、Gunicorn互換の**Uvicornワーカー**クラスが、FastAPIが使えるように、Gunicornから送られてきたデータをASGI標準に変換する役割を担います。
-
-## GunicornとUvicornをインストールする
+`fastapi` コマンドを使う場合：
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]" gunicorn
+$ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration-style:solid">main.py</u>
 
----> 100%
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
+
+             Searching for package file structure from directories with
+             <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with the
+             following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C to
+             quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started parent process <b>[</b><font color="#34E2E2"><b>27365</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
 
-これによりUvicornと（高性能を得るための）標準（`standard`）の追加パッケージとGunicornの両方がインストールされます。
+////
 
-## UvicornのワーカーとともにGunicornを実行する
+//// tab | `uvicorn`
 
-Gunicornを以下のように起動させることができます:
-
-<div class="termy">
-
-```console
-$ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80
-
-[19499] [INFO] Starting gunicorn 20.1.0
-[19499] [INFO] Listening at: http://0.0.0.0:80 (19499)
-[19499] [INFO] Using worker: uvicorn.workers.UvicornWorker
-[19511] [INFO] Booting worker with pid: 19511
-[19513] [INFO] Booting worker with pid: 19513
-[19514] [INFO] Booting worker with pid: 19514
-[19515] [INFO] Booting worker with pid: 19515
-[19511] [INFO] Started server process [19511]
-[19511] [INFO] Waiting for application startup.
-[19511] [INFO] Application startup complete.
-[19513] [INFO] Started server process [19513]
-[19513] [INFO] Waiting for application startup.
-[19513] [INFO] Application startup complete.
-[19514] [INFO] Started server process [19514]
-[19514] [INFO] Waiting for application startup.
-[19514] [INFO] Application startup complete.
-[19515] [INFO] Started server process [19515]
-[19515] [INFO] Waiting for application startup.
-[19515] [INFO] Application startup complete.
-```
-
-</div>
-
-それぞれのオプションの意味を見てみましょう：
-
-* `main:app`： `main`は"`main`"という名前のPythonモジュール、つまりファイル`main.py`を意味します。そして `app` は **FastAPI** アプリケーションの変数名です。
-    * main:app`はPythonの`import`文と同じようなものだと想像できます：
-
-        ```Python
-        from main import app
-        ```
-
-    * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
-
-* `--workers`： 使用するワーカー・プロセスの数で、それぞれがUvicornのワーカーを実行します。
-
-* `--worker-class`： ワーカー・プロセスで使用するGunicorn互換のワーカークラスです。
-    * ここではGunicornがインポートして使用できるクラスを渡します：
-
-        ```Python
-        import uvicorn.workers.UvicornWorker
-        ```
-
-* `--bind`： GunicornにリッスンするIPとポートを伝えます。コロン(`:`)でIPとポートを区切ります。
-    * Uvicornを直接実行している場合は、`--bind 0.0.0.0:80` （Gunicornのオプション）の代わりに、`--host 0.0.0.0`と `--port 80`を使います。
-
-出力では、各プロセスの**PID**（プロセスID）が表示されているのがわかります（単なる数字です）。
-
-以下の通りです：
-
-* Gunicornの**プロセス・マネージャー**はPID `19499`（あなたの場合は違う番号でしょう）で始まります。
-* 次に、`Listening at: http://0.0.0.0:80`を開始します。
-* それから `uvicorn.workers.UvicornWorker` でワーカークラスを使用することを検出します。
-* そして、**4つのワーカー**を起動します。それぞれのワーカーのPIDは、`19511`、`19513`、`19514`、`19515`です。
-
-Gunicornはまた、ワーカーの数を維持するために必要であれば、**ダウンしたプロセス**を管理し、**新しいプロセスを**再起動**させます。そのため、上記のリストにある**再起動**の概念に一部役立ちます。
-
-しかしながら、必要であればGunicornを**再起動**させ、**起動時に実行**させるなど、外部のコンポーネントを持たせることも必要かもしれません。
-
-## Uvicornとワーカー
-
-Uvicornには複数の**ワーカー・プロセス**を起動し実行するオプションもあります。
-
-とはいうものの、今のところUvicornのワーカー・プロセスを扱う機能はGunicornよりも制限されています。そのため、このレベル（Pythonレベル）でプロセスマネージャーを持ちたいのであれば、Gunicornをプロセスマネージャーとして使ってみた方が賢明かもしれないです。
-
-どんな場合であれ、以下のように実行します：
+`uvicorn` コマンドを直接使いたい場合：
 
 <div class="termy">
 
@@ -150,36 +105,35 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 </div>
 
-ここで唯一の新しいオプションは `--workers` で、Uvicornに4つのワーカー・プロセスを起動するように指示しています。
+////
 
-各プロセスの **PID** が表示され、親プロセスの `27365` (これは **プロセスマネージャ**) と、各ワーカー・プロセスの **PID** が表示されます： `27368`、`27369`、`27370`、`27367`になります。
+ここで唯一の新しいオプションは `--workers` で、Uvicornに4つのワーカープロセスを起動するように指示しています。
 
-## デプロイメントのコンセプト
+各プロセスの **PID** も表示されていて、親プロセス（これは**プロセスマネージャー**）が `27365`、各ワーカープロセスがそれぞれ `27368`、`27369`、`27370`、`27367` です。
 
-ここでは、アプリケーションの実行を**並列化**し、CPUの**マルチコア**を活用し、**より多くのリクエスト**に対応できるようにするために、**Gunicorn**（またはUvicorn）を使用して**Uvicornワーカー・プロセス**を管理する方法を見ていきました。
+## デプロイメントのコンセプト { #deployment-concepts }
 
-上記のデプロイのコンセプトのリストから、ワーカーを使うことは主に**レプリケーション**の部分と、**再起動**を少し助けてくれます：
+ここでは、複数の **ワーカー** を使ってアプリケーションの実行を**並列化**し、CPUの**複数コア**を活用して、**より多くのリクエスト**を処理できるようにする方法を見てきました。
 
-* セキュリティ - HTTPS
-* 起動時の実行
-* 再起動
+上のデプロイメントのコンセプトのリストから、ワーカーを使うことは主に**レプリケーション**の部分と、**再起動**を少し助けてくれますが、それ以外については引き続き対処が必要です：
+
+* **セキュリティ - HTTPS**
+* **起動時の実行**
+* ***再起動***
 * レプリケーション（実行中のプロセス数）
-* メモリー
-* 開始前の事前のステップ
+* **メモリ**
+* **開始前の事前ステップ**
 
+## コンテナとDocker { #containers-and-docker }
 
-## コンテナとDocker
-<!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
-次章の[コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}では、その他の**デプロイのコンセプト**を扱うために実施するであろう戦略をいくつか紹介します。
+次章の[コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}では、その他の**デプロイメントのコンセプト**を扱うために使える戦略をいくつか説明します。
 
-また、**GunicornとUvicornワーカー**を含む**公式Dockerイメージ**と、簡単なケースに役立ついくつかのデフォルト設定も紹介します。
+単一のUvicornプロセスを実行するために、**ゼロから独自のイメージを構築する**方法も紹介します。これは簡単なプロセスで、**Kubernetes**のような分散コンテナ管理システムを使う場合に、おそらくやりたいことでしょう。
 
-また、(Gunicornを使わずに)Uvicornプロセスを1つだけ実行するために、**ゼロから独自のイメージを**構築する方法も紹介します。これは簡単なプロセスで、おそらく**Kubernetes**のような分散コンテナ管理システムを使うときにやりたいことでしょう。
+## まとめ { #recap }
 
-## まとめ
+`fastapi` または `uvicorn` コマンドで `--workers` CLIオプションを使うことで、**マルチコアCPU**を活用し、**複数のプロセスを並列実行**できるように複数のワーカープロセスを利用できます。
 
-Uvicornワーカーを使ったプロセスマネージャとして**Gunicorn**（またはUvicorn）を使えば、**マルチコアCPU**を活用して**複数のプロセスを並列実行**できます。
+他のデプロイメントのコンセプトを自分で対応しながら、**独自のデプロイシステム**を構築している場合にも、これらのツールやアイデアを使えます。
 
-これらのツールやアイデアは、**あなた自身のデプロイシステム**をセットアップしながら、他のデプロイコンセプトを自分で行う場合にも使えます。
-
-次の章では、コンテナ（DockerやKubernetesなど）を使った**FastAPI**について学んでいきましょう。これらのツールには、他の**デプロイのコンセプト**も解決する簡単な方法があることがわかるでしょう。✨
+次の章で、コンテナ（例：DockerやKubernetes）を使った **FastAPI** について学びましょう。これらのツールにも、他の**デプロイメントのコンセプト**を解決する簡単な方法があることがわかります。✨

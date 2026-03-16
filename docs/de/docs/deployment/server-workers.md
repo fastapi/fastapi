@@ -119,7 +119,7 @@ In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern 
 
 * **Sicherheit – HTTPS**
 * **Beim Hochfahren ausführen**
-* **Neustarts**
+* ***Neustarts***
 * Replikation (die Anzahl der laufenden Prozesse)
 * **Arbeitsspeicher**
 * **Schritte vor dem Start**

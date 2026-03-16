@@ -40,7 +40,7 @@ Seine Schlüssel-Merkmale sind:
 * **Schnell**: Sehr hohe Performanz, auf Augenhöhe mit **NodeJS** und **Go** (dank Starlette und Pydantic). [Eines der schnellsten verfügbaren Python-Frameworks](#performance).
 * **Schnell zu entwickeln**: Erhöhen Sie die Geschwindigkeit bei der Entwicklung von Features um etwa 200 % bis 300 %. *
 * **Weniger Bugs**: Verringern Sie die von Menschen (Entwicklern) verursachten Fehler um etwa 40 %. *
-* **Intuitiv**: Hervorragende Editor-Unterstützung. <abbr title="auch bekannt als Auto-Complete, Autovervollständigung, IntelliSense">Code-Vervollständigung</abbr> überall. Weniger Zeit mit Debuggen verbringen.
+* **Intuitiv**: Hervorragende Editor-Unterstützung. <dfn title="auch bekannt als Auto-Complete, Autovervollständigung, IntelliSense">Code-Vervollständigung</dfn> überall. Weniger Zeit mit Debuggen verbringen.
 * **Einfach**: So konzipiert, dass es einfach zu benutzen und zu erlernen ist. Weniger Zeit mit dem Lesen von Dokumentation verbringen.
 * **Kurz**: Minimieren Sie die Verdoppelung von Code. Mehrere Features aus jeder Parameterdeklaration. Weniger Bugs.
 * **Robust**: Erhalten Sie produktionsreifen Code. Mit automatischer, interaktiver Dokumentation.
@@ -161,8 +161,6 @@ $ pip install "fastapi[standard]"
 Erstellen Sie eine Datei `main.py` mit:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -174,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -183,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Wenn Ihr Code `async` / `await` verwendet, benutzen Sie `async def`:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -197,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -288,9 +284,7 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 Deklarieren Sie den Body mit Standard-Python-Typen, dank Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -300,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -309,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -369,12 +363,12 @@ item: Item
 ... und mit dieser einen Deklaration erhalten Sie:
 
 * Editor-Unterstützung, einschließlich:
-    * Code-Vervollständigung.
+    * Vervollständigung.
     * Typprüfungen.
 * Validierung von Daten:
     * Automatische und eindeutige Fehler, wenn die Daten ungültig sind.
     * Validierung sogar für tief verschachtelte JSON-Objekte.
-* <abbr title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</abbr> von Eingabedaten: Aus dem Netzwerk kommend, zu Python-Daten und -Typen. Lesen von:
+* <dfn title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</dfn> von Eingabedaten: Aus dem Netzwerk kommend, zu Python-Daten und -Typen. Lesen von:
     * JSON.
     * Pfad-Parametern.
     * Query-Parametern.
@@ -382,7 +376,7 @@ item: Item
     * Headern.
     * Formularen.
     * Dateien.
-* <abbr title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</abbr> von Ausgabedaten: Konvertierung von Python-Daten und -Typen zu Netzwerkdaten (als JSON):
+* <dfn title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</dfn> von Ausgabedaten: Konvertierung von Python-Daten und -Typen zu Netzwerkdaten (als JSON):
     * Konvertieren von Python-Typen (`str`, `int`, `float`, `bool`, `list`, usw.).
     * `datetime`-Objekte.
     * `UUID`-Objekte.
@@ -445,7 +439,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 
 * Deklaration von **Parametern** von anderen verschiedenen Stellen wie: **Header**, **Cookies**, **Formularfelder** und **Dateien**.
 * Wie man **Validierungs-Constraints** wie `maximum_length` oder `regex` setzt.
-* Ein sehr leistungsfähiges und einfach zu bedienendes System für **<abbr title="auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>**.
+* Ein sehr leistungsfähiges und einfach zu bedienendes System für **<dfn title="auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</dfn>**.
 * Sicherheit und Authentifizierung, einschließlich Unterstützung für **OAuth2** mit **JWT-Tokens** und **HTTP Basic** Authentifizierung.
 * Fortgeschrittenere (aber ebenso einfache) Techniken zur Deklaration **tief verschachtelter JSON-Modelle** (dank Pydantic).
 * **GraphQL**-Integration mit <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> und anderen Bibliotheken.
@@ -530,7 +524,7 @@ Verwendet von Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> – erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> – erforderlich, wenn Sie die Default-Template-Konfiguration verwenden möchten.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> – erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</abbr> möchten.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> – erforderlich, wenn Sie Formulare mittels `request.form()` <dfn title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</dfn> möchten.
 
 Verwendet von FastAPI:
 

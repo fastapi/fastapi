@@ -1,10 +1,10 @@
-# 요청 본문
+# 요청 본문 { #request-body }
 
 클라이언트(브라우저라고 해봅시다)로부터 여러분의 API로 데이터를 보내야 할 때, **요청 본문**으로 보냅니다.
 
 **요청** 본문은 클라이언트에서 API로 보내지는 데이터입니다. **응답** 본문은 API가 클라이언트로 보내는 데이터입니다.
 
-여러분의 API는 대부분의 경우 **응답** 본문을 보내야 합니다. 하지만 클라이언트는 **요청** 본문을 매 번 보낼 필요가 없습니다.
+여러분의 API는 대부분의 경우 **응답** 본문을 보내야 합니다. 하지만 클라이언트는 항상 **요청 본문**을 보낼 필요는 없고, 때로는 (쿼리 매개변수와 함께) 어떤 경로만 요청하고 본문은 보내지 않을 수도 있습니다.
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
@@ -18,19 +18,20 @@
 
 ///
 
-## Pydantic의 `BaseModel` 임포트
+## Pydantic의 `BaseModel` 임포트 { #import-pydantics-basemodel }
 
 먼저 `pydantic`에서 `BaseModel`를 임포트해야 합니다:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## 여러분의 데이터 모델 만들기
+## 여러분의 데이터 모델 만들기 { #create-your-data-model }
 
 `BaseModel`를 상속받은 클래스로 여러분의 데이터 모델을 선언합니다.
 
 모든 어트리뷰트에 대해 표준 파이썬 타입을 사용합니다:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+
 
 쿼리 매개변수를 선언할 때와 같이, 모델 어트리뷰트가 기본 값을 가지고 있어도 이는 필수가 아닙니다. 그외에는 필수입니다. 그저 `None`을 사용하여 선택적으로 만들 수 있습니다.
 
@@ -39,7 +40,7 @@
 ```JSON
 {
     "name": "Foo",
-    "description": "선택적인 설명란",
+    "description": "An optional description",
     "price": 45.2,
     "tax": 3.5
 }
@@ -54,15 +55,15 @@
 }
 ```
 
-## 매개변수로서 선언하기
+## 매개변수로서 선언하기 { #declare-it-as-a-parameter }
 
-여러분의 *경로 작동*에 추가하기 위해, 경로 매개변수 그리고 쿼리 매개변수에서 선언했던 것과 같은 방식으로 선언하면 됩니다.
+여러분의 *경로 처리*에 추가하기 위해, 경로 매개변수 그리고 쿼리 매개변수에서 선언했던 것과 같은 방식으로 선언하면 됩니다.
 
 {* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...그리고 만들어낸 모델인 `Item`으로 타입을 선언합니다.
 
-## 결과
+## 결과 { #results }
 
 위에서의 단순한 파이썬 타입 선언으로, **FastAPI**는 다음과 같이 동작합니다:
 
@@ -72,20 +73,20 @@
     * 만약 데이터가 유효하지 않다면, 정확히 어떤 것이 그리고 어디에서 데이터가 잘 못 되었는지 지시하는 친절하고 명료한 에러를 반환할 것입니다.
 * 매개변수 `item`에 포함된 수신 데이터를 제공합니다.
     * 함수 내에서 매개변수를 `Item` 타입으로 선언했기 때문에, 모든 어트리뷰트와 그에 대한 타입에 대한 편집기 지원(완성 등)을 또한 받을 수 있습니다.
-* 여러분의 모델을 위한 <a href="https://json-schema.org" class="external-link" target="_blank">JSON 스키마</a> 정의를 생성합니다. 여러분의 프로젝트에 적합하다면 여러분이 사용하고 싶은 곳 어디에서나 사용할 수 있습니다.
-* 이러한 스키마는, 생성된 OpenAPI 스키마 일부가 될 것이며, 자동 문서화 <abbr title="사용자 인터페이스">UI</abbr>에 사용됩니다.
+* 여러분의 모델을 위한 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 정의를 생성합니다. 여러분의 프로젝트에 적합하다면 여러분이 사용하고 싶은 곳 어디에서나 사용할 수 있습니다.
+* 이러한 스키마는, 생성된 OpenAPI 스키마 일부가 될 것이며, 자동 문서화 <abbr title="User Interfaces - 사용자 인터페이스">UIs</abbr>에 사용됩니다.
 
-## 자동 문서화
+## 자동 문서화 { #automatic-docs }
 
 모델의 JSON 스키마는 생성된 OpenAPI 스키마에 포함되며 대화형 API 문서에 표시됩니다:
 
 <img src="/img/tutorial/body/image01.png">
 
-이를 필요로 하는 각각의 *경로 작동*내부의 API 문서에도 사용됩니다:
+이를 필요로 하는 각각의 *경로 처리* 내부의 API 문서에도 사용됩니다:
 
 <img src="/img/tutorial/body/image02.png">
 
-## 편집기 지원
+## 편집기 지원 { #editor-support }
 
 편집기에서, 함수 내에서 타입 힌트와 완성을 어디서나 (만약 Pydantic model 대신에 `dict`을 받을 경우 나타나지 않을 수 있습니다) 받을 수 있습니다:
 
@@ -97,13 +98,13 @@
 
 단순한 우연이 아닙니다. 프레임워크 전체가 이러한 디자인을 중심으로 설계되었습니다.
 
-그 어떤 실행 전에, 모든 편집기에서 작동할 수 있도록 보장하기 위해 설계 단계에서 혹독하게 테스트되었습니다.
+그 어떤 구현 전에, 모든 편집기에서 작동할 수 있도록 보장하기 위해 설계 단계에서 혹독하게 테스트되었습니다.
 
 이를 지원하기 위해 Pydantic 자체에서 몇몇 변경점이 있었습니다.
 
 이전 스크린샷은 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>를 찍은 것입니다.
 
-하지만 똑같은 편집기 지원을 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>에서 받을 수 있거나, 대부분의 다른 편집기에서도 받을 수 있습니다:
+하지만 똑같은 편집기 지원을 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>와 대부분의 다른 파이썬 편집기에서도 받을 수 있습니다:
 
 <img src="/img/tutorial/body/image05.png">
 
@@ -113,21 +114,21 @@
 
 다음 사항을 포함해 Pydantic 모델에 대한 편집기 지원을 향상시킵니다:
 
-* 자동 완성
-* 타입 확인
-* 리팩토링
-* 검색
-* 점검
+* auto-completion
+* type checks
+* refactoring
+* searching
+* inspections
 
 ///
 
-## 모델 사용하기
+## 모델 사용하기 { #use-the-model }
 
 함수 안에서 모델 객체의 모든 어트리뷰트에 직접 접근 가능합니다:
 
-{* ../../docs_src/body/tutorial002_py310.py hl[19] *}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-## 요청 본문 + 경로 매개변수
+## 요청 본문 + 경로 매개변수 { #request-body-path-parameters }
 
 경로 매개변수와 요청 본문을 동시에 선언할 수 있습니다.
 
@@ -135,11 +136,12 @@
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## 요청 본문 + 경로 + 쿼리 매개변수
+
+## 요청 본문 + 경로 + 쿼리 매개변수 { #request-body-path-query-parameters }
 
 **본문**, **경로** 그리고 **쿼리** 매개변수 모두 동시에 선언할 수도 있습니다.
 
-**FastAPI**는 각각을 인지하고 데이터를 옳바른 위치에 가져올 것입니다.
+**FastAPI**는 각각을 인지하고 데이터를 올바른 위치에 가져올 것입니다.
 
 {* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
@@ -151,12 +153,14 @@
 
 /// note | 참고
 
-FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
+FastAPI는 `q`의 값이 필요없음을 기본 값 `= None` 때문에 알게 됩니다.
 
-`Union[str, None]`에 있는 `Union`은 FastAPI에 의해 사용된 것이 아니지만, 편집기로 하여금 더 나은 지원과 에러 탐지를 지원할 것입니다.
+`str | None`은 FastAPI가 값이 필수인지 아닌지를 판단하기 위해 사용하지 않습니다. 기본 값이 `= None`이므로 필수가 아님을 알게 됩니다.
+
+하지만 타입 어노테이션을 추가하면 편집기가 더 나은 지원을 제공하고 오류를 감지할 수 있습니다.
 
 ///
 
-## Pydantic없이
+## Pydantic없이 { #without-pydantic }
 
-만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - 다중 매개변수: 본문에 있는 유일한 값](body-multiple-params.md#_2){.internal-link target=_blank} 문서를 확인하세요.
+만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} 문서를 확인하세요.

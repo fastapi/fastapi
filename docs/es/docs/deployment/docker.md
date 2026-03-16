@@ -14,7 +14,7 @@ Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **re
 <summary>Vista previa del Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -145,8 +145,6 @@ Existen otros formatos y herramientas para definir e instalar dependencias de pa
 * Crea un archivo `main.py` con:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -168,7 +166,7 @@ Ahora, en el mismo directorio del proyecto, crea un archivo `Dockerfile` con:
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -392,7 +390,7 @@ Si tu FastAPI es un solo archivo, por ejemplo, `main.py` sin un directorio `./ap
 Entonces solo tendrías que cambiar las rutas correspondientes para copiar el archivo dentro del `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -456,7 +454,7 @@ Sin usar contenedores, hacer que las aplicaciones se ejecuten al inicio y con re
 
 ## Replicación - Número de Procesos { #replication-number-of-processes }
 
-Si tienes un <abbr title="Un grupo de máquinas que están configuradas para estar conectadas y trabajar juntas de alguna manera.">cluster</abbr> de máquinas con **Kubernetes**, Docker Swarm Mode, Nomad, u otro sistema complejo similar para gestionar contenedores distribuidos en varias máquinas, entonces probablemente querrás manejar la **replicación** a nivel de **cluster** en lugar de usar un **gestor de procesos** (como Uvicorn con workers) en cada contenedor.
+Si tienes un <dfn title="Un grupo de máquinas que están configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</dfn> de máquinas con **Kubernetes**, Docker Swarm Mode, Nomad, u otro sistema complejo similar para gestionar contenedores distribuidos en varias máquinas, entonces probablemente querrás manejar la **replicación** a nivel de **cluster** en lugar de usar un **gestor de procesos** (como Uvicorn con workers) en cada contenedor.
 
 Uno de esos sistemas de gestión de contenedores distribuidos como Kubernetes normalmente tiene alguna forma integrada de manejar la **replicación de contenedores** mientras aún soporta el **load balancing** para las requests entrantes. Todo a nivel de **cluster**.
 
@@ -501,7 +499,7 @@ Por supuesto, hay **casos especiales** donde podrías querer tener **un contened
 En esos casos, puedes usar la opción de línea de comandos `--workers` para establecer el número de workers que deseas ejecutar:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -572,7 +570,7 @@ Si tienes una configuración simple, con un **contenedor único** que luego inic
 
 ### Imagen Base de Docker { #base-docker-image }
 
-Solía haber una imagen official de Docker de FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi-docker</a>. Pero ahora está obsoleta. ⛔️
+Solía haber una imagen official de Docker de FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Pero ahora está obsoleta. ⛔️
 
 Probablemente **no** deberías usar esta imagen base de Docker (o cualquier otra similar).
 

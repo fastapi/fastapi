@@ -1,6 +1,6 @@
 # Response - Change Status Code { #response-change-status-code }
 
-You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
+You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md).
 
 But in some cases you need to return a different status code than the default.
 
@@ -20,7 +20,7 @@ You can declare a parameter of type `Response` in your *path operation function*
 
 And then you can set the `status_code` in that *temporal* response object.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 And then you can return any object you need, as you normally would (a `dict`, a database model, etc).
 

@@ -1,14 +1,14 @@
-# 디버깅
+# 디버깅 { #debugging }
 
 예를 들면 Visual Studio Code 또는 PyCharm을 사용하여 편집기에서 디버거를 연결할 수 있습니다.
 
-## `uvicorn` 호출
+## `uvicorn` 호출 { #call-uvicorn }
 
-FastAPI 애플리케이션에서 `uvicorn`을 직접 임포트하여 실행합니다
+FastAPI 애플리케이션에서 `uvicorn`을 직접 임포트하여 실행합니다:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
-### `__name__ == "__main__"` 에 대하여
+### `__name__ == "__main__"` 에 대하여 { #about-name-main }
 
 `__name__ == "__main__"`의 주요 목적은 다음과 같이 파일이 호출될 때 실행되는 일부 코드를 갖는 것입니다.
 
@@ -26,7 +26,7 @@ $ python myapp.py
 from myapp import app
 ```
 
-#### 추가 세부사항
+#### 추가 세부사항 { #more-details }
 
 파일 이름이 `myapp.py`라고 가정해 보겠습니다.
 
@@ -62,7 +62,7 @@ from myapp import app
 # Some more code
 ```
 
-이 경우 `myapp.py` 내부의 자동 변수에는 값이 `"__main__"`인 변수 `__name__`이 없습니다.
+이 경우 `myapp.py` 내부의 자동 변수 `__name__`에는 값이 `"__main__"`이 들어가지 않습니다.
 
 따라서 다음 행
 
@@ -74,11 +74,11 @@ from myapp import app
 
 /// info | 정보
 
-자세한 내용은 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">공식 Python 문서</a>를 확인하세요
+자세한 내용은 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">공식 Python 문서</a>를 확인하세요.
 
 ///
 
-## 디버거로 코드 실행
+## 디버거로 코드 실행 { #run-your-code-with-your-debugger }
 
 코드에서 직접 Uvicorn 서버를 실행하고 있기 때문에 디버거에서 직접 Python 프로그램(FastAPI 애플리케이션)을 호출할 수 있습니다.
 
@@ -101,7 +101,7 @@ from myapp import app
 
 Pycharm을 사용하는 경우 다음을 수행할 수 있습니다
 
-* "Run" 메뉴를 엽니다
+* "Run" 메뉴를 엽니다.
 * "Debug..." 옵션을 선택합니다.
 * 그러면 상황에 맞는 메뉴가 나타납니다.
 * 디버그할 파일을 선택합니다(이 경우 `main.py`).

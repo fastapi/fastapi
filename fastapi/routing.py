@@ -1,31 +1,41 @@
+import contextlib
 import email.message
 import functools
 import inspect
 import json
+import types
 from collections.abc import (
     AsyncIterator,
     Awaitable,
+    Callable,
     Collection,
     Coroutine,
+    Generator,
+    Iterator,
     Mapping,
     Sequence,
 )
-from contextlib import AsyncExitStack, asynccontextmanager
+from contextlib import (
+    AbstractAsyncContextManager,
+    AbstractContextManager,
+    AsyncExitStack,
+    asynccontextmanager,
+)
 from enum import Enum, IntEnum
 from typing import (
     Annotated,
     Any,
-    Callable,
-    Optional,
-    Union,
+    TypeVar,
+    cast,
 )
 
+import anyio
 from annotated_doc import Doc
+from anyio.abc import ObjectReceiveStream
 from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    annotation_is_pydantic_v1,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -36,6 +46,7 @@ from fastapi.dependencies.utils import (
     get_dependant,
     get_flat_dependant,
     get_parameterless_sub_dependant,
+    get_stream_item_type,
     get_typed_return_annotation,
     solve_dependencies,
 )
@@ -43,14 +54,19 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
     FastAPIError,
-    PydanticV1NotSupportedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
+from fastapi.sse import (
+    _PING_INTERVAL,
+    KEEPALIVE_COMMENT,
+    EventSourceResponse,
+    ServerSentEvent,
+    format_sse_event,
+)
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
-    create_cloned_field,
     create_model_field,
     generate_unique_id,
     get_value_or_default,
@@ -59,10 +75,11 @@ from fastapi.utils import (
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
-from starlette.concurrency import run_in_threadpool
+from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
+from starlette.responses import JSONResponse, Response, StreamingResponse
 from starlette.routing import (
     BaseRoute,
     Match,
@@ -78,15 +95,17 @@ from typing_extensions import deprecated
 # Copy of starlette.routing.request_response modified to include the
 # dependencies' AsyncExitStack
 def request_response(
-    func: Callable[[Request], Union[Awaitable[Response], Response]],
+    func: Callable[[Request], Awaitable[Response] | Response],
 ) -> ASGIApp:
     """
     Takes a function or coroutine `func(request) -> response`,
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
-    )
+        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        if is_async_callable(func)
+        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
+    )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -143,13 +162,57 @@ def websocket_session(
     return app
 
 
+_T = TypeVar("_T")
+
+
+# Vendored from starlette.routing to avoid importing private symbols
+class _AsyncLiftContextManager(AbstractAsyncContextManager[_T]):
+    """
+    Wraps a synchronous context manager to make it async.
+
+    This is vendored from Starlette to avoid importing private symbols.
+    """
+
+    def __init__(self, cm: AbstractContextManager[_T]) -> None:
+        self._cm = cm
+
+    async def __aenter__(self) -> _T:
+        return self._cm.__enter__()
+
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: types.TracebackType | None,
+    ) -> bool | None:
+        return self._cm.__exit__(exc_type, exc_value, traceback)
+
+
+# Vendored from starlette.routing to avoid importing private symbols
+def _wrap_gen_lifespan_context(
+    lifespan_context: Callable[[Any], Generator[Any, Any, Any]],
+) -> Callable[[Any], AbstractAsyncContextManager[Any]]:
+    """
+    Wrap a generator-based lifespan context into an async context manager.
+
+    This is vendored from Starlette to avoid importing private symbols.
+    """
+    cmgr = contextlib.contextmanager(lifespan_context)
+
+    @functools.wraps(cmgr)
+    def wrapper(app: Any) -> _AsyncLiftContextManager[Any]:
+        return _AsyncLiftContextManager(cmgr(app))
+
+    return wrapper
+
+
 def _merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
     @asynccontextmanager
     async def merged_lifespan(
         app: AppType,
-    ) -> AsyncIterator[Optional[Mapping[str, Any]]]:
+    ) -> AsyncIterator[Mapping[str, Any] | None]:
         async with original_context(app) as maybe_original_state:
             async with nested_context(app) as maybe_nested_state:
                 if maybe_nested_state is None and maybe_original_state is None:
@@ -158,6 +221,30 @@ def _merge_lifespan_context(
                     yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
     return merged_lifespan  # type: ignore[return-value]
+
+
+class _DefaultLifespan:
+    """
+    Default lifespan context manager that runs on_startup and on_shutdown handlers.
+
+    This is a copy of the Starlette _DefaultLifespan class that was removed
+    in Starlette. FastAPI keeps it to maintain backward compatibility with
+    on_startup and on_shutdown event handlers.
+
+    Ref: https://github.com/Kludex/starlette/pull/3117
+    """
+
+    def __init__(self, router: "APIRouter") -> None:
+        self._router = router
+
+    async def __aenter__(self) -> None:
+        await self._router._startup()
+
+    async def __aexit__(self, *exc_info: object) -> None:
+        await self._router._shutdown()
+
+    def __call__(self: _T, app: object) -> _T:
+        return self
 
 
 # Cache for endpoint context to avoid re-extracting on every request
@@ -189,27 +276,25 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
 
 async def serialize_response(
     *,
-    field: Optional[ModelField] = None,
+    field: ModelField | None = None,
     response_content: Any,
-    include: Optional[IncEx] = None,
-    exclude: Optional[IncEx] = None,
+    include: IncEx | None = None,
+    exclude: IncEx | None = None,
     by_alias: bool = True,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
-    endpoint_ctx: Optional[EndpointContext] = None,
+    endpoint_ctx: EndpointContext | None = None,
+    dump_json: bool = False,
 ) -> Any:
     if field:
-        errors = []
         if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, list):
-            errors.extend(errors_)
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
@@ -217,8 +302,8 @@ async def serialize_response(
                 body=response_content,
                 endpoint_ctx=ctx,
             )
-
-        return field.serialize(
+        serializer = field.serialize_json if dump_json else field.serialize
+        return serializer(
             value,
             include=include,
             exclude=exclude,
@@ -245,20 +330,41 @@ async def run_endpoint_function(
         return await run_in_threadpool(dependant.call, **values)
 
 
+def _build_response_args(
+    *, status_code: int | None, solved_result: Any
+) -> dict[str, Any]:
+    response_args: dict[str, Any] = {
+        "background": solved_result.background_tasks,
+    }
+    # If status_code was set, use it, otherwise use the default from the
+    # response class, in the case of redirect it's 307
+    current_status_code = (
+        status_code if status_code else solved_result.response.status_code
+    )
+    if current_status_code is not None:
+        response_args["status_code"] = current_status_code
+    if solved_result.response.status_code:
+        response_args["status_code"] = solved_result.response.status_code
+    return response_args
+
+
 def get_request_handler(
     dependant: Dependant,
-    body_field: Optional[ModelField] = None,
-    status_code: Optional[int] = None,
-    response_class: Union[type[Response], DefaultPlaceholder] = Default(JSONResponse),
-    response_field: Optional[ModelField] = None,
-    response_model_include: Optional[IncEx] = None,
-    response_model_exclude: Optional[IncEx] = None,
+    body_field: ModelField | None = None,
+    status_code: int | None = None,
+    response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+    response_field: ModelField | None = None,
+    response_model_include: IncEx | None = None,
+    response_model_exclude: IncEx | None = None,
     response_model_by_alias: bool = True,
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
+    strict_content_type: bool | DefaultPlaceholder = Default(True),
+    stream_item_field: ModelField | None = None,
+    is_json_stream: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
@@ -267,9 +373,14 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
+    is_sse_stream = lenient_issubclass(actual_response_class, EventSourceResponse)
+    if isinstance(strict_content_type, DefaultPlaceholder):
+        actual_strict_content_type: bool = strict_content_type.value
+    else:
+        actual_strict_content_type = strict_content_type
 
     async def app(request: Request) -> Response:
-        response: Union[Response, None] = None
+        response: Response | None = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
@@ -300,7 +411,8 @@ def get_request_handler(
                         json_body: Any = Undefined
                         content_type_value = request.headers.get("content-type")
                         if not content_type_value:
-                            json_body = await request.json()
+                            if not actual_strict_content_type:
+                                json_body = await request.json()
                         else:
                             message = email.message.Message()
                             message["content-type"] = content_type_value
@@ -345,51 +457,265 @@ def get_request_handler(
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
-            body=body,
+            body=cast(dict[str, Any] | FormData | bytes | None, body),
             dependency_overrides_provider=dependency_overrides_provider,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
         errors = solved_result.errors
+        assert dependant.call  # For types
         if not errors:
-            raw_response = await run_endpoint_function(
-                dependant=dependant,
-                values=solved_result.values,
-                is_coroutine=is_coroutine,
-            )
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = solved_result.background_tasks
-                response = raw_response
-            else:
-                response_args: dict[str, Any] = {
-                    "background": solved_result.background_tasks
-                }
-                # If status_code was set, use it, otherwise use the default from the
-                # response class, in the case of redirect it's 307
-                current_status_code = (
-                    status_code if status_code else solved_result.response.status_code
+            # Shared serializer for stream items (JSONL and SSE).
+            # Validates against stream_item_field when set, then
+            # serializes to JSON bytes.
+            def _serialize_data(data: Any) -> bytes:
+                if stream_item_field:
+                    value, errors_ = stream_item_field.validate(
+                        data, {}, loc=("response",)
+                    )
+                    if errors_:
+                        ctx = endpoint_ctx or EndpointContext()
+                        raise ResponseValidationError(
+                            errors=errors_,
+                            body=data,
+                            endpoint_ctx=ctx,
+                        )
+                    return stream_item_field.serialize_json(
+                        value,
+                        include=response_model_include,
+                        exclude=response_model_exclude,
+                        by_alias=response_model_by_alias,
+                        exclude_unset=response_model_exclude_unset,
+                        exclude_defaults=response_model_exclude_defaults,
+                        exclude_none=response_model_exclude_none,
+                    )
+                else:
+                    data = jsonable_encoder(data)
+                    return json.dumps(data).encode("utf-8")
+
+            if is_sse_stream:
+                # Generator endpoint: stream as Server-Sent Events
+                gen = dependant.call(**solved_result.values)
+
+                def _serialize_sse_item(item: Any) -> bytes:
+                    if isinstance(item, ServerSentEvent):
+                        # User controls the event structure.
+                        # Serialize the data payload if present.
+                        # For ServerSentEvent items we skip stream_item_field
+                        # validation (the user may mix types intentionally).
+                        if item.raw_data is not None:
+                            data_str: str | None = item.raw_data
+                        elif item.data is not None:
+                            if hasattr(item.data, "model_dump_json"):
+                                data_str = item.data.model_dump_json()
+                            else:
+                                data_str = json.dumps(jsonable_encoder(item.data))
+                        else:
+                            data_str = None
+                        return format_sse_event(
+                            data_str=data_str,
+                            event=item.event,
+                            id=item.id,
+                            retry=item.retry,
+                            comment=item.comment,
+                        )
+                    else:
+                        # Plain object: validate + serialize via
+                        # stream_item_field (if set) and wrap in data field
+                        return format_sse_event(
+                            data_str=_serialize_data(item).decode("utf-8")
+                        )
+
+                if dependant.is_async_gen_callable:
+                    sse_aiter: AsyncIterator[Any] = gen.__aiter__()
+                else:
+                    sse_aiter = iterate_in_threadpool(gen)
+
+                @asynccontextmanager
+                async def _sse_producer_cm() -> AsyncIterator[
+                    ObjectReceiveStream[bytes]
+                ]:
+                    # Use a memory stream to decouple generator iteration
+                    # from the keepalive timer. A producer task pulls items
+                    # from the generator independently, so
+                    # `anyio.fail_after` never wraps the generator's
+                    # `__anext__` directly - avoiding CancelledError that
+                    # would finalize the generator and also working for sync
+                    # generators running in a thread pool.
+                    #
+                    # This context manager is entered on the request-scoped
+                    # AsyncExitStack so its __aexit__ (which cancels the
+                    # task group) is called by the exit stack after the
+                    # streaming response completes — not by async generator
+                    # finalization via GeneratorExit.
+                    # Ref: https://peps.python.org/pep-0789/
+                    send_stream, receive_stream = anyio.create_memory_object_stream[
+                        bytes
+                    ](max_buffer_size=1)
+
+                    async def _producer() -> None:
+                        async with send_stream:
+                            async for raw_item in sse_aiter:
+                                await send_stream.send(_serialize_sse_item(raw_item))
+
+                    send_keepalive, receive_keepalive = (
+                        anyio.create_memory_object_stream[bytes](max_buffer_size=1)
+                    )
+
+                    async def _keepalive_inserter() -> None:
+                        """Read from the producer and forward to the output,
+                        inserting keepalive comments on timeout."""
+                        async with send_keepalive, receive_stream:
+                            try:
+                                while True:
+                                    try:
+                                        with anyio.fail_after(_PING_INTERVAL):
+                                            data = await receive_stream.receive()
+                                        await send_keepalive.send(data)
+                                    except TimeoutError:
+                                        await send_keepalive.send(KEEPALIVE_COMMENT)
+                            except anyio.EndOfStream:
+                                pass
+
+                    async with anyio.create_task_group() as tg:
+                        tg.start_soon(_producer)
+                        tg.start_soon(_keepalive_inserter)
+                        yield receive_keepalive
+                        tg.cancel_scope.cancel()
+
+                # Enter the SSE context manager on the request-scoped
+                # exit stack. The stack outlives the streaming response,
+                # so __aexit__ runs via proper structured teardown, not
+                # via GeneratorExit thrown into an async generator.
+                sse_receive_stream = await async_exit_stack.enter_async_context(
+                    _sse_producer_cm()
                 )
-                if current_status_code is not None:
-                    response_args["status_code"] = current_status_code
-                if solved_result.response.status_code:
-                    response_args["status_code"] = solved_result.response.status_code
-                content = await serialize_response(
-                    field=response_field,
-                    response_content=raw_response,
-                    include=response_model_include,
-                    exclude=response_model_exclude,
-                    by_alias=response_model_by_alias,
-                    exclude_unset=response_model_exclude_unset,
-                    exclude_defaults=response_model_exclude_defaults,
-                    exclude_none=response_model_exclude_none,
-                    is_coroutine=is_coroutine,
-                    endpoint_ctx=endpoint_ctx,
+                # Ensure the receive stream is closed when the exit stack
+                # unwinds, preventing ResourceWarning from __del__.
+                async_exit_stack.push_async_callback(sse_receive_stream.aclose)
+
+                async def _sse_with_checkpoints(
+                    stream: ObjectReceiveStream[bytes],
+                ) -> AsyncIterator[bytes]:
+                    async for data in stream:
+                        yield data
+                        # Guarantee a checkpoint so cancellation can be
+                        # delivered even when the producer is faster than
+                        # the consumer and receive() never suspends.
+                        await anyio.sleep(0)
+
+                sse_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                    _sse_with_checkpoints(sse_receive_stream)
                 )
-                response = actual_response_class(content, **response_args)
-                if not is_body_allowed_for_status_code(response.status_code):
-                    response.body = b""
+
+                response = StreamingResponse(
+                    sse_stream_content,
+                    media_type="text/event-stream",
+                    background=solved_result.background_tasks,
+                )
+                response.headers["Cache-Control"] = "no-cache"
+                # For Nginx proxies to not buffer server sent events
+                response.headers["X-Accel-Buffering"] = "no"
                 response.headers.raw.extend(solved_result.response.headers.raw)
+            elif is_json_stream:
+                # Generator endpoint: stream as JSONL
+                gen = dependant.call(**solved_result.values)
+
+                def _serialize_item(item: Any) -> bytes:
+                    return _serialize_data(item) + b"\n"
+
+                if dependant.is_async_gen_callable:
+
+                    async def _async_stream_jsonl() -> AsyncIterator[bytes]:
+                        async for item in gen:
+                            yield _serialize_item(item)
+                            # To allow for cancellation to trigger
+                            # Ref: https://github.com/fastapi/fastapi/issues/14680
+                            await anyio.sleep(0)
+
+                    jsonl_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                        _async_stream_jsonl()
+                    )
+                else:
+
+                    def _sync_stream_jsonl() -> Iterator[bytes]:
+                        for item in gen:  # ty: ignore[not-iterable]
+                            yield _serialize_item(item)
+
+                    jsonl_stream_content = _sync_stream_jsonl()
+
+                response = StreamingResponse(
+                    jsonl_stream_content,
+                    media_type="application/jsonl",
+                    background=solved_result.background_tasks,
+                )
+                response.headers.raw.extend(solved_result.response.headers.raw)
+            elif dependant.is_async_gen_callable or dependant.is_gen_callable:
+                # Raw streaming with explicit response_class (e.g. StreamingResponse)
+                gen = dependant.call(**solved_result.values)
+                if dependant.is_async_gen_callable:
+
+                    async def _async_stream_raw(
+                        async_gen: AsyncIterator[Any],
+                    ) -> AsyncIterator[Any]:
+                        async for chunk in async_gen:
+                            yield chunk
+                            # To allow for cancellation to trigger
+                            # Ref: https://github.com/fastapi/fastapi/issues/14680
+                            await anyio.sleep(0)
+
+                    gen = _async_stream_raw(gen)
+                response_args = _build_response_args(
+                    status_code=status_code, solved_result=solved_result
+                )
+                response = actual_response_class(content=gen, **response_args)
+                response.headers.raw.extend(solved_result.response.headers.raw)
+            else:
+                raw_response = await run_endpoint_function(
+                    dependant=dependant,
+                    values=solved_result.values,
+                    is_coroutine=is_coroutine,
+                )
+                if isinstance(raw_response, Response):
+                    if raw_response.background is None:
+                        raw_response.background = solved_result.background_tasks
+                    response = raw_response
+                else:
+                    response_args = _build_response_args(
+                        status_code=status_code, solved_result=solved_result
+                    )
+                    # Use the fast path (dump_json) when no custom response
+                    # class was set and a response field with a TypeAdapter
+                    # exists. Serializes directly to JSON bytes via Pydantic's
+                    # Rust core, skipping the intermediate Python dict +
+                    # json.dumps() step.
+                    use_dump_json = response_field is not None and isinstance(
+                        response_class, DefaultPlaceholder
+                    )
+                    content = await serialize_response(
+                        field=response_field,
+                        response_content=raw_response,
+                        include=response_model_include,
+                        exclude=response_model_exclude,
+                        by_alias=response_model_by_alias,
+                        exclude_unset=response_model_exclude_unset,
+                        exclude_defaults=response_model_exclude_defaults,
+                        exclude_none=response_model_exclude_none,
+                        is_coroutine=is_coroutine,
+                        endpoint_ctx=endpoint_ctx,
+                        dump_json=use_dump_json,
+                    )
+                    if use_dump_json:
+                        response = Response(
+                            content=content,
+                            media_type="application/json",
+                            **response_args,
+                        )
+                    else:
+                        response = actual_response_class(content, **response_args)
+                    if not is_body_allowed_for_status_code(response.status_code):
+                        response.body = b""
+                    response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
                 errors, body=body, endpoint_ctx=endpoint_ctx
@@ -405,7 +731,7 @@ def get_request_handler(
 
 def get_websocket_app(
     dependant: Dependant,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
@@ -446,9 +772,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        name: Optional[str] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        dependency_overrides_provider: Optional[Any] = None,
+        name: str | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        dependency_overrides_provider: Any | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -489,42 +815,56 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        name: Optional[str] = None,
-        methods: Optional[Union[set[str], list[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        name: str | None = None,
+        methods: set[str] | list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[type[Response], DefaultPlaceholder] = Default(
-            JSONResponse
-        ),
-        dependency_overrides_provider: Optional[Any] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
-        generate_unique_id_function: Union[
-            Callable[["APIRoute"], str], DefaultPlaceholder
-        ] = Default(generate_unique_id),
+        response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+        dependency_overrides_provider: Any | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
+        generate_unique_id_function: Callable[["APIRoute"], str]
+        | DefaultPlaceholder = Default(generate_unique_id),
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        self.stream_item_type: Any | None = None
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
             if lenient_issubclass(return_annotation, Response):
                 response_model = None
             else:
-                response_model = return_annotation
+                stream_item = get_stream_item_type(return_annotation)
+                if stream_item is not None:
+                    # Extract item type for JSONL or SSE streaming when
+                    # response_class is DefaultPlaceholder (JSONL) or
+                    # EventSourceResponse (SSE).
+                    # ServerSentEvent is excluded: it's a transport
+                    # wrapper, not a data model, so it shouldn't feed
+                    # into validation or OpenAPI schema generation.
+                    if (
+                        isinstance(response_class, DefaultPlaceholder)
+                        or lenient_issubclass(response_class, EventSourceResponse)
+                    ) and not lenient_issubclass(stream_item, ServerSentEvent):
+                        self.stream_item_type = stream_item
+                    response_model = None
+                else:
+                    response_model = return_annotation
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
@@ -542,6 +882,7 @@ class APIRoute(routing.Route):
         self.callbacks = callbacks
         self.openapi_extra = openapi_extra
         self.generate_unique_id_function = generate_unique_id_function
+        self.strict_content_type = strict_content_type
         self.tags = tags or []
         self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
@@ -565,30 +906,22 @@ class APIRoute(routing.Route):
                 f"Status code {status_code} must not have a response body"
             )
             response_name = "Response_" + self.unique_id
-            if annotation_is_pydantic_v1(self.response_model):
-                raise PydanticV1NotSupportedError(
-                    "pydantic.v1 models are no longer supported by FastAPI."
-                    f" Please update the response model {self.response_model!r}."
-                )
             self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
             )
-            # Create a clone of the field, so that a Pydantic submodel is not returned
-            # as is just because it's an instance of a subclass of a more limited class
-            # e.g. UserInDB (containing hashed_password) could be a subclass of User
-            # that doesn't have the hashed_password. But because it's a subclass, it
-            # would pass the validation and be returned as is.
-            # By being a new field, no inheritance will be passed as is. A new model
-            # will always be created.
-            # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[ModelField] = (
-                create_cloned_field(self.response_field)
+        else:
+            self.response_field = None  # type: ignore  # ty: ignore[unused-ignore-comment]
+        if self.stream_item_type:
+            stream_item_name = "StreamItem_" + self.unique_id
+            self.stream_item_field: ModelField | None = create_model_field(
+                name=stream_item_name,
+                type_=self.stream_item_type,
+                mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore
-            self.secure_cloned_response_field = None
+            self.stream_item_field = None
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -603,17 +936,12 @@ class APIRoute(routing.Route):
                     f"Status code {additional_status_code} must not have a response body"
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                if annotation_is_pydantic_v1(model):
-                    raise PydanticV1NotSupportedError(
-                        "pydantic.v1 models are no longer supported by FastAPI."
-                        f" In responses={{}}, please update {model}."
-                    )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
                 )
                 response_fields[additional_status_code] = response_field
         if response_fields:
-            self.response_fields: dict[Union[int, str], ModelField] = response_fields
+            self.response_fields: dict[int | str, ModelField] = response_fields
         else:
             self.response_fields = {}
 
@@ -635,6 +963,16 @@ class APIRoute(routing.Route):
             name=self.unique_id,
             embed_body_fields=self._embed_body_fields,
         )
+        # Detect generator endpoints that should stream as JSONL or SSE
+        is_generator = (
+            self.dependant.is_async_gen_callable or self.dependant.is_gen_callable
+        )
+        self.is_sse_stream = is_generator and lenient_issubclass(
+            response_class, EventSourceResponse
+        )
+        self.is_json_stream = is_generator and isinstance(
+            response_class, DefaultPlaceholder
+        )
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -643,7 +981,7 @@ class APIRoute(routing.Route):
             body_field=self.body_field,
             status_code=self.status_code,
             response_class=self.response_class,
-            response_field=self.secure_cloned_response_field,
+            response_field=self.response_field,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
             response_model_by_alias=self.response_model_by_alias,
@@ -652,6 +990,9 @@ class APIRoute(routing.Route):
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
             embed_body_fields=self._embed_body_fields,
+            strict_content_type=self.strict_content_type,
+            stream_item_field=self.stream_item_field,
+            is_json_stream=self.is_json_stream,
         )
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
@@ -693,7 +1034,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -707,7 +1048,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to all the
@@ -730,7 +1071,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -746,7 +1087,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -760,7 +1101,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         routes: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 **Note**: you probably shouldn't use this parameter, it is inherited
@@ -791,7 +1132,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         default: Annotated[
-            Optional[ASGIApp],
+            ASGIApp | None,
             Doc(
                 """
                 Default function handler for this router. Used to handle
@@ -800,7 +1141,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependency_overrides_provider: Annotated[
-            Optional[Any],
+            Any | None,
             Doc(
                 """
                 Only used internally by FastAPI to handle dependency overrides.
@@ -822,7 +1163,7 @@ class APIRouter(routing.Router):
             ),
         ] = APIRoute,
         on_startup: Annotated[
-            Optional[Sequence[Callable[[], Any]]],
+            Sequence[Callable[[], Any]] | None,
             Doc(
                 """
                 A list of startup event handler functions.
@@ -834,7 +1175,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         on_shutdown: Annotated[
-            Optional[Sequence[Callable[[], Any]]],
+            Sequence[Callable[[], Any]] | None,
             Doc(
                 """
                 A list of shutdown event handler functions.
@@ -849,7 +1190,7 @@ class APIRouter(routing.Router):
         # the generic to Lifespan[AppType] is the type of the top level application
         # which the router cannot know statically, so we use typing.Any
         lifespan: Annotated[
-            Optional[Lifespan[Any]],
+            Lifespan[Any] | None,
             Doc(
                 """
                 A `Lifespan` context manager handler. This replaces `startup` and
@@ -861,7 +1202,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark all *path operations* in this router as deprecated.
@@ -902,22 +1243,66 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        strict_content_type: Annotated[
+            bool,
+            Doc(
+                """
+                Enable strict checking for request Content-Type headers.
+
+                When `True` (the default), requests with a body that do not include
+                a `Content-Type` header will **not** be parsed as JSON.
+
+                This prevents potential cross-site request forgery (CSRF) attacks
+                that exploit the browser's ability to send requests without a
+                Content-Type header, bypassing CORS preflight checks. In particular
+                applicable for apps that need to be run locally (in localhost).
+
+                When `False`, requests without a `Content-Type` header will have
+                their body parsed as JSON, which maintains compatibility with
+                certain clients that don't send `Content-Type` headers.
+
+                Read more about it in the
+                [FastAPI docs for Strict Content-Type](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+                """
+            ),
+        ] = Default(True),
     ) -> None:
+        # Determine the lifespan context to use
+        if lifespan is None:
+            # Use the default lifespan that runs on_startup/on_shutdown handlers
+            lifespan_context: Lifespan[Any] = _DefaultLifespan(self)
+        elif inspect.isasyncgenfunction(lifespan):
+            lifespan_context = asynccontextmanager(lifespan)
+        elif inspect.isgeneratorfunction(lifespan):
+            lifespan_context = _wrap_gen_lifespan_context(lifespan)
+        else:
+            lifespan_context = lifespan
+        self.lifespan_context = lifespan_context
+
         super().__init__(
             routes=routes,
             redirect_slashes=redirect_slashes,
             default=default,
-            on_startup=on_startup,
-            on_shutdown=on_shutdown,
-            lifespan=lifespan,
+            lifespan=lifespan_context,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
                 "A path prefix must not end with '/', as the routes will start with '/'"
             )
+
+        # Handle on_startup/on_shutdown locally since Starlette removed support
+        # Ref: https://github.com/Kludex/starlette/pull/3117
+        # TODO: deprecate this once the lifespan (or alternative) interface is improved
+        self.on_startup: list[Callable[[], Any]] = (
+            [] if on_startup is None else list(on_startup)
+        )
+        self.on_shutdown: list[Callable[[], Any]] = (
+            [] if on_shutdown is None else list(on_shutdown)
+        )
+
         self.prefix = prefix
-        self.tags: list[Union[str, Enum]] = tags or []
+        self.tags: list[str | Enum] = tags or []
         self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
@@ -927,12 +1312,13 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.strict_content_type = strict_content_type
 
     def route(
         self,
         path: str,
-        methods: Optional[Collection[str]] = None,
-        name: Optional[str] = None,
+        methods: Collection[str] | None = None,
+        name: str | None = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
@@ -953,33 +1339,31 @@ class APIRouter(routing.Router):
         endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[Union[set[str], list[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        methods: set[str] | list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[type[Response], DefaultPlaceholder] = Default(
-            JSONResponse
-        ),
-        name: Optional[str] = None,
-        route_class_override: Optional[type[APIRoute]] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
-        generate_unique_id_function: Union[
-            Callable[[APIRoute], str], DefaultPlaceholder
-        ] = Default(generate_unique_id),
+        response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+        name: str | None = None,
+        route_class_override: type[APIRoute] | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
+        generate_unique_id_function: Callable[[APIRoute], str]
+        | DefaultPlaceholder = Default(generate_unique_id),
+        strict_content_type: bool | DefaultPlaceholder = Default(True),
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1026,6 +1410,9 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            strict_content_type=get_value_or_default(
+                strict_content_type, self.strict_content_type
+            ),
         )
         self.routes.append(route)
 
@@ -1034,27 +1421,27 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
-        status_code: Optional[int] = None,
-        tags: Optional[list[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
+        status_code: int | None = None,
+        tags: list[str | Enum] | None = None,
+        dependencies: Sequence[params.Depends] | None = None,
+        summary: str | None = None,
+        description: str | None = None,
         response_description: str = "Successful Response",
-        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[list[str]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[IncEx] = None,
-        response_model_exclude: Optional[IncEx] = None,
+        responses: dict[int | str, dict[str, Any]] | None = None,
+        deprecated: bool | None = None,
+        methods: list[str] | None = None,
+        operation_id: str | None = None,
+        response_model_include: IncEx | None = None,
+        response_model_exclude: IncEx | None = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] = Default(JSONResponse),
-        name: Optional[str] = None,
-        callbacks: Optional[list[BaseRoute]] = None,
-        openapi_extra: Optional[dict[str, Any]] = None,
+        name: str | None = None,
+        callbacks: list[BaseRoute] | None = None,
+        openapi_extra: dict[str, Any] | None = None,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -1095,9 +1482,9 @@ class APIRouter(routing.Router):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        name: Optional[str] = None,
+        name: str | None = None,
         *,
-        dependencies: Optional[Sequence[params.Depends]] = None,
+        dependencies: Sequence[params.Depends] | None = None,
     ) -> None:
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -1123,7 +1510,7 @@ class APIRouter(routing.Router):
             ),
         ],
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A name for the WebSocket. Only used internally.
@@ -1132,7 +1519,7 @@ class APIRouter(routing.Router):
         ] = None,
         *,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be used for this
@@ -1180,7 +1567,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def websocket_route(
-        self, path: str, name: Union[str, None] = None
+        self, path: str, name: str | None = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_websocket_route(path, func, name=name)
@@ -1194,7 +1581,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -1208,7 +1595,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to all the
@@ -1231,7 +1618,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -1247,7 +1634,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -1261,7 +1648,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark all *path operations* in this router as deprecated.
@@ -1323,6 +1710,10 @@ class APIRouter(routing.Router):
         app.include_router(internal_router)
         ```
         """
+        assert self is not router, (
+            "Cannot include the same APIRouter instance into itself. "
+            "Did you mean to include a different router?"
+        )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
@@ -1397,6 +1788,11 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
+                    strict_content_type=get_value_or_default(
+                        route.strict_content_type,
+                        router.strict_content_type,
+                        self.strict_content_type,
+                    ),
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
@@ -1480,7 +1876,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -1493,7 +1889,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1506,7 +1902,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -1518,7 +1914,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -1531,7 +1927,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -1559,7 +1955,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -1569,7 +1965,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -1579,7 +1975,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -1599,7 +1995,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -1611,7 +2007,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -1713,7 +2109,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -1721,7 +2117,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -1737,7 +2133,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -1857,7 +2253,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -1870,7 +2266,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1883,7 +2279,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -1895,7 +2291,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -1908,7 +2304,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -1936,7 +2332,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -1946,7 +2342,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -1956,7 +2352,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -1976,7 +2372,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -1988,7 +2384,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2090,7 +2486,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2098,7 +2494,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2114,7 +2510,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2239,7 +2635,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -2252,7 +2648,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2265,7 +2661,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2277,7 +2673,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -2290,7 +2686,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -2318,7 +2714,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2328,7 +2724,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -2338,7 +2734,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -2358,7 +2754,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -2370,7 +2766,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2472,7 +2868,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2480,7 +2876,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2496,7 +2892,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2621,7 +3017,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -2634,7 +3030,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2647,7 +3043,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2659,7 +3055,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -2672,7 +3068,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -2700,7 +3096,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2710,7 +3106,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -2720,7 +3116,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -2740,7 +3136,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -2752,7 +3148,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -2854,7 +3250,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -2862,7 +3258,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2878,7 +3274,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2998,7 +3394,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3011,7 +3407,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3024,7 +3420,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3036,7 +3432,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3049,7 +3445,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3077,7 +3473,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3087,7 +3483,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3097,7 +3493,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3117,7 +3513,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -3129,7 +3525,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -3231,7 +3627,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -3239,7 +3635,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3255,7 +3651,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3375,7 +3771,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3388,7 +3784,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3401,7 +3797,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3413,7 +3809,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3426,7 +3822,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3454,7 +3850,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3464,7 +3860,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3474,7 +3870,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3494,7 +3890,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -3506,7 +3902,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -3608,7 +4004,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -3616,7 +4012,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3632,7 +4028,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3757,7 +4153,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -3770,7 +4166,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3783,7 +4179,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3795,7 +4191,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -3808,7 +4204,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -3836,7 +4232,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3846,7 +4242,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -3856,7 +4252,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -3876,7 +4272,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -3888,7 +4284,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -3990,7 +4386,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -3998,7 +4394,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4014,7 +4410,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4139,7 +4535,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(None),
         status_code: Annotated[
-            Optional[int],
+            int | None,
             Doc(
                 """
                 The default status code to be used for the response.
@@ -4152,7 +4548,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[list[Union[str, Enum]]],
+            list[str | Enum] | None,
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -4165,7 +4561,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Sequence[params.Depends] | None,
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -4177,7 +4573,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         summary: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A summary for the *path operation*.
@@ -4190,7 +4586,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 A description for the *path operation*.
@@ -4218,7 +4614,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[dict[Union[int, str], dict[str, Any]]],
+            dict[int | str, dict[str, Any]] | None,
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -4228,7 +4624,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         deprecated: Annotated[
-            Optional[bool],
+            bool | None,
             Doc(
                 """
                 Mark this *path operation* as deprecated.
@@ -4238,7 +4634,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         operation_id: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Custom operation ID to be used by this *path operation*.
@@ -4258,7 +4654,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_include: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to include only certain fields in the
@@ -4270,7 +4666,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_model_exclude: Annotated[
-            Optional[IncEx],
+            IncEx | None,
             Doc(
                 """
                 Configuration passed to Pydantic to exclude certain fields in the
@@ -4372,7 +4768,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Name for this *path operation*. Only used internally.
@@ -4380,7 +4776,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[list[BaseRoute]],
+            list[BaseRoute] | None,
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4396,7 +4792,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[dict[str, Any]],
+            dict[str, Any] | None,
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4472,6 +4868,58 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    async def _startup(self) -> None:
+        """
+        Run any `.on_startup` event handlers.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        for handler in self.on_startup:
+            if is_async_callable(handler):
+                await handler()
+            else:
+                handler()
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    async def _shutdown(self) -> None:
+        """
+        Run any `.on_shutdown` event handlers.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        for handler in self.on_shutdown:
+            if is_async_callable(handler):
+                await handler()
+            else:
+                handler()
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    def add_event_handler(
+        self,
+        event_type: str,
+        func: Callable[[], Any],
+    ) -> None:
+        """
+        Add an event handler function for startup or shutdown.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        assert event_type in ("startup", "shutdown")
+        if event_type == "startup":
+            self.on_startup.append(func)
+        else:
+            self.on_shutdown.append(func)
 
     @deprecated(
         """

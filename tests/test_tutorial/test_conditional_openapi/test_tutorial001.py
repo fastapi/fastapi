@@ -1,14 +1,15 @@
 import importlib
 
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 def get_client() -> TestClient:
-    from docs_src.conditional_openapi import tutorial001_py39
+    from docs_src.conditional_openapi import tutorial001_py310
 
-    importlib.reload(tutorial001_py39)
+    importlib.reload(tutorial001_py310)
 
-    client = TestClient(tutorial001_py39.app)
+    client = TestClient(tutorial001_py310.app)
     return client
 
 
@@ -38,21 +39,23 @@ def test_default_openapi():
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     response = client.get("/openapi.json")
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/": {
-                "get": {
-                    "summary": "Root",
-                    "operationId": "root__get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/": {
+                    "get": {
+                        "summary": "Root",
+                        "operationId": "root__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )

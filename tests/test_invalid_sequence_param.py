@@ -1,12 +1,13 @@
-from typing import Optional
-
 import pytest
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 
 
 def test_invalid_sequence():
-    with pytest.raises(AssertionError):
+    with pytest.raises(
+        AssertionError,
+        match="Query parameter 'q' must be one of the supported types",
+    ):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -18,7 +19,10 @@ def test_invalid_sequence():
 
 
 def test_invalid_tuple():
-    with pytest.raises(AssertionError):
+    with pytest.raises(
+        AssertionError,
+        match="Query parameter 'q' must be one of the supported types",
+    ):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -30,7 +34,10 @@ def test_invalid_tuple():
 
 
 def test_invalid_dict():
-    with pytest.raises(AssertionError):
+    with pytest.raises(
+        AssertionError,
+        match="Query parameter 'q' must be one of the supported types",
+    ):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -42,12 +49,15 @@ def test_invalid_dict():
 
 
 def test_invalid_simple_dict():
-    with pytest.raises(AssertionError):
+    with pytest.raises(
+        AssertionError,
+        match="Query parameter 'q' must be one of the supported types",
+    ):
         app = FastAPI()
 
         class Item(BaseModel):
             title: str
 
         @app.get("/items/")
-        def read_items(q: Optional[dict] = Query(default=None)):
+        def read_items(q: dict | None = Query(default=None)):
             pass  # pragma: no cover

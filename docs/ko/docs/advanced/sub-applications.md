@@ -1,67 +1,67 @@
-# 하위 응용프로그램 - 마운트
+# 하위 응용프로그램 - 마운트 { #sub-applications-mounts }
 
-만약 각각의 독립적인 OpenAPI와 문서 UI를 갖는 두 개의 독립적인 FastAPI 응용프로그램이 필요하다면, 메인 어플리케이션에 하나 (또는 그 이상의) 하위-응용프로그램(들)을 “마운트"해서 사용할 수 있습니다.
+각각의 독립적인 OpenAPI와 문서 UI를 갖는 두 개의 독립적인 FastAPI 애플리케이션이 필요하다면, 메인 앱을 두고 하나(또는 그 이상)의 하위 응용프로그램을 "마운트"할 수 있습니다.
 
-## **FastAPI** 응용프로그램 마운트
+## **FastAPI** 애플리케이션 마운트 { #mounting-a-fastapi-application }
 
-“마운트"이란 완전히 “독립적인" 응용프로그램을 특정 경로에 추가하여 해당 하위 응용프로그램에서 선언된 *경로 동작*을 통해 해당 경로 아래에 있는 모든 작업들을 처리할 수 있도록 하는 것을 의미합니다.
+"마운트"란 완전히 "독립적인" 애플리케이션을 특정 경로에 추가하고, 그 하위 응용프로그램에 선언된 _경로 처리_로 해당 경로 아래의 모든 것을 처리하도록 하는 것을 의미합니다.
 
-### 최상단 응용프로그램
+### 최상위 애플리케이션 { #top-level-application }
 
-먼저, 메인, 최상단의 **FastAPI** 응용프로그램과 이것의 *경로 동작*을 생성합니다:
+먼저, 메인 최상위 **FastAPI** 애플리케이션과 그 *경로 처리*를 생성합니다:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
-### 하위 응용프로그램
+### 하위 응용프로그램 { #sub-application }
 
-다음으로, 하위 응용프로그램과 이것의 *경로 동작*을 생성합니다:
+그 다음, 하위 응용프로그램과 그 *경로 처리*를 생성합니다.
 
-이 하위 응용프로그램은 또 다른 표준 FastAPI 응용프로그램입니다. 다만 이것은 “마운트”될 것입니다:
+이 하위 응용프로그램은 또 다른 표준 FastAPI 애플리케이션이지만, "마운트"될 애플리케이션입니다:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
-### 하위 응용프로그램 마운트
+### 하위 응용프로그램 마운트 { #mount-the-sub-application }
 
-최상단 응용프로그램, `app`에 하위 응용프로그램, `subapi`를 마운트합니다.
+최상위 애플리케이션 `app`에서 하위 응용프로그램 `subapi`를 마운트합니다.
 
-이 예시에서, 하위 응용프로그램션은 `/subapi` 경로에 마운트 될 것입니다:
+이 경우 `/subapi` 경로에 마운트됩니다:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
-### 자동으로 생성된 API 문서 확인
+### 자동 API 문서 확인 { #check-the-automatic-api-docs }
 
-이제, `uvicorn`으로 메인 응용프로그램을 실행하십시오. 당신의 파일이 `main.py`라면, 이렇게 실행합니다:
+이제 파일과 함께 `fastapi` 명령을 실행하세요:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-그리고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>에서 문서를 여십시오.
+그리고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>에서 문서를 여세요.
 
-메인 응용프로그램의 *경로 동작*만을 포함하는, 메인 응용프로그램에 대한 자동 API 문서를 확인할 수 있습니다:
+메인 앱의 자동 API 문서를 보게 될 것이며, 메인 앱 자체의 _경로 처리_만 포함됩니다:
 
-<img src="https://fastapi.tiangolo.com//img/tutorial/sub-applications/image01.png">
+<img src="/img/tutorial/sub-applications/image01.png">
 
-다음으로, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>에서 하위 응용프로그램의 문서를 여십시오.
+그 다음, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>에서 하위 응용프로그램의 문서를 여세요.
 
-하위 경로 접두사 `/subapi` 아래에 선언된 *경로 동작* 을 포함하는, 하위 응용프로그램에 대한 자동 API 문서를 확인할 수 있습니다:
+하위 응용프로그램의 자동 API 문서를 보게 될 것이며, 하위 경로 접두사 `/subapi` 아래에 올바르게 포함된 하위 응용프로그램 자체의 _경로 처리_만 포함됩니다:
 
-<img src="https://fastapi.tiangolo.com//img/tutorial/sub-applications/image02.png">
+<img src="/img/tutorial/sub-applications/image02.png">
 
-두 사용자 인터페이스 중 어느 하나를 사용해야하는 경우, 브라우저는 특정 응용프로그램 또는 하위 응용프로그램과 각각 통신할 수 있기 때문에 올바르게 동작할 것입니다.
+두 사용자 인터페이스 중 어느 것과 상호작용을 시도하더라도 올바르게 동작할 것입니다. 브라우저가 각 특정 앱 또는 하위 앱과 통신할 수 있기 때문입니다.
 
-### 기술적 세부사항: `root_path`
+### 기술적 세부사항: `root_path` { #technical-details-root-path }
 
-위에 설명된 것과 같이 하위 응용프로그램을 마운트하는 경우, FastAPI는 `root_path`라고 하는 ASGI 명세의 매커니즘을 사용하여 하위 응용프로그램에 대한 마운트 경로 통신을 처리합니다.
+위에서 설명한 대로 하위 응용프로그램을 마운트하면, FastAPI는 ASGI 명세의 메커니즘인 `root_path`를 사용해 하위 응용프로그램에 대한 마운트 경로를 전달하는 작업을 처리합니다.
 
-이를 통해, 하위 응용프로그램은 문서 UI를 위해 경로 접두사를 사용해야 한다는 사실을 인지합니다.
+이렇게 하면 하위 응용프로그램은 문서 UI를 위해 해당 경로 접두사를 사용해야 한다는 것을 알게 됩니다.
 
-하위 응용프로그램에도 역시 다른 하위 응용프로그램을 마운트하는 것이 가능하며 FastAPI가 모든 `root_path` 들을 자동적으로 처리하기 때문에 모든 것은 올바르게 동작할 것입니다.
+또한 하위 응용프로그램도 자체적으로 하위 앱을 마운트할 수 있으며, FastAPI가 이 모든 `root_path`를 자동으로 처리하기 때문에 모든 것이 올바르게 동작합니다.
 
-`root_path`와 이것을 사용하는 방법에 대해서는 [프록시의 뒷단](./behind-a-proxy.md){.internal-link target=_blank} 섹션에서 배울 수 있습니다.
+`root_path`와 이를 명시적으로 사용하는 방법에 대해서는 [프록시 뒤](behind-a-proxy.md){.internal-link target=_blank} 섹션에서 더 알아볼 수 있습니다.

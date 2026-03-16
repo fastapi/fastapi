@@ -2,7 +2,7 @@
 
 Puedes declarar el tipo utilizado para el response anotando el **tipo de retorno** de la *path operation function*.
 
-Puedes utilizar **anotaciones de tipos** de la misma manera que lo harías para datos de entrada en **parámetros** de función, puedes utilizar modelos de Pydantic, list, diccionarios, valores escalares como enteros, booleanos, etc.
+Puedes utilizar **anotaciones de tipos** de la misma manera que lo harías para datos de entrada en **parámetros** de función, puedes utilizar modelos de Pydantic, lists, diccionarios, valores escalares como enteros, booleanos, etc.
 
 {* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
 
@@ -27,7 +27,7 @@ Por ejemplo, podrías querer **devolver un diccionario** u objeto de base de dat
 
 Si añadiste la anotación del tipo de retorno, las herramientas y editores se quejarían con un error (correcto) diciéndote que tu función está devolviendo un tipo (por ejemplo, un dict) que es diferente de lo que declaraste (por ejemplo, un modelo de Pydantic).
 
-En esos casos, puedes usar el parámetro del decorador de path operation `response_model` en lugar del tipo de retorno.
+En esos casos, puedes usar el parámetro del *decorador de path operation* `response_model` en lugar del tipo de retorno.
 
 Puedes usar el parámetro `response_model` en cualquiera de las *path operations*:
 
@@ -51,7 +51,7 @@ FastAPI usará este `response_model` para hacer toda la documentación de datos,
 
 /// tip | Consejo
 
-Si tienes chequeos estrictos de tipos en tu editor, mypy, etc., puedes declarar el tipo de retorno de la función como `Any`.
+Si tienes chequeo de tipos estricto en tu editor, mypy, etc., puedes declarar el tipo de retorno de la función como `Any`.
 
 De esa manera le dices al editor que intencionalmente estás devolviendo cualquier cosa. Pero FastAPI todavía hará la documentación de datos, validación, filtrado, etc. con `response_model`.
 
@@ -153,7 +153,7 @@ Primero vamos a ver cómo los editores, mypy y otras herramientas verían esto.
 
 `BaseUser` tiene los campos base. Luego `UserIn` hereda de `BaseUser` y añade el campo `password`, por lo que incluirá todos los campos de ambos modelos.
 
-Anotamos el tipo de retorno de la función como `BaseUser`, pero en realidad estamos devolviendo un instance de `UserIn`.
+Anotamos el tipo de retorno de la función como `BaseUser`, pero en realidad estamos devolviendo un `UserIn` instance.
 
 El editor, mypy y otras herramientas no se quejarán de esto porque, en términos de tipificación, `UserIn` es una subclase de `BaseUser`, lo que significa que es un tipo *válido* cuando se espera algo que es un `BaseUser`.
 
@@ -183,7 +183,7 @@ Podría haber casos en los que devuelvas algo que no es un campo válido de Pyda
 
 El caso más común sería [devolver un Response directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Este caso simple es manejado automáticamente por FastAPI porque la anotación del tipo de retorno es la clase (o una subclase de) `Response`.
 
@@ -193,7 +193,7 @@ Y las herramientas también estarán felices porque tanto `RedirectResponse` com
 
 También puedes usar una subclase de `Response` en la anotación del tipo:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Esto también funcionará porque `RedirectResponse` es una subclase de `Response`, y FastAPI manejará automáticamente este caso simple.
 
@@ -201,7 +201,7 @@ Esto también funcionará porque `RedirectResponse` es una subclase de `Response
 
 Pero cuando devuelves algún otro objeto arbitrario que no es un tipo válido de Pydantic (por ejemplo, un objeto de base de datos) y lo anotas así en la función, FastAPI intentará crear un modelo de response de Pydantic a partir de esa anotación de tipo, y fallará.
 
-Lo mismo sucedería si tuvieras algo como un <abbr title='Una unión entre múltiples tipos significa "cualquiera de estos tipos".'>union</abbr> entre diferentes tipos donde uno o más de ellos no son tipos válidos de Pydantic, por ejemplo esto fallaría 💥:
+Lo mismo sucedería si tuvieras algo como una <dfn title='una unión entre múltiples tipos significa "cualquiera de estos tipos".'>unión</dfn> entre diferentes tipos donde uno o más de ellos no son tipos válidos de Pydantic, por ejemplo esto fallaría 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -249,20 +249,6 @@ Entonces, si envías un request a esa *path operation* para el ítem con ID `foo
     "price": 50.2
 }
 ```
-
-/// info | Información
-
-En Pydantic v1 el método se llamaba `.dict()`, fue deprecado (pero aún soportado) en Pydantic v2, y renombrado a `.model_dump()`.
-
-Los ejemplos aquí usan `.dict()` para compatibilidad con Pydantic v1, pero deberías usar `.model_dump()` en su lugar si puedes usar Pydantic v2.
-
-///
-
-/// info | Información
-
-FastAPI usa el método `.dict()` del modelo de Pydantic con <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">su parámetro `exclude_unset`</a> para lograr esto.
-
-///
 
 /// info | Información
 

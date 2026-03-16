@@ -1,24 +1,12 @@
-# yieldを持つ依存関係
+# `yield`を持つ依存関係 { #dependencies-with-yield }
 
-FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"、"close"、"context managers"、 ...のように呼ばれる'>終了後の追加のステップ</abbr>を行う依存関係をサポートしています。
+FastAPIは、いくつかの<dfn title="「終了コード」「クリーンアップコード」「ティアダウンコード」「クローズコード」「コンテキストマネージャの終了コード」などと呼ばれることもあります">終了後の追加のステップ</dfn>を行う依存関係をサポートしています。
 
-これを行うには、`return`の代わりに`yield`を使い、その後に追加のステップを書きます。
+これを行うには、`return`の代わりに`yield`を使い、その後に追加のステップ（コード）を書きます。
 
 /// tip | 豆知識
 
-`yield`は必ず一度だけ使用するようにしてください。
-
-///
-
-/// info | 情報
-
-これを動作させるには、**Python 3.7** 以上を使用するか、**Python 3.6** では"backports"をインストールする必要があります:
-
-```
-pip install async-exit-stack async-generator
-```
-
-これにより<a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a>と<a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>がインストールされます。
+`yield`は必ず依存関係ごとに1回だけ使用するようにしてください。
 
 ///
 
@@ -35,21 +23,21 @@ pip install async-exit-stack async-generator
 
 ///
 
-## `yield`を持つデータベースの依存関係
+## `yield`を持つデータベースの依存関係 { #a-database-dependency-with-yield }
 
 例えば、これを使ってデータベースセッションを作成し、終了後にそれを閉じることができます。
 
-レスポンスを送信する前に`yield`文を含む前のコードのみが実行されます。
+レスポンスを作成する前に、`yield`文より前のコード（および`yield`文を含む）が実行されます:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2,3,4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 生成された値は、*path operations*や他の依存関係に注入されるものです:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
-`yield`文に続くコードは、レスポンスが送信された後に実行されます:
+`yield`文に続くコードは、レスポンスの後に実行されます:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5,6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | 豆知識
 
@@ -59,27 +47,27 @@ pip install async-exit-stack async-generator
 
 ///
 
-## `yield`と`try`を持つ依存関係
+## `yield`と`try`を持つ依存関係 { #a-dependency-with-yield-and-try }
 
-`yield`を持つ依存関係で`try`ブロックを使用した場合、その依存関係を使用した際に発生した例外を受け取ることになります。
+`yield`を持つ依存関係で`try`ブロックを使用した場合、その依存関係を使用した際にスローされたあらゆる例外を受け取ることになります。
 
-例えば、途中のどこかの時点で、別の依存関係や*path operation*の中で、データベーストランザクションを「ロールバック」したり、その他のエラーを作成したりするコードがあった場合、依存関係の中で例外を受け取ることになります。
+例えば、途中のどこかの時点で、別の依存関係や*path operation*の中で、データベーストランザクションを「ロールバック」したり、その他の例外を作成したりするコードがあった場合、依存関係の中で例外を受け取ることになります。
 
 そのため、依存関係の中にある特定の例外を`except SomeException`で探すことができます。
 
 同様に、`finally`を用いて例外があったかどうかにかかわらず、終了ステップを確実に実行することができます。
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
-## `yield`を持つサブ依存関係
+## `yield`を持つサブ依存関係 { #sub-dependencies-with-yield }
 
 任意の大きさや形のサブ依存関係やサブ依存関係の「ツリー」を持つことができ、その中で`yield`を使用することができます。
 
 **FastAPI** は、`yield`を持つ各依存関係の「終了コード」が正しい順番で実行されていることを確認します。
 
-例えば、`dependency_c`は`dependency_b`と`dependency_b`に依存する`dependency_a`に、依存することができます:
+例えば、`dependency_c`は`dependency_b`に、そして`dependency_b`は`dependency_a`に依存することができます:
 
-{* ../../docs_src/dependencies/tutorial008.py hl[4,12,20] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 そして、それらはすべて`yield`を使用することができます。
 
@@ -87,11 +75,11 @@ pip install async-exit-stack async-generator
 
 そして、`dependency_b`は`dependency_a`（ここでは`dep_a`という名前）の値を終了コードで利用できるようにする必要があります。
 
-{* ../../docs_src/dependencies/tutorial008.py hl[16,17,24,25] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
-同様に、`yield`と`return`が混在した依存関係を持つこともできます。
+同様に、`yield`を持つ依存関係と`return`を持つ他の依存関係をいくつか持ち、それらの一部が他の一部に依存するようにもできます。
 
-また、単一の依存関係を持っていて、`yield`などの他の依存関係をいくつか必要とすることもできます。
+また、単一の依存関係を持っていて、`yield`を持つ他の依存関係をいくつか必要とすることもできます。
 
 依存関係の組み合わせは自由です。
 
@@ -105,31 +93,45 @@ pip install async-exit-stack async-generator
 
 ///
 
-## `yield`と`HTTPException`を持つ依存関係
+## `yield`と`HTTPException`を持つ依存関係 { #dependencies-with-yield-and-httpexception }
 
-`yield`と例外をキャッチする`try`ブロックを持つことができる依存関係を使用することができることがわかりました。
+`yield`を持つ依存関係を使い、何らかのコードを実行し、その後に`finally`の後で終了コードを実行しようとする`try`ブロックを持てることが分かりました。
 
-`yield`の後の終了コードで`HTTPException`などを発生させたくなるかもしれません。しかし**それはうまくいきません**
+また、`except`を使って発生した例外をキャッチし、それに対して何かをすることもできます。
 
-`yield`を持つ依存関係の終了コードは[例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}の*後に*実行されます。依存関係によって投げられた例外を終了コード（`yield`の後）でキャッチするものはなにもありません。
-
-つまり、`yield`の後に`HTTPException`を発生させた場合、`HTTTPException`をキャッチしてHTTP 400のレスポンスを返すデフォルトの（あるいは任意のカスタムの）例外ハンドラは、その例外をキャッチすることができなくなります。
-
-これは、依存関係に設定されているもの（例えば、DBセッション）を、例えば、バックグラウンドタスクで使用できるようにするものです。
-
-バックグラウンドタスクはレスポンスが送信された*後*に実行されます。そのため、*すでに送信されている*レスポンスを変更する方法すらないので、`HTTPException`を発生させる方法はありません。
-
-しかし、バックグラウンドタスクがDBエラーを発生させた場合、少なくとも`yield`で依存関係のセッションをロールバックしたり、きれいに閉じたりすることができ、エラーをログに記録したり、リモートのトラッキングシステムに報告したりすることができます。
-
-例外が発生する可能性があるコードがある場合は、最も普通の「Python流」なことをして、コードのその部分に`try`ブロックを追加してください。
-
-レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成してください。
+例えば、`HTTPException`のように別の例外を発生させることができます。
 
 /// tip | 豆知識
 
-`HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
+これはやや高度なテクニックで、ほとんどの場合は本当に必要にはなりません。例えば、*path operation 関数*など、アプリケーションコードの他の場所から（`HTTPException`を含む）例外を発生させられるためです。
+
+ただし必要であれば使えます。 🤓
 
 ///
+
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+
+例外をキャッチして、それに基づいてカスタムレスポンスを作成したい場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成してください。
+
+## `yield`と`except`を持つ依存関係 { #dependencies-with-yield-and-except }
+
+`yield`を持つ依存関係で`except`を使って例外をキャッチし、それを再度raiseしない（または新しい例外をraiseしない）場合、通常のPythonと同じように、FastAPIは例外があったことに気づけません:
+
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+
+この場合、（`HTTPException`やそれに類するものをraiseしていないため）クライアントには適切に*HTTP 500 Internal Server Error*レスポンスが返りますが、サーバーには**ログが一切残らず**、何がエラーだったのかを示す他の手がかりもありません。 😱
+
+### `yield`と`except`を持つ依存関係では常に`raise`する { #always-raise-in-dependencies-with-yield-and-except }
+
+`yield`を持つ依存関係で例外をキャッチした場合、別の`HTTPException`などをraiseするのでない限り、**元の例外を再raiseすべきです**。
+
+`raise`を使うと同じ例外を再raiseできます:
+
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+
+これでクライアントは同じ*HTTP 500 Internal Server Error*レスポンスを受け取りますが、サーバーのログにはカスタムの`InternalError`が残ります。 😎
+
+## `yield`を持つ依存関係の実行 { #execution-of-dependencies-with-yield }
 
 実行の順序は多かれ少なかれ以下の図のようになります。時間は上から下へと流れていきます。そして、各列はコードを相互作用させたり、実行したりしている部分の一つです。
 
@@ -142,32 +144,29 @@ participant dep as Dep with yield
 participant operation as Path Operation
 participant tasks as Background tasks
 
-    Note over client,tasks: Can raise exception for dependency, handled after response is sent
-    Note over client,operation: Can raise HTTPException and can change the response
+    Note over client,operation: Can raise exceptions, including HTTPException
     client ->> dep: Start request
     Note over dep: Run code up to yield
-    opt raise
-        dep -->> handler: Raise HTTPException
+    opt raise Exception
+        dep -->> handler: Raise Exception
         handler -->> client: HTTP error response
-        dep -->> dep: Raise other exception
     end
     dep ->> operation: Run dependency, e.g. DB session
     opt raise
-        operation -->> handler: Raise HTTPException
+        operation -->> dep: Raise Exception (e.g. HTTPException)
+        opt handle
+            dep -->> dep: Can catch exception, raise a new HTTPException, raise other exception
+        end
         handler -->> client: HTTP error response
-        operation -->> dep: Raise other exception
     end
+
     operation ->> client: Return response to client
     Note over client,operation: Response is already sent, can't change it anymore
     opt Tasks
         operation -->> tasks: Send background tasks
     end
     opt Raise other exception
-        tasks -->> dep: Raise other exception
-    end
-    Note over dep: After yield
-    opt Handle other exception
-        dep -->> dep: Handle exception, can't change response. E.g. close DB session.
+        tasks -->> tasks: Handle exceptions in the background task code
     end
 ```
 
@@ -181,15 +180,63 @@ participant tasks as Background tasks
 
 /// tip | 豆知識
 
-この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
-
-しかし例外ハンドラで処理されない例外を発生させた場合は、依存関係の終了コードで処理されます。
+*path operation 関数*のコードで例外をraiseした場合、`HTTPException`を含め、それはyieldを持つ依存関係に渡されます。ほとんどの場合、その例外が正しく処理されるように、`yield`を持つ依存関係から同じ例外、または新しい例外を再raiseしたくなるでしょう。
 
 ///
 
-## コンテキストマネージャ
+## 早期終了と`scope` { #early-exit-and-scope }
 
-### 「コンテキストマネージャ」とは
+通常、`yield`を持つ依存関係の終了コードは、クライアントに**レスポンスが送信された後**に実行されます。
+
+しかし、*path operation 関数*からreturnした後に依存関係を使う必要がないと分かっている場合は、`Depends(scope="function")`を使って、**レスポンスが送信される前**に、*path operation 関数*のreturn後に依存関係を閉じるべきだとFastAPIに伝えられます。
+
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+
+`Depends()`は、以下のいずれかを取る`scope`パラメータを受け取ります:
+
+* `"function"`: リクエストを処理する*path operation 関数*の前に依存関係を開始し、*path operation 関数*の終了後に依存関係を終了しますが、クライアントにレスポンスが返される**前**に終了します。つまり、依存関係関数は*path operation 関数*の**周囲**で実行されます。
+* `"request"`: リクエストを処理する*path operation 関数*の前に依存関係を開始し（`"function"`を使用する場合と同様）、クライアントにレスポンスが返された**後**に終了します。つまり、依存関係関数は**リクエスト**とレスポンスのサイクルの**周囲**で実行されます。
+
+指定されておらず、依存関係に`yield`がある場合、デフォルトで`scope`は`"request"`になります。
+
+### サブ依存関係の`scope` { #scope-for-sub-dependencies }
+
+`scope="request"`（デフォルト）を持つ依存関係を宣言する場合、どのサブ依存関係も`"request"`の`scope`を持つ必要があります。
+
+しかし、`"function"`の`scope`を持つ依存関係は、`"function"`と`"request"`の`scope`を持つ依存関係を持てます。
+
+これは、いずれの依存関係も、サブ依存関係より前に終了コードを実行できる必要があるためです（終了コードの実行中にサブ依存関係をまだ使う必要がある可能性があるためです）。
+
+```mermaid
+sequenceDiagram
+
+participant client as Client
+participant dep_req as Dep scope="request"
+participant dep_func as Dep scope="function"
+participant operation as Path Operation
+
+    client ->> dep_req: Start request
+    Note over dep_req: Run code up to yield
+    dep_req ->> dep_func: Pass dependency
+    Note over dep_func: Run code up to yield
+    dep_func ->> operation: Run path operation with dependency
+    operation ->> dep_func: Return from path operation
+    Note over dep_func: Run code after yield
+    Note over dep_func: ✅ Dependency closed
+    dep_func ->> client: Send response to client
+    Note over client: Response sent
+    Note over dep_req: Run code after yield
+    Note over dep_req: ✅ Dependency closed
+```
+
+## `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係 { #dependencies-with-yield-httpexception-except-and-background-tasks }
+
+`yield`を持つ依存関係は、さまざまなユースケースをカバーし、いくつかの問題を修正するために、時間とともに進化してきました。
+
+FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}で詳しく読めます。
+## コンテキストマネージャ { #context-managers }
+
+### 「コンテキストマネージャ」とは { #what-are-context-managers }
 
 「コンテキストマネージャ」とは、`with`文の中で使用できるPythonオブジェクトのことです。
 
@@ -205,9 +252,9 @@ with open("./somefile.txt") as f:
 
 `with`ブロックが終了すると、例外があったとしてもファイルを確かに閉じます。
 
-`yield`を依存関係を作成すると、**FastAPI** は内部的にそれをコンテキストマネージャに変換し、他の関連ツールと組み合わせます。
+`yield`を持つ依存関係を作成すると、**FastAPI** は内部的にそれをコンテキストマネージャに変換し、他の関連ツールと組み合わせます。
 
-### `yield`を持つ依存関係でのコンテキストマネージャの使用
+### `yield`を持つ依存関係でのコンテキストマネージャの使用 { #using-context-managers-in-dependencies-with-yield }
 
 /// warning | 注意
 
@@ -221,7 +268,7 @@ Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#conte
 
 また、依存関数の中で`with`や`async with`文を使用することによって`yield`を持つ **FastAPI** の依存関係の中でそれらを使用することができます:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1,2,3,4,5,6,7,8,9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | 豆知識
 

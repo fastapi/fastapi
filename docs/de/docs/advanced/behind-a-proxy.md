@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Angenommen, Sie definieren eine *Pfadoperation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Wenn der Client versucht, zu `/items` zu gehen, würde er standardmäßig zu `/items/` umgeleitet.
 
@@ -115,7 +115,7 @@ In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1
 
 Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app` gibt.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Und der Proxy würde das **Pfadpräfix** on-the-fly **„entfernen“**, bevor er den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an den Anwendungsserver (wahrscheinlich Uvicorn via FastAPI CLI) übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
 
@@ -193,7 +193,7 @@ Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede
 
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Wenn Sie Uvicorn dann starten mit:
 
@@ -220,7 +220,7 @@ wäre die <abbr title="Response – Antwort: Daten, die der Server zum anfragend
 
 Falls Sie keine Möglichkeit haben, eine Kommandozeilenoption wie `--root-path` oder ähnlich zu übergeben, können Sie, alternativ dazu, beim Erstellen Ihrer FastAPI-Anwendung den Parameter `root_path` setzen:
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe der `--root-path`-Kommandozeilenoption an Uvicorn oder Hypercorn.
 
@@ -400,7 +400,7 @@ Wenn Sie eine benutzerdefinierte Liste von Servern (`servers`) übergeben und es
 
 Zum Beispiel:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Erzeugt ein OpenAPI-Schema, wie:
 
@@ -455,7 +455,7 @@ Wenn Sie den Parameter `servers` nicht angeben und `root_path` den Wert `/` hat,
 
 Wenn Sie nicht möchten, dass **FastAPI** einen automatischen Server inkludiert, welcher `root_path` verwendet, können Sie den Parameter `root_path_in_servers=False` verwenden:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 Dann wird er nicht in das OpenAPI-Schema aufgenommen.
 

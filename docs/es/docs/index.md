@@ -40,7 +40,7 @@ Las funcionalidades clave son:
 * **Rápido**: Muy alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks Python más rápidos disponibles](#performance).
 * **Rápido de programar**: Aumenta la velocidad para desarrollar funcionalidades en aproximadamente un 200% a 300%. *
 * **Menos bugs**: Reduce en aproximadamente un 40% los errores inducidos por humanos (desarrolladores). *
-* **Intuitivo**: Gran soporte para editores. <abbr title="también conocido como auto-complete, autocompletado, IntelliSense">Autocompletado</abbr> en todas partes. Menos tiempo depurando.
+* **Intuitivo**: Gran soporte para editores. <dfn title="también conocido como: autocompletado, IntelliSense">Autocompletado</dfn> en todas partes. Menos tiempo depurando.
 * **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades desde cada declaración de parámetro. Menos bugs.
 * **Robusto**: Obtén código listo para producción. Con documentación interactiva automática.
@@ -93,13 +93,13 @@ Las funcionalidades clave son:
 
 "_Estoy súper emocionado con **FastAPI**. ¡Es tan divertido!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">host del podcast Python Bytes</a></strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> host del podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
 "_Honestamente, lo que has construido parece súper sólido y pulido. En muchos aspectos, es lo que quería que **Hug** fuera; es realmente inspirador ver a alguien construir eso._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">creador de Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creador</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -116,6 +116,12 @@ Las funcionalidades clave son:
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
+
+## Mini documental de FastAPI { #fastapi-mini-documentary }
+
+Hay un <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">mini documental de FastAPI</a> lanzado a finales de 2025, puedes verlo online:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, el FastAPI de las CLIs { #typer-the-fastapi-of-clis }
 
@@ -155,8 +161,6 @@ $ pip install "fastapi[standard]"
 Crea un archivo `main.py` con:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -168,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -177,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Si tu código usa `async` / `await`, usa `async def`:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -191,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -268,7 +270,7 @@ Verás la documentación interactiva automática de la API (proporcionada por <a
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Documentación de API Alternativa { #alternative-api-docs }
+### Documentación alternativa de la API { #alternative-api-docs }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -276,15 +278,13 @@ Verás la documentación alternativa automática (proporcionada por <a href="htt
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Actualización del Ejemplo { #example-upgrade }
+## Actualización del ejemplo { #example-upgrade }
 
 Ahora modifica el archivo `main.py` para recibir un body desde un request `PUT`.
 
 Declara el body usando tipos estándar de Python, gracias a Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -294,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -303,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -314,7 +314,7 @@ def update_item(item_id: int, item: Item):
 
 El servidor `fastapi dev` debería recargarse automáticamente.
 
-### Actualización de la Documentación Interactiva de la API { #interactive-api-docs-upgrade }
+### Actualización de la documentación interactiva de la API { #interactive-api-docs-upgrade }
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -330,7 +330,7 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Actualización de la Documentación Alternativa de la API { #alternative-api-docs-upgrade }
+### Actualización de la documentación alternativa de la API { #alternative-api-docs-upgrade }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -368,7 +368,7 @@ item: Item
 * Validación de datos:
     * Errores automáticos y claros cuando los datos son inválidos.
     * Validación incluso para objetos JSON profundamente anidados.
-* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de entrada: de la red a los datos y tipos de Python. Leyendo desde:
+* <dfn title="también conocido como: serialización, parsing, marshalling">Conversión</dfn> de datos de entrada: de la red a los datos y tipos de Python. Leyendo desde:
     * JSON.
     * Parámetros de path.
     * Parámetros de query.
@@ -376,7 +376,7 @@ item: Item
     * Headers.
     * Forms.
     * Archivos.
-* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de salida: convirtiendo de datos y tipos de Python a datos de red (como JSON):
+* <dfn title="también conocido como: serialización, parsing, marshalling">Conversión</dfn> de datos de salida: convirtiendo de datos y tipos de Python a datos de red (como JSON):
     * Convertir tipos de Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * Objetos `datetime`.
     * Objetos `UUID`.
@@ -393,13 +393,13 @@ Volviendo al ejemplo de código anterior, **FastAPI**:
 * Validará que haya un `item_id` en el path para requests `GET` y `PUT`.
 * Validará que el `item_id` sea del tipo `int` para requests `GET` y `PUT`.
     * Si no lo es, el cliente verá un error útil y claro.
-* Comprobará si hay un parámetro de query opcional llamado `q` (como en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests `GET`.
+* Revisa si hay un parámetro de query opcional llamado `q` (como en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests `GET`.
     * Como el parámetro `q` está declarado con `= None`, es opcional.
     * Sin el `None` sería requerido (como lo es el body en el caso con `PUT`).
 * Para requests `PUT` a `/items/{item_id}`, leerá el body como JSON:
-    * Comprobará que tiene un atributo requerido `name` que debe ser un `str`.
-    * Comprobará que tiene un atributo requerido `price` que debe ser un `float`.
-    * Comprobará que tiene un atributo opcional `is_offer`, que debe ser un `bool`, si está presente.
+    * Revisa que tiene un atributo requerido `name` que debe ser un `str`.
+    * Revisa que tiene un atributo requerido `price` que debe ser un `float`.
+    * Revisa que tiene un atributo opcional `is_offer`, que debe ser un `bool`, si está presente.
     * Todo esto también funcionaría para objetos JSON profundamente anidados.
 * Convertirá de y a JSON automáticamente.
 * Documentará todo con OpenAPI, que puede ser usado por:
@@ -439,7 +439,7 @@ Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="ht
 
 * Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de formulario** y **archivos**.
 * Cómo establecer **restricciones de validación** como `maximum_length` o `regex`.
-* Un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso y fácil de usar.
+* Un sistema de **<dfn title="también conocido como: componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso y fácil de usar.
 * Seguridad y autenticación, incluyendo soporte para **OAuth2** con **tokens JWT** y autenticación **HTTP Basic**.
 * Técnicas más avanzadas (pero igualmente fáciles) para declarar **modelos JSON profundamente anidados** (gracias a Pydantic).
 * Integración con **GraphQL** usando <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otros paquetes.
@@ -524,7 +524,7 @@ Usadas por Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si deseas usar el `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si deseas usar la configuración de plantilla por defecto.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar <abbr title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</abbr> de forms, con `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar form <dfn title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</dfn>, con `request.form()`.
 
 Usadas por FastAPI:
 

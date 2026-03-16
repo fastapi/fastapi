@@ -46,17 +46,17 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
 **FastAPI** suporta isso da mesma maneira que com strings simples:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## Resumo e descrição { #summary-and-description }
 
 Você pode adicionar um `summary` e uma `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Descrição do docstring { #description-from-docstring }
 
-Como as descrições tendem a ser longas e cobrir várias linhas, você pode declarar a descrição da *operação de rota* na <abbr title="uma string de várias linhas como a primeira expressão dentro de uma função (não atribuída a nenhuma variável) usada para documentação">docstring</abbr> da função e o **FastAPI** irá lê-la de lá.
+Como as descrições tendem a ser longas e cobrir várias linhas, você pode declarar a descrição da *operação de rota* na <dfn title="uma string de várias linhas como a primeira expressão dentro de uma função (não atribuída a nenhuma variável) usada para documentação">docstring</dfn> da função e o **FastAPI** irá lê-la de lá.
 
 Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
@@ -70,7 +70,7 @@ Ela será usada nas documentações interativas:
 
 Você pode especificar a descrição da resposta com o parâmetro `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Informação
 
@@ -90,9 +90,9 @@ Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma
 
 ## Descontinuar uma *operação de rota* { #deprecate-a-path-operation }
 
-Se você precisar marcar uma *operação de rota* como <abbr title="obsoleta, recomendada não usá-la">descontinuada</abbr>, mas sem removê-la, passe o parâmetro `deprecated`:
+Se você precisar marcar uma *operação de rota* como <dfn title="obsoleta, recomendado não usar">descontinuada</dfn>, mas sem removê-la, passe o parâmetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 Ela será claramente marcada como descontinuada nas documentações interativas:
 

@@ -94,7 +94,7 @@ E nós retornamos os escopos como parte do token JWT.
 
 Para manter as coisas simples, aqui nós estamos apenas adicionando os escopos recebidos diretamente ao token.
 
-Porém em sua aplicação, por segurança, você deve garantir que você apenas adiciona os escopos que o usuário possui permissão de fato, ou aqueles que você predefiniu.
+Porém em sua aplicação, por segurança, você deveria garantir que você apenas adiciona os escopos que o usuário possui permissão de fato, ou aqueles que você predefiniu.
 
 ///
 

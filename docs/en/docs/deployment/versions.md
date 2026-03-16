@@ -4,7 +4,7 @@
 
 New features are added frequently, bugs are fixed regularly, and the code is still continuously improving.
 
-That's why the current versions are still `0.x.x`, this reflects that each version could potentially have breaking changes. This follows the <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a> conventions.
+That's why the current versions are still `0.x.x`, this reflects that each version could potentially have breaking changes. This follows the [Semantic Versioning](https://semver.org/) conventions.
 
 You can create production applications with **FastAPI** right now (and you have probably been doing it for some time), you just have to make sure that you use a version that works correctly with the rest of your code.
 
@@ -34,7 +34,7 @@ If you use any other tool to manage your installations, like `uv`, Poetry, Pipen
 
 ## Available versions { #available-versions }
 
-You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](../release-notes.md){.internal-link target=_blank}.
+You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](../release-notes.md).
 
 ## About versions { #about-versions }
 
@@ -66,7 +66,7 @@ The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR vers
 
 You should add tests for your app.
 
-With **FastAPI** it's very easy (thanks to Starlette), check the docs: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+With **FastAPI** it's very easy (thanks to Starlette), check the docs: [Testing](../tutorial/testing.md)
 
 After you have tests, then you can upgrade the **FastAPI** version to a more recent one, and make sure that all your code is working correctly by running your tests.
 

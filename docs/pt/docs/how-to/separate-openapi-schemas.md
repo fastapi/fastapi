@@ -1,8 +1,8 @@
 # Esquemas OpenAPI Separados para Entrada e Saída ou Não { #separate-openapi-schemas-for-input-and-output-or-not }
 
-Ao usar **Pydantic v2**, o OpenAPI gerado é um pouco mais exato e **correto** do que antes. 😎
+Desde que o **Pydantic v2** foi lançado, o OpenAPI gerado é um pouco mais exato e **correto** do que antes. 😎
 
-Inclusive, em alguns casos, ele terá até **dois JSON Schemas** no OpenAPI para o mesmo modelo Pydantic, para entrada e saída, dependendo se eles possuem **valores padrão**.
+De fato, em alguns casos, ele terá até **dois JSON Schemas** no OpenAPI para o mesmo modelo Pydantic, para entrada e saída, dependendo se eles possuem **valores padrão**.
 
 Vamos ver como isso funciona e como alterar se for necessário.
 
@@ -95,10 +95,8 @@ O suporte para `separate_input_output_schemas` foi adicionado no FastAPI `0.102.
 
 ### Mesmo Esquema para Modelos de Entrada e Saída na Documentação { #same-schema-for-input-and-output-models-in-docs }
 
-E agora haverá um único esquema para entrada e saída para o modelo, apenas `Item`, e `description` **não será obrigatório**:
+E agora haverá um único esquema para entrada e saída para o modelo, apenas `Item`, e ele terá `description` como **não obrigatório**:
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">
 </div>
-
-Esse é o mesmo comportamento do Pydantic v1. 🤓
