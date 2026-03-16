@@ -35,6 +35,17 @@ def read_query_mixed(
     return {"m": m.model_dump(), "extra": extra}
 
 
+@app.get("/query/openapi-metadata")
+def read_query_openapi_metadata(
+    m: Annotated[QueryModel, Query()],
+    documented_query: Annotated[
+        str | None,
+        Query(description="Documented query", deprecated=True),
+    ] = None,
+):
+    return {"m": m.model_dump(), "documented_query": documented_query}
+
+
 @app.get("/header/only")
 def read_header_only(h: Annotated[HeaderModel, Header()]):
     return {"h": h.model_dump()}
@@ -54,6 +65,26 @@ def read_header_mixed_no_convert(
     extra: Annotated[str, Header()],
 ):
     return {"h": h.model_dump(), "extra": extra}
+
+
+@app.get("/header/openapi-metadata")
+def read_header_openapi_metadata(
+    h: Annotated[HeaderModel, Header()],
+    hidden_header: Annotated[str | None, Header(include_in_schema=False)] = None,
+    documented_header: Annotated[
+        str | None,
+        Header(
+            description="Documented header",
+            openapi_examples={"demo": {"summary": "Demo", "value": "abc"}},
+            deprecated=True,
+        ),
+    ] = None,
+):
+    return {
+        "h": h.model_dump(),
+        "hidden_header": hidden_header,
+        "documented_header": documented_header,
+    }
 
 
 @app.get("/cookie/only")
@@ -107,6 +138,15 @@ def test_query_model_with_sibling_param_openapi():
     assert "m" not in parameter_names
 
 
+def test_query_openapi_metadata():
+    parameters = app.openapi()["paths"]["/query/openapi-metadata"]["get"]["parameters"]
+    documented_query = next(
+        param for param in parameters if param["name"] == "documented_query"
+    )
+    assert documented_query["description"] == "Documented query"
+    assert documented_query["deprecated"] is True
+
+
 def test_header_model_only_still_flattens():
     response = client.get(
         "/header/only",
@@ -156,6 +196,23 @@ def test_header_model_with_sibling_param_convert_underscores_false():
     }
     parameter_names = get_parameter_names("/header/mixed-no-convert")
     assert parameter_names == ["x_token", "x_trace", "extra"]
+
+
+def test_header_openapi_metadata_and_hidden_params():
+    parameters = app.openapi()["paths"]["/header/openapi-metadata"]["get"]["parameters"]
+    parameter_names = [param["name"] for param in parameters]
+
+    assert parameter_names == ["x-token", "x-trace", "documented-header"]
+
+    documented_header = next(
+        param for param in parameters if param["name"] == "documented-header"
+    )
+    assert documented_header["description"] == "Documented header"
+    assert documented_header["deprecated"] is True
+    assert documented_header["examples"] == {
+        "demo": {"summary": "Demo", "value": "abc"}
+    }
+    assert "hidden-header" not in parameter_names
 
 
 def test_cookie_model_only_still_flattens():
