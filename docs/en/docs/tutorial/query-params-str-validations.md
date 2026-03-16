@@ -228,6 +228,20 @@ To do that, you can declare that `None` is a valid type but simply do not declar
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
+/// warning
+
+Note that `None` here refers to Python's `None` value in your code logic, **not** a literal `"None"` string sent via the URL.
+
+Query parameters are always received as strings from the URL. There is no way to send a true `None` value through a query parameter — if the client omits the parameter entirely, FastAPI will return a validation error because the parameter is required.
+
+If you want a truly **optional** parameter that defaults to `None` when not sent, use a default value instead:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+///
+
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
@@ -331,7 +345,7 @@ Imagine that you want the parameter to be `item-query`.
 Like in:
 
 ```
-http://127.0.0.1:8000/items/?item-query=foobaritems
+http://127.0.0.18000/items/?item-query=foobaritems
 ```
 
 But `item-query` is not a valid Python variable name.
