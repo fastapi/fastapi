@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 import pytest
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.exceptions import DependencyScopeError
 from fastapi.testclient import TestClient
 from starlette.requests import Request
