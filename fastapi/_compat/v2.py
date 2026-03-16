@@ -166,7 +166,7 @@ class ModelField:
                 Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[annotated_args],
+                Annotated[annotated_args],  # ty: ignore[invalid-type-form]
                 config=self.config,
             )
 
@@ -456,7 +456,7 @@ def get_flat_models_from_annotation(
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)):
                 if arg not in known_models:
-                    known_models.add(arg)  # type: ignore[arg-type]
+                    known_models.add(arg)  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
                     if lenient_issubclass(arg, BaseModel):
                         get_flat_models_from_model(arg, known_models=known_models)
             else:
