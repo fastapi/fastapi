@@ -225,6 +225,19 @@ def test_custom_encoders():
     assert encoded_instance2["dt_field"] == instance["dt_field"].isoformat()
 
 
+
+def test_custom_encoders_applied_to_model_dump_python_values():
+    class ModelWithDecimal(BaseModel):
+        value: Decimal
+
+    instance = ModelWithDecimal(value=Decimal("1.23"))
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={Decimal: lambda o: f"{o} custom"}
+    )
+    assert encoded_instance == {"value": "1.23 custom"}
+
+
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
         return v.value.lower()
