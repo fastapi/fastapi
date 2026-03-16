@@ -1,3 +1,4 @@
+import inspect
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum
@@ -1024,11 +1025,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
-        _inner_lifespan = (
-            lifespan
-            if lifespan is not None
-            else (lambda app: routing._DefaultLifespan(app.router))
-        )
+        if lifespan is None:
+            _inner_lifespan = lambda app: routing._DefaultLifespan(app.router)
+        elif inspect.isasyncgenfunction(lifespan):
+            _inner_lifespan = asynccontextmanager(lifespan)
+        elif inspect.isgeneratorfunction(lifespan):
+            _inner_lifespan = routing._wrap_gen_lifespan_context(lifespan)
+        else:
+            _inner_lifespan = lifespan
         _lifespan = _wrap_lifespan_with_dependency_cache(_inner_lifespan)
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
