@@ -130,6 +130,8 @@ docs = [
     { include-group = "docs-tests" },
     "black >=25.1.0",
     "cairosvg >=2.8.2",
+    # for MkDocs live reload
+    "click==8.2.1",
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
@@ -175,6 +177,7 @@ tests = [
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
+    "ty>=0.0.9",
     "types-orjson >=3.6.2",
     "types-ujson >=5.10.0.20240515",
     "a2wsgi >=1.9.0,<=2.0.0",
@@ -324,6 +327,7 @@ ignore = [
 "docs_src/stream_json_lines/tutorial001_py310.py" = ["UP028"]
 "docs_src/stream_data/tutorial001_py310.py" = ["UP028"]
 "docs_src/stream_data/tutorial002_py310.py" = ["UP028"]
+"docs_src/server_sent_events/tutorial001_py310.py" = ["UP028"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]

@@ -2,6 +2,12 @@
 
 You could have a sequence of data that you would like to send in a "**stream**", you could do it with **JSON Lines**.
 
+/// info
+
+Added in FastAPI 0.134.0.
+
+///
+
 ## What is a Stream? { #what-is-a-stream }
 
 "**Streaming**" data means that your app will start sending data items to the client without waiting for the entire sequence of items to be ready.
@@ -96,10 +102,10 @@ As in this case the function is not async, the right return type would be `Itera
 
 ### No Return Type { #no-return-type }
 
-You can also omit the return type. FastAPI will then use the [`jsonable_encoder`](./encoder.md){.internal-link target=_blank} to convert the data to something that can be serialized to JSON and then send it as JSON Lines.
+You can also omit the return type. FastAPI will then use the [`jsonable_encoder`](./encoder.md) to convert the data to something that can be serialized to JSON and then send it as JSON Lines.
 
 {* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
 
-## Server Sent Events (SSE) { #server-sent-events-sse }
+## Server-Sent Events (SSE) { #server-sent-events-sse }
 
-A future version of FastAPI will also have first-class support for Server Sent Events (SSE), which are quite similar, but with a couple of extra details. 🤓
+FastAPI also has first-class support for Server-Sent Events (SSE), which are quite similar but with a couple of extra details. You can learn about them in the next chapter: [Server-Sent Events (SSE)](server-sent-events.md). 🤓

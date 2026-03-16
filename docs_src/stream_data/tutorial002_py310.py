@@ -22,23 +22,33 @@ class PNGStreamingResponse(StreamingResponse):
 
 @app.get("/image/stream", response_class=PNGStreamingResponse)
 async def stream_image() -> AsyncIterable[bytes]:
-    for chunk in read_image():
-        yield chunk
+    with read_image() as image_file:
+        for chunk in image_file:
+            yield chunk
 
 
 @app.get("/image/stream-no-async", response_class=PNGStreamingResponse)
 def stream_image_no_async() -> Iterable[bytes]:
-    for chunk in read_image():
-        yield chunk
+    with read_image() as image_file:
+        for chunk in image_file:
+            yield chunk
+
+
+@app.get("/image/stream-no-async-yield-from", response_class=PNGStreamingResponse)
+def stream_image_no_async_yield_from() -> Iterable[bytes]:
+    with read_image() as image_file:
+        yield from image_file
 
 
 @app.get("/image/stream-no-annotation", response_class=PNGStreamingResponse)
 async def stream_image_no_annotation():
-    for chunk in read_image():
-        yield chunk
+    with read_image() as image_file:
+        for chunk in image_file:
+            yield chunk
 
 
 @app.get("/image/stream-no-async-no-annotation", response_class=PNGStreamingResponse)
 def stream_image_no_async_no_annotation():
-    for chunk in read_image():
-        yield chunk
+    with read_image() as image_file:
+        for chunk in image_file:
+            yield chunk

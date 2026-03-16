@@ -20,7 +20,7 @@ try:
     from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
-    class EmailStr(str):  # type: ignore
+    class EmailStr(str):  # type: ignore  # ty: ignore[unused-ignore-comment]
         @classmethod
         def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate

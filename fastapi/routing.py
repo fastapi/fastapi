@@ -26,10 +26,12 @@ from typing import (
     Annotated,
     Any,
     TypeVar,
+    cast,
 )
 
 import anyio
 from annotated_doc import Doc
+from anyio.abc import ObjectReceiveStream
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -56,6 +58,13 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
+from fastapi.sse import (
+    _PING_INTERVAL,
+    KEEPALIVE_COMMENT,
+    EventSourceResponse,
+    ServerSentEvent,
+    format_sse_event,
+)
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_model_field,
@@ -66,7 +75,8 @@ from fastapi.utils import (
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
-from starlette.concurrency import run_in_threadpool
+from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response, StreamingResponse
@@ -92,8 +102,10 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
-    )
+        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        if is_async_callable(func)
+        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
+    )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -361,6 +373,7 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
+    is_sse_stream = lenient_issubclass(actual_response_class, EventSourceResponse)
     if isinstance(strict_content_type, DefaultPlaceholder):
         actual_strict_content_type: bool = strict_content_type.value
     else:
@@ -444,7 +457,7 @@ def get_request_handler(
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
-            body=body,
+            body=cast(dict[str, Any] | FormData | bytes | None, body),
             dependency_overrides_provider=dependency_overrides_provider,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
@@ -452,35 +465,164 @@ def get_request_handler(
         errors = solved_result.errors
         assert dependant.call  # For types
         if not errors:
-            if is_json_stream:
+            # Shared serializer for stream items (JSONL and SSE).
+            # Validates against stream_item_field when set, then
+            # serializes to JSON bytes.
+            def _serialize_data(data: Any) -> bytes:
+                if stream_item_field:
+                    value, errors_ = stream_item_field.validate(
+                        data, {}, loc=("response",)
+                    )
+                    if errors_:
+                        ctx = endpoint_ctx or EndpointContext()
+                        raise ResponseValidationError(
+                            errors=errors_,
+                            body=data,
+                            endpoint_ctx=ctx,
+                        )
+                    return stream_item_field.serialize_json(
+                        value,
+                        include=response_model_include,
+                        exclude=response_model_exclude,
+                        by_alias=response_model_by_alias,
+                        exclude_unset=response_model_exclude_unset,
+                        exclude_defaults=response_model_exclude_defaults,
+                        exclude_none=response_model_exclude_none,
+                    )
+                else:
+                    data = jsonable_encoder(data)
+                    return json.dumps(data).encode("utf-8")
+
+            if is_sse_stream:
+                # Generator endpoint: stream as Server-Sent Events
+                gen = dependant.call(**solved_result.values)
+
+                def _serialize_sse_item(item: Any) -> bytes:
+                    if isinstance(item, ServerSentEvent):
+                        # User controls the event structure.
+                        # Serialize the data payload if present.
+                        # For ServerSentEvent items we skip stream_item_field
+                        # validation (the user may mix types intentionally).
+                        if item.raw_data is not None:
+                            data_str: str | None = item.raw_data
+                        elif item.data is not None:
+                            if hasattr(item.data, "model_dump_json"):
+                                data_str = item.data.model_dump_json()
+                            else:
+                                data_str = json.dumps(jsonable_encoder(item.data))
+                        else:
+                            data_str = None
+                        return format_sse_event(
+                            data_str=data_str,
+                            event=item.event,
+                            id=item.id,
+                            retry=item.retry,
+                            comment=item.comment,
+                        )
+                    else:
+                        # Plain object: validate + serialize via
+                        # stream_item_field (if set) and wrap in data field
+                        return format_sse_event(
+                            data_str=_serialize_data(item).decode("utf-8")
+                        )
+
+                if dependant.is_async_gen_callable:
+                    sse_aiter: AsyncIterator[Any] = gen.__aiter__()
+                else:
+                    sse_aiter = iterate_in_threadpool(gen)
+
+                @asynccontextmanager
+                async def _sse_producer_cm() -> AsyncIterator[
+                    ObjectReceiveStream[bytes]
+                ]:
+                    # Use a memory stream to decouple generator iteration
+                    # from the keepalive timer. A producer task pulls items
+                    # from the generator independently, so
+                    # `anyio.fail_after` never wraps the generator's
+                    # `__anext__` directly - avoiding CancelledError that
+                    # would finalize the generator and also working for sync
+                    # generators running in a thread pool.
+                    #
+                    # This context manager is entered on the request-scoped
+                    # AsyncExitStack so its __aexit__ (which cancels the
+                    # task group) is called by the exit stack after the
+                    # streaming response completes — not by async generator
+                    # finalization via GeneratorExit.
+                    # Ref: https://peps.python.org/pep-0789/
+                    send_stream, receive_stream = anyio.create_memory_object_stream[
+                        bytes
+                    ](max_buffer_size=1)
+
+                    async def _producer() -> None:
+                        async with send_stream:
+                            async for raw_item in sse_aiter:
+                                await send_stream.send(_serialize_sse_item(raw_item))
+
+                    send_keepalive, receive_keepalive = (
+                        anyio.create_memory_object_stream[bytes](max_buffer_size=1)
+                    )
+
+                    async def _keepalive_inserter() -> None:
+                        """Read from the producer and forward to the output,
+                        inserting keepalive comments on timeout."""
+                        async with send_keepalive, receive_stream:
+                            try:
+                                while True:
+                                    try:
+                                        with anyio.fail_after(_PING_INTERVAL):
+                                            data = await receive_stream.receive()
+                                        await send_keepalive.send(data)
+                                    except TimeoutError:
+                                        await send_keepalive.send(KEEPALIVE_COMMENT)
+                            except anyio.EndOfStream:
+                                pass
+
+                    async with anyio.create_task_group() as tg:
+                        tg.start_soon(_producer)
+                        tg.start_soon(_keepalive_inserter)
+                        yield receive_keepalive
+                        tg.cancel_scope.cancel()
+
+                # Enter the SSE context manager on the request-scoped
+                # exit stack. The stack outlives the streaming response,
+                # so __aexit__ runs via proper structured teardown, not
+                # via GeneratorExit thrown into an async generator.
+                sse_receive_stream = await async_exit_stack.enter_async_context(
+                    _sse_producer_cm()
+                )
+                # Ensure the receive stream is closed when the exit stack
+                # unwinds, preventing ResourceWarning from __del__.
+                async_exit_stack.push_async_callback(sse_receive_stream.aclose)
+
+                async def _sse_with_checkpoints(
+                    stream: ObjectReceiveStream[bytes],
+                ) -> AsyncIterator[bytes]:
+                    async for data in stream:
+                        yield data
+                        # Guarantee a checkpoint so cancellation can be
+                        # delivered even when the producer is faster than
+                        # the consumer and receive() never suspends.
+                        await anyio.sleep(0)
+
+                sse_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                    _sse_with_checkpoints(sse_receive_stream)
+                )
+
+                response = StreamingResponse(
+                    sse_stream_content,
+                    media_type="text/event-stream",
+                    background=solved_result.background_tasks,
+                )
+                response.headers["Cache-Control"] = "no-cache"
+                # For Nginx proxies to not buffer server sent events
+                response.headers["X-Accel-Buffering"] = "no"
+                response.headers.raw.extend(solved_result.response.headers.raw)
+            elif is_json_stream:
                 # Generator endpoint: stream as JSONL
                 gen = dependant.call(**solved_result.values)
 
                 def _serialize_item(item: Any) -> bytes:
-                    if stream_item_field:
-                        value, errors = stream_item_field.validate(
-                            item, {}, loc=("response",)
-                        )
-                        if errors:
-                            ctx = endpoint_ctx or EndpointContext()
-                            raise ResponseValidationError(
-                                errors=errors,
-                                body=item,
-                                endpoint_ctx=ctx,
-                            )
-                        line = stream_item_field.serialize_json(
-                            value,
-                            include=response_model_include,
-                            exclude=response_model_exclude,
-                            by_alias=response_model_by_alias,
-                            exclude_unset=response_model_exclude_unset,
-                            exclude_defaults=response_model_exclude_defaults,
-                            exclude_none=response_model_exclude_none,
-                        )
-                        return line + b"\n"
-                    else:
-                        data = jsonable_encoder(item)
-                        return json.dumps(data).encode("utf-8") + b"\n"
+                    return _serialize_data(item) + b"\n"
 
                 if dependant.is_async_gen_callable:
 
@@ -491,19 +633,19 @@ def get_request_handler(
                             # Ref: https://github.com/fastapi/fastapi/issues/14680
                             await anyio.sleep(0)
 
-                    stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                    jsonl_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
                         _async_stream_jsonl()
                     )
                 else:
 
                     def _sync_stream_jsonl() -> Iterator[bytes]:
-                        for item in gen:
+                        for item in gen:  # ty: ignore[not-iterable]
                             yield _serialize_item(item)
 
-                    stream_content = _sync_stream_jsonl()
+                    jsonl_stream_content = _sync_stream_jsonl()
 
                 response = StreamingResponse(
-                    stream_content,
+                    jsonl_stream_content,
                     media_type="application/jsonl",
                     background=solved_result.background_tasks,
                 )
@@ -709,9 +851,16 @@ class APIRoute(routing.Route):
             else:
                 stream_item = get_stream_item_type(return_annotation)
                 if stream_item is not None:
-                    # Only extract item type for JSONL streaming when no
-                    # explicit response_class (e.g. StreamingResponse) was set
-                    if isinstance(response_class, DefaultPlaceholder):
+                    # Extract item type for JSONL or SSE streaming when
+                    # response_class is DefaultPlaceholder (JSONL) or
+                    # EventSourceResponse (SSE).
+                    # ServerSentEvent is excluded: it's a transport
+                    # wrapper, not a data model, so it shouldn't feed
+                    # into validation or OpenAPI schema generation.
+                    if (
+                        isinstance(response_class, DefaultPlaceholder)
+                        or lenient_issubclass(response_class, EventSourceResponse)
+                    ) and not lenient_issubclass(stream_item, ServerSentEvent):
                         self.stream_item_type = stream_item
                     response_model = None
                 else:
@@ -763,7 +912,7 @@ class APIRoute(routing.Route):
                 mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore
+            self.response_field = None  # type: ignore  # ty: ignore[unused-ignore-comment]
         if self.stream_item_type:
             stream_item_name = "StreamItem_" + self.unique_id
             self.stream_item_field: ModelField | None = create_model_field(
@@ -814,10 +963,15 @@ class APIRoute(routing.Route):
             name=self.unique_id,
             embed_body_fields=self._embed_body_fields,
         )
-        # Detect generator endpoints that should stream as JSONL
-        # (only when no explicit response_class like StreamingResponse is set)
-        self.is_json_stream = isinstance(response_class, DefaultPlaceholder) and (
+        # Detect generator endpoints that should stream as JSONL or SSE
+        is_generator = (
             self.dependant.is_async_gen_callable or self.dependant.is_gen_callable
+        )
+        self.is_sse_stream = is_generator and lenient_issubclass(
+            response_class, EventSourceResponse
+        )
+        self.is_json_stream = is_generator and isinstance(
+            response_class, DefaultPlaceholder
         )
         self.app = request_response(self.get_route_handler())
 

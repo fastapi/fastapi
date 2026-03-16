@@ -32,7 +32,7 @@ Here's a more complete example.
 
 Use a dependency to check if the username and password are correct.
 
-For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password.
+For this, use the Python standard module [`secrets`](https://docs.python.org/3/library/secrets.html) to check the username and password.
 
 `secrets.compare_digest()` needs to take `bytes` or a `str` that only contains ASCII characters (the ones in English), this means it wouldn't work with characters like `á`, as in `Sebastián`.
 

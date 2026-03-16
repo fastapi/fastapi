@@ -4,7 +4,7 @@ If your app needs to receive and send JSON data, but you need to include binary 
 
 ## Base64 vs Files { #base64-vs-files }
 
-Consider first if you can use [Request Files](../tutorial/request-files.md){.internal-link target=_blank} for uploading binary data and [Custom Response - FileResponse](./custom-response.md#fileresponse--fileresponse-){.internal-link target=_blank} for sending binary data, instead of encoding it in JSON.
+Consider first if you can use [Request Files](../tutorial/request-files.md) for uploading binary data and [Custom Response - FileResponse](./custom-response.md#fileresponse--fileresponse-) for sending binary data, instead of encoding it in JSON.
 
 JSON can only contain UTF-8 encoded strings, so it can't contain raw bytes.
 

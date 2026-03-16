@@ -1,6 +1,6 @@
 # Repository Management Tasks
 
-These are the tasks that can be performed to manage the FastAPI repository by [team members](./fastapi-people.md#team){.internal-link target=_blank}.
+These are the tasks that can be performed to manage the FastAPI repository by [team members](./fastapi-people.md#team).
 
 /// tip
 
@@ -8,9 +8,9 @@ This section is useful only to a handful of people, team members with permission
 
 ///
 
-...so, you are a [team member of FastAPI](./fastapi-people.md#team){.internal-link target=_blank}? Wow, you are so cool! 😎
+...so, you are a [team member of FastAPI](./fastapi-people.md#team)? Wow, you are so cool! 😎
 
-You can help with everything on [Help FastAPI - Get Help](./help-fastapi.md){.internal-link target=_blank} the same ways as external contributors. But additionally, there are some tasks that only you (as part of the team) can perform.
+You can help with everything on [Help FastAPI - Get Help](./help-fastapi.md) the same ways as external contributors. But additionally, there are some tasks that only you (as part of the team) can perform.
 
 Here are the general instructions for the tasks you can perform.
 
@@ -40,7 +40,7 @@ For conversations that are more difficult, for example to reject a PR, you can a
 
 ## Edit PR Titles
 
-* Edit the PR title to start with an emoji from <a href="https://gitmoji.dev/" class="external-link" target="_blank">gitmoji</a>.
+* Edit the PR title to start with an emoji from [gitmoji](https://gitmoji.dev/).
     * Use the emoji character, not the GitHub code. So, use `🐛` instead of `:bug:`. This is so that it shows up correctly outside of GitHub, for example in the release notes.
     * For translations use the `🌐` emoji ("globe with meridians").
 * Start the title with a verb. For example `Add`, `Refactor`, `Fix`, etc. This way the title will say the action that the PR does. Like `Add support for teleporting`, instead of `Teleporting wasn't working, so this PR fixes it`.
@@ -53,15 +53,15 @@ For conversations that are more difficult, for example to reject a PR, you can a
 🌐 Add Spanish translation for `docs/es/docs/teleporting.md`
 ```
 
-Once the PR is merged, a GitHub Action (<a href="https://github.com/tiangolo/latest-changes" class="external-link" target="_blank">latest-changes</a>) will use the PR title to update the latest changes automatically.
+Once the PR is merged, a GitHub Action ([latest-changes](https://github.com/tiangolo/latest-changes)) will use the PR title to update the latest changes automatically.
 
 So, having a nice PR title will not only look nice in GitHub, but also in the release notes. 📝
 
 ## Add Labels to PRs
 
-The same GitHub Action <a href="https://github.com/tiangolo/latest-changes" class="external-link" target="_blank">latest-changes</a> uses one label in the PR to decide the section in the release notes to put this PR in.
+The same GitHub Action [latest-changes](https://github.com/tiangolo/latest-changes) uses one label in the PR to decide the section in the release notes to put this PR in.
 
-Make sure you use a supported label from the <a href="https://github.com/tiangolo/latest-changes#using-labels" class="external-link" target="_blank">latest-changes list of labels</a>:
+Make sure you use a supported label from the [latest-changes list of labels](https://github.com/tiangolo/latest-changes#using-labels):
 
 * `breaking`: Breaking Changes
     * Existing code will break if they update the version without changing their code. This rarely happens, so this label is not frequently used.
@@ -108,7 +108,7 @@ This way, we can notice when there are new translations ready, because they have
 
 Translations are generated automatically with LLMs and scripts.
 
-There's one GitHub Action that can be manually run to add or update translations for a language: <a href="https://github.com/fastapi/fastapi/actions/workflows/translate.yml" class="external-link" target="_blank">`translate.yml`</a>.
+There's one GitHub Action that can be manually run to add or update translations for a language: [`translate.yml`](https://github.com/fastapi/fastapi/actions/workflows/translate.yml).
 
 For these language translation PRs, confirm that:
 
@@ -140,7 +140,7 @@ For these language translation PRs, confirm that:
 
 ## FastAPI People PRs
 
-Every month, a GitHub Action updates the FastAPI People data. Those PRs look like this one: <a href="https://github.com/fastapi/fastapi/pull/11669" class="external-link" target="_blank">👥 Update FastAPI People</a>.
+Every month, a GitHub Action updates the FastAPI People data. Those PRs look like this one: [👥 Update FastAPI People](https://github.com/fastapi/fastapi/pull/11669).
 
 If the tests are passing, you can merge it right away.
 
@@ -155,4 +155,4 @@ Dependabot will create PRs to update dependencies for several things, and those 
 
 When a question in GitHub Discussions has been answered, mark the answer by clicking "Mark as answer".
 
-You can filter discussions by <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category:Questions+is:open+is:unanswered" class="external-link" target="_blank">`Questions` that are `Unanswered`</a>.
+You can filter discussions by [`Questions` that are `Unanswered`](https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category:Questions+is:open+is:unanswered).
