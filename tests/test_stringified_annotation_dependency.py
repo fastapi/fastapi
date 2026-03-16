@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Annotated
+from typing import TYPE_CHECKING, Any, Annotated
 
 import pytest
 from fastapi import Depends, FastAPI
@@ -77,3 +77,45 @@ def test_openapi_schema(client: TestClient):
             },
         }
     )
+
+
+def test_openapi_schema_for_dependency_with_forward_ref_defined_later():
+    namespace: dict[str, Any] = {}
+    exec(
+        """
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Annotated
+
+from fastapi import Depends, FastAPI
+
+app = FastAPI()
+
+
+def get_potato() -> Potato:
+    return Potato(color="red", size=10)
+
+
+@app.get("/")
+async def read_root(potato: Annotated[Potato, Depends(get_potato)]):
+    return {"color": potato.color, "size": potato.size}
+
+
+@dataclass
+class Potato:
+    color: str
+    size: int
+""",
+        namespace,
+    )
+
+    client = TestClient(namespace["app"])
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"color": "red", "size": 10}
+
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert "requestBody" not in response.json()["paths"]["/"]["get"]
