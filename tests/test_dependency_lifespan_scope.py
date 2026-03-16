@@ -62,7 +62,7 @@ def test_lifespan_dependency_with_custom_lifespan() -> None:
 
     @app.get("/")
     def root(
-        pool: Annotated[str, Depends(get_pool, scope="lifespan")]
+        pool: Annotated[str, Depends(get_pool, scope="lifespan")],
     ) -> dict[str, str]:
         return {"pool": pool}
 
@@ -90,7 +90,7 @@ def test_lifespan_dependency_same_instance_across_requests() -> None:
 
     @app.get("/")
     def root(
-        s: Annotated[object, Depends(get_singleton, scope="lifespan")]
+        s: Annotated[object, Depends(get_singleton, scope="lifespan")],
     ) -> dict[str, bool]:
         return {"is_singleton": len(instances) == 1 and s is instances[0]}
 
@@ -123,6 +123,7 @@ def test_collect_lifespan_dependants_route_level_scope() -> None:
 
 def test_lifespan_dependency_synthetic_request_receive_send() -> None:
     """Lifespan dep that uses Request.receive covers noop_receive during startup."""
+
     async def lifespan_dep(request: Request) -> str:
         await request.receive()
         return "ok"

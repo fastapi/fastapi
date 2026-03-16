@@ -1025,8 +1025,13 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
+        _inner_lifespan: Callable[[Any], Any]
         if lifespan is None:
-            _inner_lifespan = lambda app: routing._DefaultLifespan(app.router)
+
+            def _default_lifespan(app: Any) -> Any:
+                return routing._DefaultLifespan(app.router)
+
+            _inner_lifespan = _default_lifespan
         elif inspect.isasyncgenfunction(lifespan):
             _inner_lifespan = asynccontextmanager(lifespan)
         elif inspect.isgeneratorfunction(lifespan):
@@ -1050,7 +1055,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             strict_content_type=strict_content_type,
         )
-        self.router._fastapi_app = self
+        self.router._fastapi_app = self  # type: ignore[attr-defined]
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)

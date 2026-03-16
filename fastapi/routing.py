@@ -231,7 +231,6 @@ async def _run_lifespan_dependencies(
 ) -> None:
     """Solve all lifespan-scoped dependencies and fill dependency_cache."""
     from starlette.requests import Request
-    from starlette.types import Receive, Send
 
     lifespan_deps = _collect_lifespan_dependants(router)
     if not lifespan_deps:

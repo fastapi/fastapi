@@ -328,13 +328,18 @@ def get_dependant(
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
             # Lifespan-scoped dependencies can only depend on other lifespan-scoped deps.
-            if dependant.computed_scope == "lifespan" and param_details.depends.scope not in (
-                None,
-                "lifespan",
+            if (
+                dependant.computed_scope == "lifespan"
+                and param_details.depends.scope
+                not in (
+                    None,
+                    "lifespan",
+                )
             ):
                 assert dependant.call
+                call_name = getattr(dependant.call, "__name__", "<unnamed_callable>")
                 raise DependencyScopeError(
-                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    f'The dependency "{call_name}" has a scope of '
                     '"lifespan", it cannot depend on dependencies with scope '
                     f'"{param_details.depends.scope}".'
                 )
