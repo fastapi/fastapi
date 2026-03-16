@@ -111,7 +111,7 @@ def test_collect_lifespan_dependants_route_level_scope() -> None:
 
     @router.get("/")
     def root() -> dict[str, str]:
-        return {"ok": "yes"}
+        return {"ok": "yes"}  # pragma: no cover - route not requested in this test
 
     route = next(r for r in router.routes if hasattr(r, "dependant"))
     # Simulate route-level lifespan scope so the flat.computed_scope == "lifespan" branch is hit
@@ -140,6 +140,26 @@ def test_lifespan_dependency_synthetic_request_receive_send() -> None:
         r = client.get("/")
         assert r.status_code == 200
         assert r.json() == {"v": "ok"}
+
+
+def test_lifespan_dependency_sync_callable() -> None:
+    """Sync (non-gen, non-coroutine) lifespan dep runs via run_in_threadpool (utils 702)."""
+
+    def sync_lifespan_dep() -> str:
+        return "sync_val"
+
+    app = FastAPI()
+
+    @app.get("/")
+    def root(
+        v: Annotated[str, Depends(sync_lifespan_dep, scope="lifespan")],
+    ) -> dict[str, str]:
+        return {"v": v}
+
+    with TestClient(app) as client:
+        r = client.get("/")
+        assert r.status_code == 200
+        assert r.json() == {"v": "sync_val"}
 
 
 def test_lifespan_dependency_nested() -> None:
@@ -171,21 +191,57 @@ def test_lifespan_dependency_nested() -> None:
         assert order == ["a", "b"]
 
 
+def test_lifespan_dependency_shared_cache_hit() -> None:
+    """Two lifespan deps B and C both depend on A; second resolution hits cache (utils 687)."""
+    order: list[str] = []
+
+    def lifespan_a() -> str:
+        order.append("a")
+        yield "a"
+
+    def lifespan_b(
+        a: Annotated[str, Depends(lifespan_a, scope="lifespan")],
+    ) -> str:
+        order.append("b")
+        yield a + "-b"
+
+    def lifespan_c(
+        a: Annotated[str, Depends(lifespan_a, scope="lifespan")],
+    ) -> str:
+        order.append("c")
+        yield a + "-c"
+
+    app = FastAPI()
+
+    @app.get("/")
+    def root(
+        b: Annotated[str, Depends(lifespan_b, scope="lifespan")],
+        c: Annotated[str, Depends(lifespan_c, scope="lifespan")],
+    ) -> dict[str, str]:
+        return {"b": b, "c": c}
+
+    with TestClient(app) as client:
+        r = client.get("/")
+        assert r.status_code == 200
+        assert r.json() == {"b": "a-b", "c": "a-c"}
+        assert order == ["a", "b", "c"]
+
+
 def test_lifespan_dependency_cannot_depend_on_request_scope() -> None:
     """Lifespan-scoped dependency that depends on request-scoped dep raises."""
 
     def request_scoped() -> int:
-        return 1
+        return 1  # pragma: no cover - never run; raises at app.get("/")(root)
 
     def lifespan_dep(
         x: Annotated[int, Depends(request_scoped, scope="request")],
     ) -> int:
-        return x
+        return x  # pragma: no cover - never run; raises at app.get("/")(root)
 
     def root(
         y: Annotated[int, Depends(lifespan_dep, scope="lifespan")],
     ) -> dict[str, int]:
-        return {"y": y}
+        return {"y": y}  # pragma: no cover - never run; raises at app.get("/")(root)
 
     app = FastAPI()
     with pytest.raises(DependencyScopeError) as exc_info:
@@ -197,7 +253,7 @@ def test_lifespan_dependency_not_initialized_raises() -> None:
     """Request that needs a lifespan dep which was not run (e.g. mounted sub-app) raises."""
 
     def lifespan_dep() -> str:
-        yield "conn"
+        yield "conn"  # pragma: no cover - never run; request raises before dep runs
 
     sub_app = FastAPI()
 
@@ -205,7 +261,7 @@ def test_lifespan_dependency_not_initialized_raises() -> None:
     def sub_root(
         x: Annotated[str, Depends(lifespan_dep, scope="lifespan")],
     ) -> dict[str, str]:
-        return {"x": x}
+        return {"x": x}  # pragma: no cover - never run; request raises before handler
 
     main_app = FastAPI()
     main_app.mount("/mounted", sub_app)

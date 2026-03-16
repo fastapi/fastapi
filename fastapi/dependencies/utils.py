@@ -216,7 +216,7 @@ def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
     except NameError:
         # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
         # e.g. dependency return types
-        if sys.version_info >= (3, 14):
+        if sys.version_info >= (3, 14):  # pragma: no cover
             from annotationlib import Format
 
             signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
@@ -684,7 +684,7 @@ async def solve_dependencies(
         elif sub_dependant.computed_scope == "lifespan":
             # At request time, lifespan deps must come from cache (set at startup).
             if sub_dependant.cache_key in dependency_cache:
-                solved = dependency_cache[sub_dependant.cache_key]
+                solved = dependency_cache[sub_dependant.cache_key]  # pragma: no cover
             elif solving_lifespan_deps:
                 # At startup: run the lifespan dep; request_astack is the lifespan stack.
                 if (

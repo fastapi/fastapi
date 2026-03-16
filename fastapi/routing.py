@@ -250,8 +250,8 @@ async def _run_lifespan_dependencies(
     async def noop_receive() -> Any:
         return {"type": "http.disconnect"}
 
-    async def noop_send(message: Any) -> None:
-        pass
+    async def noop_send(message: Any) -> None:  # pragma: no cover
+        pass  # ASGI send not used by lifespan dependency resolution
 
     request = Request(scope, noop_receive, noop_send)
     await solve_dependencies(
