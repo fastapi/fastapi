@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 import pytest
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.exceptions import DependencyScopeError
 from fastapi.testclient import TestClient
 from starlette.requests import Request
@@ -103,22 +103,30 @@ def test_lifespan_dependency_same_instance_across_requests() -> None:
         assert len(instances) == 1
 
 
-def test_collect_lifespan_dependants_route_level_scope() -> None:
-    """Covers _collect_lifespan_dependants when route's flat dependant has computed_scope lifespan."""
-    from fastapi.routing import _collect_lifespan_dependants
+def test_lifespan_dependency_decorator_level_dependencies_runs_at_startup() -> None:
+    """Lifespan deps declared in decorator-level dependencies are initialized once at startup."""
+    events: list[str] = []
 
-    router = APIRouter()
+    def lifespan_dep() -> str:
+        events.append("start")
+        yield "ok"
+        events.append("stop")
 
-    @router.get("/")
+    app = FastAPI()
+
+    @app.get("/", dependencies=[Depends(lifespan_dep, scope="lifespan")])
     def root() -> dict[str, str]:
-        return {"ok": "yes"}  # pragma: no cover - route not requested in this test
+        return {"ok": "yes"}
 
-    route = next(r for r in router.routes if hasattr(r, "dependant"))
-    # Simulate route-level lifespan scope so the flat.computed_scope == "lifespan" branch is hit
-    route.dependant.scope = "lifespan"
-    result = _collect_lifespan_dependants(router)
-    assert len(result) == 1
-    assert result[0].computed_scope == "lifespan"
+    assert events == []
+    with TestClient(app) as client:
+        assert events == ["start"]
+        r1 = client.get("/")
+        r2 = client.get("/")
+        assert r1.status_code == 200
+        assert r2.status_code == 200
+        assert events == ["start"]
+    assert events == ["start", "stop"]
 
 
 def test_lifespan_dependency_synthetic_request_receive_send() -> None:
