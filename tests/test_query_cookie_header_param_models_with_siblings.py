@@ -147,6 +147,18 @@ def test_query_openapi_metadata():
     assert documented_query["deprecated"] is True
 
 
+def test_query_openapi_metadata_runtime():
+    response = client.get(
+        "/query/openapi-metadata",
+        params={"limit": 10, "q": "hello", "documented_query": "value"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "m": {"limit": 10, "q": "hello"},
+        "documented_query": "value",
+    }
+
+
 def test_header_model_only_still_flattens():
     response = client.get(
         "/header/only",
@@ -213,6 +225,25 @@ def test_header_openapi_metadata_and_hidden_params():
         "demo": {"summary": "Demo", "value": "abc"}
     }
     assert "hidden-header" not in parameter_names
+
+
+def test_header_openapi_metadata_runtime():
+    response = client.get(
+        "/header/openapi-metadata",
+        headers=[
+            ("x-token", "abc"),
+            ("x-trace", "one"),
+            ("x-trace", "two"),
+            ("hidden-header", "secret"),
+            ("documented-header", "shown"),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "h": {"x_token": "abc", "x_trace": ["one", "two"]},
+        "hidden_header": "secret",
+        "documented_header": "shown",
+    }
 
 
 def test_cookie_model_only_still_flattens():
