@@ -11,7 +11,7 @@ Run the live server:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -142,6 +142,55 @@ The OpenAPI schema is what powers the two interactive documentation systems incl
 And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
 
 You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
+
+### Configure the app `entrypoint` in `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+You can configure where your app is located in a `pyproject.toml` file like:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+That `entrypoint` will tell the `fastapi` command that it should import the app like:
+
+```python
+from main import app
+```
+
+If your code was structured like:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Then you would set the `entrypoint` as:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+which would be equivalent to:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` with path { #fastapi-dev-with-path }
+
+You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
+
+```console
+$ fastapi dev main.py
+```
+
+But you would have to remember to pass the correct path every time you call the `fastapi` command.
+
+Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 

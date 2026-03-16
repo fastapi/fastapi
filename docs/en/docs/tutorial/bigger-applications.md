@@ -465,6 +465,37 @@ As we cannot just isolate them and "mount" them independently of the rest, the *
 
 ///
 
+## Configure the `entrypoint` in `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+As your FastAPI `app` object lives in `app/main.py`, you can configure the `entrypoint` in your `pyproject.toml` file like this:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+that is equivalent to importing like:
+
+```python
+from app.main import app
+```
+
+That way the `fastapi` command will know where to find your app.
+
+/// Note
+
+You could also pass the path to the command, like:
+
+```console
+$ fastapi dev app/main.py
+```
+
+But you would have to remember to pass the correct path every time you call the `fastapi` command.
+
+Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
+
+///
+
 ## Check the automatic API docs { #check-the-automatic-api-docs }
 
 Now, run your app:
@@ -472,7 +503,7 @@ Now, run your app:
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

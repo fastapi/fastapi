@@ -64,12 +64,12 @@ You can receive and send binary, text, and JSON data.
 
 ## Try it { #try-it }
 
-If your file is named `main.py`, run your application with:
+Put your code in a file `main.py` and then run your application:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -121,12 +121,12 @@ You can use a closing code from the [valid codes defined in the specification](h
 
 ### Try the WebSockets with dependencies { #try-the-websockets-with-dependencies }
 
-If your file is named `main.py`, run your application with:
+Run your application:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

@@ -30,12 +30,12 @@ In this case, it will be mounted at the path `/subapi`:
 
 ### Check the automatic API docs { #check-the-automatic-api-docs }
 
-Now, run the `fastapi` command with your file:
+Now, run the `fastapi` command:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
