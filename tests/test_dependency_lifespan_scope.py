@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 import pytest
-from fastapi import Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI
 from fastapi.exceptions import DependencyScopeError
 from fastapi.testclient import TestClient
 from starlette.requests import Request
@@ -104,13 +104,14 @@ def test_lifespan_dependency_same_instance_across_requests() -> None:
 
 
 def test_lifespan_dependency_decorator_level_dependencies_runs_at_startup() -> None:
-    """Lifespan deps declared in decorator-level dependencies are initialized once at startup."""
-    events: list[str] = []
+    """Decorator-level dependencies=[Depends(..., scope='lifespan')] run at startup once."""
+    started: list[str] = []
+    stopped: list[str] = []
 
     def lifespan_dep() -> str:
-        events.append("start")
+        started.append("lifespan_dep")
         yield "ok"
-        events.append("stop")
+        stopped.append("lifespan_dep")
 
     app = FastAPI()
 
@@ -118,15 +119,16 @@ def test_lifespan_dependency_decorator_level_dependencies_runs_at_startup() -> N
     def root() -> dict[str, str]:
         return {"ok": "yes"}
 
-    assert events == []
     with TestClient(app) as client:
-        assert events == ["start"]
+        assert started == ["lifespan_dep"]
         r1 = client.get("/")
         r2 = client.get("/")
-        assert r1.status_code == 200
-        assert r2.status_code == 200
-        assert events == ["start"]
-    assert events == ["start", "stop"]
+        assert r1.status_code == 200 and r2.status_code == 200
+        assert r1.json() == {"ok": "yes"}
+        assert r2.json() == {"ok": "yes"}
+        assert started == ["lifespan_dep"]
+
+    assert stopped == ["lifespan_dep"]
 
 
 def test_lifespan_dependency_synthetic_request_receive_send() -> None:

@@ -212,10 +212,6 @@ def _collect_lifespan_dependants(router: "APIRouter") -> list[Dependant]:
     for route in router.routes:
         if isinstance(route, APIRoute):
             flat = get_flat_dependant(route.dependant)
-            if flat.computed_scope == "lifespan":
-                key = flat.cache_key
-                if key not in seen:
-                    seen[key] = flat
             for d in flat.dependencies:
                 if d.computed_scope == "lifespan":
                     key = d.cache_key
