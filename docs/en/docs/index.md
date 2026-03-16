@@ -210,7 +210,7 @@ Run the server with:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -235,9 +235,9 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>About the command <code>fastapi dev main.py</code>...</summary>
+<summary>About the command <code>fastapi dev</code>...</summary>
 
-The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using [Uvicorn](https://www.uvicorn.dev).
+The command `fastapi dev` reads your `main.py` file automatically, detects the **FastAPI** app in it, and starts a server using [Uvicorn](https://www.uvicorn.dev).
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
@@ -455,20 +455,6 @@ For a more complete example including more features, see the <a href="https://fa
 You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
 
 If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
-
-Before deploying, make sure you are logged in:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Then deploy your app:
 
 <div class="termy">
 
