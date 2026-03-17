@@ -3,10 +3,7 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int = Path(..., ge=1, le=1000)):
-    return {"item_id": item_id}
+from docs_src.path_params.tutorial006_py310 import app
 
 
 client = TestClient(app)
