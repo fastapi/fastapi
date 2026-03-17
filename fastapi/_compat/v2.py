@@ -45,7 +45,9 @@ def define_forwardref() -> Callable[..., Any]:
     try_eval_type = getattr(_pydantic_typing_extra, "try_eval_type", None)
     if try_eval_type is not None:
         return lambda *args: try_eval_type(*args)[0]
-    return _pydantic_typing_extra.eval_type_lenient  # pragma: no cover  # ty: ignore[deprecated]
+    return (
+        _pydantic_typing_extra.eval_type_lenient
+    )  # pragma: no cover  # ty: ignore[deprecated]
 
 
 evaluate_forwardref = define_forwardref()
