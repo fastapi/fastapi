@@ -115,6 +115,11 @@ def request_response(
             response_awaited = False
             async with AsyncExitStack() as request_stack:
                 scope["fastapi_inner_astack"] = request_stack
+                # Ensure fastapi_middleware_astack exists in scope even when
+                # the router is used directly without a FastAPI app (which
+                # normally sets it up via AsyncExitStackMiddleware).
+                if "fastapi_middleware_astack" not in scope:
+                    scope["fastapi_middleware_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
                     scope["fastapi_function_astack"] = function_stack
                     response = await f(request)
