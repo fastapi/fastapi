@@ -19,7 +19,6 @@ from .shared import (
 from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
-from .v2 import Color as Color  # type: ignore[attr-defined]
 from .v2 import ModelField as ModelField
 from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from .v2 import RequiredParam as RequiredParam
