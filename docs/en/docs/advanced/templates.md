@@ -8,7 +8,7 @@ There are utilities to configure it easily that you can use directly in your **F
 
 ## Install dependencies { #install-dependencies }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `jinja2`:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and install `jinja2`:
 
 <div class="termy">
 
@@ -123,4 +123,4 @@ And because you are using `StaticFiles`, that CSS file would be served automatic
 
 ## More details { #more-details }
 
-For more details, including how to test templates, check <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.
+For more details, including how to test templates, check [Starlette's docs on templates](https://www.starlette.dev/templates/).

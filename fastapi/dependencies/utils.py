@@ -1,7 +1,17 @@
 import dataclasses
 import inspect
 import sys
-from collections.abc import Callable, Mapping, Sequence
+from collections.abc import (
+    AsyncGenerator,
+    AsyncIterable,
+    AsyncIterator,
+    Callable,
+    Generator,
+    Iterable,
+    Iterator,
+    Mapping,
+    Sequence,
+)
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -23,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,
+    evaluate_forwardref,  # ty: ignore[deprecated]
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -90,12 +100,14 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__  # type: ignore[no-redef,import-untyped]
+            from multipart import (  # type: ignore[no-redef,import-untyped]  # ty: ignore[unused-ignore-comment]
+                __version__,
+            )
 
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]
+                from multipart.multipart import (  # type: ignore[import-untyped]  # ty: ignore[unused-ignore-comment]
                     parse_options_header,
                 )
 
@@ -233,7 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)
+        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
         if annotation is type(None):
             return None
     return annotation
@@ -249,6 +261,26 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
 
     globalns = getattr(unwrapped, "__globals__", {})
     return get_typed_annotation(annotation, globalns)
+
+
+_STREAM_ORIGINS = {
+    AsyncIterable,
+    AsyncIterator,
+    AsyncGenerator,
+    Iterable,
+    Iterator,
+    Generator,
+}
+
+
+def get_stream_item_type(annotation: Any) -> Any | None:
+    origin = get_origin(annotation)
+    if origin is not None and origin in _STREAM_ORIGINS:
+        type_args = get_args(annotation)
+        if type_args:
+            return type_args[0]
+        return Any
+    return None
 
 
 def get_dependant(
@@ -290,8 +322,9 @@ def get_dependant(
                 and param_details.depends.scope == "function"
             ):
                 assert dependant.call
+                call_name = getattr(dependant.call, "__name__", "<unnamed_callable>")
                 raise DependencyScopeError(
-                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    f'The dependency "{call_name}" has a scope of '
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
             sub_own_oauth_scopes: list[str] = []
@@ -566,7 +599,7 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: dict[str, Any] | FormData | None = None,
+    body: dict[str, Any] | FormData | bytes | None = None,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -589,7 +622,7 @@ async def solve_dependencies(
     if response is None:
         response = Response()
         del response.headers["content-length"]
-        response.status_code = None  # type: ignore
+        response.status_code = None  # type: ignore  # ty: ignore[unused-ignore-comment]
     if dependency_cache is None:
         dependency_cache = {}
     for sub_dependant in dependant.dependencies:
@@ -796,7 +829,7 @@ def request_params_to_args(
 
     for key in received_params.keys():
         if key not in processed_keys:
-            if hasattr(received_params, "getlist"):
+            if isinstance(received_params, (ImmutableMultiDict, Headers)):
                 value = received_params.getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
                     params_to_process[key] = value[0]
@@ -917,7 +950,7 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: dict[str, Any] | FormData | None,
+    received_body: dict[str, Any] | FormData | bytes | None,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -948,7 +981,7 @@ async def request_body_to_args(
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
         value: Any | None = None
-        if body_to_process is not None:
+        if body_to_process is not None and not isinstance(body_to_process, bytes):
             try:
                 value = body_to_process.get(get_validation_alias(field))
             # If the received body is a list, not a dict

@@ -15,7 +15,7 @@ class OpenIdConnect(SecurityBase):
 
     **Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,
     but it doesn't implement the full OpenIdConnect scheme, for example, it doesn't use
-    the OpenIDConnect URL. You would need to to subclass it and implement it in your
+    the OpenIDConnect URL. You would need to subclass it and implement it in your
     code.
     """
 
