@@ -321,16 +321,11 @@ def test_encode_pydantic_undefined():
         pytest.param("pydantic_extra_types.color"),
     ],
 )
-def test_color_encoder(module_path):
+def test_encode_color(module_path):
     try:
         Color = __import__(module_path, fromlist=["Color"]).Color
     except ImportError:
         pytest.skip(f"{module_path} not available")
 
-    class ModelWithColors(BaseModel):
-        color: Color
-        model_config = {"arbitrary_types_allowed": True}
-
-    obj = ModelWithColors(color=Color("blue"))
-    encoded = jsonable_encoder(obj)
-    assert encoded == {"color": "blue"}
+    data = {"color": Color("blue")}
+    assert jsonable_encoder(data) == {"color": "blue"}
