@@ -313,36 +313,28 @@ def test_encode_pydantic_undefined():
     assert jsonable_encoder(data) == {"value": None}
 
 
-@pytest.mark.filterwarnings("ignore::pydantic.warnings.PydanticDeprecatedSince20")
-def test_deprecated_color():
+@pytest.mark.parametrize(
+    "module_path",
+    [
+        pytest.param(
+            "pydantic.color",
+            marks=pytest.mark.filterwarnings(
+                "ignore::pydantic.warnings.PydanticDeprecatedSince20"
+            ),
+        ),
+        pytest.param("pydantic_extra_types.color"),
+    ],
+)
+def test_color_encoder(module_path):
     try:
-        from pydantic.color import Color
-        # from pydantic_extra_types.color import Color as ExtraColor
-
-        class ModelWithColors(BaseModel):
-            color: Color
-            model_config = {"arbitrary_types_allowed": True}
-
-        obj = ModelWithColors(color=Color("blue"))
-        encoded = jsonable_encoder(obj)
-        assert encoded == {"color": "blue"}
-
+        Color = __import__(module_path, fromlist=["Color"]).Color
     except ImportError:
-        pass
+        pytest.skip(f"{module_path} not available")
 
-def test_new_color():
-    try:
-        from pydantic_extra_types.color import Color
+    class ModelWithColors(BaseModel):
+        color: Color
+        model_config = {"arbitrary_types_allowed": True}
 
-        class ModelWithColors(BaseModel):
-            color: Color
-            model_config = {"arbitrary_types_allowed": True}
-
-        obj = ModelWithColors(color=Color("blue"))
-        encoded = jsonable_encoder(obj)
-        assert encoded == {"color": "blue"}
-
-    except ImportError:
-        pass
-
-
+    obj = ModelWithColors(color=Color("blue"))
+    encoded = jsonable_encoder(obj)
+    assert encoded == {"color": "blue"}
