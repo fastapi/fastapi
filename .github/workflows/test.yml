@@ -52,6 +52,8 @@ jobs:
         python-version: [ "3.14" ]
         uv-resolution:
           - highest
+        pydantic-version:
+          - latest
         starlette-src:
           - starlette-pypi
           - starlette-git
@@ -60,22 +62,27 @@ jobs:
             python-version: "3.10"
             coverage: coverage
             uv-resolution: lowest-direct
+            pydantic-version: lowest
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
             uv-resolution: lowest-direct
+            pydantic-version: lowest
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
             uv-resolution: highest
+            pydantic-version: latest
           - os: ubuntu-latest
             python-version: "3.13"
             uv-resolution: highest
+            pydantic-version: latest
             codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
+            pydantic-version: latest
             starlette-src: starlette-git
       fail-fast: false
     runs-on: ${{ matrix.os }}
@@ -102,6 +109,9 @@ jobs:
             uv.lock
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
+      - name: Pin lowest supported Pydantic version
+        if: matrix.pydantic-version == 'lowest'
+        run: uv pip install "pydantic==2.7.0"
       - name: Install Starlette from source
         if: matrix.starlette-src == 'starlette-git'
         run: uv pip install "git+https://github.com/Kludex/starlette@main"
