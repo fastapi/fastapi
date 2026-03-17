@@ -250,7 +250,7 @@ And you only have to declare them once.
 
 That's probably the main visible advantage of **FastAPI** compared to alternative frameworks (apart from the raw performance).
 
-### Path Parameters with Validation { #path-params-validation }
+### Path Parameters with Validation { #path-parameters-with-validation }
 
 You can also add validation to your path parameters using Path.
 
