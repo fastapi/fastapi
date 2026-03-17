@@ -1249,7 +1249,7 @@ requires-dist = [
     { name = "jinja2", marker = "extra == 'all'", specifier = ">=3.1.5" },
     { name = "jinja2", marker = "extra == 'standard'", specifier = ">=3.1.5" },
     { name = "jinja2", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=3.1.5" },
-    { name = "pydantic", specifier = ">=2.9.0" },
+    { name = "pydantic", specifier = ">=2.10.0" },
     { name = "pydantic-extra-types", marker = "extra == 'all'", specifier = ">=2.0.0" },
     { name = "pydantic-extra-types", marker = "extra == 'standard'", specifier = ">=2.0.0" },
     { name = "pydantic-extra-types", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=2.0.0" },
