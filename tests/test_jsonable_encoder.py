@@ -311,3 +311,38 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+@pytest.mark.filterwarnings("ignore::pydantic.warnings.PydanticDeprecatedSince20")
+def test_deprecated_color():
+    try:
+        from pydantic.color import Color
+        # from pydantic_extra_types.color import Color as ExtraColor
+
+        class ModelWithColors(BaseModel):
+            color: Color
+            model_config = {"arbitrary_types_allowed": True}
+
+        obj = ModelWithColors(color=Color("blue"))
+        encoded = jsonable_encoder(obj)
+        assert encoded == {"color": "blue"}
+
+    except ImportError:
+        pass
+
+def test_new_color():
+    try:
+        from pydantic_extra_types.color import Color
+
+        class ModelWithColors(BaseModel):
+            color: Color
+            model_config = {"arbitrary_types_allowed": True}
+
+        obj = ModelWithColors(color=Color("blue"))
+        encoded = jsonable_encoder(obj)
+        assert encoded == {"color": "blue"}
+
+    except ImportError:
+        pass
+
+

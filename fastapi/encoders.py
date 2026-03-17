@@ -32,6 +32,7 @@ from ._compat import (
 )
 
 try:
+    # pydantic.color.Color is deprecated since v2.0b3, but supporting for bwd-compat
     from pydantic.color import Color  # ty: ignore[deprecated]
 except ImportError:  # pragma: no cover
 
@@ -39,8 +40,8 @@ except ImportError:  # pragma: no cover
         pass
 
 
-# pydantic.color.Color is deprecated since v2.0b3 -> supporting the new one as well
 try:
+    # Supporting the new Color format for newer versions of Pydantic
     from pydantic_extra_types.color import Color as PyExtraColor
 except ImportError:  # pragma: no cover
 
