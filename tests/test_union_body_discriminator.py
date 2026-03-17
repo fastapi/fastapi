@@ -1,5 +1,6 @@
 from typing import Annotated, Any, Literal
 
+from dirty_equals import IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -88,11 +89,19 @@ def test_discriminator_pydantic_v2() -> None:
                                 "description": "Successful Response",
                                 "content": {
                                     "application/json": {
-                                        "schema": {
-                                            "type": "object",
-                                            "additionalProperties": True,
-                                            "title": "Response Save Union Body Discriminator Items  Post",
-                                        }
+                                        "schema": IsOneOf(
+                                            # Pydantic < 2.11: no additionalProperties
+                                            {
+                                                "type": "object",
+                                                "title": "Response Save Union Body Discriminator Items  Post",
+                                            },
+                                            # Pydantic >= 2.11: has additionalProperties
+                                            {
+                                                "type": "object",
+                                                "additionalProperties": True,
+                                                "title": "Response Save Union Body Discriminator Items  Post",
+                                            },
+                                        )
                                     }
                                 },
                             },
