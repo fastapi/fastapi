@@ -1347,7 +1347,7 @@ docs-tests = [
 ]
 github-actions = [
     { name = "httpx", specifier = ">=0.27.0,<1.0.0" },
-    { name = "pydantic", specifier = ">=2.5.3,<3.0.0" },
+    { name = "pydantic", specifier = ">=2.10.0,<3.0.0" },
     { name = "pydantic-settings", specifier = ">=2.1.0,<3.0.0" },
     { name = "pygithub", specifier = ">=2.3.0,<3.0.0" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
