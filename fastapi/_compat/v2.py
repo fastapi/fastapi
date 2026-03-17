@@ -152,6 +152,31 @@ class ModelField:
                 config=self.config,
             )
 
+    @property
+    def core_schema(self) -> CoreSchema:
+        """Get the core schema, rebuilding if necessary to resolve ForwardRefs."""
+        schema = self._type_adapter.core_schema
+        # Check if this is a mock schema (unresolved ForwardRef)
+        if hasattr(schema, '_error_message'):
+            # Try to rebuild the type adapter to resolve ForwardRefs
+            # Search all loaded modules for the types we need
+            import sys
+
+            # Build a combined namespace from all loaded modules
+            combined_globals: dict[str, Any] = {}
+            for module in sys.modules.values():
+                if module is None:
+                    continue
+                try:
+                    module_dict = getattr(module, "__dict__", {})
+                    combined_globals.update(module_dict)
+                except Exception:
+                    continue
+
+            self._type_adapter.rebuild(force=True, _types_namespace=combined_globals)
+            schema = self._type_adapter.core_schema
+        return schema
+
     def get_default(self) -> Any:
         if self.field_info.is_required():
             return Undefined
@@ -232,7 +257,7 @@ class ModelField:
 
 
 def _has_computed_fields(field: ModelField) -> bool:
-    computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
+    computed_fields = field.core_schema.get("schema", {}).get(
         "computed_fields", []
     )
     return len(computed_fields) > 0
@@ -316,7 +341,7 @@ def get_definitions(
                 if (separate_input_output_schemas or _has_computed_fields(field))
                 else "validation"
             ),
-            field._type_adapter.core_schema,
+            field.core_schema,
         )
         for field in list(fields) + list(unique_flat_model_fields)
     ]
