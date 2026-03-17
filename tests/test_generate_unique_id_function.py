@@ -1697,3 +1697,24 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_multiple_methods_unique_operation_id():
+    """Regression test for #13175: routes with multiple methods get unique operation IDs."""
+    app = FastAPI()
+
+    def clear():
+        return {"ok": True}
+
+    app.add_api_route("/clear", clear, methods=["POST", "DELETE"])
+    client = TestClient(app)
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        assert len([x for x in w if "Duplicate Operation ID" in str(getattr(x, "message", ""))]) == 0
+    paths = response.json()["paths"]["/clear"]
+    post_id = paths["post"]["operationId"]
+    delete_id = paths["delete"]["operationId"]
+    assert post_id != delete_id
+    assert post_id.endswith("_post")
+    assert delete_id.endswith("_delete")
