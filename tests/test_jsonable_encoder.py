@@ -324,7 +324,7 @@ def test_encode_pydantic_undefined():
 def test_encode_color(module_path):
     try:
         Color = __import__(module_path, fromlist=["Color"]).Color
-    except ImportError:
+    except ImportError:  # pragma: no cover
         pytest.skip(f"{module_path} not available")
 
     data = {"color": Color("blue")}
