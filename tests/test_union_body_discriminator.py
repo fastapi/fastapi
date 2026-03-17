@@ -123,11 +123,21 @@ def test_discriminator_pydantic_v2() -> None:
                 "schemas": {
                     "FirstItem": {
                         "properties": {
-                            "value": {
-                                "type": "string",
-                                "const": "first",
-                                "title": "Value",
-                            },
+                            "value": IsOneOf(
+                                # Pydantic >= 2.10: const only
+                                {
+                                    "type": "string",
+                                    "const": "first",
+                                    "title": "Value",
+                                },
+                                # Pydantic 2.9: const + enum
+                                {
+                                    "type": "string",
+                                    "const": "first",
+                                    "enum": ["first"],
+                                    "title": "Value",
+                                },
+                            ),
                             "price": {"type": "integer", "title": "Price"},
                         },
                         "type": "object",
@@ -149,11 +159,21 @@ def test_discriminator_pydantic_v2() -> None:
                     },
                     "OtherItem": {
                         "properties": {
-                            "value": {
-                                "type": "string",
-                                "const": "other",
-                                "title": "Value",
-                            },
+                            "value": IsOneOf(
+                                # Pydantic >= 2.10.0: const only
+                                {
+                                    "type": "string",
+                                    "const": "other",
+                                    "title": "Value",
+                                },
+                                # Pydantic 2.9.x: const + enum
+                                {
+                                    "type": "string",
+                                    "const": "other",
+                                    "enum": ["other"],
+                                    "title": "Value",
+                                },
+                            ),
                             "price": {"type": "number", "title": "Price"},
                         },
                         "type": "object",
