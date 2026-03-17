@@ -212,3 +212,5 @@ Inspired by Termynal's CSS tricks with modifications
   border-bottom: .05rem dotted var(--md-default-fg-color--light);
   cursor: help;
 }
+
+.md-content .only-not-mkdocs { display: none; }
