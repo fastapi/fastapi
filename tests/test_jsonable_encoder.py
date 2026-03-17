@@ -313,15 +313,11 @@ def test_encode_pydantic_undefined():
     assert jsonable_encoder(data) == {"value": None}
 
 
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
 @pytest.mark.parametrize(
     "module_path",
     [
-        pytest.param(
-            "pydantic.color",
-            marks=pytest.mark.filterwarnings(
-                "ignore::pydantic.warnings.PydanticDeprecatedSince20"
-            ),
-        ),
+        pytest.param("pydantic.color"),
         pytest.param("pydantic_extra_types.color"),
     ],
 )
