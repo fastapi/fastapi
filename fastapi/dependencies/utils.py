@@ -245,6 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
+    if isinstance(annotation, ForwardRef):
         annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
         if annotation is type(None):
             return None
