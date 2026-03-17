@@ -1711,7 +1711,16 @@ def test_multiple_methods_unique_operation_id():
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         response = client.get("/openapi.json")
-        assert len([x for x in w if "Duplicate Operation ID" in str(getattr(x, "message", ""))]) == 0
+        assert (
+            len(
+                [
+                    x
+                    for x in w
+                    if "Duplicate Operation ID" in str(getattr(x, "message", ""))
+                ]
+            )
+            == 0
+        )
     paths = response.json()["paths"]["/clear"]
     post_id = paths["post"]["operationId"]
     delete_id = paths["delete"]["operationId"]
