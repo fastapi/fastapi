@@ -1,10 +1,9 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
 from docs_src.path_params.tutorial006_py310 import app
-
 
 client = TestClient(app)
 
