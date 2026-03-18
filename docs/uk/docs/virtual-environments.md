@@ -187,7 +187,7 @@ $ source .venv/Scripts/activate
 ```console
 $ which python
 
-/ home/user/code/awesome-project/.venv/bin/python
+/home/user/code/awesome-project/.venv/bin/python
 ```
 
 </div>

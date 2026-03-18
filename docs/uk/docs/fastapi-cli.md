@@ -105,7 +105,7 @@ $ fastapi dev main.py
 
 Але вам доведеться щоразу пам'ятати, щоб передавати правильний шлях під час виклику команди `fastapi`.
 
-Крім того, інші інструменти можуть не знайти його, наприклад [Розширення VS Code](editor-support.md){.internal-link target=_blank} або [FastAPI Cloud](https://fastapicloud.com), тому рекомендується використовувати `entrypoint` у `pyproject.toml`.
+Крім того, інші інструменти можуть не знайти його, наприклад [Розширення VS Code](editor-support.md) або [FastAPI Cloud](https://fastapicloud.com), тому рекомендується використовувати `entrypoint` у `pyproject.toml`.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -123,6 +123,6 @@ $ fastapi dev main.py
 
 /// tip | Порада
 
-Ви можете дізнатися більше про це в [документації з розгортання](deployment/index.md){.internal-link target=_blank}.
+Ви можете дізнатися більше про це в [документації з розгортання](deployment/index.md).
 
 ///
