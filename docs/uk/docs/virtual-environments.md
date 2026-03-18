@@ -22,7 +22,7 @@
 
 На цій сторінці ви дізнаєтеся, як використовувати віртуальні середовища і як вони працюють.
 
-Якщо ви готові прийняти інструмент, що керує всім за вас (включно з установленням Python), спробуйте <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Якщо ви готові прийняти інструмент, що керує всім за вас (включно з установленням Python), спробуйте [uv](https://github.com/astral-sh/uv).
 
 ///
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Якщо у вас встановлено <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, ви можете використати його для створення віртуального середовища.
+Якщо у вас встановлено [`uv`](https://github.com/astral-sh/uv), ви можете використати його для створення віртуального середовища.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Або якщо ви використовуєте Bash для Windows (напр., <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Або якщо ви використовуєте Bash для Windows (напр., [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -187,7 +187,7 @@ $ source .venv/Scripts/activate
 ```console
 $ which python
 
-/home/user/code/awesome-project/.venv/bin/python
+/ home/user/code/awesome-project/.venv/bin/python
 ```
 
 </div>
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip | Порада
 
-Якщо ви використовуєте <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, ви використовуватимете його для встановлення замість `pip`, тож вам не потрібно оновлювати `pip`. 😎
+Якщо ви використовуєте [`uv`](https://github.com/astral-sh/uv), ви використовуватимете його для встановлення замість `pip`, тож вам не потрібно оновлювати `pip`. 😎
 
 ///
 
@@ -268,7 +268,7 @@ $ python -m ensurepip --upgrade
 
 /// tip | Порада
 
-Якщо ви використали <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> для створення віртуального середовища, він уже зробив це за вас, можете пропустити цей крок. 😎
+Якщо ви використали [`uv`](https://github.com/astral-sh/uv) для створення віртуального середовища, він уже зробив це за вас, можете пропустити цей крок. 😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Якщо у вас є <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Якщо у вас є [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Якщо у вас є <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Якщо у вас є [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Hello World
 
 Наприклад:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | Порада
 
@@ -453,7 +453,7 @@ $ deactivate
 
 ## Навіщо віртуальні середовища { #why-virtual-environments }
 
-Щоб працювати з FastAPI, вам потрібно встановити <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+Щоб працювати з FastAPI, вам потрібно встановити [Python](https://www.python.org/).
 
 Після цього вам потрібно буде встановити FastAPI та інші пакети, які ви хочете використовувати.
 
@@ -562,7 +562,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Це завантажить стиснений файл з кодом FastAPI, зазвичай із <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+Це завантажить стиснений файл з кодом FastAPI, зазвичай із [PyPI](https://pypi.org/project/fastapi/).
 
 Також будуть завантажені файли для інших пакетів, від яких залежить FastAPI.
 
@@ -625,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Або якщо ви використовуєте Bash для Windows (напр., <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Або якщо ви використовуєте Bash для Windows (напр., [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -637,13 +637,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Ця команда створить або змінить деякі [Змінні оточення](environment-variables.md){.internal-link target=_blank}, які будуть доступні для наступних команд.
+Ця команда створить або змінить деякі [Змінні оточення](environment-variables.md), які будуть доступні для наступних команд.
 
 Однією з цих змінних є змінна `PATH`.
 
 /// tip | Порада
 
-Ви можете дізнатися більше про змінну оточення `PATH` у розділі [Змінні оточення](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
+Ви можете дізнатися більше про змінну оточення `PATH` у розділі [Змінні оточення](environment-variables.md#path-environment-variable).
 
 ///
 
@@ -844,7 +844,7 @@ I solemnly swear 🐺
 
 Існує багато альтернатив керування віртуальними середовищами, залежностями пакетів (вимогами), проєктами.
 
-Коли будете готові й захочете використовувати інструмент для керування всім проєктом, залежностями пакетів, віртуальними середовищами тощо, я раджу спробувати <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Коли будете готові й захочете використовувати інструмент для керування всім проєктом, залежностями пакетів, віртуальними середовищами тощо, я раджу спробувати [uv](https://github.com/astral-sh/uv).
 
 `uv` уміє багато чого, зокрема:
 

@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** — це програма командного рядка, яку ви можете використовувати, щоб обслуговувати ваш застосунок FastAPI, керувати вашим проєктом FastAPI тощо.
+**FastAPI <abbr title="command line interface - інтерфейс командного рядка">CLI</abbr>** — це програма командного рядка, яку ви можете використовувати, щоб обслуговувати ваш застосунок FastAPI, керувати вашим проєктом FastAPI тощо.
 
-Коли ви встановлюєте FastAPI (наприклад, за допомогою `pip install "fastapi[standard]"`), він включає пакет під назвою `fastapi-cli`, цей пакет надає команду `fastapi` у терміналі.
+Коли ви встановлюєте FastAPI (наприклад, за допомогою `pip install "fastapi[standard]"`), він постачається з програмою командного рядка, яку можна запускати в терміналі.
 
 Щоб запустити ваш застосунок FastAPI для розробки, ви можете використати команду `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,66 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-Програма командного рядка під назвою `fastapi` — це **FastAPI CLI**.
+/// tip | Порада
 
-FastAPI CLI бере шлях до вашої Python-програми (наприклад, `main.py`) і автоматично виявляє екземпляр `FastAPI` (зазвичай з назвою `app`), визначає правильний процес імпорту, а потім обслуговує його.
+Для продакшну ви б використовували `fastapi run` замість `fastapi dev`. 🚀
 
-Натомість, для продакшн ви використали б `fastapi run`. 🚀
+///
 
-Внутрішньо **FastAPI CLI** використовує <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, високопродуктивний, production-ready, ASGI сервер. 😎
+Внутрішньо **FastAPI CLI** використовує [Uvicorn](https://www.uvicorn.dev), високопродуктивний, готовий до продакшну ASGI сервер. 😎
+
+CLI `fastapi` спробує автоматично визначити застосунок FastAPI для запуску, припускаючи, що це об'єкт з назвою `app` у файлі `main.py` (або кілька інших варіантів).
+
+Але ви можете явно налаштувати застосунок, який слід використовувати.
+
+## Налаштуйте `entrypoint` застосунку в `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Ви можете налаштувати розташування вашого застосунку у файлі `pyproject.toml`, наприклад:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Цей `entrypoint` підкаже команді `fastapi`, що слід імпортувати застосунок так:
+
+```python
+from main import app
+```
+
+Якщо ваш код має таку структуру:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Тоді ви встановили б `entrypoint` як:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+що еквівалентно:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` зі шляхом { #fastapi-dev-with-path }
+
+Ви також можете передати шлях до файлу команді `fastapi dev`, і вона здогадається, який об'єкт застосунку FastAPI використовувати:
+
+```console
+$ fastapi dev main.py
+```
+
+Але вам доведеться щоразу пам'ятати, щоб передавати правильний шлях під час виклику команди `fastapi`.
+
+Крім того, інші інструменти можуть не знайти його, наприклад [Розширення VS Code](editor-support.md){.internal-link target=_blank} або [FastAPI Cloud](https://fastapicloud.com), тому рекомендується використовувати `entrypoint` у `pyproject.toml`.
 
 ## `fastapi dev` { #fastapi-dev }
 

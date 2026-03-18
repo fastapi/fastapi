@@ -108,7 +108,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.model_dump())
 ```
 
-...тому що `user_in.model_dump()` повертає `dict`, а ми змушуємо Python «розпакувати» його, передаючи в `UserInDB` з префіксом `**`.
+...тому що `user_in.model_dump()` - це `dict`, а ми змушуємо Python «розпакувати» його, передаючи в `UserInDB` з префіксом `**`.
 
 Тож ми отримуємо модель Pydantic з даних іншої моделі Pydantic.
 
@@ -162,11 +162,11 @@ UserInDB(
 
 В OpenAPI це буде визначено як `anyOf`.
 
-Для цього використайте стандартну підказку типу Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Для цього використайте стандартну підказку типу Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Примітка
 
-Під час визначення <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> спочатку вказуйте найконкретніший тип, а потім менш конкретний. У прикладі нижче більш конкретний `PlaneItem` стоїть перед `CarItem` у `Union[PlaneItem, CarItem]`.
+Під час визначення [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) спочатку вказуйте найконкретніший тип, а потім менш конкретний. У прикладі нижче більш конкретний `PlaneItem` стоїть перед `CarItem` у `Union[PlaneItem, CarItem]`.
 
 ///
 
