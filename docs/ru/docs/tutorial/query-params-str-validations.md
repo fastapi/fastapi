@@ -157,7 +157,7 @@ q: str = Query(default="rick")
 
 Если вы не используете `Annotated`, а применяете **(устаревший) стиль со значением по умолчанию**, то при вызове этой функции без FastAPI в **других местах** вам нужно **помнить** о том, что надо передать аргументы, чтобы всё работало корректно, иначе значения будут не такими, как вы ожидаете (например, вместо `str` будет `QueryInfo` или что-то подобное). И ни редактор, ни Python не будут ругаться при самом вызове функции — ошибка проявится лишь при операциях внутри.
 
-Так как `Annotated` может содержать больше одной аннотации метаданных, теперь вы можете использовать ту же функцию и с другими инструментами, например с <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Так как `Annotated` может содержать больше одной аннотации метаданных, теперь вы можете использовать ту же функцию и с другими инструментами, например с [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Больше валидаций { #add-more-validations }
 
@@ -369,11 +369,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 В таких случаях можно использовать **кастомную функцию-валидатор**, которая применяется после обычной валидации (например, после проверки, что значение — это `str`).
 
-Этого можно добиться, используя <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">`AfterValidator` Pydantic</a> внутри `Annotated`.
+Этого можно добиться, используя [`AfterValidator` Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) внутри `Annotated`.
 
 /// tip | Совет
 
-В Pydantic также есть <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> и другие. 🤓
+В Pydantic также есть [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) и другие. 🤓
 
 ///
 
@@ -389,7 +389,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 /// tip | Совет
 
-Если вам нужна валидация, требующая общения с каким‑либо **внешним компонентом** — базой данных или другим API — вместо этого используйте **Зависимости FastAPI** (FastAPI Dependencies), вы познакомитесь с ними позже.
+Если вам нужна валидация, требующая общения с каким‑либо **внешним компонентом** — базой данных или другим API — вместо этого используйте **Зависимости FastAPI**, вы познакомитесь с ними позже.
 
 Эти кастомные валидаторы предназначены для проверок, которые можно выполнить, имея **только** те же **данные**, что пришли в запросе.
 

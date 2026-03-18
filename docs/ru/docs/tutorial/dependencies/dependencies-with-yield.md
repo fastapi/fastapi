@@ -14,8 +14,8 @@ FastAPI поддерживает зависимости, которые выпо
 
 Любая функция, с которой можно корректно использовать:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> или
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) или
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 будет корректной для использования в качестве зависимости **FastAPI**.
 
@@ -87,7 +87,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 /// note | Технические детали
 
-Это работает благодаря <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">менеджерам контекста</a> в Python.
+Это работает благодаря [менеджерам контекста](https://docs.python.org/3/library/contextlib.html) в Python.
 
 **FastAPI** использует их внутренне для достижения этого.
 
@@ -240,7 +240,7 @@ participant operation as Функция-обработчик пути
 
 «Контекстные менеджеры» — это любые объекты Python, которые можно использовать в операторе `with`.
 
-Например, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">можно использовать `with` для чтения файла</a>:
+Например, [можно использовать `with` для чтения файла](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-В Python можно создавать менеджеры контекста, <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">создав класс с двумя методами: `__enter__()` и `__exit__()`</a>.
+В Python можно создавать менеджеры контекста, [создав класс с двумя методами: `__enter__()` и `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 Их также можно использовать внутри зависимостей **FastAPI** с `yield`, применяя операторы
 `with` или `async with` внутри функции зависимости:
@@ -275,8 +275,8 @@ with open("./somefile.txt") as f:
 
 Другой способ создания менеджера контекста — с помощью:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> или
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) или
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 оформив ими функцию с одним `yield`.
 
