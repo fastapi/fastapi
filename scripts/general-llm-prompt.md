@@ -349,6 +349,8 @@ Good translation (German) - URL stays like in the English source.
 Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}
 ```
 
+**Important**: Always match the link syntax used in the English source document. If the English source uses Markdown-style links (`[text](url)`), the translation must also use Markdown-style links. If the English source uses HTML-style links (`<a href="url">text</a>`), the translation must also use HTML-style links. The link format in the translation must always mirror the link format in the English source.
+
 ### HTML abbr elements
 
 Translate HTML abbr elements (`<abbr title="description">text</abbr>`) as follows:

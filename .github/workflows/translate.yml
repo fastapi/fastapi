@@ -1,8 +1,8 @@
 name: Translate
 
 on:
-  # schedule:
-  #   - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
+  schedule:
+    - cron: "0 5 1,15 * *"  # Run at 05:00 on the 1st and 15th of every month
 
   workflow_dispatch:
     inputs:
@@ -119,5 +119,5 @@ jobs:
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
-          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
+          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place == 'true' && 'true' || '' }}
           MAX: ${{ github.event.inputs.max }}
