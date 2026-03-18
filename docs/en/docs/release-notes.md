@@ -20,6 +20,8 @@ hide:
 
 ### Internal
 
+* 🔨 Update translation general prompt to enforce link style in translation matches the original link style. PR [#15148](https://github.com/fastapi/fastapi/pull/15148) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Re-enable translation workflow run by cron in CI (twice a month). PR [#15145](https://github.com/fastapi/fastapi/pull/15145) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Add `ty` to precommit. PR [#15091](https://github.com/fastapi/fastapi/pull/15091) by [@svlandeg](https://github.com/svlandeg).
 * ⬆ Bump dorny/paths-filter from 3 to 4. PR [#15106](https://github.com/fastapi/fastapi/pull/15106) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cairosvg from 2.8.2 to 2.9.0. PR [#15108](https://github.com/fastapi/fastapi/pull/15108) by [@dependabot[bot]](https://github.com/apps/dependabot).
