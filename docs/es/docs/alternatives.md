@@ -223,7 +223,7 @@ Usarlo llevó a la creación de varios generadores de full-stack para Flask. Est
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-Y estos mismos generadores de full-stack fueron la base de los [Generadores de Proyectos **FastAPI**](project-generation.md){.internal-link target=_blank}.
+Y estos mismos generadores de full-stack fueron la base de los [Generadores de Proyectos **FastAPI**](project-generation.md).
 
 /// info | Información
 
@@ -433,7 +433,7 @@ Tiene:
 * CORS, GZip, Archivos estáticos, Responses en streaming.
 * Soporte para sesiones y cookies.
 * Cobertura de tests del 100%.
-* Base de código 100% tipada.
+* code base 100% tipada.
 * Pocas dependencias obligatorias.
 
 Starlette es actualmente el framework de Python más rápido probado. Solo superado por Uvicorn, que no es un framework, sino un servidor.
@@ -476,10 +476,10 @@ El servidor web principal para ejecutar aplicaciones **FastAPI**.
 
 También puedes usar la opción de línea de comandos `--workers` para tener un servidor multiproceso asíncrono.
 
-Revisa más detalles en la sección [Despliegue](deployment/index.md){.internal-link target=_blank}.
+Revisa más detalles en la sección [Despliegue](deployment/index.md).
 
 ///
 
 ## Benchmarks y velocidad { #benchmarks-and-speed }
 
-Para entender, comparar, y ver la diferencia entre Uvicorn, Starlette y FastAPI, revisa la sección sobre [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+Para entender, comparar, y ver la diferencia entre Uvicorn, Starlette y FastAPI, revisa la sección sobre [Benchmarks](benchmarks.md).
