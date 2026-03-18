@@ -151,8 +151,6 @@ docs-tests = [
     "ruff >=0.14.14",
     # For UJSONResponse
     "ujson >=5.8.0",
-    # For ORJSONResponse
-    "orjson >=3.9.3",
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
