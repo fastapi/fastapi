@@ -225,7 +225,6 @@ def test_custom_encoders():
     assert encoded_instance2["dt_field"] == instance["dt_field"].isoformat()
 
 
-
 def test_custom_encoders_applied_to_model_dump_python_values():
     class ModelWithDecimal(BaseModel):
         value: Decimal
