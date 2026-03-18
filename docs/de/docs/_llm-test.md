@@ -166,7 +166,7 @@ Siehe die Abschnitte `### Special blocks` und `### Tab blocks` im allgemeinen Pr
 
 //// tab | Test
 
-Der Linktext sollte übersetzt werden, die Linkadresse sollte unverändert bleiben:
+Der Linktext sollte übersetzt werden, die Linkaddresse sollte unverändert bleiben:
 
 * [Link zur Überschrift oben](#code-snippets)
 * [Interner Link](index.md#installation){.internal-link target=_blank}
@@ -175,7 +175,7 @@ Der Linktext sollte übersetzt werden, die Linkadresse sollte unverändert bleib
 * <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link zu einem Skript</a>
 * <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link zu einem Bild</a>
 
-Der Linktext sollte übersetzt werden, die Linkadresse sollte auf die Übersetzung zeigen:
+Der Linktext sollte übersetzt werden, die Linkaddresse sollte auf die Übersetzung zeigen:
 
 * <a href="https://fastapi.tiangolo.com/de/" class="external-link" target="_blank">FastAPI-Link</a>
 
@@ -183,7 +183,7 @@ Der Linktext sollte übersetzt werden, die Linkadresse sollte auf die Übersetzu
 
 //// tab | Info
 
-Links sollten übersetzt werden, aber ihre Adresse soll unverändert bleiben. Eine Ausnahme sind absolute Links zu Seiten der FastAPI-Dokumentation. In diesem Fall sollte auf die Übersetzung verlinkt werden.
+Links sollten übersetzt werden, aber ihre addresse soll unverändert bleiben. Eine Ausnahme sind absolute Links zu Seiten der FastAPI-Dokumentation. In diesem Fall sollte auf die Übersetzung verlinkt werden.
 
 Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
 
