@@ -482,4 +482,4 @@ Weitere Details finden Sie im Abschnitt [Deployment](deployment/index.md){.inter
 
 ## Benchmarks und Geschwindigkeit { #benchmarks-and-speed }
 
-Um den Unterschied zwischen Uvicorn, Starlette und FastAPI zu verstehen, zu vergleichen und zu sehen, lesen Sie den Abschnitt über [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+Um den Unterschied zwischen Uvicorn, Starlette und FastAPI zu verstehen, zu vergleichen, und zu sehen, lesen Sie den Abschnitt über [Benchmarks](benchmarks.md){.internal-link target=_blank}.
