@@ -2,7 +2,7 @@ name: Translate
 
 on:
   schedule:
-    - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
+    - cron: "0 5 1,15 * *"  # Run at 05:00 on the 1st and 15th of every month
 
   workflow_dispatch:
     inputs:
