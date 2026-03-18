@@ -1160,7 +1160,6 @@ dev = [
     { name = "strawberry-graphql" },
     { name = "ty" },
     { name = "typer" },
-    { name = "types-orjson" },
     { name = "types-ujson" },
     { name = "ujson" },
 ]
@@ -1223,7 +1222,6 @@ tests = [
     { name = "sqlmodel" },
     { name = "strawberry-graphql" },
     { name = "ty" },
-    { name = "types-orjson" },
     { name = "types-ujson" },
     { name = "ujson" },
 ]
@@ -1313,7 +1311,6 @@ dev = [
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.9" },
     { name = "typer", specifier = ">=0.21.1" },
-    { name = "types-orjson", specifier = ">=3.6.2" },
     { name = "types-ujson", specifier = ">=5.10.0.20240515" },
     { name = "ujson", specifier = ">=5.8.0" },
 ]
@@ -1376,7 +1373,6 @@ tests = [
     { name = "sqlmodel", specifier = ">=0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.9" },
-    { name = "types-orjson", specifier = ">=3.6.2" },
     { name = "types-ujson", specifier = ">=5.10.0.20240515" },
     { name = "ujson", specifier = ">=5.8.0" },
 ]
@@ -5705,15 +5701,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a5/ca/0d9d822fd8a4c7e830cba36a2557b070d4b4a9558a0460377a61f8fb315d/typer_slim-0.21.2.tar.gz", hash = "sha256:78f20d793036a62aaf9c3798306142b08261d4b2a941c6e463081239f062a2f9", size = 120497, upload-time = "2026-02-10T19:33:45.836Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/54/03/e09325cfc40a33a82b31ba1a3f1d97e85246736856a45a43b19fcb48b1c2/typer_slim-0.21.2-py3-none-any.whl", hash = "sha256:4705082bb6c66c090f60e47c8be09a93158c139ce0aa98df7c6c47e723395e5f", size = 56790, upload-time = "2026-02-10T19:33:47.221Z" },
-]
-
-[[package]]
-name = "types-orjson"
-version = "3.6.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/8c/97/3f78cfdf663e5668e8b490d8c84d6de089d2d8dbad935f0dc43555d52a90/types-orjson-3.6.2.tar.gz", hash = "sha256:cf9afcc79a86325c7aff251790338109ed6f6b1bab09d2d4262dd18c85a3c638", size = 1999, upload-time = "2022-01-07T11:31:10.518Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/55/84/b34abd2d08381c5113e475908a1d79d27dc9a15f669213cee4ca03d1a891/types_orjson-3.6.2-py3-none-any.whl", hash = "sha256:22ee9a79236b6b0bfb35a0684eded62ad930a88a56797fa3c449b026cf7dbfe4", size = 2224, upload-time = "2022-01-07T11:31:09.271Z" },
 ]
 
 [[package]]
