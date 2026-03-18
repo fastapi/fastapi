@@ -15,6 +15,11 @@ needs_orjson = pytest.mark.skipif(
     reason="requires orjson",
 )
 
+needs_ujson = pytest.mark.skipif(
+    importlib.util.find_spec("ujson") is None,
+    reason="requires ujson",
+)
+
 workdir_lock = pytest.mark.xdist_group("workdir_lock")
 
 
