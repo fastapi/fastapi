@@ -68,7 +68,7 @@ Wenn Sie in Ihrer Anwendung eine *Pfadoperation* deklarieren, generiert **FastAP
 
 /// note | Technische Details
 
-In der OpenAPI-Spezifikation wird das <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operationsobjekt</a> genannt.
+In der OpenAPI-Spezifikation wird es das [Operationsobjekt](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object) genannt.
 
 ///
 

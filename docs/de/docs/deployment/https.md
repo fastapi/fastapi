@@ -10,7 +10,7 @@ Wenn Sie es eilig haben oder es Ihnen egal ist, fahren Sie mit den nächsten Abs
 
 ///
 
-Um **die Grundlagen von HTTPS** aus Sicht des Benutzers zu erlernen, schauen Sie sich <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a> an.
+Um **die Grundlagen von HTTPS** aus Sicht des Benutzers zu erlernen, schauen Sie sich [https://howhttps.works/](https://howhttps.works/) an.
 
 Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes beachten:
 
@@ -28,13 +28,13 @@ Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes 
 * **Standardmäßig** bedeutet das, dass Sie nur **ein HTTPS-Zertifikat pro IP-Adresse** haben können.
     * Ganz gleich, wie groß Ihr Server ist oder wie klein die einzelnen Anwendungen darauf sind.
     * Hierfür gibt es jedoch eine **Lösung**.
-* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
+* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **[<abbr title="Server Name Indication - Servernamensanzeige">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)**.
     * Mit dieser SNI-Erweiterung kann ein einzelner Server (mit einer **einzelnen IP-Adresse**) über **mehrere HTTPS-Zertifikate** verfügen und **mehrere HTTPS-Domains/Anwendungen bereitstellen**.
     * Damit das funktioniert, muss eine **einzelne** Komponente (Programm), die auf dem Server ausgeführt wird und welche die **öffentliche IP-Adresse** überwacht, **alle HTTPS-Zertifikate** des Servers haben.
 * **Nachdem** eine sichere Verbindung hergestellt wurde, ist das Kommunikationsprotokoll **immer noch HTTP**.
     * Die Inhalte sind **verschlüsselt**, auch wenn sie mit dem **HTTP-Protokoll** gesendet werden.
 
-Es ist eine gängige Praxis, **ein Programm/HTTP-Server** auf dem Server (der Maschine, dem Host usw.) laufen zu lassen, welches **alle HTTPS-Aspekte verwaltet**: Empfangen der **verschlüsselten HTTPS-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>**, Senden der **entschlüsselten HTTP-Requests** an die eigentliche HTTP-Anwendung die auf demselben Server läuft (in diesem Fall die **FastAPI**-Anwendung), entgegennehmen der **HTTP-Response** von der Anwendung, **verschlüsseln derselben** mithilfe des entsprechenden **HTTPS-Zertifikats** und Zurücksenden zum Client über **HTTPS**. Dieser Server wird oft als **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS-Terminierungsproxy</a>** bezeichnet.
+Es ist eine gängige Praxis, **ein Programm/HTTP-Server** auf dem Server (der Maschine, dem Host usw.) laufen zu lassen, welches **alle HTTPS-Aspekte verwaltet**: Empfangen der **verschlüsselten HTTPS-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>**, Senden der **entschlüsselten HTTP-Requests** an die eigentliche HTTP-Anwendung die auf demselben Server läuft (in diesem Fall die **FastAPI**-Anwendung), entgegennehmen der **HTTP-Response** von der Anwendung, **verschlüsseln derselben** mithilfe des entsprechenden **HTTPS-Zertifikats** und Zurücksenden zum Client über **HTTPS**. Dieser Server wird oft als **[TLS-Terminierungsproxy](https://en.wikipedia.org/wiki/TLS_termination_proxy)** bezeichnet.
 
 Einige der Optionen, die Sie als TLS-Terminierungsproxy verwenden können, sind:
 
@@ -49,7 +49,7 @@ Vor Let's Encrypt wurden diese **HTTPS-Zertifikate** von vertrauenswürdigen Dri
 
 Der Prozess zum Erwerb eines dieser Zertifikate war früher umständlich, erforderte viel Papierarbeit und die Zertifikate waren ziemlich teuer.
 
-Aber dann wurde **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** geschaffen.
+Aber dann wurde **[Let's Encrypt](https://letsencrypt.org/)** geschaffen.
 
 Es ist ein Projekt der Linux Foundation. Es stellt **kostenlose HTTPS-Zertifikate** automatisiert zur Verfügung. Diese Zertifikate nutzen standardmäßig die gesamte kryptografische Sicherheit und sind kurzlebig (circa 3 Monate), sodass die **Sicherheit tatsächlich besser ist**, aufgrund der kürzeren Lebensdauer.
 
@@ -200,9 +200,9 @@ Dieser **Proxy** würde normalerweise unmittelbar vor dem Übermitteln der Anfra
 
 Die Proxy-Header sind:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 

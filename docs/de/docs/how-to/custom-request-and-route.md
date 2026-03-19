@@ -18,7 +18,7 @@ Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie diesen Abschnitt vie
 
 Einige Anwendungsfälle sind:
 
-* Konvertieren von Nicht-JSON-Requestbodys nach JSON (z. B. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Konvertieren von Nicht-JSON-Requestbodys nach JSON (z. B. [`msgpack`](https://msgpack.org/index.html)).
 * Dekomprimierung gzip-komprimierter Requestbodys.
 * Automatisches Loggen aller Requestbodys.
 
@@ -66,7 +66,7 @@ Das `scope`-`dict` und die `receive`-Funktion sind beide Teil der ASGI-Spezifika
 
 Und diese beiden Dinge, `scope` und `receive`, werden benötigt, um eine neue `Request`-Instanz zu erstellen.
 
-Um mehr über den `Request` zu erfahren, schauen Sie sich <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlettes Dokumentation zu Requests</a> an.
+Um mehr über den `Request` zu erfahren, schauen Sie sich [Starlettes Dokumentation zu Requests](https://www.starlette.dev/requests/) an.
 
 ///
 

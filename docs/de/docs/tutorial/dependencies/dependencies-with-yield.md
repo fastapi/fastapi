@@ -14,8 +14,8 @@ Stellen Sie sicher, dass Sie `yield` nur einmal pro Abhängigkeit verwenden.
 
 Jede Funktion, die dekoriert werden kann mit:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> oder
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) oder
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 kann auch als gültige **FastAPI**-Abhängigkeit verwendet werden.
 
@@ -87,7 +87,7 @@ Sie können beliebige Kombinationen von Abhängigkeiten haben.
 
 /// note | Technische Details
 
-Dieses funktioniert dank Pythons <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Kontextmanager</a>.
+Dieses funktioniert dank Pythons [Kontextmanager](https://docs.python.org/3/library/contextlib.html).
 
 **FastAPI** verwendet sie intern, um das zu erreichen.
 
@@ -111,7 +111,7 @@ Aber es ist für Sie da, wenn Sie es brauchen. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Wenn Sie Exceptions abfangen und darauf basierend eine benutzerdefinierte Response erstellen möchten, erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Wenn Sie Exceptions abfangen und darauf basierend eine benutzerdefinierte Response erstellen möchten, erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#install-custom-exception-handlers).
 
 ## Abhängigkeiten mit `yield` und `except` { #dependencies-with-yield-and-except }
 
@@ -233,14 +233,14 @@ participant operation as Pfadoperation
 
 Abhängigkeiten mit `yield` haben sich im Laufe der Zeit weiterentwickelt, um verschiedene Anwendungsfälle abzudecken und einige Probleme zu beheben.
 
-Wenn Sie sehen möchten, was sich in verschiedenen Versionen von FastAPI geändert hat, lesen Sie mehr dazu im fortgeschrittenen Teil, unter [Fortgeschrittene Abhängigkeiten – Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Wenn Sie sehen möchten, was sich in verschiedenen Versionen von FastAPI geändert hat, lesen Sie mehr dazu im fortgeschrittenen Teil, unter [Fortgeschrittene Abhängigkeiten – Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Kontextmanager { #context-managers }
 
 ### Was sind „Kontextmanager“ { #what-are-context-managers }
 
 „Kontextmanager“ (Englisch „Context Manager“) sind bestimmte Python-Objekte, die Sie in einer `with`-Anweisung verwenden können.
 
-Beispielsweise können Sie <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">`with` verwenden, um eine Datei auszulesen</a>:
+Beispielsweise können Sie [„with“ verwenden, um eine Datei auszulesen](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie das vielleicht vorer
 
 ///
 
-In Python können Sie Kontextmanager erstellen, indem Sie <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">eine Klasse mit zwei Methoden erzeugen: `__enter__()` und `__exit__()`</a>.
+In Python können Sie Kontextmanager erstellen, indem Sie [eine Klasse mit zwei Methoden erzeugen: `__enter__()` und `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie `with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
 
@@ -274,8 +274,8 @@ Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` ve
 
 Andere Möglichkeiten, einen Kontextmanager zu erstellen, sind:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> oder
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) oder
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 Verwenden Sie diese, um eine Funktion zu dekorieren, die ein einziges `yield` hat.
 

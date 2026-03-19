@@ -4,9 +4,9 @@ Sie können **Pydantic-Modelle** verwenden, um **Formularfelder** in FastAPI zu 
 
 /// info | Info
 
-Um Formulare zu verwenden, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und es dann installieren, zum Beispiel:
+Stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und es dann installieren, zum Beispiel:
 
 ```console
 $ pip install python-multipart

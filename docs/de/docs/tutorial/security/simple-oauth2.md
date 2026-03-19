@@ -154,7 +154,7 @@ Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentati
 
 Die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> des `token`-Endpunkts muss ein JSON-Objekt sein.
 
-Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ "`bearer`" sein.
+Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ „`bearer`“ sein.
 
 Und es sollte einen `access_token` haben, mit einem String, der unseren Zugriffstoken enthält.
 
@@ -216,7 +216,7 @@ Das ist der Vorteil von Standards ...
 
 ## Es in Aktion sehen { #see-it-in-action }
 
-Öffnen Sie die interaktive Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Öffnen Sie die interaktive Dokumentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Authentifizieren { #authenticate }
 

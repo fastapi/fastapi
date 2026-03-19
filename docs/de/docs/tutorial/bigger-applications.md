@@ -123,7 +123,7 @@ Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefiniert
 
 Um dieses Beispiel zu vereinfachen, verwenden wir einen erfundenen Header.
 
-Aber in der Praxis werden Sie mit den integrierten [Sicherheits-Werkzeugen](security/index.md){.internal-link target=_blank} bessere Ergebnisse erzielen.
+Aber in der Praxis werden Sie mit den integrierten [Sicherheits-Werkzeugen](security/index.md) bessere Ergebnisse erzielen.
 
 ///
 
@@ -169,7 +169,7 @@ Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperat
 
 /// tip | Tipp
 
-Beachten Sie, dass ähnlich wie bei [Abhängigkeiten in *Pfadoperation-Dekoratoren*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} kein Wert an Ihre *Pfadoperation-Funktion* übergeben wird.
+Beachten Sie, dass ähnlich wie bei [Abhängigkeiten in *Pfadoperation-Dekoratoren*](dependencies/dependencies-in-path-operation-decorators.md) kein Wert an Ihre *Pfadoperation-Funktion* übergeben wird.
 
 ///
 
@@ -180,13 +180,13 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 ... wie wir es beabsichtigt hatten.
 
-* Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String `"items"` enthält.
+* Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String „items“ enthält.
     * Diese „Tags“ sind besonders nützlich für die automatischen interaktiven Dokumentationssysteme (unter Verwendung von OpenAPI).
 * Alle enthalten die vordefinierten `responses`.
 * Für alle diese *Pfadoperationen* wird die Liste der `dependencies` ausgewertet/ausgeführt, bevor sie selbst ausgeführt werden.
     * Wenn Sie außerdem Abhängigkeiten in einer bestimmten *Pfadoperation* deklarieren, **werden diese ebenfalls ausgeführt**.
-    * Zuerst werden die Router-Abhängigkeiten ausgeführt, dann die [`dependencies` im Dekorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} und dann die normalen Parameterabhängigkeiten.
-    * Sie können auch [`Security`-Abhängigkeiten mit `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank} hinzufügen.
+    * Zuerst werden die Router-Abhängigkeiten ausgeführt, dann die [`dependencies` im Dekorator](dependencies/dependencies-in-path-operation-decorators.md) und dann die normalen Parameterabhängigkeiten.
+    * Sie können auch [`Security`-Abhängigkeiten mit `scopes`](../advanced/security/oauth2-scopes.md) hinzufügen.
 
 /// tip | Tipp
 
@@ -295,7 +295,7 @@ Sehen wir uns nun das Modul unter `app/main.py` an.
 
 Hier importieren und verwenden Sie die Klasse `FastAPI`.
 
-Dies ist die Hauptdatei Ihrer Anwendung, die alles zusammenfügt.
+Dies wird die Hauptdatei Ihrer Anwendung sein, die alles zusammenfügt.
 
 Und da sich der Großteil Ihrer Logik jetzt in seinem eigenen spezifischen Modul befindet, wird die Hauptdatei recht einfach sein.
 
@@ -303,7 +303,7 @@ Und da sich der Großteil Ihrer Logik jetzt in seinem eigenen spezifischen Modul
 
 Sie importieren und erstellen wie gewohnt eine `FastAPI`-Klasse.
 
-Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies.md){.internal-link target=_blank} deklarieren, die mit den Abhängigkeiten für jeden `APIRouter` kombiniert werden:
+Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies.md) deklarieren, die mit den Abhängigkeiten für jeden `APIRouter` kombiniert werden:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -404,7 +404,7 @@ Hinter den Kulissen wird es also tatsächlich so funktionieren, als ob alles die
 
 /// check | Testen
 
-Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Performanz machen.
+Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Leistung machen.
 
 Dies dauert Mikrosekunden und geschieht nur beim Start.
 
@@ -465,21 +465,52 @@ Da wir sie nicht einfach isolieren und unabhängig vom Rest „mounten“ könne
 
 ///
 
-## Es in der automatischen API-Dokumentation testen { #check-the-automatic-api-docs }
+## Den `entrypoint` in `pyproject.toml` konfigurieren { #configure-the-entrypoint-in-pyproject-toml }
+
+Da Ihr FastAPI-`app`-Objekt in `app/main.py` liegt, können Sie den `entrypoint` in Ihrer `pyproject.toml`-Datei so konfigurieren:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+das entspricht einem Import wie:
+
+```python
+from app.main import app
+```
+
+Auf diese Weise weiß der `fastapi`-Befehl, wo er Ihre App findet.
+
+/// Note | Hinweis
+
+Sie könnten auch den Pfad an den Befehl übergeben, etwa:
+
+```console
+$ fastapi dev app/main.py
+```
+
+Aber dann müssten Sie sich jedes Mal, wenn Sie den `fastapi`-Befehl aufrufen, an den korrekten Pfad erinnern.
+
+Außerdem finden andere Tools Ihre App womöglich nicht, zum Beispiel die [VS Code-Erweiterung](../editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com). Daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
+
+///
+
+## Die automatische API-Dokumentation prüfen { #check-the-automatic-api-docs }
 
 Führen Sie nun Ihre App aus:
 
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Und öffnen Sie die Dokumentation unter [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Sie sehen die automatische API-Dokumentation, einschließlich der Pfade aller Submodule, mit den richtigen Pfaden (und Präfixen) und den richtigen Tags:
 
