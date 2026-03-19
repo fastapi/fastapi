@@ -93,13 +93,13 @@ Les principales fonctionnalités sont :
 
 « _Je suis plus qu'enthousiaste à propos de **FastAPI**. C'est tellement fun !_ »
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Animateur du podcast <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855">Python Bytes</a></strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Animateur du podcast [Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855)</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
 
 ---
 
 « _Honnêtement, ce que vous avez construit a l'air super solide et soigné. À bien des égards, c'est ce que je voulais que **Hug** soit — c'est vraiment inspirant de voir quelqu'un construire ça._ »
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Créateur de <a href="https://github.com/hugapi/hug">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Créateur de [Hug](https://github.com/hugapi/hug)</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
 
 ---
 
@@ -107,7 +107,7 @@ Les principales fonctionnalités sont :
 
 « _Nous sommes passés à **FastAPI** pour nos **APIs** [...] Je pense que vous l'aimerez [...]_ »
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Fondateurs de <a href="https://explosion.ai">Explosion AI</a> - Créateurs de <a href="https://spacy.io">spaCy</a></strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Fondateurs de [Explosion AI](https://explosion.ai) - Créateurs de [spaCy](https://spacy.io)</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
 
 ---
 
