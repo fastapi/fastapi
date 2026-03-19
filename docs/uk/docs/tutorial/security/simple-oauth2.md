@@ -216,7 +216,7 @@ UserInDB(
 
 ## Подивіться в дії { #see-it-in-action }
 
-Відкрийте інтерактивну документацію: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Відкрийте інтерактивну документацію: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Автентифікація { #authenticate }
 
