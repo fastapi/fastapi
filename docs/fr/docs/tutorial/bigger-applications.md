@@ -353,7 +353,7 @@ La deuxième version est un « import absolu » :
 from app.routers import items, users
 ```
 
-Pour en savoir plus sur les Packages et Modules Python, lisez <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">la documentation officielle de Python sur les modules</a>.
+Pour en savoir plus sur les Packages et Modules Python, lisez [la documentation officielle de Python sur les modules](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -445,7 +445,7 @@ Ainsi, par exemple, d'autres projets pourraient utiliser le même `APIRouter` av
 
 Nous pouvons également ajouter des *chemins d'accès* directement à l'application `FastAPI`.
 
-Ici, nous le faisons... juste pour montrer que nous le pouvons 🤷 :
+Ici, nous le faisons ... juste pour montrer que nous le pouvons 🤷 :
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
@@ -465,6 +465,37 @@ Comme nous ne pouvons pas simplement les isoler et les « monter » indépendamm
 
 ///
 
+## Configurer l'`entrypoint` dans `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Comme votre objet FastAPI `app` vit dans `app/main.py`, vous pouvez configurer l'`entrypoint` dans votre fichier `pyproject.toml` comme ceci :
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+ce qui équivaut à importer ainsi :
+
+```python
+from app.main import app
+```
+
+De cette façon, la commande `fastapi` saura où trouver votre app.
+
+/// Note | Remarque
+
+Vous pourriez aussi passer le chemin à la commande, comme :
+
+```console
+$ fastapi dev app/main.py
+```
+
+Mais vous devriez vous rappeler de passer le bon chemin à chaque fois que vous appelez la commande `fastapi`.
+
+En outre, d'autres outils pourraient ne pas être en mesure de la trouver, par exemple l'[Extension VS Code](../editor-support.md){.internal-link target=_blank} ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d'utiliser l'`entrypoint` dans `pyproject.toml`.
+
+///
+
 ## Consulter la documentation API automatique { #check-the-automatic-api-docs }
 
 Maintenant, exécutez votre application :
@@ -472,14 +503,14 @@ Maintenant, exécutez votre application :
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Et ouvrez les documents à <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Et ouvrez les documents à [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez la documentation API automatique, incluant les chemins de tous les sous-modules, utilisant les bons chemins (et préfixes) et les bons tags :
 

@@ -30,7 +30,7 @@ Il a été créé pour générer le HTML en backend, pas pour créer des API con
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
-Django REST framework a été conçu comme une boîte à outils flexible permettant de construire des API Web à partir de Django, afin d'améliorer ses capacités en matière d'API.
+Django REST Framework a été conçu comme une boîte à outils flexible permettant de construire des API Web à partir de Django, afin d'améliorer ses capacités en matière d'API.
 
 Il est utilisé par de nombreuses entreprises, dont Mozilla, Red Hat et Eventbrite.
 
@@ -39,7 +39,7 @@ premières idées qui a inspiré « la recherche de » **FastAPI**.
 
 /// note | Remarque
 
-Django REST framework a été créé par Tom Christie. Le créateur de Starlette et Uvicorn, sur lesquels **FastAPI** est basé.
+Django REST Framework a été créé par Tom Christie. Le créateur de Starlette et Uvicorn, sur lesquels **FastAPI** est basé.
 
 ///
 
@@ -166,7 +166,7 @@ Mais elle a été créée avant que les annotations de type n'existent en Python
 
 /// check | A inspiré **FastAPI** à
 
-Utilisez du code pour définir des « schémas » qui fournissent automatiquement les types de données et la validation.
+Utiliser du code pour définir des « schémas » qui fournissent automatiquement les types de données et la validation.
 
 ///
 
@@ -241,7 +241,7 @@ j'ai (ainsi que plusieurs équipes externes) utilisées jusqu'à présent :
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-Ces mêmes générateurs full-stack ont servi de base aux [Générateurs de projets pour **FastAPI**](project-generation.md){.internal-link target=_blank}.
+Ces mêmes générateurs full-stack ont servi de base aux [Générateurs de projets pour **FastAPI**](project-generation.md).
 
 /// info
 
@@ -292,7 +292,7 @@ Il a clairement inspiré Uvicorn et Starlette, qui sont actuellement plus rapide
 
 /// check | A inspiré **FastAPI** à
 
-Trouvez un moyen d'avoir une performance folle.
+Trouver un moyen d'avoir une performance folle.
 
 C'est pourquoi **FastAPI** est basé sur Starlette, car il s'agit du framework le plus rapide disponible (testé par des benchmarks tiers).
 
@@ -312,7 +312,7 @@ Ainsi, la validation, la sérialisation et la documentation des données doivent
 
 Trouver des moyens d'obtenir de bonnes performances.
 
-Avec Hug (puisque Hug est basé sur Falcon), **FastAPI** a inspiré la déclaration d'un paramètre `response` dans les fonctions.
+Avec Hug (puisque Hug est basé sur Falcon), cela a inspiré **FastAPI** à déclarer un paramètre `response` dans les fonctions.
 
 Bien que dans FastAPI, il est facultatif, et est utilisé principalement pour définir les en-têtes, les cookies, et les codes de statut alternatifs.
 
@@ -507,10 +507,10 @@ Le serveur web principal pour exécuter les applications **FastAPI**.
 
 Vous pouvez également utiliser l'option de ligne de commande `--workers` pour avoir un serveur multi‑processus asynchrone.
 
-Pour plus de détails, consultez la section [Déploiement](deployment/index.md){.internal-link target=_blank}.
+Pour plus de détails, consultez la section [Déploiement](deployment/index.md).
 
 ///
 
 ## Benchmarks et vitesse { #benchmarks-and-speed }
 
-Pour comprendre, comparer et voir la différence entre Uvicorn, Starlette et FastAPI, consultez la section sur les [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+Pour comprendre, comparer et voir la différence entre Uvicorn, Starlette et FastAPI, consultez la section sur les [Benchmarks](benchmarks.md).
