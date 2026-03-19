@@ -2,11 +2,11 @@
 
 FastAPI est construit au‑dessus de **Pydantic**, et je vous ai montré comment utiliser des modèles Pydantic pour déclarer les requêtes et les réponses.
 
-Mais FastAPI prend aussi en charge l'utilisation de <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> de la même manière :
+Mais FastAPI prend aussi en charge l'utilisation de [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) de la même manière :
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Cela fonctionne grâce à **Pydantic**, qui offre une <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">prise en charge interne des `dataclasses`</a>.
+Cela fonctionne grâce à **Pydantic**, qui offre une [prise en charge interne des `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
 
 Ainsi, même avec le code ci‑dessus qui n'emploie pas explicitement Pydantic, FastAPI utilise Pydantic pour convertir ces dataclasses standard en la variante de dataclasses de Pydantic.
 
@@ -18,7 +18,7 @@ Et bien sûr, cela prend en charge la même chose :
 
 Cela fonctionne de la même manière qu'avec les modèles Pydantic. Et, en réalité, c'est mis en œuvre de la même façon en interne, en utilisant Pydantic.
 
-/// info | Info
+/// info
 
 Gardez à l'esprit que les dataclasses ne peuvent pas tout ce que peuvent faire les modèles Pydantic.
 
@@ -74,7 +74,7 @@ Dans ce cas, vous pouvez simplement remplacer les `dataclasses` standard par `py
 
     Comme toujours, avec FastAPI vous pouvez combiner `def` et `async def` selon vos besoins.
 
-    Si vous avez besoin d'un rappel sur quand utiliser l'un ou l'autre, consultez la section _« In a hurry? »_ dans la documentation à propos de [`async` et `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Si vous avez besoin d'un rappel sur quand utiliser l'un ou l'autre, consultez la section _« In a hurry? »_ dans la documentation à propos de [`async` et `await`](../async.md#in-a-hurry).
 
 9. Cette *fonction de chemin d'accès* ne renvoie pas des dataclasses (même si elle le pourrait), mais une liste de dictionnaires contenant des données internes.
 
@@ -88,7 +88,7 @@ Reportez‑vous aux annotations dans le code ci‑dessus pour voir plus de déta
 
 Vous pouvez aussi combiner `dataclasses` avec d'autres modèles Pydantic, en hériter, les inclure dans vos propres modèles, etc.
 
-Pour en savoir plus, consultez la <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">documentation Pydantic sur les dataclasses</a>.
+Pour en savoir plus, consultez la [documentation Pydantic sur les dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
 
 ## Version { #version }
 
