@@ -8,11 +8,11 @@ In diesem Leitfaden erfahren Sie, wie Sie ein **TypeScript-SDK** für Ihr FastAP
 
 ## Open Source SDK-Generatoren { #open-source-sdk-generators }
 
-Eine vielseitige Möglichkeit ist der <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, der **viele Programmiersprachen** unterstützt und SDKs aus Ihrer OpenAPI-Spezifikation generieren kann.
+Eine vielseitige Möglichkeit ist der [OpenAPI Generator](https://openapi-generator.tech/), der **viele Programmiersprachen** unterstützt und SDKs aus Ihrer OpenAPI-Spezifikation generieren kann.
 
-Für **TypeScript-Clients** ist <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> eine speziell entwickelte Lösung, die ein optimiertes Erlebnis für das TypeScript-Ökosystem bietet.
+Für **TypeScript-Clients** ist [Hey API](https://heyapi.dev/) eine speziell entwickelte Lösung, die ein optimiertes Erlebnis für das TypeScript-Ökosystem bietet.
 
-Weitere SDK-Generatoren finden Sie auf <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip | Tipp
 
@@ -24,15 +24,15 @@ FastAPI generiert automatisch **OpenAPI 3.1**-Spezifikationen, daher muss jedes 
 
 Dieser Abschnitt hebt **venture-unterstützte** und **firmengestützte** Lösungen hervor, die von Unternehmen entwickelt werden, welche FastAPI sponsern. Diese Produkte bieten **zusätzliche Funktionen** und **Integrationen** zusätzlich zu hochwertig generierten SDKs.
 
-Durch das ✨ [**Sponsoring von FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ helfen diese Unternehmen sicherzustellen, dass das Framework und sein **Ökosystem** gesund und **nachhaltig** bleiben.
+Durch das ✨ [**Sponsoring von FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ helfen diese Unternehmen sicherzustellen, dass das Framework und sein **Ökosystem** gesund und **nachhaltig** bleiben.
 
 Ihr Sponsoring zeigt auch ein starkes Engagement für die FastAPI-**Community** (Sie), was bedeutet, dass sie nicht nur einen **großartigen Service** bieten möchten, sondern auch ein **robustes und florierendes Framework**, FastAPI, unterstützen möchten. 🙇
 
 Zum Beispiel könnten Sie ausprobieren:
 
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Einige dieser Lösungen sind möglicherweise auch Open Source oder bieten kostenlose Tarife an, sodass Sie diese ohne finanzielle Verpflichtung ausprobieren können. Andere kommerzielle SDK-Generatoren sind online verfügbar und können dort gefunden werden. 🤓
 
@@ -66,7 +66,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Dies generiert ein TypeScript-SDK in `./src/client`.
 
-Sie können lernen, wie man <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">`@hey-api/openapi-ts` installiert</a> und über die <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">erzeugte Ausgabe</a> auf deren Website lesen.
+Sie können lernen, wie man [`@hey-api/openapi-ts` installiert](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
 
 ### Das SDK verwenden { #using-the-sdk }
 
@@ -96,7 +96,7 @@ Das Response-Objekt hat auch automatische Vervollständigung:
 
 In vielen Fällen wird Ihre FastAPI-App größer sein und Sie werden wahrscheinlich Tags verwenden, um verschiedene Gruppen von *Pfadoperationen* zu separieren.
 
-Zum Beispiel könnten Sie einen Abschnitt für **Items (Artikel)** und einen weiteren Abschnitt für **Users (Benutzer)** haben, und diese könnten durch Tags getrennt sein:
+Zum Beispiel könnten Sie einen Abschnitt für **Items** und einen weiteren Abschnitt für **Users** haben, und diese könnten durch Tags getrennt sein:
 
 {* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 

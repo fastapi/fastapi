@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Ви можете розгорнути свій застосунок FastAPI на <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> однією командою, приєднуйтесь до списку очікування, якщо ще ні. 🚀
+Ви можете розгорнути свій застосунок FastAPI на [FastAPI Cloud](https://fastapicloud.com) **однією командою**, приєднуйтесь до списку очікування, якщо ще ні. 🚀
 
 ## Вхід { #login }
 
@@ -20,7 +20,7 @@ You are logged in to FastAPI Cloud 🚀
 
 ## Розгортання { #deploy }
 
-Тепер розгорніть свій застосунок однією командою:
+Тепер розгорніть свій застосунок **однією командою**:
 
 <div class="termy">
 
@@ -40,7 +40,7 @@ Deploying to FastAPI Cloud...
 
 ## Про FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** створено тим самим автором і командою, що стоїть за **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** створено тим самим автором і командою, що стоїть за **FastAPI**.
 
 Він спрощує процес **створення**, **розгортання** та **доступу** до API з мінімальними зусиллями.
 

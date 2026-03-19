@@ -172,7 +172,7 @@ Comme la liste est un type qui contient des types internes, mettez-les entre cro
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Info
+/// info
 
 Ces types internes entre crochets sont appelés « paramètres de type ».
 
@@ -269,7 +269,7 @@ Cela ne signifie pas « `one_person` est la **classe** appelée `Person` ».
 
 ## Modèles Pydantic { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
+[Pydantic](https://docs.pydantic.dev/) est une bibliothèque Python pour effectuer de la validation de données.
 
 Vous déclarez la « forme » de la donnée sous forme de classes avec des attributs.
 
@@ -283,15 +283,15 @@ Un exemple tiré de la documentation officielle de Pydantic :
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Info
+/// info
 
-Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, consultez sa documentation</a>.
+Pour en savoir plus à propos de [Pydantic, consultez sa documentation](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** est entièrement basé sur Pydantic.
 
-Vous verrez beaucoup plus de tout cela en pratique dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Vous verrez beaucoup plus de tout cela en pratique dans le [Tutoriel - Guide utilisateur](tutorial/index.md).
 
 ## Annotations de type avec métadonnées { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ Avec **FastAPI**, vous déclarez des paramètres avec des annotations de type et
 * **Documenter** l'API avec OpenAPI :
     * ce qui est ensuite utilisé par les interfaces utilisateur de documentation interactive automatiques.
 
-Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela en action dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela en action dans le [Tutoriel - Guide utilisateur](tutorial/index.md).
 
 L'important est qu'en utilisant les types standards de Python, en un seul endroit (au lieu d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
-/// info | Info
+/// info
 
-Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">l'« aide-mémoire » de `mypy`</a>.
+Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est [l'« aide-mémoire » de `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///
