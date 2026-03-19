@@ -228,6 +228,41 @@ To do that, you can declare that `None` is a valid type but simply do not declar
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
+#### Important: Query parameters are always strings
+
+Even though you can declare a parameter as "required but can be `None`", in practice, query parameters are always received as strings in HTTP.
+
+For example:
+
+```
+/items?q=null
+```
+
+This will be interpreted as `"null"` (a string), **not** `None`.
+
+#### Recommendation
+
+Because query parameters cannot truly represent `None`, this pattern can be confusing in real-world usage.
+
+In most cases, it is better to:
+
+- Make the parameter optional:
+
+```python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+- Or use a request body if you need to explicitly support `None`
+
+#### Summary
+
+| Declaration | Behavior |
+| ----------- | -------- |
+| `q: str` | required |
+| `q: str = None` | optional |
+| `q: str \| None = None` | optional nullable |
+| `q: str \| None = ...` | required but not practical in query params |
+
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
