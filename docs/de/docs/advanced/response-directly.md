@@ -56,7 +56,7 @@ Das obige Beispiel zeigt alle Teile, die Sie benötigen, ist aber noch nicht seh
 
 Sehen wir uns nun an, wie Sie damit eine benutzerdefinierte Response zurückgeben können.
 
-Nehmen wir an, Sie möchten eine <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>-Response zurückgeben.
+Nehmen wir an, Sie möchten eine [XML](https://en.wikipedia.org/wiki/XML)-Response zurückgeben.
 
 Sie könnten Ihren XML-Inhalt als String in eine `Response` einfügen und sie zurückgeben:
 

@@ -353,7 +353,7 @@ Die zweite Version ist ein „absoluter Import“:
 from app.routers import items, users
 ```
 
-Um mehr über Python-Packages und -Module zu erfahren, lesen Sie <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">die offizielle Python-Dokumentation über Module</a>.
+Um mehr über Python-Packages und -Module zu erfahren, lesen Sie [die offizielle Python-Dokumentation über Module](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 

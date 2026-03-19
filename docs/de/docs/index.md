@@ -44,7 +44,7 @@ Seine Schlüssel-Merkmale sind:
 * **Einfach**: So konzipiert, dass es einfach zu benutzen und zu erlernen ist. Weniger Zeit mit dem Lesen von Dokumentation verbringen.
 * **Kurz**: Minimieren Sie die Verdoppelung von Code. Mehrere Features aus jeder Parameterdeklaration. Weniger Bugs.
 * **Robust**: Erhalten Sie produktionsreifen Code. Mit automatischer, interaktiver Dokumentation.
-* **Standards-basiert**: Basierend auf (und vollständig kompatibel mit) den offenen Standards für APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (früher bekannt als Swagger) und <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Standards-basiert**: Basierend auf (und vollständig kompatibel mit) den offenen Standards für APIs: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (früher bekannt als Swagger) und [JSON Schema](https://json-schema.org/).
 
 <small>* Schätzung basierend auf Tests, die von einem internen Entwicklungsteam durchgeführt wurden, das Produktionsanwendungen erstellt.</small>
 
@@ -237,7 +237,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Über den Befehl <code>fastapi dev</code> ...</summary>
 
-Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
+Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit [Uvicorn](https://www.uvicorn.dev).
 
 Standardmäßig wird `fastapi dev` mit aktiviertem Auto-Reload für die lokale Entwicklung gestartet.
 
