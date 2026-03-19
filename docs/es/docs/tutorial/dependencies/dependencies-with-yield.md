@@ -111,7 +111,7 @@ Pero está ahí para ti si la necesitas. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers).
 
 ## Dependencias con `yield` y `except` { #dependencies-with-yield-and-except }
 
@@ -233,7 +233,7 @@ participant operation as Path Operation
 
 Las dependencias con `yield` han evolucionado con el tiempo para cubrir diferentes casos de uso y corregir algunos problemas.
 
-Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Context Managers { #context-managers }
 
 ### Qué son los "Context Managers" { #what-are-context-managers }
