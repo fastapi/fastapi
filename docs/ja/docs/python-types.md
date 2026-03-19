@@ -231,7 +231,7 @@ def some_function(data: Any):
 {!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-これは `item` が `int` または `str` になり得ることを意味します.
+これは `item` が `int` または `str` になり得ることを意味します。
 
 #### `None` の可能性 { #possibly-none }
 
@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic のモデル { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うための Python ライブラリです。
+[Pydantic](https://docs.pydantic.dev/) はデータ検証を行うための Python ライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
@@ -285,7 +285,7 @@ Pydantic の公式ドキュメントからの例:
 
 /// info | 情報
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic の詳細はドキュメントを参照してください</a>。
+[ Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
 
 ///
 
@@ -343,6 +343,6 @@ Python 自体は、この `Annotated` で何かをするわけではありませ
 
 /// info | 情報
 
-すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` の「チートシート」</a> があります。
+すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして [`mypy` の「チートシート`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html) があります。
 
 ///

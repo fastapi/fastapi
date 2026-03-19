@@ -27,9 +27,9 @@
 
 ---
 
-**ドキュメント**: <a href="https://fastapi.tiangolo.com/ja" target="_blank">https://fastapi.tiangolo.com</a>
+**ドキュメント**: [https://fastapi.tiangolo.com/ja](https://fastapi.tiangolo.com/ja)
 
-**ソースコード**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
+**ソースコード**: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)
 
 ---
 
@@ -44,7 +44,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 * **簡単**: 簡単に利用・習得できるようにデザインされています。ドキュメントを読む時間を削減します。
 * **短い**: コードの重複を最小限にします。各パラメータ宣言から複数の機能を得られます。バグも減ります。
 * **堅牢性**: 自動対話型ドキュメントにより、本番環境向けのコードが得られます。
-* **Standards-based**: API のオープンスタンダードに基づいており（そして完全に互換性があります）、<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>（以前は Swagger として知られていました）や <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a> をサポートします。
+* **Standards-based**: API のオープンスタンダードに基づいており（そして完全に互換性があります）、[OpenAPI](https://github.com/OAI/OpenAPI-Specification)（以前は Swagger として知られていました）や [JSON Schema](https://json-schema.org/) をサポートします。
 
 <small>* 本番アプリケーションを構築している社内開発チームのテストに基づく見積もりです。</small>
 
@@ -69,7 +69,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/ja/fastapi-people/#sponsors" class="external-link" target="_blank">その他のスポンサー</a>
+[その他のスポンサー](https://fastapi.tiangolo.com/ja/fastapi-people/#sponsors)
 
 ## 評価 { #opinions }
 
@@ -210,7 +210,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -235,7 +235,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary><code>fastapi dev main.py</code> コマンドについて</summary>
+<summary><code>fastapi dev</code> コマンドについて</summary>
 
 `fastapi dev` コマンドは `main.py` ファイルを読み取り、その中の **FastAPI** アプリを検出し、<a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> を使用してサーバーを起動します。
 
@@ -455,20 +455,6 @@ item: Item
 必要に応じて FastAPI アプリを <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> にデプロイできます。まだの場合はウェイティングリストに参加してください。 🚀
 
 すでに **FastAPI Cloud** アカウント（ウェイティングリストから招待されました 😉）がある場合は、1 コマンドでアプリケーションをデプロイできます。
-
-デプロイ前に、ログインしていることを確認してください。
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-次に、アプリをデプロイします。
 
 <div class="termy">
 

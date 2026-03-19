@@ -20,7 +20,7 @@
 
 /// info | 情報
 
-`status_code`は代わりに、Pythonの<a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>のように、`IntEnum`を受け取ることもできます。
+`status_code`は代わりに、Pythonの[`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)のように、`IntEnum`を受け取ることもできます。
 
 ///
 
@@ -66,7 +66,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 /// tip | 豆知識
 
-それぞれのステータスコードとどのコードが何のためのコードなのかについて詳細は<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>を参照してください。
+それぞれのステータスコードとどのコードが何のためのコードなのかについての詳細は、[<abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> のHTTPステータスコードに関するドキュメント](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)を参照してください。
 
 ///
 
@@ -92,7 +92,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 また、`from starlette import status`を使うこともできます。
 
-**FastAPI** は、`開発者の利便性を考慮して、fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+**FastAPI** は、開発者の利便性を考慮して、fastapi.statusと同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
 
 ///
 
