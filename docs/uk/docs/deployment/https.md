@@ -218,7 +218,7 @@ TLS Termination Proxy використає узгоджене шифруванн
 
 /// tip | Порада
 
-Ви можете дізнатися більше про це в документації [За проксі - Увімкнути направлені заголовки проксі](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+Ви можете дізнатися більше про це в документації [За проксі - Увімкнути направлені заголовки проксі](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers)
 
 ///
 
