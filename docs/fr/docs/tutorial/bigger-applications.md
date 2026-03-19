@@ -123,7 +123,7 @@ Nous allons maintenant utiliser une dépendance simple pour lire un en-tête per
 
 Nous utilisons un en-tête inventé pour simplifier cet exemple.
 
-Mais dans les cas réels, vous obtiendrez de meilleurs résultats en utilisant les [utilitaires de sécurité](security/index.md){.internal-link target=_blank} intégrés.
+Mais dans les cas réels, vous obtiendrez de meilleurs résultats en utilisant les [utilitaires de sécurité](security/index.md) intégrés.
 
 ///
 
@@ -169,7 +169,7 @@ Et nous pouvons ajouter une liste de `dependencies` qui seront ajoutées à tous
 
 /// tip | Astuce
 
-Notez que, tout comme pour les [dépendances dans les décorateurs de *chemin d'accès*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, aucune valeur ne sera transmise à votre *fonction de chemin d'accès*.
+Notez que, tout comme pour les [dépendances dans les décorateurs de *chemin d'accès*](dependencies/dependencies-in-path-operation-decorators.md), aucune valeur ne sera transmise à votre *fonction de chemin d'accès*.
 
 ///
 
@@ -185,8 +185,8 @@ Le résultat final est que les chemins d'item sont désormais :
 * Ils incluront tous les `responses` prédéfinies.
 * Tous ces *chemins d'accès* auront la liste des `dependencies` évaluées/exécutées avant eux.
     * Si vous déclarez également des dépendances dans un *chemin d'accès* spécifique, **elles seront aussi exécutées**.
-    * Les dépendances du routeur sont exécutées en premier, puis les [`dependencies` dans le décorateur](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, puis les dépendances des paramètres normaux.
-    * Vous pouvez également ajouter des [`Security` dependencies avec des `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+    * Les dépendances du routeur sont exécutées en premier, puis les [`dependencies` dans le décorateur](dependencies/dependencies-in-path-operation-decorators.md), puis les dépendances des paramètres normaux.
+    * Vous pouvez également ajouter des [`Security` dependencies avec des `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Astuce
 
@@ -303,7 +303,7 @@ Et comme la plupart de votre logique vivra désormais dans son propre module, le
 
 Vous importez et créez une classe `FastAPI` comme d'habitude.
 
-Et nous pouvons même déclarer des [dépendances globales](dependencies/global-dependencies.md){.internal-link target=_blank} qui seront combinées avec les dépendances de chaque `APIRouter` :
+Et nous pouvons même déclarer des [dépendances globales](dependencies/global-dependencies.md) qui seront combinées avec les dépendances de chaque `APIRouter` :
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -492,7 +492,7 @@ $ fastapi dev app/main.py
 
 Mais vous devriez vous rappeler de passer le bon chemin à chaque fois que vous appelez la commande `fastapi`.
 
-En outre, d'autres outils pourraient ne pas être en mesure de la trouver, par exemple l'[Extension VS Code](../editor-support.md){.internal-link target=_blank} ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d'utiliser l'`entrypoint` dans `pyproject.toml`.
+En outre, d'autres outils pourraient ne pas être en mesure de la trouver, par exemple l'[Extension VS Code](../editor-support.md) ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d'utiliser l'`entrypoint` dans `pyproject.toml`.
 
 ///
 

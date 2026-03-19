@@ -98,4 +98,4 @@ Vous pourriez aussi utiliser `from starlette import status`.
 
 ## Modifier la valeur par défaut { #changing-the-default }
 
-Plus tard, dans le [Guide utilisateur avancé](../advanced/response-change-status-code.md){.internal-link target=_blank}, vous verrez comment renvoyer un code d'état différent de celui par défaut que vous déclarez ici.
+Plus tard, dans le [Guide utilisateur avancé](../advanced/response-change-status-code.md), vous verrez comment renvoyer un code d'état différent de celui par défaut que vous déclarez ici.

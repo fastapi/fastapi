@@ -110,7 +110,7 @@ OpenAPI définit un schéma d’API pour votre API. Et ce schéma inclut des dé
 
 Si vous êtes curieux de voir à quoi ressemble le schéma OpenAPI brut, FastAPI génère automatiquement un JSON (schéma) avec les descriptions de toute votre API.
 
-Vous pouvez le voir directement à l’adresse : [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:800api.json).
+Vous pouvez le voir directement à l’adresse : [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 Il affichera un JSON commençant par quelque chose comme :
 
