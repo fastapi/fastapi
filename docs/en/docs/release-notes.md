@@ -20,6 +20,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ja (add-missing). PR [#15167](https://github.com/fastapi/fastapi/pull/15167) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for tr (add-missing). PR [#15169](https://github.com/fastapi/fastapi/pull/15169) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (update-outdated). PR [#15165](https://github.com/fastapi/fastapi/pull/15165) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (add-missing). PR [#15163](https://github.com/fastapi/fastapi/pull/15163) by [@tiangolo](https://github.com/tiangolo).
