@@ -30,7 +30,7 @@ Bu yapılandırmayla otomatik API dokümanları şöyle görünür:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## License identifier { #license-identifier }
+## Lisans Tanımlayıcısı { #license-identifier }
 
 OpenAPI 3.1.0 ve FastAPI 0.99.0 sürümünden itibaren, `license_info` içinde `url` yerine bir `identifier` da ayarlayabilirsiniz.
 

@@ -22,7 +22,7 @@ Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıkla
 
 Bu sayfada **virtual environment**'leri nasıl kullanacağınızı ve nasıl çalıştıklarını öğreneceksiniz.
 
-Eğer Python'ı kurmak dahil her şeyi sizin yerinize yöneten bir **tool** kullanmaya hazırsanız, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>'yi deneyin.
+Eğer Python'ı kurmak dahil her şeyi sizin yerinize yöneten bir **tool** kullanmaya hazırsanız, [uv](https://github.com/astral-sh/uv)'yi deneyin.
 
 ///
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> kuruluysa, onunla da virtual environment oluşturabilirsiniz.
+Eğer [`uv`](https://github.com/astral-sh/uv) kuruluysa, onunla da virtual environment oluşturabilirsiniz.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ya da Windows'ta Bash kullanıyorsanız (örn. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ya da Windows'ta Bash kullanıyorsanız (örn. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ Eğer `python` binary'sini projenizin içinde (bu örnekte `awesome-project`) `.
 
 /// tip | İpucu
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> kullanıyorsanız, `pip` yerine onunla kurulum yaparsınız; dolayısıyla `pip`'i yükseltmeniz gerekmez. 😎
+[`uv`](https://github.com/astral-sh/uv) kullanıyorsanız, `pip` yerine onunla kurulum yaparsınız; dolayısıyla `pip`'i yükseltmeniz gerekmez. 😎
 
 ///
 
@@ -268,7 +268,7 @@ Bu komut pip kurulu değilse kurar ve ayrıca kurulu pip sürümünün `ensurepi
 
 /// tip | İpucu
 
-Virtual environment'i <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> ile oluşturduysanız, bunu zaten sizin için yaptı; bu adımı atlayabilirsiniz. 😎
+Virtual environment'i [`uv`](https://github.com/astral-sh/uv) ile oluşturduysanız, bunu zaten sizin için yaptı; bu adımı atlayabilirsiniz. 😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> varsa:
+Eğer [`uv`](https://github.com/astral-sh/uv) varsa:
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> varsa:
+Eğer [`uv`](https://github.com/astral-sh/uv) varsa:
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Muhtemelen bir editör kullanırsınız; otomatik tamamlamayı ve satır içi ha
 
 Örneğin:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | İpucu
 
@@ -453,7 +453,7 @@ Okumaya devam edin. 👇🤓
 
 ## Neden Virtual Environment { #why-virtual-environments }
 
-FastAPI ile çalışmak için <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> kurmanız gerekir.
+FastAPI ile çalışmak için [Python](https://www.python.org/) kurmanız gerekir.
 
 Sonrasında FastAPI'yi ve kullanmak istediğiniz diğer tüm **package**'leri **kurmanız** gerekir.
 
@@ -517,7 +517,7 @@ $ pip install "harry==3"
 
 Sonuç olarak global Python environment'ınızda `harry` versiyon `3` kurulu olur.
 
-Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`'e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
+Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
 
 ```mermaid
 flowchart LR
@@ -562,7 +562,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Bu, FastAPI kodunu içeren sıkıştırılmış bir dosyayı genellikle <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>'dan indirir.
+Bu, FastAPI kodunu içeren sıkıştırılmış bir dosyayı genellikle [PyPI](https://pypi.org/project/fastapi/)'dan indirir.
 
 Ayrıca FastAPI'nin bağımlı olduğu diğer package'ler için de dosyaları **indirir**.
 
@@ -625,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ya da Windows'ta Bash kullanıyorsanız (örn. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ya da Windows'ta Bash kullanıyorsanız (örn. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -844,7 +844,7 @@ Bu, başlamanız için basit bir rehber ve alttaki mekanizmaların nasıl çalı
 
 Virtual environment'leri, package bağımlılıklarını (requirements) ve projeleri yönetmek için birçok **alternatif** vardır.
 
-Hazır olduğunuzda ve package bağımlılıkları, virtual environment'ler vb. dahil **tüm projeyi yönetmek** için bir tool kullanmak istediğinizde, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>'yi denemenizi öneririm.
+Hazır olduğunuzda ve package bağımlılıkları, virtual environment'ler vb. dahil **tüm projeyi yönetmek** için bir tool kullanmak istediğinizde, [uv](https://github.com/astral-sh/uv)'yi denemenizi öneririm.
 
 `uv` birçok şey yapabilir, örneğin:
 

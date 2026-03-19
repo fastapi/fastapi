@@ -46,7 +46,7 @@ http://127.0.0.1:8000/items/
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-Namunak örneğin şuraya giderseniz:
+Ancak örneğin şuraya giderseniz:
 
 ```
 http://127.0.0.1:8000/items/?skip=20

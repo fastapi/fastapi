@@ -56,7 +56,7 @@ Dolayısıyla fonksiyonunuzu şöyle tanımlayabilirsiniz:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
-Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
+Namun şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
@@ -81,7 +81,7 @@ Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `
 
 Fonksiyonun ilk parametresi olarak `*` geçin.
 
-Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
+Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments - Anahtar Kelime Argümanları"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 

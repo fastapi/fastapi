@@ -93,7 +93,7 @@ Ve bu exception’ı FastAPI ile global olarak handle etmek istiyorsunuz.
 
 Burada `/unicorns/yolo` için request atarsanız, *path operation* bir `UnicornException` `raise` eder.
 
-Ancak bu, `unicorn_exception_handler` tarafından handle edilir.
+Namun bu, `unicorn_exception_handler` tarafından handle edilir.
 
 Böylece HTTP status code’u `418` olan, JSON içeriği şu şekilde temiz bir hata response’u alırsınız:
 

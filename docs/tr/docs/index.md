@@ -27,9 +27,9 @@
 
 ---
 
-**Dokümantasyon**: <a href="https://fastapi.tiangolo.com/tr" target="_blank">https://fastapi.tiangolo.com</a>
+**Dokümantasyon**: [https://fastapi.tiangolo.com/tr](https://fastapi.tiangolo.com/tr)
 
-**Kaynak Kod**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
+**Kaynak Kod**: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)
 
 ---
 
@@ -69,7 +69,7 @@ Temel özellikleri şunlardır:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/tr/fastapi-people/#sponsors" class="external-link" target="_blank">Diğer sponsorlar</a>
+[Diğer sponsorlar](https://fastapi.tiangolo.com/tr/fastapi-people/#sponsors)
 
 ## Görüşler { #opinions }
 
@@ -210,7 +210,7 @@ Sunucuyu şu komutla çalıştıralım:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -235,7 +235,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary><code>fastapi dev main.py</code> komutu hakkında...</summary>
+<summary><code>fastapi dev</code> komutu hakkında...</summary>
 
 `fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> kullanarak bir server başlatır.
 
@@ -455,20 +455,6 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 İsterseniz FastAPI uygulamanızı <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>'a deploy edebilirsiniz; eğer henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
 
 Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek bir komutla deploy edebilirsiniz.
-
-Deploy etmeden önce, giriş yaptığınızdan emin olun:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Sonra uygulamanızı deploy edin:
 
 <div class="termy">
 

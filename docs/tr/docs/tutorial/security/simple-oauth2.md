@@ -216,7 +216,7 @@ Standartların faydası da bu...
 
 ## Çalışır Halini Görün { #see-it-in-action }
 
-Etkileşimli dokümanları açın: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Etkileşimli dokümanları açın: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Authenticate Olma { #authenticate }
 
