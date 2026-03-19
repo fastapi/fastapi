@@ -8,14 +8,13 @@ from typing import Any, Literal, cast
 from fastapi import routing
 from fastapi._compat import (
     ModelField,
-    Undefined,
     get_definitions,
     get_flat_models_from_fields,
     get_model_name_map,
     get_schema_from_model_field,
     lenient_issubclass,
 )
-from fastapi.datastructures import DefaultPlaceholder
+from fastapi.datastructures import DefaultPlaceholder, _Unset
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
@@ -29,6 +28,7 @@ from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
+from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
@@ -169,7 +169,7 @@ def _get_openapi_operation_parameters(
             example = getattr(field_info, "example", None)
             if openapi_examples:
                 parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example != Undefined:
+            elif example is not _Unset:
                 parameter["example"] = jsonable_encoder(example)
             if getattr(field_info, "deprecated", None):
                 parameter["deprecated"] = True
@@ -206,7 +206,7 @@ def get_openapi_operation_request_body(
         request_media_content["examples"] = jsonable_encoder(
             field_info.openapi_examples
         )
-    elif field_info.example != Undefined:
+    elif field_info.example is not _Unset:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
@@ -244,10 +244,8 @@ def get_openapi_operation_metadata(
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
-        message = (
-            f"Duplicate Operation ID {operation_id} for function "
-            + f"{route.endpoint.__name__}"
-        )
+        endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
+        message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
@@ -355,25 +353,60 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if route_response_media_type and is_body_allowed_for_status_code(
-                route.status_code
-            ):
-                response_schema = {"type": "string"}
-                if lenient_issubclass(current_response_class, JSONResponse):
-                    if route.response_field:
-                        response_schema = get_schema_from_model_field(
-                            field=route.response_field,
+            if is_body_allowed_for_status_code(route.status_code):
+                # Check for JSONL streaming (generator endpoints)
+                if route.is_json_stream:
+                    jsonl_content: dict[str, Any] = {}
+                    if route.stream_item_field:
+                        item_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
                         )
+                        jsonl_content["itemSchema"] = item_schema
                     else:
-                        response_schema = {}
-                operation.setdefault("responses", {}).setdefault(
-                    status_code, {}
-                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                    "schema"
-                ] = response_schema
+                        jsonl_content["itemSchema"] = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                elif route.is_sse_stream:
+                    sse_content: dict[str, Any] = {}
+                    item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
+                    if route.stream_item_field:
+                        content_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
+                            model_name_map=model_name_map,
+                            field_mapping=field_mapping,
+                            separate_input_output_schemas=separate_input_output_schemas,
+                        )
+                        item_schema["required"] = ["data"]
+                        item_schema["properties"]["data"] = {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": content_schema,
+                        }
+                    sse_content["itemSchema"] = item_schema
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["text/event-stream"] = sse_content
+                elif route_response_media_type:
+                    response_schema = {"type": "string"}
+                    if lenient_issubclass(current_response_class, JSONResponse):
+                        if route.response_field:
+                            response_schema = get_schema_from_model_field(
+                                field=route.response_field,
+                                model_name_map=model_name_map,
+                                field_mapping=field_mapping,
+                                separate_input_output_schemas=separate_input_output_schemas,
+                            )
+                        else:
+                            response_schema = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {}).setdefault(
+                        route_response_media_type, {}
+                    )["schema"] = response_schema
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
@@ -453,9 +486,9 @@ def get_fields_from_routes(
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
     for route in routes:
-        if getattr(route, "include_in_schema", None) and isinstance(
-            route, routing.APIRoute
-        ):
+        if not isinstance(route, routing.APIRoute):
+            continue
+        if route.include_in_schema:
             if route.body_field:
                 assert isinstance(route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
@@ -465,6 +498,8 @@ def get_fields_from_routes(
                 responses_from_routes.append(route.response_field)
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
+            if route.stream_item_field:
+                responses_from_routes.append(route.stream_item_field)
             if route.callbacks:
                 callback_flat_models.extend(get_fields_from_routes(route.callbacks))
             params = get_flat_params(route.dependant)
@@ -568,4 +603,4 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore  # ty: ignore[unused-ignore-comment]

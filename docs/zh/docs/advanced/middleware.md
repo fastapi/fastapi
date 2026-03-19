@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** 为常见用例提供了一些中间件，下面介绍怎么使用这些中间件。
 
-/// note | 注意
+/// note | 技术细节
 
 以下几个示例中也可以使用 `from starlette.middleware.something import SomethingMiddleware`。
 
@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 任何传向 `http` 或 `ws` 的请求都会被重定向至安全方案。
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 强制所有传入请求都必须正确设置 `Host` 请求头，以防 HTTP 主机头攻击。
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 支持以下参数：
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 中间件会处理标准响应与流响应。
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 支持以下参数：
 

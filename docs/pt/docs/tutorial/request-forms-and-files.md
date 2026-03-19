@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## Importe `File` e `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## Defina parâmetros de `File` e `Form` { #define-file-and-form-parameters }
 
 Crie parâmetros de arquivo e formulário da mesma forma que você faria para `Body` ou `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 Os arquivos e campos de formulário serão carregados como dados de formulário e você receberá os arquivos e campos de formulário.
 
@@ -30,7 +30,7 @@ E você pode declarar alguns dos arquivos como `bytes` e alguns como `UploadFile
 
 /// warning | Atenção
 
-Você pode declarar vários parâmetros `File` e `Form` em uma *operação de caminho*, mas não é possível declarar campos `Body` para receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
+Você pode declarar vários parâmetros `File` e `Form` em uma *operação de rota*, mas não é possível declarar campos `Body` para receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
 
 Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
@@ -38,4 +38,4 @@ Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
 ## Recapitulando { #recap }
 
-Usar `File` e `Form` juntos quando precisar receber dados e arquivos na mesma requisição.
+Use `File` e `Form` juntos quando precisar receber dados e arquivos na mesma requisição.

@@ -20,13 +20,13 @@ Das liegt daran, dass hochgeladene Dateien als „Formulardaten“ gesendet werd
 
 Importieren Sie `File` und `UploadFile` von `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File`-Parameter definieren { #define-file-parameters }
 
 Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen würden:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Info
 
@@ -54,7 +54,7 @@ Aber es gibt viele Fälle, in denen Sie davon profitieren, `UploadFile` zu verwe
 
 Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
@@ -143,7 +143,7 @@ Sie können eine Datei optional machen, indem Sie Standard-Typannotationen verwe
 
 Sie können auch `File()` mit `UploadFile` verwenden, um zum Beispiel zusätzliche Metadaten zu setzen:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Mehrere Datei-Uploads { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Diese werden demselben Formularfeld zugeordnet, welches mit den Formulardaten ge
 
 Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
@@ -169,7 +169,7 @@ Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
 Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu setzen, sogar für `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Zusammenfassung { #recap }
 

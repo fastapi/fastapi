@@ -6,7 +6,7 @@ Bazı uygulama türlerinde, tüm uygulama için dependency eklemek isteyebilirsi
 
 Bu durumda, uygulamadaki tüm *path operation*'lara uygulanırlar:
 
-{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
 
 
 Ve [*path operation decorator*'larına `dependencies` ekleme](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} bölümündeki tüm fikirler hâlâ geçerlidir; ancak bu sefer, uygulamadaki tüm *path operation*'lar için geçerli olur.

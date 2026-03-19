@@ -106,11 +106,11 @@ Ela deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 Há 2 diferenças principais de uma *operação de rota* normal:
 
 * Ela não necessita ter nenhum código real, porque seu aplicativo nunca chamará esse código. Ele é usado apenas para documentar a *API externa*. Então, a função poderia ter apenas `pass`.
-* O *path* pode conter uma <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expressão OpenAPI 3</a> (veja mais abaixo) em que pode usar variáveis com parâmetros e partes da solicitação original enviada para *sua API*.
+* O *path* pode conter uma <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expressão OpenAPI 3</a> (veja mais abaixo) em que pode usar variáveis com parâmetros e partes do request original enviado para *sua API*.
 
 ### A expressão do path do callback { #the-callback-path-expression }
 
-O *path* do callback pode ter uma <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expressão OpenAPI 3</a> que pode conter partes da solicitação original enviada para *sua API*.
+O *path* do callback pode ter uma <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expressão OpenAPI 3</a> que pode conter partes do request original enviado para *sua API*.
 
 Nesse caso, é a `str`:
 

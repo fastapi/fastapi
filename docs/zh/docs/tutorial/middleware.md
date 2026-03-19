@@ -31,7 +31,7 @@
     * 然后它返回由相应*路径操作*生成的 `response`。
 * 在返回之前，你可以进一步修改 `response`。
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip
 
@@ -57,7 +57,7 @@
 
 例如，你可以添加一个自定义请求头 `X-Process-Time`，其值为处理请求并生成响应所花费的秒数：
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip
 

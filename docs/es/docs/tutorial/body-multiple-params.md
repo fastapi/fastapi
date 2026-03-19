@@ -104,12 +104,6 @@ Como, por defecto, los valores singulares se interpretan como parámetros de que
 q: str | None = None
 ```
 
-O en Python 3.9:
-
-```Python
-q: Union[str, None] = None
-```
-
 Por ejemplo:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

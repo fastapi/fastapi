@@ -101,7 +101,7 @@ Artık bu class'ı kullanarak dependency'nizi tanımlayabilirsiniz.
 
 Yukarıdaki kodda `CommonQueryParams`'ı iki kez yazdığımıza dikkat edin:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 
@@ -137,7 +137,7 @@ FastAPI tanımlanan parametreleri buradan çıkarır ve aslında çağıracağı
 
 Bu durumda, şuradaki ilk `CommonQueryParams`:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 Hatta şunu bile yazabilirsiniz:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 
@@ -197,7 +197,7 @@ Ancak type'ı belirtmeniz önerilir; böylece editor'ünüz `commons` parametres
 
 Ama burada bir miktar kod tekrarımız olduğunu görüyorsunuz; `CommonQueryParams`'ı iki kez yazıyoruz:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 
@@ -225,7 +225,7 @@ Bu özel durumlarda şunu yapabilirsiniz:
 
 Şunu yazmak yerine:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...şunu yazarsınız:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.9+ Annotated Olmadan
+//// tab | Python 3.10+ Annotated Olmadan
 
 /// tip | İpucu
 

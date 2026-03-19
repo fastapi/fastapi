@@ -88,7 +88,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-...ancak aynı uygulamada Pydantic v1 ve v2 kullanarak **ayrı (separated)** modeller tanımlayabilirsiniz.
+...ancak aynı uygulamada Pydantic v1 ve v2 kullanarak **ayrı** modeller tanımlayabilirsiniz.
 
 ```mermaid
 graph TB

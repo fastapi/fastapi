@@ -22,7 +22,7 @@ If you are a Python expert, and you already know everything about type hints, sk
 
 Let's start with a simple example:
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
 Calling this program outputs:
 
@@ -36,7 +36,7 @@ The function does the following:
 * Converts the first letter of each one to upper case with `title()`.
 * <dfn title="Puts them together, as one. With the contents of one after the other.">Concatenates</dfn> them with a space in the middle.
 
-{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
 ### Edit it { #edit-it }
 
@@ -78,7 +78,7 @@ That's it.
 
 Those are the "type hints":
 
-{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
 That is not the same as declaring default values like would be with:
 
@@ -106,7 +106,7 @@ With that, you can scroll, seeing the options, until you find the one that "ring
 
 Check this function, it already has type hints:
 
-{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
 Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
 
@@ -114,7 +114,7 @@ Because the editor knows the types of the variables, you don't only get completi
 
 Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
 ## Declaring types { #declaring-types }
 
@@ -133,7 +133,7 @@ You can use, for example:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
 
 ### `typing` module { #typing-module }
 
@@ -170,7 +170,7 @@ As the type, put `list`.
 
 As the list is a type that contains some internal types, you put them in square brackets:
 
-{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
 /// info
 
@@ -196,7 +196,7 @@ And still, the editor knows it is a `str`, and provides support for that.
 
 You would do the same to declare `tuple`s and `set`s:
 
-{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
 
 This means:
 
@@ -211,7 +211,7 @@ The first type parameter is for the keys of the `dict`.
 
 The second type parameter is for the values of the `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
 
 This means:
 
@@ -253,11 +253,11 @@ You can also declare a class as the type of a variable.
 
 Let's say you have a class `Person`, with a name:
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
 
 Then you can declare a variable to be of type `Person`:
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
 
 And then, again, you get all the editor support:
 
@@ -269,7 +269,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+[Pydantic](https://docs.pydantic.dev/) is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -285,13 +285,13 @@ An example from the official Pydantic docs:
 
 /// info
 
-To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+To learn more about [Pydantic, check its docs](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md).
 
 ## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
@@ -299,7 +299,7 @@ Python also has a feature that allows putting **additional <dfn title="Data abou
 
 You can import `Annotated` from `typing`.
 
-{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
 
 Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.
 
@@ -337,12 +337,12 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md).
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
 /// info
 
-If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+If you already went through all the tutorial and came back to see more about types, a good resource is [the "cheat sheet" from `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

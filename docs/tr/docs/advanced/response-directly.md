@@ -2,7 +2,7 @@
 
 **FastAPI** ile bir *path operation* oluşturduğunuzda, normalde ondan herhangi bir veri döndürebilirsiniz: bir `dict`, bir `list`, bir Pydantic model, bir veritabanı modeli vb.
 
-Varsayılan olarak **FastAPI**, döndürdüğünüz bu değeri [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} bölümünde anlatılan `jsonable_encoder` ile otomatik olarak JSON'a çevirir.
+Varsayılan olarak **FastAPI**, döndürdüğünüz bu değeri [JSON Uyumlu Encoder](../tutorial/encoder.md){.internal-link target=_blank} bölümünde anlatılan `jsonable_encoder` ile otomatik olarak JSON'a çevirir.
 
 Ardından perde arkasında, JSON-uyumlu bu veriyi (ör. bir `dict`) client'a response göndermek için kullanılacak bir `JSONResponse` içine yerleştirir.
 
@@ -54,12 +54,12 @@ Diyelim ki <a href="https://en.wikipedia.org/wiki/XML" class="external-link" tar
 
 XML içeriğinizi bir string içine koyabilir, onu bir `Response` içine yerleştirip döndürebilirsiniz:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Notlar { #notes }
 
 Bir `Response`'u doğrudan döndürdüğünüzde, verisi otomatik olarak validate edilmez, dönüştürülmez (serialize edilmez) veya dokümante edilmez.
 
-Ancak yine de [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} bölümünde anlatıldığı şekilde dokümante edebilirsiniz.
+Ancak yine de [OpenAPI'de Ek Response'lar](additional-responses.md){.internal-link target=_blank} bölümünde anlatıldığı şekilde dokümante edebilirsiniz.
 
 İlerleyen bölümlerde, otomatik veri dönüşümü, dokümantasyon vb. özellikleri korurken bu özel `Response`'ları nasıl kullanıp declare edebileceğinizi göreceksiniz.

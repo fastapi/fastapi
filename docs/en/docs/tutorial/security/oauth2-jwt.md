@@ -24,13 +24,13 @@ That way, you can create a token with an expiration of, let's say, 1 week. And t
 
 After a week, the token will be expired and the user will not be authorized and will have to sign in again to get a new token. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
 
-If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+If you want to play with JWT tokens and see how they work, check [https://jwt.io](https://jwt.io/).
 
 ## Install `PyJWT` { #install-pyjwt }
 
 We need to install `PyJWT` to generate and verify the JWT tokens in Python.
 
-Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `pyjwt`:
+Make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install `pyjwt`:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
-You can read more about it in the <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>.
+You can read more about it in the [PyJWT Installation docs](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ It supports many secure hashing algorithms and utilities to work with them.
 
 The recommended algorithm is "Argon2".
 
-Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install pwdlib with Argon2:
+Make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install pwdlib with Argon2:
 
 <div class="termy">
 
@@ -116,7 +116,11 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+When `authenticate_user` is called with a username that doesn't exist in the database, we still run `verify_password` against a dummy hash.
+
+This ensures the endpoint takes roughly the same amount of time to respond whether the username is valid or not, preventing **timing attacks** that could be used to enumerate existing usernames.
 
 /// note
 
@@ -152,7 +156,7 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Update the dependencies { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## Update the `/token` *path operation* { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### Technical details about the JWT "subject" `sub` { #technical-details-about-the-jwt-subject-sub }
 
@@ -196,7 +200,7 @@ The important thing to keep in mind is that the `sub` key should have a unique i
 
 ## Check it { #check-it }
 
-Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Run the server and go to the docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You'll see the user interface like:
 

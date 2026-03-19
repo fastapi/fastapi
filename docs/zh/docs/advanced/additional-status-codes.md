@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning
+/// warning | 警告
 
 当你直接返回一个像上面例子中的 `Response` 对象时，它会直接返回。
 
@@ -26,7 +26,7 @@
 
 ///
 
-/// note | 技术细节
+/// note | 注意
 
 你也可以使用 `from starlette.responses import JSONResponse`。　
 

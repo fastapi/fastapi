@@ -1,10 +1,6 @@
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import (
-    Annotated,
-    Any,
-    TypeVar,
-)
+from typing import Annotated, Any, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -840,6 +836,29 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        strict_content_type: Annotated[
+            bool,
+            Doc(
+                """
+                Enable strict checking for request Content-Type headers.
+
+                When `True` (the default), requests with a body that do not include
+                a `Content-Type` header will **not** be parsed as JSON.
+
+                This prevents potential cross-site request forgery (CSRF) attacks
+                that exploit the browser's ability to send requests without a
+                Content-Type header, bypassing CORS preflight checks. In particular
+                applicable for apps that need to be run locally (in localhost).
+
+                When `False`, requests without a `Content-Type` header will have
+                their body parsed as JSON, which maintains compatibility with
+                certain clients that don't send `Content-Type` headers.
+
+                Read more about it in the
+                [FastAPI docs for Strict Content-Type](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+                """
+            ),
+        ] = True,
         **extra: Annotated[
             Any,
             Doc(
@@ -974,6 +993,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
+            strict_content_type=strict_content_type,
         )
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
@@ -982,11 +1002,12 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
+
+        # Starlette still has incorrect type specification for the handlers
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
-            # Starlette still has incorrect type specification for the handlers
-            websocket_request_validation_exception_handler,  # type: ignore
-        )
+            websocket_request_validation_exception_handler,  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+        )  # ty: ignore[no-matching-overload]
 
         self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
@@ -1008,11 +1029,13 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                    ExceptionMiddleware,  # ty: ignore[invalid-argument-type]
+                    handlers=exception_handlers,
+                    debug=debug,
                 ),
                 # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
                 # Before this was also used for closing dependencies with yield but
@@ -1033,7 +1056,7 @@ class FastAPI(Starlette):
                 # user middlewares, the same context is used.
                 # This is currently not needed, only for closing files, but used to be
                 # important when dependencies with yield were closed here.
-                Middleware(AsyncExitStackMiddleware),
+                Middleware(AsyncExitStackMiddleware),  # ty: ignore[invalid-argument-type]
             ]
         )
 
@@ -1077,16 +1100,18 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            urls = (server_data.get("url") for server_data in self.servers)
-            server_urls = {url for url in urls if url}
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                if root_path not in server_urls:
-                    if root_path and self.root_path_in_servers:
-                        self.servers.insert(0, {"url": root_path})
-                        server_urls.add(root_path)
-                return JSONResponse(self.openapi())
+                schema = self.openapi()
+                if root_path and self.root_path_in_servers:
+                    server_urls = {s.get("url") for s in schema.get("servers", [])}
+                    if root_path not in server_urls:
+                        schema = dict(schema)
+                        schema["servers"] = [{"url": root_path}] + schema.get(
+                            "servers", []
+                        )
+                return JSONResponse(schema)
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
@@ -4570,7 +4595,7 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
-        return self.router.on_event(event_type)
+        return self.router.on_event(event_type)  # ty: ignore[deprecated]
 
     def middleware(
         self,
@@ -4613,7 +4638,7 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)  # ty: ignore[invalid-argument-type]
             return func
 
         return decorator

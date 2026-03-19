@@ -104,8 +104,8 @@ $ cd code
 ...e um exemplo de código Python...
 
 ```Python
-wont_work()  # This won't work 😱
-works(foo="bar")  # This works 🎉
+wont_work()  # Isto não vai funcionar 😱
+works(foo="bar")  # Isto funciona 🎉
 ```
 
 ...e é isso.
@@ -204,8 +204,8 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
-* <abbr title="Input/Output: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
+* <abbr title="Input/Output – Entrada/Saída: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
 
 ////
 

@@ -46,7 +46,7 @@ In these cases, it could make sense to store the tags in an `Enum`.
 
 **FastAPI** supports that the same way as with plain strings:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## Summary and description { #summary-and-description }
 
@@ -58,7 +58,7 @@ You can add a `summary` and `description`:
 
 As descriptions tend to be long and cover multiple lines, you can declare the *path operation* description in the function <dfn title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</dfn> and **FastAPI** will read it from there.
 
-You can write <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
+You can write [Markdown](https://en.wikipedia.org/wiki/Markdown) in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -92,7 +92,7 @@ So, if you don't provide one, **FastAPI** will automatically generate one of "Su
 
 If you need to mark a *path operation* as <dfn title="obsolete, recommended not to use it">deprecated</dfn>, but without removing it, pass the parameter `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 It will be clearly marked as deprecated in the interactive docs:
 

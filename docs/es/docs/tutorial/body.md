@@ -74,7 +74,7 @@ Con solo esa declaración de tipo en Python, **FastAPI** hará lo siguiente:
 * Proporcionar los datos recibidos en el parámetro `item`.
     * Como lo declaraste en la función como de tipo `Item`, también tendrás todo el soporte del editor (autocompletado, etc.) para todos los atributos y sus tipos.
 * Generar definiciones de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para tu modelo, que también puedes usar en cualquier otro lugar si tiene sentido para tu proyecto.
-* Esos esquemas serán parte del esquema de OpenAPI generado y usados por las <abbr title="User Interfaces – Interfaces de usuario">UIs</abbr> de documentación automática.
+* Esos esquemas serán parte del esquema de OpenAPI generado y usados por las <abbr title="User Interfaces - Interfaces de usuario">UIs</abbr> de documentación automática.
 
 ## Documentación automática { #automatic-docs }
 
@@ -155,7 +155,7 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 FastAPI sabrá que el valor de `q` no es requerido debido al valor por defecto `= None`.
 
-El `str | None` (Python 3.10+) o `Union` en `Union[str, None]` (Python 3.9+) no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
+El `str | None` no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
 
 Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejor soporte y detecte errores.
 
@@ -163,4 +163,4 @@ Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejo
 
 ## Sin Pydantic { #without-pydantic }
 
-Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Múltiples parámetros: Valores singulares en el body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.

@@ -1,6 +1,6 @@
 # Configure Swagger UI { #configure-swagger-ui }
 
-You can configure some extra <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI parameters</a>.
+You can configure some extra [Swagger UI parameters](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 To configure them, pass the `swagger_ui_parameters` argument when creating the `FastAPI()` app object or to the `get_swagger_ui_html()` function.
 
@@ -18,7 +18,7 @@ Without changing the settings, syntax highlighting is enabled by default:
 
 But you can disable it by setting `syntaxHighlight` to `False`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
 ...and then Swagger UI won't show the syntax highlighting anymore:
 
@@ -28,7 +28,7 @@ But you can disable it by setting `syntaxHighlight` to `False`:
 
 The same way you could set the syntax highlighting theme with the key `"syntaxHighlight.theme"` (notice that it has a dot in the middle):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
 That configuration would change the syntax highlighting color theme:
 
@@ -46,11 +46,11 @@ You can override any of them by setting a different value in the argument `swagg
 
 For example, to disable `deepLinking` you could pass these settings to `swagger_ui_parameters`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
 
 ## Other Swagger UI Parameters { #other-swagger-ui-parameters }
 
-To see all the other possible configurations you can use, read the official <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">docs for Swagger UI parameters</a>.
+To see all the other possible configurations you can use, read the official [docs for Swagger UI parameters](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## JavaScript-only settings { #javascript-only-settings }
 

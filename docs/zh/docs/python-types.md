@@ -2,11 +2,11 @@
 
 Python 支持可选的“类型提示”（也叫“类型注解”）。
 
-这些“类型提示”或注解是一种特殊语法，用来声明变量的<abbr title="例如：str、int、float、bool">类型</abbr>。
+这些“类型提示”或注解是一种特殊语法，用来声明变量的<dfn title="例如：str、int、float、bool">类型</dfn>。
 
 通过为变量声明类型，编辑器和工具可以为你提供更好的支持。
 
-这只是一个关于 Python 类型提示的快速入门/复习。它只涵盖与 **FastAPI** 一起使用所需的最少部分……实际上非常少。
+这只是一个关于 Python 类型提示的快速入门/复习。它只涵盖与 **FastAPI** 一起使用所需的最少部分...实际上非常少。
 
 **FastAPI** 完全基于这些类型提示构建，它们带来了许多优势和好处。
 
@@ -22,7 +22,7 @@ Python 支持可选的“类型提示”（也叫“类型注解”）。
 
 让我们从一个简单的例子开始：
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
 运行这个程序会输出：
 
@@ -34,9 +34,9 @@ John Doe
 
 * 接收 `first_name` 和 `last_name`。
 * 通过 `title()` 将每个参数的第一个字母转换为大写。
-* 用一个空格将它们<abbr title="把它们合在一起成为一个，内容一个接在另一个后面。">拼接</abbr>起来。
+* 用一个空格将它们<dfn title="把它们合在一起成为一个，内容一个接在另一个后面。">拼接</dfn>起来。
 
-{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
 ### 修改它 { #edit-it }
 
@@ -78,7 +78,7 @@ John Doe
 
 这些就是“类型提示”：
 
-{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
 这和声明默认值不同，比如：
 
@@ -106,7 +106,7 @@ John Doe
 
 看这个已经带有类型提示的函数：
 
-{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
 因为编辑器知道变量的类型，你不仅能得到补全，还能获得错误检查：
 
@@ -114,7 +114,7 @@ John Doe
 
 现在你知道需要修复它，用 `str(age)` 把 `age` 转成字符串：
 
-{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
 ## 声明类型 { #declaring-types }
 
@@ -133,29 +133,32 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
 
-### 带类型参数的泛型类型 { #generic-types-with-type-parameters }
+### typing 模块 { #typing-module }
 
-有些数据结构可以包含其他值，比如 `dict`、`list`、`set` 和 `tuple`。而内部的值也会有自己的类型。
+在一些额外的用例中，你可能需要从标准库的 `typing` 模块导入内容。比如当你想声明“任意类型”时，可以使用 `typing` 中的 `Any`：
 
-这些带有内部类型的类型称为“泛型”（generic）类型。可以把它们连同内部类型一起声明出来。
+```python
+from typing import Any
 
-要声明这些类型以及内部类型，你可以使用 Python 标准库模块 `typing`。它就是为支持这些类型提示而存在的。
 
-#### 更新的 Python 版本 { #newer-versions-of-python }
+def some_function(data: Any):
+    print(data)
+```
 
-使用 `typing` 的语法与所有版本兼容，从 Python 3.6 到最新版本（包括 Python 3.9、Python 3.10 等）。
+### 泛型类型 { #generic-types }
 
-随着 Python 的发展，更新的版本对这些类型注解的支持更好，在很多情况下你甚至不需要导入和使用 `typing` 模块来声明类型注解。
+有些类型可以在方括号中接收“类型参数”（type parameters），用于声明其内部值的类型。比如“字符串列表”可以写为 `list[str]`。
 
-如果你可以为项目选择更高版本的 Python，你将能享受到这种额外的简化。
+这些能接收类型参数的类型称为“泛型类型”（Generic types）或“泛型”（Generics）。
 
-在整个文档中，会根据不同 Python 版本提供相应的示例（当存在差异时）。
+你可以把相同的内建类型作为泛型使用（带方括号和内部类型）：
 
-比如“Python 3.6+”表示兼容 Python 3.6 及以上（包括 3.7、3.8、3.9、3.10 等）。而“Python 3.9+”表示兼容 Python 3.9 及以上（包括 3.10 等）。
-
-如果你可以使用最新的 Python 版本，请使用最新版本的示例，它们将拥有最简洁的语法，例如“Python 3.10+”。
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
 #### 列表 { #list }
 
@@ -167,7 +170,7 @@ John Doe
 
 因为 list 是一种包含内部类型的类型，把内部类型写在方括号里：
 
-{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
 /// info | 信息
 
@@ -193,7 +196,7 @@ John Doe
 
 声明 `tuple` 和 `set` 的方式类似：
 
-{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
 
 这表示：
 
@@ -208,7 +211,7 @@ John Doe
 
 第二个类型参数用于字典的值：
 
-{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
 
 这表示：
 
@@ -220,43 +223,19 @@ John Doe
 
 你可以声明一个变量可以是若干种类型中的任意一种，比如既可以是 `int` 也可以是 `str`。
 
-在 Python 3.6 及以上（包括 Python 3.10），你可以使用 `typing` 中的 `Union`，把可能的类型放到方括号里。
+定义时使用<dfn title='也叫“按位或运算符（bitwise or operator）”，但这里与该含义无关'>竖线（`|`）</dfn>把两种类型分开。
 
-在 Python 3.10 中还有一种新的语法，可以用<abbr title='也叫“按位或运算符（bitwise or operator）”，但这里与该含义无关'>竖线（`|`）</abbr>把可能的类型分隔开。
-
-//// tab | Python 3.10+
+这称为“联合类型”（union），因为变量可以是这两类类型集合的并集中的任意一个。
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b_py39.py!}
-```
-
-////
-
-两种方式的含义一致：`item` 可以是 `int` 或 `str`。
+这表示 `item` 可以是 `int` 或 `str`。
 
 #### 可能为 `None` { #possibly-none }
 
 你可以声明一个值的类型是某种类型（比如 `str`），但它也可能是 `None`。
-
-在 Python 3.6 及以上（包括 Python 3.10），你可以通过从 `typing` 模块导入并使用 `Optional` 来声明：
-
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-使用 `Optional[str]` 而不是仅仅 `str`，可以让编辑器帮助你发现把值当成总是 `str` 的错误（实际上它也可能是 `None`）。
-
-`Optional[Something]` 实际上是 `Union[Something, None]` 的简写，它们等价。
-
-这也意味着在 Python 3.10 中，你可以使用 `Something | None`：
 
 //// tab | Python 3.10+
 
@@ -266,96 +245,7 @@ John Doe
 
 ////
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-////
-
-//// tab | Python 3.9+ 另一种写法
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b_py39.py!}
-```
-
-////
-
-#### 使用 `Union` 或 `Optional` { #using-union-or-optional }
-
-如果你使用的是 3.10 以下的 Python 版本，这里有个来自我非常主观的建议：
-
-* 🚨 避免使用 `Optional[SomeType]`
-* 改用 ✨**`Union[SomeType, None]`**✨
-
-两者等价，底层相同，但我更推荐 `Union` 而不是 `Optional`，因为“optional（可选）”这个词看起来像是在说“参数可选”，而它实际上表示“它可以是 `None`”，即使它并不是可选的，仍然是必填的。
-
-我认为 `Union[SomeType, None]` 更明确地表达了它的意思。
-
-这只是关于词语和名字。但这些词会影响你和你的队友如何理解代码。
-
-例如，看下面这个函数：
-
-{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
-
-参数 `name` 被定义为 `Optional[str]`，但它并不是“可选”的，你不能不传这个参数就调用函数：
-
-```Python
-say_hi()  # 哦不，这会抛错！😱
-```
-
-参数 `name` 仍然是必填的（不是“可选”），因为它没有默认值。不过，`name` 接受 `None` 作为值：
-
-```Python
-say_hi(name=None)  # 这样可以，None 是有效值 🎉
-```
-
-好消息是，一旦你使用 Python 3.10，就无需再为此操心，因为你可以直接用 `|` 来定义类型联合：
-
-{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
-
-这样你就不必再考虑 `Optional` 和 `Union` 这些名字了。😎
-
-#### 泛型类型 { #generic-types }
-
-这些在方括号中接收类型参数的类型称为“泛型类型”（Generic types）或“泛型”（Generics），例如：
-
-//// tab | Python 3.10+
-
-你可以把同样的内建类型作为泛型使用（带方括号和内部类型）：
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-以及与之前的 Python 版本一样，来自 `typing` 模块的：
-
-* `Union`
-* `Optional`
-* ……以及其他。
-
-在 Python 3.10 中，作为使用泛型 `Union` 和 `Optional` 的替代，你可以使用<abbr title='也叫“按位或运算符（bitwise or operator）”，但这里与该含义无关'>竖线（`|`）</abbr>来声明类型联合，这更好也更简单。
-
-////
-
-//// tab | Python 3.9+
-
-你可以把同样的内建类型作为泛型使用（带方括号和内部类型）：
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-以及来自 `typing` 模块的泛型：
-
-* `Union`
-* `Optional`
-* ……以及其他。
-
-////
+使用 `str | None` 而不是仅仅 `str`，可以让编辑器帮助你发现把值当成总是 `str` 的错误（实际上它也可能是 `None`）。
 
 ### 类作为类型 { #classes-as-types }
 
@@ -363,11 +253,11 @@ say_hi(name=None)  # 这样可以，None 是有效值 🎉
 
 假设你有一个名为 `Person` 的类，带有 name：
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
 
 然后你可以声明一个变量是 `Person` 类型：
 
-{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
 
 接着，你会再次获得所有的编辑器支持：
 
@@ -403,19 +293,13 @@ say_hi(name=None)  # 这样可以，None 是有效值 🎉
 
 你会在[教程 - 用户指南](tutorial/index.md){.internal-link target=_blank}中看到更多的实战示例。
 
-/// tip | 提示
-
-当你在没有默认值的情况下使用 `Optional` 或 `Union[Something, None]` 时，Pydantic 有一个特殊行为，你可以在 Pydantic 文档的 <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">必填的 Optional 字段</a> 中了解更多。
-
-///
-
 ## 带元数据注解的类型提示 { #type-hints-with-metadata-annotations }
 
-Python 还提供了一个特性，可以使用 `Annotated` 在这些类型提示中放入额外的<abbr title="关于数据的数据，在这里是关于类型的信息，例如描述。">元数据</abbr>。
+Python 还提供了一个特性，可以使用 `Annotated` 在这些类型提示中放入额外的<dfn title="关于数据的数据，此处指关于类型的信息，例如描述。">元数据</dfn>。
 
-从 Python 3.9 起，`Annotated` 是标准库的一部分，因此可以从 `typing` 导入。
+你可以从 `typing` 导入 `Annotated`。
 
-{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
 
 Python 本身不会对这个 `Annotated` 做任何处理。对于编辑器和其他工具，类型仍然是 `str`。
 

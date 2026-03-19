@@ -54,7 +54,7 @@ Nehmen wir an, Sie möchten eine <a href="https://en.wikipedia.org/wiki/XML" cla
 
 Sie könnten Ihren XML-Inhalt als String in eine `Response` einfügen und sie zurückgeben:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ## Anmerkungen { #notes }
 

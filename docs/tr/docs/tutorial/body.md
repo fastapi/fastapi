@@ -155,7 +155,7 @@ Fonksiyon parametreleri şu şekilde tanınır:
 
 FastAPI, `q` değerinin zorunlu olmadığını `= None` default değerinden anlayacaktır.
 
-`str | None` (Python 3.10+) veya `Union[str, None]` (Python 3.9+) içindeki `Union`, FastAPI tarafından bu değerin zorunlu olmadığını belirlemek için kullanılmaz; FastAPI bunun zorunlu olmadığını `= None` default değeri olduğu için bilir.
+`str | None`, FastAPI tarafından bu değerin zorunlu olmadığını belirlemek için kullanılmaz; FastAPI bunun zorunlu olmadığını `= None` default değeri olduğu için bilir.
 
 Ancak type annotation'larını eklemek, editor'ünüzün size daha iyi destek vermesini ve hataları yakalamasını sağlar.
 

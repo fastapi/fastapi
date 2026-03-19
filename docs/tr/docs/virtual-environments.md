@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Virtual Environment Oluşturun { #create-a-virtual-environment }
 
-Bir Python projesi üzerinde **ilk kez** çalışmaya başladığınızda, projenizin içinde **<abbr title="there are other options, this is a simple guideline">virtual environment</abbr>** oluşturun.
+Bir Python projesi üzerinde **ilk kez** çalışmaya başladığınızda, **virtual environment**'i <dfn title="başka seçenekler de var, bu basit bir yönergedir">projenizin içinde</dfn> oluşturun.
 
 /// tip | İpucu
 

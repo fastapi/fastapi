@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI, File, Form
 from starlette.testclient import TestClient
@@ -7,14 +7,14 @@ app = FastAPI()
 
 
 @app.post("/urlencoded")
-async def post_url_encoded(age: Annotated[Optional[int], Form()] = None):
+async def post_url_encoded(age: Annotated[int | None, Form()] = None):
     return age
 
 
 @app.post("/multipart")
 async def post_multi_part(
-    age: Annotated[Optional[int], Form()] = None,
-    file: Annotated[Optional[bytes], File()] = None,
+    age: Annotated[int | None, Form()] = None,
+    file: Annotated[bytes | None, File()] = None,
 ):
     return {"file": file, "age": age}
 

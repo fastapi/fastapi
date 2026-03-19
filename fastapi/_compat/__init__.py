@@ -26,7 +26,7 @@ from .v2 import Undefined as Undefined
 from .v2 import Url as Url
 from .v2 import copy_field_info as copy_field_info
 from .v2 import create_body_model as create_body_model
-from .v2 import evaluate_forwardref as evaluate_forwardref
+from .v2 import evaluate_forwardref as evaluate_forwardref  # ty: ignore[deprecated]
 from .v2 import get_cached_model_fields as get_cached_model_fields
 from .v2 import get_definitions as get_definitions
 from .v2 import get_flat_models_from_fields as get_flat_models_from_fields

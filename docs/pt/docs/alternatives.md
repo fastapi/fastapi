@@ -20,7 +20,7 @@ Mas em algum momento, não havia outra opção senão criar algo que fornecesse 
 
 É relativamente bem acoplado com bancos de dados relacionais (como MySQL ou PostgreSQL), então, ter um banco de dados NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como mecanismo principal de armazenamento não é muito fácil.
 
-Foi criado para gerar o HTML no backend, não para criar APIs usadas por um frontend moderno (como React, Vue.js e Angular) ou por outros sistemas (como dispositivos <abbr title="Internet of Things – Internet das Coisas">IoT</abbr>) comunicando com ele.
+Foi criado para gerar o HTML no backend, não para criar APIs usadas por um frontend moderno (como React, Vue.js e Angular) ou por outros sistemas (como dispositivos <abbr title="Internet of Things - Internet das Coisas">IoT</abbr>) comunicando com ele.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
@@ -137,7 +137,7 @@ Existem vários Flask REST frameworks, mas depois de investir tempo e trabalho i
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
-Uma das principais funcionalidades necessárias em sistemas de API é a "<abbr title="também chamado marshalling, conversão">serialização</abbr>" de dados, que é pegar dados do código (Python) e convertê-los em algo que possa ser enviado pela rede. Por exemplo, converter um objeto contendo dados de um banco de dados em um objeto JSON. Converter objetos `datetime` em strings, etc.
+Uma das principais funcionalidades necessárias em sistemas de API é a "<dfn title="também chamado: marshalling, conversão">serialização</dfn>" de dados, que é pegar dados do código (Python) e convertê-los em algo que possa ser enviado pela rede. Por exemplo, converter um objeto contendo dados de um banco de dados em um objeto JSON. Converter objetos `datetime` em strings, etc.
 
 Outra grande funcionalidade necessária pelas APIs é a validação de dados, garantindo que os dados são válidos, dados certos parâmetros. Por exemplo, que algum campo seja `int`, e não alguma string aleatória. Isso é especialmente útil para dados de entrada.
 
@@ -145,7 +145,7 @@ Sem um sistema de validação de dados, você teria que realizar todas as verifi
 
 Essas funcionalidades são o que o Marshmallow foi construído para fornecer. É uma ótima biblioteca, e eu a utilizei bastante antes.
 
-Mas ele foi criado antes de existirem as anotações de tipo do Python. Então, para definir cada <abbr title="a definição de como os dados devem ser formados">schema</abbr> você precisa utilizar utilitários e classes específicos fornecidos pelo Marshmallow.
+Mas ele foi criado antes de existirem as anotações de tipo do Python. Então, para definir cada <dfn title="a definição de como os dados devem ser formados">schema</dfn> você precisa utilizar utilitários e classes específicos fornecidos pelo Marshmallow.
 
 /// check | **FastAPI** inspirado para
 
@@ -155,7 +155,7 @@ Usar código para definir "schemas" que forneçam, automaticamente, tipos de dad
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
-Outra grande funcionalidade requerida pelas APIs é o <abbr title="ler e converter para dados Python">parsing</abbr> de dados vindos de requisições de entrada.
+Outra grande funcionalidade requerida pelas APIs é o <dfn title="ler e converter para dados do Python">parsing</dfn> de dados vindos de requisições de entrada.
 
 Webargs é uma ferramenta feita para fornecer isso no topo de vários frameworks, inclusive Flask.
 
@@ -419,7 +419,7 @@ Controlar toda a validação de dados, serialização de dados e documentação 
 
 ### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
-Starlette é um framework/caixa de ferramentas <abbr title="O novo padrão para construir aplicações web Python assíncronas">ASGI</abbr> leve, o que é ideal para construir serviços asyncio de alta performance.
+Starlette é um framework/caixa de ferramentas <dfn title="O novo padrão para construir aplicações web Python assíncronas">ASGI</dfn> leve, o que é ideal para construir serviços asyncio de alta performance.
 
 Ele é muito simples e intuitivo. É projetado para ser facilmente extensível, e ter componentes modulares.
 
