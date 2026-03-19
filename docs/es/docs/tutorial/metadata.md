@@ -76,7 +76,7 @@ Usa el parámetro `tags` con tus *path operations* (y `APIRouter`s) para asignar
 
 /// info | Información
 
-Lee más sobre etiquetas en [Configuración de Path Operation](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Lee más sobre etiquetas en [Configuración de Path Operation](path-operation-configuration.md#tags).
 
 ///
 
