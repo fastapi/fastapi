@@ -137,7 +137,7 @@ UserInDB(
 ```
 
 /// info | Дополнительная информация
-Более полное объяснение `**user_dict` можно найти в [документации к **Дополнительным моделям**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Более полное объяснение `**user_dict` можно найти в [документации к **Дополнительным моделям**](../extra-models.md#about-user-in-dict).
 ///
 
 ## Возврат токена { #return-the-token }

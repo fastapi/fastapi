@@ -111,7 +111,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Если вы хотите перехватывать исключения и формировать на их основе пользовательский ответ, создайте [Пользовательский обработчик исключений](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Если вы хотите перехватывать исключения и формировать на их основе пользовательский ответ, создайте [Пользовательский обработчик исключений](../handling-errors.md#install-custom-exception-handlers).
 
 ## Зависимости с `yield` и `except` { #dependencies-with-yield-and-except }
 
@@ -233,7 +233,7 @@ participant operation as Функция-обработчик пути
 
 Зависимости с `yield` со временем эволюционировали, чтобы покрыть разные сценарии и исправить некоторые проблемы.
 
-Если вы хотите посмотреть, что менялось в разных версиях FastAPI, вы можете прочитать об этом подробнее в продвинутом руководстве: [Продвинутые зависимости — зависимости с `yield`, `HTTPException`, `except` и фоновыми задачами](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Если вы хотите посмотреть, что менялось в разных версиях FastAPI, вы можете прочитать об этом подробнее в продвинутом руководстве: [Продвинутые зависимости — зависимости с `yield`, `HTTPException`, `except` и фоновыми задачами](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Контекстные менеджеры { #context-managers }
 
 ### Что такое «контекстные менеджеры» { #what-are-context-managers }

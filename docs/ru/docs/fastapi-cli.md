@@ -58,7 +58,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 Но вы можете явно указать, какое приложение использовать.
 
-## Настройте `entrypoint` приложения в `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject.toml }
+## Настройте `entrypoint` приложения в `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
 Вы можете настроить, где находится ваше приложение, в файле `pyproject.toml`, например так:
 
