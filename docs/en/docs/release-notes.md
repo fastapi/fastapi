@@ -20,6 +20,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ru (update-and-add). PR [#15152](https://github.com/fastapi/fastapi/pull/15152) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for de (add-missing). PR [#15153](https://github.com/fastapi/fastapi/pull/15153) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
