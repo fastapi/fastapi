@@ -100,7 +100,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 {* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
-### Згенерувати TypeScript-клієнт із мітками { #generate-a-typescripts-client-with-tags }
+### Згенерувати TypeScript-клієнт із мітками { #generate-a-typescript-client-with-tags }
 
 Якщо ви згенеруєте клієнт для застосунку FastAPI, що використовує мітки, зазвичай клієнтський код також буде розділено за цими мітками.
 
