@@ -20,6 +20,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for pt (update-outdated). PR [#15159](https://github.com/fastapi/fastapi/pull/15159) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for es (update-outdated). PR [#15155](https://github.com/fastapi/fastapi/pull/15155) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for es (add-missing). PR [#15154](https://github.com/fastapi/fastapi/pull/15154) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for de (update-outdated). PR [#15156](https://github.com/fastapi/fastapi/pull/15156) by [@tiangolo](https://github.com/tiangolo).
