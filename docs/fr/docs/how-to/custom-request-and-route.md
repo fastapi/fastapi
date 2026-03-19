@@ -18,7 +18,7 @@ Si vous débutez avec **FastAPI**, vous pouvez ignorer cette section.
 
 Voici quelques cas d'utilisation :
 
-* Convertir des corps de requête non JSON en JSON (par exemple <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Convertir des corps de requête non JSON en JSON (par exemple [`msgpack`](https://msgpack.org/index.html)).
 * Décompresser des corps de requête compressés en gzip.
 * Journaliser automatiquement tous les corps de requête.
 
@@ -66,7 +66,7 @@ Le `dict` `scope` et la fonction `receive` font tous deux partie de la spécific
 
 Et ces deux éléments, `scope` et `receive`, sont ce dont on a besoin pour créer une nouvelle instance de `Request`.
 
-Pour en savoir plus sur `Request`, consultez <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">la documentation de Starlette sur les requêtes</a>.
+Pour en savoir plus sur `Request`, consultez [la documentation de Starlette sur les requêtes](https://www.starlette.dev/requests/).
 
 ///
 

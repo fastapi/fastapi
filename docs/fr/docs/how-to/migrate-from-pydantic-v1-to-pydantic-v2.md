@@ -10,19 +10,19 @@ FastAPI 0.126.0 a supprimé la prise en charge de Pydantic v1, tout en continuan
 
 /// warning | Alertes
 
-L'équipe Pydantic a arrêté la prise en charge de Pydantic v1 pour les dernières versions de Python, à partir de Python 3.14.
+L'équipe Pydantic a arrêté la prise en charge de Pydantic v1 pour les dernières versions de Python, à partir de **Python 3.14**.
 
-Cela inclut `pydantic.v1`, qui n'est plus pris en charge à partir de Python 3.14.
+Cela inclut `pydantic.v1`, qui n'est plus pris en charge en Python 3.14 et versions ultérieures.
 
 Si vous souhaitez utiliser les dernières fonctionnalités de Python, vous devez vous assurer que vous utilisez Pydantic v2.
 
 ///
 
-Si vous avez une ancienne application FastAPI avec Pydantic v1, je vais vous montrer comment la migrer vers Pydantic v2, et les fonctionnalités de FastAPI 0.119.0 pour vous aider à une migration progressive.
+Si vous avez une ancienne application FastAPI avec Pydantic v1, je vais vous montrer comment la migrer vers Pydantic v2, et les **fonctionnalités de FastAPI 0.119.0** pour vous aider à une migration progressive.
 
 ## Guide officiel { #official-guide }
 
-Pydantic propose un <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Guide de migration</a> officiel de la v1 à la v2.
+Pydantic propose un [Guide de migration](https://docs.pydantic.dev/latest/migration/) officiel de la v1 à la v2.
 
 Il inclut aussi ce qui a changé, comment les validations sont désormais plus correctes et strictes, les pièges possibles, etc.
 
@@ -30,7 +30,7 @@ Vous pouvez le lire pour mieux comprendre ce qui a changé.
 
 ## Tests { #tests }
 
-Vous devez vous assurer d'avoir des [tests](../tutorial/testing.md){.internal-link target=_blank} pour votre application et de les exécuter en intégration continue (CI).
+Vous devez vous assurer d'avoir des [tests](../tutorial/testing.md) pour votre application et de les exécuter en intégration continue (CI).
 
 De cette façon, vous pouvez effectuer la mise à niveau et vous assurer que tout fonctionne toujours comme prévu.
 
@@ -38,7 +38,7 @@ De cette façon, vous pouvez effectuer la mise à niveau et vous assurer que tou
 
 Dans de nombreux cas, lorsque vous utilisez des modèles Pydantic classiques sans personnalisations, vous pourrez automatiser la majeure partie du processus de migration de Pydantic v1 à Pydantic v2.
 
-Vous pouvez utiliser <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> de la même équipe Pydantic.
+Vous pouvez utiliser [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) de la même équipe Pydantic.
 
 Cet outil vous aidera à modifier automatiquement la majeure partie du code à adapter.
 
@@ -62,7 +62,7 @@ Vous pouvez donc mettre à niveau Pydantic vers la dernière version 2 et modifi
 
 /// warning | Alertes
 
-Gardez à l'esprit que, puisque l'équipe Pydantic ne prend plus en charge Pydantic v1 dans les versions récentes de Python à partir de Python 3.14, l'utilisation de `pydantic.v1` n'est pas non plus prise en charge à partir de Python 3.14.
+Gardez à l'esprit que, puisque l'équipe Pydantic ne prend plus en charge Pydantic v1 dans les versions récentes de Python à partir de Python 3.14, l'utilisation de `pydantic.v1` n'est pas non plus prise en charge en Python 3.14 et versions ultérieures.
 
 ///
 
@@ -108,7 +108,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-Dans certains cas, il est même possible d'avoir des modèles Pydantic v1 et v2 dans le même chemin d'accès de votre application FastAPI :
+Dans certains cas, il est même possible d'avoir des modèles Pydantic v1 et v2 dans le même **chemin d'accès** de votre application FastAPI :
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
 
