@@ -98,4 +98,4 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 ## デフォルトの変更 { #changing-the-default }
 
-後に、[高度なユーザーガイド](../advanced/response-change-status-code.md){.internal-link target=_blank}で、ここで宣言しているデフォルトとは異なるステータスコードを返す方法を見ていきます。
+後に、[高度なユーザーガイド](../advanced/response-change-status-code.md)で、ここで宣言しているデフォルトとは異なるステータスコードを返す方法を見ていきます。

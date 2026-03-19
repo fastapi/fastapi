@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 情報
 
-`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict){.internal-link target=_blank}を参照してください。
+`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict)を参照してください。
 
 ///
 

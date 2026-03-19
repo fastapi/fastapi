@@ -12,7 +12,7 @@
 
 ユーザーの平文のパスワードは絶対に保存しないでください。常に検証できる「安全なハッシュ」を保存してください。
 
-知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}で「パスワードハッシュ」とは何かを学ぶことができます。
+知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing)で「パスワードハッシュ」とは何かを学ぶことができます。
 
 ///
 
