@@ -147,7 +147,7 @@ UserInDB(
 
 /// info | Informação
 
-Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict).
 
 ///
 
