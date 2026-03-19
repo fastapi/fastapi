@@ -144,6 +144,7 @@ UserInDB(
 )
 ```
 
+
 /// info | Informação
 
 Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
@@ -216,7 +217,7 @@ Esse é o benefício dos padrões...
 
 ## Veja em ação { #see-it-in-action }
 
-Abra o docs interativo: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Abra o docs interativo: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Autentique-se { #authenticate }
 

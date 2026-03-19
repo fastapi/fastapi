@@ -76,7 +76,7 @@ Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atr
 
 /// info | Informação
 
-Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags).
 
 ///
 
