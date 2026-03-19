@@ -11,7 +11,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +58,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### Перевірте { #check-it }
 
-Відкрийте браузер та введіть адресу <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Відкрийте браузер за адресою [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Ви побачите JSON-відповідь:
 
@@ -68,17 +68,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### Інтерактивна API документація { #interactive-api-docs }
 
-Тепер перейдіть сюди <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Тепер перейдіть сюди [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Ви побачите автоматичну інтерактивну API документацію (надається <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Ви побачите автоматичну інтерактивну API документацію (надається [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Альтернативна API документація { #alternative-api-docs }
 
-А тепер перейдіть сюди <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+А тепер перейдіть сюди [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Ви побачите альтернативну автоматичну документацію (надається <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Ви побачите альтернативну автоматичну документацію (надається [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API «схема» { #api-schema }
 
-У цьому випадку, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> є специфікацією, яка визначає, як описати схему вашого API.
+У цьому випадку, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) є специфікацією, яка визначає, як описати схему вашого API.
 
 Це визначення схеми включає шляхи (paths) вашого API, можливі параметри, які вони приймають, тощо.
 
@@ -110,7 +110,7 @@ OpenAPI описує схему API для вашого API. І ця схема 
 
 Якщо вас цікавить, як виглядає «сирий» OpenAPI schema, FastAPI автоматично генерує JSON (schema) з описами всього вашого API.
 
-Ви можете побачити це напряму тут: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Ви можете побачити це напряму тут: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 Ви побачите JSON, що починається приблизно так:
 
@@ -143,9 +143,58 @@ OpenAPI schema — це те, на чому працюють дві включе
 
 Ви також можете використовувати його для автоматичної генерації коду для клієнтів, які взаємодіють з вашим API. Наприклад, для фронтенд-, мобільних або IoT-застосунків.
 
+### Налаштуйте `entrypoint` застосунку в `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Ви можете налаштувати, де знаходиться ваш застосунок, у файлі `pyproject.toml`, приблизно так:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Цей `entrypoint` повідомить команді `fastapi`, що вона має імпортувати застосунок так:
+
+```python
+from main import app
+```
+
+Якщо структура вашого коду виглядала б так:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Тоді ви б задали `entrypoint` як:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+що було б еквівалентно:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` із шляхом { #fastapi-dev-with-path }
+
+Ви також можете передати шлях до файлу в команду `fastapi dev`, і вона вгадає обʼєкт FastAPI app, який слід використовувати:
+
+```console
+$ fastapi dev main.py
+```
+
+Але вам доведеться щоразу памʼятати передавати правильний шлях під час виклику команди `fastapi`.
+
+Крім того, інші інструменти можуть не знайти його, наприклад [Розширення VS Code](../editor-support.md) або [FastAPI Cloud](https://fastapicloud.com), тому рекомендується використовувати `entrypoint` у `pyproject.toml`.
+
 ### Розгорніть ваш застосунок (необовʼязково) { #deploy-your-app-optional }
 
-За бажанням ви можете розгорнути ваш FastAPI-застосунок у <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, перейдіть і приєднайтеся до списку очікування, якщо ви цього ще не зробили. 🚀
+За бажанням ви можете розгорнути ваш FastAPI-застосунок у [FastAPI Cloud](https://fastapicloud.com), перейдіть і приєднайтеся до списку очікування, якщо ви цього ще не зробили. 🚀
 
 Якщо у вас вже є обліковий запис **FastAPI Cloud** (ми запросили вас зі списку очікування 😉), ви можете розгорнути ваш застосунок однією командою.
 
@@ -191,7 +240,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` — це клас, який успадковується безпосередньо від `Starlette`.
 
-Ви також можете використовувати всю функціональність <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> у `FastAPI`.
+Ви також можете використовувати всю функціональність [Starlette](https://www.starlette.dev/) у `FastAPI`.
 
 ///
 
@@ -336,7 +385,7 @@ https://example.com/items/foo
 
 /// note
 
-Якщо ви не знаєте різницю, подивіться [Асинхронність: *«Поспішаєте?»*](../async.md#in-a-hurry){.internal-link target=_blank}.
+Якщо ви не знаєте різницю, подивіться [Асинхронність: *«Поспішаєте?»*](../async.md#in-a-hurry).
 
 ///
 
@@ -352,11 +401,11 @@ https://example.com/items/foo
 
 ### Крок 6: розгорніть його { #step-6-deploy-it }
 
-Розгорніть ваш застосунок у **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** однією командою: `fastapi deploy`. 🎉
+Розгорніть ваш застосунок у **[FastAPI Cloud](https://fastapicloud.com)** однією командою: `fastapi deploy`. 🎉
 
 #### Про FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** створено тим самим автором і командою, які стоять за **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** створено тим самим автором і командою, які стоять за **FastAPI**.
 
 Він спрощує процес **створення**, **розгортання** та **доступу** до API з мінімальними зусиллями.
 
