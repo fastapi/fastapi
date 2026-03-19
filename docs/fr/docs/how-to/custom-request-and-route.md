@@ -32,7 +32,7 @@ Et une sous-classe d'`APIRoute` pour utiliser cette classe de requête personnal
 
 /// tip | Astuce
 
-Il s'agit d'un exemple simplifié pour montrer le fonctionnement ; si vous avez besoin de la prise en charge de Gzip, vous pouvez utiliser le [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} fourni.
+Il s'agit d'un exemple simplifié pour montrer le fonctionnement ; si vous avez besoin de la prise en charge de Gzip, vous pouvez utiliser le [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) fourni.
 
 ///
 
@@ -82,7 +82,7 @@ Mais grâce à nos modifications dans `GzipRequest.body`, le corps de la requêt
 
 /// tip | Astuce
 
-Pour résoudre ce même problème, il est probablement beaucoup plus simple d'utiliser `body` dans un gestionnaire personnalisé pour `RequestValidationError` ([Gérer les erreurs](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Pour résoudre ce même problème, il est probablement beaucoup plus simple d'utiliser `body` dans un gestionnaire personnalisé pour `RequestValidationError` ([Gérer les erreurs](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Mais cet exemple reste valable et montre comment interagir avec les composants internes.
 
