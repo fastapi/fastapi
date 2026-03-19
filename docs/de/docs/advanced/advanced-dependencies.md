@@ -1,6 +1,6 @@
 # Fortgeschrittene Abhängigkeiten { #advanced-dependencies }
 
-## Parametrisierte Abhängigkeiten { #parameterized-dependencies }
+## parameterisierte Abhängigkeiten { #parameterized-dependencies }
 
 Alle Abhängigkeiten, die wir bisher gesehen haben, waren festgelegte Funktionen oder Klassen.
 
@@ -22,9 +22,9 @@ Dazu deklarieren wir eine Methode `__call__`:
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
-## Die Instanz parametrisieren { #parameterize-the-instance }
+## Die Instanz parameterisieren { #parameterize-the-instance }
 
-Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „Parametrisieren“ der Abhängigkeit verwenden können:
+Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „parameterisieren“ der Abhängigkeit verwenden können:
 
 {* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
@@ -36,7 +36,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 
 {* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
-Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
+Und auf diese Weise können wir unsere Abhängigkeit „parameterisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
 ## Die Instanz als Abhängigkeit verwenden { #use-the-instance-as-a-dependency }
 
