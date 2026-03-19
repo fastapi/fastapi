@@ -18,6 +18,10 @@ hide:
 * 📝 Fix doctrings for `max_digits` and `decimal_places`. PR [#14944](https://github.com/fastapi/fastapi/pull/14944) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Add dates to release notes. PR [#15001](https://github.com/fastapi/fastapi/pull/15001) by [@YuriiMotov](https://github.com/YuriiMotov).
 
+### Translations
+
+* 🌐 Update translations for de (add-missing). PR [#15153](https://github.com/fastapi/fastapi/pull/15153) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 🔨 Tweak translation workflow and translation fixer tool. PR [#15166](https://github.com/fastapi/fastapi/pull/15166) by [@YuriiMotov](https://github.com/YuriiMotov).
