@@ -228,7 +228,7 @@ To do that, you can declare that `None` is a valid type but simply do not declar
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
-#### Important: Query parameters are always strings
+#### Important: Query parameters are always strings { #important-query-parameters-are-always-strings }
 
 Even though you can declare a parameter as "required but can be `None`", in practice, query parameters are always received as strings in HTTP.
 
@@ -240,7 +240,7 @@ For example:
 
 This will be interpreted as `"null"` (a string), **not** `None`.
 
-#### Recommendation
+#### Recommendation { #recommendation }
 
 Because query parameters cannot truly represent `None`, this pattern can be confusing in real-world usage.
 
@@ -254,7 +254,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 - Or use a request body if you need to explicitly support `None`
 
-#### Summary
+#### Summary { #summary }
 
 | Declaration | Behavior |
 | ----------- | -------- |
