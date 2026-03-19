@@ -5,7 +5,7 @@
 - Безпека - HTTPS
 - Запуск під час старту
 - Перезапуски
-- Реплікація (кількість процесів, що виконуються)
+- **Реплікація (кількість процесів, що виконуються)**
 - Пам'ять
 - Попередні кроки перед запуском
 
@@ -13,13 +13,13 @@
 
 Під час розгортання застосунків ви, найімовірніше, захочете мати реплікацію процесів, щоб використовувати кілька ядер і обробляти більше запитів.
 
-Як ви бачили в попередньому розділі про [Концепції розгортання](concepts.md){.internal-link target=_blank}, існує кілька стратегій, які можна використовувати.
+Як ви бачили в попередньому розділі про [Концепції розгортання](concepts.md), існує кілька стратегій, які можна використовувати.
 
 Тут я покажу, як використовувати Uvicorn із процесами-працівниками за допомогою команди `fastapi` або безпосередньо команди `uvicorn`.
 
 /// info | Інформація
 
-Якщо ви використовуєте контейнери, наприклад з Docker або Kubernetes, я розповім про це більше в наступному розділі: [FastAPI у контейнерах - Docker](docker.md){.internal-link target=_blank}.
+Якщо ви використовуєте контейнери, наприклад з Docker або Kubernetes, я розповім про це більше в наступному розділі: [FastAPI у контейнерах - Docker](docker.md).
 
 Зокрема, під час запуску в Kubernetes вам, найімовірніше, не варто використовувати працівників, натомість запускати один процес Uvicorn на контейнер. Але про це я розповім пізніше в тому розділі.
 
@@ -64,13 +64,13 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
@@ -117,16 +117,16 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 Із наведеного вище списку концепцій розгортання, використання працівників головним чином допоможе з частиною про реплікацію і трохи з перезапусками, але про інше все ще треба подбати:
 
-- Безпека - HTTPS
-- Запуск під час старту
+- **Безпека - HTTPS**
+- **Запуск під час старту**
 - ***Перезапуски***
 - Реплікація (кількість процесів, що виконуються)
-- Пам'ять
-- Попередні кроки перед запуском
+- **Пам'ять**
+- **Попередні кроки перед запуском**
 
 ## Контейнери і Docker { #containers-and-docker }
 
-У наступному розділі про [FastAPI у контейнерах - Docker](docker.md){.internal-link target=_blank} я поясню кілька стратегій, які ви можете використати для інших концепцій розгортання.
+У наступному розділі про [FastAPI у контейнерах - Docker](docker.md) я поясню кілька стратегій, які ви можете використати для інших концепцій розгортання.
 
 Я покажу, як побудувати власний образ з нуля для запуску одного процесу Uvicorn. Це простий процес і, ймовірно, саме те, що потрібно при використанні розподіленої системи керування контейнерами, такої як Kubernetes.
 

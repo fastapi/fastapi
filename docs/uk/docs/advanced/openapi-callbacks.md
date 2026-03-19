@@ -35,7 +35,7 @@
 
 /// tip | Порада
 
-Параметр запиту `callback_url` використовує тип Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>.
+Параметр запиту `callback_url` використовує тип Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Фактичний зворотний виклик - це просто HTTP-запит.
 
-Реалізуючи зворотний виклик самостійно, ви можете скористатися, наприклад, <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> або <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+Реалізуючи зворотний виклик самостійно, ви можете скористатися, наприклад, [HTTPX](https://www.python-httpx.org) або [Requests](https://requests.readthedocs.io/).
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 Є 2 основні відмінності від звичайної операції шляху:
 
 - Їй не потрібен реальний код, адже ваш застосунок ніколи не викликатиме цей код. Вона використовується лише для документування зовнішнього API. Тому функція може просто містити `pass`.
-- Шлях може містити <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">вираз OpenAPI 3</a> (див. нижче), де можна використовувати змінні з параметрами та частини оригінального запиту, надісланого до вашого API.
+- Шлях може містити [вираз OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (див. нижче), де можна використовувати змінні з параметрами та частини оригінального запиту, надісланого до вашого API.
 
 ### Вираз шляху зворотного виклику { #the-callback-path-expression }
 
-Шлях зворотного виклику може містити <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">вираз OpenAPI 3</a>, який включає частини оригінального запиту, надісланого до вашого API.
+Шлях зворотного виклику може містити [вираз OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression), який включає частини оригінального запиту, надісланого до вашого API.
 
 У цьому випадку це строка:
 
@@ -179,7 +179,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 ### Перевірте документацію { #check-the-docs }
 
-Тепер ви можете запустити застосунок і перейти за адресою <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Тепер ви можете запустити застосунок і перейти за адресою [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Ви побачите вашу документацію з розділом «Callbacks» для вашої операції шляху, який показує, як має виглядати зовнішній API:
 
