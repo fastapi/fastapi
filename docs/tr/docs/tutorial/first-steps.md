@@ -385,7 +385,7 @@ Bunu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz:
 
 /// note | Not
 
-Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasına bakın.
+Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry) sayfasına bakın.
 
 ///
 

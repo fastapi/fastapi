@@ -637,13 +637,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Bu komut, sonraki komutlarda kullanılabilecek bazı [environment variable](environment-variables.md){.internal-link target=_blank}'ları oluşturur veya değiştirir.
+Bu komut, sonraki komutlarda kullanılabilecek bazı [environment variable](environment-variables.md)'ları oluşturur veya değiştirir.
 
 Bunlardan biri `PATH` değişkenidir.
 
 /// tip | İpucu
 
-`PATH` environment variable hakkında daha fazla bilgiyi [Environment Variables](environment-variables.md#path-environment-variable){.internal-link target=_blank} bölümünde bulabilirsiniz.
+`PATH` environment variable hakkında daha fazla bilgiyi [Environment Variables](environment-variables.md#path-environment-variable) bölümünde bulabilirsiniz.
 
 ///
 

@@ -183,6 +183,6 @@ Bu durumda, 3 tane query parametresi vardır:
 
 /// tip | İpucu
 
-[Path Parametreleri](path-params.md#predefined-values){.internal-link target=_blank} ile aynı şekilde `Enum`'ları da kullanabilirsiniz.
+[Path Parametreleri](path-params.md#predefined-values) ile aynı şekilde `Enum`'ları da kullanabilirsiniz.
 
 ///

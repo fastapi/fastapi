@@ -223,7 +223,7 @@ Bunu kullanmak, birkaç Flask full‑stack üreticisinin ortaya çıkmasına yol
 * [https://github.com/tiangolo/full-stack-flask-couchbase](https://github.com/tiangolo/full-stack-flask-couchbase)
 * [https://github.com/tiangolo/full-stack-flask-couchdb](https://github.com/tiangolo/full-stack-flask-couchdb)
 
-Aynı full‑stack üreticiler, [**FastAPI** Proje Üreticileri](project-generation.md){.internal-link target=_blank}’nin de temelini oluşturdu.
+Aynı full‑stack üreticiler, [**FastAPI** Proje Üreticileri](project-generation.md)’nin de temelini oluşturdu.
 
 /// info | Bilgi
 
@@ -474,10 +474,10 @@ Starlette ve **FastAPI** için önerilen sunucudur.
 
 Komut satırında `--workers` seçeneğini kullanarak asenkron çok süreçli (multi‑process) bir sunucu da elde edebilirsiniz.
 
-Daha fazla detay için [Dağıtım](deployment/index.md){.internal-link target=_blank} bölümüne bakın.
+Daha fazla detay için [Dağıtım](deployment/index.md) bölümüne bakın.
 
 ///
 
 ## Kıyaslamalar ve Hız { #benchmarks-and-speed }
 
-Uvicorn, Starlette ve FastAPI arasındaki farkı anlamak ve karşılaştırmak için [Kıyaslamalar](benchmarks.md){.internal-link target=_blank} bölümüne göz atın.
+Uvicorn, Starlette ve FastAPI arasındaki farkı anlamak ve karşılaştırmak için [Kıyaslamalar](benchmarks.md) bölümüne göz atın.

@@ -14,7 +14,7 @@ FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve bunu önermeye ba
 
 Daha eski bir sürüm kullanıyorsanız, `Annotated` kullanmaya çalıştığınızda hata alırsınız.
 
-`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -122,7 +122,7 @@ Aynısı <abbr title="less than - küçüktür"><code>lt</code></abbr> için de 
 
 ## Özet { #recap }
 
-`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md){.internal-link target=_blank} bölümündekiyle aynı şekilde tanımlayabilirsiniz.
+`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md) bölümündekiyle aynı şekilde tanımlayabilirsiniz.
 
 Ayrıca sayısal doğrulamalar da tanımlayabilirsiniz:
 
