@@ -6,7 +6,7 @@
 
 여러분의 API는 대부분의 경우 **응답** 본문을 보내야 합니다. 하지만 클라이언트는 항상 **요청 본문**을 보낼 필요는 없고, 때로는 (쿼리 매개변수와 함께) 어떤 경로만 요청하고 본문은 보내지 않을 수도 있습니다.
 
-**요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
+**요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 [Pydantic](https://docs.pydantic.dev/) 모델을 사용합니다.
 
 /// info | 정보
 
@@ -73,7 +73,7 @@
     * 만약 데이터가 유효하지 않다면, 정확히 어떤 것이 그리고 어디에서 데이터가 잘 못 되었는지 지시하는 친절하고 명료한 에러를 반환할 것입니다.
 * 매개변수 `item`에 포함된 수신 데이터를 제공합니다.
     * 함수 내에서 매개변수를 `Item` 타입으로 선언했기 때문에, 모든 어트리뷰트와 그에 대한 타입에 대한 편집기 지원(완성 등)을 또한 받을 수 있습니다.
-* 여러분의 모델을 위한 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 정의를 생성합니다. 여러분의 프로젝트에 적합하다면 여러분이 사용하고 싶은 곳 어디에서나 사용할 수 있습니다.
+* 여러분의 모델을 위한 [JSON Schema](https://json-schema.org) 정의를 생성합니다. 여러분의 프로젝트에 적합하다면 여러분이 사용하고 싶은 곳 어디에서나 사용할 수 있습니다.
 * 이러한 스키마는, 생성된 OpenAPI 스키마 일부가 될 것이며, 자동 문서화 <abbr title="User Interfaces - 사용자 인터페이스">UIs</abbr>에 사용됩니다.
 
 ## 자동 문서화 { #automatic-docs }
@@ -102,15 +102,15 @@
 
 이를 지원하기 위해 Pydantic 자체에서 몇몇 변경점이 있었습니다.
 
-이전 스크린샷은 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>를 찍은 것입니다.
+이전 스크린샷은 [Visual Studio Code](https://code.visualstudio.com)로 찍은 것입니다.
 
-하지만 똑같은 편집기 지원을 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>와 대부분의 다른 파이썬 편집기에서도 받을 수 있습니다:
+하지만 똑같은 편집기 지원을 [PyCharm](https://www.jetbrains.com/pycharm/)와 대부분의 다른 파이썬 편집기에서도 받을 수 있습니다:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | 팁
 
-만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
+만약 [PyCharm](https://www.jetbrains.com/pycharm/)를 편집기로 사용한다면, [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/)을 사용할 수 있습니다.
 
 다음 사항을 포함해 Pydantic 모델에 대한 편집기 지원을 향상시킵니다:
 

@@ -20,7 +20,7 @@
 
 /// info | 정보
 
-`status_code` 는 파이썬의 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
+`status_code` 는 파이썬의 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
 
 ///
 
@@ -43,7 +43,7 @@ FastAPI는 이를 알고 있으며, 응답 본문이 없다고 명시하는 Open
 
 /// note | 참고
 
-만약 HTTP 상태 코드가 무엇인지 이미 알고 있다면, 다음 섡션으로 넘어가세요.
+만약 HTTP 상태 코드가 무엇인지 이미 알고 있다면, 다음 섹션으로 넘어가세요.
 
 ///
 
@@ -66,7 +66,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 /// tip | 팁
 
-각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr>의 HTTP 상태 코드에 관한 문서</a>를 확인하세요.
+각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 [<abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr>의 HTTP 상태 코드에 관한 문서](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)를 확인하세요.
 
 ///
 

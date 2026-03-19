@@ -216,7 +216,7 @@ UserInDB(
 
 ## 확인하기 { #see-it-in-action }
 
-대화형 문서 열기: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서 열기: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### 인증하기 { #authenticate }
 
