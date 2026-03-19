@@ -10,7 +10,7 @@ Aceleniz varsa veya çok da önemsemiyorsanız, her şeyi farklı tekniklerle ad
 
 ///
 
-Bir kullanıcı gözüyle **HTTPS’in temellerini öğrenmek** için <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a> adresine bakın.
+Bir kullanıcı gözüyle **HTTPS’in temellerini öğrenmek** için [https://howhttps.works/](https://howhttps.works/) adresine bakın.
 
 Şimdi de **geliştirici perspektifinden**, HTTPS hakkında düşünürken akılda tutulması gereken birkaç nokta:
 
@@ -28,13 +28,13 @@ Bir kullanıcı gözüyle **HTTPS’in temellerini öğrenmek** için <a href="h
 * **Varsayılan olarak** bu, IP adresi başına yalnızca **bir HTTPS sertifikası** olabileceği anlamına gelir.
     * Server’ınız ne kadar büyük olursa olsun ya da üzerindeki her uygulama ne kadar küçük olursa olsun.
     * Ancak bunun bir **çözümü** vardır.
-* **TLS** protokolüne (TCP seviyesinde, HTTP’den önce şifrelemeyi yapan) eklenen **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - Sunucu Adı Belirtimi">SNI</abbr></a>** adlı bir **extension** vardır.
+* **TLS** protokolüne (TCP seviyesinde, HTTP’den önce şifrelemeyi yapan) eklenen **[<abbr title="Server Name Indication - Sunucu Adı Belirtimi">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)** adlı bir **extension** vardır.
     * Bu SNI extension’ı, tek bir server’ın (tek bir **IP adresiyle**) **birden fazla HTTPS sertifikası** kullanmasına ve **birden fazla HTTPS domain/uygulama** sunmasına izin verir.
     * Bunun çalışması için server üzerinde, **public IP adresini** dinleyen tek bir bileşenin (programın) server’daki **tüm HTTPS sertifikalarına** sahip olması gerekir.
 * Güvenli bir bağlantı elde edildikten **sonra**, iletişim protokolü **hâlâ HTTP**’dir.
     * İçerikler, **HTTP protokolü** ile gönderiliyor olsa bile **şifrelenmiştir**.
 
-Yaygın yaklaşım, server’da (makine, host vb.) çalışan **tek bir program/HTTP server** bulundurup **HTTPS ile ilgili tüm kısımları** yönetmektir: **şifreli HTTPS request**’leri almak, aynı server’da çalışan gerçek HTTP uygulamasına (bu örnekte **FastAPI** uygulaması) **şifresi çözülmüş HTTP request**’leri iletmek, uygulamadan gelen **HTTP response**’u almak, uygun **HTTPS sertifikası** ile **şifrelemek** ve **HTTPS** ile client’a geri göndermek. Bu server’a çoğu zaman **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>** denir.
+Yaygın yaklaşım, server’da (makine, host vb.) çalışan **tek bir program/HTTP server** bulundurup **HTTPS ile ilgili tüm kısımları** yönetmektir: **şifreli HTTPS request**’leri almak, aynı server’da çalışan gerçek HTTP uygulamasına (bu örnekte **FastAPI** uygulaması) **şifresi çözülmüş HTTP request**’leri iletmek, uygulamadan gelen **HTTP response**’u almak, uygun **HTTPS sertifikası** ile **şifrelemek** ve **HTTPS** ile client’a geri göndermek. Bu server’a çoğu zaman **[TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy)** denir.
 
 TLS Termination Proxy olarak kullanabileceğiniz seçeneklerden bazıları:
 
@@ -49,7 +49,7 @@ Let's Encrypt’ten önce bu **HTTPS sertifikaları**, güvenilen üçüncü tar
 
 Bu sertifikalardan birini temin etme süreci zahmetliydi, epey evrak işi gerektirirdi ve sertifikalar oldukça pahalıydı.
 
-Sonra **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** ortaya çıktı.
+Sonra **[Let's Encrypt](https://letsencrypt.org/)** ortaya çıktı.
 
 Linux Foundation’ın bir projesidir. **HTTPS sertifikalarını ücretsiz** ve otomatik bir şekilde sağlar. Bu sertifikalar tüm standart kriptografik güvenliği kullanır ve kısa ömürlüdür (yaklaşık 3 ay). Bu yüzden, ömürleri kısa olduğu için **güvenlik aslında daha iyidir**.
 
@@ -200,9 +200,9 @@ Bu **proxy** normalde request’i **application server**’a iletmeden önce, re
 
 Proxy header’ları şunlardır:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -218,7 +218,7 @@ Bu, örneğin redirect’leri doğru şekilde yönetmek için faydalıdır.
 
 /// tip | İpucu
 
-Bununla ilgili daha fazlasını [Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} dokümantasyonunda öğrenebilirsiniz.
+Bununla ilgili daha fazlasını [Bir Proxy Arkasında - Proxy Forwarded Headers'ı Etkinleştir](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} dokümantasyonunda öğrenebilirsiniz.
 
 ///
 

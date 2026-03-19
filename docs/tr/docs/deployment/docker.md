@@ -111,7 +111,7 @@ Bu, gereksinimleri **yüklemek** için kullandığınız araca göre değişir.
 
 En yaygın yöntem, paket adları ve versiyonlarının satır satır yazıldığı bir `requirements.txt` dosyasına sahip olmaktır.
 
-Versiyon aralıklarını belirlemek için elbette [FastAPI sürümleri hakkında](versions.md){.internal-link target=_blank} bölümünde okuduğunuz fikirleri kullanırsınız.
+Versiyon aralıklarını belirlemek için elbette [FastAPI sürümleri hakkında](versions.md) bölümünde okuduğunuz fikirleri kullanırsınız.
 
 Örneğin `requirements.txt` şöyle görünebilir:
 
@@ -254,7 +254,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-FastAPI'nin düzgün şekilde kapanabilmesi ve [lifespan event](../advanced/events.md){.internal-link target=_blank}'lerinin tetiklenmesi için her zaman **exec** formunu kullanın.
+FastAPI'nin düzgün şekilde kapanabilmesi ve [lifespan event](../advanced/events.md)'lerinin tetiklenmesi için her zaman **exec** formunu kullanın.
 
 Detaylar için <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell ve exec form için Docker dokümanlarına</a> bakabilirsiniz.
 
@@ -413,7 +413,7 @@ Dosyayı `fastapi run`'a verdiğinizde, bunun bir package'ın parçası değil t
 
 ## Deployment Kavramları { #deployment-concepts }
 
-Aynı [Deployment Kavramları](concepts.md){.internal-link target=_blank}nı bu kez container'lar açısından tekrar konuşalım.
+Aynı [Deployment Kavramları](concepts.md)nı bu kez container'lar açısından tekrar konuşalım.
 
 Container'lar, bir uygulamayı **build etme ve deploy etme** sürecini basitleştiren bir araçtır. Ancak bu **deployment kavramları**nı ele almak için belirli bir yaklaşımı zorunlu kılmazlar; birkaç farklı strateji mümkündür.
 
