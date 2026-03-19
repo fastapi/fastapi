@@ -10,7 +10,7 @@ Eso no añade ninguna seguridad extra a tu API, las *path operations* seguirán 
 
 Si hay una falla de seguridad en tu código, seguirá existiendo.
 
-Ocultar la documentación solo hace que sea más difícil entender cómo interactuar con tu API y podría dificultar más depurarla en producción. Podría considerarse simplemente una forma de <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Seguridad mediante oscuridad</a>.
+Ocultar la documentación solo hace que sea más difícil entender cómo interactuar con tu API y podría dificultar más depurarla en producción. Podría considerarse simplemente una forma de [Seguridad mediante oscuridad](https://en.wikipedia.org/wiki/Security_through_obscurity).
 
 Si quieres asegurar tu API, hay varias cosas mejores que puedes hacer, por ejemplo:
 
