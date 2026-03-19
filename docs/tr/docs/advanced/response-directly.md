@@ -2,19 +2,23 @@
 
 **FastAPI** ile bir *path operation* oluşturduğunuzda, normalde ondan herhangi bir veri döndürebilirsiniz: bir `dict`, bir `list`, bir Pydantic model, bir veritabanı modeli vb.
 
-Varsayılan olarak **FastAPI**, döndürdüğünüz bu değeri [JSON Uyumlu Encoder](../tutorial/encoder.md){.internal-link target=_blank} bölümünde anlatılan `jsonable_encoder` ile otomatik olarak JSON'a çevirir.
+Bir [Response Model](../tutorial/response-model.md) deklare ederseniz, FastAPI veriyi Pydantic kullanarak JSON'a serialize etmek için bunu kullanır.
 
-Ardından perde arkasında, JSON-uyumlu bu veriyi (ör. bir `dict`) client'a response göndermek için kullanılacak bir `JSONResponse` içine yerleştirir.
+Bir response model deklare etmezseniz, FastAPI [JSON Uyumlu Encoder](../tutorial/encoder.md)'da anlatılan `jsonable_encoder`'ı kullanır ve bunu bir `JSONResponse` içine koyar.
 
-Ancak *path operation*'larınızdan doğrudan bir `JSONResponse` döndürebilirsiniz.
+Ayrıca doğrudan bir `JSONResponse` oluşturup döndürebilirsiniz.
 
-Bu, örneğin özel header'lar veya cookie'ler döndürmek istediğinizde faydalı olabilir.
+/// tip | İpucu
+
+[Response Model](../tutorial/response-model.md) kullanmak, doğrudan `JSONResponse` döndürmeye kıyasla genellikle çok daha iyi performans sağlar; çünkü veriyi Pydantic ile, Rust tarafında serialize eder.
+
+///
 
 ## Bir `Response` Döndürme { #return-a-response }
 
 Aslında herhangi bir `Response` veya onun herhangi bir alt sınıfını döndürebilirsiniz.
 
-/// tip | İpucu
+/// info | Bilgi
 
 `JSONResponse` zaten `Response`'un bir alt sınıfıdır.
 
@@ -25,6 +29,8 @@ Bir `Response` döndürdüğünüzde, **FastAPI** bunu olduğu gibi doğrudan il
 Pydantic model'leriyle herhangi bir veri dönüşümü yapmaz, içeriği başka bir tipe çevirmez vb.
 
 Bu size ciddi bir esneklik sağlar. Herhangi bir veri türü döndürebilir, herhangi bir veri deklarasyonunu veya validasyonunu override edebilirsiniz.
+
+Bu aynı zamanda size ciddi bir sorumluluk yükler. Döndürdüğünüz verinin doğru, doğru formatta, serialize edilebilir vb. olduğundan emin olmanız gerekir.
 
 ## Bir `Response` İçinde `jsonable_encoder` Kullanma { #using-the-jsonable-encoder-in-a-response }
 
@@ -56,10 +62,22 @@ XML içeriğinizi bir string içine koyabilir, onu bir `Response` içine yerleş
 
 {* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
+## Bir Response Model Nasıl Çalışır { #how-a-response-model-works }
+
+Bir path operation içinde [Response Model - Dönüş Tipi](../tutorial/response-model.md) deklare ettiğinizde, **FastAPI** veriyi Pydantic kullanarak JSON'a serialize etmek için bunu kullanır.
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
+Bu işlem Rust tarafında gerçekleştiği için, sıradan Python ve `JSONResponse` sınıfıyla yapılmasına kıyasla performans çok daha iyi olacaktır.
+
+Bir `response_model` veya dönüş tipi kullandığınızda, FastAPI veriyi dönüştürmek için (daha yavaş olacağı için) `jsonable_encoder`'ı ya da `JSONResponse` sınıfını kullanmaz.
+
+Bunun yerine, response model'i (veya dönüş tipini) kullanarak Pydantic ile üretilen JSON baytlarını alır ve doğrudan JSON için doğru medya tipiyle (`application/json`) bir `Response` döndürür.
+
 ## Notlar { #notes }
 
 Bir `Response`'u doğrudan döndürdüğünüzde, verisi otomatik olarak validate edilmez, dönüştürülmez (serialize edilmez) veya dokümante edilmez.
 
-Ancak yine de [OpenAPI'de Ek Response'lar](additional-responses.md){.internal-link target=_blank} bölümünde anlatıldığı şekilde dokümante edebilirsiniz.
+Ancak yine de [OpenAPI'de Ek Response'lar](additional-responses.md) bölümünde anlatıldığı şekilde dokümante edebilirsiniz.
 
 İlerleyen bölümlerde, otomatik veri dönüşümü, dokümantasyon vb. özellikleri korurken bu özel `Response`'ları nasıl kullanıp declare edebileceğinizi göreceksiniz.

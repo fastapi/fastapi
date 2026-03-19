@@ -20,7 +20,7 @@ Ayrıca bir `response_model` tanımladıysanız, döndürdüğünüz nesneyi fil
 
 Kodunuzda doğrudan bir `Response` döndürürken de cookie oluşturabilirsiniz.
 
-Bunu yapmak için, [Doğrudan Response Döndürme](response-directly.md){.internal-link target=_blank} bölümünde anlatıldığı gibi bir response oluşturabilirsiniz.
+Bunu yapmak için, [Doğrudan Response Döndürme](response-directly.md) bölümünde anlatıldığı gibi bir response oluşturabilirsiniz.
 
 Sonra bunun içinde Cookie'leri set edin ve response'u döndürün:
 
@@ -48,4 +48,4 @@ Ve `Response`, header ve cookie set etmek için sık kullanıldığından, **Fas
 
 ///
 
-Mevcut tüm parametreleri ve seçenekleri görmek için <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette dokümantasyonuna</a> bakın.
+Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://www.starlette.dev/responses/#set-cookie)'na bakın.

@@ -144,7 +144,7 @@ Bu davranış 0.110.0 sürümünde değiştirildi. Amaç, handler olmayan (inter
 
 ### Background Tasks ve `yield` ile dependency'ler, Teknik Detaylar { #background-tasks-and-dependencies-with-yield-technical-details }
 
-FastAPI 0.106.0 öncesinde, `yield` sonrasında exception raise etmek mümkün değildi; çünkü `yield` kullanan dependency'lerdeki çıkış kodu response gönderildikten *sonra* çalıştırılıyordu. Bu nedenle [Exception Handler'ları](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} zaten çalışmış olurdu.
+FastAPI 0.106.0 öncesinde, `yield` sonrasında exception raise etmek mümkün değildi; çünkü `yield` kullanan dependency'lerdeki çıkış kodu response gönderildikten *sonra* çalıştırılıyordu. Bu nedenle [Exception Handler'ları](../tutorial/handling-errors.md#install-custom-exception-handlers) zaten çalışmış olurdu.
 
 Bu tasarımın ana sebeplerinden biri, background task'lerin içinde dependency'lerin "yield ettiği" aynı objeleri kullanmaya izin vermekti; çünkü çıkış kodu, background task'ler bittikten sonra çalıştırılıyordu.
 

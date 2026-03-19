@@ -18,7 +18,7 @@ Bu "ileri seviye" bir özelliktir.
 
 Bazı kullanım senaryoları:
 
-* JSON olmayan request body'leri JSON'a dönüştürmek (örn. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* JSON olmayan request body'leri JSON'a dönüştürmek (örn. [`msgpack`](https://msgpack.org/index.html)).
 * gzip ile sıkıştırılmış request body'leri açmak (decompress).
 * Tüm request body'lerini otomatik olarak loglamak.
 
@@ -66,7 +66,7 @@ Bir `Request` ayrıca `request.receive` içerir; bu, request'in body'sini "almak
 
 Ve bu iki şey, `scope` ve `receive`, yeni bir `Request` instance'ı oluşturmak için gerekenlerdir.
 
-`Request` hakkında daha fazla bilgi için <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette'ın Request dokümantasyonuna</a> bakın.
+`Request` hakkında daha fazla bilgi için [Starlette'ın Request dokümantasyonu](https://www.starlette.dev/requests/) bölümüne bakın.
 
 ///
 
