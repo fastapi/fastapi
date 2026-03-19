@@ -11,7 +11,7 @@
 * Проверьте, всё ли в порядке в переводе.
 * При необходимости улучшите ваш языковой специфичный промпт, общий промпт или английский документ.
 * Затем вручную исправьте оставшиеся проблемы в переводе, чтобы он был хорошим.
-* Переведите заново, имея хороший перевод на месте. Идеальным результатом будет ситуация, когда LLM больше не вносит изменений в перевод. Это означает, что общий промпт и ваш языковой специфичный промпт настолько хороши, насколько это возможно (иногда он будет делать несколько, казалось бы, случайных изменений, причина в том, что <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM — недетерминированные алгоритмы</a>).
+* Переведите заново, имея хороший перевод на месте. Идеальным результатом будет ситуация, когда LLM больше не вносит изменений в перевод. Это означает, что общий промпт и ваш языковой специфичный промпт настолько хороши, насколько это возможно (иногда он будет делать несколько, казалось бы, случайных изменений, причина в том, что [LLM — недетерминированные алгоритмы](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Тесты:
 
@@ -169,15 +169,15 @@ works(foo="bar")  # Это работает 🎉
 Текст ссылок должен переводиться, адрес ссылки не должен изменяться:
 
 * [Ссылка на заголовок выше](#code-snippets)
-* [Внутренняя ссылка](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Внешняя ссылка</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Ссылка на стиль</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Ссылка на скрипт</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Ссылка на изображение</a>
+* [Внутренняя ссылка](index.md#installation)
+* [Внешняя ссылка](https://sqlmodel.tiangolo.com/)
+* [Ссылка на стиль](https://fastapi.tiangolo.com/css/styles.css)
+* [Ссылка на скрипт](https://fastapi.tiangolo.com/js/logic.js)
+* [Ссылка на изображение](https://fastapi.tiangolo.com/img/foo.jpg)
 
 Текст ссылок должен переводиться, адрес ссылки должен указывать на перевод:
 
-* <a href="https://fastapi.tiangolo.com/ru/" class="external-link" target="_blank">Ссылка на FastAPI</a>
+* [Ссылка на FastAPI](https://fastapi.tiangolo.com/ru/)
 
 ////
 
@@ -294,7 +294,7 @@ works(foo="bar")  # Это работает 🎉
 * чувствительный к регистру
 * нечувствительный к регистру
 
-* обслуживать приложение
+* отдавать приложение
 * отдавать страницу
 
 * приложение
