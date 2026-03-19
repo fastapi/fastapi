@@ -35,13 +35,13 @@ FastAPI hat Unterstützung für `Annotated` hinzugefügt (und begonnen, es zu em
 
 Wenn Sie eine ältere Version haben, würden Sie Fehler erhalten, beim Versuch, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions), auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
 ## `Annotated` im Typ für den `q`-Parameter verwenden { #use-annotated-in-the-type-for-the-q-parameter }
 
-Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
+Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations) gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
 
 Jetzt ist es soweit, dies mit FastAPI zu verwenden. 🚀
 

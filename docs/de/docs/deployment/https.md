@@ -218,7 +218,7 @@ Das ist z. B. nützlich, um <abbr title="Redirect – Umleitung">Redirects</abbr
 
 /// tip | Tipp
 
-Mehr dazu finden Sie in der Dokumentation zu [Hinter einem Proxy – Proxy-Forwarded-Header aktivieren](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+Mehr dazu finden Sie in der Dokumentation zu [Hinter einem Proxy – Proxy-Forwarded-Header aktivieren](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers)
 
 ///
 

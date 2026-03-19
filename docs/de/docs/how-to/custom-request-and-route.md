@@ -32,7 +32,7 @@ Und eine `APIRoute`-Unterklasse zur Verwendung dieser benutzerdefinierten Reques
 
 /// tip | Tipp
 
-Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} verwenden.
+Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) verwenden.
 
 ///
 
@@ -82,7 +82,7 @@ Aufgrund unserer Änderungen in `GzipRequest.body` wird der Requestbody jedoch b
 
 /// tip | Tipp
 
-Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Dieses Beispiel ist jedoch immer noch gültig und zeigt, wie mit den internen Komponenten interagiert wird.
 

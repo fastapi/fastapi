@@ -74,7 +74,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
     Wie immer können Sie in FastAPI `def` und `async def` beliebig kombinieren.
 
-    Wenn Sie eine Auffrischung darüber benötigen, wann welche Anwendung sinnvoll ist, lesen Sie den Abschnitt „In Eile?“ in der Dokumentation zu [`async` und `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Wenn Sie eine Auffrischung darüber benötigen, wann welche Anwendung sinnvoll ist, lesen Sie den Abschnitt „In Eile?“ in der Dokumentation zu [`async` und `await`](../async.md#in-a-hurry).
 
 9. Diese *Pfadoperation-Funktion* gibt keine Datenklassen zurück (obwohl dies möglich wäre), sondern eine Liste von Dictionarys mit internen Daten.
 
