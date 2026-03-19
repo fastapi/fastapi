@@ -182,6 +182,6 @@ En este caso, hay 3 parámetros de query:
 
 /// tip | Consejo
 
-También podrías usar `Enum`s de la misma manera que con [Parámetros de Path](path-params.md#predefined-values){.internal-link target=_blank}.
+También podrías usar `Enum`s de la misma manera que con [Parámetros de Path](path-params.md#predefined-values).
 
 ///

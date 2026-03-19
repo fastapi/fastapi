@@ -216,7 +216,7 @@ Ese es el beneficio de los estándares...
 
 ## Verlo en acción { #see-it-in-action }
 
-Abre la documentación interactiva: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Abre la documentación interactiva: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Autenticar { #authenticate }
 
