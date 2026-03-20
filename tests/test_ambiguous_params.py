@@ -72,3 +72,26 @@ def test_multiple_annotations():
 
     response = client.get("/multi-query", params={"foo": "1"})
     assert response.status_code == 422
+
+def test_query_edge_cases():
+    app = FastAPI()
+    @app.get("/edge-query")
+    async def read_edge(q: Annotated[str | None, Query()] = None):
+        return {"q": q}
+
+    client = TestClient(app)
+
+    # Empty string
+    response = client.get("/edge-query?q=")
+    assert response.status_code == 200
+    assert response.json() == {"q": ""}
+
+    # Special characters
+    response = client.get("/edge-query", params={"q": "@fastapi#123"})
+    assert response.status_code == 200
+    assert response.json() == {"q": "@fastapi#123"}
+
+    # Unicode input
+    response = client.get("/edge-query?q=नमस्ते")
+    assert response.status_code == 200
+    assert response.json() == {"q": "नमस्ते"}
