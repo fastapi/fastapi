@@ -2,11 +2,11 @@
 
 FastAPI는 **Pydantic** 위에 구축되어 있으며, 지금까지는 Pydantic 모델을 사용해 요청과 응답을 선언하는 방법을 보여드렸습니다.
 
-하지만 FastAPI는 <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>도 같은 방식으로 사용하는 것을 지원합니다:
+하지만 FastAPI는 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)도 같은 방식으로 사용하는 것을 지원합니다:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-이는 **Pydantic** 덕분에 여전히 지원되는데, Pydantic이 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses`에 대한 내부 지원</a>을 제공하기 때문입니다.
+이는 **Pydantic** 덕분에 여전히 지원되는데, Pydantic이 [`dataclasses`에 대한 내부 지원](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel)을 제공하기 때문입니다.
 
 따라서 위 코드처럼 Pydantic을 명시적으로 사용하지 않더라도, FastAPI는 Pydantic을 사용해 표준 dataclasses를 Pydantic의 dataclasses 변형으로 변환합니다.
 
@@ -18,7 +18,7 @@ FastAPI는 **Pydantic** 위에 구축되어 있으며, 지금까지는 Pydantic 
 
 이는 Pydantic 모델을 사용할 때와 같은 방식으로 동작합니다. 그리고 실제로도 내부적으로는 Pydantic을 사용해 같은 방식으로 구현됩니다.
 
-/// info | 정보
+/// info
 
 dataclasses는 Pydantic 모델이 할 수 있는 모든 것을 할 수는 없다는 점을 기억하세요.
 
@@ -88,7 +88,7 @@ dataclass는 자동으로 Pydantic dataclass로 변환됩니다.
 
 `dataclasses`를 다른 Pydantic 모델과 조합하거나, 이를 상속하거나, 여러분의 모델에 포함하는 등의 작업도 할 수 있습니다.
 
-자세한 내용은 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">dataclasses에 관한 Pydantic 문서</a>를 참고하세요.
+자세한 내용은 [dataclasses에 관한 Pydantic 문서](https://docs.pydantic.dev/latest/concepts/dataclasses/)를 참고하세요.
 
 ## 버전 { #version }
 
