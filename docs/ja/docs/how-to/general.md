@@ -6,6 +6,10 @@
 
 返すべき以上のデータを返さないようにするには、[チュートリアル - レスポンスモデル - 戻り値の型](../tutorial/response-model.md){.internal-link target=_blank} を参照してください。
 
+## レスポンス性能の最適化 - レスポンスモデル - 戻り値の型 { #optimize-response-performance-response-model-return-type }
+
+JSON データを返す際の性能を最適化するには、戻り値の型またはレスポンスモデルを使用してください。そうすることで、Pydantic が Python を経由せずに Rust 側で JSON へのシリアライズを処理します。詳細は [チュートリアル - レスポンスモデル - 戻り値の型](../tutorial/response-model.md){.internal-link target=_blank} を参照してください。
+
 ## ドキュメントのタグ - OpenAPI { #documentation-tags-openapi }
 
 *path operations* にタグを追加し、ドキュメント UI でグループ化するには、[チュートリアル - path operation の設定 - タグ](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank} を参照してください。

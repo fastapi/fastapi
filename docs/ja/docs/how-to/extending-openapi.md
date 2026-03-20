@@ -37,7 +37,7 @@
 
 上記の情報を使って、同じユーティリティ関数で OpenAPI スキーマを生成し、必要な部分を上書きできます。
 
-たとえば、<a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">カスタムロゴを含めるための ReDoc の OpenAPI 拡張</a>を追加してみましょう。
+たとえば、[カスタムロゴを含めるための ReDoc の OpenAPI 拡張](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)を追加してみましょう。
 
 ### 通常の **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@ OpenAPI スキーマの `info`「オブジェクト」にカスタムの `x-logo
 
 ### 確認 { #check-it }
 
-<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> にアクセスすると、カスタムロゴ（この例では **FastAPI** のロゴ）が使われていることが確認できます:
+[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) にアクセスすると、カスタムロゴ（この例では **FastAPI** のロゴ）が使われていることが確認できます:
 
 <img src="/img/tutorial/extending-openapi/image01.png">
