@@ -37,7 +37,7 @@
 
 사용자 정의 독점 헤더는 [`X-` 접두사를 사용](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)하여 추가할 수 있다는 점을 기억하세요.
 
-하지만 브라우저에서 클라이언트가 볼 수 있게 하려는 사용자 정의 헤더가 있다면, [Starlette의 CORS 문서](https://www.starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용해 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md))에 추가해야 합니다.
+하지만 브라우저에서 클라이언트가 볼 수 있게 하려는 사용자 정의 헤더가 있다면, [CORS (Cross-Origin Resource Sharing)](cors.md) 설정에 [Starlette의 CORS 문서](https://www.starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용해 추가해야 합니다.
 
 ///
 
