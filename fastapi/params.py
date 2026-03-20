@@ -2,7 +2,7 @@ import warnings
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from enum import Enum
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, cast
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
@@ -660,6 +660,32 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
+class _FileUploadMarker:
+    "Pydantic metadata marker to tag bytes CoreSchemas as file uploads."
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source: type[Any], handler: Any
+    ) -> dict[str, Any]:
+        schema = cast(dict[str, Any], handler(source))
+
+        # Find the inner type schema (if nullable or list)
+        inner_type_schema = schema
+        if inner_type_schema.get("type") != "bytes":
+            if inner_type_schema.get("type") == "list":
+                inner_type_schema = inner_type_schema["items_schema"]
+            elif "schema" in inner_type_schema:
+                inner_type_schema = inner_type_schema["schema"]
+                if inner_type_schema.get("type") == "list":
+                    inner_type_schema = inner_type_schema["items_schema"]
+
+        # If the inner type is bytes, add the file upload marker metadata
+        if inner_type_schema.get("type") == "bytes":
+            metadata: dict[str, Any] = inner_type_schema.setdefault("metadata", {})
+            metadata["fastapi_file_upload"] = True
+        return schema
+
+
 class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
     def __init__(
         self,
@@ -740,6 +766,7 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
             json_schema_extra=json_schema_extra,
             **extra,
         )
+        self.metadata.append(_FileUploadMarker())
 
 
 @dataclass(frozen=True)
