@@ -293,7 +293,7 @@ Pydantic에 대해 더 알아보려면 [문서를 확인하세요](https://docs.
 
 **FastAPI**는 모두 Pydantic에 기반을 두고 있습니다.
 
-이 모든 것은 [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank}에서 실제로 많이 보게 될 것입니다.
+이 모든 것은 [자습서 - 사용자 안내서](tutorial/index.md)에서 실제로 많이 보게 될 것입니다.
 
 ## 메타데이터 애너테이션이 있는 타입 힌트 { #type-hints-with-metadata-annotations }
 
@@ -339,7 +339,7 @@ Pydantic에 대해 더 알아보려면 [문서를 확인하세요](https://docs.
 * OpenAPI를 사용해 API를 **문서화**:
     * 자동 상호작용 문서 UI에서 사용됩니다.
 
-이 모든 것이 다소 추상적으로 들릴 수도 있습니다. 걱정하지 마세요. [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank}에서 실제로 확인하게 될 것입니다.
+이 모든 것이 다소 추상적으로 들릴 수도 있습니다. 걱정하지 마세요. [자습서 - 사용자 안내서](tutorial/index.md)에서 실제로 확인하게 될 것입니다.
 
 가장 중요한 점은 표준 파이썬 타입을 한 곳에서 사용함으로써(더 많은 클래스, 데코레이터 등을 추가하는 대신) **FastAPI**가 여러분을 위해 많은 일을 해준다는 사실입니다.
 

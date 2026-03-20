@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 정보
 
-`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict){.internal-link target=_blank}를 다시 확인해보세요.
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict)를 다시 확인해보세요.
 
 ///
 

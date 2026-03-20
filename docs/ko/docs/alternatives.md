@@ -223,7 +223,7 @@ Flask + Flask-apispec + Marshmallow + Webargs 조합은 **FastAPI**를 만들기
 * [https://github.com/tiangolo/full-stack-flask-couchbase](https://github.com/tiangolo/full-stack-flask-couchbase)
 * [https://github.com/tiangolo/full-stack-flask-couchdb](https://github.com/tiangolo/full-stack-flask-couchdb)
 
-그리고 이 동일한 full-stack generator들이 [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}의 기반이 되었습니다.
+그리고 이 동일한 full-stack generator들이 [**FastAPI** Project Generators](project-generation.md)의 기반이 되었습니다.
 
 /// info | 정보
 
@@ -476,10 +476,10 @@ Starlette와 **FastAPI**에서 권장하는 서버입니다.
 
 또한 `--workers` 커맨드라인 옵션을 사용하면 비동기 멀티프로세스 서버로 실행할 수도 있습니다.
 
-자세한 내용은 [배포](deployment/index.md){.internal-link target=_blank} 섹션을 확인하세요.
+자세한 내용은 [배포](deployment/index.md) 섹션을 확인하세요.
 
 ///
 
 ## 벤치마크와 속도 { #benchmarks-and-speed }
 
-Uvicorn, Starlette, FastAPI 사이의 차이를 이해하고 비교하려면 [벤치마크](benchmarks.md){.internal-link target=_blank} 섹션을 확인하세요.
+Uvicorn, Starlette, FastAPI 사이의 차이를 이해하고 비교하려면 [벤치마크](benchmarks.md) 섹션을 확인하세요.

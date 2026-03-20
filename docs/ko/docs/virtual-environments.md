@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-다음 명령어들에서 사용할 수 있는 몇몇 [환경 변수](environment-variables.md){.internal-link target=_blank}를 생성하거나 수정하는 것을 의미합니다.
+다음 명령어들에서 사용할 수 있는 몇몇 [환경 변수](environment-variables.md)를 생성하거나 수정하는 것을 의미합니다.
 
 그 변수 중 하나가 `PATH` 변수입니다.
 
 /// tip
 
-`PATH` 환경 변수에 대해 더 알아보려면 [환경 변수](environment-variables.md#path-environment-variable){.internal-link target=_blank} 섹션을 참고하세요.
+`PATH` 환경 변수에 대해 더 알아보려면 [환경 변수](environment-variables.md#path-environment-variable) 섹션을 참고하세요.
 
 ///
 

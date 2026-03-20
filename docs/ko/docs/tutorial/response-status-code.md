@@ -98,4 +98,4 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 ## 기본값 변경 { #changing-the-default }
 
-나중에 [고급 사용자 지침서](../advanced/response-change-status-code.md){.internal-link target=_blank}에서, 여기서 선언하는 기본값과 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
+나중에 [고급 사용자 지침서](../advanced/response-change-status-code.md)에서, 여기서 선언하는 기본값과 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
