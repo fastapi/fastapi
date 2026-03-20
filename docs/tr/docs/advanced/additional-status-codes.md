@@ -38,4 +38,4 @@ Bir model ile serialize edilmez, vb.
 
 Ek status code'ları ve response'ları doğrudan döndürürseniz, FastAPI sizin ne döndüreceğinizi önceden bilemeyeceği için bunlar OpenAPI şemasına (API docs) dahil edilmez.
 
-Ancak bunu kodunuzda şu şekilde dokümante edebilirsiniz: [Ek Response'lar](additional-responses.md){.internal-link target=_blank}.
+Ancak bunu kodunuzda şu şekilde dokümante edebilirsiniz: [Ek Response'lar](additional-responses.md).

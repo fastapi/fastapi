@@ -269,7 +269,7 @@ Es bedeutet nicht: „`one_person` ist die **Klasse** genannt `Person`“.
 
 ## Pydantic-Modelle { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> ist eine Python-Bibliothek für die Validierung von Daten.
+[Pydantic](https://docs.pydantic.dev/) ist eine Python-Bibliothek für die Validierung von Daten.
 
 Sie deklarieren die „Form“ der Daten als Klassen mit Attributen.
 
@@ -285,13 +285,13 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 
 /// info | Info
 
-Um mehr über <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an</a>.
+Um mehr über [Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** basiert vollständig auf Pydantic.
 
-Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial – Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
+Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial – Benutzerhandbuch](tutorial/index.md) sehen.
 
 ## Typhinweise mit Metadaten-Annotationen { #type-hints-with-metadata-annotations }
 
@@ -330,19 +330,19 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 
 ... und **FastAPI** verwendet dieselben Deklarationen, um:
 
-* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfadparametern, Query-Parametern, Header-Feldern, Bodys, Abhängigkeiten, usw.
+* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfadparametern, Query-Parametern, Headern, Bodys, Abhängigkeiten, usw.
 * **Daten umzuwandeln**: aus dem Request in den erforderlichen Typ.
 * **Daten zu validieren**: aus jedem Request:
     * **Automatische Fehler** generieren, die an den Client zurückgegeben werden, wenn die Daten ungültig sind.
 * Die API mit OpenAPI zu **dokumentieren**:
     * Die dann von den Benutzeroberflächen der automatisch generierten interaktiven Dokumentation verwendet wird.
 
-Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial – Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank}.
+Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial – Benutzerhandbuch](tutorial/index.md).
 
 Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard-Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
 /// info | Info
 
-Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der „Cheat Sheet“ von `mypy`</a>.
+Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource [der „Cheat Sheet“ von `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

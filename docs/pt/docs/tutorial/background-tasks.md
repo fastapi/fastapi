@@ -62,7 +62,7 @@ E então outra tarefa em segundo plano gerada na *função de operação de rota
 
 ## Detalhes técnicos { #technical-details }
 
-A classe `BackgroundTasks` vem diretamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+A classe `BackgroundTasks` vem diretamente de [`starlette.background`](https://www.starlette.dev/background/).
 
 Ela é importada/incluída diretamente no FastAPI para que você possa importá-la de `fastapi` e evitar importar acidentalmente a alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
 
@@ -70,11 +70,11 @@ Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é possível usá-la 
 
 Ainda é possível usar `BackgroundTask` sozinho no FastAPI, mas você precisa criar o objeto no seu código e retornar uma `Response` da Starlette incluindo-o.
 
-Você pode ver mais detalhes na <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">documentação oficial da Starlette para tarefas em segundo plano</a>.
+Você pode ver mais detalhes na [documentação oficial da Starlette para tarefas em segundo plano](https://www.starlette.dev/background/).
 
 ## Ressalva { #caveat }
 
-Se você precisar realizar computação pesada em segundo plano e não necessariamente precisar que seja executada pelo mesmo processo (por exemplo, você não precisa compartilhar memória, variáveis, etc.), pode se beneficiar do uso de outras ferramentas maiores, como o <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+Se você precisar realizar computação pesada em segundo plano e não necessariamente precisar que seja executada pelo mesmo processo (por exemplo, você não precisa compartilhar memória, variáveis, etc.), pode se beneficiar do uso de outras ferramentas maiores, como o [Celery](https://docs.celeryq.dev).
 
 Elas tendem a exigir configurações mais complexas, um gerenciador de fila de mensagens/tarefas, como RabbitMQ ou Redis, mas permitem executar tarefas em segundo plano em vários processos e, especialmente, em vários servidores.
 

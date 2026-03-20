@@ -1,8 +1,8 @@
 # 高度なミドルウェア { #advanced-middleware }
 
-メインのチュートリアルでは、アプリケーションに[カスタムミドルウェア](../tutorial/middleware.md){.internal-link target=_blank}を追加する方法を学びました。
+メインのチュートリアルでは、アプリケーションに[カスタムミドルウェア](../tutorial/middleware.md)を追加する方法を学びました。
 
-そして、[`CORSMiddleware` を使った CORS の扱い方](../tutorial/cors.md){.internal-link target=_blank}も学びました。
+そして、[`CORSMiddleware` を使った CORS の扱い方](../tutorial/cors.md)も学びました。
 
 このセクションでは、その他のミドルウェアの使い方を見ていきます。
 
@@ -91,7 +91,7 @@ HTTP Host Header 攻撃を防ぐため、すべての受信リクエストに正
 
 例えば:
 
-- <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn の `ProxyHeadersMiddleware`</a>
-- <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+- [Uvicorn の `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-他に利用可能なミドルウェアについては、<a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette のミドルウェアドキュメント</a>や <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a> を参照してください。
+他に利用可能なミドルウェアについては、[Starlette のミドルウェアドキュメント](https://www.starlette.dev/middleware/)や [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) を参照してください。

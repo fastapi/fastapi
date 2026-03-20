@@ -4,9 +4,9 @@
 
 /// info | Дополнительная информация
 
-Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы использовать формы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет, например:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет, например:
 
 ```console
 $ pip install python-multipart
@@ -56,7 +56,7 @@ $ pip install python-multipart
 
 Но когда форма содержит файлы, она кодируется как `multipart/form-data`. О работе с файлами вы прочтёте в следующей главе.
 
-Если вы хотите узнать больше про эти кодировки и поля формы, обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> веб-документации для `POST`</a>.
+Если вы хотите узнать больше про эти кодировки и поля формы, обратитесь к [<abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> веб-документации для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

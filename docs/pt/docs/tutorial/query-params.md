@@ -129,7 +129,7 @@ Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigat�
 
 {* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-Aqui o parâmetro de consulta `needy` é um valor obrigatório, do tipo `str`.
+Aqui o parâmetro da consulta `needy` é um valor obrigatório, do tipo `str`.
 
 Se você abrir no seu navegador a URL:
 
@@ -182,6 +182,6 @@ Nesse caso, existem 3 parâmetros de consulta:
 
 /// tip | Dica
 
-Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+Você também poderia usar `Enum`s da mesma forma que com [Parâmetros de rota](path-params.md#predefined-values).
 
 ///

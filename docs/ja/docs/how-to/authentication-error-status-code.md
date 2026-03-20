@@ -2,7 +2,7 @@
 
 FastAPI バージョン `0.122.0` より前は、統合されたセキュリティユーティリティが認証に失敗してクライアントへエラーを返す際、HTTP ステータスコード `403 Forbidden` を使用していました。
 
-FastAPI バージョン `0.122.0` 以降では、より適切な HTTP ステータスコード `401 Unauthorized` を使用し、HTTP 仕様に従ってレスポンスに妥当な `WWW-Authenticate` ヘッダーを含めます。<a href="https://datatracker.ietf.org/doc/html/rfc7235#section-3.1" class="external-link" target="_blank">RFC 7235</a>、<a href="https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized" class="external-link" target="_blank">RFC 9110</a>。
+FastAPI バージョン `0.122.0` 以降では、より適切な HTTP ステータスコード `401 Unauthorized` を使用し、HTTP 仕様に従ってレスポンスに妥当な `WWW-Authenticate` ヘッダーを含めます。[RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235#section-3.1), [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized)。
 
 しかし、何らかの理由でクライアントが従来の挙動に依存している場合は、セキュリティクラスでメソッド `make_not_authenticated_error` をオーバーライドすることで、その挙動に戻せます。
 

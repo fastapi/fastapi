@@ -123,7 +123,7 @@ Ahora utilizaremos una dependencia simple para leer un header `X-Token` personal
 
 Estamos usando un header inventado para simplificar este ejemplo.
 
-Pero en casos reales obtendrás mejores resultados usando las [utilidades de Seguridad](security/index.md){.internal-link target=_blank} integradas.
+Pero en casos reales obtendrás mejores resultados usando las [utilidades de Seguridad](security/index.md) integradas.
 
 ///
 
@@ -169,7 +169,7 @@ Y podemos agregar una lista de `dependencies` que se añadirá a todas las *path
 
 /// tip | Consejo
 
-Nota que, al igual que [dependencias en decoradores de *path operations*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, ningún valor será pasado a tu *path operation function*.
+Nota que, al igual que [dependencias en decoradores de *path operations*](dependencies/dependencies-in-path-operation-decorators.md), ningún valor será pasado a tu *path operation function*.
 
 ///
 
@@ -185,8 +185,8 @@ El resultado final es que los paths de item son ahora:
 * Todos incluirán las `responses` predefinidas.
 * Todas estas *path operations* tendrán la lista de `dependencies` evaluadas/ejecutadas antes de ellas.
   * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
-  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, y luego las dependencias de parámetros normales.
-  * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md), y luego las dependencias de parámetros normales.
+  * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Consejo
 
@@ -303,7 +303,7 @@ Y como la mayor parte de tu lógica ahora vivirá en su propio módulo específi
 
 Importas y creas una clase `FastAPI` como normalmente.
 
-Y podemos incluso declarar [dependencias globales](dependencies/global-dependencies.md){.internal-link target=_blank} que se combinarán con las dependencias para cada `APIRouter`:
+Y podemos incluso declarar [dependencias globales](dependencies/global-dependencies.md) que se combinarán con las dependencias para cada `APIRouter`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ La segunda versión es un "import absoluto":
 from app.routers import items, users
 ```
 
-Para aprender más sobre Paquetes y Módulos de Python, lee <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">la documentación oficial de Python sobre Módulos</a>.
+Para aprender más sobre Paquetes y Módulos de Python, lee [la documentación oficial de Python sobre Módulos](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -465,6 +465,37 @@ Como no podemos simplemente aislarlos y "montarlos" independientemente del resto
 
 ///
 
+## Configurar el `entrypoint` en `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Como tu objeto `app` de FastAPI vive en `app/main.py`, puedes configurar el `entrypoint` en tu archivo `pyproject.toml` así:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+que es equivalente a importar como:
+
+```python
+from app.main import app
+```
+
+De esa manera el comando `fastapi` sabrá dónde encontrar tu app.
+
+/// Note | Nota
+
+También podrías pasar la ruta al comando, como:
+
+```console
+$ fastapi dev app/main.py
+```
+
+Pero tendrías que recordar pasar la ruta correcta cada vez que llames al comando `fastapi`.
+
+Además, otras herramientas podrían no ser capaces de encontrarla, por ejemplo la [Extensión de VS Code](../editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
+
+///
+
 ## Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
 Ahora, ejecuta tu app:
@@ -472,14 +503,14 @@ Ahora, ejecuta tu app:
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Y abre la documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Y abre la documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás la documentación automática de la API, incluyendo los paths de todos los submódulos, usando los paths correctos (y prefijos) y los tags correctos:
 

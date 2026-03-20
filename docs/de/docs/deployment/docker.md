@@ -1,6 +1,6 @@
 # FastAPI in Containern – Docker { #fastapi-in-containers-docker }
 
-Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten deployen.
+Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit [**Docker**](https://www.docker.com/). Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten deployen.
 
 Die Verwendung von Linux-Containern bietet mehrere Vorteile, darunter **Sicherheit**, **Replizierbarkeit**, **Einfachheit** und andere.
 
@@ -60,16 +60,16 @@ Und der **Container** selbst (im Gegensatz zum **Containerimage**) ist die tats�
 
 Docker ist eines der wichtigsten Tools zum Erstellen und Verwalten von **Containerimages** und **Containern**.
 
-Und es gibt einen öffentlichen <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker <abbr title="Umschlagplatz">Hub</abbr></a> mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
+Und es gibt einen öffentlichen [Docker <abbr title="Umschlagplatz">Hub</abbr>](https://hub.docker.com/) mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
 
-Beispielsweise gibt es ein offizielles <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python-Image</a>.
+Beispielsweise gibt es ein offizielles [Python-Image](https://hub.docker.com/_/python).
 
 Und es gibt viele andere Images für verschiedene Dinge wie Datenbanken, zum Beispiel für:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, usw.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), usw.
 
 Durch die Verwendung eines vorgefertigten Containerimages ist es sehr einfach, verschiedene Tools zu **kombinieren** und zu verwenden. Zum Beispiel, um eine neue Datenbank auszuprobieren. In den meisten Fällen können Sie die **offiziellen Images** verwenden und diese einfach mit Umgebungsvariablen konfigurieren.
 
@@ -111,7 +111,7 @@ Dies hängt hauptsächlich von dem Tool ab, mit dem Sie diese Anforderungen **in
 
 Die gebräuchlichste Methode besteht darin, eine Datei `requirements.txt` mit den Namen der Packages und deren Versionen zu erstellen, eine pro Zeile.
 
-Sie würden natürlich die gleichen Ideen verwenden, die Sie in [Über FastAPI-Versionen](versions.md){.internal-link target=_blank} gelesen haben, um die Versionsbereiche festzulegen.
+Sie würden natürlich die gleichen Ideen verwenden, die Sie in [Über FastAPI-Versionen](versions.md) gelesen haben, um die Versionsbereiche festzulegen.
 
 Ihre `requirements.txt` könnte beispielsweise so aussehen:
 
@@ -238,7 +238,7 @@ Stellen Sie sicher, dass Sie **immer** die **exec form** der Anweisung `CMD` ver
 
 #### `CMD` – Exec Form verwenden { #use-cmd-exec-form }
 
-Die <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker-Anweisung kann in zwei Formen geschrieben werden:
+Die [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) Docker-Anweisung kann in zwei Formen geschrieben werden:
 
 ✅ **Exec** form:
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Achten Sie darauf, stets die **exec** form zu verwenden, um sicherzustellen, dass FastAPI ordnungsgemäß heruntergefahren wird und [Lifespan-Events](../advanced/events.md){.internal-link target=_blank} ausgelöst werden.
+Achten Sie darauf, stets die **exec** form zu verwenden, um sicherzustellen, dass FastAPI ordnungsgemäß heruntergefahren wird und [Lifespan-Events](../advanced/events.md) ausgelöst werden.
 
-Sie können mehr darüber in der <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker-Dokumentation für Shell und Exec Form lesen</a>.
+Sie können mehr darüber in der [Docker-Dokumentation für Shell und Exec Form lesen](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
-Dies kann insbesondere bei der Verwendung von `docker compose` deutlich spürbar sein. Sehen Sie sich diesen Abschnitt in der Docker Compose-FAQ für technische Details an: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Warum benötigen meine Dienste 10 Sekunden, um neu erstellt oder gestoppt zu werden?</a>.
+Dies kann insbesondere bei der Verwendung von `docker compose` deutlich spürbar sein. Sehen Sie sich diesen Abschnitt in der Docker Compose-FAQ für technische Details an: [Warum benötigen meine Dienste 10 Sekunden, um neu erstellt oder gestoppt zu werden?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### Verzeichnisstruktur { #directory-structure }
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Es testen { #check-it }
 
-Sie sollten es in der URL Ihres Docker-Containers überprüfen können, zum Beispiel: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> oder <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (oder gleichwertig, unter Verwendung Ihres Docker-Hosts).
+Sie sollten es in der URL Ihres Docker-Containers überprüfen können, zum Beispiel: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) oder [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (oder gleichwertig, unter Verwendung Ihres Docker-Hosts).
 
 Sie werden etwas sehen wie:
 
@@ -362,17 +362,17 @@ Sie werden etwas sehen wie:
 
 ## Interaktive API-Dokumentation { #interactive-api-docs }
 
-Jetzt können Sie auf <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> oder <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
+Jetzt können Sie auf [http://192.168.99.100/docs](http://192.168.99.100/docs) oder [http://127.0.0.1/docs](http://127.0.0.1/docs) gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
-Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger-Oberfläche](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## Alternative API-Dokumentation { #alternative-api-docs }
 
-Sie können auch auf <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> oder <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
+Sie können auch auf [http://192.168.99.100/redoc](http://192.168.99.100/redoc) oder [http://127.0.0.1/redoc](http://127.0.0.1/redoc) gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
-Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -413,7 +413,7 @@ Indem Sie die Datei an `fastapi run` übergeben, wird automatisch erkannt, dass 
 
 ## Deployment-Konzepte { #deployment-concepts }
 
-Lassen Sie uns noch einmal über einige der gleichen [Deployment-Konzepte](concepts.md){.internal-link target=_blank} in Bezug auf Container sprechen.
+Lassen Sie uns noch einmal über einige der gleichen [Deployment-Konzepte](concepts.md) in Bezug auf Container sprechen.
 
 Container sind hauptsächlich ein Werkzeug, um den Prozess des **Erstellens und Deployments** einer Anwendung zu vereinfachen, sie erzwingen jedoch keinen bestimmten Ansatz für die Handhabung dieser **Deployment-Konzepte**, und es gibt mehrere mögliche Strategien.
 
@@ -432,7 +432,7 @@ Sehen wir uns diese **Deployment-Konzepte** im Hinblick auf Container noch einma
 
 Wenn wir uns nur auf das **Containerimage** für eine FastAPI-Anwendung (und später auf den laufenden **Container**) konzentrieren, würde HTTPS normalerweise **extern** von einem anderen Tool verarbeitet.
 
-Es könnte sich um einen anderen Container handeln, zum Beispiel mit <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, welcher **HTTPS** und **automatischen** Erwerb von **Zertifikaten** handhabt.
+Es könnte sich um einen anderen Container handeln, zum Beispiel mit [Traefik](https://traefik.io/), welcher **HTTPS** und **automatischen** Erwerb von **Zertifikaten** handhabt.
 
 /// tip | Tipp
 
@@ -558,7 +558,7 @@ Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **ein
 
 /// info | Info
 
-Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init-Container</a>.
+Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein [Init-Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
 ///
 
@@ -570,7 +570,7 @@ Wenn Sie ein einfaches Setup mit einem **einzelnen Container** haben, welcher da
 
 ### Docker-Basisimage { #base-docker-image }
 
-Es gab ein offizielles FastAPI-Docker-Image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Dieses ist jedoch jetzt deprecatet. ⛔️
+Es gab ein offizielles FastAPI-Docker-Image: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Dieses ist jedoch jetzt deprecatet. ⛔️
 
 Sie sollten wahrscheinlich **nicht** dieses Basis-Docker-Image (oder ein anderes ähnliches) verwenden.
 
@@ -600,7 +600,7 @@ Zum Beispiel:
 
 ## Docker-Image mit `uv` { #docker-image-with-uv }
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> verwenden, um Ihr Projekt zu installieren und zu verwalten, können Sie deren <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv-Docker-Leitfaden</a> befolgen.
+Wenn Sie [uv](https://github.com/astral-sh/uv) verwenden, um Ihr Projekt zu installieren und zu verwalten, können Sie deren [uv-Docker-Leitfaden](https://docs.astral.sh/uv/guides/integration/docker/) befolgen.
 
 ## Zusammenfassung { #recap }
 

@@ -18,8 +18,34 @@ hide:
 * 📝 Fix doctrings for `max_digits` and `decimal_places`. PR [#14944](https://github.com/fastapi/fastapi/pull/14944) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Add dates to release notes. PR [#15001](https://github.com/fastapi/fastapi/pull/15001) by [@YuriiMotov](https://github.com/YuriiMotov).
 
+### Translations
+
+* 🌐 Update translations for zh-hant (add-missing). PR [#15176](https://github.com/fastapi/fastapi/pull/15176) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (add-missing). PR [#15175](https://github.com/fastapi/fastapi/pull/15175) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15171](https://github.com/fastapi/fastapi/pull/15171) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15170](https://github.com/fastapi/fastapi/pull/15170) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15172](https://github.com/fastapi/fastapi/pull/15172) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (add-missing). PR [#15168](https://github.com/fastapi/fastapi/pull/15168) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (add-missing). PR [#15167](https://github.com/fastapi/fastapi/pull/15167) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (add-missing). PR [#15169](https://github.com/fastapi/fastapi/pull/15169) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (update-outdated). PR [#15165](https://github.com/fastapi/fastapi/pull/15165) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (add-missing). PR [#15163](https://github.com/fastapi/fastapi/pull/15163) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15160](https://github.com/fastapi/fastapi/pull/15160) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (add-missing). PR [#15158](https://github.com/fastapi/fastapi/pull/15158) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (add-missing). PR [#15157](https://github.com/fastapi/fastapi/pull/15157) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15159](https://github.com/fastapi/fastapi/pull/15159) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15155](https://github.com/fastapi/fastapi/pull/15155) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (add-missing). PR [#15154](https://github.com/fastapi/fastapi/pull/15154) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15156](https://github.com/fastapi/fastapi/pull/15156) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-and-add). PR [#15152](https://github.com/fastapi/fastapi/pull/15152) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (add-missing). PR [#15153](https://github.com/fastapi/fastapi/pull/15153) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
+* ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔨 Tweak translation workflow and translation fixer tool. PR [#15166](https://github.com/fastapi/fastapi/pull/15166) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔨 Fix `commit_in_place` passed via env variable in `translate.yml` workflow. PR [#15151](https://github.com/fastapi/fastapi/pull/15151) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔨 Update translation general prompt to enforce link style in translation matches the original link style. PR [#15148](https://github.com/fastapi/fastapi/pull/15148) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Re-enable translation workflow run by cron in CI (twice a month). PR [#15145](https://github.com/fastapi/fastapi/pull/15145) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Add `ty` to precommit. PR [#15091](https://github.com/fastapi/fastapi/pull/15091) by [@svlandeg](https://github.com/svlandeg).

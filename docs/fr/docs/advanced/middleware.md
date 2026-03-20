@@ -1,8 +1,8 @@
 # Utiliser des middlewares avancés { #advanced-middleware }
 
-Dans le tutoriel principal, vous avez vu comment ajouter des [middlewares personnalisés](../tutorial/middleware.md){.internal-link target=_blank} à votre application.
+Dans le tutoriel principal, vous avez vu comment ajouter des [middlewares personnalisés](../tutorial/middleware.md) à votre application.
 
-Vous avez également vu comment gérer [CORS avec le `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+Vous avez également vu comment gérer [CORS avec le `CORSMiddleware`](../tutorial/cors.md).
 
 Dans cette section, nous allons voir comment utiliser d'autres middlewares.
 
@@ -91,7 +91,7 @@ Il existe de nombreux autres middlewares ASGI.
 
 Par exemple :
 
-- <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Le `ProxyHeadersMiddleware` d'Uvicorn</a>
-- <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+- [Le `ProxyHeadersMiddleware` d'Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Pour voir d'autres middlewares disponibles, consultez <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">la documentation des middlewares de Starlette</a> et la <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">liste ASGI Awesome</a>.
+Pour voir d'autres middlewares disponibles, consultez la [documentation des middlewares de Starlette](https://www.starlette.dev/middleware/) et la [liste ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

@@ -14,8 +14,8 @@ Garanta utilizar `yield` apenas uma vez por dependência.
 
 Qualquer função que possa ser utilizada com:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ou
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) ou
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 pode ser utilizada como uma dependência do **FastAPI**.
 
@@ -87,7 +87,7 @@ O **FastAPI** se encarrega de executá-las na ordem certa.
 
 /// note | Detalhes Técnicos
 
-Tudo isso funciona graças aos <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">gerenciadores de contexto</a> do Python.
+Tudo isso funciona graças aos [gerenciadores de contexto](https://docs.python.org/3/library/contextlib.html) do Python.
 
 O **FastAPI** utiliza eles internamente para alcançar isso.
 
@@ -111,7 +111,7 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Se você quiser capturar exceções e criar uma resposta personalizada com base nisso, crie um [Manipulador de Exceções Customizado](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Se você quiser capturar exceções e criar uma resposta personalizada com base nisso, crie um [Manipulador de Exceções Customizado](../handling-errors.md#install-custom-exception-handlers).
 
 ## Dependências com `yield` e `except` { #dependencies-with-yield-and-except }
 
@@ -233,14 +233,14 @@ participant operation as Operação de Rota
 
 Dependências com `yield` evoluíram ao longo do tempo para cobrir diferentes casos de uso e corrigir alguns problemas.
 
-Se você quiser ver o que mudou em diferentes versões do FastAPI, você pode ler mais sobre isso no guia avançado, em [Dependências Avançadas - Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Se você quiser ver o que mudou em diferentes versões do FastAPI, você pode ler mais sobre isso no guia avançado, em [Dependências Avançadas - Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Gerenciadores de contexto { #context-managers }
 
 ### O que são "Gerenciadores de Contexto" { #what-are-context-managers }
 
 "Gerenciadores de Contexto" são qualquer um dos objetos Python que podem ser utilizados com a declaração `with`.
 
-Por exemplo, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">você pode utilizar `with` para ler um arquivo</a>:
+Por exemplo, [você pode utilizar `with` para ler um arquivo](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ Se você está apenas iniciando com o **FastAPI** você pode querer pular isso p
 
 ///
 
-Em Python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">criar uma classe com dois métodos: `__enter__()` e `__exit__()`</a>.
+Em Python, você pode criar Gerenciadores de Contexto ao [criar uma classe com dois métodos: `__enter__()` e `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar
 `with` ou `async with` dentro da função da dependência:
@@ -275,8 +275,8 @@ Você também pode usá-los dentro de dependências com `yield` do **FastAPI** a
 
 Outra forma de criar um gerenciador de contexto é utilizando:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ou
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) ou
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 Para decorar uma função com um único `yield`.
 

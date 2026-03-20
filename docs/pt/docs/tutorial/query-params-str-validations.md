@@ -35,13 +35,13 @@ O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 
 
 Se você tiver uma versão mais antiga, teria erros ao tentar usar `Annotated`.
 
-Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
+Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) para pelo menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
 ## Use `Annotated` no tipo do parâmetro `q` { #use-annotated-in-the-type-for-the-q-parameter }
 
-Lembra que eu disse antes que `Annotated` pode ser usado para adicionar metadados aos seus parâmetros na [Introdução aos tipos do Python](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
+Lembra que eu disse antes que `Annotated` pode ser usado para adicionar metadados aos seus parâmetros na [Introdução aos tipos do Python](../python-types.md#type-hints-with-metadata-annotations)?
 
 Agora é a hora de usá-lo com FastAPI. 🚀
 
@@ -158,7 +158,7 @@ Você poderia chamar essa mesma função em outros lugares sem FastAPI, e ela fu
 
 Quando você não usa `Annotated` e em vez disso usa o estilo de valor padrão (antigo), se você chamar essa função sem FastAPI em outros lugares, terá que lembrar de passar os argumentos para a função para que funcione corretamente, caso contrário os valores serão diferentes do esperado (por exemplo, `QueryInfo` ou algo parecido em vez de `str`). E seu editor não vai avisar, e o Python também não vai reclamar ao executar a função, apenas quando as operações internas falharem.
 
-Como `Annotated` pode ter mais de uma anotação de metadados, você agora pode até usar a mesma função com outras ferramentas, como o <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Como `Annotated` pode ter mais de uma anotação de metadados, você agora pode até usar a mesma função com outras ferramentas, como o [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Adicione mais validações { #add-more-validations }
 
@@ -370,11 +370,11 @@ Podem existir casos em que você precise fazer alguma validação personalizada 
 
 Nesses casos, você pode usar uma função validadora personalizada que é aplicada após a validação normal (por exemplo, depois de validar que o valor é uma `str`).
 
-Você pode fazer isso usando o <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">`AfterValidator` do Pydantic</a> dentro de `Annotated`.
+Você pode fazer isso usando o [`AfterValidator` do Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) dentro de `Annotated`.
 
 /// tip | Dica
 
-O Pydantic também tem <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> e outros. 🤓
+O Pydantic também tem [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) e outros. 🤓
 
 ///
 

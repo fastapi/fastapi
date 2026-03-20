@@ -132,7 +132,7 @@ Si vous avez ce cas d’utilisation spécifique avec SQLModel (ou SQLAlchemy), v
 
 De cette manière, la session libérera la connexion à la base de données, afin que d’autres requêtes puissent l’utiliser.
 
-Si vous avez un autre cas d’utilisation qui nécessite une sortie anticipée depuis une dépendance avec `yield`, veuillez créer une <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Question de discussion GitHub</a> avec votre cas spécifique et pourquoi vous bénéficieriez d’une fermeture anticipée pour les dépendances avec `yield`.
+Si vous avez un autre cas d’utilisation qui nécessite une sortie anticipée depuis une dépendance avec `yield`, veuillez créer une [Question de discussion GitHub](https://github.com/fastapi/fastapi/discussions/new?category=questions) avec votre cas spécifique et pourquoi vous bénéficieriez d’une fermeture anticipée pour les dépendances avec `yield`.
 
 S’il existe des cas d’utilisation convaincants pour une fermeture anticipée dans les dépendances avec `yield`, j’envisagerai d’ajouter une nouvelle façon d’y opter.
 
@@ -144,7 +144,7 @@ Cela a été modifié dans la version 0.110.0 pour corriger une consommation de 
 
 ### Tâches d'arrière‑plan et dépendances avec `yield`, Détails techniques { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait après l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} avaient déjà été exécutés.
+Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait après l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers) avaient déjà été exécutés.
 
 Cela avait été conçu ainsi principalement pour permettre d’utiliser les mêmes objets « générés par yield » par les dépendances à l’intérieur de tâches d’arrière‑plan, car le code d’arrêt s’exécutait après la fin des tâches d’arrière‑plan.
 
