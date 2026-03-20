@@ -35,7 +35,7 @@
 
 /// tip
 
-`callback_url` 查詢參數使用的是 Pydantic 的 <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> 型別。
+`callback_url` 查詢參數使用的是 Pydantic 的 [Url](https://docs.pydantic.dev/latest/api/networks/) 型別。
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 實際的回呼就是一個 HTTP 請求。
 
-當你自己實作回呼時，可以使用像是 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> 或 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>。
+當你自己實作回呼時，可以使用像是 [HTTPX](https://www.python-httpx.org) 或 [Requests](https://requests.readthedocs.io/)。
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 和一般「路徑操作」相比有兩個主要差異：
 
 * 不需要任何實際程式碼，因為你的應用永遠不會呼叫這段程式。它只用來文件化「外部 API」。因此函式可以只有 `pass`。
-* 「路徑」可以包含一個 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 表達式</a>（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
+* 「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
 
 ### 回呼路徑表達式 { #the-callback-path-expression }
 
-回呼的「路徑」可以包含一個 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 表達式</a>，能引用原本送到「你的 API」的請求中的部分內容。
+回呼的「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)，能引用原本送到「你的 API」的請求中的部分內容。
 
 在這個例子中，它是一個 `str`：
 
@@ -179,7 +179,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 ### 檢查文件 { #check-the-docs }
 
-現在你可以啟動應用，並前往 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+現在你可以啟動應用，並前往 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 你會在文件中看到你的「路徑操作」包含一個「Callbacks」區塊，顯示「外部 API」應該長什麼樣子：
 
