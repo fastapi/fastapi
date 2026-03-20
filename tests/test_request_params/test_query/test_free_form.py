@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsOneOf
@@ -82,13 +82,13 @@ def test_required_dict_str(path: str):
 
 @app.get("/required-dict-union")
 async def read_required_dict_union(
-    p: Annotated[Union[dict[str, str], dict[str, int]], Query()],
+    p: Annotated[dict[str, str] | dict[str, int], Query()],
 ):
     return {"p": p}
 
 
 class QueryModelRequiredDictUnion(BaseModel):
-    p: Union[dict[str, str], dict[str, int]]
+    p: dict[str, str] | dict[str, int]
 
 
 @app.get("/model-required-dict-union")
@@ -156,13 +156,13 @@ def test_required_dict_union(path: str):
 
 @app.get("/required-dict-of-union")
 async def read_required_dict_of_union(
-    p: Annotated[dict[str, Union[int, bool]], Query()],
+    p: Annotated[dict[str, int | bool], Query()],
 ):
     return {"p": p}
 
 
 class QueryModelRequiredDictOfUnion(BaseModel):
-    p: dict[str, Union[int, bool]]
+    p: dict[str, int | bool]
 
 
 @app.get("/model-required-dict-of-union")
