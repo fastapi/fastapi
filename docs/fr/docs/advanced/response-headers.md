@@ -20,7 +20,7 @@ Vous pouvez également déclarer le paramètre `Response` dans des dépendances,
 
 Vous pouvez également ajouter des en-têtes lorsque vous renvoyez une `Response` directement.
 
-Créez une réponse comme décrit dans [Renvoyer une Response directement](response-directly.md){.internal-link target=_blank} et passez les en-têtes comme paramètre supplémentaire :
+Créez une réponse comme décrit dans [Renvoyer une Response directement](response-directly.md) et passez les en-têtes comme paramètre supplémentaire :
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@ Et comme `Response` peut être utilisée fréquemment pour définir des en-tête
 
 ## En-têtes personnalisés { #custom-headers }
 
-Gardez à l'esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">en utilisant le préfixe `X-`</a>.
+Gardez à l'esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), en utilisant le paramètre `expose_headers` documenté dans <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentation CORS de Starlette</a>.
+Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).

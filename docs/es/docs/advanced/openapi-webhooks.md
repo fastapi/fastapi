@@ -48,7 +48,7 @@ Esto es porque se espera que **tus usuarios** definan el actual **URL path** don
 
 ### Revisa la documentación { #check-the-docs }
 
-Ahora puedes iniciar tu app e ir a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ahora puedes iniciar tu app e ir a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás que tu documentación tiene las *path operations* normales y ahora también algunos **webhooks**:
 

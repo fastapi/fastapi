@@ -20,7 +20,7 @@ Sie können den `Response`-Parameter auch in Abhängigkeiten deklarieren und dar
 
 Sie können Cookies auch erstellen, wenn Sie eine `Response` direkt in Ihrem Code zurückgeben.
 
-Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} beschrieben.
+Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurückgeben](response-directly.md) beschrieben.
 
 Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 
@@ -48,4 +48,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.
+Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren [Dokumentation in Starlette](https://www.starlette.dev/responses/#set-cookie) an.

@@ -4,7 +4,7 @@
 
 Вы можете использовать этот шаблон для старта: в нём уже сделана значительная часть начальной настройки, безопасность, база данных и несколько эндпоинтов API.
 
-Репозиторий GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+Репозиторий GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI — Технологический стек и возможности { #full-stack-fastapi-template-technology-stack-and-features }
 

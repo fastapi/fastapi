@@ -59,7 +59,7 @@ $ python myapp.py
 ```Python
 from myapp import app
 
-# Some more code
+# Ще трохи коду
 ```
 
 у цьому випадку автоматично створена змінна `__name__` всередині `myapp.py` не матиме значення `"__main__"`.
@@ -72,9 +72,9 @@ from myapp import app
 
 не буде виконано.
 
-/// info | Інформація
+/// info
 
-Для отримання додаткової інформації дивіться <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">офіційну документацію Python</a>.
+Для отримання додаткової інформації дивіться [офіційну документацію Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 

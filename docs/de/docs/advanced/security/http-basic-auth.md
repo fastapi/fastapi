@@ -32,7 +32,7 @@ Hier ist ein vollständigeres Beispiel.
 
 Verwenden Sie eine Abhängigkeit, um zu überprüfen, ob Benutzername und Passwort korrekt sind.
 
-Verwenden Sie dazu das Python-Standardmodul <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a>, um den Benutzernamen und das Passwort zu überprüfen.
+Verwenden Sie dazu das Python-Standardmodul [`secrets`](https://docs.python.org/3/library/secrets.html), um den Benutzernamen und das Passwort zu überprüfen.
 
 `secrets.compare_digest()` benötigt `bytes` oder einen `str`, welcher nur ASCII-Zeichen (solche der englischen Sprache) enthalten darf, das bedeutet, dass es nicht mit Zeichen wie `á`, wie in `Sebastián`, funktionieren würde.
 

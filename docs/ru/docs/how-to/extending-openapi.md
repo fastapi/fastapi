@@ -37,7 +37,7 @@
 
 Используя информацию выше, вы можете той же вспомогательной функцией сгенерировать схему OpenAPI и переопределить любые нужные части.
 
-Например, добавим <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">расширение OpenAPI ReDoc для включения собственного логотипа</a>.
+Например, добавим [расширение OpenAPI ReDoc для включения собственного логотипа](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Обычный **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@
 
 ### Проверьте { #check-it }
 
-Перейдите на <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> — вы увидите, что используется ваш кастомный логотип (в этом примере — логотип **FastAPI**):
+Перейдите на [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) — вы увидите, что используется ваш кастомный логотип (в этом примере — логотип **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

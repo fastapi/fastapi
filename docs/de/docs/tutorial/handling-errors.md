@@ -81,7 +81,7 @@ Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie be
 
 ## Benutzerdefinierte Exceptionhandler installieren { #install-custom-exception-handlers }
 
-Sie können benutzerdefinierte <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Exceptionhandler mit den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
+Sie können benutzerdefinierte Exceptionhandler mit [denselben Exception-Werkzeugen von Starlette](https://www.starlette.dev/exceptions/) hinzufügen.
 
 Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 

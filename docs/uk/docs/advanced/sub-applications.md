@@ -30,25 +30,25 @@
 
 ### Перевірте автоматичну документацію API { #check-the-automatic-api-docs }
 
-Тепер запустіть команду `fastapi` з вашим файлом:
+Тепер запустіть команду `fastapi`:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-І відкрийте документацію за адресою <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+І відкрийте документацію за адресою [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Ви побачите автоматичну документацію API для головного застосунку, що містить лише його власні _операції шляху_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-А потім відкрийте документацію для підзастосунку за адресою <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+А потім відкрийте документацію для підзастосунку за адресою [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 Ви побачите автоматичну документацію API для підзастосунку, що містить лише його власні _операції шляху_, усі з правильним префіксом підшляху `/subapi`:
 
@@ -64,4 +64,4 @@ $ fastapi dev main.py
 
 Підзастосунок також може мати власні змонтовані підзастосунки, і все працюватиме коректно, оскільки FastAPI автоматично обробляє всі ці `root_path`.
 
-Ви дізнаєтеся більше про `root_path` і як використовувати його явно в розділі [За представником](behind-a-proxy.md){.internal-link target=_blank}.
+Ви дізнаєтеся більше про `root_path` і як використовувати його явно в розділі [За представником](behind-a-proxy.md).
