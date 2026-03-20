@@ -16,7 +16,7 @@
 
 `TestClient` は、標準の pytest を使って通常の `def` のテスト関数から非同期の FastAPI アプリを呼び出すための「おまじない」を内部で行います。しかし、その「おまじない」はテスト関数自体が非同期の場合には機能しません。テストを非同期で実行すると、テスト関数内で `TestClient` は使えなくなります。
 
-`TestClient` は <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> を基に作られており、幸いなことに API のテストには HTTPX を直接利用できます。
+`TestClient` は [HTTPX](https://www.python-httpx.org) を基に作られており、幸いなことに API のテストには HTTPX を直接利用できます。
 
 ## 例 { #example }
 
@@ -60,7 +60,7 @@ $ pytest
 
 /// tip | 豆知識
 
-`TestClient` を使っていたときと異なり、テスト関数は `def` ではなく `async def` になっている点に注意してください。
+`TestClient` を使っていたときと異なり、テスト関数は `async def` ではなく `def` になっている点に注意してください。
 
 ///
 
@@ -84,7 +84,7 @@ response = client.get('/')
 
 /// warning | 注意
 
-アプリケーションが lifespan イベントに依存している場合、`AsyncClient` はそれらのイベントをトリガーしません。確実にトリガーするには、<a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a> の `LifespanManager` を使用してください。
+アプリケーションが lifespan イベントに依存している場合、`AsyncClient` はそれらのイベントをトリガーしません。確実にトリガーするには、[florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage) の `LifespanManager` を使用してください。
 
 ///
 
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | 豆知識
 
-テストに非同期関数呼び出しを統合した際に（例: <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB の MotorClient</a> 使用時）、`RuntimeError: Task attached to a different loop` に遭遇した場合は、イベントループを必要とするオブジェクトは非同期関数内でのみインスタンス化するようにしてください。例えば `@app.on_event("startup")` コールバック内で行います。
+テストに非同期関数呼び出しを統合した際に（例: [MongoDB の MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop) 使用時）、`RuntimeError: Task attached to a different loop` に遭遇した場合は、イベントループを必要とするオブジェクトは非同期関数内でのみインスタンス化するようにしてください。例えば `@app.on_event("startup")` コールバック内で行います。
 
 ///
