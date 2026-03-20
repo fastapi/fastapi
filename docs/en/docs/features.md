@@ -8,7 +8,7 @@
 
 * [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) for API creation, including declarations of <dfn title="also known as: endpoints, routes">path</dfn> <dfn title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</dfn>, parameters, request bodies, security, etc.
 * Automatic data model documentation with [**JSON Schema**](https://json-schema.org/) (as OpenAPI itself is based on JSON Schema).
-* Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
+* Designed around these standards after a meticulous study, rather than being added as an afterthought    layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
 ### Automatic docs { #automatic-docs }
@@ -97,7 +97,7 @@ No more typing the wrong key names, coming back and forth between docs, or scrol
 
 ### Short { #short }
 
-It has sensible **defaults** for everything, with optional configurations everywhere. All the parameters can be fine-tuned to do what you need and to define the API you need.
+It provides sensible **defaults** for everything, with optional configurations available when needed. All the parameters can be fine-tuned to do what you need and to define the API you need.
 
 But by default, it all **"just works"**.
 
@@ -147,7 +147,7 @@ FastAPI includes an extremely easy to use, but extremely powerful <dfn title='al
 
 ### Unlimited "plug-ins" { #unlimited-plug-ins }
 
-Or in other way, no need for them, import and use the code you need.
+In other words, there is no need for plug-ins—just import and use the code you need.
 
 Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
 
