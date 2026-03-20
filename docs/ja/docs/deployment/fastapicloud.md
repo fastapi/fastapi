@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> に **コマンド1つ** でデプロイできます。まだならウェイティングリストにご登録ください。🚀
+[FastAPI Cloud](https://fastapicloud.com) に **コマンド1つ** でデプロイできます。まだならウェイティングリストにご登録ください。🚀
 
 ## ログイン { #login }
 
@@ -40,7 +40,7 @@ Deploying to FastAPI Cloud...
 
 ## FastAPI Cloud について { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** は、**FastAPI** の作者とチームによって開発されています。
+**[FastAPI Cloud](https://fastapicloud.com)** は、**FastAPI** の作者とチームによって開発されています。
 
 最小限の手間で API を**構築**・**デプロイ**・**利用**できるように工程を簡素化します。
 

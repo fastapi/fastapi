@@ -4,9 +4,9 @@
 
 /// info | 情報
 
-アップロードされたファイルを受け取るには、まず <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> をインストールします。
+アップロードされたファイルを受け取るには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化し、次のようにインストールしてください:
+[仮想環境](../virtual-environments.md)を作成して有効化し、次のようにインストールしてください:
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ $ pip install python-multipart
     - 最大サイズまではメモリに保持し、それを超えるとディスクに格納されるファイルです。
 - そのため、画像・動画・大きなバイナリなどの大きなファイルでも、メモリを使い果たすことなくうまく動作します。
 - アップロードされたファイルからメタデータを取得できます。
-- <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> な `async` インターフェースを持ちます。
-- 実際の Python の <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> オブジェクトを公開しており、file-like オブジェクトを期待する他のライブラリにそのまま渡せます。
+- [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) な `async` インターフェースを持ちます。
+- 実際の Python の [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) オブジェクトを公開しており、file-like オブジェクトを期待する他のライブラリにそのまま渡せます。
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ $ pip install python-multipart
 
 - `filename`: アップロード時の元のファイル名を表す `str`（例: `myimage.jpg`）
 - `content_type`: コンテントタイプ（MIME タイプ / メディアタイプ）を表す `str`（例: `image/jpeg`）
-- `file`: <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> なオブジェクト）。これは実際の Python のファイルオブジェクトで、「file-like」オブジェクトを期待する関数やライブラリに直接渡せます。
+- `file`: [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile)（[file-like](https://docs.python.org/3/glossary.html#term-file-like-object) なオブジェクト）。これは実際の Python のファイルオブジェクトで、「file-like」オブジェクトを期待する関数やライブラリに直接渡せます。
 
 `UploadFile` には次の `async` メソッドがあります。いずれも内部で対応するファイルメソッド（内部の `SpooledTemporaryFile`）を呼び出します。
 
@@ -121,7 +121,7 @@ HTML フォーム（`<form></form>`）がサーバーにデータを送る方法
 
 ただしフォームにファイルが含まれる場合は、`multipart/form-data` としてエンコードされます。`File` を使うと、**FastAPI** はボディ内の正しい部分からファイルを取得すべきであると認識します。
 
-これらのエンコーディングやフォームフィールドの詳細は、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> Web Docs の <code>POST</code></a> を参照してください。
+これらのエンコーディングやフォームフィールドの詳細は、[<abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> Web Docs の `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) を参照してください。
 
 ///
 
