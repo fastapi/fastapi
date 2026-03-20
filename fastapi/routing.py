@@ -1773,7 +1773,9 @@ class APIRouter(routing.Router):
                     deprecated=(
                         route.deprecated
                         if route.deprecated is not None
-                        else self.deprecated if deprecated is None else deprecated
+                        else self.deprecated
+                        if deprecated is None
+                        else deprecated
                     ),
                     methods=route.methods,
                     operation_id=route.operation_id,
