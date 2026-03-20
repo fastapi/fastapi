@@ -30,25 +30,25 @@ Bu örnekte `/subapi` path’ine mount edilecektir:
 
 ### Otomatik API dokümanlarını kontrol edin { #check-the-automatic-api-docs }
 
-Şimdi dosyanızla birlikte `fastapi` komutunu çalıştırın:
+Şimdi `fastapi` komutunu çalıştırın:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Ardından <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresinden dokümanları açın.
+Ve dokümanları [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresinden açın.
 
 Ana uygulama için otomatik API dokümanlarını göreceksiniz; yalnızca onun kendi _path operation_’larını içerir:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-Sonra alt uygulamanın dokümanlarını <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a> adresinden açın.
+Sonra alt uygulamanın dokümanlarını [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs) adresinden açın.
 
 Alt uygulama için otomatik API dokümanlarını göreceksiniz; yalnızca onun kendi _path operation_’larını içerir ve hepsi doğru alt-path öneki `/subapi` altında yer alır:
 
@@ -64,4 +64,4 @@ Bu sayede alt uygulama, dokümantasyon arayüzü için o path önekini kullanmas
 
 Ayrıca alt uygulamanın kendi mount edilmiş alt uygulamaları da olabilir; FastAPI tüm bu `root_path`’leri otomatik olarak yönettiği için her şey doğru şekilde çalışır.
 
-`root_path` hakkında daha fazlasını ve bunu açıkça nasıl kullanacağınızı [Proxy Arkasında](behind-a-proxy.md){.internal-link target=_blank} bölümünde öğreneceksiniz.
+`root_path` hakkında daha fazlasını ve bunu açıkça nasıl kullanacağınızı [Proxy Arkasında](behind-a-proxy.md) bölümünde öğreneceksiniz.
