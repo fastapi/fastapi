@@ -10,7 +10,7 @@
 
 코드에 보안 결함이 있다면, 그 결함은 여전히 존재할 것입니다.
 
-문서를 숨기는 것은 API와 상호작용하는 방법을 이해하기 어렵게 만들며, 프로덕션에서 디버깅을 더 어렵게 만들 수 있습니다. 이는 단순히 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a>의 한 형태로 간주될 수 있습니다.
+문서를 숨기는 것은 API와 상호작용하는 방법을 이해하기 어렵게 만들며, 프로덕션에서 디버깅을 더 어렵게 만들 수 있습니다. 이는 단순히 [은폐를 통한 보안](https://en.wikipedia.org/wiki/Security_through_obscurity)의 한 형태로 간주될 수 있습니다.
 
 API를 보호하고 싶다면, 예를 들어 다음과 같은 더 나은 방법들이 있습니다:
 

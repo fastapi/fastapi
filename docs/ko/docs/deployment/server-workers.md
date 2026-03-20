@@ -13,13 +13,13 @@
 
 애플리케이션을 배포할 때는 **다중 코어**를 활용하고 더 많은 요청을 처리할 수 있도록 **프로세스 복제**를 하고 싶을 가능성이 큽니다.
 
-이전 장의 [배포 개념들](concepts.md){.internal-link target=_blank}에서 본 것처럼, 사용할 수 있는 전략이 여러 가지 있습니다.
+이전 장의 [배포 개념들](concepts.md)에서 본 것처럼, 사용할 수 있는 전략이 여러 가지 있습니다.
 
 여기서는 `fastapi` 명령어를 사용하거나 `uvicorn` 명령어를 직접 사용해서, **워커 프로세스**와 함께 **Uvicorn**을 사용하는 방법을 보여드리겠습니다.
 
 /// info | 정보
 
-Docker나 Kubernetes 같은 컨테이너를 사용하고 있다면, 다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md){.internal-link target=_blank}에서 더 자세히 설명하겠습니다.
+Docker나 Kubernetes 같은 컨테이너를 사용하고 있다면, 다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md)에서 더 자세히 설명하겠습니다.
 
 특히 **Kubernetes**에서 실행할 때는 워커를 사용하기보다는, 대신 **컨테이너당 단일 Uvicorn 프로세스 하나**를 실행하고 싶을 가능성이 크지만, 해당 내용은 그 장의 뒤에서 설명하겠습니다.
 
@@ -63,16 +63,16 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started parent process <b>[</b><font color="#34E2E2"><b>27365</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -126,7 +126,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## 컨테이너와 도커 { #containers-and-docker }
 
-다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md){.internal-link target=_blank}에서는 다른 **배포 개념들**을 처리하기 위해 사용할 수 있는 몇 가지 전략을 설명하겠습니다.
+다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md)에서는 다른 **배포 개념들**을 처리하기 위해 사용할 수 있는 몇 가지 전략을 설명하겠습니다.
 
 단일 Uvicorn 프로세스를 실행하기 위해, **처음부터 여러분만의 이미지를 직접 빌드**하는 방법을 보여드리겠습니다. 이는 간단한 과정이며, **Kubernetes** 같은 분산 컨테이너 관리 시스템을 사용할 때 아마도 이렇게 하고 싶을 것입니다.
 
