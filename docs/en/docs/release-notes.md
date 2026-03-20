@@ -42,6 +42,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔨 Tweak translation workflow and translation fixer tool. PR [#15166](https://github.com/fastapi/fastapi/pull/15166) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔨 Fix `commit_in_place` passed via env variable in `translate.yml` workflow. PR [#15151](https://github.com/fastapi/fastapi/pull/15151) by [@YuriiMotov](https://github.com/YuriiMotov).
