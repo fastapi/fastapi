@@ -158,7 +158,7 @@ FastAPI 없이도 **다른 곳에서** 같은 함수를 **호출**할 수 있고
 
 `Annotated`를 사용하지 않고 **(이전) 기본값 스타일**을 사용하면, FastAPI 없이 **다른 곳에서** 함수를 호출할 때도 제대로 동작하도록 함수에 인자를 전달해야 한다는 것을 **기억**해야 합니다. 그렇지 않으면 값이 기대와 다르게 됩니다(예: `str` 대신 `QueryInfo` 같은 것). 그리고 편집기도 경고하지 않고 Python도 그 함수를 실행할 때는 불평하지 않으며, 오직 내부 동작에서 오류가 발생할 때만 문제가 드러납니다.
 
-`Annotated`는 하나 이상의 메타데이터 어노테이션을 가질 수 있기 때문에, 이제 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a> 같은 다른 도구에서도 같은 함수를 사용할 수 있습니다. 🚀
+`Annotated`는 하나 이상의 메타데이터 어노테이션을 가질 수 있기 때문에, 이제 [Typer](https://typer.tiangolo.com/) 같은 다른 도구에서도 같은 함수를 사용할 수 있습니다. 🚀
 
 ## 검증 더 추가하기 { #add-more-validations }
 
@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 그런 경우에는 일반적인 검증(예: 값이 `str`인지 검증한 뒤) 이후에 적용되는 **커스텀 검증 함수**를 사용할 수 있습니다.
 
-`Annotated` 안에서 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic의 `AfterValidator`</a>를 사용하면 이를 구현할 수 있습니다.
+`Annotated` 안에서 [Pydantic의 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)를 사용하면 이를 구현할 수 있습니다.
 
 /// tip | 팁
 
-Pydantic에는 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a>와 같은 다른 것들도 있습니다. 🤓
+Pydantic에는 [BeforeValidator](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator)와 같은 다른 것들도 있습니다. 🤓
 
 ///
 
