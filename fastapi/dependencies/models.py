@@ -48,7 +48,7 @@ class Dependant:
     parent_oauth_scopes: list[str] | None = None
     use_cache: bool = True
     path: str | None = None
-    scope: Literal["function", "request"] | None = None
+    scope: Literal["function", "request", "lifespan"] | None = None
 
     @cached_property
     def oauth_scopes(self) -> list[str]:
