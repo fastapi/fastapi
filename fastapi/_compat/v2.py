@@ -8,6 +8,7 @@ from functools import lru_cache
 from typing import (
     Annotated,
     Any,
+    TypeVar,
     Literal,
     Union,
     cast,
@@ -507,7 +508,7 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
         elif origin is dict:
             return dict[args[0], _omit_by_default(args[1], depth=depth + 1)]  # type: ignore[misc,valid-type]
         else:
-            return OnErrorOmit[annotation]
+            return OnErrorOmit[annotation]  # type: ignore[misc]
 
     def omit_by_default(field_info: FieldInfo) -> FieldInfo:
         new_annotation = _omit_by_default(field_info.annotation)
