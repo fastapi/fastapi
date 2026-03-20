@@ -12,7 +12,7 @@
 
 不要存储用户的明文密码。始终只存储之后可用于校验的“安全哈希”。
 
-如果你还不了解，可以在[安全性章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}中学习什么是“密码哈希”。
+如果你还不了解，可以在[安全性章节](security/simple-oauth2.md#password-hashing)中学习什么是“密码哈希”。
 
 ///
 

@@ -385,7 +385,7 @@ https://example.com/items/foo
 
 /// note
 
-如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry){.internal-link target=_blank}。
+如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry)。
 
 ///
 
