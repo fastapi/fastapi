@@ -1,6 +1,6 @@
 import re
 import warnings
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
@@ -507,7 +507,7 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
         elif origin is dict:
             return dict[args[0], _omit_by_default(args[1], depth=depth + 1)]  # type: ignore[misc,valid-type]
         else:
-            return OnErrorOmit[annotation]  # type: ignore[misc]
+            return OnErrorOmit[annotation]
 
     def omit_by_default(field_info: FieldInfo) -> FieldInfo:
         new_annotation = _omit_by_default(field_info.annotation)
