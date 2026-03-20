@@ -501,7 +501,7 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
             # the top level Union here for now
             # https://github.com/pydantic/pydantic-core/issues/1900
             # https://github.com/pydantic/pydantic/issues/12750
-            return Union[tuple(_omit_by_default(arg) for arg in args)]
+            return Union[tuple(_omit_by_default(arg) for arg in args)]  # noqa: UP007
         elif origin is list:
             return list[_omit_by_default(args[0], depth=depth + 1)]  # type: ignore[misc]
         elif origin is dict:
