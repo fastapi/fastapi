@@ -74,7 +74,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 这样做时，这些示例会成为该请求体数据内部 JSON Schema 的一部分。
 
-不过，在<abbr title="2023-08-26">撰写本文时</abbr>，用于展示文档 UI 的 Swagger UI 并不支持显示 JSON Schema 中数据的多个示例。但请继续阅读，下面有一种变通方法。
+不过，在<dfn title="2023-08-26">撰写本文时</dfn>，用于展示文档 UI 的 Swagger UI 并不支持显示 JSON Schema 中数据的多个示例。但请继续阅读，下面有一种变通方法。
 
 ### OpenAPI 特定的 `examples` { #openapi-specific-examples }
 

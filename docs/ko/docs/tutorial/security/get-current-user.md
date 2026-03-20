@@ -2,7 +2,7 @@
 
 이전 장에서 (의존성 주입 시스템을 기반으로 한) 보안 시스템은 *경로 처리 함수*에 `str`로 `token`을 제공했습니다:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 하지만 이는 여전히 그다지 유용하지 않습니다.
 

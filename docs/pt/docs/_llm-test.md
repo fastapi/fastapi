@@ -11,7 +11,7 @@ Use da seguinte forma:
 * Verifique se está tudo certo na tradução.
 * Se necessário, melhore seu prompt específico do idioma, o prompt geral ou o documento em inglês.
 * Em seguida, corrija manualmente os problemas restantes na tradução, para que fique uma boa tradução.
-* Retraduzir, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs não são algoritmos determinísticos</a>).
+* Retraduzir, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que [LLMs não são algoritmos determinísticos](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Os testes:
 
@@ -104,8 +104,8 @@ $ cd code
 ...e um exemplo de código Python...
 
 ```Python
-wont_work()  # This won't work 😱
-works(foo="bar")  # This works 🎉
+wont_work()  # Isto não vai funcionar 😱
+works(foo="bar")  # Isto funciona 🎉
 ```
 
 ...e é isso.
@@ -169,15 +169,15 @@ Veja as seções `### Special blocks` e `### Tab blocks` no prompt geral em `scr
 O texto do link deve ser traduzido, o endereço do link deve permanecer inalterado:
 
 * [Link para o título acima](#code-snippets)
-* [Link interno](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Link externo</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link para um estilo</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link para um script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link para uma imagem</a>
+* [Link interno](index.md#installation)
+* [Link externo](https://sqlmodel.tiangolo.com/)
+* [Link para um estilo](https://fastapi.tiangolo.com/css/styles.css)
+* [Link para um script](https://fastapi.tiangolo.com/js/logic.js)
+* [Link para uma imagem](https://fastapi.tiangolo.com/img/foo.jpg)
 
 O texto do link deve ser traduzido, o endereço do link deve apontar para a tradução:
 
-* <a href="https://fastapi.tiangolo.com/pt/" class="external-link" target="_blank">Link do FastAPI</a>
+* [Link do FastAPI](https://fastapi.tiangolo.com/pt/)
 
 ////
 
@@ -204,8 +204,8 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
-* <abbr title="Input/Output: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
+* <abbr title="Input/Output – Entrada/Saída: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
 
 ////
 

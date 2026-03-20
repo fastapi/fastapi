@@ -6,7 +6,7 @@
 
 В вашем FastAPI приложении, импортируйте и вызовите `uvicorn` напрямую:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Описание `__name__ == "__main__"` { #about-name-main }
 
@@ -42,7 +42,7 @@ $ python myapp.py
 
 то встроенная переменная `__name__`, автоматически создаваемая Python в вашем файле, будет иметь значение строкового типа `"__main__"`.
 
-Тогда выполнится условие и эта часть кода:
+Тогда эта часть кода:
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
@@ -59,7 +59,7 @@ $ python myapp.py
 ```Python
 from myapp import app
 
-# Some more code
+# Еще немного кода
 ```
 
 то автоматическая создаваемая внутри файла `myapp.py` переменная  `__name__` будет иметь значение отличающееся от `"__main__"`.
@@ -74,7 +74,7 @@ from myapp import app
 
 /// info | Информация
 
-Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+Для получения дополнительной информации, ознакомьтесь с [официальной документацией Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -99,7 +99,7 @@ from myapp import app
 
 ---
 
-Если используете Pycharm, вы можете выполнить следующие шаги:
+Если используете PyCharm, вы можете выполнить следующие шаги:
 
 * Открыть "Run" меню.
 * Выбрать опцию "Debug...".

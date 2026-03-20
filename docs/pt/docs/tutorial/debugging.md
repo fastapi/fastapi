@@ -6,7 +6,7 @@ Você pode conectar o depurador no seu editor, por exemplo, com o Visual Studio 
 
 Em sua aplicação FastAPI, importe e execute `uvicorn` diretamente:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Sobre `__name__ == "__main__"` { #about-name-main }
 
@@ -62,7 +62,7 @@ from myapp import app
 # Mais um pouco de código
 ```
 
-nesse caso, a variável criada automaticamente dentro de `myapp.py` não terá a variável `__name__` com o valor `"__main__"`.
+nesse caso, a variável `__name__` criada automaticamente dentro de `myapp.py` não terá o valor `"__main__"`.
 
 Então, a linha:
 
@@ -74,7 +74,7 @@ não será executada.
 
 /// info | Informação
 
-Para mais informações, consulte <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">a documentação oficial do Python</a>.
+Para mais informações, consulte [a documentação oficial do Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 

@@ -6,7 +6,7 @@ Você pode declarar um parâmetro do tipo `Response` na sua *função de operaç
 
 E então você pode definir cookies nesse objeto de resposta *temporário*.
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Em seguida, você pode retornar qualquer objeto que precise, como normalmente faria (um `dict`, um modelo de banco de dados, etc).
 
@@ -20,11 +20,11 @@ Você também pode declarar o parâmetro `Response` em dependências e definir c
 
 Você também pode criar cookies ao retornar uma `Response` diretamente no seu código.
 
-Para fazer isso, você pode criar uma resposta como descrito em [Retorne uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
+Para fazer isso, você pode criar uma resposta como descrito em [Retorne uma Resposta Diretamente](response-directly.md).
 
 Então, defina os cookies nela e a retorne:
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip | Dica
 
@@ -48,4 +48,4 @@ E como o `Response` pode ser usado frequentemente para definir cabeçalhos e coo
 
 ///
 
-Para ver todos os parâmetros e opções disponíveis, verifique a <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentação no Starlette</a>.
+Para ver todos os parâmetros e opções disponíveis, verifique a [documentação no Starlette](https://www.starlette.dev/responses/#set-cookie).

@@ -1,6 +1,6 @@
 # Geçmişi, Tasarımı ve Geleceği { #history-design-and-future }
 
-Bir süre önce, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">bir **FastAPI** kullanıcısı sordu</a>:
+Bir süre önce, [bir **FastAPI** kullanıcısı sordu](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > Bu projenin geçmişi nedir? Birkaç hafta içinde hiçbir yerden harika bir şeye dönüşmüş gibi görünüyor [...]
 
@@ -14,7 +14,7 @@ Bu süreçte birçok alternatifi araştırmak, test etmek ve kullanmak zorunda k
 
 **FastAPI**'ın geçmişi, büyük ölçüde önceden geliştirilen araçların geçmişini kapsıyor.
 
-[Alternatifler](alternatives.md){.internal-link target=_blank} bölümünde belirtildiği gibi:
+[Alternatifler](alternatives.md) bölümünde belirtildiği gibi:
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@ Sonrasında, (**FastAPI** kullanan bir geliştirici olarak) sahip olmak istediğ
 
 Çeşitli fikirleri en popüler Python editörlerinde test ettim: PyCharm, VS Code, Jedi tabanlı editörler.
 
-Bu test, en son <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>'ine göre, kullanıcıların yaklaşık %80'inin kullandığı editörleri kapsıyor.
+Bu test, en son [Python Geliştirici Anketi](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)'ine göre, kullanıcıların yaklaşık %80'inin kullandığı editörleri kapsıyor.
 
 Bu da demek oluyor ki **FastAPI**, Python geliştiricilerinin %80'inin kullandığı editörlerle test edildi. Ve diğer editörlerin çoğu benzer şekilde çalıştığından, avantajları neredeyse tüm editörlerde çalışacaktır.
 
@@ -54,11 +54,11 @@ Hepsi, tüm geliştiriciler için en iyi geliştirme deneyimini sağlayacak şek
 
 ## Gereksinimler { #requirements }
 
-Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>'i kullanmaya karar verdim.
+Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı [**Pydantic**](https://docs.pydantic.dev/)'i kullanmaya karar verdim.
 
 Sonra, JSON Schema ile tamamen uyumlu olmasını sağlamak, kısıtlama bildirimlerini tanımlamanın farklı yollarını desteklemek ve birkaç editördeki testlere dayanarak editör desteğini (tip kontrolleri, otomatik tamamlama) geliştirmek için katkıda bulundum.
 
-Geliştirme sırasında, diğer ana gereksinim olan <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>'e de katkıda bulundum.
+Geliştirme sırasında, diğer ana gereksinim olan [**Starlette**](https://www.starlette.dev/)'e de katkıda bulundum.
 
 ## Geliştirme { #development }
 
@@ -76,4 +76,4 @@ Tabi, geliştirilecek birçok özellik ve iyileştirme mevcut.
 
 **FastAPI**'ın önünde harika bir gelecek var.
 
-[Yardımlarınız](help-fastapi.md){.internal-link target=_blank} çok değerlidir.
+[Yardımlarınız](help-fastapi.md) çok değerlidir.

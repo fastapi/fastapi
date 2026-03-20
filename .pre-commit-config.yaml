@@ -37,6 +37,13 @@ repos:
         language: unsupported
         pass_filenames: false
 
+      - id: local-ty
+        name: ty check
+        entry: uv run ty check fastapi
+        require_serial: true
+        language: unsupported
+        pass_filenames: false
+
       - id: add-permalinks-pages
         language: unsupported
         name: add-permalinks-pages

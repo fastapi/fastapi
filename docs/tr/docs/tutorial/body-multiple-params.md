@@ -106,12 +106,6 @@ Varsayılan olarak tekil değerler query parametresi olarak yorumlandığı içi
 q: str | None = None
 ```
 
-Ya da Python 3.9'da:
-
-```Python
-q: Union[str, None] = None
-```
-
 Örneğin:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

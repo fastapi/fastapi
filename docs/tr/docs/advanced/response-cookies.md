@@ -6,7 +6,7 @@
 
 Ardından bu *geçici* response nesnesi üzerinde cookie'leri set edebilirsiniz.
 
-{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Sonrasında normalde yaptığınız gibi ihtiyaç duyduğunuz herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli vb.).
 
@@ -20,13 +20,13 @@ Ayrıca bir `response_model` tanımladıysanız, döndürdüğünüz nesneyi fil
 
 Kodunuzda doğrudan bir `Response` döndürürken de cookie oluşturabilirsiniz.
 
-Bunu yapmak için, [Doğrudan Response Döndürme](response-directly.md){.internal-link target=_blank} bölümünde anlatıldığı gibi bir response oluşturabilirsiniz.
+Bunu yapmak için, [Doğrudan Response Döndürme](response-directly.md) bölümünde anlatıldığı gibi bir response oluşturabilirsiniz.
 
 Sonra bunun içinde Cookie'leri set edin ve response'u döndürün:
 
-{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip | İpucu
+/// tip
 
 `Response` parametresini kullanmak yerine doğrudan bir response döndürürseniz, FastAPI onu olduğu gibi (doğrudan) döndürür.
 
@@ -48,4 +48,4 @@ Ve `Response`, header ve cookie set etmek için sık kullanıldığından, **Fas
 
 ///
 
-Mevcut tüm parametreleri ve seçenekleri görmek için <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette dokümantasyonuna</a> bakın.
+Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://www.starlette.dev/responses/#set-cookie)'na bakın.

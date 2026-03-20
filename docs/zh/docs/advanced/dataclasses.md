@@ -59,7 +59,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
    在本例中，它是一个 `Item` 数据类列表。
 6. 这里我们返回一个字典，里面的 `items` 是一个数据类列表。
 
-   FastAPI 仍然能够将数据<abbr title="把数据转换为可以传输的格式">序列化</abbr>为 JSON。
+   FastAPI 仍然能够将数据<dfn title="把数据转换为可以传输的格式">序列化</dfn>为 JSON。
 7. 这里的 `response_model` 使用了 “`Author` 数据类列表” 的类型注解。
 
    同样，你可以将 `dataclasses` 与标准类型注解组合使用。

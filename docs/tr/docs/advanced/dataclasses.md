@@ -2,11 +2,11 @@
 
 FastAPI, **Pydantic** üzerine inşa edilmiştir ve request/response tanımlamak için Pydantic model'lerini nasıl kullanacağınızı gösteriyordum.
 
-Ancak FastAPI, <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> kullanmayı da aynı şekilde destekler:
+Ancak FastAPI, [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) kullanmayı da aynı şekilde destekler:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` için dahili destek</a> sunar.
+Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel) sunar.
 
 Yani yukarıdaki kod Pydantic'i doğrudan kullanmasa bile, FastAPI bu standart dataclass'ları Pydantic'in kendi dataclass biçimine dönüştürmek için Pydantic'i kullanmaktadır.
 
@@ -64,7 +64,7 @@ Bu durumda standart `dataclasses` yerine, drop-in replacement olan `pydantic.dat
 
 6. Burada `items` içeren bir dictionary döndürüyoruz; `items` bir dataclass listesi.
 
-    FastAPI, veriyi JSON'a <abbr title="converting the data to a format that can be transmitted - veriyi aktarılabilir bir formata dönüştürme">serializing</abbr> etmeyi yine başarır.
+    FastAPI, veriyi JSON'a <dfn title="veriyi aktarılabilir bir formata dönüştürme">serileştirme</dfn>yi yine başarır.
 
 7. Burada `response_model`, `Author` dataclass'larından oluşan bir listenin type annotation'ını kullanıyor.
 
@@ -74,7 +74,7 @@ Bu durumda standart `dataclasses` yerine, drop-in replacement olan `pydantic.dat
 
     Her zaman olduğu gibi, FastAPI'de ihtiyaca göre `def` ve `async def`’i birlikte kullanabilirsiniz.
 
-    Hangisini ne zaman kullanmanız gerektiğine dair hızlı bir hatırlatma isterseniz, [`async` ve `await`](../async.md#in-a-hurry){.internal-link target=_blank} dokümanındaki _"In a hurry?"_ bölümüne bakın.
+    Hangisini ne zaman kullanmanız gerektiğine dair hızlı bir hatırlatma isterseniz, [`async` ve `await`](../async.md#in-a-hurry) dokümanındaki _"In a hurry?"_ bölümüne bakın.
 
 9. Bu *path operation function* dataclass döndürmüyor (isterse döndürebilir), onun yerine dahili verilerle bir dictionary listesi döndürüyor.
 
@@ -88,7 +88,7 @@ Daha spesifik ayrıntılar için yukarıdaki kod içi annotation ipuçlarına ba
 
 `dataclasses`'ı diğer Pydantic model'leriyle de birleştirebilir, onlardan kalıtım alabilir, kendi model'lerinize dahil edebilirsiniz, vb.
 
-Daha fazlası için <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic'in dataclasses dokümantasyonuna</a> bakın.
+Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://docs.pydantic.dev/latest/concepts/dataclasses/) bakın.
 
 ## Sürüm { #version }
 

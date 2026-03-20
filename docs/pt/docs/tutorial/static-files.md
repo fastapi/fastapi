@@ -7,7 +7,7 @@ Você pode servir arquivos estáticos automaticamente a partir de um diretório 
 * Importe `StaticFiles`.
 * "Monte" uma instância de `StaticFiles()` em um path específico.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Detalhes Técnicos
 
@@ -23,7 +23,7 @@ O **FastAPI** fornece o mesmo que `starlette.staticfiles` como `fastapi.staticfi
 
 Isso é diferente de usar um `APIRouter`, pois uma aplicação montada é completamente independente. A OpenAPI e a documentação da sua aplicação principal não incluirão nada da aplicação montada, etc.
 
-Você pode ler mais sobre isso no [Guia Avançado do Usuário](../advanced/index.md){.internal-link target=_blank}.
+Você pode ler mais sobre isso no [Guia Avançado do Usuário](../advanced/index.md).
 
 ## Detalhes { #details }
 
@@ -37,4 +37,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações { #more-info }
 
-Para mais detalhes e opções, consulte <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">a documentação da Starlette sobre Arquivos Estáticos</a>.
+Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://www.starlette.dev/staticfiles/).

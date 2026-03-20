@@ -26,7 +26,7 @@ Jedes dieser Response-`dict`s kann einen Schlüssel `model` haben, welcher ein P
 
 Um beispielsweise eine weitere Response mit dem Statuscode `404` und einem Pydantic-Modell `Message` zu deklarieren, können Sie schreiben:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Hinweis
 
@@ -203,7 +203,7 @@ Sie können beispielsweise eine Response mit dem Statuscode `404` deklarieren, d
 
 Und eine Response mit dem Statuscode `200`, die Ihr `response_model` verwendet, aber ein benutzerdefiniertes Beispiel (`example`) enthält:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Es wird alles kombiniert und in Ihre OpenAPI eingebunden und in der API-Dokumentation angezeigt:
 
@@ -243,5 +243,5 @@ Zum Beispiel:
 
 Um zu sehen, was genau Sie in die Responses aufnehmen können, können Sie die folgenden Abschnitte in der OpenAPI-Spezifikation überprüfen:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>, enthält das `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>, Sie können alles davon direkt in jede Response innerhalb Ihres `responses`-Parameter einfügen. Einschließlich `description`, `headers`, `content` (darin deklarieren Sie verschiedene Medientypen und JSON-Schemas) und `links`.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), enthält das `Response Object`.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), Sie können alles davon direkt in jede Response innerhalb Ihres `responses`-Parameter einfügen. Einschließlich `description`, `headers`, `content` (darin deklarieren Sie verschiedene Medientypen und JSON-Schemas) und `links`.

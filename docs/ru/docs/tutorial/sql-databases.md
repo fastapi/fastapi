@@ -2,13 +2,13 @@
 
 **FastAPI** не требует использовать SQL (реляционную) базу данных. Но вы можете использовать любую базу данных, которую хотите.
 
-Здесь мы рассмотрим пример с использованием <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>.
+Здесь мы рассмотрим пример с использованием [SQLModel](https://sqlmodel.tiangolo.com/).
 
-**SQLModel** построен поверх <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> и Pydantic. Его создал тот же автор, что и **FastAPI**, чтобы он идеально подходил для приложений FastAPI, которым нужны **SQL базы данных**.
+**SQLModel** построен поверх [SQLAlchemy](https://www.sqlalchemy.org/) и Pydantic. Его создал тот же автор, что и **FastAPI**, чтобы он идеально подходил для приложений FastAPI, которым нужны **SQL базы данных**.
 
 /// tip | Подсказка
 
-Вы можете использовать любую другую библиотеку для работы с SQL или NoSQL базами данных (иногда их называют <abbr title="Object Relational Mapper – Объектно-реляционный маппер: термин для библиотеки, где некоторые классы представляют SQL-таблицы, а экземпляры представляют строки в этих таблицах">"ORMs"</abbr>), FastAPI ничего не навязывает. 😎
+Вы можете использовать любую другую библиотеку для работы с SQL или NoSQL базами данных (иногда их называют <abbr title="Object Relational Mapper - Объектно-реляционный маппер: термин для библиотеки, где некоторые классы представляют SQL-таблицы, а экземпляры представляют строки в этих таблицах">"ORMs"</abbr>), FastAPI ничего не навязывает. 😎
 
 ///
 
@@ -26,15 +26,15 @@
 
 /// tip | Подсказка
 
-Существует официальный генератор проектов на **FastAPI** и **PostgreSQL**, включающий frontend и другие инструменты: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+Существует официальный генератор проектов на **FastAPI** и **PostgreSQL**, включающий frontend и другие инструменты: [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-Это очень простое и короткое руководство. Если вы хотите узнать больше о базах данных в целом, об SQL или о более продвинутых возможностях, обратитесь к <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">документации SQLModel</a>.
+Это очень простое и короткое руководство. Если вы хотите узнать больше о базах данных в целом, об SQL или о более продвинутых возможностях, обратитесь к [документации SQLModel](https://sqlmodel.tiangolo.com/).
 
 ## Установка `SQLModel` { #install-sqlmodel }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его и затем установили `sqlmodel`:
+Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его и затем установили `sqlmodel`:
 
 <div class="termy">
 
@@ -57,7 +57,7 @@ $ pip install sqlmodel
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-Класс `Hero` очень похож на модель Pydantic (фактически, под капотом, *это и есть модель Pydantic*).
+Класс `Hero` очень похож на модель Pydantic (фактически, под капотом, это и есть модель Pydantic).
 
 Есть несколько отличий:
 
@@ -65,7 +65,7 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)` сообщает SQLModel, что `id` — это **первичный ключ** в SQL базе данных (подробнее о первичных ключах SQL можно узнать в документации SQLModel).
 
-    **Примечание:** Мы используем `int | None` для поля первичного ключа, чтобы в Python-коде можно было *создать объект без `id`* (`id=None`), предполагая, что база данных *сгенерирует его при сохранении*. SQLModel понимает, что база данных предоставит `id`, и *определяет столбец как `INTEGER` (не `NULL`)* в схеме базы данных. См. <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">документацию SQLModel о первичных ключах</a> для подробностей.
+    **Примечание:** Мы используем `int | None` для поля первичного ключа, чтобы в Python-коде можно было *создать объект без `id`* (`id=None`), предполагая, что база данных *сгенерирует его при сохранении*. SQLModel понимает, что база данных предоставит `id`, и *определяет столбец как `INTEGER` (не `NULL`)* в схеме базы данных. См. [документацию SQLModel о первичных ключах](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) для подробностей.
 
 * `Field(index=True)` сообщает SQLModel, что нужно создать **SQL индекс** для этого столбца, что позволит быстрее выполнять выборки при чтении данных, отфильтрованных по этому столбцу.
 
@@ -81,7 +81,7 @@ $ pip install sqlmodel
 
 Параметр `check_same_thread=False` позволяет FastAPI использовать одну и ту же базу данных SQLite в разных потоках. Это необходимо, так как **один запрос** может использовать **больше одного потока** (например, в зависимостях).
 
-Не волнуйтесь, с такой структурой кода мы позже обеспечим использование **одной *сессии* SQLModel на запрос**, по сути именно этого и добивается `check_same_thread`.
+Не волнуйтесь, с такой структурой кода мы позже обеспечим использование **одной сессии SQLModel на запрос**, по сути именно этого и добивается `check_same_thread`.
 
 ### Создание таблиц { #create-the-tables }
 
@@ -111,7 +111,7 @@ $ pip install sqlmodel
 
 /// tip | Подсказка
 
-В SQLModel появятся утилиты миграций - обёртки над Alembic, но пока вы можете использовать <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> напрямую.
+В SQLModel появятся утилиты миграций — обёртки над Alembic, но пока вы можете использовать [Alembic](https://alembic.sqlalchemy.org/en/latest/) напрямую.
 
 ///
 
@@ -152,7 +152,7 @@ $ pip install sqlmodel
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,14 +337,14 @@ $ fastapi dev main.py
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Если вы перейдёте в UI API `/docs`, вы увидите, что он обновился: теперь при создании героя он не ожидает получить `id` от клиента и т. д.
+Если вы перейдёте в UI API `/docs`, вы увидите, что он обновился: теперь при создании героя он не ожидает получить `id` от клиента и т.д.
 
 <div class="screenshot">
 <img src="/img/tutorial/sql-databases/image02.png">
@@ -352,6 +352,6 @@ $ fastapi dev main.py
 
 ## Резюме { #recap }
 
-Вы можете использовать <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> для взаимодействия с SQL базой данных и упростить код с помощью *моделей данных* и *моделей-таблиц*.
+Вы можете использовать [**SQLModel**](https://sqlmodel.tiangolo.com/) для взаимодействия с SQL базой данных и упростить код с помощью *моделей данных* и *моделей-таблиц*.
 
-Гораздо больше вы можете узнать в документации **SQLModel**, там есть более подробный мини-<a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">туториал по использованию SQLModel с **FastAPI**</a>. 🚀
+Гораздо больше вы можете узнать в документации **SQLModel**, там есть более подробное мини-[руководство по использованию SQLModel с **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

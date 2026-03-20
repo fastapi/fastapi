@@ -13,6 +13,7 @@ FastAPI bu dönüş tipini şunlar için kullanır:
 * OpenAPI’deki *path operation* içine response için bir **JSON Schema** eklemek.
     * Bu, **otomatik dokümantasyon** tarafından kullanılır.
     * Ayrıca otomatik client code generation araçları tarafından da kullanılır.
+* Dönen veriyi Pydantic kullanarak JSON’a **serileştirmek**; Pydantic **Rust** ile yazıldığı için **çok daha hızlıdır**.
 
 Ama en önemlisi:
 
@@ -73,9 +74,9 @@ Burada `UserIn` adında bir model declare ediyoruz; bu model plaintext bir passw
 
 /// info | Bilgi
 
-`EmailStr` kullanmak için önce <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a> paketini kurun.
+`EmailStr` kullanmak için önce [`email-validator`](https://github.com/JoshData/python-email-validator) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından örneğin şöyle kurun:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından örneğin şöyle kurun:
 
 ```console
 $ pip install email-validator
@@ -181,9 +182,9 @@ Bazı durumlarda Pydantic field olarak geçerli olmayan bir şey döndürebilir 
 
 ### Doğrudan Response Döndürmek { #return-a-response-directly }
 
-En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md){.internal-link target=_blank}.
+En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md).
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Bu basit durum FastAPI tarafından otomatik olarak ele alınır; çünkü dönüş tipi annotation’ı `Response` class’ıdır (veya onun bir subclass’ı).
 
@@ -193,7 +194,7 @@ Araçlar da memnun olur; çünkü hem `RedirectResponse` hem `JSONResponse`, `Re
 
 Type annotation içinde `Response`’un bir subclass’ını da kullanabilirsiniz:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Bu da çalışır; çünkü `RedirectResponse`, `Response`’un subclass’ıdır ve FastAPI bu basit durumu otomatik olarak yönetir.
 
@@ -201,7 +202,7 @@ Bu da çalışır; çünkü `RedirectResponse`, `Response`’un subclass’ıdı
 
 Ancak geçerli bir Pydantic tipi olmayan başka rastgele bir obje (ör. bir veritabanı objesi) döndürür ve fonksiyonu da öyle annotate ederseniz, FastAPI bu type annotation’dan bir Pydantic response model oluşturmaya çalışır ve başarısız olur.
 
-Aynı şey, farklı tipler arasında bir <abbr title='Birden fazla tip arasında union, "bu tiplerden herhangi biri" anlamına gelir.'>union</abbr> kullandığınızda ve bu tiplerden biri veya birkaçı geçerli bir Pydantic tipi değilse de olur; örneğin şu kullanım patlar 💥:
+Aynı şey, farklı tipler arasında bir <dfn title="Birden fazla tip arasındaki bir birleşim, 'bu tiplerden herhangi biri' anlamına gelir.">birleşim</dfn> kullandığınızda ve bu tiplerden biri veya birkaçı geçerli bir Pydantic tipi değilse de olur; örneğin şu kullanım patlar 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -257,7 +258,7 @@ Ayrıca şunları da kullanabilirsiniz:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-Bunlar, `exclude_defaults` ve `exclude_none` için <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic dokümanlarında</a> anlatıldığı gibidir.
+Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) anlatıldığı gibidir.
 
 ///
 

@@ -30,7 +30,7 @@ Bu *startup* ve *shutdown* mantığını, `FastAPI` uygulamasının `lifespan` p
 
 Aşağıdaki gibi `yield` kullanan async bir `lifespan()` fonksiyonu oluşturuyoruz:
 
-{* ../../docs_src/events/tutorial003_py39.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
 Burada, `yield` öncesinde (sahte) model fonksiyonunu machine learning modellerini içeren dictionary’e koyarak, modeli yükleme gibi maliyetli bir *startup* işlemini simüle ediyoruz. Bu kod, *startup* sırasında, uygulama **request almaya başlamadan önce** çalıştırılır.
 
@@ -48,7 +48,7 @@ Belki yeni bir sürüm başlatmanız gerekiyordur, ya da çalıştırmaktan sık
 
 Dikkat edilmesi gereken ilk şey, `yield` içeren async bir fonksiyon tanımlıyor olmamız. Bu, `yield` kullanan Dependencies’e oldukça benzer.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
 
 Fonksiyonun `yield`’den önceki kısmı, uygulama başlamadan **önce** çalışır.
 
@@ -60,7 +60,7 @@ Bakarsanız, fonksiyon `@asynccontextmanager` ile dekore edilmiş.
 
 Bu da fonksiyonu "**async context manager**" denen şeye dönüştürür.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
 
 Python’da **context manager**, `with` ifadesi içinde kullanabildiğiniz bir yapıdır. Örneğin `open()` bir context manager olarak kullanılabilir:
 
@@ -82,7 +82,7 @@ Yukarıdaki kod örneğimizde bunu doğrudan kullanmıyoruz; bunun yerine FastAP
 
 `FastAPI` uygulamasının `lifespan` parametresi bir **async context manager** alır; dolayısıyla oluşturduğumuz yeni `lifespan` async context manager’ını buraya geçebiliriz.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[22] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
 ## Alternatif Events (kullanımdan kaldırıldı) { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ Bu fonksiyonlar `async def` ile veya normal `def` ile tanımlanabilir.
 
 Uygulama başlamadan önce çalıştırılacak bir fonksiyon eklemek için, `"startup"` event’i ile tanımlayın:
 
-{* ../../docs_src/events/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
 Bu durumda `startup` event handler fonksiyonu, "database" öğesini (sadece bir `dict`) bazı değerlerle başlatır.
 
@@ -116,7 +116,7 @@ Ve tüm `startup` event handler’ları tamamlanmadan uygulamanız request almay
 
 Uygulama kapanırken çalıştırılacak bir fonksiyon eklemek için, `"shutdown"` event’i ile tanımlayın:
 
-{* ../../docs_src/events/tutorial002_py39.py hl[6] *}
+{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 Burada `shutdown` event handler fonksiyonu, `log.txt` dosyasına `"Application shutdown"` satırını yazar.
 
@@ -150,11 +150,11 @@ Bu nedenle artık bunun yerine, yukarıda açıklandığı gibi `lifespan` kulla
 
 Meraklı nerd’ler için küçük bir teknik detay. 🤓
 
-Altta, ASGI teknik spesifikasyonunda bu, <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>’ün bir parçasıdır ve `startup` ile `shutdown` adında event’ler tanımlar.
+Altta, ASGI teknik spesifikasyonunda bu, [Lifespan Protokolü](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)’nün bir parçasıdır ve `startup` ile `shutdown` adında event’ler tanımlar.
 
 /// info | Bilgi
 
-Starlette `lifespan` handler’ları hakkında daha fazlasını <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette's Lifespan docs</a> içinde okuyabilirsiniz.
+Starlette `lifespan` handler’ları hakkında daha fazlasını [Starlette Lifespan dokümanları](https://www.starlette.dev/lifespan/) içinde okuyabilirsiniz.
 
 Ayrıca kodunuzun başka bölgelerinde de kullanılabilecek lifespan state’i nasıl yöneteceğinizi de kapsar.
 
@@ -162,4 +162,4 @@ Ayrıca kodunuzun başka bölgelerinde de kullanılabilecek lifespan state’i n
 
 ## Alt Uygulamalar { #sub-applications }
 
-🚨 Unutmayın: Bu lifespan event’leri (`startup` ve `shutdown`) yalnızca ana uygulama için çalıştırılır; [Alt Uygulamalar - Mounts](sub-applications.md){.internal-link target=_blank} için çalıştırılmaz.
+🚨 Unutmayın: Bu lifespan event’leri (`startup` ve `shutdown`) yalnızca ana uygulama için çalıştırılır; [Alt Uygulamalar - Mounts](sub-applications.md) için çalıştırılmaz.

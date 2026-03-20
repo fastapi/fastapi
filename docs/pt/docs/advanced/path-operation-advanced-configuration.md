@@ -12,7 +12,7 @@ Você pode definir o `operationId` do OpenAPI que será utilizado na sua *opera�
 
 Você deveria ter certeza que ele é único para cada operação.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Se você quiser utilizar o nome das funções da sua API como `operationId`s, vo
 
 Você deveria fazer isso depois de adicionar todas as suas *operações de rota*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip | Dica
 
@@ -40,7 +40,7 @@ Mesmo que elas estejam em módulos (arquivos Python) diferentes.
 
 Para excluir uma *operação de rota* do esquema OpenAPI gerado (e por consequência, dos sistemas de documentação automáticos), utilize o parâmetro `include_in_schema` e defina ele como `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## Descrição avançada a partir de docstring { #advanced-description-from-docstring }
 
@@ -60,7 +60,7 @@ Isso define os metadados sobre a resposta principal da *operação de rota*.
 
 Você também pode declarar respostas adicionais, com seus modelos, códigos de status, etc.
 
-Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ## Extras do OpenAPI { #openapi-extra }
 
@@ -68,7 +68,7 @@ Quando você declara uma *operação de rota* na sua aplicação, o **FastAPI** 
 
 /// note | Detalhes Técnicos
 
-Na especificação do OpenAPI, isso é chamado de um <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objeto de Operação</a>.
+Na especificação do OpenAPI, isso é chamado de um [Objeto de Operação](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ Esse esquema específico para uma *operação de rota* normalmente é gerado aut
 
 Esse é um ponto de extensão de baixo nível.
 
-Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ///
 
@@ -92,7 +92,7 @@ Você pode estender o esquema do OpenAPI para uma *operação de rota* utilizand
 
 Esse parâmetro `openapi_extra` pode ser útil, por exemplo, para declarar [Extensões do OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 Se você abrir os documentos criados automaticamente para a API, sua extensão aparecerá no final da *operação de rota* específica.
 
@@ -139,9 +139,9 @@ Por exemplo, você poderia decidir ler e validar a requisição com seu próprio
 
 Você pode fazer isso com `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-Nesse exemplo, nós não declaramos nenhum modelo do Pydantic. Na verdade, o corpo da requisição não está nem mesmo <abbr title="converted from some plain format, like bytes, into Python objects - convertido de algum formato simples, como bytes, em objetos Python">analisado</abbr> como JSON, ele é lido diretamente como `bytes`, e a função `magic_data_reader()` seria a responsável por analisar ele de alguma forma.
+Nesse exemplo, nós não declaramos nenhum modelo do Pydantic. Na verdade, o corpo da requisição não está nem mesmo <dfn title="convertido de algum formato simples, como bytes, em objetos Python">analisado</dfn> como JSON, ele é lido diretamente como `bytes`, e a função `magic_data_reader()` seria a responsável por analisá-lo de alguma forma.
 
 De toda forma, nós podemos declarar o esquema esperado para o corpo da requisição.
 
@@ -153,7 +153,7 @@ E você pode fazer isso até mesmo quando o tipo de dados na requisição não �
 
 Por exemplo, nesta aplicação nós não usamos a funcionalidade integrada ao FastAPI de extrair o JSON Schema dos modelos Pydantic nem a validação automática para JSON. Na verdade, estamos declarando o tipo de conteúdo da requisição como YAML, em vez de JSON:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 Entretanto, mesmo que não utilizemos a funcionalidade integrada por padrão, ainda estamos usando um modelo Pydantic para gerar um JSON Schema manualmente para os dados que queremos receber em YAML.
 
@@ -161,7 +161,7 @@ Então utilizamos a requisição diretamente e extraímos o corpo como `bytes`. 
 
 E então no nosso código, nós analisamos o conteúdo YAML diretamente e, em seguida, estamos usando novamente o mesmo modelo Pydantic para validar o conteúdo YAML:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip | Dica
 

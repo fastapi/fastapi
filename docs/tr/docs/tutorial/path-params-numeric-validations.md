@@ -14,7 +14,7 @@ FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve bunu önermeye ba
 
 Daha eski bir sürüm kullanıyorsanız, `Annotated` kullanmaya çalıştığınızda hata alırsınız.
 
-`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -54,11 +54,11 @@ Bu **FastAPI** için önemli değildir. FastAPI parametreleri isimlerine, tipler
 
 Dolayısıyla fonksiyonunuzu şöyle tanımlayabilirsiniz:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
-Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
+Namun şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
 ## Parametreleri İhtiyacınıza Göre Sıralayın: Küçük Hileler { #order-the-parameters-as-you-need-tricks }
 
@@ -81,15 +81,15 @@ Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `
 
 Fonksiyonun ilk parametresi olarak `*` geçin.
 
-Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
+Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments - Anahtar Kelime Argümanları"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
 ### `Annotated` ile Daha İyi { #better-with-annotated }
 
 Şunu da unutmayın: `Annotated` kullanırsanız, fonksiyon parametresi default değerlerini kullanmadığınız için bu sorun ortaya çıkmaz ve muhtemelen `*` kullanmanız da gerekmez.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
 
 ## Sayı Doğrulamaları: Büyük Eşit { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keywor
 
 Burada `ge=1` ile, `item_id` değerinin `1`'den "`g`reater than or `e`qual" olacak şekilde bir tam sayı olması gerekir.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
 ## Sayı Doğrulamaları: Büyük ve Küçük Eşit { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,23 +106,23 @@ Aynısı şunlar için de geçerlidir:
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
 ## Sayı Doğrulamaları: `float` Değerler, Büyük ve Küçük { #number-validations-floats-greater-than-and-less-than }
 
 Sayı doğrulamaları `float` değerler için de çalışır.
 
-Burada <abbr title="greater than"><code>gt</code></abbr> tanımlayabilmek (sadece <abbr title="greater than or equal"><code>ge</code></abbr> değil) önemli hale gelir. Çünkü örneğin bir değerin `0`'dan büyük olmasını isteyebilirsiniz; `1`'den küçük olsa bile.
+Burada <abbr title="greater than - büyüktür"><code>gt</code></abbr> tanımlayabilmek (sadece <abbr title="greater than or equal - büyük veya eşittir"><code>ge</code></abbr> değil) önemli hale gelir. Çünkü örneğin bir değerin `0`'dan büyük olmasını isteyebilirsiniz; `1`'den küçük olsa bile.
 
 Bu durumda `0.5` geçerli bir değer olur. Ancak `0.0` veya `0` geçerli olmaz.
 
-Aynısı <abbr title="less than"><code>lt</code></abbr> için de geçerlidir.
+Aynısı <abbr title="less than - küçüktür"><code>lt</code></abbr> için de geçerlidir.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## Özet { #recap }
 
-`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md){.internal-link target=_blank} bölümündekiyle aynı şekilde tanımlayabilirsiniz.
+`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md) bölümündekiyle aynı şekilde tanımlayabilirsiniz.
 
 Ayrıca sayısal doğrulamalar da tanımlayabilirsiniz:
 

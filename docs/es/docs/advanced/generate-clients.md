@@ -2,17 +2,17 @@
 
 Como **FastAPI** está basado en la especificación **OpenAPI**, sus APIs se pueden describir en un formato estándar que muchas herramientas entienden.
 
-Esto facilita generar **documentación** actualizada, paquetes de cliente (<abbr title="Software Development Kits – Kits de Desarrollo de Software">**SDKs**</abbr>) en múltiples lenguajes y **escribir pruebas** o **flujos de automatización** que se mantengan sincronizados con tu código.
+Esto facilita generar **documentación** actualizada, paquetes de cliente (<abbr title="Software Development Kits - Kits de Desarrollo de Software">**SDKs**</abbr>) en múltiples lenguajes y **escribir pruebas** o **flujos de automatización** que se mantengan sincronizados con tu código.
 
 En esta guía, aprenderás a generar un **SDK de TypeScript** para tu backend con FastAPI.
 
 ## Generadores de SDKs de código abierto { #open-source-sdk-generators }
 
-Una opción versátil es el <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, que soporta **muchos lenguajes de programación** y puede generar SDKs a partir de tu especificación OpenAPI.
+Una opción versátil es el [OpenAPI Generator](https://openapi-generator.tech/), que soporta **muchos lenguajes de programación** y puede generar SDKs a partir de tu especificación OpenAPI.
 
-Para **clientes de TypeScript**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> es una solución diseñada específicamente, que ofrece una experiencia optimizada para el ecosistema de TypeScript.
+Para **clientes de TypeScript**, [Hey API](https://heyapi.dev/) es una solución diseñada específicamente, que ofrece una experiencia optimizada para el ecosistema de TypeScript.
 
-Puedes descubrir más generadores de SDK en <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Puedes descubrir más generadores de SDK en [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip | Consejo
 
@@ -24,15 +24,15 @@ FastAPI genera automáticamente especificaciones **OpenAPI 3.1**, así que cualq
 
 Esta sección destaca soluciones **respaldadas por empresas** y **venture-backed** de compañías que sponsorean FastAPI. Estos productos ofrecen **funcionalidades adicionales** e **integraciones** además de SDKs generados de alta calidad.
 
-Al ✨ [**sponsorear FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, estas compañías ayudan a asegurar que el framework y su **ecosistema** se mantengan saludables y **sustentables**.
+Al ✨ [**sponsorear FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, estas compañías ayudan a asegurar que el framework y su **ecosistema** se mantengan saludables y **sustentables**.
 
 Su sponsorship también demuestra un fuerte compromiso con la **comunidad** de FastAPI (tú), mostrando que no solo les importa ofrecer un **gran servicio**, sino también apoyar un **framework robusto y próspero**, FastAPI. 🙇
 
 Por ejemplo, podrías querer probar:
 
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Algunas de estas soluciones también pueden ser open source u ofrecer niveles gratuitos, así que puedes probarlas sin un compromiso financiero. Hay otros generadores de SDK comerciales disponibles y se pueden encontrar en línea. 🤓
 
@@ -40,7 +40,7 @@ Algunas de estas soluciones también pueden ser open source u ofrecer niveles gr
 
 Empecemos con una aplicación simple de FastAPI:
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
 Nota que las *path operations* definen los modelos que usan para el payload del request y el payload del response, usando los modelos `Item` y `ResponseMessage`.
 
@@ -66,7 +66,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Esto generará un SDK de TypeScript en `./src/client`.
 
-Puedes aprender cómo <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">instalar `@hey-api/openapi-ts`</a> y leer sobre el <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">output generado</a> en su sitio web.
+Puedes aprender cómo [instalar `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started) y leer sobre el [output generado](https://heyapi.dev/openapi-ts/output) en su sitio web.
 
 ### Usar el SDK { #using-the-sdk }
 
@@ -98,7 +98,7 @@ En muchos casos tu app de FastAPI será más grande, y probablemente usarás tag
 
 Por ejemplo, podrías tener una sección para **items** y otra sección para **users**, y podrían estar separadas por tags:
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
 ### Genera un Cliente TypeScript con tags { #generate-a-typescript-client-with-tags }
 
@@ -145,7 +145,7 @@ Por ejemplo, aquí está usando el primer tag (probablemente tendrás solo un ta
 
 Puedes entonces pasar esa función personalizada a **FastAPI** como el parámetro `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
 ### Genera un Cliente TypeScript con operation IDs personalizados { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -167,7 +167,7 @@ Pero para el cliente generado podríamos **modificar** los operation IDs de Open
 
 Podríamos descargar el JSON de OpenAPI a un archivo `openapi.json` y luego podríamos **remover ese tag prefijado** con un script como este:
 
-{* ../../docs_src/generate_clients/tutorial004_py39.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
 //// tab | Node.js
 

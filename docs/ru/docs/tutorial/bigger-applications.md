@@ -85,7 +85,7 @@ from app.routers import items
 
 Точно так же, как и в случае с классом `FastAPI`, вам нужно импортировать и создать его «экземпляр»:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### *Операции пути* с `APIRouter` { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 Используйте его так же, как вы использовали бы класс `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 Вы можете думать об `APIRouter` как об «мини-классе `FastAPI`».
 
@@ -117,13 +117,13 @@ from app.routers import items
 
 Теперь мы воспользуемся простой зависимостью, чтобы прочитать кастомный HTTP-заголовок `X-Token`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | Подсказка
 
 Для простоты мы воспользовались выдуманным заголовком.
 
-В реальных случаях для получения наилучших результатов используйте интегрированные [утилиты безопасности](security/index.md){.internal-link target=_blank}.
+В реальных случаях для получения наилучших результатов используйте интегрированные [утилиты безопасности](security/index.md).
 
 ///
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 Таким образом, вместо того чтобы добавлять всё это в каждую *операцию пути*, мы можем добавить это в `APIRouter`.
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 Так как путь каждой *операции пути* должен начинаться с `/`, как здесь:
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | Подсказка
 
-Обратите внимание, что так же, как и в случае с [зависимостями в декораторах *операций пути*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, никакое значение не будет передано в вашу *функцию-обработчик пути*.
+Обратите внимание, что так же, как и в случае с [зависимостями в декораторах *операций пути*](dependencies/dependencies-in-path-operation-decorators.md), никакое значение не будет передано в вашу *функцию-обработчик пути*.
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * Все они будут включать предопределённые `responses`.
 * Все эти *операции пути* будут иметь список `dependencies`, вычисляемых/выполняемых перед ними.
     * Если вы также объявите зависимости в конкретной *операции пути*, **они тоже будут выполнены**.
-    * Сначала выполняются зависимости маршрутизатора, затем [`dependencies` в декораторе](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, и затем обычные параметрические зависимости.
-    * Вы также можете добавить [`Security`-зависимости с `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+    * Сначала выполняются зависимости маршрутизатора, затем [`dependencies` в декораторе](dependencies/dependencies-in-path-operation-decorators.md), и затем обычные параметрические зависимости.
+    * Вы также можете добавить [`Security`-зависимости с `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Подсказка
 
@@ -208,7 +208,7 @@ async def read_item(item_id: str):
 
 Поэтому мы используем относительный импорт с `..` для зависимостей:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Как работает относительный импорт { #how-relative-imports-work }
 
@@ -279,7 +279,7 @@ from ...dependencies import get_token_header
 
 Но мы всё равно можем добавить _ещё_ `tags`, которые будут применяться к конкретной *операции пути*, а также дополнительные `responses`, специфичные для этой *операции пути*:
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | Подсказка
 
@@ -303,15 +303,15 @@ from ...dependencies import get_token_header
 
 Вы импортируете и создаёте класс `FastAPI` как обычно.
 
-И мы даже можем объявить [глобальные зависимости](dependencies/global-dependencies.md){.internal-link target=_blank}, которые будут объединены с зависимостями для каждого `APIRouter`:
+И мы даже можем объявить [глобальные зависимости](dependencies/global-dependencies.md), которые будут объединены с зависимостями для каждого `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### Импорт `APIRouter` { #import-the-apirouter }
 
 Теперь мы импортируем другие подмодули, содержащие `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
 Так как файлы `app/routers/users.py` и `app/routers/items.py` являются подмодулями, входящими в один и тот же Python-пакет `app`, мы можем использовать одну точку `.` для импорта через «относительные импорты».
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-Чтобы узнать больше о Python-пакетах и модулях, прочитайте <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">официальную документацию Python о модулях</a>.
+Чтобы узнать больше о Python-пакетах и модулях, прочитайте [официальную документацию Python о модулях](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -374,13 +374,13 @@ from .routers.users import router
 
 Поэтому, чтобы иметь возможность использовать обе в одном файле, мы импортируем подмодули напрямую:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
 ### Подключение `APIRouter` для `users` и `items` { #include-the-apirouters-for-users-and-items }
 
 Теперь давайте подключим `router` из подмодулей `users` и `items`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
 /// info | Примечание
 
@@ -420,13 +420,13 @@ from .routers.users import router
 
 Для этого примера всё будет очень просто. Но допустим, что поскольку он используется совместно с другими проектами в организации, мы не можем модифицировать его и добавить `prefix`, `dependencies`, `tags` и т.д. непосредственно в `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Но мы всё равно хотим задать пользовательский `prefix` при подключении `APIRouter`, чтобы все его *операции пути* начинались с `/admin`, хотим защитить его с помощью `dependencies`, которые у нас уже есть для этого проекта, и хотим включить `tags` и `responses`.
 
 Мы можем объявить всё это, не изменяя исходный `APIRouter`, передав эти параметры в `app.include_router()`:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
 
 Таким образом исходный `APIRouter` не будет модифицирован, и мы сможем использовать файл `app/internal/admin.py` сразу в нескольких проектах организации.
 
@@ -447,7 +447,7 @@ from .routers.users import router
 
 Здесь мы делаем это... просто чтобы показать, что можем 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
 и это будет работать корректно вместе со всеми другими *операциями пути*, добавленными через `app.include_router()`.
 
@@ -465,6 +465,37 @@ from .routers.users import router
 
 ///
 
+## Настройка `entrypoint` в `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Так как ваш объект FastAPI `app` находится в `app/main.py`, вы можете настроить `entrypoint` в файле `pyproject.toml` следующим образом:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+это эквивалентно импорту:
+
+```python
+from app.main import app
+```
+
+Таким образом, команда `fastapi` будет знать, где найти ваше приложение.
+
+/// Note | Примечание
+
+Вы также можете передать путь в команду, например:
+
+```console
+$ fastapi dev app/main.py
+```
+
+Но вам придётся каждый раз помнить и указывать корректный путь при вызове команды `fastapi`.
+
+Кроме того, другие инструменты могут не суметь его найти, например [расширение VS Code](../editor-support.md) или [FastAPI Cloud](https://fastapicloud.com), поэтому рекомендуется использовать `entrypoint` в `pyproject.toml`.
+
+///
+
 ## Проверка автоматической документации API { #check-the-automatic-api-docs }
 
 Теперь запустите приложение:
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Откройте документацию по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Откройте документацию по адресу [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Вы увидите автоматическую документацию API, включая пути из всех подмодулей, с использованием корректных путей (и префиксов) и корректных тегов:
 

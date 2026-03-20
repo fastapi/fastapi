@@ -10,7 +10,7 @@
 
 Сначала создайте основное, верхнего уровня, приложение **FastAPI** и его *операции пути*:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### Подприложение { #sub-application }
 
@@ -18,7 +18,7 @@
 
 Это подприложение — обычное стандартное приложение FastAPI, но именно оно будет «смонтировано»:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### Смонтируйте подприложение { #mount-the-sub-application }
 
@@ -26,29 +26,29 @@
 
 В этом случае оно будет смонтировано по пути `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### Проверьте автоматическую документацию API { #check-the-automatic-api-docs }
 
-Теперь запустите команду `fastapi` с вашим файлом:
+Теперь запустите команду `fastapi`:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-И откройте документацию по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+И откройте документацию по адресу [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Вы увидите автоматическую документацию API для основного приложения, включающую только его собственные _операции пути_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-Затем откройте документацию для подприложения по адресу <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+Затем откройте документацию для подприложения по адресу [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 Вы увидите автоматическую документацию API для подприложения, включающую только его собственные _операции пути_, все под корректным префиксом подпути `/subapi`:
 
@@ -64,4 +64,4 @@ $ fastapi dev main.py
 
 У подприложения также могут быть свои собственные смонтированные подприложения, и всё будет работать корректно, потому что FastAPI автоматически обрабатывает все эти `root_path`.
 
-Вы узнаете больше о `root_path` и о том, как использовать его явно, в разделе [За прокси](behind-a-proxy.md){.internal-link target=_blank}.
+Вы узнаете больше о `root_path` и о том, как использовать его явно, в разделе [За прокси](behind-a-proxy.md).

@@ -13,7 +13,7 @@ Bir **FastAPI** uygulamasını (hatta genel olarak herhangi bir web API'yi) depl
 
 Bunların **deployment**'ları nasıl etkilediğine bakalım.
 
-Nihai hedef, **API client**'larınıza **güvenli** bir şekilde hizmet verebilmek, **kesintileri** önlemek ve **hesaplama kaynaklarını** (ör. uzak server'lar/sanal makineler) olabildiğince verimli kullanmaktır.
+Nihai hedef, **API client**'larınıza **güvenli** bir şekilde hizmet verebilmek, **kesintileri** önlemek ve **hesaplama kaynaklarını** (ör. uzak server'lar/sanal makineler) olabildiğince verimli kullanmaktır. 🚀
 
 Burada bu **kavramlar** hakkında biraz daha bilgi vereceğim. Böylece, çok farklı ortamlarda—hatta bugün var olmayan **gelecekteki** ortamlarda bile—API'nizi nasıl deploy edeceğinize karar verirken ihtiyaç duyacağınız **sezgiyi** kazanmış olursunuz.
 
@@ -21,11 +21,11 @@ Bu kavramları dikkate alarak, **kendi API**'leriniz için en iyi deployment yak
 
 Sonraki bölümlerde, FastAPI uygulamalarını deploy etmek için daha **somut tarifler** (recipes) paylaşacağım.
 
-Ama şimdilik, bu önemli **kavramsal fikirleri** inceleyelim. Bu kavramlar diğer tüm web API türleri için de geçerlidir.
+Ama şimdilik, bu önemli **kavramsal fikirleri** inceleyelim. Bu kavramlar diğer tüm web API türleri için de geçerlidir. 💡
 
 ## Güvenlik - HTTPS { #security-https }
 
-[HTTPS hakkındaki önceki bölümde](https.md){.internal-link target=_blank} HTTPS'in API'niz için nasıl şifreleme sağladığını öğrenmiştik.
+[HTTPS hakkındaki önceki bölümde](https.md) HTTPS'in API'niz için nasıl şifreleme sağladığını öğrenmiştik.
 
 Ayrıca HTTPS'in genellikle uygulama server'ınızın **dışında** yer alan bir bileşen tarafından sağlandığını, yani bir **TLS Termination Proxy** ile yapıldığını da görmüştük.
 
@@ -36,16 +36,16 @@ Ve **HTTPS sertifikalarını yenilemekten** sorumlu bir şey olmalıdır; bu ayn
 TLS Termination Proxy olarak kullanabileceğiniz bazı araçlar:
 
 * Traefik
-    * Sertifika yenilemelerini otomatik yönetir
+    * Sertifika yenilemelerini otomatik yönetir ✨
 * Caddy
-    * Sertifika yenilemelerini otomatik yönetir
+    * Sertifika yenilemelerini otomatik yönetir ✨
 * Nginx
     * Sertifika yenilemeleri için Certbot gibi harici bir bileşenle
 * HAProxy
     * Sertifika yenilemeleri için Certbot gibi harici bir bileşenle
 * Nginx gibi bir Ingress Controller ile Kubernetes
     * Sertifika yenilemeleri için cert-manager gibi harici bir bileşenle
-* Bir cloud provider tarafından servislerinin parçası olarak içeride yönetilmesi (aşağıyı okuyun)
+* Bir cloud provider tarafından servislerinin parçası olarak içeride yönetilmesi (aşağıyı okuyun 👇)
 
 Bir diğer seçenek de, HTTPS kurulumunu da dahil olmak üzere işin daha büyük kısmını yapan bir **cloud service** kullanmaktır. Bunun bazı kısıtları olabilir veya daha pahalı olabilir vb. Ancak bu durumda TLS Termination Proxy'yi kendiniz kurmak zorunda kalmazsınız.
 
@@ -100,7 +100,7 @@ Bu yöntem çalışır ve **geliştirme sırasında** faydalıdır.
 
 Ancak server'a olan bağlantınız koparsa, **çalışan process** muhtemelen ölür.
 
-Ve server yeniden başlatılırsa (örneğin update'lerden sonra ya da cloud provider'ın migration'larından sonra) bunu muhtemelen **fark etmezsiniz**. Dolayısıyla process'i manuel yeniden başlatmanız gerektiğini de bilmezsiniz. Sonuçta API'niz ölü kalır.
+Ve server yeniden başlatılırsa (örneğin update'lerden sonra ya da cloud provider'ın migration'larından sonra) bunu muhtemelen **fark etmezsiniz**. Dolayısıyla process'i manuel yeniden başlatmanız gerektiğini de bilmezsiniz. Sonuçta API'niz ölü kalır. 😱
 
 ### Startup'ta Otomatik Çalıştırma { #run-automatically-on-startup }
 
@@ -131,19 +131,19 @@ Uygulamanızın startup'ta çalıştığından emin olmaya benzer şekilde, hata
 
 ### Hata Yaparız { #we-make-mistakes }
 
-Biz insanlar sürekli **hata** yaparız. Yazılımın neredeyse *her zaman* farklı yerlerinde gizli **bug**'lar vardır.
+Biz insanlar sürekli **hata** yaparız. Yazılımın neredeyse *her zaman* farklı yerlerinde gizli **bug**'lar vardır. 🐛
 
-Ve biz geliştiriciler bu bug'ları buldukça ve yeni özellikler ekledikçe code'u iyileştiririz (muhtemelen yeni bug'lar da ekleyerek).
+Ve biz geliştiriciler bu bug'ları buldukça ve yeni özellikler ekledikçe code'u iyileştiririz (muhtemelen yeni bug'lar da ekleyerek 😅).
 
 ### Küçük Hatalar Otomatik Yönetilir { #small-errors-automatically-handled }
 
-FastAPI ile web API geliştirirken, code'umuzda bir hata olursa FastAPI genellikle bunu hatayı tetikleyen tek request ile sınırlar.
+FastAPI ile web API geliştirirken, code'umuzda bir hata olursa FastAPI genellikle bunu hatayı tetikleyen tek request ile sınırlar. 🛡
 
 Client o request için **500 Internal Server Error** alır; ancak uygulama tamamen çöküp durmak yerine sonraki request'ler için çalışmaya devam eder.
 
 ### Daha Büyük Hatalar - Çökmeler { #bigger-errors-crashes }
 
-Yine de bazı durumlarda, yazdığımız bir code **tüm uygulamayı çökertip** Uvicorn ve Python'ın crash olmasına neden olabilir.
+Yine de bazı durumlarda, yazdığımız bir code **tüm uygulamayı çökertip** Uvicorn ve Python'ın crash olmasına neden olabilir. 💥
 
 Böyle bir durumda, tek bir noktadaki hata yüzünden uygulamanın ölü kalmasını istemezsiniz; bozuk olmayan *path operations* en azından çalışmaya devam etsin istersiniz.
 
@@ -190,7 +190,7 @@ Aynı API programının **birden fazla process**'ini çalıştırdığınızda, 
 
 ### Worker Process'ler ve Port'lar { #worker-processes-and-ports }
 
-[HTTPS hakkındaki dokümanda](https.md){.internal-link target=_blank} bir server'da aynı port ve IP adresi kombinasyonunu yalnızca tek bir process'in dinleyebileceğini hatırlıyor musunuz?
+[HTTPS hakkındaki dokümanda](https.md) bir server'da aynı port ve IP adresi kombinasyonunu yalnızca tek bir process'in dinleyebileceğini hatırlıyor musunuz?
 
 Bu hâlâ geçerli.
 
@@ -206,7 +206,7 @@ Ve birden fazla process normalde **belleği paylaşmaz**. Yani her çalışan pr
 
 Örneğin code'unuz **1 GB** boyutunda bir Machine Learning modelini yüklüyorsa, API'niz tek process ile çalışırken en az 1 GB RAM tüketir. **4 process** (4 worker) başlatırsanız her biri 1 GB RAM tüketir. Yani toplamda API'niz **4 GB RAM** tüketir.
 
-Uzak server'ınız veya sanal makineniz yalnızca 3 GB RAM'e sahipse, 4 GB'tan fazla RAM yüklemeye çalışmak sorun çıkarır.
+Uzak server'ınız veya sanal makineniz yalnızca 3 GB RAM'e sahipse, 4 GB'tan fazla RAM yüklemeye çalışmak sorun çıkarır. 🚨
 
 ### Birden Fazla Process - Bir Örnek { #multiple-processes-an-example }
 
@@ -243,7 +243,7 @@ Olası kombinasyonlar ve stratejiler:
 
 **Container**, Docker veya Kubernetes ile ilgili bazı maddeler şimdilik çok anlamlı gelmiyorsa dert etmeyin.
 
-Container image'ları, Docker, Kubernetes vb. konuları ilerideki bir bölümde daha detaylı anlatacağım: [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank}.
+Container image'ları, Docker, Kubernetes vb. konuları ilerideki bir bölümde daha detaylı anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 
 ///
 
@@ -265,7 +265,7 @@ Elbette bazı durumlarda ön adımları birden fazla kez çalıştırmak sorun d
 
 Ayrıca, kurulumunuza bağlı olarak bazı durumlarda uygulamanızı başlatmadan önce **hiç ön adıma ihtiyaç duymayabilirsiniz**.
 
-Bu durumda bunların hiçbirini düşünmeniz gerekmez.
+Bu durumda bunların hiçbirini düşünmeniz gerekmez. 🤷
 
 ///
 
@@ -281,7 +281,7 @@ Bazı olası fikirler:
 
 /// tip | İpucu
 
-Bunu container'larla nasıl yapabileceğinize dair daha somut örnekleri ilerideki bir bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank}.
+Bunu container'larla nasıl yapabileceğinize dair daha somut örnekleri ilerideki bir bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 
 ///
 
@@ -291,7 +291,7 @@ Server(lar)ınız bir **kaynaktır**. Programlarınızla CPU'lardaki hesaplama z
 
 Sistem kaynaklarının ne kadarını tüketmek/kullanmak istersiniz? "Az" demek kolaydır; ancak pratikte hedef genellikle **çökmeden mümkün olduğunca fazla** kullanmaktır.
 
-3 server için para ödüyor ama onların RAM ve CPU'sunun yalnızca küçük bir kısmını kullanıyorsanız, muhtemelen **para israf ediyorsunuz** ve muhtemelen **elektrik tüketimini** de gereksiz yere artırıyorsunuz vb.
+3 server için para ödüyor ama onların RAM ve CPU'sunun yalnızca küçük bir kısmını kullanıyorsanız, muhtemelen **para israf ediyorsunuz** 💸 ve muhtemelen **elektrik tüketimini** de gereksiz yere artırıyorsunuz 🌎 vb.
 
 Bu durumda 2 server ile devam edip onların kaynaklarını (CPU, bellek, disk, ağ bant genişliği vb.) daha yüksek oranlarda kullanmak daha iyi olabilir.
 
@@ -316,6 +316,6 @@ Uygulamanızı nasıl deploy edeceğinize karar verirken aklınızda tutmanız g
 * Bellek
 * Başlatmadan önceki adımlar
 
-Bu fikirleri ve nasıl uygulayacağınızı anlamak, deployment'larınızı yapılandırırken ve ince ayar yaparken ihtiyaç duyacağınız sezgiyi kazanmanızı sağlamalıdır.
+Bu fikirleri ve nasıl uygulayacağınızı anlamak, deployment'larınızı yapılandırırken ve ince ayar yaparken ihtiyaç duyacağınız sezgiyi kazanmanızı sağlamalıdır. 🤓
 
-Sonraki bölümlerde, izleyebileceğiniz stratejilere dair daha somut örnekler paylaşacağım.
+Sonraki bölümlerde, izleyebileceğiniz stratejilere dair daha somut örnekler paylaşacağım. 🚀

@@ -12,7 +12,7 @@ Isso é especialmente o caso para modelos de usuários, porque:
 
 Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
 
-Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ Você pode declarar uma resposta como o `Union` de dois ou mais tipos, o que sig
 
 Isso será definido no OpenAPI com `anyOf`.
 
-Para fazer isso, use a anotação de tipo padrão do Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para fazer isso, use a anotação de tipo padrão do Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Nota
 
-Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+Ao definir um [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
 
 ///
 
@@ -190,9 +190,9 @@ Mas se colocarmos isso na atribuição `response_model=PlaneItem | CarItem`, ter
 
 Da mesma forma, você pode declarar respostas de listas de objetos.
 
-Para isso, use o padrão Python `typing.List` (ou simplesmente `list` no Python 3.9 e superior):
+Para isso, use o padrão Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Resposta com `dict` arbitrário { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ Você também pode declarar uma resposta usando um simples `dict` arbitrário, d
 
 Isso é útil se você não souber os nomes de campo / atributo válidos (que seriam necessários para um modelo Pydantic) antecipadamente.
 
-Neste caso, você pode usar `typing.Dict` (ou simplesmente `dict` no Python 3.9 e superior):
+Neste caso, você pode usar `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Recapitulação { #recap }
 

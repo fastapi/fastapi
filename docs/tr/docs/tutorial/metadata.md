@@ -14,11 +14,11 @@ OpenAPI spesifikasyonunda ve otomatik API doküman arayüzlerinde kullanılan ş
 | `version` | `string` | API'nin sürümü. Bu, OpenAPI'nin değil, kendi uygulamanızın sürümüdür. Örneğin `2.5.0`. |
 | `terms_of_service` | `str` | API'nin Kullanım Koşulları (Terms of Service) için bir URL. Verilirse, URL formatında olmalıdır. |
 | `contact` | `dict` | Yayınlanan API için iletişim bilgileri. Birden fazla alan içerebilir. <details><summary><code>contact</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunu tanımlayan ad.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>İletişim bilgilerine işaret eden URL. URL formatında OLMALIDIR.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunun e-posta adresi. E-posta adresi formatında OLMALIDIR.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | Yayınlanan API için lisans bilgileri. Birden fazla alan içerebilir. <details><summary><code>license_info</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ZORUNLU</strong> (<code>license_info</code> ayarlanmışsa). API için kullanılan lisans adı.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API için bir <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> lisans ifadesi. <code>identifier</code> alanı, <code>url</code> alanıyla karşılıklı olarak dışlayıcıdır (ikisi aynı anda kullanılamaz). <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API için kullanılan lisansa ait URL. URL formatında OLMALIDIR.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | Yayınlanan API için lisans bilgileri. Birden fazla alan içerebilir. <details><summary><code>license_info</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ZORUNLU</strong> (<code>license_info</code> ayarlanmışsa). API için kullanılan lisans adı.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API için bir [SPDX](https://spdx.org/licenses/) lisans ifadesi. <code>identifier</code> alanı, <code>url</code> alanıyla karşılıklı olarak dışlayıcıdır (ikisi aynı anda kullanılamaz). <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API için kullanılan lisansa ait URL. URL formatında OLMALIDIR.</td></tr></tbody></table></details> |
 
 Şu şekilde ayarlayabilirsiniz:
 
-{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | İpucu
 
@@ -30,13 +30,13 @@ Bu yapılandırmayla otomatik API dokümanları şöyle görünür:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## License identifier { #license-identifier }
+## Lisans Tanımlayıcısı { #license-identifier }
 
 OpenAPI 3.1.0 ve FastAPI 0.99.0 sürümünden itibaren, `license_info` içinde `url` yerine bir `identifier` da ayarlayabilirsiniz.
 
 Örneğin:
 
-{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## Tag'ler için Metadata { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ Her sözlük şunları içerebilir:
 
 Tag'leriniz için metadata oluşturup `openapi_tags` parametresine geçin:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Açıklamaların içinde Markdown kullanabileceğinizi unutmayın; örneğin "login" kalın (**login**) ve "fancy" italik (_fancy_) olarak gösterilecektir.
 
@@ -72,11 +72,11 @@ Kullandığınız tüm tag'ler için metadata eklemek zorunda değilsiniz.
 
 *path operation*'larınızı (ve `APIRouter`'ları) farklı tag'lere atamak için `tags` parametresini kullanın:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Bilgi
 
-Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags).
 
 ///
 
@@ -100,7 +100,7 @@ Ancak bunu `openapi_url` parametresiyle yapılandırabilirsiniz.
 
 Örneğin `/api/v1/openapi.json` adresinden sunulacak şekilde ayarlamak için:
 
-{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 OpenAPI şemasını tamamen kapatmak isterseniz `openapi_url=None` ayarlayabilirsiniz; bu, onu kullanan dokümantasyon arayüzlerini de devre dışı bırakır.
 
@@ -117,4 +117,4 @@ Dahil gelen iki dokümantasyon arayüzünü yapılandırabilirsiniz:
 
 Örneğin Swagger UI'yi `/documentation` adresinden sunup ReDoc'u kapatmak için:
 
-{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

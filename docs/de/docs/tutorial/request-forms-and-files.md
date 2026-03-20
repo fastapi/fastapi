@@ -4,9 +4,9 @@ Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definie
 
 /// info | Info
 
-Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, diese aktivieren und es dann installieren, z. B.:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, diese aktivieren und es dann installieren, z. B.:
 
 ```console
 $ pip install python-multipart
@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## `File` und `Form` importieren { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File` und `Form`-Parameter definieren { #define-file-and-form-parameters }
 
 Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` oder `Query` machen würden:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 Die Datei- und Formularfelder werden als Formulardaten hochgeladen, und Sie erhalten diese Dateien und Formularfelder.
 

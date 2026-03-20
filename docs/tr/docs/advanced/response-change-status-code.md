@@ -1,6 +1,6 @@
 # Response - Status Code Değiştirme { #response-change-status-code }
 
-Muhtemelen daha önce varsayılan bir [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank} ayarlayabileceğinizi okumuşsunuzdur.
+Muhtemelen daha önce varsayılan bir [Response Status Code](../tutorial/response-status-code.md) ayarlayabileceğinizi okumuşsunuzdur.
 
 Ancak bazı durumlarda, varsayılandan farklı bir status code döndürmeniz gerekir.
 
@@ -20,7 +20,7 @@ Bu tür durumlarda bir `Response` parametresi kullanabilirsiniz.
 
 Ardından bu *geçici (temporal)* `Response` nesnesi üzerinde `status_code` değerini ayarlayabilirsiniz.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 Sonrasında, normalde yaptığınız gibi ihtiyacınız olan herhangi bir nesneyi döndürebilirsiniz (`dict`, bir veritabanı modeli, vb.).
 

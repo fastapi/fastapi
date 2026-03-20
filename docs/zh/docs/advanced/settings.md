@@ -54,7 +54,7 @@ $ pip install "fastapi[all]"
 
 你可以使用与 Pydantic 模型相同的验证功能和工具，例如不同的数据类型，以及使用 `Field()` 进行附加验证。
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | 提示
 
@@ -70,7 +70,7 @@ $ pip install "fastapi[all]"
 
 然后你可以在应用中使用新的 `settings` 对象：
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### 运行服务器 { #run-the-server }
 
@@ -100,19 +100,19 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一个模块中放置设置 { #settings-in-another-module }
 
-你可以把这些设置放在另一个模块文件中，就像你在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
 
 例如，可以有一个 `config.py` 文件：
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 然后在 `main.py` 文件中使用它：
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | 提示
 
-你还需要一个 `__init__.py` 文件，就像你在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
 
 ///
 
@@ -126,7 +126,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 延续上一个示例，你的 `config.py` 文件可能如下所示：
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 注意，现在我们不再创建默认实例 `settings = Settings()`。
 
@@ -134,7 +134,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 现在我们创建一个依赖项，返回一个新的 `config.Settings()`。
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | 提示
 
@@ -144,15 +144,15 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-然后我们可以在“路径操作函数”中将其作为依赖项引入，并在需要的任何地方使用它。
+然后我们可以在路径操作函数中将其作为依赖项引入，并在需要的任何地方使用它。
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### 设置与测试 { #settings-and-testing }
 
 接着，在测试期间，通过为 `get_settings` 创建依赖项覆盖，就可以很容易地提供一个不同的设置对象：
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 在依赖项覆盖中，我们在创建新的 `Settings` 对象时为 `admin_email` 设置了一个新值，然后返回该新对象。
 
@@ -193,7 +193,7 @@ APP_NAME="ChimichangApp"
 
 然后更新 `config.py`：
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | 提示
 
@@ -226,7 +226,7 @@ def get_settings():
 
 但由于我们在顶部使用了 `@lru_cache` 装饰器，`Settings` 对象只会在第一次调用时创建一次。 ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 接着，对于后续请求中依赖项里对 `get_settings()` 的任何调用，它不会再次执行 `get_settings()` 的内部代码并创建新的 `Settings` 对象，而是会一遍又一遍地返回第一次调用时返回的那个相同对象。
 

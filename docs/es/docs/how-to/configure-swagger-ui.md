@@ -1,6 +1,6 @@
 # Configurar Swagger UI { #configure-swagger-ui }
 
-Puedes configurar algunos <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">parámetros adicionales de Swagger UI</a>.
+Puedes configurar algunos [parámetros adicionales de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Para configurarlos, pasa el argumento `swagger_ui_parameters` al crear el objeto de la app `FastAPI()` o a la función `get_swagger_ui_html()`.
 
@@ -18,7 +18,7 @@ Sin cambiar la configuración, el resaltado de sintaxis está activado por defec
 
 Pero puedes desactivarlo estableciendo `syntaxHighlight` en `False`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
 ...y entonces Swagger UI ya no mostrará el resaltado de sintaxis:
 
@@ -28,17 +28,17 @@ Pero puedes desactivarlo estableciendo `syntaxHighlight` en `False`:
 
 De la misma manera, podrías configurar el tema del resaltado de sintaxis con la clave `"syntaxHighlight.theme"` (ten en cuenta que tiene un punto en el medio):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
 Esa configuración cambiaría el tema de color del resaltado de sintaxis:
 
 <img src="/img/tutorial/extending-openapi/image04.png">
 
-## Cambiar los parámetros predeterminados de Swagger UI { #change-default-swagger-ui-parameters }
+## Cambiar los parámetros por defecto de Swagger UI { #change-default-swagger-ui-parameters }
 
-FastAPI incluye algunos parámetros de configuración predeterminados apropiados para la mayoría de los casos de uso.
+FastAPI incluye algunos parámetros de configuración por defecto apropiados para la mayoría de los casos de uso.
 
-Incluye estas configuraciones predeterminadas:
+Incluye estas configuraciones por defecto:
 
 {* ../../fastapi/openapi/docs.py ln[9:24] hl[18:24] *}
 
@@ -46,11 +46,11 @@ Puedes sobrescribir cualquiera de ellos estableciendo un valor diferente en el a
 
 Por ejemplo, para desactivar `deepLinking` podrías pasar estas configuraciones a `swagger_ui_parameters`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
 
 ## Otros parámetros de Swagger UI { #other-swagger-ui-parameters }
 
-Para ver todas las demás configuraciones posibles que puedes usar, lee la <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">documentación oficial de los parámetros de Swagger UI</a>.
+Para ver todas las demás configuraciones posibles que puedes usar, lee la [documentación oficial de los parámetros de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Configuraciones solo de JavaScript { #javascript-only-settings }
 

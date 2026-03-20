@@ -46,17 +46,17 @@ Você pode utilizar esse comando, por exemplo, para iniciar sua aplicação **Fa
 
 Vamos nos aprofundar um pouco mais em detalhes.
 
-FastAPI utiliza um padrão para construir frameworks e servidores web em Python chamado <abbr title="Asynchronous Server Gateway Interface – Interface de Gateway de Servidor Assíncrono">ASGI</abbr>. FastAPI é um framework web ASGI.
+FastAPI utiliza um padrão para construir frameworks e servidores web em Python chamado <abbr title="Asynchronous Server Gateway Interface - Interface de Gateway de Servidor Assíncrono">ASGI</abbr>. FastAPI é um framework web ASGI.
 
 A principal coisa que você precisa para executar uma aplicação **FastAPI** (ou qualquer outra aplicação ASGI) em uma máquina de servidor remoto é um programa de servidor ASGI como o **Uvicorn**, que é o que vem por padrão no comando `fastapi`.
 
 Existem diversas alternativas, incluindo:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: um servidor ASGI de alta performance.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: um servidor ASGI compatível com HTTP/2, Trio e outros recursos.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: servidor ASGI construído para Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: um servidor HTTP Rust para aplicações Python.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit é um runtime de aplicação web leve e versátil.
+* [Uvicorn](https://www.uvicorn.dev/): um servidor ASGI de alta performance.
+* [Hypercorn](https://hypercorn.readthedocs.io/): um servidor ASGI compatível com HTTP/2, Trio e outros recursos.
+* [Daphne](https://github.com/django/daphne): servidor ASGI construído para Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): um servidor HTTP Rust para aplicações Python.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit é um runtime de aplicação web leve e versátil.
 
 ## Máquina Servidora e Programa Servidor { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ Quando você instala o FastAPI, ele vem com um servidor de produção, o Uvicorn
 
 Mas você também pode instalar um servidor ASGI manualmente.
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e, em seguida, você pode instalar a aplicação do servidor.
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e, em seguida, você pode instalar a aplicação do servidor.
 
 Por exemplo, para instalar o Uvicorn:
 

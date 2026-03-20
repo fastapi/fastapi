@@ -32,7 +32,7 @@ Webhook'lar OpenAPI 3.1.0 ve üzeri sürümlerde mevcuttur; FastAPI `0.99.0` ve 
 
 Bir **FastAPI** uygulaması oluşturduğunuzda, *webhook*'ları tanımlamak için kullanabileceğiniz bir `webhooks` attribute'u vardır; *path operation* tanımlar gibi, örneğin `@app.webhooks.post()` ile.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Tanımladığınız webhook'lar **OpenAPI** şemasında ve otomatik **docs UI**'da yer alır.
 
@@ -48,7 +48,7 @@ Bunun nedeni, webhook request'ini almak istedikleri gerçek **URL path**'i **kul
 
 ### Dokümanları kontrol edin { #check-the-docs }
 
-Şimdi uygulamanızı başlatıp <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidin.
+Şimdi uygulamanızı başlatıp [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidin.
 
 Dokümanlarınızda normal *path operation*'ları ve artık bazı **webhook**'ları da göreceksiniz:
 

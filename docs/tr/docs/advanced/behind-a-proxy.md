@@ -16,9 +16,9 @@ Ancak güvenlik nedeniyle, server güvenilir bir proxy arkasında olduğunu bilm
 
 Proxy header'ları şunlardır:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Örneğin `/items/` adında bir *path operation* tanımladığınızı düşünelim:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Client `/items`'a gitmeye çalışırsa, varsayılan olarak `/items/`'a redirect edilir.
 
@@ -60,7 +60,7 @@ https://mysuperapp.com/items/
 
 /// tip | İpucu
 
-HTTPS hakkında daha fazla bilgi için [HTTPS Hakkında](../deployment/https.md){.internal-link target=_blank} rehberine bakın.
+HTTPS hakkında daha fazla bilgi için [HTTPS Hakkında](../deployment/https.md) rehberine bakın.
 
 ///
 
@@ -115,7 +115,7 @@ Bu durumda, orijinal `/app` path'i aslında `/api/v1/app` altında servis edilir
 
 Kodunuzun tamamı sadece `/app` varmış gibi yazılmış olsa bile.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Proxy, request'i app server'a (muhtemelen FastAPI CLI üzerinden Uvicorn) iletmeden önce **path prefix**'i anlık olarak **"kırpar"** (strip). Böylece uygulamanız hâlâ `/app` altında servis ediliyormuş gibi davranır ve tüm kodunuzu `/api/v1` prefix'ini içerecek şekilde güncellemeniz gerekmez.
 
@@ -149,14 +149,14 @@ Docs UI'nin, bu API `server`'ının (proxy arkasında) `/api/v1` altında bulund
 ```JSON hl_lines="4-8"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Burada daha fazla şey var
     "servers": [
         {
             "url": "/api/v1"
         }
     ],
     "paths": {
-            // More stuff here
+            // Burada daha fazla şey var
     }
 }
 ```
@@ -193,7 +193,7 @@ Uygulamanızın her request için kullandığı mevcut `root_path` değerini ala
 
 Burada sadece göstermek için bunu mesaja dahil ediyoruz.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Ardından Uvicorn'u şu şekilde başlatırsanız:
 
@@ -220,7 +220,7 @@ Response şöyle bir şey olur:
 
 Alternatif olarak, `--root-path` gibi bir komut satırı seçeneği (veya muadili) sağlayamıyorsanız, FastAPI uygulamanızı oluştururken `root_path` parametresini ayarlayabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 `FastAPI`'ye `root_path` vermek, Uvicorn veya Hypercorn'a `--root-path` komut satırı seçeneğini vermekle eşdeğerdir.
 
@@ -228,7 +228,7 @@ Alternatif olarak, `--root-path` gibi bir komut satırı seçeneği (veya muadil
 
 Şunu unutmayın: Server (Uvicorn) bu `root_path`'i, uygulamaya iletmek dışında başka bir amaçla kullanmaz.
 
-Ancak tarayıcınızla <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> adresine giderseniz normal response'u görürsünüz:
+Ancak tarayıcınızla [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) adresine giderseniz normal response'u görürsünüz:
 
 ```JSON
 {
@@ -251,9 +251,9 @@ Böyle bir durumda (stripped path prefix olmadan), proxy `https://myawesomeapp.c
 
 ## Traefik ile Local Olarak Test Etme { #testing-locally-with-traefik }
 
-<a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a> kullanarak, stripped path prefix'li deneyi local'de kolayca çalıştırabilirsiniz.
+[Traefik](https://docs.traefik.io/) kullanarak, stripped path prefix'li deneyi local'de kolayca çalıştırabilirsiniz.
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Traefik'i indirin</a>; tek bir binary'dir, sıkıştırılmış dosyayı çıkarıp doğrudan terminalden çalıştırabilirsiniz.
+[Traefik'i indirin](https://github.com/containous/traefik/releases); tek bir binary'dir, sıkıştırılmış dosyayı çıkarıp doğrudan terminalden çalıştırabilirsiniz.
 
 Ardından `traefik.toml` adında bir dosya oluşturup şunu yazın:
 
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### Response'ları Kontrol Edin { #check-the-responses }
 
-Şimdi Uvicorn'un portundaki URL'ye giderseniz: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, normal response'u görürsünüz:
+Şimdi Uvicorn'un portundaki URL'ye giderseniz: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), normal response'u görürsünüz:
 
 ```JSON
 {
@@ -345,7 +345,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-Şimdi de Traefik'in portundaki URL'yi, path prefix ile birlikte açın: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+Şimdi de Traefik'in portundaki URL'yi, path prefix ile birlikte açın: [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app).
 
 Aynı response'u alırız:
 
@@ -370,13 +370,13 @@ Bu da Proxy'nin (Traefik) path prefix'i nasıl kullandığını ve server'ın (U
 
 Uygulamaya erişmenin "resmi" yolu, tanımladığımız path prefix ile proxy üzerinden erişmektir. Bu yüzden beklendiği gibi, Uvicorn'un doğrudan servis ettiği docs UI'yi URL'de path prefix olmadan açarsanız çalışmaz; çünkü proxy üzerinden erişileceğini varsayar.
 
-Şuradan kontrol edebilirsiniz: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Şuradan kontrol edebilirsiniz: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 Ancak docs UI'yi proxy üzerinden, `9999` portuyla, `/api/v1/docs` altında "resmi" URL'den açarsak doğru çalışır! 🎉
 
-Şuradan kontrol edebilirsiniz: <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+Şuradan kontrol edebilirsiniz: [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -400,14 +400,14 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
 
 Örneğin:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Şöyle bir OpenAPI şeması üretir:
 
 ```JSON hl_lines="5-7"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Burada daha fazla şey var
     "servers": [
         {
             "url": "/api/v1"
@@ -422,7 +422,7 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
         }
     ],
     "paths": {
-            // More stuff here
+            // Burada daha fazla şey var
     }
 }
 ```
@@ -433,7 +433,7 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
 
 ///
 
-Docs UI'de, <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> adresinde şöyle görünür:
+Docs UI'de, [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) adresinde şöyle görünür:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -455,12 +455,12 @@ OpenAPI spesifikasyonunda `servers` özelliği opsiyoneldir.
 
 **FastAPI**'nin `root_path` kullanarak otomatik bir server eklemesini istemiyorsanız, `root_path_in_servers=False` parametresini kullanabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 Böylece OpenAPI şemasına dahil etmez.
 
 ## Bir Sub-Application Mount Etme { #mounting-a-sub-application }
 
-Bir sub-application'ı ( [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank} bölümünde anlatıldığı gibi) mount etmeniz gerekiyorsa ve aynı zamanda `root_path` ile bir proxy kullanıyorsanız, bunu beklendiği gibi normal şekilde yapabilirsiniz.
+Bir sub-application'ı ([Sub Applications - Mounts](sub-applications.md) bölümünde anlatıldığı gibi) mount etmeniz gerekiyorsa ve aynı zamanda `root_path` ile bir proxy kullanıyorsanız, bunu beklendiği gibi normal şekilde yapabilirsiniz.
 
 FastAPI içeride `root_path`'i akıllıca kullanır; dolayısıyla doğrudan çalışır. ✨

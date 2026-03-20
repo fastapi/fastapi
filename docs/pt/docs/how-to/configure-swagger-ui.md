@@ -1,6 +1,6 @@
 # Configure a UI do Swagger { #configure-swagger-ui }
 
-Você pode configurar alguns <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">parâmetros extras da UI do Swagger</a>.
+Você pode configurar alguns [parâmetros extras da UI do Swagger](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Para configurá-los, passe o argumento `swagger_ui_parameters` ao criar o objeto da aplicação `FastAPI()` ou para a função `get_swagger_ui_html()`.
 
@@ -18,7 +18,7 @@ Sem alterar as configurações, o destaque de sintaxe é habilitado por padrão:
 
 Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
 ...e então o Swagger UI não mostrará mais o destaque de sintaxe:
 
@@ -28,7 +28,7 @@ Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
 Da mesma forma que você pode definir o tema de destaque de sintaxe com a chave `"syntaxHighlight.theme"` (observe que há um ponto no meio):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
 Essa configuração alteraria o tema de cores de destaque de sintaxe:
 
@@ -46,11 +46,11 @@ Você pode substituir qualquer um deles definindo um valor diferente no argument
 
 Por exemplo, para desabilitar `deepLinking` você pode passar essas configurações para `swagger_ui_parameters`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
 
 ## Outros parâmetros da UI do Swagger { #other-swagger-ui-parameters }
 
-Para ver todas as outras configurações possíveis que você pode usar, leia a <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">documentação oficial dos parâmetros da UI do Swagger</a>.
+Para ver todas as outras configurações possíveis que você pode usar, leia a [documentação oficial dos parâmetros da UI do Swagger](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Configurações somente JavaScript { #javascript-only-settings }
 

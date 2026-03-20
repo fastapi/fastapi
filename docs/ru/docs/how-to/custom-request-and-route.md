@@ -18,7 +18,7 @@
 
 Некоторые сценарии:
 
-* Преобразование тел запросов, не в формате JSON, в JSON (например, <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Преобразование тел запросов, не в формате JSON, в JSON (например, [`msgpack`](https://msgpack.org/index.html)).
 * Распаковка тел запросов, сжатых с помощью gzip.
 * Автоматическое логирование всех тел запросов.
 
@@ -32,7 +32,7 @@
 
 /// tip | Совет
 
-Это учебный пример, демонстрирующий принцип работы. Если вам нужна поддержка Gzip, вы можете использовать готовый [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+Это учебный пример, демонстрирующий принцип работы. Если вам нужна поддержка Gzip, вы можете использовать готовый [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware).
 
 ///
 
@@ -66,7 +66,7 @@
 
 Именно этих двух компонентов — `scope` и `receive` — достаточно, чтобы создать новый экземпляр `Request`.
 
-Чтобы узнать больше о `Request`, см. <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">документацию Starlette о запросах</a>.
+Чтобы узнать больше о `Request`, см. [документацию Starlette о запросах](https://www.starlette.dev/requests/).
 
 ///
 
@@ -82,7 +82,7 @@
 
 /// tip | Совет
 
-Для решения этой задачи, вероятно, намного проще использовать `body` в пользовательском обработчике `RequestValidationError` ([Обработка ошибок](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Для решения этой задачи, вероятно, намного проще использовать `body` в пользовательском обработчике `RequestValidationError` ([Обработка ошибок](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Но этот пример всё равно актуален и показывает, как взаимодействовать с внутренними компонентами.
 

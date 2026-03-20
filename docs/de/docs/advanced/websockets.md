@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-Sie können <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> mit **FastAPI** verwenden.
+Sie können [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) mit **FastAPI** verwenden.
 
 ## `websockets` installieren { #install-websockets }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `websockets` installieren (eine Python-Bibliothek, die die Verwendung des „WebSocket“-Protokolls erleichtert):
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und `websockets` installieren (eine Python-Bibliothek, die die Verwendung des „WebSocket“-Protokolls erleichtert):
 
 <div class="termy">
 
@@ -38,13 +38,13 @@ In der Produktion hätten Sie eine der oben genannten Optionen.
 
 Aber es ist der einfachste Weg, sich auf die Serverseite von WebSockets zu konzentrieren und ein funktionierendes Beispiel zu haben:
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Einen `websocket` erstellen { #create-a-websocket }
 
 Erstellen Sie in Ihrer **FastAPI**-Anwendung einen `websocket`:
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Technische Details
 
@@ -58,25 +58,25 @@ Sie könnten auch `from starlette.websockets import WebSocket` verwenden.
 
 In Ihrer WebSocket-Route können Sie Nachrichten `await`en und Nachrichten senden.
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 Sie können Binär-, Text- und JSON-Daten empfangen und senden.
 
 ## Es ausprobieren { #try-it }
 
-Wenn Ihre Datei `main.py` heißt, führen Sie Ihre Anwendung so aus:
+Legen Sie Ihren Code in einer Datei `main.py` ab und führen Sie dann Ihre Anwendung aus:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Öffnen Sie Ihren Browser unter [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Sie sehen eine einfache Seite wie:
 
@@ -109,31 +109,31 @@ In WebSocket-Endpunkten können Sie Folgendes aus `fastapi` importieren und verw
 
 Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfadoperationen*:
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info | Info
 
 Da es sich um einen WebSocket handelt, macht es keinen Sinn, eine `HTTPException` auszulösen, stattdessen lösen wir eine `WebSocketException` aus.
 
-Sie können einen „Closing“-Code verwenden, aus den <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">gültigen Codes, die in der Spezifikation definiert sind</a>.
+Sie können einen „Closing“-Code verwenden, aus den [gültigen Codes, die in der Spezifikation definiert sind](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 ///
 
 ### WebSockets mit Abhängigkeiten ausprobieren { #try-the-websockets-with-dependencies }
 
-Wenn Ihre Datei `main.py` heißt, führen Sie Ihre Anwendung mit Folgendem aus:
+Führen Sie Ihre Anwendung aus:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Öffnen Sie Ihren Browser unter [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Dort können Sie einstellen:
 
@@ -154,7 +154,7 @@ Damit können Sie den WebSocket verbinden und dann Nachrichten senden und empfan
 
 Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_text()` eine `WebSocketDisconnect`-Exception aus, die Sie dann wie in folgendem Beispiel abfangen und behandeln können.
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 Zum Ausprobieren:
 
@@ -174,7 +174,7 @@ Die obige Anwendung ist ein minimales und einfaches Beispiel, das zeigt, wie Nac
 
 Beachten Sie jedoch, dass, da alles nur im Speicher in einer einzigen Liste verwaltet wird, es nur funktioniert, während der Prozess ausgeführt wird, und nur mit einem einzelnen Prozess.
 
-Wenn Sie etwas benötigen, das sich leicht in FastAPI integrieren lässt, aber robuster ist und von Redis, PostgreSQL und anderen unterstützt wird, sehen Sie sich <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a> an.
+Wenn Sie etwas benötigen, das sich leicht in FastAPI integrieren lässt, aber robuster ist und von Redis, PostgreSQL und anderen unterstützt wird, sehen Sie sich [encode/broadcaster](https://github.com/encode/broadcaster) an.
 
 ///
 
@@ -182,5 +182,5 @@ Wenn Sie etwas benötigen, das sich leicht in FastAPI integrieren lässt, aber r
 
 Weitere Informationen zu Optionen finden Sie in der Dokumentation von Starlette:
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">Die `WebSocket`-Klasse</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Klassen-basierte Handhabung von WebSockets</a>.
+* [Die `WebSocket`-Klasse](https://www.starlette.dev/websockets/).
+* [Klassen-basierte Handhabung von WebSockets](https://www.starlette.dev/endpoints/#websocketendpoint).

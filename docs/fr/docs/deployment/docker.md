@@ -1,6 +1,6 @@
 # FastAPI dans des conteneurs - Docker { #fastapi-in-containers-docker }
 
-Lors du déploiement d'applications FastAPI, une approche courante consiste à construire une **image de conteneur Linux**. C'est généralement fait avec <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Vous pouvez ensuite déployer cette image de conteneur de plusieurs façons possibles.
+Lors du déploiement d'applications FastAPI, une approche courante consiste à construire une **image de conteneur Linux**. C'est généralement fait avec [**Docker**](https://www.docker.com/). Vous pouvez ensuite déployer cette image de conteneur de plusieurs façons possibles.
 
 L'utilisation de conteneurs Linux présente plusieurs avantages, notamment la **sécurité**, la **réplicabilité**, la **simplicité**, entre autres.
 
@@ -14,7 +14,7 @@ Vous êtes pressé et vous connaissez déjà tout ça ? Allez directement au [`D
 <summary>Aperçu du Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -60,16 +60,16 @@ Et le **conteneur** lui-même (par opposition à l'**image de conteneur**) est l
 
 Docker a été l'un des principaux outils pour créer et gérer des **images de conteneur** et des **conteneurs**.
 
-Et il existe un <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> public avec des **images de conteneur officielles** pré-construites pour de nombreux outils, environnements, bases de données et applications.
+Et il existe un [Docker Hub](https://hub.docker.com/) public avec des **images de conteneur officielles** pré-construites pour de nombreux outils, environnements, bases de données et applications.
 
-Par exemple, il existe une <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">image Python officielle</a>.
+Par exemple, il existe une [image Python officielle](https://hub.docker.com/_/python).
 
 Et il existe beaucoup d'autres images pour différentes choses comme des bases de données, par exemple :
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), etc.
 
 En utilisant une image de conteneur pré-construite, il est très facile de **combiner** et d'utiliser différents outils. Par exemple, pour essayer une nouvelle base de données. Dans la plupart des cas, vous pouvez utiliser les **images officielles** et simplement les configurer avec des variables d'environnement.
 
@@ -111,7 +111,7 @@ Cela dépendra principalement de l'outil que vous utilisez pour **installer** ce
 
 La manière la plus courante consiste à avoir un fichier `requirements.txt` avec les noms des paquets et leurs versions, un par ligne.
 
-Vous utiliserez bien sûr les mêmes idées que vous avez lues dans [À propos des versions de FastAPI](versions.md){.internal-link target=_blank} pour définir les plages de versions.
+Vous utiliserez bien sûr les mêmes idées que vous avez lues dans [À propos des versions de FastAPI](versions.md) pour définir les plages de versions.
 
 Par exemple, votre `requirements.txt` pourrait ressembler à :
 
@@ -166,7 +166,7 @@ Maintenant, dans le même répertoire de projet, créez un fichier `Dockerfile` 
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -238,7 +238,7 @@ Vous devez vous assurer d'utiliser **toujours** la **forme exec** de l'instructi
 
 #### Utiliser `CMD` - Forme Exec { #use-cmd-exec-form }
 
-L'instruction Docker <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> peut être écrite sous deux formes :
+L'instruction Docker [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) peut être écrite sous deux formes :
 
 ✅ Forme **Exec** :
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Assurez-vous d'utiliser toujours la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md){.internal-link target=_blank} sont déclenchés.
+Assurez-vous d'utiliser toujours la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
 
-Vous pouvez en lire davantage dans la <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">documentation Docker sur les formes shell et exec</a>.
+Vous pouvez en lire davantage dans la [documentation Docker sur les formes shell et exec](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
-Cela peut être très visible lors de l'utilisation de `docker compose`. Voir cette section de la FAQ Docker Compose pour plus de détails techniques : <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Pourquoi mes services mettent-ils 10 secondes à se recréer ou à s'arrêter ?</a>.
+Cela peut être très visible lors de l'utilisation de `docker compose`. Voir cette section de la FAQ Docker Compose pour plus de détails techniques : [Pourquoi mes services mettent-ils 10 secondes à se recréer ou à s'arrêter ?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### Structure du répertoire { #directory-structure }
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Vérifier { #check-it }
 
-Vous devriez pouvoir le vérifier via l'URL de votre conteneur Docker, par exemple : <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> ou <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (ou équivalent, en utilisant votre hôte Docker).
+Vous devriez pouvoir le vérifier via l'URL de votre conteneur Docker, par exemple : [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) ou [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (ou équivalent, en utilisant votre hôte Docker).
 
 Vous verrez quelque chose comme :
 
@@ -362,17 +362,17 @@ Vous verrez quelque chose comme :
 
 ## Documentation interactive de l'API { #interactive-api-docs }
 
-Vous pouvez maintenant aller sur <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> ou <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (ou équivalent, en utilisant votre hôte Docker).
+Vous pouvez maintenant aller sur [http://192.168.99.100/docs](http://192.168.99.100/docs) ou [http://127.0.0.1/docs](http://127.0.0.1/docs) (ou équivalent, en utilisant votre hôte Docker).
 
-Vous verrez la documentation interactive automatique de l'API (fournie par <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>) :
+Vous verrez la documentation interactive automatique de l'API (fournie par [Swagger UI](https://github.com/swagger-api/swagger-ui)) :
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## Documentation alternative de l'API { #alternative-api-docs }
 
-Et vous pouvez aussi aller sur <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> ou <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (ou équivalent, en utilisant votre hôte Docker).
+Et vous pouvez aussi aller sur [http://192.168.99.100/redoc](http://192.168.99.100/redoc) ou [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (ou équivalent, en utilisant votre hôte Docker).
 
-Vous verrez la documentation automatique alternative (fournie par <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>) :
+Vous verrez la documentation automatique alternative (fournie par [ReDoc](https://github.com/Rebilly/ReDoc)) :
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -390,7 +390,7 @@ Si votre FastAPI est un seul fichier, par exemple `main.py` sans répertoire `./
 Vous n'auriez alors qu'à changer les chemins correspondants pour copier le fichier dans le `Dockerfile` :
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -413,7 +413,7 @@ Lorsque vous passez le fichier à `fastapi run`, il détectera automatiquement q
 
 ## Concepts de déploiement { #deployment-concepts }
 
-Parlons à nouveau de certains des mêmes [Concepts de déploiement](concepts.md){.internal-link target=_blank} en termes de conteneurs.
+Parlons à nouveau de certains des mêmes [Concepts de déploiement](concepts.md) en termes de conteneurs.
 
 Les conteneurs sont principalement un outil pour simplifier le processus de **construction et de déploiement** d'une application, mais ils n'imposent pas une approche particulière pour gérer ces **concepts de déploiement**, et il existe plusieurs stratégies possibles.
 
@@ -432,7 +432,7 @@ Passons en revue ces **concepts de déploiement** en termes de conteneurs :
 
 Si l'on se concentre uniquement sur l'**image de conteneur** pour une application FastAPI (et plus tard sur le **conteneur** en cours d'exécution), HTTPS serait normalement géré **à l'extérieur** par un autre outil.
 
-Cela pourrait être un autre conteneur, par exemple avec <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, gérant **HTTPS** et l'acquisition **automatique** des **certificats**.
+Cela pourrait être un autre conteneur, par exemple avec [Traefik](https://traefik.io/), gérant **HTTPS** et l'acquisition **automatique** des **certificats**.
 
 /// tip | Astuce
 
@@ -454,7 +454,7 @@ Sans utiliser de conteneurs, faire en sorte que les applications s'exécutent au
 
 ## Réplication - Nombre de processus { #replication-number-of-processes }
 
-Si vous avez un <abbr title="Un groupe de machines configurées pour être connectées et fonctionner ensemble d'une certaine manière.">cluster</abbr> de machines avec **Kubernetes**, Docker Swarm Mode, Nomad, ou un autre système complexe similaire pour gérer des conteneurs distribués sur plusieurs machines, alors vous voudrez probablement **gérer la réplication** au **niveau du cluster** plutôt que d'utiliser un **gestionnaire de processus** (comme Uvicorn avec workers) dans chaque conteneur.
+Si vous avez un <dfn title="Groupe de machines configurées pour être connectées et fonctionner ensemble d'une certaine manière.">cluster</dfn> de machines avec **Kubernetes**, Docker Swarm Mode, Nomad, ou un autre système complexe similaire pour gérer des conteneurs distribués sur plusieurs machines, alors vous voudrez probablement **gérer la réplication** au **niveau du cluster** plutôt que d'utiliser un **gestionnaire de processus** (comme Uvicorn avec workers) dans chaque conteneur.
 
 L'un de ces systèmes de gestion de conteneurs distribués comme Kubernetes dispose normalement d'une manière intégrée de gérer la **réplication des conteneurs** tout en supportant l'**équilibrage de charge** des requêtes entrantes. Le tout au **niveau du cluster**.
 
@@ -499,7 +499,7 @@ Bien sûr, il existe des **cas particuliers** où vous pourriez vouloir avoir **
 Dans ces cas, vous pouvez utiliser l'option de ligne de commande `--workers` pour définir le nombre de workers que vous souhaitez exécuter :
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -558,7 +558,7 @@ Si vous avez **plusieurs conteneurs**, probablement chacun exécutant un **seul 
 
 /// info
 
-Si vous utilisez Kubernetes, ce sera probablement un <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+Si vous utilisez Kubernetes, ce sera probablement un [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
 ///
 
@@ -570,7 +570,7 @@ Si vous avez une configuration simple, avec **un seul conteneur** qui démarre e
 
 ### Image Docker de base { #base-docker-image }
 
-Il existait une image Docker officielle FastAPI : <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Mais elle est désormais dépréciée. ⛔️
+Il existait une image Docker officielle FastAPI : [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Mais elle est désormais dépréciée. ⛔️
 
 Vous ne devriez probablement **pas** utiliser cette image Docker de base (ni aucune autre similaire).
 
@@ -600,7 +600,7 @@ Par exemple :
 
 ## Image Docker avec `uv` { #docker-image-with-uv }
 
-Si vous utilisez <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> pour installer et gérer votre projet, vous pouvez suivre leur <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">guide Docker pour uv</a>.
+Si vous utilisez [uv](https://github.com/astral-sh/uv) pour installer et gérer votre projet, vous pouvez suivre leur [guide Docker pour uv](https://docs.astral.sh/uv/guides/integration/docker/).
 
 ## Récapitulatif { #recap }
 

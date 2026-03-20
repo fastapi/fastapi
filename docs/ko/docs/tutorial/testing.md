@@ -2,7 +2,7 @@
 
 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 애플리케이션을 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
 
-Starlette는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
+이는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
 
 이를 사용하면 **FastAPI**에서 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>를 직접 사용할 수 있습니다.
 
@@ -30,7 +30,7 @@ $ pip install httpx
 
 표준적인 파이썬 표현식으로 확인이 필요한 곳에 간단한 `assert` 문장을 작성하세요(역시 표준적인 `pytest` 관례입니다).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 팁
 
@@ -42,7 +42,7 @@ $ pip install httpx
 
 ///
 
-/// note Technical Details | 기술 세부사항
+/// note | 기술 세부사항
 
 `from starlette.testclient import TestClient` 역시 사용할 수 있습니다.
 
@@ -76,7 +76,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 `main.py` 파일 안에 **FastAPI** app 을 만들었습니다:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### 테스트 파일 { #testing-file }
 
@@ -92,7 +92,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 파일들이 동일한 패키지에 위치해 있으므로, 상대 임포트를 사용하여 `main` 모듈(`main.py`)에서 `app` 객체를 임포트 해올 수 있습니다.
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...그리고 이전에 작성했던 것과 같은 테스트 코드를 작성할 수 있습니다.
@@ -115,7 +115,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 이제 **FastAPI** 앱이 있는 `main.py` 파일에 몇 가지 다른 **경로 처리**가 추가된 경우를 생각해봅시다.
 
-단일 오류를 반환할 수 있는 `GET` 작업이 있습니다.
+오류를 반환할 수 있는 `GET` 작업이 있습니다.
 
 여러 다른 오류를 반환할 수 있는 `POST` 작업이 있습니다.
 

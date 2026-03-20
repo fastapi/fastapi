@@ -20,17 +20,17 @@ Primero solo usemos el código y veamos cómo funciona, y luego volveremos para 
 
 Copia el ejemplo en un archivo `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Ejecútalo { #run-it }
 
 /// info | Información
 
-El paquete <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> se instala automáticamente con **FastAPI** cuando ejecutas el comando `pip install "fastapi[standard]"`.
+El paquete [`python-multipart`](https://github.com/Kludex/python-multipart) se instala automáticamente con **FastAPI** cuando ejecutas el comando `pip install "fastapi[standard]"`.
 
 Sin embargo, si usas el comando `pip install fastapi`, el paquete `python-multipart` no se incluye por defecto.
 
-Para instalarlo manualmente, asegúrate de crear un [entorno virtual](../../virtual-environments.md){.internal-link target=_blank}, activarlo, y luego instalarlo con:
+Para instalarlo manualmente, asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo, y luego instalarlo con:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ Ejecuta el ejemplo con:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,7 +54,7 @@ $ fastapi dev main.py
 
 ## Revisa { #check-it }
 
-Ve a la documentación interactiva en: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ve a la documentación interactiva en: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás algo así:
 
@@ -132,7 +132,7 @@ En ese caso, **FastAPI** también te proporciona las herramientas para construir
 
 Cuando creamos una instance de la clase `OAuth2PasswordBearer` pasamos el parámetro `tokenUrl`. Este parámetro contiene la URL que el cliente (el frontend corriendo en el navegador del usuario) usará para enviar el `username` y `password` a fin de obtener un token.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | Consejo
 
@@ -140,7 +140,7 @@ Aquí `tokenUrl="token"` se refiere a una URL relativa `token` que aún no hemos
 
 Porque estamos usando una URL relativa, si tu API estuviera ubicada en `https://example.com/`, entonces se referiría a `https://example.com/token`. Pero si tu API estuviera ubicada en `https://example.com/api/v1/`, entonces se referiría a `https://example.com/api/v1/token`.
 
-Usar una URL relativa es importante para asegurarse de que tu aplicación siga funcionando incluso en un caso de uso avanzado como [Detrás de un Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+Usar una URL relativa es importante para asegurarse de que tu aplicación siga funcionando incluso en un caso de uso avanzado como [Detrás de un Proxy](../../advanced/behind-a-proxy.md).
 
 ///
 
@@ -170,7 +170,7 @@ Así que, puede usarse con `Depends`.
 
 Ahora puedes pasar ese `oauth2_scheme` en una dependencia con `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Esta dependencia proporcionará un `str` que se asigna al parámetro `token` de la *path operation function*.
 

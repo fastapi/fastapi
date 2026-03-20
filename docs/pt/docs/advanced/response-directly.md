@@ -1,20 +1,24 @@
 # Retornando uma Resposta Diretamente { #return-a-response-directly }
 
-Quando você cria uma *operação de rota* no **FastAPI** você pode retornar qualquer dado nela: um dicionário (`dict`), uma lista (`list`), um modelo do Pydantic ou do seu banco de dados, etc.
+Quando você cria uma *operação de rota* no **FastAPI**, normalmente você pode retornar qualquer dado: um `dict`, uma `list`, um modelo do Pydantic, um modelo do banco de dados, etc.
 
-Por padrão, o **FastAPI** irá converter automaticamente o valor do retorno para JSON utilizando o `jsonable_encoder` explicado em [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+Se você declarar um [Modelo de resposta](../tutorial/response-model.md), o FastAPI irá usá-lo para serializar os dados para JSON, usando o Pydantic.
 
-Então, por baixo dos panos, ele incluiria esses dados compatíveis com JSON (e.g. um `dict`) dentro de uma `JSONResponse` que é utilizada para enviar uma resposta para o cliente.
+Se você não declarar um modelo de resposta, o FastAPI usará o `jsonable_encoder` explicado em [Codificador Compatível com JSON](../tutorial/encoder.md) e o colocará em uma `JSONResponse`.
 
-Mas você pode retornar a `JSONResponse` diretamente nas suas *operações de rota*.
+Você também pode criar uma `JSONResponse` diretamente e retorná-la.
 
-Pode ser útil para retornar cabeçalhos e cookies personalizados, por exemplo.
+/// tip | Dica
+
+Normalmente você terá um desempenho muito melhor usando um [Modelo de resposta](../tutorial/response-model.md) do que retornando uma `JSONResponse` diretamente, pois assim ele serializa os dados usando o Pydantic, em Rust.
+
+///
 
 ## Retornando uma `Response` { #return-a-response }
 
-Na verdade, você pode retornar qualquer `Response` ou subclasse dela.
+Você pode retornar uma `Response` ou qualquer subclasse dela.
 
-/// tip | Dica
+/// info | Informação
 
 A própria `JSONResponse` é uma subclasse de `Response`.
 
@@ -22,9 +26,11 @@ A própria `JSONResponse` é uma subclasse de `Response`.
 
 E quando você retorna uma `Response`, o **FastAPI** vai repassá-la diretamente.
 
-Ele não vai fazer conversões de dados com modelos do Pydantic, não irá converter a tipagem de nenhum conteúdo, etc.
+Ele não fará conversões de dados com modelos do Pydantic, não converterá o conteúdo para nenhum tipo, etc.
 
 Isso te dá bastante flexibilidade. Você pode retornar qualquer tipo de dado, sobrescrever qualquer declaração e validação nos dados, etc.
+
+Isso também te dá muita responsabilidade. Você precisa garantir que os dados retornados estão corretos, no formato correto, que podem ser serializados, etc.
 
 ## Utilizando o `jsonable_encoder` em uma `Response` { #using-the-jsonable-encoder-in-a-response }
 
@@ -50,16 +56,28 @@ O exemplo acima mostra todas as partes que você precisa, mas ainda não é muit
 
 Agora, vamos ver como você pode usar isso para retornar uma resposta personalizada.
 
-Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
+Vamos dizer que você quer retornar uma resposta [XML](https://en.wikipedia.org/wiki/XML).
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+
+## Como funciona um Modelo de resposta { #how-a-response-model-works }
+
+Quando você declara um [Modelo de resposta - Tipo de retorno](../tutorial/response-model.md) em uma operação de rota, o **FastAPI** irá usá-lo para serializar os dados para JSON, usando o Pydantic.
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
+Como isso acontece no lado do Rust, o desempenho será muito melhor do que se fosse feito com Python comum e a classe `JSONResponse`.
+
+Ao usar um `response_model` ou tipo de retorno, o FastAPI não usará o `jsonable_encoder` para converter os dados (o que seria mais lento) nem a classe `JSONResponse`.
+
+Em vez disso, ele pega os bytes JSON gerados com o Pydantic usando o modelo de resposta (ou tipo de retorno) e retorna uma `Response` com o media type correto para JSON diretamente (`application/json`).
 
 ## Notas { #notes }
 
 Quando você retorna uma `Response` diretamente os dados não são validados, convertidos (serializados) ou documentados automaticamente.
 
-Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Mas você ainda pode documentar como descrito em [Respostas adicionais no OpenAPI](additional-responses.md).
 
 Você pode ver nas próximas seções como usar/declarar essas `Responses` customizadas enquanto mantém a conversão e documentação automática dos dados.

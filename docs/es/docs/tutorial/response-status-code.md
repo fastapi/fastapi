@@ -8,7 +8,7 @@ De la misma manera que puedes especificar un modelo de response, también puedes
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Nota
 
@@ -20,7 +20,7 @@ El parámetro `status_code` recibe un número con el código de estado HTTP.
 
 /// info | Información
 
-`status_code` también puede recibir un `IntEnum`, como por ejemplo el <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> de Python.
+`status_code` también puede recibir un `IntEnum`, como por ejemplo el [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) de Python.
 
 ///
 
@@ -66,7 +66,7 @@ En breve:
 
 /// tip | Consejo
 
-Para saber más sobre cada código de estado y qué código es para qué, revisa la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentación de <abbr title="Mozilla Developer Network – Red de Desarrolladores de Mozilla">MDN</abbr> sobre códigos de estado HTTP</a>.
+Para saber más sobre cada código de estado y qué código es para qué, revisa la [documentación de <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> sobre códigos de estado HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -74,7 +74,7 @@ Para saber más sobre cada código de estado y qué código es para qué, revisa
 
 Veamos de nuevo el ejemplo anterior:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` es el código de estado para "Created".
 
@@ -82,7 +82,7 @@ Pero no tienes que memorizar lo que significa cada uno de estos códigos.
 
 Puedes usar las variables de conveniencia de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Son solo una conveniencia, mantienen el mismo número, pero de esa manera puedes usar el autocompletado del editor para encontrarlos:
 
@@ -98,4 +98,4 @@ También podrías usar `from starlette import status`.
 
 ## Cambiando el valor por defecto { #changing-the-default }
 
-Más adelante, en la [Guía de Usuario Avanzada](../advanced/response-change-status-code.md){.internal-link target=_blank}, verás cómo devolver un código de estado diferente al valor por defecto que estás declarando aquí.
+Más adelante, en la [Guía de Usuario Avanzada](../advanced/response-change-status-code.md), verás cómo devolver un código de estado diferente al valor por defecto que estás declarando aquí.

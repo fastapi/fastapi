@@ -60,7 +60,7 @@ Para o OAuth2, eles são apenas strings.
 
 ## Visão global { #global-view }
 
-Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - Guia de Usuário** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Agora utilizando escopos OAuth2:
+Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - Guia de Usuário** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md). Agora utilizando escopos OAuth2:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -94,7 +94,7 @@ E nós retornamos os escopos como parte do token JWT.
 
 Para manter as coisas simples, aqui nós estamos apenas adicionando os escopos recebidos diretamente ao token.
 
-Porém em sua aplicação, por segurança, você deve garantir que você apenas adiciona os escopos que o usuário possui permissão de fato, ou aqueles que você predefiniu.
+Porém em sua aplicação, por segurança, você deveria garantir que você apenas adiciona os escopos que o usuário possui permissão de fato, ou aqueles que você predefiniu.
 
 ///
 
@@ -126,7 +126,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Detalhes Técnicos
+/// note | Detalhes Técnicos
 
 `Security` é na verdade uma subclasse de `Depends`, e ele possui apenas um parâmetro extra que veremos depois.
 
@@ -271,4 +271,4 @@ O **FastAPI** inclui utilitários para todos esses fluxos de autenticação OAut
 
 ## `Security` em decoradores de `dependencies` { #security-in-decorator-dependencies }
 
-Da mesma forma que você pode definir uma `list` de `Depends` no parâmetro `dependencies` do decorador (como explicado em [Dependências em decoradores de operações de rota](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), você também pode utilizar `Security` com escopos lá.
+Da mesma forma que você pode definir uma `list` de `Depends` no parâmetro `dependencies` do decorador (como explicado em [Dependências em decoradores de operações de rota](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), você também pode utilizar `Security` com escopos lá.

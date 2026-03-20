@@ -6,7 +6,7 @@
 
 А затем вы можете устанавливать HTTP-заголовки в этом *временном* объекте ответа.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 После этого вы можете вернуть любой нужный объект, как обычно (например, `dict`, модель из базы данных и т.д.).
 
@@ -20,9 +20,9 @@
 
 Вы также можете добавить HTTP-заголовки, когда возвращаете `Response` напрямую.
 
-Создайте ответ, как описано в [Вернуть Response напрямую](response-directly.md){.internal-link target=_blank}, и передайте заголовки как дополнительный параметр:
+Создайте ответ, как описано в [Вернуть Response напрямую](response-directly.md), и передайте заголовки как дополнительный параметр:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | Технические детали
 
@@ -36,6 +36,6 @@
 
 ## Пользовательские HTTP-заголовки { #custom-headers }
 
-Помните, что собственные проприетарные заголовки можно добавлять, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">используя префикс `X-`</a>.
+Помните, что собственные проприетарные заголовки можно добавлять, [используя префикс `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Но если у вас есть пользовательские заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, описанный в <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">документации Starlette по CORS</a>.
+Но если у вас есть пользовательские заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), используя параметр `expose_headers`, описанный в [документации Starlette по CORS](https://www.starlette.dev/middleware/#corsmiddleware).

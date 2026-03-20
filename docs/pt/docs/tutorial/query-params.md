@@ -2,7 +2,7 @@
 
 Quando você declara outros parâmetros na função que não fazem parte dos parâmetros da rota, esses parâmetros são automaticamente interpretados como parâmetros de "consulta".
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 A consulta é o conjunto de pares chave-valor que vai depois de `?` na URL, separado pelo caractere `&`.
 
@@ -24,7 +24,7 @@ Mas quando você declara eles com os tipos do Python (no exemplo acima, como `in
 Todo o processo que era aplicado para parâmetros de rota também é aplicado para parâmetros de consulta:
 
 * Suporte do editor (obviamente)
-* <abbr title="convertendo uma string que vem de um request HTTP em um dado Python">"Parsing"</abbr> de dados
+* <dfn title="convertendo a string que vem de um request HTTP em dados Python">"análise"</dfn> de dados
 * Validação de dados
 * Documentação automática
 
@@ -127,9 +127,9 @@ Caso você não queira adicionar um valor específico mas queira apenas torná-l
 
 Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão.
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-Aqui o parâmetro de consulta `needy` é um valor obrigatório, do tipo `str`.
+Aqui o parâmetro da consulta `needy` é um valor obrigatório, do tipo `str`.
 
 Se você abrir no seu navegador a URL:
 
@@ -182,6 +182,6 @@ Nesse caso, existem 3 parâmetros de consulta:
 
 /// tip | Dica
 
-Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+Você também poderia usar `Enum`s da mesma forma que com [Parâmetros de rota](path-params.md#predefined-values).
 
 ///

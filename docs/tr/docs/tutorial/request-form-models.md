@@ -4,9 +4,9 @@ FastAPI'de **form field**'larını tanımlamak için **Pydantic model**'lerini k
 
 /// info | Bilgi
 
-Form'ları kullanmak için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>'ı yükleyin.
+Form'ları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart)'ı yükleyin.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
 
 ```console
 $ pip install python-multipart
@@ -24,7 +24,7 @@ Bu özellik FastAPI `0.113.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Sadece, **form field** olarak almak istediğiniz alanlarla bir **Pydantic model** tanımlayın ve ardından parametreyi `Form` olarak bildirin:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI**, request içindeki **form data**'dan **her bir field** için veriyi **çıkarır** ve size tanımladığınız Pydantic model'ini verir.
 
@@ -48,7 +48,7 @@ Bu özellik FastAPI `0.114.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Herhangi bir `extra` field'ı `forbid` etmek için Pydantic'in model konfigürasyonunu kullanabilirsiniz:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 Bir client fazladan veri göndermeye çalışırsa, bir **error** response alır.
 

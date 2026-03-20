@@ -4,9 +4,9 @@ Sie können Dateien, die vom Client hochgeladen werden, mithilfe von `File` defi
 
 /// info | Info
 
-Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um hochgeladene Dateien zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann das Paket installieren, zum Beispiel:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann das Paket installieren, zum Beispiel:
 
 ```console
 $ pip install python-multipart
@@ -20,13 +20,13 @@ Das liegt daran, dass hochgeladene Dateien als „Formulardaten“ gesendet werd
 
 Importieren Sie `File` und `UploadFile` von `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File`-Parameter definieren { #define-file-parameters }
 
 Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen würden:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Info
 
@@ -54,7 +54,7 @@ Aber es gibt viele Fälle, in denen Sie davon profitieren, `UploadFile` zu verwe
 
 Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
@@ -63,8 +63,8 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
     * Eine Datei, die bis zu einem bestimmten Größen-Limit im Arbeitsspeicher behalten wird, und wenn das Limit überschritten wird, auf der Festplatte gespeichert wird.
 * Das bedeutet, es wird für große Dateien wie Bilder, Videos, große Binärdateien, usw. gut funktionieren, ohne den ganzen Arbeitsspeicher aufzubrauchen.
 * Sie können Metadaten aus der hochgeladenen Datei auslesen.
-* Es hat eine <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">dateiartige</a> `async`hrone Schnittstelle.
-* Es stellt ein tatsächliches Python-<a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>-Objekt bereit, welches Sie direkt anderen Bibliotheken übergeben können, die ein dateiartiges Objekt erwarten.
+* Es hat eine [dateiartige](https://docs.python.org/3/glossary.html#term-file-like-object) `async`hrone Schnittstelle.
+* Es stellt ein tatsächliches Python-[`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile)-Objekt bereit, welches Sie direkt anderen Bibliotheken übergeben können, die ein dateiartiges Objekt erwarten.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,14 +72,14 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
 * `filename`: Ein `str` mit dem ursprünglichen Namen der hochgeladenen Datei (z. B. `meinbild.jpg`).
 * `content_type`: Ein `str` mit dem Inhaltstyp (MIME-Typ / Medientyp) (z. B. `image/jpeg`).
-* `file`: Ein <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (ein <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">dateiartiges</a> Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein „file-like“-Objekt erwarten.
+* `file`: Ein [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (ein [dateiartiges](https://docs.python.org/3/glossary.html#term-file-like-object) Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein „file-like“-Objekt erwarten.
 
 `UploadFile` hat die folgenden `async`hronen Methoden. Sie alle rufen die entsprechenden Methoden des darunterliegenden Datei-Objekts auf (wobei intern `SpooledTemporaryFile` verwendet wird).
 
 * `write(daten)`: Schreibt `daten` (`str` oder `bytes`) in die Datei.
 * `read(anzahl)`: Liest `anzahl` (`int`) bytes/Zeichen aus der Datei.
 * `seek(versatz)`: Geht zur Position `versatz` (`int`) in der Datei.
-    * Z. B. würde `await myfile.seek(0)` zum Anfang der Datei gehen.
+    * z. B. würde `await myfile.seek(0)` zum Anfang der Datei gehen.
     * Das ist besonders dann nützlich, wenn Sie `await myfile.read()` einmal ausführen und dann diese Inhalte erneut auslesen müssen.
 * `close()`: Schließt die Datei.
 
@@ -105,7 +105,7 @@ Wenn Sie die `async`-Methoden verwenden, führt **FastAPI** die Datei-Methoden i
 
 /// note | Technische Details zu Starlette
 
-**FastAPI**s `UploadFile` erbt direkt von **Starlette**s `UploadFile`, fügt aber ein paar notwendige Teile hinzu, um es kompatibel mit **Pydantic** und anderen Teilen von FastAPI zu machen.
+FastAPIs `UploadFile` erbt direkt von Starlettes `UploadFile`, fügt aber ein paar notwendige Teile hinzu, um es kompatibel mit **Pydantic** und anderen Teilen von FastAPI zu machen.
 
 ///
 
@@ -121,7 +121,7 @@ Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <
 
 Sollte das Formular aber Dateien enthalten, dann werden diese mit `multipart/form-data` kodiert. Wenn Sie `File` verwenden, wird **FastAPI** wissen, dass es die Dateien vom korrekten Teil des Bodys holen muss.
 
-Wenn Sie mehr über diese Kodierungen und Formularfelder lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
+Wenn Sie mehr über diese Kodierungen und Formularfelder lesen möchten, besuchen Sie die [<abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
@@ -143,7 +143,7 @@ Sie können eine Datei optional machen, indem Sie Standard-Typannotationen verwe
 
 Sie können auch `File()` mit `UploadFile` verwenden, um zum Beispiel zusätzliche Metadaten zu setzen:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Mehrere Datei-Uploads { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Diese werden demselben Formularfeld zugeordnet, welches mit den Formulardaten ge
 
 Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
@@ -169,7 +169,7 @@ Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
 Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu setzen, sogar für `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Zusammenfassung { #recap }
 

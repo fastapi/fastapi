@@ -1,8 +1,8 @@
 # İleri Seviye Middleware { #advanced-middleware }
 
-Ana tutorial'da uygulamanıza [Özel Middleware](../tutorial/middleware.md){.internal-link target=_blank} eklemeyi gördünüz.
+Ana tutorial'da uygulamanıza [Özel Middleware](../tutorial/middleware.md) eklemeyi gördünüz.
 
-Ardından [`CORSMiddleware` ile CORS'u yönetmeyi](../tutorial/cors.md){.internal-link target=_blank} de okudunuz.
+Ardından [`CORSMiddleware` ile CORS'u yönetmeyi](../tutorial/cors.md) de okudunuz.
 
 Bu bölümde diğer middleware'leri nasıl kullanacağımıza bakacağız.
 
@@ -57,13 +57,13 @@ Gelen tüm request'lerin `https` veya `wss` olmasını zorunlu kılar.
 
 `http` veya `ws` olarak gelen herhangi bir request, bunun yerine güvenli şemaya redirect edilir.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header saldırılarına karşı korunmak için, gelen tüm request'lerde `Host` header'ının doğru ayarlanmış olmasını zorunlu kılar.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Aşağıdaki argümanlar desteklenir:
 
@@ -78,7 +78,7 @@ Gelen bir request doğru şekilde doğrulanmazsa `400` response gönderilir.
 
 Middleware hem standart hem de streaming response'ları ele alır.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Aşağıdaki argümanlar desteklenir:
 
@@ -91,7 +91,7 @@ Başka birçok ASGI middleware'i vardır.
 
 Örneğin:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn'un `ProxyHeadersMiddleware`'i</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [Uvicorn'un `ProxyHeadersMiddleware`'i](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Diğer mevcut middleware'leri görmek için <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette'in Middleware dokümanlarına</a> ve <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a> listesine bakın.
+Diğer mevcut middleware'leri görmek için [Starlette'in Middleware dokümanlarına](https://www.starlette.dev/middleware/) ve [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) listesine bakın.

@@ -60,7 +60,7 @@ Para OAuth2 son solo strings.
 
 ## Vista global { #global-view }
 
-Primero, echemos un vistazo rápido a las partes que cambian desde los ejemplos en el **Tutorial - User Guide** principal para [OAuth2 con Password (y hashing), Bearer con tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Ahora usando scopes de OAuth2:
+Primero, echemos un vistazo rápido a las partes que cambian desde los ejemplos en el **Tutorial - User Guide** principal para [OAuth2 con Password (y hashing), Bearer con tokens JWT](../../tutorial/security/oauth2-jwt.md). Ahora usando scopes de OAuth2:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -271,4 +271,4 @@ Pero al final, están implementando el mismo estándar OAuth2.
 
 ## `Security` en `dependencies` del decorador { #security-in-decorator-dependencies }
 
-De la misma manera que puedes definir una `list` de `Depends` en el parámetro `dependencies` del decorador (como se explica en [Dependencias en decoradores de path operation](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), también podrías usar `Security` con `scopes` allí.
+De la misma manera que puedes definir una `list` de `Depends` en el parámetro `dependencies` del decorador (como se explica en [Dependencias en decoradores de path operation](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), también podrías usar `Security` con `scopes` allí.

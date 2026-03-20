@@ -12,7 +12,7 @@ Puedes establecer el `operationId` de OpenAPI para ser usado en tu *path operati
 
 Tendrías que asegurarte de que sea único para cada operación.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
 ### Usar el nombre de la *path operation function* como el operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Si quieres usar los nombres de las funciones de tus APIs como `operationId`s, pu
 
 Deberías hacerlo después de agregar todas tus *path operations*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
 
 /// tip | Consejo
 
@@ -40,7 +40,7 @@ Incluso si están en diferentes módulos (archivos de Python).
 
 Para excluir una *path operation* del esquema OpenAPI generado (y por lo tanto, de los sistemas de documentación automática), utiliza el parámetro `include_in_schema` y configúralo en `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
 
 ## Descripción avanzada desde el docstring { #advanced-description-from-docstring }
 
@@ -60,7 +60,7 @@ Eso define los metadatos sobre el response principal de una *path operation*.
 
 También puedes declarar responses adicionales con sus modelos, códigos de estado, etc.
 
-Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Responses Adicionales en OpenAPI](additional-responses.md).
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@ Cuando declaras una *path operation* en tu aplicación, **FastAPI** genera autom
 
 /// note | Detalles técnicos
 
-En la especificación de OpenAPI se llama el <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objeto de Operación</a>.
+En la especificación de OpenAPI se llama el [Objeto de Operación](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ Este esquema de OpenAPI específico de *path operation* normalmente se genera au
 
 Este es un punto de extensión de bajo nivel.
 
-Si solo necesitas declarar responses adicionales, una forma más conveniente de hacerlo es con [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Si solo necesitas declarar responses adicionales, una forma más conveniente de hacerlo es con [Responses Adicionales en OpenAPI](additional-responses.md).
 
 ///
 
@@ -92,7 +92,7 @@ Puedes extender el esquema de OpenAPI para una *path operation* usando el parám
 
 Este `openapi_extra` puede ser útil, por ejemplo, para declarar [Extensiones de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
 Si abres la documentación automática de la API, tu extensión aparecerá en la parte inferior de la *path operation* específica.
 
@@ -139,9 +139,9 @@ Por ejemplo, podrías decidir leer y validar el request con tu propio código, s
 
 Podrías hacer eso con `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-En este ejemplo, no declaramos ningún modelo Pydantic. De hecho, el request body ni siquiera se <abbr title="converted from some plain format, like bytes, into Python objects - convertido de algún formato plano, como bytes, a objetos de Python">parse</abbr> como JSON, se lee directamente como `bytes`, y la función `magic_data_reader()` sería la encargada de parsearlo de alguna manera.
+En este ejemplo, no declaramos ningún modelo Pydantic. De hecho, el request body ni siquiera es <dfn title="convertido desde algún formato plano, como bytes, a objetos de Python">parseado</dfn> como JSON, se lee directamente como `bytes`, y la función `magic_data_reader()` sería la encargada de hacer parse de él de alguna manera.
 
 Sin embargo, podemos declarar el esquema esperado para el request body.
 
@@ -153,15 +153,15 @@ Y podrías hacer esto incluso si el tipo de datos en el request no es JSON.
 
 Por ejemplo, en esta aplicación no usamos la funcionalidad integrada de FastAPI para extraer el JSON Schema de los modelos Pydantic ni la validación automática para JSON. De hecho, estamos declarando el tipo de contenido del request como YAML, no JSON:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
 
 Sin embargo, aunque no estamos usando la funcionalidad integrada por defecto, aún estamos usando un modelo Pydantic para generar manualmente el JSON Schema para los datos que queremos recibir en YAML.
 
-Luego usamos el request directamente, y extraemos el cuerpo como `bytes`. Esto significa que FastAPI ni siquiera intentará parsear la carga útil del request como JSON.
+Luego usamos el request directamente, y extraemos el cuerpo como `bytes`. Esto significa que FastAPI ni siquiera intentará hacer parse de la carga útil del request como JSON.
 
-Y luego en nuestro código, parseamos ese contenido YAML directamente, y nuevamente estamos usando el mismo modelo Pydantic para validar el contenido YAML:
+Y luego en nuestro código, hacemos parse de ese contenido YAML directamente, y nuevamente estamos usando el mismo modelo Pydantic para validar el contenido YAML:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 
 /// tip | Consejo
 

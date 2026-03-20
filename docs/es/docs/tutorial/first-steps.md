@@ -2,7 +2,7 @@
 
 El archivo FastAPI más simple podría verse así:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Copia eso en un archivo `main.py`.
 
@@ -11,7 +11,7 @@ Ejecuta el servidor en vivo:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -56,9 +56,9 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 Esa línea muestra la URL donde tu aplicación está siendo servida, en tu máquina local.
 
-### Compruébalo { #check-it }
+### Revisa { #check-it }
 
-Abre tu navegador en <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Abre tu navegador en [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Verás el response JSON como:
 
@@ -68,17 +68,17 @@ Verás el response JSON como:
 
 ### Documentación interactiva de la API { #interactive-api-docs }
 
-Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ahora ve a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Verás la documentación interactiva automática de la API (proporcionada por <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Verás la documentación interactiva automática de la API (proporcionada por [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Documentación alternativa de la API { #alternative-api-docs }
 
-Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Y ahora, ve a [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Verás la documentación alternativa automática (proporcionada por <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ Un "esquema" es una definición o descripción de algo. No el código que lo imp
 
 #### Esquema de la API { #api-schema }
 
-En este caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> es una especificación que dicta cómo definir un esquema de tu API.
+En este caso, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) es una especificación que dicta cómo definir un esquema de tu API.
 
 Esta definición de esquema incluye los paths de tu API, los posibles parámetros que toman, etc.
 
@@ -110,7 +110,7 @@ OpenAPI define un esquema de API para tu API. Y ese esquema incluye definiciones
 
 Si tienes curiosidad por cómo se ve el esquema OpenAPI en bruto, FastAPI automáticamente genera un JSON (esquema) con las descripciones de toda tu API.
 
-Puedes verlo directamente en: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Puedes verlo directamente en: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 Mostrará un JSON que empieza con algo como:
 
@@ -143,9 +143,58 @@ Y hay docenas de alternativas, todas basadas en OpenAPI. Podrías añadir fácil
 
 También podrías usarlo para generar código automáticamente, para clientes que se comuniquen con tu API. Por ejemplo, aplicaciones frontend, móviles o IoT.
 
+### Configura el `entrypoint` de la app en `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Puedes configurar dónde está tu app en un archivo `pyproject.toml` así:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Ese `entrypoint` le dirá al comando `fastapi` que debe hacer el import de la app así:
+
+```python
+from main import app
+```
+
+Si tu código estuviera estructurado así:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Entonces pondrías el `entrypoint` como:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+lo cual sería equivalente a:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` con path { #fastapi-dev-with-path }
+
+También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará el objeto app de FastAPI que debe usar:
+
+```console
+$ fastapi dev main.py
+```
+
+Pero tendrías que recordar pasar el path correcto cada vez que llames al comando `fastapi`.
+
+Además, otras herramientas podrían no ser capaces de encontrarlo, por ejemplo la [Extensión de VS Code](../editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
+
 ### Despliega tu app (opcional) { #deploy-your-app-optional }
 
-Opcionalmente puedes desplegar tu app de FastAPI en <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, ve y únete a la lista de espera si aún no lo has hecho. 🚀
+Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fastapicloud.com), ve y únete a la lista de espera si aún no lo has hecho. 🚀
 
 Si ya tienes una cuenta de **FastAPI Cloud** (te invitamos desde la lista de espera 😉), puedes desplegar tu aplicación con un solo comando.
 
@@ -183,7 +232,7 @@ Deploying to FastAPI Cloud...
 
 ### Paso 1: importa `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` es una clase de Python que proporciona toda la funcionalidad para tu API.
 
@@ -191,13 +240,13 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` es una clase que hereda directamente de `Starlette`.
 
-Puedes usar toda la funcionalidad de <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> con `FastAPI` también.
+Puedes usar toda la funcionalidad de [Starlette](https://www.starlette.dev/) con `FastAPI` también.
 
 ///
 
 ### Paso 2: crea una "instance" de `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Aquí la variable `app` será una "instance" de la clase `FastAPI`.
 
@@ -266,12 +315,12 @@ Vamos a llamarlas "**operaciones**" también.
 
 #### Define un *path operation decorator* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 El `@app.get("/")` le dice a **FastAPI** que la función justo debajo se encarga de manejar requests que vayan a:
 
 * el path `/`
-* usando una <abbr title="un método HTTP GET"><code>get</code> operation</abbr>
+* usando una <dfn title="un método HTTP GET"><code>get</code> operación</dfn>
 
 /// info | Información sobre `@decorator`
 
@@ -320,7 +369,7 @@ Esta es nuestra "**path operation function**":
 * **operation**: es `get`.
 * **function**: es la función debajo del "decorador" (debajo de `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Esta es una función de Python.
 
@@ -332,17 +381,17 @@ En este caso, es una función `async`.
 
 También podrías definirla como una función normal en lugar de `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Nota
 
-Si no sabes la diferencia, Revisa la sección [Async: *"¿Tienes prisa?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+Si no sabes la diferencia, Revisa la sección [Async: *"¿Tienes prisa?"*](../async.md#in-a-hurry).
 
 ///
 
 ### Paso 5: retorna el contenido { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Puedes retornar un `dict`, `list`, valores singulares como `str`, `int`, etc.
 
@@ -352,11 +401,11 @@ Hay muchos otros objetos y modelos que serán automáticamente convertidos a JSO
 
 ### Paso 6: Despliégalo { #step-6-deploy-it }
 
-Despliega tu app en **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** con un solo comando: `fastapi deploy`. 🎉
+Despliega tu app en **[FastAPI Cloud](https://fastapicloud.com)** con un solo comando: `fastapi deploy`. 🎉
 
 #### Sobre FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** está construido por el mismo autor y equipo detrás de **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** está construido por el mismo autor y equipo detrás de **FastAPI**.
 
 Agiliza el proceso de **construir**, **desplegar** y **acceder** a una API con el mínimo esfuerzo.
 

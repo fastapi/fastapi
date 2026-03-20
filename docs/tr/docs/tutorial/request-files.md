@@ -4,9 +4,9 @@
 
 /// info | Bilgi
 
-Upload edilen dosyaları alabilmek için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> yükleyin.
+Upload edilen dosyaları alabilmek için önce [`python-multipart`](https://github.com/Kludex/python-multipart) yükleyin.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, aktive ettiğinizden ve ardından paketi yüklediğinizden emin olun. Örneğin:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden ve ardından paketi yüklediğinizden emin olun. Örneğin:
 
 ```console
 $ pip install python-multipart
@@ -20,13 +20,13 @@ Bunun nedeni, upload edilen dosyaların "form data" olarak gönderilmesidir.
 
 `fastapi` içinden `File` ve `UploadFile` import edin:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File` Parametrelerini Tanımlayın { #define-file-parameters }
 
 `Body` veya `Form` için yaptığınız gibi dosya parametreleri oluşturun:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Bilgi
 
@@ -54,7 +54,7 @@ Ancak bazı durumlarda `UploadFile` kullanmak size fayda sağlayabilir.
 
 Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 `UploadFile` kullanmanın `bytes`’a göre birkaç avantajı vardır:
 
@@ -63,8 +63,8 @@ Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
     * Belirli bir maksimum boyuta kadar bellekte tutulan, bu limiti aşınca diske yazılan bir dosya.
 * Bu sayede görüntüler, videolar, büyük binary’ler vb. gibi büyük dosyalarda tüm belleği tüketmeden iyi çalışır.
 * Upload edilen dosyadan metadata alabilirsiniz.
-* <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> bir `async` arayüze sahiptir.
-* <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
+* [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) bir `async` arayüze sahiptir.
+* [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 
 * `filename`: Upload edilen orijinal dosya adını içeren bir `str` (örn. `myimage.jpg`).
 * `content_type`: Content type’ı (MIME type / media type) içeren bir `str` (örn. `image/jpeg`).
-* `file`: Bir <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (bir <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> nesne). Bu, "file-like" nesne bekleyen diğer fonksiyonlara veya library’lere doğrudan verebileceğiniz gerçek Python file nesnesidir.
+* `file`: Bir [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (bir [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) nesne). Bu, "file-like" nesne bekleyen diğer fonksiyonlara veya library’lere doğrudan verebileceğiniz gerçek Python file nesnesidir.
 
 `UploadFile` şu `async` method’lara sahiptir. Bunların hepsi altta ilgili dosya method’larını çağırır (dahili `SpooledTemporaryFile` kullanarak).
 
@@ -121,7 +121,7 @@ Formlardan gelen veri, dosya içermiyorsa normalde "media type" olarak `applicat
 
 Ancak form dosya içeriyorsa `multipart/form-data` olarak encode edilir. `File` kullanırsanız, **FastAPI** dosyaları body’nin doğru kısmından alması gerektiğini bilir.
 
-Bu encoding’ler ve form alanları hakkında daha fazla okumak isterseniz <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web dokümanlarındaki <code>POST</code></a> sayfasına bakın.
+Bu encoding’ler ve form alanları hakkında daha fazla okumak isterseniz [<abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> web dokümanlarındaki `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) sayfasına bakın.
 
 ///
 
@@ -143,7 +143,7 @@ Standart type annotation’ları kullanıp varsayılan değeri `None` yaparak bi
 
 Ek metadata ayarlamak için `UploadFile` ile birlikte `File()` da kullanabilirsiniz. Örneğin:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Birden Fazla Dosya Upload { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Bu dosyalar, "form data" ile gönderilen aynı "form field" ile ilişkilendirili
 
 Bunu kullanmak için `bytes` veya `UploadFile` listesini tanımlayın:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` alırsınız.
 
@@ -169,7 +169,7 @@ Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` 
 
 Daha önce olduğu gibi, `UploadFile` için bile ek parametreler ayarlamak amacıyla `File()` kullanabilirsiniz:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Özet { #recap }
 

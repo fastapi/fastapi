@@ -15,7 +15,7 @@ Pero hay situaciones donde podrías necesitar acceder al objeto `Request` direct
 
 ## Detalles sobre el objeto `Request` { #details-about-the-request-object }
 
-Como **FastAPI** es en realidad **Starlette** por debajo, con una capa de varias herramientas encima, puedes usar el objeto <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> de Starlette directamente cuando lo necesites.
+Como **FastAPI** es en realidad **Starlette** por debajo, con una capa de varias herramientas encima, puedes usar el objeto de Starlette [`Request`](https://www.starlette.dev/requests/) directamente cuando lo necesites.
 
 También significa que si obtienes datos del objeto `Request` directamente (por ejemplo, leyendo el cuerpo) no serán validados, convertidos o documentados (con OpenAPI, para la interfaz automática de usuario de la API) por FastAPI.
 
@@ -29,7 +29,7 @@ Imaginemos que quieres obtener la dirección IP/host del cliente dentro de tu *p
 
 Para eso necesitas acceder al request directamente.
 
-{* ../../docs_src/using_request_directly/tutorial001_py39.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
 Al declarar un parámetro de *path operation function* con el tipo siendo `Request`, **FastAPI** sabrá pasar el `Request` en ese parámetro.
 
@@ -45,7 +45,7 @@ De la misma manera, puedes declarar cualquier otro parámetro como normalmente, 
 
 ## Documentación de `Request` { #request-documentation }
 
-Puedes leer más detalles sobre el <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">objeto `Request` en el sitio de documentación oficial de Starlette</a>.
+Puedes leer más detalles sobre el [objeto `Request` en el sitio de documentación oficial de Starlette](https://www.starlette.dev/requests/).
 
 /// note | Detalles Técnicos
 

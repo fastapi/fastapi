@@ -6,7 +6,7 @@ O corpo da **requisição** é a informação enviada pelo cliente para sua API.
 
 Sua API quase sempre precisa enviar um corpo na **resposta**. Mas os clientes não necessariamente precisam enviar **corpos de requisição** o tempo todo, às vezes eles apenas requisitam um path, talvez com alguns parâmetros de consulta, mas não enviam um corpo.
 
-Para declarar um corpo da **requisição**, você utiliza os modelos do <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> com todos os seus poderes e benefícios.
+Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://docs.pydantic.dev/) com todos os seus poderes e benefícios.
 
 /// info | Informação
 
@@ -72,9 +72,9 @@ Apenas com essa declaração de tipos do Python, o **FastAPI** irá:
 * Validar os dados.
     * Se algum dado for inválido, irá retornar um erro bem claro, indicando exatamente onde e o que estava incorreto.
 * Entregar a você a informação recebida no parâmetro `item`.
-    * Como você o declarou na função como do tipo `Item`, você também terá o suporte do editor (completação, etc) para todos os atributos e seus tipos.
-* Gerar definições de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para o seu modelo; você também pode usá-las em qualquer outro lugar se fizer sentido para o seu projeto.
-* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces – Interfaces de usuário">UIs</abbr> de documentação automática.
+    * Como você o declarou na função como do tipo `Item`, você também terá o suporte do editor (preenchimento automático, etc) para todos os atributos e seus tipos.
+* Gerar definições de [JSON Schema](https://json-schema.org) para o seu modelo; você também pode usá-las em qualquer outro lugar se fizer sentido para o seu projeto.
+* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces - Interfaces de usuário">UIs</abbr> de documentação automática.
 
 ## Documentação automática { #automatic-docs }
 
@@ -88,7 +88,7 @@ E também serão utilizados na documentação da API dentro de cada *operação 
 
 ## Suporte do editor { #editor-support }
 
-No seu editor, dentro da função você receberá dicas de tipos e completação em todo lugar (isso não aconteceria se você recebesse um `dict` em vez de um modelo Pydantic):
+No seu editor, dentro da função você receberá dicas de tipos e preenchimento automático em todo lugar (isso não aconteceria se você recebesse um `dict` em vez de um modelo Pydantic):
 
 <img src="/img/tutorial/body/image03.png">
 
@@ -102,15 +102,15 @@ E foi imensamente testado na fase de design, antes de qualquer implementação, 
 
 Houveram mudanças no próprio Pydantic para que isso fosse possível.
 
-As capturas de tela anteriores foram capturas no <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+As capturas de tela anteriores foram capturas no [Visual Studio Code](https://code.visualstudio.com).
 
-Mas você terá o mesmo suporte do editor no <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> e na maioria dos editores Python:
+Mas você terá o mesmo suporte do editor no [PyCharm](https://www.jetbrains.com/pycharm/) e na maioria dos editores Python:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | Dica
 
-Se você utiliza o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como editor, você pode utilizar o <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Plugin do Pydantic para o PyCharm </a>.
+Se você utiliza o [PyCharm](https://www.jetbrains.com/pycharm/) como editor, você pode utilizar o [Plugin do Pydantic para o PyCharm](https://github.com/koxudaxi/pydantic-pycharm-plugin/).
 
 Melhora o suporte do editor para seus modelos Pydantic com:
 
@@ -155,7 +155,7 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 
 O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
-O `str | None` (Python 3.10+) ou o `Union` em `Union[str, None]` (Python 3.9+) não é utilizado pelo FastAPI para determinar que o valor não é obrigatório, ele saberá que não é obrigatório porque tem um valor padrão `= None`.
+O `str | None` não é utilizado pelo FastAPI para determinar que o valor não é obrigatório, ele saberá que não é obrigatório porque tem um valor padrão `= None`.
 
 Mas adicionar as anotações de tipo permitirá ao seu editor oferecer um suporte melhor e detectar erros.
 
@@ -163,4 +163,4 @@ Mas adicionar as anotações de tipo permitirá ao seu editor oferecer um suport
 
 ## Sem o Pydantic { #without-pydantic }
 
-Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#singular-values-in-body).

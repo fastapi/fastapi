@@ -1,6 +1,6 @@
 # FastAPI в контейнерах — Docker { #fastapi-in-containers-docker }
 
-При развёртывании приложений FastAPI распространённый подход — собирать **образ контейнера на Linux**. Обычно это делают с помощью <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Затем такой образ контейнера можно развернуть несколькими способами.
+При развёртывании приложений FastAPI распространённый подход — собирать **образ контейнера на Linux**. Обычно это делают с помощью [**Docker**](https://www.docker.com/). Затем такой образ контейнера можно развернуть несколькими способами.
 
 Использование Linux-контейнеров даёт ряд преимуществ: **безопасность**, **воспроизводимость**, **простоту** и другие.
 
@@ -14,7 +14,7 @@
 <summary>Предпросмотр Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -60,16 +60,16 @@ Linux-контейнеры запускаются, используя то же 
 
 Docker — один из основных инструментов для создания и управления **образами контейнеров** и **контейнерами**.
 
-Существует публичный <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> с готовыми **официальными образами** для многих инструментов, окружений, баз данных и приложений.
+Существует публичный [Docker Hub](https://hub.docker.com/) с готовыми **официальными образами** для многих инструментов, окружений, баз данных и приложений.
 
-Например, есть официальный <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">образ Python</a>.
+Например, есть официальный [образ Python](https://hub.docker.com/_/python).
 
 А также множество образов для разных вещей, например баз данных:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, и т.д.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), и т.д.
 
 Используя готовые образы, очень легко **комбинировать** разные инструменты и использовать их. Например, чтобы попробовать новую базу данных. В большинстве случаев можно воспользоваться **официальными образами** и просто настроить их через переменные окружения.
 
@@ -111,7 +111,7 @@ Docker — один из основных инструментов для соз
 
 Чаще всего используется файл `requirements.txt` с именами пакетов и их версиями по одному на строку.
 
-Разумеется, вы будете придерживаться тех же идей, что описаны здесь: [О версиях FastAPI](versions.md){.internal-link target=_blank}, чтобы задать диапазоны версий.
+Разумеется, вы будете придерживаться тех же идей, что описаны здесь: [О версиях FastAPI](versions.md), чтобы задать диапазоны версий.
 
 Например, ваш `requirements.txt` может выглядеть так:
 
@@ -166,7 +166,7 @@ def read_item(item_id: int, q: str | None = None):
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -214,7 +214,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 5. Копируем директорию `./app` внутрь директории `/code`.
 
-    Так как здесь весь код, который **меняется чаще всего**, кэш Docker **вряд ли** будет использоваться для этого шагa или **последующих шагов**.
+    Так как здесь весь код, который **меняется чаще всего**, кэш Docker **вряд ли** будет использоваться для этого шага или **последующих шагов**.
 
     Поэтому важно разместить этот шаг **ближе к концу** `Dockerfile`, чтобы оптимизировать время сборки образа контейнера.
 
@@ -238,7 +238,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 #### Используйте `CMD` — exec-форма { #use-cmd-exec-form }
 
-Инструкцию Docker <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> можно писать в двух формах:
+Инструкцию Docker [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) можно писать в двух формах:
 
 ✅ **Exec**-форма:
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Обязательно используйте **exec**-форму, чтобы FastAPI мог корректно завершаться и чтобы срабатывали [события lifespan](../advanced/events.md){.internal-link target=_blank}.
+Обязательно используйте **exec**-форму, чтобы FastAPI мог корректно завершаться и чтобы срабатывали [события lifespan](../advanced/events.md).
 
-Подробнее об этом читайте в <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">документации Docker о shell- и exec-формах</a>.
+Подробнее об этом читайте в [документации Docker о shell- и exec-формах](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
-Это особенно заметно при использовании `docker compose`. См. раздел FAQ Docker Compose с техническими подробностями: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Почему мои сервисы пересоздаются или останавливаются 10 секунд?</a>.
+Это особенно заметно при использовании `docker compose`. См. раздел FAQ Docker Compose с техническими подробностями: [Почему мои сервисы пересоздаются или останавливаются 10 секунд?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### Структура директорий { #directory-structure }
 
@@ -273,9 +273,9 @@ CMD fastapi run app/main.py --port 80
 └── requirements.txt
 ```
 
-#### За прокси-сервером TLS терминации { #behind-a-tls-termination-proxy }
+#### За прокси-сервером TSL-терминации { #behind-a-tls-termination-proxy }
 
-Если вы запускаете контейнер за прокси-сервером завершения TLS (балансировщиком нагрузки), таким как Nginx или Traefik, добавьте опцию `--proxy-headers`. Это сообщит Uvicorn (через FastAPI CLI), что приложение работает за HTTPS и можно доверять соответствующим заголовкам.
+Если вы запускаете контейнер за прокси-сервером TSL-терминации (балансировщиком нагрузки), таким как Nginx или Traefik, добавьте опцию `--proxy-headers`. Это сообщит Uvicorn (через FastAPI CLI), что приложение работает за HTTPS и можно доверять соответствующим заголовкам.
 
 ```Dockerfile
 CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Проверка { #check-it }
 
-Проверьте работу по адресу вашего Docker-хоста, например: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> или <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (или аналогичный URL вашего Docker-хоста).
+Проверьте работу по адресу вашего Docker-хоста, например: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) или [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (или аналогичный URL вашего Docker-хоста).
 
 Вы увидите что-то вроде:
 
@@ -362,17 +362,17 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Интерактивная документация API { #interactive-api-docs }
 
-Теперь зайдите на <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> или <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (или аналогичный URL вашего Docker-хоста).
+Теперь зайдите на [http://192.168.99.100/docs](http://192.168.99.100/docs) или [http://127.0.0.1/docs](http://127.0.0.1/docs) (или аналогичный URL вашего Docker-хоста).
 
-Вы увидите автоматическую интерактивную документацию API (на базе <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Вы увидите автоматическую интерактивную документацию API (на базе [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## Альтернативная документация API { #alternative-api-docs }
 
-Также можно открыть <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> или <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (или аналогичный URL вашего Docker-хоста).
+Также можно открыть [http://192.168.99.100/redoc](http://192.168.99.100/redoc) или [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (или аналогичный URL вашего Docker-хоста).
 
-Вы увидите альтернативную автоматическую документацию (на базе <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Вы увидите альтернативную автоматическую документацию (на базе [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -390,7 +390,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 Тогда в `Dockerfile` нужно изменить пути копирования:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -413,7 +413,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ## Концепции развертывания { #deployment-concepts }
 
-Ещё раз рассмотрим [концепции развертывания](concepts.md){.internal-link target=_blank} применительно к контейнерам.
+Ещё раз рассмотрим [концепции развертывания](concepts.md) применительно к контейнерам.
 
 Контейнеры главным образом упрощают **сборку и развёртывание** приложения, но не навязывают конкретный подход к этим **концепциям развертывания**, и существует несколько стратегий.
 
@@ -432,7 +432,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 Если мы рассматриваем только **образ контейнера** для приложения FastAPI (и далее запущенный **контейнер**), то HTTPS обычно обрабатывается **внешним** инструментом.
 
-Это может быть другой контейнер, например с <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, который берёт на себя **HTTPS** и **автоматическое** получение **сертификатов**.
+Это может быть другой контейнер, например с [Traefik](https://traefik.io/), который берёт на себя **HTTPS** и **автоматическое** получение **сертификатов**.
 
 /// tip | Подсказка
 
@@ -454,7 +454,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ## Репликация — количество процессов { #replication-number-of-processes }
 
-Если у вас есть <abbr title="Группа машин, настроенных так, чтобы быть соединенными и работать вместе определенным образом.">кластер</abbr> машин с **Kubernetes**, Docker Swarm Mode, Nomad или другой похожей системой для управления распределёнными контейнерами на нескольких машинах, скорее всего вы будете **управлять репликацией** на **уровне кластера**, а не использовать **менеджер процессов** (например, Uvicorn с воркерами) в каждом контейнере.
+Если у вас есть <dfn title="Группа машин, настроенных так, чтобы быть соединенными и работать вместе определенным образом.">кластер</dfn> машин с **Kubernetes**, Docker Swarm Mode, Nomad или другой похожей системой для управления распределёнными контейнерами на нескольких машинах, скорее всего вы будете **управлять репликацией** на **уровне кластера**, а не использовать **менеджер процессов** (например, Uvicorn с воркерами) в каждом контейнере.
 
 Одна из таких систем управления распределёнными контейнерами, как Kubernetes, обычно имеет встроенный способ управлять **репликацией контейнеров**, поддерживая **балансировку нагрузки** для входящих запросов — всё это на **уровне кластера**.
 
@@ -462,17 +462,17 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ### Балансировщик нагрузки { #load-balancer }
 
-При использовании контейнеров обычно есть компонент, **слушающий главный порт**. Это может быть другой контейнер — **прокси завершения TLS** для обработки **HTTPS** или похожий инструмент.
+При использовании контейнеров обычно есть компонент, **слушающий главный порт**. Это может быть другой контейнер — **прокси-сервер TSL-терминации** для обработки **HTTPS** или похожий инструмент.
 
 Поскольку этот компонент принимает **нагрузку** запросов и распределяет её между воркерами **сбалансированно**, его часто называют **балансировщиком нагрузки**.
 
 /// tip | Подсказка
 
-Тот же компонент **прокси завершения TLS**, который обрабатывает HTTPS, скорее всего также будет **балансировщиком нагрузки**.
+Тот же компонент **прокси-сервер TSL-терминации**, который обрабатывает HTTPS, скорее всего также будет **балансировщиком нагрузки**.
 
 ///
 
-При работе с контейнерами система, которую вы используете для запуска и управления ими, уже имеет внутренние средства для передачи **сетевого взаимодействия** (например, HTTP-запросов) от **балансировщика нагрузки** (который также может быть **прокси завершения TLS**) к контейнеру(-ам) с вашим приложением.
+При работе с контейнерами система, которую вы используете для запуска и управления ими, уже имеет внутренние средства для передачи **сетевого взаимодействия** (например, HTTP-запросов) от **балансировщика нагрузки** (который также может быть **прокси-сервером TSL-терминации**) к контейнеру(-ам) с вашим приложением.
 
 ### Один балансировщик — несколько контейнеров-воркеров { #one-load-balancer-multiple-worker-containers }
 
@@ -499,7 +499,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 В таких случаях вы можете использовать опцию командной строки `--workers`, чтобы указать нужное количество воркеров:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -558,7 +558,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 /// info | Информация
 
-Если вы используете Kubernetes, это, вероятно, будет <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+Если вы используете Kubernetes, это, вероятно, будет [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
 ///
 
@@ -570,7 +570,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ### Базовый Docker-образ { #base-docker-image }
 
-Ранее существовал официальный Docker-образ FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Сейчас он помечен как устаревший. ⛔️
+Ранее существовал официальный Docker-образ FastAPI: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Сейчас он помечен как устаревший. ⛔️
 
 Скорее всего, вам **не стоит** использовать этот базовый образ (или какой-либо аналогичный).
 
@@ -600,7 +600,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ## Docker-образ с `uv` { #docker-image-with-uv }
 
-Если вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> для установки и управления проектом, следуйте их <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">руководству по Docker для uv</a>.
+Если вы используете [uv](https://github.com/astral-sh/uv) для установки и управления проектом, следуйте их [руководству по Docker для uv](https://docs.astral.sh/uv/guides/integration/docker/).
 
 ## Резюме { #recap }
 
@@ -615,4 +615,4 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 В большинстве случаев вы, вероятно, не захотите использовать какой-либо базовый образ, а вместо этого **соберёте образ контейнера с нуля** на основе официального Docker-образа Python.
 
-Заботясь о **порядке**  инструкций в `Dockerfile`и используя **кэш Docker**, вы можете **минимизировать время сборки**, чтобы повысить продуктивность (и не скучать). 😎
+Заботясь о **порядке**  инструкций в `Dockerfile` и используя **кэш Docker**, вы можете **минимизировать время сборки**, чтобы повысить продуктивность (и не скучать). 😎

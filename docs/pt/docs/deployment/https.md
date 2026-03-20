@@ -10,7 +10,7 @@ Se você está com pressa ou não se importa, continue com as seções seguintes
 
 ///
 
-Para aprender o básico de HTTPS do ponto de vista do consumidor, verifique <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
+Para aprender o básico de HTTPS do ponto de vista do consumidor, verifique [https://howhttps.works/](https://howhttps.works/).
 
 Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas para ter em mente ao pensar em HTTPS:
 
@@ -28,13 +28,13 @@ Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas 
 * Por padrão, isso significa que você só pode ter um certificado HTTPS por endereço IP.
     * Não importa o tamanho do seu servidor ou quão pequeno cada aplicativo que você tem nele possa ser.
     * No entanto, existe uma solução para isso.
-* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
+* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada [<abbr title="Server Name Indication - Indicação do Nome do Servidor">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication).
     * Esta extensão SNI permite que um único servidor (com um único endereço IP) tenha vários certificados HTTPS e atenda a vários domínios / aplicativos HTTPS.
     * Para que isso funcione, um único componente (programa) em execução no servidor, ouvindo no endereço IP público, deve ter todos os certificados HTTPS no servidor.
 * Depois de obter uma conexão segura, o protocolo de comunicação ainda é HTTP.
     * Os conteúdos são criptografados, embora sejam enviados com o protocolo HTTP.
 
-É uma prática comum ter um programa/servidor HTTP em execução no servidor (máquina, host, etc.) e gerenciar todas as partes HTTPS: recebendo as requisições HTTPS encriptadas, enviando as solicitações HTTP descriptografadas para o aplicativo HTTP real em execução no mesmo servidor (a aplicação FastAPI, neste caso), pegar a resposta HTTP do aplicativo, criptografá-la usando o certificado HTTPS apropriado e enviá-la de volta ao cliente usando HTTPS. Este servidor é frequentemente chamado de <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">Proxy de Terminação TLS</a>.
+É uma prática comum ter um programa/servidor HTTP em execução no servidor (máquina, host, etc.) e gerenciar todas as partes HTTPS: recebendo as requisições HTTPS encriptadas, enviando as solicitações HTTP descriptografadas para o aplicativo HTTP real em execução no mesmo servidor (a aplicação FastAPI, neste caso), pegar a resposta HTTP do aplicativo, criptografá-la usando o certificado HTTPS apropriado e enviá-la de volta ao cliente usando HTTPS. Este servidor é frequentemente chamado de [Proxy de Terminação TLS](https://en.wikipedia.org/wiki/TLS_termination_proxy).
 
 Algumas das opções que você pode usar como Proxy de Terminação TLS são:
 
@@ -49,7 +49,7 @@ Antes de Let's Encrypt, esses certificados HTTPS eram vendidos por terceiros con
 
 O processo de aquisição de um desses certificados costumava ser complicado, exigia bastante papelada e os certificados eram bastante caros.
 
-Mas então o <a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a> foi criado.
+Mas então o [Let's Encrypt](https://letsencrypt.org/) foi criado.
 
 Ele é um projeto da Linux Foundation que fornece certificados HTTPS gratuitamente. De forma automatizada. Esses certificados usam toda a segurança criptográfica padrão e têm vida curta (cerca de 3 meses), então a segurança é, na verdade, melhor por causa do seu lifespan reduzido.
 
@@ -65,7 +65,7 @@ Aqui está um exemplo de como uma API HTTPS poderia ser estruturada, passo a pas
 
 A etapa inicial provavelmente seria adquirir algum nome de domínio. Então, você iria configurá-lo em um servidor DNS (possivelmente no mesmo provedor em nuvem).
 
-Você provavelmente usaria um servidor em nuvem (máquina virtual) ou algo parecido, e ele teria um <abbr title="Que não muda">fixo</abbr> Endereço IP público.
+Você provavelmente usaria um servidor em nuvem (máquina virtual) ou algo parecido, e ele teria um <dfn title="Não muda ao longo do tempo. Não é dinâmico.">fixo</dfn> Endereço IP público.
 
 No(s) servidor(es) DNS, você configuraria um registro (um `A record`) para apontar seu domínio para o endereço IP público do seu servidor.
 
@@ -135,7 +135,7 @@ Então, o cliente envia uma solicitação HTTPS. Que é apenas uma solicitação
 
 <img src="/img/deployment/https/https04.drawio.svg">
 
-### Desencriptando a Solicitação { #decrypt-the-request }
+### Desencripte a Solicitação { #decrypt-the-request }
 
 O Proxy de Terminação TLS então usaria a encriptação combinada para desencriptar a solicitação, e transmitiria a solicitação básica (desencriptada) para o processo executando a aplicação (por exemplo, um processo com Uvicorn executando a aplicação FastAPI).
 
@@ -186,7 +186,7 @@ Para fazer isso, e acomodar as necessidades de diferentes aplicações, existem 
 * Executar como um servidor (ao menos durante o processo de aquisição do certificado) no endereço IP público associado com o domínio.
     * Como dito anteriormente, apenas um processo pode estar ligado a uma porta e IP específicos.
     * Essa é uma dos motivos que fazem utilizar o mesmo Proxy de Terminação TLS para gerenciar a renovação de certificados ser tão útil.
-    * Caso contrário, você pode ter que parar a execução do Proxy de Terminação TLS momentaneamente, inicializar o programa de renovação para renovar os certificados, e então reiniciar o Proxy de Terminação TLS. Isso não é o ideal, já que sua(s) aplicação(ões) não vão estar disponíveis enquanto o Proxy de Terminação TLS estiver desligado.
+    * Caso contrário, você pode ter que parar a execução do Proxy de Terminação TLS momentaneamente, inicializar o programa de renovação para adquirir os certificados, depois configurá-los com o Proxy de Terminação TLS, e então reiniciar o Proxy de Terminação TLS. Isso não é o ideal, já que sua(s) aplicação(ões) não vão estar disponíveis enquanto o Proxy de Terminação TLS estiver desligado.
 
 Todo esse processo de renovação, enquanto o aplicativo ainda funciona, é uma das principais razões para preferir um sistema separado para gerenciar HTTPS com um Proxy de Terminação TLS em vez de usar os certificados TLS no servidor da aplicação diretamente (e.g. com o Uvicorn).
 
@@ -200,9 +200,9 @@ Esse proxy normalmente define alguns cabeçalhos HTTP dinamicamente antes de tra
 
 Os cabeçalhos do proxy são:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -218,7 +218,7 @@ Isso seria útil, por exemplo, para lidar corretamente com redirecionamentos.
 
 /// tip | Dica
 
-Você pode saber mais sobre isso na documentação em [Atrás de um Proxy - Habilitar cabeçalhos encaminhados pelo proxy](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+Você pode saber mais sobre isso na documentação em [Atrás de um Proxy - Habilitar cabeçalhos encaminhados pelo proxy](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers)
 
 ///
 

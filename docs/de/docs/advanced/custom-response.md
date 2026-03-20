@@ -1,16 +1,14 @@
 # Benutzerdefinierte Response – HTML, Stream, Datei, andere { #custom-response-html-stream-file-others }
 
-Standardmäßig gibt **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mittels `JSONResponse` zurück.
+Standardmäßig gibt **FastAPI** JSON-Responses zurück.
 
-Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
+Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md) gezeigt.
 
-Wenn Sie jedoch direkt eine `Response` (oder eine Unterklasse wie `JSONResponse`) zurückgeben, werden die Daten nicht automatisch konvertiert (selbst wenn Sie ein `response_model` deklariert haben), und die Dokumentation wird nicht automatisch generiert (zum Beispiel wird der spezifische „Medientyp“, der im HTTP-Header `Content-Type` angegeben ist, nicht Teil der generierten OpenAPI).
+Wenn Sie jedoch direkt eine `Response` (oder eine Unterklasse wie `JSONResponse`) zurückgeben, werden die Daten nicht automatisch konvertiert (selbst wenn Sie ein `response_model` deklarieren), und die Dokumentation wird nicht automatisch generiert (zum Beispiel einschließlich des spezifischen „Medientyps“ im HTTP-Header `Content-Type` als Teil der generierten OpenAPI).
 
 Sie können jedoch auch die `Response`, die Sie verwenden möchten (z. B. jede `Response`-Unterklasse), im *Pfadoperation-Dekorator* mit dem `response_class`-Parameter deklarieren.
 
 Der Inhalt, den Sie von Ihrer *Pfadoperation-Funktion* zurückgeben, wird in diese `Response` eingefügt.
-
-Und wenn diese `Response` einen JSON-Medientyp (`application/json`) hat, wie es bei `JSONResponse` und `UJSONResponse` der Fall ist, werden die von Ihnen zurückgegebenen Daten automatisch mit jedem Pydantic `response_model` konvertiert (und gefiltert), das Sie im *Pfadoperation-Dekorator* deklariert haben.
 
 /// note | Hinweis
 
@@ -18,35 +16,21 @@ Wenn Sie eine Response-Klasse ohne Medientyp verwenden, erwartet FastAPI, dass I
 
 ///
 
-## `ORJSONResponse` verwenden { #use-orjsonresponse }
+## JSON-Responses { #json-responses }
 
-Um beispielsweise noch etwas Leistung herauszuholen, können Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> installieren und die Response als `ORJSONResponse` setzen.
+Standardmäßig gibt FastAPI JSON-Responses zurück.
 
-Importieren Sie die `Response`-Klasse (Unterklasse), die Sie verwenden möchten, und deklarieren Sie sie im *Pfadoperation-Dekorator*.
+Wenn Sie ein [Responsemodell](../tutorial/response-model.md) deklarieren, verwendet FastAPI Pydantic, um die Daten zu JSON zu serialisieren.
 
-Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` wesentlich schneller als ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurückzugeben.
+Wenn Sie kein Responsemodell deklarieren, verwendet FastAPI den `jsonable_encoder`, wie in [JSON-kompatibler Encoder](../tutorial/encoder.md) erklärt, und packt das Ergebnis in eine `JSONResponse`.
 
-Das liegt daran, dass FastAPI standardmäßig jedes enthaltene Element überprüft und sicherstellt, dass es als JSON serialisierbar ist, und zwar unter Verwendung desselben [JSON-kompatiblen Encoders](../tutorial/encoder.md){.internal-link target=_blank}, der im Tutorial erläutert wurde. Dadurch können Sie **beliebige Objekte** zurückgeben, zum Beispiel Datenbankmodelle.
+Wenn Sie eine `response_class` mit einem JSON-Medientyp (`application/json`) deklarieren, wie es bei `JSONResponse` der Fall ist, werden die von Ihnen zurückgegebenen Daten automatisch mit jedem Pydantic-`response_model` (das Sie im *Pfadoperation-Dekorator* deklariert haben) konvertiert (und gefiltert). Aber die Daten werden nicht mit Pydantic zu JSON-Bytes serialisiert, stattdessen werden sie mit dem `jsonable_encoder` konvertiert und anschließend an die `JSONResponse`-Klasse übergeben, die sie dann mit der Standard-JSON-Bibliothek in Python in Bytes serialisiert.
 
-Wenn Sie jedoch sicher sind, dass der von Ihnen zurückgegebene Inhalt **mit JSON serialisierbar** ist, können Sie ihn direkt an die Response-Klasse übergeben und die zusätzliche Arbeit vermeiden, die FastAPI hätte, indem es Ihren zurückgegebenen Inhalt durch den `jsonable_encoder` leitet, bevor es ihn an die Response-Klasse übergibt.
+### JSON-Leistung { #json-performance }
 
-{* ../../docs_src/custom_response/tutorial001b_py39.py hl[2,7] *}
+Kurz gesagt: Wenn Sie die maximale Leistung möchten, verwenden Sie ein [Responsemodell](../tutorial/response-model.md) und deklarieren Sie keine `response_class` im *Pfadoperation-Dekorator*.
 
-/// info | Info
-
-Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
-
-In diesem Fall wird der HTTP-Header `Content-Type` auf `application/json` gesetzt.
-
-Und er wird als solcher in OpenAPI dokumentiert.
-
-///
-
-/// tip | Tipp
-
-Die `ORJSONResponse` ist nur in FastAPI verfügbar, nicht in Starlette.
-
-///
+{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
 
 ## HTML-Response { #html-response }
 
@@ -55,7 +39,7 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 * Importieren Sie `HTMLResponse`.
 * Übergeben Sie `HTMLResponse` als den Parameter `response_class` Ihres *Pfadoperation-Dekorators*.
 
-{* ../../docs_src/custom_response/tutorial002_py39.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
 /// info | Info
 
@@ -69,11 +53,11 @@ Und er wird als solcher in OpenAPI dokumentiert.
 
 ### Eine `Response` zurückgeben { #return-a-response }
 
-Wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt, können Sie die Response auch direkt in Ihrer *Pfadoperation* überschreiben, indem Sie diese zurückgeben.
+Wie in [Eine Response direkt zurückgeben](response-directly.md) gezeigt, können Sie die Response auch direkt in Ihrer *Pfadoperation* überschreiben, indem Sie diese zurückgeben.
 
 Das gleiche Beispiel von oben, das eine `HTMLResponse` zurückgibt, könnte so aussehen:
 
-{* ../../docs_src/custom_response/tutorial003_py39.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
 
 /// warning | Achtung
 
@@ -97,7 +81,7 @@ Die `response_class` wird dann nur zur Dokumentation der OpenAPI-*Pfadoperation*
 
 Es könnte zum Beispiel so etwas sein:
 
-{* ../../docs_src/custom_response/tutorial004_py39.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
 
 In diesem Beispiel generiert die Funktion `generate_html_response()` bereits eine `Response` und gibt sie zurück, anstatt das HTML in einem `str` zurückzugeben.
 
@@ -134,9 +118,9 @@ Sie akzeptiert die folgenden Parameter:
 * `headers` – Ein `dict` von Strings.
 * `media_type` – Ein `str`, der den Medientyp angibt. Z. B. `"text/html"`.
 
-FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem media_type basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
+FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem `media_type` basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
-{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -146,7 +130,7 @@ Nimmt Text oder Bytes entgegen und gibt eine HTML-Response zurück, wie Sie oben
 
 Nimmt Text oder Bytes entgegen und gibt eine Plain-Text-Response zurück.
 
-{* ../../docs_src/custom_response/tutorial005_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -154,37 +138,11 @@ Nimmt einige Daten entgegen und gibt eine `application/json`-codierte Response z
 
 Dies ist die Standard-Response, die in **FastAPI** verwendet wird, wie Sie oben gelesen haben.
 
-### `ORJSONResponse` { #orjsonresponse }
+/// note | Technische Details
 
-Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, wie Sie oben gelesen haben.
+Wenn Sie jedoch ein Responsemodell oder einen Rückgabetyp deklarieren, wird dieser direkt verwendet, um die Daten zu JSON zu serialisieren, und eine Response mit dem richtigen Medientyp für JSON wird direkt zurückgegeben, ohne die `JSONResponse`-Klasse zu verwenden.
 
-/// info | Info
-
-Dazu muss `orjson` installiert werden, z. B. mit `pip install orjson`.
-
-///
-
-### `UJSONResponse` { #ujsonresponse }
-
-Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
-
-/// info | Info
-
-Dazu muss `ujson` installiert werden, z. B. mit `pip install ujson`.
-
-///
-
-/// warning | Achtung
-
-`ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
-
-///
-
-{* ../../docs_src/custom_response/tutorial001_py39.py hl[2,7] *}
-
-/// tip | Tipp
-
-Möglicherweise ist `ORJSONResponse` eine schnellere Alternative.
+Dies ist der ideale Weg, um die beste Leistung zu erzielen.
 
 ///
 
@@ -194,13 +152,13 @@ Gibt eine HTTP-Weiterleitung (HTTP-Redirect) zurück. Verwendet standardmäßig 
 
 Sie können eine `RedirectResponse` direkt zurückgeben:
 
-{* ../../docs_src/custom_response/tutorial006_py39.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
 
 ---
 
 Oder Sie können sie im Parameter `response_class` verwenden:
 
-{* ../../docs_src/custom_response/tutorial006b_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 
 Wenn Sie das tun, können Sie die URL direkt von Ihrer *Pfadoperation*-Funktion zurückgeben.
 
@@ -210,35 +168,29 @@ In diesem Fall ist der verwendete `status_code` der Standardcode für die `Redir
 
 Sie können den Parameter `status_code` auch in Kombination mit dem Parameter `response_class` verwenden:
 
-{* ../../docs_src/custom_response/tutorial006c_py39.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
-Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator und streamt den Responsebody.
+Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator (eine Funktion mit `yield`) und streamt den Responsebody.
 
-{* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
 
-#### Verwendung von `StreamingResponse` mit dateiartigen Objekten { #using-streamingresponse-with-file-like-objects }
+/// note | Technische Details
 
-Wenn Sie ein dateiartiges (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a>) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiartige Objekt zu iterieren.
+Ein `async`-Task kann nur abgebrochen werden, wenn er ein `await` erreicht. Wenn es kein `await` gibt, kann der Generator (Funktion mit `yield`) nicht ordnungsgemäß abgebrochen werden und könnte weiterlaufen, selbst nachdem der Abbruch angefordert wurde.
 
-Auf diese Weise müssen Sie nicht alles zuerst in den Arbeitsspeicher lesen und können diese Generatorfunktion an `StreamingResponse` übergeben und zurückgeben.
+Da dieses kleine Beispiel keine `await`-Anweisungen benötigt, fügen wir ein `await anyio.sleep(0)` hinzu, um dem Event Loop die Chance zu geben, den Abbruch zu verarbeiten.
 
-Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbeitung und anderen.
+Dies wäre bei großen oder unendlichen Streams noch wichtiger.
 
-{* ../../docs_src/custom_response/tutorial008_py39.py hl[2,10:12,14] *}
-
-1. Das ist die Generatorfunktion. Es handelt sich um eine „Generatorfunktion“, da sie `yield`-Anweisungen enthält.
-2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiartige Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem sie mit dem Senden der Response fertig ist.
-3. Dieses `yield from` weist die Funktion an, über das Ding namens `file_like` zu iterieren. Und dann für jeden iterierten Teil, diesen Teil so zurückzugeben, als wenn er aus dieser Generatorfunktion (`iterfile`) stammen würde.
-
-    Es handelt sich also hier um eine Generatorfunktion, die die „generierende“ Arbeit intern auf etwas anderes überträgt.
-
-    Auf diese Weise können wir das Ganze in einen `with`-Block einfügen und so sicherstellen, dass das dateiartige Objekt nach Abschluss geschlossen wird.
+///
 
 /// tip | Tipp
 
-Beachten Sie, dass wir, da wir Standard-`open()` verwenden, welches `async` und `await` nicht unterstützt, hier die Pfadoperation mit normalen `def` deklarieren.
+Anstatt eine `StreamingResponse` direkt zurückzugeben, sollten Sie wahrscheinlich dem Stil in [Daten streamen](./stream-data.md) folgen. Das ist wesentlich bequemer und behandelt den Abbruch im Hintergrund für Sie.
+
+Wenn Sie JSON Lines streamen, folgen Sie dem Tutorial [JSON Lines streamen](../tutorial/stream-json-lines.md).
 
 ///
 
@@ -255,11 +207,11 @@ Nimmt zur Instanziierung einen anderen Satz von Argumenten entgegen als die ande
 
 Datei-Responses enthalten die entsprechenden `Content-Length`-, `Last-Modified`- und `ETag`-Header.
 
-{* ../../docs_src/custom_response/tutorial009_py39.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
 Sie können auch den Parameter `response_class` verwenden:
 
-{* ../../docs_src/custom_response/tutorial009b_py39.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
 In diesem Fall können Sie den Dateipfad direkt von Ihrer *Pfadoperation*-Funktion zurückgeben.
 
@@ -267,21 +219,21 @@ In diesem Fall können Sie den Dateipfad direkt von Ihrer *Pfadoperation*-Funkti
 
 Sie können Ihre eigene benutzerdefinierte Response-Klasse erstellen, die von `Response` erbt und diese verwendet.
 
-Nehmen wir zum Beispiel an, dass Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> verwenden möchten, aber mit einigen benutzerdefinierten Einstellungen, die in der enthaltenen `ORJSONResponse`-Klasse nicht verwendet werden.
+Nehmen wir zum Beispiel an, dass Sie [`orjson`](https://github.com/ijl/orjson) mit einigen Einstellungen verwenden möchten.
 
 Sie möchten etwa, dass Ihre Response eingerücktes und formatiertes JSON zurückgibt. Dafür möchten Sie die orjson-Option `orjson.OPT_INDENT_2` verwenden.
 
 Sie könnten eine `CustomORJSONResponse` erstellen. Das Wichtigste, was Sie tun müssen, ist, eine `Response.render(content)`-Methode zu erstellen, die den Inhalt als `bytes` zurückgibt:
 
-{* ../../docs_src/custom_response/tutorial009c_py39.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
 
-Statt:
+Anstatt Folgendes zurückzugeben:
 
 ```json
 {"message": "Hello World"}
 ```
 
-... wird die Response jetzt Folgendes zurückgeben:
+... wird diese Response Folgendes zurückgeben:
 
 ```json
 {
@@ -291,15 +243,23 @@ Statt:
 
 Natürlich werden Sie wahrscheinlich viel bessere Möglichkeiten finden, Vorteil daraus zu ziehen, als JSON zu formatieren. 😉
 
+### `orjson` oder Responsemodell { #orjson-or-response-model }
+
+Wenn es Ihnen um Leistung geht, sind Sie wahrscheinlich mit einem [Responsemodell](../tutorial/response-model.md) besser beraten als mit einer `orjson`-Response.
+
+Mit einem Responsemodell verwendet FastAPI Pydantic, um die Daten ohne Zwischenschritte zu JSON zu serialisieren, also ohne sie z. B. erst mit `jsonable_encoder` zu konvertieren, was sonst der Fall wäre.
+
+Und unter der Haube verwendet Pydantic dieselben Rust-Mechanismen wie `orjson`, um nach JSON zu serialisieren. Sie erhalten mit einem Responsemodell also ohnehin die beste Leistung.
+
 ## Standard-Response-Klasse { #default-response-class }
 
 Beim Erstellen einer **FastAPI**-Klasseninstanz oder eines `APIRouter`s können Sie angeben, welche Response-Klasse standardmäßig verwendet werden soll.
 
 Der Parameter, der das definiert, ist `default_response_class`.
 
-Im folgenden Beispiel verwendet **FastAPI** standardmäßig `ORJSONResponse` in allen *Pfadoperationen*, anstelle von `JSONResponse`.
+Im folgenden Beispiel verwendet **FastAPI** standardmäßig `HTMLResponse` in allen *Pfadoperationen*, anstelle von JSON.
 
-{* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
 /// tip | Tipp
 
@@ -309,4 +269,4 @@ Sie können dennoch weiterhin `response_class` in *Pfadoperationen* überschreib
 
 ## Zusätzliche Dokumentation { #additional-documentation }
 
-Sie können auch den Medientyp und viele andere Details in OpenAPI mit `responses` deklarieren: [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Sie können auch den Medientyp und viele andere Details in OpenAPI mit `responses` deklarieren: [Zusätzliche Responses in OpenAPI](additional-responses.md).

@@ -6,7 +6,7 @@
 
 Sonra da bu *geçici* response nesnesi üzerinde header'ları ayarlayabilirsiniz.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 Ardından normalde yaptığınız gibi ihtiyacınız olan herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli vb.).
 
@@ -20,9 +20,9 @@ Eğer bir `response_model` tanımladıysanız, döndürdüğünüz nesneyi filtr
 
 Doğrudan bir `Response` döndürdüğünüzde de header ekleyebilirsiniz.
 
-[Bir Response'u Doğrudan Döndürün](response-directly.md){.internal-link target=_blank} bölümünde anlatıldığı gibi bir response oluşturun ve header'ları ek bir parametre olarak geçin:
+[Bir Response'u Doğrudan Döndürün](response-directly.md) bölümünde anlatıldığı gibi bir response oluşturun ve header'ları ek bir parametre olarak geçin:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | Teknik Detaylar
 
@@ -36,6 +36,6 @@ Ayrıca `Response` header ve cookie ayarlamak için sık kullanıldığından, *
 
 ## Özel Header'lar { #custom-headers }
 
-Özel/proprietary header'ların <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">`X-` prefix'i kullanılarak</a> eklenebileceğini unutmayın.
+Özel/proprietary header'ların [`X-` prefix'i kullanılarak](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) eklenebileceğini unutmayın.
 
-Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank} bölümünde daha fazla bilgi), bunun için <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette'in CORS dokümanında</a> açıklanan `expose_headers` parametresini kullanın.
+Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) bölümünde daha fazla bilgi), bunun için [Starlette'in CORS dokümanında](https://www.starlette.dev/middleware/#corsmiddleware) açıklanan `expose_headers` parametresini kullanın.

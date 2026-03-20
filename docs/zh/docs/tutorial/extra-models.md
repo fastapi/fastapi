@@ -8,7 +8,7 @@
 * **输出模型**不应含密码
 * **数据库模型**可能需要包含哈希后的密码
 
-/// danger
+/// danger | 危险
 
 不要存储用户的明文密码。始终只存储之后可用于校验的“安全哈希”。
 
@@ -132,7 +132,7 @@ UserInDB(
 )
 ```
 
-/// warning
+/// warning | 警告
 
 配套的辅助函数 `fake_password_hasher` 和 `fake_save_user` 仅用于演示可能的数据流，当然并不提供真实的安全性。
 
@@ -164,7 +164,7 @@ UserInDB(
 
 为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
 
-/// note
+/// note | 注意
 
 定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
 
@@ -190,9 +190,9 @@ some_variable: PlaneItem | CarItem
 
 同样地，你可以声明由对象列表构成的响应。
 
-为此，请使用标准的 Python `typing.List`（在 Python 3.9+ 中也可以直接用 `list`）：
+为此，请使用标准的 Python `list`：
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## 任意 `dict` 的响应 { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ some_variable: PlaneItem | CarItem
 
 如果你事先不知道有效的字段/属性名（Pydantic 模型需要预先知道字段）时，这很有用。
 
-此时，可以使用 `typing.Dict`（在 Python 3.9+ 中也可以直接用 `dict`）：
+此时，可以使用 `dict`：
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## 小结 { #recap }
 

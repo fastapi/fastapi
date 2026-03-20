@@ -18,7 +18,7 @@ Class'ın kendisini değil (zaten callable'dır), o class'ın bir instance'ını
 
 Bunu yapmak için `__call__` adında bir method tanımlarız:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAPI**'nin kullanacağı şey bu `__call__` olacaktır; ayrıca daha sonra *path operation function* içindeki parametreye bir değer geçmek için çağrılacak olan da budur.
 
@@ -26,7 +26,7 @@ Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAP
 
 Ve şimdi, dependency'yi "parametreleştirmek" için kullanacağımız instance parametrelerini tanımlamak üzere `__init__` kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu doğrudan kendi kodumuzda kullanırız.
 
@@ -34,7 +34,7 @@ Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu 
 
 Bu class'tan bir instance'ı şöyle oluşturabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 Böylece dependency'mizi "parametreleştirmiş" oluruz; artık içinde `"bar"` vardır ve bu değer `checker.fixed_content` attribute'u olarak durur.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...ve bunun döndürdüğü her şeyi, *path operation function* içinde `fixed_content_included` parametresine dependency değeri olarak geçirir:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | İpucu
 
@@ -132,7 +132,7 @@ SQLModel (veya SQLAlchemy) kullanarak bu spesifik senaryoya sahipseniz, session'
 
 Böylece session veritabanı bağlantısını serbest bırakır ve diğer request'ler bunu kullanabilir.
 
-`yield` kullanan bir dependency'den erken çıkış gerektiren farklı bir kullanım senaryonuz varsa, lütfen kullanım senaryonuzla birlikte ve `yield` kullanan dependency'ler için erken kapatmadan neden fayda göreceğinizi açıklayarak bir <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Sorusu</a> oluşturun.
+`yield` kullanan bir dependency'den erken çıkış gerektiren farklı bir kullanım senaryonuz varsa, lütfen kullanım senaryonuzla birlikte ve `yield` kullanan dependency'ler için erken kapatmadan neden fayda göreceğinizi açıklayarak bir [GitHub Discussion Sorusu](https://github.com/fastapi/fastapi/discussions/new?category=questions) oluşturun.
 
 `yield` kullanan dependency'lerde erken kapatma için ikna edici kullanım senaryoları varsa, erken kapatmayı seçmeli (opt-in) hale getiren yeni bir yöntem eklemeyi düşünebilirim.
 
@@ -144,7 +144,7 @@ Bu davranış 0.110.0 sürümünde değiştirildi. Amaç, handler olmayan (inter
 
 ### Background Tasks ve `yield` ile dependency'ler, Teknik Detaylar { #background-tasks-and-dependencies-with-yield-technical-details }
 
-FastAPI 0.106.0 öncesinde, `yield` sonrasında exception raise etmek mümkün değildi; çünkü `yield` kullanan dependency'lerdeki çıkış kodu response gönderildikten *sonra* çalıştırılıyordu. Bu nedenle [Exception Handler'ları](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} zaten çalışmış olurdu.
+FastAPI 0.106.0 öncesinde, `yield` sonrasında exception raise etmek mümkün değildi; çünkü `yield` kullanan dependency'lerdeki çıkış kodu response gönderildikten *sonra* çalıştırılıyordu. Bu nedenle [Exception Handler'ları](../tutorial/handling-errors.md#install-custom-exception-handlers) zaten çalışmış olurdu.
 
 Bu tasarımın ana sebeplerinden biri, background task'lerin içinde dependency'lerin "yield ettiği" aynı objeleri kullanmaya izin vermekti; çünkü çıkış kodu, background task'ler bittikten sonra çalıştırılıyordu.
 

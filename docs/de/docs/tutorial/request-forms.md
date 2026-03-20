@@ -4,9 +4,9 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 
 /// info | Info
 
-Um Formulare zu verwenden, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}, aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
+Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
 
 ```console
 $ pip install python-multipart
@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Importieren Sie `Form` von `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## `Form`-Parameter definieren { #define-form-parameters }
 
 Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` machen würden:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 Zum Beispiel stellt eine der Möglichkeiten, die OAuth2-Spezifikation zu verwenden (genannt „password flow“), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
 
-Die <abbr title="Specification – Spezifikation">Spec</abbr> erfordert, dass die Felder exakt `username` und `password` genannt werden und als Formularfelder, nicht JSON, gesendet werden.
+Die <dfn title="Spezifikation">Spezifikation</dfn> erfordert, dass die Felder exakt `username` und `password` genannt werden und als Formularfelder, nicht JSON, gesendet werden.
 
 Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (und `Query`, `Path`, `Cookie`), inklusive Validierung, Beispielen, einem Alias (z. B. `user-name` statt `username`), usw.
 
@@ -56,7 +56,7 @@ Daten aus Formularen werden normalerweise mit dem <abbr title="Medientyp">„med
 
 Wenn das Formular stattdessen Dateien enthält, werden diese mit `multipart/form-data` kodiert. Im nächsten Kapitel erfahren Sie mehr über die Handhabung von Dateien.
 
-Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
+Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die [<abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

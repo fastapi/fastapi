@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Python’da env var Okuma { #read-env-vars-in-python }
+## Python’da Env Var Okuma { #read-env-vars-in-python }
 
 Ortam değişkenlerini Python’un **dışında** (terminalde veya başka bir yöntemle) oluşturup daha sonra **Python’da okuyabilirsiniz**.
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | İpucu
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> fonksiyonunun ikinci argümanı, bulunamadığında döndürülecek varsayılan (default) değerdir.
+[`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) fonksiyonunun ikinci argümanı, bulunamadığında döndürülecek varsayılan (default) değerdir.
 
 Verilmezse varsayılan olarak `None` olur; burada varsayılan değer olarak `"World"` verdik.
 
@@ -153,17 +153,17 @@ Hello World from Python
 
 /// tip | İpucu
 
-Bu konuyla ilgili daha fazlasını <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> bölümünde okuyabilirsiniz.
+Bu konuyla ilgili daha fazlasını [Twelve-Factor Uygulaması: Config](https://12factor.net/config) bölümünde okuyabilirsiniz.
 
 ///
 
-## Tipler ve Doğrulama { #types-and-validation }
+## Türler ve Doğrulama { #types-and-validation }
 
 Bu ortam değişkenleri yalnızca **metin string**’lerini taşıyabilir. Çünkü Python’un dışındadırlar ve diğer programlarla, sistemin geri kalanıyla (hatta Linux, Windows, macOS gibi farklı işletim sistemleriyle) uyumlu olmak zorundadırlar.
 
 Bu, Python’da bir ortam değişkeninden okunan **her değerin `str` olacağı** anlamına gelir. Farklı bir tipe dönüştürme veya doğrulama işlemleri kod içinde yapılmalıdır.
 
-Uygulama **ayarları**nı yönetmek için ortam değişkenlerini kullanmayı, [İleri Seviye Kullanıcı Rehberi - Ayarlar ve Ortam Değişkenleri](./advanced/settings.md){.internal-link target=_blank} bölümünde daha detaylı öğreneceksiniz.
+Uygulama **ayarları**nı yönetmek için ortam değişkenlerini kullanmayı, [İleri Seviye Kullanıcı Rehberi - Ayarlar ve Ortam Değişkenleri](./advanced/settings.md) bölümünde daha detaylı öğreneceksiniz.
 
 ## `PATH` Ortam Değişkeni { #path-environment-variable }
 
@@ -285,14 +285,14 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Bu bilgiler, [Virtual Environments](virtual-environments.md){.internal-link target=_blank} konusunu öğrenirken işinize yarayacak.
+Bu bilgiler, [Sanal Ortamlar](virtual-environments.md) konusunu öğrenirken işinize yarayacak.
 
 ## Sonuç { #conclusion }
 
 Buraya kadar **ortam değişkenleri**nin ne olduğuna ve Python’da nasıl kullanılacağına dair temel bir fikir edinmiş olmalısınız.
 
-Ayrıca <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a> sayfasından daha fazlasını da okuyabilirsiniz.
+Ayrıca [Ortam Değişkeni için Wikipedia](https://en.wikipedia.org/wiki/Environment_variable) sayfasından daha fazlasını da okuyabilirsiniz.
 
 Çoğu zaman ortam değişkenlerinin hemen nasıl işe yarayacağı ilk bakışta çok net olmayabilir. Ancak geliştirme yaparken birçok farklı senaryoda tekrar tekrar karşınıza çıkarlar; bu yüzden bunları bilmek faydalıdır.
 
-Örneğin bir sonraki bölümde, [Virtual Environments](virtual-environments.md) konusunda bu bilgilere ihtiyaç duyacaksınız.
+Örneğin bir sonraki bölümde, [Sanal Ortamlar](virtual-environments.md) konusunda bu bilgilere ihtiyaç duyacaksınız.

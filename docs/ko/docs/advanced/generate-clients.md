@@ -40,7 +40,7 @@ FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 
 
 간단한 FastAPI 애플리케이션으로 시작해 보겠습니다:
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
 *path operation*에서 요청 페이로드와 응답 페이로드에 사용하는 모델을 `Item`, `ResponseMessage` 모델로 정의하고 있다는 점에 주목하세요.
 
@@ -98,7 +98,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 예를 들어 **items** 섹션과 **users** 섹션이 있고, 이를 태그로 분리할 수 있습니다:
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
 ### 태그로 TypeScript 클라이언트 생성하기 { #generate-a-typescript-client-with-tags }
 
@@ -145,7 +145,7 @@ FastAPI는 각 *path operation*에 대해 **유일 ID**를 사용하며, 이는 
 
 그 다음 이 커스텀 함수를 `generate_unique_id_function` 매개변수로 **FastAPI**에 전달할 수 있습니다:
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
 ### 커스텀 Operation ID로 TypeScript 클라이언트 생성하기 { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -167,7 +167,7 @@ OpenAPI 전반에서는 operation ID가 **유일**하다는 것을 보장하기 
 
 OpenAPI JSON을 `openapi.json` 파일로 다운로드한 뒤, 아래와 같은 스크립트로 **접두사 태그를 제거**할 수 있습니다:
 
-{* ../../docs_src/generate_clients/tutorial004_py39.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
 //// tab | Node.js
 
