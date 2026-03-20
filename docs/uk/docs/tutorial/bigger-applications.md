@@ -123,7 +123,7 @@ from app.routers import items
 
 Ми використовуємо вигаданий заголовок, щоб спростити приклад.
 
-Але в реальних випадках ви отримаєте кращі результати, використовуючи інтегровані [засоби безпеки](security/index.md){.internal-link target=_blank}.
+Але в реальних випадках ви отримаєте кращі результати, використовуючи інтегровані [засоби безпеки](security/index.md).
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | Порада
 
-Зверніть увагу, що так само як і для [залежностей у декораторах *операцій шляху*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, жодне значення не буде передано вашій *функції операції шляху*.
+Зверніть увагу, що так само як і для [залежностей у декораторах *операцій шляху*](dependencies/dependencies-in-path-operation-decorators.md), жодне значення не буде передано вашій *функції операції шляху*.
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * Усі вони включатимуть наперед визначені `responses`.
 * Для всіх цих *операцій шляху* список `dependencies` буде оцінений/виконаний перед ними.
     * Якщо ви також оголосите залежності в конкретній *операції шляху*, **вони також будуть виконані**.
-    * Спочатку виконуються залежності router'а, потім [`dependencies` у декораторі](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, а потім звичайні параметричні залежності.
-    * Ви також можете додати [`Security` залежності з `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+    * Спочатку виконуються залежності router'а, потім [`dependencies` у декораторі](dependencies/dependencies-in-path-operation-decorators.md), а потім звичайні параметричні залежності.
+    * Ви також можете додати [`Security` залежності з `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Порада
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 Імпортуйте та створіть клас `FastAPI`, як зазвичай.
 
-І ми навіть можемо оголосити [глобальні залежності](dependencies/global-dependencies.md){.internal-link target=_blank}, які будуть поєднані із залежностями кожного `APIRouter`:
+І ми навіть можемо оголосити [глобальні залежності](dependencies/global-dependencies.md), які будуть поєднані із залежностями кожного `APIRouter`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-Щоб дізнатися більше про пакети й модулі Python, прочитайте <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">офіційну документацію Python про модулі</a>.
+Щоб дізнатися більше про пакети й модулі Python, прочитайте [офіційну документацію Python про модулі](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -465,6 +465,37 @@ from .routers.users import router
 
 ///
 
+## Налаштуйте `entrypoint` у `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Оскільки ваш об'єкт FastAPI `app` знаходиться в `app/main.py`, ви можете налаштувати `entrypoint` у файлі `pyproject.toml` так:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+це еквівалентно імпорту:
+
+```python
+from app.main import app
+```
+
+Таким чином команда `fastapi` знатиме, де знайти ваш застосунок.
+
+/// Note | Примітка
+
+Ви також могли б передати шлях команді, наприклад:
+
+```console
+$ fastapi dev app/main.py
+```
+
+Але тоді вам доведеться щоразу пам'ятати, щоб передавати правильний шлях, коли ви викликаєте команду `fastapi`.
+
+Крім того, інші інструменти можуть не знайти його, наприклад [розширення VS Code](../editor-support.md) або [FastAPI Cloud](https://fastapicloud.com), тому рекомендовано використовувати `entrypoint` у `pyproject.toml`.
+
+///
+
 ## Перевірте автоматичну документацію API { #check-the-automatic-api-docs }
 
 Тепер запустіть ваш застосунок:
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-І відкрийте документацію за адресою <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+І відкрийте документацію за адресою [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Ви побачите автоматичну документацію API, що включає шляхи з усіх підмодулів, з правильними шляхами (і префіксами) та правильними мітками:
 

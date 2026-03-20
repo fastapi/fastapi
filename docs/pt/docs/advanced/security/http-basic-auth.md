@@ -32,7 +32,7 @@ Aqui está um exemplo mais completo.
 
 Utilize uma dependência para verificar se o usuário e a senha estão corretos.
 
-Para isso, utilize o módulo padrão do Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar o usuário e senha.
+Para isso, utilize o módulo padrão do Python [`secrets`](https://docs.python.org/3/library/secrets.html) para verificar o usuário e senha.
 
 O `secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em inglês). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
 
@@ -50,11 +50,11 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
     ...
 ```
 
-Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks" (ataques de temporização).
+Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks".
 
 ### Ataques de Temporização { #timing-attacks }
 
-Mas o que é um "timing attack" (ataque de temporização)?
+Mas o que é um "timing attack"?
 
 Vamos imaginar que alguns invasores estão tentando adivinhar o usuário e a senha.
 

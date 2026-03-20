@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | Astuce
 
-Le deuxième argument de <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> est la valeur par défaut à retourner.
+Le deuxième argument de [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) est la valeur par défaut à retourner.
 
 S'il n'est pas fourni, c'est `None` par défaut ; ici, nous fournissons `"World"` comme valeur par défaut à utiliser.
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | Astuce
 
-Vous pouvez en lire davantage sur <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App : Config</a>.
+Vous pouvez en lire davantage sur [The Twelve-Factor App : Config](https://12factor.net/config).
 
 ///
 
@@ -163,7 +163,7 @@ Ces variables d'environnement ne peuvent gérer que des **chaînes de texte**, c
 
 Cela signifie que **toute valeur** lue en Python à partir d'une variable d'environnement **sera une `str`**, et que toute conversion vers un autre type ou toute validation doit être effectuée dans le code.
 
-Vous en apprendrez davantage sur l'utilisation des variables d'environnement pour gérer les **paramètres d'application** dans le [Guide utilisateur avancé - Paramètres et variables d'environnement](./advanced/settings.md){.internal-link target=_blank}.
+Vous en apprendrez davantage sur l'utilisation des variables d'environnement pour gérer les **paramètres d'application** dans le [Guide utilisateur avancé - Paramètres et variables d'environnement](./advanced/settings.md).
 
 ## Variable d'environnement `PATH` { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Ces informations vous seront utiles lors de l'apprentissage des [Environnements virtuels](virtual-environments.md){.internal-link target=_blank}.
+Ces informations vous seront utiles lors de l'apprentissage des [Environnements virtuels](virtual-environments.md).
 
 ## Conclusion { #conclusion }
 
 Avec cela, vous devriez avoir une compréhension de base de ce que sont les **variables d'environnement** et de la façon de les utiliser en Python.
 
-Vous pouvez également en lire davantage sur la <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">page Wikipédia dédiée aux variables d'environnement</a>.
+Vous pouvez également en lire davantage sur la [page Wikipédia dédiée aux variables d'environnement](https://en.wikipedia.org/wiki/Environment_variable).
 
 Dans de nombreux cas, il n'est pas évident de voir immédiatement en quoi les variables d'environnement seraient utiles et applicables. Mais elles réapparaissent dans de nombreux scénarios lorsque vous développez, il est donc bon de les connaître.
 

@@ -52,11 +52,11 @@ FastAPI використовує стандарт для побудови Python
 
 Є кілька альтернатив, зокрема:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: високопродуктивний ASGI-сервер.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ASGI-сервер, сумісний з HTTP/2 і Trio, серед інших можливостей.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: ASGI-сервер, створений для Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Rust HTTP-сервер для Python-застосунків.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit - легке й універсальне середовище виконання вебзастосунків.
+* [Uvicorn](https://www.uvicorn.dev/): високопродуктивний ASGI-сервер.
+* [Hypercorn](https://hypercorn.readthedocs.io/): ASGI-сервер, сумісний з HTTP/2 і Trio, серед інших можливостей.
+* [Daphne](https://github.com/django/daphne): ASGI-сервер, створений для Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): Rust HTTP-сервер для Python-застосунків.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit - легке й універсальне середовище виконання вебзастосунків.
 
 ## Серверна машина і серверна програма { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ FastAPI використовує стандарт для побудови Python
 
 Але ви також можете встановити ASGI-сервер вручну.
 
-Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md){.internal-link target=_blank}, активували його, після чого можете встановити серверну програму.
+Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його, після чого можете встановити серверну програму.
 
 Наприклад, щоб установити Uvicorn:
 
@@ -137,7 +137,7 @@ Uvicorn та інші сервери підтримують опцію `--reload
 
 Опція `--reload` споживає значно більше ресурсів, є менш стабільною тощо.
 
-Вона дуже допомагає під час розробки, але її не слід використовувати в продакшні.
+Вона дуже допомагає під час **розробки**, але її **не слід** використовувати в **продакшні**.
 
 ///
 

@@ -2,9 +2,9 @@
 
 **FastAPI**, SQL (ilişkisel) bir veritabanı kullanmanızı zorunlu kılmaz. Ancak isterseniz **istediğiniz herhangi bir veritabanını** kullanabilirsiniz.
 
-Burada <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> kullanarak bir örnek göreceğiz.
+Burada [SQLModel](https://sqlmodel.tiangolo.com/) kullanarak bir örnek göreceğiz.
 
-**SQLModel**, <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> ve Pydantic’in üzerine inşa edilmiştir. **FastAPI**’nin yazarı tarafından, **SQL veritabanları** kullanması gereken FastAPI uygulamalarıyla mükemmel uyum sağlaması için geliştirilmiştir.
+**SQLModel**, [SQLAlchemy](https://www.sqlalchemy.org/) ve Pydantic’in üzerine inşa edilmiştir. **FastAPI**’nin yazarı tarafından, **SQL veritabanları** kullanması gereken FastAPI uygulamalarıyla mükemmel uyum sağlaması için geliştirilmiştir.
 
 /// tip | İpucu
 
@@ -26,15 +26,15 @@ Daha sonra, production uygulamanız için **PostgreSQL** gibi bir veritabanı su
 
 /// tip | İpucu
 
-Frontend ve daha fazla araçla birlikte **FastAPI** + **PostgreSQL** içeren resmi bir proje oluşturucu (project generator) var: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+Frontend ve daha fazla araçla birlikte **FastAPI** + **PostgreSQL** içeren resmi bir proje oluşturucu (project generator) var: [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-Bu çok basit ve kısa bir eğitimdir. Veritabanları genelinde, SQL hakkında veya daha ileri özellikler hakkında öğrenmek isterseniz <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel dokümantasyonuna</a> gidin.
+Bu çok basit ve kısa bir eğitimdir. Veritabanları genelinde, SQL hakkında veya daha ileri özellikler hakkında öğrenmek isterseniz [SQLModel dokümantasyonuna](https://sqlmodel.tiangolo.com/) gidin.
 
 ## `SQLModel` Kurulumu { #install-sqlmodel }
 
-Önce [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, aktive edin ve ardından `sqlmodel`’i yükleyin:
+Önce [virtual environment](../virtual-environments.md) oluşturduğunuzdan emin olun, aktive edin ve ardından `sqlmodel`’i yükleyin:
 
 <div class="termy">
 
@@ -65,7 +65,7 @@ Birkaç fark var:
 
 * `Field(primary_key=True)`, SQLModel’e `id`’nin SQL veritabanındaki **primary key** olduğunu söyler (SQL primary key’leri hakkında daha fazlasını SQLModel dokümantasyonunda öğrenebilirsiniz).
 
-    **Not:** primary key alanı için `int | None` kullanıyoruz; böylece Python kodunda *`id` olmadan bir nesne oluşturabiliriz* (`id=None`) ve veritabanının *kaydederken bunu üreteceğini* varsayarız. SQLModel, veritabanının `id` sağlayacağını anlar ve *veritabanı şemasında sütunu null olamayan bir `INTEGER`* olarak tanımlar. Detaylar için <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">primary key’ler hakkında SQLModel dokümantasyonuna</a> bakın.
+    **Not:** primary key alanı için `int | None` kullanıyoruz; böylece Python kodunda *`id` olmadan bir nesne oluşturabiliriz* (`id=None`) ve veritabanının *kaydederken bunu üreteceğini* varsayarız. SQLModel, veritabanının `id` sağlayacağını anlar ve *veritabanı şemasında sütunu null olamayan bir `INTEGER`* olarak tanımlar. Detaylar için [primary key’ler hakkında SQLModel dokümantasyonuna](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) bakın.
 
 * `Field(index=True)`, SQLModel’e bu sütun için bir **SQL index** oluşturmasını söyler; bu da bu sütuna göre filtrelenmiş verileri okurken veritabanında daha hızlı arama yapılmasını sağlar.
 
@@ -111,7 +111,7 @@ Production’da büyük ihtimalle uygulamayı başlatmadan önce çalışan bir 
 
 /// tip | İpucu
 
-SQLModel, Alembic’i saran migration araçlarına sahip olacak; ancak şimdilik <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>’i doğrudan kullanabilirsiniz.
+SQLModel, Alembic’i saran migration araçlarına sahip olacak; ancak şimdilik [Alembic](https://alembic.sqlalchemy.org/en/latest/)’i doğrudan kullanabilirsiniz.
 
 ///
 
@@ -152,7 +152,7 @@ Uygulamayı çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Uygulamayı tekrar çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ $ fastapi dev main.py
 
 ## Özet { #recap }
 
-Bir SQL veritabanıyla etkileşim kurmak için <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> kullanabilir ve *data model* ile *table model* yaklaşımıyla kodu sadeleştirebilirsiniz.
+Bir SQL veritabanıyla etkileşim kurmak için [**SQLModel**](https://sqlmodel.tiangolo.com/) kullanabilir ve *data model* ile *table model* yaklaşımıyla kodu sadeleştirebilirsiniz.
 
-**SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial</a> da bulunuyor. 🚀
+**SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini [tutorial](https://sqlmodel.tiangolo.com/tutorial/fastapi/) da bulunuyor. 🚀

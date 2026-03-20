@@ -6,7 +6,7 @@ En la mayoría de los casos, los principales proveedores de nube tienen guías p
 
 ## FastAPI Cloud { #fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** está construido por el mismo autor y equipo detrás de **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** está construido por el mismo autor y equipo detrás de **FastAPI**.
 
 Simplifica el proceso de **construir**, **desplegar** y **acceder** a una API con un esfuerzo mínimo.
 
@@ -16,9 +16,9 @@ FastAPI Cloud es el sponsor principal y proveedor de financiamiento de los proye
 
 ## Proveedores de Nube - Sponsors { #cloud-providers-sponsors }
 
-Otros proveedores de nube ✨ [**son sponsors de FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ también. 🙇
+Otros proveedores de nube ✨ [**son sponsors de FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ también. 🙇
 
 También podrías considerarlos para seguir sus guías y probar sus servicios:
 
-* <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
-* <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>
+* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
+* [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

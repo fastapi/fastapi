@@ -95,7 +95,7 @@ Yine, sadece bu tanımı yaparak **FastAPI** ile şunları elde edersiniz:
 
 `str`, `int`, `float` vb. normal tekil tiplerin yanında, `str`’den türeyen daha karmaşık tekil tipleri de kullanabilirsiniz.
 
-Tüm seçenekleri görmek için <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic Türlerine Genel Bakış</a> sayfasına göz atın. Sonraki bölümde bazı örnekleri göreceksiniz.
+Tüm seçenekleri görmek için [Pydantic Türlerine Genel Bakış](https://docs.pydantic.dev/latest/concepts/types/) sayfasına göz atın. Sonraki bölümde bazı örnekleri göreceksiniz.
 
 Örneğin `Image` modelinde bir `url` alanımız olduğuna göre, bunu `str` yerine Pydantic’in `HttpUrl` tipinden bir instance olacak şekilde tanımlayabiliriz:
 

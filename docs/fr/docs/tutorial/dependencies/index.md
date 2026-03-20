@@ -51,13 +51,13 @@ Dans ce cas, cette dépendance attend :
 
 Puis elle retourne simplement un `dict` contenant ces valeurs.
 
-/// info | Info
+/// info
 
 FastAPI a ajouté la prise en charge de `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
 Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d’utiliser `Annotated`.
 
-Vous devez vous assurer de [mettre à niveau la version de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} vers au moins la 0.95.1 avant d’utiliser `Annotated`.
+Vous devez vous assurer de [mettre à niveau la version de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions) vers au moins la 0.95.1 avant d’utiliser `Annotated`.
 
 ///
 
@@ -152,7 +152,7 @@ Peu importe. **FastAPI** saura quoi faire.
 
 /// note | Remarque
 
-Si vous ne savez pas, consultez la section [Async : *« Pressé ? »*](../../async.md#in-a-hurry){.internal-link target=_blank} à propos de `async` et `await` dans la documentation.
+Si vous ne savez pas, consultez la section [Async : *« Pressé ? »*](../../async.md#in-a-hurry) à propos de `async` et `await` dans la documentation.
 
 ///
 

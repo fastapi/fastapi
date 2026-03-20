@@ -2,7 +2,7 @@
 
 FastAPI `0.122.0` sürümünden önce, entegre security yardımcı araçları başarısız bir kimlik doğrulama (authentication) sonrasında client'a bir hata döndüğünde HTTP durum kodu olarak `403 Forbidden` kullanıyordu.
 
-FastAPI `0.122.0` sürümünden itibaren ise daha uygun olan HTTP durum kodu `401 Unauthorized` kullanılmakta ve HTTP spesifikasyonlarına uygun olarak response içinde anlamlı bir `WWW-Authenticate` header'ı döndürülmektedir: <a href="https://datatracker.ietf.org/doc/html/rfc7235#section-3.1" class="external-link" target="_blank">RFC 7235</a>, <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized" class="external-link" target="_blank">RFC 9110</a>.
+FastAPI `0.122.0` sürümünden itibaren ise daha uygun olan HTTP durum kodu `401 Unauthorized` kullanılmakta ve HTTP spesifikasyonlarına uygun olarak response içinde anlamlı bir `WWW-Authenticate` header'ı döndürülmektedir, [RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235#section-3.1), [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized).
 
 Ancak herhangi bir nedenle client'larınız eski davranışa bağlıysa, security class'larınızda `make_not_authenticated_error` metodunu override ederek eski davranışa geri dönebilirsiniz.
 

@@ -11,7 +11,7 @@ Utiliser comme suit :
 * Vérifier si tout est correct dans la traduction.
 * Si nécessaire, améliorer votre invite spécifique à la langue, l’invite générale, ou le document anglais.
 * Corriger ensuite manuellement les problèmes restants dans la traduction, afin que ce soit une bonne traduction.
-* Retraduire, en ayant la bonne traduction en place. Le résultat idéal serait que le LLM ne fasse plus aucun changement à la traduction. Cela signifie que l’invite générale et votre invite spécifique à la langue sont aussi bonnes que possible (il fera parfois quelques changements apparemment aléatoires, la raison étant que <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">les LLM ne sont pas des algorithmes déterministes</a>).
+* Retraduire, en ayant la bonne traduction en place. Le résultat idéal serait que le LLM ne fasse plus aucun changement à la traduction. Cela signifie que l’invite générale et votre invite spécifique à la langue sont aussi bonnes que possible (il fera parfois quelques changements apparemment aléatoires, la raison étant que [les LLM ne sont pas des algorithmes déterministes](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Les tests :
 
@@ -169,15 +169,15 @@ Voir les sections `### Special blocks` et `### Tab blocks` dans l’invite gén�
 Le texte du lien doit être traduit, l’adresse du lien doit rester inchangée :
 
 * [Lien vers le titre ci-dessus](#code-snippets)
-* [Lien interne](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Lien externe</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Lien vers une feuille de style</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Lien vers un script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Lien vers une image</a>
+* [Lien interne](index.md#installation)
+* [Lien externe](https://sqlmodel.tiangolo.com/)
+* [Lien vers une feuille de style](https://fastapi.tiangolo.com/css/styles.css)
+* [Lien vers un script](https://fastapi.tiangolo.com/js/logic.js)
+* [Lien vers une image](https://fastapi.tiangolo.com/img/foo.jpg)
 
 Le texte du lien doit être traduit, l’adresse du lien doit pointer vers la traduction :
 
-* <a href="https://fastapi.tiangolo.com/fr/" class="external-link" target="_blank">Lien FastAPI</a>
+* [Lien FastAPI](https://fastapi.tiangolo.com/fr/)
 
 ////
 
@@ -232,7 +232,7 @@ Voir la section `### HTML abbr elements` dans l’invite générale dans `script
 
 Bonjour.
 
-### Annotations de type et indications de type { #type-hints-and-annotations }
+### Annotations de type et annotations de type { #type-hints-and-annotations }
 
 Rebonjour.
 
