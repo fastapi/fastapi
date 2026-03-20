@@ -108,7 +108,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.model_dump())
 ```
 
-……因为 `user_in.model_dump()` 是 `dict`，在传递给 `UserInDB` 时，把 `**` 加在 `user_in.model_dump()` 前，可以让 Python 进行解包。
+...因为 `user_in.model_dump()` 是 `dict`，在传递给 `UserInDB` 时，把 `**` 加在 `user_in.model_dump()` 前，可以让 Python 进行解包。
 
 这样，就可以用其它 Pydantic 模型中的数据生成 Pydantic 模型。
 
@@ -120,7 +120,7 @@ UserInDB(**user_in.model_dump())
 UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
-……输出结果如下：
+...输出结果如下：
 
 ```Python
 UserInDB(
@@ -162,11 +162,11 @@ UserInDB(
 
 在 OpenAPI 中会用 `anyOf` 表示。
 
-为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
+为此，请使用 Python 标准类型提示 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)：
 
 /// note | 注意
 
-定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
+定义 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
 
 ///
 

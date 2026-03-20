@@ -70,7 +70,7 @@ from myapp import app
 
 /// info | 信息
 
-更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
+更多信息请检查 [Python 官方文档](https://docs.python.org/3/library/__main__.html).
 
 ///
 

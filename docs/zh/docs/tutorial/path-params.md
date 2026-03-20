@@ -6,7 +6,7 @@
 
 路径参数 `item_id` 的值会作为参数 `item_id` 传递给你的函数。
 
-运行示例并访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，可获得如下响应：
+运行示例并访问 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)，可获得如下响应：
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@
 
 ## 数据<dfn title="也称为：序列化、解析、编组">转换</dfn> { #data-conversion }
 
-运行示例并访问 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，返回的响应如下：
+运行示例并访问 [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3)，返回的响应如下：
 
 ```JSON
 {"item_id":3}
@@ -44,7 +44,7 @@
 
 ## 数据校验 { #data-validation }
 
-通过浏览器访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，接收如下 HTTP 错误信息：
+通过浏览器访问 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)，接收如下 HTTP 错误信息：
 
 ```JSON
 {
@@ -64,7 +64,7 @@
 
 这是因为路径参数 `item_id` 的值（`"foo"`）的类型不是 `int`。
 
-值的类型不是 `int` 而是浮点数（`float`）时也会显示同样的错误，比如： <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+值的类型不是 `int` 而是浮点数（`float`）时也会显示同样的错误，比如： [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// check | 检查
 
@@ -78,7 +78,7 @@
 
 ## 文档 { #documentation }
 
-访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>，查看自动生成的交互式 API 文档：
+访问 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)，查看自动生成的交互式 API 文档：
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -92,9 +92,9 @@
 
 ## 基于标准的好处，备选文档 { #standards-based-benefits-alternative-documentation }
 
-**FastAPI** 使用 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> 生成概图，所以能兼容很多工具。
+**FastAPI** 使用 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 生成概图，所以能兼容很多工具。
 
-因此，**FastAPI** 还内置了 ReDoc 生成的备选 API 文档，可在此查看 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>：
+因此，**FastAPI** 还内置了 ReDoc 生成的备选 API 文档，可在此查看 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)：
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
+FastAPI 充分地利用了 [Pydantic](https://docs.pydantic.dev/) 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
 
 同样，`str`、`float`、`bool` 以及很多复合数据类型都可以使用类型声明。
 

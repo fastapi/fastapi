@@ -11,7 +11,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +58,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 查看 { #check-it }
 
-打开浏览器访问 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+打开浏览器访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 你将看到如下的 JSON 响应：
 
@@ -68,17 +68,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 交互式 API 文档 { #interactive-api-docs }
 
-跳转到 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+跳转到 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
-你将会看到自动生成的交互式 API 文档（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 提供）：
+你将会看到自动生成的交互式 API 文档（由 [Swagger UI](https://github.com/swagger-api/swagger-ui) 提供）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### 可选的 API 文档 { #alternative-api-docs }
 
-前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
+前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你将会看到可选的自动生成文档 （由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API「模式」 { #api-schema }
 
-在这种场景下，<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> 是一种规定如何定义 API 模式的规范。
+在这种场景下，[OpenAPI](https://github.com/OAI/OpenAPI-Specification) 是一种规定如何定义 API 模式的规范。
 
 「模式」的定义包括你的 API 路径，以及它们可能使用的参数等等。
 
@@ -110,7 +110,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 如果你对原始的 OpenAPI 模式长什么样子感到好奇，FastAPI 自动生成了包含所有 API 描述的 JSON（模式）。
 
-你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 看到它。
+你可以直接在：[http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json) 看到它。
 
 它将显示以如下内容开头的 JSON：
 
@@ -143,9 +143,58 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 你还可以使用它自动生成与你的 API 进行通信的客户端代码。例如 web 前端，移动端或物联网嵌入程序。
 
+### 在 `pyproject.toml` 中配置应用 `entrypoint` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+你可以在 `pyproject.toml` 文件中配置应用的位置，例如：
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+该 `entrypoint` 会告诉 `fastapi` 命令按如下方式导入应用：
+
+```python
+from main import app
+```
+
+如果你的代码结构如下：
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+那么你可以将 `entrypoint` 设置为：
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+这等价于：
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` 带路径 { #fastapi-dev-with-path }
+
+你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：
+
+```console
+$ fastapi dev main.py
+```
+
+但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径。
+
+另外，其他工具可能无法找到它，例如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
+
 ### 部署你的应用（可选） { #deploy-your-app-optional }
 
-你可以选择将 FastAPI 应用部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>，如果还没有，先去加入候补名单。🚀
+你可以选择将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果还没有，先去加入候补名单。🚀
 
 如果你已经拥有 **FastAPI Cloud** 账户（我们从候补名单邀请了你 😉），你可以用一条命令部署应用。
 
@@ -191,7 +240,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 的功能。
+你可以通过 `FastAPI` 使用所有的 [Starlette](https://www.starlette.dev/) 的功能。
 
 ///
 
@@ -273,7 +322,7 @@ https://example.com/items/foo
 * 请求路径为 `/`
 * 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
-/// info | `@decorator` Info
+/// info | `@decorator` 信息
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -352,11 +401,11 @@ https://example.com/items/foo
 
 ### 步骤 6：部署 { #step-6-deploy-it }
 
-用一条命令将你的应用部署到 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**：`fastapi deploy`。🎉
+用一条命令将你的应用部署到 **[FastAPI Cloud](https://fastapicloud.com)**：`fastapi deploy`。🎉
 
 #### 关于 FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 的作者和团队打造。
+**[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者和团队打造。
 
 它以最小的投入简化了 **构建**、**部署** 和 **访问** API 的流程。
 
