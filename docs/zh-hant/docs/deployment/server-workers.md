@@ -13,13 +13,13 @@
 
 在部署應用時，你通常會希望有一些處理序的複製來善用多核心，並能處理更多請求。
 
-如同前一章關於 [部署概念](concepts.md){.internal-link target=_blank} 所示，你可以採用多種策略。
+如同前一章關於 [部署概念](concepts.md) 所示，你可以採用多種策略。
 
 這裡會示範如何使用 `fastapi` 指令或直接使用 `uvicorn` 指令，搭配 Uvicorn 的工作處理序（worker processes）。
 
 /// info
 
-如果你使用容器（例如 Docker 或 Kubernetes），我會在下一章說明更多：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
+如果你使用容器（例如 Docker 或 Kubernetes），我會在下一章說明更多：[容器中的 FastAPI - Docker](docker.md)。
 
 特別是，在 **Kubernetes** 上執行時，你多半會選擇不要使用 workers，而是每個容器只跑一個 **Uvicorn 單一處理序**。我會在該章節中進一步說明。
 
@@ -126,7 +126,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## 容器與 Docker { #containers-and-docker }
 
-在下一章 [容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank} 我會說明一些策略，幫你處理其他的**部署概念**。
+在下一章 [容器中的 FastAPI - Docker](docker.md) 我會說明一些策略，幫你處理其他的**部署概念**。
 
 我會示範如何**從零建立你的映像檔**來執行單一 Uvicorn 處理序。這個流程相當簡單，而且在使用像 **Kubernetes** 這類分散式容器管理系統時，大多情況也會這麼做。
 

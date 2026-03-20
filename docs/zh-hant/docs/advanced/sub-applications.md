@@ -30,25 +30,25 @@
 
 ### 檢查自動 API 文件 { #check-the-automatic-api-docs }
 
-現在，用你的檔案執行 `fastapi` 指令：
+現在，執行 `fastapi` 指令：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-然後開啟位於 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 的文件。
+然後開啟位於 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 的文件。
 
 你會看到主應用的自動 API 文件，只包含它自己的*路徑操作*：
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-接著，開啟子應用程式的文件：<a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>。
+接著，開啟子應用程式的文件：[http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs)。
 
 你會看到子應用程式的自動 API 文件，只包含它自己的*路徑操作*，而且都在正確的子路徑前綴 `/subapi` 之下：
 
@@ -64,4 +64,4 @@ $ fastapi dev main.py
 
 而且子應用程式也能再掛載自己的子應用程式，一切都能正確運作，因為 FastAPI 會自動處理所有這些 `root_path`。
 
-你可以在[在代理伺服器之後](behind-a-proxy.md){.internal-link target=_blank}一節中進一步了解 `root_path` 與如何顯式使用它。
+你可以在[在代理伺服器之後](behind-a-proxy.md)一節中進一步了解 `root_path` 與如何顯式使用它。
