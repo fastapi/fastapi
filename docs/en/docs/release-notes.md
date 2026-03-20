@@ -20,6 +20,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh (update-outdated). PR [#15177](https://github.com/fastapi/fastapi/pull/15177) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh-hant (update-outdated). PR [#15178](https://github.com/fastapi/fastapi/pull/15178) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh-hant (add-missing). PR [#15176](https://github.com/fastapi/fastapi/pull/15176) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh (add-missing). PR [#15175](https://github.com/fastapi/fastapi/pull/15175) by [@tiangolo](https://github.com/tiangolo).
