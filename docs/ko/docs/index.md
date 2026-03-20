@@ -99,7 +99,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_솔직히, 당신이 만든 것은 매우 견고하고 세련되어 보입니다. 여러 면에서 **Hug**가 이렇게 되었으면 합니다 - 그걸 만든 누군가를 보는 것은 많은 영감을 줍니다._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug">Hug</a> 제작자</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>[Hug](https://github.com/hugapi/hug) 제작자</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
 
 ---
 
@@ -433,7 +433,7 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-더 많은 기능을 포함한 보다 완전한 예제의 경우, [튜토리얼 - 사용자 가이드](https://fastapi.tiangolo.com/ko/tutorial/)를 보십시오.
+더 많은 기능을 포함한 보다 완전한 예제의 경우, <a href="https://fastapi.tiangolo.com/ko/tutorial/">튜토리얼 - 사용자 가이드</a>를 보십시오.
 
 **스포일러 주의**: 튜토리얼 - 사용자 가이드는:
 
