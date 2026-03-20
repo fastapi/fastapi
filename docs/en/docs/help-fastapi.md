@@ -4,9 +4,9 @@ Do you like **FastAPI**?
 
 Would you like to help FastAPI, other users, and the author?
 
-Or would you like to get help with **FastAPI**?
+Or do you need help with **FastAPI**?
 
-There are very simple ways to help (several involve just one or two clicks).
+There are very simple ways to help—some of which involve just one or two clicks.
 
 And there are several ways to get help too.
 
@@ -36,7 +36,7 @@ You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right)
 
 There you can select "Releases only".
 
-By doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
+By enabling this, you will receive email notifications whenever there is a new release (a new version) of **FastAPI** with bug fixes and new features.
 
 ## Connect with the author { #connect-with-the-author }
 
@@ -78,7 +78,7 @@ You can try and help others with their questions in:
 
 In many cases you might already know the answer for those questions. 🤓
 
-If you are helping a lot of people with their questions, you will become an official [FastAPI Expert](fastapi-people.md#fastapi-experts). 🎉
+If you consistently help others with their questions, you may become an official [FastAPI Expert](fastapi-people.md#fastapi-experts). 🎉
 
 Just remember, the most important point is: try to be kind. People come with their frustrations and in many cases don't ask in the best way, but try as best as you can to be kind. 🤗
 
