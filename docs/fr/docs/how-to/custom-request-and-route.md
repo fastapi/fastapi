@@ -18,7 +18,7 @@ Si vous débutez avec **FastAPI**, vous pouvez ignorer cette section.
 
 Voici quelques cas d'utilisation :
 
-* Convertir des corps de requête non JSON en JSON (par exemple <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Convertir des corps de requête non JSON en JSON (par exemple [`msgpack`](https://msgpack.org/index.html)).
 * Décompresser des corps de requête compressés en gzip.
 * Journaliser automatiquement tous les corps de requête.
 
@@ -32,7 +32,7 @@ Et une sous-classe d'`APIRoute` pour utiliser cette classe de requête personnal
 
 /// tip | Astuce
 
-Il s'agit d'un exemple simplifié pour montrer le fonctionnement ; si vous avez besoin de la prise en charge de Gzip, vous pouvez utiliser le [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} fourni.
+Il s'agit d'un exemple simplifié pour montrer le fonctionnement ; si vous avez besoin de la prise en charge de Gzip, vous pouvez utiliser le [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) fourni.
 
 ///
 
@@ -66,7 +66,7 @@ Le `dict` `scope` et la fonction `receive` font tous deux partie de la spécific
 
 Et ces deux éléments, `scope` et `receive`, sont ce dont on a besoin pour créer une nouvelle instance de `Request`.
 
-Pour en savoir plus sur `Request`, consultez <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">la documentation de Starlette sur les requêtes</a>.
+Pour en savoir plus sur `Request`, consultez [la documentation de Starlette sur les requêtes](https://www.starlette.dev/requests/).
 
 ///
 
@@ -82,7 +82,7 @@ Mais grâce à nos modifications dans `GzipRequest.body`, le corps de la requêt
 
 /// tip | Astuce
 
-Pour résoudre ce même problème, il est probablement beaucoup plus simple d'utiliser `body` dans un gestionnaire personnalisé pour `RequestValidationError` ([Gérer les erreurs](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Pour résoudre ce même problème, il est probablement beaucoup plus simple d'utiliser `body` dans un gestionnaire personnalisé pour `RequestValidationError` ([Gérer les erreurs](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Mais cet exemple reste valable et montre comment interagir avec les composants internes.
 

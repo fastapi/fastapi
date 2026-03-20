@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-Vous pouvez utiliser <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">API WebSockets</a> avec **FastAPI**.
+Vous pouvez utiliser [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) avec **FastAPI**.
 
 ## Installer `websockets` { #install-websockets }
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l'activer, et installer `websockets` (une bibliothèque Python qui facilite l'utilisation du protocole « WebSocket ») :
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, et installer `websockets` (une bibliothèque Python qui facilite l'utilisation du protocole « WebSocket ») :
 
 <div class="termy">
 
@@ -64,19 +64,19 @@ Vous pouvez recevoir et envoyer des données binaires, texte et JSON.
 
 ## Essayer { #try-it }
 
-Si votre fichier s'appelle `main.py`, exécutez votre application avec :
+Mettez votre code dans un fichier `main.py` puis exécutez votre application :
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Ouvrez votre navigateur à l'adresse <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Ouvrez votre navigateur à l'adresse [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Vous verrez une page simple comme :
 
@@ -115,25 +115,25 @@ Ils fonctionnent de la même manière que pour les autres endpoints/*chemins d'a
 
 Comme il s'agit d'un WebSocket, il n'est pas vraiment logique de lever une `HTTPException`, nous levons plutôt une `WebSocketException`.
 
-Vous pouvez utiliser un code de fermeture parmi les <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">codes valides définis dans la spécification</a>.
+Vous pouvez utiliser un code de fermeture parmi les [codes valides définis dans la spécification](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 ///
 
 ### Essayez les WebSockets avec des dépendances { #try-the-websockets-with-dependencies }
 
-Si votre fichier s'appelle `main.py`, exécutez votre application avec :
+Exécutez votre application :
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Ouvrez votre navigateur à l'adresse <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Ouvrez votre navigateur à l'adresse [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Là, vous pouvez définir :
 
@@ -174,7 +174,7 @@ L'application ci-dessus est un exemple minimal et simple pour montrer comment g�
 
 Mais gardez à l'esprit que, comme tout est géré en mémoire, dans une seule liste, cela ne fonctionnera que tant que le processus s'exécute et uniquement avec un seul processus.
 
-Si vous avez besoin de quelque chose de facile à intégrer avec FastAPI mais plus robuste, pris en charge par Redis, PostgreSQL ou autres, consultez <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+Si vous avez besoin de quelque chose de facile à intégrer avec FastAPI mais plus robuste, pris en charge par Redis, PostgreSQL ou autres, consultez [encode/broadcaster](https://github.com/encode/broadcaster).
 
 ///
 
@@ -182,5 +182,5 @@ Si vous avez besoin de quelque chose de facile à intégrer avec FastAPI mais pl
 
 Pour en savoir plus sur les options, consultez la documentation de Starlette concernant :
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">La classe `WebSocket`</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Gestion des WebSocket basée sur des classes</a>.
+* [La classe `WebSocket`](https://www.starlette.dev/websockets/).
+* [Gestion des WebSocket basée sur des classes](https://www.starlette.dev/endpoints/#websocketendpoint).

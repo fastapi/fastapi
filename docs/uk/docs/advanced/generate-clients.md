@@ -8,11 +8,11 @@
 
 ## Генератори SDK з відкритим кодом { #open-source-sdk-generators }
 
-Універсальним варіантом є <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, який підтримує **багато мов програмування** та може генерувати SDK з вашої специфікації OpenAPI.
+Універсальним варіантом є [OpenAPI Generator](https://openapi-generator.tech/), який підтримує **багато мов програмування** та може генерувати SDK з вашої специфікації OpenAPI.
 
-Для **клієнтів TypeScript** <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> — спеціалізоване рішення, що надає оптимізований досвід для екосистеми TypeScript.
+Для **клієнтів TypeScript** [Hey API](https://heyapi.dev/) — спеціалізоване рішення, що надає оптимізований досвід для екосистеми TypeScript.
 
-Більше генераторів SDK ви можете знайти на <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Більше генераторів SDK ви можете знайти на [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip | Порада
 
@@ -24,15 +24,15 @@ FastAPI автоматично генерує специфікації **OpenAPI
 
 У цьому розділі представлено рішення від компаній, що спонсорують FastAPI: вони мають **венчурну підтримку** та **корпоративну підтримку**. Ці продукти надають **додаткові можливості** та **інтеграції** поверх високоякісно згенерованих SDK.
 
-Завдяки ✨ [**спонсорству FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ ці компанії допомагають підтримувати фреймворк та його **екосистему** здоровими та **сталими**.
+Завдяки ✨ [**спонсорству FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ ці компанії допомагають підтримувати фреймворк та його **екосистему** здоровими та **сталими**.
 
 Їхня підтримка також демонструє сильну відданість **спільноті** FastAPI (вам), показуючи, що їм важливо не лише надавати **відмінний сервіс**, а й підтримувати **міцний і процвітаючий фреймворк**, FastAPI. 🙇
 
 Наприклад, ви можете спробувати:
 
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Деякі з цих рішень також можуть бути з відкритим кодом або мати безкоштовні тарифи, тож ви можете спробувати їх без фінансових зобов'язань. Інші комерційні генератори SDK також доступні й їх можна знайти онлайн. 🤓
 
@@ -66,7 +66,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Це згенерує TypeScript SDK у `./src/client`.
 
-Ви можете дізнатися, як <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">встановити `@hey-api/openapi-ts`</a>, і почитати про <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">згенерований результат</a> на їхньому сайті.
+Ви можете дізнатися, як [встановити `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started), і почитати про [згенерований результат](https://heyapi.dev/openapi-ts/output) на їхньому сайті.
 
 ### Використання SDK { #using-the-sdk }
 

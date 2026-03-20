@@ -24,13 +24,13 @@ De esta manera, puedes crear un token con una expiración de, digamos, 1 semana.
 
 Después de una semana, el token estará expirado y el usuario no estará autorizado y tendrá que iniciar sesión nuevamente para obtener un nuevo token. Y si el usuario (o un tercero) intenta modificar el token para cambiar la expiración, podrás descubrirlo, porque las firmas no coincidirían.
 
-Si quieres jugar con tokens JWT y ver cómo funcionan, revisa <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Si quieres jugar con tokens JWT y ver cómo funcionan, revisa [https://jwt.io](https://jwt.io/).
 
 ## Instalar `PyJWT` { #install-pyjwt }
 
 Necesitamos instalar `PyJWT` para generar y verificar los tokens JWT en Python.
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalar `pyjwt`:
+Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar `pyjwt`:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 Si planeas usar algoritmos de firma digital como RSA o ECDSA, deberías instalar la dependencia del paquete de criptografía `pyjwt[crypto]`.
 
-Puedes leer más al respecto en la <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentación de instalación de PyJWT</a>.
+Puedes leer más al respecto en la [documentación de instalación de PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ Soporta muchos algoritmos de hashing seguros y utilidades para trabajar con ello
 
 El algoritmo recomendado es "Argon2".
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalar pwdlib con Argon2:
+Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar pwdlib con Argon2:
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ Lo importante a tener en cuenta es que la clave `sub` debería tener un identifi
 
 ## Revisa { #check-it }
 
-Ejecuta el servidor y ve a la documentación: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ejecuta el servidor y ve a la documentación: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás la interfaz de usuario como:
 

@@ -4,9 +4,9 @@ Puedes usar **modelos de Pydantic** para declarar **campos de formulario** en Fa
 
 /// info | Información
 
-Para usar formularios, primero instala <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para usar formularios, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo, y luego instalarlo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo, y luego instalarlo, por ejemplo:
 
 ```console
 $ pip install python-multipart
