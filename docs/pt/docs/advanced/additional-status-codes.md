@@ -38,4 +38,4 @@ O **FastAPI** disponibiliza o `starlette.responses` como `fastapi.responses` ape
 
 Se você retorna códigos de status adicionais e retornos diretamente, eles não serão incluídos no esquema do OpenAPI (a documentação da API), porque o FastAPI não tem como saber de antemão o que será retornado.
 
-Mas você pode documentar isso no seu código, utilizando: [Retornos Adicionais](additional-responses.md){.internal-link target=_blank}.
+Mas você pode documentar isso no seu código, utilizando: [Retornos Adicionais](additional-responses.md).

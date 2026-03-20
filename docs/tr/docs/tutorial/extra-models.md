@@ -12,7 +12,7 @@ Bu durum özellikle kullanıcı modellerinde sık görülür, çünkü:
 
 Kullanıcının düz metin (plaintext) `password`'ünü asla saklamayın. Her zaman sonradan doğrulayabileceğiniz "güvenli bir hash" saklayın.
 
-Eğer bilmiyorsanız, "password hash" nedir konusunu [güvenlik bölümlerinde](security/simple-oauth2.md#password-hashing){.internal-link target=_blank} öğreneceksiniz.
+Eğer bilmiyorsanız, "password hash" nedir konusunu [güvenlik bölümlerinde](security/simple-oauth2.md#password-hashing) öğreneceksiniz.
 
 ///
 
@@ -162,11 +162,11 @@ Bir response'u iki ya da daha fazla type'ın `Union`'ı olarak tanımlayabilirsi
 
 OpenAPI'de bu `anyOf` ile tanımlanır.
 
-Bunu yapmak için standart Python type hint'i olan <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>'ı kullanın:
+Bunu yapmak için standart Python type hint'i olan [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)'ı kullanın:
 
 /// note | Not
 
-Bir <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> tanımlarken en spesifik type'ı önce, daha az spesifik olanı sonra ekleyin. Aşağıdaki örnekte daha spesifik olan `PlaneItem`, `Union[PlaneItem, CarItem]` içinde `CarItem`'dan önce gelir.
+Bir [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) tanımlarken en spesifik type'ı önce, daha az spesifik olanı sonra ekleyin. Aşağıdaki örnekte daha spesifik olan `PlaneItem`, `Union[PlaneItem, CarItem]` içinde `CarItem`'dan önce gelir.
 
 ///
 

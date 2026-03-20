@@ -54,7 +54,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 ### Перевірте { #test-it }
 
-Тепер ви маєте змогу відкрити документацію за <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> і перезавантажити сторінку, вона завантажить ці ресурси з нового CDN.
+Тепер ви маєте змогу відкрити документацію за [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) і перезавантажити сторінку, вона завантажить ці ресурси з нового CDN.
 
 ## Самохостинг JavaScript і CSS для документації { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 **Swagger UI** використовує файли:
 
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+- [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+- [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 А **ReDoc** використовує файл:
 
-- <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+- [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 Після цього ваша структура файлів може виглядати так:
 
@@ -122,7 +122,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 ### Перевірте статичні файли { #test-the-static-files }
 
-Запустіть ваш застосунок і перейдіть до <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Запустіть ваш застосунок і перейдіть до [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js).
 
 Ви маєте побачити дуже довгий файл JavaScript для **ReDoc**.
 
@@ -180,6 +180,6 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 ### Перевірте UI зі статичними файлами { #test-static-files-ui }
 
-Тепер ви маєте змогу вимкнути WiFi, відкрити документацію за <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> і перезавантажити сторінку.
+Тепер ви маєте змогу вимкнути WiFi, відкрити документацію за [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) і перезавантажити сторінку.
 
 І навіть без Інтернету ви зможете побачити документацію для вашого API і взаємодіяти з ним.

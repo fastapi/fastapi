@@ -61,7 +61,7 @@ Et ensuite une autre tâche d'arrière-plan (générée dans la *fonction de che
 
 ## Détails techniques { #technical-details }
 
-La classe `BackgroundTasks` provient directement de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+La classe `BackgroundTasks` provient directement de [`starlette.background`](https://www.starlette.dev/background/).
 
 Elle est importée/incluse directement dans **FastAPI** pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
 
@@ -69,11 +69,11 @@ En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possi
 
 Il est tout de même possible d'utiliser `BackgroundTask` seul dans **FastAPI**, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
 
-Plus de détails sont disponibles dans <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">la documentation officielle de Starlette sur les tâches d'arrière-plan</a>.
+Plus de détails sont disponibles dans [la documentation officielle de Starlette sur les tâches d'arrière-plan](https://www.starlette.dev/background/).
 
 ## Avertissement { #caveat }
 
-Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que [Celery](https://docs.celeryq.dev).
 
 Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de message, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et surtout, sur plusieurs serveurs.
 

@@ -22,7 +22,7 @@ Un environnement virtuel est un répertoire contenant certains fichiers.
 
 Cette page vous apprendra à utiliser les environnements virtuels et à comprendre leur fonctionnement.
 
-Si vous êtes prêt à adopter un outil qui gère tout pour vous (y compris l’installation de Python), essayez <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Si vous êtes prêt à adopter un outil qui gère tout pour vous (y compris l’installation de Python), essayez [uv](https://github.com/astral-sh/uv).
 
 ///
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Si vous avez installé <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, vous pouvez l’utiliser pour créer un environnement virtuel.
+Si vous avez installé [`uv`](https://github.com/astral-sh/uv), vous pouvez l’utiliser pour créer un environnement virtuel.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>) :
+Ou si vous utilisez Bash pour Windows (par exemple [Git Bash](https://gitforwindows.org/)) :
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ S’il affiche le binaire `python` à `.venv\Scripts\python`, dans votre projet 
 
 /// tip | Astuce
 
-Si vous utilisez <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, vous l’utiliserez pour installer des éléments à la place de `pip`, vous n’avez donc pas besoin de mettre `pip` à niveau. 😎
+Si vous utilisez [`uv`](https://github.com/astral-sh/uv), vous l’utiliserez pour installer des éléments à la place de `pip`, vous n’avez donc pas besoin de mettre `pip` à niveau. 😎
 
 ///
 
@@ -268,7 +268,7 @@ Si vous utilisez Git (vous devriez), ajoutez un fichier `.gitignore` pour exclur
 
 /// tip | Astuce
 
-Si vous avez utilisé <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> pour créer l’environnement virtuel, il l’a déjà fait pour vous, vous pouvez passer cette étape. 😎
+Si vous avez utilisé [`uv`](https://github.com/astral-sh/uv) pour créer l’environnement virtuel, il l’a déjà fait pour vous, vous pouvez passer cette étape. 😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Si vous avez <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> :
+Si vous avez [`uv`](https://github.com/astral-sh/uv) :
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Si vous avez <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> :
+Si vous avez [`uv`](https://github.com/astral-sh/uv) :
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Vous utiliserez probablement un éditeur, assurez-vous de le configurer pour uti
 
 Par exemple :
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | Astuce
 
@@ -455,7 +455,7 @@ Continuez la lecture. 👇🤓
 
 ## Pourquoi des environnements virtuels { #why-virtual-environments }
 
-Pour travailler avec FastAPI, vous devez installer <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+Pour travailler avec FastAPI, vous devez installer [Python](https://www.python.org/).
 
 Ensuite, vous devrez installer FastAPI et tout autre package que vous souhaitez utiliser.
 
@@ -564,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Cela téléchargera un fichier compressé avec le code de FastAPI, normalement depuis <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+Cela téléchargera un fichier compressé avec le code de FastAPI, normalement depuis [PyPI](https://pypi.org/project/fastapi/).
 
 Il téléchargera également des fichiers pour d’autres packages dont FastAPI dépend.
 
@@ -627,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>) :
+Ou si vous utilisez Bash pour Windows (par exemple [Git Bash](https://gitforwindows.org/)) :
 
 <div class="termy">
 
@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Cette commande créera ou modifiera certaines [variables d’environnement](environment-variables.md){.internal-link target=_blank} qui seront disponibles pour les prochaines commandes.
+Cette commande créera ou modifiera certaines [variables d’environnement](environment-variables.md) qui seront disponibles pour les prochaines commandes.
 
 L’une de ces variables est la variable `PATH`.
 
 /// tip | Astuce
 
-Vous pouvez en savoir plus sur la variable d’environnement `PATH` dans la section [Variables d’environnement](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
+Vous pouvez en savoir plus sur la variable d’environnement `PATH` dans la section [Variables d’environnement](environment-variables.md#path-environment-variable).
 
 ///
 
@@ -846,7 +846,7 @@ Ceci est un guide simple pour vous lancer et vous montrer comment tout fonctionn
 
 Il existe de nombreuses alternatives pour gérer les environnements virtuels, les dépendances de packages (requirements), les projets.
 
-Lorsque vous êtes prêt et souhaitez utiliser un outil pour gérer l’ensemble du projet, les dépendances, les environnements virtuels, etc., je vous suggère d’essayer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Lorsque vous êtes prêt et souhaitez utiliser un outil pour gérer l’ensemble du projet, les dépendances, les environnements virtuels, etc., je vous suggère d’essayer [uv](https://github.com/astral-sh/uv).
 
 `uv` peut faire beaucoup de choses, il peut :
 

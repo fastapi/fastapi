@@ -14,7 +14,7 @@ FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve bunu önermeye ba
 
 Daha eski bir sürüm kullanıyorsanız, `Annotated` kullanmaya çalıştığınızda hata alırsınız.
 
-`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce mutlaka FastAPI sürümünü en az 0.95.1 olacak şekilde [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -56,7 +56,7 @@ Dolayısıyla fonksiyonunuzu şöyle tanımlayabilirsiniz:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
-Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
+Namun şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
@@ -81,7 +81,7 @@ Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `
 
 Fonksiyonun ilk parametresi olarak `*` geçin.
 
-Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
+Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments - Anahtar Kelime Argümanları"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
@@ -122,7 +122,7 @@ Aynısı <abbr title="less than - küçüktür"><code>lt</code></abbr> için de 
 
 ## Özet { #recap }
 
-`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md){.internal-link target=_blank} bölümündekiyle aynı şekilde tanımlayabilirsiniz.
+`Query`, `Path` (ve henüz görmedikleriniz) ile metadata ve string doğrulamalarını, [Query Parametreleri ve String Doğrulamalar](query-params-str-validations.md) bölümündekiyle aynı şekilde tanımlayabilirsiniz.
 
 Ayrıca sayısal doğrulamalar da tanımlayabilirsiniz:
 
