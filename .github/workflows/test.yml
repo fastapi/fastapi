@@ -77,6 +77,14 @@ jobs:
             coverage: coverage
             uv-resolution: highest
             starlette-src: starlette-git
+          - os: macos-latest
+            python-version: "3.14t"
+            coverage: coverage
+            uv-resolution: lowest-direct
+          - os: windows-latest
+            python-version: "3.14t"
+            coverage: coverage
+            uv-resolution: highest
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:

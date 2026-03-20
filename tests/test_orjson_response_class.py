@@ -1,10 +1,13 @@
 import warnings
 
+import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.responses import ORJSONResponse
 from fastapi.testclient import TestClient
 from sqlalchemy.sql.elements import quoted_name
+
+pytest.importorskip("orjson")
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", FastAPIDeprecationWarning)
