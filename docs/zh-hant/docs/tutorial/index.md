@@ -15,7 +15,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -42,12 +42,12 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
              <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
              to quit<b>)</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -62,7 +62,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 第一步是安裝 FastAPI。
 
-確保你建立一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，啟用它，然後**安裝 FastAPI**：
+確保你建立一個[虛擬環境](../virtual-environments.md)，啟用它，然後**安裝 FastAPI**：
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | 注意
 
-當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準依賴項，其中包括 `fastapi-cloud-cli`，它可以讓你部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>。
+當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準依賴項，其中包括 `fastapi-cloud-cli`，它可以讓你部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
 如果你不想包含那些可選的依賴項，你可以改為安裝 `pip install fastapi`。
 
 如果你想安裝標準依賴項，但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"` 安裝。
+
+///
+
+/// tip
+
+FastAPI 提供了 [VS Code 官方擴充功能](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（以及 Cursor），包含許多功能，例如路徑操作探索器、路徑操作搜尋、測試中的 CodeLens 導航（從測試跳到定義）、以及 FastAPI Cloud 的部署與日誌，全部可直接在你的編輯器中完成。
 
 ///
 

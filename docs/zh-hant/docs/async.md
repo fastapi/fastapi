@@ -141,7 +141,7 @@ def results():
 
 /// info
 
-漂亮的插畫來自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+漂亮的插畫來自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。 🎨
 
 ///
 
@@ -207,7 +207,7 @@ def results():
 
 /// info
 
-漂亮的插畫來自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+漂亮的插畫來自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。 🎨
 
 ///
 
@@ -245,13 +245,13 @@ def results():
 
 這種「等待」 🕙 通常以微秒來衡量，但累加起來，最終還是花費了很多等待時間。
 
-這就是為什麼對於 Web API 來說，使用非同步程式碼 ⏸🔀⏯ 是非常有意義的。
+這就是為什麼對於 Web API 來說，使用非同步程式碼 ⏸🔀⏯ 是非常有意味的。
 
 這種類型的非同步性正是 NodeJS 成功的原因（儘管 NodeJS 不是平行的），這也是 Go 語言作為程式語言的一個強大優勢。
 
 這與 **FastAPI** 所能提供的性能水平相同。
 
-你可以同時利用並行性和平行性，進一步提升效能，這比大多數已測試的 NodeJS 框架都更快，並且與 Go 語言相當，而 Go 是一種更接近 C 的編譯語言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">感謝 Starlette</a>）。
+你可以同時利用並行性和平行性，進一步提升效能，這比大多數已測試的 NodeJS 框架都更快，並且與 Go 語言相當，而 Go 是一種更接近 C 的編譯語言（[感謝 Starlette](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1)）。
 
 ### 並行比平行更好嗎？ { #is-concurrency-better-than-parallelism }
 
@@ -363,13 +363,13 @@ async def read_burgers():
 
 ### 編寫自己的非同步程式碼 { #write-your-own-async-code }
 
-Starlette（和 **FastAPI**）是基於 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 實作的，這使得它們與 Python 標準函式庫 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> 相容。
+Starlette（和 **FastAPI**）是基於 [AnyIO](https://anyio.readthedocs.io/en/stable/) 實作的，這使得它們與 Python 標準函式庫 [asyncio](https://docs.python.org/3/library/asyncio-task.html) 和 [Trio](https://trio.readthedocs.io/en/stable/) 相容。
 
-特別是，你可以直接使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來處理更複雜的並行使用案例，這些案例需要你在自己的程式碼中使用更高階的模式。
+特別是，你可以直接使用 [AnyIO](https://anyio.readthedocs.io/en/stable/) 來處理更複雜的並行使用案例，這些案例需要你在自己的程式碼中使用更高階的模式。
 
-即使你不使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來撰寫自己的非同步應用程式，並獲得高相容性及一些好處（例如「結構化並行」）。
+即使你不使用 **FastAPI**，你也可以使用 [AnyIO](https://anyio.readthedocs.io/en/stable/) 來撰寫自己的非同步應用程式，並獲得高相容性及一些好處（例如「結構化並行」）。
 
-我另外在 AnyIO 之上做了一個薄封裝的函式庫，稍微改進型別註解以獲得更好的**自動補全**、**即時錯誤**等。同時它也提供友善的介紹與教學，幫助你**理解**並撰寫**自己的非同步程式碼**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。當你需要**將非同步程式碼與一般**（阻塞/同步）**程式碼整合**時，它特別實用。
+我另外在 AnyIO 之上做了一個薄封裝的函式庫，稍微改進型別註解以獲得更好的**自動補全**、**即時錯誤**等。同時它也提供友善的介紹與教學，幫助你**理解**並撰寫**自己的非同步程式碼**：[Asyncer](https://asyncer.tiangolo.com/)。當你需要**將非同步程式碼與一般**（阻塞/同步）**程式碼整合**時，它特別實用。
 
 ### 其他形式的非同步程式碼 { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Starlette（和 **FastAPI**）是基於 <a href="https://anyio.readthedocs.io/en
 
 但在此之前，處理非同步程式碼要更加複雜和困難。
 
-在較舊的 Python 版本中，你可能會使用多執行緒或 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但這些程式碼要更難以理解、調試和思考。
+在較舊的 Python 版本中，你可能會使用多執行緒或 [Gevent](https://www.gevent.org/)。但這些程式碼要更難以理解、調試和思考。
 
 在較舊的 NodeJS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致“回呼地獄”。
 

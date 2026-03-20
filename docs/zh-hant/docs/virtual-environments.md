@@ -22,7 +22,7 @@
 
 這個頁面將教你如何使用**虛擬環境**以及了解它們的工作原理。
 
-如果你計畫使用一個**可以為你管理一切的工具**（包括安裝 Python），試試 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+如果你計畫使用一個**可以為你管理一切的工具**（包括安裝 Python），試試 [uv](https://github.com/astral-sh/uv)。
 
 ///
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-如果你安裝了 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>，你也可以使用它來建立一個虛擬環境。
+如果你安裝了 [`uv`](https://github.com/astral-sh/uv)，你也可以使用它來建立一個虛擬環境。
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者，如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者，如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 來安裝內容，而不是 `pip`，那麼你就不需要升級 `pip`。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 來安裝內容，而不是 `pip`，那麼你就不需要升級 `pip`。😎
 
 ///
 
@@ -268,7 +268,7 @@ $ python -m ensurepip --upgrade
 
 /// tip
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 來建立虛擬環境，它會自動為你完成這個操作，你可以跳過這一步。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 來建立虛擬環境，它會自動為你完成這個操作，你可以跳過這一步。😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Hello World
 
 例如：
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip
 
@@ -455,7 +455,7 @@ $ deactivate
 
 ## 為什麼要使用虛擬環境 { #why-virtual-environments }
 
-你需要安裝 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+你需要安裝 [Python](https://www.python.org/) 才能使用 FastAPI。
 
 接下來，你需要**安裝** FastAPI 以及你想使用的其他**套件**。
 
@@ -564,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-這會從 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下載一個壓縮檔案，其中包含 FastAPI 的程式碼。
+這會從 [PyPI](https://pypi.org/project/fastapi/) 下載一個壓縮檔案，其中包含 FastAPI 的程式碼。
 
 它還會**下載** FastAPI 所依賴的其他套件的檔案。
 
@@ -627,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-但如果你停用虛擬環境並啟用 `prisoner-of-askaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-askaban` 中虛擬環境的 Python。
+但如果你停用虛擬環境並啟用 `prisoner-of-azkaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-azkaban` 中虛擬環境的 Python。
 
 <div class="termy">
 
@@ -846,7 +846,7 @@ I solemnly swear 🐺
 
 有許多**替代方案**來管理虛擬環境、套件依賴（requirements）、專案。
 
-當你準備好並想要使用一個工具來**管理整個專案**、套件依賴、虛擬環境等，建議你嘗試 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+當你準備好並想要使用一個工具來**管理整個專案**、套件依賴、虛擬環境等，建議你嘗試 [uv](https://github.com/astral-sh/uv)。
 
 `uv` 可以執行許多操作，它可以：
 

@@ -157,7 +157,7 @@ q: str = Query(default="rick")
 
 若不使用 `Annotated`、改用「（舊式）預設值」寫法，你在沒有 FastAPI 的「其他地方」呼叫該函式時，就得「記得」傳入正確參數，否則值會和預期不同（例如會得到 `QueryInfo` 或類似的東西，而不是 `str`）。你的編輯器不會提示，Python 執行該函式時也不會抱怨，只有在內部操作失敗時才會出錯。
 
-因為 `Annotated` 可以有多個中繼資料註解，你甚至可以用同一個函式配合其他工具，例如 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>。🚀
+因為 `Annotated` 可以有多個中繼資料註解，你甚至可以用同一個函式配合其他工具，例如 [Typer](https://typer.tiangolo.com/)。🚀
 
 ## 加入更多驗證 { #add-more-validations }
 
@@ -369,11 +369,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 這種情況下，你可以使用「自訂驗證函式」，它會在一般驗證之後套用（例如先確認值是 `str` 之後）。
 
-你可以在 `Annotated` 中使用 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic 的 `AfterValidator`</a> 來達成。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 來達成。
 
 /// tip | 提示
 
-Pydantic 也有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> 等等。🤓
+Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等等。🤓
 
 ///
 
