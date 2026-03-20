@@ -16,11 +16,11 @@ Mesmo que a sua aplicação **FastAPI** utilize funções normais com `def` no l
 
 O `TestClient` faz algumas mágicas para invocar a aplicação FastAPI assíncrona em suas funções `def` normais, utilizando o pytest padrão. Porém a mágica não acontece mais quando nós estamos utilizando dentro de funções assíncronas. Ao executar os nossos testes de forma assíncrona, nós não podemos mais utilizar o `TestClient` dentro das nossas funções de teste.
 
-O `TestClient` é baseado no <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, e felizmente nós podemos utilizá-lo diretamente para testar a API.
+O `TestClient` é baseado no [HTTPX](https://www.python-httpx.org), e felizmente nós podemos utilizá-lo diretamente para testar a API.
 
 ## Exemplo { #example }
 
-Para um exemplos simples, vamos considerar uma estrutura de arquivos semelhante ao descrito em [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} e [Testing](../tutorial/testing.md){.internal-link target=_blank}:
+Para um exemplos simples, vamos considerar uma estrutura de arquivos semelhante ao descrito em [Aplicações Maiores](../tutorial/bigger-applications.md) e [Testes](../tutorial/testing.md):
 
 ```
 .
@@ -84,7 +84,7 @@ Note que nós estamos utilizando async/await com o novo `AsyncClient` - a requis
 
 /// warning | Atenção
 
-Se a sua aplicação depende de eventos de lifespan, o `AsyncClient` não acionará estes eventos. Para garantir que eles são acionados, utilize o `LifespanManager` do <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Se a sua aplicação depende de eventos de lifespan, o `AsyncClient` não acionará estes eventos. Para garantir que eles são acionados, utilize o `LifespanManager` do [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).
 
 ///
 
@@ -94,6 +94,6 @@ Como a função de teste agora é assíncrona, você pode chamar (e `await`) out
 
 /// tip | Dica
 
-Se você se deparar com um `RuntimeError: Task attached to a different loop` ao integrar funções assíncronas em seus testes (e.g. ao utilizar o <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MotorClient do MongoDB</a>) Lembre-se de instanciar objetos que precisam de um loop de eventos (*event loop*) apenas em funções assíncronas, e.g. um callback `@app.on_event("startup")`.
+Se você se deparar com um `RuntimeError: Task attached to a different loop` ao integrar funções assíncronas em seus testes (e.g. ao utilizar o [MotorClient do MongoDB](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)) Lembre-se de instanciar objetos que precisam de um loop de eventos (*event loop*) apenas em funções assíncronas, e.g. um callback `@app.on_event("startup")`.
 
 ///

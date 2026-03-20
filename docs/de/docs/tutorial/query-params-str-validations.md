@@ -35,13 +35,13 @@ FastAPI hat Unterstützung für `Annotated` hinzugefügt (und begonnen, es zu em
 
 Wenn Sie eine ältere Version haben, würden Sie Fehler erhalten, beim Versuch, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions), auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
 ## `Annotated` im Typ für den `q`-Parameter verwenden { #use-annotated-in-the-type-for-the-q-parameter }
 
-Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
+Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations) gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
 
 Jetzt ist es soweit, dies mit FastAPI zu verwenden. 🚀
 
@@ -133,7 +133,7 @@ Zum Beispiel ist das nicht erlaubt:
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-... denn es ist nicht klar, ob der Defaultwert `"rick"` oder `"morty"` sein soll.
+... denn es ist nicht klar, ob der Defaultwert „rick“ oder „morty“ sein soll.
 
 Sie würden also (bevorzugt) schreiben:
 
@@ -157,7 +157,7 @@ Sie könnten **diese gleiche Funktion** in **anderen Stellen** ohne FastAPI **au
 
 Wenn Sie `Annotated` nicht verwenden und stattdessen die **(alte) Defaultwert-Stilform** verwenden, müssen Sie sich daran **erinnern**, die Argumente der Funktion zu übergeben, wenn Sie diese Funktion ohne FastAPI in **anderen Stellen** aufrufen. Ansonsten sind die Werte anders als erwartet (z. B. `QueryInfo` oder etwas Ähnliches statt `str`). Ihr Editor kann Ihnen nicht helfen, und Python wird die Funktion ohne Klagen ausführen und sich nur beschweren wenn die Operationen innerhalb auf einen Fehler stoßen.
 
-Da `Annotated` mehr als eine Metadaten-Annotation haben kann, könnten Sie dieselbe Funktion sogar mit anderen Tools verwenden, wie z. B. <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Da `Annotated` mehr als eine Metadaten-Annotation haben kann, könnten Sie dieselbe Funktion sogar mit anderen Tools verwenden, wie z. B. [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Mehr Validierungen hinzufügen { #add-more-validations }
 
@@ -185,7 +185,7 @@ Aber nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, w
 
 Natürlich können Sie Defaultwerte verwenden, die nicht `None` sind.
 
-Nehmen wir an, Sie möchten, dass der `q` Query-Parameter eine `min_length` von `3` hat und einen Defaultwert von `"fixedquery"`:
+Nehmen wir an, Sie möchten, dass der `q` Query-Parameter eine `min_length` von `3` hat und einen Defaultwert von „fixedquery“:
 
 {* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
@@ -369,11 +369,11 @@ Es kann Fälle geben, in denen Sie eine **benutzerdefinierte Validierung** durch
 
 In diesen Fällen können Sie eine **benutzerdefinierte Validierungsfunktion** verwenden, die nach der normalen Validierung angewendet wird (z. B. nach der Validierung, dass der Wert ein `str` ist).
 
-Sie können dies mit <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantics `AfterValidator`</a> innerhalb von `Annotated` erreichen.
+Sie können dies mit [Pydantics `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) innerhalb von `Annotated` erreichen.
 
 /// tip | Tipp
 
-Pydantic unterstützt auch <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> und andere. 🤓
+Pydantic unterstützt auch [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) und andere. 🤓
 
 ///
 

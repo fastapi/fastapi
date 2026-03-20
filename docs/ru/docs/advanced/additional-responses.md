@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Чтобы увидеть, что именно можно включать в ответы, посмотрите эти разделы спецификации OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Объект Responses OpenAPI</a>, он включает `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Объект Response OpenAPI</a>, вы можете включить всё из этого объекта напрямую в каждый ответ внутри вашего параметра `responses`. Включая `description`, `headers`, `content` (внутри него вы объявляете разные типы содержимого и JSON‑схемы) и `links`.
+* [Объект Responses OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), он включает `Response Object`.
+* [Объект Response OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), вы можете включить всё из этого объекта напрямую в каждый ответ внутри вашего параметра `responses`. Включая `description`, `headers`, `content` (внутри него вы объявляете разные типы содержимого и JSON‑схемы) и `links`.

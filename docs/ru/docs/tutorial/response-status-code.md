@@ -20,7 +20,7 @@
 
 /// info | Информация
 
-В качестве значения параметра `status_code` также может использоваться `IntEnum`, например, из библиотеки <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> в Python.
+В качестве значения параметра `status_code` также может использоваться `IntEnum`, например, из библиотеки [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) в Python.
 
 ///
 
@@ -66,7 +66,7 @@ FastAPI знает об этом и создаст документацию Open
 
 /// tip | Подсказка
 
-Чтобы узнать больше о HTTP кодах статуса и о том, для чего каждый из них предназначен, ознакомьтесь с <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> документацией об HTTP статус-кодах</a>.
+Чтобы узнать больше о HTTP кодах статуса и о том, для чего каждый из них предназначен, ознакомьтесь с [<abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> документацией об HTTP статус-кодах](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -98,4 +98,4 @@ FastAPI знает об этом и создаст документацию Open
 
 ## Изменение кода статуса по умолчанию { #changing-the-default }
 
-Позже, в [Руководстве для продвинутых пользователей](../advanced/response-change-status-code.md){.internal-link target=_blank}, вы узнаете, как возвращать HTTP статус-код, отличный от значения по умолчанию, которое вы объявляете здесь.
+Позже, в [Руководстве для продвинутых пользователей](../advanced/response-change-status-code.md), вы узнаете, как возвращать HTTP статус-код, отличный от значения по умолчанию, которое вы объявляете здесь.

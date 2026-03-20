@@ -1,18 +1,18 @@
 # Tester { #testing }
 
-Grâce à <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, tester des applications **FastAPI** est simple et agréable.
+Grâce à [Starlette](https://www.starlette.dev/testclient/), tester des applications **FastAPI** est simple et agréable.
 
-C’est basé sur <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, dont la conception s’inspire de Requests, ce qui le rend très familier et intuitif.
+C’est basé sur [HTTPX](https://www.python-httpx.org), dont la conception s’inspire de Requests, ce qui le rend très familier et intuitif.
 
-Avec cela, vous pouvez utiliser <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directement avec **FastAPI**.
+Avec cela, vous pouvez utiliser [pytest](https://docs.pytest.org/) directement avec **FastAPI**.
 
 ## Utiliser `TestClient` { #using-testclient }
 
 /// info
 
-Pour utiliser `TestClient`, installez d’abord <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Pour utiliser `TestClient`, installez d’abord [`httpx`](https://www.python-httpx.org).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l’activer, puis y installer le paquet, par exemple :
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ Vous pouvez aussi utiliser `from starlette.testclient import TestClient`.
 
 /// tip | Astuce
 
-Si vous souhaitez appeler des fonctions `async` dans vos tests en dehors de l’envoi de requêtes à votre application FastAPI (par exemple des fonctions de base de données asynchrones), consultez les [Tests asynchrones](../advanced/async-tests.md){.internal-link target=_blank} dans le tutoriel avancé.
+Si vous souhaitez appeler des fonctions `async` dans vos tests en dehors de l’envoi de requêtes à votre application FastAPI (par exemple des fonctions de base de données asynchrones), consultez les [Tests asynchrones](../advanced/async-tests.md) dans le tutoriel avancé.
 
 ///
 
@@ -64,7 +64,7 @@ Et votre application **FastAPI** pourrait aussi être composée de plusieurs fic
 
 ### Fichier d’application **FastAPI** { #fastapi-app-file }
 
-Supposons que vous ayez une structure de fichiers comme décrit dans [Applications plus grandes](bigger-applications.md){.internal-link target=_blank} :
+Supposons que vous ayez une structure de fichiers comme décrit dans [Applications plus grandes](bigger-applications.md) :
 
 ```
 .
@@ -142,13 +142,13 @@ Par exemple :
 * Pour passer des en-têtes, utilisez un `dict` dans le paramètre `headers`.
 * Pour les cookies, un `dict` dans le paramètre `cookies`.
 
-Pour plus d’informations sur la manière de transmettre des données au backend (en utilisant `httpx` ou le `TestClient`), consultez la <a href="https://www.python-httpx.org" class="external-link" target="_blank">documentation HTTPX</a>.
+Pour plus d’informations sur la manière de transmettre des données au backend (en utilisant `httpx` ou le `TestClient`), consultez la [documentation HTTPX](https://www.python-httpx.org).
 
 /// info
 
 Notez que le `TestClient` reçoit des données qui peuvent être converties en JSON, pas des modèles Pydantic.
 
-Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer ses données à l’application pendant les tests, vous pouvez utiliser le `jsonable_encoder` décrit dans [Encodeur compatible JSON](encoder.md){.internal-link target=_blank}.
+Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer ses données à l’application pendant les tests, vous pouvez utiliser le `jsonable_encoder` décrit dans [Encodeur compatible JSON](encoder.md).
 
 ///
 
@@ -156,7 +156,7 @@ Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer s
 
 Après cela, vous avez simplement besoin d’installer `pytest`.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l’activer, puis y installer le paquet, par exemple :
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
 
 <div class="termy">
 

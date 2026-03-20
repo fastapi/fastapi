@@ -1,12 +1,12 @@
-# Request Forms ve Files { #request-forms-and-files }
+# Request Formları ve Dosyalar { #request-forms-and-files }
 
 `File` ve `Form` kullanarak aynı anda hem dosyaları hem de form alanlarını tanımlayabilirsiniz.
 
 /// info | Bilgi
 
-Yüklenen dosyaları ve/veya form verisini almak için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> paketini kurun.
+Yüklenen dosyaları ve/veya form verisini almak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktive ettiğinizden ve ardından paketi kurduğunuzdan emin olun, örneğin:
+Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden ve ardından paketi kurduğunuzdan emin olun, örneğin:
 
 ```console
 $ pip install python-multipart

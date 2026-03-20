@@ -142,7 +142,6 @@ def translate_page(
             continue  # Retry if not reached max attempts
     else:  # Max retry attempts reached
         print(f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts")
-        raise typer.Exit(code=1)
 
     print(f"Saving translation to {out_path}")
     out_path.write_text(out_content, encoding="utf-8", newline="\n")

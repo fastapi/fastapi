@@ -119,5 +119,5 @@ jobs:
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
-          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
+          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place == 'true' && 'true' || '' }}
           MAX: ${{ github.event.inputs.max }}

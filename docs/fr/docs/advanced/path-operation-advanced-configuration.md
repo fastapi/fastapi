@@ -46,7 +46,7 @@ Pour exclure un chemin d’accès du schéma OpenAPI généré (et donc des syst
 
 Vous pouvez limiter les lignes utilisées de la docstring d’une fonction de chemin d’accès pour OpenAPI.
 
-L’ajout d’un `\f` (un caractère « saut de page » échappé) amène **FastAPI** à tronquer la sortie utilisée pour OpenAPI à cet endroit.
+L’ajout d’un `\f` (un caractère « form feed » échappé) amène **FastAPI** à tronquer la sortie utilisée pour OpenAPI à cet endroit.
 
 Cela n’apparaîtra pas dans la documentation, mais d’autres outils (comme Sphinx) pourront utiliser le reste.
 
@@ -60,7 +60,7 @@ Cela définit les métadonnées sur la réponse principale d’un chemin d’acc
 
 Vous pouvez également déclarer des réponses supplémentaires avec leurs modèles, codes de statut, etc.
 
-Il y a un chapitre entier dans la documentation à ce sujet, vous pouvez le lire dans [Réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Il y a un chapitre entier dans la documentation à ce sujet, vous pouvez le lire dans [Réponses supplémentaires dans OpenAPI](additional-responses.md).
 
 ## OpenAPI supplémentaire { #openapi-extra }
 
@@ -68,7 +68,7 @@ Lorsque vous déclarez un chemin d’accès dans votre application, **FastAPI** 
 
 /// note | Détails techniques
 
-Dans la spécification OpenAPI, cela s’appelle l’<a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">objet Operation</a>.
+Dans la spécification OpenAPI, cela s’appelle l’[objet Operation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ Ce schéma OpenAPI spécifique à un chemin d’accès est normalement généré
 
 Ceci est un point d’extension de bas niveau.
 
-Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d’utiliser [Réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d’utiliser [Réponses supplémentaires dans OpenAPI](additional-responses.md).
 
 ///
 
