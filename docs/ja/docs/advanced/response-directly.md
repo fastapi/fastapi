@@ -4,7 +4,7 @@
 
 [レスポンスモデル](../tutorial/response-model.md) を宣言した場合、FastAPI は Pydantic を使ってデータをJSONにシリアライズします。
 
-レスポンスモデルを宣言しない場合、FastAPI は [JSON互換エンコーダ](../tutorial/encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` を使用し、その結果を `JSONResponse` に入れます。
+レスポンスモデルを宣言しない場合、FastAPI は [JSON互換エンコーダ](../tutorial/encoder.md) で説明されている `jsonable_encoder` を使用し、その結果を `JSONResponse` に入れます。
 
 また、`JSONResponse` を直接作成して返すこともできます。
 
@@ -78,6 +78,6 @@ path operation で [Response Model - 戻り値の型](../tutorial/response-model
 
 `Response` を直接返す場合、バリデーションや、変換 (シリアライズ) や、自動ドキュメントは行われません。
 
-しかし、[Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}に記載されたようにドキュメントを書くこともできます。
+しかし、[Additional Responses in OpenAPI](additional-responses.md)に記載されたようにドキュメントを書くこともできます。
 
 後のセクションで、カスタム `Response` を使用・宣言しながら、自動的なデータ変換やドキュメンテーションを行う方法を説明します。

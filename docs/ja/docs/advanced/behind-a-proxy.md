@@ -60,7 +60,7 @@ https://mysuperapp.com/items/
 
 /// tip | 豆知識
 
-HTTPS について詳しく知りたい場合は、[HTTPS について](../deployment/https.md){.internal-link target=_blank} を参照してください。
+HTTPS について詳しく知りたい場合は、[HTTPS について](../deployment/https.md) を参照してください。
 
 ///
 
@@ -461,6 +461,6 @@ OpenAPI 仕様の `servers` プロパティは任意です。
 
 ## サブアプリケーションのマウント { #mounting-a-sub-application }
 
-`root_path` を伴うプロキシを使用しつつサブアプリケーションをマウントする必要がある場合でも（[サブアプリケーション - マウント](sub-applications.md){.internal-link target=_blank} 参照）、通常どおりに行えます。
+`root_path` を伴うプロキシを使用しつつサブアプリケーションをマウントする必要がある場合でも（[サブアプリケーション - マウント](sub-applications.md) 参照）、通常どおりに行えます。
 
 FastAPI は内部で `root_path` を適切に扱うため、そのまま動作します。✨

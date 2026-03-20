@@ -222,7 +222,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 /// tip | 豆知識
 
-これについては、[Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} のドキュメントで詳しく学べます。
+これについては、[Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers) のドキュメントで詳しく学べます。
 
 ///
 

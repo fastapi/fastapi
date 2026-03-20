@@ -20,7 +20,7 @@
 
 ## 例 { #example }
 
-簡単な例として、[大きなアプリケーション](../tutorial/bigger-applications.md){.internal-link target=_blank} と [テスト](../tutorial/testing.md){.internal-link target=_blank} で説明したものに似たファイル構成を考えます:
+簡単な例として、[大きなアプリケーション](../tutorial/bigger-applications.md) と [テスト](../tutorial/testing.md) で説明したものに似たファイル構成を考えます:
 
 ```
 .
