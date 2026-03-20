@@ -88,15 +88,15 @@ You will see the alternative automatic documentation (provided by [ReDoc](https:
 
 #### "Schema" { #schema }
 
-A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
+A "Schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
-#### API "schema" { #api-schema }
+#### API "Schema" { #api-schema }
 
 In this case, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) is a specification that dictates how to define a schema of your API.
 
 This schema definition includes your API paths, the possible parameters they take, etc.
 
-#### Data "schema" { #data-schema }
+#### Data "Schema" { #data-schema }
 
 The term "schema" might also refer to the shape of some data, like a JSON content.
 
