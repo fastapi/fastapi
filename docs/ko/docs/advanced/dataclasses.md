@@ -74,7 +74,7 @@ dataclass는 자동으로 Pydantic dataclass로 변환됩니다.
 
     언제나처럼 FastAPI에서는 필요에 따라 `def`와 `async def`를 조합해 사용할 수 있습니다.
 
-    어떤 것을 언제 사용해야 하는지 다시 확인하고 싶다면, [`async`와 `await`](../async.md#in-a-hurry){.internal-link target=_blank} 문서의 _"급하신가요?"_ 섹션을 확인하세요.
+    어떤 것을 언제 사용해야 하는지 다시 확인하고 싶다면, [`async`와 `await`](../async.md#in-a-hurry) 문서의 _"급하신가요?"_ 섹션을 확인하세요.
 
 9. 이 *경로 처리 함수*는 dataclasses를(물론 반환할 수도 있지만) 반환하지 않고, 내부 데이터를 담은 딕셔너리들의 리스트를 반환합니다.
 

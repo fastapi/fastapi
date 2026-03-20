@@ -2,7 +2,7 @@
 
 기본적으로 **FastAPI**는 JSON 응답을 반환합니다.
 
-[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 본 것처럼 `Response`를 직접 반환하여 이를 재정의할 수 있습니다.
+[응답을 직접 반환하기](response-directly.md)에서 본 것처럼 `Response`를 직접 반환하여 이를 재정의할 수 있습니다.
 
 그러나 `Response`를 직접 반환하면(또는 `JSONResponse`와 같은 하위 클래스를 반환하면) 데이터가 자동으로 변환되지 않으며(비록 `response_model`을 선언했다 하더라도), 문서도 자동으로 생성되지 않습니다(예를 들어, 생성된 OpenAPI의 일부로 HTTP 헤더 `Content-Type`에 특정 "미디어 타입"을 포함하는 것 등).
 
@@ -20,15 +20,15 @@
 
 기본적으로 FastAPI는 JSON 응답을 반환합니다.
 
-[응답 모델](../tutorial/response-model.md){.internal-link target=_blank}을 선언하면 FastAPI는 Pydantic을 사용해 데이터를 JSON으로 직렬화합니다.
+[응답 모델](../tutorial/response-model.md)을 선언하면 FastAPI는 Pydantic을 사용해 데이터를 JSON으로 직렬화합니다.
 
-응답 모델을 선언하지 않으면 FastAPI는 [JSON 호환 가능 인코더](../tutorial/encoder.md){.internal-link target=_blank}에서 설명한 `jsonable_encoder`를 사용해 데이터를 변환한 뒤 `JSONResponse`에 넣습니다.
+응답 모델을 선언하지 않으면 FastAPI는 [JSON 호환 가능 인코더](../tutorial/encoder.md)에서 설명한 `jsonable_encoder`를 사용해 데이터를 변환한 뒤 `JSONResponse`에 넣습니다.
 
 `JSONResponse`처럼 JSON 미디어 타입(`application/json`)을 가진 `response_class`를 선언하면, 여러분이 *경로 처리 데코레이터*에서 선언한 Pydantic의 `response_model`로 데이터가 자동 변환(및 필터링)됩니다. 하지만 데이터의 JSON 바이트 직렬화 자체는 Pydantic이 수행하지 않고, `jsonable_encoder`로 변환한 후 `JSONResponse` 클래스에 전달하며, 그 클래스가 Python 표준 JSON 라이브러리를 사용해 바이트로 직렬화합니다.
 
 ### JSON 성능 { #json-performance }
 
-요약하면, 최대 성능이 필요하다면 [응답 모델](../tutorial/response-model.md){.internal-link target=_blank}을 사용하고, *경로 처리 데코레이터*에 `response_class`를 선언하지 마세요.
+요약하면, 최대 성능이 필요하다면 [응답 모델](../tutorial/response-model.md)을 사용하고, *경로 처리 데코레이터*에 `response_class`를 선언하지 마세요.
 
 {* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
 
@@ -53,7 +53,7 @@
 
 ### `Response` 반환하기 { #return-a-response }
 
-[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 본 것처럼, *경로 처리*에서 응답을 직접 반환하여 재정의할 수도 있습니다.
+[응답을 직접 반환하기](response-directly.md)에서 본 것처럼, *경로 처리*에서 응답을 직접 반환하여 재정의할 수도 있습니다.
 
 위의 예제와 동일하게 `HTMLResponse`를 반환하는 코드는 다음과 같을 수 있습니다:
 
@@ -189,9 +189,9 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 /// tip | 팁
 
-`StreamingResponse`를 직접 반환하는 대신, [데이터 스트리밍](./stream-data.md){.internal-link target=_blank}에서의 스타일을 따르는 것이 더 편리하며 백그라운드에서 취소 처리를 해줍니다.
+`StreamingResponse`를 직접 반환하는 대신, [데이터 스트리밍](./stream-data.md)에서의 스타일을 따르는 것이 더 편리하며 백그라운드에서 취소 처리를 해줍니다.
 
-JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/stream-json-lines.md){.internal-link target=_blank} 튜토리얼을 확인하세요.
+JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/stream-json-lines.md) 튜토리얼을 확인하세요.
 
 ///
 
@@ -220,7 +220,7 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 `Response`를 상속받아 사용자 정의 응답 클래스를 생성하고 사용할 수 있습니다.
 
-예를 들어, [`orjson`](https://github.com/ijl/orjson){.external-link target=_blank}을 일부 설정과 함께 사용하고 싶다고 가정해봅시다.
+예를 들어, [`orjson`](https://github.com/ijl/orjson)을 일부 설정과 함께 사용하고 싶다고 가정해봅시다.
 
 들여쓰기 및 포맷된 JSON을 반환하고 싶다면, orjson 옵션 `orjson.OPT_INDENT_2`를 사용할 수 있습니다.
 
@@ -246,7 +246,7 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 ### `orjson` 또는 응답 모델 { #orjson-or-response-model }
 
-성능이 목적이라면, `orjson` 응답을 사용하는 것보다 [응답 모델](../tutorial/response-model.md){.internal-link target=_blank}을 사용하는 편이 더 나을 가능성이 큽니다.
+성능이 목적이라면, `orjson` 응답을 사용하는 것보다 [응답 모델](../tutorial/response-model.md)을 사용하는 편이 더 나을 가능성이 큽니다.
 
 응답 모델을 사용하면 FastAPI는 중간 단계(예: `jsonable_encoder`로의 변환) 없이 Pydantic을 사용해 데이터를 JSON으로 직렬화합니다. 이런 중간 단계는 다른 경우에 발생합니다.
 
@@ -270,4 +270,4 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 ## 추가 문서화 { #additional-documentation }
 
-OpenAPI에서 `responses`를 사용하여 미디어 타입 및 기타 세부 정보를 선언할 수도 있습니다: [OpenAPI에서 추가 응답](additional-responses.md){.internal-link target=_blank}.
+OpenAPI에서 `responses`를 사용하여 미디어 타입 및 기타 세부 정보를 선언할 수도 있습니다: [OpenAPI에서 추가 응답](additional-responses.md).

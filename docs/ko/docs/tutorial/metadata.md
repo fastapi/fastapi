@@ -76,7 +76,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 /// info | 정보
 
-태그에 대한 자세한 내용은 [경로 처리 구성](path-operation-configuration.md#tags){.internal-link target=_blank}에서 읽어보세요.
+태그에 대한 자세한 내용은 [경로 처리 구성](path-operation-configuration.md#tags)에서 읽어보세요.
 
 ///
 
