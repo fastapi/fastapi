@@ -223,6 +223,8 @@ Result (German):
 
 Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a href="url">text</a> tags):
 
+- The order of links should match the order of links in the English source. Do not change the order of links. Rephrase the sentence if necessary.
+
 - For relative URLs, only translate the link text. Do not translate the URL or its parts.
 
 Example:
