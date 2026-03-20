@@ -199,4 +199,4 @@ Sometimes you want to receive some query parameters, but you don't know in advan
 
 And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will that OpenAPI supports this format of query parameter:
 
-<img src="/img/tutorial/path-params/image01.png">
+<img src="/img/tutorial/query-params/image01.png>
