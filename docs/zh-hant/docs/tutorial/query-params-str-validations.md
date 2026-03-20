@@ -35,13 +35,13 @@ FastAPI 自 0.95.0 版起加入並開始推薦使用 `Annotated`。
 
 如果你的版本較舊，嘗試使用 `Annotated` 會出錯。
 
-請先至少 [升級 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} 到 0.95.1 再使用 `Annotated`。
+請先至少 [升級 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions) 到 0.95.1 再使用 `Annotated`。
 
 ///
 
 ## 在 `q` 參數的型別中使用 `Annotated` { #use-annotated-in-the-type-for-the-q-parameter }
 
-還記得先前在 [Python 型別介紹](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} 提到可以用 `Annotated` 為參數加入中繼資料嗎？
+還記得先前在 [Python 型別介紹](../python-types.md#type-hints-with-metadata-annotations) 提到可以用 `Annotated` 為參數加入中繼資料嗎？
 
 現在就用在 FastAPI 上吧。🚀
 

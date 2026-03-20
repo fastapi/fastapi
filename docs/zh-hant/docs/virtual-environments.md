@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-這個命令會建立或修改一些[環境變數](environment-variables.md){.internal-link target=_blank}，這些環境變數將在接下來的指令中可用。
+這個命令會建立或修改一些[環境變數](environment-variables.md)，這些環境變數將在接下來的指令中可用。
 
 其中之一是 `PATH` 變數。
 
 /// tip
 
-你可以在 [環境變數](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多關於 `PATH` 環境變數的內容。
+你可以在 [環境變數](environment-variables.md#path-environment-variable) 部分了解更多關於 `PATH` 環境變數的內容。
 
 ///
 

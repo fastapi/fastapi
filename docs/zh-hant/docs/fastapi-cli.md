@@ -58,7 +58,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 不過你也可以明確設定要使用的 app。
 
-## 在 `pyproject.toml` 中設定應用程式的 `entrypoint` { #configure-the-app-entrypoint-in-pyproject.toml }
+## 在 `pyproject.toml` 中設定應用程式的 `entrypoint` { #configure-the-app-entrypoint-in-pyproject-toml }
 
 你可以在 `pyproject.toml` 檔案中指定你的 app 位置，例如：
 
