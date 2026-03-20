@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-**한 번의 명령**으로 FastAPI 앱을 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
+**한 번의 명령**으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
 
 ## 로그인하기 { #login }
 
@@ -40,7 +40,7 @@ Deploying to FastAPI Cloud...
 
 ## FastAPI Cloud 소개 { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**는 **FastAPI**를 만든 동일한 저자와 팀이 구축했습니다.
+**[FastAPI Cloud](https://fastapicloud.com)**는 **FastAPI**를 만든 동일한 저자와 팀이 구축했습니다.
 
 최소한의 노력으로 API를 **구축**, **배포**, **접근**하는 과정을 간소화합니다.
 

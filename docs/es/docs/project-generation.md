@@ -4,7 +4,7 @@ Las plantillas, aunque normalmente vienen con una configuración específica, es
 
 Puedes usar esta plantilla para comenzar, ya que incluye gran parte de la configuración inicial, seguridad, base de datos y algunos endpoints de API ya hechos para ti.
 
-Repositorio de GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Plantilla Full Stack FastAPI</a>
+Repositorio de GitHub: [Plantilla Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Plantilla Full Stack FastAPI - Stack de tecnología y funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
 

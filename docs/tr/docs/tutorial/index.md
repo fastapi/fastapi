@@ -10,12 +10,12 @@ Ayrıca, ileride tekrar dönüp tam olarak ihtiyaç duyduğunuz şeyi görebilec
 
 Tüm code block'lar kopyalanıp doğrudan kullanılabilir (zaten test edilmiş Python dosyalarıdır).
 
-Örneklerden herhangi birini çalıştırmak için, kodu `main.py` adlı bir dosyaya kopyalayın ve şu komutla `fastapi dev`'i başlatın:
+Örneklerden herhangi birini çalıştırmak için, kodu `main.py` adlı bir dosyaya kopyalayın ve `fastapi dev`'i başlatın:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ Editörünüzde kullanmak FastAPI'nin avantajlarını gerçekten gösterir: ne k
 
 İlk adım FastAPI'yi kurmaktır.
 
-Bir [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, etkinleştirin ve ardından **FastAPI'yi kurun**:
+Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan emin olun, etkinleştirin ve ardından **FastAPI'yi kurun**:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | Not
 
-`pip install "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standard bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>'a deploy edebilirsiniz.
+`pip install "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standard bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz.
 
 Bu opsiyonel bağımlılıkları istemiyorsanız bunun yerine `pip install fastapi` kurabilirsiniz.
 
 Standard bağımlılıkları kurmak istiyor ama `fastapi-cloud-cli` olmasın diyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile kurabilirsiniz.
+
+///
+
+/// tip | İpucu
+
+FastAPI'nin [VS Code için resmi bir eklentisi](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (ve Cursor) vardır; path operation gezgini, path operation araması, testlerde CodeLens ile gezinme (testlerden tanıma atlama) ve FastAPI Cloud deploy ve logları gibi pek çok özelliği doğrudan editörünüzden sunar.
 
 ///
 

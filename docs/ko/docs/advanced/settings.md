@@ -8,7 +8,7 @@
 
 /// tip | 팁
 
-환경 변수를 이해하려면 [환경 변수](../environment-variables.md){.internal-link target=_blank}를 읽어보세요.
+환경 변수를 이해하려면 [환경 변수](../environment-variables.md)를 읽어보세요.
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-다행히 Pydantic은 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>를 통해 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 제공합니다.
+다행히 Pydantic은 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 [Pydantic: Settings 관리](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)로 제공합니다.
 
 ### `pydantic-settings` 설치하기 { #install-pydantic-settings }
 
-먼저 [가상 환경](../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음, `pydantic-settings` 패키지를 설치하세요:
+먼저 [가상 환경](../virtual-environments.md)을 만들고 활성화한 다음, `pydantic-settings` 패키지를 설치하세요:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 다른 모듈의 설정 { #settings-in-another-module }
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}에서 본 것처럼, 설정을 다른 모듈 파일에 넣을 수도 있습니다.
+[더 큰 애플리케이션 - 여러 파일](../tutorial/bigger-applications.md)에서 본 것처럼, 설정을 다른 모듈 파일에 넣을 수도 있습니다.
 
 예를 들어 `config.py` 파일을 다음처럼 만들 수 있습니다:
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | 팁
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}에서 본 것처럼 `__init__.py` 파일도 필요합니다.
+[더 큰 애플리케이션 - 여러 파일](../tutorial/bigger-applications.md)에서 본 것처럼 `__init__.py` 파일도 필요합니다.
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>를 참고하세요.
+Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 [Pydantic Settings: Dotenv (.env) 지원](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support)을 참고하세요.
 
 /// tip | 팁
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 팁
 
-`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>를 참고하세요.
+`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 [Pydantic: 개념: 구성](https://docs.pydantic.dev/latest/concepts/config/)을 참고하세요.
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 이렇게 하면 거의 전역 변수처럼 동작합니다. 하지만 의존성 함수를 사용하므로 테스트를 위해 쉽게 override할 수 있습니다.
 
-`@lru_cache`는 Python 표준 라이브러리의 `functools`에 포함되어 있으며, 자세한 내용은 <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">`@lru_cache`에 대한 Python 문서</a>에서 확인할 수 있습니다.
+`@lru_cache`는 Python 표준 라이브러리의 `functools`에 포함되어 있으며, 자세한 내용은 [`@lru_cache`에 대한 Python 문서](https://docs.python.org/3/library/functools.html#functools.lru_cache)에서 확인할 수 있습니다.
 
 ## 정리 { #recap }
 

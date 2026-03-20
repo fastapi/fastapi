@@ -1,6 +1,6 @@
 # Response - Cambiar Código de Estado { #response-change-status-code }
 
-Probablemente leíste antes que puedes establecer un [Código de Estado de Response](../tutorial/response-status-code.md){.internal-link target=_blank} por defecto.
+Probablemente leíste antes que puedes establecer un [Código de Estado de Response](../tutorial/response-status-code.md) por defecto.
 
 Pero en algunos casos necesitas devolver un código de estado diferente al predeterminado.
 

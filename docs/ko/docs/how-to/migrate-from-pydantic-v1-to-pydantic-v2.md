@@ -10,7 +10,7 @@ FastAPI 0.126.0 버전에서는 Pydantic v1 지원을 중단했지만, `pydantic
 
 /// warning | 경고
 
-Pydantic 팀은 **Python 3.14**부터 최신 Python 버전에서 Pydantic v1 지원을 중단했습니다.
+Pydantic 팀은 최신 Python 버전에서 Pydantic v1 지원을 중단했으며, 시작 버전은 **Python 3.14**입니다.
 
 여기에는 `pydantic.v1`도 포함되며, Python 3.14 이상에서는 더 이상 지원되지 않습니다.
 
@@ -22,7 +22,7 @@ Pydantic v1을 사용하는 오래된 FastAPI 앱이 있다면, 여기서는 이
 
 ## 공식 가이드 { #official-guide }
 
-Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">마이그레이션 가이드</a>가 있습니다.
+Pydantic에는 v1에서 v2로의 공식 [마이그레이션 가이드](https://docs.pydantic.dev/latest/migration/)가 있습니다.
 
 여기에는 무엇이 바뀌었는지, 검증이 이제 어떻게 더 정확하고 엄격해졌는지, 가능한 주의사항 등도 포함되어 있습니다.
 
@@ -30,7 +30,7 @@ Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/lates
 
 ## 테스트 { #tests }
 
-앱에 대한 [테스트](../tutorial/testing.md){.internal-link target=_blank}가 있는지 확인하고, 지속적 통합(CI)에서 테스트를 실행하세요.
+앱에 대한 [테스트](../tutorial/testing.md)가 있는지 확인하고, 지속적 통합(CI)에서 테스트를 실행하세요.
 
 이렇게 하면 업그레이드를 진행하면서도 모든 것이 기대한 대로 계속 동작하는지 확인할 수 있습니다.
 
@@ -38,7 +38,7 @@ Pydantic에는 v1에서 v2로의 공식 <a href="https://docs.pydantic.dev/lates
 
 많은 경우, 커스터마이징 없이 일반적인 Pydantic 모델을 사용하고 있다면 Pydantic v1에서 Pydantic v2로의 마이그레이션 과정 대부분을 자동화할 수 있습니다.
 
-같은 Pydantic 팀이 제공하는 <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a>를 사용할 수 있습니다.
+같은 Pydantic 팀이 제공하는 [`bump-pydantic`](https://github.com/pydantic/bump-pydantic)를 사용할 수 있습니다.
 
 이 도구는 변경해야 하는 코드의 대부분을 자동으로 바꾸는 데 도움을 줍니다.
 

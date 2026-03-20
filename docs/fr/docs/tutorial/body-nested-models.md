@@ -96,7 +96,7 @@ Là encore, avec cette simple déclaration, avec FastAPI vous obtenez :
 
 Outre les types singuliers normaux comme `str`, `int`, `float`, etc. vous pouvez utiliser des types singuliers plus complexes qui héritent de `str`.
 
-Pour voir toutes les options dont vous disposez, consultez <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">l’aperçu des types de Pydantic</a>. Vous verrez quelques exemples au chapitre suivant.
+Pour voir toutes les options dont vous disposez, consultez [l’aperçu des types de Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Vous verrez quelques exemples au chapitre suivant.
 
 Par exemple, comme dans le modèle `Image` nous avons un champ `url`, nous pouvons le déclarer comme instance de `HttpUrl` de Pydantic au lieu de `str` :
 

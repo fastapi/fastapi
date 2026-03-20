@@ -6,20 +6,20 @@
 
 ### Baseado em padrões abertos { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">caminho</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, requisições de corpo, segurança etc.
-* Modelo de documentação automática com <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (já que o OpenAPI em si é baseado no JSON Schema).
-* Projetado em cima desses padrões após um estudo meticuloso, em vez de uma reflexão breve.
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">caminho</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, requisições de corpo, segurança etc.
+* Documentação automática de modelos de dados com [**JSON Schema**](https://json-schema.org/) (já que o OpenAPI em si é baseado no JSON Schema).
+* Projetado em torno desses padrões, após um estudo meticuloso. Em vez de uma camada improvisada por cima.
 * Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
 
 ### Documentação automática { #automatic-docs }
 
 Documentação interativa da API e navegação web da interface de usuário. Como o framework é baseado no OpenAPI, há várias opções, 2 incluídas por padrão.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, com navegação interativa, chame e teste sua API diretamente do navegador.
+* [**Swagger UI**](https://github.com/swagger-api/swagger-ui), com navegação interativa, chame e teste sua API diretamente do navegador.
 
 ![Interação Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentação alternativa da API com <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+* Documentação alternativa da API com [**ReDoc**](https://github.com/Rebilly/ReDoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -27,7 +27,7 @@ Documentação interativa da API e navegação web da interface de usuário. Com
 
 Tudo é baseado no padrão das declarações de **tipos do Python** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
 
-Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md){.internal-link target=_blank}.
+Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md).
 
 Você escreve Python padrão com tipos:
 
@@ -75,7 +75,7 @@ Passe as chaves e valores do dicionário `second_user_data` diretamente como arg
 
 Todo o framework foi projetado para ser fácil e intuitivo de usar, todas as decisões foram testadas em vários editores antes do início do desenvolvimento, para garantir a melhor experiência de desenvolvimento.
 
-Na pesquisa de desenvolvedores Python, ficou claro <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">que um dos recursos mais utilizados é o "preenchimento automático"</a>.
+Na pesquisa de desenvolvedores Python, ficou claro [que um dos recursos mais utilizados é o "preenchimento automático"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
 Todo o framework **FastAPI** é feito para satisfazer isso. O preenchimento automático funciona em todos os lugares.
 
@@ -83,11 +83,11 @@ Você raramente precisará voltar à documentação.
 
 Aqui está como o editor poderá te ajudar:
 
-* no <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+* no [Visual Studio Code](https://code.visualstudio.com/):
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* no <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+* no [PyCharm](https://www.jetbrains.com/pycharm/):
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -124,7 +124,7 @@ Segurança e autenticação integradas. Sem nenhum compromisso com bancos de dad
 Todos os esquemas de seguranças definidos no OpenAPI, incluindo:
 
 * HTTP Basic.
-* **OAuth2** (também com **tokens JWT**). Confira o tutorial em [OAuth2 com JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* **OAuth2** (também com **tokens JWT**). Confira o tutorial em [OAuth2 com JWT](tutorial/security/oauth2-jwt.md).
 * Chaves de API em:
     * Headers.
     * parâmetros da Query.
@@ -140,8 +140,8 @@ FastAPI inclui um sistema de <dfn title='também conhecido como "componentes", "
 
 * Mesmo dependências podem ter dependências, criando uma hierarquia ou **"grafo" de dependências**.
 * Tudo **automaticamente controlado** pelo framework.
-* Todas as dependências podem pedir dados das requisições e **ampliar** as restrições e documentação automática da **operação de caminho**.
-* **Validação automática** mesmo para parâmetros da *operação de caminho* definidos em dependências.
+* Todas as dependências podem pedir dados das requisições e **ampliar** as restrições e documentação automática da **operação de rota**.
+* **Validação automática** mesmo para parâmetros da *operação de rota* definidos em dependências.
 * Suporte para sistemas de autenticação complexos, **conexões com banco de dados** etc.
 * **Sem comprometer** os bancos de dados, frontends etc. Mas fácil integração com todos eles.
 
@@ -149,7 +149,7 @@ FastAPI inclui um sistema de <dfn title='também conhecido como "componentes", "
 
 Ou, de outra forma, sem a necessidade deles, importe e use o código que precisar.
 
-Qualquer integração é projetada para ser tão simples de usar (com dependências) que você pode criar um "plug-in" para suas aplicações com 2 linhas de código usando a mesma estrutura e sintaxe para as suas *operações de caminho*.
+Qualquer integração é projetada para ser tão simples de usar (com dependências) que você pode criar um "plug-in" para suas aplicações com 2 linhas de código usando a mesma estrutura e sintaxe para as suas *operações de rota*.
 
 ### Testado { #tested }
 
@@ -159,13 +159,13 @@ Qualquer integração é projetada para ser tão simples de usar (com dependênc
 
 ## Recursos do Starlette { #starlette-features }
 
-**FastAPI** é totalmente compatível com (e baseado no) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Então, qualquer código adicional Starlette que você tiver, também funcionará.
+**FastAPI** é totalmente compatível com (e baseado no) [**Starlette**](https://www.starlette.dev/). Então, qualquer código adicional Starlette que você tiver, também funcionará.
 
 `FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades se comportará da mesma forma.
 
 Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI é apenas um Starlette com esteróides):
 
-* Desempenho realmente impressionante. É <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">um dos frameworks Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**</a>.
+* Desempenho realmente impressionante. É [um dos frameworks Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**](https://github.com/encode/starlette#performance).
 * Suporte a **WebSocket**.
 * Tarefas em processo background.
 * Eventos na inicialização e encerramento.
@@ -177,7 +177,7 @@ Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI
 
 ## Recursos do Pydantic { #pydantic-features }
 
-**FastAPI** é totalmente compatível com (e baseado no) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Então, qualquer código Pydantic adicional que você tiver, também funcionará.
+**FastAPI** é totalmente compatível com (e baseado no) [**Pydantic**](https://docs.pydantic.dev/). Então, qualquer código Pydantic adicional que você tiver, também funcionará.
 
 Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s e <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bancos de dados.
 

@@ -61,7 +61,7 @@
 
 ## Технічні деталі { #technical-details }
 
-Клас `BackgroundTasks` походить безпосередньо з <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+Клас `BackgroundTasks` походить безпосередньо з [`starlette.background`](https://www.starlette.dev/background/).
 
 Він імпортується/включається безпосередньо у FastAPI, щоб ви могли імпортувати його з `fastapi` і випадково не імпортували альтернативний `BackgroundTask` (без `s` в кінці) з `starlette.background`.
 
@@ -69,11 +69,11 @@
 
 Також можна використовувати `BackgroundTask` окремо в FastAPI, але для цього вам доведеться створити об'єкт у коді та повернути Starlette `Response`, включаючи його.
 
-Детальніше можна почитати в <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">офіційній документації Starlette про Background Tasks</a>.
+Детальніше можна почитати в [офіційній документації Starlette про Background Tasks](https://www.starlette.dev/background/).
 
 ## Застереження { #caveat }
 
-Якщо вам потрібно виконувати складні фонові обчислення, і при цьому нема потреби запускати їх у тому ж процесі (наприклад, не потрібно спільного доступу до пам’яті чи змінних), можливо, варто скористатися більш потужними інструментами, такими як <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+Якщо вам потрібно виконувати складні фонові обчислення, і при цьому нема потреби запускати їх у тому ж процесі (наприклад, не потрібно спільного доступу до пам’яті чи змінних), можливо, варто скористатися більш потужними інструментами, такими як [Celery](https://docs.celeryq.dev).
 
 Такі інструменти зазвичай потребують складнішої конфігурації та менеджера черги повідомлень/завдань, наприклад, RabbitMQ або Redis. Однак вони дозволяють виконувати фонові задачі в кількох процесах і особливо — на кількох серверах.
 

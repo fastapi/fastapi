@@ -1,6 +1,6 @@
 # Налаштуйте Swagger UI { #configure-swagger-ui }
 
-Ви можете налаштувати додаткові <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">параметри Swagger UI</a>.
+Ви можете налаштувати додаткові [параметри Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Щоб їх налаштувати, передайте аргумент `swagger_ui_parameters` під час створення об’єкта додатка `FastAPI()` або до функції `get_swagger_ui_html()`.
 
@@ -50,7 +50,7 @@ FastAPI містить деякі параметри конфігурації з
 
 ## Інші параметри Swagger UI { #other-swagger-ui-parameters }
 
-Щоб побачити всі можливі налаштування, які ви можете використовувати, прочитайте офіційну <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">документацію щодо параметрів Swagger UI</a>.
+Щоб побачити всі можливі налаштування, які ви можете використовувати, прочитайте офіційну [документацію щодо параметрів Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Налаштування лише для JavaScript { #javascript-only-settings }
 

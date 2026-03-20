@@ -6,7 +6,7 @@ Bir **request** body, client'in API'nize gönderdiği veridir. Bir **response** 
 
 API'niz neredeyse her zaman bir **response** body göndermek zorundadır. Ancak client'lerin her zaman **request body** göndermesi gerekmez; bazen sadece bir path isterler, belki birkaç query parametresiyle birlikte, ama body göndermezler.
 
-Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> modellerini kullanırsınız.
+Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://docs.pydantic.dev/) modellerini kullanırsınız.
 
 /// info | Bilgi
 
@@ -73,7 +73,7 @@ Sadece bu Python type tanımıyla, **FastAPI** şunları yapar:
     * Veri geçersizse, tam olarak nerede ve hangi verinin hatalı olduğunu söyleyen, anlaşılır bir hata döndürür.
 * Aldığı veriyi `item` parametresi içinde size verir.
     * Fonksiyonda bunun type'ını `Item` olarak tanımladığınız için, tüm attribute'lar ve type'ları için editor desteğini (tamamlama vb.) de alırsınız.
-* Modeliniz için <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> tanımları üretir; projeniz için anlamlıysa bunları başka yerlerde de kullanabilirsiniz.
+* Modeliniz için [JSON Schema](https://json-schema.org) tanımları üretir; projeniz için anlamlıysa bunları başka yerlerde de kullanabilirsiniz.
 * Bu şemalar üretilen OpenAPI şemasının bir parçası olur ve otomatik dokümantasyon <abbr title="User Interfaces - Kullanıcı Arayüzleri">UIs</abbr> tarafından kullanılır.
 
 ## Otomatik dokümanlar { #automatic-docs }
@@ -102,15 +102,15 @@ Ayrıca, bunun tüm editor'lerle çalışacağından emin olmak için herhangi b
 
 Hatta bunu desteklemek için Pydantic'in kendisinde bile bazı değişiklikler yapıldı.
 
-Önceki ekran görüntüleri <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a> ile alınmıştır.
+Önceki ekran görüntüleri [Visual Studio Code](https://code.visualstudio.com) ile alınmıştır.
 
-Ancak <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> ve diğer Python editor'lerinin çoğunda da aynı editor desteğini alırsınız:
+Ancak [PyCharm](https://www.jetbrains.com/pycharm/) ve diğer Python editor'lerinin çoğunda da aynı editor desteğini alırsınız:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | İpucu
 
-Editor olarak <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> kullanıyorsanız, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> kullanabilirsiniz.
+Editor olarak [PyCharm](https://www.jetbrains.com/pycharm/) kullanıyorsanız, [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/) kullanabilirsiniz.
 
 Pydantic modelleri için editor desteğini şu açılardan iyileştirir:
 
@@ -163,4 +163,4 @@ Ancak type annotation'larını eklemek, editor'ünüzün size daha iyi destek ve
 
 ## Pydantic olmadan { #without-pydantic }
 
-Pydantic modellerini kullanmak istemiyorsanız, **Body** parametrelerini de kullanabilirsiniz. [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} dokümanına bakın.
+Pydantic modellerini kullanmak istemiyorsanız, **Body** parametrelerini de kullanabilirsiniz. [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body) dokümanına bakın.
