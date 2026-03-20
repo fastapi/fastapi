@@ -132,7 +132,7 @@ SQLModel (veya SQLAlchemy) kullanarak bu spesifik senaryoya sahipseniz, session'
 
 Böylece session veritabanı bağlantısını serbest bırakır ve diğer request'ler bunu kullanabilir.
 
-`yield` kullanan bir dependency'den erken çıkış gerektiren farklı bir kullanım senaryonuz varsa, lütfen kullanım senaryonuzla birlikte ve `yield` kullanan dependency'ler için erken kapatmadan neden fayda göreceğinizi açıklayarak bir <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Sorusu</a> oluşturun.
+`yield` kullanan bir dependency'den erken çıkış gerektiren farklı bir kullanım senaryonuz varsa, lütfen kullanım senaryonuzla birlikte ve `yield` kullanan dependency'ler için erken kapatmadan neden fayda göreceğinizi açıklayarak bir [GitHub Discussion Sorusu](https://github.com/fastapi/fastapi/discussions/new?category=questions) oluşturun.
 
 `yield` kullanan dependency'lerde erken kapatma için ikna edici kullanım senaryoları varsa, erken kapatmayı seçmeli (opt-in) hale getiren yeni bir yöntem eklemeyi düşünebilirim.
 

@@ -32,7 +32,7 @@ Ayrıca, o özel request sınıfını kullanmak için bir `APIRoute` alt sınıf
 
 /// tip | İpucu
 
-Bu, nasıl çalıştığını göstermek için hazırlanmış basit bir örnektir; Gzip desteğine ihtiyacınız varsa sağlanan [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} bileşenini kullanabilirsiniz.
+Bu, nasıl çalıştığını göstermek için hazırlanmış basit bir örnektir; Gzip desteğine ihtiyacınız varsa sağlanan [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) bileşenini kullanabilirsiniz.
 
 ///
 
@@ -82,7 +82,7 @@ Ancak `GzipRequest.body` içindeki değişikliklerimiz sayesinde, request body g
 
 /// tip | İpucu
 
-Aynı problemi çözmek için, muhtemelen `RequestValidationError` için özel bir handler içinde `body` kullanmak çok daha kolaydır ([Hataları Ele Alma](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Aynı problemi çözmek için, muhtemelen `RequestValidationError` için özel bir handler içinde `body` kullanmak çok daha kolaydır ([Hataları Ele Alma](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Yine de bu örnek geçerlidir ve dahili bileşenlerle nasıl etkileşime geçileceğini gösterir.
 

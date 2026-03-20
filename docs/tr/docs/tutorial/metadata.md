@@ -14,7 +14,7 @@ OpenAPI spesifikasyonunda ve otomatik API doküman arayüzlerinde kullanılan ş
 | `version` | `string` | API'nin sürümü. Bu, OpenAPI'nin değil, kendi uygulamanızın sürümüdür. Örneğin `2.5.0`. |
 | `terms_of_service` | `str` | API'nin Kullanım Koşulları (Terms of Service) için bir URL. Verilirse, URL formatında olmalıdır. |
 | `contact` | `dict` | Yayınlanan API için iletişim bilgileri. Birden fazla alan içerebilir. <details><summary><code>contact</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunu tanımlayan ad.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>İletişim bilgilerine işaret eden URL. URL formatında OLMALIDIR.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunun e-posta adresi. E-posta adresi formatında OLMALIDIR.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | Yayınlanan API için lisans bilgileri. Birden fazla alan içerebilir. <details><summary><code>license_info</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ZORUNLU</strong> (<code>license_info</code> ayarlanmışsa). API için kullanılan lisans adı.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API için bir <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> lisans ifadesi. <code>identifier</code> alanı, <code>url</code> alanıyla karşılıklı olarak dışlayıcıdır (ikisi aynı anda kullanılamaz). <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API için kullanılan lisansa ait URL. URL formatında OLMALIDIR.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | Yayınlanan API için lisans bilgileri. Birden fazla alan içerebilir. <details><summary><code>license_info</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ZORUNLU</strong> (<code>license_info</code> ayarlanmışsa). API için kullanılan lisans adı.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API için bir [SPDX](https://spdx.org/licenses/) lisans ifadesi. <code>identifier</code> alanı, <code>url</code> alanıyla karşılıklı olarak dışlayıcıdır (ikisi aynı anda kullanılamaz). <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API için kullanılan lisansa ait URL. URL formatında OLMALIDIR.</td></tr></tbody></table></details> |
 
 Şu şekilde ayarlayabilirsiniz:
 
@@ -76,7 +76,7 @@ Kullandığınız tüm tag'ler için metadata eklemek zorunda değilsiniz.
 
 /// info | Bilgi
 
-Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags).
 
 ///
 

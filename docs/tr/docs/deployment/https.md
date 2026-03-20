@@ -218,7 +218,7 @@ Bu, örneğin redirect’leri doğru şekilde yönetmek için faydalıdır.
 
 /// tip | İpucu
 
-Bununla ilgili daha fazlasını [Bir Proxy Arkasında - Proxy Forwarded Headers'ı Etkinleştir](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} dokümantasyonunda öğrenebilirsiniz.
+Bununla ilgili daha fazlasını [Bir Proxy Arkasında - Proxy Forwarded Headers'ı Etkinleştir](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers) dokümantasyonunda öğrenebilirsiniz.
 
 ///
 

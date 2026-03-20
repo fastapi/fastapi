@@ -74,7 +74,7 @@ Bu durumda standart `dataclasses` yerine, drop-in replacement olan `pydantic.dat
 
     Her zaman olduğu gibi, FastAPI'de ihtiyaca göre `def` ve `async def`’i birlikte kullanabilirsiniz.
 
-    Hangisini ne zaman kullanmanız gerektiğine dair hızlı bir hatırlatma isterseniz, [`async` ve `await`](../async.md#in-a-hurry){.internal-link target=_blank} dokümanındaki _"In a hurry?"_ bölümüne bakın.
+    Hangisini ne zaman kullanmanız gerektiğine dair hızlı bir hatırlatma isterseniz, [`async` ve `await`](../async.md#in-a-hurry) dokümanındaki _"In a hurry?"_ bölümüne bakın.
 
 9. Bu *path operation function* dataclass döndürmüyor (isterse döndürebilir), onun yerine dahili verilerle bir dictionary listesi döndürüyor.
 
