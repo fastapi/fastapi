@@ -60,7 +60,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ## 全局纵览 { #global-view }
 
-首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
+首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md) 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -271,4 +271,4 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ## 装饰器 `dependencies` 中的 `Security` { #security-in-decorator-dependencies }
 
-就像你可以在装饰器的 `dependencies` 参数中定义 `Depends` 的 `list`（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}），你也可以在那儿配合 `Security` 使用 `scopes`。
+就像你可以在装饰器的 `dependencies` 参数中定义 `Depends` 的 `list`（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)），你也可以在那儿配合 `Security` 使用 `scopes`。

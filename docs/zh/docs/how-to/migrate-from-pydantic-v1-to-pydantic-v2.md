@@ -22,7 +22,7 @@ FastAPI 0.126.0 移除了对 Pydantic v1 的支持，但在一段时间内仍支
 
 ## 官方指南 { #official-guide }
 
-Pydantic 有一份从 v1 迁移到 v2 的官方 <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">迁移指南</a>。
+Pydantic 有一份从 v1 迁移到 v2 的官方[迁移指南](https://docs.pydantic.dev/latest/migration/)。
 
 其中包含变更内容、校验如何更准确更严格、可能的注意事项等。
 
@@ -30,7 +30,7 @@ Pydantic 有一份从 v1 迁移到 v2 的官方 <a href="https://docs.pydantic.d
 
 ## 测试 { #tests }
 
-请确保你的应用有[测试](../tutorial/testing.md){.internal-link target=_blank}，并在持续集成（CI）中运行它们。
+请确保你的应用有[测试](../tutorial/testing.md)，并在持续集成（CI）中运行它们。
 
 这样你就可以升级并确保一切仍按预期工作。
 
@@ -38,7 +38,7 @@ Pydantic 有一份从 v1 迁移到 v2 的官方 <a href="https://docs.pydantic.d
 
 在很多情况下，如果你使用的是未做自定义的常规 Pydantic 模型，可以将从 Pydantic v1 迁移到 v2 的大部分过程自动化。
 
-你可以使用同一 Pydantic 团队提供的 <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a>。
+你可以使用同一 Pydantic 团队提供的[`bump-pydantic`](https://github.com/pydantic/bump-pydantic)。
 
 该工具会帮助你自动修改大部分需要变更的代码。
 
