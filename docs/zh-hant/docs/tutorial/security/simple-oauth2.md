@@ -146,7 +146,7 @@ UserInDB(
 
 /// info
 
-想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict){.internal-link target=_blank}。
+想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict)。
 
 ///
 
