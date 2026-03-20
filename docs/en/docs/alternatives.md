@@ -6,11 +6,11 @@ What inspired **FastAPI**, how it compares to alternatives and what it learned f
 
 **FastAPI** wouldn't exist if not for the previous work of others.
 
-There have been many tools created before that have helped inspire its creation.
+Many tools have been developed over time that helped inspire FastAPI.
 
 I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
 
-But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
+But at some point, there was no better option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 
 ## Previous tools { #previous-tools }
 
@@ -26,7 +26,7 @@ It was created to generate the HTML in the backend, not to create APIs used by a
 
 Django REST framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
 
-It is used by many companies including Mozilla, Red Hat and Eventbrite.
+It is used by many companies, including Mozilla, Red Hat, and Eventbrite.
 
 It was one of the first examples of **automatic API documentation**, and this was specifically one of the first ideas that inspired "the search for" **FastAPI**.
 
