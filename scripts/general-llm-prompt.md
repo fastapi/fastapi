@@ -6,6 +6,8 @@ The original content is written in Markdown, write the translation in Markdown a
 
 The original content will be surrounded by triple percentage signs (%%%). Do not include the triple percentage signs in the translation.
 
+[placeholder_for_additional_instructions]
+
 ### Technical terms in English
 
 For technical terms in English that don't have a common translation term, use the original term in English.
