@@ -221,6 +221,58 @@ def test_server_sent_event_null_id_rejected():
         ServerSentEvent(data="test", id="has\0null")
 
 
+def test_server_sent_event_newline_event_rejected():
+    with pytest.raises(ValueError, match="newline"):
+        ServerSentEvent(data="test", event="chat\npwned")
+
+
+def test_server_sent_event_cr_event_rejected():
+    with pytest.raises(ValueError, match="newline"):
+        ServerSentEvent(data="test", event="chat\rpwned")
+
+
+def test_server_sent_event_newline_id_rejected():
+    with pytest.raises(ValueError, match="newline"):
+        ServerSentEvent(data="test", id="42\npwned")
+
+
+def test_server_sent_event_cr_id_rejected():
+    with pytest.raises(ValueError, match="newline"):
+        ServerSentEvent(data="test", id="42\rpwned")
+
+
+def test_format_sse_event_strips_newline_in_event():
+    from fastapi.sse import format_sse_event
+
+    result = format_sse_event(event="chat\npwned", data_str="hello")
+    assert b"\npwned" not in result
+    assert b"event: chatpwned\n" in result
+
+
+def test_format_sse_event_strips_cr_in_event():
+    from fastapi.sse import format_sse_event
+
+    result = format_sse_event(event="chat\rpwned", data_str="hello")
+    assert b"\rpwned" not in result
+    assert b"event: chatpwned\n" in result
+
+
+def test_format_sse_event_strips_newline_in_id():
+    from fastapi.sse import format_sse_event
+
+    result = format_sse_event(id="42\npwned", data_str="hello")
+    assert b"\npwned" not in result
+    assert b"id: 42pwned\n" in result
+
+
+def test_format_sse_event_strips_cr_in_id():
+    from fastapi.sse import format_sse_event
+
+    result = format_sse_event(id="42\rpwned", data_str="hello")
+    assert b"\rpwned" not in result
+    assert b"id: 42pwned\n" in result
+
+
 def test_server_sent_event_negative_retry_rejected():
     with pytest.raises(ValueError):
         ServerSentEvent(data="test", retry=-1)
