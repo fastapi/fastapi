@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, get_sse_data_type
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -316,3 +316,124 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# ---------------------------------------------------------------------------
+# Generic ServerSentEvent[T] tests
+# ---------------------------------------------------------------------------
+
+
+def test_get_sse_data_type_parameterized():
+    """get_sse_data_type returns the type argument for ServerSentEvent[T]."""
+    assert get_sse_data_type(ServerSentEvent[Item]) is Item
+
+
+def test_get_sse_data_type_bare():
+    """get_sse_data_type returns None for bare ServerSentEvent."""
+    assert get_sse_data_type(ServerSentEvent) is None
+
+
+def test_get_sse_data_type_non_sse():
+    """get_sse_data_type returns None for unrelated types."""
+    assert get_sse_data_type(Item) is None
+    assert get_sse_data_type(str) is None
+    assert get_sse_data_type(None) is None
+
+
+def test_generic_sse_construction_validates_data():
+    """ServerSentEvent[Item] requires data to be an Item."""
+    item = Item(name="Foo", description=None)
+    evt = ServerSentEvent[Item](data=item, event="update")
+    assert evt.data == item
+    assert evt.event == "update"
+
+
+def test_generic_sse_rejects_wrong_type():
+    """ServerSentEvent[Item] rejects data that is not an Item."""
+    import pytest
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        ServerSentEvent[Item](data="not an item")
+
+
+def test_generic_sse_rejects_none_data():
+    """ServerSentEvent[Item] rejects None as data (use Item | None if optional)."""
+    import pytest
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        ServerSentEvent[Item]()
+
+
+def test_generic_sse_optional_data_allows_none():
+    """ServerSentEvent[Item | None] accepts None as data."""
+    evt = ServerSentEvent[Item | None]()
+    assert evt.data is None
+
+
+def test_bare_sse_still_accepts_none_data():
+    """Bare ServerSentEvent (T=Any) still accepts None (backward compat)."""
+    evt = ServerSentEvent()
+    assert evt.data is None
+
+
+# App-level test for generic SSE streaming and OpenAPI schema
+
+_generic_app = FastAPI()
+
+
+@_generic_app.get("/stream", response_class=EventSourceResponse)
+async def _stream_typed() -> AsyncIterable[ServerSentEvent[Item]]:
+    for i, item in enumerate(items):
+        yield ServerSentEvent[Item](data=item, event="item", id=str(i + 1))
+
+
+def test_generic_sse_streams_correctly():
+    with TestClient(_generic_app) as c:
+        response = c.get("/stream")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+    import json
+
+    first = json.loads(data_lines[0][len("data: ") :])
+    assert first["name"] == "Plumbus"
+
+
+def test_generic_sse_openapi_has_content_schema():
+    with TestClient(_generic_app) as c:
+        response = c.get("/openapi.json")
+    assert response.status_code == 200
+    schema = response.json()
+    sse_schema = schema["paths"]["/stream"]["get"]["responses"]["200"]["content"][
+        "text/event-stream"
+    ]["itemSchema"]
+    assert sse_schema.get("required") == ["data"]
+    data_prop = sse_schema["properties"]["data"]
+    assert data_prop.get("contentMediaType") == "application/json"
+    content_schema = data_prop.get("contentSchema", {})
+    # Should reference Item (either inline or via $ref)
+    assert "$ref" in content_schema or content_schema.get("title") == "Item"
+
+
+def test_bare_sse_openapi_has_no_content_schema():
+    """Bare ServerSentEvent return type produces no contentSchema (backward compat)."""
+    bare_app = FastAPI()
+
+    @bare_app.get("/stream", response_class=EventSourceResponse)
+    async def _bare_stream() -> AsyncIterable[ServerSentEvent]:
+        yield ServerSentEvent(comment="ping")
+
+    with TestClient(bare_app) as c:
+        response = c.get("/openapi.json")
+    assert response.status_code == 200
+    schema = response.json()
+    sse_schema = schema["paths"]["/stream"]["get"]["responses"]["200"]["content"][
+        "text/event-stream"
+    ]["itemSchema"]
+    assert "required" not in sse_schema
+    assert "contentSchema" not in sse_schema["properties"]["data"]

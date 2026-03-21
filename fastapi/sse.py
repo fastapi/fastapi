@@ -1,8 +1,15 @@
-from typing import Annotated, Any
+from typing import Annotated, Any, Generic, TypeVar
 
 from annotated_doc import Doc
-from pydantic import AfterValidator, BaseModel, Field, model_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 from starlette.responses import StreamingResponse
+
+Data = TypeVar("Data")
+"""Type variable for the `data` payload of a `ServerSentEvent`.
+
+Use ``ServerSentEvent[MyModel]`` to indicate that every event in the
+stream carries a ``MyModel`` instance as its ``data`` field.
+"""
 
 # Canonical SSE event schema matching the OpenAPI 3.2 spec
 # (Section 4.14.4 "Special Considerations for Server-Sent Events")
@@ -39,7 +46,7 @@ def _check_id_no_null(v: str | None) -> str | None:
     return v
 
 
-class ServerSentEvent(BaseModel):
+class ServerSentEvent(BaseModel, Generic[Data]):
     """Represents a single Server-Sent Event.
 
     When `yield`ed from a *path operation function* that uses
@@ -56,8 +63,14 @@ class ServerSentEvent(BaseModel):
     quotes).
     """
 
+    # validate_default=True ensures that when Data is a concrete type (e.g.
+    # ServerSentEvent[Item]), omitting `data` raises a ValidationError rather
+    # than silently storing the None default.  Without this, Pydantic skips
+    # default validation and None would be accepted even when Data=Item.
+    model_config = ConfigDict(validate_default=True)
+
     data: Annotated[
-        Any,
+        Data,
         Doc(
             """
             The event payload.
@@ -66,10 +79,19 @@ class ServerSentEvent(BaseModel):
             string, number, etc. It is **always** serialized to JSON: strings
             are quoted (`"hello"` becomes `data: "hello"` on the wire).
 
+            The type of `data` is controlled by the type variable `Data`:
+
+            * `ServerSentEvent[Item]` — `data` must be an `Item` instance
+              (non-nullable; omitting `data` will raise a validation error).
+            * `ServerSentEvent[Item | None]` — `data` may be `None`, which is
+              useful for comment-only or metadata events.
+            * Bare `ServerSentEvent` (no type parameter) — `data` accepts any
+              value including `None`, preserving backward compatibility.
+
             Mutually exclusive with `raw_data`.
             """
         ),
-    ] = None
+    ] = None  # type: ignore[assignment]
     raw_data: Annotated[
         str | None,
         Doc(
@@ -220,3 +242,30 @@ KEEPALIVE_COMMENT = b": ping\n\n"
 # Seconds between keep-alive pings when a generator is idle.
 # Private but importable so tests can monkeypatch it.
 _PING_INTERVAL: float = 15.0
+
+
+def get_sse_data_type(annotation: Any) -> Any | None:
+    """Extract the ``Data`` type from a ``ServerSentEvent[Data]`` annotation.
+
+    Returns ``None`` for bare ``ServerSentEvent`` (no type parameter) or for
+    any annotation that is not a parameterized ``ServerSentEvent``.
+
+    Used by the routing layer to build the ``stream_item_field`` for OpenAPI
+    schema generation when the endpoint yields ``ServerSentEvent[Data]``.
+
+    Pydantic's generic BaseModel creates a real subclass (not a
+    ``_GenericAlias``), so ``get_origin`` returns ``None``.  Instead, we
+    inspect ``__pydantic_generic_metadata__`` which Pydantic always attaches
+    to parameterised models.
+    """
+    if not (isinstance(annotation, type) and issubclass(annotation, ServerSentEvent)):
+        return None
+    if annotation is ServerSentEvent:
+        return None
+    meta = getattr(annotation, "__pydantic_generic_metadata__", None)
+    if not meta:
+        return None
+    args = meta.get("args", ())
+    if not args or isinstance(args[0], TypeVar):
+        return None
+    return args[0]
