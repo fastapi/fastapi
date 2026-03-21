@@ -33,9 +33,18 @@ class EventSourceResponse(StreamingResponse):
     media_type = "text/event-stream"
 
 
-def _check_id_no_null(v: str | None) -> str | None:
-    if v is not None and "\0" in v:
-        raise ValueError("SSE 'id' must not contain null characters")
+def _check_id_no_null_or_newline(v: str | None) -> str | None:
+    if v is not None:
+        if "\0" in v:
+            raise ValueError("SSE 'id' must not contain null characters")
+        if "\n" in v or "\r" in v:
+            raise ValueError("SSE 'id' must not contain newline characters")
+    return v
+
+
+def _check_event_no_newline(v: str | None) -> str | None:
+    if v is not None and ("\n" in v or "\r" in v):
+        raise ValueError("SSE 'event' must not contain newline characters")
     return v
 
 
@@ -86,18 +95,21 @@ class ServerSentEvent(BaseModel):
     ] = None
     event: Annotated[
         str | None,
+        AfterValidator(_check_event_no_newline),
         Doc(
             """
             Optional event type name.
 
             Maps to `addEventListener(event, ...)` on the browser. When omitted,
             the browser dispatches on the generic `message` event.
+
+            **Must not contain newline (`\\n`) or carriage return (`\\r`) characters.**
             """
         ),
     ] = None
     id: Annotated[
         str | None,
-        AfterValidator(_check_id_no_null),
+        AfterValidator(_check_id_no_null_or_newline),
         Doc(
             """
             Optional event ID.
@@ -197,6 +209,7 @@ def format_sse_event(
             lines.append(f": {line}")
 
     if event is not None:
+        event = event.replace("\r", "").replace("\n", "")
         lines.append(f"event: {event}")
 
     if data_str is not None:
@@ -204,6 +217,7 @@ def format_sse_event(
             lines.append(f"data: {line}")
 
     if id is not None:
+        id = id.replace("\r", "").replace("\n", "").replace("\0", "")
         lines.append(f"id: {id}")
 
     if retry is not None:
