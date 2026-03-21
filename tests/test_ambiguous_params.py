@@ -73,6 +73,7 @@ def test_multiple_annotations():
     response = client.get("/multi-query", params={"foo": "1"})
     assert response.status_code == 422
 
+
 def test_query_invalid_type():
     app = FastAPI()
 
