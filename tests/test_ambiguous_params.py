@@ -73,25 +73,24 @@ def test_multiple_annotations():
     response = client.get("/multi-query", params={"foo": "1"})
     assert response.status_code == 422
 
-def test_query_edge_cases():
+def test_query_invalid_type():
     app = FastAPI()
-    @app.get("/edge-query")
-    async def read_edge(q: Annotated[str | None, Query()] = None):
+
+    @app.get("/items/")
+    async def read_items(q: Annotated[int, Query(gt=0)]):
         return {"q": q}
 
     client = TestClient(app)
 
-    # Empty string
-    response = client.get("/edge-query?q=")
-    assert response.status_code == 200
-    assert response.json() == {"q": ""}
+    # Invalid type (string instead of int)
+    response = client.get("/items/", params={"q": "not-an-int"})
+    assert response.status_code == 422
 
-    # Special characters
-    response = client.get("/edge-query", params={"q": "@fastapi#123"})
-    assert response.status_code == 200
-    assert response.json() == {"q": "@fastapi#123"}
+    # Invalid value (less than gt constraint)
+    response = client.get("/items/", params={"q": "-1"})
+    assert response.status_code == 422
 
-    # Unicode input
-    response = client.get("/edge-query?q=नमस्ते")
+    # Valid case
+    response = client.get("/items/", params={"q": "5"})
     assert response.status_code == 200
-    assert response.json() == {"q": "नमस्ते"}
+    assert response.json() == {"q": 5}
