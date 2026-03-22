@@ -17,6 +17,9 @@
 <a href="https://pypi.org/project/fastapi">
     <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
+    <a href="https://gitcgr.com/fastapi/fastapi">
+      <img src="https://gitcgr.com/badge/fastapi/fastapi.svg" alt="gitcgr" />
+    </a>
 </p>
 
 ---
