@@ -340,6 +340,15 @@ def test_get_sse_data_type_non_sse():
     assert get_sse_data_type(None) is None
 
 
+def test_get_sse_data_type_subclass_no_type_param():
+    """get_sse_data_type returns None for a plain ServerSentEvent subclass."""
+
+    class MyEvent(ServerSentEvent):
+        pass
+
+    assert get_sse_data_type(MyEvent) is None
+
+
 def test_generic_sse_construction_validates_data():
     """ServerSentEvent[Item] requires data to be an Item."""
     item = Item(name="Foo", description=None)

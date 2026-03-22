@@ -264,9 +264,7 @@ def get_sse_data_type(annotation: Any) -> Any | None:
     if annotation is ServerSentEvent:
         return None
     meta = getattr(annotation, "__pydantic_generic_metadata__", None)
-    if not meta:
-        return None
-    args = meta.get("args", ())
+    args = meta.get("args", ()) if meta else ()
     if not args or isinstance(args[0], TypeVar):
         return None
     return args[0]
