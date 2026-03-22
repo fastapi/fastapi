@@ -438,11 +438,14 @@ def test_bare_sse_openapi_has_no_content_schema():
         yield ServerSentEvent(comment="ping")
 
     with TestClient(bare_app) as c:
-        response = c.get("/openapi.json")
-    assert response.status_code == 200
-    schema = response.json()
+        schema_response = c.get("/openapi.json")
+        stream_response = c.get("/stream")
+    assert schema_response.status_code == 200
+    schema = schema_response.json()
     sse_schema = schema["paths"]["/stream"]["get"]["responses"]["200"]["content"][
         "text/event-stream"
     ]["itemSchema"]
     assert "required" not in sse_schema
     assert "contentSchema" not in sse_schema["properties"]["data"]
+    assert stream_response.status_code == 200
+    assert ": ping\n" in stream_response.text
