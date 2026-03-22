@@ -222,9 +222,15 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 ### Required, can be `None` { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+You can declare that a parameter's type can be `None`, but that it's still **required** (it must be included in the request). This is useful when you want to require the parameter to be present, but allow the value to be `None`.
 
 To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+
+/// info
+
+When the parameter is required (no default value), omitting it will result in a **422 Validation Error**. The `None` type is included so that the OpenAPI schema correctly represents the parameter as **nullable**, and it allows your code to handle a `None` value explicitly. However, note that there's no standard HTTP mechanism to send `None` as a query parameter value from a client.
+
+///
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
