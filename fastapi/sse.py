@@ -1,10 +1,9 @@
 from typing import Annotated, Any, Generic
 
-from typing_extensions import TypeVar
-
 from annotated_doc import Doc
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 from starlette.responses import StreamingResponse
+from typing_extensions import TypeVar
 
 Data = TypeVar("Data", default=Any)
 """Type variable for the `data` payload of a `ServerSentEvent`.
