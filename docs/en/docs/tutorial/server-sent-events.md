@@ -93,6 +93,31 @@ This is useful for sending pre-formatted text, log lines, or special <dfn title=
 
 ///
 
+## Typed `ServerSentEvent` { #typed-serversentevent }
+
+When you yield plain `ServerSentEvent` objects, the `data` field accepts any value and the OpenAPI schema has no `contentSchema` for the payload.
+
+If you want **typed data validation** and a `contentSchema` in the OpenAPI spec while still having full control over SSE fields like `event`, `id`, `retry`, and `comment`, you can parameterize `ServerSentEvent` with a type:
+
+{* ../../docs_src/server_sent_events/tutorial006_py310.py hl[4,23,25] *}
+
+`ServerSentEvent[Item]` means:
+
+* `data` **must** be an `Item` instance — omitting it or passing the wrong type raises a validation error.
+* The generated OpenAPI schema includes a `contentSchema` referencing `Item` inside the SSE `data` field.
+
+/// tip
+
+If you need events where `data` is optional (for example, comment-only keep-alive pings), use `ServerSentEvent[Item | None]` instead.
+
+///
+
+/// note
+
+Bare `ServerSentEvent` (without a type parameter) still works exactly as before — `data` accepts any value including `None`.
+
+///
+
 ## Resuming with `Last-Event-ID` { #resuming-with-last-event-id }
 
 When a browser reconnects after a connection drop, it sends the last received `id` in the `Last-Event-ID` header.
