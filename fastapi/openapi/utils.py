@@ -242,7 +242,20 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation_id = route.operation_id or route.unique_id
+    if route.operation_id:
+        operation_id = route.operation_id
+    elif len(route.methods) > 1:
+        # When a route handles multiple methods, the default unique_id is based on
+        # the first method only (via generate_unique_id). Append the actual method
+        # to avoid duplicate operation IDs across methods. See #13175.
+        base = route.unique_id
+        # Remove the trailing _<method> suffix that generate_unique_id appends
+        first_method = f"_{list(route.methods)[0].lower()}"
+        if base.endswith(first_method):
+            base = base[: -len(first_method)]
+        operation_id = f"{base}_{method.lower()}"
+    else:
+        operation_id = route.unique_id
     if operation_id in operation_ids:
         endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
         message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
