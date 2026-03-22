@@ -221,6 +221,11 @@ def test_server_sent_event_null_id_rejected():
         ServerSentEvent(data="test", id="has\0null")
 
 
+def test_server_sent_event_null_event_rejected():
+    with pytest.raises(ValueError, match="null"):
+        ServerSentEvent(data="test", event="has\0null")
+
+
 def test_server_sent_event_newline_event_rejected():
     with pytest.raises(ValueError, match="newline"):
         ServerSentEvent(data="test", event="chat\npwned")
