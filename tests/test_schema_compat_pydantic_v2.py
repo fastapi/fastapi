@@ -65,7 +65,7 @@ def test_openapi_schema(client: TestClient):
             },
             "components": {
                 "schemas": IsOneOf(
-                    # Newer Pydantic: no top-level OtherRole
+                    # Pydantic >= 2.11: no top-level OtherRole
                     {
                         "PlatformRole": {
                             "type": "string",
@@ -88,7 +88,7 @@ def test_openapi_schema(client: TestClient):
                             "title": "User",
                         },
                     },
-                    # Older Pydantic: adds a top-level OtherRole schema
+                    # Pydantic < 2.11: adds a top-level OtherRole schema
                     {
                         "OtherRole": {
                             "enum": [],
