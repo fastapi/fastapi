@@ -88,11 +88,11 @@ jobs:
             coverage: coverage
             uv-resolution: highest
             deprecated-tests: "test-deprecation"
-          # - os: macos-latest
-          #  python-version: "3.14t"
-          #  coverage: coverage
-          #  uv-resolution: lowest-direct
-          #  deprecated-tests: "false"
+          - os: macos-latest
+            python-version: "3.14t"
+            coverage: coverage
+            uv-resolution: lowest-direct
+            deprecated-tests: "false"
           - os: windows-latest
             python-version: "3.14t"
             coverage: coverage
