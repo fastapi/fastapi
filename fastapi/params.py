@@ -748,6 +748,12 @@ class Depends:
     use_cache: bool = True
     scope: Literal["function", "request"] | None = None
 
+    def __post_init__(self) -> None:
+        if self.dependency is not None and not callable(self.dependency):
+            raise ValueError(
+                f"Dependency must be a callable (function, class, etc.). "
+                f"Received: {type(self.dependency).__name__}"
+            )
 
 @dataclass(frozen=True)
 class Security(Depends):
