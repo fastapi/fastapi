@@ -220,7 +220,7 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Optional with `None` { #required-can-be-none }
+### Optional with `None` { #optional-with-none }
 
 You can declare that a parameter is optional and can accept `None`, even when using `Query` for validations.
 
