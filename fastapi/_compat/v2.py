@@ -51,7 +51,7 @@ def evaluate_forwardref(
         return try_eval_type(value, globalns, localns)[0]
     return _pydantic_typing_extra.eval_type_lenient(  # ty: ignore[deprecated]
         value, globalns, localns
-    )  # pragma: no cover
+    )
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
