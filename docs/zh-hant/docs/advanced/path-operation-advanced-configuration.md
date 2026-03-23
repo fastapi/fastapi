@@ -60,7 +60,7 @@
 
 你也可以宣告額外的回應及其模型、狀態碼等。
 
-文件中有完整章節說明，請見 [OpenAPI 中的額外回應](additional-responses.md){.internal-link target=_blank}。
+文件中有完整章節說明，請見 [OpenAPI 中的額外回應](additional-responses.md)。
 
 ## OpenAPI 額外資訊 { #openapi-extra }
 
@@ -68,7 +68,7 @@
 
 /// note | 技術細節
 
-在 OpenAPI 規格中，這稱為 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation 物件</a>。
+在 OpenAPI 規格中，這稱為 [Operation 物件](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object)。
 
 ///
 
@@ -82,7 +82,7 @@
 
 這是一個較低階的擴充介面。
 
-如果你只需要宣告額外回應，更方便的方式是使用 [OpenAPI 中的額外回應](additional-responses.md){.internal-link target=_blank}。
+如果你只需要宣告額外回應，更方便的方式是使用 [OpenAPI 中的額外回應](additional-responses.md)。
 
 ///
 

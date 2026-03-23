@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Increase lower bound to `pydantic >=2.9.0.` and fix the test suite. PR [#15139](https://github.com/fastapi/fastapi/pull/15139) by [@svlandeg](https://github.com/svlandeg).
+
 ### Docs
 
 * 📝 Fix duplicated words in docstrings. PR [#15116](https://github.com/fastapi/fastapi/pull/15116) by [@AhsanSheraz](https://github.com/AhsanSheraz).
@@ -20,6 +24,8 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh (update-outdated). PR [#15177](https://github.com/fastapi/fastapi/pull/15177) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15178](https://github.com/fastapi/fastapi/pull/15178) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh-hant (add-missing). PR [#15176](https://github.com/fastapi/fastapi/pull/15176) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh (add-missing). PR [#15175](https://github.com/fastapi/fastapi/pull/15175) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ja (update-outdated). PR [#15171](https://github.com/fastapi/fastapi/pull/15171) by [@tiangolo](https://github.com/tiangolo).
@@ -42,6 +48,8 @@ hide:
 
 ### Internal
 
+* ⬆ Bump authlib from 1.6.7 to 1.6.9. PR [#15128](https://github.com/fastapi/fastapi/pull/15128) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔨 Tweak translation workflow and translation fixer tool. PR [#15166](https://github.com/fastapi/fastapi/pull/15166) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔨 Fix `commit_in_place` passed via env variable in `translate.yml` workflow. PR [#15151](https://github.com/fastapi/fastapi/pull/15151) by [@YuriiMotov](https://github.com/YuriiMotov).
