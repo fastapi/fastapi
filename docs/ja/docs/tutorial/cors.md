@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORSまたは「Cross-Origin Resource Sharing」</a> は、ブラウザで実行されているフロントエンドにバックエンドと通信するJavaScriptコードがあり、そのバックエンドがフロントエンドとは異なる「オリジン」にある状況を指します。
+[CORSまたは「Cross-Origin Resource Sharing」](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) は、ブラウザで実行されているフロントエンドにバックエンドと通信するJavaScriptコードがあり、そのバックエンドがフロントエンドとは異なる「オリジン」にある状況を指します。
 
 ## オリジン { #origin }
 
@@ -56,10 +56,10 @@
 * `allow_origins` - オリジン間リクエストを許可するオリジンのリスト。例えば、`['https://example.org', 'https://www.example.org']`。`['*']`を使用して任意のオリジンを許可できます。
 * `allow_origin_regex` - オリジン間リクエストを許可するオリジンの正規表現文字列。例えば、`'https://.*\.example\.org'`。
 * `allow_methods` - オリジン間リクエストで許可するHTTPメソッドのリスト。デフォルトは `['GET']` です。`['*']`を使用してすべての標準メソッドを許可できます。
-* `allow_headers` - オリジン間リクエストでサポートするHTTPリクエストヘッダーのリスト。デフォルトは `[]` です。`['*']`を使用して、すべてのヘッダーを許可できます。<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">シンプルなCORSリクエスト</a>では、 `Accept` 、 `Accept-Language` 、 `Content-Language` 、 `Content-Type` ヘッダーが常に許可されます。
+* `allow_headers` - オリジン間リクエストでサポートするHTTPリクエストヘッダーのリスト。デフォルトは `[]` です。`['*']`を使用して、すべてのヘッダーを許可できます。[シンプルなCORSリクエスト](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)では、 `Accept` 、 `Accept-Language` 、 `Content-Language` 、 `Content-Type` ヘッダーが常に許可されます。
 * `allow_credentials` - オリジン間リクエストでCookieをサポートする必要があることを示します。デフォルトは `False` です。
 
-    `allow_credentials` が `True` に設定されている場合、`allow_origins`、`allow_methods`、`allow_headers` のいずれも `['*']` に設定できません。これらはすべて<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">明示的に指定</a>する必要があります。
+    `allow_credentials` が `True` に設定されている場合、`allow_origins`、`allow_methods`、`allow_headers` のいずれも `['*']` に設定できません。これらはすべて[明示的に指定](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards)する必要があります。
 
 * `expose_headers` - ブラウザからアクセスできるようにするレスポンスヘッダーを示します。デフォルトは `[]` です。
 * `max_age` - ブラウザがCORSレスポンスをキャッシュする最大時間を秒単位で設定します。デフォルトは `600` です。
@@ -78,7 +78,7 @@
 
 ## より詳しい情報 { #more-info }
 
-<abbr title="Cross-Origin Resource Sharing – オリジン間リソース共有">CORS</abbr>についてより詳しい情報は、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a> を参照して下さい。
+<abbr title="Cross-Origin Resource Sharing - オリジン間リソース共有">CORS</abbr>についてより詳しい情報は、[Mozilla CORS documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) を参照して下さい。
 
 /// note | 技術詳細
 

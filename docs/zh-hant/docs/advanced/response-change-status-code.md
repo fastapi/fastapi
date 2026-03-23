@@ -1,6 +1,6 @@
 # 回應 - 變更狀態碼 { #response-change-status-code }
 
-你可能已經讀過，可以設定預設的[回應狀態碼](../tutorial/response-status-code.md){.internal-link target=_blank}。
+你可能已經讀過，可以設定預設的[回應狀態碼](../tutorial/response-status-code.md)。
 
 但有些情況你需要回傳與預設不同的狀態碼。
 
@@ -26,6 +26,6 @@
 
 若你宣告了 `response_model`，它仍會被用來過濾並轉換你回傳的物件。
 
-FastAPI 會使用那個「*暫時的*」回應來取得狀態碼（以及 Cookies 和標頭），並將它們放入最終回應中；最終回應包含你回傳的值，且會被任何 `response_model` 過濾。
+**FastAPI** 會使用那個「*暫時的*」回應來取得狀態碼（以及 Cookies 和標頭），並將它們放入最終回應中；最終回應包含你回傳的值，且會被任何 `response_model` 過濾。
 
 你也可以在相依性（dependencies）中宣告 `Response` 參數，並在其中設定狀態碼。但請注意，最後被設定的值會生效。

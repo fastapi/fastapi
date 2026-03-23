@@ -15,7 +15,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 最初のステップは、FastAPIのインストールです。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成して有効化し、それから **FastAPIをインストール** してください:
+[仮想環境](../virtual-environments.md) を作成して有効化し、それから **FastAPIをインストール** してください:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | 備考
 
-`pip install "fastapi[standard]"` でインストールすると、`fastapi-cloud-cli` を含むいくつかのデフォルトのオプション標準依存関係が付属します。これにより、<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> にデプロイできます。
+`pip install "fastapi[standard]"` でインストールすると、`fastapi-cloud-cli` を含むいくつかのデフォルトのオプション標準依存関係が付属します。これにより、[FastAPI Cloud](https://fastapicloud.com) にデプロイできます。
 
 これらのオプション依存関係が不要な場合は、代わりに `pip install fastapi` をインストールできます。
 
 標準依存関係はインストールしたいが `fastapi-cloud-cli` は不要な場合は、`pip install "fastapi[standard-no-fastapi-cloud-cli]"` でインストールできます。
+
+///
+
+/// tip | 豆知識
+
+FastAPI には [VS Code の公式拡張機能](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（および Cursor）があります。path operation エクスプローラー、path operation 検索、テスト内の CodeLens ナビゲーション（テストから定義へジャンプ）、そして FastAPI Cloud へのデプロイやログなど、さまざまな機能をエディターから利用できます。
 
 ///
 

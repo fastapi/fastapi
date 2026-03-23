@@ -1,6 +1,6 @@
 # 歷史、設計與未來 { #history-design-and-future }
 
-不久之前，<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">一位 **FastAPI** 使用者提問</a>：
+不久之前，[一位 **FastAPI** 使用者提問](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920)：
 
 > 這個專案的歷史是什麼？看起來它在短短幾週內從默默無名變得非常厲害 [...]
 
@@ -14,7 +14,7 @@
 
 **FastAPI** 的歷史，在很大程度上也是其前身工具的歷史。
 
-如在[替代方案](alternatives.md){.internal-link target=_blank}章節所述：
+如在[替代方案](alternatives.md)一節所述：
 
 <blockquote markdown="1">
 
@@ -44,9 +44,9 @@
 
 我在最受歡迎的 Python 編輯器中測試了多個想法：PyCharm、VS Code、基於 Jedi 的編輯器。
 
-根據最新的 <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python 開發者調查</a>，這些工具涵蓋約 80% 的使用者。
+根據最新的 [Python 開發者調查](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)，這些工具涵蓋約 80% 的使用者。
 
-這表示 **FastAPI** 已針對 80% 的 Python 開發者所使用的編輯器進行過專門測試。而由於其他多數編輯器的行為也類似，這些優點幾乎在所有編輯器上都能生效。
+這表示 **FastAPI** 已針對 80% 的 Python 開發者所使用的編輯器進行過專門測試。而由於其他多數編輯器的行為也類似，這些優點擴及實際上幾乎所有編輯器。
 
 藉此我找到了盡可能減少程式碼重複、在各處提供自動補全、型別與錯誤檢查等的最佳方式。
 
@@ -54,11 +54,11 @@
 
 ## 需求 { #requirements }
 
-在測試多種替代方案後，我決定採用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>，因為它的優勢。
+在測試多種替代方案後，我決定採用 [**Pydantic**](https://docs.pydantic.dev/)，因為它的優勢。
 
 隨後我也對它做出貢獻，使其完全符合 JSON Schema、支援以不同方式定義約束，並依據在多款編輯器中的測試結果改進編輯器支援（型別檢查、自動補全）。
 
-在開發過程中，我也對 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>（另一個關鍵依賴）做出貢獻。
+在開發過程中，我也對 [**Starlette**](https://www.starlette.dev/)（另一個關鍵依賴）做出貢獻。
 
 ## 開發 { #development }
 
@@ -76,4 +76,4 @@
 
 **FastAPI** 的前景非常光明。
 
-也非常感謝[你的幫助](help-fastapi.md){.internal-link target=_blank}。
+也非常感謝[你的幫助](help-fastapi.md)。

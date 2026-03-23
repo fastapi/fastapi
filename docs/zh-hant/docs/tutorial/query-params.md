@@ -182,6 +182,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 提示
 
-你也可以像在[路徑參數](path-params.md#predefined-values){.internal-link target=_blank}中一樣使用 `Enum`。
+你也可以像在[路徑參數](path-params.md#predefined-values)中一樣使用 `Enum`。
 
 ///
