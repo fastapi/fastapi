@@ -73,7 +73,7 @@ hide:
 * ⬆ Bump actions/download-artifact from 7 to 8. PR [#15020](https://github.com/fastapi/fastapi/pull/15020) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/upload-artifact from 6 to 7. PR [#15019](https://github.com/fastapi/fastapi/pull/15019) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.135.1
+## 0.135.1 (2026-03-01)
 
 ### Fixes
 
@@ -90,14 +90,14 @@ hide:
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15029](https://github.com/fastapi/fastapi/pull/15029) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#15036](https://github.com/fastapi/fastapi/pull/15036) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.135.0
+## 0.135.0 (2026-03-01)
 
 ### Features
 
 * ✨ Add support for Server Sent Events. PR [#15030](https://github.com/fastapi/fastapi/pull/15030) by [@tiangolo](https://github.com/tiangolo).
     * New docs: [Server-Sent Events (SSE)](https://fastapi.tiangolo.com/tutorial/server-sent-events/).
 
-## 0.134.0
+## 0.134.0 (2026-02-27)
 
 ### Features
 
@@ -117,7 +117,7 @@ hide:
 
 * 🔨 Run tests with `pytest-xdist` and `pytest-cov`. PR [#14992](https://github.com/fastapi/fastapi/pull/14992) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.133.1
+## 0.133.1 (2026-02-25)
 
 ### Features
 
