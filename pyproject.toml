@@ -43,7 +43,7 @@ classifiers = [
 ]
 dependencies = [
     "starlette>=0.46.0",
-    "pydantic>=2.11.0",
+    "pydantic>=2.12.0",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
