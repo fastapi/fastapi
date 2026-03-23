@@ -104,7 +104,7 @@ jobs:
         run: uv sync --no-dev --group tests --extra all
       - name: Ensure that we have the lowest supported Pydantic version
         if: matrix.uv-resolution == 'lowest-direct'
-        run: uv pip install "pydantic==2.9.0"
+        run: uv pip install "pydantic==2.11.0"
       - name: Install Starlette from source
         if: matrix.starlette-src == 'starlette-git'
         run: uv pip install "git+https://github.com/Kludex/starlette@main"
