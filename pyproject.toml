@@ -59,6 +59,7 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 [project.optional-dependencies]
 standard = [
     "fastapi-cli[standard] >=0.0.8",
+    "fastar >= 0.9.0",
     # For the test client
     "httpx >=0.23.0,<1.0.0",
     # For templates
