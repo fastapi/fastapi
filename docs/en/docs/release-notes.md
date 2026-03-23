@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 💄 Fix code blocks in reference docs overflowing table width. PR [#15094](https://github.com/fastapi/fastapi/pull/15094) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Fix duplicated words in docstrings. PR [#15116](https://github.com/fastapi/fastapi/pull/15116) by [@AhsanSheraz](https://github.com/AhsanSheraz).
 * 📝 Add docs for `pyproject.toml` with `entrypoint`. PR [#15075](https://github.com/fastapi/fastapi/pull/15075) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update links in docs to no longer use the classes external-link and internal-link. PR [#15061](https://github.com/fastapi/fastapi/pull/15061) by [@tiangolo](https://github.com/tiangolo).
