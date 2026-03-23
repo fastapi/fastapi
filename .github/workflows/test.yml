@@ -50,6 +50,7 @@ jobs:
       matrix:
         os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
+        deprecated-tests: false
         uv-resolution:
           - highest
         starlette-src:
@@ -60,23 +61,33 @@ jobs:
             python-version: "3.10"
             coverage: coverage
             uv-resolution: lowest-direct
+            deprecated-tests: false
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
             uv-resolution: lowest-direct
+            deprecated-tests: false
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
             uv-resolution: highest
+            deprecated-tests: false
           - os: ubuntu-latest
             python-version: "3.13"
             uv-resolution: highest
             codspeed: codspeed
+            deprecated-tests: false
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
             starlette-src: starlette-git
+            deprecated-tests: false
+          - os: ubuntu-latest
+            python-version: "3.14"
+            coverage: coverage
+            uv-resolution: highest
+            deprecated-tests: true
           # - os: macos-latest
           #  python-version: "3.14t"
           #  coverage: coverage
@@ -85,6 +96,7 @@ jobs:
             python-version: "3.14t"
             coverage: coverage
             uv-resolution: highest
+            deprecated-tests: false
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
@@ -113,6 +125,9 @@ jobs:
       - name: Install Starlette from source
         if: matrix.starlette-src == 'starlette-git'
         run: uv pip install "git+https://github.com/Kludex/starlette@main"
+      - name: Install deprecated libraries just for testing
+        if: matrix.deprecated-tests == 'true'
+        run: uv pip install orjson ujson
       - run: mkdir coverage
       - name: Test
         run: uv run --no-sync bash scripts/test-cov.sh
