@@ -12,7 +12,7 @@
 
 这些额外信息会原样添加到该模型输出的 JSON Schema 中，并会在 API 文档中使用。
 
-你可以使用属性 `model_config`，它接收一个 `dict`，详见 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 文档：配置</a>。
+你可以使用属性 `model_config`，它接收一个 `dict`，详见 [Pydantic 文档：配置](https://docs.pydantic.dev/latest/api/config/)。
 
 你可以设置 `"json_schema_extra"`，其值为一个 `dict`，包含你希望出现在生成 JSON Schema 中的任意附加数据，包括 `examples`。
 
@@ -145,12 +145,12 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 OpenAPI 还在规范的其他部分添加了 `example` 和 `examples` 字段：
 
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object`（规范中）</a>，被 FastAPI 的以下内容使用：
+- [`Parameter Object`（规范中）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object)，被 FastAPI 的以下内容使用：
     - `Path()`
     - `Query()`
     - `Header()`
     - `Cookie()`
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object` 中的 `content` 字段里的 `Media Type Object`（规范中）</a>，被 FastAPI 的以下内容使用：
+- [`Request Body Object` 中的 `content` 字段里的 `Media Type Object`（规范中）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object)，被 FastAPI 的以下内容使用：
     - `Body()`
     - `File()`
     - `Form()`
@@ -163,7 +163,7 @@ OpenAPI 还在规范的其他部分添加了 `example` 和 `examples` 字段：
 
 ### JSON Schema 的 `examples` 字段 { #json-schemas-examples-field }
 
-后来，JSON Schema 在新版本的规范中添加了 <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> 字段。
+后来，JSON Schema 在新版本的规范中添加了 [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) 字段。
 
 随后新的 OpenAPI 3.1.0 基于最新版本（JSON Schema 2020-12），其中包含了这个新的 `examples` 字段。
 

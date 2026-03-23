@@ -57,7 +57,7 @@ FastAPI 在 0.95.0 版本中新增了对 `Annotated` 的支持（并开始推荐
 
 如果你的版本较旧，尝试使用 `Annotated` 会报错。
 
-在使用 `Annotated` 之前，请确保[升级 FastAPI 版本](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}到至少 0.95.1。
+在使用 `Annotated` 之前，请确保[升级 FastAPI 版本](../../deployment/versions.md#upgrading-the-fastapi-versions)到至少 0.95.1。
 
 ///
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 注意
 
-如果不了解异步，请参阅文档中关于 `async` 和 `await` 的章节：[异步：*“着急了？”*](../../async.md#in-a-hurry){.internal-link target=_blank}。
+如果不了解异步，请参阅文档中关于 `async` 和 `await` 的章节：[异步：*“着急了？”*](../../async.md#in-a-hurry)。
 
 ///
 

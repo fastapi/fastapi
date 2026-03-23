@@ -14,8 +14,8 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 任何可用於下列裝飾器的函式：
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 或
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 都可以作為 **FastAPI** 的相依。
 
@@ -87,7 +87,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 /// note | 技術細節
 
-這能運作，多虧了 Python 的 <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>。
+這能運作，多虧了 Python 的 [Context Managers](https://docs.python.org/3/library/contextlib.html)。
 
 **FastAPI** 在內部使用它們來達成這點。
 
@@ -111,7 +111,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-如果你想攔截例外並據此回傳自訂回應，請建立一個[自訂例外處理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}。
+如果你想攔截例外並據此回傳自訂回應，請建立一個[自訂例外處理器](../handling-errors.md#install-custom-exception-handlers)。
 
 ## 含 `yield` 與 `except` 的相依 { #dependencies-with-yield-and-except }
 
@@ -233,14 +233,14 @@ participant operation as Path Operation
 
 含 `yield` 的相依隨時間演進，以涵蓋不同的使用情境並修正一些問題。
 
-如果你想了解在不同 FastAPI 版本中改了哪些內容，可以在進階指南中閱讀：[進階相依 — 含 `yield`、`HTTPException`、`except` 與背景任務的相依](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}。
+如果你想了解在不同 FastAPI 版本中改了哪些內容，可以在進階指南中閱讀：[進階相依 — 含 `yield`、`HTTPException`、`except` 與背景任務的相依](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)。
 ## 情境管理器 { #context-managers }
 
 ### 什麼是「情境管理器」 { #what-are-context-managers }
 
 「情境管理器」是那些你可以在 `with` 陳述式中使用的 Python 物件。
 
-例如，<a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">你可以用 `with` 來讀取檔案</a>：
+例如，[你可以用 `with` 來讀取檔案](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files)：
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-在 Python 中，你可以透過<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">建立一個擁有 `__enter__()` 與 `__exit__()` 兩個方法的類別</a>來建立情境管理器。
+在 Python 中，你可以透過[建立一個擁有 `__enter__()` 與 `__exit__()` 兩個方法的類別](https://docs.python.org/3/reference/datamodel.html#context-managers)來建立情境管理器。
 
 你也可以在 **FastAPI** 的含 `yield` 相依中，於相依函式內使用 `with` 或 `async with` 陳述式來使用它們：
 
@@ -274,8 +274,8 @@ with open("./somefile.txt") as f:
 
 建立情境管理器的另一種方式是：
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 或
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 用它們裝飾一個只包含單一 `yield` 的函式。
 

@@ -14,8 +14,8 @@ FastAPI 支持那些在完成后执行一些<dfn title="有时也称为：“退
 
 任何可以与以下装饰器一起使用的函数：
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 或
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 都可以作为 **FastAPI** 的依赖项。
 
@@ -87,7 +87,7 @@ FastAPI 支持那些在完成后执行一些<dfn title="有时也称为：“退
 
 /// note | 技术细节
 
-这要归功于 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>。
+这要归功于 Python 的[上下文管理器](https://docs.python.org/3/library/contextlib.html)。
 
 **FastAPI** 在内部使用它们来实现这一点。
 
@@ -111,7 +111,7 @@ FastAPI 支持那些在完成后执行一些<dfn title="有时也称为：“退
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-如果你想捕获异常并基于它创建一个自定义响应，请创建一个[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}。
+如果你想捕获异常并基于它创建一个自定义响应，请创建一个[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers)。
 
 ## 同时使用 `yield` 和 `except` 的依赖项 { #dependencies-with-yield-and-except }
 
@@ -233,7 +233,7 @@ participant operation as Path Operation
 
 带有 `yield` 的依赖项随着时间演进以涵盖不同的用例并修复了一些问题。
 
-如果你想了解在不同 FastAPI 版本中发生了哪些变化，可以在进阶指南中阅读更多：[高级依赖项 —— 包含 `yield`、`HTTPException`、`except` 和后台任务的依赖项](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}。
+如果你想了解在不同 FastAPI 版本中发生了哪些变化，可以在进阶指南中阅读更多：[高级依赖项 —— 包含 `yield`、`HTTPException`、`except` 和后台任务的依赖项](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)。
 
 ## 上下文管理器 { #context-managers }
 
@@ -241,7 +241,7 @@ participant operation as Path Operation
 
 “上下文管理器”是你可以在 `with` 语句中使用的任意 Python 对象。
 
-例如，<a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">你可以用 `with` 来读取文件</a>：
+例如，[你可以用 `with` 来读取文件](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files)：
 
 ```Python
 with open("./somefile.txt") as f:
@@ -265,7 +265,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-在 Python 中，你可以通过<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">创建一个带有 `__enter__()` 和 `__exit__()` 方法的类</a>来创建上下文管理器。
+在 Python 中，你可以通过[创建一个带有 `__enter__()` 和 `__exit__()` 方法的类](https://docs.python.org/3/reference/datamodel.html#context-managers)来创建上下文管理器。
 
 你也可以在 **FastAPI** 的带有 `yield` 的依赖中，使用依赖函数内部的 `with` 或 `async with` 语句来使用它们：
 
@@ -275,8 +275,8 @@ with open("./somefile.txt") as f:
 
 另一种创建上下文管理器的方式是：
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 或
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 用它们去装饰一个只包含单个 `yield` 的函数。
 

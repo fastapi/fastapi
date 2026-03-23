@@ -95,7 +95,7 @@ my_list: list[str]
 
 除了 `str`、`int`、`float` 等一般的單一型別外，你也可以使用繼承自 `str` 的更複雜單一型別。
 
-若要查看所有可用選項，請參閱 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic 的型別總覽</a>。你會在下一章看到一些範例。
+若要查看所有可用選項，請參閱 [Pydantic 的型別總覽](https://docs.pydantic.dev/latest/concepts/types/)。你會在下一章看到一些範例。
 
 例如，在 `Image` 模型中有一個 `url` 欄位，我們可以將其宣告為 Pydantic 的 `HttpUrl`，而不是 `str`：
 

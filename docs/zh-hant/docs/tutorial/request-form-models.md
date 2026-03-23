@@ -4,9 +4,9 @@
 
 /// info | 說明
 
-要使用表單，首先安裝 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要使用表單，首先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立[虛擬環境](../virtual-environments.md){.internal-link target=_blank}、啟用後再安裝，例如：
+請先建立[虛擬環境](../virtual-environments.md)、啟用後再安裝，例如：
 
 ```console
 $ pip install python-multipart
