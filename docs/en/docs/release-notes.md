@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.135.2 (2026-03-01)
+
 ### Upgrades
 
 * ⬆️ Increase lower bound to `pydantic >=2.9.0.` and fix the test suite. PR [#15139](https://github.com/fastapi/fastapi/pull/15139) by [@svlandeg](https://github.com/svlandeg).
