@@ -50,7 +50,7 @@ jobs:
       matrix:
         os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
-        deprecated-tests: "false"
+        deprecated-tests: [ "false" ]
         uv-resolution:
           - highest
         starlette-src:
