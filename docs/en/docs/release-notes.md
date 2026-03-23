@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Add missing last release notes dates. PR [#15202](https://github.com/fastapi/fastapi/pull/15202) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for contributors and team members regarding translation PRs. PR [#15200](https://github.com/fastapi/fastapi/pull/15200) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 💄 Fix code blocks in reference docs overflowing table width. PR [#15094](https://github.com/fastapi/fastapi/pull/15094) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Fix duplicated words in docstrings. PR [#15116](https://github.com/fastapi/fastapi/pull/15116) by [@AhsanSheraz](https://github.com/AhsanSheraz).
