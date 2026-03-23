@@ -4,7 +4,7 @@
 
 經常加入新功能、定期修復錯誤，程式碼也在持續改進。
 
-這就是為什麼目前版本仍為 `0.x.x`，這表示每個版本都可能包含破壞性變更。這遵循 <a href="https://semver.org/" class="external-link" target="_blank">語意化版本（Semantic Versioning）</a> 的慣例。
+這就是為什麼目前版本仍為 `0.x.x`，這表示每個版本都可能包含破壞性變更。這遵循 [語意化版本（Semantic Versioning）](https://semver.org/) 的慣例。
 
 你現在就可以用 **FastAPI** 建置生產環境的應用（而且你可能已經這麼做一段時間了），只要確保你使用的版本能與其餘程式碼正確相容。
 
@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 可用版本 { #available-versions }
 
-你可以在 [發行說明](../release-notes.md){.internal-link target=_blank} 查看可用版本（例如用來確認目前最新版本）。
+你可以在 [發行說明](../release-notes.md) 查看可用版本（例如用來確認目前最新版本）。
 
 ## 關於版本 { #about-versions }
 
@@ -66,7 +66,7 @@ fastapi>=0.45.0,<0.46.0
 
 你應該為你的應用撰寫測試。
 
-在 **FastAPI** 中這很容易（感謝 Starlette），請參考文件：[測試](../tutorial/testing.md){.internal-link target=_blank}
+在 **FastAPI** 中這很容易（感謝 Starlette），請參考文件：[測試](../tutorial/testing.md)
 
 有了測試之後，你就可以將 **FastAPI** 升級到較新的版本，並透過執行測試來確保所有程式碼都能正確運作。
 

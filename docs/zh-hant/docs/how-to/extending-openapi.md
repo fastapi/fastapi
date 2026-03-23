@@ -37,7 +37,7 @@
 
 基於上述資訊，你可以用相同的工具函式來產生 OpenAPI 結構，並覆寫你需要客製的部分。
 
-例如，我們要加入 <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc 的 OpenAPI 擴充，插入自訂 logo</a>。
+例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 一般的 **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@
 
 ### 檢查看看 { #check-it }
 
-造訪 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 後，你會看到自訂的 logo（此例為 **FastAPI** 的 logo）：
+造訪 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 後，你會看到自訂的 logo（此例為 **FastAPI** 的 logo）：
 
 <img src="/img/tutorial/extending-openapi/image01.png">

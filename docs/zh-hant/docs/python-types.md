@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic 模型 { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 是一個用來做資料驗證的 Python 程式庫。
+[Pydantic](https://docs.pydantic.dev/) 是一個用來做資料驗證的 Python 程式庫。
 
 你以帶有屬性的類別來宣告資料的「形狀」。
 
@@ -285,13 +285,13 @@ def some_function(data: Any):
 
 /// info | 資訊
 
-想了解更多 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic，請查看它的文件</a>。
+想了解更多 [Pydantic，請查看它的文件](https://docs.pydantic.dev/)。
 
 ///
 
 **FastAPI** 完全是以 Pydantic 為基礎。
 
-你會在[教學 - 使用者指南](tutorial/index.md){.internal-link target=_blank}中看到更多實際範例。
+你會在[教學 - 使用者指南](tutorial/index.md)中看到更多實際範例。
 
 ## 含中繼資料的型別提示 { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ Python 本身不會對這個 `Annotated` 做任何事。對編輯器與其他工
 * 使用 OpenAPI 書寫 API 文件：
     * 之後會由自動的互動式文件介面所使用
 
-這些現在聽起來可能有點抽象。別擔心。你會在[教學 - 使用者指南](tutorial/index.md){.internal-link target=_blank}中看到它們的實際運作。
+這些現在聽起來可能有點抽象。別擔心。你會在[教學 - 使用者指南](tutorial/index.md)中看到它們的實際運作。
 
 重點是，透過在單一位置使用標準的 Python 型別（而不是新增更多類別、裝飾器等），**FastAPI** 會幫你完成很多工作。
 
 /// info | 資訊
 
-如果你已經完整讀完整個教學，並回來想多看一些關於型別的內容，一個不錯的資源是 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` 的「小抄」</a>。
+如果你已經完整讀完整個教學，並回來想多看一些關於型別的內容，一個不錯的資源是 [`mypy` 的「小抄」](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)。
 
 ///

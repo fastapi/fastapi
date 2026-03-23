@@ -1,8 +1,8 @@
 # 進階中介軟體 { #advanced-middleware }
 
-在主要教學中你已學過如何將[自訂中介軟體](../tutorial/middleware.md){.internal-link target=_blank}加入到你的應用程式。
+在主要教學中你已學過如何將[自訂中介軟體](../tutorial/middleware.md)加入到你的應用程式。
 
-你也讀過如何使用 `CORSMiddleware` 處理 [CORS](../tutorial/cors.md){.internal-link target=_blank}。
+你也讀過如何處理 [使用 `CORSMiddleware` 的 CORS](../tutorial/cors.md)。
 
 本節將示範如何使用其他中介軟體。
 
@@ -91,7 +91,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 例如：
 
-- <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn 的 `ProxyHeadersMiddleware`</a>
-- <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+- [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-想瞭解更多可用的中介軟體，請參考 <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette 的中介軟體文件</a> 與 <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI 精選清單</a>。
+想瞭解更多可用的中介軟體，請參考 [Starlette 的中介軟體文件](https://www.starlette.dev/middleware/) 與 [ASGI 精選清單](https://github.com/florimondmanca/awesome-asgi)。
