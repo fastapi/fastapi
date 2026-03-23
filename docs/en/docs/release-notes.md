@@ -7,12 +7,17 @@ hide:
 
 ## Latest Changes
 
+## 0.135.2 (2026-03-01)
+
 ### Upgrades
 
 * ⬆️ Increase lower bound to `pydantic >=2.9.0.` and fix the test suite. PR [#15139](https://github.com/fastapi/fastapi/pull/15139) by [@svlandeg](https://github.com/svlandeg).
 
 ### Docs
 
+* 📝 Add missing last release notes dates. PR [#15202](https://github.com/fastapi/fastapi/pull/15202) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for contributors and team members regarding translation PRs. PR [#15200](https://github.com/fastapi/fastapi/pull/15200) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 💄 Fix code blocks in reference docs overflowing table width. PR [#15094](https://github.com/fastapi/fastapi/pull/15094) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Fix duplicated words in docstrings. PR [#15116](https://github.com/fastapi/fastapi/pull/15116) by [@AhsanSheraz](https://github.com/AhsanSheraz).
 * 📝 Add docs for `pyproject.toml` with `entrypoint`. PR [#15075](https://github.com/fastapi/fastapi/pull/15075) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update links in docs to no longer use the classes external-link and internal-link. PR [#15061](https://github.com/fastapi/fastapi/pull/15061) by [@tiangolo](https://github.com/tiangolo).
@@ -48,6 +53,7 @@ hide:
 
 ### Internal
 
+* 🔨 Exclude spam comments from statistics in `scripts/people.py`. PR [#15088](https://github.com/fastapi/fastapi/pull/15088) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump authlib from 1.6.7 to 1.6.9. PR [#15128](https://github.com/fastapi/fastapi/pull/15128) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
@@ -70,7 +76,7 @@ hide:
 * ⬆ Bump actions/download-artifact from 7 to 8. PR [#15020](https://github.com/fastapi/fastapi/pull/15020) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/upload-artifact from 6 to 7. PR [#15019](https://github.com/fastapi/fastapi/pull/15019) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.135.1
+## 0.135.1 (2026-03-01)
 
 ### Fixes
 
@@ -87,14 +93,14 @@ hide:
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15029](https://github.com/fastapi/fastapi/pull/15029) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#15036](https://github.com/fastapi/fastapi/pull/15036) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.135.0
+## 0.135.0 (2026-03-01)
 
 ### Features
 
 * ✨ Add support for Server Sent Events. PR [#15030](https://github.com/fastapi/fastapi/pull/15030) by [@tiangolo](https://github.com/tiangolo).
     * New docs: [Server-Sent Events (SSE)](https://fastapi.tiangolo.com/tutorial/server-sent-events/).
 
-## 0.134.0
+## 0.134.0 (2026-02-27)
 
 ### Features
 
@@ -114,7 +120,7 @@ hide:
 
 * 🔨 Run tests with `pytest-xdist` and `pytest-cov`. PR [#14992](https://github.com/fastapi/fastapi/pull/14992) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.133.1
+## 0.133.1 (2026-02-25)
 
 ### Features
 
