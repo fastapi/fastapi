@@ -92,7 +92,7 @@ jobs:
             python-version: "3.14t"
             coverage: coverage
             uv-resolution: lowest-direct
-            deprecated-tests: "false"
+            deprecated-tests: "no-deprecation"
           - os: windows-latest
             python-version: "3.14t"
             coverage: coverage
