@@ -1302,7 +1302,7 @@ dev = [
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
     { name = "sqlmodel", specifier = ">=0.0.31" },
-    { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
+    { name = "strawberry-graphql", specifier = ">=0.284.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.9" },
     { name = "typer", specifier = ">=0.21.1" },
 ]
@@ -1358,7 +1358,7 @@ tests = [
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
     { name = "sqlmodel", specifier = ">=0.0.31" },
-    { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
+    { name = "strawberry-graphql", specifier = ">=0.284.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.9" },
 ]
 translations = [
