@@ -38,6 +38,7 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
+from starlette.status import HTTP_422_UNPROCESSABLE_CONTENT
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -451,7 +452,7 @@ def get_openapi_path(
                     )
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
-            http422 = "422"
+            http422 = str(HTTP_422_UNPROCESSABLE_CONTENT)
             all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
