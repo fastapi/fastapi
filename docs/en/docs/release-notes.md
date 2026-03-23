@@ -48,6 +48,7 @@ hide:
 
 ### Internal
 
+* 🔨 Exclude spam comments from statistics in `scripts/people.py`. PR [#15088](https://github.com/fastapi/fastapi/pull/15088) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump authlib from 1.6.7 to 1.6.9. PR [#15128](https://github.com/fastapi/fastapi/pull/15128) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
