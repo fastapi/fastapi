@@ -22,24 +22,18 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
 def test_query_params_str_validations_no_query(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
     }
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
 def test_query_params_str_validations_empty_str(client: TestClient):
     response = client.get("/items/?q=")
     assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
     }
 
@@ -99,7 +93,7 @@ def test_openapi_schema(client: TestClient):
                         "operationId": "read_items_items__get",
                         "parameters": [
                             {
-                                "required": True,
+                                "required": False,
                                 "schema": {
                                     "anyOf": [
                                         {"type": "string", "minLength": 3},

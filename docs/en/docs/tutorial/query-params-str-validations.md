@@ -220,13 +220,19 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Required, can be `None` { #required-can-be-none }
+### Optional with `None` { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+You can declare that a parameter is optional and can accept `None`, even when using `Query` for validations.
 
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+To do that, you can declare that `None` is a valid type and use `None` as the default value:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+/// tip
+
+This is the same as using `Query(None, min_length=3)`, the parameter is optional and will have a default value of `None`.
+
+///
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
