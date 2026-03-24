@@ -65,10 +65,7 @@ def test_api_route_defaults_and_intenum_status_paths() -> None:
 
 
 def test_get_request_handler_supports_legacy_dependant_signature() -> None:
-    async def endpoint() -> dict[str, str]:
-        return {"ok": "true"}
-
-    dependant = get_dependant(path="/legacy", call=endpoint)
+    dependant = get_dependant(path="/legacy", call=_raw_response_endpoint)
     handler = get_request_handler(dependant)
     assert callable(handler)
 
