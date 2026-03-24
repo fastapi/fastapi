@@ -1,7 +1,8 @@
 from enum import IntEnum
 
 import fastapi.routing as routing
-from fastapi.routing_handlers import RouteHandlerConfig
+from fastapi.dependencies.utils import get_dependant
+from fastapi.routing_handlers import RouteHandlerConfig, get_request_handler
 from fastapi.routing_router import APIRouter
 from fastapi.routing_routes import APIRoute, APIWebSocketRoute
 from fastapi.routing_utils import request_response, websocket_session
@@ -50,6 +51,9 @@ def _raw_response_endpoint() -> Response:
 
 
 def test_api_route_defaults_and_intenum_status_paths() -> None:
+    raw = _raw_response_endpoint()
+    assert raw.body == b"ok"
+
     route = routing.APIRoute(
         "/raw-response",
         _raw_response_endpoint,
@@ -58,6 +62,15 @@ def test_api_route_defaults_and_intenum_status_paths() -> None:
     assert route.response_model is None
     assert route.status_code == 201
     assert route.methods == {"GET"}
+
+
+def test_get_request_handler_supports_legacy_dependant_signature() -> None:
+    async def endpoint() -> dict[str, str]:
+        return {"ok": "true"}
+
+    dependant = get_dependant(path="/legacy", call=endpoint)
+    handler = get_request_handler(dependant)
+    assert callable(handler)
 
 
 def test_request_response_wraps_sync_callable() -> None:
