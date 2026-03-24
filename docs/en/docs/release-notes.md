@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix typo for `client_secret` in OAuth2 form docstrings. PR [#14946](https://github.com/fastapi/fastapi/pull/14946) by [@bysiber](https://github.com/bysiber).
+
 ## 0.135.2 (2026-03-01)
 
 ### Upgrades
