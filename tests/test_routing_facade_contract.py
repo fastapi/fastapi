@@ -5,7 +5,9 @@ from fastapi.routing_handlers import RouteHandlerConfig
 from fastapi.routing_router import APIRouter
 from fastapi.routing_routes import APIRoute, APIWebSocketRoute
 from fastapi.routing_utils import request_response, websocket_session
+from starlette.requests import Request
 from starlette.responses import Response
+from starlette.testclient import TestClient
 
 
 def test_routing_facade_exports_expected_symbols() -> None:
@@ -56,3 +58,25 @@ def test_api_route_defaults_and_intenum_status_paths() -> None:
     assert route.response_model is None
     assert route.status_code == 201
     assert route.methods == {"GET"}
+
+
+def test_request_response_wraps_sync_callable() -> None:
+    def endpoint(_: Request) -> Response:
+        return Response("sync-ok")
+
+    app = request_response(endpoint)
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "sync-ok"
+
+
+def test_request_response_wraps_async_callable() -> None:
+    async def endpoint(_: Request) -> Response:
+        return Response("async-ok")
+
+    app = request_response(endpoint)
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "async-ok"
