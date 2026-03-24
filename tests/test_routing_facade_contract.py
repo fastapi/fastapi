@@ -1,11 +1,11 @@
 from enum import IntEnum
 
 import fastapi.routing as routing
-from starlette.responses import Response
 from fastapi.routing_handlers import RouteHandlerConfig
 from fastapi.routing_router import APIRouter
 from fastapi.routing_routes import APIRoute, APIWebSocketRoute
 from fastapi.routing_utils import request_response, websocket_session
+from starlette.responses import Response
 
 
 def test_routing_facade_exports_expected_symbols() -> None:
