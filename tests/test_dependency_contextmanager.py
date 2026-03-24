@@ -1,9 +1,9 @@
 import json
+from typing import TYPE_CHECKING
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
 from fastapi.testclient import TestClient
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from fastapi.responses import StreamingResponse

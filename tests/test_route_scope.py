@@ -1,7 +1,8 @@
+from typing import TYPE_CHECKING
+
 import pytest
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.testclient import TestClient
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from fastapi.routing import APIRoute, APIWebSocketRoute

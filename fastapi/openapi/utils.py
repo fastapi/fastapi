@@ -3,7 +3,7 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
-from typing import Any, Literal, cast, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 from fastapi import routing
 from fastapi._compat import (
