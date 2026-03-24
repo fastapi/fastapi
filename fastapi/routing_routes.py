@@ -163,6 +163,7 @@ class APIRoute(routing.Route):
         if isinstance(status_code, IntEnum):
             status_code = int(status_code)
         self.status_code = status_code
+        self.response_field: ModelField | None
         if self.response_model:
             assert is_body_allowed_for_status_code(status_code), (
                 f"Status code {status_code} must not have a response body"
@@ -174,7 +175,7 @@ class APIRoute(routing.Route):
                 mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore
+            self.response_field = None
         if self.stream_item_type:
             stream_item_name = "StreamItem_" + self.unique_id
             self.stream_item_field: ModelField | None = create_model_field(

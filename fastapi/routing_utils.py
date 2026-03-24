@@ -15,7 +15,7 @@ from contextlib import (
     AsyncExitStack,
     asynccontextmanager,
 )
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from fastapi._compat import ModelField
 from fastapi.dependencies.models import Dependant
@@ -40,9 +40,15 @@ _T = TypeVar("_T")
 def request_response(
     func: Callable[[Request], Awaitable[Response] | Response],
 ) -> ASGIApp:
-    f: Callable[[Request], Awaitable[Response]] = (
-        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
-    )
+    if is_async_callable(func):
+        f: Callable[[Request], Awaitable[Response]] = cast(
+            Callable[[Request], Awaitable[Response]], func
+        )
+    else:
+        sync_func = cast(Callable[[Request], Response], func)
+
+        async def f(request: Request) -> Response:
+            return await run_in_threadpool(sync_func, request)
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
