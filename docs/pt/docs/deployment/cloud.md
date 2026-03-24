@@ -1,13 +1,24 @@
-# Implantar FastAPI em provedores de nuvem
+# Implantar FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
 
-Você pode usar praticamente **qualquer provedor de nuvem** para implantar seu aplicativo FastAPI.
+Você pode usar praticamente **qualquer provedor de nuvem** para implantar sua aplicação FastAPI.
 
-Na maioria dos casos, os principais provedores de nuvem têm guias para implantar o FastAPI com eles.
+Na maioria dos casos, os principais provedores de nuvem têm tutoriais para implantar o FastAPI com eles.
 
-## Provedores de Nuvem - Patrocinadores
+## FastAPI Cloud { #fastapi-cloud }
 
-Alguns provedores de nuvem ✨ [**patrocinam o FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, o que garante o **desenvolvimento** contínuo e saudável do FastAPI e seu **ecossistema**.
+**[FastAPI Cloud](https://fastapicloud.com)** é desenvolvido pelo mesmo autor e equipe por trás do **FastAPI**.
 
-E isso mostra seu verdadeiro comprometimento com o FastAPI e sua **comunidade** (você), pois eles não querem apenas fornecer a você um **bom serviço**, mas também querem ter certeza de que você tenha uma **estrutura boa e saudável**, o FastAPI. 🙇
+Ele simplifica o processo de **criar**, **implantar** e **acessar** uma API com o mínimo de esforço.
 
-Talvez você queira experimentar os serviços deles e seguir os guias.
+Traz a mesma **experiência do desenvolvedor** de criar aplicações com FastAPI para **implantá-las** na nuvem. 🎉
+
+FastAPI Cloud é o patrocinador principal e provedor de financiamento dos projetos de código aberto *FastAPI and friends*. ✨
+
+## Provedores de Nuvem - Patrocinadores { #cloud-providers-sponsors }
+
+Alguns outros provedores de nuvem ✨ [**patrocinam o FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ também. 🙇
+
+Você também pode considerá-los para seguir seus tutoriais e experimentar seus serviços:
+
+* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
+* [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

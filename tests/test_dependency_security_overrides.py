@@ -1,5 +1,3 @@
-from typing import List, Tuple
-
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
@@ -25,8 +23,8 @@ def get_data_override():
 
 @app.get("/user")
 def read_user(
-    user_data: Tuple[str, List[str]] = Security(get_user, scopes=["foo", "bar"]),
-    data: List[int] = Depends(get_data),
+    user_data: tuple[str, list[str]] = Security(get_user, scopes=["foo", "bar"]),
+    data: list[int] = Depends(get_data),
 ):
     return {"user": user_data[0], "scopes": user_data[1], "data": data}
 

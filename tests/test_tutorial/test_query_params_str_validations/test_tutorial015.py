@@ -5,15 +5,13 @@ from dirty_equals import IsStr
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from ...utils import needs_py39, needs_py310, needs_pydanticv2
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial015_an", marks=needs_pydanticv2),
-        pytest.param("tutorial015_an_py310", marks=(needs_py310, needs_pydanticv2)),
-        pytest.param("tutorial015_an_py39", marks=(needs_py39, needs_pydanticv2)),
+        pytest.param("tutorial015_an_py310", marks=[needs_py310]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -123,6 +121,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

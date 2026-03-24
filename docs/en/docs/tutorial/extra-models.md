@@ -12,7 +12,7 @@ This is especially the case for user models, because:
 
 Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
-If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -22,22 +22,13 @@ Here's a general idea of how the models could look like with their password fiel
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
+### About `**user_in.model_dump()` { #about-user-in-model-dump }
 
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
-### About `**user_in.dict()` { #about-user-in-dict }
-
-#### Pydantic's `.dict()` { #pydantics-dict }
+#### Pydantic's `.model_dump()` { #pydantics-model-dump }
 
 `user_in` is a Pydantic model of class `UserIn`.
 
-Pydantic models have a `.dict()` method that returns a `dict` with the model's data.
+Pydantic models have a `.model_dump()` method that returns a `dict` with the model's data.
 
 So, if we create a Pydantic object `user_in` like:
 
@@ -48,7 +39,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 and then we call:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 we now have a `dict` with the data in the variable `user_dict` (it's a `dict` instead of a Pydantic model object).
@@ -104,20 +95,20 @@ UserInDB(
 
 #### A Pydantic model from the contents of another { #a-pydantic-model-from-the-contents-of-another }
 
-As in the example above we got `user_dict` from `user_in.dict()`, this code:
+As in the example above we got `user_dict` from `user_in.model_dump()`, this code:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 would be equivalent to:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
-...because `user_in.dict()` is a `dict`, and then we make Python "unpack" it by passing it to `UserInDB` prefixed with `**`.
+...because `user_in.model_dump()` is a `dict`, and then we make Python "unpack" it by passing it to `UserInDB` prefixed with `**`.
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
@@ -126,7 +117,7 @@ So, we get a Pydantic model from the data in another Pydantic model.
 And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ...ends up being like:
@@ -171,16 +162,15 @@ You can declare a response to be the `Union` of two or more types, that means, t
 
 It will be defined in OpenAPI with `anyOf`.
 
-To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+To do that, use the standard Python type hint [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note
 
-When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+When defining a [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
 
 ///
 
 {* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
-
 
 ### `Union` in Python 3.10 { #union-in-python-3-10 }
 
@@ -200,10 +190,9 @@ But if we put that in the assignment `response_model=PlaneItem | CarItem` we wou
 
 The same way, you can declare responses of lists of objects.
 
-For that, use the standard Python `typing.List` (or just `list` in Python 3.9 and above):
+For that, use the standard Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
-
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response with arbitrary `dict` { #response-with-arbitrary-dict }
 
@@ -211,10 +200,9 @@ You can also declare a response using a plain arbitrary `dict`, declaring just t
 
 This is useful if you don't know the valid field/attribute names (that would be needed for a Pydantic model) beforehand.
 
-In this case, you can use `typing.Dict` (or just `dict` in Python 3.9 and above):
+In this case, you can use `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
-
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Recap { #recap }
 

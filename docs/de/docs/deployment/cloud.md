@@ -1,13 +1,24 @@
-# FastAPI-Deployment bei Cloud-Anbietern
+# FastAPI bei Cloudanbietern deployen { #deploy-fastapi-on-cloud-providers }
 
-Sie können praktisch **jeden Cloud-Anbieter** für das <abbr title="Bereitstellen der fertigen Anwendung für die Endbenutzer">Deployment</abbr> Ihrer FastAPI-Anwendung verwenden.
+Sie können praktisch **jeden Cloudanbieter** verwenden, um Ihre FastAPI-Anwendung zu deployen.
 
-In den meisten Fällen verfügen die Haupt-Cloud-Anbieter über Anleitungen zum Deployment von FastAPI.
+In den meisten Fällen bieten die großen Cloudanbieter Anleitungen zum Deployment von FastAPI an.
 
-## Cloud-Anbieter – Sponsoren
+## FastAPI Cloud { #fastapi-cloud }
 
-Einige Cloud-Anbieter ✨ [**sponsern FastAPI**](../help-fastapi.md#den-autor-sponsern){.internal-link target=_blank} ✨, dies gewährleistet die kontinuierliche und gesunde **Entwicklung** von FastAPI und seinem **Ökosystem**.
+**[FastAPI Cloud](https://fastapicloud.com)** wurde vom selben Autor und Team hinter **FastAPI** entwickelt.
 
-Und es zeigt deren wahres Engagement für FastAPI und seine **Community** (Sie), da diese Ihnen nicht nur einen **guten Service** bieten möchten, sondern auch sicherstellen möchten, dass Sie über ein **gutes und gesundes Framework** verfügen, FastAPI. 🙇
+Es vereinfacht den Prozess des **Erstellens**, **Deployens** und **Zugreifens** auf eine API mit minimalem Aufwand.
 
-Vielleicht möchten Sie deren Dienste ausprobieren und deren Anleitungen folgen.
+Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
+
+FastAPI Cloud ist der Hauptsponsor und Finanzierungsgeber für die *FastAPI and friends* Open-Source-Projekte. ✨
+
+## Cloudanbieter – Sponsoren { #cloud-providers-sponsors }
+
+Einige andere Cloudanbieter ✨ [**sponsern FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ ebenfalls. 🙇
+
+Sie könnten diese ebenfalls in Betracht ziehen, deren Anleitungen folgen und ihre Dienste ausprobieren:
+
+* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
+* [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

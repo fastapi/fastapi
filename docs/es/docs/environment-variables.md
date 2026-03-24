@@ -1,4 +1,4 @@
-# Variables de Entorno
+# Variables de Entorno { #environment-variables }
 
 /// tip | Consejo
 
@@ -10,7 +10,7 @@ Una variable de entorno (también conocida como "**env var**") es una variable q
 
 Las variables de entorno pueden ser útiles para manejar **configuraciones** de aplicaciones, como parte de la **instalación** de Python, etc.
 
-## Crear y Usar Variables de Entorno
+## Crear y Usar Variables de Entorno { #create-and-use-env-vars }
 
 Puedes **crear** y usar variables de entorno en la **shell (terminal)**, sin necesidad de Python:
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Leer Variables de Entorno en Python
+## Leer Variables de Entorno en Python { #read-env-vars-in-python }
 
 También podrías crear variables de entorno **fuera** de Python, en la terminal (o con cualquier otro método), y luego **leerlas en Python**.
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | Consejo
 
-El segundo argumento de <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> es el valor por defecto a retornar.
+El segundo argumento de [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) es el valor por defecto a retornar.
 
 Si no se proporciona, es `None` por defecto; aquí proporcionamos `"World"` como el valor por defecto para usar.
 
@@ -153,19 +153,19 @@ Hello World from Python
 
 /// tip | Consejo
 
-Puedes leer más al respecto en <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+Puedes leer más al respecto en [The Twelve-Factor App: Config](https://12factor.net/config).
 
 ///
 
-## Tipos y Validación
+## Tipos y Validación { #types-and-validation }
 
 Estas variables de entorno solo pueden manejar **strings de texto**, ya que son externas a Python y deben ser compatibles con otros programas y el resto del sistema (e incluso con diferentes sistemas operativos, como Linux, Windows, macOS).
 
 Esto significa que **cualquier valor** leído en Python desde una variable de entorno **será un `str`**, y cualquier conversión a un tipo diferente o cualquier validación tiene que hacerse en el código.
 
-Aprenderás más sobre cómo usar variables de entorno para manejar **configuraciones de aplicación** en la [Guía del Usuario Avanzado - Ajustes y Variables de Entorno](./advanced/settings.md){.internal-link target=_blank}.
+Aprenderás más sobre cómo usar variables de entorno para manejar **configuraciones de aplicación** en la [Guía del Usuario Avanzado - Ajustes y Variables de Entorno](./advanced/settings.md).
 
-## Variable de Entorno `PATH`
+## Variable de Entorno `PATH` { #path-environment-variable }
 
 Hay una variable de entorno **especial** llamada **`PATH`** que es utilizada por los sistemas operativos (Linux, macOS, Windows) para encontrar programas a ejecutar.
 
@@ -209,7 +209,7 @@ Por ejemplo, cuando escribes `python` en la terminal, el sistema operativo busca
 
 Si lo encuentra, entonces lo **utilizará**. De lo contrario, continúa buscando en los **otros directorios**.
 
-### Instalando Python y Actualizando el `PATH`
+### Instalando Python y Actualizando el `PATH` { #installing-python-and-updating-the-path }
 
 Cuando instalas Python, se te podría preguntar si deseas actualizar la variable de entorno `PATH`.
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Esta información será útil al aprender sobre [Entornos Virtuales](virtual-environments.md){.internal-link target=_blank}.
+Esta información será útil al aprender sobre [Entornos Virtuales](virtual-environments.md).
 
-## Conclusión
+## Conclusión { #conclusion }
 
 Con esto deberías tener una comprensión básica de qué son las **variables de entorno** y cómo usarlas en Python.
 
-También puedes leer más sobre ellas en la <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia para Variable de Entorno</a>.
+También puedes leer más sobre ellas en la [Wikipedia para Variable de Entorno](https://en.wikipedia.org/wiki/Environment_variable).
 
 En muchos casos no es muy obvio cómo las variables de entorno serían útiles y aplicables de inmediato. Pero siguen apareciendo en muchos escenarios diferentes cuando estás desarrollando, así que es bueno conocerlas.
 

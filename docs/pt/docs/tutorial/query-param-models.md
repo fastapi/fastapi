@@ -1,4 +1,4 @@
-# Modelos de Parâmetros de Consulta
+# Modelos de Parâmetros de Consulta { #query-parameter-models }
 
 Se você possui um grupo de **parâmetros de consultas** que são relacionados, você pode criar um **modelo Pydantic** para declará-los.
 
@@ -10,7 +10,7 @@ Isso é suportado desde o FastAPI versão `0.115.0`. 🤓
 
 ///
 
-## Parâmetros de Consulta com um Modelo Pydantic
+## Parâmetros de Consulta com um Modelo Pydantic { #query-parameters-with-a-pydantic-model }
 
 Declare os **parâmetros de consulta** que você precisa em um **modelo Pydantic**, e então declare o parâmetro como `Query`:
 
@@ -18,20 +18,19 @@ Declare os **parâmetros de consulta** que você precisa em um **modelo Pydantic
 
 O **FastAPI** **extrairá** os dados para **cada campo** dos **parâmetros de consulta** presentes na requisição, e fornecerá o modelo Pydantic que você definiu.
 
+## Verifique a Documentação { #check-the-docs }
 
-## Verifique os Documentos
-
-Você pode ver os parâmetros de consulta nos documentos de IU em `/docs`:
+Você pode ver os parâmetros de consulta na IU da documentação em `/docs`:
 
 <div class="screenshot">
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## Restrinja Parâmetros de Consulta Extras
+## Restrinja Parâmetros de Consulta Extras { #forbid-extra-query-parameters }
 
-Em alguns casos especiais (provavelmente não muito comuns), você queira **restrinjir** os parâmetros de consulta que deseja receber.
+Em alguns casos especiais (provavelmente não muito comuns), você queira **restringir** os parâmetros de consulta que deseja receber.
 
-Você pode usar a configuração do modelo Pydantic para `forbid` (proibir) qualquer campo `extra`:
+Você pode usar a configuração do modelo Pydantic para `forbid` qualquer campo `extra`:
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
@@ -43,7 +42,7 @@ Por exemplo, se o cliente tentar enviar um parâmetro de consulta `tool` com o v
 https://example.com/items/?limit=10&tool=plumbus
 ```
 
-Eles receberão um retorno de **erro** informando-os que o parâmentro de consulta `tool` não é permitido:
+Eles receberão um retorno de **erro** informando-os que o parâmetro de consulta `tool` não é permitido:
 
 ```json
 {
@@ -58,7 +57,7 @@ Eles receberão um retorno de **erro** informando-os que o parâmentro de consul
 }
 ```
 
-## Resumo
+## Resumo { #summary }
 
 Você pode utilizar **modelos Pydantic** para declarar **parâmetros de consulta** no **FastAPI**. 😎
 

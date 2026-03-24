@@ -20,7 +20,7 @@
     /* font-size: 18px; */
     font-size: 15px;
     /* font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace; */
-    font-family: 'Roboto Mono', 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+    font-family: var(--md-code-font-family), 'Roboto Mono', 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
     padding: 75px 45px 35px;
     position: relative;

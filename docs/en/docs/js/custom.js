@@ -81,8 +81,14 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+                const inputCommands = useLines
+                    .filter(line => line.type === "input")
+                    .map(line => line.value)
+                    .join("\n");
+                node.textContent = inputCommands;
                 const div = document.createElement("div");
-                node.replaceWith(div);
+                node.style.display = "none";
+                node.after(div);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,
@@ -135,10 +141,71 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
+function handleSponsorImages() {
+    const announceRight = document.getElementById('announce-right');
+    if(!announceRight) return;
+
+    const sponsorImages = document.querySelectorAll('.sponsor-image');
+
+    const imagePromises = Array.from(sponsorImages).map(img => {
+        return new Promise((resolve, reject) => {
+            if (img.complete && img.naturalHeight !== 0) {
+                resolve();
+            } else {
+                img.addEventListener('load', () => {
+                    if (img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+                img.addEventListener('error', reject);
+            }
+        });
+    });
+
+    Promise.all(imagePromises)
+        .then(() => {
+            announceRight.style.display = 'block';
+            showRandomAnnouncement('announce-right', 10000);
+        })
+        .catch(() => {
+            // do nothing
+        });
+}
+
+function openLinksInNewTab() {
+    const siteUrl = document.querySelector("link[rel='canonical']")?.href
+        || window.location.origin;
+    const siteOrigin = new URL(siteUrl).origin;
+    document.querySelectorAll(".md-content a[href]").forEach(a => {
+        if (a.getAttribute("target") === "_self") return;
+        const href = a.getAttribute("href");
+        if (!href) return;
+        try {
+            const url = new URL(href, window.location.href);
+            // Skip same-page anchor links (only the hash differs)
+            if (url.origin === window.location.origin
+                && url.pathname === window.location.pathname
+                && url.search === window.location.search) return;
+            if (!a.hasAttribute("target")) {
+                a.setAttribute("target", "_blank");
+                a.setAttribute("rel", "noopener");
+            }
+            if (url.origin !== siteOrigin) {
+                a.dataset.externalLink = "";
+            } else {
+                a.dataset.internalLink = "";
+            }
+        } catch (_) {}
+    });
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
-    showRandomAnnouncement('announce-right', 10000)
+    handleSponsorImages();
+    openLinksInNewTab();
 }
 document$.subscribe(() => {
     main()

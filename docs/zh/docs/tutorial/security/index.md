@@ -1,4 +1,4 @@
-# 安全性
+# 安全性 { #security }
 
 有许多方法可以处理安全性、身份认证和授权等问题。
 
@@ -10,11 +10,11 @@
 
 但首先，让我们来看一些小的概念。
 
-## 没有时间？
+## 赶时间 { #in-a-hurry }
 
-如果你不关心这些术语，而只需要*立即*通过基于用户名和密码的身份认证来增加安全性，请跳转到下一章。
+如果你不关心这些术语，而只需要*立即*通过基于用户名和密码的身份认证来增加安全性，请跳转到接下来的章节。
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2是一个规范，它定义了几种处理身份认证和授权的方法。
 
@@ -24,7 +24,7 @@ OAuth2是一个规范，它定义了几种处理身份认证和授权的方法�
 
 这就是所有带有「使用 Facebook，Google，X (Twitter)，GitHub 登录」的系统背后所使用的机制。
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 有一个 OAuth 1，它与 OAuth2 完全不同，并且更为复杂，因为它直接包含了有关如何加密通信的规范。
 
@@ -32,13 +32,13 @@ OAuth2是一个规范，它定义了几种处理身份认证和授权的方法�
 
 OAuth2 没有指定如何加密通信，它期望你为应用程序使用 HTTPS 进行通信。
 
-/// tip
+/// tip | 提示
 
 在有关**部署**的章节中，你将了解如何使用 Traefik 和 Let's Encrypt 免费设置 HTTPS。
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
@@ -48,7 +48,7 @@ OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
 但是 Facebook 登录不支持 OpenID Connect。它具有自己的 OAuth2 风格。
 
-### OpenID（非「OpenID Connect」）
+### OpenID（非「OpenID Connect」） { #openid-not-openid-connect }
 
 还有一个「OpenID」规范。它试图解决与 **OpenID Connect** 相同的问题，但它不是基于 OAuth2。
 
@@ -56,7 +56,7 @@ OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
 如今它已经不是很流行，没有被广泛使用了。
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI（以前称为 Swagger）是用于构建 API 的开放规范（现已成为 Linux Foundation 的一部分）。
 
@@ -75,7 +75,7 @@ OpenAPI 定义了以下安全方案：
     * 请求头。
     * cookie。
 * `http`：标准的 HTTP 身份认证系统，包括：
-    * `bearer`: 一个值为 `Bearer` 加令牌字符串的 `Authorization` 请求头。这是从 OAuth2 继承的。
+    * `bearer`: 一个值为 `Bearer ` 加令牌字符串的 `Authorization` 请求头。这是从 OAuth2 继承的。
     * HTTP Basic 认证方式。
     * HTTP Digest，等等。
 * `oauth2`：所有的 OAuth2 处理安全性的方式（称为「流程」）。
@@ -89,7 +89,7 @@ OpenAPI 定义了以下安全方案：
     * 此自动发现机制是 OpenID Connect 规范中定义的内容。
 
 
-/// tip
+/// tip | 提示
 
 集成其他身份认证/授权提供者（例如Google，Facebook，X (Twitter)，GitHub等）也是可能的，而且较为容易。
 
@@ -97,10 +97,10 @@ OpenAPI 定义了以下安全方案：
 
 ///
 
-## **FastAPI** 实用工具
+## **FastAPI** 实用工具 { #fastapi-utilities }
 
 FastAPI 在 `fastapi.security` 模块中为每个安全方案提供了几种工具，这些工具简化了这些安全机制的使用方法。
 
-在下一章中，你将看到如何使用 **FastAPI** 所提供的这些工具为你的 API 增加安全性。
+在接下来的章节中，你将看到如何使用 **FastAPI** 所提供的这些工具为你的 API 增加安全性。
 
 而且你还将看到它如何自动地被集成到交互式文档系统中。

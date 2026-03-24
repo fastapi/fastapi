@@ -2,7 +2,7 @@
 
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
@@ -24,7 +24,7 @@ But when you declare them with Python types (in the example above, as `int`), th
 All the same process that applied for path parameters also applies for query parameters:
 
 * Editor support (obviously)
-* Data <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+* Data <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>
 * Data validation
 * Automatic documentation
 
@@ -128,7 +128,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Here the query parameter `needy` is a required query parameter of type `str`.
 
@@ -183,6 +183,6 @@ In this case, there are 3 query parameters:
 
 /// tip
 
-You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values).
 
 ///
