@@ -3,7 +3,7 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
-from typing import Any, Literal, cast
+from typing import Any, Literal, cast, TYPE_CHECKING
 
 from fastapi import routing
 from fastapi._compat import (
@@ -27,7 +27,6 @@ from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
-from fastapi.responses import Response
 from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
@@ -38,6 +37,9 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
+
+if TYPE_CHECKING:
+    from fastapi.responses import Response
 
 validation_error_definition = {
     "title": "ValidationError",
