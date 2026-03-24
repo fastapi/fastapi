@@ -122,6 +122,9 @@ jobs:
       - name: Install deprecated libraries just for testing
         if: matrix.deprecated-tests == 'test-deprecation'
         run: uv pip install orjson ujson
+      - name: Reinstall SQLAlchemy without Cython extensions
+        if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
+        run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
         run: uv run --no-sync bash scripts/test-cov.sh
