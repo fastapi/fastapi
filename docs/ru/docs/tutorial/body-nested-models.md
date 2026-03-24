@@ -95,7 +95,7 @@ my_list: list[str]
 
 Помимо обычных простых типов, таких как `str`, `int`, `float` и т.д., вы можете использовать более сложные простые типы, которые наследуются от `str`.
 
-Чтобы увидеть все варианты, которые у вас есть, ознакомьтесь с <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">обзором типов Pydantic</a>. Вы увидите некоторые примеры в следующей главе.
+Чтобы увидеть все варианты, которые у вас есть, ознакомьтесь с [обзором типов Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Вы увидите некоторые примеры в следующей главе.
 
 Например, так как в модели `Image` у нас есть поле `url`, то мы можем объявить его как тип `HttpUrl` из Pydantic вместо типа `str`:
 
@@ -163,7 +163,7 @@ images: list[Image]
 
 например так:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Поддержка редактора кода везде { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ images: list[Image]
 
 В этом случае вы принимаете любой `dict`, пока у него есть ключи типа `int` со значениями типа `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Совет
 

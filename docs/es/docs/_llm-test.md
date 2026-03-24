@@ -11,7 +11,7 @@ Las pruebas añadidas aquí serán vistas por todas las personas que diseñan pr
 * Revisa si las cosas están bien en la traducción.
 * Si es necesario, mejora tu prompt específico del idioma, el prompt general, o el documento en inglés.
 * Luego corrige manualmente los problemas restantes en la traducción para que sea una buena traducción.
-* Vuelve a traducir, teniendo la buena traducción en su lugar. El resultado ideal sería que el LLM ya no hiciera cambios a la traducción. Eso significa que el prompt general y tu prompt específico del idioma están tan bien como pueden estar (A veces hará algunos cambios aparentemente aleatorios; la razón es que <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">los LLMs no son algoritmos deterministas</a>).
+* Vuelve a traducir, teniendo la buena traducción en su lugar. El resultado ideal sería que el LLM ya no hiciera cambios a la traducción. Eso significa que el prompt general y tu prompt específico del idioma están tan bien como pueden estar (A veces hará algunos cambios aparentemente aleatorios; la razón es que [los LLMs no son algoritmos deterministas](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Las pruebas:
 
@@ -169,15 +169,15 @@ Consulta las secciones `### Special blocks` y `### Tab blocks` en el prompt gene
 El texto del enlace debe traducirse, la dirección del enlace debe permanecer sin cambios:
 
 * [Enlace al encabezado de arriba](#code-snippets)
-* [Enlace interno](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Enlace externo</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Enlace a un estilo</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Enlace a un script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Enlace a una imagen</a>
+* [Enlace interno](index.md#installation)
+* [Enlace externo](https://sqlmodel.tiangolo.com/)
+* [Enlace a un estilo](https://fastapi.tiangolo.com/css/styles.css)
+* [Enlace a un script](https://fastapi.tiangolo.com/js/logic.js)
+* [Enlace a una imagen](https://fastapi.tiangolo.com/img/foo.jpg)
 
 El texto del enlace debe traducirse, la dirección del enlace debe apuntar a la traducción:
 
-* <a href="https://fastapi.tiangolo.com/es/" class="external-link" target="_blank">Enlace a FastAPI</a>
+* [Enlace a FastAPI](https://fastapi.tiangolo.com/es/)
 
 ////
 
@@ -202,15 +202,10 @@ Aquí algunas cosas envueltas en elementos HTML "abbr" (algunas son inventadas):
 * <abbr title="XML Web Token - Token web XML">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface - Interfaz de pasarela de servidor paralela">PSGI</abbr>
 
-### El abbr da una explicación { #the-abbr-gives-an-explanation }
-
-* <abbr title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</abbr>
-* <abbr title="Un método de machine learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</abbr>
-
 ### El abbr da una frase completa y una explicación { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla: documentación para desarrolladores, escrita por la gente de Firefox">MDN</abbr>
-* <abbr title="Input/Output: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
+* <abbr title="Input/Output - Entrada/Salida: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
 
 ////
 
@@ -223,6 +218,11 @@ Las traducciones pueden añadir sus propios elementos "abbr" que el LLM no debe 
 Consulta la sección `### HTML abbr elements` en el prompt general en `scripts/translate.py`.
 
 ////
+
+## Elementos HTML "dfn" { #html-dfn-elements }
+
+* <dfn title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</dfn>
+* <dfn title="Un método de Machine Learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</dfn>
 
 ## Encabezados { #headings }
 
@@ -433,7 +433,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * el motor de plantillas
 
 * la anotación de tipos
-* las anotaciones de tipos
+* la anotación de tipos
 
 * el worker del servidor
 * el worker de Uvicorn

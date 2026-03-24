@@ -8,7 +8,7 @@
 
 /// tip | Совет
 
-Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md){.internal-link target=_blank}.
+Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: управление настройками</a>.
+К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — [Pydantic: управление настройками](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Установка `pydantic-settings` { #install-pydantic-settings }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет `pydantic-settings`:
+Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет `pydantic-settings`:
 
 <div class="termy">
 
@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Информация
-
-В Pydantic v1 он входил в основной пакет. Теперь он распространяется как отдельный пакет, чтобы вы могли установить его только при необходимости.
-
-///
-
 ### Создание объекта `Settings` { #create-the-settings-object }
 
 Импортируйте `BaseSettings` из Pydantic и создайте подкласс, очень похожий на Pydantic‑модель.
@@ -60,23 +54,7 @@ $ pip install "fastapi[all]"
 
 Вы можете использовать все те же возможности валидации и инструменты, что и для Pydantic‑моделей, например разные типы данных и дополнительную валидацию через `Field()`.
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Информация
-
-В Pydantic v1 вы бы импортировали `BaseSettings` напрямую из `pydantic`, а не из `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Совет
 
@@ -92,7 +70,7 @@ $ pip install "fastapi[all]"
 
 Затем вы можете использовать новый объект `settings` в вашем приложении:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Запуск сервера { #run-the-server }
 
@@ -122,19 +100,19 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## Настройки в другом модуле { #settings-in-another-module }
 
-Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 Например, у вас может быть файл `config.py` со следующим содержимым:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 А затем использовать его в файле `main.py`:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Совет
 
-Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 ///
 
@@ -148,7 +126,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Продолжая предыдущий пример, ваш файл `config.py` может выглядеть так:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Обратите внимание, что теперь мы не создаем экземпляр по умолчанию `settings = Settings()`.
 
@@ -156,7 +134,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Теперь мы создаем зависимость, которая возвращает новый `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Совет
 
@@ -168,13 +146,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Затем мы можем запросить ее в *функции-обработчике пути* как зависимость и использовать там, где нужно.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Настройки и тестирование { #settings-and-testing }
 
 Далее будет очень просто предоставить другой объект настроек во время тестирования, создав переопределение зависимости для `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 В переопределении зависимости мы задаем новое значение `admin_email` при создании нового объекта `Settings`, а затем возвращаем этот новый объект.
 
@@ -194,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: поддержка Dotenv (.env)</a>.
+Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: [Pydantic Settings: поддержка Dotenv (.env)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Совет
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 Затем обновите ваш `config.py` так:
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Совет
 
-Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip | Совет
-
-Класс `Config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Информация
-
-В Pydantic версии 1 конфигурация задавалась во внутреннем классе `Config`, в Pydantic версии 2 — в атрибуте `model_config`. Этот атрибут принимает `dict`, и чтобы получить автозавершение и ошибки «на лету», вы можете импортировать и использовать `SettingsConfigDict` для описания этого `dict`.
+Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -270,7 +226,7 @@ def get_settings():
 
 Но так как мы используем декоратор `@lru_cache` сверху, объект `Settings` будет создан только один раз — при первом вызове. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Затем при любых последующих вызовах `get_settings()` в зависимостях для следующих запросов, вместо выполнения внутреннего кода `get_settings()` и создания нового объекта `Settings`, будет возвращаться тот же объект, что был возвращен при первом вызове, снова и снова.
 
@@ -335,7 +291,7 @@ participant execute as Execute function
 
 Таким образом, она ведет себя почти как глобальная переменная. Но так как используется функция‑зависимость, мы можем легко переопределить ее для тестирования.
 
-`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документации Python по `@lru_cache`</a>.
+`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в [документации Python по `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Итоги { #recap }
 

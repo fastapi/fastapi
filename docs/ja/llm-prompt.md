@@ -30,8 +30,7 @@ Use the following preferred translations when they apply in documentation prose:
 
 - request (HTTP): リクエスト
 - response (HTTP): レスポンス
-- path operation: パスオペレーション
-- path operation function: パスオペレーション関数
+- path operation: path operation (do not translate)
 
 ### `///` admonitions
 

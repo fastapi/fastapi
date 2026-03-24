@@ -12,7 +12,7 @@ Primeiro importe `Header`:
 
 Então declare os paramêtros de cabeçalho usando a mesma estrutura que em `Path`, `Query` e `Cookie`.
 
-O primeiro valor é o valor padrão, você pode passar todas as validações adicionais ou parâmetros de anotação:
+Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 

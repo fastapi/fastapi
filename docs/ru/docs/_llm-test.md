@@ -1,8 +1,8 @@
 # Тестовый файл LLM { #llm-test-file }
 
-Этот документ проверяет, понимает ли <abbr title="Large Language Model – Большая языковая модель">LLM</abbr>, переводящая документацию, `general_prompt` в `scripts/translate.py` и языковой специфичный промпт в `docs/{language code}/llm-prompt.md`. Языковой специфичный промпт добавляется к `general_prompt`.
+Этот документ проверяет, понимает ли <abbr title="Large Language Model - Большая языковая модель">LLM</abbr>, переводящая документацию, `general_prompt` в `scripts/translate.py` и языковой специфичный промпт в `docs/{language code}/llm-prompt.md`. Языковой специфичный промпт добавляется к `general_prompt`.
 
-Тесты, добавленные здесь, увидят все создатели языковых промптов.
+Тесты, добавленные здесь, увидят все создатели языковых специфичных промптов.
 
 Использование:
 
@@ -11,7 +11,7 @@
 * Проверьте, всё ли в порядке в переводе.
 * При необходимости улучшите ваш языковой специфичный промпт, общий промпт или английский документ.
 * Затем вручную исправьте оставшиеся проблемы в переводе, чтобы он был хорошим.
-* Переведите заново, имея хороший перевод на месте. Идеальным результатом будет ситуация, когда LLM больше не вносит изменений в перевод. Это означает, что общий промпт и ваш языковой специфичный промпт максимально хороши (иногда он будет делать несколько, казалось бы, случайных изменений, причина в том, что <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM — недетерминированные алгоритмы</a>).
+* Переведите заново, имея хороший перевод на месте. Идеальным результатом будет ситуация, когда LLM больше не вносит изменений в перевод. Это означает, что общий промпт и ваш языковой специфичный промпт настолько хороши, насколько это возможно (иногда он будет делать несколько, казалось бы, случайных изменений, причина в том, что [LLM — недетерминированные алгоритмы](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Тесты:
 
@@ -169,15 +169,15 @@ works(foo="bar")  # Это работает 🎉
 Текст ссылок должен переводиться, адрес ссылки не должен изменяться:
 
 * [Ссылка на заголовок выше](#code-snippets)
-* [Внутренняя ссылка](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Внешняя ссылка</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Ссылка на стиль</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Ссылка на скрипт</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Ссылка на изображение</a>
+* [Внутренняя ссылка](index.md#installation)
+* [Внешняя ссылка](https://sqlmodel.tiangolo.com/)
+* [Ссылка на стиль](https://fastapi.tiangolo.com/css/styles.css)
+* [Ссылка на скрипт](https://fastapi.tiangolo.com/js/logic.js)
+* [Ссылка на изображение](https://fastapi.tiangolo.com/img/foo.jpg)
 
 Текст ссылок должен переводиться, адрес ссылки должен указывать на перевод:
 
-* <a href="https://fastapi.tiangolo.com/ru/" class="external-link" target="_blank">Ссылка на FastAPI</a>
+* [Ссылка на FastAPI](https://fastapi.tiangolo.com/ru/)
 
 ////
 
@@ -197,20 +197,15 @@ works(foo="bar")  # Это работает 🎉
 
 ### abbr даёт полную расшифровку { #the-abbr-gives-a-full-phrase }
 
-* <abbr title="Getting Things Done – Как привести дела в порядок">GTD</abbr>
-* <abbr title="less than – меньше чем"><code>lt</code></abbr>
-* <abbr title="XML Web Token – XML веб‑токен">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface – Параллельный серверный интерфейс шлюза">PSGI</abbr>
-
-### abbr даёт объяснение { #the-abbr-gives-an-explanation }
-
-* <abbr title="Группа машин, которые настроены на соединение и совместную работу определённым образом.">кластер</abbr>
-* <abbr title="Метод машинного обучения, который использует искусственные нейронные сети с многочисленными скрытыми слоями между входным и выходным слоями, тем самым формируя сложную внутреннюю структуру">Глубокое обучение</abbr>
+* <abbr title="Getting Things Done - Как привести дела в порядок">GTD</abbr>
+* <abbr title="less than - меньше чем"><code>lt</code></abbr>
+* <abbr title="XML Web Token - XML веб‑токен">XWT</abbr>
+* <abbr title="Parallel Server Gateway Interface - Параллельный серверный интерфейс шлюза">PSGI</abbr>
 
 ### abbr даёт полную расшифровку и объяснение { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network – Сеть разработчиков Mozilla: документация для разработчиков, созданная командой Firefox">MDN</abbr>
-* <abbr title="Input/Output – Ввод/Вывод: чтение или запись на диск, сетевое взаимодействие.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla: документация для разработчиков, созданная командой Firefox">MDN</abbr>
+* <abbr title="Input/Output - Ввод/Вывод: чтение или запись на диск, сетевое взаимодействие.">I/O</abbr>.
 
 ////
 
@@ -223,6 +218,11 @@ works(foo="bar")  # Это работает 🎉
 См. раздел `### HTML abbr elements` в общем промпте в `scripts/translate.py`.
 
 ////
+
+## HTML-элементы "dfn" { #html-dfn-elements }
+
+* <dfn title="Группа машин, которые настроены на соединение и совместную работу определённым образом.">кластер</dfn>
+* <dfn title="Метод машинного обучения, который использует искусственные нейронные сети с многочисленными скрытыми слоями между входным и выходным слоями, тем самым формируя сложную внутреннюю структуру">Глубокое обучение</dfn>
 
 ## Заголовки { #headings }
 
@@ -294,7 +294,7 @@ works(foo="bar")  # Это работает 🎉
 * чувствительный к регистру
 * нечувствительный к регистру
 
-* обслуживать приложение
+* отдавать приложение
 * отдавать страницу
 
 * приложение

@@ -1,10 +1,12 @@
-# WebSockets
+# WebSockets { #websockets }
 
 您可以在 **FastAPI** 中使用 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)。
 
-## 安装 `WebSockets`
+## 安装 `websockets` { #install-websockets }
 
-首先，您需要安装 `WebSockets`：
+请确保您创建一个[虚拟环境](../virtual-environments.md)、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
+
+<div class="termy">
 
 ```console
 $ pip install websockets
@@ -12,11 +14,13 @@ $ pip install websockets
 ---> 100%
 ```
 
-## WebSockets 客户端
+</div>
 
-### 在生产环境中
+## WebSockets 客户端 { #websockets-client }
 
-在您的生产系统中，您可能使用现代框架（如React、Vue.js或Angular）创建了一个前端。
+### 在生产环境中 { #in-production }
+
+在您的生产系统中，您可能使用现代框架（如 React、Vue.js 或 Angular）创建了一个前端。
 
 要使用 WebSockets 与后端进行通信，您可能会使用前端的工具。
 
@@ -26,7 +30,7 @@ $ pip install websockets
 
 ---
 
-但是，在本示例中，我们将使用一个非常简单的HTML文档，其中包含一些JavaScript，全部放在一个长字符串中。
+但是，在本示例中，我们将使用一个非常简单的 HTML 文档，其中包含一些 JavaScript，全部放在一个长字符串中。
 
 当然，这并不是最优的做法，您不应该在生产环境中使用它。
 
@@ -34,13 +38,13 @@ $ pip install websockets
 
 但这是一种专注于 WebSockets 的服务器端并提供一个工作示例的最简单方式：
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
-## 创建 `websocket`
+## 创建 `websocket` { #create-a-websocket }
 
 在您的 **FastAPI** 应用程序中，创建一个 `websocket`：
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技术细节
 
@@ -50,25 +54,29 @@ $ pip install websockets
 
 ///
 
-## 等待消息并发送消息
+## 等待消息并发送消息 { #await-for-messages-and-send-messages }
 
 在您的 WebSocket 路由中，您可以使用 `await` 等待消息并发送消息。
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 您可以接收和发送二进制、文本和 JSON 数据。
 
-## 尝试一下
+## 尝试一下 { #try-it }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+将代码放在 `main.py`，然后运行你的应用程序：
+
+<div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+</div>
+
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 您将看到一个简单的页面，如下所示：
 
@@ -78,7 +86,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image02.png">
 
-您的 **FastAPI** 应用程序将回复：
+您的 **FastAPI** 应用程序将通过 WebSockets 回复：
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -86,11 +94,9 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image04.png">
 
-所有这些消息都将使用同一个 WebSocket 连
+所有这些消息都将使用同一个 WebSocket 连接。
 
-接。
-
-## 使用 `Depends` 和其他依赖项
+## 使用 `Depends` 和其他依赖项 { #using-depends-and-others }
 
 在 WebSocket 端点中，您可以从 `fastapi` 导入并使用以下内容：
 
@@ -101,29 +107,33 @@ $ uvicorn main:app --reload
 * `Path`
 * `Query`
 
-它们的工作方式与其他 FastAPI 端点/ *路径操作* 相同：
+它们的工作方式与其他 FastAPI 端点/*路径操作* 相同：
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info
 
 由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
 
-您可以使用<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">规范中定义的有效代码</a>。
+您可以使用[规范中定义的有效代码](https://tools.ietf.org/html/rfc6455#section-7.4.1)。
 
 ///
 
-### 尝试带有依赖项的 WebSockets
+### 尝试带有依赖项的 WebSockets { #try-the-websockets-with-dependencies }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+运行你的应用程序：
+
+<div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+</div>
+
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 在页面中，您可以设置：
 
@@ -140,11 +150,11 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image05.png">
 
-## 处理断开连接和多个客户端
+## 处理断开连接和多个客户端 { #handling-disconnections-and-multiple-clients }
 
 当 WebSocket 连接关闭时，`await websocket.receive_text()` 将引发 `WebSocketDisconnect` 异常，您可以捕获并处理该异常，就像本示例中的示例一样。
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 尝试以下操作：
 
@@ -168,9 +178,9 @@ Client #1596980209979 left the chat
 
 ///
 
-## 更多信息
+## 更多信息 { #more-info }
 
 要了解更多选项，请查看 Starlette 的文档：
 
-* [WebSocket 类](https://www.starlette.dev/websockets/)
+* [`WebSocket` 类](https://www.starlette.dev/websockets/)。
 * [基于类的 WebSocket 处理](https://www.starlette.dev/endpoints/#websocketendpoint)。

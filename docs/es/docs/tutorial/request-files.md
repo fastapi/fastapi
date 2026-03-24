@@ -4,9 +4,9 @@ Puedes definir archivos que serán subidos por el cliente utilizando `File`.
 
 /// info | Información
 
-Para recibir archivos subidos, primero instala <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para recibir archivos subidos, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalarlo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
 
 ```console
 $ pip install python-multipart
@@ -20,13 +20,13 @@ Esto es porque los archivos subidos se envían como "form data".
 
 Importa `File` y `UploadFile` desde `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
 ## Definir Parámetros `File` { #define-file-parameters }
 
 Crea parámetros de archivo de la misma manera que lo harías para `Body` o `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Información
 
@@ -54,7 +54,7 @@ Pero hay varios casos en los que podrías beneficiarte de usar `UploadFile`.
 
 Define un parámetro de archivo con un tipo de `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 Usar `UploadFile` tiene varias ventajas sobre `bytes`:
 
@@ -63,8 +63,8 @@ Usar `UploadFile` tiene varias ventajas sobre `bytes`:
     * Un archivo almacenado en memoria hasta un límite de tamaño máximo, y después de superar este límite, se almacenará en el disco.
 * Esto significa que funcionará bien para archivos grandes como imágenes, videos, binarios grandes, etc. sin consumir toda la memoria.
 * Puedes obtener metadatos del archivo subido.
-* Tiene una interfaz `async` <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">parecida a un archivo</a>.
-* Expone un objeto Python real <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que puedes pasar directamente a otros paquetes que esperan un objeto parecido a un archivo.
+* Tiene una interfaz `async` [parecida a un archivo](https://docs.python.org/3/glossary.html#term-file-like-object).
+* Expone un objeto Python real [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) que puedes pasar directamente a otros paquetes que esperan un objeto parecido a un archivo.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ Usar `UploadFile` tiene varias ventajas sobre `bytes`:
 
 * `filename`: Un `str` con el nombre original del archivo que fue subido (por ejemplo, `myimage.jpg`).
 * `content_type`: Un `str` con el tipo de contenido (MIME type / media type) (por ejemplo, `image/jpeg`).
-* `file`: Un <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (un objeto <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">parecido a un archivo</a>). Este es el objeto de archivo Python real que puedes pasar directamente a otras funciones o paquetes que esperan un objeto "parecido a un archivo".
+* `file`: Un [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (un objeto [parecido a un archivo](https://docs.python.org/3/glossary.html#term-file-like-object)). Este es el objeto de archivo Python real que puedes pasar directamente a otras funciones o paquetes que esperan un objeto "parecido a un archivo".
 
 `UploadFile` tiene los siguientes métodos `async`. Todos ellos llaman a los métodos correspondientes del archivo por debajo (usando el `SpooledTemporaryFile` interno).
 
@@ -111,7 +111,7 @@ El `UploadFile` de **FastAPI** hereda directamente del `UploadFile` de **Starlet
 
 ## Qué es "Form Data" { #what-is-form-data }
 
-La manera en que los forms de HTML (`<form></form>`) envían los datos al servidor normalmente utiliza una codificación "especial" para esos datos, es diferente de JSON.
+La manera en que los formularios de HTML (`<form></form>`) envían los datos al servidor normalmente utiliza una codificación "especial" para esos datos, es diferente de JSON.
 
 **FastAPI** se asegurará de leer esos datos del lugar correcto en lugar de JSON.
 
@@ -121,7 +121,7 @@ Los datos de los forms normalmente se codifican usando el "media type" `applicat
 
 Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Si usas `File`, **FastAPI** sabrá que tiene que obtener los archivos de la parte correcta del cuerpo.
 
-Si deseas leer más sobre estas codificaciones y campos de formularios, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Red de Desarrolladores de Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
+Si deseas leer más sobre estas codificaciones y campos de formularios, dirígete a la [<abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
@@ -143,7 +143,7 @@ Puedes hacer un archivo opcional utilizando anotaciones de tipos estándar y est
 
 También puedes usar `File()` con `UploadFile`, por ejemplo, para establecer metadatos adicionales:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
 ## Subidas de Múltiples Archivos { #multiple-file-uploads }
 
@@ -151,9 +151,9 @@ Es posible subir varios archivos al mismo tiempo.
 
 Estarían asociados al mismo "campo de formulario" enviado usando "form data".
 
-Para usar eso, declara una lista de `bytes` o `UploadFile`:
+Para usar eso, declara una `list` de `bytes` o `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Recibirás, como se declaró, una `list` de `bytes` o `UploadFile`s.
 
@@ -169,7 +169,7 @@ También podrías usar `from starlette.responses import HTMLResponse`.
 
 Y de la misma manera que antes, puedes usar `File()` para establecer parámetros adicionales, incluso para `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
 ## Recapitulación { #recap }
 

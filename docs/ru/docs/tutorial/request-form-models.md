@@ -4,9 +4,9 @@
 
 /// info | Дополнительная информация
 
-Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы использовать формы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали и активировали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, а затем установите пакет, например:
+Убедитесь, что вы создали и активировали [виртуальное окружение](../virtual-environments.md), а затем установите пакет, например:
 
 ```console
 $ pip install python-multipart
@@ -24,7 +24,7 @@ $ pip install python-multipart
 
 Вам просто нужно объявить **Pydantic-модель** с полями, которые вы хотите получить как **поля формы**, а затем объявить параметр как `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI** **извлечёт** данные для **каждого поля** из **данных формы** в запросе и выдаст вам объявленную Pydantic-модель.
 
@@ -48,7 +48,7 @@ $ pip install python-multipart
 
 Вы можете сконфигурировать Pydantic-модель так, чтобы запретить (`forbid`) все дополнительные (`extra`) поля:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 Если клиент попробует отправить дополнительные данные, то в ответ он получит **ошибку**.
 

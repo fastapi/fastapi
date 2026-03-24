@@ -1,7 +1,7 @@
-# Probando una Base de Datos { #testing-a-database }
+# Escribir pruebas para una base de datos { #testing-a-database }
 
-Puedes estudiar sobre bases de datos, SQL y SQLModel en la <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">documentación de SQLModel</a>. 🤓
+Puedes estudiar sobre bases de datos, SQL y SQLModel en la [documentación de SQLModel](https://sqlmodel.tiangolo.com/). 🤓
 
-Hay un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial sobre el uso de SQLModel con FastAPI</a>. ✨
+Hay un mini [tutorial sobre el uso de SQLModel con FastAPI](https://sqlmodel.tiangolo.com/tutorial/fastapi/). ✨
 
-Ese tutorial incluye una sección sobre <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/" class="external-link" target="_blank">cómo probar bases de datos SQL</a>. 😎
+Ese tutorial incluye una sección sobre [escribir pruebas para bases de datos SQL](https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/). 😎

@@ -2,25 +2,27 @@
 
 Se você tem uma aplicação FastAPI antiga, pode estar usando o Pydantic versão 1.
 
-O FastAPI tem suporte ao Pydantic v1 ou v2 desde a versão 0.100.0.
+O FastAPI versão 0.100.0 tinha suporte ao Pydantic v1 ou v2. Ele usaria aquele que você tivesse instalado.
 
-Se você tiver o Pydantic v2 instalado, ele será utilizado. Se, em vez disso, tiver o Pydantic v1, será ele que será utilizado.
+O FastAPI versão 0.119.0 introduziu suporte parcial ao Pydantic v1 a partir de dentro do Pydantic v2 (como `pydantic.v1`), para facilitar a migração para o v2.
 
-O Pydantic v1 está agora descontinuado e o suporte a ele será removido nas próximas versões do FastAPI, você deveria migrar para o Pydantic v2. Assim, você terá as funcionalidades, melhorias e correções mais recentes.
+O FastAPI 0.126.0 removeu o suporte ao Pydantic v1, enquanto ainda oferece suporte a `pydantic.v1` por mais algum tempo.
 
 /// warning | Atenção
 
-Além disso, a equipe do Pydantic interrompeu o suporte ao Pydantic v1 para as versões mais recentes do Python, a partir do **Python 3.14**.
+A equipe do Pydantic interrompeu o suporte ao Pydantic v1 para as versões mais recentes do Python, a partir do **Python 3.14**.
+
+Isso inclui `pydantic.v1`, que não é mais suportado no Python 3.14 e superiores.
 
 Se quiser usar as funcionalidades mais recentes do Python, você precisará garantir que usa o Pydantic v2.
 
 ///
 
-Se você tem uma aplicação FastAPI antiga com Pydantic v1, aqui vou mostrar como migrá-la para o Pydantic v2 e as **novas funcionalidades no FastAPI 0.119.0** para ajudar em uma migração gradual.
+Se você tem uma aplicação FastAPI antiga com Pydantic v1, aqui vou mostrar como migrá-la para o Pydantic v2, e as **funcionalidades no FastAPI 0.119.0** para ajudar em uma migração gradual.
 
 ## Guia oficial { #official-guide }
 
-O Pydantic tem um <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Guia de Migração</a> oficial do v1 para o v2.
+O Pydantic tem um [Guia de Migração](https://docs.pydantic.dev/latest/migration/) oficial do v1 para o v2.
 
 Ele também inclui o que mudou, como as validações agora são mais corretas e rigorosas, possíveis ressalvas, etc.
 
@@ -28,7 +30,7 @@ Você pode lê-lo para entender melhor o que mudou.
 
 ## Testes { #tests }
 
-Garanta que você tenha [testes](../tutorial/testing.md){.internal-link target=_blank} para sua aplicação e que os execute na integração contínua (CI).
+Garanta que você tenha [testes](../tutorial/testing.md) para sua aplicação e que os execute na integração contínua (CI).
 
 Assim, você pode fazer a atualização e garantir que tudo continua funcionando como esperado.
 
@@ -36,7 +38,7 @@ Assim, você pode fazer a atualização e garantir que tudo continua funcionando
 
 Em muitos casos, quando você usa modelos Pydantic regulares sem personalizações, será possível automatizar a maior parte do processo de migração do Pydantic v1 para o Pydantic v2.
 
-Você pode usar o <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> da própria equipe do Pydantic.
+Você pode usar [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) da própria equipe do Pydantic.
 
 Essa ferramenta ajuda a alterar automaticamente a maior parte do código que precisa ser modificado.
 
@@ -44,7 +46,7 @@ Depois disso, você pode rodar os testes e verificar se tudo funciona. Se funcio
 
 ## Pydantic v1 no v2 { #pydantic-v1-in-v2 }
 
-O Pydantic v2 inclui tudo do Pydantic v1 como um submódulo `pydantic.v1`.
+O Pydantic v2 inclui tudo do Pydantic v1 como um submódulo `pydantic.v1`. Mas isso não é mais suportado em versões acima do Python 3.13.
 
 Isso significa que você pode instalar a versão mais recente do Pydantic v2 e importar e usar os componentes antigos do Pydantic v1 a partir desse submódulo, como se tivesse o Pydantic v1 antigo instalado.
 
@@ -66,7 +68,7 @@ Tenha em mente que, como a equipe do Pydantic não oferece mais suporte ao Pydan
 
 ### Pydantic v1 e v2 na mesma aplicação { #pydantic-v1-and-v2-on-the-same-app }
 
-Não é suportado pelo Pydantic ter um modelo do Pydantic v2 com campos próprios definidos como modelos do Pydantic v1, ou vice-versa.
+Não é **suportado** pelo Pydantic ter um modelo do Pydantic v2 com campos próprios definidos como modelos do Pydantic v1, ou vice-versa.
 
 ```mermaid
 graph TB
@@ -86,7 +88,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-...but, you can have separated models using Pydantic v1 and v2 in the same app.
+...mas, você pode ter modelos separados usando Pydantic v1 e v2 na mesma aplicação.
 
 ```mermaid
 graph TB
@@ -106,7 +108,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-Em alguns casos, é até possível ter modelos Pydantic v1 e v2 na mesma operação de rota na sua aplicação FastAPI:
+Em alguns casos, é até possível ter modelos Pydantic v1 e v2 na mesma **operação de rota** na sua aplicação FastAPI:
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
 
@@ -122,7 +124,7 @@ Se você precisar usar algumas das ferramentas específicas do FastAPI para par�
 
 /// tip | Dica
 
-Primeiro tente com o `bump-pydantic`; se seus testes passarem e isso funcionar, então você concluiu tudo com um único comando. ✨
+Primeiro tente com o `bump-pydantic`, se seus testes passarem e isso funcionar, então você concluiu tudo com um único comando. ✨
 
 ///
 

@@ -12,7 +12,7 @@ Esto es especialmente el caso para los modelos de usuario, porque:
 
 Nunca almacenes contraseñas de usuarios en texto plano. Siempre almacena un "hash seguro" que puedas verificar luego.
 
-Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos de seguridad](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos de seguridad](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ Puedes declarar un response que sea la `Union` de dos o más tipos, eso signific
 
 Se definirá en OpenAPI con `anyOf`.
 
-Para hacerlo, usa la anotación de tipos estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para hacerlo, usa la anotación de tipos estándar de Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Nota
 
-Al definir una <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
+Al definir una [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
 
 ///
 
@@ -190,9 +190,9 @@ Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obten
 
 De la misma manera, puedes declarar responses de listas de objetos.
 
-Para eso, usa el `typing.List` estándar de Python (o simplemente `list` en Python 3.9 y posteriores):
+Para eso, usa la `list` estándar de Python:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response con `dict` arbitrario { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ También puedes declarar un response usando un `dict` arbitrario plano, declaran
 
 Esto es útil si no conoces los nombres de los campos/atributos válidos (que serían necesarios para un modelo Pydantic) de antemano.
 
-En este caso, puedes usar `typing.Dict` (o solo `dict` en Python 3.9 y posteriores):
+En este caso, puedes usar `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Recapitulación { #recap }
 

@@ -18,7 +18,7 @@ Not the class itself (which is already a callable), but an instance of that clas
 
 To do that, we declare a method `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
 
@@ -26,7 +26,7 @@ In this case, this `__call__` is what **FastAPI** will use to check for addition
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
 
@@ -34,7 +34,7 @@ In this case, **FastAPI** won't ever touch or care about `__init__`, we will use
 
 We could create an instance of this class with:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip
 
@@ -120,7 +120,7 @@ The exit code, the automatic closing of the `Session` in:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
 
-...would be run after the the response finishes sending the slow data:
+...would be run after the response finishes sending the slow data:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
 
@@ -132,7 +132,7 @@ If you have this specific use case using SQLModel (or SQLAlchemy), you could exp
 
 That way the session would release the database connection, so other requests could use it.
 
-If you have a different use case that needs to exit early from a dependency with `yield`, please create a <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Question</a> with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
+If you have a different use case that needs to exit early from a dependency with `yield`, please create a [GitHub Discussion Question](https://github.com/fastapi/fastapi/discussions/new?category=questions) with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
 
 If there are compelling use cases for early closing in dependencies with `yield`, I would consider adding a new way to opt in to early closing.
 
@@ -144,7 +144,7 @@ This was changed in version 0.110.0 to fix unhandled memory consumption from for
 
 ### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../tutorial/handling-errors.md#install-custom-exception-handlers) would have already run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
 

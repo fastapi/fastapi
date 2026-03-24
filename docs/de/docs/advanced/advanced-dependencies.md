@@ -18,7 +18,7 @@ Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser
 
 Dazu deklarieren wir eine Methode `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
@@ -26,7 +26,7 @@ In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zus
 
 Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „Parametrisieren“ der Abhängigkeit verwenden können:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
 
 In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmern, wir werden es direkt in unserem Code verwenden.
 
@@ -34,7 +34,7 @@ In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmer
 
 Wir könnten eine Instanz dieser Klasse erstellen mit:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
 Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ... und übergibt, was immer das als Wert dieser Abhängigkeit in unserer *Pfadoperation-Funktion* zurückgibt, als den Parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
 
 /// tip | Tipp
 
@@ -132,7 +132,7 @@ Wenn Sie diesen spezifischen Anwendungsfall mit SQLModel (oder SQLAlchemy) haben
 
 Auf diese Weise würde die Session die Datenbankverbindung freigeben, sodass andere Requests sie verwenden könnten.
 
-Wenn Sie einen anderen Anwendungsfall haben, der ein frühes Beenden aus einer Abhängigkeit mit `yield` benötigt, erstellen Sie bitte eine <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub-Diskussion-Frage</a> mit Ihrem spezifischen Anwendungsfall und warum Sie von einem frühen Schließen für Abhängigkeiten mit `yield` profitieren würden.
+Wenn Sie einen anderen Anwendungsfall haben, der ein frühes Beenden aus einer Abhängigkeit mit `yield` benötigt, erstellen Sie bitte eine [GitHub-Diskussion-Frage](https://github.com/fastapi/fastapi/discussions/new?category=questions) mit Ihrem spezifischen Anwendungsfall und warum Sie von einem frühen Schließen für Abhängigkeiten mit `yield` profitieren würden.
 
 Wenn es überzeugende Anwendungsfälle für ein frühes Schließen bei Abhängigkeiten mit `yield` gibt, würde ich erwägen, eine neue Möglichkeit hinzuzufügen, um ein frühes Schließen optional zu aktivieren.
 
@@ -144,7 +144,7 @@ Dies wurde in Version 0.110.0 geändert, um unbehandelten Speicherverbrauch durc
 
 ### Hintergrundtasks und Abhängigkeiten mit `yield`, Technische Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} bereits ausgeführt worden wären.
+Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers) bereits ausgeführt worden wären.
 
 Dies war so designt, hauptsächlich um die Verwendung derselben von Abhängigkeiten „geyieldeten“ Objekte in Hintergrundtasks zu ermöglichen, da der Exit-Code erst ausgeführt wurde, nachdem die Hintergrundtasks abgeschlossen waren.
 

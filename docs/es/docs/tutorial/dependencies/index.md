@@ -1,6 +1,6 @@
 # Dependencias { #dependencies }
 
-**FastAPI** tiene un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso pero intuitivo.
+**FastAPI** tiene un sistema de **<dfn title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
 
 Está diseñado para ser muy simple de usar, y para hacer que cualquier desarrollador integre otros componentes con **FastAPI** de forma muy sencilla.
 
@@ -57,7 +57,7 @@ FastAPI agregó soporte para `Annotated` (y comenzó a recomendarlo) en la versi
 
 Si tienes una versión anterior, obtendrás errores al intentar usar `Annotated`.
 
-Asegúrate de [Actualizar la versión de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} al menos a la 0.95.1 antes de usar `Annotated`.
+Asegúrate de [Actualizar la versión de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions) al menos a la 0.95.1 antes de usar `Annotated`.
 
 ///
 
@@ -152,7 +152,7 @@ No importa. **FastAPI** sabrá qué hacer.
 
 /// note | Nota
 
-Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a-hurry){.internal-link target=_blank} sobre `async` y `await` en la documentación.
+Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a-hurry) sobre `async` y `await` en la documentación.
 
 ///
 

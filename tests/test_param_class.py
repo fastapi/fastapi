@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.params import Param
 from fastapi.testclient import TestClient
@@ -8,7 +6,7 @@ app = FastAPI()
 
 
 @app.get("/items/")
-def read_items(q: Optional[str] = Param(default=None)):  # type: ignore
+def read_items(q: str | None = Param(default=None)):  # type: ignore
     return {"q": q}
 
 

@@ -1,6 +1,6 @@
 # Зависимости с yield { #dependencies-with-yield }
 
-FastAPI поддерживает зависимости, которые выполняют некоторые <abbr title='иногда также называемые "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code" и т.п.'>дополнительные шаги после завершения</abbr>.
+FastAPI поддерживает зависимости, которые выполняют некоторые <dfn title='иногда также называемые "код выхода", "код очистки", "код завершения", "код закрытия", "код выхода менеджера контекста" и т.п.'>дополнительные шаги после завершения</dfn>.
 
 Для этого используйте `yield` вместо `return`, а дополнительные шаги (код) напишите после него.
 
@@ -14,8 +14,8 @@ FastAPI поддерживает зависимости, которые выпо
 
 Любая функция, с которой можно корректно использовать:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> или
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) или
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 будет корректной для использования в качестве зависимости **FastAPI**.
 
@@ -29,15 +29,15 @@ FastAPI поддерживает зависимости, которые выпо
 
 Перед созданием ответа будет выполнен только код до и включая оператор `yield`:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 Значение, полученное из `yield`, внедряется в *операции пути* и другие зависимости:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
 Код, следующий за оператором `yield`, выполняется после ответа:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | Подсказка
 
@@ -57,7 +57,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Точно так же можно использовать `finally`, чтобы убедиться, что обязательные шаги при выходе выполнены независимо от того, было ли исключение или нет.
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
 ## Подзависимости с `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Например, `dependency_c` может зависеть от `dependency_b`, а `dependency_b` — от `dependency_a`:
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 И все они могут использовать `yield`.
 
@@ -75,7 +75,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 И, в свою очередь, `dependency_b` нуждается в том, чтобы значение из `dependency_a` (здесь `dep_a`) было доступно для её кода выхода.
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
 Точно так же можно иметь часть зависимостей с `yield`, часть — с `return`, и какие-то из них могут зависеть друг от друга.
 
@@ -87,7 +87,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 /// note | Технические детали
 
-Это работает благодаря <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">менеджерам контекста</a> в Python.
+Это работает благодаря [менеджерам контекста](https://docs.python.org/3/library/contextlib.html) в Python.
 
 **FastAPI** использует их внутренне для достижения этого.
 
@@ -109,15 +109,15 @@ FastAPI поддерживает зависимости, которые выпо
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Если вы хотите перехватывать исключения и формировать на их основе пользовательский ответ, создайте [Пользовательский обработчик исключений](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Если вы хотите перехватывать исключения и формировать на их основе пользовательский ответ, создайте [Пользовательский обработчик исключений](../handling-errors.md#install-custom-exception-handlers).
 
 ## Зависимости с `yield` и `except` { #dependencies-with-yield-and-except }
 
 Если вы ловите исключение с помощью `except` в зависимости с `yield` и не вызываете его снова (или не вызываете новое исключение), FastAPI не сможет заметить, что было исключение — так же, как это происходит в обычном Python:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 В этом случае клиент получит *HTTP 500 Internal Server Error*, как и должно быть, поскольку мы не вызываем `HTTPException` или что-то подобное, но на сервере **не будет никаких логов** или других указаний на то, какая была ошибка. 😱
 
@@ -127,7 +127,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Вы можете повторно вызвать то же самое исключение с помощью `raise`:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
 
 Теперь клиент получит тот же *HTTP 500 Internal Server Error*, но на сервере в логах будет наше пользовательское `InternalError`. 😎
 
@@ -190,7 +190,7 @@ participant tasks as Background tasks
 
 Но если вы знаете, что не будете использовать зависимость после возврата из *функции-обработчика пути*, вы можете использовать `Depends(scope="function")`, чтобы сообщить FastAPI, что он должен закрыть зависимость после возврата из *функции-обработчика пути*, но **до того**, как **ответ будет отправлен**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
 
 `Depends()` принимает параметр `scope`, который может быть:
 
@@ -233,14 +233,14 @@ participant operation as Функция-обработчик пути
 
 Зависимости с `yield` со временем эволюционировали, чтобы покрыть разные сценарии и исправить некоторые проблемы.
 
-Если вы хотите посмотреть, что менялось в разных версиях FastAPI, вы можете прочитать об этом подробнее в продвинутом руководстве: [Продвинутые зависимости — зависимости с `yield`, `HTTPException`, `except` и фоновыми задачами](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Если вы хотите посмотреть, что менялось в разных версиях FastAPI, вы можете прочитать об этом подробнее в продвинутом руководстве: [Продвинутые зависимости — зависимости с `yield`, `HTTPException`, `except` и фоновыми задачами](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Контекстные менеджеры { #context-managers }
 
 ### Что такое «контекстные менеджеры» { #what-are-context-managers }
 
 «Контекстные менеджеры» — это любые объекты Python, которые можно использовать в операторе `with`.
 
-Например, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">можно использовать `with` для чтения файла</a>:
+Например, [можно использовать `with` для чтения файла](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,19 +264,19 @@ with open("./somefile.txt") as f:
 
 ///
 
-В Python можно создавать менеджеры контекста, <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">создав класс с двумя методами: `__enter__()` и `__exit__()`</a>.
+В Python можно создавать менеджеры контекста, [создав класс с двумя методами: `__enter__()` и `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 Их также можно использовать внутри зависимостей **FastAPI** с `yield`, применяя операторы
 `with` или `async with` внутри функции зависимости:
 
-{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | Подсказка
 
 Другой способ создания менеджера контекста — с помощью:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> или
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) или
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 оформив ими функцию с одним `yield`.
 

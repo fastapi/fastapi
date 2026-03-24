@@ -13,6 +13,7 @@ FastAPI usará este tipo de retorno para:
 * Agregar un **JSON Schema** para el response, en la *path operation* de OpenAPI.
     * Esto será utilizado por la **documentación automática**.
     * También será utilizado por herramientas de generación automática de código de cliente.
+* **Serializar** los datos devueltos a JSON usando Pydantic, que está escrito en **Rust**, por lo que será **mucho más rápido**.
 
 Pero lo más importante:
 
@@ -51,7 +52,7 @@ FastAPI usará este `response_model` para hacer toda la documentación de datos,
 
 /// tip | Consejo
 
-Si tienes chequeos estrictos de tipos en tu editor, mypy, etc., puedes declarar el tipo de retorno de la función como `Any`.
+Si tienes chequeo de tipos estricto en tu editor, mypy, etc., puedes declarar el tipo de retorno de la función como `Any`.
 
 De esa manera le dices al editor que intencionalmente estás devolviendo cualquier cosa. Pero FastAPI todavía hará la documentación de datos, validación, filtrado, etc. con `response_model`.
 
@@ -73,9 +74,9 @@ Aquí estamos declarando un modelo `UserIn`, contendrá una contraseña en texto
 
 /// info | Información
 
-Para usar `EmailStr`, primero instala <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
+Para usar `EmailStr`, primero instala [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo, y luego instalarlo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo, y luego instalarlo, por ejemplo:
 
 ```console
 $ pip install email-validator
@@ -181,9 +182,9 @@ Podría haber casos en los que devuelvas algo que no es un campo válido de Pyda
 
 ### Devolver un Response Directamente { #return-a-response-directly }
 
-El caso más común sería [devolver un Response directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md){.internal-link target=_blank}.
+El caso más común sería [devolver un Response directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md).
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 Este caso simple es manejado automáticamente por FastAPI porque la anotación del tipo de retorno es la clase (o una subclase de) `Response`.
 
@@ -193,7 +194,7 @@ Y las herramientas también estarán felices porque tanto `RedirectResponse` com
 
 También puedes usar una subclase de `Response` en la anotación del tipo:
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 Esto también funcionará porque `RedirectResponse` es una subclase de `Response`, y FastAPI manejará automáticamente este caso simple.
 
@@ -201,7 +202,7 @@ Esto también funcionará porque `RedirectResponse` es una subclase de `Response
 
 Pero cuando devuelves algún otro objeto arbitrario que no es un tipo válido de Pydantic (por ejemplo, un objeto de base de datos) y lo anotas así en la función, FastAPI intentará crear un modelo de response de Pydantic a partir de esa anotación de tipo, y fallará.
 
-Lo mismo sucedería si tuvieras algo como un <abbr title='Una unión entre múltiples tipos significa "cualquiera de estos tipos".'>union</abbr> entre diferentes tipos donde uno o más de ellos no son tipos válidos de Pydantic, por ejemplo esto fallaría 💥:
+Lo mismo sucedería si tuvieras algo como una <dfn title='una unión entre múltiples tipos significa "cualquiera de estos tipos".'>unión</dfn> entre diferentes tipos donde uno o más de ellos no son tipos válidos de Pydantic, por ejemplo esto fallaría 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -257,7 +258,7 @@ También puedes usar:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-como se describe en <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">la documentación de Pydantic</a> para `exclude_defaults` y `exclude_none`.
+como se describe en [la documentación de Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) para `exclude_defaults` y `exclude_none`.
 
 ///
 

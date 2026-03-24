@@ -8,7 +8,7 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | Nota
 
@@ -20,7 +20,7 @@ O parâmetro `status_code` recebe um número com o código de status HTTP.
 
 /// info | Informação
 
-`status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+`status_code` também pode receber um `IntEnum`, como [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) do Python.
 
 ///
 
@@ -66,7 +66,7 @@ Resumidamente:
 
 /// tip | Dica
 
-Para saber mais sobre cada código de status e qual código serve para quê, verifique a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentação do <abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP</a>.
+Para saber mais sobre cada código de status e qual código serve para quê, verifique a [documentação do <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -74,7 +74,7 @@ Para saber mais sobre cada código de status e qual código serve para quê, ver
 
 Vamos ver o exemplo anterior novamente:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` é o código de status para "Criado".
 
@@ -82,7 +82,7 @@ Mas você não precisa memorizar o que cada um desses códigos significa.
 
 Você pode usar as variáveis de conveniência de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa forma você pode usar o preenchimento automático do editor para encontrá-los:
 
@@ -98,4 +98,4 @@ Você também pode usar `from starlette import status`.
 
 ## Alterando o padrão { #changing-the-default }
 
-Mais tarde, no [Guia do Usuário Avançado](../advanced/response-change-status-code.md){.internal-link target=_blank}, você verá como retornar um código de status diferente do padrão que você está declarando aqui.
+Mais tarde, no [Guia do Usuário Avançado](../advanced/response-change-status-code.md), você verá como retornar um código de status diferente do padrão que você está declarando aqui.

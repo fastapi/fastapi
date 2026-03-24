@@ -4,9 +4,9 @@ Quando você precisar receber campos de formulário em vez de JSON, você pode u
 
 /// info | Informação
 
-Para usar formulários, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para usar formulários, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalá-lo, por exemplo:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e então instalá-lo, por exemplo:
 
 ```console
 $ pip install python-multipart
@@ -18,17 +18,17 @@ $ pip install python-multipart
 
 Importe `Form` de `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
 ## Defina parâmetros de `Form` { #define-form-parameters }
 
 Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
 Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 
-A <abbr title="specification – especificação">spec</abbr> exige que os campos sejam exatamente nomeados como `username` e `password` e sejam enviados como campos de formulário, não JSON.
+A <dfn title="especificação">especificação</dfn> exige que os campos sejam exatamente nomeados como `username` e `password` e sejam enviados como campos de formulário, não JSON.
 
 Com `Form` você pode declarar as mesmas configurações que com `Body` (e `Query`, `Path`, `Cookie`), incluindo validação, exemplos, um alias (por exemplo, `user-name` em vez de `username`), etc.
 
@@ -56,7 +56,7 @@ Os dados dos formulários são normalmente codificados usando o "media type" `ap
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o [<abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

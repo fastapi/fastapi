@@ -1,6 +1,6 @@
 # 응답 - 상태 코드 변경 { #response-change-status-code }
 
-기본 [응답 상태 코드 설정](../tutorial/response-status-code.md){.internal-link target=_blank}이 가능하다는 걸 이미 알고 계실 겁니다.
+기본 [응답 상태 코드 설정](../tutorial/response-status-code.md)이 가능하다는 걸 이미 알고 계실 겁니다.
 
 하지만 경우에 따라 기본 설정과 다른 상태 코드를 반환해야 할 때가 있습니다.
 
@@ -20,7 +20,7 @@
 
 그리고 이 *임시* 응답 객체에서 `status_code`를 설정할 수 있습니다.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 그리고 평소처럼 필요한 어떤 객체든 반환할 수 있습니다(`dict`, 데이터베이스 모델 등).
 

@@ -1,12 +1,13 @@
-# ボディ - フィールド
+# ボディ - フィールド { #body-fields }
 
 `Query`や`Path`、`Body`を使って *path operation関数* のパラメータに追加のバリデーションやメタデータを宣言するのと同じように、Pydanticの`Field`を使ってPydanticモデルの内部でバリデーションやメタデータを宣言することができます。
 
-## `Field`のインポート
+## `Field`のインポート { #import-field }
 
 まず、以下のようにインポートします:
 
-{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+
 
 /// warning | 注意
 
@@ -14,11 +15,11 @@
 
 ///
 
-## モデルの属性の宣言
+## モデルの属性の宣言 { #declare-model-attributes }
 
 以下のように`Field`をモデルの属性として使用することができます:
 
-{* ../../docs_src/body_fields/tutorial001.py hl[11,12,13,14] *}
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field`は`Query`や`Path`、`Body`と同じように動作し、全く同様のパラメータなどを持ちます。
 
@@ -40,13 +41,20 @@
 
 ///
 
-## 追加情報の追加
+## 追加情報の追加 { #add-extra-information }
 
 追加情報は`Field`や`Query`、`Body`などで宣言することができます。そしてそれは生成されたJSONスキーマに含まれます。
 
 後に例を用いて宣言を学ぶ際に、追加情報を追加する方法を学べます。
 
-## まとめ
+/// warning | 注意
+
+`Field`に渡された追加のキーは、結果として生成されるアプリケーションのOpenAPIスキーマにも含まれます。
+これらのキーは必ずしもOpenAPI仕様の一部であるとは限らないため、例えば[OpenAPI validator](https://validator.swagger.io/)などの一部のOpenAPIツールは、生成されたスキーマでは動作しない場合があります。
+
+///
+
+## まとめ { #recap }
 
 Pydanticの`Field`を使用して、モデルの属性に追加のバリデーションやメタデータを宣言することができます。
 

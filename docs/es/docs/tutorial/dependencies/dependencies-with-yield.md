@@ -1,6 +1,6 @@
 # Dependencias con yield { #dependencies-with-yield }
 
-FastAPI admite dependencias que realizan algunos <abbr title='a veces también llamado "código de salida", "código de limpieza", "código de teardown", "código de cierre", "código de salida del context manager", etc.'>pasos adicionales después de finalizar</abbr>.
+FastAPI admite dependencias que realizan algunos <dfn title='a veces también llamado "código de salida", "código de limpieza", "código de teardown", "código de cierre", "código de salida del context manager", etc.'>pasos adicionales después de finalizar</dfn>.
 
 Para hacer esto, usa `yield` en lugar de `return`, y escribe los pasos adicionales (código) después.
 
@@ -14,8 +14,8 @@ Asegúrate de usar `yield` una sola vez por dependencia.
 
 Cualquier función que sea válida para usar con:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> o
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) o
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 sería válida para usar como una dependencia en **FastAPI**.
 
@@ -27,17 +27,17 @@ De hecho, FastAPI usa esos dos decoradores internamente.
 
 Por ejemplo, podrías usar esto para crear una sesión de base de datos y cerrarla después de finalizar.
 
-Solo el código anterior e incluyendo la declaración `yield` se ejecuta antes de crear un response:
+Solo el código anterior e incluyendo el `yield` statement se ejecuta antes de crear un response:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 El valor generado es lo que se inyecta en *path operations* y otras dependencias:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
-El código posterior a la declaración `yield` se ejecuta después del response:
+El código posterior al `yield` statement se ejecuta después del response:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | Consejo
 
@@ -57,7 +57,7 @@ Por lo tanto, puedes buscar esa excepción específica dentro de la dependencia 
 
 Del mismo modo, puedes usar `finally` para asegurarte de que los pasos de salida se ejecuten, sin importar si hubo una excepción o no.
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
 ## Sub-dependencias con `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ Puedes tener sub-dependencias y "árboles" de sub-dependencias de cualquier tama
 
 Por ejemplo, `dependency_c` puede tener una dependencia de `dependency_b`, y `dependency_b` de `dependency_a`:
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 Y todas ellas pueden usar `yield`.
 
@@ -75,7 +75,7 @@ En este caso, `dependency_c`, para ejecutar su código de salida, necesita que e
 
 Y, a su vez, `dependency_b` necesita que el valor de `dependency_a` (aquí llamado `dep_a`) esté disponible para su código de salida.
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
 De la misma manera, podrías tener algunas dependencias con `yield` y otras dependencias con `return`, y hacer que algunas de esas dependan de algunas de las otras.
 
@@ -87,7 +87,7 @@ Puedes tener cualquier combinación de dependencias que quieras.
 
 /// note | Detalles técnicos
 
-Esto funciona gracias a los <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a> de Python.
+Esto funciona gracias a los [Context Managers](https://docs.python.org/3/library/contextlib.html) de Python.
 
 **FastAPI** los utiliza internamente para lograr esto.
 
@@ -109,15 +109,15 @@ Pero está ahí para ti si la necesitas. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers).
 
 ## Dependencias con `yield` y `except` { #dependencies-with-yield-and-except }
 
 Si capturas una excepción usando `except` en una dependencia con `yield` y no la lanzas nuevamente (o lanzas una nueva excepción), FastAPI no podrá notar que hubo una excepción, al igual que sucedería con Python normal:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 En este caso, el cliente verá un response *HTTP 500 Internal Server Error* como debería, dado que no estamos lanzando una `HTTPException` o similar, pero el servidor **no tendrá ningún registro** ni ninguna otra indicación de cuál fue el error. 😱
 
@@ -127,7 +127,7 @@ Si capturas una excepción en una dependencia con `yield`, a menos que estés la
 
 Puedes volver a lanzar la misma excepción usando `raise`:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
 
 Ahora el cliente obtendrá el mismo response *HTTP 500 Internal Server Error*, pero el servidor tendrá nuestro `InternalError` personalizado en los registros. 😎
 
@@ -190,7 +190,7 @@ Normalmente, el código de salida de las dependencias con `yield` se ejecuta **d
 
 Pero si sabes que no necesitarás usar la dependencia después de regresar de la *path operation function*, puedes usar `Depends(scope="function")` para decirle a FastAPI que debe cerrar la dependencia después de que la *path operation function* regrese, pero **antes** de que se envíe el **response**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
 
 `Depends()` recibe un parámetro `scope` que puede ser:
 
@@ -233,15 +233,14 @@ participant operation as Path Operation
 
 Las dependencias con `yield` han evolucionado con el tiempo para cubrir diferentes casos de uso y corregir algunos problemas.
 
-Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
-
+Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Context Managers { #context-managers }
 
 ### Qué son los "Context Managers" { #what-are-context-managers }
 
-Los "Context Managers" son aquellos objetos de Python que puedes usar en una declaración `with`.
+Los "Context Managers" son aquellos objetos de Python que puedes usar en un `with` statement.
 
-Por ejemplo, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">puedes usar `with` para leer un archivo</a>:
+Por ejemplo, [puedes usar `with` para leer un archivo](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -265,19 +264,19 @@ Si apenas estás comenzando con **FastAPI**, podrías querer omitirlo por ahora.
 
 ///
 
-En Python, puedes crear Context Managers <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creando una clase con dos métodos: `__enter__()` y `__exit__()`</a>.
+En Python, puedes crear Context Managers [creando una clase con dos métodos: `__enter__()` y `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 También puedes usarlos dentro de las dependencias de **FastAPI** con `yield` usando
 `with` o `async with` en la función de dependencia:
 
-{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | Consejo
 
 Otra manera de crear un context manager es con:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> o
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) o
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 usándolos para decorar una función con un solo `yield`.
 

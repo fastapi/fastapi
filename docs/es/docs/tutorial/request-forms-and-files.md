@@ -4,9 +4,9 @@ Puedes definir archivos y campos de formulario al mismo tiempo usando `File` y `
 
 /// info | Información
 
-Para recibir archivos subidos y/o form data, primero instala <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para recibir archivos subidos y/o form data, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo y luego instálalo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), actívalo y luego instálalo, por ejemplo:
 
 ```console
 $ pip install python-multipart
@@ -16,13 +16,13 @@ $ pip install python-multipart
 
 ## Importa `File` y `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## Define parámetros `File` y `Form` { #define-file-and-form-parameters }
 
 Crea parámetros de archivo y formulario de la misma manera que lo harías para `Body` o `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 Los archivos y campos de formulario se subirán como form data y recibirás los archivos y campos de formulario.
 

@@ -8,7 +8,7 @@ Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestell
 
 /// tip | Tipp
 
-Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md){.internal-link target=_blank} lesen.
+Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md) lesen.
 
 ///
 
@@ -20,11 +20,11 @@ Das bedeutet, dass jeder in Python aus einer Umgebungsvariablen gelesene Wert ei
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings Management</a>.
+Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings Management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### `pydantic-settings` installieren { #install-pydantic-settings }
 
-Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
+Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md) erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
 
 <div class="termy">
 
@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Info
-
-In Pydantic v1 war es im Hauptpackage enthalten. Jetzt wird es als unabhängiges Package verteilt, sodass Sie wählen können, ob Sie es installieren möchten oder nicht, falls Sie die Funktionalität nicht benötigen.
-
-///
-
 ### Das `Settings`-Objekt erstellen { #create-the-settings-object }
 
 Importieren Sie `BaseSettings` aus Pydantic und erstellen Sie eine Unterklasse, ganz ähnlich wie bei einem Pydantic-Modell.
@@ -60,7 +54,7 @@ Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute
 
 Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Tipp
 
@@ -76,7 +70,7 @@ Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `
 
 Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Den Server ausführen { #run-the-server }
 
@@ -98,27 +92,27 @@ Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen S
 
 ///
 
-Und dann würde die Einstellung `admin_email` auf `"deadpool@example.com"` gesetzt.
+Und dann würde die Einstellung `admin_email` auf „deadpool@example.com“ gesetzt.
 
-Der `app_name` wäre `"ChimichangApp"`.
+Der `app_name` wäre „ChimichangApp“.
 
 Und `items_per_user` würde seinen Defaultwert von `50` behalten.
 
 ## Einstellungen in einem anderen Modul { #settings-in-another-module }
 
-Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen haben.
+Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md) gesehen haben.
 
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 Und dann verwenden Sie diese in einer Datei `main.py`:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Tipp
 
-Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen.
+Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md) gesehen.
 
 ///
 
@@ -132,7 +126,7 @@ Dies könnte besonders beim Testen nützlich sein, da es sehr einfach ist, eine 
 
 Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
 
@@ -140,7 +134,7 @@ Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erste
 
 Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurückgibt.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Tipp
 
@@ -152,13 +146,13 @@ Im Moment nehmen Sie an, dass `get_settings()` eine normale Funktion ist.
 
 Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einfordern und es überall dort verwenden, wo wir es brauchen.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Einstellungen und Tests { #settings-and-testing }
 
 Dann wäre es sehr einfach, beim Testen ein anderes Einstellungsobjekt bereitzustellen, indem man eine Abhängigkeitsüberschreibung für `get_settings` erstellt:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_email` fest, wenn wir das neue `Settings`-Objekt erstellen, und geben dann dieses neue Objekt zurück.
 
@@ -178,7 +172,7 @@ Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
 
 ///
 
-Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Tipp
 
@@ -199,11 +193,11 @@ APP_NAME="ChimichangApp"
 
 Und dann aktualisieren Sie Ihre `config.py` mit:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Tipp
 
-Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -232,7 +226,7 @@ würden wir dieses Objekt für jeden Request erstellen und die `.env`-Datei für
 
 Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Objekt nur einmal erstellt, nämlich beim ersten Aufruf. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Dann wird bei allen nachfolgenden Aufrufen von `get_settings()`, in den Abhängigkeiten für darauffolgende Requests, dasselbe Objekt zurückgegeben, das beim ersten Aufruf zurückgegeben wurde, anstatt den Code von `get_settings()` erneut auszuführen und ein neues `Settings`-Objekt zu erstellen.
 
@@ -297,7 +291,7 @@ Im Fall unserer Abhängigkeit `get_settings()` akzeptiert die Funktion nicht ein
 
 Auf diese Weise verhält es sich fast so, als wäre es nur eine globale Variable. Da es jedoch eine Abhängigkeitsfunktion verwendet, können wir diese zu Testzwecken problemlos überschreiben.
 
-`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python Dokumentation für `@lru_cache`</a>.
+`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der [Python Dokumentation für `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Zusammenfassung { #recap }
 

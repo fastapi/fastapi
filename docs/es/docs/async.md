@@ -4,7 +4,7 @@ Detalles sobre la sintaxis `async def` para *path operation functions* y algunos
 
 ## ¿Con prisa? { #in-a-hurry }
 
-<abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
+<abbr title="too long; didn't read - demasiado largo; no lo leí"><strong>TL;DR:</strong></abbr>
 
 Si estás usando paquetes de terceros que te dicen que los llames con `await`, como:
 
@@ -74,7 +74,7 @@ Luego la computadora / programa 🤖 volverá cada vez que tenga una oportunidad
 
 Después, 🤖 toma la primera tarea que termine (digamos, nuestro "archivo-lento" 📝) y continúa con lo que tenía que hacer con ella.
 
-Ese "esperar otra cosa" normalmente se refiere a las operaciones de <abbr title="Input and Output – Entrada y salida">I/O</abbr> que son relativamente "lentas" (comparadas con la velocidad del procesador y la memoria RAM), como esperar:
+Ese "esperar otra cosa" normalmente se refiere a las operaciones de <abbr title="Input and Output - Entrada y salida">I/O</abbr> que son relativamente "lentas" (comparadas con la velocidad del procesador y la memoria RAM), como esperar:
 
 * que los datos del cliente se envíen a través de la red
 * que los datos enviados por tu programa sean recibidos por el cliente a través de la red
@@ -85,7 +85,7 @@ Ese "esperar otra cosa" normalmente se refiere a las operaciones de <abbr title=
 * que una query de base de datos devuelva los resultados
 * etc.
 
-Como el tiempo de ejecución se consume principalmente esperando operaciones de <abbr title="Input and Output – Entrada y salida">I/O</abbr>, las llaman operaciones "I/O bound".
+Como el tiempo de ejecución se consume principalmente esperando operaciones de <abbr title="Input and Output - Entrada y salida">I/O</abbr>, las llaman operaciones "I/O bound".
 
 Se llama "asíncrono" porque la computadora / programa no tiene que estar "sincronizado" con la tarea lenta, esperando el momento exacto en que la tarea termine, sin hacer nada, para poder tomar el resultado de la tarea y continuar el trabajo.
 
@@ -141,7 +141,7 @@ Tú y tu crush comen las hamburguesas y pasan un buen rato. ✨
 
 /// info | Información
 
-Hermosas ilustraciones de <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -207,7 +207,7 @@ No hubo mucho hablar o coquetear ya que la mayor parte del tiempo se dedicó a e
 
 /// info | Información
 
-Hermosas ilustraciones de <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -251,7 +251,7 @@ Este tipo de asincronía es lo que hizo popular a NodeJS (aunque NodeJS no es pa
 
 Y ese es el mismo nivel de rendimiento que obtienes con **FastAPI**.
 
-Y como puedes tener paralelismo y asincronía al mismo tiempo, obtienes un mayor rendimiento que la mayoría de los frameworks de NodeJS probados y a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(todo gracias a Starlette)</a>.
+Y como puedes tener paralelismo y asincronía al mismo tiempo, obtienes un mayor rendimiento que la mayoría de los frameworks de NodeJS probados y a la par con Go, que es un lenguaje compilado más cercano a C [(todo gracias a Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### ¿Es la concurrencia mejor que el paralelismo? { #is-concurrency-better-than-parallelism }
 
@@ -277,7 +277,7 @@ Pero en este caso, si pudieras traer a los 8 ex-cajeros/cocineros/ahora-limpiado
 
 En este escenario, cada uno de los limpiadores (incluyéndote) sería un procesador, haciendo su parte del trabajo.
 
-Y como la mayor parte del tiempo de ejecución se dedica al trabajo real (en lugar de esperar), y el trabajo en una computadora lo realiza una <abbr title="Central Processing Unit – Unidad Central de Procesamiento">CPU</abbr>, llaman a estos problemas "CPU bound".
+Y como la mayor parte del tiempo de ejecución se dedica al trabajo real (en lugar de esperar), y el trabajo en una computadora lo realiza una <abbr title="Central Processing Unit - Unidad Central de Procesamiento">CPU</abbr>, llaman a estos problemas "CPU bound".
 
 ---
 
@@ -298,7 +298,7 @@ Pero también puedes explotar los beneficios del paralelismo y la multiprocesami
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena opción para APIs web de Data Science / Machine Learning y aplicaciones (entre muchas otras).
 
-Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Deployment](deployment/index.md){.internal-link target=_blank}.
+Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Despliegue](deployment/index.md).
 
 ## `async` y `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ Pero si deseas usar `async` / `await` sin FastAPI, también puedes hacerlo.
 
 ### Escribe tu propio código async { #write-your-own-async-code }
 
-Starlette (y **FastAPI**) están basados en <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, lo que lo hace compatible tanto con el <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> del paquete estándar de Python como con <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (y **FastAPI**) están basados en [AnyIO](https://anyio.readthedocs.io/en/stable/), lo que lo hace compatible tanto con el [asyncio](https://docs.python.org/3/library/asyncio-task.html) del paquete estándar de Python como con [Trio](https://trio.readthedocs.io/en/stable/).
 
-En particular, puedes usar directamente <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para tus casos de uso avanzados de concurrencia que requieran patrones más avanzados en tu propio código.
+En particular, puedes usar directamente [AnyIO](https://anyio.readthedocs.io/en/stable/) para tus casos de uso avanzados de concurrencia que requieran patrones más avanzados en tu propio código.
 
-E incluso si no estuvieras usando FastAPI, también podrías escribir tus propias aplicaciones asíncronas con <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para ser altamente compatibles y obtener sus beneficios (p.ej. *concurrencia estructurada*).
+E incluso si no estuvieras usando FastAPI, también podrías escribir tus propias aplicaciones asíncronas con [AnyIO](https://anyio.readthedocs.io/en/stable/) para ser altamente compatibles y obtener sus beneficios (p.ej. *concurrencia estructurada*).
 
-Creé otro paquete sobre AnyIO, como una capa delgada, para mejorar un poco las anotaciones de tipos y obtener mejor **autocompletado**, **errores en línea**, etc. También tiene una introducción amigable y tutorial para ayudarte a **entender** y escribir **tu propio código async**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Sería particularmente útil si necesitas **combinar código async con regular** (bloqueante/sincrónico).
+Creé otro paquete sobre AnyIO, como una capa delgada, para mejorar un poco las anotaciones de tipos y obtener mejor **autocompletado**, **errores en línea**, etc. También tiene una introducción amigable y tutorial para ayudarte a **entender** y escribir **tu propio código async**: [Asyncer](https://asyncer.tiangolo.com/). Sería particularmente útil si necesitas **combinar código async con regular** (bloqueante/sincrónico).
 
 ### Otras formas de código asíncrono { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las
 
 Pero antes de eso, manejar el código asíncrono era mucho más complejo y difícil.
 
-En versiones previas de Python, podrías haber usado hilos o <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y razonar.
+En versiones previas de Python, podrías haber usado hilos o [Gevent](https://www.gevent.org/). Pero el código es mucho más complejo de entender, depurar y razonar.
 
 En versiones previas de NodeJS / JavaScript en el Navegador, habrías usado "callbacks". Lo que lleva al "callback hell".
 
@@ -407,7 +407,7 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que hace que te
 
 Probablemente puedas saltarte esto.
 
-Estos son detalles muy técnicos de cómo funciona **FastAPI** en su interior.
+Estos son detalles muy técnicos de cómo **FastAPI** funciona en su interior.
 
 Si tienes bastante conocimiento técnico (coroutines, hilos, bloqueo, etc.) y tienes curiosidad sobre cómo FastAPI maneja `async def` vs `def` normal, adelante.
 
@@ -417,17 +417,17 @@ Si tienes bastante conocimiento técnico (coroutines, hilos, bloqueo, etc.) y ti
 
 Cuando declaras una *path operation function* con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego es esperado, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 
-Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de *path operation* solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen código que realice <abbr title="Input/Output – Entrada/Salida: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
+Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de *path operation* solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen código que realice <abbr title="Input/Output - Entrada/Salida: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
 
-Aun así, en ambas situaciones, es probable que **FastAPI** [siga siendo más rápida](index.md#performance){.internal-link target=_blank} que (o al menos comparable a) tu framework anterior.
+Aun así, en ambas situaciones, es probable que **FastAPI** [siga siendo más rápida](index.md#performance) que (o al menos comparable a) tu framework anterior.
 
 ### Dependencias { #dependencies }
 
-Lo mismo aplica para las [dependencias](tutorial/dependencies/index.md){.internal-link target=_blank}. Si una dependencia es una función estándar `def` en lugar de `async def`, se ejecuta en el threadpool externo.
+Lo mismo aplica para las [dependencias](tutorial/dependencies/index.md). Si una dependencia es una función estándar `def` en lugar de `async def`, se ejecuta en el threadpool externo.
 
 ### Sub-dependencias { #sub-dependencies }
 
-Puedes tener múltiples dependencias y [sub-dependencias](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiriéndose mutuamente (como parámetros de las definiciones de funciones), algunas de ellas podrían ser creadas con `async def` y algunas con `def` normal. Aun funcionará, y las que fueron creadas con `def` normal serían llamadas en un hilo externo (del threadpool) en lugar de ser "awaited".
+Puedes tener múltiples dependencias y [sub-dependencias](tutorial/dependencies/sub-dependencies.md) requiriéndose mutuamente (como parámetros de las definiciones de funciones), algunas de ellas podrían ser creadas con `async def` y algunas con `def` normal. Aun funcionará, y las que fueron creadas con `def` normal serían llamadas en un hilo externo (del threadpool) en lugar de ser "awaited".
 
 ### Otras funciones de utilidad { #other-utility-functions }
 

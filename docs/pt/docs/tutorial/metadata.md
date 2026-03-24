@@ -1,4 +1,4 @@
-# Metadados e Urls de Documentos { #metadata-and-docs-urls }
+# Metadados e URLs da Documentação { #metadata-and-docs-urls }
 
 Você pode personalizar várias configurações de metadados na sua aplicação **FastAPI**.
 
@@ -14,11 +14,11 @@ Você pode definir os seguintes campos que são usados na especificação OpenAP
 | `version` | `string` | A versão da API. Esta é a versão da sua aplicação, não do OpenAPI. Por exemplo, `2.5.0`. |
 | `terms_of_service` | `str` | Uma URL para os Termos de Serviço da API. Se fornecido, deve ser uma URL. |
 | `contact` | `dict` | As informações de contato da API exposta. Pode conter vários campos. <details><summary>Campos de <code>contact</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>O nome identificador da pessoa/organização de contato.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>A URL que aponta para as informações de contato. DEVE estar no formato de uma URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>O endereço de e-mail da pessoa/organização de contato. DEVE estar no formato de um endereço de e-mail.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | As informações de licença para a API exposta. Ela pode conter vários campos. <details><summary>Campos de <code>license_info</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBRIGATÓRIO</strong> (se um <code>license_info</code> for definido). O nome da licença usada para a API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Uma expressão de licença <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> para a API. O campo <code>identifier</code> é mutuamente exclusivo do campo <code>url</code>. <small>Disponível desde OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Uma URL para a licença usada para a API. DEVE estar no formato de uma URL.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | As informações de licença para a API exposta. Ela pode conter vários campos. <details><summary>Campos de <code>license_info</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBRIGATÓRIO</strong> (se um <code>license_info</code> for definido). O nome da licença usada para a API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Uma expressão de licença [SPDX](https://spdx.org/licenses/) para a API. O campo <code>identifier</code> é mutuamente exclusivo do campo <code>url</code>. <small>Disponível desde OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Uma URL para a licença usada para a API. DEVE estar no formato de uma URL.</td></tr></tbody></table></details> |
 
 Você pode defini-los da seguinte maneira:
 
-{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | Dica
 
@@ -32,11 +32,11 @@ Com essa configuração, a documentação automática da API se pareceria com:
 
 ## Identificador de Licença { #license-identifier }
 
-Desde o OpenAPI 3.1.0 e FastAPI 0.99.0, você também pode definir o license_info com um identifier em vez de uma url.
+Desde o OpenAPI 3.1.0 e FastAPI 0.99.0, você também pode definir o `license_info` com um `identifier` em vez de uma `url`.
 
 Por exemplo:
 
-{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## Metadados para tags { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ Vamos tentar isso em um exemplo com tags para `users` e `items`.
 
 Crie metadados para suas tags e passe-os para o parâmetro `openapi_tags`:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Observe que você pode usar Markdown dentro das descrições. Por exemplo, "login" será exibido em negrito (**login**) e "fancy" será exibido em itálico (_fancy_).
 
@@ -72,11 +72,11 @@ Você não precisa adicionar metadados para todas as tags que você usa.
 
 Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atribuí-los a diferentes tags:
 
-{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Informação
 
-Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags).
 
 ///
 
@@ -100,7 +100,7 @@ Mas você pode configurá-lo com o parâmetro `openapi_url`.
 
 Por exemplo, para defini-lo para ser servido em `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 Se você quiser desativar completamente o esquema OpenAPI, pode definir `openapi_url=None`, o que também desativará as interfaces de documentação que o utilizam.
 
@@ -117,4 +117,4 @@ Você pode configurar as duas interfaces de documentação incluídas:
 
 Por exemplo, para definir o Swagger UI para ser servido em `/documentation` e desativar o ReDoc:
 
-{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

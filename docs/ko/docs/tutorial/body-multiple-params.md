@@ -103,12 +103,6 @@
 기본적으로 단일 값은 쿼리 매개변수로 해석되므로, 명시적으로 `Query`를 추가할 필요 없이 이렇게 하면 됩니다:
 
 ```Python
-q: Union[str, None] = None
-```
-
-또는 Python 3.10 이상에서는:
-
-```Python
 q: str | None = None
 ```
 

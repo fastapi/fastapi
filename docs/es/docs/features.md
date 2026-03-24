@@ -6,8 +6,8 @@
 
 ### Basado en estándares abiertos { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para la creación de APIs, incluyendo declaraciones de <abbr title="también conocido como: endpoints, rutas">path</abbr> <abbr title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</abbr>, parámetros, request bodies, seguridad, etc.
-* Documentación automática de modelos de datos con <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ya que OpenAPI en sí mismo está basado en JSON Schema).
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para la creación de APIs, incluyendo declaraciones de <dfn title="también conocido como: endpoints, rutas">path</dfn> <dfn title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</dfn>, parámetros, request bodies, seguridad, etc.
+* Documentación automática de modelos de datos con [**JSON Schema**](https://json-schema.org/) (ya que OpenAPI en sí mismo está basado en JSON Schema).
 * Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional.
 * Esto también permite el uso de **generación de código cliente automática** en muchos idiomas.
 
@@ -15,11 +15,11 @@
 
 Interfaces web de documentación y exploración de APIs interactivas. Como el framework está basado en OpenAPI, hay múltiples opciones, 2 incluidas por defecto.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, con exploración interactiva, llama y prueba tu API directamente desde el navegador.
+* [**Swagger UI**](https://github.com/swagger-api/swagger-ui), con exploración interactiva, llama y prueba tu API directamente desde el navegador.
 
 ![Interacción Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentación alternativa de API con <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+* Documentación alternativa de API con [**ReDoc**](https://github.com/Rebilly/ReDoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -27,7 +27,7 @@ Interfaces web de documentación y exploración de APIs interactivas. Como el fr
 
 Todo está basado en declaraciones estándar de **tipos en Python** (gracias a Pydantic). Sin nueva sintaxis que aprender. Solo Python moderno estándar.
 
-Si necesitas un repaso de 2 minutos sobre cómo usar tipos en Python (aunque no uses FastAPI), revisa el tutorial corto: [Tipos en Python](python-types.md){.internal-link target=_blank}.
+Si necesitas un repaso de 2 minutos sobre cómo usar tipos en Python (aunque no uses FastAPI), revisa el tutorial corto: [Tipos en Python](python-types.md).
 
 Escribes Python estándar con tipos:
 
@@ -75,7 +75,7 @@ Pasa las claves y valores del dict `second_user_data` directamente como argument
 
 Todo el framework fue diseñado para ser fácil e intuitivo de usar, todas las decisiones fueron probadas en múltiples editores incluso antes de comenzar el desarrollo, para asegurar la mejor experiencia de desarrollo.
 
-En las encuestas a desarrolladores de Python, es claro <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">que una de las funcionalidades más usadas es el "autocompletado"</a>.
+En las encuestas a desarrolladores de Python, es claro [que una de las funcionalidades más usadas es el "autocompletado"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
 Todo el framework **FastAPI** está basado para satisfacer eso. El autocompletado funciona en todas partes.
 
@@ -83,11 +83,11 @@ Rara vez necesitarás regresar a la documentación.
 
 Aquí está cómo tu editor podría ayudarte:
 
-* en <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+* en [Visual Studio Code](https://code.visualstudio.com/):
 
 ![soporte del editor](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* en <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+* en [PyCharm](https://www.jetbrains.com/pycharm/):
 
 ![soporte del editor](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -105,8 +105,8 @@ Pero por defecto, todo **"simplemente funciona"**.
 
 * Validación para la mayoría (¿o todas?) de los **tipos de datos** de Python, incluyendo:
     * Objetos JSON (`dict`).
-    * Array JSON (`list`) definiendo tipos de elementos.
-    * Campos de cadena de caracteres (`str`), definiendo longitudes mínimas y máximas.
+    * array JSON (`list`) definiendo tipos de elementos.
+    * Campos de string (`str`), definiendo longitudes mínimas y máximas.
     * Números (`int`, `float`) con valores mínimos y máximos, etc.
 
 * Validación para tipos más exóticos, como:
@@ -124,7 +124,7 @@ Seguridad y autenticación integradas. Sin ningún compromiso con bases de datos
 Todos los esquemas de seguridad definidos en OpenAPI, incluyendo:
 
 * HTTP Básico.
-* **OAuth2** (también con **tokens JWT**). Revisa el tutorial sobre [OAuth2 con JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* **OAuth2** (también con **tokens JWT**). Revisa el tutorial sobre [OAuth2 con JWT](tutorial/security/oauth2-jwt.md).
 * API keys en:
     * Headers.
     * Parámetros de query.
@@ -136,7 +136,7 @@ Todo construido como herramientas y componentes reutilizables que son fáciles d
 
 ### Inyección de dependencias { #dependency-injection }
 
-FastAPI incluye un sistema de <abbr title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></abbr> extremadamente fácil de usar, pero extremadamente potente.
+FastAPI incluye un sistema de <dfn title='también conocido como "componentes", "recursos", "servicios", "proveedores"'><strong>Inyección de Dependencias</strong></dfn> extremadamente fácil de usar, pero extremadamente potente.
 
 * Incluso las dependencias pueden tener dependencias, creando una jerarquía o **"grafo de dependencias"**.
 * Todo **manejado automáticamente** por el framework.
@@ -153,19 +153,19 @@ Cualquier integración está diseñada para ser tan simple de usar (con dependen
 
 ### Probado { #tested }
 
-* 100% de <abbr title="La cantidad de código que se prueba automáticamente">cobertura de tests</abbr>.
-* 100% <abbr title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</abbr> code base.
+* 100% de <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests</dfn>.
+* 100% <dfn title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</dfn> code base.
 * Usado en aplicaciones en producción.
 
 ## Funcionalidades de Starlette { #starlette-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Así que, cualquier código adicional de Starlette que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://www.starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
 
 `FastAPI` es en realidad una subclase de `Starlette`. Así que, si ya conoces o usas Starlette, la mayoría de las funcionalidades funcionarán de la misma manera.
 
 Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que FastAPI es simplemente Starlette potenciado):
 
-* Rendimiento seriamente impresionante. Es <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">uno de los frameworks de Python más rápidos disponibles, a la par de **NodeJS** y **Go**</a>.
+* Rendimiento seriamente impresionante. Es [uno de los frameworks de Python más rápidos disponibles, a la par de **NodeJS** y **Go**](https://github.com/encode/starlette#performance).
 * Soporte para **WebSocket**.
 * Tareas en segundo plano en el mismo proceso.
 * Eventos de inicio y apagado.
@@ -173,11 +173,11 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 * **CORS**, GZip, archivos estáticos, responses en streaming.
 * Soporte para **Session y Cookie**.
 * Cobertura de tests del 100%.
-* code base completamente anotada con tipos.
+* code base 100% anotada con tipos.
 
 ## Funcionalidades de Pydantic { #pydantic-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
 Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper – Mapeador Objeto-Relacional">ORM</abbr>s, <abbr title="Object-Document Mapper – Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
@@ -190,7 +190,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<abbr title="Un programa que verifica errores de código">linter</abbr>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.

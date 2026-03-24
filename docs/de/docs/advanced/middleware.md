@@ -1,8 +1,8 @@
 # Fortgeschrittene Middleware { #advanced-middleware }
 
-Im Haupttutorial haben Sie gelesen, wie Sie Ihrer Anwendung [benutzerdefinierte Middleware](../tutorial/middleware.md){.internal-link target=_blank} hinzufügen können.
+Im Haupttutorial haben Sie gelesen, wie Sie Ihrer Anwendung [benutzerdefinierte Middleware](../tutorial/middleware.md) hinzufügen können.
 
-Und dann auch, wie man [CORS mittels der `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank} handhabt.
+Und dann auch, wie man [CORS mittels der `CORSMiddleware`](../tutorial/cors.md) handhabt.
 
 In diesem Abschnitt werden wir sehen, wie man andere Middlewares verwendet.
 
@@ -57,13 +57,13 @@ Erzwingt, dass alle eingehenden <abbr title="Request – Anfrage: Daten, die der
 
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Die folgenden Argumente werden unterstützt:
 
@@ -74,11 +74,11 @@ Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-<abbr
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`-Header enthalten.
+Verarbeitet GZip-Responses für alle Requests, die „gzip“ im `Accept-Encoding`-Header enthalten.
 
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Die folgenden Argumente werden unterstützt:
 
@@ -91,7 +91,7 @@ Es gibt viele andere ASGI-Middlewares.
 
 Zum Beispiel:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorns `ProxyHeadersMiddleware`</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [Uvicorns `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlettes Middleware-Dokumentation</a> und die <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.
+Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie [Starlettes Middleware-Dokumentation](https://www.starlette.dev/middleware/) und die [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).

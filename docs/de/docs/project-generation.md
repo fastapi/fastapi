@@ -4,7 +4,7 @@ Vorlagen, die normalerweise mit einem bestimmten Setup geliefert werden, sind so
 
 Sie können diese Vorlage verwenden, um loszulegen, da sie bereits vieles der anfänglichen Einrichtung, Sicherheit, Datenbank und einige API-Endpunkte für Sie eingerichtet hat.
 
-GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHub-Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Template – Technologiestack und Funktionen { #full-stack-fastapi-template-technology-stack-and-features }
 
@@ -20,7 +20,7 @@ GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
   - 🦇 „Dark-Mode“-Unterstützung.
 - 🐋 [Docker Compose](https://www.docker.com) für Entwicklung und Produktion.
 - 🔒 Sicheres Passwort-Hashing standardmäßig.
-- 🔑 JWT (JSON Web Token)-Token-Authentifizierung.
+- 🔑 JWT (JSON Web Token)-Authentifizierung.
 - 📫 E-Mail-basierte Passwortwiederherstellung.
 - ✅ Tests mit [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) als Reverse-Proxy / Load Balancer.

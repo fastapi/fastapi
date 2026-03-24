@@ -13,13 +13,13 @@ Bis zu diesem Punkt, in allen Tutorials in der Dokumentation, haben Sie wahrsche
 
 Wenn Sie Anwendungen deployen, möchten Sie wahrscheinlich eine gewisse **Replikation von Prozessen**, um **mehrere Kerne** zu nutzen und mehr <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> bearbeiten zu können.
 
-Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md){.internal-link target=_blank} gesehen haben, gibt es mehrere Strategien, die Sie anwenden können.
+Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md) gesehen haben, gibt es mehrere Strategien, die Sie anwenden können.
 
 Hier zeige ich Ihnen, wie Sie **Uvicorn** mit **Workerprozessen** verwenden, indem Sie den `fastapi`-Befehl oder den `uvicorn`-Befehl direkt verwenden.
 
 /// info | Info
 
-Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md).
 
 Insbesondere wenn die Anwendung auf **Kubernetes** läuft, werden Sie wahrscheinlich **keine** Worker verwenden wollen, und stattdessen **einen einzelnen Uvicorn-Prozess pro Container** ausführen wollen, aber ich werde Ihnen später in diesem Kapitel mehr darüber erzählen.
 
@@ -119,14 +119,14 @@ In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern 
 
 * **Sicherheit – HTTPS**
 * **Beim Hochfahren ausführen**
-* **Neustarts**
+* ***Neustarts***
 * Replikation (die Anzahl der laufenden Prozesse)
 * **Arbeitsspeicher**
 * **Schritte vor dem Start**
 
 ## Container und Docker { #containers-and-docker }
 
-Im nächsten Kapitel über [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank} werde ich einige Strategien erläutern, die Sie für den Umgang mit den anderen **Deployment-Konzepten** verwenden können.
+Im nächsten Kapitel über [FastAPI in Containern – Docker](docker.md) werde ich einige Strategien erläutern, die Sie für den Umgang mit den anderen **Deployment-Konzepten** verwenden können.
 
 Ich zeige Ihnen, wie Sie **Ihr eigenes Image von Grund auf erstellen**, um einen einzelnen Uvicorn-Prozess auszuführen. Es ist ein einfacher Vorgang und wahrscheinlich das, was Sie tun möchten, wenn Sie ein verteiltes Containerverwaltungssystem wie **Kubernetes** verwenden.
 

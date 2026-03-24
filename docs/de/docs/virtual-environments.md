@@ -22,7 +22,7 @@ Eine **virtuelle Umgebung** ist ein Verzeichnis mit einigen Dateien darin.
 
 Diese Seite wird Ihnen beibringen, wie Sie **virtuelle Umgebungen** verwenden und wie sie funktionieren.
 
-Wenn Sie bereit sind, ein **Tool zu verwenden, das alles für Sie verwaltet** (einschließlich der Installation von Python), probieren Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Wenn Sie bereit sind, ein **Tool zu verwenden, das alles für Sie verwaltet** (einschließlich der Installation von Python), probieren Sie [uv](https://github.com/astral-sh/uv).
 
 ///
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Eine virtuelle Umgebung erstellen { #create-a-virtual-environment }
 
-Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
+Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<dfn title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</dfn>**.
 
 /// tip | Tipp
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> installiert haben, können Sie es verwenden, um eine virtuelle Umgebung zu erstellen.
+Wenn Sie [`uv`](https://github.com/astral-sh/uv) installiert haben, können Sie es verwenden, um eine virtuelle Umgebung zu erstellen.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Oder wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Oder wenn Sie Bash für Windows verwenden (z. B. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Jedes Mal, wenn Sie ein **neues Paket** in dieser Umgebung installieren, aktivieren Sie die Umgebung erneut.
 
-So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="command line interface – Kommandozeileninterface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
+So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="command line interface - Kommandozeileninterface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
 
 ///
 
@@ -216,7 +216,7 @@ Wenn es das `python`-Binary in `.venv\Scripts\python` anzeigt, innerhalb Ihres P
 
 /// tip | Tipp
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwenden, würden Sie das verwenden, um Dinge zu installieren anstelle von `pip`, sodass Sie `pip` nicht aktualisieren müssen. 😎
+Wenn Sie [`uv`](https://github.com/astral-sh/uv) verwenden, würden Sie das verwenden, um Dinge zu installieren anstelle von `pip`, sodass Sie `pip` nicht aktualisieren müssen. 😎
 
 ///
 
@@ -268,7 +268,7 @@ Wenn Sie **Git** verwenden (was Sie sollten), fügen Sie eine `.gitignore`-Datei
 
 /// tip | Tipp
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwendet haben, um die virtuelle Umgebung zu erstellen, hat es dies bereits für Sie getan, Sie können diesen Schritt überspringen. 😎
+Wenn Sie [`uv`](https://github.com/astral-sh/uv) verwendet haben, um die virtuelle Umgebung zu erstellen, hat es dies bereits für Sie getan, Sie können diesen Schritt überspringen. 😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> haben:
+Wenn Sie [`uv`](https://github.com/astral-sh/uv) haben:
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> haben:
+Wenn Sie [`uv`](https://github.com/astral-sh/uv) haben:
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Sie würden wahrscheinlich einen Editor verwenden, stellen Sie sicher, dass Sie 
 
 Zum Beispiel:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | Tipp
 
@@ -453,7 +453,7 @@ Lesen Sie weiter. 👇🤓
 
 ## Warum virtuelle Umgebungen { #why-virtual-environments }
 
-Um mit FastAPI zu arbeiten, müssen Sie <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> installieren.
+Um mit FastAPI zu arbeiten, müssen Sie [Python](https://www.python.org/) installieren.
 
 Danach müssen Sie FastAPI und alle anderen Pakete, die Sie verwenden möchten, **installieren**.
 
@@ -562,7 +562,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Das lädt eine komprimierte Datei mit dem FastAPI-Code herunter, normalerweise von <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+Das lädt eine komprimierte Datei mit dem FastAPI-Code herunter, normalerweise von [PyPI](https://pypi.org/project/fastapi/).
 
 Es wird auch Dateien für andere Pakete **herunterladen**, von denen FastAPI abhängt.
 
@@ -625,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Oder wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Oder wenn Sie Bash für Windows verwenden (z. B. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -637,19 +637,19 @@ $ source .venv/Scripts/activate
 
 ////
 
-Dieser Befehl erstellt oder ändert einige [Umgebungsvariablen](environment-variables.md){.internal-link target=_blank}, die für die nächsten Befehle verfügbar sein werden.
+Dieser Befehl erstellt oder ändert einige [Umgebungsvariablen](environment-variables.md), die für die nächsten Befehle verfügbar sein werden.
 
-Eine dieser Variablen ist die `PATH`-Variable.
+Eine dieser Variablen ist die `PATH`-Umgebungsvariable.
 
 /// tip | Tipp
 
-Sie können mehr über die `PATH`-Umgebungsvariable im Abschnitt [Umgebungsvariablen](environment-variables.md#path-environment-variable){.internal-link target=_blank} erfahren.
+Sie können mehr über die `PATH`-Umgebungsvariable im Abschnitt [Umgebungsvariablen](environment-variables.md#path-environment-variable) erfahren.
 
 ///
 
 Das Aktivieren einer virtuellen Umgebung fügt deren Pfad `.venv/bin` (auf Linux und macOS) oder `.venv\Scripts` (auf Windows) zur `PATH`-Umgebungsvariable hinzu.
 
-Angenommen, die `PATH`-Variable sah vor dem Aktivieren der Umgebung so aus:
+Angenommen, die `PATH`-Umgebungsvariable sah vor dem Aktivieren der Umgebung so aus:
 
 //// tab | Linux, macOS
 
@@ -678,7 +678,7 @@ Das bedeutet, dass das System nach Programmen sucht in:
 
 ////
 
-Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Variable folgendermaßen aussehen:
+Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Umgebungsvariable folgendermaßen aussehen:
 
 //// tab | Linux, macOS
 
@@ -728,7 +728,7 @@ finden und dieses verwenden.
 
 ////
 
-Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Variable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
+Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Umgebungsvariable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
 
 Das Aktivieren einer virtuellen Umgebung ändert auch ein paar andere Dinge, aber dies ist eines der wichtigsten Dinge, die es tut.
 
@@ -844,7 +844,7 @@ Dies ist ein einfacher Leitfaden, um Ihnen den Einstieg zu erleichtern und Ihnen
 
 Es gibt viele **Alternativen** zur Verwaltung von virtuellen Umgebungen, Paketabhängigkeiten (Anforderungen), Projekten.
 
-Sobald Sie bereit sind und ein Tool verwenden möchten, das **das gesamte Projekt verwaltet**, Paketabhängigkeiten, virtuelle Umgebungen usw., würde ich Ihnen vorschlagen, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> auszuprobieren.
+Sobald Sie bereit sind und ein Tool verwenden möchten, das **das gesamte Projekt verwaltet**, Paketabhängigkeiten, virtuelle Umgebungen usw., würde ich Ihnen vorschlagen, [uv](https://github.com/astral-sh/uv) auszuprobieren.
 
 `uv` kann viele Dinge tun, es kann:
 

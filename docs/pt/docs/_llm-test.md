@@ -1,8 +1,8 @@
 # Arquivo de teste de LLM { #llm-test-file }
 
-Este documento testa se o <abbr title="Large Language Model – Modelo de Linguagem de Grande Porte">LLM</abbr>, que traduz a documentação, entende o `general_prompt` em `scripts/translate.py` e o prompt específico do idioma em `docs/{language code}/llm-prompt.md`. O prompt específico do idioma é anexado ao `general_prompt`.
+Este documento testa se o <abbr title="Large Language Model - Modelo de Linguagem de Grande Porte">LLM</abbr>, que traduz a documentação, entende o `general_prompt` em `scripts/translate.py` e o prompt específico do idioma em `docs/{language code}/llm-prompt.md`. O prompt específico do idioma é anexado ao `general_prompt`.
 
-Os testes adicionados aqui serão vistos por todos os autores dos prompts específicos de idioma.
+Os testes adicionados aqui serão vistos por todos os designers dos prompts específicos de idioma.
 
 Use da seguinte forma:
 
@@ -11,7 +11,7 @@ Use da seguinte forma:
 * Verifique se está tudo certo na tradução.
 * Se necessário, melhore seu prompt específico do idioma, o prompt geral ou o documento em inglês.
 * Em seguida, corrija manualmente os problemas restantes na tradução, para que fique uma boa tradução.
-* Retraduzir, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs não são algoritmos determinísticos</a>).
+* Retraduzir, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que [LLMs não são algoritmos determinísticos](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Os testes:
 
@@ -23,7 +23,7 @@ Este é um trecho de código: `foo`. E este é outro trecho de código: `bar`. E
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 O conteúdo dos trechos de código deve ser deixado como está.
 
@@ -45,9 +45,9 @@ O LLM provavelmente vai traduzir isso errado. O interessante é apenas se ele ma
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
-O autor do prompt pode escolher se deseja converter aspas neutras em aspas tipográficas. Também é aceitável deixá-las como estão.
+O designer do prompt pode escolher se quer converter aspas neutras em aspas tipográficas. Também é aceitável deixá-las como estão.
 
 Veja, por exemplo, a seção `### Quotes` em `docs/de/llm-prompt.md`.
 
@@ -67,7 +67,7 @@ Pesado: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you ha
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 ... No entanto, as aspas dentro de trechos de código devem permanecer como estão.
 
@@ -95,9 +95,9 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...e outro exemplo de código de console...
 
 ```console
-// Crie um diretório "Code"
+// Criar um diretório "Code"
 $ mkdir code
-// Entre nesse diretório
+// Mudar para esse diretório
 $ cd code
 ```
 
@@ -112,7 +112,7 @@ works(foo="bar")  # Isto funciona 🎉
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 O código em blocos de código não deve ser modificado, com exceção dos comentários.
 
@@ -154,7 +154,7 @@ Algum texto
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 Abas e blocos `Info`/`Note`/`Warning`/etc. devem ter a tradução do seu título adicionada após uma barra vertical (`|`).
 
@@ -169,19 +169,19 @@ Veja as seções `### Special blocks` e `### Tab blocks` no prompt geral em `scr
 O texto do link deve ser traduzido, o endereço do link deve permanecer inalterado:
 
 * [Link para o título acima](#code-snippets)
-* [Link interno](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Link externo</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link para um estilo</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link para um script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link para uma imagem</a>
+* [Link interno](index.md#installation)
+* [Link externo](https://sqlmodel.tiangolo.com/)
+* [Link para um estilo](https://fastapi.tiangolo.com/css/styles.css)
+* [Link para um script](https://fastapi.tiangolo.com/js/logic.js)
+* [Link para uma imagem](https://fastapi.tiangolo.com/img/foo.jpg)
 
 O texto do link deve ser traduzido, o endereço do link deve apontar para a tradução:
 
-* <a href="https://fastapi.tiangolo.com/pt/" class="external-link" target="_blank">Link do FastAPI</a>
+* [Link do FastAPI](https://fastapi.tiangolo.com/pt/)
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 Os links devem ser traduzidos, mas seus endereços devem permanecer inalterados. Uma exceção são links absolutos para páginas da documentação do FastAPI. Nesse caso, devem apontar para a tradução.
 
@@ -198,14 +198,9 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 ### O abbr fornece uma frase completa { #the-abbr-gives-a-full-phrase }
 
 * <abbr title="Getting Things Done – Fazer as Coisas">GTD</abbr>
-* <abbr title="menos que"><code>lt</code></abbr>
+* <abbr title="less than – menos que"><code>lt</code></abbr>
 * <abbr title="XML Web Token – Token Web XML">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface – Interface de Gateway de Servidor Paralelo">PSGI</abbr>
-
-### O abbr fornece uma explicação { #the-abbr-gives-an-explanation }
-
-* <abbr title="Um grupo de máquinas configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</abbr>
-* <abbr title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Deep Learning</abbr>
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
@@ -214,7 +209,7 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 Os atributos "title" dos elementos "abbr" são traduzidos seguindo algumas instruções específicas.
 
@@ -224,11 +219,16 @@ Veja a seção `### HTML abbr elements` no prompt geral em `scripts/translate.py
 
 ////
 
+## Elementos HTML "dfn" { #html-dfn-elements }
+
+* <dfn title="Um grupo de máquinas configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</dfn>
+* <dfn title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Deep Learning</dfn>
+
 ## Títulos { #headings }
 
 //// tab | Teste
 
-### Desenvolver uma aplicação web - um tutorial { #develop-a-webapp-a-tutorial }
+### Desenvolver uma webapp - um tutorial { #develop-a-webapp-a-tutorial }
 
 Olá.
 
@@ -242,7 +242,7 @@ Olá novamente.
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
 A única regra rígida para títulos é que o LLM deixe a parte do hash dentro de chaves inalterada, o que garante que os links não quebrem.
 
@@ -494,9 +494,9 @@ Para algumas instruções específicas do idioma, veja, por exemplo, a seção `
 
 ////
 
-//// tab | Informações
+//// tab | Informação
 
-Esta é uma lista não completa e não normativa de termos (principalmente) técnicos vistos na documentação. Pode ser útil para o autor do prompt descobrir para quais termos o LLM precisa de uma ajudinha. Por exemplo, quando ele continua revertendo uma boa tradução para uma tradução subótima. Ou quando tem problemas para conjugar/declinar um termo no seu idioma.
+Esta é uma lista não completa e não normativa de termos (principalmente) técnicos vistos na documentação. Pode ser útil para o designer do prompt descobrir para quais termos o LLM precisa de uma ajudinha. Por exemplo, quando ele continua revertendo uma boa tradução para uma tradução subótima. Ou quando tem problemas para conjugar/declinar um termo no seu idioma.
 
 Veja, por exemplo, a seção `### List of English terms and their preferred German translations` em `docs/de/llm-prompt.md`.
 

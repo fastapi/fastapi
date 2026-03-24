@@ -1,6 +1,6 @@
 # Cuerpo - Modelos Anidados { #body-nested-models }
 
-Con **FastAPI**, puedes definir, validar, documentar y usar modelos anidados de manera arbitraria (gracias a Pydantic).
+Con **FastAPI**, puedes definir, validar, documentar y usar modelos profundamente anidados de manera arbitraria (gracias a Pydantic).
 
 ## Campos de lista { #list-fields }
 
@@ -96,7 +96,7 @@ Nuevamente, haciendo solo esa declaración, con **FastAPI** obtienes:
 
 Además de tipos singulares normales como `str`, `int`, `float`, etc., puedes usar tipos singulares más complejos que heredan de `str`.
 
-Para ver todas las opciones que tienes, revisa el <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Overview de Tipos de Pydantic</a>. Verás algunos ejemplos en el siguiente capítulo.
+Para ver todas las opciones que tienes, Revisa [Resumen de tipos de Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Verás algunos ejemplos en el siguiente capítulo.
 
 Por ejemplo, como en el modelo `Image` tenemos un campo `url`, podemos declararlo como una instance de `HttpUrl` de Pydantic en lugar de un `str`:
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 como en:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Soporte de editor en todas partes { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Eso es lo que vamos a ver aquí.
 
 En este caso, aceptarías cualquier `dict` siempre que tenga claves `int` con valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Consejo
 

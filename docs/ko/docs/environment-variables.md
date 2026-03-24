@@ -19,10 +19,10 @@
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// 환경 변수 MY_NAME을 다음과 같이 생성할 수 있습니다
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// 그런 다음 다른 프로그램과 함께 사용할 수 있습니다. 예:
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// 환경 변수 MY_NAME 생성
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// 다른 프로그램과 함께 사용하기. 예:
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | 팁
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 의 두 번째 인자는 반환할 기본값입니다.
+[`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) 의 두 번째 인자는 반환할 기본값입니다.
 
 제공하지 않으면 기본값은 `None`이며, 여기서는 사용할 기본값으로 `"World"`를 제공합니다.
 
@@ -78,20 +78,20 @@ print(f"Hello {name} from Python")
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// 여기서는 아직 환경 변수를 설정하지 않습니다
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 환경 변수를 설정하지 않았으므로 기본값이 사용됩니다
 
 Hello World from Python
 
-// But if we create an environment variable first
+// 하지만 먼저 환경 변수를 생성하면
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// 그리고 프로그램을 다시 실행하면
 $ python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// 여기서는 아직 환경 변수를 설정하지 않습니다
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 환경 변수를 설정하지 않았으므로 기본값이 사용됩니다
 
 Hello World from Python
 
-// But if we create an environment variable first
+// 하지만 먼저 환경 변수를 생성하면
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// 그리고 프로그램을 다시 실행하면
 $ python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 ```
@@ -136,14 +136,14 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// 이 프로그램 호출을 위해 같은 줄에서 환경 변수 MY_NAME 생성
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// 이제 환경 변수를 읽을 수 있습니다
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// 이후에는 해당 환경 변수가 존재하지 않습니다
 $ python main.py
 
 Hello World from Python
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | 팁
 
-<a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> 에서 좀 더 자세히 알아볼 수 있습니다.
+[The Twelve-Factor App: Config](https://12factor.net/config) 에서 좀 더 자세히 알아볼 수 있습니다.
 
 ///
 
@@ -163,7 +163,7 @@ Hello World from Python
 
 즉, 파이썬에서 환경 변수로부터 읽은 **모든 값**은 **`str`**이 되고, 다른 타입으로의 변환이나 검증은 코드에서 수행해야 합니다.
 
-**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md){.internal-link target=_blank} 에서 확인할 수 있습니다.
+**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md) 에서 확인할 수 있습니다.
 
 ## `PATH` 환경 변수 { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-이 정보는 [가상 환경](virtual-environments.md){.internal-link target=_blank} 에 대해 알아볼 때 유용할 것입니다.
+이 정보는 [가상 환경](virtual-environments.md) 에 대해 알아볼 때 유용할 것입니다.
 
 ## 결론 { #conclusion }
 
 이 문서를 통해 **환경 변수**가 무엇이고 파이썬에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
-또한 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">환경 변수에 대한 위키피디아</a>에서 이에 대해 자세히 알아볼 수 있습니다.
+또한 [환경 변수에 대한 위키피디아](https://en.wikipedia.org/wiki/Environment_variable)에서 이에 대해 자세히 알아볼 수 있습니다.
 
 많은 경우에서, 환경 변수가 어떻게 유용하고 적용 가능한지 바로 명확하게 알 수는 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
 

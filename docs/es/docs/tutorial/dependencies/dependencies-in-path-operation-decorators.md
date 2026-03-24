@@ -14,7 +14,7 @@ El decorador de *path operation* recibe un argumento opcional `dependencies`.
 
 Debe ser una `list` de `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
 
 Estas dependencias serán ejecutadas/resueltas de la misma manera que las dependencias normales. Pero su valor (si devuelven alguno) no será pasado a tu *path operation function*.
 
@@ -32,7 +32,7 @@ También puede ayudar a evitar confusiones para nuevos desarrolladores que vean 
 
 En este ejemplo usamos headers personalizados inventados `X-Key` y `X-Token`.
 
-Pero en casos reales, al implementar seguridad, obtendrías más beneficios usando las [Utilidades de Seguridad integradas (el próximo capítulo)](../security/index.md){.internal-link target=_blank}.
+Pero en casos reales, al implementar seguridad, obtendrías más beneficios usando las [Utilidades de Seguridad integradas (el próximo capítulo)](../security/index.md).
 
 ///
 
@@ -44,13 +44,13 @@ Puedes usar las mismas *funciones* de dependencia que usas normalmente.
 
 Pueden declarar requisitos de request (como headers) u otras sub-dependencias:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
 
 ### Lanzar excepciones { #raise-exceptions }
 
 Estas dependencias pueden `raise` excepciones, igual que las dependencias normales:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
 
 ### Valores de retorno { #return-values }
 
@@ -58,11 +58,11 @@ Y pueden devolver valores o no, los valores no serán usados.
 
 Así que, puedes reutilizar una dependencia normal (que devuelve un valor) que ya uses en otro lugar, y aunque el valor no se use, la dependencia será ejecutada:
 
-{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
 
 ## Dependencias para un grupo de *path operations* { #dependencies-for-a-group-of-path-operations }
 
-Más adelante, cuando leas sobre cómo estructurar aplicaciones más grandes ([Aplicaciones Más Grandes - Múltiples Archivos](../../tutorial/bigger-applications.md){.internal-link target=_blank}), posiblemente con múltiples archivos, aprenderás cómo declarar un único parámetro `dependencies` para un grupo de *path operations*.
+Más adelante, cuando leas sobre cómo estructurar aplicaciones más grandes ([Aplicaciones Más Grandes - Múltiples Archivos](../../tutorial/bigger-applications.md)), posiblemente con múltiples archivos, aprenderás cómo declarar un único parámetro `dependencies` para un grupo de *path operations*.
 
 ## Dependencias Globales { #global-dependencies }
 

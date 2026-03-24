@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 정보
 
-`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict){.internal-link target=_blank}를 다시 확인해보세요.
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict)를 다시 확인해보세요.
 
 ///
 
@@ -162,7 +162,7 @@ UserInDB(
 
 /// tip | 팁
 
-다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
+다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
 
 하지만 지금은 필요한 세부 정보에 집중하겠습니다.
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## 확인하기 { #see-it-in-action }
 
-대화형 문서 열기: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서 열기: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### 인증하기 { #authenticate }
 
@@ -286,4 +286,4 @@ UserInDB(
 
 유일한 오점은 아직 실제로 "안전"하지 않다는 것입니다.
 
-다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.
+다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.

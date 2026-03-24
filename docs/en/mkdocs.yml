@@ -154,6 +154,8 @@ nav:
     - tutorial/cors.md
     - tutorial/sql-databases.md
     - tutorial/bigger-applications.md
+    - tutorial/stream-json-lines.md
+    - tutorial/server-sent-events.md
     - tutorial/background-tasks.md
     - tutorial/metadata.md
     - tutorial/static-files.md
@@ -161,6 +163,7 @@ nav:
     - tutorial/debugging.md
   - Advanced User Guide:
     - advanced/index.md
+    - advanced/stream-data.md
     - advanced/path-operation-advanced-configuration.md
     - advanced/additional-status-codes.md
     - advanced/response-directly.md
@@ -191,7 +194,11 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
+  - editor-support.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
@@ -272,6 +279,7 @@ markdown_extensions:
   pymdownx.caret: null
   pymdownx.highlight:
     line_spans: __span
+    linenums_style: pymdownx-inline
   pymdownx.inlinehilite: null
   pymdownx.keys: null
   pymdownx.mark: null
@@ -317,19 +325,30 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
+  - link: /fr/
+    name: fr - français
+  - link: /ja/
+    name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
   - link: /pt/
     name: pt - português
   - link: /ru/
     name: ru - русский язык
+  - link: /tr/
+    name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /zh/
+    name: zh - 简体中文
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
 extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+- js/init_kapa_widget.js
 hooks:
 - ../../scripts/mkdocs_hooks.py

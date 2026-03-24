@@ -8,7 +8,7 @@
 * `@app.delete()`
 * 등
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | 참고
 
@@ -20,7 +20,7 @@
 
 /// info | 정보
 
-`status_code` 는 파이썬의 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
+`status_code` 는 파이썬의 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
 
 ///
 
@@ -66,7 +66,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 /// tip | 팁
 
-각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>의 HTTP 상태 코드에 관한 문서</a>를 확인하세요.
+각 상태 코드와 어떤 코드가 어떤 용도인지 더 알고 싶다면 [<abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr>의 HTTP 상태 코드에 관한 문서](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)를 확인하세요.
 
 ///
 
@@ -74,7 +74,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 이전 예시를 다시 확인해보겠습니다:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` 은 "생성됨"을 위한 상태 코드입니다.
 
@@ -82,7 +82,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 `fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 이것들은 단지 편의를 위한 것으로, 동일한 숫자를 갖고 있지만, 이를 통해 편집기의 자동완성 기능으로 찾을 수 있습니다:
 
@@ -98,4 +98,4 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 ## 기본값 변경 { #changing-the-default }
 
-나중에 [고급 사용자 지침서](../advanced/response-change-status-code.md){.internal-link target=_blank}에서, 여기서 선언하는 기본값과 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
+나중에 [고급 사용자 지침서](../advanced/response-change-status-code.md)에서, 여기서 선언하는 기본값과 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.

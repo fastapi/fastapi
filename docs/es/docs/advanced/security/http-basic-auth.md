@@ -20,7 +20,7 @@ Luego, cuando escribes ese nombre de usuario y contraseña, el navegador los env
 * Devuelve un objeto de tipo `HTTPBasicCredentials`:
   * Contiene el `username` y `password` enviados.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 Cuando intentas abrir la URL por primera vez (o haces clic en el botón "Execute" en la documentación) el navegador te pedirá tu nombre de usuario y contraseña:
 
@@ -32,7 +32,7 @@ Aquí hay un ejemplo más completo.
 
 Usa una dependencia para comprobar si el nombre de usuario y la contraseña son correctos.
 
-Para esto, usa el módulo estándar de Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar el nombre de usuario y la contraseña.
+Para esto, usa el módulo estándar de Python [`secrets`](https://docs.python.org/3/library/secrets.html) para verificar el nombre de usuario y la contraseña.
 
 `secrets.compare_digest()` necesita tomar `bytes` o un `str` que solo contenga caracteres ASCII (los carácteres en inglés), esto significa que no funcionaría con caracteres como `á`, como en `Sebastián`.
 
@@ -40,7 +40,7 @@ Para manejar eso, primero convertimos el `username` y `password` a `bytes` codif
 
 Luego podemos usar `secrets.compare_digest()` para asegurar que `credentials.username` es `"stanleyjobson"`, y que `credentials.password` es `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Esto sería similar a:
 
@@ -104,4 +104,4 @@ De esa manera, usando `secrets.compare_digest()` en el código de tu aplicación
 
 Después de detectar que las credenciales son incorrectas, regresa un `HTTPException` con un código de estado 401 (el mismo que se devuelve cuando no se proporcionan credenciales) y agrega el header `WWW-Authenticate` para que el navegador muestre el prompt de inicio de sesión nuevamente:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
