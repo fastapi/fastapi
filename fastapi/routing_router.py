@@ -1,120 +1,51 @@
-import contextlib
-import email.message
-import functools
 import inspect
-import json
-import types
 from collections.abc import (
-    AsyncIterator,
-    Awaitable,
     Callable,
     Collection,
-    Coroutine,
-    Generator,
-    Iterator,
-    Mapping,
     Sequence,
 )
 from contextlib import (
-    AbstractAsyncContextManager,
-    AbstractContextManager,
-    AsyncExitStack,
     asynccontextmanager,
 )
-from enum import Enum, IntEnum
+from enum import Enum
 from typing import (
     Annotated,
     Any,
-    TypeVar,
-    cast,
 )
 
-import anyio
 from annotated_doc import Doc
-from anyio.abc import ObjectReceiveStream
 from fastapi import params
-from fastapi._compat import (
-    ModelField,
-    Undefined,
-    lenient_issubclass,
-)
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import (
-    _should_embed_body_fields,
-    get_body_field,
-    get_dependant,
-    get_flat_dependant,
-    get_parameterless_sub_dependant,
-    get_stream_item_type,
-    get_typed_return_annotation,
-    solve_dependencies,
-)
-from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
-    EndpointContext,
     FastAPIError,
-    RequestValidationError,
-    ResponseValidationError,
-    WebSocketRequestValidationError,
 )
-from fastapi.sse import (
-    _PING_INTERVAL,
-    KEEPALIVE_COMMENT,
-    EventSourceResponse,
-    ServerSentEvent,
-    format_sse_event,
-)
-from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import (
-    create_model_field,
-    generate_unique_id,
-    get_value_or_default,
-    is_body_allowed_for_status_code,
-)
-from starlette import routing
-from starlette._exception_handler import wrap_app_handling_exceptions
-from starlette._utils import is_async_callable
-from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
-from starlette.datastructures import FormData
-from starlette.exceptions import HTTPException
-from starlette.requests import Request
-from starlette.responses import JSONResponse, Response, StreamingResponse
-from starlette.routing import (
-    BaseRoute,
-    Match,
-    compile_path,
-    get_name,
-)
-from starlette.routing import Mount as Mount  # noqa
-from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
-from starlette.websockets import WebSocket
-from typing_extensions import deprecated
-
-
-from fastapi.routing_utils import (
-    _DefaultLifespan,
-    _merge_lifespan_context,
-    _wrap_gen_lifespan_context,
-    build_response_args as _build_response_args,
-    extract_endpoint_context as _extract_endpoint_context,
-    request_response,
-    run_endpoint_function,
-    serialize_response,
-    websocket_session,
-)
-
-
 from fastapi.routing_handlers import (
     get_request_handler as get_request_handler,
 )
 from fastapi.routing_handlers import (
     get_websocket_app as get_websocket_app,
 )
-
-
 from fastapi.routing_routes import APIRoute as APIRoute
 from fastapi.routing_routes import APIWebSocketRoute as APIWebSocketRoute
+from fastapi.routing_utils import (
+    _DefaultLifespan,
+    _merge_lifespan_context,
+    _wrap_gen_lifespan_context,
+)
+from fastapi.types import DecoratedCallable, IncEx
+from fastapi.utils import (
+    generate_unique_id,
+    get_value_or_default,
+)
+from starlette import routing
+from starlette._utils import is_async_callable
+from starlette.responses import JSONResponse, Response
+from starlette.routing import (
+    BaseRoute,
+)
+from starlette.routing import Mount as Mount  # noqa
+from starlette.types import ASGIApp, Lifespan
+from typing_extensions import deprecated
 
 
 class APIRouter(routing.Router):

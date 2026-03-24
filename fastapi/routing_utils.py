@@ -6,7 +6,6 @@ from collections.abc import (
     AsyncIterator,
     Awaitable,
     Callable,
-    Coroutine,
     Generator,
     Mapping,
 )
@@ -32,7 +31,7 @@ from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
 from starlette.responses import Response
-from starlette.types import ASGIApp, AppType, Lifespan, Receive, Scope, Send
+from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 
 _T = TypeVar("_T")
@@ -42,9 +41,7 @@ def request_response(
     func: Callable[[Request], Awaitable[Response] | Response],
 ) -> ASGIApp:
     f: Callable[[Request], Awaitable[Response]] = (
-        func
-        if is_async_callable(func)
-        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
+        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
     )
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -221,9 +218,13 @@ async def run_endpoint_function(
     return await run_in_threadpool(dependant.call, **values)
 
 
-def build_response_args(*, status_code: int | None, solved_result: Any) -> dict[str, Any]:
+def build_response_args(
+    *, status_code: int | None, solved_result: Any
+) -> dict[str, Any]:
     response_args: dict[str, Any] = {"background": solved_result.background_tasks}
-    current_status_code = status_code if status_code else solved_result.response.status_code
+    current_status_code = (
+        status_code if status_code else solved_result.response.status_code
+    )
     if current_status_code is not None:
         response_args["status_code"] = current_status_code
     if solved_result.response.status_code:

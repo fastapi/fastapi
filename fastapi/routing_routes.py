@@ -23,7 +23,11 @@ from fastapi.routing_handlers import (
 from fastapi.routing_utils import request_response, websocket_session
 from fastapi.sse import EventSourceResponse, ServerSentEvent
 from fastapi.types import IncEx
-from fastapi.utils import create_model_field, generate_unique_id, is_body_allowed_for_status_code
+from fastapi.utils import (
+    create_model_field,
+    generate_unique_id,
+    is_body_allowed_for_status_code,
+)
 from starlette import routing
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
@@ -233,22 +237,22 @@ class APIRoute(routing.Route):
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
             RouteHandlerConfig(
-            dependant=self.dependant,
-            body_field=self.body_field,
-            status_code=self.status_code,
-            response_class=self.response_class,
-            response_field=self.response_field,
-            response_model_include=self.response_model_include,
-            response_model_exclude=self.response_model_exclude,
-            response_model_by_alias=self.response_model_by_alias,
-            response_model_exclude_unset=self.response_model_exclude_unset,
-            response_model_exclude_defaults=self.response_model_exclude_defaults,
-            response_model_exclude_none=self.response_model_exclude_none,
-            dependency_overrides_provider=self.dependency_overrides_provider,
-            embed_body_fields=self._embed_body_fields,
-            strict_content_type=self.strict_content_type,
-            stream_item_field=self.stream_item_field,
-            is_json_stream=self.is_json_stream,
+                dependant=self.dependant,
+                body_field=self.body_field,
+                status_code=self.status_code,
+                response_class=self.response_class,
+                response_field=self.response_field,
+                response_model_include=self.response_model_include,
+                response_model_exclude=self.response_model_exclude,
+                response_model_by_alias=self.response_model_by_alias,
+                response_model_exclude_unset=self.response_model_exclude_unset,
+                response_model_exclude_defaults=self.response_model_exclude_defaults,
+                response_model_exclude_none=self.response_model_exclude_none,
+                dependency_overrides_provider=self.dependency_overrides_provider,
+                embed_body_fields=self._embed_body_fields,
+                strict_content_type=self.strict_content_type,
+                stream_item_field=self.stream_item_field,
+                is_json_stream=self.is_json_stream,
             )
         )
 

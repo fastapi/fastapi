@@ -9,8 +9,6 @@ split across internal modules:
 - `fastapi.routing_utils`
 """
 
-from starlette.routing import Mount as Mount
-
 from fastapi.routing_handlers import (
     RouteHandlerConfig as RouteHandlerConfig,
 )
@@ -21,7 +19,9 @@ from fastapi.routing_routes import APIRoute as APIRoute
 from fastapi.routing_routes import APIWebSocketRoute as APIWebSocketRoute
 from fastapi.routing_utils import _DefaultLifespan as _DefaultLifespan
 from fastapi.routing_utils import _merge_lifespan_context as _merge_lifespan_context
-from fastapi.routing_utils import _wrap_gen_lifespan_context as _wrap_gen_lifespan_context
+from fastapi.routing_utils import (
+    _wrap_gen_lifespan_context as _wrap_gen_lifespan_context,
+)
 from fastapi.routing_utils import build_response_args as _build_response_args
 from fastapi.routing_utils import extract_endpoint_context as _extract_endpoint_context
 from fastapi.routing_utils import request_response as request_response
@@ -33,6 +33,7 @@ from fastapi.sse import KEEPALIVE_COMMENT as KEEPALIVE_COMMENT
 from fastapi.sse import EventSourceResponse as EventSourceResponse
 from fastapi.sse import ServerSentEvent as ServerSentEvent
 from fastapi.sse import format_sse_event as format_sse_event
+from starlette.routing import Mount as Mount
 
 __all__ = [
     "Mount",

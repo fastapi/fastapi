@@ -223,9 +223,12 @@ def get_request_handler(
         errors = solved_result.errors
         assert dependant.call
         if not errors:
+
             def _serialize_data(data: Any) -> bytes:
                 if stream_item_field:
-                    value, errors_ = stream_item_field.validate(data, {}, loc=("response",))
+                    value, errors_ = stream_item_field.validate(
+                        data, {}, loc=("response",)
+                    )
                     if errors_:
                         ctx = endpoint_ctx or EndpointContext()
                         raise ResponseValidationError(
@@ -266,7 +269,9 @@ def get_request_handler(
                             retry=item.retry,
                             comment=item.comment,
                         )
-                    return format_sse_event(data_str=_serialize_data(item).decode("utf-8"))
+                    return format_sse_event(
+                        data_str=_serialize_data(item).decode("utf-8")
+                    )
 
                 if dependant.is_async_gen_callable:
                     sse_aiter: AsyncIterator[Any] = gen.__aiter__()
@@ -274,19 +279,21 @@ def get_request_handler(
                     sse_aiter = iterate_in_threadpool(gen)
 
                 @asynccontextmanager
-                async def _sse_producer_cm() -> AsyncIterator[ObjectReceiveStream[bytes]]:
-                    send_stream, receive_stream = anyio.create_memory_object_stream[bytes](
-                        max_buffer_size=1
-                    )
+                async def _sse_producer_cm() -> AsyncIterator[
+                    ObjectReceiveStream[bytes]
+                ]:
+                    send_stream, receive_stream = anyio.create_memory_object_stream[
+                        bytes
+                    ](max_buffer_size=1)
 
                     async def _producer() -> None:
                         async with send_stream:
                             async for raw_item in sse_aiter:
                                 await send_stream.send(_serialize_sse_item(raw_item))
 
-                    send_keepalive, receive_keepalive = anyio.create_memory_object_stream[
-                        bytes
-                    ](max_buffer_size=1)
+                    send_keepalive, receive_keepalive = (
+                        anyio.create_memory_object_stream[bytes](max_buffer_size=1)
+                    )
 
                     async def _keepalive_inserter() -> None:
                         async with send_keepalive, receive_stream:

@@ -1,5 +1,4 @@
 import fastapi.routing as routing
-
 from fastapi.routing_handlers import RouteHandlerConfig
 from fastapi.routing_router import APIRouter
 from fastapi.routing_routes import APIRoute, APIWebSocketRoute
