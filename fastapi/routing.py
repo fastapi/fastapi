@@ -1274,7 +1274,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(True),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this router.
@@ -1474,7 +1474,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[Sequence[Middleware]] = None,
+        middleware: Sequence[Middleware] | None = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -2192,7 +2192,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -2585,7 +2585,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -2983,7 +2983,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -3381,7 +3381,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -3774,7 +3774,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -4167,7 +4167,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -4565,7 +4565,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -4963,7 +4963,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.

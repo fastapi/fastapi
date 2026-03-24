@@ -1187,7 +1187,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[Sequence[Middleware]] = None,
+        middleware: Sequence[Middleware] | None = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -1245,7 +1245,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[Sequence[Middleware]] = None,
+        middleware: Sequence[Middleware] | None = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -1896,7 +1896,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -2285,7 +2285,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -2679,7 +2679,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -3073,7 +3073,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -3462,7 +3462,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -3851,7 +3851,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -4240,7 +4240,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
@@ -4634,7 +4634,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(generate_unique_id),
         middleware: Annotated[
-            Optional[Sequence[Middleware]],
+            Sequence[Middleware] | None,
             Doc(
                 """
                 List of middleware to apply to all requests handled by this route.
