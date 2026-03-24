@@ -1,4 +1,4 @@
-from collections.abc import Callable, Sequence
+from collections.abc import AsyncIterator, Awaitable, Callable, Iterator, Sequence
 from typing import Annotated, Any, Literal, TypeVar, overload
 
 from annotated_doc import Doc
@@ -2421,7 +2421,7 @@ def Depends(  # noqa: N802
 def Security(  # noqa: N802
     dependency: None = None,
     *,
-    scopes: Optional[Sequence[str]] = None,
+    scopes: Sequence[str] | None = None,
     use_cache: bool = True,
 ) -> Any:  # pragma: nocover
     pass
@@ -2431,7 +2431,7 @@ def Security(  # noqa: N802
 def Security(  # noqa: N802
     dependency: Callable[..., Awaitable[T]],
     *,
-    scopes: Optional[Sequence[str]] = None,
+    scopes: Sequence[str] | None = None,
     use_cache: bool = True,
 ) -> T:  # pragma: nocover
     pass
@@ -2441,7 +2441,7 @@ def Security(  # noqa: N802
 def Security(  # noqa: N802
     dependency: Callable[..., Iterator[T]],
     *,
-    scopes: Optional[Sequence[str]] = None,
+    scopes: Sequence[str] | None = None,
     use_cache: bool = True,
 ) -> T:  # pragma: nocover
     pass
@@ -2451,7 +2451,7 @@ def Security(  # noqa: N802
 def Security(  # noqa: N802
     dependency: Callable[..., AsyncIterator[T]],
     *,
-    scopes: Optional[Sequence[str]] = None,
+    scopes: Sequence[str] | None = None,
     use_cache: bool = True,
 ) -> T:  # pragma: nocover
     pass
@@ -2461,7 +2461,7 @@ def Security(  # noqa: N802
 def Security(  # noqa: N802
     dependency: Callable[..., T],
     *,
-    scopes: Optional[Sequence[str]] = None,
+    scopes: Sequence[str] | None = None,
     use_cache: bool = True,
 ) -> T:  # pragma: nocover
     pass
