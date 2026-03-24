@@ -840,11 +840,12 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Callable[["APIRoute"], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
+        stream_item_type: type[Any] | None = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
-        self.stream_item_type: Any | None = None
-        if isinstance(response_model, DefaultPlaceholder):
+        self.stream_item_type: Any | None = stream_item_type
+        if self.stream_item_type is None and isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
             if lenient_issubclass(return_annotation, Response):
                 response_model = None
@@ -1364,6 +1365,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
+        stream_item_type: type[Any] | None = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1793,6 +1795,7 @@ class APIRouter(routing.Router):
                         router.strict_content_type,
                         self.strict_content_type,
                     ),
+                    stream_item_type=route.stream_item_type,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
