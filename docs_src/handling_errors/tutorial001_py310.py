@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     """
@@ -16,9 +17,10 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             "message": "Erro de validação detectado pela Alantec",
             "details": exc.errors(),
             "status": "error",
-            "code": 422
+            "code": 422,
         },
     )
+
 
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
