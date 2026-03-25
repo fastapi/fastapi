@@ -77,7 +77,7 @@ All the framework was designed to be easy and intuitive to use, all the decision
 
 In the Python developer surveys, it's clear [that one of the most used features is "autocompletion"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
-The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
+The whole **FastAPI** framework is designed to satisfy that. Autocompletion works everywhere.
 
 You will rarely need to come back to the docs.
 
