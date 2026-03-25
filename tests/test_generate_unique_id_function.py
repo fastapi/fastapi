@@ -1702,7 +1702,9 @@ def test_warn_duplicate_operation_id():
 def test_no_duplicate_operation_id_for_multi_method_route():
     app = FastAPI()
     router = APIRouter()
-    router.add_api_route("/items/", lambda: [], methods=["POST", "DELETE"], name="items")
+    router.add_api_route(
+        "/items/", lambda: [], methods=["POST", "DELETE"], name="items"
+    )
     app.include_router(router)
 
     client = TestClient(app)
