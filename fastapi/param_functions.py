@@ -54,6 +54,15 @@ def Path(  # noqa: N802
             """
         ),
     ] = _Unset,
+
+    alias_priority: Annotated[
+        int | None,
+        Doc(
+            """
+            Priority of the alias. This affects whether an alias generator is used.
+            """
+        ),
+    ] = _Unset,
     validation_alias: Annotated[
         str | AliasPath | AliasChoices | None,
         Doc(
@@ -92,6 +101,8 @@ def Path(  # noqa: N802
             """
         ),
     ] = None,
+
+    
     gt: Annotated[
         float | None,
         Doc(

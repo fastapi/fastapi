@@ -14,6 +14,13 @@ class EndpointContext(TypedDict, total=False):
     line: int
 
 
+
+
+
+
+
+
+
 class HTTPException(StarletteHTTPException):
     """
     An HTTP exception you can raise in your own code to show errors to the client.
