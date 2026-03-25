@@ -54,7 +54,6 @@ def Path(  # noqa: N802
             """
         ),
     ] = _Unset,
-
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -101,8 +100,6 @@ def Path(  # noqa: N802
             """
         ),
     ] = None,
-
-    
     gt: Annotated[
         float | None,
         Doc(

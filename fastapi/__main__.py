@@ -1,4 +1,4 @@
-#main
+# main
 
 from fastapi.cli import main
 
