@@ -246,36 +246,46 @@ def test_server_sent_event_cr_id_rejected():
         ServerSentEvent(data="test", id="42\rpwned")
 
 
-def test_format_sse_event_strips_newline_in_event():
+def test_format_sse_event_raises_on_newline_in_event():
     from fastapi.sse import format_sse_event
 
-    result = format_sse_event(event="chat\npwned", data_str="hello")
-    assert b"\npwned" not in result
-    assert b"event: chatpwned\n" in result
+    with pytest.raises(ValueError, match="newline"):
+        format_sse_event(event="chat\npwned", data_str="hello")
 
 
-def test_format_sse_event_strips_cr_in_event():
+def test_format_sse_event_raises_on_cr_in_event():
     from fastapi.sse import format_sse_event
 
-    result = format_sse_event(event="chat\rpwned", data_str="hello")
-    assert b"\rpwned" not in result
-    assert b"event: chatpwned\n" in result
+    with pytest.raises(ValueError, match="newline"):
+        format_sse_event(event="chat\rpwned", data_str="hello")
 
 
-def test_format_sse_event_strips_newline_in_id():
+def test_format_sse_event_raises_on_null_in_event():
     from fastapi.sse import format_sse_event
 
-    result = format_sse_event(id="42\npwned", data_str="hello")
-    assert b"\npwned" not in result
-    assert b"id: 42pwned\n" in result
+    with pytest.raises(ValueError, match="null"):
+        format_sse_event(event="chat\x00pwned", data_str="hello")
 
 
-def test_format_sse_event_strips_cr_in_id():
+def test_format_sse_event_raises_on_newline_in_id():
     from fastapi.sse import format_sse_event
 
-    result = format_sse_event(id="42\rpwned", data_str="hello")
-    assert b"\rpwned" not in result
-    assert b"id: 42pwned\n" in result
+    with pytest.raises(ValueError, match="newline"):
+        format_sse_event(id="42\npwned", data_str="hello")
+
+
+def test_format_sse_event_raises_on_cr_in_id():
+    from fastapi.sse import format_sse_event
+
+    with pytest.raises(ValueError, match="newline"):
+        format_sse_event(id="42\rpwned", data_str="hello")
+
+
+def test_format_sse_event_raises_on_null_in_id():
+    from fastapi.sse import format_sse_event
+
+    with pytest.raises(ValueError, match="null"):
+        format_sse_event(id="42\x00pwned", data_str="hello")
 
 
 def test_server_sent_event_negative_retry_rejected():

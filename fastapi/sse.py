@@ -212,7 +212,10 @@ def format_sse_event(
             lines.append(f": {line}")
 
     if event is not None:
-        event = event.replace("\r", "").replace("\n", "").replace("\0", "")
+        if "\n" in event or "\r" in event:
+            raise ValueError("SSE 'event' must not contain newline characters")
+        if "\0" in event:
+            raise ValueError("SSE 'event' must not contain null characters")
         lines.append(f"event: {event}")
 
     if data_str is not None:
@@ -220,7 +223,10 @@ def format_sse_event(
             lines.append(f"data: {line}")
 
     if id is not None:
-        id = id.replace("\r", "").replace("\n", "").replace("\0", "")
+        if "\n" in id or "\r" in id:
+            raise ValueError("SSE 'id' must not contain newline characters")
+        if "\0" in id:
+            raise ValueError("SSE 'id' must not contain null characters")
         lines.append(f"id: {id}")
 
     if retry is not None:
