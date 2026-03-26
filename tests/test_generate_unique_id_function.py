@@ -1697,3 +1697,30 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_unique_operation_id_for_multi_method_route():
+    """A route with multiple methods should get unique operation IDs per method.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/13175
+    """
+    app = FastAPI()
+
+    def handler():
+        return {"msg": "ok"}
+
+    app.add_api_route("/clear", handler, methods=["POST", "DELETE"])
+
+    client = TestClient(app)
+    response = client.get("/openapi.json")
+    data = response.json()
+    paths = data["paths"]
+
+    op_ids = []
+    for methods in paths.values():
+        for details in methods.values():
+            op_ids.append(details["operationId"])
+
+    assert len(op_ids) == 2, f"Expected 2 operations, got {len(op_ids)}"
+    assert op_ids[0] != op_ids[1], f"Duplicate operation IDs: {op_ids}"
+    assert set(op_ids) == {"handler_clear_post", "handler_clear_delete"}
