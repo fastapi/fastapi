@@ -242,3 +242,11 @@ If you want to use the exception along with the same default exception handlers 
 {* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
+
+## Router-Level Exception Handlers { #router-level-exception-handlers }
+
+The examples above add exception handlers to the **application**, so they apply to all routes.
+
+You can also add exception handlers scoped to a specific **`APIRouter`**, so they only apply to the routes in that router.
+
+Read more about it in [Advanced User Guide - Router-Level Exception Handlers](../advanced/router-exception-handlers.md){.internal-link target=_blank}.
