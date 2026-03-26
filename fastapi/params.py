@@ -746,7 +746,7 @@ class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
 class Depends:
     dependency: Callable[..., Any] | None = None
     use_cache: bool = True
-    scope: Literal["function", "request"] | None = None
+    scope: Literal["function", "request", "lifespan"] | None = None
 
 
 @dataclass(frozen=True)
