@@ -36,6 +36,35 @@ Read more about them in the [FastAPI docs about Security](https://fastapi.tiango
 
 ::: fastapi.security.APIKeyHeader
 
+### Using APIKeyHeader
+
+`APIKeyHeader` is a security tool for extracting API keys from HTTP headers.
+
+Here’s a simple example of how to use it in FastAPI:
+
+```python
+from fastapi import FastAPI, Security, HTTPException
+from fastapi.security import APIKeyHeader
+from starlette.status import HTTP_403_FORBIDDEN
+
+app = FastAPI()
+
+API_KEY = "mysecretapikey"
+API_KEY_NAME = "access_token"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+
+@app.get("/secure-data")
+async def secure_data(api_key: str = Security(api_key_header)):
+    if api_key == API_KEY:
+        return {"message": "Secure data accessed"}
+    else:
+        raise HTTPException(
+            status_code=HTTP_403_FORBIDDEN, detail="Could not validate API key"
+        )
+
+
+
+
 ::: fastapi.security.APIKeyQuery
 
 ## HTTP Authentication Schemes
