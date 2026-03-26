@@ -28,7 +28,7 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     # For pull requests it's not necessary to checkout the code but for the main branch it is
-    - uses: dorny/paths-filter@v4
+    - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4
       id: filter
       with:
         filters: |
@@ -94,7 +94,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
         with:
           enable-cache: true
           cache-dependency-glob: |
@@ -142,7 +142,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
         with:
           enable-cache: true
           cache-dependency-glob: |
@@ -151,7 +151,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
       - name: CodSpeed benchmarks
-        uses: CodSpeedHQ/action@v4
+        uses: CodSpeedHQ/action@1c8ae4843586d3ba879736b7f6b7b0c990757fab # v4
         with:
           mode: simulation
           run: uv run --no-sync pytest tests/benchmarks --codspeed
@@ -170,7 +170,7 @@ jobs:
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
         with:
           enable-cache: true
           cache-dependency-glob: |
@@ -208,7 +208,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@release/v1
+        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # release/v1
         with:
           jobs: ${{ toJSON(needs) }}
           allowed-skips: coverage-combine,test,benchmark

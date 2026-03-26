@@ -32,11 +32,11 @@ jobs:
           token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
       # Allow debugging with tmate
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@c0afd6f790e3a5564914980036ebf83216678101 # v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-      - uses: tiangolo/latest-changes@0.4.1
+      - uses: tiangolo/latest-changes@c9d329cb147f0ddf4fb631214e3f838ff17ccbbd # 0.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
