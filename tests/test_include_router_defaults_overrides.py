@@ -7302,3 +7302,18 @@ def test_openapi():
             },
         }
     )
+
+
+def test_route_deprecated_false_overrides_parent_deprecated_true():
+    child_router = APIRouter()
+
+    @child_router.get("/child", deprecated=False)
+    async def read_child():
+        return {"ok": True}
+
+    override_app = FastAPI(deprecated=True)
+    override_app.include_router(child_router)
+
+    schema = override_app.openapi()
+
+    assert "deprecated" not in schema["paths"]["/child"]["get"]
