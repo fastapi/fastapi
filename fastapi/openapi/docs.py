@@ -133,6 +133,14 @@ def get_swagger_ui_html(
             """
         ),
     ] = None,
+    asyncapi_docs_url: Annotated[
+        str | None,
+        Doc(
+            """
+            The URL to the AsyncAPI docs for navigation link.
+            """
+        ),
+    ] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML  that loads Swagger UI for the interactive
@@ -149,6 +157,17 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
+    navigation_html = ""
+    if asyncapi_docs_url:
+        navigation_html = f"""
+    <div style="padding: 10px; background-color: #f5f5f5; border-bottom: 1px solid #ddd;">
+        <span style="color: #666;">REST API Documentation</span>
+        <a href="{asyncapi_docs_url}" style="color: #007bff; text-decoration: none; margin-left: 20px;">
+            🔌 AsyncAPI Docs (WebSocket API)
+        </a>
+    </div>
+    """
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -159,6 +178,7 @@ def get_swagger_ui_html(
     <title>{title}</title>
     </head>
     <body>
+    {navigation_html}
     <div id="swagger-ui">
     </div>
     <script src="{swagger_js_url}"></script>
