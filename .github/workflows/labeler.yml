@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v6
+    - uses: actions/labeler@634933edcd8ababfe52f92936142cc22ac488b1b # v6
       if: ${{ github.event.action != 'labeled' && github.event.action != 'unlabeled' }}
     - run: echo "Done adding labels"
   # Run this after labeler applied labels
@@ -27,7 +27,7 @@ jobs:
       pull-requests: read
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://agilepathway/pull-request-label-checker:latest
+      - uses: docker://agilepathway/pull-request-label-checker@sha256:14f5f3dfda922496d07d53494e2d2b42885165f90677a1c03d600059b7706a61 # latest
         with:
           one_of: breaking,security,feature,bug,refactor,upgrade,docs,lang-all,internal
           repo_token: ${{ secrets.GITHUB_TOKEN }}
