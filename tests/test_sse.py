@@ -96,6 +96,12 @@ async def stream_events():
     yield {"msg": "world"}
 
 
+@router.get("/events-typed", response_class=EventSourceResponse)
+async def stream_events_typed() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
+
+
 app.include_router(router, prefix="/api")
 
 
@@ -265,6 +271,45 @@ def test_sse_on_router_included_in_app(client: TestClient):
     assert len(data_lines) == 2
 
 
+def test_sse_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-typed")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_sse_router_typed_openapi_schema(client: TestClient):
+    """Typed SSE endpoint on a router should preserve itemSchema with contentSchema."""
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    sse_response = paths["/api/events-typed"]["get"]["responses"]["200"]
+    assert sse_response == {
+        "description": "Successful Response",
+        "content": {
+            "text/event-stream": {
+                "itemSchema": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": {"$ref": "#/components/schemas/Item"},
+                        },
+                        "event": {"type": "string"},
+                        "id": {"type": "string"},
+                        "retry": {"type": "integer", "minimum": 0},
+                    },
+                    "required": ["data"],
+                }
+            }
+        },
+    }
+
+
 # Keepalive ping tests
 
 
@@ -316,3 +361,97 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# default_response_class tests
+
+
+sse_schema_response = {
+    "description": "Successful Response",
+    "content": {
+        "text/event-stream": {
+            "itemSchema": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string",
+                        "contentMediaType": "application/json",
+                        "contentSchema": {"$ref": "#/components/schemas/Item"},
+                    },
+                    "event": {"type": "string"},
+                    "id": {"type": "string"},
+                    "retry": {"type": "integer", "minimum": 0},
+                },
+                "required": ["data"],
+            }
+        }
+    },
+}
+
+
+# default_response_class on app
+
+default_app_app = FastAPI(default_response_class=EventSourceResponse)
+default_app_router = APIRouter()
+
+
+@default_app_router.get("/stream")
+async def default_app_stream() -> AsyncIterable[Item]:
+    yield items[0]
+
+
+default_app_app.include_router(default_app_router, prefix="/api")
+
+
+def test_default_response_class_on_app_stream():
+    with TestClient(default_app_app) as c:
+        response = c.get("/api/stream")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 1
+
+
+def test_default_response_class_on_app_openapi_schema():
+    with TestClient(default_app_app) as c:
+        response = c.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    assert paths["/api/stream"]["get"]["responses"]["200"] == sse_schema_response
+
+
+# default_response_class on parent router
+
+default_parent_app = FastAPI()
+parent_router = APIRouter(default_response_class=EventSourceResponse)
+child_router = APIRouter()
+
+
+@child_router.get("/stream")
+async def default_parent_stream() -> AsyncIterable[Item]:
+    yield items[0]
+
+
+parent_router.include_router(child_router)
+default_parent_app.include_router(parent_router, prefix="/api")
+
+
+def test_default_response_class_on_parent_router_stream():
+    with TestClient(default_parent_app) as c:
+        response = c.get("/api/stream")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 1
+
+
+def test_default_response_class_on_parent_router_openapi_schema():
+    with TestClient(default_parent_app) as c:
+        response = c.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    assert paths["/api/stream"]["get"]["responses"]["200"] == sse_schema_response
