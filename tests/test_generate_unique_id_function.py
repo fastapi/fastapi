@@ -1,8 +1,10 @@
 import warnings
+from types import SimpleNamespace
 
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
+from fastapi.utils import generate_unique_id
 from inline_snapshot import snapshot
 from pydantic import BaseModel
 
@@ -27,6 +29,31 @@ class Item(BaseModel):
 class Message(BaseModel):
     title: str
     description: str
+
+
+class MethodsSet(set[str]):
+    def __init__(self, values: set[str], iteration_order: list[str]) -> None:
+        super().__init__(values)
+        self.iteration_order = iteration_order
+
+    def __iter__(self):
+        return iter(self.iteration_order)
+
+
+def test_generate_unique_id_with_multiple_methods_is_stable():
+    route_a = SimpleNamespace(
+        name="handler",
+        path_format="/items",
+        methods=MethodsSet({"POST", "DELETE"}, ["POST", "DELETE"]),
+    )
+    route_b = SimpleNamespace(
+        name="handler",
+        path_format="/items",
+        methods=MethodsSet({"POST", "DELETE"}, ["DELETE", "POST"]),
+    )
+
+    assert generate_unique_id(route_a) == "handler_items_delete"
+    assert generate_unique_id(route_a) == generate_unique_id(route_b)
 
 
 def test_top_level_generate_unique_id():
