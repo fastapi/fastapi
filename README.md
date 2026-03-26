@@ -448,7 +448,7 @@ For a more complete example including more features, see the <a href="https://fa
 * **GraphQL** integration with [Strawberry](https://strawberry.rocks) and other libraries.
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
-    * extremely easy tests based on HTTPX and `pytest`
+    * Extremely easy tests based on HTTPX and `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...and more.
