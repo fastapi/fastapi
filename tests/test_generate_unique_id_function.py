@@ -1697,3 +1697,31 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_no_duplicate_operation_id_for_multi_method_route():
+    app = FastAPI()
+    router = APIRouter()
+    router.add_api_route(
+        "/items/", lambda: [], methods=["POST", "DELETE"], name="items"
+    )
+    app.include_router(router)
+
+    client = TestClient(app)
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        duplicate_warnings = [
+            warning
+            for warning in w
+            if issubclass(warning.category, UserWarning)
+            and "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert len(duplicate_warnings) == 0
+
+    paths = response.json()["paths"]
+    post_op_id = paths["/items/"]["post"]["operationId"]
+    delete_op_id = paths["/items/"]["delete"]["operationId"]
+    assert post_op_id != delete_op_id
+    assert post_op_id.endswith("_post")
+    assert delete_op_id.endswith("_delete")
