@@ -1,7 +1,7 @@
+import builtins
 import dataclasses
 import inspect
 import sys
-import builtins
 from collections.abc import (
     AsyncGenerator,
     AsyncIterable,
