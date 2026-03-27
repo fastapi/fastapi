@@ -1,6 +1,7 @@
 import dataclasses
 import inspect
 import sys
+from builtins import __dict__ as builtins_dict
 from collections.abc import (
     AsyncGenerator,
     AsyncIterable,
@@ -242,10 +243,21 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+class _LenientTypeResolutionDict(dict[str, Any]):
+    def __missing__(self, key: str) -> Any:
+        value = builtins_dict.get(key, ForwardRef(key))
+        self[key] = value
+        return value
+
+
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+    if isinstance(annotation, ForwardRef):
+        lenient_globalns = _LenientTypeResolutionDict(globalns)
+        annotation = evaluate_forwardref(  # ty: ignore[deprecated]
+            annotation, lenient_globalns, lenient_globalns
+        )
         if annotation is type(None):
             return None
     return annotation
