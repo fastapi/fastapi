@@ -1,7 +1,7 @@
+import uuid
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
 from typing import Annotated, Any, TypeVar
-import uuid
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -1042,12 +1042,14 @@ class FastAPI(Starlette):
             if self.startup_uuid_version == "v4":
                 self.startup_uuid = uuid.uuid4()
             elif self.startup_uuid_version == "v7":
-                if hasattr(uuid, 'uuid7'):
+                if hasattr(uuid, "uuid7"):
                     self.startup_uuid = uuid.uuid7()
                 else:
                     raise ValueError("UUID v7 requires Python 3.12 or later")
             else:
-                raise ValueError(f"Unsupported UUID version: {self.startup_uuid_version}")
+                raise ValueError(
+                    f"Unsupported UUID version: {self.startup_uuid_version}"
+                )
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
