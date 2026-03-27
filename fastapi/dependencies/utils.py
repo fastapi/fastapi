@@ -1,7 +1,7 @@
 import dataclasses
 import inspect
 import sys
-from builtins import __dict__ as builtins_dict
+import builtins
 from collections.abc import (
     AsyncGenerator,
     AsyncIterable,
@@ -245,7 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 
 class _LenientTypeResolutionDict(dict[str, Any]):
     def __missing__(self, key: str) -> Any:
-        value = builtins_dict.get(key, ForwardRef(key))
+        value = vars(builtins).get(key, ForwardRef(key))
         self[key] = value
         return value
 
