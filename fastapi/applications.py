@@ -1,3 +1,4 @@
+import uuid
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
 from typing import Annotated, Any, TypeVar
@@ -859,6 +860,43 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        generate_startup_uuid: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to generate a random UUID on application startup.
+
+                The generated UUID will be stored in `app.startup_uuid`.
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(generate_startup_uuid=True)
+                print(app.startup_uuid)  # UUID('...')
+                ```
+                """
+            ),
+        ] = False,
+        startup_uuid_version: Annotated[
+            str,
+            Doc(
+                """
+                The version of UUID to generate on startup if `generate_startup_uuid` is True.
+
+                Supported versions: 'v4' (random UUID), 'v7' (time-based UUID with random component, requires Python 3.12+).
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(generate_startup_uuid=True, startup_uuid_version="v7")
+                ```
+                """
+            ),
+        ] = "v4",
         **extra: Annotated[
             Any,
             Doc(
@@ -889,6 +927,8 @@ class FastAPI(Starlette):
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
         self.extra = extra
+        self.generate_startup_uuid = generate_startup_uuid
+        self.startup_uuid_version = startup_uuid_version
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -998,6 +1038,18 @@ class FastAPI(Starlette):
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
+        if self.generate_startup_uuid:
+            if self.startup_uuid_version == "v4":
+                self.startup_uuid = uuid.uuid4()
+            elif self.startup_uuid_version == "v7":
+                if hasattr(uuid, "uuid7"):
+                    self.startup_uuid = uuid.uuid7()
+                else:
+                    raise ValueError("UUID v7 requires Python 3.12 or later")
+            else:
+                raise ValueError(
+                    f"Unsupported UUID version: {self.startup_uuid_version}"
+                )
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
