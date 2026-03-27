@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump requests from 2.32.5 to 2.33.0. PR [#15228](https://github.com/fastapi/fastapi/pull/15228) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Add ty check to `lint.sh`. PR [#15136](https://github.com/fastapi/fastapi/pull/15136) by [@svlandeg](https://github.com/svlandeg).
 
 ## 0.135.2 (2026-03-01)
