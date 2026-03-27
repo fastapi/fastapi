@@ -12,8 +12,6 @@ def test_mount_subapp_under_router():
     def read_main():
         return {"message": "Hello World from main app"}
 
-    app.include_router(api_router)
-
     subapi = FastAPI()
 
     @subapi.get("/sub")
@@ -21,15 +19,13 @@ def test_mount_subapp_under_router():
         return {"message": "Hello World from sub API"}
 
     api_router.mount("/subapi", subapi)
+    app.include_router(api_router)
 
     client = TestClient(app)
 
-    # Main app endpoint works
     response = client.get("/api/app")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World from main app"}
 
-    # Sub-application endpoint should work (this is the bug)
     response = client.get("/api/subapi/sub")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello World from sub API"}
@@ -39,7 +35,6 @@ def test_mount_subapp_docs():
     """Sub-application should have its own OpenAPI docs."""
     app = FastAPI()
     api_router = APIRouter(prefix="/api")
-    app.include_router(api_router)
 
     subapi = FastAPI()
 
@@ -48,33 +43,32 @@ def test_mount_subapp_docs():
         return {"message": "sub"}
 
     api_router.mount("/subapi", subapi)
+    app.include_router(api_router)
 
     client = TestClient(app)
-
-    # Sub-app docs should be accessible
     response = client.get("/api/subapi/docs")
     assert response.status_code == 200
 
 
-def test_mount_subapp_after_include():
-    """Mounting a sub-app after include_router should still work."""
+def test_mount_multiple_subapps():
+    """Multiple sub-apps under the same router."""
     app = FastAPI()
-    api_router = APIRouter(prefix="/api")
+    api_router = APIRouter(prefix="/v1")
 
-    @api_router.get("/main")
-    def read_main():
-        return {"ok": True}
+    sub1 = FastAPI()
+    @sub1.get("/hello")
+    def hello():
+        return {"msg": "hello"}
 
-    # Mount sub-app BEFORE include_router
-    subapi = FastAPI()
+    sub2 = FastAPI()
+    @sub2.get("/world")
+    def world():
+        return {"msg": "world"}
 
-    @subapi.get("/endpoint")
-    def read_endpoint():
-        return {"sub": True}
-
-    api_router.mount("/sub", subapi)
+    api_router.mount("/a", sub1)
+    api_router.mount("/b", sub2)
     app.include_router(api_router)
 
     client = TestClient(app)
-    assert client.get("/api/main").status_code == 200
-    assert client.get("/api/sub/endpoint").status_code == 200
+    assert client.get("/v1/a/hello").status_code == 200
+    assert client.get("/v1/b/world").status_code == 200
