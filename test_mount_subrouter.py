@@ -1,5 +1,6 @@
 """Test for issue #10180: Mounting sub-applications under APIRouter."""
-from fastapi import FastAPI, APIRouter
+
+from fastapi import APIRouter, FastAPI
 from starlette.testclient import TestClient
 
 
@@ -56,11 +57,13 @@ def test_mount_multiple_subapps():
     api_router = APIRouter(prefix="/v1")
 
     sub1 = FastAPI()
+
     @sub1.get("/hello")
     def hello():
         return {"msg": "hello"}
 
     sub2 = FastAPI()
+
     @sub2.get("/world")
     def world():
         return {"msg": "world"}
