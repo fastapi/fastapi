@@ -233,6 +233,13 @@ def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
     return route.name.replace("_", " ").title()
 
 
+def get_openapi_operation_id(*, route: routing.APIRoute, method: str) -> str:
+    operation_id = route.operation_id or route.unique_id
+    if route.operation_id is None and route.methods and len(route.methods) > 1:
+        operation_id = f"{operation_id}_{method.lower()}"
+    return operation_id
+
+
 def get_openapi_operation_metadata(
     *, route: routing.APIRoute, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
@@ -242,7 +249,7 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation_id = route.operation_id or route.unique_id
+    operation_id = get_openapi_operation_id(route=route, method=method)
     if operation_id in operation_ids:
         endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
         message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
