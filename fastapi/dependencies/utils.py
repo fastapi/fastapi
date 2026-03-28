@@ -751,7 +751,10 @@ def _is_json_field(field: ModelField) -> bool:
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: str | None = None,
+    form_input: bool = False,
 ) -> Any:
     alias = alias or get_validation_alias(field)
     if (
@@ -765,7 +768,7 @@ def _get_multidict_value(
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
+            (isinstance(field.field_info, params.Form) or form_input)
             and isinstance(value, str)  # For type checks
             and value == ""
         )
@@ -774,8 +777,8 @@ def _get_multidict_value(
             and len(value) == 0
         )
     ):
-        if field.field_info.is_required():
-            return
+        if form_input or field.field_info.is_required():
+            return None
         else:
             return deepcopy(field.default)
     return value
@@ -916,7 +919,7 @@ async def _extract_form_body(
     values = {}
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        value = _get_multidict_value(field, received_body, form_input=True)
         field_info = field.field_info
         if (
             isinstance(field_info, params.File)
