@@ -380,7 +380,6 @@ def get_request_handler(
         actual_strict_content_type = strict_content_type
 
     async def app(request: Request) -> Response:
-        response: Response | None = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
@@ -449,7 +448,6 @@ def get_request_handler(
             raise http_error from e
 
         # Solve dependencies and run path operation function, auto-closing dependencies
-        errors: list[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
@@ -464,266 +462,250 @@ def get_request_handler(
         )
         errors = solved_result.errors
         assert dependant.call  # For types
-        if not errors:
-            # Shared serializer for stream items (JSONL and SSE).
-            # Validates against stream_item_field when set, then
-            # serializes to JSON bytes.
-            def _serialize_data(data: Any) -> bytes:
-                if stream_item_field:
-                    value, errors_ = stream_item_field.validate(
-                        data, {}, loc=("response",)
+        if errors:
+            raise RequestValidationError(errors, body=body, endpoint_ctx=endpoint_ctx)
+
+        # Shared serializer for stream items (JSONL and SSE).
+        # Validates against stream_item_field when set, then
+        # serializes to JSON bytes.
+        def _serialize_data(data: Any) -> bytes:
+            if stream_item_field:
+                value, errors_ = stream_item_field.validate(data, {}, loc=("response",))
+                if errors_:
+                    ctx = endpoint_ctx or EndpointContext()
+                    raise ResponseValidationError(
+                        errors=errors_,
+                        body=data,
+                        endpoint_ctx=ctx,
                     )
-                    if errors_:
-                        ctx = endpoint_ctx or EndpointContext()
-                        raise ResponseValidationError(
-                            errors=errors_,
-                            body=data,
-                            endpoint_ctx=ctx,
-                        )
-                    return stream_item_field.serialize_json(
-                        value,
-                        include=response_model_include,
-                        exclude=response_model_exclude,
-                        by_alias=response_model_by_alias,
-                        exclude_unset=response_model_exclude_unset,
-                        exclude_defaults=response_model_exclude_defaults,
-                        exclude_none=response_model_exclude_none,
-                    )
-                else:
-                    data = jsonable_encoder(data)
-                    return json.dumps(data).encode("utf-8")
-
-            if is_sse_stream:
-                # Generator endpoint: stream as Server-Sent Events
-                gen = dependant.call(**solved_result.values)
-
-                def _serialize_sse_item(item: Any) -> bytes:
-                    if isinstance(item, ServerSentEvent):
-                        # User controls the event structure.
-                        # Serialize the data payload if present.
-                        # For ServerSentEvent items we skip stream_item_field
-                        # validation (the user may mix types intentionally).
-                        if item.raw_data is not None:
-                            data_str: str | None = item.raw_data
-                        elif item.data is not None:
-                            if hasattr(item.data, "model_dump_json"):
-                                data_str = item.data.model_dump_json()
-                            else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
-                        else:
-                            data_str = None
-                        return format_sse_event(
-                            data_str=data_str,
-                            event=item.event,
-                            id=item.id,
-                            retry=item.retry,
-                            comment=item.comment,
-                        )
-                    else:
-                        # Plain object: validate + serialize via
-                        # stream_item_field (if set) and wrap in data field
-                        return format_sse_event(
-                            data_str=_serialize_data(item).decode("utf-8")
-                        )
-
-                if dependant.is_async_gen_callable:
-                    sse_aiter: AsyncIterator[Any] = gen.__aiter__()
-                else:
-                    sse_aiter = iterate_in_threadpool(gen)
-
-                @asynccontextmanager
-                async def _sse_producer_cm() -> AsyncIterator[
-                    ObjectReceiveStream[bytes]
-                ]:
-                    # Use a memory stream to decouple generator iteration
-                    # from the keepalive timer. A producer task pulls items
-                    # from the generator independently, so
-                    # `anyio.fail_after` never wraps the generator's
-                    # `__anext__` directly - avoiding CancelledError that
-                    # would finalize the generator and also working for sync
-                    # generators running in a thread pool.
-                    #
-                    # This context manager is entered on the request-scoped
-                    # AsyncExitStack so its __aexit__ (which cancels the
-                    # task group) is called by the exit stack after the
-                    # streaming response completes — not by async generator
-                    # finalization via GeneratorExit.
-                    # Ref: https://peps.python.org/pep-0789/
-                    send_stream, receive_stream = anyio.create_memory_object_stream[
-                        bytes
-                    ](max_buffer_size=1)
-
-                    async def _producer() -> None:
-                        async with send_stream:
-                            async for raw_item in sse_aiter:
-                                await send_stream.send(_serialize_sse_item(raw_item))
-
-                    send_keepalive, receive_keepalive = (
-                        anyio.create_memory_object_stream[bytes](max_buffer_size=1)
-                    )
-
-                    async def _keepalive_inserter() -> None:
-                        """Read from the producer and forward to the output,
-                        inserting keepalive comments on timeout."""
-                        async with send_keepalive, receive_stream:
-                            try:
-                                while True:
-                                    try:
-                                        with anyio.fail_after(_PING_INTERVAL):
-                                            data = await receive_stream.receive()
-                                        await send_keepalive.send(data)
-                                    except TimeoutError:
-                                        await send_keepalive.send(KEEPALIVE_COMMENT)
-                            except anyio.EndOfStream:
-                                pass
-
-                    async with anyio.create_task_group() as tg:
-                        tg.start_soon(_producer)
-                        tg.start_soon(_keepalive_inserter)
-                        yield receive_keepalive
-                        tg.cancel_scope.cancel()
-
-                # Enter the SSE context manager on the request-scoped
-                # exit stack. The stack outlives the streaming response,
-                # so __aexit__ runs via proper structured teardown, not
-                # via GeneratorExit thrown into an async generator.
-                sse_receive_stream = await async_exit_stack.enter_async_context(
-                    _sse_producer_cm()
+                return stream_item_field.serialize_json(
+                    value,
+                    include=response_model_include,
+                    exclude=response_model_exclude,
+                    by_alias=response_model_by_alias,
+                    exclude_unset=response_model_exclude_unset,
+                    exclude_defaults=response_model_exclude_defaults,
+                    exclude_none=response_model_exclude_none,
                 )
-                # Ensure the receive stream is closed when the exit stack
-                # unwinds, preventing ResourceWarning from __del__.
-                async_exit_stack.push_async_callback(sse_receive_stream.aclose)
 
-                async def _sse_with_checkpoints(
-                    stream: ObjectReceiveStream[bytes],
-                ) -> AsyncIterator[bytes]:
-                    async for data in stream:
-                        yield data
-                        # Guarantee a checkpoint so cancellation can be
-                        # delivered even when the producer is faster than
-                        # the consumer and receive() never suspends.
+            data = jsonable_encoder(data)
+            return json.dumps(data).encode("utf-8")
+
+        if is_sse_stream:
+            # Generator endpoint: stream as Server-Sent Events
+            gen = dependant.call(**solved_result.values)
+
+            def _serialize_sse_item(item: Any) -> bytes:
+                if isinstance(item, ServerSentEvent):
+                    # User controls the event structure.
+                    # Serialize the data payload if present.
+                    # For ServerSentEvent items we skip stream_item_field
+                    # validation (the user may mix types intentionally).
+                    if item.raw_data is not None:
+                        data_str: str | None = item.raw_data
+                    elif item.data is not None:
+                        if hasattr(item.data, "model_dump_json"):
+                            data_str = item.data.model_dump_json()
+                        else:
+                            data_str = json.dumps(jsonable_encoder(item.data))
+                    else:
+                        data_str = None
+                    return format_sse_event(
+                        data_str=data_str,
+                        event=item.event,
+                        id=item.id,
+                        retry=item.retry,
+                        comment=item.comment,
+                    )
+
+                return format_sse_event(data_str=_serialize_data(item).decode("utf-8"))
+
+            if dependant.is_async_gen_callable:
+                sse_aiter: AsyncIterator[Any] = gen.__aiter__()
+            else:
+                sse_aiter = iterate_in_threadpool(gen)
+
+            @asynccontextmanager
+            async def _sse_producer_cm() -> AsyncIterator[ObjectReceiveStream[bytes]]:
+                # Use a memory stream to decouple generator iteration
+                # from the keepalive timer. A producer task pulls items
+                # from the generator independently, so
+                # `anyio.fail_after` never wraps the generator's
+                # `__anext__` directly - avoiding CancelledError that
+                # would finalize the generator and also working for sync
+                # generators running in a thread pool.
+                #
+                # This context manager is entered on the request-scoped
+                # AsyncExitStack so its __aexit__ (which cancels the
+                # task group) is called by the exit stack after the
+                # streaming response completes — not by async generator
+                # finalization via GeneratorExit.
+                # Ref: https://peps.python.org/pep-0789/
+                send_stream, receive_stream = anyio.create_memory_object_stream[bytes](
+                    max_buffer_size=1
+                )
+
+                async def _producer() -> None:
+                    async with send_stream:
+                        async for raw_item in sse_aiter:
+                            await send_stream.send(_serialize_sse_item(raw_item))
+
+                send_keepalive, receive_keepalive = anyio.create_memory_object_stream[
+                    bytes
+                ](max_buffer_size=1)
+
+                async def _keepalive_inserter() -> None:
+                    """Read from the producer and forward to the output,
+                    inserting keepalive comments on timeout."""
+                    async with send_keepalive, receive_stream:
+                        try:
+                            while True:
+                                try:
+                                    with anyio.fail_after(_PING_INTERVAL):
+                                        data = await receive_stream.receive()
+                                    await send_keepalive.send(data)
+                                except TimeoutError:
+                                    await send_keepalive.send(KEEPALIVE_COMMENT)
+                        except anyio.EndOfStream:
+                            pass
+
+                async with anyio.create_task_group() as tg:
+                    tg.start_soon(_producer)
+                    tg.start_soon(_keepalive_inserter)
+                    yield receive_keepalive
+                    tg.cancel_scope.cancel()
+
+            sse_receive_stream = await async_exit_stack.enter_async_context(
+                _sse_producer_cm()
+            )
+            async_exit_stack.push_async_callback(sse_receive_stream.aclose)
+
+            async def _sse_with_checkpoints(
+                stream: ObjectReceiveStream[bytes],
+            ) -> AsyncIterator[bytes]:
+                async for data in stream:
+                    yield data
+                    # Guarantee a checkpoint so cancellation can be
+                    # delivered even when the producer is faster than
+                    # the consumer and receive() never suspends.
+                    await anyio.sleep(0)
+
+            sse_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                _sse_with_checkpoints(sse_receive_stream)
+            )
+            response = StreamingResponse(
+                sse_stream_content,
+                media_type="text/event-stream",
+                background=solved_result.background_tasks,
+            )
+            response.headers["Cache-Control"] = "no-cache"
+            # For Nginx proxies to not buffer server sent events
+            response.headers["X-Accel-Buffering"] = "no"
+            response.headers.raw.extend(solved_result.response.headers.raw)
+            return response
+
+        if is_json_stream:
+            # Generator endpoint: stream as JSONL
+            gen = dependant.call(**solved_result.values)
+
+            def _serialize_item(item: Any) -> bytes:
+                return _serialize_data(item) + b"\n"
+
+            if dependant.is_async_gen_callable:
+
+                async def _async_stream_jsonl() -> AsyncIterator[bytes]:
+                    async for item in gen:
+                        yield _serialize_item(item)
+                        # To allow for cancellation to trigger
+                        # Ref: https://github.com/fastapi/fastapi/issues/14680
                         await anyio.sleep(0)
 
-                sse_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
-                    _sse_with_checkpoints(sse_receive_stream)
+                jsonl_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
+                    _async_stream_jsonl()
                 )
-
-                response = StreamingResponse(
-                    sse_stream_content,
-                    media_type="text/event-stream",
-                    background=solved_result.background_tasks,
-                )
-                response.headers["Cache-Control"] = "no-cache"
-                # For Nginx proxies to not buffer server sent events
-                response.headers["X-Accel-Buffering"] = "no"
-                response.headers.raw.extend(solved_result.response.headers.raw)
-            elif is_json_stream:
-                # Generator endpoint: stream as JSONL
-                gen = dependant.call(**solved_result.values)
-
-                def _serialize_item(item: Any) -> bytes:
-                    return _serialize_data(item) + b"\n"
-
-                if dependant.is_async_gen_callable:
-
-                    async def _async_stream_jsonl() -> AsyncIterator[bytes]:
-                        async for item in gen:
-                            yield _serialize_item(item)
-                            # To allow for cancellation to trigger
-                            # Ref: https://github.com/fastapi/fastapi/issues/14680
-                            await anyio.sleep(0)
-
-                    jsonl_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
-                        _async_stream_jsonl()
-                    )
-                else:
-
-                    def _sync_stream_jsonl() -> Iterator[bytes]:
-                        for item in gen:  # ty: ignore[not-iterable]
-                            yield _serialize_item(item)
-
-                    jsonl_stream_content = _sync_stream_jsonl()
-
-                response = StreamingResponse(
-                    jsonl_stream_content,
-                    media_type="application/jsonl",
-                    background=solved_result.background_tasks,
-                )
-                response.headers.raw.extend(solved_result.response.headers.raw)
-            elif dependant.is_async_gen_callable or dependant.is_gen_callable:
-                # Raw streaming with explicit response_class (e.g. StreamingResponse)
-                gen = dependant.call(**solved_result.values)
-                if dependant.is_async_gen_callable:
-
-                    async def _async_stream_raw(
-                        async_gen: AsyncIterator[Any],
-                    ) -> AsyncIterator[Any]:
-                        async for chunk in async_gen:
-                            yield chunk
-                            # To allow for cancellation to trigger
-                            # Ref: https://github.com/fastapi/fastapi/issues/14680
-                            await anyio.sleep(0)
-
-                    gen = _async_stream_raw(gen)
-                response_args = _build_response_args(
-                    status_code=status_code, solved_result=solved_result
-                )
-                response = actual_response_class(content=gen, **response_args)
-                response.headers.raw.extend(solved_result.response.headers.raw)
             else:
-                raw_response = await run_endpoint_function(
-                    dependant=dependant,
-                    values=solved_result.values,
-                    is_coroutine=is_coroutine,
-                )
-                if isinstance(raw_response, Response):
-                    if raw_response.background is None:
-                        raw_response.background = solved_result.background_tasks
-                    response = raw_response
-                else:
-                    response_args = _build_response_args(
-                        status_code=status_code, solved_result=solved_result
-                    )
-                    # Use the fast path (dump_json) when no custom response
-                    # class was set and a response field with a TypeAdapter
-                    # exists. Serializes directly to JSON bytes via Pydantic's
-                    # Rust core, skipping the intermediate Python dict +
-                    # json.dumps() step.
-                    use_dump_json = response_field is not None and isinstance(
-                        response_class, DefaultPlaceholder
-                    )
-                    content = await serialize_response(
-                        field=response_field,
-                        response_content=raw_response,
-                        include=response_model_include,
-                        exclude=response_model_exclude,
-                        by_alias=response_model_by_alias,
-                        exclude_unset=response_model_exclude_unset,
-                        exclude_defaults=response_model_exclude_defaults,
-                        exclude_none=response_model_exclude_none,
-                        is_coroutine=is_coroutine,
-                        endpoint_ctx=endpoint_ctx,
-                        dump_json=use_dump_json,
-                    )
-                    if use_dump_json:
-                        response = Response(
-                            content=content,
-                            media_type="application/json",
-                            **response_args,
-                        )
-                    else:
-                        response = actual_response_class(content, **response_args)
-                    if not is_body_allowed_for_status_code(response.status_code):
-                        response.body = b""
-                    response.headers.raw.extend(solved_result.response.headers.raw)
-        if errors:
-            validation_error = RequestValidationError(
-                errors, body=body, endpoint_ctx=endpoint_ctx
-            )
-            raise validation_error
 
-        # Return response
-        assert response
+                def _sync_stream_jsonl() -> Iterator[bytes]:
+                    for item in gen:  # ty: ignore[not-iterable]
+                        yield _serialize_item(item)
+
+                jsonl_stream_content = _sync_stream_jsonl()
+
+            response = StreamingResponse(
+                jsonl_stream_content,
+                media_type="application/jsonl",
+                background=solved_result.background_tasks,
+            )
+            response.headers.raw.extend(solved_result.response.headers.raw)
+            return response
+
+        if dependant.is_async_gen_callable or dependant.is_gen_callable:
+            # Raw streaming with explicit response_class
+            gen = dependant.call(**solved_result.values)
+            if dependant.is_async_gen_callable:
+
+                async def _async_stream_raw(
+                    async_gen: AsyncIterator[Any],
+                ) -> AsyncIterator[Any]:
+                    async for chunk in async_gen:
+                        yield chunk
+                        # To allow for cancellation to trigger
+                        # Ref: https://github.com/fastapi/fastapi/issues/14680
+                        await anyio.sleep(0)
+
+                gen = _async_stream_raw(gen)
+            response_args = _build_response_args(
+                status_code=status_code, solved_result=solved_result
+            )
+            response = actual_response_class(content=gen, **response_args)
+            response.headers.raw.extend(solved_result.response.headers.raw)
+            return response
+
+        raw_response = await run_endpoint_function(
+            dependant=dependant,
+            values=solved_result.values,
+            is_coroutine=is_coroutine,
+        )
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = solved_result.background_tasks
+            return raw_response
+
+        response_args = _build_response_args(
+            status_code=status_code, solved_result=solved_result
+        )
+        # Use the fast path (dump_json) when no custom response
+        # class was set and a response field with a TypeAdapter
+        # exists. Serializes directly to JSON bytes via Pydantic's
+        # Rust core, skipping the intermediate Python dict +
+        # json.dumps() step.
+        use_dump_json = response_field is not None and isinstance(
+            response_class, DefaultPlaceholder
+        )
+        content = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+            endpoint_ctx=endpoint_ctx,
+            dump_json=use_dump_json,
+        )
+        if use_dump_json:
+            response = Response(
+                content=content,
+                media_type="application/json",
+                **response_args,
+            )
+        else:
+            response = actual_response_class(content, **response_args)
+        if not is_body_allowed_for_status_code(response.status_code):
+            response.body = b""
+        response.headers.raw.extend(solved_result.response.headers.raw)
         return response
 
     return app
