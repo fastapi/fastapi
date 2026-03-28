@@ -62,7 +62,10 @@ async def bool_endpoint(model: Annotated[BoolModel, Form()]):
 
 @app.post("/string")
 async def string_endpoint(model: Annotated[StringModel, Form()]):
-    return {"fields_set": sorted(model.model_fields_set), "values": model.model_dump(by_alias=True)}
+    return {
+        "fields_set": sorted(model.model_fields_set),
+        "values": model.model_dump(by_alias=True),
+    }
 
 
 @app.post("/mixed")
@@ -219,4 +222,6 @@ def test_form_fields_set_matches_json(submitted, expected_set):
 
     assert form_resp.status_code == 200, form_resp.text
     assert json_resp.status_code == 200, json_resp.text
-    assert form_resp.json()["fields_set"] == json_resp.json()["fields_set"] == expected_set
+    assert (
+        form_resp.json()["fields_set"] == json_resp.json()["fields_set"] == expected_set
+    )
