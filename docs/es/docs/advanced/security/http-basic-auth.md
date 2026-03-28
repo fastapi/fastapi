@@ -14,13 +14,13 @@ Luego, cuando escribes ese nombre de usuario y contraseña, el navegador los env
 
 ## Simple HTTP Basic Auth { #simple-http-basic-auth }
 
-* Importa `HTTPBasic` y `HTTPBasicCredentials`.
-* Crea un "esquema de `security`" usando `HTTPBasic`.
-* Usa ese `security` con una dependencia en tu *path operation*.
-* Devuelve un objeto de tipo `HTTPBasicCredentials`:
-  * Contiene el `username` y `password` enviados.
+- Importa `HTTPBasic` y `HTTPBasicCredentials`.
+- Crea un "esquema de `security`" usando `HTTPBasic`.
+- Usa ese `security` con una dependencia en tu _path operation_.
+- Devuelve un objeto de tipo `HTTPBasicCredentials`:
+  - Contiene el `username` y `password` enviados.
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{_ ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] _}
 
 Cuando intentas abrir la URL por primera vez (o haces clic en el botón "Execute" en la documentación) el navegador te pedirá tu nombre de usuario y contraseña:
 
@@ -40,7 +40,7 @@ Para manejar eso, primero convertimos el `username` y `password` a `bytes` codif
 
 Luego podemos usar `secrets.compare_digest()` para asegurar que `credentials.username` es `"stanleyjobson"`, y que `credentials.password` es `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{_ ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] _}
 
 Esto sería similar a:
 
@@ -104,4 +104,4 @@ De esa manera, usando `secrets.compare_digest()` en el código de tu aplicación
 
 Después de detectar que las credenciales son incorrectas, regresa un `HTTPException` con un código de estado 401 (el mismo que se devuelve cuando no se proporcionan credenciales) y agrega el header `WWW-Authenticate` para que el navegador muestre el prompt de inicio de sesión nuevamente:
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{_ ../../docs_src/security/tutorial007_an_py310.py hl[26:30] _}
