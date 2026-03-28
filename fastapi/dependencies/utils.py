@@ -916,8 +916,15 @@ async def _extract_form_body(
     values = {}
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        alias = get_validation_alias(field)
         field_info = field.field_info
+        # Skip fields not present in the form data so that Pydantic uses its
+        # own default mechanism.  This preserves correct model_fields_set
+        # semantics: fields the client didn't submit should not appear as
+        # "set" on the resulting model (fixes #13399).
+        if alias not in received_body:
+            continue
+        value = _get_multidict_value(field, received_body)
         if (
             isinstance(field_info, params.File)
             and is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
@@ -936,7 +943,7 @@ async def _extract_form_body(
                 results.append(await sub_value.read())
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
-            values[get_validation_alias(field)] = value
+            values[alias] = value
     field_aliases = {get_validation_alias(field) for field in body_fields}
     for key in received_body.keys():
         if key not in field_aliases:
