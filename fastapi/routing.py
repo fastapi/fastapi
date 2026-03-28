@@ -463,9 +463,7 @@ def get_request_handler(
         errors = solved_result.errors
         assert dependant.call  # For types
         if errors:
-            raise RequestValidationError(
-                errors, body=body, endpoint_ctx=endpoint_ctx
-            )
+            raise RequestValidationError(errors, body=body, endpoint_ctx=endpoint_ctx)
 
         # Shared serializer for stream items (JSONL and SSE).
         # Validates against stream_item_field when set, then
@@ -520,9 +518,7 @@ def get_request_handler(
                         comment=item.comment,
                     )
 
-                return format_sse_event(
-                    data_str=_serialize_data(item).decode("utf-8")
-                )
+                return format_sse_event(data_str=_serialize_data(item).decode("utf-8"))
 
             if dependant.is_async_gen_callable:
                 sse_aiter: AsyncIterator[Any] = gen.__aiter__()
@@ -530,9 +526,7 @@ def get_request_handler(
                 sse_aiter = iterate_in_threadpool(gen)
 
             @asynccontextmanager
-            async def _sse_producer_cm() -> AsyncIterator[
-                ObjectReceiveStream[bytes]
-            ]:
+            async def _sse_producer_cm() -> AsyncIterator[ObjectReceiveStream[bytes]]:
                 # Use a memory stream to decouple generator iteration
                 # from the keepalive timer. A producer task pulls items
                 # from the generator independently, so
@@ -547,18 +541,18 @@ def get_request_handler(
                 # streaming response completes — not by async generator
                 # finalization via GeneratorExit.
                 # Ref: https://peps.python.org/pep-0789/
-                send_stream, receive_stream = anyio.create_memory_object_stream[
-                    bytes
-                ](max_buffer_size=1)
+                send_stream, receive_stream = anyio.create_memory_object_stream[bytes](
+                    max_buffer_size=1
+                )
 
                 async def _producer() -> None:
                     async with send_stream:
                         async for raw_item in sse_aiter:
                             await send_stream.send(_serialize_sse_item(raw_item))
 
-                send_keepalive, receive_keepalive = (
-                    anyio.create_memory_object_stream[bytes](max_buffer_size=1)
-                )
+                send_keepalive, receive_keepalive = anyio.create_memory_object_stream[
+                    bytes
+                ](max_buffer_size=1)
 
                 async def _keepalive_inserter() -> None:
                     """Read from the producer and forward to the output,
