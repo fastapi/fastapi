@@ -99,4 +99,4 @@ For the next terms, use the following translations:
 - timing attack: timing attack (do not translate to "ataque de temporización")
 - middleware: middleware (do not translate to "capa intermedia")
 - dependency injection: dependency injection (do not translate to "inyección de dependencias")
-- mock: mock (no traducir como "simulacro")
+- mock: mock (do not translate to "simulacro")
