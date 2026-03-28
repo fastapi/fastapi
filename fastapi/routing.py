@@ -1499,6 +1499,18 @@ class APIRouter(routing.Router):
         )
         self.routes.append(route)
 
+    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        """
+        Mount a sub-application at the given path.
+
+        Overrides `Router.mount` so that the router's own prefix is applied,
+        matching the behaviour of `add_api_route`.  The stored route path will
+        be `self.prefix + path`, which is then further prefixed by any
+        `prefix` argument passed to `include_router` when this router is
+        included into another router or application.
+        """
+        super().mount(self.prefix + path, app=app, name=name)
+
     def websocket(
         self,
         path: Annotated[
@@ -1794,6 +1806,8 @@ class APIRouter(routing.Router):
                         self.strict_content_type,
                     ),
                 )
+            elif isinstance(route, routing.Mount):
+                self.mount(prefix + route.path, route.app, route.name)
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(
