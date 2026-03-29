@@ -266,7 +266,7 @@ Each `BaseHTTPMiddleware` layer adds a small overhead due to Python async contex
 
 ///
 
-### Accessing Middleware State in Route Handlers { #accessing-middleware-state }
+### Accessing Middleware State in Route Handlers { #accessing-middleware-state-in-route-handlers }
 
 State set on `request.state` in middleware is accessible throughout the entire request lifecycle:
 
