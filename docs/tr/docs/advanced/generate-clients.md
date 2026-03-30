@@ -8,11 +8,11 @@ Bu rehberde, FastAPI backend'iniz için bir **TypeScript SDK** üretmeyi öğren
 
 ## Açık Kaynak SDK Üreteçleri { #open-source-sdk-generators }
 
-Esnek bir seçenek olan <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, **birçok programlama dilini** destekler ve OpenAPI spesifikasyonunuzdan SDK üretebilir.
+Esnek bir seçenek olan [OpenAPI Generator](https://openapi-generator.tech/), **birçok programlama dilini** destekler ve OpenAPI spesifikasyonunuzdan SDK üretebilir.
 
-**TypeScript client**'lar için <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a>, TypeScript ekosistemi için özel olarak tasarlanmış, optimize bir deneyim sunan bir çözümdür.
+**TypeScript client**'lar için [Hey API](https://heyapi.dev/), TypeScript ekosistemi için özel olarak tasarlanmış, optimize bir deneyim sunan bir çözümdür.
 
-Daha fazla SDK üretecini <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a> üzerinde keşfedebilirsiniz.
+Daha fazla SDK üretecini [OpenAPI.Tools](https://openapi.tools/#sdk) üzerinde keşfedebilirsiniz.
 
 /// tip | İpucu
 
@@ -24,15 +24,15 @@ FastAPI otomatik olarak **OpenAPI 3.1** spesifikasyonları üretir; bu yüzden k
 
 Bu bölüm, FastAPI'yi sponsorlayan şirketlerin sunduğu **yatırım destekli** ve **şirket destekli** çözümleri öne çıkarır. Bu ürünler, yüksek kaliteli üretilen SDK'ların üzerine **ek özellikler** ve **entegrasyonlar** sağlar.
 
-✨ [**FastAPI'ye sponsor olarak**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ bu şirketler, framework'ün ve **ekosisteminin** sağlıklı ve **sürdürülebilir** kalmasına yardımcı olur.
+✨ [**FastAPI'ye sponsor olarak**](../help-fastapi.md#sponsor-the-author) ✨ bu şirketler, framework'ün ve **ekosisteminin** sağlıklı ve **sürdürülebilir** kalmasına yardımcı olur.
 
 Sponsor olmaları aynı zamanda FastAPI **topluluğuna** (size) güçlü bir bağlılığı da gösterir; yalnızca **iyi bir hizmet** sunmayı değil, aynı zamanda **güçlü ve gelişen bir framework** olan FastAPI'yi desteklemeyi de önemsediklerini gösterir. 🙇
 
 Örneğin şunları deneyebilirsiniz:
 
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Bu çözümlerin bazıları açık kaynak olabilir veya ücretsiz katman sunabilir; yani finansal bir taahhüt olmadan deneyebilirsiniz. Başka ticari SDK üreteçleri de vardır ve internette bulunabilir. 🤓
 
@@ -66,7 +66,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Bu komut `./src/client` içine bir TypeScript SDK üretecektir.
 
-Web sitelerinde <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">`@hey-api/openapi-ts` kurulumunu</a> öğrenebilir ve <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">üretilen çıktıyı</a> inceleyebilirsiniz.
+Web sitelerinde [`@hey-api/openapi-ts` kurulumunu](https://heyapi.dev/openapi-ts/get-started) öğrenebilir ve [üretilen çıktıyı](https://heyapi.dev/openapi-ts/output) inceleyebilirsiniz.
 
 ### SDK'yı Kullanma { #using-the-sdk }
 

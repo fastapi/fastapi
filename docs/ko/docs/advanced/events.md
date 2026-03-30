@@ -150,11 +150,11 @@ async with lifespan(app):
 
 호기심 많은 분들을 위한 기술적인 세부사항입니다. 🤓
 
-내부적으로 ASGI 기술 사양에서는 이것이 <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
+내부적으로 ASGI 기술 사양에서는 이것이 [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
 
 /// info | 정보
 
-Starlette `lifespan` 핸들러에 대해서는 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette의 Lifespan 문서</a>에서 더 읽어볼 수 있습니다.
+Starlette `lifespan` 핸들러에 대해서는 [Starlette의 Lifespan 문서](https://www.starlette.dev/lifespan/)에서 더 읽어볼 수 있습니다.
 
 또한 코드의 다른 영역에서 사용할 수 있는 lifespan 상태를 처리하는 방법도 포함되어 있습니다.
 
@@ -162,4 +162,4 @@ Starlette `lifespan` 핸들러에 대해서는 <a href="https://www.starlette.de
 
 ## 서브 애플리케이션 { #sub-applications }
 
-🚨 이 lifespan 이벤트(startup 및 shutdown)는 메인 애플리케이션에 대해서만 실행되며, [서브 애플리케이션 - Mounts](sub-applications.md){.internal-link target=_blank}에는 실행되지 않음을 유의하세요.
+🚨 이 lifespan 이벤트(startup 및 shutdown)는 메인 애플리케이션에 대해서만 실행되며, [서브 애플리케이션 - Mounts](sub-applications.md)에는 실행되지 않음을 유의하세요.

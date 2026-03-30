@@ -12,7 +12,7 @@ Imaginons que vous ayez une base de données `fake_db` qui ne reçoit que des do
 
 Par exemple, elle ne reçoit pas d'objets `datetime`, car ceux-ci ne sont pas compatibles avec JSON.
 
-Ainsi, un objet `datetime` doit être converti en une `str` contenant les données au <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">format ISO</a>.
+Ainsi, un objet `datetime` doit être converti en une `str` contenant les données au [format ISO](https://en.wikipedia.org/wiki/ISO_8601).
 
 De la même manière, cette base de données n'accepterait pas un modèle Pydantic (un objet avec des attributs), seulement un `dict`.
 
@@ -24,7 +24,7 @@ Elle reçoit un objet, comme un modèle Pydantic, et renvoie une version compati
 
 Dans cet exemple, elle convertirait le modèle Pydantic en `dict`, et le `datetime` en `str`.
 
-Le résultat de son appel est quelque chose qui peut être encodé avec la fonction standard de Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
+Le résultat de son appel est quelque chose qui peut être encodé avec la fonction standard de Python [`json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps).
 
 Elle ne renvoie pas une grande `str` contenant les données au format JSON (sous forme de chaîne). Elle renvoie une structure de données standard de Python (par ex. un `dict`) avec des valeurs et sous-valeurs toutes compatibles avec JSON.
 

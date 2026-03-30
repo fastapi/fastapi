@@ -14,8 +14,8 @@ Asegúrate de usar `yield` una sola vez por dependencia.
 
 Cualquier función que sea válida para usar con:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> o
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) o
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 sería válida para usar como una dependencia en **FastAPI**.
 
@@ -27,7 +27,7 @@ De hecho, FastAPI usa esos dos decoradores internamente.
 
 Por ejemplo, podrías usar esto para crear una sesión de base de datos y cerrarla después de finalizar.
 
-Solo el código anterior e incluyendo la declaración `yield` se ejecuta antes de crear un response:
+Solo el código anterior e incluyendo el `yield` statement se ejecuta antes de crear un response:
 
 {* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
@@ -35,7 +35,7 @@ El valor generado es lo que se inyecta en *path operations* y otras dependencias
 
 {* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
-El código posterior a la declaración `yield` se ejecuta después del response:
+El código posterior al `yield` statement se ejecuta después del response:
 
 {* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
@@ -87,7 +87,7 @@ Puedes tener cualquier combinación de dependencias que quieras.
 
 /// note | Detalles técnicos
 
-Esto funciona gracias a los <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a> de Python.
+Esto funciona gracias a los [Context Managers](https://docs.python.org/3/library/contextlib.html) de Python.
 
 **FastAPI** los utiliza internamente para lograr esto.
 
@@ -111,7 +111,7 @@ Pero está ahí para ti si la necesitas. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers).
 
 ## Dependencias con `yield` y `except` { #dependencies-with-yield-and-except }
 
@@ -233,14 +233,14 @@ participant operation as Path Operation
 
 Las dependencias con `yield` han evolucionado con el tiempo para cubrir diferentes casos de uso y corregir algunos problemas.
 
-Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+Si quieres ver qué ha cambiado en diferentes versiones de FastAPI, puedes leer más al respecto en la guía avanzada, en [Dependencias avanzadas - Dependencias con `yield`, `HTTPException`, `except` y Tareas en Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Context Managers { #context-managers }
 
 ### Qué son los "Context Managers" { #what-are-context-managers }
 
-Los "Context Managers" son aquellos objetos de Python que puedes usar en una declaración `with`.
+Los "Context Managers" son aquellos objetos de Python que puedes usar en un `with` statement.
 
-Por ejemplo, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">puedes usar `with` para leer un archivo</a>:
+Por ejemplo, [puedes usar `with` para leer un archivo](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ Si apenas estás comenzando con **FastAPI**, podrías querer omitirlo por ahora.
 
 ///
 
-En Python, puedes crear Context Managers <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creando una clase con dos métodos: `__enter__()` y `__exit__()`</a>.
+En Python, puedes crear Context Managers [creando una clase con dos métodos: `__enter__()` y `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
 También puedes usarlos dentro de las dependencias de **FastAPI** con `yield` usando
 `with` o `async with` en la función de dependencia:
@@ -275,8 +275,8 @@ También puedes usarlos dentro de las dependencias de **FastAPI** con `yield` us
 
 Otra manera de crear un context manager es con:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> o
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) o
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 usándolos para decorar una función con un solo `yield`.
 

@@ -22,7 +22,7 @@
 
 这个页面将教你如何使用**虚拟环境**以及了解它们的工作原理。
 
-如果你计划使用一个**可以为你管理一切的工具**（包括安装 Python），试试 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+如果你计划使用一个**可以为你管理一切的工具**（包括安装 Python），试试 [uv](https://github.com/astral-sh/uv)。
 
 ///
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-如果你安装了 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>，你也可以使用它来创建一个虚拟环境。
+如果你安装了 [`uv`](https://github.com/astral-sh/uv)，你也可以使用它来创建一个虚拟环境。
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者，如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者，如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip | 提示
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 来安装内容，而不是 `pip`，那么你就不需要升级 `pip`。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 来安装内容，而不是 `pip`，那么你就不需要升级 `pip`。😎
 
 ///
 
@@ -268,7 +268,7 @@ $ python -m ensurepip --upgrade
 
 /// tip | 提示
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 来创建虚拟环境，它会自动为你完成这个操作，你可以跳过这一步。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 来创建虚拟环境，它会自动为你完成这个操作，你可以跳过这一步。😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Hello World
 
 例如：
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | 提示
 
@@ -455,7 +455,7 @@ $ deactivate
 
 ## 为什么要使用虚拟环境 { #why-virtual-environments }
 
-你需要安装 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+你需要安装 [Python](https://www.python.org/) 才能使用 FastAPI。
 
 之后，你需要**安装** FastAPI 和你想要使用的任何其他**软件包**。
 
@@ -564,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-这将会从 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下载一个压缩文件，其中包含 FastAPI 代码。
+这将会从 [PyPI](https://pypi.org/project/fastapi/) 下载一个压缩文件，其中包含 FastAPI 代码。
 
 它还会**下载** FastAPI 依赖的其他软件包的文件。
 
@@ -627,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-这个命令会创建或修改一些[环境变量](environment-variables.md){.internal-link target=_blank}，这些环境变量将在接下来的命令中可用。
+这个命令会创建或修改一些[环境变量](environment-variables.md)，这些环境变量将在接下来的命令中可用。
 
 其中之一是 `PATH` 变量。
 
 /// tip | 提示
 
-你可以在 [环境变量](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多关于 `PATH` 环境变量的内容。
+你可以在 [环境变量](environment-variables.md#path-environment-variable) 部分了解更多关于 `PATH` 环境变量的内容。
 
 ///
 
@@ -846,7 +846,7 @@ I solemnly swear 🐺
 
 有许多**替代方案**来管理虚拟环境、包依赖（requirements）、工程。
 
-一旦你准备好并想要使用一个工具来**管理整个工程**、包依赖、虚拟环境等，建议你尝试 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+一旦你准备好并想要使用一个工具来**管理整个工程**、包依赖、虚拟环境等，建议你尝试 [uv](https://github.com/astral-sh/uv)。
 
 `uv` 可以做很多事情，它可以：
 

@@ -23,7 +23,7 @@ You could also use `from starlette.staticfiles import StaticFiles`.
 
 This is different from using an `APIRouter` as a mounted application is completely independent. The OpenAPI and docs from your main application won't include anything from the mounted application, etc.
 
-You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
+You can read more about this in the [Advanced User Guide](../advanced/index.md).
 
 ## Details { #details }
 
@@ -37,4 +37,4 @@ All these parameters can be different than "`static`", adjust them with the need
 
 ## More info { #more-info }
 
-For more details and options check <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check [Starlette's docs about Static Files](https://www.starlette.dev/staticfiles/).

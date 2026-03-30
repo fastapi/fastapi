@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | Bilgi
 
-`**user_dict` için daha kapsamlı bir açıklama için [**Extra Models** dokümantasyonundaki ilgili bölüme](../extra-models.md#about-user-in-dict){.internal-link target=_blank} geri dönüp bakın.
+`**user_dict` için daha kapsamlı bir açıklama için [**Extra Models** dokümantasyonundaki ilgili bölüme](../extra-models.md#about-user-in-dict) geri dönüp bakın.
 
 ///
 
@@ -216,7 +216,7 @@ Standartların faydası da bu...
 
 ## Çalışır Halini Görün { #see-it-in-action }
 
-Etkileşimli dokümanları açın: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Etkileşimli dokümanları açın: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Authenticate Olma { #authenticate }
 

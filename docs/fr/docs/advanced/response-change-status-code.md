@@ -1,6 +1,6 @@
 # Réponse - Modifier le code d'état { #response-change-status-code }
 
-Vous avez probablement déjà lu que vous pouvez définir un [Code d'état de la réponse](../tutorial/response-status-code.md){.internal-link target=_blank} par défaut.
+Vous avez probablement déjà lu que vous pouvez définir un [Code d'état de la réponse](../tutorial/response-status-code.md) par défaut.
 
 Mais dans certains cas, vous devez renvoyer un code d'état différent de celui par défaut.
 

@@ -2,19 +2,24 @@
 
 当你创建一个 **FastAPI** *路径操作* 时，你可以正常返回以下任意一种数据：`dict`，`list`，Pydantic 模型，数据库模型等等。
 
-**FastAPI** 默认会使用 `jsonable_encoder` 将这些类型的返回值转换成 JSON 格式，`jsonable_encoder` 在 [JSON 兼容编码器](../tutorial/encoder.md){.internal-link target=_blank} 中有阐述。
+如果你声明了 [响应模型](../tutorial/response-model.md)，FastAPI 会使用它通过 Pydantic 将数据序列化为 JSON。
 
+如果你没有声明响应模型，**FastAPI** 会使用在 [JSON 兼容编码器](../tutorial/encoder.md) 中阐述的 `jsonable_encoder`。
 然后，**FastAPI** 会在后台将这些兼容 JSON 的数据（比如字典）放到一个 `JSONResponse` 中，该 `JSONResponse` 会用来发送响应给客户端。
 
 但是你可以在你的 *路径操作* 中直接返回一个 `JSONResponse`。
 
-直接返回响应可能会有用处，比如返回自定义的响应头和 cookies。
+/// tip | 提示
+
+通常使用 [响应模型](../tutorial/response-model.md) 会比直接返回 `JSONResponse` 拥有更好的性能，因为它会在 Rust 中使用 Pydantic 序列化数据。
+
+///
 
 ## 返回 `Response` { #return-a-response }
 
 事实上，你可以返回任意 `Response` 或者任意 `Response` 的子类。
 
-/// tip | 提示
+/// info | 信息
 
 `JSONResponse` 本身是一个 `Response` 的子类。
 
@@ -25,6 +30,8 @@
 **FastAPI** 不会用 Pydantic 模型做任何数据转换，不会将响应内容转换成任何类型，等等。
 
 这种特性给你极大的可扩展性。你可以返回任何数据类型，重写任何数据声明或者校验，等等。
+
+这也带来了很大的责任。你必须确保你返回的数据是正确的、格式正确、可被序列化，等等。
 
 ## 在 `Response` 中使用 `jsonable_encoder` { #using-the-jsonable-encoder-in-a-response }
 
@@ -50,16 +57,28 @@
 
 现在，让我们看看你如何才能返回一个自定义的响应。
 
-假设你想要返回一个 <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> 响应。
+假设你想要返回一个 [XML](https://en.wikipedia.org/wiki/XML) 响应。
 
 你可以把你的 XML 内容放到一个字符串中，放到一个 `Response` 中，然后返回：
 
 {* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
+## 响应模型如何工作 { #how-a-response-model-works }
+
+当你在路径操作中声明一个 [响应模型 - 返回类型](../tutorial/response-model.md) 时，**FastAPI** 会使用它通过 Pydantic 将数据序列化为 JSON。
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
+由于这些工作会在 Rust 侧完成，性能将比在常规 Python 中配合 `JSONResponse` 类完成要好得多。
+
+当使用 `response_model` 或返回类型时，FastAPI 不会使用 `jsonable_encoder` 来转换数据（那样会更慢），也不会使用 `JSONResponse` 类。
+
+相反，它会采用使用该响应模型（或返回类型）由 Pydantic 生成的 JSON 字节，并直接返回一个具有正确 JSON 媒体类型（`application/json`）的 `Response`。
+
 ## 说明 { #notes }
 
 当你直接返回 `Response` 时，它的数据既没有校验，又不会进行转换（序列化），也不会自动生成文档。
 
-但是你仍可以参考 [OpenAPI 中的额外响应](additional-responses.md){.internal-link target=_blank} 给响应编写文档。
+但是你仍可以参考 [OpenAPI 中的额外响应](additional-responses.md) 给响应编写文档。
 
 在后续的章节中你可以了解到如何使用/声明这些自定义的 `Response` 的同时还保留自动化的数据转换和文档等。

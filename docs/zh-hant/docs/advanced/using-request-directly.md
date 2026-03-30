@@ -15,7 +15,7 @@
 
 ## 關於 `Request` 物件的細節 { #details-about-the-request-object }
 
-由於 FastAPI 底層其實是 Starlette，再加上一層工具，因此在需要時你可以直接使用 Starlette 的 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 物件。
+由於 FastAPI 底層其實是 Starlette，再加上一層工具，因此在需要時你可以直接使用 Starlette 的 [`Request`](https://www.starlette.dev/requests/) 物件。
 
 同時也代表，如果你直接從 `Request` 物件取得資料（例如讀取 body），FastAPI 不會替它做驗證、轉換或文件化（透過 OpenAPI 為自動化的 API 介面產生文件）。
 
@@ -45,7 +45,7 @@
 
 ## `Request` 文件 { #request-documentation }
 
-你可以在 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette 官方文件站點中的 `Request` 物件</a> 了解更多細節。
+你可以在 [Starlette 官方文件站點中的 `Request` 物件](https://www.starlette.dev/requests/) 了解更多細節。
 
 /// note | 技術細節
 

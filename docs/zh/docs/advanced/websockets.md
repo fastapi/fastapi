@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-您可以在 **FastAPI** 中使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>。
+您可以在 **FastAPI** 中使用 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)。
 
 ## 安装 `websockets` { #install-websockets }
 
-请确保您创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
+请确保您创建一个[虚拟环境](../virtual-environments.md)、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
 
 <div class="termy">
 
@@ -64,19 +64,19 @@ $ pip install websockets
 
 ## 尝试一下 { #try-it }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+将代码放在 `main.py`，然后运行你的应用程序：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 您将看到一个简单的页面，如下所示：
 
@@ -86,7 +86,7 @@ $ fastapi dev main.py
 
 <img src="/img/tutorial/websockets/image02.png">
 
-您的 **FastAPI** 应用程序将回复：
+您的 **FastAPI** 应用程序将通过 WebSockets 回复：
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -115,25 +115,25 @@ $ fastapi dev main.py
 
 由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
 
-您可以使用<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">规范中定义的有效代码</a>。
+您可以使用[规范中定义的有效代码](https://tools.ietf.org/html/rfc6455#section-7.4.1)。
 
 ///
 
 ### 尝试带有依赖项的 WebSockets { #try-the-websockets-with-dependencies }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+运行你的应用程序：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 在页面中，您可以设置：
 
@@ -174,7 +174,7 @@ Client #1596980209979 left the chat
 
 但请记住，由于所有内容都在内存中以单个列表的形式处理，因此它只能在进程运行时工作，并且只能使用单个进程。
 
-如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>。
+如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
 
 ///
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 要了解更多选项，请查看 Starlette 的文档：
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` 类</a>。
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">基于类的 WebSocket 处理</a>。
+* [`WebSocket` 类](https://www.starlette.dev/websockets/)。
+* [基于类的 WebSocket 处理](https://www.starlette.dev/endpoints/#websocketendpoint)。

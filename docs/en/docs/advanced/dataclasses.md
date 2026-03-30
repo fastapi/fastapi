@@ -2,11 +2,11 @@
 
 FastAPI is built on top of **Pydantic**, and I have been showing you how to use Pydantic models to declare requests and responses.
 
-But FastAPI also supports using <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> the same way:
+But FastAPI also supports using [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) the same way:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-This is still supported thanks to **Pydantic**, as it has <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
+This is still supported thanks to **Pydantic**, as it has [internal support for `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
 
 So, even with the code above that doesn't use Pydantic explicitly, FastAPI is using Pydantic to convert those standard dataclasses to Pydantic's own flavor of dataclasses.
 
@@ -74,7 +74,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
     As always, in FastAPI you can combine `def` and `async def` as needed.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry).
 
 9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
 
@@ -88,7 +88,7 @@ Check the in-code annotation tips above to see more specific details.
 
 You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
 
-To learn more, check the <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
+To learn more, check the [Pydantic docs about dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
 
 ## Version { #version }
 

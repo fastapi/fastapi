@@ -8,7 +8,7 @@ Por esta razón, es común proporcionarlas en variables de entorno que son leíd
 
 /// tip | Consejo
 
-Para entender las variables de entorno, puedes leer [Variables de Entorno](../environment-variables.md){.internal-link target=_blank}.
+Para entender las variables de entorno, puedes leer [Variables de Entorno](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@ Eso significa que cualquier valor leído en Python desde una variable de entorno
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Instalar `pydantic-settings` { #install-pydantic-settings }
 
-Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo y luego instala el paquete `pydantic-settings`:
+Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md), actívalo y luego instala el paquete `pydantic-settings`:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ Y el `items_per_user` mantendría su valor por defecto de `50`.
 
 ## Configuraciones en otro módulo { #settings-in-another-module }
 
-Podrías poner esas configuraciones en otro archivo de módulo como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Podrías poner esas configuraciones en otro archivo de módulo como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md).
 
 Por ejemplo, podrías tener un archivo `config.py` con:
 
@@ -112,7 +112,7 @@ Y luego usarlo en un archivo `main.py`:
 
 /// tip | Consejo
 
-También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,7 +172,7 @@ Pero un archivo dotenv realmente no tiene que tener ese nombre exacto.
 
 ///
 
-Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Consejo
 
@@ -197,7 +197,7 @@ Y luego actualizar tu `config.py` con:
 
 /// tip | Consejo
 
-El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ En el caso de nuestra dependencia `get_settings()`, la función ni siquiera toma
 
 De esa manera, se comporta casi como si fuera solo una variable global. Pero como usa una función de dependencia, entonces podemos sobrescribirla fácilmente para las pruebas.
 
-`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en las <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">docs de Python para `@lru_cache`</a>.
+`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en las [docs de Python para `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Resumen { #recap }
 

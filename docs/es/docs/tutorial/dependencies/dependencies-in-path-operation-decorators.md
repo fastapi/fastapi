@@ -32,7 +32,7 @@ También puede ayudar a evitar confusiones para nuevos desarrolladores que vean 
 
 En este ejemplo usamos headers personalizados inventados `X-Key` y `X-Token`.
 
-Pero en casos reales, al implementar seguridad, obtendrías más beneficios usando las [Utilidades de Seguridad integradas (el próximo capítulo)](../security/index.md){.internal-link target=_blank}.
+Pero en casos reales, al implementar seguridad, obtendrías más beneficios usando las [Utilidades de Seguridad integradas (el próximo capítulo)](../security/index.md).
 
 ///
 
@@ -62,7 +62,7 @@ Así que, puedes reutilizar una dependencia normal (que devuelve un valor) que y
 
 ## Dependencias para un grupo de *path operations* { #dependencies-for-a-group-of-path-operations }
 
-Más adelante, cuando leas sobre cómo estructurar aplicaciones más grandes ([Aplicaciones Más Grandes - Múltiples Archivos](../../tutorial/bigger-applications.md){.internal-link target=_blank}), posiblemente con múltiples archivos, aprenderás cómo declarar un único parámetro `dependencies` para un grupo de *path operations*.
+Más adelante, cuando leas sobre cómo estructurar aplicaciones más grandes ([Aplicaciones Más Grandes - Múltiples Archivos](../../tutorial/bigger-applications.md)), posiblemente con múltiples archivos, aprenderás cómo declarar un único parámetro `dependencies` para un grupo de *path operations*.
 
 ## Dependencias Globales { #global-dependencies }
 

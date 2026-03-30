@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-Você pode usar <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> com **FastAPI**.
+Você pode usar [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) com **FastAPI**.
 
 ## Instale `websockets` { #install-websockets }
 
-Garanta que você criou um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, o ativou e instalou o `websockets` (uma biblioteca Python que facilita o uso do protocolo "WebSocket"):
+Garanta que você criou um [ambiente virtual](../virtual-environments.md), o ativou e instalou o `websockets` (uma biblioteca Python que facilita o uso do protocolo "WebSocket"):
 
 <div class="termy">
 
@@ -64,19 +64,19 @@ Você pode receber e enviar dados binários, de texto e JSON.
 
 ## Tente { #try-it }
 
-Se seu arquivo for nomeado `main.py`, execute sua aplicação com:
+Coloque seu código em um arquivo `main.py` e então execute sua aplicação:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Abra seu navegador em: <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Abra seu navegador em: [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Você verá uma página simples como:
 
@@ -115,25 +115,25 @@ Eles funcionam da mesma forma que para outros endpoints FastAPI/*operações de 
 
 Como isso é um WebSocket, não faz muito sentido levantar uma `HTTPException`, em vez disso levantamos uma `WebSocketException`.
 
-Você pode usar um código de fechamento dos <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">códigos válidos definidos na especificação</a>.
+Você pode usar um código de fechamento dos [códigos válidos definidos na especificação](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 ///
 
 ### Tente os WebSockets com dependências { #try-the-websockets-with-dependencies }
 
-Se seu arquivo for nomeado `main.py`, execute sua aplicação com:
+Execute sua aplicação:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Abra seu navegador em: <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Abra seu navegador em: [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Lá você pode definir:
 
@@ -174,7 +174,7 @@ O app acima é um exemplo mínimo e simples para demonstrar como lidar e transmi
 
 Mas tenha em mente que, como tudo é manipulado na memória, em uma única list, ele só funcionará enquanto o processo estiver em execução e só funcionará com um único processo.
 
-Se você precisa de algo fácil de integrar com o FastAPI, mas que seja mais robusto, suportado por Redis, PostgreSQL ou outros, verifique o <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+Se você precisa de algo fácil de integrar com o FastAPI, mas que seja mais robusto, suportado por Redis, PostgreSQL ou outros, verifique [encode/broadcaster](https://github.com/encode/broadcaster).
 
 ///
 
@@ -182,5 +182,5 @@ Se você precisa de algo fácil de integrar com o FastAPI, mas que seja mais rob
 
 Para aprender mais sobre as opções, verifique a documentação do Starlette para:
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">A classe `WebSocket`</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Manipulação de WebSockets baseada em classes</a>.
+* [A classe `WebSocket`](https://www.starlette.dev/websockets/).
+* [Manipulação de WebSockets baseada em classes](https://www.starlette.dev/endpoints/#websocketendpoint).

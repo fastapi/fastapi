@@ -2,11 +2,11 @@
 
 У FastAPI ви можете використовувати **Pydantic-моделі** для оголошення **полів форми**.
 
-/// info | Інформація
+/// info
 
-Щоб використовувати форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Щоб використовувати форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили його, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили його, наприклад:
 
 ```console
 $ pip install python-multipart
@@ -14,7 +14,7 @@ $ pip install python-multipart
 
 ///
 
-/// note | Примітка
+/// note
 
 Це підтримується, починаючи з FastAPI версії `0.113.0`. 🤓
 
@@ -40,7 +40,7 @@ $ pip install python-multipart
 
 У деяких особливих випадках (ймовірно, не дуже поширених) ви можете **обмежити** поля форми лише тими, які були оголошені в Pydantic-моделі. І **заборонити** будь-які **додаткові** поля.
 
-/// note | Примітка
+/// note
 
 Це підтримується, починаючи з FastAPI версії `0.114.0`. 🤓
 

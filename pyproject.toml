@@ -43,7 +43,7 @@ classifiers = [
 ]
 dependencies = [
     "starlette>=0.46.0",
-    "pydantic>=2.7.0",
+    "pydantic>=2.9.0",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
@@ -130,6 +130,8 @@ docs = [
     { include-group = "docs-tests" },
     "black >=25.1.0",
     "cairosvg >=2.8.2",
+    # for MkDocs live reload
+    "click==8.2.1",
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
@@ -154,7 +156,7 @@ docs-tests = [
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
-    "pydantic >=2.5.3,<3.0.0",
+    "pydantic >=2.9.0,<3.0.0",
     "pydantic-settings >=2.1.0,<3.0.0",
     "pygithub >=2.3.0,<3.0.0",
     "pyyaml >=5.3.1,<7.0.0",
@@ -175,6 +177,7 @@ tests = [
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
+    "ty>=0.0.9",
     "types-orjson >=3.6.2",
     "types-ujson >=5.10.0.20240515",
     "a2wsgi >=1.9.0,<=2.0.0",

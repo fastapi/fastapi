@@ -150,11 +150,11 @@ Because of that, it's now recommended to instead use the `lifespan` as explained
 
 Just a technical detail for the curious nerds. 🤓
 
-Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
+Underneath, in the ASGI technical specification, this is part of the [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), and it defines events called `startup` and `shutdown`.
 
 /// info
 
-You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://www.starlette.dev/lifespan/).
 
 Including how to handle lifespan state that can be used in other areas of your code.
 
@@ -162,4 +162,4 @@ Including how to handle lifespan state that can be used in other areas of your c
 
 ## Sub Applications { #sub-applications }
 
-🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md).

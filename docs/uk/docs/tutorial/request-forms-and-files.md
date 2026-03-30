@@ -4,9 +4,9 @@
 
 /// info | Інформація
 
-Щоб отримувати завантажені файли та/або дані форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Щоб отримувати завантажені файли та/або дані форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили бібліотеку, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили бібліотеку, наприклад:
 
 ```console
 $ pip install python-multipart

@@ -4,7 +4,7 @@
 
 많은 초기 설정, 보안, 데이터베이스 및 일부 API 엔드포인트가 이미 준비되어 있으므로, 여러분은 이 템플릿을 시작하는 데 사용할 수 있습니다.
 
-GitHub 저장소: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI 템플릿</a>
+GitHub 저장소: [Full Stack FastAPI 템플릿](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI 템플릿 - 기술 스택과 기능들 { #full-stack-fastapi-template-technology-stack-and-features }
 

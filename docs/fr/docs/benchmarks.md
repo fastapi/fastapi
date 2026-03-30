@@ -1,6 +1,6 @@
 # Tests de performance { #benchmarks }
 
-Les benchmarks indépendants de TechEmpower montrent que les applications **FastAPI** s’exécutant avec Uvicorn sont <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">parmi les frameworks Python les plus rapides disponibles</a>, seulement en dessous de Starlette et Uvicorn eux‑mêmes (tous deux utilisés en interne par FastAPI).
+Les benchmarks indépendants de TechEmpower montrent que les applications **FastAPI** s’exécutant avec Uvicorn sont [parmi les frameworks Python les plus rapides disponibles](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7), seulement en dessous de Starlette et Uvicorn eux‑mêmes (tous deux utilisés en interne par FastAPI).
 
 Mais en prêtant attention aux tests de performance et aux comparaisons, vous devez tenir compte de ce qui suit.
 

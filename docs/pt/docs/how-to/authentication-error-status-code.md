@@ -2,7 +2,7 @@
 
 Antes da versão `0.122.0` do FastAPI, quando os utilitários de segurança integrados retornavam um erro ao cliente após uma falha na autenticação, eles usavam o código de status HTTP `403 Forbidden`.
 
-A partir da versão `0.122.0` do FastAPI, eles usam o código de status HTTP `401 Unauthorized`, mais apropriado, e retornam um cabeçalho `WWW-Authenticate` adequado na response, seguindo as especificações HTTP, <a href="https://datatracker.ietf.org/doc/html/rfc7235#section-3.1" class="external-link" target="_blank">RFC 7235</a>, <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized" class="external-link" target="_blank">RFC 9110</a>.
+A partir da versão `0.122.0` do FastAPI, eles usam o código de status HTTP `401 Unauthorized`, mais apropriado, e retornam um cabeçalho `WWW-Authenticate` adequado na response, seguindo as especificações HTTP, [RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235#section-3.1), [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized).
 
 Mas, se por algum motivo seus clientes dependem do comportamento antigo, você pode voltar a ele sobrescrevendo o método `make_not_authenticated_error` nas suas classes de segurança.
 

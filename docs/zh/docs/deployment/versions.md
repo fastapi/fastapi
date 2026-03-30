@@ -4,7 +4,7 @@
 
 经常添加新功能，定期修复错误，并且代码仍在持续改进。
 
-这就是为什么当前版本仍然是`0.x.x`，这反映出每个版本都可能有Breaking changes。 这遵循<a href="https://semver.org/" class="external-link" target="_blank">语义版本控制</a>的约定。
+这就是为什么当前版本仍然是`0.x.x`，这反映出每个版本都可能有Breaking changes。 这遵循[语义版本控制](https://semver.org/)的约定。
 
 你现在就可以使用 **FastAPI** 创建生产环境应用程序（你可能已经这样做了一段时间），你只需确保使用的版本可以与其余代码正确配合即可。
 
@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 可用版本 { #available-versions }
 
-你可以在[发行说明](../release-notes.md){.internal-link target=_blank}中查看可用版本（例如查看当前最新版本）。
+你可以在[发行说明](../release-notes.md)中查看可用版本（例如查看当前最新版本）。
 
 ## 关于版本 { #about-versions }
 
@@ -66,7 +66,7 @@ fastapi>=0.45.0,<0.46.0
 
 你应该为你的应用程序添加测试。
 
-使用 **FastAPI** 编写测试非常简单（感谢 Starlette），请参考文档：[测试](../tutorial/testing.md){.internal-link target=_blank}
+使用 **FastAPI** 编写测试非常简单（感谢 Starlette），请参考文档：[测试](../tutorial/testing.md)
 
 添加测试后，你可以将 **FastAPI** 版本升级到更新版本，并通过运行测试来确保所有代码都能正常工作。
 

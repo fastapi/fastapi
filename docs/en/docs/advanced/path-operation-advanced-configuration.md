@@ -60,7 +60,7 @@ That defines the metadata about the main response of a *path operation*.
 
 You can also declare additional responses with their models, status codes, etc.
 
-There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md).
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@ When you declare a *path operation* in your application, **FastAPI** automatical
 
 /// note | Technical details
 
-In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
+In the OpenAPI specification it is called the [Operation Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ This *path operation*-specific OpenAPI schema is normally generated automaticall
 
 This is a low level extension point.
 
-If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md).
 
 ///
 

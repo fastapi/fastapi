@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Встроенный в Python `datetime.timedelta`.
     * В запросах и ответах будет представлен в виде общего количества секунд типа `float`.
-    * Pydantic также позволяет представить его как "Кодировку разницы во времени ISO 8601", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">см. документацию для получения дополнительной информации</a>.
+    * Pydantic также позволяет представить его как "Кодировку разницы во времени ISO 8601", [см. документацию для получения дополнительной информации](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * В запросах и ответах обрабатывается так же, как и `set`:
         * В запросах будет прочитан список, исключены дубликаты и преобразован в `set`.
@@ -49,7 +49,7 @@
 * `Decimal`:
     * Встроенный в Python `Decimal`.
     * В запросах и ответах обрабатывается так же, как и `float`.
-* Вы можете проверить все допустимые типы данных Pydantic здесь: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Типы данных Pydantic</a>.
+* Вы можете проверить все допустимые типы данных Pydantic здесь: [Типы данных Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## Пример { #example }
 
