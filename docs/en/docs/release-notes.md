@@ -10,6 +10,7 @@ hide:
 ### Features
 
 * ✨ Add support for `@app.vibe()`. PR [#15280](https://github.com/fastapi/fastapi/pull/15280) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Vibe Coding](https://fastapi.tiangolo.com/advanced/vibe/).
 
 ### Docs
 
