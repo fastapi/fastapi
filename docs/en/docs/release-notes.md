@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump fastmcp from 2.14.5 to 3.2.0. PR [#15267](https://github.com/fastapi/fastapi/pull/15267) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15270](https://github.com/fastapi/fastapi/pull/15270) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump requests from 2.32.5 to 2.33.0. PR [#15228](https://github.com/fastapi/fastapi/pull/15228) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Add ty check to `lint.sh`. PR [#15136](https://github.com/fastapi/fastapi/pull/15136) by [@svlandeg](https://github.com/svlandeg).
