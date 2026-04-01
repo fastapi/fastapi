@@ -7,12 +7,25 @@ hide:
 
 ## Latest Changes
 
+## 0.135.3 (2026-04-01)
+
+### Features
+
+* ✨ Add support for `@app.vibe()`. PR [#15280](https://github.com/fastapi/fastapi/pull/15280) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Vibe Coding](https://fastapi.tiangolo.com/advanced/vibe/).
+
 ### Docs
 
 * ✏️ Fix typo for `client_secret` in OAuth2 form docstrings. PR [#14946](https://github.com/fastapi/fastapi/pull/14946) by [@bysiber](https://github.com/bysiber).
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#15279](https://github.com/fastapi/fastapi/pull/15279) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump orjson from 3.11.7 to 3.11.8. PR [#15276](https://github.com/fastapi/fastapi/pull/15276) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump ruff from 0.15.0 to 0.15.8. PR [#15277](https://github.com/fastapi/fastapi/pull/15277) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15274](https://github.com/fastapi/fastapi/pull/15274) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump fastmcp from 2.14.5 to 3.2.0. PR [#15267](https://github.com/fastapi/fastapi/pull/15267) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15270](https://github.com/fastapi/fastapi/pull/15270) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump requests from 2.32.5 to 2.33.0. PR [#15228](https://github.com/fastapi/fastapi/pull/15228) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Add ty check to `lint.sh`. PR [#15136](https://github.com/fastapi/fastapi/pull/15136) by [@svlandeg](https://github.com/svlandeg).
 
