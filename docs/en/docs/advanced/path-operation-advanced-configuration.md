@@ -18,11 +18,11 @@ You would have to make sure that it is unique for each operation.
 
 If you register the same endpoint function for multiple HTTP methods with
 `api_route()` / `add_api_route(..., methods=[...])`, OpenAPI operation IDs can
-conflict unless you set explicit unique `operation_id` values.
+still conflict.
 
 If you need unique operation IDs in generated OpenAPI clients, prefer separate
-path operation decorators (for example `@app.get()` and `@app.post()`) or set
-an explicit `operation_id` per operation.
+path operation decorators (for example `@app.get()` and `@app.post()`) so each
+operation can define its own `operation_id`.
 
 ///
 
