@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for `@app.vibe()`. PR [#15280](https://github.com/fastapi/fastapi/pull/15280) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * ✏️ Fix typo for `client_secret` in OAuth2 form docstrings. PR [#14946](https://github.com/fastapi/fastapi/pull/14946) by [@bysiber](https://github.com/bysiber).
