@@ -24,6 +24,13 @@ if TYPE_CHECKING:  # pragma: nocover
 
 
 def is_body_allowed_for_status_code(status_code: int | str | None) -> bool:
+    """
+    Return ``True`` if the given HTTP status code allows a response body.
+
+    Status codes 1xx, 204, 205, and 304 do not allow a body per the HTTP
+    specification. Wildcard codes (``"1XX"``-``"5XX"``) and ``"default"``
+    always return ``True``.
+    """
     if status_code is None:
         return True
     # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
@@ -41,6 +48,7 @@ def is_body_allowed_for_status_code(status_code: int | str | None) -> bool:
 
 
 def get_path_param_names(path: str) -> set[str]:
+    """Extract the set of path parameter names from a URL path template."""
     return set(re.findall("{(.*?)}", path))
 
 
@@ -63,6 +71,13 @@ def create_model_field(
     alias: str | None = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
+    """
+    Create a Pydantic ``ModelField`` for use in request/response validation.
+
+    Raises ``FastAPIError`` if the given type cannot produce a valid Pydantic
+    schema, and ``PydanticV1NotSupportedError`` if a ``pydantic.v1`` model is
+    passed.
+    """
     if annotation_is_pydantic_v1(type_):
         raise PydanticV1NotSupportedError(
             "pydantic.v1 models are no longer supported by FastAPI."
@@ -93,6 +108,7 @@ def generate_operation_id_for_path(
 
 
 def generate_unique_id(route: "APIRoute") -> str:
+    """Generate a unique OpenAPI ``operationId`` for the given route."""
     operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
@@ -101,6 +117,12 @@ def generate_unique_id(route: "APIRoute") -> str:
 
 
 def deep_dict_update(main_dict: dict[Any, Any], update_dict: dict[Any, Any]) -> None:
+    """
+    Recursively merge ``update_dict`` into ``main_dict`` in place.
+
+    Nested dicts are merged recursively and nested lists are concatenated;
+    all other values are overwritten.
+    """
     for key, value in update_dict.items():
         if (
             key in main_dict
