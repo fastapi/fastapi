@@ -14,6 +14,18 @@ You would have to make sure that it is unique for each operation.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
 
+/// note
+
+If you register the same endpoint function for multiple HTTP methods with
+`api_route()` / `add_api_route(..., methods=[...])`, OpenAPI operation IDs can
+conflict unless you set explicit unique `operation_id` values.
+
+If you need unique operation IDs in generated OpenAPI clients, prefer separate
+path operation decorators (for example `@app.get()` and `@app.post()`) or set
+an explicit `operation_id` per operation.
+
+///
+
 ### Using the *path operation function* name as the operationId { #using-the-path-operation-function-name-as-the-operationid }
 
 If you want to use your APIs' function names as `operationId`s, you can iterate over all of them and override each *path operation's* `operation_id` using their `APIRoute.name`.
