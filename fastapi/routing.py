@@ -1575,6 +1575,9 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:
+        super().mount(self.prefix + path, app=app, name=name)
+
     def include_router(
         self,
         router: Annotated["APIRouter", Doc("The `APIRouter` to include.")],
@@ -1803,6 +1806,8 @@ class APIRouter(routing.Router):
                     include_in_schema=route.include_in_schema,
                     name=route.name,
                 )
+            elif isinstance(route, routing.Mount):
+                self.mount(prefix + route.path, route.app, name=route.name)
             elif isinstance(route, APIWebSocketRoute):
                 current_dependencies = []
                 if dependencies:
