@@ -3,6 +3,7 @@ import warnings
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
+from fastapi.utils import generate_unique_id
 from inline_snapshot import snapshot
 from pydantic import BaseModel
 
@@ -1697,3 +1698,19 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_generate_unique_id_with_multiple_methods_is_deterministic():
+    app = FastAPI()
+
+    @app.api_route("/items", methods=["POST", "DELETE"])
+    def items():
+        return {}  # pragma: nocover
+
+    route = next(
+        route
+        for route in app.routes
+        if isinstance(route, APIRoute) and route.path == "/items"
+    )
+
+    assert generate_unique_id(route) == "items_items_delete"
