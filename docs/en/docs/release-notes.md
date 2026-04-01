@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.135.3 (2026-04-01)
+
 ### Features
 
 * ✨ Add support for `@app.vibe()`. PR [#15280](https://github.com/fastapi/fastapi/pull/15280) by [@tiangolo](https://github.com/tiangolo).
