@@ -113,7 +113,13 @@ This is useful for protocols like [MCP](https://modelcontextprotocol.io) that st
 
 FastAPI implements some SSE best practices out of the box.
 
-* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the [HTML specification: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes).
+* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the [HTML specification: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes). You can change this interval by setting `fastapi.sse._PING_INTERVAL` (in seconds) at the top of your main application file, before any SSE responses are created:
+
+    ```python
+    # main.py
+    import fastapi.sse
+    fastapi.sse._PING_INTERVAL = 3.0
+    ```
 * Set the `Cache-Control: no-cache` header to **prevent caching** of the stream.
 * Set a special header `X-Accel-Buffering: no` to **prevent buffering** in some proxies like Nginx.
 
