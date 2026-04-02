@@ -1,12 +1,12 @@
 # 設定 Swagger UI { #configure-swagger-ui }
 
-你可以設定一些額外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 參數</a>。
+你可以設定一些額外的 [Swagger UI 參數](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)。
 
 要設定它們，建立 `FastAPI()` 應用物件時，或呼叫 `get_swagger_ui_html()` 函式時，傳入參數 `swagger_ui_parameters`。
 
 `swagger_ui_parameters` 接受一個 dict，內容會直接傳給 Swagger UI 作為設定。
 
-FastAPI 會把這些設定轉換成 JSON，以便與 JavaScript 相容，因為 Swagger UI 需要的是這種格式。
+FastAPI 會把這些設定轉換成 **JSON**，以便與 JavaScript 相容，因為 Swagger UI 需要的是這種格式。
 
 ## 停用語法醒目提示 { #disable-syntax-highlighting }
 
@@ -50,11 +50,11 @@ FastAPI 內建一些預設參數，適用於大多數情境。
 
 ## 其他 Swagger UI 參數 { #other-swagger-ui-parameters }
 
-若要查看所有可用的設定，請參考官方的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 參數文件</a>。
+若要查看所有可用的設定，請參考官方的 [Swagger UI 參數文件](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)。
 
 ## 僅限 JavaScript 的設定 { #javascript-only-settings }
 
-Swagger UI 也允許某些設定是僅限 JavaScript 的物件（例如 JavaScript 函式）。
+Swagger UI 也允許某些設定是**僅限 JavaScript** 的物件（例如 JavaScript 函式）。
 
 FastAPI 也包含以下僅限 JavaScript 的 `presets` 設定：
 

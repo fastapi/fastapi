@@ -2,15 +2,15 @@
 
 Si nécessaire, vous pouvez utiliser des paramètres et des variables d'environnement pour configurer OpenAPI de manière conditionnelle selon l'environnement, et même le désactiver complètement.
 
-## À propos de la sécurité, des API et de la documentation { #about-security-apis-and-docs }
+## À propos de la sécurité, des API et des documents { #about-security-apis-and-docs }
 
-Masquer vos interfaces utilisateur de la documentation en production ne devrait pas être la manière de protéger votre API.
+Masquer vos interfaces utilisateur des documents en production ne devrait pas être la manière de protéger votre API.
 
 Cela n'ajoute aucune sécurité supplémentaire à votre API, les *chemins d'accès* resteront disponibles là où ils se trouvent.
 
 S'il y a une faille de sécurité dans votre code, elle existera toujours.
 
-Masquer la documentation rend simplement plus difficile la compréhension de la manière d'interagir avec votre API et pourrait aussi rendre son débogage en production plus difficile. Cela pourrait être considéré simplement comme une forme de <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Sécurité par l'obscurité</a>.
+Masquer les documents rend simplement plus difficile la compréhension de la manière d'interagir avec votre API et pourrait aussi rendre son débogage en production plus difficile. Cela pourrait être considéré simplement comme une forme de [Sécurité par l'obscurité](https://en.wikipedia.org/wiki/Security_through_obscurity).
 
 Si vous voulez sécuriser votre API, il y a plusieurs meilleures approches possibles, par exemple :
 
@@ -21,11 +21,11 @@ Si vous voulez sécuriser votre API, il y a plusieurs meilleures approches possi
 * Ajoutez des contrôles d'autorisation plus granulaires avec des scopes OAuth2 lorsque nécessaire.
 * ... etc.
 
-Néanmoins, vous pourriez avoir un cas d'utilisation très spécifique où vous devez vraiment désactiver la documentation de l'API pour un certain environnement (par exemple pour la production) ou selon des configurations provenant de variables d'environnement.
+Néanmoins, vous pourriez avoir un cas d'utilisation très spécifique où vous devez vraiment désactiver les documents de l'API pour un certain environnement (par exemple pour la production) ou selon des configurations provenant de variables d'environnement.
 
 ## Configurer OpenAPI de manière conditionnelle avec des paramètres et des variables d'environnement { #conditional-openapi-from-settings-and-env-vars }
 
-Vous pouvez facilement utiliser les mêmes paramètres Pydantic pour configurer votre OpenAPI généré et les interfaces utilisateur de la documentation.
+Vous pouvez facilement utiliser les mêmes paramètres Pydantic pour configurer votre OpenAPI généré et les interfaces utilisateur des documents.
 
 Par exemple :
 
@@ -35,7 +35,7 @@ Ici nous déclarons le paramètre `openapi_url` avec la même valeur par défaut
 
 Nous l'utilisons ensuite lors de la création de l'application `FastAPI`.
 
-Vous pouvez alors désactiver OpenAPI (y compris les interfaces utilisateur de la documentation) en définissant la variable d'environnement `OPENAPI_URL` sur la chaîne vide, comme ceci :
+Vous pouvez alors désactiver OpenAPI (y compris les interfaces utilisateur des documents) en définissant la variable d'environnement `OPENAPI_URL` sur la chaîne vide, comme ceci :
 
 <div class="termy">
 

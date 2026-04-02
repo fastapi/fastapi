@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 若要查看回應中究竟可以包含哪些內容，你可以參考 OpenAPI 規範中的這些章節：
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses 物件</a>，其中包含 `Response Object`。
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response 物件</a>，你可以把這裡的任何內容直接放到 `responses` 參數內各個回應中。包含 `description`、`headers`、`content`（在其中宣告不同的媒體型別與 JSON Schemas）、以及 `links`。
+* [OpenAPI Responses 物件](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object)，其中包含 `Response Object`。
+* [OpenAPI Response 物件](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object)，你可以把這裡的任何內容直接放到 `responses` 參數內各個回應中。包含 `description`、`headers`、`content`（在其中宣告不同的媒體型別與 JSON Schemas）、以及 `links`。

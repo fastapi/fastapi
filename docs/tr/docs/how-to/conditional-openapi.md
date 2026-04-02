@@ -10,7 +10,7 @@ Bu, API'nize ekstra bir güvenlik katmanı eklemez; path operation'lar bulundukl
 
 Kodunuzda bir güvenlik açığı varsa, o açık yine var olmaya devam eder.
 
-Dokümantasyonu gizlemek, API'nizle nasıl etkileşime geçileceğini anlamayı zorlaştırır ve production'da debug etmeyi de daha zor hale getirebilir. Bu yaklaşım, basitçe <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a> olarak değerlendirilebilir.
+Dokümantasyonu gizlemek, API'nizle nasıl etkileşime geçileceğini anlamayı zorlaştırır ve production'da debug etmeyi de daha zor hale getirebilir. Bu yaklaşım, basitçe [Security through obscurity](https://en.wikipedia.org/wiki/Security_through_obscurity) olarak değerlendirilebilir.
 
 API'nizi güvence altına almak istiyorsanız, yapabileceğiniz daha iyi birçok şey var; örneğin:
 

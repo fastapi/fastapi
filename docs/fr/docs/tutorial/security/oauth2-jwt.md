@@ -24,13 +24,13 @@ De cette façon, vous pouvez créer un jeton avec une expiration d'une semaine, 
 
 Après une semaine, le jeton aura expiré et l'utilisateur ne sera pas autorisé et devra se reconnecter pour obtenir un nouveau jeton. Et si l'utilisateur (ou un tiers) essayait de modifier le jeton pour changer l'expiration, vous pourriez le détecter, car les signatures ne correspondraient pas.
 
-Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnent, consultez <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnent, consultez [https://jwt.io](https://jwt.io/).
 
 ## Installer `PyJWT` { #install-pyjwt }
 
 Nous devons installer `PyJWT` pour générer et vérifier les jetons JWT en Python.
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer `pyjwt` :
+Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer `pyjwt` :
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 Si vous prévoyez d'utiliser des algorithmes de signature numérique comme RSA ou ECDSA, vous devez installer la dépendance de bibliothèque de cryptographie `pyjwt[crypto]`.
 
-Vous pouvez en lire davantage dans la <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentation d'installation de PyJWT</a>.
+Vous pouvez en lire davantage dans la [documentation d'installation de PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -58,7 +58,7 @@ Chaque fois que vous fournissez exactement le même contenu (exactement le même
 
 Mais vous ne pouvez pas convertir le charabia en sens inverse vers le mot de passe.
 
-### Pourquoi utiliser le hachage de mot de passe { #why-use-password-hashing }
+### Pourquoi utiliser le hachage de mot passe { #why-use-password-hashing }
 
 Si votre base de données est volée, le voleur n'aura pas les mots de passe en clair de vos utilisateurs, seulement les hachages.
 
@@ -72,7 +72,7 @@ Il prend en charge de nombreux algorithmes de hachage sécurisés et des utilita
 
 L'algorithme recommandé est « Argon2 ».
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer pwdlib avec Argon2 :
+Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer pwdlib avec Argon2 :
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ L'important à garder à l'esprit est que la clé `sub` doit contenir un identif
 
 ## Vérifier { #check-it }
 
-Lancez le serveur et allez à la documentation : <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Lancez le serveur et allez à la documentation : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez l'interface utilisateur suivante :
 

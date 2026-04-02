@@ -15,7 +15,7 @@ Ancak bazı durumlarda `Request` nesnesine doğrudan erişmeniz gerekebilir.
 
 ## `Request` nesnesi hakkında detaylar { #details-about-the-request-object }
 
-**FastAPI** aslında altta **Starlette** çalıştırır ve üstüne çeşitli araçlardan oluşan bir katman ekler. Bu yüzden gerektiğinde Starlette'in <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> nesnesini doğrudan kullanabilirsiniz.
+**FastAPI** aslında altta **Starlette** çalıştırır ve üstüne çeşitli araçlardan oluşan bir katman ekler. Bu yüzden gerektiğinde Starlette'in [`Request`](https://www.starlette.dev/requests/) nesnesini doğrudan kullanabilirsiniz.
 
 Bu ayrıca şu anlama gelir: `Request` nesnesinden veriyi doğrudan alırsanız (örneğin body'yi okursanız) FastAPI bu veriyi doğrulamaz, dönüştürmez veya dokümante etmez (otomatik API arayüzü için OpenAPI ile).
 
@@ -45,7 +45,7 @@ Aynı şekilde, diğer parameter'ları normal biçimde tanımlamaya devam edip b
 
 ## `Request` dokümantasyonu { #request-documentation }
 
-<a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Resmi Starlette dokümantasyon sitesinde `Request` nesnesiyle ilgili daha fazla detayı</a> okuyabilirsiniz.
+[Resmi Starlette dokümantasyon sitesinde `Request` nesnesiyle ilgili daha fazla detayı](https://www.starlette.dev/requests/) okuyabilirsiniz.
 
 /// note | Teknik Detaylar
 

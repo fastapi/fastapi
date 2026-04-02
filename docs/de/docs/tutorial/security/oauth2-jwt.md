@@ -24,13 +24,13 @@ Auf diese Weise können Sie einen Token mit einer Gültigkeitsdauer von beispiel
 
 Nach einer Woche läuft der Token ab und der Benutzer wird nicht autorisiert und muss sich erneut anmelden, um einen neuen Token zu erhalten. Und wenn der Benutzer (oder ein Dritter) versuchen würde, den Token zu ändern, um das Ablaufdatum zu ändern, würden Sie das entdecken, weil die Signaturen nicht übereinstimmen würden.
 
-Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schauen Sie sich <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> an.
+Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schauen Sie sich [https://jwt.io](https://jwt.io/) an.
 
 ## `PyJWT` installieren { #install-pyjwt }
 
 Wir müssen `PyJWT` installieren, um die JWT-Tokens in Python zu generieren und zu verifizieren.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann `pyjwt` installieren:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und dann `pyjwt` installieren:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
 
-Weitere Informationen finden Sie in der <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT-Installationsdokumentation</a>.
+Weitere Informationen finden Sie in der [PyJWT-Installationsdokumentation](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen z
 
 Der empfohlene Algorithmus ist „Argon2“.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren, und installieren Sie dann pwdlib mit Argon2:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren, und installieren Sie dann pwdlib mit Argon2:
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ Der wesentliche Punkt ist, dass der `sub`-Schlüssel in der gesamten Anwendung e
 
 ## Es testen { #check-it }
 
-Führen Sie den Server aus und gehen Sie zur Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Führen Sie den Server aus und gehen Sie zur Dokumentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Die Benutzeroberfläche sieht wie folgt aus:
 

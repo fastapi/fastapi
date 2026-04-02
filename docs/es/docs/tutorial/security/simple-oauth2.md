@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | Información
 
-Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user-in-dict).
 
 ///
 
@@ -216,7 +216,7 @@ Ese es el beneficio de los estándares...
 
 ## Verlo en acción { #see-it-in-action }
 
-Abre la documentación interactiva: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Abre la documentación interactiva: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Autenticar { #authenticate }
 

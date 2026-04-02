@@ -13,6 +13,7 @@ FastAPI utilisera ce type de retour pour :
 * Ajouter un **JSON Schema** pour la réponse, dans l’OpenAPI du *chemin d'accès*.
     * Ceci sera utilisé par la **documentation automatique**.
     * Ceci sera également utilisé par les outils de génération automatique de code client.
+* **Sérialiser** les données renvoyées en JSON en utilisant Pydantic, qui est écrit en **Rust**, ce qui sera **beaucoup plus rapide**.
 
 Mais surtout :
 
@@ -73,9 +74,9 @@ Ici, nous déclarons un modèle `UserIn`, il contiendra un mot de passe en clair
 
 /// info | Info
 
-Pour utiliser `EmailStr`, installez d'abord <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
+Pour utiliser `EmailStr`, installez d'abord [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis de l'installer, par exemple :
+Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis de l'installer, par exemple :
 
 ```console
 $ pip install email-validator
@@ -181,7 +182,7 @@ Il peut y avoir des cas où vous renvoyez quelque chose qui n'est pas un champ P
 
 ### Renvoyer directement une Response { #return-a-response-directly }
 
-Le cas le plus courant serait [de renvoyer directement une Response comme expliqué plus loin dans la documentation avancée](../advanced/response-directly.md){.internal-link target=_blank}.
+Le cas le plus courant serait [de renvoyer directement une Response comme expliqué plus loin dans la documentation avancée](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -257,7 +258,7 @@ Vous pouvez également utiliser :
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-comme décrit dans <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">la documentation Pydantic</a> pour `exclude_defaults` et `exclude_none`.
+comme décrit dans [la documentation Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) pour `exclude_defaults` et `exclude_none`.
 
 ///
 

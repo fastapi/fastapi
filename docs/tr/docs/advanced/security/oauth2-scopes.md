@@ -16,7 +16,7 @@ Bu bölüm az çok ileri seviye sayılır. Yeni başlıyorsanız atlayabilirsini
 
 OAuth2 scope'larına mutlaka ihtiyacınız yok; authentication ve authorization'ı istediğiniz şekilde ele alabilirsiniz.
 
-Namun scope'lu OAuth2, API'nize (OpenAPI ile) ve API dokümanlarınıza güzel biçimde entegre edilebilir.
+Ancak scope'lu OAuth2, API'nize (OpenAPI ile) ve API dokümanlarınıza güzel biçimde entegre edilebilir.
 
 Buna rağmen, bu scope'ları (veya başka herhangi bir security/authorization gereksinimini) kodunuzda ihtiyaç duyduğunuz şekilde yine siz zorunlu kılarsınız.
 
@@ -60,7 +60,7 @@ OAuth2 için bunlar sadece string'dir.
 
 ## Genel görünüm { #global-view }
 
-Önce, ana **Tutorial - User Guide** içindeki [Password (ve hashing) ile OAuth2, JWT token'lı Bearer](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} örneklerinden, OAuth2 scope'larına geçince hangi kısımların değiştiğine hızlıca bakalım:
+Önce, ana **Tutorial - User Guide** içindeki [Password (ve hashing) ile OAuth2, JWT token'lı Bearer](../../tutorial/security/oauth2-jwt.md) örneklerinden, OAuth2 scope'larına geçince hangi kısımların değiştiğine hızlıca bakalım:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -257,7 +257,7 @@ Ancak başkalarının bağlanacağı bir OAuth2 uygulaması geliştiriyorsanız 
 
 En yaygını implicit flow'dur.
 
-En güvenlisi code flow'dur; ancak daha fazla adım gerektirdiği için implementasyonu daha karmaşıktır. Daha karmaşıktır olduğundan, birçok sağlayıcı implicit flow'yu önermeye yönelir.
+En güvenlisi code flow'dur; ancak daha fazla adım gerektirdiği için implementasyonu daha karmaşıktır. Daha karmaşık olduğundan, birçok sağlayıcı implicit flow'yu önermeye yönelir.
 
 /// note | Not
 
@@ -271,4 +271,4 @@ Ama sonuçta aynı OAuth2 standardını implement ediyorlar.
 
 ## Decorator `dependencies` içinde `Security` { #security-in-decorator-dependencies }
 
-Decorator'ın `dependencies` parametresinde bir `list` `Depends` tanımlayabildiğiniz gibi ( [Path operation decorator'larında Dependencies](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} bölümünde açıklandığı üzere), burada `scopes` ile birlikte `Security` de kullanabilirsiniz.
+Decorator'ın `dependencies` parametresinde bir `list` `Depends` tanımlayabildiğiniz gibi ( [Path operation decorator'larında Dependencies](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md) bölümünde açıklandığı üzere), burada `scopes` ile birlikte `Security` de kullanabilirsiniz.

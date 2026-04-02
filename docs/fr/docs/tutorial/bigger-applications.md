@@ -123,7 +123,7 @@ Nous allons maintenant utiliser une dépendance simple pour lire un en-tête per
 
 Nous utilisons un en-tête inventé pour simplifier cet exemple.
 
-Mais dans les cas réels, vous obtiendrez de meilleurs résultats en utilisant les [utilitaires de sécurité](security/index.md){.internal-link target=_blank} intégrés.
+Mais dans les cas réels, vous obtiendrez de meilleurs résultats en utilisant les [utilitaires de sécurité](security/index.md) intégrés.
 
 ///
 
@@ -169,7 +169,7 @@ Et nous pouvons ajouter une liste de `dependencies` qui seront ajoutées à tous
 
 /// tip | Astuce
 
-Notez que, tout comme pour les [dépendances dans les décorateurs de *chemin d'accès*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, aucune valeur ne sera transmise à votre *fonction de chemin d'accès*.
+Notez que, tout comme pour les [dépendances dans les décorateurs de *chemin d'accès*](dependencies/dependencies-in-path-operation-decorators.md), aucune valeur ne sera transmise à votre *fonction de chemin d'accès*.
 
 ///
 
@@ -185,8 +185,8 @@ Le résultat final est que les chemins d'item sont désormais :
 * Ils incluront tous les `responses` prédéfinies.
 * Tous ces *chemins d'accès* auront la liste des `dependencies` évaluées/exécutées avant eux.
     * Si vous déclarez également des dépendances dans un *chemin d'accès* spécifique, **elles seront aussi exécutées**.
-    * Les dépendances du routeur sont exécutées en premier, puis les [`dependencies` dans le décorateur](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, puis les dépendances des paramètres normaux.
-    * Vous pouvez également ajouter des [`Security` dependencies avec des `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+    * Les dépendances du routeur sont exécutées en premier, puis les [`dependencies` dans le décorateur](dependencies/dependencies-in-path-operation-decorators.md), puis les dépendances des paramètres normaux.
+    * Vous pouvez également ajouter des [`Security` dependencies avec des `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Astuce
 
@@ -303,7 +303,7 @@ Et comme la plupart de votre logique vivra désormais dans son propre module, le
 
 Vous importez et créez une classe `FastAPI` comme d'habitude.
 
-Et nous pouvons même déclarer des [dépendances globales](dependencies/global-dependencies.md){.internal-link target=_blank} qui seront combinées avec les dépendances de chaque `APIRouter` :
+Et nous pouvons même déclarer des [dépendances globales](dependencies/global-dependencies.md) qui seront combinées avec les dépendances de chaque `APIRouter` :
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ La deuxième version est un « import absolu » :
 from app.routers import items, users
 ```
 
-Pour en savoir plus sur les Packages et Modules Python, lisez <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">la documentation officielle de Python sur les modules</a>.
+Pour en savoir plus sur les Packages et Modules Python, lisez [la documentation officielle de Python sur les modules](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -445,7 +445,7 @@ Ainsi, par exemple, d'autres projets pourraient utiliser le même `APIRouter` av
 
 Nous pouvons également ajouter des *chemins d'accès* directement à l'application `FastAPI`.
 
-Ici, nous le faisons... juste pour montrer que nous le pouvons 🤷 :
+Ici, nous le faisons ... juste pour montrer que nous le pouvons 🤷 :
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
@@ -465,6 +465,37 @@ Comme nous ne pouvons pas simplement les isoler et les « monter » indépendamm
 
 ///
 
+## Configurer l'`entrypoint` dans `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Comme votre objet FastAPI `app` vit dans `app/main.py`, vous pouvez configurer l'`entrypoint` dans votre fichier `pyproject.toml` comme ceci :
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+ce qui équivaut à importer ainsi :
+
+```python
+from app.main import app
+```
+
+De cette façon, la commande `fastapi` saura où trouver votre app.
+
+/// Note | Remarque
+
+Vous pourriez aussi passer le chemin à la commande, comme :
+
+```console
+$ fastapi dev app/main.py
+```
+
+Mais vous devriez vous rappeler de passer le bon chemin à chaque fois que vous appelez la commande `fastapi`.
+
+En outre, d'autres outils pourraient ne pas être en mesure de la trouver, par exemple l'[Extension VS Code](../editor-support.md) ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d'utiliser l'`entrypoint` dans `pyproject.toml`.
+
+///
+
 ## Consulter la documentation API automatique { #check-the-automatic-api-docs }
 
 Maintenant, exécutez votre application :
@@ -472,14 +503,14 @@ Maintenant, exécutez votre application :
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Et ouvrez les documents à <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Et ouvrez les documents à [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez la documentation API automatique, incluant les chemins de tous les sous-modules, utilisant les bons chemins (et préfixes) et les bons tags :
 

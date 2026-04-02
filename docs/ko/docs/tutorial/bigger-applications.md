@@ -123,7 +123,7 @@ from app.routers import items
 
 이 예시를 단순화하기 위해 임의로 만든 헤더를 사용하고 있습니다.
 
-하지만 실제 상황에서는 통합된 [Security 유틸리티](security/index.md){.internal-link target=_blank}를 사용하는 것이 더 좋은 결과를 얻을 수 있습니다.
+하지만 실제 상황에서는 통합된 [Security 유틸리티](security/index.md)를 사용하는 것이 더 좋은 결과를 얻을 수 있습니다.
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | 팁
 
-[*path operation decorator의 dependencies*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}와 마찬가지로, *path operation function*에 어떤 값도 전달되지 않습니다.
+[*path operation decorator의 dependencies*](dependencies/dependencies-in-path-operation-decorators.md)와 마찬가지로, *path operation function*에 어떤 값도 전달되지 않습니다.
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * 모두 미리 정의된 `responses`를 포함합니다.
 * 이 모든 *path operations*는 실행되기 전에 `dependencies` 목록이 평가/실행됩니다.
     * 특정 *path operation*에 dependencies를 추가로 선언하면 **그것들도 실행됩니다**.
-    * router dependencies가 먼저 실행되고, 그 다음에 [decorator의 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, 그리고 일반 파라미터 dependencies가 실행됩니다.
-    * [`scopes`가 있는 `Security` dependencies](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}도 추가할 수 있습니다.
+    * router dependencies가 먼저 실행되고, 그 다음에 [decorator의 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md), 그리고 일반 파라미터 dependencies가 실행됩니다.
+    * [`scopes`가 있는 `Security` dependencies](../advanced/security/oauth2-scopes.md)도 추가할 수 있습니다.
 
 /// tip | 팁
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 평소처럼 `FastAPI` 클래스를 import하고 생성합니다.
 
-또한 각 `APIRouter`의 dependencies와 결합될 [global dependencies](dependencies/global-dependencies.md){.internal-link target=_blank}도 선언할 수 있습니다:
+또한 각 `APIRouter`의 dependencies와 결합될 [global dependencies](dependencies/global-dependencies.md)도 선언할 수 있습니다:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-Python Packages와 Modules에 대해 더 알아보려면 <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">Modules에 대한 Python 공식 문서</a>를 읽어보세요.
+Python Packages와 Modules에 대해 더 알아보려면 [Modules에 대한 Python 공식 문서](https://docs.python.org/3/tutorial/modules.html)를 읽어보세요.
 
 ///
 
@@ -465,6 +465,37 @@ router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 
 ///
 
+## `pyproject.toml`에서 `entrypoint` 구성하기 { #configure-the-entrypoint-in-pyproject-toml }
+
+FastAPI `app` 객체가 `app/main.py`에 있으므로 `pyproject.toml` 파일에서 `entrypoint`를 다음과 같이 구성할 수 있습니다:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+이는 다음과 같이 import하는 것과 동일합니다:
+
+```python
+from app.main import app
+```
+
+이렇게 하면 `fastapi` 명령어가 여러분의 앱이 어디에 있는지 알 수 있습니다.
+
+/// Note | 참고
+
+명령어에 경로를 직접 전달할 수도 있습니다:
+
+```console
+$ fastapi dev app/main.py
+```
+
+하지만 `fastapi` 명령어를 실행할 때마다 올바른 경로를 기억해 전달해야 합니다.
+
+또한 [VS Code 확장](../editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com) 같은 다른 도구들이 이를 찾지 못할 수도 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
+
+///
+
 ## 자동 API 문서 확인하기 { #check-the-automatic-api-docs }
 
 이제 앱을 실행하세요:
@@ -472,14 +503,14 @@ router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-그리고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>에서 문서를 여세요.
+그리고 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)에서 문서를 여세요.
 
 올바른 경로(및 prefix)와 올바른 태그를 사용해, 모든 submodule의 경로를 포함한 자동 API 문서를 볼 수 있습니다:
 

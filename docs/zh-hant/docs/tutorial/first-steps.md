@@ -11,7 +11,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +58,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 查看它 { #check-it }
 
-在瀏覽器中打開 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+在瀏覽器中打開 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 你將看到如下的 JSON 回應：
 
@@ -68,17 +68,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 互動式 API 文件 { #interactive-api-docs }
 
-現在，前往 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+現在，前往 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
-你將看到自動的互動式 API 文件（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 提供）：
+你將看到自動的互動式 API 文件（由 [Swagger UI](https://github.com/swagger-api/swagger-ui) 提供）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### 替代 API 文件 { #alternative-api-docs }
 
-現在，前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+現在，前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你將看到另一種自動文件（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你將看到另一種自動文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API 「schema」 { #api-schema }
 
-在這種情況下，<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> 是一個規範，它規定了如何定義 API 的 schema。
+在這種情況下，[OpenAPI](https://github.com/OAI/OpenAPI-Specification) 是一個規範，它規定了如何定義 API 的 schema。
 
 這個 schema 定義包含了你的 API 路徑、可能接收的參數等內容。
 
@@ -110,7 +110,7 @@ OpenAPI 為你的 API 定義了 API 的 schema。而該 schema 會包含你的 A
 
 如果你好奇原始的 OpenAPI schema 長什麼樣子，FastAPI 會自動生成一個包含所有 API 描述的 JSON（schema）。
 
-你可以直接在 <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 查看它。
+你可以直接在 [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json) 查看它。
 
 它會顯示一個 JSON，類似於：
 
@@ -143,9 +143,58 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 你也可以用它自動生成程式碼，讓用戶端與你的 API 通訊。例如前端、手機或物聯網（IoT）應用程式。
 
+### 在 `pyproject.toml` 設定應用的 `entrypoint` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+你可以在 `pyproject.toml` 中設定你的應用位置，例如：
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+這個 `entrypoint` 會告訴 `fastapi` 指令應該用下面的方式匯入 app：
+
+```python
+from main import app
+```
+
+如果你的程式碼結構像是：
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+那你應該把 `entrypoint` 設為：
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+這等同於：
+
+```python
+from backend.main import app
+```
+
+### 搭配路徑使用 `fastapi dev` { #fastapi-dev-with-path }
+
+你也可以把檔案路徑傳給 `fastapi dev` 指令，它會自動猜測要使用的 FastAPI app 物件：
+
+```console
+$ fastapi dev main.py
+```
+
+但這樣每次執行 `fastapi` 指令時都要記得傳入正確路徑。
+
+此外，其他工具可能找不到它，例如 [VS Code 擴充套件](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此建議在 `pyproject.toml` 中使用 `entrypoint`。
+
 ### 部署你的應用程式（可選） { #deploy-your-app-optional }
 
-你可以選擇將你的 FastAPI 應用程式部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>，如果還沒有，去加入候補名單吧。🚀
+你可以選擇將你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)，如果還沒有，去加入候補名單吧。🚀
 
 如果你已經有 **FastAPI Cloud** 帳號（我們已從候補名單邀請你 😉），你可以用一個指令部署你的應用程式。
 
@@ -191,7 +240,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` 是一個直接繼承自 `Starlette` 的類別。
 
-你同樣可以透過 `FastAPI` 來使用 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 所有的功能。
+你同樣可以透過 `FastAPI` 來使用 [Starlette](https://www.starlette.dev/) 所有的功能。
 
 ///
 
@@ -336,7 +385,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 /// note
 
-如果你不知道差別，請查看 [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+如果你不知道差別，請查看 [Async: *"In a hurry?"*](../async.md#in-a-hurry)。
 
 ///
 
@@ -352,11 +401,11 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 ### 第六步：部署 { #step-6-deploy-it }
 
-用一行指令將你的應用程式部署到 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**：`fastapi deploy`。🎉
+用一行指令將你的應用程式部署到 **[FastAPI Cloud](https://fastapicloud.com)**：`fastapi deploy`。🎉
 
 #### 關於 FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 的作者與團隊打造。
+**[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者與團隊打造。
 
 它讓你以最小的成本完成 API 的**建置**、**部署**與**存取**流程。
 

@@ -28,7 +28,7 @@ async def read_item():
         "id": uuid.uuid4(),
         "name": "Island In The Moon",
         "price": 12.99,
-        "description": "A place to be be playin' and havin' fun",
+        "description": "A place to be playin' and havin' fun",
         "tags": ["breater"],
     }
 
@@ -45,7 +45,7 @@ def test_annotations():
             "name": "Island In The Moon",
             "price": 12.99,
             "tags": ["breater"],
-            "description": "A place to be be playin' and havin' fun",
+            "description": "A place to be playin' and havin' fun",
             "tax": None,
         }
     )
