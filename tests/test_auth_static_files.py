@@ -1,6 +1,3 @@
-import os
-from pathlib import Path
-
 import pytest
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import AuthStaticFiles
