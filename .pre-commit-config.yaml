@@ -78,3 +78,10 @@ repos:
         name: fix translations
         entry: uv run ./scripts/translation_fixer.py fix-pages
         files: ^docs/(?!en/).*/docs/.*\.md$
+
+      - id: add-release-date
+        language: unsupported
+        name: add date to latest release header
+        entry: uv run python scripts/add_latest_release_date.py
+        files: ^docs/en/docs/release-notes\.md$
+        pass_filenames: false
