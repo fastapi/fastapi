@@ -601,4 +601,3 @@ Additional optional FastAPI dependencies:
 ## License { #license }
 
 இந்த project, MIT license விதிமுறைகளின் கீழ் licensed ஆகிறது.
-
