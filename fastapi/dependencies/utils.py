@@ -33,7 +33,6 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,  # ty: ignore[deprecated]
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -88,6 +87,8 @@ class _ForwardRefNamespace(dict[str, Any]):
         value = ForwardRef(key)
         self[key] = value
         return value
+
+
 multipart_incorrect_install_error = (
     'Form data requires "python-multipart" to be installed. '
     'It seems you installed "multipart" instead. \n'
