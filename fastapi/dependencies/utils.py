@@ -81,6 +81,13 @@ multipart_not_installed_error = (
     'You can install "python-multipart" with: \n\n'
     "pip install python-multipart\n"
 )
+
+
+class _ForwardRefNamespace(dict[str, Any]):
+    def __missing__(self, key: str) -> Any:
+        value = ForwardRef(key)
+        self[key] = value
+        return value
 multipart_incorrect_install_error = (
     'Form data requires "python-multipart" to be installed. '
     'It seems you installed "multipart" instead. \n'
@@ -244,8 +251,13 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
-        annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        try:
+            annotation = eval(annotation, globalns, globalns)
+        except NameError:
+            # Preserve the outer typing structure (e.g. Annotated[..., Depends(...)])
+            # even when some inner symbols are not defined yet.
+            forwardref_globalns = _ForwardRefNamespace(globalns)
+            annotation = eval(annotation, forwardref_globalns, forwardref_globalns)
         if annotation is type(None):
             return None
     return annotation
