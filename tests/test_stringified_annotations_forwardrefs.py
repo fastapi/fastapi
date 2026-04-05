@@ -77,3 +77,44 @@ async def read_root(potato: Annotated["Potato", Depends(get_potato)]):
 
     operation = client.get("/openapi.json").json()["paths"]["/"]["get"]
     assert "parameters" not in operation
+
+
+@needs_py310
+def test_nested_forwardref_inside_annotated_dependency_preserves_structure():
+    app = _build_app("""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Annotated
+
+from fastapi import Depends, FastAPI
+
+app = FastAPI()
+
+def get_potatoes() -> list[Potato]:
+    return [Potato(color="red", size=10), Potato(color="gold", size=7)]
+
+@app.get("/")
+async def read_root(potatoes: Annotated[list[Potato], Depends(get_potatoes)]):
+    return {
+        "items": [{"color": potato.color, "size": potato.size} for potato in potatoes]
+    }
+
+@dataclass
+class Potato:
+    color: str
+    size: int
+""")
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "items": [
+            {"color": "red", "size": 10},
+            {"color": "gold", "size": 7},
+        ]
+    }
+
+    operation = client.get("/openapi.json").json()["paths"]["/"]["get"]
+    assert "parameters" not in operation

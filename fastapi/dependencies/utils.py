@@ -1,3 +1,4 @@
+import builtins
 import dataclasses
 import inspect
 import sys
@@ -84,6 +85,8 @@ multipart_not_installed_error = (
 
 class _ForwardRefNamespace(dict[str, Any]):
     def __missing__(self, key: str) -> Any:
+        if hasattr(builtins, key):
+            return getattr(builtins, key)
         value = ForwardRef(key)
         self[key] = value
         return value
@@ -253,6 +256,9 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         try:
+            # These annotation strings come from Python's own annotation machinery,
+            # not directly from user input, so evaluating them here matches the
+            # standard runtime resolution path.
             annotation = eval(annotation, globalns, globalns)
         except NameError:
             # Preserve the outer typing structure (e.g. Annotated[..., Depends(...)])
