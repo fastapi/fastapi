@@ -33,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,  # ty: ignore[deprecated]
+    evaluate_forwardref,
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -245,7 +245,17 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+    if isinstance(annotation, ForwardRef):
+        annotation, is_evaluated = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        if not is_evaluated:
+            raise NameError(
+                f"Could not resolve annotation {annotation.__forward_arg__!r}. "
+                f"Make sure the type is defined or imported before it is used "
+                f"in a route or dependency. Common causes: the type is only "
+                f"imported inside an `if TYPE_CHECKING:` block (it must be "
+                f"available at runtime), or the class is defined after the "
+                f"route that references it."
+            )
         if annotation is type(None):
             return None
     return annotation
