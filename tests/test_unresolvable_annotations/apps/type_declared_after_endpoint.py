@@ -11,7 +11,7 @@ app = FastAPI()
 def read_root(potato: Potato) -> Potato: ...
 
 
-@dataclass
+@dataclass  # pragma: no cover
 class Potato:
     color: str
     size: int
