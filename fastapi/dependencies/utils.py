@@ -33,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,
+    evaluate_forwardref,  # ty: ignore[deprecated]
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -246,8 +246,10 @@ def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
     if isinstance(annotation, ForwardRef):
-        annotation, is_evaluated = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
-        if not is_evaluated:
+        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        # eval_type_lenient returns the ForwardRef unchanged when resolution
+        # fails, so a ForwardRef result means the type could not be resolved.
+        if isinstance(annotation, ForwardRef):
             raise NameError(
                 f"Could not resolve annotation {annotation.__forward_arg__!r}. "
                 f"Make sure the type is defined or imported before it is used "
