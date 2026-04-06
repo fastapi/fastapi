@@ -1,4 +1,5 @@
 import json
+import re
 import secrets
 import subprocess
 from collections.abc import Iterable
@@ -409,6 +410,16 @@ def make_pr(
         print("Can't commit directly to master")
         raise typer.Exit(code=1)
 
+    _safe_id_re = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9_-]*$")
+    if language and not _safe_id_re.match(language):
+        raise typer.BadParameter(
+            f"Invalid language value: {language!r}. Only alphanumeric characters, hyphens, and underscores are allowed, starting with alphanumeric."
+        )
+    if command and not _safe_id_re.match(command):
+        raise typer.BadParameter(
+            f"Invalid command value: {command!r}. Only alphanumeric characters, hyphens, and underscores are allowed, starting with alphanumeric."
+        )
+
     if not commit_in_place:
         branch_name = "translate"
         if language:
@@ -417,22 +428,22 @@ def make_pr(
             branch_name += f"-{command}"
         branch_name += f"-{secrets.token_hex(4)}"
         print(f"Creating a new branch {branch_name}")
-        subprocess.run(["git", "checkout", "-b", branch_name], check=True)
+        subprocess.run(["git", "checkout", "-b", "--", branch_name], check=True)
     else:
         branch_name = current_branch
         print(f"Committing in place on branch {branch_name}")
     print("Adding updated files")
     git_path = Path("docs")
-    subprocess.run(["git", "add", str(git_path)], check=True)
+    subprocess.run(["git", "add", "--", str(git_path)], check=True)
     print("Committing updated file")
     message = "🌐 Update translations"
     if language:
         message += f" for {language}"
     if command:
         message += f" ({command})"
-    subprocess.run(["git", "commit", "-m", message], check=True)
+    subprocess.run(["git", "commit", "-m", message, "--"], check=True)
     print("Pushing branch")
-    subprocess.run(["git", "push", "origin", branch_name], check=True)
+    subprocess.run(["git", "push", "origin", "--", branch_name], check=True)
     if not commit_in_place:
         print("Creating PR")
         g = Github(github_token)
