@@ -74,6 +74,20 @@ When using a `response_model` or return type, FastAPI won't use the `jsonable_en
 
 Instead it takes the JSON bytes generated with Pydantic using the response model (or return type) and returns a `Response` with the right media type for JSON directly (`application/json`).
 
+## Background Tasks and Custom Responses { #background-tasks-and-custom-responses }
+
+/// warning
+
+If you return a `Response` with a `background` parameter **and** also use the `BackgroundTasks` dependency injection, the injected background tasks will be **silently ignored**.
+
+FastAPI only assigns injected background tasks to the response when `response.background is None`. If your `Response` already has a background task attached, the injected tasks are dropped without any error or warning.
+
+Use one mechanism or the other, not both in the same endpoint:
+
+{* ../../docs_src/response_directly/tutorial003.py hl[18,25] *}
+
+///
+
 ## Notes { #notes }
 
 When you return a `Response` directly its data is not validated, converted (serialized), or documented automatically.
