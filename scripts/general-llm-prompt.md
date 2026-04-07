@@ -6,6 +6,8 @@ The original content is written in Markdown, write the translation in Markdown a
 
 The original content will be surrounded by triple percentage signs (%%%). Do not include the triple percentage signs in the translation.
 
+[placeholder_for_additional_instructions]
+
 ### Technical terms in English
 
 For technical terms in English that don't have a common translation term, use the original term in English.
@@ -222,6 +224,8 @@ Result (German):
 ### Links
 
 Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a href="url">text</a> tags):
+
+- The order of links should match the order of links in the English source. Do not change the order of links. Rephrase the sentence if necessary.
 
 - For relative URLs, only translate the link text. Do not translate the URL or its parts.
 
