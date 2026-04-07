@@ -1394,7 +1394,7 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             responses=combined_responses,
-            deprecated=deprecated or self.deprecated,
+            deprecated=self.deprecated if deprecated is None else deprecated,
             methods=methods,
             operation_id=operation_id,
             response_model_include=response_model_include,
@@ -1770,7 +1770,13 @@ class APIRouter(routing.Router):
                     description=route.description,
                     response_description=route.response_description,
                     responses=combined_responses,
-                    deprecated=route.deprecated or deprecated or self.deprecated,
+                    deprecated=(
+                        route.deprecated
+                        if route.deprecated is not None
+                        else self.deprecated
+                        if deprecated is None
+                        else deprecated
+                    ),
                     methods=route.methods,
                     operation_id=route.operation_id,
                     response_model_include=route.response_model_include,
