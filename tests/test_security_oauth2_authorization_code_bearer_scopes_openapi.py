@@ -29,20 +29,21 @@ async def root():
 
 @app.get(
     "/with-oauth2-scheme",
-    dependencies=[Security(oauth2_scheme, scopes=["read", "write"])],
+    dependencies=[Security(oauth2_scheme, oauth_scopes=["read", "write"])],
 )
 async def read_with_oauth2_scheme():
     return {"message": "Admin Access"}
 
 
 @app.get(
-    "/with-get-token", dependencies=[Security(get_token, scopes=["read", "write"])]
+    "/with-get-token",
+    dependencies=[Security(get_token, oauth_scopes=["read", "write"])],
 )
 async def read_with_get_token():
     return {"message": "Admin Access"}
 
 
-router = APIRouter(dependencies=[Security(oauth2_scheme, scopes=["read"])])
+router = APIRouter(dependencies=[Security(oauth2_scheme, oauth_scopes=["read"])])
 
 
 @router.get("/items/")
@@ -52,7 +53,7 @@ async def read_items(token: str | None = Depends(oauth2_scheme)):
 
 @router.post("/items/")
 async def create_item(
-    token: str | None = Security(oauth2_scheme, scopes=["read", "write"]),
+    token: str | None = Security(oauth2_scheme, oauth_scopes=["read", "write"]),
 ):
     return {"token": token}
 
