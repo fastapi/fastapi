@@ -23,6 +23,7 @@ from .v2 import ModelField as ModelField
 from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from .v2 import RequiredParam as RequiredParam
 from .v2 import Undefined as Undefined
+from .v2 import UndefinedType as UndefinedType
 from .v2 import Url as Url
 from .v2 import copy_field_info as copy_field_info
 from .v2 import create_body_model as create_body_model
