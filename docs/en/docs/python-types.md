@@ -228,7 +228,7 @@ To define it you use the <dfn title='also called "bitwise or operator", but that
 This is called a "union", because the variable can be anything in the union of those two sets of types.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{* ../../docs_src/python_types/tutorial008b_py310.py *}
 ```
 
 This means that `item` could be an `int` or a `str`.
@@ -240,7 +240,7 @@ You can declare that a value could have a type, like `str`, but that it could al
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{* ../../docs_src/python_types/tutorial009_py310.py *}
 ```
 
 ////
