@@ -245,7 +245,19 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
+    if isinstance(annotation, ForwardRef):
         annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        # eval_type_lenient returns the ForwardRef unchanged when resolution
+        # fails, so a ForwardRef result means the type could not be resolved.
+        if isinstance(annotation, ForwardRef):
+            raise NameError(
+                f"Could not resolve annotation {annotation.__forward_arg__!r}. "
+                f"Make sure the type is defined or imported before it is used "
+                f"in a route or dependency. Common causes: the type is only "
+                f"imported inside an `if TYPE_CHECKING:` block (it must be "
+                f"available at runtime), or the class is defined after the "
+                f"route that references it."
+            )
         if annotation is type(None):
             return None
     return annotation
