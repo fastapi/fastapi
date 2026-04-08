@@ -242,10 +242,23 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+class _ForwardRefFallbackNamespace(dict):  # type: ignore[type-arg]
+    """A namespace dict that returns ForwardRef for missing names instead of raising NameError.
+
+    This allows partial evaluation of complex annotations like
+    `Annotated[UnresolvableType, Depends(...)]` when some inner types are only
+    available under TYPE_CHECKING (e.g. when using `from __future__ import annotations`).
+    """
+
+    def __missing__(self, key: str) -> Any:
+        return ForwardRef(key)
+
+
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        lenient_ns = _ForwardRefFallbackNamespace(globalns)
+        annotation = evaluate_forwardref(annotation, lenient_ns, lenient_ns)  # ty: ignore[deprecated]
         if annotation is type(None):
             return None
     return annotation
