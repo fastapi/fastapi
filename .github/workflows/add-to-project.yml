@@ -1,11 +1,13 @@
 name: Add to Project
 
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
   issues:
     types:
       - opened
       - reopened
+
+permissions: {}
 
 jobs:
   add-to-project:
@@ -15,4 +17,4 @@ jobs:
       - uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # v1.0.2
         with:
           project-url: https://github.com/orgs/fastapi/projects/2
-          github-token: ${{ secrets.PROJECTS_TOKEN }}
+          github-token: ${{ secrets.PROJECTS_TOKEN }} # zizmor: ignore[secrets-outside-env]
