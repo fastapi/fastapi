@@ -1,7 +1,7 @@
 name: Latest Changes
 
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches:
       - master
     types:
@@ -16,9 +16,12 @@ on:
         required: false
         default: 'false'
 
+permissions: {}
+
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     steps:
       - name: Dump GitHub context
         env:
@@ -27,7 +30,8 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           # To allow latest-changes to commit to the main branch
-          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}  # zizmor: ignore[secrets-outside-env]
+          persist-credentials: true # required by tiangolo/latest-changes
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@c0afd6f790e3a5564914980036ebf83216678101 # v3.23
