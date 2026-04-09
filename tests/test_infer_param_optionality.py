@@ -163,8 +163,7 @@ def test_openapi_schema():
                                 "name": "user_id",
                                 "in": "query",
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "User Id",
                                 },
                             }
                         ],
@@ -202,8 +201,7 @@ def test_openapi_schema():
                                 "name": "user_id",
                                 "in": "query",
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "User Id",
                                 },
                             },
                         ],

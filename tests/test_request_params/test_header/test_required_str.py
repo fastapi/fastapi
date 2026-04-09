@@ -32,16 +32,14 @@ async def read_model_required_str(p: Annotated[HeaderModelRequiredStr, Header()]
     ["/required-str", "/model-required-str"],
 )
 def test_required_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {"title": "P", "type": "string"},
-                "name": "p",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p",
+        "in": "header",
+        "required": True,
+        "schema": {"type": "string", "title": "P"},
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -98,16 +96,14 @@ async def read_model_required_alias(p: Annotated[HeaderModelRequiredAlias, Heade
     ["/required-alias", "/model-required-alias"],
 )
 def test_required_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {"title": "P Alias", "type": "string"},
-                "name": "p_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_alias",
+        "in": "header",
+        "required": True,
+        "schema": {"type": "string", "title": "P Alias"},
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -194,16 +190,14 @@ def read_model_required_validation_alias(
     ["/required-validation-alias", "/model-required-validation-alias"],
 )
 def test_required_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {"title": "P Val Alias", "type": "string"},
-                "name": "p_val_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "header",
+        "required": True,
+        "schema": {"type": "string", "title": "P Val Alias"},
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -301,16 +295,14 @@ def read_model_required_alias_and_validation_alias(
     ],
 )
 def test_required_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {"title": "P Val Alias", "type": "string"},
-                "name": "p_val_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "header",
+        "required": True,
+        "schema": {"type": "string", "title": "P Val Alias"},
+    }
+])
 
 
 @pytest.mark.parametrize(

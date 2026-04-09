@@ -56,8 +56,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "title": "X-Token",
-                                    "anyOf": [
+                                    "title": "X-Token", "default": None, "anyOf": [
                                         {"type": "array", "items": {"type": "string"}},
                                         {"type": "null"},
                                     ],

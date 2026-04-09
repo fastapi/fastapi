@@ -85,11 +85,10 @@ class OpenIdConnect(SecurityBase):
         )
 
     async def __call__(self, request: Request) -> str | None:
-        from fastapi.security.utils import get_authorization_scheme_param
         authorization = request.headers.get("Authorization")
-        scheme, param = get_authorization_scheme_param(authorization)
-        if not authorization or scheme.lower() != "bearer":
+        if not authorization:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
-            return None
-        return param   # <-- returns just the token
+            else:
+                return None
+        return authorization

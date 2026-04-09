@@ -31,19 +31,18 @@ async def read_model_optional_str(p: Annotated[HeaderModelOptionalStr, Header()]
     ["/optional-str", "/model-optional-str"],
 )
 def test_optional_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P",
-                },
-                "name": "p",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p",
+        "in": "header",
+        "required": False,
+        "schema": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "default": None,
+            "title": "P",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -93,19 +92,18 @@ async def read_model_optional_alias(p: Annotated[HeaderModelOptionalAlias, Heade
     ["/optional-alias", "/model-optional-alias"],
 )
 def test_optional_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Alias",
-                },
-                "name": "p_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_alias",
+        "in": "header",
+        "required": False,
+        "schema": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "default": None,
+            "title": "P Alias",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -171,19 +169,18 @@ def read_model_optional_validation_alias(
     ["/optional-validation-alias", "/model-optional-validation-alias"],
 )
 def test_optional_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Val Alias",
-                },
-                "name": "p_val_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "header",
+        "required": False,
+        "schema": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "default": None,
+            "title": "P Val Alias",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -257,19 +254,18 @@ def read_model_optional_alias_and_validation_alias(
     ],
 )
 def test_optional_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Val Alias",
-                },
-                "name": "p_val_alias",
-                "in": "header",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "header",
+        "required": False,
+        "schema": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "default": None,
+            "title": "P Val Alias",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(

@@ -32,20 +32,14 @@ def read_model_required_list_str(p: Annotated[QueryModelRequiredListStr, Query()
     ["/required-list-str", "/model-required-list-str"],
 )
 def test_required_list_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {
-                    "title": "P",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
-                "name": "p",
-                "in": "query",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p",
+        "in": "query",
+        "required": True,
+        "schema": {"type": "array", "items": {"type": "string"}, "title": "P"},
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -104,20 +98,14 @@ async def read_model_required_list_alias(
     ["/required-list-alias", "/model-required-list-alias"],
 )
 def test_required_list_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {
-                    "title": "P Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
-                "name": "p_alias",
-                "in": "query",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_alias",
+        "in": "query",
+        "required": True,
+        "schema": {"type": "array", "items": {"type": "string"}, "title": "P Alias"},
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -204,20 +192,18 @@ async def read_model_required_list_validation_alias(
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
 )
 def test_required_list_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {
-                    "title": "P Val Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
-                "name": "p_val_alias",
-                "in": "query",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "query",
+        "required": True,
+        "schema": {
+            "type": "array",
+            "items": {"type": "string"},
+            "title": "P Val Alias",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(
@@ -312,20 +298,18 @@ def read_model_required_list_alias_and_validation_alias(
     ],
 )
 def test_required_list_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
-        [
-            {
-                "required": True,
-                "schema": {
-                    "title": "P Val Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
-                "name": "p_val_alias",
-                "in": "query",
-            }
-        ]
-    )
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
+    {
+        "name": "p_val_alias",
+        "in": "query",
+        "required": True,
+        "schema": {
+            "type": "array",
+            "items": {"type": "string"},
+            "title": "P Val Alias",
+        },
+    }
+])
 
 
 @pytest.mark.parametrize(

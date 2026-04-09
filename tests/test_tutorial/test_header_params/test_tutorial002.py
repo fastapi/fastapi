@@ -78,8 +78,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Strange Header",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Strange Header",
                                 },
                                 "name": "strange_header",
                                 "in": "header",

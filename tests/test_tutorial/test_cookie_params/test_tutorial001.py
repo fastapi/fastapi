@@ -75,8 +75,7 @@ def test_openapi_schema(mod: ModuleType):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Ads Id",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Ads Id",
                                 },
                                 "name": "ads_id",
                                 "in": "cookie",

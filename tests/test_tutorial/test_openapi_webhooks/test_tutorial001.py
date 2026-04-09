@@ -42,7 +42,10 @@ def test_openapi_schema():
                 "new-subscription": {
                     "post": {
                         "summary": "New Subscription",
-                        "description": "When a new user subscribes to your service we'll send you a POST request with this\ndata to the URL that you register for the event `new-subscription` in the dashboard.",
+                        "description": """\
+When a new user subscribes to your service we'll send you a POST request with this
+data to the URL that you register for the event `new-subscription` in the dashboard.\
+""",
                         "operationId": "new_subscriptionnew_subscription_post",
                         "requestBody": {
                             "content": {

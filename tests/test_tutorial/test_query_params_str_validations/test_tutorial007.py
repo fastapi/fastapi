@@ -93,8 +93,7 @@ def test_openapi_schema(client: TestClient):
                                         },
                                         {"type": "null"},
                                     ],
-                                    "title": "Query string",
-                                },
+                                    "title": "Query string", "default": None},
                                 "name": "q",
                                 "in": "query",
                             }

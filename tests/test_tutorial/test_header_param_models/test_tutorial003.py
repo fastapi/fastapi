@@ -148,32 +148,26 @@ def test_openapi_schema(client: TestClient):
                                 "name": "host",
                                 "in": "header",
                                 "required": True,
-                                "schema": {"type": "string", "title": "Host"},
-                            },
+                                "schema": {"type": "string", "title": "Host"}, "example": None},
                             {
                                 "name": "save_data",
                                 "in": "header",
                                 "required": True,
-                                "schema": {"type": "boolean", "title": "Save Data"},
-                            },
+                                "schema": {"type": "boolean", "title": "Save Data"}, "example": None},
                             {
                                 "name": "if_modified_since",
                                 "in": "header",
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "If Modified Since",
-                                },
-                            },
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "If Modified Since",
+                                }, "example": None},
                             {
                                 "name": "traceparent",
                                 "in": "header",
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Traceparent",
-                                },
-                            },
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Traceparent",
+                                }, "example": None},
                             {
                                 "name": "x_tag",
                                 "in": "header",
@@ -183,8 +177,7 @@ def test_openapi_schema(client: TestClient):
                                     "items": {"type": "string"},
                                     "default": [],
                                     "title": "X Tag",
-                                },
-                            },
+                                }, "example": None},
                         ],
                         "responses": {
                             "200": {

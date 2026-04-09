@@ -81,8 +81,7 @@ def test_openapi_schema(client: TestClient):
                                         {
                                             "type": "null",
                                         },
-                                    ],
-                                    "title": "Item-Query",
+                                    ], "default": None, "title": "Item-Query",
                                 },
                                 "name": "item-query",
                                 "in": "query",

@@ -133,8 +133,7 @@ def test_openapi_schema(client: TestClient):
                                     "exclusiveMinimum": 0,
                                     "default": 100,
                                     "title": "Limit",
-                                },
-                            },
+                                }, "example": None},
                             {
                                 "name": "offset",
                                 "in": "query",
@@ -144,8 +143,7 @@ def test_openapi_schema(client: TestClient):
                                     "minimum": 0,
                                     "default": 0,
                                     "title": "Offset",
-                                },
-                            },
+                                }, "example": None},
                             {
                                 "name": "order_by",
                                 "in": "query",
@@ -155,8 +153,7 @@ def test_openapi_schema(client: TestClient):
                                     "type": "string",
                                     "default": "created_at",
                                     "title": "Order By",
-                                },
-                            },
+                                }, "example": None},
                             {
                                 "name": "tags",
                                 "in": "query",
@@ -166,8 +163,7 @@ def test_openapi_schema(client: TestClient):
                                     "items": {"type": "string"},
                                     "default": [],
                                     "title": "Tags",
-                                },
-                            },
+                                }, "example": None},
                         ],
                         "responses": {
                             "200": {

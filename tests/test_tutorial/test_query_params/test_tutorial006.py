@@ -112,8 +112,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Limit",
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}], "default": None, "title": "Limit",
                                 },
                                 "name": "limit",
                                 "in": "query",

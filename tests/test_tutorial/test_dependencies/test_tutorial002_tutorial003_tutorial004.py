@@ -111,8 +111,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Q",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Q",
                                 },
                                 "name": "q",
                                 "in": "query",

@@ -50,7 +50,21 @@ def test_openapi_schema(client: TestClient):
                 "/invoices/": {
                     "post": {
                         "summary": "Create Invoice",
-                        "description": 'Create an invoice.\n\nThis will (let\'s imagine) let the API user (some external developer) create an\ninvoice.\n\nAnd this path operation will:\n\n* Send the invoice to the client.\n* Collect the money from the client.\n* Send a notification back to the API user (the external developer), as a callback.\n    * At this point is that the API will somehow send a POST request to the\n        external API with the notification of the invoice event\n        (e.g. "payment successful").',
+                        "description": """\
+Create an invoice.
+
+This will (let's imagine) let the API user (some external developer) create an
+invoice.
+
+And this path operation will:
+
+* Send the invoice to the client.
+* Collect the money from the client.
+* Send a notification back to the API user (the external developer), as a callback.
+    * At this point is that the API will somehow send a POST request to the
+        external API with the notification of the invoice event
+        (e.g. "payment successful").\
+""",
                         "operationId": "create_invoice_invoices__post",
                         "parameters": [
                             {
@@ -64,8 +78,7 @@ def test_openapi_schema(client: TestClient):
                                             "maxLength": 2083,
                                         },
                                         {"type": "null"},
-                                    ],
-                                    "title": "Callback Url",
+                                    ], "default": None, "title": "Callback Url",
                                 },
                                 "name": "callback_url",
                                 "in": "query",

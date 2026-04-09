@@ -99,8 +99,7 @@ def test_openapi_schema(client: TestClient):
                                 "name": "session_id",
                                 "in": "cookie",
                                 "required": True,
-                                "schema": {"type": "string", "title": "Session Id"},
-                            },
+                                "schema": {"type": "string", "title": "Session Id"}, "example": None},
                             {
                                 "name": "fatebook_tracker",
                                 "in": "cookie",
@@ -109,19 +108,15 @@ def test_openapi_schema(client: TestClient):
                                     "anyOf": [
                                         {"type": "string"},
                                         {"type": "null"},
-                                    ],
-                                    "title": "Fatebook Tracker",
-                                },
-                            },
+                                    ], "default": None, "title": "Fatebook Tracker",
+                                }, "example": None},
                             {
                                 "name": "googall_tracker",
                                 "in": "cookie",
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Googall Tracker",
-                                },
-                            },
+                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Googall Tracker",
+                                }, "example": None},
                         ],
                         "responses": {
                             "200": {
