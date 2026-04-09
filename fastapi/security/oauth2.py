@@ -9,6 +9,8 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
+from starlette.responses import RedirectResponse
+import secrets
 
 
 class OAuth2PasswordRequestForm:
@@ -648,6 +650,38 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             else:
                 return None  # pragma: nocover
         return param
+
+
+class OAuth2AuthorizationCodeState:
+    """
+    Thin wrapper around OAuth2AuthorizationCodeBearer that validates the
+    `state` parameter on the callback to prevent CSRF.
+
+    Store `pending_states` in a short-lived cache (Redis, TTLCache, etc.)
+    in production. This in-memory set is for single-process use only.
+    """
+
+    def __init__(self, authorization_url: str, token_url: str, redirect_uri: str):
+        self.authorization_url = authorization_url
+        self.token_url = token_url
+        self.redirect_uri = redirect_uri
+        self._pending: set[str] = set()
+
+    def authorization_redirect(self, scope: str = "") -> RedirectResponse:
+        state = secrets.token_urlsafe(32)
+        self._pending.add(state)
+        params = (
+            f"response_type=code&client_id=__configure__"
+            f"&redirect_uri={self.redirect_uri}&scope={scope}&state={state}"
+        )
+        return RedirectResponse(f"{self.authorization_url}?{params}")
+
+    def validate_callback(self, code: str, state: str) -> str:
+        """Returns `code` if state is valid; raises HTTPException otherwise."""
+        if state not in self._pending:
+            raise HTTPException(status_code=400, detail="Invalid OAuth2 state")
+        self._pending.discard(state)
+        return code
 
 
 class SecurityScopes:

@@ -5,9 +5,11 @@ from .http import HTTPAuthorizationCredentials as HTTPAuthorizationCredentials
 from .http import HTTPBasic as HTTPBasic
 from .http import HTTPBasicCredentials as HTTPBasicCredentials
 from .http import HTTPBearer as HTTPBearer
+from .http import HTTPCookieBearer as HTTPCookieBearer
 from .http import HTTPDigest as HTTPDigest
 from .oauth2 import OAuth2 as OAuth2
 from .oauth2 import OAuth2AuthorizationCodeBearer as OAuth2AuthorizationCodeBearer
+from .oauth2 import OAuth2AuthorizationCodeState as OAuth2AuthorizationCodeState
 from .oauth2 import OAuth2PasswordBearer as OAuth2PasswordBearer
 from .oauth2 import OAuth2PasswordRequestForm as OAuth2PasswordRequestForm
 from .oauth2 import OAuth2PasswordRequestFormStrict as OAuth2PasswordRequestFormStrict

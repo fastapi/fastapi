@@ -315,6 +315,53 @@ class HTTPBearer(HTTPBase):
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
+class HTTPCookieBearer(SecurityBase):
+    """
+    Bearer token authentication via a named cookie (e.g. `access_token`).
+
+    Reads the cookie value directly; your route handler is responsible for
+    JWT validation. Set `HttpOnly=True, Secure=True, SameSite="lax"` when
+    issuing the cookie — this class does not enforce those attributes.
+
+    ## Example
+
+        from fastapi import Depends, FastAPI
+        from fastapi.security import HTTPCookieBearer, HTTPAuthorizationCredentials
+
+        app = FastAPI()
+        security = HTTPCookieBearer(cookie_name="access_token")
+
+        @app.get("/me")
+        def read_me(creds: HTTPAuthorizationCredentials = Depends(security)):
+            return {"token": creds.credentials}
+    """
+
+    def __init__(
+        self,
+        *,
+        cookie_name: str = "access_token",
+        scheme_name: str | None = None,
+        auto_error: bool = True,
+    ):
+        self.cookie_name = cookie_name
+        self.model = HTTPBearerModel(description="Bearer token in a cookie")
+        self.scheme_name = scheme_name or self.__class__.__name__
+        self.auto_error = auto_error
+
+    def make_not_authenticated_error(self) -> HTTPException:
+        return HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    async def __call__(self, request: Request) -> HTTPAuthorizationCredentials | None:
+        token = request.cookies.get(self.cookie_name)
+        if not token:
+            if self.auto_error:
+                raise self.make_not_authenticated_error()
+            return None
+        return HTTPAuthorizationCredentials(scheme="Bearer", credentials=token)
 
 class HTTPDigest(HTTPBase):
     """
