@@ -6,10 +6,9 @@ Ref: https://github.com/fastapi/fastapi/issues/XXXXX
 """
 
 import pytest
-from starlette.requests import ClientDisconnect
-
 from fastapi import Body, FastAPI, Form
 from fastapi.testclient import TestClient
+from starlette.requests import ClientDisconnect
 
 pytestmark = pytest.mark.anyio
 
