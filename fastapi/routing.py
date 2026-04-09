@@ -78,7 +78,7 @@ from starlette._utils import is_async_callable
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
 from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
-from starlette.requests import Request
+from starlette.requests import ClientDisconnect, Request
 from starlette.responses import JSONResponse, Response, StreamingResponse
 from starlette.routing import (
     BaseRoute,
@@ -441,6 +441,8 @@ def get_request_handler(
             raise validation_error from e
         except HTTPException:
             # If a middleware raises an HTTPException, it should be raised again
+            raise
+        except ClientDisconnect:
             raise
         except Exception as e:
             http_error = HTTPException(
