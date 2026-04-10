@@ -1,6 +1,7 @@
 import copy
 import http.client
 import inspect
+import re
 import warnings
 from collections.abc import Sequence
 from typing import Any, Literal, cast
@@ -242,7 +243,15 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation_id = route.operation_id or route.unique_id
+    if route.operation_id:
+        operation_id = route.operation_id
+    elif len(route.methods) > 1:
+        # Multi-method route without explicit operation_id: generate per-method ID
+        # to avoid duplicate operationIds in the OpenAPI schema
+        operation_id = re.sub(r"\W", "_", f"{route.name}{route.path_format}")
+        operation_id = f"{operation_id}_{method.lower()}"
+    else:
+        operation_id = route.unique_id
     if operation_id in operation_ids:
         endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
         message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"

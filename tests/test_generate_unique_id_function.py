@@ -1697,3 +1697,84 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_multi_method_route_no_duplicate_operation_id():
+    app = FastAPI()
+    router = APIRouter()
+
+    def multi_handler(item_id: int):
+        return {"id": item_id}  # pragma: nocover
+
+    router.add_api_route("/items/{item_id}", multi_handler, methods=["GET", "DELETE"])
+    app.include_router(router)
+    client = TestClient(app)
+
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        duplicate_warnings = [
+            warning
+            for warning in w
+            if issubclass(warning.category, UserWarning)
+            and "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert duplicate_warnings == []
+
+    schema = response.json()
+    path_ops = schema["paths"]["/items/{item_id}"]
+    get_id = path_ops["get"]["operationId"]
+    delete_id = path_ops["delete"]["operationId"]
+    assert get_id != delete_id
+    assert get_id.endswith("_get")
+    assert delete_id.endswith("_delete")
+
+
+def test_single_method_route_operation_id_unchanged():
+    app = FastAPI()
+
+    def my_handler():
+        return {}  # pragma: nocover
+
+    app.add_api_route("/ping", my_handler, methods=["GET"])
+    client = TestClient(app)
+
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        duplicate_warnings = [
+            warning
+            for warning in w
+            if issubclass(warning.category, UserWarning)
+            and "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert duplicate_warnings == []
+
+    schema = response.json()
+    assert schema["paths"]["/ping"]["get"]["operationId"] == "my_handler_ping_get"
+
+
+def test_three_method_route_distinct_operation_ids():
+    app = FastAPI()
+
+    def handler():
+        return {}  # pragma: nocover
+
+    app.add_api_route("/multi", handler, methods=["GET", "POST", "DELETE"])
+    client = TestClient(app)
+
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        duplicate_warnings = [
+            warning
+            for warning in w
+            if issubclass(warning.category, UserWarning)
+            and "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert duplicate_warnings == []
+
+    schema = response.json()
+    path_ops = schema["paths"]["/multi"]
+    op_ids = [path_ops[m]["operationId"] for m in ("get", "post", "delete")]
+    assert len(set(op_ids)) == 3, f"Expected 3 unique IDs, got: {op_ids}"
