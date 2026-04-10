@@ -315,6 +315,7 @@ class HTTPBearer(HTTPBase):
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
+
 class HTTPCookieBearer(SecurityBase):
     """
     Bearer token authentication via a named cookie (e.g. `access_token`).
@@ -362,6 +363,7 @@ class HTTPCookieBearer(SecurityBase):
                 raise self.make_not_authenticated_error()
             return None
         return HTTPAuthorizationCredentials(scheme="Bearer", credentials=token)
+
 
 class HTTPDigest(HTTPBase):
     """

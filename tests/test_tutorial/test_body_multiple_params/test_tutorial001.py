@@ -106,7 +106,9 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Q",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Q",
                                 },
                                 "name": "q",
                                 "in": "query",
@@ -119,7 +121,9 @@ def test_openapi_schema(client: TestClient):
                                         "anyOf": [
                                             {"$ref": "#/components/schemas/Item"},
                                             {"type": "null"},
-                                        ], "default": None, "title": "Item",
+                                        ],
+                                        "default": None,
+                                        "title": "Item",
                                     }
                                 }
                             }

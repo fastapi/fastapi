@@ -35,18 +35,23 @@ async def read_model_optional_list_str(
     ["/optional-list-str", "/model-optional-list-str"],
 )
 def test_optional_list_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p",
-        "in": "query",
-        "required": False,
-        "schema": {
-            "anyOf": [{"type": "array", "items": {"type": "string"}}, {"type": "null"}],
-            "default": None,
-            "title": "P",
-        },
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p",
+                "in": "query",
+                "required": False,
+                "schema": {
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "string"}},
+                        {"type": "null"},
+                    ],
+                    "default": None,
+                    "title": "P",
+                },
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -98,18 +103,23 @@ async def read_model_optional_list_alias(
     ["/optional-list-alias", "/model-optional-list-alias"],
 )
 def test_optional_list_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_alias",
-        "in": "query",
-        "required": False,
-        "schema": {
-            "anyOf": [{"type": "array", "items": {"type": "string"}}, {"type": "null"}],
-            "default": None,
-            "title": "P Alias",
-        },
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_alias",
+                "in": "query",
+                "required": False,
+                "schema": {
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "string"}},
+                        {"type": "null"},
+                    ],
+                    "default": None,
+                    "title": "P Alias",
+                },
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -175,18 +185,23 @@ def read_model_optional_list_validation_alias(
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
 )
 def test_optional_list_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_val_alias",
-        "in": "query",
-        "required": False,
-        "schema": {
-            "anyOf": [{"type": "array", "items": {"type": "string"}}, {"type": "null"}],
-            "default": None,
-            "title": "P Val Alias",
-        },
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_val_alias",
+                "in": "query",
+                "required": False,
+                "schema": {
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "string"}},
+                        {"type": "null"},
+                    ],
+                    "default": None,
+                    "title": "P Val Alias",
+                },
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -257,18 +272,23 @@ def read_model_optional_list_alias_and_validation_alias(
     ],
 )
 def test_optional_list_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_val_alias",
-        "in": "query",
-        "required": False,
-        "schema": {
-            "anyOf": [{"type": "array", "items": {"type": "string"}}, {"type": "null"}],
-            "default": None,
-            "title": "P Val Alias",
-        },
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_val_alias",
+                "in": "query",
+                "required": False,
+                "schema": {
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "string"}},
+                        {"type": "null"},
+                    ],
+                    "default": None,
+                    "title": "P Val Alias",
+                },
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(

@@ -113,7 +113,9 @@ And this path operation will:
                                 {
                                     "required": False,
                                     "schema": {
-                                        "title": "Callback Url", "default": None, "anyOf": [
+                                        "title": "Callback Url",
+                                        "default": None,
+                                        "anyOf": [
                                             {
                                                 "type": "string",
                                                 "format": "uri",

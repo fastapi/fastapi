@@ -235,7 +235,11 @@ def jsonable_encoder(
         )
 
         if sqlalchemy_safe:
-            result = {k: v for k, v in result.items() if not (isinstance(k, str) and k.startswith("_sa"))}
+            result = {
+                k: v
+                for k, v in result.items()
+                if not (isinstance(k, str) and k.startswith("_sa"))
+            }
         return result
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)

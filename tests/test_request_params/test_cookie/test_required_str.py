@@ -32,14 +32,16 @@ async def read_model_required_str(p: Annotated[CookieModelRequiredStr, Cookie()]
     ["/required-str", "/model-required-str"],
 )
 def test_required_str_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p",
-        "in": "cookie",
-        "required": True,
-        "schema": {"type": "string", "title": "P"},
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p",
+                "in": "cookie",
+                "required": True,
+                "schema": {"type": "string", "title": "P"},
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -97,14 +99,16 @@ async def read_model_required_alias(p: Annotated[CookieModelRequiredAlias, Cooki
     ["/required-alias", "/model-required-alias"],
 )
 def test_required_str_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_alias",
-        "in": "cookie",
-        "required": True,
-        "schema": {"type": "string", "title": "P Alias"},
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_alias",
+                "in": "cookie",
+                "required": True,
+                "schema": {"type": "string", "title": "P Alias"},
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -196,14 +200,16 @@ def read_model_required_validation_alias(
     ["/required-validation-alias", "/model-required-validation-alias"],
 )
 def test_required_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_val_alias",
-        "in": "cookie",
-        "required": True,
-        "schema": {"type": "string", "title": "P Val Alias"},
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_val_alias",
+                "in": "cookie",
+                "required": True,
+                "schema": {"type": "string", "title": "P Val Alias"},
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -303,14 +309,16 @@ def read_model_required_alias_and_validation_alias(
     ],
 )
 def test_required_alias_and_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot([
-    {
-        "name": "p_val_alias",
-        "in": "cookie",
-        "required": True,
-        "schema": {"type": "string", "title": "P Val Alias"},
-    }
-])
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "name": "p_val_alias",
+                "in": "cookie",
+                "required": True,
+                "schema": {"type": "string", "title": "P Val Alias"},
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(

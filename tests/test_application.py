@@ -982,7 +982,9 @@ def test_openapi_schema():
                                 "in": "query",
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}], "default": None, "title": "Query",
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Query",
                                 },
                             }
                         ],

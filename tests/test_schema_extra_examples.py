@@ -509,7 +509,9 @@ def test_openapi_schema():
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Data",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Data",
                                 },
                                 "example": "query1",
                                 "name": "data",
@@ -543,7 +545,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["query1", "query2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["query1", "query2"],
                                 },
                                 "name": "data",
                                 "in": "query",
@@ -576,7 +580,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["query1", "query2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["query1", "query2"],
                                 },
                                 "example": "query_overridden",
                                 "name": "data",
@@ -609,7 +615,9 @@ def test_openapi_schema():
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Data",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Data",
                                 },
                                 "example": "header1",
                                 "name": "data",
@@ -643,7 +651,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["header1", "header2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["header1", "header2"],
                                 },
                                 "name": "data",
                                 "in": "header",
@@ -676,7 +686,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["header1", "header2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["header1", "header2"],
                                 },
                                 "example": "header_overridden",
                                 "name": "data",
@@ -709,7 +721,9 @@ def test_openapi_schema():
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Data",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Data",
                                 },
                                 "example": "cookie1",
                                 "name": "data",
@@ -743,7 +757,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["cookie1", "cookie2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["cookie1", "cookie2"],
                                 },
                                 "name": "data",
                                 "in": "cookie",
@@ -776,7 +792,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Data", "default": None, "examples": ["cookie1", "cookie2"],
+                                    "title": "Data",
+                                    "default": None,
+                                    "examples": ["cookie1", "cookie2"],
                                 },
                                 "example": "cookie_overridden",
                                 "name": "data",

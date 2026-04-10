@@ -1,3 +1,4 @@
+import secrets
 from typing import Annotated, Any, cast
 
 from annotated_doc import Doc
@@ -8,9 +9,8 @@ from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED
 from starlette.responses import RedirectResponse
-import secrets
+from starlette.status import HTTP_401_UNAUTHORIZED
 
 
 class OAuth2PasswordRequestForm:

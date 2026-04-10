@@ -80,7 +80,9 @@ def test_openapi_schema(client: TestClient):
                                 "in": "query",
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}], "default": None, "title": "Id",
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Id",
                                 },
                             }
                         ],

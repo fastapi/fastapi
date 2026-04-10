@@ -83,7 +83,9 @@ def test_openapi_schema():
                                     "anyOf": [
                                         {"type": "string", "pattern": "^fixedquery$"},
                                         {"type": "null"},
-                                    ], "default": None, "title": "Q",
+                                    ],
+                                    "default": None,
+                                    "title": "Q",
                                 },
                             }
                         ],

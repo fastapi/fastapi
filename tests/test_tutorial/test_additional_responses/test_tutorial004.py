@@ -85,7 +85,9 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "required": False,
                                 "schema": {
-                                    "anyOf": [{"type": "boolean"}, {"type": "null"}], "default": None, "title": "Img",
+                                    "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                                    "default": None,
+                                    "title": "Img",
                                 },
                                 "name": "img",
                                 "in": "query",

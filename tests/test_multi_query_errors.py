@@ -73,7 +73,9 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "title": "Q",
-                                    "type": "array", "default": None, "items": {"type": "integer"},
+                                    "type": "array",
+                                    "default": None,
+                                    "items": {"type": "integer"},
                                 },
                                 "name": "q",
                                 "in": "query",

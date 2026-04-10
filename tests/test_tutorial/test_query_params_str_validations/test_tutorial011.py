@@ -72,7 +72,9 @@ def test_openapi_schema(client: TestClient):
                                     "anyOf": [
                                         {"type": "array", "items": {"type": "string"}},
                                         {"type": "null"},
-                                    ], "default": None, "title": "Q",
+                                    ],
+                                    "default": None,
+                                    "title": "Q",
                                 },
                                 "name": "q",
                                 "in": "query",
