@@ -4,14 +4,14 @@ from fastapi import Depends, params
 from fastapi.dependencies.utils import get_typed_annotation
 
 
-def test_get_typed_annotation():
+def test_get_typed_annotation() -> None:
     # For coverage
     annotation = "None"
     typed_annotation = get_typed_annotation(annotation, globals())
     assert typed_annotation is None
 
 
-def test_get_typed_annotation_falls_back_to_lenient_forwardref_resolution():
+def test_get_typed_annotation_falls_back_to_lenient_forwardref_resolution() -> None:
     def dependency() -> None:
         return None
 
