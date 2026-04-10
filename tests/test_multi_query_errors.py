@@ -74,6 +74,7 @@ def test_openapi_schema():
                                 "schema": {
                                     "title": "Q",
                                     "type": "array",
+                                    "default": None,
                                     "items": {"type": "integer"},
                                 },
                                 "name": "q",

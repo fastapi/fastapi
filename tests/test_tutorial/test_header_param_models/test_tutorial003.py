@@ -149,12 +149,14 @@ def test_openapi_schema(client: TestClient):
                                 "in": "header",
                                 "required": True,
                                 "schema": {"type": "string", "title": "Host"},
+                                "example": None,
                             },
                             {
                                 "name": "save_data",
                                 "in": "header",
                                 "required": True,
                                 "schema": {"type": "boolean", "title": "Save Data"},
+                                "example": None,
                             },
                             {
                                 "name": "if_modified_since",
@@ -162,8 +164,10 @@ def test_openapi_schema(client: TestClient):
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
                                     "title": "If Modified Since",
                                 },
+                                "example": None,
                             },
                             {
                                 "name": "traceparent",
@@ -171,8 +175,10 @@ def test_openapi_schema(client: TestClient):
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
                                     "title": "Traceparent",
                                 },
+                                "example": None,
                             },
                             {
                                 "name": "x_tag",
@@ -184,6 +190,7 @@ def test_openapi_schema(client: TestClient):
                                     "default": [],
                                     "title": "X Tag",
                                 },
+                                "example": None,
                             },
                         ],
                         "responses": {

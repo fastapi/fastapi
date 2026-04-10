@@ -73,6 +73,7 @@ def test_openapi_schema(client: TestClient):
                                         {"type": "array", "items": {"type": "string"}},
                                         {"type": "null"},
                                     ],
+                                    "default": None,
                                     "title": "Q",
                                 },
                                 "name": "q",

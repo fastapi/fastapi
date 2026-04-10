@@ -96,8 +96,8 @@ def test_openapi_schema(client: TestClient):
                                 "required": True,
                                 "schema": {
                                     "title": "The ID of the item to get",
-                                    "maximum": 1000.0,
-                                    "minimum": 0.0,
+                                    "maximum": 1000,
+                                    "minimum": 0,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -107,6 +107,7 @@ def test_openapi_schema(client: TestClient):
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "default": None,
                                     "title": "Q",
                                 },
                                 "name": "q",
@@ -121,6 +122,7 @@ def test_openapi_schema(client: TestClient):
                                             {"$ref": "#/components/schemas/Item"},
                                             {"type": "null"},
                                         ],
+                                        "default": None,
                                         "title": "Item",
                                     }
                                 }

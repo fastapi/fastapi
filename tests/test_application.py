@@ -411,7 +411,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMinimum": 3.0,
+                                    "exclusiveMinimum": 3,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -445,7 +445,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMinimum": 0.0,
+                                    "exclusiveMinimum": 0,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -479,7 +479,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "minimum": 3.0,
+                                    "minimum": 3,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -513,7 +513,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMaximum": 3.0,
+                                    "exclusiveMaximum": 3,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -547,7 +547,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMaximum": 0.0,
+                                    "exclusiveMaximum": 0,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -581,7 +581,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "maximum": 3.0,
+                                    "maximum": 3,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -615,8 +615,8 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMaximum": 3.0,
-                                    "exclusiveMinimum": 1.0,
+                                    "exclusiveMaximum": 3,
+                                    "exclusiveMinimum": 1,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -650,8 +650,8 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "maximum": 3.0,
-                                    "minimum": 1.0,
+                                    "maximum": 3,
+                                    "minimum": 1,
                                     "type": "number",
                                 },
                                 "name": "item_id",
@@ -685,7 +685,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMaximum": 3.0,
+                                    "exclusiveMaximum": 3,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -719,7 +719,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMinimum": 3.0,
+                                    "exclusiveMinimum": 3,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -753,7 +753,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "maximum": 3.0,
+                                    "maximum": 3,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -787,7 +787,7 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "minimum": 3.0,
+                                    "minimum": 3,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -821,8 +821,8 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "exclusiveMaximum": 3.0,
-                                    "exclusiveMinimum": 1.0,
+                                    "exclusiveMaximum": 3,
+                                    "exclusiveMinimum": 1,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -856,8 +856,8 @@ def test_openapi_schema():
                                 "required": True,
                                 "schema": {
                                     "title": "Item Id",
-                                    "maximum": 3.0,
-                                    "minimum": 1.0,
+                                    "maximum": 3,
+                                    "minimum": 1,
                                     "type": "integer",
                                 },
                                 "name": "item_id",
@@ -919,7 +919,7 @@ def test_openapi_schema():
                         "parameters": [
                             {
                                 "required": False,
-                                "schema": {"title": "Query"},
+                                "schema": {"default": None, "title": "Query"},
                                 "name": "query",
                                 "in": "query",
                             }
@@ -983,6 +983,7 @@ def test_openapi_schema():
                                 "required": False,
                                 "schema": {
                                     "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "default": None,
                                     "title": "Query",
                                 },
                             }
@@ -1046,7 +1047,7 @@ def test_openapi_schema():
                         "parameters": [
                             {
                                 "required": False,
-                                "schema": {"title": "Query"},
+                                "schema": {"default": None, "title": "Query"},
                                 "name": "query",
                                 "in": "query",
                             }

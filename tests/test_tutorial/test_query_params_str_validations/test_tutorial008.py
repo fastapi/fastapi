@@ -96,6 +96,7 @@ def test_openapi_schema(client: TestClient):
                                     ],
                                     "title": "Query string",
                                     "description": "Query string for the items to search in the database that have a good match",
+                                    "default": None,
                                 },
                                 "name": "q",
                                 "in": "query",

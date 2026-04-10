@@ -21,7 +21,21 @@ def test_openapi_schema():
             "info": {
                 "title": "ChimichangApp",
                 "summary": "Deadpool's favorite app. Nuff said.",
-                "description": "\nChimichangApp API helps you do awesome stuff. 🚀\n\n## Items\n\nYou can **read items**.\n\n## Users\n\nYou will be able to:\n\n* **Create users** (_not implemented_).\n* **Read users** (_not implemented_).\n",
+                "description": """\
+
+ChimichangApp API helps you do awesome stuff. 🚀
+
+## Items
+
+You can **read items**.
+
+## Users
+
+You will be able to:
+
+* **Create users** (_not implemented_).
+* **Read users** (_not implemented_).
+""",
                 "termsOfService": "http://example.com/terms/",
                 "contact": {
                     "name": "Deadpoolio the Amazing",

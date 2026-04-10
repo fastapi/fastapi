@@ -99,6 +99,7 @@ def test_openapi_schema(client: TestClient):
                                         },
                                         {"type": "null"},
                                     ],
+                                    "default": None,
                                     "title": "Q",
                                 },
                                 "name": "q",

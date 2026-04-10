@@ -66,7 +66,15 @@ def test_openapi_schema(client: TestClient):
                             },
                         },
                         "summary": "Create an item",
-                        "description": "Create an item with all the information:\n\n- **name**: each item must have a name\n- **description**: a long description\n- **price**: required\n- **tax**: if the item doesn't have tax, you can omit this\n- **tags**: a set of unique tag strings for this item",
+                        "description": """\
+Create an item with all the information:
+
+- **name**: each item must have a name
+- **description**: a long description
+- **price**: required
+- **tax**: if the item doesn't have tax, you can omit this
+- **tags**: a set of unique tag strings for this item\
+""",
                         "operationId": "create_item_items__post",
                         "requestBody": {
                             "content": {

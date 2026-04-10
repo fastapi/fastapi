@@ -35,14 +35,10 @@ def test_required_list_str_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
-                "required": True,
-                "schema": {
-                    "title": "P",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
                 "name": "p",
                 "in": "header",
+                "required": True,
+                "schema": {"type": "array", "items": {"type": "string"}, "title": "P"},
             }
         ]
     )
@@ -107,14 +103,14 @@ def test_required_list_str_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
-                "required": True,
-                "schema": {
-                    "title": "P Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
                 "name": "p_alias",
                 "in": "header",
+                "required": True,
+                "schema": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "title": "P Alias",
+                },
             }
         ]
     )
@@ -207,14 +203,14 @@ def test_required_list_validation_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
-                "required": True,
-                "schema": {
-                    "title": "P Val Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
                 "name": "p_val_alias",
                 "in": "header",
+                "required": True,
+                "schema": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "title": "P Val Alias",
+                },
             }
         ]
     )
@@ -317,14 +313,14 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
-                "required": True,
-                "schema": {
-                    "title": "P Val Alias",
-                    "type": "array",
-                    "items": {"type": "string"},
-                },
                 "name": "p_val_alias",
                 "in": "header",
+                "required": True,
+                "schema": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "title": "P Val Alias",
+                },
             }
         ]
     )

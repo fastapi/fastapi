@@ -256,6 +256,7 @@ def test_openapi_schema():
                                         "json_schema_query1",
                                         "json_schema_query2",
                                     ],
+                                    "default": None,
                                     "title": "Data",
                                 },
                                 "examples": {
@@ -301,6 +302,7 @@ def test_openapi_schema():
                                         "json_schema_header1",
                                         "json_schema_header2",
                                     ],
+                                    "default": None,
                                     "title": "Data",
                                 },
                                 "examples": {
@@ -346,6 +348,7 @@ def test_openapi_schema():
                                         "json_schema_cookie1",
                                         "json_schema_cookie2",
                                     ],
+                                    "default": None,
                                     "title": "Data",
                                 },
                                 "examples": {

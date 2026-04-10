@@ -79,6 +79,7 @@ def test_openapi_schema(client: TestClient):
                                         {"type": "string"},
                                         {"type": "null"},
                                     ],
+                                    "default": None,
                                     "title": "Item-Query",
                                 },
                                 "required": False,

@@ -34,13 +34,14 @@ def test_optional_str_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
+                "name": "p",
+                "in": "cookie",
                 "required": False,
                 "schema": {
                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": None,
                     "title": "P",
                 },
-                "name": "p",
-                "in": "cookie",
             }
         ]
     )
@@ -97,13 +98,14 @@ def test_optional_str_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
+                "name": "p_alias",
+                "in": "cookie",
                 "required": False,
                 "schema": {
                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": None,
                     "title": "P Alias",
                 },
-                "name": "p_alias",
-                "in": "cookie",
             }
         ]
     )
@@ -177,13 +179,14 @@ def test_optional_validation_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
+                "name": "p_val_alias",
+                "in": "cookie",
                 "required": False,
                 "schema": {
                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": None,
                     "title": "P Val Alias",
                 },
-                "name": "p_val_alias",
-                "in": "cookie",
             }
         ]
     )
@@ -265,13 +268,14 @@ def test_optional_alias_and_validation_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
         [
             {
+                "name": "p_val_alias",
+                "in": "cookie",
                 "required": False,
                 "schema": {
                     "anyOf": [{"type": "string"}, {"type": "null"}],
+                    "default": None,
                     "title": "P Val Alias",
                 },
-                "name": "p_val_alias",
-                "in": "cookie",
             }
         ]
     )
