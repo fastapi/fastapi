@@ -1,3 +1,4 @@
+import builtins
 import dataclasses
 import inspect
 import sys
@@ -242,10 +243,25 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+class _LenientTypeResolutionDict(dict[str, Any]):
+    def __missing__(self, key: str) -> Any:
+        return vars(builtins).get(key, ForwardRef(key))
+
+
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+    if isinstance(annotation, ForwardRef):
+        annotation = evaluate_forwardref(  # ty: ignore[deprecated]
+            annotation, globalns, globalns
+        )
+        if isinstance(annotation, ForwardRef):
+            try:
+                annotation = eval(  # noqa: S307
+                    annotation.__forward_arg__, _LenientTypeResolutionDict(globalns)
+                )
+            except Exception:
+                pass
         if annotation is type(None):
             return None
     return annotation
