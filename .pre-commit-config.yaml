@@ -85,3 +85,11 @@ repos:
         entry: uv run python scripts/add_latest_release_date.py
         files: ^docs/en/docs/release-notes\.md$
         pass_filenames: false
+
+      - id: zizmor
+        name: zizmor
+        language: python
+        entry: uv run zizmor .
+        files: ^\.github\/workflows\/
+        require_serial: true
+        pass_filenames: false
