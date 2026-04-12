@@ -35,7 +35,7 @@ from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
-    generate_unique_id,
+    get_openapi_operation_id,
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
@@ -245,7 +245,7 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation_id = route.operation_id or generate_unique_id(route, method=method)
+    operation_id = route.operation_id or get_openapi_operation_id(route, method)
     if operation_id in operation_ids:
         endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
         message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"

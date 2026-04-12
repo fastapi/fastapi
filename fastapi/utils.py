@@ -94,16 +94,22 @@ def generate_operation_id_for_path(
     return operation_id
 
 
-def generate_unique_id(route: APIRoute, method: str | None = None) -> str:
+def generate_unique_id(route: APIRoute) -> str:
     operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
-    if method:
-        # Include the specific method being generated
-        operation_id = f"{operation_id}_{method.lower()}"
-    else:
-        # When no specific method is provided, use the first method for backwards compatibility
-        operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    return operation_id
+
+
+def get_openapi_operation_id(route: APIRoute, method: str) -> str:
+    """
+    Generate a unique operation ID for a specific HTTP method in the OpenAPI schema.
+    This ensures each HTTP method on a multi-method route gets a unique operation ID.
+    """
+    operation_id = f"{route.name}{route.path_format}"
+    operation_id = re.sub(r"\W", "_", operation_id)
+    operation_id = f"{operation_id}_{method.lower()}"
     return operation_id
 
 
