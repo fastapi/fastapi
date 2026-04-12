@@ -102,9 +102,8 @@ def generate_unique_id(route: APIRoute, method: str | None = None) -> str:
         # Include the specific method being generated
         operation_id = f"{operation_id}_{method.lower()}"
     else:
-        # When no specific method is provided, include all methods (for backwards compatibility)
-        methods_str = "_".join(sorted(m.lower() for m in route.methods))
-        operation_id = f"{operation_id}_{methods_str}"
+        # When no specific method is provided, use the first method for backwards compatibility
+        operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
     return operation_id
 
 
