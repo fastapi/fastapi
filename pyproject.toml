@@ -225,7 +225,7 @@ disallow_incomplete_defs = false
 disallow_untyped_defs = false
 disallow_untyped_calls = false
 
-[tool.pytest]
+[tool.pytest.ini_options]
 minversion = "9.0"
 addopts = [
   "--strict-config",
@@ -236,7 +236,7 @@ strict_xfail = true
 filterwarnings = [
     "error",
 ]
-timeout = "20"
+timeout = 20
 
 [tool.coverage.run]
 parallel = true
