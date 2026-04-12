@@ -102,17 +102,6 @@ def generate_unique_id(route: APIRoute) -> str:
     return operation_id
 
 
-def get_openapi_operation_id(route: APIRoute, method: str) -> str:
-    """
-    Generate a unique operation ID for a specific HTTP method in the OpenAPI schema.
-    This ensures each HTTP method on a multi-method route gets a unique operation ID.
-    """
-    operation_id = f"{route.name}{route.path_format}"
-    operation_id = re.sub(r"\W", "_", operation_id)
-    operation_id = f"{operation_id}_{method.lower()}"
-    return operation_id
-
-
 def deep_dict_update(main_dict: dict[Any, Any], update_dict: dict[Any, Any]) -> None:
     for key, value in update_dict.items():
         if (
