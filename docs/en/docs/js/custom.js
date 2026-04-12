@@ -1,3 +1,4 @@
+```javascript
 function setupTermynal() {
     document.querySelectorAll(".use-termynal").forEach(node => {
         node.style.display = "block";
@@ -32,8 +33,6 @@ function setupTermynal() {
                             dataValue["delay"] = 0;
                         }
                         if (buffer[buffer.length - 1] === "") {
-                            // A last single <br> won't have effect
-                            // so put an additional one
                             buffer.push("");
                         }
                         const bufferValue = buffer.join("<br>");
@@ -57,7 +56,7 @@ function setupTermynal() {
                         });
                     } else if (line.startsWith("// ")) {
                         saveBuffer();
-                        const value = "💬 " + line.replace("// ", "").trimEnd();
+                        const value = " " + line.replace("// ", "").trimEnd();
                         useLines.push({
                             value: value,
                             class: "termynal-comment",
@@ -83,12 +82,16 @@ function setupTermynal() {
                 saveBuffer();
                 const inputCommands = useLines
                     .filter(line => line.type === "input")
-                    .map(line => line.value)
-                    .join("\n");
-                node.textContent = inputCommands;
+                    .map(line => {
+                        const textNode = document.createTextNode(line.value);
+                        const div = document.createElement("div");
+                        div.appendChild(textNode);
+                        return div.innerHTML;
+                    })
+                    .join("<br>");
                 const div = document.createElement("div");
-                node.style.display = "none";
-                node.after(div);
+                div.innerHTML = inputCommands;
+                node.parentNode.replaceChild(div, node);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,
@@ -132,12 +135,14 @@ async function showRandomAnnouncement(groupId, timeInterval) {
         let index = 0
         const announceRandom = () => {
             children.forEach((el, i) => { el.style.display = "none" });
-            children[index].style.display = "block"
+            const textNode = document.createTextNode(children[index].textContent);
+            const div = document.createElement("div");
+            div.appendChild(textNode);
+            children[index].parentNode.replaceChild(div, children[index]);
             index = (index + 1) % children.length
         }
         announceRandom()
-        setInterval(announceRandom, timeInterval
-        )
+        setInterval(announceRandom, timeInterval)
     }
 }
 
@@ -184,7 +189,6 @@ function openLinksInNewTab() {
         if (!href) return;
         try {
             const url = new URL(href, window.location.href);
-            // Skip same-page anchor links (only the hash differs)
             if (url.origin === window.location.origin
                 && url.pathname === window.location.pathname
                 && url.search === window.location.search) return;
@@ -210,3 +214,4 @@ async function main() {
 document$.subscribe(() => {
     main()
 })
+```
