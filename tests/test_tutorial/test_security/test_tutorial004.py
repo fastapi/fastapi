@@ -1,3 +1,4 @@
+```python
 import importlib
 from types import ModuleType
 from unittest.mock import patch
@@ -22,7 +23,7 @@ def get_mod(request: pytest.FixtureRequest):
     return mod
 
 
-def get_access_token(*, username="johndoe", password="secret", client: TestClient):
+def get_access_token(*, username: str, password: str, client: TestClient):
     data = {"username": username, "password": password}
     response = client.post("/token", data=data)
     content = response.json()
@@ -32,7 +33,7 @@ def get_access_token(*, username="johndoe", password="secret", client: TestClien
 
 def test_login(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "johndoe", "password": "secret"})
+    response = client.post("/token", data={"username": "johndoe", "password": "test_password"})
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -50,7 +51,7 @@ def test_login_incorrect_password(mod: ModuleType):
 
 def test_login_incorrect_username(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "foo", "password": "secret"})
+    response = client.post("/token", data={"username": "foo", "password": "test_password"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -65,7 +66,7 @@ def test_no_token(mod: ModuleType):
 
 def test_token(mod: ModuleType):
     client = TestClient(mod.app)
-    access_token = get_access_token(client=client)
+    access_token = get_access_token(client=client, username="johndoe", password="test_password")
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -98,7 +99,7 @@ def test_incorrect_token_type(mod: ModuleType):
 
 def test_verify_password(mod: ModuleType):
     assert mod.verify_password(
-        "secret", mod.fake_users_db["johndoe"]["hashed_password"]
+        "test_password", mod.fake_users_db["johndoe"]["hashed_password"]
     )
 
 
@@ -175,7 +176,7 @@ def test_token_inactive_user(mod: ModuleType):
 
 def test_read_items(mod: ModuleType):
     client = TestClient(mod.app)
-    access_token = get_access_token(client=client)
+    access_token = get_access_token(client=client, username="johndoe", password="test_password")
     response = client.get(
         "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -370,3 +371,4 @@ def test_openapi_schema(mod: ModuleType):
             },
         }
     )
+```
