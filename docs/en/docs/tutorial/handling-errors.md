@@ -242,3 +242,81 @@ If you want to use the exception along with the same default exception handlers 
 {* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
+
+
+## Handling Low-Confidence Predictions in ML APIs
+
+In machine learning-powered APIs, predictions may not always be reliable.
+
+Instead of always returning a prediction, it can be useful to detect low-confidence outputs and notify the client explicitly.
+
+This can be achieved using `HTTPException`.
+
+### Example: Reject low-confidence predictions
+
+In this example, the API simulates a prediction along with a confidence score.  
+If the confidence is below a defined threshold, the API raises an error instead of returning an unreliable prediction.
+
+```python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import random
+
+app = FastAPI()
+
+class InputData(BaseModel):
+    value: float
+
+@app.post("/predict")
+def predict(data: InputData):
+    prediction = random.choice(["low_risk", "high_risk"])
+    confidence = round(random.uniform(0.5, 0.95), 2)
+
+    if confidence < 0.7:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "error": "Low confidence prediction",
+                "confidence": confidence,
+                "action": "Require human review"
+            }
+        )
+
+    return {
+        "prediction": prediction,
+        "confidence": confidence,
+        "status": "reliable"
+    }
+```
+
+### Example response (low confidence)
+
+```json
+{
+  "detail": {
+    "error": "Low confidence prediction",
+    "confidence": 0.62,
+    "action": "Require human review"
+  }
+}
+```
+
+### Example response (high confidence)
+
+```json
+{
+  "prediction": "high_risk",
+  "confidence": 0.91,
+  "status": "reliable"
+}
+```
+
+### Use cases
+
+This pattern is useful when:
+
+- building AI/ML-powered APIs  
+- integrating human-in-the-loop systems  
+- enforcing reliability constraints before returning results  
+
+It helps ensure that unreliable predictions are not silently returned to clients.
