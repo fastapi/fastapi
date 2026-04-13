@@ -244,7 +244,7 @@ If you want to use the exception along with the same default exception handlers 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
 
 
-## Handling Low-Confidence Predictions in ML APIs
+## Handling Low-Confidence Predictions in ML APIs { #handling-low-confidence-predictions-in-ml-apis }
 
 In machine learning-powered APIs, predictions may not always be reliable.
 
@@ -252,9 +252,9 @@ Instead of always returning a prediction, it can be useful to detect low-confide
 
 This can be achieved using `HTTPException`.
 
-### Example: Reject low-confidence predictions
+### Example: Reject low-confidence predictions { #example-reject-low-confidence-predictions }
 
-In this example, the API simulates a prediction along with a confidence score.  
+In this example, the API simulates a prediction along with a confidence score.
 If the confidence is below a defined threshold, the API raises an error instead of returning an unreliable prediction.
 
 ```python
@@ -289,7 +289,7 @@ def predict(data: InputData):
     }
 ```
 
-### Example response (low confidence)
+### Example response (low confidence) { #example-response-low-confidence }
 
 ```json
 {
@@ -301,7 +301,7 @@ def predict(data: InputData):
 }
 ```
 
-### Example response (high confidence)
+### Example response (high confidence) { #example-response-high-confidence }
 
 ```json
 {
@@ -311,12 +311,12 @@ def predict(data: InputData):
 }
 ```
 
-### Use cases
+### Use cases { #use-cases }
 
 This pattern is useful when:
 
-- building AI/ML-powered APIs  
-- integrating human-in-the-loop systems  
-- enforcing reliability constraints before returning results  
+- building AI/ML-powered APIs
+- integrating human-in-the-loop systems
+- enforcing reliability constraints before returning results
 
 It helps ensure that unreliable predictions are not silently returned to clients.
