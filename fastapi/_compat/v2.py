@@ -379,14 +379,28 @@ def create_body_model(
     return BodyModel
 
 
+def _needs_no_config(type_: Any) -> bool:
+    """Return True if TypeAdapter must not receive config= for this type.
+
+    Pydantic raises PydanticUserError when config= is passed to TypeAdapter and
+    the resolved type (or its inner type) is a BaseModel, dataclass, or TypedDict.
+    We therefore suppress config= not only for bare BaseModel/dataclass types but
+    also for Annotated wrappers whose first argument is such a type — this covers
+    Json[BaseModel], Json[SerializeAsAny[BaseModel]], and plain
+    Annotated[BaseModel, ...] forms.
+    """
+    if lenient_issubclass(type_, (BaseModel, dict)) or is_dataclass(type_):
+        return True
+    if get_origin(type_) is Annotated:
+        return _needs_no_config(get_args(type_)[0])
+    return False
+
+
 def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     model_fields: list[ModelField] = []
     for name, field_info in model.model_fields.items():
         type_ = field_info.annotation
-        if lenient_issubclass(type_, (BaseModel, dict)) or is_dataclass(type_):
-            model_config = None
-        else:
-            model_config = model.model_config
+        model_config = None if _needs_no_config(type_) else model.model_config
         model_fields.append(
             ModelField(
                 field_info=field_info,
