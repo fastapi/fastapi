@@ -174,9 +174,11 @@ class Dependant:
             if self._is_gen_callable_cache is not None:
                 return self._is_gen_callable_cache
 
-            dunder_unwrapped_call = getattr(
-                _unwrapped_call(self.call), "__call__", None
-            )  # noqa: B004
+            dunder_unwrapped_call = getattr(  # noqa: B004
+                _unwrapped_call(self.call),
+                "__call__",
+                None,
+            )
             if dunder_unwrapped_call is None:
                 self._is_gen_callable_cache = False  # pragma: no cover
             if inspect.isgeneratorfunction(
@@ -214,9 +216,9 @@ class Dependant:
             if self._is_async_gen_callable_cache is not None:
                 return self._is_async_gen_callable_cache
 
-            dunder_unwrapped_call = getattr(
+            dunder_unwrapped_call = getattr(  # noqa: B004
                 _unwrapped_call(self.call), "__call__", None
-            )  # noqa: B004
+            )
             if dunder_unwrapped_call is None:
                 self._is_async_gen_callable_cache = False  # pragma: no cover
             elif inspect.isasyncgenfunction(
@@ -258,9 +260,9 @@ class Dependant:
             if self._is_coroutine_callable_cache is not None:
                 return self._is_coroutine_callable_cache
 
-            dunder_unwrapped_call = getattr(
+            dunder_unwrapped_call = getattr(  # noqa: B004
                 _unwrapped_call(self.call), "__call__", None
-            )  # noqa: B004
+            )
             if dunder_unwrapped_call is None:
                 self._is_coroutine_callable_cache = False  # pragma: no cover
             elif iscoroutinefunction(
