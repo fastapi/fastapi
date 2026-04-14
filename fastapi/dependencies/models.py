@@ -53,7 +53,7 @@ class Dependant:
     _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
     _cache_key_cache: DependencyCacheKey = field(default=None, init=False, repr=False)
     _uses_scopes_cache: bool = field(default=None, init=False, repr=False)
-    _is_security_scheme_cache: bool = field(default=False, init=False, repr=False)
+    _is_security_scheme_cache: bool = field(default=None, init=False, repr=False)
     _security_scheme_cache: SecurityBase = field(default=None, init=False, repr=False)
 
     @property
