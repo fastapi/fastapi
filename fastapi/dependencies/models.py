@@ -2,7 +2,7 @@ import inspect
 import sys
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from functools import cached_property, partial
+from functools import partial
 from typing import Any, Literal
 
 from fastapi._compat import ModelField
@@ -51,14 +51,24 @@ class Dependant:
     scope: Literal["function", "request"] | None = None
     # Lazy cached fields
     _oauth_scopes_cache: list[str] | None = field(default=None, init=False, repr=False)
-    _cache_key_cache: DependencyCacheKey | None = field(default=None, init=False, repr=False)
+    _cache_key_cache: DependencyCacheKey | None = field(
+        default=None, init=False, repr=False
+    )
     _uses_scopes_cache: bool | None = field(default=None, init=False, repr=False)
     _is_security_scheme_cache: bool | None = field(default=None, init=False, repr=False)
-    _security_scheme_cache: SecurityBase | None = field(default=None, init=False, repr=False)
-    _security_dependencies_cache: list["Dependant"] | None = field(default=None, init=False, repr=False)
+    _security_scheme_cache: SecurityBase | None = field(
+        default=None, init=False, repr=False
+    )
+    _security_dependencies_cache: list["Dependant"] | None = field(
+        default=None, init=False, repr=False
+    )
     _is_gen_callable_cache: bool | None = field(default=None, init=False, repr=False)
-    _is_async_gen_callable_cache: bool | None = field(default=None, init=False, repr=False)
-    _is_coroutine_callable_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_async_gen_callable_cache: bool | None = field(
+        default=None, init=False, repr=False
+    )
+    _is_coroutine_callable_cache: bool | None = field(
+        default=None, init=False, repr=False
+    )
     _computed_scope_cache: str | None = field(default=None, init=False, repr=False)
 
     @property
@@ -131,7 +141,9 @@ class Dependant:
     @property
     def _security_dependencies(self) -> list["Dependant"]:
         if self._security_dependencies_cache is None:
-            security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
+            security_deps = [
+                dep for dep in self.dependencies if dep._is_security_scheme
+            ]
             self._security_dependencies_cache = security_deps
 
         return self._security_dependencies_cache
@@ -162,7 +174,9 @@ class Dependant:
             if self._is_gen_callable_cache is not None:
                 return self._is_gen_callable_cache
 
-            dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+            dunder_unwrapped_call = getattr(
+                _unwrapped_call(self.call), "__call__", None
+            )  # noqa: B004
             if dunder_unwrapped_call is None:
                 self._is_gen_callable_cache = False  # pragma: no cover
             if inspect.isgeneratorfunction(
@@ -200,7 +214,9 @@ class Dependant:
             if self._is_async_gen_callable_cache is not None:
                 return self._is_async_gen_callable_cache
 
-            dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+            dunder_unwrapped_call = getattr(
+                _unwrapped_call(self.call), "__call__", None
+            )  # noqa: B004
             if dunder_unwrapped_call is None:
                 self._is_async_gen_callable_cache = False  # pragma: no cover
             elif inspect.isasyncgenfunction(
@@ -242,7 +258,9 @@ class Dependant:
             if self._is_coroutine_callable_cache is not None:
                 return self._is_coroutine_callable_cache
 
-            dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+            dunder_unwrapped_call = getattr(
+                _unwrapped_call(self.call), "__call__", None
+            )  # noqa: B004
             if dunder_unwrapped_call is None:
                 self._is_coroutine_callable_cache = False  # pragma: no cover
             elif iscoroutinefunction(
