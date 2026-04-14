@@ -18,3 +18,12 @@ updates:
       default-days: 7
     commit-message:
       prefix: ⬆
+  # pre-commit
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ⬆
