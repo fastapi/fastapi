@@ -58,6 +58,7 @@ class Dependant:
     _security_dependencies_cache: list["Dependant"] = field(default=None, init=False, repr=False)
     _is_gen_callable_cache: bool = field(default=None, init=False, repr=False)
     _is_async_gen_callable_cache: bool = field(default=None, init=False, repr=False)
+    _is_coroutine_callable_cache: bool = field(default=None, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -210,35 +211,47 @@ class Dependant:
 
         return self._is_async_gen_callable_cache
 
-    @cached_property
+    @property
     def is_coroutine_callable(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        if inspect.isroutine(_impartial(self.call)) and iscoroutinefunction(
-            _impartial(self.call)
-        ):
-            return True
-        if inspect.isroutine(_unwrapped_call(self.call)) and iscoroutinefunction(
-            _unwrapped_call(self.call)
-        ):
-            return True
-        if inspect.isclass(_unwrapped_call(self.call)):
-            return False
-        dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
-        if dunder_call is None:
-            return False  # pragma: no cover
-        if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
-            _unwrapped_call(dunder_call)
-        ):
-            return True
-        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
-        if dunder_unwrapped_call is None:
-            return False  # pragma: no cover
-        if iscoroutinefunction(
-            _impartial(dunder_unwrapped_call)
-        ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call)):
-            return True
-        return False
+        if self._is_coroutine_callable_cache is None:
+            if self.call is None:
+                self._is_coroutine_callable_cache = False  # pragma: no cover
+            elif inspect.isroutine(_impartial(self.call)) and iscoroutinefunction(
+                _impartial(self.call)
+            ):
+                self._is_coroutine_callable_cache = True
+            elif inspect.isroutine(_unwrapped_call(self.call)) and iscoroutinefunction(
+                _unwrapped_call(self.call)
+            ):
+                self._is_coroutine_callable_cache = True
+            elif inspect.isclass(_unwrapped_call(self.call)):
+                self._is_coroutine_callable_cache = False
+
+            if self._is_coroutine_callable_cache is not None:
+                return self._is_coroutine_callable_cache
+
+            dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
+            if dunder_call is None:
+                self._is_coroutine_callable_cache = False  # pragma: no cover
+            elif iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
+                _unwrapped_call(dunder_call)
+            ):
+                self._is_coroutine_callable_cache = True
+
+            if self._is_coroutine_callable_cache is not None:
+                return self._is_coroutine_callable_cache
+
+            dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+            if dunder_unwrapped_call is None:
+                self._is_coroutine_callable_cache = False  # pragma: no cover
+            elif iscoroutinefunction(
+                _impartial(dunder_unwrapped_call)
+            ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call)):
+                self._is_coroutine_callable_cache = True
+            else:
+                self._is_coroutine_callable_cache = False
+        
+        return self._is_coroutine_callable_cache
 
     @cached_property
     def computed_scope(self) -> str | None:
