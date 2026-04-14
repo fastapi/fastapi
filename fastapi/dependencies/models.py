@@ -28,7 +28,7 @@ def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
     return func
 
 
-@dataclass
+@dataclass(slots=True)
 class Dependant:
     path_params: list[ModelField] = field(default_factory=list)
     query_params: list[ModelField] = field(default_factory=list)
