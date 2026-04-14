@@ -50,15 +50,15 @@ class Dependant:
     path: str | None = None
     scope: Literal["function", "request"] | None = None
     # Lazy cached fields
-    _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
-    _cache_key_cache: DependencyCacheKey = field(default=None, init=False, repr=False)
-    _uses_scopes_cache: bool = field(default=None, init=False, repr=False)
-    _is_security_scheme_cache: bool = field(default=None, init=False, repr=False)
-    _security_scheme_cache: SecurityBase = field(default=None, init=False, repr=False)
-    _security_dependencies_cache: list["Dependant"] = field(default=None, init=False, repr=False)
-    _is_gen_callable_cache: bool = field(default=None, init=False, repr=False)
-    _is_async_gen_callable_cache: bool = field(default=None, init=False, repr=False)
-    _is_coroutine_callable_cache: bool = field(default=None, init=False, repr=False)
+    _oauth_scopes_cache: list[str] | None = field(default=None, init=False, repr=False)
+    _cache_key_cache: DependencyCacheKey | None = field(default=None, init=False, repr=False)
+    _uses_scopes_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_security_scheme_cache: bool | None = field(default=None, init=False, repr=False)
+    _security_scheme_cache: SecurityBase | None = field(default=None, init=False, repr=False)
+    _security_dependencies_cache: list["Dependant"] | None = field(default=None, init=False, repr=False)
+    _is_gen_callable_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_async_gen_callable_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_coroutine_callable_cache: bool | None = field(default=None, init=False, repr=False)
     _computed_scope_cache: str | None = field(default=None, init=False, repr=False)
 
     @property
