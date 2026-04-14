@@ -22,7 +22,7 @@ def test_openapi_schema():
             "paths": {
                 "/fastapi": {
                     "get": {
-                        "summary": "Redirect FastAPI",
+                        "summary": "Redirect Fastapi",
                         "operationId": "redirect_fastapi_fastapi_get",
                         "responses": {"307": {"description": "Successful Response"}},
                     }
