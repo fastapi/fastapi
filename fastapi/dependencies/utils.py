@@ -411,6 +411,11 @@ def analyze_param(
     if get_origin(use_annotation) is Annotated:
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]
+        # Resolve forward reference in type_annotation
+        if isinstance(type_annotation, str):
+            # Try to resolve using endpoint's globalns
+            globalns = getattr(call, "__globals__", {})
+            type_annotation = get_typed_annotation(type_annotation, globalns)
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
