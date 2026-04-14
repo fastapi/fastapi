@@ -59,6 +59,7 @@ class Dependant:
     _is_gen_callable_cache: bool = field(default=None, init=False, repr=False)
     _is_async_gen_callable_cache: bool = field(default=None, init=False, repr=False)
     _is_coroutine_callable_cache: bool = field(default=None, init=False, repr=False)
+    _computed_scope_cache: str | None = field(default=None, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -250,13 +251,17 @@ class Dependant:
                 self._is_coroutine_callable_cache = True
             else:
                 self._is_coroutine_callable_cache = False
-        
+
         return self._is_coroutine_callable_cache
 
-    @cached_property
+    @property
     def computed_scope(self) -> str | None:
-        if self.scope:
-            return self.scope
-        if self.is_gen_callable or self.is_async_gen_callable:
-            return "request"
-        return None
+        if self._computed_scope_cache is None:
+            if self.scope:
+                self._computed_scope_cache = self.scope
+            elif self.is_gen_callable or self.is_async_gen_callable:
+                self._computed_scope_cache = "request"
+            else:
+                self._computed_scope_cache = None
+
+        return self._computed_scope_cache
