@@ -53,6 +53,7 @@ class Dependant:
     _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
     _cache_key_cache: DependencyCacheKey = field(default=None, init=False, repr=False)
     _uses_scopes_cache: bool = field(default=None, init=False, repr=False)
+    _is_security_scheme_cache: bool = field(default=False, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -97,15 +98,19 @@ class Dependant:
 
             if self._uses_scopes_cache is None:
                 self._uses_scopes_cache = False
-        
+
         return self._uses_scopes_cache
 
-    @cached_property
+    @property
     def _is_security_scheme(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        unwrapped = _unwrapped_call(self.call)
-        return isinstance(unwrapped, SecurityBase)
+        if self._is_security_scheme_cache is None:
+            if self.call is None:
+                self._is_security_scheme_cache = False  # pragma: no cover
+            else:
+                unwrapped = _unwrapped_call(self.call)
+                self._is_security_scheme_cache = isinstance(unwrapped, SecurityBase)
+
+        return self._is_security_scheme_cache
 
     # Mainly to get the type of SecurityBase, but it's the same self.call
     @cached_property
