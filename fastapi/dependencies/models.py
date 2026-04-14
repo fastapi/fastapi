@@ -55,6 +55,7 @@ class Dependant:
     _uses_scopes_cache: bool = field(default=None, init=False, repr=False)
     _is_security_scheme_cache: bool = field(default=None, init=False, repr=False)
     _security_scheme_cache: SecurityBase = field(default=None, init=False, repr=False)
+    _security_dependencies_cache: list["Dependant"] = field(default=None, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -123,10 +124,13 @@ class Dependant:
 
         return self._security_scheme_cache
 
-    @cached_property
+    @property
     def _security_dependencies(self) -> list["Dependant"]:
-        security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
-        return security_deps
+        if self._security_dependencies_cache is None:
+            security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
+            self._security_dependencies_cache = security_deps
+
+        return self._security_dependencies_cache
 
     @cached_property
     def is_gen_callable(self) -> bool:
