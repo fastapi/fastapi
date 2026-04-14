@@ -49,15 +49,20 @@ class Dependant:
     use_cache: bool = True
     path: str | None = None
     scope: Literal["function", "request"] | None = None
+    # Lazy cached fields
+    _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
 
-    @cached_property
+    @property
     def oauth_scopes(self) -> list[str]:
-        scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
-        # This doesn't use a set to preserve order, just in case
-        for scope in self.own_oauth_scopes or []:
-            if scope not in scopes:
-                scopes.append(scope)
-        return scopes
+        if self._oauth_scopes_cache is None:
+            scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
+            # This doesn't use a set to preserve order, just in case
+            for scope in self.own_oauth_scopes or []:
+                if scope not in scopes:
+                    scopes.append(scope)
+            self._oauth_scopes_cache = scopes
+
+        return self._oauth_scopes_cache
 
     @cached_property
     def cache_key(self) -> DependencyCacheKey:
