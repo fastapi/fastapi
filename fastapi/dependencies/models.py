@@ -51,6 +51,7 @@ class Dependant:
     scope: Literal["function", "request"] | None = None
     # Lazy cached fields
     _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
+    _cache_key_cache: DependencyCacheKey = field(default=None, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -64,16 +65,19 @@ class Dependant:
 
         return self._oauth_scopes_cache
 
-    @cached_property
+    @property
     def cache_key(self) -> DependencyCacheKey:
-        scopes_for_cache = (
-            tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
-        )
-        return (
-            self.call,
-            scopes_for_cache,
-            self.computed_scope or "",
-        )
+        if self._cache_key_cache is None:
+            scopes_for_cache = (
+                tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
+            )
+            self._cache_key_cache = (
+                self.call,
+                scopes_for_cache,
+                self.computed_scope or "",
+            )
+
+        return self._cache_key_cache
 
     @cached_property
     def _uses_scopes(self) -> bool:
