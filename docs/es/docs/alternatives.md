@@ -241,7 +241,7 @@ Generar el esquema OpenAPI automáticamente, desde el mismo código que define l
 
 Esto ni siquiera es Python, NestJS es un framework de JavaScript (TypeScript) NodeJS inspirado por Angular.
 
-Logra algo algo similar a lo que se puede hacer con Flask-apispec.
+Logra algo similar a lo que se puede hacer con Flask-apispec.
 
 Tiene un sistema de inyección de dependencias integrado, inspirado por Angular 2. Requiere pre-registrar los "inyectables" (como todos los otros sistemas de inyección de dependencias que conozco), por lo que añade a la verbosidad y repetición de código.
 

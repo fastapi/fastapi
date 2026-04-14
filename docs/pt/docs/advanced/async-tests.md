@@ -34,7 +34,7 @@ O arquivo `main.py` teria:
 
 {* ../../docs_src/async_tests/app_a_py310/main.py *}
 
-O arquivo `test_main.py` teria os testes para para o arquivo `main.py`, ele poderia ficar assim:
+O arquivo `test_main.py` teria os testes para o arquivo `main.py`, ele poderia ficar assim:
 
 {* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
