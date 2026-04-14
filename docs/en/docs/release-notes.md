@@ -4541,7 +4541,7 @@ You hopefully updated to a supported version of Python a while ago. If you haven
 * ✏ Reword and clarify text in tutorial `docs/en/docs/tutorial/body-nested-models.md`. PR [#5169](https://github.com/tiangolo/fastapi/pull/5169) by [@papb](https://github.com/papb).
 * ✏ Fix minor typo in `docs/en/docs/features.md`. PR [#5206](https://github.com/tiangolo/fastapi/pull/5206) by [@OtherBarry](https://github.com/OtherBarry).
 * ✏ Fix minor typos in `docs/en/docs/async.md`. PR [#5125](https://github.com/tiangolo/fastapi/pull/5125) by [@Ksenofanex](https://github.com/Ksenofanex).
-* 📝 Add external link to docs: "Fastapi, Docker(Docker compose) and Postgres". PR [#5033](https://github.com/tiangolo/fastapi/pull/5033) by [@krishnardt](https://github.com/krishnardt).
+* 📝 Add external link to docs: "FastAPI, Docker(Docker compose) and Postgres". PR [#5033](https://github.com/tiangolo/fastapi/pull/5033) by [@krishnardt](https://github.com/krishnardt).
 * 📝 Simplify example for docs for Additional Responses, remove unnecessary `else`. PR [#4693](https://github.com/tiangolo/fastapi/pull/4693) by [@adriangb](https://github.com/adriangb).
 * 📝 Update docs, compare enums with identity instead of equality. PR [#4905](https://github.com/tiangolo/fastapi/pull/4905) by [@MicaelJarniac](https://github.com/MicaelJarniac).
 * ✏ Fix typo in `docs/en/docs/python-types.md`. PR [#4886](https://github.com/tiangolo/fastapi/pull/4886) by [@MicaelJarniac](https://github.com/MicaelJarniac).
@@ -5959,7 +5959,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Allow enums to allow them to have their own schemas in OpenAPI. To support [pydantic/pydantic#1432](https://github.com/pydantic/pydantic/pull/1432) in FastAPI. PR [#1461](https://github.com/tiangolo/fastapi/pull/1461).
 * Add links for funding through [GitHub sponsors](https://github.com/sponsors/tiangolo). PR [#1425](https://github.com/tiangolo/fastapi/pull/1425).
-* Update issue template for for questions. PR [#1344](https://github.com/tiangolo/fastapi/pull/1344) by [@retnikt](https://github.com/retnikt).
+* Update issue template for questions. PR [#1344](https://github.com/tiangolo/fastapi/pull/1344) by [@retnikt](https://github.com/retnikt).
 * Update warning about storing passwords in docs. PR [#1336](https://github.com/tiangolo/fastapi/pull/1336) by [@skorokithakis](https://github.com/skorokithakis).
 * Fix typo. PR [#1326](https://github.com/tiangolo/fastapi/pull/1326) by [@chenl](https://github.com/chenl).
 * Add translation to Portuguese for [Alternatives, Inspiration and Comparisons - Alternativas, Inspiração e Comparações](https://fastapi.tiangolo.com/pt/alternatives/). PR [#1325](https://github.com/tiangolo/fastapi/pull/1325) by [@Serrones](https://github.com/Serrones).
