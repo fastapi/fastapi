@@ -52,6 +52,7 @@ class Dependant:
     # Lazy cached fields
     _oauth_scopes_cache: list[str] = field(default=None, init=False, repr=False)
     _cache_key_cache: DependencyCacheKey = field(default=None, init=False, repr=False)
+    _uses_scopes_cache: bool = field(default=None, init=False, repr=False)
 
     @property
     def oauth_scopes(self) -> list[str]:
@@ -79,18 +80,25 @@ class Dependant:
 
         return self._cache_key_cache
 
-    @cached_property
+    @property
     def _uses_scopes(self) -> bool:
-        if self.own_oauth_scopes:
-            return True
-        if self.security_scopes_param_name is not None:
-            return True
-        if self._is_security_scheme:
-            return True
-        for sub_dep in self.dependencies:
-            if sub_dep._uses_scopes:
-                return True
-        return False
+        if self._uses_scopes_cache is None:
+            if self.own_oauth_scopes:
+                self._uses_scopes_cache = True
+            elif self.security_scopes_param_name is not None:
+                self._uses_scopes_cache = True
+            elif self._is_security_scheme:
+                self._uses_scopes_cache = True
+
+            for sub_dep in self.dependencies:
+                if sub_dep._uses_scopes:
+                    self._uses_scopes_cache = True
+                    break
+
+            if self._uses_scopes_cache is None:
+                self._uses_scopes_cache = False
+        
+        return self._uses_scopes_cache
 
     @cached_property
     def _is_security_scheme(self) -> bool:
