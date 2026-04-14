@@ -3,7 +3,7 @@ import sys
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from functools import partial
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -18,11 +18,11 @@ else:  # pragma: no cover
 def _unwrapped_call(call: Callable[..., Any] | None) -> Any:
     if call is None:
         return call  # pragma: no cover
-    unwrapped = inspect.unwrap(_impartial(call))
+    unwrapped = inspect.unwrap(cast(Callable[..., Any], _impartial(call)))
     return unwrapped
 
 
-def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
+def _impartial(func: Callable[..., Any] | None) -> Callable[..., Any] | None:
     while isinstance(func, partial):
         func = func.func
     return func
