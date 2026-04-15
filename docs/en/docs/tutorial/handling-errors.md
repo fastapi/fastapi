@@ -243,26 +243,29 @@ If you want to use the exception along with the same default exception handlers 
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
 
-### Handling Validation for Path Parameters
+### Validating Path Parameters
 
-In real-world applications, you may need to validate input values beyond basic type checking.
+FastAPI allows you to validate path parameters using Pydantic validators, similar to query parameter validation.
 
-For example, ensuring that an ID is a positive number:
+For example, to ensure an ID follows a specific format:
 
 ```python
-from fastapi import FastAPI, HTTPException
+from typing import Annotated
+from fastapi import FastAPI
+from pydantic import AfterValidator
 
 app = FastAPI()
 
-@app.get("/users/{user_id}")
-def get_user(user_id: int):
-    if user_id <= 0:
-        raise HTTPException(
-            status_code=400,
-            detail="User ID must be a positive integer"
-        )
-    return {"user_id": user_id}
-```
-This ensures that invalid values are handled gracefully and provides clear feedback to API clients.
-You can also use validation libraries like Pydantic for more complex constraints.
+def check_valid_id(id: str) -> str:
+    if not id.startswith(("isbn-", "imdb-")):
+        raise ValueError('Invalid ID format, it must start with "isbn-" or "imdb-"')
+    return id
 
+ValidID = Annotated[str, AfterValidator(check_valid_id)]
+
+@app.get("/items/{item_id}")
+def read_item(item_id: ValidID):
+    return {"item_id": item_id}
+```
+This approach ensures validation happens before the request reaches your path operation function, 
+keeping your code clean and consistent.
