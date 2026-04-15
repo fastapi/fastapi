@@ -1,11 +1,10 @@
-from typing import Optional
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI, Form
 from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
-from typing_extensions import Annotated
 
 from .utils import needs_pydanticv2
 
@@ -49,19 +48,19 @@ class Parent(BaseModel):
 class StandardModel(Parent):
     default_true: bool = True
     default_false: bool = False
-    default_none: Optional[bool] = None
+    default_none: bool | None = None
     default_zero: int = 0
     default_str: str = "foo"
-    true_if_unset: Optional[bool] = None
+    true_if_unset: bool | None = None
 
 
 class FieldModel(Parent):
     default_true: bool = Field(default=True)
     default_false: bool = Field(default=False)
-    default_none: Optional[bool] = Field(default=None)
+    default_none: bool | None = Field(default=None)
     default_zero: int = Field(default=0)
     default_str: str = Field(default="foo")
-    true_if_unset: Optional[bool] = Field(default=None)
+    true_if_unset: bool | None = Field(default=None)
 
 
 if PYDANTIC_V2:
@@ -69,18 +68,18 @@ if PYDANTIC_V2:
     class AnnotatedFieldModel(Parent):
         default_true: Annotated[bool, Field(default=True)]
         default_false: Annotated[bool, Field(default=False)]
-        default_none: Annotated[Optional[bool], Field(default=None)]
+        default_none: Annotated[bool | None, Field(default=None)]
         default_zero: Annotated[int, Field(default=0)]
         default_str: Annotated[str, Field(default="foo")]
-        true_if_unset: Annotated[Optional[bool], Field(default=None)]
+        true_if_unset: Annotated[bool | None, Field(default=None)]
 
     class AnnotatedFormModel(Parent):
         default_true: Annotated[bool, Form(default=True)]
         default_false: Annotated[bool, Form(default=False)]
-        default_none: Annotated[Optional[bool], Form(default=None)]
+        default_none: Annotated[bool | None, Form(default=None)]
         default_zero: Annotated[int, Form(default=0)]
         default_str: Annotated[str, Form(default="foo")]
-        true_if_unset: Annotated[Optional[bool], Form(default=None)]
+        true_if_unset: Annotated[bool | None, Form(default=None)]
 
     class SimpleForm(BaseModel):
         """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
@@ -153,10 +152,10 @@ if PYDANTIC_V2:
 async def form_inlined(
     default_true: Annotated[bool, Form()] = True,
     default_false: Annotated[bool, Form()] = False,
-    default_none: Annotated[Optional[bool], Form()] = None,
+    default_none: Annotated[bool | None, Form()] = None,
     default_zero: Annotated[int, Form()] = 0,
     default_str: Annotated[str, Form()] = "foo",
-    true_if_unset: Annotated[Optional[bool], Form()] = None,
+    true_if_unset: Annotated[bool | None, Form()] = None,
 ):
     """
     Rather than using a model, inline the fields in the endpoint.
