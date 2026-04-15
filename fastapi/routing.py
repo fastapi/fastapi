@@ -73,9 +73,9 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from starlette import routing
-from starlette.background import BackgroundTasks
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
+from starlette.background import BackgroundTasks
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
 from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
@@ -684,9 +684,7 @@ def get_request_handler(
                         # Merge injected BackgroundTasks with the Response's
                         # own background task so neither set is lost.
                         original = raw_response.background
-                        merged = BackgroundTasks(
-                            solved_result.background_tasks.tasks
-                        )
+                        merged = BackgroundTasks(solved_result.background_tasks.tasks)
                         if isinstance(original, BackgroundTasks):
                             merged.tasks.extend(original.tasks)
                         else:

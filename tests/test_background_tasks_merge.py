@@ -8,7 +8,7 @@ injected tasks.
 See: https://github.com/fastapi/fastapi/issues/11215
 """
 
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import BackgroundTasks, FastAPI
 from fastapi.testclient import TestClient
 from starlette.background import BackgroundTask
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
