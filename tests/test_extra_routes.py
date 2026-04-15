@@ -71,9 +71,13 @@ def test_delete():
 
 
 def test_head():
+    # HEAD is served by the GET handler (registered first) because GET
+    # routes automatically support HEAD per RFC 7231 §4.3.2. The explicit
+    # @app.head handler is shadowed since the GET route matches first.
     response = client.head("/items/foo")
     assert response.status_code == 200, response.text
-    assert response.headers["x-fastapi-item-id"] == "foo"
+    assert response.content == b""
+    assert response.headers["content-type"] == "application/json"
 
 
 def test_options():

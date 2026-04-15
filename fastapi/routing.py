@@ -1152,12 +1152,33 @@ class APIRoute(routing.Route):
             is_json_stream=route.is_json_stream,
         )
 
+    def _is_head_for_get(
+        self, scope: Scope, methods: Collection[str] | None = None
+    ) -> bool:
+        """Check if this is a HEAD request that should be served by a GET route."""
+        route_methods = methods if methods is not None else self.methods
+        return (
+            scope.get("type") == "http"
+            and scope.get("method") == "HEAD"
+            and bool(route_methods)
+            and "GET" in route_methods
+            and "HEAD" not in route_methods
+        )
+
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
             match, child_scope = effective_context.matches(scope)
         else:
             match, child_scope = super().matches(scope)
+        # Automatically support HEAD for GET routes (HTTP spec compliance).
+        # RFC 7231 §4.3.2: the server SHOULD send the same header fields in
+        # response to a HEAD request as it would have sent for GET.
+        # HEAD is NOT added to self.methods so it stays out of the OpenAPI
+        # schema. Instead, we promote the match at routing time and allow
+        # it through in handle().
+        if match == Match.PARTIAL and self._is_head_for_get(scope):
+            match = Match.FULL
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
@@ -1166,7 +1187,11 @@ class APIRoute(routing.Route):
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
             methods = effective_context.methods
-            if methods and scope["method"] not in methods:
+            if (
+                methods
+                and scope["method"] not in methods
+                and not self._is_head_for_get(scope, methods)
+            ):
                 headers = {"Allow": ", ".join(methods)}
                 if "app" in scope:
                     raise HTTPException(status_code=405, headers=headers)
@@ -1182,7 +1207,11 @@ class APIRoute(routing.Route):
                 _effective_route_context_var.reset(token)
             await app(scope, receive, send)
             return
-        await super().handle(scope, receive, send)
+        # Allow HEAD requests through to the GET handler.
+        if self._is_head_for_get(scope):
+            await self.app(scope, receive, send)
+        else:
+            await super().handle(scope, receive, send)
 
 
 @dataclass
@@ -1628,8 +1657,6 @@ def _iter_routes_with_context(
                 yield route_context.original_route, route_context
         else:
             yield route, None
-
-
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
