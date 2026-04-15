@@ -33,12 +33,13 @@ def test_post_form_checked(client: TestClient):
     assert response.json() == {"checkbox": True}
 
 
-def test_post_form_unchecked(client: TestClient):
+@pytest.mark.parametrize("data", [{}, {"checkbox": ""}])
+def test_post_form_unchecked(client: TestClient, data: dict):
     """
     When the checkbox is not checked,
     now that we have a model validator that can differentiate defaults vs. undefined,
     the checkbox is correctly false.
     """
-    response = client.post("/form", data={"checkbox": ""})
+    response = client.post("/form", data=data)
     response.raise_for_status()
     assert response.json() == {"checkbox": False}
