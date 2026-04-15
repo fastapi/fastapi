@@ -243,7 +243,7 @@ If you want to use the exception along with the same default exception handlers 
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
 
-### Handling Validation for Path Parameters
+### Handling Validation for Path Parameters { #handling-validation-for-path-parameters }
 
 In real-world applications, you may need to validate input values beyond basic type checking.
 
@@ -265,4 +265,3 @@ def get_user(user_id: int):
 ```
 This ensures that invalid values are handled gracefully and provides clear feedback to API clients.
 You can also use validation libraries like Pydantic for more complex constraints.
-
