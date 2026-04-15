@@ -995,11 +995,36 @@ class APIRoute(routing.Route):
             is_json_stream=self.is_json_stream,
         )
 
+    def _is_head_for_get(self, scope: Scope) -> bool:
+        """Check if this is a HEAD request that should be served by a GET route."""
+        return (
+            scope.get("type") == "http"
+            and scope.get("method") == "HEAD"
+            and bool(self.methods)
+            and "GET" in self.methods
+            and "HEAD" not in self.methods
+        )
+
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
+        # Automatically support HEAD for GET routes (HTTP spec compliance).
+        # RFC 7231 §4.3.2: the server SHOULD send the same header fields in
+        # response to a HEAD request as it would have sent for GET.
+        # HEAD is NOT added to self.methods so it stays out of the OpenAPI
+        # schema. Instead, we promote the match at routing time and allow
+        # it through in handle().
+        if match == Match.PARTIAL and self._is_head_for_get(scope):
+            match = Match.FULL
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
+
+    async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
+        # Allow HEAD requests through to the GET handler.
+        if self._is_head_for_get(scope):
+            await self.app(scope, receive, send)
+        else:
+            await super().handle(scope, receive, send)
 
 
 class APIRouter(routing.Router):
