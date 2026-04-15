@@ -60,4 +60,3 @@ Do not:
 - Do not catch bare `Exception` — catch specific exceptions
 - Do not use mutable default arguments (e.g., `def f(x=[])`)
 - Do not use `import *` — use explicit imports
-
