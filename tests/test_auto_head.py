@@ -1,4 +1,5 @@
 """Test that HEAD requests are automatically supported for GET routes (issue #1773)."""
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
