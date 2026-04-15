@@ -417,7 +417,7 @@ def analyze_param(
             globalns = getattr(call, "__globals__", {})
             type_annotation = get_typed_annotation(type_annotation, globalns)
         # Also handle ForwardRef object (not just string)
-        elif hasattr(type_annotation, '__forward_arg__'):
+        elif hasattr(type_annotation, "__forward_arg__"):
             globalns = getattr(call, "__globals__", {})
             type_annotation = get_typed_annotation(
                 ForwardRef(type_annotation.__forward_arg__),
