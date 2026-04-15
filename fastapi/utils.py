@@ -96,7 +96,11 @@ def generate_unique_id(route: "APIRoute") -> str:
     operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
-    operation_id = f"{operation_id}_{sorted(route.methods - {'HEAD'}, key=lambda m: 0 if m == 'GET' else 1)[0].lower()}"
+    methods_for_id = (
+        route.methods - {"HEAD"} if "GET" in route.methods else route.methods
+    )
+    primary_method = sorted(methods_for_id, key=lambda m: 0 if m == "GET" else 1)[0]
+    operation_id = f"{operation_id}_{primary_method.lower()}"
     return operation_id
 
 
