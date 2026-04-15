@@ -81,7 +81,7 @@ Say, for example, you were generating an HTML form from a model,
 and that model had a boolean field in it that you wanted to display as a checkbox
 with a default `True` value:
 
-{* ../../docs_src/request_form_models/tutorial003_an_py39.py hl[11,10:23] *}
+{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[11,10:23] *}
 
 This works as expected when the checkbox remains checked,
 the form encoded data in the request looks like this:
@@ -125,7 +125,7 @@ where you may end up with `MyModel`, `MyModelCreate`, and `MyModelCreateForm`.
 
 ///
 
-{* ../../docs_src/request_form_models/tutorial004_an_py39.py hl[7,13:25] *}
+{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[7,13:25] *}
 
 ## Summary { #summary }
 
