@@ -1,0 +1,40 @@
+---
+description: Governance rules for fastapi — quality gates, security, conventions
+globs:
+  - "**/*.py"
+alwaysApply: true
+---
+
+# Governance — fastapi
+
+> Generated from governance.md by crag. Regenerate: `crag compile --target cursor`
+
+**Stack:** python
+
+## Quality Gates
+
+Run these checks in order before committing:
+### Lint
+- `uv run mypy .`
+
+### Test
+- `uv run pytest`
+
+### Build
+- `python -m build`
+
+### Ci (inferred from workflow)
+- `python -m build --sdist`
+- `uv run --no-sync bash scripts/test-cov.sh`
+- `uv run --no-sync pytest tests/benchmarks --codspeed`
+- `uv run coverage combine coverage`
+- `uv run coverage html --title "Coverage for ${{ github.sha }}"`
+- `uv run coverage report --fail-under=100`
+## Security
+
+- No hardcoded secrets — grep for sk_live, AKIA, password= before commit
+
+## Conventions
+
+- Follow project commit conventions
+- Runtimes: python
