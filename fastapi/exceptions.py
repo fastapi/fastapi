@@ -204,37 +204,37 @@ class ValidationException(Exception):
     def _format_error(self, err: Any) -> str:
         if not isinstance(err, dict):
             return f"  {err}"
-        
+
         loc = err.get("loc")
         msg = err.get("msg")
         error_type = err.get("type")
         has_input = "input" in err
         input_val = err.get("input")
-        
+
         parts = []
-        
+
         if loc:
             if isinstance(loc, (list, tuple)):
                 loc_str = " -> ".join(str(item) for item in loc)
             else:
                 loc_str = str(loc)
             parts.append(f"  Loc: {loc_str}")
-        
+
         if error_type:
             parts.append(f"  Type: {error_type}")
-        
+
         if msg:
             parts.append(f"  Msg: {msg}")
-        
+
         if has_input:
             input_str = str(input_val)
             if len(input_str) > 50:
                 input_str = input_str[:47] + "..."
             parts.append(f"  Input: {input_str}")
-        
+
         if not parts:
             return f"  {err}"
-        
+
         return "\n".join(parts)
 
     def __str__(self) -> str:
