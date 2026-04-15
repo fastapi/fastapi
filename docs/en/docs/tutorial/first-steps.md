@@ -1,8 +1,8 @@
-# First Steps
+# First Steps { #first-steps }
 
 The simplest FastAPI file could look like this:
 
-{* ../../docs_src/first_steps/tutorial001.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Copy that to a file `main.py`.
 
@@ -11,7 +11,7 @@ Run the live server:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -54,11 +54,11 @@ In the output, there's a line with something like:
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
+That line shows the URL where your app is being served on your local machine.
 
-### Check it
+### Check it { #check-it }
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Open your browser at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 You will see the JSON response as:
 
@@ -66,51 +66,51 @@ You will see the JSON response as:
 {"message": "Hello World"}
 ```
 
-### Interactive API docs
+### Interactive API docs { #interactive-api-docs }
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Alternative API docs { #alternative-api-docs }
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+### OpenAPI { #openapi }
 
 **FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
 
-#### "Schema"
+#### "Schema" { #schema }
 
 A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
-#### API "schema"
+#### API "schema" { #api-schema }
 
-In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
+In this case, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) is a specification that dictates how to define a schema of your API.
 
 This schema definition includes your API paths, the possible parameters they take, etc.
 
-#### Data "schema"
+#### Data "schema" { #data-schema }
 
 The term "schema" might also refer to the shape of some data, like a JSON content.
 
 In that case, it would mean the JSON attributes, and data types they have, etc.
 
-#### OpenAPI and JSON Schema
+#### OpenAPI and JSON Schema { #openapi-and-json-schema }
 
 OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
 
-#### Check the `openapi.json`
+#### Check the `openapi.json` { #check-the-openapi-json }
 
 If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+You can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 It will show a JSON starting with something like:
 
@@ -135,7 +135,7 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What is OpenAPI for
+#### What is OpenAPI for { #what-is-openapi-for }
 
 The OpenAPI schema is what powers the two interactive documentation systems included.
 
@@ -143,11 +143,96 @@ And there are dozens of alternatives, all based on OpenAPI. You could easily add
 
 You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
 
-## Recap, step by step
+### Configure the app `entrypoint` in `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
-### Step 1: import `FastAPI`
+You can configure where your app is located in a `pyproject.toml` file like:
 
-{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+That `entrypoint` will tell the `fastapi` command that it should import the app like:
+
+```python
+from main import app
+```
+
+If your code was structured like:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Then you would set the `entrypoint` as:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+which would be equivalent to:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` with path { #fastapi-dev-with-path }
+
+You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
+
+```console
+$ fastapi dev main.py
+```
+
+But you would have to remember to pass the correct path every time you call the `fastapi` command.
+
+Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
+
+### Deploy your app (optional) { #deploy-your-app-optional }
+
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
+
+If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+
+Before deploying, make sure you are logged in:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Then deploy your app:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+That's it! Now you can access your app at that URL. ✨
+
+## Recap, step by step { #recap-step-by-step }
+
+### Step 1: import `FastAPI` { #step-1-import-fastapi }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
@@ -155,21 +240,21 @@ You could also use it to generate code automatically, for clients that communica
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+You can use all the [Starlette](https://www.starlette.dev/) functionality with `FastAPI` too.
 
 ///
 
-### Step 2: create a `FastAPI` "instance"
+### Step 2: create a `FastAPI` "instance" { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
 This will be the main point of interaction to create all your API.
 
-### Step 3: create a *path operation*
+### Step 3: create a *path operation* { #step-3-create-a-path-operation }
 
-#### Path
+#### Path { #path }
 
 "Path" here refers to the last part of the URL starting from the first `/`.
 
@@ -193,7 +278,7 @@ A "path" is also commonly called an "endpoint" or a "route".
 
 While building an API, the "path" is the main way to separate "concerns" and "resources".
 
-#### Operation
+#### Operation { #operation }
 
 "Operation" here refers to one of the HTTP "methods".
 
@@ -228,14 +313,14 @@ So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a *path operation decorator*
+#### Define a *path operation decorator* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
 * the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
 /// info | `@decorator` Info
 
@@ -276,7 +361,7 @@ For example, when using GraphQL you normally perform all the actions using only 
 
 ///
 
-### Step 4: define the **path operation function**
+### Step 4: define the **path operation function** { #step-4-define-the-path-operation-function }
 
 This is our "**path operation function**":
 
@@ -284,7 +369,7 @@ This is our "**path operation function**":
 * **operation**: is `get`.
 * **function**: is the function below the "decorator" (below `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 This is a Python function.
 
@@ -296,17 +381,17 @@ In this case, it is an `async` function.
 
 You could also define it as a normal function instead of `async def`:
 
-{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note
 
-If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry).
 
 ///
 
-### Step 5: return the content
+### Step 5: return the content { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 You can return a `dict`, `list`, singular values as `str`, `int`, etc.
 
@@ -314,10 +399,31 @@ You can also return Pydantic models (you'll see more about that later).
 
 There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
 
-## Recap
+### Step 6: Deploy it { #step-6-deploy-it }
+
+Deploy your app to **[FastAPI Cloud](https://fastapicloud.com)** with one command: `fastapi deploy`. 🎉
+
+#### About FastAPI Cloud { #about-fastapi-cloud }
+
+**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**.
+
+It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
+
+It brings the same **developer experience** of building apps with FastAPI to **deploying** them to the cloud. 🎉
+
+FastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and friends* open source projects. ✨
+
+#### Deploy to other cloud providers { #deploy-to-other-cloud-providers }
+
+FastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose.
+
+Follow your cloud provider's guides to deploy FastAPI apps with them. 🤓
+
+## Recap { #recap }
 
 * Import `FastAPI`.
 * Create an `app` instance.
 * Write a **path operation decorator** using decorators like `@app.get("/")`.
 * Define a **path operation function**; for example, `def root(): ...`.
 * Run the development server using the command `fastapi dev`.
+* Optionally deploy your app with `fastapi deploy`.

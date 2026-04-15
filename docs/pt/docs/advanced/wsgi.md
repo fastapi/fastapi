@@ -1,32 +1,48 @@
-# Adicionando WSGI - Flask, Django, entre outros
+# Adicionando WSGI - Flask, Django, entre outros { #including-wsgi-flask-django-others }
 
-Como você viu em [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank} e [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}, você pode **"montar"** aplicações WSGI.
+Como você viu em [Subaplicações - Montagens](sub-applications.md) e [Atrás de um Proxy](behind-a-proxy.md), você pode montar aplicações WSGI.
 
 Para isso, você pode utilizar o `WSGIMiddleware` para encapsular a sua aplicação WSGI, como por exemplo Flask, Django, etc.
 
-## Usando o `WSGIMiddleware`
+## Usando `WSGIMiddleware` { #using-wsgimiddleware }
 
-Você precisa importar o `WSGIMiddleware`.
+/// info | Informação
 
-Em seguinda, encapsular a aplicação WSGI (e.g. Flask) com o middleware.
+Isso requer instalar `a2wsgi`, por exemplo com `pip install a2wsgi`.
 
-E então **"montar"** em um caminho de rota.
+///
 
-{* ../../docs_src/wsgi/tutorial001.py hl[2:3,23] *}
+Você precisa importar o `WSGIMiddleware` de `a2wsgi`.
 
-## Conferindo
+Em seguida, encapsule a aplicação WSGI (e.g. Flask) com o middleware.
 
-Agora todas as requisições sob o caminho `/v1/` serão manipuladas pela aplicação utilizando Flask.
+E então monte isso sob um path.
+
+{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+
+/// note | Nota
+
+Anteriormente, recomendava-se usar `WSGIMiddleware` de `fastapi.middleware.wsgi`, mas agora está descontinuado.
+
+É aconselhável usar o pacote `a2wsgi` em seu lugar. O uso permanece o mesmo.
+
+Apenas certifique-se de que o pacote `a2wsgi` está instalado e importe `WSGIMiddleware` corretamente de `a2wsgi`.
+
+///
+
+## Confira { #check-it }
+
+Agora, todas as requisições sob o path `/v1/` serão manipuladas pela aplicação Flask.
 
 E o resto será manipulado pelo **FastAPI**.
 
-Se você rodar a aplicação e ir até <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>, você verá o retorno do Flask:
+Se você rodar a aplicação e ir até [http://localhost:8000/v1/](http://localhost:8000/v1/), você verá o retorno do Flask:
 
 ```txt
 Hello, World from Flask!
 ```
 
-E se você for até <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>, você verá o retorno do FastAPI:
+E se você for até [http://localhost:8000/v2](http://localhost:8000/v2), você verá o retorno do FastAPI:
 
 ```JSON
 {

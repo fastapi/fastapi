@@ -1,4 +1,4 @@
-# How-To – Rezepte
+# How-To – Rezepte { #how-to-recipes }
 
 Hier finden Sie verschiedene Rezepte und „How-To“-Anleitungen zu **verschiedenen Themen**.
 
@@ -8,6 +8,6 @@ Wenn etwas für Ihr Projekt interessant und nützlich erscheint, lesen Sie es, a
 
 /// tip | Tipp
 
-Wenn Sie strukturiert **FastAPI lernen** möchten (empfohlen), lesen Sie stattdessen Kapitel für Kapitel das [Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank}.
+Wenn Sie strukturiert **FastAPI lernen** möchten (empfohlen), lesen Sie stattdessen Kapitel für Kapitel das [Tutorial – Benutzerhandbuch](../tutorial/index.md).
 
 ///

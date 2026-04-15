@@ -3,7 +3,10 @@ import shutil
 
 from fastapi.testclient import TestClient
 
+from tests.utils import workdir_lock
 
+
+@workdir_lock
 def test_main():
     if os.path.isdir("./static"):  # pragma: nocover
         shutil.rmtree("./static")
@@ -11,7 +14,7 @@ def test_main():
         shutil.rmtree("./templates")
     shutil.copytree("./docs_src/templates/templates/", "./templates")
     shutil.copytree("./docs_src/templates/static/", "./static")
-    from docs_src.templates.tutorial001 import app
+    from docs_src.templates.tutorial001_py310 import app
 
     client = TestClient(app)
     response = client.get("/items/foo")

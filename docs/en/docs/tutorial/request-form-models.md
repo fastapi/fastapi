@@ -1,12 +1,12 @@
-# Form Models
+# Form Models { #form-models }
 
 You can use **Pydantic models** to declare **form fields** in FastAPI.
 
 /// info
 
-To use forms, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+To use forms, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
 
 ```console
 $ pip install python-multipart
@@ -20,15 +20,15 @@ This is supported since FastAPI version `0.113.0`. 🤓
 
 ///
 
-## Pydantic Models for Forms
+## Pydantic Models for Forms { #pydantic-models-for-forms }
 
 You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI** will **extract** the data for **each field** from the **form data** in the request and give you the Pydantic model you defined.
 
-## Check the Docs
+## Check the Docs { #check-the-docs }
 
 You can verify it in the docs UI at `/docs`:
 
@@ -36,7 +36,7 @@ You can verify it in the docs UI at `/docs`:
 <img src="/img/tutorial/request-form-models/image01.png">
 </div>
 
-## Forbid Extra Form Fields
+## Forbid Extra Form Fields { #forbid-extra-form-fields }
 
 In some special use cases (probably not very common), you might want to **restrict** the form fields to only those declared in the Pydantic model. And **forbid** any **extra** fields.
 
@@ -48,7 +48,7 @@ This is supported since FastAPI version `0.114.0`. 🤓
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 If a client tries to send some extra data, they will receive an **error** response.
 
@@ -127,6 +127,6 @@ where you may end up with `MyModel`, `MyModelCreate`, and `MyModelCreateForm`.
 
 {* ../../docs_src/request_form_models/tutorial004_an_py39.py hl[7,13:25] *}
 
-## Summary
+## Summary { #summary }
 
 You can use Pydantic models to declare form fields in FastAPI. 😎

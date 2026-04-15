@@ -1,23 +1,19 @@
 # Development - Contributing
 
-First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=_blank}.
+First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md).
 
 ## Developing
 
-If you already cloned the <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the [fastapi repository](https://github.com/fastapi/fastapi) and you want to deep dive in the code, here are some guidelines to set up your environment.
 
-### Virtual environment
+### Install requirements
 
-Follow the instructions to create and activate a [virtual environment](virtual-environments.md){.internal-link target=_blank} for the internal code of `fastapi`.
-
-### Install requirements using pip
-
-After activating the environment, install the required packages:
+Create a virtual environment and install the required packages with [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv sync --extra all
 
 ---> 100%
 ```
@@ -36,9 +32,9 @@ That way, you don't have to "install" your local version to be able to test ever
 
 /// note | Technical Details
 
-This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
+This only happens when you install using `uv sync --extra all` instead of running `pip install fastapi` directly.
 
-That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+That is because `uv sync --extra all` will install the local version of FastAPI in "editable" mode by default.
 
 ///
 
@@ -116,7 +112,7 @@ $ mkdocs serve --dev-addr 127.0.0.1:8008
 
 The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
 
-But you can also use <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, and you will get autocompletion in your terminal for the commands after installing completion.
+But you can also use [Typer CLI](https://typer.tiangolo.com/typer-cli/), and you will get autocompletion in your terminal for the commands after installing completion.
 
 If you install Typer CLI, you can install completion with:
 
@@ -133,7 +129,7 @@ Completion will take effect once you restart the terminal.
 
 ### Docs Structure
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+The documentation uses [MkDocs](https://www.mkdocs.org/).
 
 And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
 
@@ -183,211 +179,89 @@ as Uvicorn by default will use the port `8000`, the documentation on port `8008`
 
 Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
 
-Here are the steps to help with translations.
+Translation pull requests are made by LLMs guided with prompts designed by the FastAPI team together with the community of native speakers for each supported language.
 
-#### Tips and guidelines
+#### LLM Prompt per Language
 
-* Check the currently <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
+Each language has a directory: [https://github.com/fastapi/fastapi/tree/master/docs](https://github.com/fastapi/fastapi/tree/master/docs), in it you can see a file `llm-prompt.md` with the prompt specific for that language.
 
-* Review those pull requests, requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
+For example, for Spanish, the prompt is at: [`docs/es/llm-prompt.md`](https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md).
 
-/// tip
+If you see mistakes in your language, you can make suggestions to the prompt in that file for your language, and request the specific pages you would like to re-generate after the changes.
 
-You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+#### Reviewing Translation PRs
 
-Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+We don’t require approval from native speakers for translation PRs generated automatically by our translation workflow. However, you can still review them and suggest improvements to the LLM prompt for that language to make the future translations better.
 
-///
+You can check the currently [existing pull requests](https://github.com/fastapi/fastapi/pulls) for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review).
 
-* Check if there's a <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
+You can also review already merged translation PRs. To do this, go to the [closed pull requests](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aclosed) and filter by your language label. For example, for Spanish, you can use [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aclosed+label%3Alang-es).
 
-* If you translate pages, add a single pull request per page translated. That will make it much easier for others to review it.
+When reviewing a pull request, it's better not to suggest changes in the same pull request, because it is LLM generated, and it won't be possible to make sure that small individual changes are replicated in other similar sections, or that they are preserved when translating the same content again.
 
-* To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
-
-#### Existing language
-
-Let's say you want to translate a page for a language that already has translations for some pages, like Spanish.
-
-In the case of Spanish, the 2-letter code is `es`. So, the directory for Spanish translations is located at `docs/es/`.
+Instead of adding suggestions to the translation PR, make the suggestions to the LLM prompt file for that language, in a new PR. For example, for Spanish, the LLM prompt file is at: [`docs/es/llm-prompt.md`](https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md).
 
 /// tip
 
-The main ("official") language is English, located at `docs/en/`.
+Check the docs about [adding a pull request review](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews) to approve it or request changes.
 
 ///
 
-Now run the live server for the docs in Spanish:
+PRs with suggestions to the language-specific LLM prompt require approval from at least one native speaker. Your help here is very much appreciated!
 
-<div class="termy">
+#### Subscribe to Notifications for Your Language
 
-```console
-// Use the command "live" and pass the language code as a CLI argument
-$ python ./scripts/docs.py live es
+Check if there's a [GitHub Discussion](https://github.com/fastapi/fastapi/discussions/categories/translations) to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-<span style="color: green;">[INFO]</span> Serving on http://127.0.0.1:8008
-<span style="color: green;">[INFO]</span> Start watching changes
-<span style="color: green;">[INFO]</span> Start detecting changes
-```
+To check the 2-letter code for the language you want to translate, you can use the table [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-</div>
+#### Request a New Language
 
-/// tip
+Let's say that you want to request translations for a language that is not yet translated, not even some pages. For example, Latin.
 
-Alternatively, you can perform the same steps that scripts does manually.
+* The first step would be for you to find other 2 people that would be willing to be reviewing translation PRs for that language with you.
+* Once there are at least 3 people that would be willing to commit to help maintain that language, you can continue the next steps.
+* Create a new discussion following the template.
+* Tag the other 2 people that will help with the language, and ask them to confirm there they will help.
 
-Go into the language directory, for the Spanish translations it's at `docs/es/`:
+Once there are several people in the discussion, the FastAPI team can evaluate it and can make it an official translation.
 
-```console
-$ cd docs/es/
-```
+Then the docs will be automatically translated using LLMs, and the team of native speakers can review the translation, and help tweak the LLM prompts.
 
-Then run `mkdocs` in that directory:
+Once there's a new translation, for example if docs are updated or there's a new section, there will be a comment in the same discussion with the link to the new translation to review.
 
-```console
-$ mkdocs serve --dev-addr 127.0.0.1:8008
-```
+## Automated Code and AI
 
-///
+You are encouraged to use all the tools you want to do your work and contribute as efficiently as possible, this includes AI (LLM) tools, etc. Nevertheless, contributions should have meaningful human intervention, judgement, context, etc.
 
-Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
+If the **human effort** put in a PR, e.g. writing LLM prompts, is **less** than the **effort we would need to put** to **review it**, please **don't** submit the PR.
 
-You will see that every language has all the pages. But some pages are not translated and have an info box at the top, about the missing translation.
+Think of it this way: we can already write LLM prompts or run automated tools ourselves, and that would be faster than reviewing external PRs.
 
-Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
+### Closing Automated and AI PRs
 
-* Copy the file at:
+If we see PRs that seem AI generated or automated in similar ways, we'll flag them and close them.
 
-```
-docs/en/docs/features.md
-```
+The same applies to comments and descriptions, please don't copy paste the content generated by an LLM.
 
-* Paste it in exactly the same location but for the language you want to translate, e.g.:
+### Human Effort Denial of Service
 
-```
-docs/es/docs/features.md
-```
+Using automated tools and AI to submit PRs or comments that we have to carefully review and handle would be the equivalent of a [Denial-of-service attack](https://en.wikipedia.org/wiki/Denial-of-service_attack) on our human effort.
 
-/// tip
+It would be very little effort from the person submitting the PR (an LLM prompt) that generates a large amount of effort on our side (carefully reviewing code).
 
-Notice that the only change in the path and file name is the language code, from `en` to `es`.
+Please don't do that.
 
-///
+We'll need to block accounts that spam us with repeated automated PRs or comments.
 
-If you go to your browser you will see that now the docs show your new section (the info box at the top is gone). 🎉
+### Use Tools Wisely
 
-Now you can translate it all and see how it looks as you save the file.
+As Uncle Ben said:
 
-#### Don't Translate these Pages
+<blockquote>
+With great <strike>power</strike> <strong>tools</strong> comes great responsibility.
+</blockquote>
 
-🚨 Don't translate:
+Avoid inadvertently doing harm.
 
-* Files under `reference/`
-* `release-notes.md`
-* `fastapi-people.md`
-* `external-links.md`
-* `newsletter.md`
-* `management-tasks.md`
-* `management.md`
-* `contributing.md`
-
-Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
-
-#### New Language
-
-Let's say that you want to add translations for a language that is not yet translated, not even some pages.
-
-Let's say you want to add translations for Creole, and it's not yet there in the docs.
-
-Checking the link from above, the code for "Creole" is `ht`.
-
-The next step is to run the script to generate a new translation directory:
-
-<div class="termy">
-
-```console
-// Use the command new-lang, pass the language code as a CLI argument
-$ python ./scripts/docs.py new-lang ht
-
-Successfully initialized: docs/ht
-```
-
-</div>
-
-Now you can check in your code editor the newly created directory `docs/ht/`.
-
-That command created a file `docs/ht/mkdocs.yml` with a simple config that inherits everything from the `en` version:
-
-```yaml
-INHERIT: ../en/mkdocs.yml
-```
-
-/// tip
-
-You could also simply create that file with those contents manually.
-
-///
-
-That command also created a dummy file `docs/ht/index.md` for the main page, you can start by translating that one.
-
-You can continue with the previous instructions for an "Existing Language" for that process.
-
-You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
-
-#### Preview the result
-
-As already mentioned above, you can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
-
-Once you are done, you can also test it all as it would look online, including all the other languages.
-
-To do that, first build all the docs:
-
-<div class="termy">
-
-```console
-// Use the command "build-all", this will take a bit
-$ python ./scripts/docs.py build-all
-
-Building docs for: en
-Building docs for: es
-Successfully built docs for: es
-```
-
-</div>
-
-This builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
-
-Then you can serve that with the command `serve`:
-
-<div class="termy">
-
-```console
-// Use the command "serve" after running "build-all"
-$ python ./scripts/docs.py serve
-
-Warning: this is a very simple server. For development, use mkdocs serve instead.
-This is here only to preview a site with translations already built.
-Make sure you run the build-all command first.
-Serving at: http://127.0.0.1:8008
-```
-
-</div>
-
-#### Translation specific tips and guidelines
-
-* Translate only the Markdown documents (`.md`). Do not translate the code examples at `./docs_src`.
-
-* In code blocks within the Markdown document, translate comments (`# a comment`), but leave the rest unchanged.
-
-* Do not change anything enclosed in "``" (inline code).
-
-* In lines starting with `///` translate only the text part after `|`. Leave the rest unchanged.
-
-* You can translate info boxes like `/// warning` with for example `/// warning | Achtung`. But do not change the word immediately after the `///`, it determines the color of the info box.
-
-* Do not change the paths in links to images, code files, Markdown documents.
-
-* However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
-    * Search for such links in the translated document using the regex `#[^# ]`.
-    * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
-    * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
+You have amazing tools at hand, use them wisely to help effectively.

@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 from unittest.mock import patch
@@ -20,6 +21,7 @@ def test_fastapi_cli():
         ],
         capture_output=True,
         encoding="utf-8",
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
     )
     assert result.returncode == 1, result.stdout
     assert "Path does not exist non_existent_file.py" in result.stdout

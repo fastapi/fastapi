@@ -1,4 +1,4 @@
-# Conceitos de Implantações
+# Conceitos de Implantações { #deployments-concepts }
 
 Ao implantar um aplicativo **FastAPI**, ou na verdade, qualquer tipo de API da web, há vários conceitos com os quais você provavelmente se importa e, usando-os, você pode encontrar a maneira **mais apropriada** de **implantar seu aplicativo**.
 
@@ -23,15 +23,15 @@ Nos próximos capítulos, darei a você mais **receitas concretas** para implant
 
 Mas por enquanto, vamos verificar essas importantes **ideias conceituais**. Esses conceitos também se aplicam a qualquer outro tipo de API da web. 💡
 
-## Segurança - HTTPS
+## Segurança - HTTPS { #security-https }
 
-No [capítulo anterior sobre HTTPS](https.md){.internal-link target=_blank} aprendemos como o HTTPS fornece criptografia para sua API.
+No [capítulo anterior sobre HTTPS](https.md) aprendemos como o HTTPS fornece criptografia para sua API.
 
 Também vimos que o HTTPS normalmente é fornecido por um componente **externo** ao seu servidor de aplicativos, um **Proxy de terminação TLS**.
 
 E tem que haver algo responsável por **renovar os certificados HTTPS**, pode ser o mesmo componente ou pode ser algo diferente.
 
-### Ferramentas de exemplo para HTTPS
+### Ferramentas de exemplo para HTTPS { #example-tools-for-https }
 
 Algumas das ferramentas que você pode usar como um proxy de terminação TLS são:
 
@@ -55,11 +55,11 @@ Mostrarei alguns exemplos concretos nos próximos capítulos.
 
 Os próximos conceitos a serem considerados são todos sobre o programa que executa sua API real (por exemplo, Uvicorn).
 
-## Programa e Processo
+## Programa e Processo { #program-and-process }
 
 Falaremos muito sobre o "**processo**" em execução, então é útil ter clareza sobre o que ele significa e qual é a diferença com a palavra "**programa**".
 
-### O que é um Programa
+### O que é um Programa { #what-is-a-program }
 
 A palavra **programa** é comumente usada para descrever muitas coisas:
 
@@ -67,7 +67,7 @@ A palavra **programa** é comumente usada para descrever muitas coisas:
 * O **arquivo** que pode ser **executado** pelo sistema operacional, por exemplo: `python`, `python.exe` ou `uvicorn`.
 * Um programa específico enquanto está **em execução** no sistema operacional, usando a CPU e armazenando coisas na memória. Isso também é chamado de **processo**.
 
-### O que é um Processo
+### O que é um Processo { #what-is-a-process }
 
 A palavra **processo** normalmente é usada de forma mais específica, referindo-se apenas ao que está sendo executado no sistema operacional (como no último ponto acima):
 
@@ -88,11 +88,11 @@ E, por exemplo, você provavelmente verá que há vários processos executando o
 
 Agora que sabemos a diferença entre os termos **processo** e **programa**, vamos continuar falando sobre implantações.
 
-## Executando na inicialização
+## Executando na inicialização { #running-on-startup }
 
 Na maioria dos casos, quando você cria uma API web, você quer que ela esteja **sempre em execução**, ininterrupta, para que seus clientes possam sempre acessá-la. Isso é claro, a menos que você tenha um motivo específico para querer que ela seja executada somente em certas situações, mas na maioria das vezes você quer que ela esteja constantemente em execução e **disponível**.
 
-### Em um servidor remoto
+### Em um servidor remoto { #in-a-remote-server }
 
 Ao configurar um servidor remoto (um servidor em nuvem, uma máquina virtual, etc.), a coisa mais simples que você pode fazer é usar `fastapi run` (que usa Uvicorn) ou algo semelhante, manualmente, da mesma forma que você faz ao desenvolver localmente.
 
@@ -102,15 +102,15 @@ Mas se sua conexão com o servidor for perdida, o **processo em execução** pro
 
 E se o servidor for reiniciado (por exemplo, após atualizações ou migrações do provedor de nuvem), você provavelmente **não notará**. E por causa disso, você nem saberá que precisa reiniciar o processo manualmente. Então, sua API simplesmente permanecerá inativa. 😱
 
-### Executar automaticamente na inicialização
+### Executar automaticamente na inicialização { #run-automatically-on-startup }
 
 Em geral, você provavelmente desejará que o programa do servidor (por exemplo, Uvicorn) seja iniciado automaticamente na inicialização do servidor e, sem precisar de nenhuma **intervenção humana**, tenha um processo sempre em execução com sua API (por exemplo, Uvicorn executando seu aplicativo FastAPI).
 
-### Programa separado
+### Programa separado { #separate-program }
 
 Para conseguir isso, você normalmente terá um **programa separado** que garantiria que seu aplicativo fosse executado na inicialização. E em muitos casos, ele também garantiria que outros componentes ou aplicativos também fossem executados, por exemplo, um banco de dados.
 
-### Ferramentas de exemplo para executar na inicialização
+### Ferramentas de exemplo para executar na inicialização { #example-tools-to-run-at-startup }
 
 Alguns exemplos de ferramentas que podem fazer esse trabalho são:
 
@@ -125,29 +125,29 @@ Alguns exemplos de ferramentas que podem fazer esse trabalho são:
 
 Darei exemplos mais concretos nos próximos capítulos.
 
-## Reinicializações
+## Reinicializações { #restarts }
 
 Semelhante a garantir que seu aplicativo seja executado na inicialização, você provavelmente também deseja garantir que ele seja **reiniciado** após falhas.
 
-### Nós cometemos erros
+### Nós cometemos erros { #we-make-mistakes }
 
 Nós, como humanos, cometemos **erros** o tempo todo. O software quase *sempre* tem **bugs** escondidos em lugares diferentes. 🐛
 
 E nós, como desenvolvedores, continuamos aprimorando o código à medida que encontramos esses bugs e implementamos novos recursos (possivelmente adicionando novos bugs também 😅).
 
-### Pequenos erros são tratados automaticamente
+### Pequenos erros são tratados automaticamente { #small-errors-automatically-handled }
 
 Ao criar APIs da web com FastAPI, se houver um erro em nosso código, o FastAPI normalmente o conterá na única solicitação que acionou o erro. 🛡
 
 O cliente receberá um **Erro Interno do Servidor 500** para essa solicitação, mas o aplicativo continuará funcionando para as próximas solicitações em vez de travar completamente.
 
-### Erros maiores - Travamentos
+### Erros maiores - Travamentos { #bigger-errors-crashes }
 
 No entanto, pode haver casos em que escrevemos algum código que **trava todo o aplicativo**, fazendo com que o Uvicorn e o Python travem. 💥
 
-E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse inativo porque houve um erro em um lugar, você provavelmente quer que ele **continue em execução** pelo menos para as *operações de caminho* que não estão quebradas.
+E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse inativo porque houve um erro em um lugar, você provavelmente quer que ele **continue em execução** pelo menos para as *operações de rota* que não estão quebradas.
 
-### Reiniciar após falha
+### Reiniciar após falha { #restart-after-crash }
 
 Mas nos casos com erros realmente graves que travam o **processo** em execução, você vai querer um componente externo que seja responsável por **reiniciar** o processo, pelo menos algumas vezes...
 
@@ -161,7 +161,7 @@ Então, vamos nos concentrar nos casos principais, onde ele pode travar completa
 
 Você provavelmente gostaria de ter a coisa responsável por reiniciar seu aplicativo como um **componente externo**, porque a essa altura, o mesmo aplicativo com Uvicorn e Python já havia travado, então não há nada no mesmo código do mesmo aplicativo que possa fazer algo a respeito.
 
-### Ferramentas de exemplo para reiniciar automaticamente
+### Ferramentas de exemplo para reiniciar automaticamente { #example-tools-to-restart-automatically }
 
 Na maioria dos casos, a mesma ferramenta usada para **executar o programa na inicialização** também é usada para lidar com **reinicializações** automáticas.
 
@@ -176,39 +176,39 @@ Por exemplo, isso poderia ser resolvido por:
 * Gerenciado internamente por um provedor de nuvem como parte de seus serviços
 * Outros...
 
-## Replicação - Processos e Memória
+## Replicação - Processos e Memória { #replication-processes-and-memory }
 
 Com um aplicativo FastAPI, usando um programa de servidor como o comando `fastapi` que executa o Uvicorn, executá-lo uma vez em **um processo** pode atender a vários clientes simultaneamente.
 
 Mas em muitos casos, você desejará executar vários processos de trabalho ao mesmo tempo.
 
-### Processos Múltiplos - Trabalhadores
+### Processos Múltiplos - Trabalhadores { #multiple-processes-workers }
 
 Se você tiver mais clientes do que um único processo pode manipular (por exemplo, se a máquina virtual não for muito grande) e tiver **vários núcleos** na CPU do servidor, você poderá ter **vários processos** em execução com o mesmo aplicativo ao mesmo tempo e distribuir todas as solicitações entre eles.
 
 Quando você executa **vários processos** do mesmo programa de API, eles são comumente chamados de **trabalhadores**.
 
-### Processos do Trabalhador e Portas
+### Processos do Trabalhador e Portas { #worker-processes-and-ports }
 
-Lembra da documentação [Sobre HTTPS](https.md){.internal-link target=_blank} que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
+Lembra da documentação [Sobre HTTPS](https.md) que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
 
 Isso ainda é verdade.
 
 Então, para poder ter **vários processos** ao mesmo tempo, tem que haver um **único processo escutando em uma porta** que então transmite a comunicação para cada processo de trabalho de alguma forma.
 
-### Memória por Processo
+### Memória por Processo { #memory-per-process }
 
 Agora, quando o programa carrega coisas na memória, por exemplo, um modelo de aprendizado de máquina em uma variável, ou o conteúdo de um arquivo grande em uma variável, tudo isso **consome um pouco da memória (RAM)** do servidor.
 
 E vários processos normalmente **não compartilham nenhuma memória**. Isso significa que cada processo em execução tem suas próprias coisas, variáveis ​​e memória. E se você estiver consumindo uma grande quantidade de memória em seu código, **cada processo** consumirá uma quantidade equivalente de memória.
 
-### Memória do servidor
+### Memória do servidor { #server-memory }
 
-Por exemplo, se seu código carrega um modelo de Machine Learning com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
+Por exemplo, se seu código carrega um modelo de Aprendizado de Máquina com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
 
 E se o seu servidor remoto ou máquina virtual tiver apenas 3 GB de RAM, tentar carregar mais de 4 GB de RAM causará problemas. 🚨
 
-### Processos Múltiplos - Um Exemplo
+### Processos Múltiplos - Um Exemplo { #multiple-processes-an-example }
 
 Neste exemplo, há um **Processo Gerenciador** que inicia e controla dois **Processos de Trabalhadores**.
 
@@ -216,7 +216,7 @@ Este Processo de Gerenciador provavelmente seria o que escutaria na **porta** no
 
 Esses processos de trabalho seriam aqueles que executariam seu aplicativo, eles executariam os cálculos principais para receber uma **solicitação** e retornar uma **resposta**, e carregariam qualquer coisa que você colocasse em variáveis ​​na RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 E, claro, a mesma máquina provavelmente teria **outros processos** em execução, além do seu aplicativo.
 
@@ -224,7 +224,7 @@ Um detalhe interessante é que a porcentagem da **CPU usada** por cada processo 
 
 Se você tiver uma API que faz uma quantidade comparável de cálculos todas as vezes e tiver muitos clientes, então a **utilização da CPU** provavelmente *também será estável* (em vez de ficar constantemente subindo e descendo rapidamente).
 
-### Exemplos de ferramentas e estratégias de replicação
+### Exemplos de ferramentas e estratégias de replicação { #examples-of-replication-tools-and-strategies }
 
 Pode haver várias abordagens para conseguir isso, e falarei mais sobre estratégias específicas nos próximos capítulos, por exemplo, ao falar sobre Docker e contêineres.
 
@@ -243,11 +243,11 @@ Aqui estão algumas combinações e estratégias possíveis:
 
 Não se preocupe se alguns desses itens sobre **contêineres**, Docker ou Kubernetes ainda não fizerem muito sentido.
 
-Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 
-## Etapas anteriores antes de começar
+## Etapas anteriores antes de começar { #previous-steps-before-starting }
 
 Há muitos casos em que você deseja executar algumas etapas **antes de iniciar** sua aplicação.
 
@@ -269,7 +269,7 @@ Nesse caso, você não precisaria se preocupar com nada disso. 🤷
 
 ///
 
-### Exemplos de estratégias de etapas anteriores
+### Exemplos de estratégias de etapas anteriores { #examples-of-previous-steps-strategies }
 
 Isso **dependerá muito** da maneira como você **implanta seu sistema** e provavelmente estará conectado à maneira como você inicia programas, lida com reinicializações, etc.
 
@@ -281,11 +281,11 @@ Aqui estão algumas ideias possíveis:
 
 /// tip | Dica
 
-Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 
-## Utilização de recursos
+## Utilização de recursos { #resource-utilization }
 
 Seu(s) servidor(es) é(são) um **recurso** que você pode consumir ou **utilizar**, com seus programas, o tempo de computação nas CPUs e a memória RAM disponível.
 
@@ -305,7 +305,7 @@ Você poderia colocar um **número arbitrário** para atingir, por exemplo, algo
 
 Você pode usar ferramentas simples como `htop` para ver a CPU e a RAM usadas no seu servidor ou a quantidade usada por cada processo. Ou você pode usar ferramentas de monitoramento mais complexas, que podem ser distribuídas entre servidores, etc.
 
-## Recapitular
+## Recapitular { #recap }
 
 Você leu aqui alguns dos principais conceitos que provavelmente precisa ter em mente ao decidir como implantar seu aplicativo:
 

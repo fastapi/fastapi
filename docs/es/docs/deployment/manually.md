@@ -1,51 +1,39 @@
-# Ejecutar un Servidor Manualmente
+# Ejecutar un Servidor Manualmente { #run-a-server-manually }
 
-## Usa el Comando `fastapi run`
+## Usa el Comando `fastapi run` { #use-the-fastapi-run-command }
 
 En resumen, usa `fastapi run` para servir tu aplicación FastAPI:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:single">main.py</u>
-<font color="#3465A4">INFO    </font> Usando path <font color="#3465A4">main.py</font>
-<font color="#3465A4">INFO    </font> Path absoluto resuelto <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
-<font color="#3465A4">INFO    </font> Buscando una estructura de archivos de paquete desde directorios con archivos <font color="#3465A4">__init__.py</font>
-<font color="#3465A4">INFO    </font> Importando desde <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
 
- ╭─ <font color="#8AE234"><b>Archivo de módulo de Python</b></font> ─╮
- │                      │
- │  🐍 main.py          │
- │                      │
- ╰──────────────────────╯
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
 
-<font color="#3465A4">INFO    </font> Importando módulo <font color="#4E9A06">main</font>
-<font color="#3465A4">INFO    </font> Encontrada aplicación FastAPI importable
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
- ╭─ <font color="#8AE234"><b>Aplicación FastAPI importable</b></font> ─╮
- │                          │
- │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
- │                          │
- ╰──────────────────────────╯
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-<font color="#3465A4">INFO    </font> Usando la cadena de import <font color="#8AE234"><b>main:app</b></font>
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
 
- <font color="#4E9A06">╭─────────── CLI de FastAPI - Modo Producción ───────────╮</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  Sirviendo en: http://0.0.0.0:8000                    │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  Docs de API: http://0.0.0.0:8000/docs               │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  Corriendo en modo producción, para desarrollo usa:  │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  </font><font color="#8AE234"><b>fastapi dev</b></font><font color="#4E9A06">                                        │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">╰─────────────────────────────────────────────────────╯</font>
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
 
-<font color="#4E9A06">INFO</font>:     Iniciado el proceso del servidor [<font color="#06989A">2306215</font>]
-<font color="#4E9A06">INFO</font>:     Esperando el inicio de la aplicación.
-<font color="#4E9A06">INFO</font>:     Inicio de la aplicación completado.
-<font color="#4E9A06">INFO</font>:     Uvicorn corriendo en <b>http://0.0.0.0:8000</b> (Presiona CTRL+C para salir)
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>2306215</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
 ```
 
 </div>
@@ -54,23 +42,23 @@ Eso funcionaría para la mayoría de los casos. 😎
 
 Podrías usar ese comando, por ejemplo, para iniciar tu app **FastAPI** en un contenedor, en un servidor, etc.
 
-## Servidores ASGI
+## Servidores ASGI { #asgi-servers }
 
 Vamos a profundizar un poquito en los detalles.
 
-FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>. FastAPI es un framework web ASGI.
+FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>. FastAPI es un framework web ASGI.
 
 Lo principal que necesitas para ejecutar una aplicación **FastAPI** (o cualquier otra aplicación ASGI) en una máquina de servidor remota es un programa de servidor ASGI como **Uvicorn**, que es el que viene por defecto en el comando `fastapi`.
 
 Hay varias alternativas, incluyendo:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: un servidor ASGI de alto rendimiento.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: un servidor ASGI compatible con HTTP/2 y Trio entre otras funcionalidades.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: el servidor ASGI construido para Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Un servidor HTTP Rust para aplicaciones en Python.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit es un runtime para aplicaciones web ligero y versátil.
+* [Uvicorn](https://www.uvicorn.dev/): un servidor ASGI de alto rendimiento.
+* [Hypercorn](https://hypercorn.readthedocs.io/): un servidor ASGI compatible con HTTP/2 y Trio entre otras funcionalidades.
+* [Daphne](https://github.com/django/daphne): el servidor ASGI construido para Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): Un servidor HTTP Rust para aplicaciones en Python.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit es un runtime para aplicaciones web ligero y versátil.
 
-## Máquina Servidor y Programa Servidor
+## Máquina Servidor y Programa Servidor { #server-machine-and-server-program }
 
 Hay un pequeño detalle sobre los nombres que hay que tener en cuenta. 💡
 
@@ -80,13 +68,13 @@ Solo ten en cuenta que cuando leas "servidor" en general, podría referirse a un
 
 Al referirse a la máquina remota, es común llamarla **servidor**, pero también **máquina**, **VM** (máquina virtual), **nodo**. Todos esos se refieren a algún tipo de máquina remota, generalmente con Linux, donde ejecutas programas.
 
-## Instala el Programa del Servidor
+## Instala el Programa del Servidor { #install-the-server-program }
 
 Cuando instalas FastAPI, viene con un servidor de producción, Uvicorn, y puedes iniciarlo con el comando `fastapi run`.
 
 Pero también puedes instalar un servidor ASGI manualmente.
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego puedes instalar la aplicación del servidor.
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), actívalo, y luego puedes instalar la aplicación del servidor.
 
 Por ejemplo, para instalar Uvicorn:
 
@@ -112,7 +100,7 @@ Cuando instalas FastAPI con algo como `pip install "fastapi[standard]"` ya obtie
 
 ///
 
-## Ejecuta el Programa del Servidor
+## Ejecuta el Programa del Servidor { #run-the-server-program }
 
 Si instalaste un servidor ASGI manualmente, normalmente necesitarías pasar una cadena de import en un formato especial para que importe tu aplicación FastAPI:
 
@@ -121,7 +109,7 @@ Si instalaste un servidor ASGI manualmente, normalmente necesitarías pasar una 
 ```console
 $ uvicorn main:app --host 0.0.0.0 --port 80
 
-<span style="color: green;">INFO</span>:     Uvicorn corriendo en http://0.0.0.0:80 (Presiona CTRL+C para salir)
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -153,7 +141,7 @@ Ayuda mucho durante el **desarrollo**, pero **no** deberías usarla en **producc
 
 ///
 
-## Conceptos de Despliegue
+## Conceptos de Despliegue { #deployment-concepts }
 
 Estos ejemplos ejecutan el programa del servidor (por ejemplo, Uvicorn), iniciando **un solo proceso**, escuchando en todas las IPs (`0.0.0.0`) en un puerto predefinido (por ejemplo, `80`).
 

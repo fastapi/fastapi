@@ -1,7 +1,8 @@
 import logging
 import re
+from typing import Literal
 
-from github import Github
+from github import Auth, Github
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
 
@@ -12,7 +13,7 @@ class Settings(BaseSettings):
     deploy_url: str | None = None
     commit_sha: str
     run_id: int
-    is_done: bool = False
+    state: Literal["pending", "success", "error"] = "pending"
 
 
 class LinkData(BaseModel):
@@ -26,7 +27,7 @@ def main() -> None:
     settings = Settings()
 
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.github_token.get_secret_value())
+    g = Github(auth=Auth.Token(settings.github_token.get_secret_value()))
     repo = g.get_repo(settings.github_repository)
     use_pr = next(
         (pr for pr in repo.get_pulls() if pr.head.sha == settings.commit_sha), None
@@ -37,16 +38,7 @@ def main() -> None:
     commits = list(use_pr.get_commits())
     current_commit = [c for c in commits if c.sha == settings.commit_sha][0]
     run_url = f"https://github.com/{settings.github_repository}/actions/runs/{settings.run_id}"
-    if settings.is_done and not settings.deploy_url:
-        current_commit.create_status(
-            state="success",
-            description="No Docs Changes",
-            context="deploy-docs",
-            target_url=run_url,
-        )
-        logging.info("No docs changes found")
-        return
-    if not settings.deploy_url:
+    if settings.state == "pending":
         current_commit.create_status(
             state="pending",
             description="Deploying Docs",
@@ -55,6 +47,26 @@ def main() -> None:
         )
         logging.info("No deploy URL available yet")
         return
+    if settings.state == "error":
+        current_commit.create_status(
+            state="error",
+            description="Error Deploying Docs",
+            context="deploy-docs",
+            target_url=run_url,
+        )
+        logging.info("Error deploying docs")
+        return
+    assert settings.state == "success"
+    if not settings.deploy_url:
+        current_commit.create_status(
+            state="success",
+            description="No Docs Changes",
+            context="deploy-docs",
+            target_url=run_url,
+        )
+        logging.info("No docs changes found")
+        return
+    assert settings.deploy_url
     current_commit.create_status(
         state="success",
         description="Docs Deployed",
@@ -104,7 +116,9 @@ def main() -> None:
         current_lang_links.sort(key=lambda x: x.preview_link)
         links.extend(current_lang_links)
 
-    message = f"📝 Docs preview for commit {settings.commit_sha} at: {deploy_url}"
+    header = "## 📝 Docs preview"
+    message = header
+    message += f"\n\nLast commit {settings.commit_sha} at: {deploy_url}"
 
     if links:
         message += "\n\n### Modified Pages\n\n"
@@ -116,7 +130,17 @@ def main() -> None:
             message += "\n"
 
     print(message)
-    use_pr.as_issue().create_comment(message)
+    issue = use_pr.as_issue()
+    comments = list(issue.get_comments())
+    for comment in comments:
+        if (
+            comment.body.startswith(header)
+            and comment.user.login == "github-actions[bot]"
+        ):
+            comment.edit(message)
+            break
+    else:
+        issue.create_comment(message)
 
     logging.info("Finished")
 

@@ -1,4 +1,4 @@
-# Virtual Environments
+# Virtual Environments { #virtual-environments }
 
 When you work in Python projects you probably should use a **virtual environment** (or a similar mechanism) to isolate the packages you install for each project.
 
@@ -22,11 +22,11 @@ A **virtual environment** is a directory with some files in it.
 
 This page will teach you how to use **virtual environments** and how they work.
 
-If you are ready to adopt a **tool that manages everything** for you (including installing Python), try <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+If you are ready to adopt a **tool that manages everything** for you (including installing Python), try [uv](https://github.com/astral-sh/uv).
 
 ///
 
-## Create a Project
+## Create a Project { #create-a-project }
 
 First, create a directory for your project.
 
@@ -51,9 +51,9 @@ $ cd awesome-project
 
 </div>
 
-## Create a Virtual Environment
+## Create a Virtual Environment { #create-a-virtual-environment }
 
-When you start working on a Python project **for the first time**, create a virtual environment **<abbr title="there are other options, this is a simple guideline">inside your project</abbr>**.
+When you start working on a Python project **for the first time**, create a virtual environment **<dfn title="there are other options, this is a simple guideline">inside your project</dfn>**.
 
 /// tip
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> installed, you can use it to create a virtual environment.
+If you have [`uv`](https://github.com/astral-sh/uv) installed, you can use it to create a virtual environment.
 
 <div class="termy">
 
@@ -114,7 +114,7 @@ You could create the virtual environment in a different directory, but there's a
 
 ///
 
-## Activate the Virtual Environment
+## Activate the Virtual Environment { #activate-the-virtual-environment }
 
 Activate the new virtual environment so that any Python command you run or package you install uses it.
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Or if you use Bash for Windows (e.g. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -170,7 +170,7 @@ This makes sure that if you use a **terminal (<abbr title="command line interfac
 
 ///
 
-## Check the Virtual Environment is Active
+## Check the Virtual Environment is Active { #check-the-virtual-environment-is-active }
 
 Check that the virtual environment is active (the previous command worked).
 
@@ -212,11 +212,11 @@ If it shows the `python` binary at `.venv\Scripts\python`, inside of your projec
 
 ////
 
-## Upgrade `pip`
+## Upgrade `pip` { #upgrade-pip }
 
 /// tip
 
-If you use <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> you would use it to install things instead of `pip`, so you don't need to upgrade `pip`. 😎
+If you use [`uv`](https://github.com/astral-sh/uv) you would use it to install things instead of `pip`, so you don't need to upgrade `pip`. 😎
 
 ///
 
@@ -242,13 +242,33 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## Add `.gitignore`
+/// tip
+
+Sometimes, you might get a **`No module named pip`** error when trying to upgrade pip.
+
+If this happens, install and upgrade pip using the command below:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+This command will install pip if it is not already installed and also ensures that the installed version of pip is at least as recent as the one available in `ensurepip`.
+
+///
+
+## Add `.gitignore` { #add-gitignore }
 
 If you are using **Git** (you should), add a `.gitignore` file to exclude everything in your `.venv` from Git.
 
 /// tip
 
-If you used <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> to create the virtual environment, it already did this for you, you can skip this step. 😎
+If you used [`uv`](https://github.com/astral-sh/uv) to create the virtual environment, it already did this for you, you can skip this step. 😎
 
 ///
 
@@ -282,7 +302,7 @@ That command will create a file `.gitignore` with the content:
 
 ///
 
-## Install Packages
+## Install Packages { #install-packages }
 
 After activating the environment, you can install packages in it.
 
@@ -294,7 +314,7 @@ If you need to upgrade a version or add a new package you would **do this again*
 
 ///
 
-### Install Packages Directly
+### Install Packages Directly { #install-packages-directly }
 
 If you're in a hurry and don't want to use a file to declare your project's package requirements, you can install them directly.
 
@@ -320,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+If you have [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -333,7 +353,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Install from `requirements.txt`
+### Install from `requirements.txt` { #install-from-requirements-txt }
 
 If you have a `requirements.txt`, you can now use it to install its packages.
 
@@ -352,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+If you have [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -376,7 +396,7 @@ pydantic==2.8.0
 
 ///
 
-## Run Your Program
+## Run Your Program { #run-your-program }
 
 After you activated the virtual environment, you can run your program, and it will use the Python inside of your virtual environment with the packages you installed there.
 
@@ -390,14 +410,14 @@ Hello World
 
 </div>
 
-## Configure Your Editor
+## Configure Your Editor { #configure-your-editor }
 
 You would probably use an editor, make sure you configure it to use the same virtual environment you created (it will probably autodetect it) so that you can get autocompletion and inline errors.
 
 For example:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip
 
@@ -405,7 +425,7 @@ You normally have to do this only **once**, when you create the virtual environm
 
 ///
 
-## Deactivate the Virtual Environment
+## Deactivate the Virtual Environment { #deactivate-the-virtual-environment }
 
 Once you are done working on your project you can **deactivate** the virtual environment.
 
@@ -419,7 +439,7 @@ $ deactivate
 
 This way, when you run `python` it won't try to run it from that virtual environment with the packages installed there.
 
-## Ready to Work
+## Ready to Work { #ready-to-work }
 
 Now you're ready to start working on your project.
 
@@ -433,9 +453,9 @@ Continue reading. 👇🤓
 
 ///
 
-## Why Virtual Environments
+## Why Virtual Environments { #why-virtual-environments }
 
-To work with FastAPI you need to install <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+To work with FastAPI you need to install [Python](https://www.python.org/).
 
 After that, you would need to **install** FastAPI and any other **packages** you want to use.
 
@@ -443,7 +463,7 @@ To install packages you would normally use the `pip` command that comes with Pyt
 
 Nevertheless, if you just use `pip` directly, the packages would be installed in your **global Python environment** (the global installation of Python).
 
-### The Problem
+### The Problem { #the-problem }
 
 So, what's the problem with installing packages in the global Python environment?
 
@@ -526,7 +546,7 @@ Now, imagine that with **many** other **packages** that all your **projects depe
 
 Also, depending on your operating system (e.g. Linux, Windows, macOS), it could have come with Python already installed. And in that case it probably had some packages pre-installed with some specific versions **needed by your system**. If you install packages in the global Python environment, you could end up **breaking** some of the programs that came with your operating system.
 
-## Where are Packages Installed
+## Where are Packages Installed { #where-are-packages-installed }
 
 When you install Python, it creates some directories with some files in your computer.
 
@@ -544,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-That will download a compressed file with the FastAPI code, normally from <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+That will download a compressed file with the FastAPI code, normally from [PyPI](https://pypi.org/project/fastapi/).
 
 It will also **download** files for other packages that FastAPI depends on.
 
@@ -552,7 +572,7 @@ Then it will **extract** all those files and put them in a directory in your com
 
 By default, it will put those files downloaded and extracted in the directory that comes with your Python installation, that's the **global environment**.
 
-## What are Virtual Environments
+## What are Virtual Environments { #what-are-virtual-environments }
 
 The solution to the problems of having all the packages in the global environment is to use a **virtual environment for each project** you work on.
 
@@ -577,7 +597,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## What Does Activating a Virtual Environment Mean
+## What Does Activating a Virtual Environment Mean { #what-does-activating-a-virtual-environment-mean }
 
 When you activate a virtual environment, for example with:
 
@@ -607,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Or if you use Bash for Windows (e.g. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -619,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-That command will create or modify some [environment variables](environment-variables.md){.internal-link target=_blank} that will be available for the next commands.
+That command will create or modify some [environment variables](environment-variables.md) that will be available for the next commands.
 
 One of those variables is the `PATH` variable.
 
 /// tip
 
-You can learn more about the `PATH` environment variable in the [Environment Variables](environment-variables.md#path-environment-variable){.internal-link target=_blank} section.
+You can learn more about the `PATH` environment variable in the [Environment Variables](environment-variables.md#path-environment-variable) section.
 
 ///
 
@@ -714,7 +734,7 @@ An important detail is that it will put the virtual environment path at the **be
 
 Activating a virtual environment also changes a couple of other things, but this is one of the most important things it does.
 
-## Checking a Virtual Environment
+## Checking a Virtual Environment { #checking-a-virtual-environment }
 
 When you check if a virtual environment is active, for example with:
 
@@ -766,7 +786,7 @@ It's useful being able to check what `python` is being used. 🤓
 
 ///
 
-## Why Deactivate a Virtual Environment
+## Why Deactivate a Virtual Environment { #why-deactivate-a-virtual-environment }
 
 For example, you could be working on a project `philosophers-stone`, **activate that virtual environment**, install packages and work with that environment.
 
@@ -820,13 +840,13 @@ I solemnly swear 🐺
 
 </div>
 
-## Alternatives
+## Alternatives { #alternatives }
 
 This is a simple guide to get you started and teach you how everything works **underneath**.
 
 There are many **alternatives** to managing virtual environments, package dependencies (requirements), projects.
 
-Once you are ready and want to use a tool to **manage the entire project**, packages dependencies, virtual environments, etc. I would suggest you try <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Once you are ready and want to use a tool to **manage the entire project**, packages dependencies, virtual environments, etc. I would suggest you try [uv](https://github.com/astral-sh/uv).
 
 `uv` can do a lot of things, it can:
 
@@ -837,7 +857,7 @@ Once you are ready and want to use a tool to **manage the entire project**, pack
 * Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project in production exactly the same as in your computer while developing, this is called **locking**
 * And many other things
 
-## Conclusion
+## Conclusion { #conclusion }
 
 If you read and understood all this, now **you know much more** about virtual environments than many developers out there. 🤓
 

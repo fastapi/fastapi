@@ -1,10 +1,10 @@
-# Additional Status Codes
+# Additional Status Codes { #additional-status-codes }
 
 By default, **FastAPI** will return the responses using a `JSONResponse`, putting the content you return from your *path operation* inside of that `JSONResponse`.
 
 It will use the default status code or the one you set in your *path operation*.
 
-## Additional status codes
+## Additional status codes { #additional-status-codes_1 }
 
 If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.
 
@@ -34,8 +34,8 @@ You could also use `from starlette.responses import JSONResponse`.
 
 ///
 
-## OpenAPI and API docs
+## OpenAPI and API docs { #openapi-and-api-docs }
 
 If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know beforehand what you are going to return.
 
-But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+But you can document that in your code, using: [Additional Responses](additional-responses.md).

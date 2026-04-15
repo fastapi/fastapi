@@ -1,6 +1,6 @@
-# Run a Server Manually
+# Run a Server Manually { #run-a-server-manually }
 
-## Use the `fastapi run` Command
+## Use the `fastapi run` Command { #use-the-fastapi-run-command }
 
 In short, use `fastapi run` to serve your FastAPI application:
 
@@ -42,7 +42,7 @@ That would work for most of the cases. 😎
 
 You could use that command for example to start your **FastAPI** app in a container, in a server, etc.
 
-## ASGI Servers
+## ASGI Servers { #asgi-servers }
 
 Let's go a little deeper into the details.
 
@@ -52,13 +52,13 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 
 There are several alternatives, including:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: a high performance ASGI server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: the ASGI server built for Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: A Rust HTTP server for Python applications.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit is a lightweight and versatile web application runtime.
+* [Uvicorn](https://www.uvicorn.dev/): a high performance ASGI server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): an ASGI server compatible with HTTP/2 and Trio among other features.
+* [Daphne](https://github.com/django/daphne): the ASGI server built for Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): A Rust HTTP server for Python applications.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit is a lightweight and versatile web application runtime.
 
-## Server Machine and Server Program
+## Server Machine and Server Program { #server-machine-and-server-program }
 
 There's a small detail about names to keep in mind. 💡
 
@@ -68,13 +68,13 @@ Just keep in mind that when you read "server" in general, it could refer to one 
 
 When referring to the remote machine, it's common to call it **server**, but also **machine**, **VM** (virtual machine), **node**. Those all refer to some type of remote machine, normally running Linux, where you run programs.
 
-## Install the Server Program
+## Install the Server Program { #install-the-server-program }
 
 When you install FastAPI, it comes with a production server, Uvicorn, and you can start it with the `fastapi run` command.
 
 But you can also install an ASGI server manually.
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then you can install the server application.
+Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then you can install the server application.
 
 For example, to install Uvicorn:
 
@@ -100,7 +100,7 @@ When you install FastAPI with something like `pip install "fastapi[standard]"` y
 
 ///
 
-## Run the Server Program
+## Run the Server Program { #run-the-server-program }
 
 If you installed an ASGI server manually, you would normally need to pass an import string in a special format for it to import your FastAPI application:
 
@@ -141,7 +141,7 @@ It helps a lot during **development**, but you **shouldn't** use it in **product
 
 ///
 
-## Deployment Concepts
+## Deployment Concepts { #deployment-concepts }
 
 These examples run the server program (e.g Uvicorn), starting **a single process**, listening on all the IPs (`0.0.0.0`) on a predefined port (e.g. `80`).
 

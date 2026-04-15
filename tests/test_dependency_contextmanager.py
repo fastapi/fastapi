@@ -1,5 +1,4 @@
 import json
-from typing import Dict
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
@@ -37,19 +36,19 @@ class OtherDependencyError(Exception):
     pass
 
 
-async def asyncgen_state(state: Dict[str, str] = Depends(get_state)):
+async def asyncgen_state(state: dict[str, str] = Depends(get_state)):
     state["/async"] = "asyncgen started"
     yield state["/async"]
     state["/async"] = "asyncgen completed"
 
 
-def generator_state(state: Dict[str, str] = Depends(get_state)):
+def generator_state(state: dict[str, str] = Depends(get_state)):
     state["/sync"] = "generator started"
     yield state["/sync"]
     state["/sync"] = "generator completed"
 
 
-async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
+async def asyncgen_state_try(state: dict[str, str] = Depends(get_state)):
     state["/async_raise"] = "asyncgen raise started"
     try:
         yield state["/async_raise"]
@@ -60,7 +59,7 @@ async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
         state["/async_raise"] = "asyncgen raise finalized"
 
 
-def generator_state_try(state: Dict[str, str] = Depends(get_state)):
+def generator_state_try(state: dict[str, str] = Depends(get_state)):
     state["/sync_raise"] = "generator raise started"
     try:
         yield state["/sync_raise"]
@@ -286,12 +285,12 @@ def test_background_tasks():
     assert data["context_a"] == "started a"
     assert data["bg"] == "not set"
     middleware_state = json.loads(response.headers["x-state"])
-    assert middleware_state["context_b"] == "finished b with a: started a"
-    assert middleware_state["context_a"] == "finished a"
+    assert middleware_state["context_b"] == "started b"
+    assert middleware_state["context_a"] == "started a"
     assert middleware_state["bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["bg"] == "bg set - b: finished b with a: started a - a: finished a"
+    assert state["bg"] == "bg set - b: started b - a: started a"
 
 
 def test_sync_raise_raises():
@@ -397,7 +396,4 @@ def test_sync_background_tasks():
     assert data["sync_bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert (
-        state["sync_bg"]
-        == "sync_bg set - b: finished b with a: started a - a: finished a"
-    )
+    assert state["sync_bg"] == "sync_bg set - b: started b - a: started a"

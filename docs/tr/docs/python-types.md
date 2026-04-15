@@ -1,76 +1,74 @@
-# Python Veri Tiplerine Giriş
+# Python Tiplerine Giriş { #python-types-intro }
 
-Python isteğe bağlı olarak "tip belirteçlerini" destekler.
+Python, isteğe bağlı "type hints" (diğer adıyla "type annotations") desteğine sahiptir.
 
- **"Tip belirteçleri"** bir değişkenin <abbr title="örneğin: str, int, float, bool">tipinin</abbr> belirtilmesine olanak sağlayan özel bir sözdizimidir.
+Bu **"type hints"** veya annotations, bir değişkenin <dfn title="örneğin: str, int, float, bool">tip</dfn>'ini bildirmeye yarayan özel bir sözdizimidir.
 
-Değişkenlerin tiplerini belirterek editör ve araçlardan daha fazla destek alabilirsiniz.
+Değişkenleriniz için tip bildirerek, editörler ve araçlar size daha iyi destek sağlayabilir.
 
-Bu  pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme** rehberidir . Bu rehber **FastAPI** kullanmak için gereken minimum konuyu kapsar ki bu da çok az bir miktardır.
+Bu, Python type hints hakkında sadece **hızlı bir eğitim / bilgi tazeleme** dokümanıdır. **FastAPI** ile kullanmak için gereken minimum bilgiyi kapsar... ki aslında bu çok azdır.
 
-**FastAPI' nin** tamamı bu tür tip belirteçleri ile donatılmıştır ve birçok avantaj sağlamaktadır.
+**FastAPI** tamamen bu type hints üzerine kuruludur; bunlar ona birçok avantaj ve fayda sağlar.
 
-**FastAPI** kullanmayacak olsanız bile tür belirteçleri hakkında bilgi edinmenizde fayda var.
+Ancak hiç **FastAPI** kullanmasanız bile, bunlar hakkında biraz öğrenmeniz size fayda sağlayacaktır.
 
 /// note | Not
 
-Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
+Eğer bir Python uzmanıysanız ve type hints hakkında her şeyi zaten biliyorsanız, sonraki bölüme geçin.
 
 ///
 
-## Motivasyon
+## Motivasyon { #motivation }
 
-Basit bir örnek ile başlayalım:
+Basit bir örnekle başlayalım:
 
-{* ../../docs_src/python_types/tutorial001.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
-
-Programın çıktısı:
+Bu programı çalıştırınca şu çıktıyı alırsınız:
 
 ```
 John Doe
 ```
 
-Fonksiyon sırayla şunları yapar:
+Fonksiyon şunları yapar:
 
 * `first_name` ve `last_name` değerlerini alır.
-* `title()` ile değişkenlerin ilk karakterlerini büyütür.
-* Değişkenleri aralarında bir boşlukla beraber <abbr title="Onları bir bütün olarak sırayla birleştirir.">Birleştirir</abbr>.
+* `title()` ile her birinin ilk harfini büyük harfe çevirir.
+* Ortada bir boşluk olacak şekilde <dfn title="Onları tek bir bütün olarak bir araya getirir. İçerikler art arda gelir.">Birleştirir</dfn>.
 
-{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
-
-### Düzenle
+### Düzenleyelim { #edit-it }
 
 Bu çok basit bir program.
 
-Ama şimdi sıfırdan yazdığınızı hayal edin.
+Ama şimdi bunu sıfırdan yazdığınızı hayal edin.
 
-Bir noktada fonksiyonun tanımına başlayacaktınız, parametreleri hazır hale getirdiniz...
+Bir noktada fonksiyon tanımını yazmaya başlamış olacaktınız, parametreler hazır...
 
-Ama sonra "ilk harfi büyük harfe dönüştüren yöntemi" çağırmanız gerekir.
+Ama sonra "ilk harfi büyük harfe çeviren method"u çağırmanız gerekiyor.
 
- `upper` mıydı ? Yoksa  `uppercase`' mi? `first_uppercase`? `capitalize`?
+`upper` mıydı? `uppercase` miydi? `first_uppercase`? `capitalize`?
 
-Ardından, programcıların en iyi arkadaşı olan otomatik tamamlama ile denediniz.
+Sonra eski programcı dostuyla denersiniz: editör autocomplete.
 
-'first_name', ardından bir nokta ('.') yazıp otomatik tamamlamayı tetiklemek için 'Ctrl+Space' tuşlarına bastınız.
+Fonksiyonun ilk parametresi olan `first_name`'i yazarsınız, sonra bir nokta (`.`) ve ardından autocomplete'i tetiklemek için `Ctrl+Space`'e basarsınız.
 
-Ancak, ne yazık ki, yararlı hiçbir şey elde edemediniz:
+Ama ne yazık ki, işe yarar bir şey göremezsiniz:
 
 <img src="/img/python-types/image01.png">
 
-### Tipleri ekle
+### Tipleri ekleyelim { #add-types }
 
-Önceki sürümden sadece bir satırı değiştirelim.
+Önceki sürümden tek bir satırı değiştirelim.
 
-Tam olarak bu parçayı, işlevin parametrelerini  değiştireceğiz:
+Fonksiyonun parametreleri olan şu parçayı:
 
 ```Python
     first_name, last_name
 ```
 
-ve bu hale getireceğiz:
+şuna çevireceğiz:
 
 ```Python
     first_name: str, last_name: str
@@ -78,58 +76,55 @@ ve bu hale getireceğiz:
 
 Bu kadar.
 
-İşte bunlar "tip belirteçleri":
+Bunlar "type hints":
 
-{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-
-Bu, aşağıdaki gibi varsayılan değerleri bildirmekle aynı şey değildir:
+Bu, aşağıdaki gibi default değerler bildirmekle aynı şey değildir:
 
 ```Python
     first_name="john", last_name="doe"
 ```
 
-Bu tamamen farklı birşey
+Bu farklı bir şey.
 
-İki nokta üst üste (`:`) kullanıyoruz , eşittir (`=`) değil.
+Eşittir (`=`) değil, iki nokta (`:`) kullanıyoruz.
 
-Normalde tip belirteçleri eklemek, kod üzerinde olacakları değiştirmez.
+Ve type hints eklemek, normalde onlarsız ne oluyorsa onu değiştirmez.
 
-Şimdi programı sıfırdan birdaha yazdığınızı hayal edin.
+Ama şimdi, type hints ile o fonksiyonu oluşturmanın ortasında olduğunuzu tekrar hayal edin.
 
-Aynı noktada, `Ctrl+Space` ile otomatik tamamlamayı tetiklediniz  ve şunu görüyorsunuz:
+Aynı noktada, `Ctrl+Space` ile autocomplete'i tetiklemeye çalışırsınız ve şunu görürsünüz:
 
 <img src="/img/python-types/image02.png">
 
-Aradığınızı bulana kadar seçenekleri kaydırabilirsiniz:
+Bununla birlikte, seçenekleri görerek kaydırabilirsiniz; ta ki "tanıdık gelen" seçeneği bulana kadar:
 
 <img src="/img/python-types/image03.png">
 
-## Daha fazla motivasyon
+## Daha fazla motivasyon { #more-motivation }
 
-Bu fonksiyon, zaten tür belirteçlerine sahip:
+Şu fonksiyona bakın, zaten type hints içeriyor:
 
-{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
-
-Editör değişkenlerin tiplerini bildiğinden, yalnızca otomatik tamamlama değil, hata kontrolleri de sağlar:
+Editör değişkenlerin tiplerini bildiği için, sadece completion değil, aynı zamanda hata kontrolleri de alırsınız:
 
 <img src="/img/python-types/image04.png">
 
-Artık `age` değişkenini `str(age)` olarak kullanmanız gerektiğini biliyorsunuz:
+Artık bunu düzeltmeniz gerektiğini, `age`'i `str(age)` ile string'e çevirmeniz gerektiğini biliyorsunuz:
 
-{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
+## Tipleri Bildirmek { #declaring-types }
 
-## Tip bildirme
+Type hints bildirmek için ana yeri az önce gördünüz: fonksiyon parametreleri.
 
-Az önce tip belirteçlerinin en çok kullanıldığı yeri gördünüz.
+Bu, **FastAPI** ile kullanırken de onları en çok kullanacağınız yerdir.
 
- **FastAPI**ile çalışırken tip belirteçlerini en çok kullanacağımız yer yine fonksiyonlardır.
+### Basit tipler { #simple-types }
 
-### Basit tipler
-
-Yalnızca `str` değil, tüm standart Python tiplerinin bildirebilirsiniz.
+Sadece `str` değil, tüm standart Python tiplerini bildirebilirsiniz.
 
 Örneğin şunları kullanabilirsiniz:
 
@@ -138,176 +133,216 @@ Yalnızca `str` değil, tüm standart Python tiplerinin bildirebilirsiniz.
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+
+### `typing` modülü { #typing-module }
+
+Bazı ek kullanım durumları için standart kütüphanedeki `typing` modülünden bazı şeyleri import etmeniz gerekebilir. Örneğin bir şeyin "herhangi bir tip" olabileceğini bildirmek istediğinizde, `typing` içindeki `Any`'yi kullanabilirsiniz:
+
+```python
+from typing import Any
 
 
-### Tip parametreleri ile Generic tipler
+def some_function(data: Any):
+    print(data)
+```
 
-"dict", "list", "set" ve "tuple" gibi diğer değerleri içerebilen bazı veri yapıları vardır. Ve dahili değerlerinin de tip belirtecleri olabilir.
+### Generic tipler { #generic-types }
 
-Bu tipleri ve dahili tpileri bildirmek için standart Python modülünü "typing" kullanabilirsiniz.
+Bazı tipler, köşeli parantez içinde "type parameters" alarak iç tiplerini tanımlayabilir; örneğin "string listesi" `list[str]` olarak bildirilir.
 
-Bu tür tip belirteçlerini desteklemek için özel olarak mevcuttur.
+Bu şekilde type parameter alabilen tiplere **Generic types** veya **Generics** denir.
 
-#### `List`
+Aynı builtin tipleri generics olarak kullanabilirsiniz (köşeli parantez ve içinde tiplerle):
 
-Örneğin `str` değerlerden oluşan bir `list` tanımlayalım.
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-From `typing`, import `List` (büyük harf olan `L` ile):
+#### List { #list }
 
-{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+Örneğin, `str`'lerden oluşan bir `list` olan bir değişken tanımlayalım.
 
+Değişkeni, aynı iki nokta (`:`) sözdizimiyle bildirin.
 
-Değişkenin tipini yine iki nokta üstüste (`:`) ile belirleyin.
+Tip olarak `list` yazın.
 
-tip olarak `List` kullanın.
+`list`, bazı iç tipleri barındıran bir tip olduğundan, bunları köşeli parantez içine yazarsınız:
 
-Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli parantez içine alırsınız:
+{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-{* ../../docs_src/python_types/tutorial006.py hl[4] *}
+/// info | Bilgi
 
+Köşeli parantez içindeki bu iç tiplere "type parameters" denir.
 
-/// tip | Ipucu
-
-Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
-
-Bu durumda `str`, `List`e iletilen tür parametresidir.
+Bu durumda `str`, `list`'e verilen type parameter'dır.
 
 ///
 
-Bunun anlamı şudur: "`items` değişkeni bir `list`tir ve bu listedeki öğelerin her biri bir `str`dir".
+Bu şu demektir: "`items` değişkeni bir `list` ve bu listedeki her bir öğe `str`".
 
-Bunu yaparak, düzenleyicinizin listedeki öğeleri işlerken bile destek sağlamasını sağlayabilirsiniz:
+Bunu yaparak, editörünüz listeden öğeleri işlerken bile destek sağlayabilir:
 
 <img src="/img/python-types/image05.png">
 
-Tip belirteçleri olmadan, bunu başarmak neredeyse imkansızdır.
+Tipler olmadan, bunu başarmak neredeyse imkansızdır.
 
-`item` değişkeninin `items` listesindeki öğelerden biri olduğuna dikkat edin.
+`item` değişkeninin, `items` listesindeki elemanlardan biri olduğuna dikkat edin.
 
-Ve yine, editör bunun bir `str` ​​olduğunu biliyor ve bunun için destek sağlıyor.
+Ve yine de editör bunun bir `str` olduğunu bilir ve buna göre destek sağlar.
 
-#### `Tuple` ve `Set`
+#### Tuple ve Set { #tuple-and-set }
 
-`Tuple` ve `set`lerin tiplerini bildirmek için de aynısını yapıyoruz:
+`tuple`'ları ve `set`'leri bildirmek için de aynısını yaparsınız:
 
-{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
-
-
-Bu şu anlama geliyor:
-
-* `items_t` değişkeni sırasıyla `int`, `int`, ve `str` tiplerinden oluşan bir `tuple` türündedir .
-* `items_s` ise her öğesi `bytes` türünde olan bir `set` örneğidir.
-
-#### `Dict`
-
-Bir `dict` tanımlamak için virgülle ayrılmış iki parametre verebilirsiniz.
-
-İlk tip parametresi `dict` değerinin `key` değeri içindir.
-
-İkinci parametre ise `dict` değerinin `value` değeri içindir:
-
-{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
-
+{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
 
 Bu şu anlama gelir:
 
-*  `prices` değişkeni `dict` tipindedir:
-    *  `dict` değişkeninin `key` değeri  `str` tipindedir (herbir item'ın "name" değeri).
-    *  `dict` değişkeninin `value` değeri `float` tipindedir (lherbir item'ın "price" değeri).
+* `items_t` değişkeni 3 öğeli bir `tuple`'dır: bir `int`, bir başka `int` ve bir `str`.
+* `items_s` değişkeni bir `set`'tir ve her bir öğesi `bytes` tipindedir.
 
-#### `Optional`
+#### Dict { #dict }
 
-`Optional` bir değişkenin `str`gibi bir tipi olabileceğini ama isteğe bağlı olarak tipinin `None` olabileceğini belirtir:
+Bir `dict` tanımlamak için, virgülle ayrılmış 2 type parameter verirsiniz.
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009.py!}
+İlk type parameter, `dict`'in key'leri içindir.
+
+İkinci type parameter, `dict`'in value'ları içindir:
+
+{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+
+Bu şu anlama gelir:
+
+* `prices` değişkeni bir `dict`'tir:
+    * Bu `dict`'in key'leri `str` tipindedir (örneğin her bir öğenin adı).
+    * Bu `dict`'in value'ları `float` tipindedir (örneğin her bir öğenin fiyatı).
+
+#### Union { #union }
+
+Bir değişkenin **birkaç tipten herhangi biri** olabileceğini bildirebilirsiniz; örneğin bir `int` veya bir `str`.
+
+Bunu tanımlamak için, her iki tipi ayırmak üzere <dfn title='başka adıyla "bit düzeyinde veya operatörü", ancak burada o anlamı önemli değil'>dikey çizgi (`|`)</dfn> kullanırsınız.
+
+Buna "union" denir, çünkü değişken bu iki tip kümesinin birleşimindeki herhangi bir şey olabilir.
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-`str` yerine `Optional[str]` kullanmak editorün bu değerin her zaman `str` tipinde değil bazen `None` tipinde de olabileceğini belirtir ve hataları tespit etmemizde yardımcı olur.
+Bu, `item`'ın `int` veya `str` olabileceği anlamına gelir.
 
-#### Generic tipler
+#### Muhtemelen `None` { #possibly-none }
 
-Köşeli parantez içinde tip parametreleri alan bu türler, örneğin:
+Bir değerin `str` gibi bir tipi olabileceğini ama aynı zamanda `None` da olabileceğini bildirebilirsiniz.
 
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
-* `Optional`
-* ...and others.
+//// tab | Python 3.10+
 
-**Generic types** yada  **Generics** olarak adlandırılır.
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial009_py310.py!}
+```
 
-### Tip olarak Sınıflar
+////
 
-Bir değişkenin tipini bir sınıf ile bildirebilirsiniz.
+Sadece `str` yerine `str | None` kullanmak, aslında değer `None` olabilecekken her zaman `str` olduğunu varsaydığınız hataları editörün yakalamanıza yardımcı olur.
 
-Diyelim ki  `name` değerine sahip `Person` sınıfınız var:
+### Tip olarak sınıflar { #classes-as-types }
 
-{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+Bir sınıfı da bir değişkenin tipi olarak bildirebilirsiniz.
 
+Örneğin, adı olan bir `Person` sınıfınız olsun:
 
-Sonra bir değişkeni 'Person' tipinde tanımlayabilirsiniz:
+{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
 
-{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+Sonra bir değişkeni `Person` tipinde olacak şekilde bildirebilirsiniz:
 
+{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
 
-Ve yine bütün editör desteğini alırsınız:
+Ve sonra, yine tüm editör desteğini alırsınız:
 
 <img src="/img/python-types/image06.png">
 
-## Pydantic modelleri
+Bunun "`one_person`, `Person` sınıfının bir **instance**'ıdır" anlamına geldiğine dikkat edin.
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> veri doğrulaması yapmak için bir Python kütüphanesidir.
+"`one_person`, `Person` adlı **class**'tır" anlamına gelmez.
 
-Verilerin "biçimini" niteliklere sahip sınıflar olarak düzenlersiniz.
+## Pydantic modelleri { #pydantic-models }
 
-Ve her niteliğin bir türü vardır.
+[Pydantic](https://docs.pydantic.dev/), data validation yapmak için bir Python kütüphanesidir.
 
-Sınıfın bazı değerlerle bir örneğini oluşturursunuz ve değerleri doğrular, bunları uygun türe dönüştürür ve size tüm verileri içeren bir nesne verir.
+Verinin "shape"'ini attribute'lara sahip sınıflar olarak tanımlarsınız.
 
-Ve ortaya çıkan nesne üzerindeki bütün editör desteğini alırsınız.
+Ve her attribute'un bir tipi vardır.
 
-Resmi Pydantic dokümanlarından alınmıştır:
+Ardından o sınıfın bir instance'ını bazı değerlerle oluşturursunuz; bu değerleri doğrular, uygun tipe dönüştürür (gerekliyse) ve size tüm veriyi içeren bir nesne verir.
 
-{* ../../docs_src/python_types/tutorial011.py *}
+Ve bu ortaya çıkan nesne ile tüm editör desteğini alırsınız.
 
+Resmî Pydantic dokümanlarından bir örnek:
 
-/// info
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
-Daha fazla şey öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
+/// info | Bilgi
+
+Daha fazlasını öğrenmek için [Pydantic'in dokümanlarına bakın](https://docs.pydantic.dev/).
 
 ///
 
-**FastAPI** tamamen Pydantic'e dayanmaktadır.
+**FastAPI** tamamen Pydantic üzerine kuruludur.
 
-Daha fazlasini görmek için [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Bunların pratikte nasıl çalıştığını [Eğitim - Kullanım Kılavuzu](tutorial/index.md) içinde çok daha fazla göreceksiniz.
 
-##  **FastAPI** tip belirteçleri
+## Metadata Annotations ile Type Hints { #type-hints-with-metadata-annotations }
 
-**FastAPI** birkaç şey yapmak için bu tür tip belirteçlerinden faydalanır.
+Python'da ayrıca, `Annotated` kullanarak bu type hints içine **ek <dfn title="Veri hakkında veri; bu durumda tip hakkında bilgi, örneğin bir açıklama.">üstveri</dfn>** koymayı sağlayan bir özellik de vardır.
 
-**FastAPI** ile parametre tiplerini bildirirsiniz ve şunları elde edersiniz:
+`Annotated`'ı `typing` içinden import edebilirsiniz.
 
-* **Editor desteği**.
-* **Tip kontrolü**.
+{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
 
-...ve **FastAPI** aynı belirteçleri şunlar için de kullanıyor:
+Python'un kendisi bu `Annotated` ile bir şey yapmaz. Editörler ve diğer araçlar için tip hâlâ `str`'dir.
 
-* **Gereksinimleri tanımlama**:  request path parameters, query parameters, headers, bodies, dependencies, ve benzeri gereksinimlerden
-* **Verileri çevirme**: Gönderilen veri tipinden istenilen veri tipine çevirme.
-* **Verileri doğrulama**: Her gönderilen verinin:
-    * doğrulanması ve geçersiz olduğunda **otomatik hata** oluşturma.
-* OpenAPI kullanarak apinizi **Belgeleyin** :
-    * bu daha sonra otomatik etkileşimli dokümantasyon kullanıcı arayüzü tarafından kullanılır.
+Ama **FastAPI**'ye uygulamanızın nasıl davranmasını istediğinize dair ek metadata sağlamak için `Annotated` içindeki bu alanı kullanabilirsiniz.
 
-Bütün bunlar kulağa soyut gelebilir. Merak etme. Tüm bunları çalışırken göreceksiniz. [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Hatırlanması gereken önemli nokta: `Annotated`'a verdiğiniz **ilk *type parameter***, **gerçek tip**tir. Geri kalanı ise diğer araçlar için metadatadır.
 
-Önemli olan, standart Python türlerini tek bir yerde kullanarak (daha fazla sınıf, dekoratör vb. eklemek yerine), **FastAPI**'nin bizim için işi yapmasını sağlamak.
+Şimdilik, sadece `Annotated`'ın var olduğunu ve bunun standart Python olduğunu bilmeniz yeterli. 😎
 
-/// info
+İleride bunun ne kadar **güçlü** olabildiğini göreceksiniz.
 
-Tüm öğreticiyi zaten okuduysanız ve türler hakkında daha fazla bilgi için geri döndüyseniz, iyi bir kaynak:<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> the "cheat sheet" from `mypy`</a>.
+/// tip | İpucu
+
+Bunun **standart Python** olması, editörünüzde mümkün olan **en iyi developer experience**'ı almaya devam edeceğiniz anlamına gelir; kodu analiz etmek ve refactor etmek için kullandığınız araçlarla da, vb. ✨
+
+Ayrıca kodunuzun pek çok başka Python aracı ve kütüphanesiyle çok uyumlu olacağı anlamına gelir. 🚀
+
+///
+
+## **FastAPI**'de type hints { #type-hints-in-fastapi }
+
+**FastAPI**, birkaç şey yapmak için bu type hints'ten faydalanır.
+
+**FastAPI** ile type hints kullanarak parametreleri bildirirsiniz ve şunları elde edersiniz:
+
+* **Editör desteği**.
+* **Tip kontrolleri**.
+
+...ve **FastAPI** aynı bildirimleri şunlar için de kullanır:
+
+* **Gereksinimleri tanımlamak**: request path parameters, query parameters, headers, bodies, bağımlılıklar (dependencies), vb.
+* **Veriyi dönüştürmek**: request'ten gerekli tipe.
+* **Veriyi doğrulamak**: her request'ten gelen veriyi:
+    * Veri geçersiz olduğunda client'a dönen **otomatik hatalar** üretmek.
+* OpenAPI kullanarak API'yi **dokümante etmek**:
+    * bu, daha sonra otomatik etkileşimli dokümantasyon kullanıcı arayüzleri tarafından kullanılır.
+
+Bunların hepsi kulağa soyut gelebilir. Merak etmeyin. Tüm bunları [Eğitim - Kullanım Kılavuzu](tutorial/index.md) içinde çalışırken göreceksiniz.
+
+Önemli olan, standart Python tiplerini tek bir yerde kullanarak (daha fazla sınıf, decorator vb. eklemek yerine), **FastAPI**'nin sizin için işin büyük kısmını yapmasıdır.
+
+/// info | Bilgi
+
+Tüm tutorial'ı zaten bitirdiyseniz ve tipler hakkında daha fazlasını görmek için geri döndüyseniz, iyi bir kaynak: [`mypy`'nin "cheat sheet"i](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

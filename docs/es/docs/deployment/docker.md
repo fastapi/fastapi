@@ -1,6 +1,6 @@
-# FastAPI en Contenedores - Docker
+# FastAPI en Contenedores - Docker { #fastapi-in-containers-docker }
 
-Al desplegar aplicaciones de FastAPI, un enfoque común es construir una **imagen de contenedor de Linux**. Normalmente se realiza usando <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Luego puedes desplegar esa imagen de contenedor de varias formas.
+Al desplegar aplicaciones de FastAPI, un enfoque común es construir una **imagen de contenedor de Linux**. Normalmente se realiza usando [**Docker**](https://www.docker.com/). Luego puedes desplegar esa imagen de contenedor de varias formas.
 
 Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **replicabilidad**, **simplicidad**, y otras.
 
@@ -14,7 +14,7 @@ Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **re
 <summary>Vista previa del Dockerfile 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -32,7 +32,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 </details>
 
-## Qué es un Contenedor
+## Qué es un Contenedor { #what-is-a-container }
 
 Los contenedores (principalmente contenedores de Linux) son una forma muy **ligera** de empaquetar aplicaciones incluyendo todas sus dependencias y archivos necesarios, manteniéndolos aislados de otros contenedores (otras aplicaciones o componentes) en el mismo sistema.
 
@@ -42,11 +42,11 @@ De esta forma, los contenedores consumen **pocos recursos**, una cantidad compar
 
 Los contenedores también tienen sus propios procesos de ejecución **aislados** (normalmente solo un proceso), sistema de archivos y red, simplificando el despliegue, la seguridad, el desarrollo, etc.
 
-## Qué es una Imagen de Contenedor
+## Qué es una Imagen de Contenedor { #what-is-a-container-image }
 
 Un **contenedor** se ejecuta desde una **imagen de contenedor**.
 
-Una imagen de contenedor es una versión **estática** de todos los archivos, variables de entorno y el comando/programa por defecto que debería estar presente en un contenedor. **Estático** aquí significa que la imagen de contenedor **no se está ejecutando**, no está siendo ejecutada, son solo los archivos empaquetados y los metadatos.
+Una imagen de contenedor es una versión **estática** de todos los archivos, variables de entorno y el comando/programa por defecto que debería estar presente en un contenedor. **Estático** aquí significa que la **imagen** de contenedor no se está ejecutando, no está siendo ejecutada, son solo los archivos empaquetados y los metadatos.
 
 En contraste con una "**imagen de contenedor**" que son los contenidos estáticos almacenados, un "**contenedor**" normalmente se refiere a la instance en ejecución, lo que está siendo **ejecutado**.
 
@@ -56,20 +56,20 @@ Una imagen de contenedor es comparable al archivo de **programa** y sus contenid
 
 Y el **contenedor** en sí (en contraste con la **imagen de contenedor**) es la instance real en ejecución de la imagen, comparable a un **proceso**. De hecho, un contenedor solo se está ejecutando cuando tiene un **proceso en ejecución** (y normalmente es solo un proceso). El contenedor se detiene cuando no hay un proceso en ejecución en él.
 
-## Imágenes de Contenedor
+## Imágenes de Contenedor { #container-images }
 
 Docker ha sido una de las herramientas principales para crear y gestionar **imágenes de contenedor** y **contenedores**.
 
-Y hay un <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> público con **imágenes de contenedores oficiales** pre-hechas para muchas herramientas, entornos, bases de datos y aplicaciones.
+Y hay un [Docker Hub](https://hub.docker.com/) público con **imágenes de contenedores oficiales** pre-hechas para muchas herramientas, entornos, bases de datos y aplicaciones.
 
-Por ejemplo, hay una <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Imagen de Python</a> oficial.
+Por ejemplo, hay una [Imagen de Python](https://hub.docker.com/_/python) oficial.
 
 Y hay muchas otras imágenes para diferentes cosas como bases de datos, por ejemplo para:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), etc.
 
 Usando una imagen de contenedor pre-hecha es muy fácil **combinar** y utilizar diferentes herramientas. Por ejemplo, para probar una nueva base de datos. En la mayoría de los casos, puedes usar las **imágenes oficiales**, y simplemente configurarlas con variables de entorno.
 
@@ -77,9 +77,9 @@ De esta manera, en muchos casos puedes aprender sobre contenedores y Docker y re
 
 Así, ejecutarías **múltiples contenedores** con diferentes cosas, como una base de datos, una aplicación de Python, un servidor web con una aplicación frontend en React, y conectarlos entre sí a través de su red interna.
 
-Todos los sistemas de gestión de contenedores (como Docker o Kubernetes) tienen estas características de redes integradas en ellos.
+Todos los sistemas de gestión de contenedores (como Docker o Kubernetes) tienen estas funcionalidades de redes integradas.
 
-## Contenedores y Procesos
+## Contenedores y Procesos { #containers-and-processes }
 
 Una **imagen de contenedor** normalmente incluye en sus metadatos el programa o comando por defecto que debería ser ejecutado cuando el **contenedor** se inicie y los parámetros que deben pasar a ese programa. Muy similar a lo que sería si estuviera en la línea de comandos.
 
@@ -91,7 +91,7 @@ Un contenedor normalmente tiene un **proceso único**, pero también es posible 
 
 Pero no es posible tener un contenedor en ejecución sin **al menos un proceso en ejecución**. Si el proceso principal se detiene, el contenedor se detiene.
 
-## Construir una Imagen de Docker para FastAPI
+## Construir una Imagen de Docker para FastAPI { #build-a-docker-image-for-fastapi }
 
 ¡Bien, construyamos algo ahora! 🚀
 
@@ -103,7 +103,7 @@ Esto es lo que querrías hacer en **la mayoría de los casos**, por ejemplo:
 * Al ejecutar en un **Raspberry Pi**
 * Usando un servicio en la nube que ejecutaría una imagen de contenedor por ti, etc.
 
-### Requisitos del Paquete
+### Requisitos del Paquete { #package-requirements }
 
 Normalmente tendrías los **requisitos del paquete** para tu aplicación en algún archivo.
 
@@ -111,7 +111,7 @@ Dependería principalmente de la herramienta que uses para **instalar** esos req
 
 La forma más común de hacerlo es tener un archivo `requirements.txt` con los nombres de los paquetes y sus versiones, uno por línea.
 
-Por supuesto, usarías las mismas ideas que leíste en [Acerca de las versiones de FastAPI](versions.md){.internal-link target=_blank} para establecer los rangos de versiones.
+Por supuesto, usarías las mismas ideas que leíste en [Acerca de las versiones de FastAPI](versions.md) para establecer los rangos de versiones.
 
 Por ejemplo, tu `requirements.txt` podría verse así:
 
@@ -138,15 +138,13 @@ Existen otros formatos y herramientas para definir e instalar dependencias de pa
 
 ///
 
-### Crear el Código de **FastAPI**
+### Crear el Código de **FastAPI** { #create-the-fastapi-code }
 
 * Crea un directorio `app` y entra en él.
 * Crea un archivo vacío `__init__.py`.
 * Crea un archivo `main.py` con:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,17 +156,17 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-### Dockerfile
+### Dockerfile { #dockerfile }
 
 Ahora, en el mismo directorio del proyecto, crea un archivo `Dockerfile` con:
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -238,9 +236,9 @@ Asegúrate de **siempre** usar la **forma exec** de la instrucción `CMD`, como 
 
 ///
 
-#### Usar `CMD` - Forma Exec
+#### Usar `CMD` - Forma Exec { #use-cmd-exec-form }
 
-La instrucción Docker <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> se puede escribir usando dos formas:
+La instrucción Docker [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) se puede escribir usando dos formas:
 
 ✅ **Forma Exec**:
 
@@ -256,26 +254,26 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Asegúrate de siempre usar la **forma exec** para garantizar que FastAPI pueda cerrarse de manera adecuada y que [los eventos de lifespan](../advanced/events.md){.internal-link target=_blank} sean disparados.
+Asegúrate de siempre usar la **forma exec** para garantizar que FastAPI pueda cerrarse de manera adecuada y que [los eventos de lifespan](../advanced/events.md) sean disparados.
 
-Puedes leer más sobre esto en las <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">documentación de Docker para formas de shell y exec</a>.
+Puedes leer más sobre esto en la [documentación de Docker para formas de shell y exec](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
-Esto puede ser bastante notorio al usar `docker compose`. Consulta esta sección de preguntas frecuentes de Docker Compose para más detalles técnicos: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">¿Por qué mis servicios tardan 10 segundos en recrearse o detenerse?</a>.
+Esto puede ser bastante notorio al usar `docker compose`. Consulta esta sección de preguntas frecuentes de Docker Compose para más detalles técnicos: [¿Por qué mis servicios tardan 10 segundos en recrearse o detenerse?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
-#### Estructura de Directorios
+#### Estructura de Directorios { #directory-structure }
 
 Ahora deberías tener una estructura de directorios como:
 
 ```
 .
 ├── app
-│   ├── __init__.py
+│   ├── __init__.py
 │   └── main.py
 ├── Dockerfile
 └── requirements.txt
 ```
 
-#### Detrás de un Proxy de Terminación TLS
+#### Detrás de un Proxy de Terminación TLS { #behind-a-tls-termination-proxy }
 
 Si estás ejecutando tu contenedor detrás de un Proxy de Terminación TLS (load balancer) como Nginx o Traefik, añade la opción `--proxy-headers`, esto le dirá a Uvicorn (a través de la CLI de FastAPI) que confíe en los headers enviados por ese proxy indicando que la aplicación se está ejecutando detrás de HTTPS, etc.
 
@@ -283,7 +281,7 @@ Si estás ejecutando tu contenedor detrás de un Proxy de Terminación TLS (load
 CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 ```
 
-#### Cache de Docker
+#### Caché de Docker { #docker-cache }
 
 Hay un truco importante en este `Dockerfile`, primero copiamos **el archivo con las dependencias solo**, no el resto del código. Déjame decirte por qué es así.
 
@@ -315,7 +313,7 @@ Luego, cerca del final del `Dockerfile`, copiamos todo el código. Como esto es 
 COPY ./app /code/app
 ```
 
-### Construir la Imagen de Docker
+### Construir la Imagen de Docker { #build-the-docker-image }
 
 Ahora que todos los archivos están en su lugar, vamos a construir la imagen del contenedor.
 
@@ -340,7 +338,7 @@ En este caso, es el mismo directorio actual (`.`).
 
 ///
 
-### Iniciar el Contenedor Docker
+### Iniciar el Contenedor Docker { #start-the-docker-container }
 
 * Ejecuta un contenedor basado en tu imagen:
 
@@ -352,9 +350,9 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-## Revísalo
+## Revísalo { #check-it }
 
-Deberías poder revisarlo en la URL de tu contenedor de Docker, por ejemplo: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> o <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (o equivalente, usando tu host de Docker).
+Deberías poder revisarlo en la URL de tu contenedor de Docker, por ejemplo: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) o [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (o equivalente, usando tu host de Docker).
 
 Verás algo como:
 
@@ -362,23 +360,23 @@ Verás algo como:
 {"item_id": 5, "q": "somequery"}
 ```
 
-## Documentación Interactiva de la API
+## Documentación Interactiva de la API { #interactive-api-docs }
 
-Ahora puedes ir a <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> o <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (o equivalente, usando tu host de Docker).
+Ahora puedes ir a [http://192.168.99.100/docs](http://192.168.99.100/docs) o [http://127.0.0.1/docs](http://127.0.0.1/docs) (o equivalente, usando tu host de Docker).
 
-Verás la documentación interactiva automática de la API (proporcionada por <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Verás la documentación interactiva automática de la API (proporcionada por [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## Documentación Alternativa de la API
+## Documentación Alternativa de la API { #alternative-api-docs }
 
-Y también puedes ir a <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> o <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (o equivalente, usando tu host de Docker).
+Y también puedes ir a [http://192.168.99.100/redoc](http://192.168.99.100/redoc) o [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (o equivalente, usando tu host de Docker).
 
-Verás la documentación alternativa automática (proporcionada por <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Construir una Imagen de Docker con un FastAPI de Un Solo Archivo
+## Construir una Imagen de Docker con un FastAPI de Un Solo Archivo { #build-a-docker-image-with-a-single-file-fastapi }
 
 Si tu FastAPI es un solo archivo, por ejemplo, `main.py` sin un directorio `./app`, tu estructura de archivos podría verse así:
 
@@ -392,7 +390,7 @@ Si tu FastAPI es un solo archivo, por ejemplo, `main.py` sin un directorio `./ap
 Entonces solo tendrías que cambiar las rutas correspondientes para copiar el archivo dentro del `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -413,9 +411,9 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 Cuando pasas el archivo a `fastapi run`, detectará automáticamente que es un archivo único y no parte de un paquete y sabrá cómo importarlo y servir tu aplicación FastAPI. 😎
 
-## Conceptos de Despliegue
+## Conceptos de Despliegue { #deployment-concepts }
 
-Hablemos nuevamente de algunos de los mismos [Conceptos de Despliegue](concepts.md){.internal-link target=_blank} en términos de contenedores.
+Hablemos nuevamente de algunos de los mismos [Conceptos de Despliegue](concepts.md) en términos de contenedores.
 
 Los contenedores son principalmente una herramienta para simplificar el proceso de **construcción y despliegue** de una aplicación, pero no imponen un enfoque particular para manejar estos **conceptos de despliegue**, y hay varias estrategias posibles.
 
@@ -430,11 +428,11 @@ Revisemos estos **conceptos de despliegue** en términos de contenedores:
 * Memoria
 * Pasos previos antes de comenzar
 
-## HTTPS
+## HTTPS { #https }
 
 Si nos enfocamos solo en la **imagen de contenedor** para una aplicación FastAPI (y luego el **contenedor** en ejecución), HTTPS normalmente sería manejado **externamente** por otra herramienta.
 
-Podría ser otro contenedor, por ejemplo, con <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, manejando **HTTPS** y la adquisición **automática** de **certificados**.
+Podría ser otro contenedor, por ejemplo, con [Traefik](https://traefik.io/), manejando **HTTPS** y la adquisición **automática** de **certificados**.
 
 /// tip | Consejo
 
@@ -444,7 +442,7 @@ Traefik tiene integraciones con Docker, Kubernetes, y otros, por lo que es muy f
 
 Alternativamente, HTTPS podría ser manejado por un proveedor de la nube como uno de sus servicios (mientras que la aplicación aún se ejecuta en un contenedor).
 
-## Ejecutar en el Inicio y Reinicios
+## Ejecutar en el Inicio y Reinicios { #running-on-startup-and-restarts }
 
 Normalmente hay otra herramienta encargada de **iniciar y ejecutar** tu contenedor.
 
@@ -454,15 +452,15 @@ En la mayoría (o todas) de las casos, hay una opción sencilla para habilitar l
 
 Sin usar contenedores, hacer que las aplicaciones se ejecuten al inicio y con reinicios puede ser engorroso y difícil. Pero al **trabajar con contenedores** en la mayoría de los casos, esa funcionalidad se incluye por defecto. ✨
 
-## Replicación - Número de Procesos
+## Replicación - Número de Procesos { #replication-number-of-processes }
 
-Si tienes un <abbr title="Un grupo de máquinas que están configuradas para estar conectadas y trabajar juntas de alguna manera.">cluster</abbr> de máquinas con **Kubernetes**, Docker Swarm Mode, Nomad, u otro sistema complejo similar para gestionar contenedores distribuidos en varias máquinas, entonces probablemente querrás manejar la **replicación** a nivel de **cluster** en lugar de usar un **gestor de procesos** (como Uvicorn con workers) en cada contenedor.
+Si tienes un <dfn title="Un grupo de máquinas que están configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</dfn> de máquinas con **Kubernetes**, Docker Swarm Mode, Nomad, u otro sistema complejo similar para gestionar contenedores distribuidos en varias máquinas, entonces probablemente querrás manejar la **replicación** a nivel de **cluster** en lugar de usar un **gestor de procesos** (como Uvicorn con workers) en cada contenedor.
 
 Uno de esos sistemas de gestión de contenedores distribuidos como Kubernetes normalmente tiene alguna forma integrada de manejar la **replicación de contenedores** mientras aún soporta el **load balancing** para las requests entrantes. Todo a nivel de **cluster**.
 
 En esos casos, probablemente desearías construir una **imagen de Docker desde cero** como se [explica arriba](#dockerfile), instalando tus dependencias, y ejecutando **un solo proceso de Uvicorn** en lugar de usar múltiples workers de Uvicorn.
 
-### Load Balancer
+### Load Balancer { #load-balancer }
 
 Al usar contenedores, normalmente tendrías algún componente **escuchando en el puerto principal**. Podría posiblemente ser otro contenedor que es también un **Proxy de Terminación TLS** para manejar **HTTPS** o alguna herramienta similar.
 
@@ -476,17 +474,17 @@ El mismo componente **Proxy de Terminación TLS** usado para HTTPS probablemente
 
 Y al trabajar con contenedores, el mismo sistema que usas para iniciarlos y gestionarlos ya tendría herramientas internas para transmitir la **comunicación en red** (e.g., requests HTTP) desde ese **load balancer** (que también podría ser un **Proxy de Terminación TLS**) a los contenedores con tu aplicación.
 
-### Un Load Balancer - Múltiples Contenedores Worker
+### Un Load Balancer - Múltiples Contenedores Worker { #one-load-balancer-multiple-worker-containers }
 
 Al trabajar con **Kubernetes** u otros sistemas de gestión de contenedores distribuidos similares, usar sus mecanismos de red internos permitiría que el único **load balancer** que está escuchando en el **puerto** principal transmita la comunicación (requests) a posiblemente **múltiples contenedores** ejecutando tu aplicación.
 
 Cada uno de estos contenedores ejecutando tu aplicación normalmente tendría **solo un proceso** (e.g., un proceso Uvicorn ejecutando tu aplicación FastAPI). Todos serían **contenedores idénticos**, ejecutando lo mismo, pero cada uno con su propio proceso, memoria, etc. De esa forma, aprovecharías la **paralelización** en **diferentes núcleos** de la CPU, o incluso en **diferentes máquinas**.
 
-Y el sistema de contenedores distribuido con el **load balancer** **distribuiría las requests** a cada uno de los contenedores **replicados** que ejecutan tu aplicación **en turnos**. Así, cada request podría ser manejado por uno de los múltiples **contenedores replicados** ejecutando tu aplicación.
+Y el sistema de contenedores distribuido con el **load balancer** **distribuiría las requests** a cada uno de los contenedores con tu aplicación **en turnos**. Así, cada request podría ser manejada por uno de los múltiples **contenedores replicados** ejecutando tu aplicación.
 
-Y normalmente este **load balancer** podría manejar requests que vayan a *otras* aplicaciones en tu cluster (p. ej., a un dominio diferente, o bajo un prefijo de ruta de URL diferente), y transmitiría esa comunicación a los contenedores correctos para *esa otra* aplicación ejecutándose en tu cluster.
+Y normalmente este **load balancer** podría manejar requests que vayan a *otras* aplicaciones en tu cluster (p. ej., a un dominio diferente, o bajo un prefijo de path de URL diferente), y transmitiría esa comunicación a los contenedores correctos para *esa otra* aplicación ejecutándose en tu cluster.
 
-### Un Proceso por Contenedor
+### Un Proceso por Contenedor { #one-process-per-container }
 
 En este tipo de escenario, probablemente querrías tener **un solo proceso (Uvicorn) por contenedor**, ya que ya estarías manejando la replicación a nivel de cluster.
 
@@ -494,14 +492,14 @@ Así que, en este caso, **no** querrías tener múltiples workers en el contened
 
 Tener otro gestor de procesos dentro del contenedor (como sería con múltiples workers) solo añadiría **complejidad innecesaria** que probablemente ya estés manejando con tu sistema de cluster.
 
-### Contenedores con Múltiples Procesos y Casos Especiales
+### Contenedores con Múltiples Procesos y Casos Especiales { #containers-with-multiple-processes-and-special-cases }
 
 Por supuesto, hay **casos especiales** donde podrías querer tener **un contenedor** con varios **worker processes de Uvicorn** dentro.
 
 En esos casos, puedes usar la opción de línea de comandos `--workers` para establecer el número de workers que deseas ejecutar:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -519,11 +517,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 Aquí hay algunos ejemplos de cuándo eso podría tener sentido:
 
-#### Una Aplicación Simple
+#### Una Aplicación Simple { #a-simple-app }
 
 Podrías querer un gestor de procesos en el contenedor si tu aplicación es **lo suficientemente simple** que pueda ejecutarse en un **servidor único**, no un cluster.
 
-#### Docker Compose
+#### Docker Compose { #docker-compose }
 
 Podrías estar desplegando en un **servidor único** (no un cluster) con **Docker Compose**, por lo que no tendrías una forma fácil de gestionar la replicación de contenedores (con Docker Compose) mientras se preserva la red compartida y el **load balancing**.
 
@@ -540,7 +538,7 @@ El punto principal es que, **ninguna** de estas son **reglas escritas en piedra*
 * Memoria
 * Pasos previos antes de comenzar
 
-## Memoria
+## Memoria { #memory }
 
 Si ejecutas **un solo proceso por contenedor**, tendrás una cantidad de memoria más o menos bien definida, estable y limitada consumida por cada uno de esos contenedores (más de uno si están replicados).
 
@@ -550,29 +548,29 @@ Si tu aplicación es **simple**, probablemente esto **no será un problema**, y 
 
 Si ejecutas **múltiples procesos por contenedor**, tendrás que asegurarte de que el número de procesos iniciados no **consuma más memoria** de la que está disponible.
 
-## Pasos Previos Antes de Comenzar y Contenedores
+## Pasos Previos Antes de Comenzar y Contenedores { #previous-steps-before-starting-and-containers }
 
 Si estás usando contenedores (por ejemplo, Docker, Kubernetes), entonces hay dos enfoques principales que puedes usar.
 
-### Múltiples Contenedores
+### Múltiples Contenedores { #multiple-containers }
 
 Si tienes **múltiples contenedores**, probablemente cada uno ejecutando un **proceso único** (por ejemplo, en un cluster de **Kubernetes**), entonces probablemente querrías tener un **contenedor separado** realizando el trabajo de los **pasos previos** en un solo contenedor, ejecutando un solo proceso, **antes** de ejecutar los contenedores worker replicados.
 
 /// info | Información
 
-Si estás usando Kubernetes, probablemente sería un <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Contenedor de Inicialización</a>.
+Si estás usando Kubernetes, probablemente sería un [Contenedor de Inicialización](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
 ///
 
 Si en tu caso de uso no hay problema en ejecutar esos pasos previos **múltiples veces en paralelo** (por ejemplo, si no estás ejecutando migraciones de base de datos, sino simplemente verificando si la base de datos está lista), entonces también podrías simplemente ponerlos en cada contenedor justo antes de iniciar el proceso principal.
 
-### Un Contenedor Único
+### Un Contenedor Único { #single-container }
 
 Si tienes una configuración simple, con un **contenedor único** que luego inicia múltiples **worker processes** (o también solo un proceso), entonces podrías ejecutar esos pasos previos en el mismo contenedor, justo antes de iniciar el proceso con la aplicación.
 
-### Imagen Base de Docker
+### Imagen Base de Docker { #base-docker-image }
 
-Solía haber una imagen official de Docker de FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Pero ahora está obsoleta. ⛔️
+Solía haber una imagen oficial de Docker de FastAPI: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Pero ahora está obsoleta. ⛔️
 
 Probablemente **no** deberías usar esta imagen base de Docker (o cualquier otra similar).
 
@@ -588,7 +586,7 @@ Pero ahora que Uvicorn (y el comando `fastapi`) soportan el uso de `--workers`, 
 
 ///
 
-## Desplegar la Imagen del Contenedor
+## Desplegar la Imagen del Contenedor { #deploy-the-container-image }
 
 Después de tener una Imagen de Contenedor (Docker) hay varias maneras de desplegarla.
 
@@ -600,11 +598,11 @@ Por ejemplo:
 * Con otra herramienta como Nomad
 * Con un servicio en la nube que tome tu imagen de contenedor y la despliegue
 
-## Imagen de Docker con `uv`
+## Imagen de Docker con `uv` { #docker-image-with-uv }
 
-Si estás usando <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> para instalar y gestionar tu proyecto, puedes seguir su <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">guía de Docker de uv</a>.
+Si estás usando [uv](https://github.com/astral-sh/uv) para instalar y gestionar tu proyecto, puedes seguir su [guía de Docker de uv](https://docs.astral.sh/uv/guides/integration/docker/).
 
-## Resumen
+## Resumen { #recap }
 
 Usando sistemas de contenedores (por ejemplo, con **Docker** y **Kubernetes**) se vuelve bastante sencillo manejar todos los **conceptos de despliegue**:
 

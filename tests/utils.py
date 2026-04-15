@@ -1,11 +1,18 @@
 import sys
 
 import pytest
-from fastapi._compat import PYDANTIC_V2
 
-needs_py39 = pytest.mark.skipif(sys.version_info < (3, 9), reason="requires python3.9+")
 needs_py310 = pytest.mark.skipif(
     sys.version_info < (3, 10), reason="requires python3.10+"
 )
-needs_pydanticv2 = pytest.mark.skipif(not PYDANTIC_V2, reason="requires Pydantic v2")
-needs_pydanticv1 = pytest.mark.skipif(PYDANTIC_V2, reason="requires Pydantic v1")
+needs_py314 = pytest.mark.skipif(
+    sys.version_info < (3, 14), reason="requires python3.14+"
+)
+
+workdir_lock = pytest.mark.xdist_group("workdir_lock")
+
+
+def skip_module_if_py_gte_314():
+    """Skip entire module on Python 3.14+ at import time."""
+    if sys.version_info >= (3, 14):
+        pytest.skip("requires python3.13-", allow_module_level=True)
