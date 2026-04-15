@@ -243,7 +243,7 @@ If you want to use the exception along with the same default exception handlers 
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
 
-### Validating Path Parameters
+### Validating Path Parameters { #validating-path-parameters }
 
 FastAPI allows you to validate path parameters using Pydantic validators, similar to query parameter validation.
 
@@ -267,5 +267,5 @@ ValidID = Annotated[str, AfterValidator(check_valid_id)]
 def read_item(item_id: ValidID):
     return {"item_id": item_id}
 ```
-This approach ensures validation happens before the request reaches your path operation function, 
+This approach ensures validation happens before the request reaches your path operation function,
 keeping your code clean and consistent.
