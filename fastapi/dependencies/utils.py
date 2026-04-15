@@ -876,7 +876,9 @@ def request_params_to_args(
                 alias = get_validation_alias(field)
                 if alias == field.name:
                     alias = alias.replace("_", "-")
-        aliases_to_process = (alias,) if alias is not None else get_validation_aliases(field)
+        aliases_to_process = (
+            (alias,) if alias is not None else get_validation_aliases(field)
+        )
         value = _get_multidict_value(field, received_params, alias=aliases_to_process)
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
