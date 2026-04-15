@@ -279,6 +279,8 @@ def get_openapi_path(
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
+            if method == "HEAD":
+                continue  # HEAD is auto-added for GET routes, not shown in OpenAPI schema
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
