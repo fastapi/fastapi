@@ -279,6 +279,11 @@ def get_openapi_path(
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
+            # HEAD is implied by GET per HTTP spec (RFC 9110); it is auto-added
+            # to self.methods for routing, but should not appear as a separate
+            # operation in the OpenAPI schema.
+            if method.upper() == "HEAD" and "GET" in route.methods:
+                continue
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )

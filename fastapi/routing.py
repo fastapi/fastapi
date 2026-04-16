@@ -890,6 +890,7 @@ class APIRoute(routing.Route):
         if methods is None:
             methods = ["GET"]
         self.methods: set[str] = {method.upper() for method in methods}
+        self._auto_head: bool = False
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[[APIRoute], str] = (
                 generate_unique_id_function.value
@@ -1414,6 +1415,23 @@ class APIRouter(routing.Router):
                 strict_content_type, self.strict_content_type
             ),
         )
+        # Auto-add HEAD for GET routes (mirrors Starlette behaviour, RFC 9110).
+        # If an explicit HEAD-only route is being registered, remove any
+        # auto-added HEAD from existing GET routes on the same path so the
+        # explicit handler takes priority.
+        if "GET" in route.methods and "HEAD" not in route.methods:
+            route.methods.add("HEAD")
+            route._auto_head = True
+        elif "HEAD" in route.methods and "GET" not in route.methods:
+            # Explicit HEAD route: revoke auto-HEAD on any GET sibling routes.
+            for existing in self.routes:
+                if (
+                    isinstance(existing, APIRoute)
+                    and existing.path == route.path
+                    and getattr(existing, "_auto_head", False)
+                ):
+                    existing.methods.discard("HEAD")
+                    existing._auto_head = False
         self.routes.append(route)
 
     def api_route(
