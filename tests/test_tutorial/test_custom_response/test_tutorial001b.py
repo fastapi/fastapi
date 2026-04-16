@@ -11,6 +11,8 @@ with warnings.catch_warnings():
 
 client = TestClient(app)
 
+pytest.importorskip("orjson")
+
 
 @pytest.mark.filterwarnings("ignore::fastapi.exceptions.FastAPIDeprecationWarning")
 def test_get_custom_response():
