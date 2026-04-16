@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.136.0 (2026-04-16)
+
 ### Upgrades
 
 * ⬆️ Support free-threaded Python 3.14t. PR [#15149](https://github.com/fastapi/fastapi/pull/15149) by [@svlandeg](https://github.com/svlandeg).
