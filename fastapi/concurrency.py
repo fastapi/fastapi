@@ -63,6 +63,29 @@ async def _run_in_threadpool_with_overflow(
     return await _starlette_run_in_threadpool(func, *args, **kwargs)
 
 
+def set_thread_limit(limit: int = 40, anti_deadlock_reserve: int = 1) -> None:
+    """
+    Set the maximum number of threads that can be used by the thread pool.
+
+    This is a global setting that affects all calls to `run_in_threadpool` and
+    `iterate_in_threadpool`.
+    """
+    if not isinstance(limit, int):
+        raise TypeError("Thread limit must be an integer.")
+
+    if not isinstance(anti_deadlock_reserve, int):
+        raise TypeError("Anti deadlock reserve must be an integer.")
+
+    if limit < 2:
+        raise ValueError("Thread limit must be at least 2.")
+
+    if not 0 < anti_deadlock_reserve < limit - 1:
+        raise ValueError("Anti deadlock reserve must be between 0 and limit - 1.")
+
+    anyio.to_thread.current_default_thread_limiter().total_tokens = limit
+    _get_anti_deadlock_capacity_limiter().total_tokens = limit - anti_deadlock_reserve
+
+
 @asynccontextmanager
 async def contextmanager_in_threadpool(
     cm: AbstractContextManager[_T],
