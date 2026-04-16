@@ -53,6 +53,7 @@ from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
+    run_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant
 from fastapi.exceptions import DependencyScopeError
@@ -63,7 +64,6 @@ from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import (
     FormData,
     Headers,
