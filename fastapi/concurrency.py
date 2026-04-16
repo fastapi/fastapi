@@ -94,20 +94,15 @@ async def contextmanager_in_threadpool(
     # can create race conditions/deadlocks if the context manager itself
     # has its own internal pool (e.g. a database connection pool)
     # to avoid this we let __exit__ run without a capacity limit
-    # since we're creating a new limiter for each call, any non-zero limit
-    # works (1 is arbitrary)
-    exit_limiter = CapacityLimiter(1)
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
         ok = bool(
-            await anyio.to_thread.run_sync(
-                cm.__exit__, type(e), e, e.__traceback__, limiter=exit_limiter
+            await _run_in_threadpool_with_overflow(
+                cm.__exit__, type(e), e, e.__traceback__
             )
         )
         if not ok:
             raise e
     else:
-        await anyio.to_thread.run_sync(
-            cm.__exit__, None, None, None, limiter=exit_limiter
-        )
+        await _run_in_threadpool_with_overflow(cm.__exit__, None, None, None)
