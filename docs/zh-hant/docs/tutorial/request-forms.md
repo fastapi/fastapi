@@ -4,9 +4,9 @@
 
 /// info
 
-要使用表單，請先安裝 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要使用表單，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，然後再安裝，例如：
+請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後再安裝，例如：
 
 ```console
 $ pip install python-multipart
@@ -56,7 +56,7 @@ HTML 表單（`<form></form>`）向伺服器傳送資料時，通常會使用一
 
 但當表單包含檔案時，會使用 `multipart/form-data`。你會在下一章閱讀如何處理檔案。
 
-若想進一步了解這些編碼與表單欄位，請參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> 的 <code>POST</code> 網頁文件</a>。
+若想進一步了解這些編碼與表單欄位，請參考 [<abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> web docs 的 `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)。
 
 ///
 

@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
+**FastAPI <abbr title="command line interface">CLI</abbr>** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
 
-When you install FastAPI (e.g. with `pip install "fastapi[standard]"`), it includes a package called `fastapi-cli`, this package provides the `fastapi` command in the terminal.
+When you install FastAPI (e.g. with `pip install "fastapi[standard]"`), it comes with a command line program you can run in the terminal.
 
 To run your FastAPI app for development, you can use the `fastapi dev` command:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,66 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-The command line program called `fastapi` is **FastAPI CLI**.
+/// tip
 
-FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatically detects the `FastAPI` instance (commonly named `app`), determines the correct import process, and then serves it.
+For production you would use `fastapi run` instead of `fastapi dev`. 🚀
 
-For production you would use `fastapi run` instead. 🚀
+///
 
 Internally, **FastAPI CLI** uses [Uvicorn](https://www.uvicorn.dev), a high-performance, production-ready, ASGI server. 😎
+
+The `fastapi` CLI will try to detect automatically the FastAPI app to run, assuming it's an object called `app` in a file `main.py` (or a couple other variants).
+
+But you can configure explicitly the app to use.
+
+## Configure the app `entrypoint` in `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+You can configure where your app is located in a `pyproject.toml` file like:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+That `entrypoint` will tell the `fastapi` command that it should import the app like:
+
+```python
+from main import app
+```
+
+If your code was structured like:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Then you would set the `entrypoint` as:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+which would be equivalent to:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` with path { #fastapi-dev-with-path }
+
+You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
+
+```console
+$ fastapi dev main.py
+```
+
+But you would have to remember to pass the correct path every time you call the `fastapi` command.
+
+Additionally, other tools might not be able to find it, for example the [VS Code Extension](editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -62,7 +115,7 @@ By default, **auto-reload** is enabled, automatically reloading the server when 
 
 ## `fastapi run` { #fastapi-run }
 
-Executing `fastapi run` starts FastAPI in production mode by default.
+Executing `fastapi run` starts FastAPI in production mode.
 
 By default, **auto-reload** is disabled. It also listens on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
 

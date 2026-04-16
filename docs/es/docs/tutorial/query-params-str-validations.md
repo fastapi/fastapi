@@ -35,13 +35,13 @@ FastAPI añadió soporte para `Annotated` (y empezó a recomendarlo) en la versi
 
 Si tienes una versión más antigua, obtendrás errores al intentar usar `Annotated`.
 
-Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} a al menos 0.95.1 antes de usar `Annotated`.
+Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) a al menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
 ## Usar `Annotated` en el tipo del parámetro `q` { #use-annotated-in-the-type-for-the-q-parameter }
 
-¿Recuerdas que te dije antes que `Annotated` puede usarse para agregar metadatos a tus parámetros en la [Introducción a Tipos de Python](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
+¿Recuerdas que te dije antes que `Annotated` puede usarse para agregar metadatos a tus parámetros en la [Introducción a Tipos de Python](../python-types.md#type-hints-with-metadata-annotations)?
 
 Ahora es el momento de usarlo con FastAPI. 🚀
 
@@ -158,7 +158,7 @@ Podrías llamar a esa misma función en otros lugares sin FastAPI, y funcionarí
 
 Cuando no usas `Annotated` y en su lugar usas el estilo de valor por defecto (antiguo), si llamas a esa función sin FastAPI en otros lugares, tienes que recordar pasar los argumentos a la función para que funcione correctamente, de lo contrario, los valores serán diferentes de lo que esperas (por ejemplo, `QueryInfo` o algo similar en lugar de `str`). Y tu editor no se quejará, y Python no se quejará al ejecutar esa función, solo cuando los errores dentro de las operaciones hagan que funcione incorrectamente.
 
-Dado que `Annotated` puede tener más de una anotación de metadato, ahora podrías incluso usar la misma función con otras herramientas, como <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Dado que `Annotated` puede tener más de una anotación de metadato, ahora podrías incluso usar la misma función con otras herramientas, como [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Agregar más validaciones { #add-more-validations }
 
@@ -296,9 +296,9 @@ También puedes usar `list` directamente en lugar de `list[str]`:
 
 /// note | Nota
 
-Ten en cuenta que en este caso, FastAPI no comprobará el contenido de la lista.
+Ten en cuenta que en este caso, FastAPI no comprobará el contenido de la list.
 
-Por ejemplo, `list[int]` comprobaría (y documentaría) que el contenido de la lista son enteros. Pero `list` sola no lo haría.
+Por ejemplo, `list[int]` comprobaría (y documentaría) que el contenido de la list son enteros. Pero `list` sola no lo haría.
 
 ///
 
@@ -370,11 +370,11 @@ Podría haber casos donde necesites hacer alguna validación personalizada que n
 
 En esos casos, puedes usar una función validadora personalizada que se aplique después de la validación normal (por ejemplo, después de validar que el valor es un `str`).
 
-Puedes lograr eso usando <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">`AfterValidator` de Pydantic</a> dentro de `Annotated`.
+Puedes lograr eso usando [`AfterValidator` de Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) dentro de `Annotated`.
 
 /// tip | Consejo
 
-Pydantic también tiene <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> y otros. 🤓
+Pydantic también tiene [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) y otros. 🤓
 
 ///
 

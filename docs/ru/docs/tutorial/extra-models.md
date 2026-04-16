@@ -12,7 +12,7 @@
 
 Никогда не храните пароли пользователей в чистом виде. Всегда храните "безопасный хэш", который вы затем сможете проверить.
 
-Если вам это не знакомо, вы можете узнать про "хэш пароля" в [главах о безопасности](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Если вам это не знакомо, вы можете узнать про "хэш пароля" в [главах о безопасности](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ UserInDB(
 
 Он будет определён в OpenAPI как `anyOf`.
 
-Для этого используйте стандартную аннотацию типов в Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Для этого используйте стандартную аннотацию типов в Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Примечание
 
-При объявлении <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> сначала указывайте наиболее специфичный тип, затем менее специфичный. В примере ниже более специфичный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
+При объявлении [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) сначала указывайте наиболее специфичный тип, затем менее специфичный. В примере ниже более специфичный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
 
 ///
 

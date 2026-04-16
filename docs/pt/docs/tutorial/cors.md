@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS ou "Cross-Origin Resource Sharing"</a> refere-se às situações em que um frontend rodando em um navegador possui um código JavaScript que se comunica com um backend, e o backend está em uma "origem" diferente do frontend.
+[CORS ou "Cross-Origin Resource Sharing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) refere-se às situações em que um frontend rodando em um navegador possui um código JavaScript que se comunica com um backend, e o backend está em uma "origem" diferente do frontend.
 
 ## Origem { #origin }
 
@@ -56,10 +56,10 @@ Os seguintes argumentos são suportados:
 * `allow_origins` - Uma lista de origens que devem ter permissão para fazer requisições de origem cruzada. Por exemplo, `['https://example.org', 'https://www.example.org']`. Você pode usar `['*']` para permitir qualquer origem.
 * `allow_origin_regex` - Uma string regex para corresponder às origens que devem ter permissão para fazer requisições de origem cruzada. Por exemplo, `'https://.*\.example\.org'`.
 * `allow_methods` - Uma lista de métodos HTTP que devem ser permitidos para requisições de origem cruzada. O padrão é `['GET']`. Você pode usar `['*']` para permitir todos os métodos padrão.
-* `allow_headers` - Uma lista de cabeçalhos de solicitação HTTP que devem ter suporte para requisições de origem cruzada. O padrão é `[]`. Você pode usar `['*']` para permitir todos os cabeçalhos. Os cabeçalhos `Accept`, `Accept-Language`, `Content-Language` e `Content-Type` são sempre permitidos para <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">requisições CORS simples</a>.
+* `allow_headers` - Uma lista de cabeçalhos de solicitação HTTP que devem ter suporte para requisições de origem cruzada. O padrão é `[]`. Você pode usar `['*']` para permitir todos os cabeçalhos. Os cabeçalhos `Accept`, `Accept-Language`, `Content-Language` e `Content-Type` são sempre permitidos para [requisições CORS simples](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests).
 * `allow_credentials` - Indica que os cookies devem ser suportados para requisições de origem cruzada. O padrão é `False`.
 
-    Nenhum de `allow_origins`, `allow_methods` e `allow_headers` pode ser definido como `['*']` se `allow_credentials` estiver definido como `True`. Todos eles devem ser <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">especificados explicitamente</a>.
+    Nenhum de `allow_origins`, `allow_methods` e `allow_headers` pode ser definido como `['*']` se `allow_credentials` estiver definido como `True`. Todos eles devem ser [especificados explicitamente](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).
 
 * `expose_headers` - Indica quaisquer cabeçalhos de resposta que devem ser disponibilizados ao navegador. O padrão é `[]`.
 * `max_age` - Define um tempo máximo em segundos para os navegadores armazenarem em cache as respostas CORS. O padrão é `600`.
@@ -78,7 +78,7 @@ Qualquer solicitação com um cabeçalho `Origin`. Neste caso, o middleware pass
 
 ## Mais informações { #more-info }
 
-Para mais informações sobre <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, consulte a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">documentação do CORS da Mozilla</a>.
+Para mais informações sobre <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, consulte a [documentação do CORS da Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 /// note | Detalhes Técnicos
 

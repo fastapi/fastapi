@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic моделі { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> — це бібліотека Python для валідації даних.
+[Pydantic](https://docs.pydantic.dev/) — це бібліотека Python для валідації даних.
 
 Ви оголошуєте «форму» даних як класи з атрибутами.
 
@@ -285,13 +285,13 @@ def some_function(data: Any):
 
 /// info | Інформація
 
-Щоб дізнатись більше про <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, перегляньте його документацію</a>.
+Щоб дізнатись більше про [Pydantic, перегляньте його документацію](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** повністю базується на Pydantic.
 
-Ви побачите набагато більше цього всього на практиці в [Навчальний посібник - Посібник користувача](tutorial/index.md){.internal-link target=_blank}.
+Ви побачите набагато більше цього всього на практиці в [Навчальний посібник - Посібник користувача](tutorial/index.md).
 
 ## Підказки типів з анотаціями метаданих { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ def some_function(data: Any):
 * **Документування** API за допомогою OpenAPI:
     * який потім використовується для автоматичної інтерактивної документації користувальницьких інтерфейсів.
 
-Все це може здатися абстрактним. Не хвилюйтеся. Ви побачите все це в дії в [Навчальний посібник - Посібник користувача](tutorial/index.md){.internal-link target=_blank}.
+Все це може здатися абстрактним. Не хвилюйтеся. Ви побачите все це в дії в [Навчальний посібник - Посібник користувача](tutorial/index.md).
 
 Важливо те, що за допомогою стандартних типів Python в одному місці (замість того, щоб додавати більше класів, декораторів тощо), **FastAPI** зробить багато роботи за вас.
 
 /// info | Інформація
 
-Якщо ви вже пройшли весь навчальний посібник і повернулися, щоб дізнатися більше про типи, ось хороший ресурс: <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">«шпаргалка» від `mypy`</a>.
+Якщо ви вже пройшли весь навчальний посібник і повернулися, щоб дізнатися більше про типи, ось хороший ресурс: [«шпаргалка» від `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

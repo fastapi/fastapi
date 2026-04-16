@@ -1,6 +1,6 @@
 # Container'larda FastAPI - Docker { #fastapi-in-containers-docker }
 
-FastAPI uygulamalarını deploy ederken yaygın bir yaklaşım, bir **Linux container image** oluşturmaktır. Bu genellikle <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> kullanılarak yapılır. Ardından bu container image'ı birkaç farklı yöntemden biriyle deploy edebilirsiniz.
+FastAPI uygulamalarını deploy ederken yaygın bir yaklaşım, bir **Linux container image** oluşturmaktır. Bu genellikle [**Docker**](https://www.docker.com/) kullanılarak yapılır. Ardından bu container image'ı birkaç farklı yöntemden biriyle deploy edebilirsiniz.
 
 Linux container'ları kullanmanın **güvenlik**, **tekrarlanabilirlik**, **basitlik** gibi birçok avantajı vardır.
 
@@ -60,16 +60,16 @@ Ve **container**'ın kendisi (container image'a karşıt olarak) image'ın gerç
 
 Docker, **container image** ve **container** oluşturup yönetmek için kullanılan başlıca araçlardan biri olmuştur.
 
-Ayrıca birçok araç, ortam, veritabanı ve uygulama için önceden hazırlanmış **resmi container image**'ların bulunduğu herkese açık bir <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> vardır.
+Ayrıca birçok araç, ortam, veritabanı ve uygulama için önceden hazırlanmış **resmi container image**'ların bulunduğu herkese açık bir [Docker Hub](https://hub.docker.com/) vardır.
 
-Örneğin, resmi bir <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a> bulunur.
+Örneğin, resmi bir [Python Image](https://hub.docker.com/_/python) bulunur.
 
 Ve veritabanları gibi farklı şeyler için de birçok image vardır; örneğin:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, vb.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), vb.
 
 Hazır bir container image kullanarak farklı araçları **birleştirmek** ve birlikte kullanmak çok kolaydır. Örneğin yeni bir veritabanını denemek için. Çoğu durumda **resmi image**'ları kullanıp sadece environment variable'lar ile yapılandırmanız yeterlidir.
 
@@ -111,7 +111,7 @@ Bu, gereksinimleri **yüklemek** için kullandığınız araca göre değişir.
 
 En yaygın yöntem, paket adları ve versiyonlarının satır satır yazıldığı bir `requirements.txt` dosyasına sahip olmaktır.
 
-Versiyon aralıklarını belirlemek için elbette [FastAPI sürümleri hakkında](versions.md){.internal-link target=_blank} bölümünde okuduğunuz fikirleri kullanırsınız.
+Versiyon aralıklarını belirlemek için elbette [FastAPI sürümleri hakkında](versions.md) bölümünde okuduğunuz fikirleri kullanırsınız.
 
 Örneğin `requirements.txt` şöyle görünebilir:
 
@@ -238,7 +238,7 @@ Aşağıda açıklandığı gibi `CMD` talimatının **her zaman** **exec form**
 
 #### `CMD` Kullanımı - Exec Form { #use-cmd-exec-form }
 
-<a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker talimatı iki formda yazılabilir:
+[`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) Docker talimatı iki formda yazılabilir:
 
 ✅ **Exec** form:
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-FastAPI'nin düzgün şekilde kapanabilmesi ve [lifespan event](../advanced/events.md){.internal-link target=_blank}'lerinin tetiklenmesi için her zaman **exec** formunu kullanın.
+FastAPI'nin düzgün şekilde kapanabilmesi ve [lifespan event](../advanced/events.md)'lerinin tetiklenmesi için her zaman **exec** formunu kullanın.
 
-Detaylar için <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell ve exec form için Docker dokümanlarına</a> bakabilirsiniz.
+Detaylar için [shell ve exec form için Docker dokümanlarına](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) bakabilirsiniz.
 
-Bu durum `docker compose` kullanırken oldukça belirgin olabilir. Daha teknik detaylar için şu Docker Compose FAQ bölümüne bakın: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Hizmetlerimin yeniden oluşturulması veya durması neden 10 saniye sürüyor?</a>.
+Bu durum `docker compose` kullanırken oldukça belirgin olabilir. Daha teknik detaylar için şu Docker Compose FAQ bölümüne bakın: [Hizmetlerimin yeniden oluşturulması veya durması neden 10 saniye sürüyor?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### Dizin Yapısı { #directory-structure }
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Kontrol Edin { #check-it }
 
-Docker container'ınızın URL'inden kontrol edebilmelisiniz. Örneğin: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> veya <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (ya da Docker host'unuzu kullanarak eşdeğeri).
+Docker container'ınızın URL'inden kontrol edebilmelisiniz. Örneğin: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) veya [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (ya da Docker host'unuzu kullanarak eşdeğeri).
 
 Şuna benzer bir şey görürsünüz:
 
@@ -362,17 +362,17 @@ Docker container'ınızın URL'inden kontrol edebilmelisiniz. Örneğin: <a href
 
 ## Etkileşimli API Dokümanları { #interactive-api-docs }
 
-Şimdi <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> veya <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> adresine gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
+Şimdi [http://192.168.99.100/docs](http://192.168.99.100/docs) veya [http://127.0.0.1/docs](http://127.0.0.1/docs) adresine gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
 
-Otomatik etkileşimli API dokümantasyonunu görürsünüz ( <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanır):
+Otomatik etkileşimli API dokümantasyonunu görürsünüz ( [Swagger UI](https://github.com/swagger-api/swagger-ui) tarafından sağlanır):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## Alternatif API Dokümanları { #alternative-api-docs }
 
-Ayrıca <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> veya <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> adresine de gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
+Ayrıca [http://192.168.99.100/redoc](http://192.168.99.100/redoc) veya [http://127.0.0.1/redoc](http://127.0.0.1/redoc) adresine de gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
 
-Alternatif otomatik dokümantasyonu görürsünüz (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanır):
+Alternatif otomatik dokümantasyonu görürsünüz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -413,7 +413,7 @@ Dosyayı `fastapi run`'a verdiğinizde, bunun bir package'ın parçası değil t
 
 ## Deployment Kavramları { #deployment-concepts }
 
-Aynı [Deployment Kavramları](concepts.md){.internal-link target=_blank}nı bu kez container'lar açısından tekrar konuşalım.
+Aynı [Deployment Kavramları](concepts.md)nı bu kez container'lar açısından tekrar konuşalım.
 
 Container'lar, bir uygulamayı **build etme ve deploy etme** sürecini basitleştiren bir araçtır. Ancak bu **deployment kavramları**nı ele almak için belirli bir yaklaşımı zorunlu kılmazlar; birkaç farklı strateji mümkündür.
 
@@ -432,7 +432,7 @@ Bu **deployment kavramları**nı container'lar açısından gözden geçirelim:
 
 Bir FastAPI uygulamasının sadece **container image**'ına (ve sonra çalışan **container**'a) odaklanırsak, HTTPS genellikle **haricen** başka bir araçla ele alınır.
 
-Örneğin <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> kullanan başka bir container olabilir; **HTTPS** ve **sertifika**ların **otomatik** alınmasını o yönetebilir.
+Örneğin [Traefik](https://traefik.io/) kullanan başka bir container olabilir; **HTTPS** ve **sertifika**ların **otomatik** alınmasını o yönetebilir.
 
 /// tip | İpucu
 
@@ -558,7 +558,7 @@ Container kullanıyorsanız (örn. Docker, Kubernetes), temelde iki yaklaşım v
 
 /// info | Bilgi
 
-Kubernetes kullanıyorsanız, bu muhtemelen bir <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a> olur.
+Kubernetes kullanıyorsanız, bu muhtemelen bir [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) olur.
 
 ///
 
@@ -570,7 +570,7 @@ Basit bir kurulumda; **tek bir container** olup onun içinde birden fazla **work
 
 ### Base Docker Image { #base-docker-image }
 
-Eskiden resmi bir FastAPI Docker image'ı vardı: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Ancak artık kullanımdan kaldırıldı (deprecated). ⛔️
+Eskiden resmi bir FastAPI Docker image'ı vardı: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Ancak artık kullanımdan kaldırıldı (deprecated). ⛔️
 
 Muhtemelen bu base Docker image'ını (veya benzeri başka bir image'ı) kullanmamalısınız.
 
@@ -600,7 +600,7 @@ Bir Container (Docker) Image'ınız olduktan sonra bunu deploy etmenin birkaç y
 
 ## `uv` ile Docker Image { #docker-image-with-uv }
 
-Projenizi yüklemek ve yönetmek için <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> kullanıyorsanız, onların <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker rehberini</a> takip edebilirsiniz.
+Projenizi yüklemek ve yönetmek için [uv](https://github.com/astral-sh/uv) kullanıyorsanız, onların [uv Docker rehberini](https://docs.astral.sh/uv/guides/integration/docker/) takip edebilirsiniz.
 
 ## Özet { #recap }
 

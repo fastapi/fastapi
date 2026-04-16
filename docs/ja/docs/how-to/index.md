@@ -8,6 +8,6 @@
 
 /// tip | 豆知識
 
-**FastAPI を学ぶ**ことを体系的に進めたい場合（推奨）、代わりに [チュートリアル - ユーザーガイド](../tutorial/index.md){.internal-link target=_blank} を章ごとに読んでください。
+**FastAPI を学ぶ**ことを体系的に進めたい場合（推奨）、代わりに [チュートリアル - ユーザーガイド](../tutorial/index.md) を章ごとに読んでください。
 
 ///

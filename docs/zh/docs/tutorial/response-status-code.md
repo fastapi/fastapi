@@ -20,7 +20,7 @@
 
 /// info | 信息
 
-`status_code` 还能接收 `IntEnum` 类型，比如 Python 的 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>。
+`status_code` 还能接收 `IntEnum` 类型，比如 Python 的 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)。
 
 ///
 
@@ -66,7 +66,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 /// tip | 提示
 
-状态码及适用场景的详情，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> 的 HTTP 状态码文档</a>。
+想了解每个状态码的更多信息以及适用场景，请参阅 [<abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> 的 HTTP 状态码文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)。
 
 ///
 
@@ -98,4 +98,4 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ## 更改默认状态码 { #changing-the-default }
 
-[高级用户指南](../advanced/response-change-status-code.md){.internal-link target=_blank}中，将介绍如何返回与在此声明的默认状态码不同的状态码。
+稍后在[高级用户指南](../advanced/response-change-status-code.md)中，你将看到如何返回与此处声明的默认状态码不同的状态码。

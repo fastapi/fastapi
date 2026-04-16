@@ -2,7 +2,7 @@
 
 /// tip | 豆知識
 
-もし、「環境変数」とは何か、それをどう使うかを既に知っている場合は、このセクションをスキップして構いません。
+もし「環境変数」とは何か、それをどう使うかを既に知っている場合は、このセクションをスキップして構いません。
 
 ///
 
@@ -19,10 +19,10 @@
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// 環境変数 MY_NAME を作成する例
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// その後、他のプログラムで利用できます。例えば
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// 環境変数 MY_NAME を作成
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// 他のプログラムで利用、例えば
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | 豆知識
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> の第2引数は、デフォルトで返される値です。
+[`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) の第2引数は、返されるデフォルト値です。
 
 指定しない場合、デフォルトは`None`ですが、ここでは使用するデフォルト値として`"World"`を指定しています。
 
@@ -78,20 +78,20 @@ print(f"Hello {name} from Python")
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// ここではまだ環境変数を設定していません
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 環境変数を設定していないため、デフォルト値が使われます
 
 Hello World from Python
 
-// But if we create an environment variable first
+// しかし、先に環境変数を作成すると
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// それからもう一度プログラムを実行すると
 $ python main.py
 
-// Now it can read the environment variable
+// すると環境変数を読み取れます
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// ここではまだ環境変数を設定していません
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// 環境変数を設定していないため、デフォルト値が使われます
 
 Hello World from Python
 
-// But if we create an environment variable first
+// しかし、先に環境変数を作成すると
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// それからもう一度プログラムを実行すると
 $ python main.py
 
-// Now it can read the environment variable
+// すると環境変数を読み取れます
 
 Hello Wade Wilson from Python
 ```
@@ -136,14 +136,14 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// このプログラム呼び出し用に同じ行で環境変数 MY_NAME を作成
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// これで環境変数を読み取れます
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// その後は環境変数は存在しません
 $ python main.py
 
 Hello World from Python
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | 豆知識
 
-詳しくは <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: 設定</a> を参照してください。
+詳しくは [The Twelve-Factor App: 設定](https://12factor.net/config) を参照してください。
 
 ///
 
@@ -163,7 +163,7 @@ Hello World from Python
 
 つまり、環境変数からPythonで読み取る**あらゆる値**は **`str`になり**、他の型への変換やバリデーションはコード内で行う必要があります。
 
-環境変数を使って**アプリケーション設定**を扱う方法については、[高度なユーザーガイド - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank} で詳しく学べます。
+環境変数を使って**アプリケーション設定**を扱う方法については、[高度なユーザーガイド - Settings and Environment Variables](./advanced/settings.md)で詳しく学べます。
 
 ## `PATH`環境変数 { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-この情報は、[Virtual Environments](virtual-environments.md){.internal-link target=_blank} について学ぶ際にも役立ちます。
+この情報は、[Virtual Environments](virtual-environments.md)について学ぶ際にも役立ちます。
 
 ## まとめ { #conclusion }
 
 これで、**環境変数**とは何か、Pythonでどのように使用するかについて、基本的な理解が得られたはずです。
 
-環境変数についての詳細は、<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia の環境変数</a> も参照してください。
+環境変数についての詳細は、[Wikipedia の環境変数](https://en.wikipedia.org/wiki/Environment_variable)も参照してください。
 
 多くの場合、環境変数がどのように役立ち、すぐに適用できるのかはあまり明確ではありません。しかし、開発中のさまざまなシナリオで何度も登場するため、知っておくとよいでしょう。
 

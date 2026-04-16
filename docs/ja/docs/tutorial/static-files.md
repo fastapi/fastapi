@@ -23,7 +23,7 @@
 
 これは、マウントされたアプリケーションが完全に独立しているため、`APIRouter` とは異なります。メインアプリケーションのOpenAPIとドキュメントには、マウントされたアプリケーションの内容などは含まれません。
 
-これについて詳しくは、[高度なユーザーガイド](../advanced/index.md){.internal-link target=_blank} をご覧ください。
+これについて詳しくは、[高度なユーザーガイド](../advanced/index.md) をご覧ください。
 
 ## 詳細 { #details }
 
@@ -37,4 +37,4 @@
 
 ## より詳しい情報 { #more-info }
 
-詳細とオプションについては、<a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starletteの静的ファイルに関するドキュメント</a>を確認してください。
+詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://www.starlette.dev/staticfiles/)を確認してください。

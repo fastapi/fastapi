@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 응답에 정확히 무엇을 포함할 수 있는지 보려면, OpenAPI 사양의 다음 섹션을 확인하세요:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>: `Response Object`를 포함합니다.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>: `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object): `Response Object`를 포함합니다.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object): `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.

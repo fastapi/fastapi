@@ -36,7 +36,7 @@ Kullanabileceğiniz ek veri tiplerinden bazıları şunlardır:
 * `datetime.timedelta`:
     * Python `datetime.timedelta`.
     * request'lerde ve response'larda toplam saniye sayısını ifade eden bir `float` olarak temsil edilir.
-    * Pydantic, bunu ayrıca bir "ISO 8601 time diff encoding" olarak temsil etmeye de izin verir, daha fazla bilgi için <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">dokümanlara bakın</a>.
+    * Pydantic, bunu ayrıca bir "ISO 8601 time diff encoding" olarak temsil etmeye de izin verir, [daha fazla bilgi için dokümanlara bakın](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * request'lerde ve response'larda, `set` ile aynı şekilde ele alınır:
         * request'lerde bir list okunur, tekrarlar kaldırılır ve `set`'e dönüştürülür.
@@ -49,7 +49,7 @@ Kullanabileceğiniz ek veri tiplerinden bazıları şunlardır:
 * `Decimal`:
     * Standart Python `Decimal`.
     * request'lerde ve response'larda `float` ile aynı şekilde işlenir.
-* Geçerli tüm Pydantic veri tiplerini burada görebilirsiniz: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
+* Geçerli tüm Pydantic veri tiplerini burada görebilirsiniz: [Pydantic veri tipleri](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## Örnek { #example }
 

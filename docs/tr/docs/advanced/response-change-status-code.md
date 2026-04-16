@@ -1,6 +1,6 @@
 # Response - Status Code Değiştirme { #response-change-status-code }
 
-Muhtemelen daha önce varsayılan bir [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank} ayarlayabileceğinizi okumuşsunuzdur.
+Muhtemelen daha önce varsayılan bir [Response Status Code](../tutorial/response-status-code.md) ayarlayabileceğinizi okumuşsunuzdur.
 
 Ancak bazı durumlarda, varsayılandan farklı bir status code döndürmeniz gerekir.
 

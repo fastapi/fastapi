@@ -10,12 +10,12 @@ It is also built to work as a future reference so you can come back and see exac
 
 All the code blocks can be copied and used directly (they are actually tested Python files).
 
-To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev` with:
+To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 

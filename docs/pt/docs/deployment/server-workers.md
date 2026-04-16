@@ -13,13 +13,13 @@ Até este ponto, com todos os tutoriais nos documentos, você provavelmente esta
 
 Ao implantar aplicativos, você provavelmente desejará ter alguma **replicação de processos** para aproveitar **vários núcleos** e poder lidar com mais solicitações.
 
-Como você viu no capítulo anterior sobre [Conceitos de implantação](concepts.md){.internal-link target=_blank}, há várias estratégias que você pode usar.
+Como você viu no capítulo anterior sobre [Conceitos de implantação](concepts.md), há várias estratégias que você pode usar.
 
 Aqui mostrarei como usar o **Uvicorn** com **processos de trabalho** usando o comando `fastapi` ou o comando `uvicorn` diretamente.
 
 /// info | Informação
 
-Se você estiver usando contêineres, por exemplo com Docker ou Kubernetes, falarei mais sobre isso no próximo capítulo: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Se você estiver usando contêineres, por exemplo com Docker ou Kubernetes, falarei mais sobre isso no próximo capítulo: [FastAPI em contêineres - Docker](docker.md).
 
 Em particular, ao executar no **Kubernetes** você provavelmente **não** vai querer usar vários trabalhadores e, em vez disso, executar **um único processo Uvicorn por contêiner**, mas falarei sobre isso mais adiante neste capítulo.
 
@@ -126,7 +126,7 @@ Da lista de conceitos de implantação acima, o uso de trabalhadores ajudaria pr
 
 ## Contêineres e Docker { #containers-and-docker }
 
-No próximo capítulo sobre [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}, explicarei algumas estratégias que você pode usar para lidar com os outros **conceitos de implantação**.
+No próximo capítulo sobre [FastAPI em contêineres - Docker](docker.md), explicarei algumas estratégias que você pode usar para lidar com os outros **conceitos de implantação**.
 
 Vou mostrar como **construir sua própria imagem do zero** para executar um único processo Uvicorn. É um processo simples e provavelmente é o que você gostaria de fazer ao usar um sistema de gerenciamento de contêineres distribuídos como o **Kubernetes**.
 

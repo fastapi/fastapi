@@ -37,7 +37,7 @@
 
 위 정보를 바탕으로, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성하고 필요한 각 부분을 덮어쓸 수 있습니다.
 
-예를 들어, <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장</a>을 추가해 보겠습니다.
+예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
 
 ### 일반적인 **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@
 
 ### 확인하기 { #check-it }
 
-<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 이동하면 커스텀 로고(이 예시에서는 **FastAPI** 로고)를 사용하는 것을 확인할 수 있습니다:
+[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 이동하면 커스텀 로고(이 예시에서는 **FastAPI** 로고)를 사용하는 것을 확인할 수 있습니다:
 
 <img src="/img/tutorial/extending-openapi/image01.png">

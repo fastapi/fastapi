@@ -37,7 +37,7 @@
 
 基于以上信息，你可以用同一个工具函数生成 OpenAPI 架构，并按需覆盖其中的各个部分。
 
-例如，让我们添加 <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc 的 OpenAPI 扩展以包含自定义 Logo</a>。
+例如，让我们添加 [ReDoc 的 OpenAPI 扩展以包含自定义 Logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 常规 **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@
 
 ### 验证 { #check-it }
 
-当你访问 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 时，你会看到已使用你的自定义 Logo（本例中为 **FastAPI** 的 Logo）：
+当你访问 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 时，你会看到已使用你的自定义 Logo（本例中为 **FastAPI** 的 Logo）：
 
 <img src="/img/tutorial/extending-openapi/image01.png">

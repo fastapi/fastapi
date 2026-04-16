@@ -58,7 +58,7 @@ Bir `summary` ve `description` ekleyebilirsiniz:
 
 Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *path operation* açıklamasını, fonksiyonun içinde <dfn title="dokümantasyon için kullanılan, fonksiyon içinde ilk ifade olarak yer alan (herhangi bir değişkene atanmayan) çok satırlı string">docstring</dfn> olarak tanımlayabilirsiniz; **FastAPI** de onu buradan okur.
 
-Docstring içinde <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
+Docstring içinde [Markdown](https://en.wikipedia.org/wiki/Markdown) yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
