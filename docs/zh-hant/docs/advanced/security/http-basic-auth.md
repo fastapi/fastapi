@@ -32,7 +32,7 @@
 
 使用一個依賴來檢查使用者名稱與密碼是否正確。
 
-為此，使用 Python 標準模組 <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> 來比對使用者名稱與密碼。
+為此，使用 Python 標準模組 [`secrets`](https://docs.python.org/3/library/secrets.html) 來比對使用者名稱與密碼。
 
 `secrets.compare_digest()` 需要接收 `bytes`，或是只包含 ASCII 字元（英文字符）的 `str`。這表示它無法處理像 `á` 這樣的字元，例如 `Sebastián`。
 

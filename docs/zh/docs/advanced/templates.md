@@ -8,7 +8,7 @@ Flask 等工具使用的 Jinja2 是最用的模板引擎。
 
 ## 安装依赖项 { #install-dependencies }
 
-确保你创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，激活它，并安装 `jinja2`：
+确保你创建一个[虚拟环境](../virtual-environments.md)，激活它，并安装 `jinja2`：
 
 <div class="termy">
 
@@ -29,14 +29,14 @@ $ pip install jinja2
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
-/// note
+/// note | 注意
 
 在 FastAPI 0.108.0，Starlette 0.29.0 之前，`name` 是第一个参数。
 并且，在此之前，`request` 对象是作为 context 的一部分以键值对的形式传递的。
 
 ///
 
-/// tip
+/// tip | 提示
 
 通过声明 `response_class=HTMLResponse`，API 文档就能识别响应的对象是 HTML。
 
@@ -122,4 +122,4 @@ Item ID: 42
 
 ## 更多说明 { #more-details }
 
-包括测试模板等更多详情，请参阅 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette 官方文档 - 模板</a>。
+包括如何测试模板在内的更多详情，请查看 [Starlette 的模板文档](https://www.starlette.dev/templates/)。

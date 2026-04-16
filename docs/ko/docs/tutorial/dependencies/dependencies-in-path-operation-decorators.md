@@ -32,7 +32,7 @@
 
 이 예시에서 `X-Key`와 `X-Token`이라는 커스텀 헤더를 만들어 사용했습니다.
 
-그러나 실제로 보안을 구현할 때는 통합된 [보안 유틸리티 (다음 챕터)](../security/index.md){.internal-link target=_blank}를 사용하는 것이 더 많은 이점을 얻을 수 있습니다.
+그러나 실제로 보안을 구현할 때는 통합된 [보안 유틸리티 (다음 챕터)](../security/index.md)를 사용하는 것이 더 많은 이점을 얻을 수 있습니다.
 
 ///
 
@@ -62,7 +62,7 @@
 
 ## *경로 처리* 모음에 대한 의존성 { #dependencies-for-a-group-of-path-operations }
 
-나중에 여러 파일을 가지고 있을 수 있는 더 큰 애플리케이션을 구조화하는 법([더 큰 애플리케이션 - 여러 파일들](../../tutorial/bigger-applications.md){.internal-link target=_blank})을 읽을 때, *경로 처리* 모음에 대한 단일 `dependencies` 매개변수를 선언하는 법에 대해서 배우게 될 것입니다.
+나중에 여러 파일을 가지고 있을 수 있는 더 큰 애플리케이션을 구조화하는 법([더 큰 애플리케이션 - 여러 파일들](../../tutorial/bigger-applications.md))을 읽을 때, *경로 처리* 모음에 대한 단일 `dependencies` 매개변수를 선언하는 법에 대해서 배우게 될 것입니다.
 
 ## 전역 의존성 { #global-dependencies }
 

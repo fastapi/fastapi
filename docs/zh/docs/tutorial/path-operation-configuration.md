@@ -58,7 +58,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 描述内容比较长且占用多行时，可以在函数的 <dfn title="作为函数内部的第一个表达式（不赋给任何变量）的多行字符串，用于文档用途">docstring</dfn> 中声明*路径操作*的描述，**FastAPI** 会从中读取。
 
-文档字符串支持 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
+文档字符串支持 [Markdown](https://en.wikipedia.org/wiki/Markdown)，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 

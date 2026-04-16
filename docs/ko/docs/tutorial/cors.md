@@ -1,6 +1,6 @@
 # CORS (교차-출처 리소스 공유) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 또는 "Cross-Origin Resource Sharing"</a>란, 브라우저에서 실행되는 프론트엔드에 백엔드와 통신하는 JavaScript 코드가 있고, 백엔드가 프론트엔드와 다른 "출처(origin)"에 있는 상황을 의미합니다.
+[CORS 또는 "Cross-Origin Resource Sharing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)란, 브라우저에서 실행되는 프론트엔드에 백엔드와 통신하는 JavaScript 코드가 있고, 백엔드가 프론트엔드와 다른 "출처(origin)"에 있는 상황을 의미합니다.
 
 ## 출처 { #origin }
 
@@ -56,10 +56,10 @@
 * `allow_origins` - 교차-출처 요청을 보낼 수 있도록 허용해야 하는 출처의 리스트입니다. 예: `['https://example.org', 'https://www.example.org']`. 모든 출처를 허용하려면 `['*']`를 사용할 수 있습니다.
 * `allow_origin_regex` - 교차-출처 요청을 보낼 수 있도록 허용해야 하는 출처와 매칭할 정규표현식 문자열입니다. 예: `'https://.*\.example\.org'`.
 * `allow_methods` - 교차-출처 요청에 허용되어야 하는 HTTP 메서드의 리스트입니다. 기본값은 `['GET']`입니다. 모든 표준 메서드를 허용하려면 `['*']`를 사용할 수 있습니다.
-* `allow_headers` - 교차-출처 요청에 대해 지원되어야 하는 HTTP 요청 헤더의 리스트입니다. 기본값은 `[]`입니다. 모든 헤더를 허용하려면 `['*']`를 사용할 수 있습니다. `Accept`, `Accept-Language`, `Content-Language`, `Content-Type` 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">단순 CORS 요청</a>에 대해 항상 허용됩니다.
+* `allow_headers` - 교차-출처 요청에 대해 지원되어야 하는 HTTP 요청 헤더의 리스트입니다. 기본값은 `[]`입니다. 모든 헤더를 허용하려면 `['*']`를 사용할 수 있습니다. `Accept`, `Accept-Language`, `Content-Language`, `Content-Type` 헤더는 [단순 CORS 요청](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)에 대해 항상 허용됩니다.
 * `allow_credentials` - 교차-출처 요청에 대해 쿠키를 지원해야 함을 나타냅니다. 기본값은 `False`입니다.
 
-    `allow_credentials`가 `True`로 설정된 경우 `allow_origins`, `allow_methods`, `allow_headers` 중 어느 것도 `['*']`로 설정할 수 없습니다. 모두 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">명시적으로 지정</a>되어야 합니다.
+    `allow_credentials`가 `True`로 설정된 경우 `allow_origins`, `allow_methods`, `allow_headers` 중 어느 것도 `['*']`로 설정할 수 없습니다. 모두 [명시적으로 지정](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards)되어야 합니다.
 
 * `expose_headers` - 브라우저에서 접근 가능해야 하는 모든 응답 헤더를 나타냅니다. 기본값은 `[]`입니다.
 * `max_age` - 브라우저가 CORS 응답을 캐시하는 최대 시간을 초 단위로 설정합니다. 기본값은 `600`입니다.
@@ -78,7 +78,7 @@
 
 ## 더 많은 정보 { #more-info }
 
-<abbr title="Cross-Origin Resource Sharing - 교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하세요.
+<abbr title="Cross-Origin Resource Sharing - 교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보는 [Mozilla CORS 문서](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)를 참고하세요.
 
 /// note | 기술 세부사항
 

@@ -24,13 +24,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 1週間後、トークンが期限切れとなるとどうなるでしょうか？ユーザーは認可されず、新しいトークンを得るために再びサインインしなければなりません。また、ユーザー（または第三者）がトークンを修正して有効期限を変更しようとした場合、署名が一致しないため、トークンの修正を検知できます。
 
-JWT トークンを使って遊んでみたいという方は、<a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> をチェックしてください。
+JWT トークンを使って遊んでみたいという方は、[https://jwt.io](https://jwt.io/) をチェックしてください。
 
 ## `PyJWT` のインストール { #install-pyjwt }
 
 PythonでJWTトークンの生成と検証を行うために、`PyJWT`をインストールする必要があります。
 
-[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
+[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 RSAやECDSAのようなデジタル署名アルゴリズムを使用する予定がある場合は、cryptographyライブラリの依存関係`pyjwt[crypto]`をインストールしてください。
 
-詳細は<a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>で確認できます。
+詳細は[PyJWT Installation docs](https://pyjwt.readthedocs.io/en/latest/installation.html)で確認できます。
 
 ///
 
@@ -72,7 +72,7 @@ pwdlib は、パスワードのハッシュを処理するための優れたPyth
 
 推奨されるアルゴリズムは「Argon2」です。
 
-[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
+[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 
 ## 確認 { #check-it }
 
-サーバーを実行し、ドキュメントに移動します：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+サーバーを実行し、ドキュメントに移動します：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 次のようなユーザーインターフェイスが表示されます：
 

@@ -61,7 +61,7 @@
 
 ## 技术细节 { #technical-details }
 
-`BackgroundTasks` 类直接来自 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>。
+`BackgroundTasks` 类直接来自 [`starlette.background`](https://www.starlette.dev/background/)。
 
 它被直接导入/包含到FastAPI以便你可以从 `fastapi` 导入，并避免意外从 `starlette.background` 导入备用的 `BackgroundTask` (后面没有 `s`)。
 
@@ -69,11 +69,11 @@
 
 在FastAPI中仍然可以单独使用 `BackgroundTask`，但您必须在代码中创建对象，并返回包含它的Starlette `Response`。
 
-更多细节查看 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette 后台任务的官方文档</a>.
+更多细节查看 [Starlette 后台任务的官方文档](https://www.starlette.dev/background/)。
 
 ## 告诫 { #caveat }
 
-如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>）可能更好。
+如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 [Celery](https://docs.celeryq.dev)）可能更好。
 
 它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
 

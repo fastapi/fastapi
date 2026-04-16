@@ -1,6 +1,6 @@
 # 查询参数 { #query-parameters }
 
-声明的参数不是路径参数时，路径操作函数会把该参数自动解释为**查询**参数。
+声明的参数不是路径参数时，路径操作函数会把该参数自动解释为“查询”参数。
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
@@ -17,7 +17,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 * `skip`：值为 `0`
 * `limit`：值为 `10`
 
-这些值都是 URL 的组成部分，因此，它们的类型**本应**是字符串。
+这些值都是 URL 的组成部分，因此，它们的类型“本应”是字符串。
 
 但声明 Python 类型（上例中为 `int`）之后，这些值就会转换为声明的类型，并进行类型校验。
 
@@ -59,7 +59,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 ## 可选参数 { #optional-parameters }
 
-同理，把默认值设为 `None` 即可声明**可选的**查询参数：
+同理，把默认值设为 `None` 即可声明可选的查询参数：
 
 {* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
@@ -122,11 +122,11 @@ FastAPI 通过参数名进行检测：
 
 ## 必选查询参数 { #required-query-parameters }
 
-为不是路径参数的参数声明默认值（至此，仅有查询参数），该参数就**不是必选**的了。
+为不是路径参数的参数声明默认值（至此，仅有查询参数），该参数就不是必选的了。
 
-如果只想把参数设为**可选**，但又不想指定参数的值，则要把默认值设为 `None`。
+如果只想把参数设为可选，但又不想指定参数的值，则要把默认值设为 `None`。
 
-如果要把查询参数设置为**必选**，就不要声明默认值：
+如果要把查询参数设置为必选，就不要声明默认值：
 
 {* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
@@ -183,6 +183,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 提示
 
-还可以像在[路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
+还可以像在[路径参数](path-params.md#predefined-values)中那样使用 `Enum`。
 
 ///
