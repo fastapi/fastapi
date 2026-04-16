@@ -7,6 +7,18 @@ hide:
 
 ## Latest Changes
 
+## 0.136.0 (2026-04-16)
+
+### Upgrades
+
+* ⬆️ Support free-threaded Python 3.14t. PR [#15149](https://github.com/fastapi/fastapi/pull/15149) by [@svlandeg](https://github.com/svlandeg).
+
+## 0.135.4 (2026-04-16)
+
+### Refactors
+
+* 🔥 Remove April Fool's `@app.vibe()` 🤪. PR [#15363](https://github.com/fastapi/fastapi/pull/15363) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ⬆ Bump cryptography from 46.0.5 to 46.0.7. PR [#15314](https://github.com/fastapi/fastapi/pull/15314) by [@dependabot[bot]](https://github.com/apps/dependabot).

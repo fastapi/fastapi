@@ -59,6 +59,7 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 [project.optional-dependencies]
 standard = [
     "fastapi-cli[standard] >=0.0.8",
+    "fastar >= 0.9.0",
     # For the test client
     "httpx >=0.23.0,<1.0.0",
     # For templates
@@ -150,10 +151,6 @@ docs = [
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
     "ruff >=0.14.14",
-    # For UJSONResponse
-    "ujson >=5.8.0",
-    # For ORJSONResponse
-    "orjson >=3.9.3",
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
@@ -179,8 +176,6 @@ tests = [
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
     "ty>=0.0.9",
-    "types-orjson >=3.6.2",
-    "types-ujson >=5.10.0.20240515",
     "a2wsgi >=1.9.0,<=2.0.0",
     "pytest-xdist[psutil]>=2.5.0",
     "pytest-cov>=4.0.0",
