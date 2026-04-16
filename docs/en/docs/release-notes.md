@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.135.4 (2026-04-16)
+
 ### Refactors
 
 * 🔥 Remove April Fool's `@app.vibe()` 🤪. PR [#15363](https://github.com/fastapi/fastapi/pull/15363) by [@tiangolo](https://github.com/tiangolo).
