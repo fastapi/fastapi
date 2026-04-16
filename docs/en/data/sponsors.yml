@@ -40,9 +40,6 @@ silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
-  - url: https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship
-    title: SDKs for your API | Speakeasy
-    img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
