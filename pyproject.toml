@@ -126,6 +126,7 @@ dev = [
     { include-group = "translations" },
     "playwright >=1.57.0",
     "prek >=0.2.22",
+    "zizmor >=1.23.1",
 ]
 docs = [
     { include-group = "docs-tests" },
