@@ -10,8 +10,10 @@ from fastapi import concurrency
 def _reset_capacity_limiter() -> Iterator[None]:
     # Reset the capacity limiter before each test to ensure a clean slate
     concurrency._anti_deadlock_capacity_limiter = None
+    concurrency._global_capacity_limiter = None
     yield
     concurrency._anti_deadlock_capacity_limiter = None
+    concurrency._global_capacity_limiter = None
 
 
 @pytest.mark.anyio
@@ -51,16 +53,16 @@ def test_set_thread_limit_invalid_args(
 
 @pytest.mark.anyio
 async def test_set_thread_limit(_reset_capacity_limiter: None) -> None:
-    original_total_tokens = (
+    original_default_thread_limit = (
         anyio.to_thread.current_default_thread_limiter().total_tokens
     )
 
-    try:
-        concurrency.set_thread_limit(10, anti_deadlock_reserve=2)
-        assert concurrency._anti_deadlock_capacity_limiter.total_tokens == 8
-        assert anyio.to_thread.current_default_thread_limiter().total_tokens == 10
-    finally:
-        # Restore original settings to avoid affecting other tests
-        anyio.to_thread.current_default_thread_limiter().total_tokens = (
-            original_total_tokens
-        )
+    concurrency.set_thread_limit(10, anti_deadlock_reserve=2)
+    assert concurrency._anti_deadlock_capacity_limiter.total_tokens == 8
+    assert concurrency._global_capacity_limiter.total_tokens == 10
+
+    # default anyio token limiter not affected
+    assert (
+        anyio.to_thread.current_default_thread_limiter().total_tokens
+        == original_default_thread_limit
+    )
