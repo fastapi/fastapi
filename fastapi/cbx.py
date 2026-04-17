@@ -3,42 +3,43 @@ import logging
 from collections.abc import Callable
 from functools import partial
 from typing import Any
-
-from fastapi import APIRouter
 from typing_extensions import Self
+from fastapi import APIRouter
 
 
 class CBV:
     def __init__(
         self,
         cls: type[Any],
-        router: APIRouter,
-        prefix: str = "",
+        router: APIRouter
     ):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.router = router
-        self.prefix = prefix
         self.cls = cls
 
     def __call__(self, *args: Any, **kwargs: Any) -> Self:
         self.instance = self.cls(*args, **kwargs)
-        for name in [
-            "head",
-            "get",
-            "post",
-            "put",
-            "delete",
-            "patch",
-            "options",
-            "trace",
-            "connect",
-        ]:
+        for name, status_code in {
+            "head": 200,
+            "get": 200,
+            "post": 201,
+            "put": 204,
+            "delete": 204,
+            "patch": 200,
+            "options": 200,
+            "trace": 200,
+            "connect": 200,
+        }.items():
+
             if hasattr(self.instance, name):
                 method = getattr(self.instance, name)
                 self.router.add_api_route(
-                    path=self.prefix,
+                    path="",
                     endpoint=method,
+                    response_model=method.__annotations__.get("return"),
+                    status_code=status_code,
                     methods=[name.upper()],
+                    summary=f"{name.upper()} {self.router.prefix}",
                 )
 
         return self
@@ -48,12 +49,10 @@ class CBR:
     def __init__(
         self,
         cls: type[Any],
-        router: APIRouter,
-        prefix: str = "",
+        router: APIRouter
     ):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.router = router
-        self.prefix = prefix
         self.cls = cls
 
     def __call__(self, *args: Any, **kwargs: Any) -> Self:
@@ -65,29 +64,28 @@ class CBR:
         ):
             if cbx_router := endpoint.__annotations__.get("cbx_router"):
                 self.router.add_api_route(
-                    path=f"{self.prefix}{cbx_router['path']}",
+                    path=cbx_router["path"],
                     endpoint=endpoint,
                     methods=[cbx_router["method"]],
+                    **cbx_router["kwargs"]
                 )
         return self
 
 
 class cbv:
-    def __init__(self, router: APIRouter, prefix: str = ""):
+    def __init__(self, router: APIRouter):
         self.router = router
-        self.prefix = prefix
 
     def __call__(self, cls: type[Any]) -> CBV:
-        return CBV(cls, self.router, self.prefix)
+        return CBV(cls, self.router)
 
 
 class cbr:
 
     class method:
-        def __init__(self, method: str, path: str, *args: Any, **kwargs: Any):
+        def __init__(self, method: str, path: str, **kwargs: Any):
             self.method = method
             self.path = path
-            self.args = args
             self.kwargs = kwargs
 
         def __call__(self, endpoint: Callable[..., Any]) -> Callable[..., Any]:
@@ -96,9 +94,8 @@ class cbr:
                 {
                     "method": self.method,
                     "path": self.path,
-                    "args": self.args,
-                    "kwargs": self.kwargs,
-                },
+                    "kwargs": self.kwargs
+                }
             )
             return endpoint
 
@@ -112,9 +109,8 @@ class cbr:
     trace = partial(method, "TRACE")
     connect = partial(method, "CONNECT")
 
-    def __init__(self, router: APIRouter, prefix: str = ""):
+    def __init__(self, router: APIRouter):
         self.router = router
-        self.prefix = prefix
 
     def __call__(self, cls: type[Any]) -> CBR:
-        return CBR(cls, self.router, self.prefix)
+        return CBR(cls, self.router)
