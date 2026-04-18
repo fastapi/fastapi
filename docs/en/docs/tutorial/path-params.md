@@ -12,6 +12,18 @@ So, if you run this example and go to [http://127.0.0.1:8000/items/foo](http://1
 {"item_id":"foo"}
 ```
 
+/// note
+
+Path parameters are always received as strings from the URL.
+
+Without a type annotation, `item_id` will be treated as a `str`.  
+By adding a type (e.g. `int`), **FastAPI** will automatically:
+- convert the value to the correct type
+- validate the input
+- return an error if the conversion fails
+
+///
+
 ## Path parameters with types { #path-parameters-with-types }
 
 You can declare the type of a path parameter in the function, using standard Python type annotations:
