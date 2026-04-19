@@ -242,6 +242,8 @@ The command `fastapi dev` reads your `main.py` file automatically, detects the *
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
+When you are ready to run the same app without auto-reload for production, use `fastapi run`.
+
 You can read more about it in the [FastAPI CLI docs](https://fastapi.tiangolo.com/fastapi-cli/).
 
 </details>
