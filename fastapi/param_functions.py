@@ -2303,7 +2303,7 @@ def Depends(  # noqa: N802
             By default, after a dependency is called the first time in a request, if
             the dependency is declared again for the rest of the request (for example
             if the dependency is needed by several dependencies), the value will be
-            re-used for the rest of the request.
+            reused for the rest of the request.
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.
@@ -2411,7 +2411,7 @@ def Security(  # noqa: N802
             By default, after a dependency is called the first time in a request, if
             the dependency is declared again for the rest of the request (for example
             if the dependency is needed by several dependencies), the value will be
-            re-used for the rest of the request.
+            reused for the rest of the request.
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.
