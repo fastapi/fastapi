@@ -1,6 +1,5 @@
 import asyncio
 import logging
-import time
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -33,7 +32,9 @@ def test_slow_request_logging(caplog):
     assert response.status_code == 200
 
     # 检查日志是否包含预期的警告信息
-    slow_request_logs = [record for record in caplog.records if "Slow request" in record.message]
+    slow_request_logs = [
+        record for record in caplog.records if "Slow request" in record.message
+    ]
     assert len(slow_request_logs) == 1
 
     log_message = slow_request_logs[0].message
@@ -41,8 +42,11 @@ def test_slow_request_logging(caplog):
     assert "/slow" in log_message
     # 检查是否包含两位小数的时间
     import re
+
     match = re.search(r"took (\d+\.\d{2})s", log_message)
-    assert match is not None, f"Log message should contain time with two decimal places: {log_message}"
+    assert match is not None, (
+        f"Log message should contain time with two decimal places: {log_message}"
+    )
 
     print("✅ 慢请求监控中间件测试通过！")
     print(f"   日志消息: {log_message}")
@@ -50,4 +54,5 @@ def test_slow_request_logging(caplog):
 
 if __name__ == "__main__":
     import pytest
+
     pytest.main([__file__, "-v", "-s"])
