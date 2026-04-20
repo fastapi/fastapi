@@ -65,7 +65,7 @@ Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgradi
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
-### Declare the dependency, in the "dependant" { #declare-the-dependency-in-the-dependant }
+### Declare the dependency, in the "dependent" { #declare-the-dependency-in-the-dependent }
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
