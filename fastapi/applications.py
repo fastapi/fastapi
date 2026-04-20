@@ -13,6 +13,7 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
+from fastapi.middleware.slow_request import SlowRequestMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
@@ -1029,7 +1030,8 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
+            [Middleware(SlowRequestMiddleware)]
+            + [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
             + self.user_middleware
             + [
                 Middleware(
