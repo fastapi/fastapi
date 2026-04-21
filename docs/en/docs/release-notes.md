@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump zizmor from 1.23.1 to 1.24.1. PR [#15394](https://github.com/fastapi/fastapi/pull/15394) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump strawberry-graphql from 0.312.3 to 0.314.3. PR [#15395](https://github.com/fastapi/fastapi/pull/15395) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump python-multipart from 0.0.22 to 0.0.26. PR [#15360](https://github.com/fastapi/fastapi/pull/15360) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump authlib from 1.6.9 to 1.6.11. PR [#15373](https://github.com/fastapi/fastapi/pull/15373) by [@dependabot[bot]](https://github.com/apps/dependabot).
