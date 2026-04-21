@@ -1,4 +1,5 @@
-from typing import Any
+import importlib
+from typing import Any, Protocol, cast
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.sse import EventSourceResponse as EventSourceResponse  # noqa
@@ -11,16 +12,28 @@ from starlette.responses import Response as Response  # noqa
 from starlette.responses import StreamingResponse as StreamingResponse  # noqa
 from typing_extensions import deprecated
 
-try:
-    import ujson
-except ImportError:  # pragma: nocover
-    ujson = None  # type: ignore
+
+class _UjsonModule(Protocol):
+    def dumps(self, __obj: Any, *, ensure_ascii: bool = ...) -> str: ...
+
+
+class _OrjsonModule(Protocol):
+    OPT_NON_STR_KEYS: int
+    OPT_SERIALIZE_NUMPY: int
+
+    def dumps(self, __obj: Any, *, option: int = ...) -> bytes: ...
 
 
 try:
-    import orjson
-except ImportError:  # pragma: nocover
-    orjson = None  # type: ignore
+    ujson = cast(_UjsonModule, importlib.import_module("ujson"))
+except ModuleNotFoundError:  # pragma: nocover
+    ujson = None  # type: ignore  # ty: ignore[unused-ignore-comment]
+
+
+try:
+    orjson = cast(_OrjsonModule, importlib.import_module("orjson"))
+except ModuleNotFoundError:  # pragma: nocover
+    orjson = None  # type: ignore  # ty: ignore[unused-ignore-comment]
 
 
 @deprecated(
