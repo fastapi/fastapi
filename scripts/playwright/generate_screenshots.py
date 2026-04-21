@@ -94,35 +94,55 @@ SCREENSHOTS: list[dict] = [
     # separate_openapi_schemas
     {
         "name": "separate_openapi_schemas_image01",
-        "cmd": ["fastapi", "run", "docs_src/separate_openapi_schemas/tutorial001_py310.py"],
+        "cmd": [
+            "fastapi",
+            "run",
+            "docs_src/separate_openapi_schemas/tutorial001_py310.py",
+        ],
         "wait_for_server": True,
         "interact": separate_openapi_schemas_image01,
         "screenshot_path": "docs/en/docs/img/tutorial/separate-openapi-schemas/image01.png",
     },
     {
         "name": "separate_openapi_schemas_image02",
-        "cmd": ["fastapi", "run", "docs_src/separate_openapi_schemas/tutorial001_py310.py"],
+        "cmd": [
+            "fastapi",
+            "run",
+            "docs_src/separate_openapi_schemas/tutorial001_py310.py",
+        ],
         "wait_for_server": True,
         "interact": separate_openapi_schemas_image02,
         "screenshot_path": "docs/en/docs/img/tutorial/separate-openapi-schemas/image02.png",
     },
     {
         "name": "separate_openapi_schemas_image03",
-        "cmd": ["fastapi", "run", "docs_src/separate_openapi_schemas/tutorial001_py310.py"],
+        "cmd": [
+            "fastapi",
+            "run",
+            "docs_src/separate_openapi_schemas/tutorial001_py310.py",
+        ],
         "wait_for_server": True,
         "interact": separate_openapi_schemas_image03,
         "screenshot_path": "docs/en/docs/img/tutorial/separate-openapi-schemas/image03.png",
     },
     {
         "name": "separate_openapi_schemas_image04",
-        "cmd": ["fastapi", "run", "docs_src/separate_openapi_schemas/tutorial001_py310.py"],
+        "cmd": [
+            "fastapi",
+            "run",
+            "docs_src/separate_openapi_schemas/tutorial001_py310.py",
+        ],
         "wait_for_server": True,
         "interact": separate_openapi_schemas_image04,
         "screenshot_path": "docs/en/docs/img/tutorial/separate-openapi-schemas/image04.png",
     },
     {
         "name": "separate_openapi_schemas_image05",
-        "cmd": ["fastapi", "run", "docs_src/separate_openapi_schemas/tutorial002_py310.py"],
+        "cmd": [
+            "fastapi",
+            "run",
+            "docs_src/separate_openapi_schemas/tutorial002_py310.py",
+        ],
         "wait_for_server": True,
         "interact": separate_openapi_schemas_image05,
         "screenshot_path": "docs/en/docs/img/tutorial/separate-openapi-schemas/image05.png",
