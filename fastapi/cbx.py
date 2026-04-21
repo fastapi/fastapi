@@ -3,13 +3,16 @@ import logging
 from collections.abc import Callable
 from functools import partial
 from typing import Any
-
-from fastapi import APIRouter
 from typing_extensions import Self
+from fastapi import APIRouter
 
 
 class CBV:
-    def __init__(self, cls: type[Any], router: APIRouter):
+    def __init__(
+        self,
+        cls: type[Any],
+        router: APIRouter
+    ):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.router = router
         self.cls = cls
@@ -27,6 +30,7 @@ class CBV:
             "trace": 200,
             "connect": 200,
         }.items():
+
             if hasattr(self.instance, name):
                 method = getattr(self.instance, name)
                 self.router.add_api_route(
@@ -42,7 +46,11 @@ class CBV:
 
 
 class CBR:
-    def __init__(self, cls: type[Any], router: APIRouter):
+    def __init__(
+        self,
+        cls: type[Any],
+        router: APIRouter
+    ):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.router = router
         self.cls = cls
@@ -51,14 +59,15 @@ class CBR:
         self.instance = self.cls(*args, **kwargs)
 
         for _name, endpoint in inspect.getmembers(
-            self.instance, lambda x: inspect.ismethod(x) or inspect.isfunction(x)
+            self.instance,
+            lambda x: inspect.ismethod(x) or inspect.isfunction(x)
         ):
             if cbx_router := endpoint.__annotations__.get("cbx_router"):
                 self.router.add_api_route(
                     path=cbx_router["path"],
                     endpoint=endpoint,
                     methods=[cbx_router["method"]],
-                    **cbx_router["kwargs"],
+                    **cbx_router["kwargs"]
                 )
         return self
 
@@ -72,6 +81,7 @@ class cbv:
 
 
 class cbr:
+
     class method:
         def __init__(self, method: str, path: str, **kwargs: Any):
             self.method = method
@@ -81,7 +91,11 @@ class cbr:
         def __call__(self, endpoint: Callable[..., Any]) -> Callable[..., Any]:
             endpoint.__annotations__.setdefault(
                 "cbx_router",
-                {"method": self.method, "path": self.path, "kwargs": self.kwargs},
+                {
+                    "method": self.method,
+                    "path": self.path,
+                    "kwargs": self.kwargs
+                }
             )
             return endpoint
 
