@@ -94,22 +94,21 @@ class AuthStaticFiles(StaticFiles):
         self.on_error = on_error
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
-        if scope["type"] == "http":
-            request = Request(scope, receive)
-            try:
-                if self._auth_is_async:
-                    await self.auth(request)
-                else:
-                    await run_in_threadpool(self.auth, request)
-            except HTTPException as exc:
-                if self.on_error is not None:
-                    response = await self.on_error(request, exc)
-                else:
-                    response = PlainTextResponse(
-                        str(exc.detail),
-                        status_code=exc.status_code,
-                        headers=getattr(exc, "headers", None),
-                    )
-                await response(scope, receive, send)
-                return
+        request = Request(scope, receive)
+        try:
+            if self._auth_is_async:
+                await self.auth(request)
+            else:
+                await run_in_threadpool(self.auth, request)
+        except HTTPException as exc:
+            if self.on_error is not None:
+                response = await self.on_error(request, exc)
+            else:
+                response = PlainTextResponse(
+                    str(exc.detail),
+                    status_code=exc.status_code,
+                    headers=getattr(exc, "headers", None),
+                )
+            await response(scope, receive, send)
+            return
         await super().__call__(scope, receive, send)
