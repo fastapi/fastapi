@@ -6,6 +6,7 @@ from starlette import status as status
 
 from .applications import FastAPI as FastAPI
 from .background import BackgroundTasks as BackgroundTasks
+from .cbx import cbr, cbv
 from .datastructures import UploadFile as UploadFile
 from .exceptions import HTTPException as HTTPException
 from .exceptions import WebSocketException as WebSocketException
@@ -21,6 +22,5 @@ from .param_functions import Security as Security
 from .requests import Request as Request
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter
-from .cbx import cbv, cbr
 from .websockets import WebSocket as WebSocket
 from .websockets import WebSocketDisconnect as WebSocketDisconnect
