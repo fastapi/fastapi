@@ -12,9 +12,6 @@ gold:
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://zuplo.link/fastapi-gh
-    title: 'Zuplo: Deploy, Secure, Document, and Monetize your FastAPI'
-    img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
@@ -40,9 +37,6 @@ silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
-  - url: https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship
-    title: SDKs for your API | Speakeasy
-    img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
