@@ -9,6 +9,13 @@ hide:
 
 ### Internal
 
+* ⬆ Bump aiohttp from 3.13.3 to 3.13.4. PR [#15282](https://github.com/fastapi/fastapi/pull/15282) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pygments from 2.19.2 to 2.20.0. PR [#15263](https://github.com/fastapi/fastapi/pull/15263) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pymdown-extensions from 10.20.1 to 10.21.2. PR [#15391](https://github.com/fastapi/fastapi/pull/15391) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump pillow from 12.1.1 to 12.2.0. PR [#15333](https://github.com/fastapi/fastapi/pull/15333) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pytest from 9.0.2 to 9.0.3. PR [#15334](https://github.com/fastapi/fastapi/pull/15334) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/upload-artifact from 7.0.0 to 7.0.1. PR [#15374](https://github.com/fastapi/fastapi/pull/15374) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/cache from 5.0.4 to 5.0.5. PR [#15385](https://github.com/fastapi/fastapi/pull/15385) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: remove Zuplo. PR [#15369](https://github.com/fastapi/fastapi/pull/15369) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Speakeasy. PR [#15368](https://github.com/fastapi/fastapi/pull/15368) by [@tiangolo](https://github.com/tiangolo).
 * 🔒️ Add zizmor and fix audit findings. PR [#15316](https://github.com/fastapi/fastapi/pull/15316) by [@YuriiMotov](https://github.com/YuriiMotov).
