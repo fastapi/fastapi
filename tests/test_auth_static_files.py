@@ -179,6 +179,50 @@ def test_custom_on_error_redirect(static_dir):
         assert response.headers["location"] == "/login"
 
 
+def test_sync_auth_callable(static_dir):
+    """A sync auth callable should be supported via run_in_threadpool."""
+
+    def sync_verify(request: Request) -> None:
+        token = request.headers.get("X-Token")
+        if token != "valid":
+            raise HTTPException(status_code=401, detail="Bad token")
+
+    app = FastAPI()
+    app.mount(
+        "/sync",
+        AuthStaticFiles(directory=str(static_dir), auth=sync_verify),
+        name="sync",
+    )
+
+    with TestClient(app) as client:
+        response = client.get("/sync/public.txt")
+        assert response.status_code == 401
+
+        response = client.get("/sync/public.txt", headers={"X-Token": "valid"})
+        assert response.status_code == 200
+        assert response.text == "public content"
+
+
+def test_starlette_httpexception_caught(static_dir):
+    """Starlette's HTTPException (used by FastAPI security modules) should be caught."""
+    from starlette.exceptions import HTTPException as StarletteHTTPException
+
+    async def deny_with_starlette(request: Request) -> None:
+        raise StarletteHTTPException(status_code=401, detail="Starlette error")
+
+    app = FastAPI()
+    app.mount(
+        "/starlette",
+        AuthStaticFiles(directory=str(static_dir), auth=deny_with_starlette),
+        name="starlette",
+    )
+
+    with TestClient(app) as client:
+        response = client.get("/starlette/public.txt")
+        assert response.status_code == 401
+        assert response.text == "Starlette error"
+
+
 def test_custom_on_error_html(static_dir):
     """on_error can return a custom HTML error page."""
 
