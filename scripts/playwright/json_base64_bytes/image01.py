@@ -25,12 +25,13 @@ process = subprocess.Popen(
     ["fastapi", "run", "docs_src/json_base64_bytes/tutorial001_py310.py"]
 )
 try:
-    for _ in range(3):
+    for _ in range(10):
         try:
             response = httpx.get("http://localhost:8000/docs")
+            if response.status_code == 200:
+                break
         except httpx.ConnectError:
             time.sleep(1)
-            break
     with sync_playwright() as playwright:
         run(playwright)
 finally:

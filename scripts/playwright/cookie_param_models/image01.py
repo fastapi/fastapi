@@ -10,8 +10,6 @@ def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     # Update the viewport manually
     context = browser.new_context(viewport={"width": 960, "height": 1080})
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
     page = context.new_page()
     page.goto("http://localhost:8000/docs")
     page.get_by_role("link", name="/items/").click()
@@ -27,12 +25,13 @@ process = subprocess.Popen(
     ["fastapi", "run", "docs_src/cookie_param_models/tutorial001.py"]
 )
 try:
-    for _ in range(3):
+    for _ in range(10):
         try:
             response = httpx.get("http://localhost:8000/docs")
+            if response.status_code == 200:
+                break
         except httpx.ConnectError:
             time.sleep(1)
-            break
     with sync_playwright() as playwright:
         run(playwright)
 finally:
