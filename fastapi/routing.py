@@ -844,6 +844,7 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.stream_item_type: Any | None = None
+        _raw_return_annotation: Any | None = None
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
             if lenient_issubclass(return_annotation, Response):
@@ -862,6 +863,7 @@ class APIRoute(routing.Route):
                         or lenient_issubclass(response_class, EventSourceResponse)
                     ) and not lenient_issubclass(stream_item, ServerSentEvent):
                         self.stream_item_type = stream_item
+                    _raw_return_annotation = return_annotation
                     response_model = None
                 else:
                     response_model = return_annotation
@@ -973,6 +975,17 @@ class APIRoute(routing.Route):
         self.is_json_stream = is_generator and isinstance(
             response_class, DefaultPlaceholder
         )
+        if not is_generator and _raw_return_annotation is not None:
+            self.response_model = _raw_return_annotation
+            assert is_body_allowed_for_status_code(self.status_code), (
+                f"Status code {self.status_code} must not have a response body"
+            )
+            response_name = "Response_" + self.unique_id
+            self.response_field = create_model_field(
+                name=response_name,
+                type_=_raw_return_annotation,
+                mode="serialization",
+            )
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
