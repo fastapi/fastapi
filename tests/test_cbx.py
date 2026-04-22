@@ -278,7 +278,7 @@ def test_cbx_full_coverage():
     @cbr(router)
     class PureHelperCBR:
         def nothing(self):
-            pass# pragma: no cover
+            pass  # pragma: no cover
 
     @cbr(router)
     class FullCBR:
