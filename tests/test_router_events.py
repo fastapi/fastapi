@@ -188,12 +188,32 @@ def test_router_nested_lifespan_state_discard_default_lifespan_app(
         state.sub_router_shutdown = True
 
     sub_router = APIRouter(lifespan=subrouter_lifespan)
+    sub_router_lifespan_ctx = sub_router.lifespan_context
 
     router = APIRouter(lifespan=router_lifespan)
+    router_lifespan_ctx = router.lifespan_context
     router.include_router(sub_router)
 
+    assert router.lifespan_context is not router_lifespan_ctx, (
+        "Including a sub-router with a lifespan should change the router's lifespan context"
+    )
+    assert router.lifespan_context is not sub_router_lifespan_ctx, (
+        "New router lifespan context should not be the same as the sub-router's lifespan context, since the router should merge the lifespan contexts of all included sub-routers"
+    )
+
     app = FastAPI()
+    app_lifespan_ctx = app.router.lifespan_context
     app.include_router(router)
+
+    assert app.router.lifespan_context is not app_lifespan_ctx, (
+        "Including a router with a lifespan should change the app's lifespan context"
+    )
+    assert app.router.lifespan_context is router.lifespan_context, (
+        "New app lifespan context should be the same as the router's lifespan context, since the app has a default lifespan"
+    )
+    assert app.router.lifespan_context is not sub_router_lifespan_ctx, (
+        "New app lifespan context should not be the same as the sub-router's lifespan context, since the app should merge the lifespan contexts of all included routers"
+    )
 
     @app.get("/")
     def main(request: Request) -> dict[str, str]:
@@ -234,7 +254,12 @@ def test_router_nested_lifespan_state_discard_default_lifespan_child(
     router = APIRouter()
 
     app = FastAPI(lifespan=lifespan)
+    app_lifespan_ctx = app.router.lifespan_context
     app.include_router(router)
+
+    assert app.router.lifespan_context is app_lifespan_ctx, (
+        "Including a router without a lifespan should not change the app's lifespan context"
+    )
 
     @app.get("/")
     def main(request: Request) -> dict[str, str]:
@@ -260,7 +285,12 @@ def test_router_nested_lifespan_state_no_lifespans(
     router = APIRouter()
 
     app = FastAPI()
+    app_lifespan_ctx = app.router.lifespan_context
     app.include_router(router)
+
+    assert app.router.lifespan_context is app_lifespan_ctx, (
+        "Including a router without a lifespan should not change the app's lifespan context"
+    )
 
     @app.get("/")
     def main(request: Request) -> dict[str, str]:
