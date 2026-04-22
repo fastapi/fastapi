@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump mypy from 1.19.1 to 1.20.1. PR [#15410](https://github.com/fastapi/fastapi/pull/15410) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump python-dotenv from 1.2.1 to 1.2.2. PR [#15400](https://github.com/fastapi/fastapi/pull/15400) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 0.52.1 to 1.0.0. PR [#15397](https://github.com/fastapi/fastapi/pull/15397) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pygithub from 2.8.1 to 2.9.1. PR [#15396](https://github.com/fastapi/fastapi/pull/15396) by [@dependabot[bot]](https://github.com/apps/dependabot).
