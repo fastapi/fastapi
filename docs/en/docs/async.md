@@ -213,7 +213,7 @@ Beautiful illustrations by [Ketrina Thompson](https://www.instagram.com/ketrinad
 
 ---
 
-In this scenario of the parallel burgers, you are a computer / program 🤖 with two processors (you and your crush), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
+In this scenario of the parallel burgers, you are a computer / program 🤖 with two processes (you and your crush), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
 
 The fast food store has 8 processors (cashiers/cooks). While the concurrent burgers store might have had only 2 (one cashier and one cook).
 
