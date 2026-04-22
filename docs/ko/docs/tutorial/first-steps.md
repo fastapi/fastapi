@@ -1,0 +1,429 @@
+# 첫걸음 { #first-steps }
+
+가장 단순한 FastAPI 파일은 다음과 같이 보일 것입니다:
+
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
+
+위 코드를 `main.py`에 복사합니다.
+
+라이브 서버를 실행합니다:
+
+<div class="termy">
+
+```console
+$ <font color="#4E9A06">fastapi</font> dev
+
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+```
+
+</div>
+
+출력되는 줄들 중에는 아래와 같은 내용이 있습니다:
+
+```hl_lines="4"
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+해당 줄은 로컬 머신에서 앱이 서비스되는 URL을 보여줍니다.
+
+### 확인하기 { #check-it }
+
+브라우저로 [http://127.0.0.1:8000](http://127.0.0.1:8000)를 여세요.
+
+아래와 같은 JSON 응답을 볼 수 있습니다:
+
+```JSON
+{"message": "Hello World"}
+```
+
+### 대화형 API 문서 { #interactive-api-docs }
+
+이제 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)로 가봅니다.
+
+자동 대화형 API 문서를 볼 수 있습니다 ([Swagger UI](https://github.com/swagger-api/swagger-ui) 제공):
+
+![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
+
+### 대안 API 문서 { #alternative-api-docs }
+
+그리고 이제, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅니다.
+
+대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
+
+### OpenAPI { #openapi }
+
+**FastAPI**는 API를 정의하기 위한 **OpenAPI** 표준을 사용하여 여러분의 모든 API를 이용해 "스키마"를 생성합니다.
+
+#### "스키마" { #schema }
+
+"스키마"는 무언가의 정의 또는 설명입니다. 이를 구현하는 코드가 아니라 추상적인 설명일 뿐입니다.
+
+#### API "스키마" { #api-schema }
+
+이 경우, [OpenAPI](https://github.com/OAI/OpenAPI-Specification)는 여러분의 API 스키마를 어떻게 정의하는지 지시하는 규격입니다.
+
+이 스키마 정의는 API 경로, 가능한 매개변수 등을 포함합니다.
+
+#### 데이터 "스키마" { #data-schema }
+
+"스키마"라는 용어는 JSON처럼 어떤 데이터의 형태를 나타낼 수도 있습니다.
+
+이러한 경우 JSON 속성, 가지고 있는 데이터 타입 등을 뜻합니다.
+
+#### OpenAPI와 JSON 스키마 { #openapi-and-json-schema }
+
+OpenAPI는 여러분의 API에 대한 API 스키마를 정의합니다. 또한 이 스키마는 JSON 데이터 스키마의 표준인 **JSON 스키마**를 사용하여 여러분의 API가 보내고 받는 데이터의 정의(또는 "스키마")를 포함합니다.
+
+#### `openapi.json` 확인 { #check-the-openapi-json }
+
+가공되지 않은 OpenAPI 스키마가 어떻게 생겼는지 궁금하다면, FastAPI는 자동으로 여러분의 모든 API에 대한 설명과 함께 JSON (스키마)를 생성합니다.
+
+여기에서 직접 볼 수 있습니다: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
+
+다음과 같이 시작하는 JSON을 확인할 수 있습니다:
+
+```JSON
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/items/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+
+
+
+...
+```
+
+#### OpenAPI의 용도 { #what-is-openapi-for }
+
+OpenAPI 스키마는 포함된 두 개의 대화형 문서 시스템을 제공합니다.
+
+그리고 OpenAPI의 모든 것을 기반으로 하는 수십 가지 대안이 있습니다. **FastAPI**로 빌드한 애플리케이션에 이러한 대안을 쉽게 추가 할 수 있습니다.
+
+API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케이션 등)를 위해 코드를 자동으로 생성하는 데도 사용할 수 있습니다.
+
+### `pyproject.toml`에 앱 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
+
+다음과 같이 `pyproject.toml` 파일에서 앱이 위치한 곳을 구성할 수 있습니다:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+해당 `entrypoint`는 `fastapi` 명령어에 다음과 같이 앱을 임포트하라고 알려줍니다:
+
+```python
+from main import app
+```
+
+코드 구조가 다음과 같다면:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+그럼 `entrypoint`를 다음과 같이 설정합니다:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+이는 다음과 동일합니다:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev`에 경로 지정하기 { #fastapi-dev-with-path }
+
+`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI app 객체를 추정합니다:
+
+```console
+$ fastapi dev main.py
+```
+
+하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 경로를 전달해야 합니다.
+
+또한 다른 도구들, 예를 들어 [VS Code 확장](../editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com)가 이를 찾지 못할 수 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
+
+### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
+
+선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직 대기자 명단에 등록하지 않았다면, 등록하러 가세요. 🚀
+
+이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
+
+배포하기 전에, 로그인되어 있는지 확인하세요:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+그 다음 앱을 배포합니다:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
+
+## 단계별 요약 { #recap-step-by-step }
+
+### 1 단계: `FastAPI` 임포트 { #step-1-import-fastapi }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+
+`FastAPI`는 여러분의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
+
+/// note | 기술 세부사항
+
+`FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
+
+`FastAPI`로 [Starlette](https://www.starlette.dev/)의 모든 기능을 사용할 수 있습니다.
+
+///
+
+### 2 단계: `FastAPI` "인스턴스" 생성 { #step-2-create-a-fastapi-instance }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+
+여기에서 `app` 변수는 `FastAPI` 클래스의 "인스턴스"가 됩니다.
+
+이것은 여러분의 모든 API를 생성하기 위한 상호작용의 주요 지점이 될 것입니다.
+
+### 3 단계: *경로 처리* 생성 { #step-3-create-a-path-operation }
+
+#### 경로 { #path }
+
+여기서 "경로"는 첫 번째 `/`부터 시작하는 URL의 뒷부분을 의미합니다.
+
+그러므로 아래와 같은 URL에서:
+
+```
+https://example.com/items/foo
+```
+
+...경로는 다음과 같습니다:
+
+```
+/items/foo
+```
+
+/// info | 정보
+
+"경로"는 일반적으로 "엔드포인트" 또는 "라우트"라고도 불립니다.
+
+///
+
+API를 설계할 때 "경로"는 "관심사"와 "리소스"를 분리하기 위한 주요한 방법입니다.
+
+#### 작동 { #operation }
+
+"작동(Operation)"은 HTTP "메소드" 중 하나를 나타냅니다.
+
+다음 중 하나이며:
+
+* `POST`
+* `GET`
+* `PUT`
+* `DELETE`
+
+...흔히 사용되지 않는 것들도 있습니다:
+
+* `OPTIONS`
+* `HEAD`
+* `PATCH`
+* `TRACE`
+
+HTTP 프로토콜에서는 이러한 "메소드"를 하나(또는 이상) 사용하여 각 경로와 통신할 수 있습니다.
+
+---
+
+API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정 HTTP 메소드를 사용합니다.
+
+일반적으로 다음과 같습니다:
+
+* `POST`: 데이터를 생성하기 위해.
+* `GET`: 데이터를 읽기 위해.
+* `PUT`: 데이터를 수정하기 위해.
+* `DELETE`: 데이터를 삭제하기 위해.
+
+그래서 OpenAPI에서는 각 HTTP 메소드들을 "작동"이라 부릅니다.
+
+우리 역시 이제부터 메소드를 "**작동**"이라고 부를 것입니다.
+
+#### *경로 처리 데코레이터* 정의 { #define-a-path-operation-decorator }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+
+`@app.get("/")`은 **FastAPI**에게 바로 아래에 있는 함수가 다음으로 이동하는 요청을 처리한다는 것을 알려줍니다:
+
+* 경로 `/`
+* <dfn title="HTTP GET 메소드"><code>get</code> 작동</dfn> 사용
+
+/// info | `@decorator` 정보
+
+이 `@something` 문법은 파이썬에서 "데코레이터"라 부릅니다.
+
+마치 예쁜 장식용(Decorative) 모자처럼(개인적으로 이 용어가 여기서 유래한 것 같습니다) 함수 맨 위에 놓습니다.
+
+"데코레이터"는 아래 있는 함수를 받아 그것으로 무언가를 합니다.
+
+우리의 경우, 이 데코레이터는 **FastAPI**에게 아래 함수가 **경로** `/`의 `get` **작동**에 해당한다고 알려줍니다.
+
+이것이 "**경로 처리 데코레이터**"입니다.
+
+///
+
+다른 작동도 사용할 수 있습니다:
+
+* `@app.post()`
+* `@app.put()`
+* `@app.delete()`
+
+흔히 사용되지 않는 것들도 있습니다:
+
+* `@app.options()`
+* `@app.head()`
+* `@app.patch()`
+* `@app.trace()`
+
+/// tip | 팁
+
+각 작동(HTTP 메소드)을 원하는 대로 사용해도 됩니다.
+
+**FastAPI**는 특정 의미를 강제하지 않습니다.
+
+여기서 정보는 지침서일뿐 강제사항이 아닙니다.
+
+예를 들어 GraphQL을 사용하는 경우, 일반적으로 `POST` 작동만 사용하여 모든 행동을 수행합니다.
+
+///
+
+### 4 단계: **경로 처리 함수** 정의 { #step-4-define-the-path-operation-function }
+
+다음은 우리의 "**경로 처리 함수**"입니다:
+
+* **경로**: 는 `/`입니다.
+* **작동**: 은 `get`입니다.
+* **함수**: 는 "데코레이터" 아래에 있는 함수입니다 (`@app.get("/")` 아래).
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+
+이것은 파이썬 함수입니다.
+
+URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **FastAPI**에 의해 호출됩니다.
+
+위의 예시에서 이 함수는 `async`(비동기) 함수입니다.
+
+---
+
+`async def`을 이용하는 대신 일반 함수로 정의할 수 있습니다:
+
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+
+/// note | 참고
+
+차이점을 모르겠다면 [Async: *"바쁘신 경우"*](../async.md#in-a-hurry)를 확인하세요.
+
+///
+
+### 5 단계: 콘텐츠 반환 { #step-5-return-the-content }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+
+`dict`, `list`, 단일값을 가진 `str`, `int` 등을 반환할 수 있습니다.
+
+Pydantic 모델을 반환할 수도 있습니다(나중에 더 자세히 살펴봅니다).
+
+JSON으로 자동 변환되는 객체들과 모델들(ORM 등을 포함해서)이 많이 있습니다. 가장 마음에 드는 것을 사용하십시오, 이미 지원되고 있을 것입니다.
+
+### 6 단계: 배포하기 { #step-6-deploy-it }
+
+한 번의 명령으로 **[FastAPI Cloud](https://fastapicloud.com)**에 앱을 배포합니다: `fastapi deploy`. 🎉
+
+#### FastAPI Cloud 소개 { #about-fastapi-cloud }
+
+**[FastAPI Cloud](https://fastapicloud.com)**는 **FastAPI** 뒤에 있는 동일한 작성자와 팀이 만들었습니다.
+
+최소한의 노력으로 API를 **빌드**, **배포**, **접근**하는 과정을 간소화합니다.
+
+FastAPI로 앱을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**할 때도 제공합니다. 🎉
+
+FastAPI Cloud는 *FastAPI와 친구들* 오픈 소스 프로젝트의 주요 스폰서이자 자금 제공자입니다. ✨
+
+#### 다른 클라우드 제공업체에 배포하기 { #deploy-to-other-cloud-providers }
+
+FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어떤 클라우드 제공업체에도 FastAPI 앱을 배포할 수 있습니다.
+
+클라우드 제공업체의 가이드를 따라 FastAPI 앱을 배포하세요. 🤓
+
+## 요약 { #recap }
+
+* `FastAPI` 임포트.
+* `app` 인스턴스 생성.
+* (`@app.get("/")`처럼) **경로 처리 데코레이터** 작성.
+* (위에 있는 `def root(): ...`처럼) **경로 처리 함수** 작성.
+* `fastapi dev` 명령으로 개발 서버 실행.
+* 선택적으로 `fastapi deploy`로 앱 배포.

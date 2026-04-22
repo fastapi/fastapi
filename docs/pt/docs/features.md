@@ -1,0 +1,201 @@
+# Recursos { #features }
+
+## Recursos do FastAPI { #fastapi-features }
+
+**FastAPI** te oferece o seguinte:
+
+### Baseado em padrões abertos { #based-on-open-standards }
+
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">caminho</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, requisições de corpo, segurança etc.
+* Documentação automática de modelos de dados com [**JSON Schema**](https://json-schema.org/) (já que o OpenAPI em si é baseado no JSON Schema).
+* Projetado em torno desses padrões, após um estudo meticuloso. Em vez de uma camada improvisada por cima.
+* Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
+
+### Documentação automática { #automatic-docs }
+
+Documentação interativa da API e navegação web da interface de usuário. Como o framework é baseado no OpenAPI, há várias opções, 2 incluídas por padrão.
+
+* [**Swagger UI**](https://github.com/swagger-api/swagger-ui), com navegação interativa, chame e teste sua API diretamente do navegador.
+
+![Interação Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+
+* Documentação alternativa da API com [**ReDoc**](https://github.com/Rebilly/ReDoc).
+
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
+
+### Apenas Python moderno { #just-modern-python }
+
+Tudo é baseado no padrão das declarações de **tipos do Python** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
+
+Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md).
+
+Você escreve Python padrão com tipos:
+
+```Python
+from datetime import date
+
+from pydantic import BaseModel
+
+# Declare uma variável como str
+# e obtenha suporte do editor dentro da função
+def main(user_id: str):
+    return user_id
+
+
+# Um modelo do Pydantic
+class User(BaseModel):
+    id: int
+    name: str
+    joined: date
+```
+
+Que então pode ser usado como:
+
+```Python
+my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
+
+second_user_data = {
+    "id": 4,
+    "name": "Mary",
+    "joined": "2018-11-30",
+}
+
+my_second_user: User = User(**second_user_data)
+```
+
+/// info | Informação
+
+`**second_user_data` quer dizer:
+
+Passe as chaves e valores do dicionário `second_user_data` diretamente como argumentos chave-valor, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
+
+### Suporte de editores { #editor-support }
+
+Todo o framework foi projetado para ser fácil e intuitivo de usar, todas as decisões foram testadas em vários editores antes do início do desenvolvimento, para garantir a melhor experiência de desenvolvimento.
+
+Na pesquisa de desenvolvedores Python, ficou claro [que um dos recursos mais utilizados é o "preenchimento automático"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
+
+Todo o framework **FastAPI** é feito para satisfazer isso. O preenchimento automático funciona em todos os lugares.
+
+Você raramente precisará voltar à documentação.
+
+Aqui está como o editor poderá te ajudar:
+
+* no [Visual Studio Code](https://code.visualstudio.com/):
+
+![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+
+* no [PyCharm](https://www.jetbrains.com/pycharm/):
+
+![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+
+Você terá preenchimento automático no seu código que você poderia considerar impossível antes. Como por exemplo, a chave `price` dentro do corpo JSON (que poderia ter sido aninhado) que vem de uma requisição.
+
+Sem a necessidade de digitar nomes de chaves erroneamente, ir e voltar entre documentações, ou rolar pela página para descobrir se você utilizou `username` ou `user_name`.
+
+### Breve { #short }
+
+Há **padrões** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
+
+Por padrão, tudo **"simplesmente funciona"**.
+
+### Validação { #validation }
+
+* Validação para a maioria dos (ou todos?) **tipos de dados** do Python, incluindo:
+    * objetos JSON (`dict`).
+    * arrays JSON (`list`), definindo tipos dos itens.
+    * campos String (`str`), definindo tamanho mínimo e máximo.
+    * Numbers (`int`, `float`) com valores mínimos e máximos, etc.
+
+* Validação de tipos mais exóticos, como:
+    * URL.
+    * Email.
+    * UUID.
+    * ...e outros.
+
+Toda a validação é controlada pelo robusto e bem estabelecido **Pydantic**.
+
+### Segurança e autenticação { #security-and-authentication }
+
+Segurança e autenticação integradas. Sem nenhum compromisso com bancos de dados ou modelos de dados.
+
+Todos os esquemas de seguranças definidos no OpenAPI, incluindo:
+
+* HTTP Basic.
+* **OAuth2** (também com **tokens JWT**). Confira o tutorial em [OAuth2 com JWT](tutorial/security/oauth2-jwt.md).
+* Chaves de API em:
+    * Headers.
+    * parâmetros da Query.
+    * Cookies etc.
+
+Além disso, todos os recursos de segurança do Starlette (incluindo **cookies de sessão**).
+
+Tudo construído como ferramentas e componentes reutilizáveis que são fáceis de integrar com seus sistemas, armazenamento de dados, banco de dados relacionais e não-relacionais etc.
+
+### Injeção de dependência { #dependency-injection }
+
+FastAPI inclui um sistema de <dfn title='também conhecido como "componentes", "recursos", "serviços", "provedores"'><strong>injeção de dependência</strong></dfn> extremamente fácil de usar, mas extremamente poderoso.
+
+* Mesmo dependências podem ter dependências, criando uma hierarquia ou **"grafo" de dependências**.
+* Tudo **automaticamente controlado** pelo framework.
+* Todas as dependências podem pedir dados das requisições e **ampliar** as restrições e documentação automática da **operação de rota**.
+* **Validação automática** mesmo para parâmetros da *operação de rota* definidos em dependências.
+* Suporte para sistemas de autenticação complexos, **conexões com banco de dados** etc.
+* **Sem comprometer** os bancos de dados, frontends etc. Mas fácil integração com todos eles.
+
+### "Plug-ins" ilimitados { #unlimited-plug-ins }
+
+Ou, de outra forma, sem a necessidade deles, importe e use o código que precisar.
+
+Qualquer integração é projetada para ser tão simples de usar (com dependências) que você pode criar um "plug-in" para suas aplicações com 2 linhas de código usando a mesma estrutura e sintaxe para as suas *operações de rota*.
+
+### Testado { #tested }
+
+* 100% <dfn title="A quantidade de código que é testada automaticamente">de cobertura de testes</dfn>.
+* 100% do código com <dfn title="Anotações de tipo do Python, com isso seu editor e ferramentas externas podem te dar um suporte melhor">anotações de tipo</dfn>.
+* Usado para aplicações em produção.
+
+## Recursos do Starlette { #starlette-features }
+
+**FastAPI** é totalmente compatível com (e baseado no) [**Starlette**](https://www.starlette.dev/). Então, qualquer código adicional Starlette que você tiver, também funcionará.
+
+`FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades se comportará da mesma forma.
+
+Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI é apenas um Starlette com esteróides):
+
+* Desempenho realmente impressionante. É [um dos frameworks Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**](https://github.com/encode/starlette#performance).
+* Suporte a **WebSocket**.
+* Tarefas em processo background.
+* Eventos na inicialização e encerramento.
+* Cliente de testes construído sobre HTTPX.
+* Respostas em **CORS**, GZip, Static Files, Streaming.
+* Suporte a **Session e Cookie**.
+* 100% de cobertura de testes.
+* 100% do código utilizando anotações de tipo.
+
+## Recursos do Pydantic { #pydantic-features }
+
+**FastAPI** é totalmente compatível com (e baseado no) [**Pydantic**](https://docs.pydantic.dev/). Então, qualquer código Pydantic adicional que você tiver, também funcionará.
+
+Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s e <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bancos de dados.
+
+Isso também significa que em muitos casos você poderá passar o mesmo objeto que você receber de uma requisição **diretamente para o banco de dados**, já que tudo é validado automaticamente.
+
+O mesmo se aplica no sentido inverso, em muitos casos você poderá simplesmente passar o objeto que você recebeu do banco de dados **diretamente para o cliente**.
+
+Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI utiliza o Pydantic para todo o controle dos dados):
+
+* **Sem pegadinhas**:
+    * Sem novas definições de esquema de micro-linguagem para aprender.
+    * Se você conhece os tipos do Python, você sabe como usar o Pydantic.
+* Vai bem com o/a seu/sua **<abbr title="Integrated Development Environment - Ambiente de Desenvolvimento Integrado: similar a um editor de código">IDE</abbr>/<dfn title="Um programa que confere erros de código">linter</dfn>/cérebro**:
+    * Como as estruturas de dados do Pydantic são apenas instâncias de classes que você define, o preenchimento automático, linting, mypy e a sua intuição devem funcionar corretamente com seus dados validados.
+* Valida **estruturas complexas**:
+    * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
+    * Validadores permitem que esquemas de dados complexos sejam limpos e facilmente definidos, conferidos e documentados como JSON Schema.
+    * Você pode ter **JSONs aninhados** profundamente e tê-los todos validados e anotados.
+* **Extensível**:
+    * Pydantic permite que tipos de dados personalizados sejam definidos ou você pode estender a validação com métodos em um modelo decorado com seu decorador de validador.
+* 100% de cobertura de testes.

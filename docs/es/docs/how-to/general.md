@@ -1,0 +1,43 @@
+# General - Cómo Hacer - Recetas { #general-how-to-recipes }
+
+Aquí tienes varias indicaciones hacia otros lugares en la documentación, para preguntas generales o frecuentes.
+
+## Filtrar Datos - Seguridad { #filter-data-security }
+
+Para asegurarte de que no devuelves más datos de los que deberías, lee la documentación para [Tutorial - Modelo de Response - Tipo de Retorno](../tutorial/response-model.md).
+
+## Optimizar el Rendimiento del Response - Modelo de Response - Tipo de Retorno { #optimize-response-performance-response-model-return-type }
+
+Para optimizar el rendimiento al devolver datos JSON, usa un tipo de retorno o un modelo de Response; de esa manera Pydantic se encargará de la serialización a JSON del lado de Rust, sin pasar por Python. Lee más en la documentación para [Tutorial - Modelo de Response - Tipo de Retorno](../tutorial/response-model.md).
+
+## Etiquetas de Documentación - OpenAPI { #documentation-tags-openapi }
+
+Para agregar etiquetas a tus *path operations*, y agruparlas en la interfaz de usuario de la documentación, lee la documentación para [Tutorial - Configuraciones de Path Operation - Etiquetas](../tutorial/path-operation-configuration.md#tags).
+
+## Resumen y Descripción de Documentación - OpenAPI { #documentation-summary-and-description-openapi }
+
+Para agregar un resumen y descripción a tus *path operations*, y mostrarlos en la interfaz de usuario de la documentación, lee la documentación para [Tutorial - Configuraciones de Path Operation - Resumen y Descripción](../tutorial/path-operation-configuration.md#summary-and-description).
+
+## Documentación de Descripción de Response - OpenAPI { #documentation-response-description-openapi }
+
+Para definir la descripción del response, mostrada en la interfaz de usuario de la documentación, lee la documentación para [Tutorial - Configuraciones de Path Operation - Descripción del Response](../tutorial/path-operation-configuration.md#response-description).
+
+## Documentar la Deprecación de una *Path Operation* - OpenAPI { #documentation-deprecate-a-path-operation-openapi }
+
+Para deprecar una *path operation*, y mostrarla en la interfaz de usuario de la documentación, lee la documentación para [Tutorial - Configuraciones de Path Operation - Deprecación](../tutorial/path-operation-configuration.md#deprecate-a-path-operation).
+
+## Convertir cualquier Dato a Compatible con JSON { #convert-any-data-to-json-compatible }
+
+Para convertir cualquier dato a compatible con JSON, lee la documentación para [Tutorial - Codificador Compatible con JSON](../tutorial/encoder.md).
+
+## Metadatos OpenAPI - Documentación { #openapi-metadata-docs }
+
+Para agregar metadatos a tu esquema de OpenAPI, incluyendo una licencia, versión, contacto, etc, lee la documentación para [Tutorial - Metadatos y URLs de Documentación](../tutorial/metadata.md).
+
+## URL Personalizada de OpenAPI { #openapi-custom-url }
+
+Para personalizar la URL de OpenAPI (o eliminarla), lee la documentación para [Tutorial - Metadatos y URLs de Documentación](../tutorial/metadata.md#openapi-url).
+
+## URLs de Documentación de OpenAPI { #openapi-docs-urls }
+
+Para actualizar las URLs usadas para las interfaces de usuario de documentación generadas automáticamente, lee la documentación para [Tutorial - Metadatos y URLs de Documentación](../tutorial/metadata.md#docs-urls).

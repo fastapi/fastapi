@@ -1,0 +1,13 @@
+# Testing WebSockets { #testing-websockets }
+
+You can use the same `TestClient` to test WebSockets.
+
+For this, you use the `TestClient` in a `with` statement, connecting to the WebSocket:
+
+{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
+
+/// note
+
+For more details, check Starlette's documentation for [testing WebSockets](https://www.starlette.dev/testclient/#testing-websocket-sessions).
+
+///
