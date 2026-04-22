@@ -1,16 +1,16 @@
 tiangolo:
   login: tiangolo
-  count: 922
+  count: 935
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 142
+  count: 157
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 YuriiMotov:
   login: YuriiMotov
-  count: 57
+  count: 66
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 alejsdev:
@@ -35,7 +35,7 @@ Kludex:
   url: https://github.com/Kludex
 svlandeg:
   login: svlandeg
-  count: 18
+  count: 21
   avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
   url: https://github.com/svlandeg
 dmontagu:
@@ -508,6 +508,11 @@ joakimnordling:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/6637576?u=df5d99db9b899b399effd429f4358baaa6f7199c&v=4
   url: https://github.com/joakimnordling
+AhsanSheraz:
+  login: AhsanSheraz
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/51913596?u=b5aa3c3a004cc0112e56c54f6901941836d8c26b&v=4
+  url: https://github.com/AhsanSheraz
 yogabonito:
   login: yogabonito
   count: 2
@@ -573,6 +578,11 @@ Taoup:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/22348542?v=4
   url: https://github.com/Taoup
+savannahostrowski:
+  login: savannahostrowski
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/8949415?u=e4bb61b9ebaa406274d2f2629cd33179a432a2a7&v=4
+  url: https://github.com/savannahostrowski
 jonathan-fulton:
   login: jonathan-fulton
   count: 2
