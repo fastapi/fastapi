@@ -497,6 +497,16 @@ def get_request_handler(
                 # Generator endpoint: stream as Server-Sent Events
                 gen = dependant.call(**solved_result.values)
 
+                # Get default_retry and on_disconnect from response_class if set
+                default_retry: int | None = None
+                on_disconnect: Callable[[Request], Awaitable[None]] | None = None
+                # Check if response_class is a subclass of EventSourceResponse and has
+                # default_retry/on_disconnect attributes
+                if lenient_issubclass(actual_response_class, EventSourceResponse):
+                    # Access class attributes directly
+                    default_retry = getattr(actual_response_class, "default_retry", None)
+                    on_disconnect = getattr(actual_response_class, "on_disconnect", None)
+
                 def _serialize_sse_item(item: Any) -> bytes:
                     if isinstance(item, ServerSentEvent):
                         # User controls the event structure.
@@ -512,18 +522,21 @@ def get_request_handler(
                                 data_str = json.dumps(jsonable_encoder(item.data))
                         else:
                             data_str = None
+                        # Use default_retry if retry is not set on the event
+                        retry_value = item.retry if item.retry is not None else default_retry
                         return format_sse_event(
                             data_str=data_str,
                             event=item.event,
                             id=item.id,
-                            retry=item.retry,
+                            retry=retry_value,
                             comment=item.comment,
                         )
                     else:
                         # Plain object: validate + serialize via
                         # stream_item_field (if set) and wrap in data field
                         return format_sse_event(
-                            data_str=_serialize_data(item).decode("utf-8")
+                            data_str=_serialize_data(item).decode("utf-8"),
+                            retry=default_retry,
                         )
 
                 if dependant.is_async_gen_callable:
@@ -580,8 +593,18 @@ def get_request_handler(
                     async with anyio.create_task_group() as tg:
                         tg.start_soon(_producer)
                         tg.start_soon(_keepalive_inserter)
-                        yield receive_keepalive
-                        tg.cancel_scope.cancel()
+                        try:
+                            yield receive_keepalive
+                        finally:
+                            tg.cancel_scope.cancel()
+                            # Call on_disconnect callback if set
+                            if on_disconnect is not None:
+                                try:
+                                    await on_disconnect(request)
+                                except Exception:
+                                    # Don't let disconnect callback errors
+                                    # propagate and break the response
+                                    pass
 
                 # Enter the SSE context manager on the request-scoped
                 # exit stack. The stack outlives the streaming response,

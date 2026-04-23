@@ -195,6 +195,36 @@ If you are streaming JSON Lines, follow the [Stream JSON Lines](../tutorial/stre
 
 ///
 
+### `EventSourceResponse` { #eventsource-response }
+
+**Added in FastAPI 0.134.0**
+
+Server-Sent Events (SSE) streaming response with `text/event-stream` media type.
+
+Use `EventSourceResponse` as the `response_class` for *path operations* that use `yield` to stream SSE events.
+
+{* ../../docs_src/server_sent_events/tutorial001_py310.py hl[4,22] *}
+
+/// info
+
+`EventSourceResponse` works with **any HTTP method** (`GET`, `POST`, etc.), which makes it compatible with protocols like MCP that stream SSE over `POST`.
+
+///
+
+You can yield `ServerSentEvent` objects for full control over the SSE format:
+
+{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,23,26] *}
+
+Or yield plain objects (dicts, Pydantic models) which are automatically JSON-encoded and formatted as SSE:
+
+{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[22:25] hl[23,24,25] *}
+
+/// tip
+
+For more details on SSE features like **default retry configuration**, **client disconnect callbacks**, and **keepalive support**, see the dedicated [Server-Sent Events](./server-sent-events.md) guide.
+
+///
+
 ### `FileResponse` { #fileresponse }
 
 Asynchronously streams a file as the response.

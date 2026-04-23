@@ -1,7 +1,9 @@
+from collections.abc import Awaitable, Callable
 from typing import Annotated, Any
 
 from annotated_doc import Doc
 from pydantic import AfterValidator, BaseModel, Field, model_validator
+from starlette.requests import Request
 from starlette.responses import StreamingResponse
 
 # Canonical SSE event schema matching the OpenAPI 3.2 spec
@@ -18,7 +20,7 @@ _SSE_EVENT_SCHEMA: dict[str, Any] = {
 
 
 class EventSourceResponse(StreamingResponse):
-    """Streaming response with `text/event-stream` media type.
+    """Streaming response with `text/event-stream` media type for Server-Sent Events (SSE).
 
     Use as `response_class=EventSourceResponse` on a *path operation* that uses `yield`
     to enable Server Sent Events (SSE) responses.
@@ -28,9 +30,100 @@ class EventSourceResponse(StreamingResponse):
 
     The actual encoding logic lives in the FastAPI routing layer. This class
     serves mainly as a marker and sets the correct `Content-Type`.
+
+    ## Features
+
+    - **Automatic event formatting**: Plain objects (dicts, Pydantic models) are
+      automatically JSON-encoded and wrapped in SSE format.
+    - **Retry configuration**: Set default reconnection time for all events via
+      `default_retry` parameter or per-event via `ServerSentEvent.retry`.
+    - **Client disconnect handling**: Optional `on_disconnect` callback for cleanup.
+    - **Keepalive support**: Automatic keepalive comments to prevent proxy timeouts.
+
+    ## Example
+
+    ```python
+    from fastapi import FastAPI
+    from fastapi.sse import EventSourceResponse, ServerSentEvent
+
+    app = FastAPI()
+
+
+    @app.get("/events", response_class=EventSourceResponse)
+    async def stream_events():
+        for i in range(3):
+            yield ServerSentEvent(data={"count": i}, event="update", id=str(i))
+    ```
+
+    ## Example with retry configuration
+
+    ```python
+    @app.get(
+        "/events",
+        response_class=EventSourceResponse,
+        response_class_kwargs={"default_retry": 3000},
+    )
+    async def stream_events():
+        yield {"message": "Hello"}  # Automatically formatted with retry: 3000
+    ```
+
+    ## Example with disconnect callback
+
+    ```python
+    async def on_disconnect(request: Request) -> None:
+        print("Client disconnected")
+
+
+    @app.get(
+        "/events",
+        response_class=EventSourceResponse,
+        response_class_kwargs={"on_disconnect": on_disconnect},
+    )
+    async def stream_events():
+        while True:
+            yield {"data": "streaming..."}
+    ```
     """
 
     media_type = "text/event-stream"
+    default_retry: int | None = None
+    on_disconnect: Callable[[Request], Awaitable[None]] | None = None
+
+    def __init__(
+        self,
+        content: Any = None,
+        status_code: int = 200,
+        headers: dict[str, str] | None = None,
+        media_type: str | None = None,
+        default_retry: int | None = None,
+        on_disconnect: Callable[[Request], Awaitable[None]] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        """Initialize an EventSourceResponse.
+
+        Args:
+            content: An async generator or iterable yielding SSE events.
+            status_code: HTTP status code for the response.
+            headers: Optional headers to include in the response.
+            media_type: Media type (defaults to "text/event-stream").
+            default_retry: Default reconnection time in milliseconds for all events.
+                Can be overridden per-event via `ServerSentEvent.retry`.
+            on_disconnect: Optional async callback invoked when the client disconnects.
+                Receives the `Request` object as argument. Useful for cleanup.
+            **kwargs: Additional arguments passed to StreamingResponse.
+        """
+        super().__init__(
+            content=content,
+            status_code=status_code,
+            headers=headers,
+            media_type=media_type or self.media_type,
+            **kwargs,
+        )
+        # Store instance-level overrides
+        if default_retry is not None:
+            self.default_retry = default_retry
+        if on_disconnect is not None:
+            self.on_disconnect = on_disconnect
 
 
 def _check_id_no_null(v: str | None) -> str | None:
