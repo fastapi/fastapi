@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.136.1 (2026-04-23)
+
 ### Upgrades
 
 * ⬆️ Update Pydantic v2 code to address deprecations. PR [#15101](https://github.com/fastapi/fastapi/pull/15101) by [@svlandeg](https://github.com/svlandeg).
