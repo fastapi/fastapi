@@ -54,7 +54,7 @@ Maintenant, pour pouvoir vérifier que tout fonctionne, créez un chemin d'accè
 
 ### Tester { #test-it }
 
-Vous devriez maintenant pouvoir aller à vos docs sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, puis recharger la page : elle chargera ces ressources depuis le nouveau CDN.
+Vous devriez maintenant pouvoir aller à vos docs sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), puis recharger la page : elle chargera ces ressources depuis le nouveau CDN.
 
 ## Héberger en propre JavaScript et CSS pour les docs { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Vous pouvez probablement cliquer avec le bouton droit sur chaque lien et choisir
 
 **Swagger UI** utilise les fichiers :
 
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+- [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+- [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 Et **ReDoc** utilise le fichier :
 
-- <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+- [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 Après cela, votre structure de fichiers pourrait ressembler à :
 
@@ -122,7 +122,7 @@ Après cela, votre structure de fichiers pourrait ressembler à :
 
 ### Tester les fichiers statiques { #test-the-static-files }
 
-Démarrez votre application et rendez‑vous sur <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Démarrez votre application et rendez‑vous sur [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js).
 
 Vous devriez voir un très long fichier JavaScript pour **ReDoc**.
 
@@ -180,6 +180,6 @@ Maintenant, pour pouvoir vérifier que tout fonctionne, créez un chemin d'accè
 
 ### Tester l’UI avec des fichiers statiques { #test-static-files-ui }
 
-Vous devriez maintenant pouvoir couper votre Wi‑Fi, aller à vos docs sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> et recharger la page.
+Vous devriez maintenant pouvoir couper votre Wi‑Fi, aller à vos docs sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) et recharger la page.
 
 Et même sans Internet, vous pourrez voir la documentation de votre API et interagir avec elle.

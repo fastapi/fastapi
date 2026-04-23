@@ -279,6 +279,7 @@ markdown_extensions:
   pymdownx.caret: null
   pymdownx.highlight:
     line_spans: __span
+    linenums_style: pymdownx-inline
   pymdownx.inlinehilite: null
   pymdownx.keys: null
   pymdownx.mark: null

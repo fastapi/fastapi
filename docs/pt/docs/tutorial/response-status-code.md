@@ -20,7 +20,7 @@ O parâmetro `status_code` recebe um número com o código de status HTTP.
 
 /// info | Informação
 
-`status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+`status_code` também pode receber um `IntEnum`, como [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) do Python.
 
 ///
 
@@ -66,7 +66,7 @@ Resumidamente:
 
 /// tip | Dica
 
-Para saber mais sobre cada código de status e qual código serve para quê, verifique a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">documentação do <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP</a>.
+Para saber mais sobre cada código de status e qual código serve para quê, verifique a [documentação do <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> sobre códigos de status HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -98,4 +98,4 @@ Você também pode usar `from starlette import status`.
 
 ## Alterando o padrão { #changing-the-default }
 
-Mais tarde, no [Guia do Usuário Avançado](../advanced/response-change-status-code.md){.internal-link target=_blank}, você verá como retornar um código de status diferente do padrão que você está declarando aqui.
+Mais tarde, no [Guia do Usuário Avançado](../advanced/response-change-status-code.md), você verá como retornar um código de status diferente do padrão que você está declarando aqui.

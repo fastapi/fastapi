@@ -12,7 +12,7 @@ C'est particulièrement vrai pour les modèles d'utilisateur, car :
 
 Ne stockez jamais les mots de passe des utilisateurs en clair. Stockez toujours un « hachage sécurisé » que vous pourrez ensuite vérifier.
 
-Si vous ne savez pas ce que c'est, vous apprendrez ce qu'est un « hachage de mot de passe » dans les [chapitres sur la sécurité](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Si vous ne savez pas ce que c'est, vous apprendrez ce qu'est un « hachage de mot de passe » dans les [chapitres sur la sécurité](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ Vous pouvez déclarer qu'une réponse est l'`Union` de deux types ou plus, ce qu
 
 Cela sera défini dans OpenAPI avec `anyOf`.
 
-Pour ce faire, utilisez l'annotation de type Python standard <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a> :
+Pour ce faire, utilisez l'annotation de type Python standard [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union) :
 
 /// note | Remarque
 
-Lors de la définition d'une <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, incluez d'abord le type le plus spécifique, suivi du type le moins spécifique. Dans l'exemple ci-dessous, le type le plus spécifique `PlaneItem` précède `CarItem` dans `Union[PlaneItem, CarItem]`.
+Lors de la définition d'une [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), incluez d'abord le type le plus spécifique, suivi du type le moins spécifique. Dans l'exemple ci-dessous, le type le plus spécifique `PlaneItem` précède `CarItem` dans `Union[PlaneItem, CarItem]`.
 
 ///
 

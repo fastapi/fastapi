@@ -1,15 +1,18 @@
 from typing import Any
 
-import orjson
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.testclient import TestClient
+
+from tests.utils import needs_orjson
 
 
 class ORJSONResponse(JSONResponse):
     media_type = "application/x-orjson"
 
     def render(self, content: Any) -> bytes:
+        import orjson
+
         return orjson.dumps(content)
 
 
@@ -118,6 +121,7 @@ html_type = "text/html; charset=utf-8"
 override_type = "application/x-override"
 
 
+@needs_orjson
 def test_app():
     with client:
         response = client.get("/")
@@ -132,6 +136,7 @@ def test_app_override():
     assert response.headers["content-type"] == text_type
 
 
+@needs_orjson
 def test_router_a():
     with client:
         response = client.get("/a")
@@ -146,6 +151,7 @@ def test_router_a_override():
     assert response.headers["content-type"] == text_type
 
 
+@needs_orjson
 def test_router_a_a():
     with client:
         response = client.get("/a/a")

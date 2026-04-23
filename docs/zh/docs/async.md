@@ -141,7 +141,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 /// info | 信息
 
-漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+漂亮的插画来自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。🎨
 
 ///
 
@@ -207,7 +207,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 /// info | 信息
 
-漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+漂亮的插画来自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。🎨
 
 ///
 
@@ -251,7 +251,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 这与 **FastAPI** 的性能水平相同。
 
-你可以同时拥有并行性和异步性，你可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下， Go 是一种更接近于 C 的编译语言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">全部归功于 Starlette</a>）。
+你可以同时拥有并行性和异步性，你可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下， Go 是一种更接近于 C 的编译语言（[全部归功于 Starlette](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1)）。
 
 ### 并发比并行好吗？ { #is-concurrency-better-than-parallelism }
 
@@ -298,7 +298,7 @@ CPU 密集型操作的常见示例是需要复杂的数学处理。
 
 这一点，再加上 Python 是**数据科学**、机器学习（尤其是深度学习）的主要语言这一简单事实，使得 **FastAPI** 与数据科学/机器学习 Web API 和应用程序（以及其他许多应用程序）非常匹配。
 
-了解如何在生产环境中实现这种并行性，可查看此文 [部署](deployment/index.md){.internal-link target=_blank}。
+了解如何在生产环境中实现这种并行性，可查看此文 [部署](deployment/index.md)。
 
 ## `async` 和 `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ async def read_burgers():
 
 ### 编写自己的异步代码 { #write-your-own-async-code }
 
-Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 实现的，这使得它们可以兼容 Python 的标准库 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>。
+Starlette （和 **FastAPI**） 是基于 [AnyIO](https://anyio.readthedocs.io/en/stable/) 实现的，这使得它们可以兼容 Python 的标准库 [asyncio](https://docs.python.org/3/library/asyncio-task.html) 和 [Trio](https://trio.readthedocs.io/en/stable/)。
 
-特别是，你可以直接使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 来处理高级的并发用例，这些用例需要在自己的代码中使用更高级的模式。
+特别是，你可以直接使用 [AnyIO](https://anyio.readthedocs.io/en/stable/) 来处理高级的并发用例，这些用例需要在自己的代码中使用更高级的模式。
 
-即使你没有使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 编写自己的异步程序，使其拥有较高的兼容性并获得一些好处（例如， 结构化并发）。
+即使你没有使用 **FastAPI**，你也可以使用 [AnyIO](https://anyio.readthedocs.io/en/stable/) 编写自己的异步程序，使其拥有较高的兼容性并获得一些好处（例如， 结构化并发）。
 
-我基于 AnyIO 新建了一个库，作为一个轻量级的封装层，用来优化类型注解，同时提供了更好的**自动补全**、**内联错误提示**等功能。这个库还附带了一个友好的入门指南和教程，能帮助你**理解**并编写**自己的异步代码**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。如果你有**结合使用异步代码和常规**（阻塞/同步）代码的需求，这个库会特别有用。
+我基于 AnyIO 新建了一个库，作为一个轻量级的封装层，用来优化类型注解，同时提供了更好的**自动补全**、**内联错误提示**等功能。这个库还附带了一个友好的入门指南和教程，能帮助你**理解**并编写**自己的异步代码**：[Asyncer](https://asyncer.tiangolo.com/)。如果你有**结合使用异步代码和常规**（阻塞/同步）代码的需求，这个库会特别有用。
 
 ### 其他形式的异步代码 { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 但在此之前，处理异步代码非常复杂和困难。
 
-在以前版本的 Python，你可以使用多线程或者 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但代码的理解、调试和思考都要复杂许多。
+在以前版本的 Python，你可以使用多线程或者 [Gevent](https://www.gevent.org/)。但代码的理解、调试和思考都要复杂许多。
 
 在以前版本的 NodeJS / 浏览器 JavaScript 中，你会使用"回调"，因此也可能导致“回调地狱”。
 
@@ -419,15 +419,15 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 如果你使用过另一个不以上述方式工作的异步框架，并且你习惯于用普通的 `def` 定义普通的仅计算路径操作函数，以获得微小的性能增益（大约100纳秒），请注意，在 FastAPI 中，效果将完全相反。在这些情况下，最好使用 `async def`，除非路径操作函数内使用执行阻塞 <abbr title="Input/Output - 输入/输出：磁盘读写，网络通信。">I/O</abbr> 的代码。
 
-在这两种情况下，与你之前的框架相比，**FastAPI** 可能[仍然很快](index.md#performance){.internal-link target=_blank}。
+在这两种情况下，与你之前的框架相比，**FastAPI** 可能[仍然很快](index.md#performance)。
 
 ### 依赖 { #dependencies }
 
-这同样适用于[依赖](tutorial/dependencies/index.md){.internal-link target=_blank}。如果一个依赖是标准的 `def` 函数而不是 `async def`，它将被运行在外部线程池中。
+这同样适用于[依赖](tutorial/dependencies/index.md)。如果一个依赖是标准的 `def` 函数而不是 `async def`，它将被运行在外部线程池中。
 
 ### 子依赖 { #sub-dependencies }
 
-你可以拥有多个相互依赖的依赖以及[子依赖](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} （作为函数的参数），它们中的一些可能是通过 `async def` 声明，也可能是通过 `def` 声明。它们仍然可以正常工作，这些通过 `def` 声明的函数将会在外部线程中调用（来自线程池），而不是"被等待"。
+你可以拥有多个相互依赖的依赖以及[子依赖](tutorial/dependencies/sub-dependencies.md) （作为函数的参数），它们中的一些可能是通过 `async def` 声明，也可能是通过 `def` 声明。它们仍然可以正常工作，这些通过 `def` 声明的函数将会在外部线程中调用（来自线程池），而不是"被等待"。
 
 ### 其他函数 { #other-utility-functions }
 

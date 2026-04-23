@@ -60,7 +60,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 ## Gesamtübersicht { #global-view }
 
-Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} ändern. Diesmal verwenden wir OAuth2-Scopes:
+Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md) ändern. Diesmal verwenden wir OAuth2-Scopes:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -271,4 +271,4 @@ Aber am Ende implementieren sie denselben OAuth2-Standard.
 
 ## `Security` in Dekorator-`dependencies` { #security-in-decorator-dependencies }
 
-Auf die gleiche Weise können Sie eine `list`e von `Depends` im Parameter `dependencies` des Dekorators definieren (wie in [Abhängigkeiten in Pfadoperation-Dekoratoren](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} erläutert), Sie könnten auch dort `Security` mit `scopes` verwenden.
+Auf die gleiche Weise können Sie eine `list`e von `Depends` im Parameter `dependencies` des Dekorators definieren (wie in [Abhängigkeiten in Pfadoperation-Dekoratoren](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md) erläutert), Sie könnten auch dort `Security` mit `scopes` verwenden.

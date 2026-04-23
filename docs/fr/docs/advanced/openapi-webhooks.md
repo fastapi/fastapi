@@ -34,7 +34,7 @@ Lorsque vous créez une application FastAPI, il existe un attribut `webhooks` qu
 
 {* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
-Les webhooks que vous définissez apparaîtront dans le schéma **OpenAPI** et dans l'interface de **documentation** automatique.
+Les webhooks que vous définissez apparaîtront dans le schéma OpenAPI et dans l'interface de documentation automatique.
 
 /// info
 
@@ -48,7 +48,7 @@ C'est parce qu'on s'attend à ce que vos utilisateurs définissent, par un autre
 
 ### Consulter la documentation { #check-the-docs }
 
-Vous pouvez maintenant démarrer votre application et aller sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Vous pouvez maintenant démarrer votre application et aller sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez que votre documentation contient les chemins d'accès habituels et désormais aussi des webhooks :
 

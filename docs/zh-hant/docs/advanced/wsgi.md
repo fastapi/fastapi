@@ -1,6 +1,6 @@
 # 包含 WSGI：Flask、Django 等 { #including-wsgi-flask-django-others }
 
-你可以像在 [子應用程式 - 掛載](sub-applications.md){.internal-link target=_blank}、[在 Proxy 後方](behind-a-proxy.md){.internal-link target=_blank} 中所見那樣掛載 WSGI 應用。
+你可以像在 [子應用程式 - 掛載](sub-applications.md)、[在 Proxy 後方](behind-a-proxy.md) 中所見那樣掛載 WSGI 應用。
 
 為此，你可以使用 `WSGIMiddleware` 來包住你的 WSGI 應用，例如 Flask、Django 等。
 
@@ -36,13 +36,13 @@
 
 其餘則由 **FastAPI** 處理。
 
-如果你啟動它並前往 <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>，你會看到來自 Flask 的回應：
+如果你啟動它並前往 [http://localhost:8000/v1/](http://localhost:8000/v1/)，你會看到來自 Flask 的回應：
 
 ```txt
 Hello, World from Flask!
 ```
 
-如果你前往 <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>，你會看到來自 FastAPI 的回應：
+如果你前往 [http://localhost:8000/v2](http://localhost:8000/v2)，你會看到來自 FastAPI 的回應：
 
 ```JSON
 {

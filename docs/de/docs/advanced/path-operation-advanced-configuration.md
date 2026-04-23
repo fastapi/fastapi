@@ -60,7 +60,7 @@ Das definiert die Metadaten der Haupt-<abbr title="Response – Antwort: Daten, 
 
 Sie können auch zusätzliche Responses mit deren Modellen, Statuscodes usw. deklarieren.
 
-Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es unter [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} lesen.
+Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es unter [Zusätzliche Responses in OpenAPI](additional-responses.md) lesen.
 
 ## OpenAPI-Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@ Wenn Sie in Ihrer Anwendung eine *Pfadoperation* deklarieren, generiert **FastAP
 
 /// note | Technische Details
 
-In der OpenAPI-Spezifikation wird das <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operationsobjekt</a> genannt.
+In der OpenAPI-Spezifikation wird es das [Operationsobjekt](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object) genannt.
 
 ///
 
@@ -82,7 +82,7 @@ Dieses *Pfadoperation*-spezifische OpenAPI-Schema wird normalerweise automatisch
 
 Dies ist ein Low-Level-Erweiterungspunkt.
 
-Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
+Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md) tun.
 
 ///
 

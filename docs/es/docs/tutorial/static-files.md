@@ -23,7 +23,7 @@ También podrías usar `from starlette.staticfiles import StaticFiles`.
 
 Esto es diferente a usar un `APIRouter`, ya que una aplicación montada es completamente independiente. El OpenAPI y la documentación de tu aplicación principal no incluirán nada de la aplicación montada, etc.
 
-Puedes leer más sobre esto en la [Guía de Usuario Avanzada](../advanced/index.md){.internal-link target=_blank}.
+Puedes leer más sobre esto en la [Guía de Usuario Avanzada](../advanced/index.md).
 
 ## Detalles { #details }
 
@@ -37,4 +37,4 @@ Todos estos parámetros pueden ser diferentes a "`static`", ajústalos según la
 
 ## Más info { #more-info }
 
-Para más detalles y opciones revisa <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">la documentación de Starlette sobre Archivos Estáticos</a>.
+Para más detalles y opciones revisa [la documentación de Starlette sobre Archivos Estáticos](https://www.starlette.dev/staticfiles/).
