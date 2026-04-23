@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 🔨 Tweak translation script. PR [#15174](https://github.com/fastapi/fastapi/pull/15174) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump mkdocs-material from 9.7.1 to 9.7.6. PR [#15408](https://github.com/fastapi/fastapi/pull/15408) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump inline-snapshot from 0.31.1 to 0.32.6. PR [#15409](https://github.com/fastapi/fastapi/pull/15409) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pytest-codspeed from 4.3.0 to 4.4.0. PR [#15407](https://github.com/fastapi/fastapi/pull/15407) by [@dependabot[bot]](https://github.com/apps/dependabot).
