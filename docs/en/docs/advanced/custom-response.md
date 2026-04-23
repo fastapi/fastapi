@@ -195,7 +195,7 @@ If you are streaming JSON Lines, follow the [Stream JSON Lines](../tutorial/stre
 
 ///
 
-### `EventSourceResponse` { #eventsource-response }
+### `EventSourceResponse` { #eventsourceresponse }
 
 **Added in FastAPI 0.134.0**
 

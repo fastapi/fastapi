@@ -47,7 +47,9 @@ async def stream_items_override_retry() -> AsyncIterable[ServerSentEvent]:
     """Stream items where individual events can override the default retry."""
     for i, item in enumerate(items):
         # Override default retry for this specific event
-        yield ServerSentEvent(data=item, event="item_update", id=str(i + 1), retry=10000)
+        yield ServerSentEvent(
+            data=item, event="item_update", id=str(i + 1), retry=10000
+        )
 
 
 @app.get("/items/stream-plain", response_class=EventSourceResponse)

@@ -1,10 +1,10 @@
-# Server-Sent Events (SSE) { #server-sent-events }
+# Server-Sent Events (SSE) { #server-sent-events-sse }
 
 **Added in FastAPI 0.134.0**
 
 FastAPI has built-in support for **Server-Sent Events (SSE)**, a simple yet powerful protocol for streaming updates from the server to clients over HTTP.
 
-## What are Server-Sent Events? { #what-are-sse }
+## What are Server-Sent Events? { #what-are-server-sent-events }
 
 Server-Sent Events (SSE) is a lightweight protocol for one-way communication from server to client. The client establishes a persistent HTTP connection, and the server can push events to the client as they occur.
 
@@ -41,7 +41,7 @@ Each SSE event can contain several fields:
 - **`retry`**: Reconnection time in milliseconds
 - **`comment`**: Comment/keepalive line (ignored by clients)
 
-### Using ServerSentEvent { #using-server-sent-event }
+### Using ServerSentEvent { #using-serversentevent }
 
 For full control over the SSE format, yield `ServerSentEvent` objects:
 
@@ -71,7 +71,7 @@ data: 2025-01-01 INFO  Application started
 
 ```
 
-## Default Retry Configuration { #default-retry }
+## Default Retry Configuration { #default-retry-configuration }
 
 You can set a default reconnection time for all events by creating a custom `EventSourceResponse` subclass:
 
@@ -85,7 +85,7 @@ Individual events can override the default:
 
 {* ../../docs_src/server_sent_events/tutorial006_py310.py ln[39:42] hl[42] *}
 
-## Client Disconnect Handling { #disconnect-handling }
+## Client Disconnect Handling { #client-disconnect-handling }
 
 FastAPI supports an optional `on_disconnect` callback that is invoked when a client disconnects. This is useful for cleanup tasks like:
 - Closing database connections
@@ -105,7 +105,7 @@ Then use it in your *path operation*:
 
 The callback will be invoked after the response completes or when the client disconnects.
 
-## Keepalive Support { #keepalive }
+## Keepalive Support { #keepalive-support }
 
 FastAPI automatically sends keepalive comments (`: ping`) every 15 seconds to prevent proxy/load-balancer timeouts. This ensures that idle connections remain open even when no events are being sent.
 
@@ -117,7 +117,7 @@ SSE clients automatically send a `Last-Event-ID` header when reconnecting. You c
 
 {* ../../docs_src/server_sent_events/tutorial004_py310.py hl[24,25,26,27,28,29,30,31] *}
 
-## Streaming AI/LLM Responses { #streaming-ai-responses }
+## Streaming AI/LLM Responses { #streaming-ai-llm-responses }
 
 SSE is ideal for streaming AI/LLM responses token-by-token:
 

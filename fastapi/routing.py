@@ -504,8 +504,12 @@ def get_request_handler(
                 # default_retry/on_disconnect attributes
                 if lenient_issubclass(actual_response_class, EventSourceResponse):
                     # Access class attributes directly
-                    default_retry = getattr(actual_response_class, "default_retry", None)
-                    on_disconnect = getattr(actual_response_class, "on_disconnect", None)
+                    default_retry = getattr(
+                        actual_response_class, "default_retry", None
+                    )
+                    on_disconnect = getattr(
+                        actual_response_class, "on_disconnect", None
+                    )
 
                 def _serialize_sse_item(item: Any) -> bytes:
                     if isinstance(item, ServerSentEvent):
@@ -523,7 +527,9 @@ def get_request_handler(
                         else:
                             data_str = None
                         # Use default_retry if retry is not set on the event
-                        retry_value = item.retry if item.retry is not None else default_retry
+                        retry_value = (
+                            item.retry if item.retry is not None else default_retry
+                        )
                         return format_sse_event(
                             data_str=data_str,
                             event=item.event,

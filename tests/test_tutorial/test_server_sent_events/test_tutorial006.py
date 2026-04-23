@@ -53,7 +53,9 @@ def test_stream_items_plain(client: TestClient):
     assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
 
     # Check data lines contain JSON-serialized items
-    data_lines = [line for line in response.text.strip().split("\n") if line.startswith("data: ")]
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
     assert len(data_lines) == 3
     assert '"name":"Plumbus"' in data_lines[0]
     assert '"name":"Portal Gun"' in data_lines[1]
@@ -134,7 +136,25 @@ def test_openapi_schema(client: TestClient):
                                 "description": "Successful Response",
                                 "content": {
                                     "text/event-stream": {
-                                        "itemSchema": {'type': 'object', 'properties': {'data': {'type': 'string', 'contentMediaType': 'application/json', 'contentSchema': {'$ref': '#/components/schemas/Item'}}, 'event': {'type': 'string'}, 'id': {'type': 'string'}, 'retry': {'type': 'integer', 'minimum': 0}}, 'required': ['data']}
+                                        "itemSchema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "string",
+                                                    "contentMediaType": "application/json",
+                                                    "contentSchema": {
+                                                        "$ref": "#/components/schemas/Item"
+                                                    },
+                                                },
+                                                "event": {"type": "string"},
+                                                "id": {"type": "string"},
+                                                "retry": {
+                                                    "type": "integer",
+                                                    "minimum": 0,
+                                                },
+                                            },
+                                            "required": ["data"],
+                                        }
                                     }
                                 },
                             }
