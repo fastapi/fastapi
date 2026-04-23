@@ -96,7 +96,7 @@ async def stream():
 ```python
 class EventSourceResponse(StreamingResponse):
     media_type = "text/event-stream"
-    
+
     def __init__(
         self,
         content: Any = None,

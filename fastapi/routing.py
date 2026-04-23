@@ -578,7 +578,9 @@ def get_request_handler(
                             try:
                                 async for raw_item in sse_aiter:
                                     try:
-                                        await send_stream.send(_serialize_sse_item(raw_item))
+                                        await send_stream.send(
+                                            _serialize_sse_item(raw_item)
+                                        )
                                     except anyio.BrokenResourceError:
                                         # Client disconnected during send, stop producing
                                         break

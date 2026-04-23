@@ -410,7 +410,6 @@ def test_on_disconnect_callback():
 
 from fastapi.sse import sse_event
 
-
 helper_app = FastAPI()
 
 
