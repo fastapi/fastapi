@@ -352,7 +352,9 @@ def get_request_handler(
     dependant: Dependant,
     body_field: ModelField | None = None,
     status_code: int | None = None,
-    response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
+    response_class: type[Response] | Response | DefaultPlaceholder = Default(
+        JSONResponse
+    ),
     response_field: ModelField | None = None,
     response_model_include: IncEx | None = None,
     response_model_exclude: IncEx | None = None,
@@ -369,8 +371,15 @@ def get_request_handler(
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    # Handle both class and instance response_class (for EventSourceResponse config)
+    sse_response_instance: EventSourceResponse | None = None
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
+    elif isinstance(response_class, Response):
+        # Instance passed - extract EventSourceResponse for config
+        if isinstance(response_class, EventSourceResponse):
+            sse_response_instance = response_class
+        actual_response_class = type(response_class)
     else:
         actual_response_class = response_class
     is_sse_stream = lenient_issubclass(actual_response_class, EventSourceResponse)
@@ -497,6 +506,13 @@ def get_request_handler(
                 # Generator endpoint: stream as Server-Sent Events
                 gen = dependant.call(**solved_result.values)
 
+                # Get default_retry from EventSourceResponse instance if provided
+                default_retry = (
+                    sse_response_instance.default_retry
+                    if sse_response_instance
+                    else None
+                )
+
                 def _serialize_sse_item(item: Any) -> bytes:
                     if isinstance(item, ServerSentEvent):
                         # User controls the event structure.
@@ -512,18 +528,22 @@ def get_request_handler(
                                 data_str = json.dumps(jsonable_encoder(item.data))
                         else:
                             data_str = None
+                        # Apply default_retry if event doesn't have one
+                        retry = item.retry if item.retry is not None else default_retry
                         return format_sse_event(
                             data_str=data_str,
                             event=item.event,
                             id=item.id,
-                            retry=item.retry,
+                            retry=retry,
                             comment=item.comment,
                         )
                     else:
                         # Plain object: validate + serialize via
                         # stream_item_field (if set) and wrap in data field
+                        # Apply default_retry for plain objects
                         return format_sse_event(
-                            data_str=_serialize_data(item).decode("utf-8")
+                            data_str=_serialize_data(item).decode("utf-8"),
+                            retry=default_retry,
                         )
 
                 if dependant.is_async_gen_callable:
@@ -555,8 +575,16 @@ def get_request_handler(
 
                     async def _producer() -> None:
                         async with send_stream:
-                            async for raw_item in sse_aiter:
-                                await send_stream.send(_serialize_sse_item(raw_item))
+                            try:
+                                async for raw_item in sse_aiter:
+                                    try:
+                                        await send_stream.send(_serialize_sse_item(raw_item))
+                                    except anyio.BrokenResourceError:
+                                        # Client disconnected during send, stop producing
+                                        break
+                            except anyio.BrokenResourceError:
+                                # Client disconnected, will be handled by response finalization
+                                pass
 
                     send_keepalive, receive_keepalive = (
                         anyio.create_memory_object_stream[bytes](max_buffer_size=1)
@@ -574,13 +602,22 @@ def get_request_handler(
                                         await send_keepalive.send(data)
                                     except TimeoutError:
                                         await send_keepalive.send(KEEPALIVE_COMMENT)
+                            except anyio.BrokenResourceError:
+                                # Client disconnected
+                                pass
                             except anyio.EndOfStream:
                                 pass
 
                     async with anyio.create_task_group() as tg:
                         tg.start_soon(_producer)
                         tg.start_soon(_keepalive_inserter)
-                        yield receive_keepalive
+                        try:
+                            yield receive_keepalive
+                        finally:
+                            # Call disconnect callback when stream ends
+                            # This is called for both normal completion and client disconnect
+                            if sse_response_instance is not None:
+                                await sse_response_instance.call_disconnect_callback()
                         tg.cancel_scope.cancel()
 
                 # Enter the SSE context manager on the request-scoped
@@ -608,11 +645,18 @@ def get_request_handler(
                     _sse_with_checkpoints(sse_receive_stream)
                 )
 
-                response = StreamingResponse(
-                    sse_stream_content,
-                    media_type="text/event-stream",
-                    background=solved_result.background_tasks,
-                )
+                # Use EventSourceResponse if instance was provided, otherwise
+                # create a StreamingResponse
+                if sse_response_instance is not None:
+                    response = sse_response_instance
+                    response.body_iterator = sse_stream_content  # type: ignore[assignment]
+                    response.background = solved_result.background_tasks
+                else:
+                    response = StreamingResponse(
+                        sse_stream_content,
+                        media_type="text/event-stream",
+                        background=solved_result.background_tasks,
+                    )
                 response.headers["Cache-Control"] = "no-cache"
                 # For Nginx proxies to not buffer server sent events
                 response.headers["X-Accel-Buffering"] = "no"

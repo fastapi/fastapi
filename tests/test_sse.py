@@ -316,3 +316,198 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# Tests for new SSE features (default_retry, on_disconnect, helpers)
+
+default_retry_app = FastAPI()
+
+
+@default_retry_app.get(
+    "/with-default-retry",
+    response_class=EventSourceResponse(default_retry=5000),
+)
+async def stream_with_default_retry() -> AsyncIterable[dict]:
+    yield {"msg": "hello"}
+    yield {"msg": "world"}
+
+
+@default_retry_app.get(
+    "/retry-override",
+    response_class=EventSourceResponse(default_retry=5000),
+)
+async def stream_retry_override() -> AsyncIterable[ServerSentEvent]:
+    # Event-level retry should override default
+    yield ServerSentEvent(data="custom", retry=1000)
+    # This one should use the default
+    yield ServerSentEvent(data="default")
+
+
+def test_default_retry_applied():
+    """Test that default_retry is applied to events without explicit retry."""
+    with TestClient(default_retry_app) as c:
+        response = c.get("/with-default-retry")
+        assert response.status_code == 200
+        text = response.text
+        # Both events should have retry: 5000
+        assert text.count("retry: 5000") == 2
+
+
+def test_event_retry_overrides_default():
+    """Test that event-level retry overrides default_retry."""
+    with TestClient(default_retry_app) as c:
+        response = c.get("/retry-override")
+        assert response.status_code == 200
+        text = response.text
+        # First event has explicit retry: 1000
+        assert "retry: 1000\n" in text
+        # Second event has default retry: 5000
+        assert "retry: 5000\n" in text
+
+
+# Tests for on_disconnect callback
+
+disconnect_callback_called = False
+
+
+disconnect_app = FastAPI()
+
+
+async def on_disconnect_handler():
+    global disconnect_callback_called
+    disconnect_callback_called = True
+
+
+# Create response instance with disconnect callback and use it in decorator
+disconnect_response = EventSourceResponse(on_disconnect=on_disconnect_handler)
+
+
+@disconnect_app.get("/with-disconnect", response_class=EventSourceResponse)
+async def stream_with_disconnect():
+    yield {"msg": "hello"}
+    yield {"msg": "world"}
+
+
+@disconnect_app.get("/instance-disconnect", response_class=disconnect_response)
+async def stream_instance():
+    yield {"msg": "hello"}
+
+
+def test_on_disconnect_callback():
+    """Test that on_disconnect callback is called when stream ends."""
+    global disconnect_callback_called
+    disconnect_callback_called = False
+
+    with TestClient(disconnect_app) as c:
+        response = c.get("/instance-disconnect")
+        assert response.status_code == 200
+
+    # Callback should have been called when stream ended
+    assert disconnect_callback_called
+
+
+# Tests for sse_event() helper function
+
+from fastapi.sse import sse_event
+
+
+helper_app = FastAPI()
+
+
+@helper_app.get("/with-helper", response_class=EventSourceResponse)
+async def stream_with_helper() -> AsyncIterable[ServerSentEvent]:
+    yield sse_event(data={"status": "ok"}, event="status", id="1")
+    yield sse_event(data="message", comment="keep-alive")
+    yield sse_event(raw_data="raw text", event="raw")
+
+
+def test_sse_event_helper():
+    """Test the sse_event() helper function."""
+    with TestClient(helper_app) as c:
+        response = c.get("/with-helper")
+        assert response.status_code == 200
+        text = response.text
+
+        # Check first event with all fields
+        assert "event: status\n" in text
+        assert "id: 1\n" in text
+        assert 'data: {"status": "ok"}\n' in text
+
+        # Check second event with comment
+        assert ": keep-alive\n" in text
+        assert 'data: "message"\n' in text
+
+        # Check third event with raw_data
+        assert "event: raw\n" in text
+        assert "data: raw text\n" in text
+
+
+def test_sse_event_creation():
+    """Test creating ServerSentEvent via sse_event() helper."""
+    event = sse_event(data={"key": "value"}, event="test", id="123", retry=3000)
+    assert event.data == {"key": "value"}
+    assert event.event == "test"
+    assert event.id == "123"
+    assert event.retry == 3000
+
+
+def test_sse_event_raw_data():
+    """Test sse_event() with raw_data."""
+    event = sse_event(raw_data="plain text", event="log")
+    assert event.raw_data == "plain text"
+    assert event.event == "log"
+    assert event.data is None
+
+
+# Tests for SSEStream helper class
+
+from fastapi.sse import SSEStream
+
+
+@pytest.mark.anyio
+async def test_sse_stream_helper():
+    """Test SSEStream helper class."""
+    async with SSEStream() as sse:
+        assert sse.disconnected is False
+        sse.mark_disconnected()
+        assert sse.disconnected is True
+
+
+def test_sse_stream_disconnected_property():
+    """Test SSEStream disconnected property."""
+    sse = SSEStream()
+    assert sse.disconnected is False
+    sse.mark_disconnected()
+    assert sse.disconnected is True
+
+
+# Tests for create_sse_stream() function
+
+from fastapi.sse import create_sse_stream
+
+
+def test_create_sse_stream():
+    """Test create_sse_stream() function."""
+    disconnect_called = False
+
+    async def handler():
+        nonlocal disconnect_called
+        disconnect_called = True
+
+    stream, response = create_sse_stream(on_disconnect=handler)
+
+    assert isinstance(stream, SSEStream)
+    assert isinstance(response, EventSourceResponse)
+    assert response.on_disconnect is not None
+
+
+@pytest.mark.anyio
+async def test_create_sse_stream_disconnect():
+    """Test that create_sse_stream marks stream as disconnected."""
+    stream, response = create_sse_stream()
+
+    # Call the disconnect callback
+    await response.call_disconnect_callback()
+
+    # Stream should be marked as disconnected
+    assert stream.disconnected is True
