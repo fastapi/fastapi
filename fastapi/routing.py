@@ -1802,9 +1802,10 @@ class APIRouter(routing.Router):
                 # must restore both and re-bake the handler.
                 if route.stream_item_type is not None:
                     new_route = self.routes[-1]
-                    new_route.stream_item_type = route.stream_item_type
-                    new_route.stream_item_field = route.stream_item_field
-                    new_route.app = request_response(new_route.get_route_handler())
+                    if isinstance(new_route, APIRoute):
+                        new_route.stream_item_type = route.stream_item_type
+                        new_route.stream_item_field = route.stream_item_field
+                        new_route.app = request_response(new_route.get_route_handler())
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(
