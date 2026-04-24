@@ -65,3 +65,20 @@ def test_google_fonts_in_generated_redoc():
         openapi_url="/docs", title="title", with_google_fonts=False
     ).body.decode()
     assert "fonts.googleapis.com" not in body_without_google_fonts
+
+
+def test_generated_redoc_with_parameters():
+    body_with_parameters = get_redoc_html(
+        openapi_url="/docs",
+        title="title",
+        with_google_fonts=False,
+        redoc_ui_parameters={"disable-search": "true"},
+    ).body.decode()
+    assert 'disable-search="true"' in body_with_parameters
+
+
+def test_generated_redoc_without_parameters():
+    body_without_parameters = get_redoc_html(
+        openapi_url="/docs", title="title", with_google_fonts=False
+    ).body.decode()
+    assert 'disable-search="true"' not in body_without_parameters
