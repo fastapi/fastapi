@@ -33,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,  # ty: ignore[deprecated]
+    evaluate_forwardref,
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -245,7 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        annotation = evaluate_forwardref(annotation, globalns, globalns)
         if annotation is type(None):
             return None
     return annotation
