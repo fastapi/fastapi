@@ -318,6 +318,53 @@ def test_router_async_generator_lifespan(state: State) -> None:
     assert state.app_shutdown is True
 
 
+def test_router_apirouter_raw_async_gen_lifespan(state: State) -> None:
+    """APIRouter(lifespan=raw_async_gen) normalizes via asynccontextmanager (routing 1344)."""
+
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+        state.router_startup = True
+        yield
+        state.router_shutdown = True
+
+    router = APIRouter(lifespan=router_lifespan)
+
+    @router.get("/")
+    def main() -> dict[str, str]:
+        return {"message": "ok"}
+
+    app = FastAPI()
+    app.include_router(router)
+
+    with TestClient(app) as client:
+        assert state.router_startup is True
+        assert client.get("/").json() == {"message": "ok"}
+    assert state.router_shutdown is True
+
+
+def test_router_apirouter_raw_sync_gen_lifespan(state: State) -> None:
+    """APIRouter(lifespan=raw_sync_gen) normalizes via _wrap_gen_lifespan_context (routing 1346)."""
+    from collections.abc import Generator
+
+    def router_lifespan(app: FastAPI) -> Generator[None, None, None]:
+        state.router_startup = True
+        yield
+        state.router_shutdown = True
+
+    router = APIRouter(lifespan=router_lifespan)
+
+    @router.get("/")
+    def main() -> dict[str, str]:
+        return {"message": "ok"}
+
+    app = FastAPI()
+    app.include_router(router)
+
+    with TestClient(app) as client:
+        assert state.router_startup is True
+        assert client.get("/").json() == {"message": "ok"}
+    assert state.router_shutdown is True
+
+
 def test_startup_shutdown_handlers_as_parameters(state: State) -> None:
     """Test that startup/shutdown handlers passed as parameters to FastAPI are called correctly."""
 
