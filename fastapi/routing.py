@@ -1794,6 +1794,18 @@ class APIRouter(routing.Router):
                         self.strict_content_type,
                     ),
                 )
+                # include_router calls add_api_route with response_model=route.response_model
+                # (already resolved to None), so the detection block in APIRoute.__init__
+                # (lines 847-865) is skipped — both stream_item_type and stream_item_field
+                # remain None. The handler at __init__ line 976 closes over stream_item_field,
+                # and OpenAPI utils reads stream_item_field (not stream_item_type), so we
+                # must restore both and re-bake the handler.
+                if route.stream_item_type is not None:
+                    new_route = self.routes[-1]
+                    if isinstance(new_route, APIRoute):
+                        new_route.stream_item_type = route.stream_item_type
+                        new_route.stream_item_field = route.stream_item_field
+                        new_route.app = request_response(new_route.get_route_handler())
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(

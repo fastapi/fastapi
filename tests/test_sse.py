@@ -316,3 +316,108 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+def test_stream_item_type_preserved_through_include_router():
+    """SSE stream_item_type must survive include_router so validation/schema generation works.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/15401
+    """
+
+    class Message(BaseModel):
+        text: str
+
+    router = APIRouter()
+
+    @router.get("/events-typed", response_class=EventSourceResponse)
+    async def stream() -> AsyncIterable[Message]:
+        yield Message(text="hello")
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    # Find the included route
+    api_route = None
+    for route in app.routes:
+        if isinstance(route, fastapi.routing.APIRoute) and route.path == "/api/events-typed":
+            api_route = route
+            break
+
+    assert api_route is not None
+    assert (
+        api_route.stream_item_type is not None
+    ), "stream_item_type was dropped during include_router"
+    assert api_route.stream_item_type is Message
+    # stream_item_field must also be set — OpenAPI schema generation reads
+    # stream_item_field (not stream_item_type), and the route handler
+    # closes over stream_item_field at __init__ time.
+    assert api_route.stream_item_field is not None, (
+        "stream_item_field was not restored after include_router"
+    )
+
+
+def test_sse_stream_item_field_set_on_direct_route(client: TestClient):
+    """Routes defined directly on the app should have stream_item_field set.
+
+    Sanity check: verifies the baseline before testing include_router.
+    """
+    api_route = None
+    for route in app.routes:
+        if isinstance(route, fastapi.routing.APIRoute) and route.path == "/items/stream":
+            api_route = route
+            break
+    assert api_route is not None
+    assert api_route.stream_item_field is not None
+    assert api_route.stream_item_field.field_info.annotation is Item
+
+
+def test_sse_openapi_schema_after_include_router():
+    """OpenAPI schema must include the stream item type for SSE endpoints on included routers.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/15401
+    """
+
+    class Message(BaseModel):
+        text: str
+
+    router = APIRouter()
+
+    @router.get("/events-schema", response_class=EventSourceResponse)
+    async def stream_schema() -> AsyncIterable[Message]:
+        yield Message(text="hello")
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    schema = app.openapi()
+    # The Message model should appear in the schema components
+    assert "Message" in schema["components"]["schemas"], (
+        "stream_item_type not reflected in OpenAPI schema after include_router"
+    )
+
+
+def test_sse_runtime_serialization_after_include_router():
+    """SSE endpoint on an included router must serialize items through the
+    validation path at runtime — proves the handler was re-baked with
+    stream_item_field.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/15401
+    """
+
+    class Message(BaseModel):
+        text: str
+
+    router = APIRouter()
+
+    @router.get("/events-runtime", response_class=EventSourceResponse)
+    async def stream_runtime() -> AsyncIterable[Message]:
+        yield Message(text="validated")
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    with TestClient(app) as c:
+        response = c.get("/api/events-runtime")
+    assert response.status_code == 200
+    # The serialized data should contain the text field from the model
+    assert '"text": "validated"' in response.text or '"text":"validated"' in response.text
