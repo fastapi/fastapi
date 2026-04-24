@@ -121,6 +121,7 @@ def test_openapi_schema(client: TestClient):
                         "properties": {
                             "file": {
                                 "title": "File",
+                                "format": "binary",
                                 "type": "string",
                                 "description": "A file read as bytes",
                                 "contentMediaType": "application/octet-stream",
@@ -134,6 +135,7 @@ def test_openapi_schema(client: TestClient):
                         "properties": {
                             "file": {
                                 "title": "File",
+                                "format": "binary",
                                 "contentMediaType": "application/octet-stream",
                                 "type": "string",
                                 "description": "A file read as UploadFile",
