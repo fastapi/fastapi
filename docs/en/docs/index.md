@@ -125,7 +125,18 @@ There's a [FastAPI mini documentary](https://www.youtube.com/watch?v=mpR8ngthqiE
 
 ## **Typer**, the FastAPI of CLIs { #typer-the-fastapi-of-clis }
 
-<a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
+<a href="https://typer.tiangolo.com" class="only-not-mkdocs">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://typer.tiangolo.com/img/logo-margin/logo-margin-white-vector.svg">
+    <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;">
+  </picture>
+</a>
+<!-- only-mkdocs -->
+<a href="https://typer.tiangolo.com">
+    <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg#only-light" style="width: 20%;">
+    <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-white-vector.svg#only-dark" style="width: 20%;">
+</a>
+<!-- /only-mkdocs -->
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out [**Typer**](https://typer.tiangolo.com/).
 
