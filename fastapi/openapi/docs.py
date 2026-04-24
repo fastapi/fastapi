@@ -1,4 +1,5 @@
 import json
+from html import escape as html_escape
 from typing import Annotated, Any
 
 from annotated_doc import Doc
@@ -154,25 +155,25 @@ def get_swagger_ui_html(
     <html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
-    <title>{title}</title>
+    <link type="text/css" rel="stylesheet" href="{html_escape(swagger_css_url, quote=True)}">
+    <link rel="shortcut icon" href="{html_escape(swagger_favicon_url, quote=True)}">
+    <title>{html_escape(title)}</title>
     </head>
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="{swagger_js_url}"></script>
+    <script src="{html_escape(swagger_js_url, quote=True)}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
+        url: {_html_safe_json(openapi_url)},
     """
 
     for key, value in current_swagger_ui_parameters.items():
         html += f"{_html_safe_json(key)}: {_html_safe_json(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        html += f"oauth2RedirectUrl: window.location.origin + {_html_safe_json(oauth2_redirect_url)},"
 
     html += """
     presets: [
@@ -265,7 +266,7 @@ def get_redoc_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <title>{title}</title>
+    <title>{html_escape(title)}</title>
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -275,7 +276,7 @@ def get_redoc_html(
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
     """
     html += f"""
-    <link rel="shortcut icon" href="{redoc_favicon_url}">
+    <link rel="shortcut icon" href="{html_escape(redoc_favicon_url, quote=True)}">
     <!--
     ReDoc doesn't change outer page styles
     -->
@@ -290,8 +291,8 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
-    <script src="{redoc_js_url}"> </script>
+    <redoc spec-url="{html_escape(openapi_url, quote=True)}"></redoc>
+    <script src="{html_escape(redoc_js_url, quote=True)}"> </script>
     </body>
     </html>
     """
