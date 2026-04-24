@@ -5,7 +5,7 @@ from dirty_equals import IsOneOf
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, Field
 
 app = FastAPI()
 
@@ -269,6 +269,131 @@ def test_required_validation_alias_by_name(path: str):
 def test_required_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_val_alias=hello")
+    assert response.status_code == 200, response.text
+
+    assert response.json() == {"p": "hello"}
+
+
+# =====================================================================================
+# Validation alias choices
+
+
+@app.get("/required-validation-alias-choices")
+def read_required_validation_alias_choices(
+    p: Annotated[
+        str,
+        Query(validation_alias=AliasChoices("p_val_alias", "p_fallback_alias")),
+    ],
+):
+    return {"p": p}
+
+
+class QueryModelRequiredValidationAliasChoices(BaseModel):
+    p: str = Field(validation_alias=AliasChoices("p_val_alias", "p_fallback_alias"))
+
+
+@app.get("/model-required-validation-alias-choices")
+def read_model_required_validation_alias_choices(
+    p: Annotated[QueryModelRequiredValidationAliasChoices, Query()],
+):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-validation-alias-choices",
+        "/model-required-validation-alias-choices",
+    ],
+)
+def test_required_validation_alias_choices_schema(path: str):
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": True,
+                "schema": {"title": "P", "type": "string"},
+                "name": "p_val_alias",
+                "in": "query",
+            }
+        ]
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-validation-alias-choices",
+        "/model-required-validation-alias-choices",
+    ],
+)
+def test_required_validation_alias_choices_missing(path: str):
+    client = TestClient(app)
+    response = client.get(path)
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "query",
+                    "p_val_alias",
+                ],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-validation-alias-choices",
+        "/model-required-validation-alias-choices",
+    ],
+)
+def test_required_validation_alias_choices_by_name(path: str):
+    client = TestClient(app)
+    response = client.get(f"{path}?p=hello")
+    assert response.status_code == 422, response.text
+
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "p_val_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": "hello"}),
+            }
+        ]
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-validation-alias-choices",
+        "/model-required-validation-alias-choices",
+    ],
+)
+def test_required_validation_alias_choices_by_primary_alias(path: str):
+    client = TestClient(app)
+    response = client.get(f"{path}?p_val_alias=hello")
+    assert response.status_code == 200, response.text
+
+    assert response.json() == {"p": "hello"}
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-validation-alias-choices",
+        "/model-required-validation-alias-choices",
+    ],
+)
+def test_required_validation_alias_choices_by_fallback_alias(path: str):
+    client = TestClient(app)
+    response = client.get(f"{path}?p_fallback_alias=hello")
     assert response.status_code == 200, response.text
 
     assert response.json() == {"p": "hello"}
