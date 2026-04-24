@@ -6,7 +6,7 @@ import pytest
 from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
-    skip_module_if_py_gte_314()
+    skip_module_if_py_gte_314()  # pragma: no cover
 
 from fastapi import FastAPI
 from fastapi.exceptions import PydanticV1NotSupportedError
