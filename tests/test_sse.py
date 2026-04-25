@@ -463,8 +463,8 @@ def test_direct_use_keepalive_ping():
     assert response.status_code == 200
     text = response.text
     assert ": ping\n" in text
-    assert "data: \"before-ping\"\n" in text
-    assert "data: \"after-ping\"\n" in text
+    assert 'data: "before-ping"\n' in text
+    assert 'data: "after-ping"\n' in text
 
 
 def test_direct_use_no_ping_when_disabled():
@@ -472,8 +472,8 @@ def test_direct_use_no_ping_when_disabled():
     response = direct_client.get("/direct-no-ping")
     assert response.status_code == 200
     assert ": ping\n" not in response.text
-    assert "data: \"msg1\"\n" in response.text
-    assert "data: \"msg2\"\n" in response.text
+    assert 'data: "msg1"\n' in response.text
+    assert 'data: "msg2"\n' in response.text
 
 
 def test_direct_use_sync_iterable():

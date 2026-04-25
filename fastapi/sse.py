@@ -11,7 +11,7 @@ from pydantic import AfterValidator, BaseModel, Field, model_validator
 from starlette.concurrency import iterate_in_threadpool
 from starlette.requests import ClientDisconnect
 from starlette.responses import StreamingResponse
-from starlette.types import Message, Receive, Scope, Send
+from starlette.types import Receive, Scope, Send
 
 try:
     from starlette._utils import collapse_excgroups
@@ -22,6 +22,7 @@ except ImportError:
     @contextlib.contextmanager
     def collapse_excgroups():
         yield
+
 
 # Canonical SSE event schema matching the OpenAPI 3.2 spec
 # (Section 4.14.4 "Special Considerations for Server-Sent Events")
@@ -91,9 +92,7 @@ class EventSourceResponse(StreamingResponse):
         # ServerSentEvent objects, emit an initial retry field, and add
         # keepalive pings.  Also set SSE-appropriate headers.
         if content is not None:
-            content = _wrap_content(
-                content, retry=retry, ping_interval=ping_interval
-            )
+            content = _wrap_content(content, retry=retry, ping_interval=ping_interval)
             if headers is None:
                 headers = {}
             headers.setdefault("Cache-Control", "no-cache")
@@ -392,7 +391,7 @@ class ServerSentEvent(BaseModel):
     ] = None
 
     @model_validator(mode="after")
-    def _check_data_exclusive(self) -> "ServerSentEvent":
+    def _check_data_exclusive(self) -> ServerSentEvent:
         if self.data is not None and self.raw_data is not None:
             raise ValueError(
                 "Cannot set both 'data' and 'raw_data' on the same "
