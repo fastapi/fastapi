@@ -316,3 +316,296 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# ── Tests for enhanced EventSourceResponse class ──────────────────────
+
+
+def test_encode_static_method():
+    """EventSourceResponse.encode() JSON-serializes data automatically."""
+    result = EventSourceResponse.encode(data="hello", event="greeting", id="1")
+    assert b'data: "hello"\n' in result
+    assert b"event: greeting\n" in result
+    assert b"id: 1\n" in result
+
+
+def test_encode_with_dict():
+    """encode() handles dict data."""
+    result = EventSourceResponse.encode(data={"key": "value"}, event="json")
+    assert b'data: {"key": "value"}\n' in result or b'data: {"key":"value"}\n' in result
+
+
+def test_encode_with_model():
+    """encode() handles Pydantic model data."""
+    result = EventSourceResponse.encode(data=Item(name="Test"), event="model")
+    assert b'"name":"Test"' in result or b'"name": "Test"' in result
+
+
+def test_encode_with_retry():
+    """encode() includes retry field."""
+    result = EventSourceResponse.encode(data="test", retry=5000)
+    assert b"retry: 5000\n" in result
+
+
+def test_encode_comment():
+    """encode_comment() creates a comment event."""
+    result = EventSourceResponse.encode_comment("keepalive")
+    assert b": keepalive\n" in result
+
+
+def test_encode_raw():
+    """encode_raw() places raw data without JSON encoding."""
+    result = EventSourceResponse.encode_raw(
+        raw_data="<div>hello</div>", event="html"
+    )
+    assert b"data: <div>hello</div>\n" in result
+    assert b'data: "<div>hello</div>"' not in result
+
+
+def test_encode_no_data():
+    """encode() with no data still produces valid SSE (event-only)."""
+    result = EventSourceResponse.encode(event="heartbeat")
+    assert b"event: heartbeat\n" in result
+    assert b"data:" not in result
+
+
+def test_direct_instantiation_with_sse_events():
+    """EventSourceResponse can be used directly with an async iterator of SSE events."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="first", event="start")
+        yield ServerSentEvent(data="second", event="middle")
+        yield ServerSentEvent(data="last", event="end")
+
+    @app.get("/direct")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct")
+        assert response.status_code == 200
+        assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+        assert response.headers["cache-control"] == "no-cache"
+        assert response.headers["x-accel-buffering"] == "no"
+        text = response.text
+        assert "event: start\n" in text
+        assert 'data: "first"\n' in text
+        assert "event: middle\n" in text
+        assert "event: end\n" in text
+
+
+def test_direct_instantiation_with_dict_items():
+    """EventSourceResponse auto-JSON-encodes plain dict items."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield {"msg": "hello"}
+        yield {"msg": "world"}
+
+    @app.get("/direct-dict")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-dict")
+        assert response.status_code == 200
+        text = response.text
+        assert '"msg": "hello"' in text or '"msg":"hello"' in text
+        assert '"msg": "world"' in text or '"msg":"world"' in text
+
+
+def test_direct_instantiation_with_raw_bytes():
+    """EventSourceResponse passes through raw bytes unchanged."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield b"data: raw bytes\n\n"
+        yield b"data: more bytes\n\n"
+
+    @app.get("/direct-bytes")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-bytes")
+        assert response.status_code == 200
+        assert response.text == "data: raw bytes\n\ndata: more bytes\n\n"
+
+
+def test_direct_instantiation_with_retry():
+    """EventSourceResponse retry parameter is applied to events."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="msg1")
+        yield ServerSentEvent(data="msg2")
+
+    @app.get("/direct-retry")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream(), retry=3000)
+
+    with TestClient(app) as c:
+        response = c.get("/direct-retry")
+        assert response.status_code == 200
+        text = response.text
+        # Each event should have the default retry
+        assert text.count("retry: 3000\n") == 2
+
+
+def test_direct_instantiation_retry_override():
+    """Event-level retry overrides response-level retry."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="default-retry")
+        yield ServerSentEvent(data="override-retry", retry=7000)
+
+    @app.get("/direct-retry-override")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream(), retry=3000)
+
+    with TestClient(app) as c:
+        response = c.get("/direct-retry-override")
+        assert response.status_code == 200
+        text = response.text
+        assert "retry: 3000\n" in text
+        assert "retry: 7000\n" in text
+
+
+def test_direct_instantiation_with_models():
+    """EventSourceResponse auto-encodes Pydantic models."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield Item(name="Widget", description="A widget")
+        yield Item(name="Gadget")
+
+    @app.get("/direct-models")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-models")
+        assert response.status_code == 200
+        text = response.text
+        assert '"name": "Widget"' in text or '"name":"Widget"' in text
+        assert '"name": "Gadget"' in text or '"name":"Gadget"' in text
+
+
+def test_direct_instantiation_mixed_content():
+    """EventSourceResponse handles mixed ServerSentEvent and raw bytes."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="hello", event="greet")
+        yield b"data: raw event\n\n"
+        yield ServerSentEvent(data="world", event="farewell")
+
+    @app.get("/direct-mixed")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-mixed")
+        assert response.status_code == 200
+        text = response.text
+        assert "event: greet\n" in text
+        assert "data: raw event\n" in text
+        assert "event: farewell\n" in text
+
+
+def test_direct_instantiation_custom_headers():
+    """EventSourceResponse merges custom headers with defaults."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="test")
+
+    @app.get("/direct-headers")
+    async def direct_endpoint():
+        return EventSourceResponse(
+            event_stream(),
+            headers={"X-Custom-Header": "custom-value"},
+        )
+
+    with TestClient(app) as c:
+        response = c.get("/direct-headers")
+        assert response.status_code == 200
+        assert response.headers["cache-control"] == "no-cache"
+        assert response.headers["x-accel-buffering"] == "no"
+        assert response.headers["x-custom-header"] == "custom-value"
+
+
+def test_direct_instantiation_custom_headers_override():
+    """Custom headers can override default headers."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(data="test")
+
+    @app.get("/direct-headers-override")
+    async def direct_endpoint():
+        return EventSourceResponse(
+            event_stream(),
+            headers={"Cache-Control": "custom-cache"},
+        )
+
+    with TestClient(app) as c:
+        response = c.get("/direct-headers-override")
+        assert response.status_code == 200
+        assert response.headers["cache-control"] == "custom-cache"
+
+
+def test_direct_instantiation_sync_iterator():
+    """EventSourceResponse works with sync iterators too."""
+    app = FastAPI()
+
+    def event_stream():
+        yield ServerSentEvent(data="one")
+        yield ServerSentEvent(data="two")
+
+    @app.get("/direct-sync")
+    def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-sync")
+        assert response.status_code == 200
+        text = response.text
+        assert 'data: "one"\n' in text
+        assert 'data: "two"\n' in text
+
+
+def test_direct_instantiation_with_comment():
+    """EventSourceResponse encodes comment events."""
+    app = FastAPI()
+
+    async def event_stream():
+        yield ServerSentEvent(comment="keep-alive")
+        yield ServerSentEvent(data="data-event")
+
+    @app.get("/direct-comment")
+    async def direct_endpoint():
+        return EventSourceResponse(event_stream())
+
+    with TestClient(app) as c:
+        response = c.get("/direct-comment")
+        assert response.status_code == 200
+        text = response.text
+        assert ": keep-alive\n" in text
+        assert 'data: "data-event"\n' in text
+
+
+def test_encode_json_encodes_multiline_data():
+    """encode() JSON-encodes data, so newlines are escaped inside the JSON string."""
+    result = EventSourceResponse.encode(data="line1\nline2\nline3")
+    # Since data is JSON-encoded, newlines appear as \n inside the JSON string.
+    assert b'"line1\\nline2\\nline3"' in result
+
+
+def test_encode_raw_preserves_multiline():
+    """encode_raw() splits multiline raw data across multiple data: lines."""
+    result = EventSourceResponse.encode_raw(raw_data="row1\ncsv,row2")
+    assert b"data: row1\n" in result
+    assert b"data: csv,row2\n" in result

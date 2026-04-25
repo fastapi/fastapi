@@ -1,8 +1,13 @@
+from __future__ import annotations
+
+from collections.abc import AsyncIterator
 from typing import Annotated, Any
 
 from annotated_doc import Doc
 from pydantic import AfterValidator, BaseModel, Field, model_validator
+from starlette.background import BackgroundTask
 from starlette.responses import StreamingResponse
+from starlette.types import Receive, Send, Scope
 
 # Canonical SSE event schema matching the OpenAPI 3.2 spec
 # (Section 4.14.4 "Special Considerations for Server-Sent Events")
@@ -16,21 +21,269 @@ _SSE_EVENT_SCHEMA: dict[str, Any] = {
     },
 }
 
+# Sentinel object to represent an unset retry value.
+_UNSET = object()
+
+# Seconds between keep-alive pings when a generator is idle.
+# Private but importable so tests can monkeypatch it.
+_PING_INTERVAL: float = 15.0
+
+# Keep-alive comment, per the SSE spec recommendation
+KEEPALIVE_COMMENT = b": ping\n\n"
+
 
 class EventSourceResponse(StreamingResponse):
-    """Streaming response with `text/event-stream` media type.
+    """Streaming response implementing the Server-Sent Events (SSE) protocol.
 
-    Use as `response_class=EventSourceResponse` on a *path operation* that uses `yield`
-    to enable Server Sent Events (SSE) responses.
+    Use as ``response_class=EventSourceResponse`` on a *path operation* that uses ``yield``
+    to enable SSE responses.
 
-    Works with **any HTTP method** (`GET`, `POST`, etc.), which makes it compatible
-    with protocols like MCP that stream SSE over `POST`.
+    Works with **any HTTP method** (``GET``, ``POST``, etc.), which makes it compatible
+    with protocols like MCP that stream SSE over ``POST``.
 
-    The actual encoding logic lives in the FastAPI routing layer. This class
-    serves mainly as a marker and sets the correct `Content-Type`.
+    When used directly (not via the routing-layer generator shortcut), pass an async
+    iterator of :class:`ServerSentEvent` objects or raw bytes::
+
+        @app.get("/feed")
+        async def feed():
+            return EventSourceResponse(_event_stream())
+
+        async def _event_stream() -> AsyncIterator[ServerSentEvent]:
+            yield ServerSentEvent(data="hello", event="greeting")
+
+    Parameters
+    ----------
+    content:
+        An async or sync iterator yielding :class:`ServerSentEvent` objects or raw
+        bytes.  When yielding ``ServerSentEvent`` objects they are automatically
+        encoded into SSE wire format.
+    retry:
+        Default reconnection time in **milliseconds** sent to the client after every
+        event that does not override it.  Tells the browser how long to wait before
+        reconnecting if the connection is lost.
+    ping_interval:
+        Seconds between keep-alive comment pings when the generator is idle.
+        Set to ``0`` to disable.  Default is 15 seconds.
     """
 
     media_type = "text/event-stream"
+
+    def __init__(
+        self,
+        content: Any = None,
+        status_code: int = 200,
+        headers: dict[str, str] | None = None,
+        background: BackgroundTask | None = None,
+        retry: int | None | object = _UNSET,
+        ping_interval: float = _PING_INTERVAL,
+    ) -> None:
+        # Wrap the content iterator to auto-encode ServerSentEvent objects.
+        self._retry: int | None = (
+            retry if retry is not _UNSET and retry is not None else None
+        )
+        self._ping_interval: float = ping_interval
+
+        encoded_content = self._encode_content(content) if content is not None else ()
+
+        merged_headers: dict[str, str] = {
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        }
+        if headers:
+            merged_headers.update(headers)
+
+        super().__init__(
+            content=encoded_content,
+            status_code=status_code,
+            headers=merged_headers,
+            media_type=self.media_type,
+            background=background,
+        )
+
+    # ------------------------------------------------------------------
+    # Encoding helpers
+    # ------------------------------------------------------------------
+
+    async def _encode_content(
+        self,
+        content: Any,
+    ) -> AsyncIterator[bytes]:
+        """Iterate *content* and yield SSE-encoded bytes.
+
+        Each item is expected to be a :class:`ServerSentEvent` (encoded
+        automatically) or already-raw bytes (passed through).
+        """
+        from fastapi.sse import ServerSentEvent, format_sse_event
+
+        if hasattr(content, "__aiter__"):
+            async for item in content:
+                yield self._encode_one(item)
+        else:
+            for item in content:
+                yield self._encode_one(item)
+
+    def _encode_one(self, item: Any) -> bytes:
+        """Encode a single item into SSE wire format bytes."""
+        from fastapi.sse import ServerSentEvent, format_sse_event
+
+        if isinstance(item, ServerSentEvent):
+            return self._encode_sse(item)
+        elif isinstance(item, bytes):
+            return item
+        elif isinstance(item, str):
+            return item.encode("utf-8")
+        else:
+            # Fallback: treat as a dict-like object — JSON-encode as data.
+            data_str = self._serialize_data(item)
+            return format_sse_event(
+                data_str=data_str,
+                retry=self._retry,
+            )
+
+    def _encode_sse(self, event: ServerSentEvent) -> bytes:
+        """Encode a :class:`ServerSentEvent` into SSE wire-format bytes."""
+        from fastapi.sse import format_sse_event
+
+        if event.raw_data is not None:
+            data_str: str | None = event.raw_data
+        elif event.data is not None:
+            if hasattr(event.data, "model_dump_json"):
+                data_str = event.data.model_dump_json()
+            else:
+                data_str = self._serialize_data(event.data)
+        else:
+            data_str = None
+
+        # Use the event's own retry if set, otherwise fall back to the
+        # response-level default.
+        retry: int | None = event.retry if event.retry is not None else self._retry
+
+        return format_sse_event(
+            data_str=data_str,
+            event=event.event,
+            id=event.id,
+            retry=retry,
+            comment=event.comment,
+        )
+
+    @staticmethod
+    def _serialize_data(data: Any) -> str:
+        """Serialize an arbitrary data payload to a JSON string."""
+        import json
+
+        from fastapi.encoders import jsonable_encoder
+
+        data = jsonable_encoder(data)
+        return json.dumps(data)
+
+    # ------------------------------------------------------------------
+    # Disconnect detection
+    # ------------------------------------------------------------------
+
+    async def disconnect(self) -> bool:
+        """Wait for the client to disconnect and return ``True``.
+
+        Use this inside an endpoint to wait until the client closes the
+        connection, allowing clean shutdown of background tasks::
+
+            @app.get("/stream")
+            async def stream():
+                response = EventSourceResponse(_events())
+                await response.disconnect()  # blocks until client leaves
+                await cleanup()
+                return response
+        """
+        await self.listen_for_disconnect(self._receive)
+        return True
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        """ASGI entry-point.  Stores *receive* so :meth:`disconnect` works."""
+        self._receive = receive
+        await super().__call__(scope, receive, send)
+
+    # ------------------------------------------------------------------
+    # Static convenience methods (automatic event formatting)
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def encode(
+        data: Any | None = None,
+        *,
+        event: str | None = None,
+        id: str | None = None,
+        retry: int | None = None,
+        comment: str | None = None,
+    ) -> bytes:
+        """Encode an event into SSE wire-format bytes.
+
+        This is a convenience wrapper around :func:`format_sse_event` that
+        automatically JSON-serializes the ``data`` argument.
+
+        Parameters
+        ----------
+        data:
+            Any JSON-serializable value.  Strings are quoted on the wire.
+        event:
+            Optional event type name.
+        id:
+            Optional event ID.
+        retry:
+            Optional reconnection time in milliseconds.
+        comment:
+            Optional comment text (ignored by browsers).
+        """
+        from fastapi.sse import format_sse_event
+
+        if data is not None:
+            if hasattr(data, "model_dump_json"):
+                data_str = data.model_dump_json()
+            else:
+                data_str = EventSourceResponse._serialize_data(data)
+        else:
+            data_str = None
+
+        return format_sse_event(
+            data_str=data_str,
+            event=event,
+            id=id,
+            retry=retry,
+            comment=comment,
+        )
+
+    @staticmethod
+    def encode_raw(
+        raw_data: str,
+        *,
+        event: str | None = None,
+        id: str | None = None,
+        retry: int | None = None,
+        comment: str | None = None,
+    ) -> bytes:
+        """Encode raw (non-JSON) data into SSE wire-format bytes.
+
+        The ``raw_data`` string is placed into the ``data:`` field as-is
+        without JSON encoding.
+        """
+        from fastapi.sse import format_sse_event
+
+        return format_sse_event(
+            data_str=raw_data,
+            event=event,
+            id=id,
+            retry=retry,
+            comment=comment,
+        )
+
+    @staticmethod
+    def encode_comment(text: str) -> bytes:
+        """Encode an SSE comment.
+
+        Comments start with ``:`` on the wire and are ignored by
+        ``EventSource`` clients.  Useful for keep-alive pings.
+        """
+        from fastapi.sse import format_sse_event
+
+        return format_sse_event(comment=text)
 
 
 def _check_id_no_null(v: str | None) -> str | None:
@@ -212,11 +465,3 @@ def format_sse_event(
     lines.append("")
     lines.append("")
     return "\n".join(lines).encode("utf-8")
-
-
-# Keep-alive comment, per the SSE spec recommendation
-KEEPALIVE_COMMENT = b": ping\n\n"
-
-# Seconds between keep-alive pings when a generator is idle.
-# Private but importable so tests can monkeypatch it.
-_PING_INTERVAL: float = 15.0
