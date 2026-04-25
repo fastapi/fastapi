@@ -355,9 +355,7 @@ def test_encode_comment():
 
 def test_encode_raw():
     """encode_raw() places raw data without JSON encoding."""
-    result = EventSourceResponse.encode_raw(
-        raw_data="<div>hello</div>", event="html"
-    )
+    result = EventSourceResponse.encode_raw(raw_data="<div>hello</div>", event="html")
     assert b"data: <div>hello</div>\n" in result
     assert b'data: "<div>hello</div>"' not in result
 

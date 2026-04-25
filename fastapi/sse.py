@@ -7,7 +7,7 @@ from annotated_doc import Doc
 from pydantic import AfterValidator, BaseModel, Field, model_validator
 from starlette.background import BackgroundTask
 from starlette.responses import StreamingResponse
-from starlette.types import Receive, Send, Scope
+from starlette.types import Receive, Scope, Send
 
 # Canonical SSE event schema matching the OpenAPI 3.2 spec
 # (Section 4.14.4 "Special Considerations for Server-Sent Events")
@@ -113,7 +113,6 @@ class EventSourceResponse(StreamingResponse):
         Each item is expected to be a :class:`ServerSentEvent` (encoded
         automatically) or already-raw bytes (passed through).
         """
-        from fastapi.sse import ServerSentEvent, format_sse_event
 
         if hasattr(content, "__aiter__"):
             async for item in content:
@@ -386,7 +385,7 @@ class ServerSentEvent(BaseModel):
     ] = None
 
     @model_validator(mode="after")
-    def _check_data_exclusive(self) -> "ServerSentEvent":
+    def _check_data_exclusive(self) -> ServerSentEvent:
         if self.data is not None and self.raw_data is not None:
             raise ValueError(
                 "Cannot set both 'data' and 'raw_data' on the same "
