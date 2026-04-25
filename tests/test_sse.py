@@ -316,3 +316,178 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# ─── Direct-use tests (EventSourceResponse as return value) ──────────────
+
+
+direct_app = FastAPI()
+
+
+@direct_app.get("/direct-events")
+def direct_sse():
+    async def gen():
+        yield ServerSentEvent(data="hello", event="greeting")
+        yield ServerSentEvent(data={"key": "value"}, event="json")
+        yield ServerSentEvent(comment="keepalive")
+
+    return EventSourceResponse(gen())
+
+
+@direct_app.get("/direct-raw-bytes")
+def direct_raw():
+    async def gen():
+        yield b"data: raw line 1\n\n"
+        yield b"data: raw line 2\n\n"
+
+    return EventSourceResponse(gen())
+
+
+@direct_app.get("/direct-with-retry")
+def direct_with_retry():
+    async def gen():
+        yield ServerSentEvent(data="event1")
+        yield ServerSentEvent(data="event2")
+
+    return EventSourceResponse(gen(), retry=5000)
+
+
+@direct_app.get("/direct-with-mixed-types")
+def direct_mixed():
+    async def gen():
+        yield ServerSentEvent(data="sse-event", event="typed")
+        yield b"data: raw bytes\n\n"
+        yield "data: raw string\n\n"
+
+    return EventSourceResponse(gen())
+
+
+@direct_app.get("/direct-negative-retry")
+def direct_negative_retry():
+    return EventSourceResponse(iter([]), retry=-1)  # type: ignore[arg-type]
+
+
+@direct_app.get("/direct-with-disconnect-callback")
+async def direct_with_disconnect_callback():
+    disconnected = []
+
+    async def on_disconnect():
+        disconnected.append(True)
+
+    async def gen():
+        yield ServerSentEvent(data="msg")
+        # Keep streaming so test client can detect disconnect
+        yield ServerSentEvent(data="msg2")
+        yield ServerSentEvent(data="msg3")
+
+    return EventSourceResponse(gen(), disconnect_callback=on_disconnect)
+
+
+@direct_app.get("/direct-with-ping")
+async def direct_with_ping():
+    async def gen():
+        yield ServerSentEvent(data="before-ping")
+        await asyncio.sleep(0.2)  # longer than ping interval
+        yield ServerSentEvent(data="after-ping")
+
+    return EventSourceResponse(gen(), ping_interval=0.05)
+
+
+@direct_app.get("/direct-no-ping")
+async def direct_no_ping():
+    async def gen():
+        yield ServerSentEvent(data="msg1")
+        await asyncio.sleep(0.2)
+        yield ServerSentEvent(data="msg2")
+
+    return EventSourceResponse(gen(), ping_interval=0)
+
+
+direct_client = TestClient(direct_app)
+
+
+def test_direct_use_server_sent_events():
+    """Direct-use: ServerSentEvent objects are auto-formatted."""
+    response = direct_client.get("/direct-events")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    assert response.headers["cache-control"] == "no-cache"
+    assert response.headers["x-accel-buffering"] == "no"
+
+    text = response.text
+    assert "event: greeting\n" in text
+    assert 'data: "hello"\n' in text
+    assert "event: json\n" in text
+    assert ": keepalive\n" in text
+
+
+def test_direct_use_raw_bytes():
+    """Direct-use: raw bytes are passed through unchanged."""
+    response = direct_client.get("/direct-raw-bytes")
+    assert response.status_code == 200
+    assert "data: raw line 1\n" in response.text
+    assert "data: raw line 2\n" in response.text
+
+
+def test_direct_use_retry_field():
+    """Direct-use: retry parameter emits an initial retry: field."""
+    response = direct_client.get("/direct-with-retry")
+    assert response.status_code == 200
+    text = response.text
+    # The initial retry field should appear before the data events
+    retry_pos = text.find("retry: 5000")
+    data_pos = text.find("data:")
+    assert retry_pos >= 0
+    assert data_pos > retry_pos
+
+
+def test_direct_use_mixed_types():
+    """Direct-use: ServerSentEvent, bytes, and strings handled correctly."""
+    response = direct_client.get("/direct-with-mixed-types")
+    assert response.status_code == 200
+    text = response.text
+    assert "event: typed\n" in text
+    assert "data: raw bytes\n" in text
+    assert "data: raw string\n" in text
+
+
+def test_direct_use_negative_retry_rejected():
+    """Direct-use: negative retry raises ValueError."""
+    with pytest.raises(ValueError, match="non-negative"):
+        direct_client.get("/direct-negative-retry")
+
+
+def test_direct_use_keepalive_ping():
+    """Direct-use with ping_interval emits : ping comments on idle."""
+    response = direct_client.get("/direct-with-ping")
+    assert response.status_code == 200
+    text = response.text
+    assert ": ping\n" in text
+    assert "data: \"before-ping\"\n" in text
+    assert "data: \"after-ping\"\n" in text
+
+
+def test_direct_use_no_ping_when_disabled():
+    """Direct-use with ping_interval=0 emits no keepalive pings."""
+    response = direct_client.get("/direct-no-ping")
+    assert response.status_code == 200
+    assert ": ping\n" not in response.text
+    assert "data: \"msg1\"\n" in response.text
+    assert "data: \"msg2\"\n" in response.text
+
+
+def test_direct_use_sync_iterable():
+    """Direct-use works with sync iterables (wrapped to async)."""
+
+    @direct_app.get("/direct-sync")
+    def direct_sync():
+        def gen():
+            yield ServerSentEvent(data="sync1")
+            yield ServerSentEvent(data="sync2")
+
+        return EventSourceResponse(gen())
+
+    response = direct_client.get("/direct-sync")
+    assert response.status_code == 200
+    assert 'data: "sync1"\n' in response.text
+    assert 'data: "sync2"\n' in response.text
