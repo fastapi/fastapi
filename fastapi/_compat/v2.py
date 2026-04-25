@@ -319,7 +319,9 @@ def get_definitions(
     flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
     input_type_ids = {id(f.field_info.annotation) for f in fields}
     unique_flat_model_fields = {
-        f for f in flat_model_fields if id(f.field_info.annotation) not in input_type_ids
+        f
+        for f in flat_model_fields
+        if id(f.field_info.annotation) not in input_type_ids
     }
     inputs = [
         (
