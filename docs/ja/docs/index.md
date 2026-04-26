@@ -274,7 +274,7 @@ INFO:     Application startup complete.
 
 次に、[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) にアクセスします。
 
-代替の自動ドキュメントが表示されます（[ReDoc](https://github.com/Rebilly/ReDoc) が提供しています）。
+代替の自動ドキュメントが表示されます（[ReDoc](https://github.com/Redocly/redoc) が提供しています）。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

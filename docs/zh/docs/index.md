@@ -274,7 +274,7 @@ INFO:     Application startup complete.
 
 然后访问 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

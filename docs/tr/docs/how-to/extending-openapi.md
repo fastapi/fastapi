@@ -37,7 +37,7 @@ Ve `get_openapi()` fonksiyonu şu parametreleri alır:
 
 Yukarıdaki bilgileri kullanarak aynı yardımcı fonksiyonla OpenAPI şemasını üretebilir ve ihtiyacınız olan her parçayı override edebilirsiniz.
 
-Örneğin, [özel bir logo eklemek için ReDoc'un OpenAPI extension'ını](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) ekleyelim.
+Örneğin, [özel bir logo eklemek için ReDoc'un OpenAPI extension'ını](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) ekleyelim.
 
 ### Normal **FastAPI** { #normal-fastapi }
 

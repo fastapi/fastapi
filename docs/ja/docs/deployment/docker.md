@@ -374,7 +374,7 @@ Dockerコンテナの[http://192.168.99.100/items/5?q=somequery](http://192.168.
 
 また、[http://192.168.99.100/redoc](http://192.168.99.100/redoc) や [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (またはそれに相当するDockerホストを使用したもの）にもアクセスできます。
 
-代替の自動ドキュメント（[ReDoc](https://github.com/Rebilly/ReDoc)によって提供される）が表示されます：
+代替の自動ドキュメント（[ReDoc](https://github.com/Redocly/redoc)によって提供される）が表示されます：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

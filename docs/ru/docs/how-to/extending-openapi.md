@@ -37,7 +37,7 @@
 
 Используя информацию выше, вы можете той же вспомогательной функцией сгенерировать схему OpenAPI и переопределить любые нужные части.
 
-Например, добавим [расширение OpenAPI ReDoc для включения собственного логотипа](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+Например, добавим [расширение OpenAPI ReDoc для включения собственного логотипа](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Обычный **FastAPI** { #normal-fastapi }
 

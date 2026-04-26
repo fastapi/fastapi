@@ -372,7 +372,7 @@ Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들�
 
 또한 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 또는 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수도 있습니다.
 
-대안 자동 문서([ReDoc](https://github.com/Rebilly/ReDoc) 제공)를 볼 수 있습니다:
+대안 자동 문서([ReDoc](https://github.com/Redocly/redoc) 제공)를 볼 수 있습니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

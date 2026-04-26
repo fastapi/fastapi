@@ -37,7 +37,7 @@
 
 上記の情報を使って、同じユーティリティ関数で OpenAPI スキーマを生成し、必要な部分を上書きできます。
 
-たとえば、[カスタムロゴを含めるための ReDoc の OpenAPI 拡張](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)を追加してみましょう。
+たとえば、[カスタムロゴを含めるための ReDoc の OpenAPI 拡張](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)を追加してみましょう。
 
 ### 通常の **FastAPI** { #normal-fastapi }
 
