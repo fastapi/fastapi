@@ -37,7 +37,7 @@ Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von 
 
 Mithilfe der oben genannten Informationen können Sie dieselbe Hilfsfunktion verwenden, um das OpenAPI-Schema zu generieren und jeden benötigten Teil zu überschreiben.
 
-Fügen wir beispielsweise [ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) hinzu.
+Fügen wir beispielsweise [ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) hinzu.
 
 ### Normales **FastAPI** { #normal-fastapi }
 

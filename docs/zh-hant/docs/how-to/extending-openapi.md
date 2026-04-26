@@ -37,7 +37,7 @@
 
 基於上述資訊，你可以用相同的工具函式來產生 OpenAPI 結構，並覆寫你需要客製的部分。
 
-例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
+例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 一般的 **FastAPI** { #normal-fastapi }
 

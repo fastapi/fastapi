@@ -372,7 +372,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 你也可以前往 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或等效的、使用你的 Docker 主機）。
 
-你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

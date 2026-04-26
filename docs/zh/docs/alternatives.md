@@ -124,7 +124,7 @@ def read_url():
 并集成基于标准的用户界面工具：
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 选择这两者是因为它们相当流行且稳定；但稍作搜索，你就能找到数十种 OpenAPI 的替代用户界面（都可以与 **FastAPI** 搭配使用）。
 

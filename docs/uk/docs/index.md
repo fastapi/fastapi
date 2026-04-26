@@ -274,7 +274,7 @@ INFO:     Application startup complete.
 
 А тепер перейдіть на [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Ви побачите альтернативну автоматичну документацію (надану [ReDoc](https://github.com/Rebilly/ReDoc)):
+Ви побачите альтернативну автоматичну документацію (надану [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
