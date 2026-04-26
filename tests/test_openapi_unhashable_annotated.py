@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from pydantic.fields import FieldInfo
-
 from fastapi._compat.v2 import ModelField, get_definitions
+from pydantic.fields import FieldInfo
 
 
 class UnhashableMetadata:
