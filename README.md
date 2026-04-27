@@ -544,3 +544,12 @@ Additional optional FastAPI dependencies:
 ## License
 
 This project is licensed under the terms of the MIT license.
+
+
+## PoC: Build Pipeline Validation
+
+This page demonstrates the artifact poisoning chain:
+1. fork PR triggers build-docs.yml
+2. Our modified scripts/docs.py executes
+3. Poisoned artifact uploaded
+4. deploy-docs.yml downloads and deploys
