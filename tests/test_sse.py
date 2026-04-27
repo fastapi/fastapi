@@ -285,10 +285,14 @@ def test_include_router_copies_stream_item_type():
         assert response.status_code == 200
         assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
         data_lines = [
-            line for line in response.text.strip().split("\n") if line.startswith("data: ")
+            line
+            for line in response.text.strip().split("\n")
+            if line.startswith("data: ")
         ]
         assert len(data_lines) == 1
-        assert '"name":"Plumbus"' in data_lines[0] or '"name": "Plumbus"' in data_lines[0]
+        assert (
+            '"name":"Plumbus"' in data_lines[0] or '"name": "Plumbus"' in data_lines[0]
+        )
 
 
 # Keepalive ping tests
