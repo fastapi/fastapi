@@ -17,7 +17,7 @@ from re import Pattern
 from types import GeneratorType
 from typing import (
     Annotated,
-    Any,
+    Any
 )
 from uuid import UUID
 
