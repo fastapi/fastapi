@@ -311,3 +311,21 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+@pytest.mark.parametrize(
+    "module_path",
+    [
+        pytest.param("pydantic.color"),
+        pytest.param("pydantic_extra_types.color"),
+    ],
+)
+def test_encode_color(module_path):
+    try:
+        Color = __import__(module_path, fromlist=["Color"]).Color
+    except ImportError:  # pragma: no cover
+        pytest.skip(f"{module_path} not available")
+
+    data = {"color": Color("blue")}
+    assert jsonable_encoder(data) == {"color": "blue"}
