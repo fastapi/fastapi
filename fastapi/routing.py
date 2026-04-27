@@ -1801,7 +1801,7 @@ class APIRouter(routing.Router):
                     and getattr(route, "stream_item_type", None) is not None
                 ):
                     new_route.stream_item_type = route.stream_item_type
-                    
+
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(
