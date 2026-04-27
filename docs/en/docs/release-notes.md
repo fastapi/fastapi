@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pydantic from 2.12.5 to 2.13.2. PR [#15439](https://github.com/fastapi/fastapi/pull/15439) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pydantic-ai from 1.63.0 to 1.83.0. PR [#15417](https://github.com/fastapi/fastapi/pull/15417) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump prek from 0.3.2 to 0.3.9. PR [#15418](https://github.com/fastapi/fastapi/pull/15418) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump fastar from 0.9.0 to 0.11.0. PR [#15419](https://github.com/fastapi/fastapi/pull/15419) by [@dependabot[bot]](https://github.com/apps/dependabot).
