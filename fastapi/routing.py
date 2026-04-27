@@ -1794,6 +1794,14 @@ class APIRouter(routing.Router):
                         self.strict_content_type,
                     ),
                 )
+                new_route = self.routes[-1]
+                if (
+                    isinstance(new_route, APIRoute)
+                    and isinstance(route, APIRoute)
+                    and getattr(route, "stream_item_type", None) is not None
+                ):
+                    new_route.stream_item_type = route.stream_item_type
+                    
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(

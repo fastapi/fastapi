@@ -264,6 +264,23 @@ def test_sse_on_router_included_in_app(client: TestClient):
     ]
     assert len(data_lines) == 2
 
+def test_include_router_copies_stream_item_type():
+    sub_router = APIRouter()
+
+    @sub_router.get("/stream_item_type", response_class=EventSourceResponse)
+    async def stream_item_type_route() -> AsyncIterable[Item]:
+        yield items[0]
+
+    assert getattr(sub_router.routes[-1], "stream_item_type", None) == Item
+
+    main_app = FastAPI()
+    main_app.include_router(sub_router)
+
+    route = next(r for r in main_app.routes
+     if r.path == "/stream_item_type")
+    assert getattr(route, "stream_item_type", None) == Item
+
+
 
 # Keepalive ping tests
 
