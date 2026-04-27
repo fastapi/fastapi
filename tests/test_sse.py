@@ -1,6 +1,6 @@
 import asyncio
 import time
-from collections.abc import AsyncIterable, Iterable
+from collections.abc import AsyncIterable, Iterable, AsyncIterator
 
 import fastapi.routing
 import pytest
@@ -269,12 +269,12 @@ def test_include_router_copies_stream_item_type():
     sub_router = APIRouter()
 
     @sub_router.get("/stream_item_type", response_class=EventSourceResponse)
-    async def stream_item_type_route() -> AsyncIterable[Item]:
+    async def stream_item_type_route() -> AsyncIterator[Item]:
         yield items[0]
 
     assert getattr(sub_router.routes[-1], "stream_item_type", None) == Item
 
-    main_app = FastAPI()
+    main_app = FastAPI() 
     main_app.include_router(sub_router)
 
     route = next(r for r in main_app.routes if r.path == "/stream_item_type")
