@@ -30,7 +30,6 @@ Their sponsorship also demonstrates a strong commitment to the FastAPI **communi
 
 For example, you might want to try:
 
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
 * [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 

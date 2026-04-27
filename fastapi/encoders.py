@@ -25,7 +25,6 @@ from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color  # ty: ignore[deprecated]
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
@@ -37,6 +36,15 @@ from ._compat import (
     Url,
     is_pydantic_v1_model_instance,
 )
+
+try:
+    # pydantic.color.Color is deprecated since v2.0b3, but supporting for bwd-compat
+    from pydantic.color import Color  # ty: ignore[deprecated]
+except ImportError:  # pragma: no cover
+
+    class Color:  # type: ignore[no-redef]  # ty: ignore[unused-ignore-comment]
+        pass
+
 
 encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {et_color.Color: str}
 

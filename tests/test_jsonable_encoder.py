@@ -433,3 +433,14 @@ def test_encode_pydantic_extra_types_color():
     et_color = pytest.importorskip("pydantic_extra_types.color")
     color = et_color.Color("red")
     assert jsonable_encoder(color) == str(color)
+
+
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+def test_encode_deprecated_pydantic_color():
+    try:
+        from pydantic.color import Color
+    except ImportError:  # pragma: no cover
+        pytest.skip("pydantic.color not available")
+
+    data = {"color": Color("blue")}
+    assert jsonable_encoder(data) == {"color": "blue"}
