@@ -15,10 +15,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import (
-    Annotated,
-    Any
-)
+from typing import Annotated, Any
 from uuid import UUID
 
 from annotated_doc import Doc
