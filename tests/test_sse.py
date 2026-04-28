@@ -261,9 +261,9 @@ def test_sse_on_router_included_in_app(client: TestClient):
     assert route.stream_item_field is not None
 
     openapi = app.openapi()
-    item_schema = openapi["paths"]["/api/events"]["get"]["responses"]["200"][
-        "content"
-    ]["text/event-stream"]["itemSchema"]
+    item_schema = openapi["paths"]["/api/events"]["get"]["responses"]["200"]["content"][
+        "text/event-stream"
+    ]["itemSchema"]
     assert "contentSchema" in item_schema["properties"]["data"]
     assert "Item" in openapi["components"]["schemas"]
 

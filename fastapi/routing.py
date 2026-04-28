@@ -1795,7 +1795,10 @@ class APIRouter(routing.Router):
                     ),
                 )
                 new_route = self.routes[-1]
-                if isinstance(new_route, APIRoute) and route.stream_item_type is not None:
+                if (
+                    isinstance(new_route, APIRoute)
+                    and route.stream_item_type is not None
+                ):
                     new_route.stream_item_type = route.stream_item_type
                     new_route.stream_item_field = create_model_field(
                         name=f"StreamItem_{new_route.unique_id}",
