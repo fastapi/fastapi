@@ -42,7 +42,7 @@ Vamos começar com uma aplicação FastAPI simples:
 
 {* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
-Note que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`.
+Observe que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`.
 
 ### Documentação da API { #api-docs }
 
@@ -50,11 +50,11 @@ Se você for para `/docs`, verá que ela tem os **schemas** para os dados a sere
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
-Você pode ver esses schemas porque eles foram declarados com os modelos no app.
+Você pode ver esses schemas porque eles foram declarados com os modelos na aplicação.
 
-Essas informações estão disponíveis no **schema OpenAPI** do app e são mostradas na documentação da API.
+Essas informações estão disponíveis no **schema OpenAPI da aplicação** e são mostradas na documentação da API.
 
-E essas mesmas informações dos modelos que estão incluídas no OpenAPI são o que pode ser usado para **gerar o código do cliente**.
+E essas mesmas informações dos modelos incluídas no OpenAPI podem ser usadas para **gerar o código do cliente**.
 
 ### Hey API { #hey-api }
 
@@ -121,9 +121,9 @@ Agora os nomes dos métodos gerados como `createItemItemsPost` não parecem muit
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...isso ocorre porque o gerador de clientes usa o **ID de operação** interno do OpenAPI para cada *operação de rota*.
+...isso ocorre porque o gerador de clientes usa o **ID de operação interno do OpenAPI** para cada *operação de rota*.
 
-O OpenAPI exige que cada ID de operação seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **path** e o **método/operação HTTP** para gerar esse ID de operação, porque dessa forma ele pode garantir que os IDs de operação sejam únicos.
+O OpenAPI exige que cada ID de operação seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **path** e o **método HTTP** para gerar esse ID de operação, porque dessa forma ele pode garantir que os IDs de operação sejam únicos.
 
 Mas eu vou te mostrar como melhorar isso a seguir. 🤓
 
@@ -157,7 +157,7 @@ Como você pode ver, os nomes dos métodos agora têm a tag e, em seguida, o nom
 
 ### Pré-processar a especificação OpenAPI para o gerador de clientes { #preprocess-the-openapi-specification-for-the-client-generator }
 
-O código gerado ainda tem algumas **informações duplicadas**.
+O código gerado ainda pode ter algumas **informações duplicadas**.
 
 Nós já sabemos que esse método está relacionado aos **items** porque essa palavra está no `ItemsService` (retirada da tag), mas ainda temos o nome da tag prefixado no nome do método também. 😕
 
