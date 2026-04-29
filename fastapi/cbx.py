@@ -57,8 +57,7 @@ class CBR(Generic[T]):
         self.instance = self.cls(*args, **kwargs)
 
         for _name, endpoint in inspect.getmembers(
-            self.instance, lambda x: inspect.ismethod(
-                x) or inspect.isfunction(x)
+            self.instance, lambda x: inspect.ismethod(x) or inspect.isfunction(x)
         ):
             if cbx_router := endpoint.__annotations__.get("cbx_router"):
                 for router in cbx_router:
@@ -100,7 +99,7 @@ class cbr(Generic[T]):
             else:
                 endpoint.__annotations__.setdefault(
                     "cbx_router",
-                    [{"method": self.method, "path": self.path, "kwargs": self.kwargs}]
+                    [{"method": self.method, "path": self.path, "kwargs": self.kwargs}],
                 )
             return endpoint
 

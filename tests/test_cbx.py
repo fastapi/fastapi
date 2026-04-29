@@ -1,23 +1,21 @@
-import logging
 import asyncio
-from fastapi.cbx import cbv, cbr
+import logging
+
+from fastapi import APIRouter, Cookie, Depends, FastAPI, HTTPException, Response, status
+from fastapi.cbx import cbr, cbv
 from fastapi.testclient import TestClient
-from fastapi import APIRouter
-from typing import Dict
-from fastapi import FastAPI, APIRouter, Response, status, Cookie, Depends, HTTPException
 from pydantic import BaseModel
 
 
-@cbv(router=APIRouter(prefix='/cbv'))
+@cbv(router=APIRouter(prefix="/cbv"))
 class MyCBV:
-
     logger = logging.getLogger(__qualname__)
 
     class CBVModel(BaseModel):
         key: str = "cbv"
         value: str = "Class-based view for CRUD operations with singleton global dependency injection"
 
-    def __init__(self, **kwargs: Dict[str, str]):
+    def __init__(self, **kwargs: dict[str, str]):
         self.heavies = {
             "name": "fastapi-cbx",
             "description": "Minimal class-based routing extension for FastAPI",
@@ -34,22 +32,23 @@ class MyCBV:
     async def get(self, key: str) -> CBVModel:
         self.logger.info(f"GET {key}")
         await asyncio.sleep(1)
-        return self.CBVModel(key=key, value=self.heavies.get(key, "One scenario, one route"))
+        return self.CBVModel(
+            key=key, value=self.heavies.get(key, "One scenario, one route")
+        )
 
 
 @cbr(router=APIRouter(prefix="/cbr"))
 class MyCBR:
-
     logger = logging.getLogger(__qualname__)
 
     class CBRModel(BaseModel):
         key: str = "CBR"
         value: str = "Class-based route for complex business logic with multiple endpoints and method-level dependencies"
 
-    def __init__(self, **kwargs: Dict[str, str]):
+    def __init__(self, **kwargs: dict[str, str]):
         self.heavies = {
             "name": "fastapi-cbx",
-            "description": "Minimal class-based routing extension for FastAPI"
+            "description": "Minimal class-based routing extension for FastAPI",
         }
         self.heavies.update(kwargs)
 
@@ -63,13 +62,16 @@ class MyCBR:
     @cbr.get("/heavies", summary="Get heavies by key")
     async def get_heavies(self, key: str) -> CBRModel:
         self.logger.info(f"GET {key}")
-        return self.CBRModel(key=key, value=self.heavies.get(key, "One scenario, one route"))
+        return self.CBRModel(
+            key=key, value=self.heavies.get(key, "One scenario, one route")
+        )
 
     @staticmethod
     def session(token: str = Cookie(default="", alias="token")) -> str:
         if token != "fastapi-cbx":
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
+            )
         return token
 
     @cbr.post("/heavies", summary="Set heavies")
@@ -106,6 +108,7 @@ client = TestClient(app)
 
 # ==================== 100% Test Suite ====================
 
+
 def test_cbv():
     asyncio.run(MyCBV.head(Response()))
     print(dir(MyCBV))
@@ -118,15 +121,13 @@ def test_cbr():
     print(dir(MyCBR))
     response = client.get("/cbr/heavies?key=name")
     assert response.status_code == 200
-    response = client.post(
-        "/cbr/heavies", json={"key": "test", "value": "test_value"})
+    response = client.post("/cbr/heavies", json={"key": "test", "value": "test_value"})
     assert response.status_code == 401
     assert response.json()["detail"] == "Invalid token"
 
     with TestClient(app, cookies={"token": "fastapi-cbx"}) as auth_client:
         response = auth_client.post(
-            "/cbr/heavies",
-            json={"key": "test", "value": "test"}
+            "/cbr/heavies", json={"key": "test", "value": "test"}
         )
         assert response.status_code == 200
     response = client.delete("/cbr/heavies?name=test")
