@@ -133,7 +133,7 @@ docs = [
     "black >=25.1.0",
     "cairosvg >=2.8.2",
     # for MkDocs live reload
-    "click==8.2.1",
+    "click==8.3.2",
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
