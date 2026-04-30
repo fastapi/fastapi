@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 💄 Refactor opinions section with interactive tabs and new logos. PR [#15458](https://github.com/fastapi/fastapi/pull/15458) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Add FastAPI Conf '26 announcement to docs. PR [#15457](https://github.com/fastapi/fastapi/pull/15457) by [@alejsdev](https://github.com/alejsdev).
 
 ### Internal
