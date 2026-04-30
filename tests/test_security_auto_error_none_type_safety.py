@@ -12,7 +12,6 @@ from fastapi.security import (
     OAuth2PasswordBearer,
 )
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
 
 
 def test_oauth2_non_optional_no_auth():
@@ -23,20 +22,10 @@ def test_oauth2_non_optional_no_auth():
     def get_me(token: str = Depends(oauth2)):
         return {"token": token}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/me")
-    assert resp.status_code == 422
-    assert resp.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["dependency", "token"],
-                    "msg": "Dependency returned None for parameter 'token' which is annotated as non-optional. Use 'Optional[...]' or '... | None' if the dependency can return None (e.g. when using auto_error=False).",
-                }
-            ]
-        }
-    )
+    assert resp.status_code == 500
+    assert "non-optional" in resp.json()["detail"]
 
 
 def test_oauth2_optional_no_auth():
@@ -75,9 +64,9 @@ def test_http_bearer_non_optional_no_auth():
     def get_profile(creds: HTTPAuthorizationCredentials = Depends(bearer)):
         return {"scheme": creds.scheme}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/profile")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_http_bearer_optional_no_auth():
@@ -104,9 +93,9 @@ def test_api_key_header_non_optional_no_key():
     def get_data(key: str = Depends(api_key)):
         return {"key": key}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_api_key_query_non_optional_no_key():
@@ -117,9 +106,9 @@ def test_api_key_query_non_optional_no_key():
     def get_data(key: str = Depends(api_key)):
         return {"key": key}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_api_key_cookie_non_optional_no_key():
@@ -130,9 +119,9 @@ def test_api_key_cookie_non_optional_no_key():
     def get_data(key: str = Depends(api_key)):
         return {"key": key}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_http_basic_non_optional_no_auth():
@@ -143,9 +132,9 @@ def test_http_basic_non_optional_no_auth():
     def get_data(creds: HTTPBasicCredentials = Depends(basic)):
         return {"user": creds.username}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_annotated_syntax_non_optional():
@@ -156,9 +145,9 @@ def test_annotated_syntax_non_optional():
     def get_data(key: Annotated[str, Depends(api_key)]):
         return {"key": key}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
     resp2 = client.get("/data", headers={"X-API-Key": "secret"})
     assert resp2.status_code == 200
@@ -221,9 +210,9 @@ def test_annotated_non_optional_inner_blocked():
     def get_data(key: Annotated[str, Depends(api_key)]):
         return {"key": key}
 
-    client = TestClient(app)
+    client = TestClient(app, raise_server_exceptions=False)
     resp = client.get("/data")
-    assert resp.status_code == 422
+    assert resp.status_code == 500
 
 
 def test_annotated_optional_inner_allowed():

@@ -72,6 +72,7 @@ from starlette.datastructures import (
     QueryParams,
     UploadFile,
 )
+from starlette.exceptions import HTTPException
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
@@ -700,20 +701,15 @@ async def solve_dependencies(
                 and sub_dependant.param_annotation is not inspect.Parameter.empty
                 and not _annotation_allows_none(sub_dependant.param_annotation)
             ):
-                errors.append(
-                    {
-                        "type": "missing",
-                        "loc": ("dependency", sub_dependant.name),
-                        "msg": (
-                            f"Dependency returned None for parameter "
-                            f"'{sub_dependant.name}' which is annotated as "
-                            f"non-optional. Use 'Optional[...]' or '... | None' "
-                            f"if the dependency can return None (e.g. when using "
-                            f"auto_error=False)."
-                        ),
-                    }
+                raise HTTPException(
+                    status_code=500,
+                    detail=(
+                        f"Security dependency returned None for parameter"
+                        f" '{sub_dependant.name}' which is annotated as"
+                        f" non-optional. Use 'Optional[...]' or '... | None'"
+                        f" when the security scheme has auto_error=False."
+                    ),
                 )
-                continue
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
