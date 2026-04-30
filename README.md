@@ -121,7 +121,7 @@ There's a [FastAPI mini documentary](https://www.youtube.com/watch?v=mpR8ngthqiE
 
 ## **Typer**, the FastAPI of CLIs
 
-<a href="https://typer.tiangolo.com" class="only-not-mkdocs">
+<a href="https://typer.tiangolo.com" class="only-github">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://typer.tiangolo.com/img/logo-margin/logo-margin-white-vector.svg">
     <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;">
