@@ -118,6 +118,12 @@ The key features are:
 
 ---
 
+## FastAPI Conf
+
+[**FastAPI Conf '26**](https://fastapiconf.com) is happening on **October 28, 2026** in **Amsterdam, NL**. All about FastAPI, right from the source. 🎤
+
+<a href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
+
 ## FastAPI mini documentary
 
 There's a [FastAPI mini documentary](https://www.youtube.com/watch?v=mpR8ngthqiE) released at the end of 2025, you can watch it online:
