@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add FastAPI Conf '26 announcement to docs. PR [#15457](https://github.com/fastapi/fastapi/pull/15457) by [@alejsdev](https://github.com/alejsdev).
+
 ### Internal
 
 * ⬆ Bump sqlmodel from 0.0.32 to 0.0.38. PR [#15437](https://github.com/fastapi/fastapi/pull/15437) by [@dependabot[bot]](https://github.com/apps/dependabot).
