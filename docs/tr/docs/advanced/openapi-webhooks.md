@@ -48,7 +48,7 @@ Bunun nedeni, webhook request'ini almak istedikleri gerçek **URL path**'i **kul
 
 ### Dokümanları kontrol edin { #check-the-docs }
 
-Şimdi uygulamanızı başlatıp <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidin.
+Şimdi uygulamanızı başlatıp [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidin.
 
 Dokümanlarınızda normal *path operation*'ları ve artık bazı **webhook**'ları da göreceksiniz:
 

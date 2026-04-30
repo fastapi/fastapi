@@ -10,12 +10,12 @@
 
 所有代码片段都可以复制后直接使用（它们实际上是经过测试的 Python 文件）。
 
-要运行任何示例，请将代码复制到 `main.py` 文件中，然后使用以下命令启动 `fastapi dev`：
+要运行任何示例，请将代码复制到 `main.py` 文件中，然后启动 `fastapi dev`：
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 第一个步骤是安装 FastAPI.
 
-请确保您创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后**安装 FastAPI**：
+请确保您创建并激活一个[虚拟环境](../virtual-environments.md)，然后**安装 FastAPI**：
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | 注意
 
-当您使用 `pip install "fastapi[standard]"` 安装时，它会附带一些默认的可选标准依赖项，其中包括 `fastapi-cloud-cli`，它可以让您部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>。
+当您使用 `pip install "fastapi[standard]"` 安装时，它会附带一些默认的可选标准依赖项，其中包括 `fastapi-cloud-cli`，它可以让您部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
 如果您不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
 
 如果您想安装标准依赖但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"` 安装。
+
+///
+
+/// tip | 提示
+
+FastAPI 提供了一个[VS Code 官方扩展](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（也支持 Cursor），包含众多功能，例如路径操作浏览器、路径操作搜索、测试中的 CodeLens 导航（从测试跳转到定义），以及从编辑器内进行 FastAPI Cloud 部署和查看日志。
 
 ///
 

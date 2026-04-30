@@ -52,11 +52,11 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 除此之外，还有其他一些可选的 ASGI 服务器，例如：
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>：高性能 ASGI 服务器。
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>：与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>：为 Django Channels 构建的 ASGI 服务器。
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>：基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>：NGINX Unit 是一个轻量级且灵活的 Web 应用运行时环境。
+* [Uvicorn](https://www.uvicorn.dev/): 高性能 ASGI 服务器。
+* [Hypercorn](https://hypercorn.readthedocs.io/): 与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
+* [Daphne](https://github.com/django/daphne): 为 Django Channels 构建的 ASGI 服务器。
+* [Granian](https://github.com/emmett-framework/granian): 基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit 是一个轻量级且灵活的 Web 应用运行时环境。
 
 ## 服务器主机和服务器程序 { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 不过，您也可以手动安装 ASGI 服务器。
 
-请确保您创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装服务器应用程序。
+请确保您创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装服务器应用程序。
 
 例如，要安装 Uvicorn，可以运行以下命令：
 

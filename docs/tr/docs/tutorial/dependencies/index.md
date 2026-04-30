@@ -1,6 +1,6 @@
 # Bağımlılıklar { #dependencies }
 
-**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<dfn title="diğer adları: components, resources, providers, services, injectables">Bağımlılık Enjeksiyonu</dfn>** sistemine sahiptir.
+**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<dfn title="diğer adları: bileşenler, kaynaklar, sağlayıcılar, servisler, enjekte edilebilenler">Bağımlılık Enjeksiyonu</dfn>** sistemine sahiptir.
 
 Kullanımı çok basit olacak şekilde tasarlanmıştır ve herhangi bir geliştiricinin diğer bileşenleri **FastAPI** ile entegre etmesini kolaylaştırır.
 
@@ -57,7 +57,7 @@ FastAPI, `Annotated` desteğini 0.95.0 sürümünde ekledi (ve önermeye başlad
 
 Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalıştığınızda hata alırsınız.
 
-`Annotated` kullanmadan önce **FastAPI** sürümünü en az 0.95.1'e yükseltmek için [FastAPI sürümünü yükseltin](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce **FastAPI** sürümünü en az 0.95.1'e yükseltmek için [FastAPI sürümünü yükseltin](../../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -152,7 +152,7 @@ Fark etmez. **FastAPI** ne yapacağını bilir.
 
 /// note | Not
 
-Eğer bilmiyorsanız, dokümanlarda `async` ve `await` için [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} bölümüne bakın.
+Eğer bilmiyorsanız, dokümanlarda `async` ve `await` için [Async: *"In a hurry?"*](../../async.md#in-a-hurry) bölümüne bakın.
 
 ///
 

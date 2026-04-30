@@ -8,7 +8,7 @@
 
 /// tip
 
-若想了解環境變數，你可以閱讀[環境變數](../environment-variables.md){.internal-link target=_blank}。
+若想了解環境變數，你可以閱讀[環境變數](../environment-variables.md)。
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic：設定管理</a>。
+幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：[Pydantic：設定管理](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)。
 
 ### 安裝 `pydantic-settings` { #install-pydantic-settings }
 
-首先，請先建立你的[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，啟用它，然後安裝 `pydantic-settings` 套件：
+首先，請先建立你的[虛擬環境](../virtual-environments.md)，啟用它，然後安裝 `pydantic-settings` 套件：
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一個模組中的設定 { #settings-in-another-module }
 
-你也可以把這些設定放在另一個模組檔案中，就像在[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md){.internal-link target=_blank}所示。
+你也可以把這些設定放在另一個模組檔案中，就像在[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md)所示。
 
 例如，你可以有一個 `config.py` 檔案如下：
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip
 
-你也需要一個 `__init__.py` 檔案，詳見[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md){.internal-link target=_blank}。
+你也需要一個 `__init__.py` 檔案，詳見[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md)。
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings：Dotenv (.env) 支援</a>。
+Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：[Pydantic Settings：Dotenv (.env) 支援](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support)。
 
 /// tip
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip
 
-`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：<a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic：概念：設定</a>。
+`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：[Pydantic：概念：設定](https://docs.pydantic.dev/latest/concepts/config/)。
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 如此一來，它的行為幾乎就像全域變數。但因為它使用相依函式，因此我們可以在測試時輕鬆將其覆寫。
 
-`@lru_cache` 是 `functools` 的一部分，而 `functools` 是 Python 標準程式庫的一部分。你可以在<a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文件中閱讀 `@lru_cache`</a> 以了解更多。
+`@lru_cache` 是 `functools` 的一部分，而 `functools` 是 Python 標準程式庫的一部分。你可以在[Python 文件中閱讀 `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache) 以了解更多。
 
 ## 回顧 { #recap }
 

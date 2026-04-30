@@ -32,7 +32,7 @@ Daha kapsamlı bir örneğe bakalım.
 
 Kullanıcı adı ve şifrenin doğru olup olmadığını kontrol etmek için bir dependency kullanın.
 
-Bunun için kullanıcı adı ve şifreyi kontrol ederken Python standart modülü olan <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a>’i kullanın.
+Bunun için kullanıcı adı ve şifreyi kontrol ederken Python standart modülü olan [`secrets`](https://docs.python.org/3/library/secrets.html)'i kullanın.
 
 `secrets.compare_digest()`; `bytes` ya da yalnızca ASCII karakterleri (İngilizce’deki karakterler) içeren bir `str` almalıdır. Bu da `Sebastián` içindeki `á` gibi karakterlerle çalışmayacağı anlamına gelir.
 

@@ -58,7 +58,7 @@ Puedes añadir un `summary` y `description`:
 
 Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <dfn title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usada para documentación">docstring</dfn> de la función y **FastAPI** la leerá desde allí.
 
-Puedes escribir <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
+Puedes escribir [Markdown](https://en.wikipedia.org/wiki/Markdown) en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 

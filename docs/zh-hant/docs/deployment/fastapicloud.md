@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-你可以用「一行指令」把你的 FastAPI 應用程式部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>。如果你還沒加入，快去登記等候名單吧！🚀
+你可以用「一行指令」把你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)。如果你還沒加入，快去登記等候名單吧！🚀
 
 ## 登入 { #login }
 
@@ -40,7 +40,7 @@ Deploying to FastAPI Cloud...
 
 ## 關於 FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 的作者與團隊打造。
+**[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者與團隊打造。
 
 它以最少的心力，精簡化建立、部署與存取 API 的流程。
 

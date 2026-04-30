@@ -81,7 +81,7 @@ Mas caso você precise, para um cenário mais complexo, você pode adicionar hea
 
 ## Instale manipuladores de exceções customizados { #install-custom-exception-handlers }
 
-Você pode adicionar manipuladores de exceção customizados com <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">a mesma seção de utilidade de exceções presentes no Starlette</a>.
+Você pode adicionar manipuladores de exceção customizados com [a mesma seção de utilidade de exceções presentes no Starlette](https://www.starlette.dev/exceptions/).
 
 Digamos que você tenha uma exceção customizada `UnicornException` que você (ou uma biblioteca que você use) precise lançar (`raise`).
 

@@ -1,7 +1,7 @@
 # Тестирование базы данных { #testing-a-database }
 
-Вы можете изучить базы данных, SQL и SQLModel в <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">документации SQLModel</a>. 🤓
+Вы можете изучить базы данных, SQL и SQLModel в [документации SQLModel](https://sqlmodel.tiangolo.com/). 🤓
 
-Есть мини-<a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">руководство по использованию SQLModel с FastAPI</a>. ✨
+Есть мини-[руководство по использованию SQLModel с FastAPI](https://sqlmodel.tiangolo.com/tutorial/fastapi/). ✨
 
-В этом руководстве есть раздел о <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/" class="external-link" target="_blank">тестировании SQL-баз данных</a>. 😎
+В этом руководстве есть раздел о [тестировании SQL-баз данных](https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/). 😎

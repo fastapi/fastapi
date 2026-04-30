@@ -14,7 +14,7 @@ Você pode definir os seguintes campos que são usados na especificação OpenAP
 | `version` | `string` | A versão da API. Esta é a versão da sua aplicação, não do OpenAPI. Por exemplo, `2.5.0`. |
 | `terms_of_service` | `str` | Uma URL para os Termos de Serviço da API. Se fornecido, deve ser uma URL. |
 | `contact` | `dict` | As informações de contato da API exposta. Pode conter vários campos. <details><summary>Campos de <code>contact</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>O nome identificador da pessoa/organização de contato.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>A URL que aponta para as informações de contato. DEVE estar no formato de uma URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>O endereço de e-mail da pessoa/organização de contato. DEVE estar no formato de um endereço de e-mail.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | As informações de licença para a API exposta. Ela pode conter vários campos. <details><summary>Campos de <code>license_info</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBRIGATÓRIO</strong> (se um <code>license_info</code> for definido). O nome da licença usada para a API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Uma expressão de licença <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> para a API. O campo <code>identifier</code> é mutuamente exclusivo do campo <code>url</code>. <small>Disponível desde OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Uma URL para a licença usada para a API. DEVE estar no formato de uma URL.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | As informações de licença para a API exposta. Ela pode conter vários campos. <details><summary>Campos de <code>license_info</code></summary><table><thead><tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBRIGATÓRIO</strong> (se um <code>license_info</code> for definido). O nome da licença usada para a API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Uma expressão de licença [SPDX](https://spdx.org/licenses/) para a API. O campo <code>identifier</code> é mutuamente exclusivo do campo <code>url</code>. <small>Disponível desde OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Uma URL para a licença usada para a API. DEVE estar no formato de uma URL.</td></tr></tbody></table></details> |
 
 Você pode defini-los da seguinte maneira:
 
@@ -76,7 +76,7 @@ Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atr
 
 /// info | Informação
 
-Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags).
 
 ///
 

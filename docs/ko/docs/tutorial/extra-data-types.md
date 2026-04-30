@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * 파이썬의 `datetime.timedelta`.
     * 요청과 응답에서 전체 초(seconds)의 `float`로 표현됩니다.
-    * Pydantic은 "ISO 8601 time diff encoding"으로 표현하는 것 또한 허용합니다. <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">더 많은 정보는 문서를 확인하세요</a>.
+    * Pydantic은 "ISO 8601 time diff encoding"으로 표현하는 것 또한 허용합니다. [더 많은 정보는 문서를 확인하세요](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * 요청과 응답에서 `set`와 동일하게 취급됩니다:
         * 요청 시, 리스트를 읽어 중복을 제거하고 `set`로 변환합니다.
@@ -49,7 +49,7 @@
 * `Decimal`:
     * 표준 파이썬의 `Decimal`.
     * 요청과 응답에서 `float`와 동일하게 다뤄집니다.
-* 여기에서 모든 유효한 Pydantic 데이터 자료형을 확인할 수 있습니다: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic 데이터 자료형</a>.
+* 여기에서 모든 유효한 Pydantic 데이터 자료형을 확인할 수 있습니다: [Pydantic 데이터 자료형](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## 예시 { #example }
 

@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | Dica
 
-O segundo argumento para <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> é o valor padrão a ser retornado.
+O segundo argumento para [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) é o valor padrão a ser retornado.
 
 Se não for fornecido, é `None` por padrão, Aqui fornecemos `"World"` como o valor padrão a ser usado.
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | Dica
 
-Você pode ler mais sobre isso em <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+Você pode ler mais sobre isso em [The Twelve-Factor App: Config](https://12factor.net/config).
 
 ///
 
@@ -163,7 +163,7 @@ Essas variáveis de ambiente só podem lidar com **strings de texto**, pois são
 
 Isso significa que **qualquer valor** lido em Python de uma variável de ambiente **será uma `str`**, e qualquer conversão para um tipo diferente ou qualquer validação precisa ser feita no código.
 
-Você aprenderá mais sobre como usar variáveis de ambiente para lidar com **configurações do aplicativo** no [Guia do Usuário Avançado - Configurações e Variáveis de Ambiente](./advanced/settings.md){.internal-link target=_blank}.
+Você aprenderá mais sobre como usar variáveis de ambiente para lidar com **configurações do aplicativo** no [Guia do Usuário Avançado - Configurações e Variáveis de Ambiente](./advanced/settings.md).
 
 ## Variável de Ambiente `PATH` { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Essas informações serão úteis ao aprender sobre [Ambientes Virtuais](virtual-environments.md){.internal-link target=_blank}.
+Essas informações serão úteis ao aprender sobre [Ambientes Virtuais](virtual-environments.md).
 
 ## Conclusão { #conclusion }
 
 Com isso, você deve ter uma compreensão básica do que são **variáveis ​​de ambiente** e como usá-las em Python.
 
-Você também pode ler mais sobre elas na <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia para Variáveis ​​de Ambiente</a>.
+Você também pode ler mais sobre elas na [Wikipedia para Variáveis ​​de Ambiente](https://en.wikipedia.org/wiki/Environment_variable).
 
 Em muitos casos, não é muito óbvio como as variáveis ​​de ambiente seriam úteis e aplicáveis ​​imediatamente. Mas elas continuam aparecendo em muitos cenários diferentes quando você está desenvolvendo, então é bom saber sobre elas.
 
