@@ -371,3 +371,6 @@ Inspired by Termynal's CSS tricks with modifications
   .fastapi-opinions__tabs { gap: 0.125rem; }
   .fastapi-opinions__mark { height: 18px; }
 }
+
+/* Hidden in MkDocs; rendered on GitHub (which doesn't load this stylesheet) */
+.only-github { display: none; }

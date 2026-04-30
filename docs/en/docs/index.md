@@ -73,6 +73,7 @@ The key features are:
 
 ## Opinions { #opinions }
 
+<!-- only-mkdocs -->
 <div class="fastapi-opinions" data-fastapi-opinions>
   <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
@@ -105,6 +106,38 @@ The key features are:
     <blockquote class="fastapi-opinions__quote">"If anyone is looking to build a production Python API, I would highly recommend <strong>FastAPI</strong>. It is <strong>beautifully designed</strong>, <strong>simple to use</strong> and <strong>highly scalable</strong> — it has become a <strong>key component</strong> in our API-first development strategy."</blockquote>
     <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
   </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
+
+| [<img height="22" src="https://fastapi.tiangolo.com/img/logos/microsoft.svg" alt="Microsoft">](https://github.com/fastapi/fastapi/pull/26 "Microsoft") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/uber.svg" alt="Uber">](https://eng.uber.com/ludwig-v0-2/ "Uber") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/netflix.svg" alt="Netflix">](https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072 "Netflix") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/cisco.svg" alt="Cisco">](https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/ "Cisco") |
+| :---: | :---: | :---: | :---: |
+
+"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
+
+---
+
+"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+
+---
+
+"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
+
+---
+
+"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
+
+---
+
 </div>
 
 ## FastAPI Conf { #fastapi-conf }
