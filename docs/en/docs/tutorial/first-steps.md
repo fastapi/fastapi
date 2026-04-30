@@ -180,7 +180,7 @@ which would be equivalent to:
 from backend.main import app
 ```
 
-### `fastapi dev` with path { #fastapi-dev-with-path }
+### `fastapi dev` with path or with `--entrypoint` CLI option { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
 
@@ -188,7 +188,13 @@ You can also pass the file path to the `fastapi dev` command, and it will guess 
 $ fastapi dev main.py
 ```
 
-But you would have to remember to pass the correct path every time you call the `fastapi` command.
+Or, you can also pass the `--entrypoint` option to the `fastapi dev` command:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+But you would have to remember to pass the correct path/entrypoint every time you call the `fastapi` command.
 
 Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
 
