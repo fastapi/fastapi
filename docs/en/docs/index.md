@@ -120,9 +120,6 @@ The key features are:
 
 <div class="only-github" markdown="1">
 
-| [<img height="22" src="https://fastapi.tiangolo.com/img/logos/microsoft.svg" alt="Microsoft">](https://github.com/fastapi/fastapi/pull/26 "Microsoft") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/uber.svg" alt="Uber">](https://eng.uber.com/ludwig-v0-2/ "Uber") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/netflix.svg" alt="Netflix">](https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072 "Netflix") | [<img height="22" src="https://fastapi.tiangolo.com/img/logos/cisco.svg" alt="Cisco">](https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/ "Cisco") |
-| :---: | :---: | :---: | :---: |
-
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
