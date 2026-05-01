@@ -49,7 +49,7 @@ For the next terms, use the following translations:
 * Deep Learning: Deep Learning (do not translate to "Aprendizaje Profundo")
 * callback hell: callback hell (do not translate to "infierno de callbacks")
 * tip: Consejo (do not translate to "tip")
-* check: Revisa (do not translate to "chequea" or "comprobación)
+* check: Revisa (do not translate to "chequea" or "comprobación")
 * Cross-Origin Resource Sharing: Cross-Origin Resource Sharing (do not translate to "Compartición de Recursos de Origen Cruzado")
 * Release Notes: Release Notes (do not translate to "Notas de la Versión")
 * Semantic Versioning: Semantic Versioning (do not translate to "Versionado Semántico")
