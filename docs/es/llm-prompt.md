@@ -102,8 +102,8 @@ For the next terms, use the following translations:
 * handler: handler (do not translate to "manejador")
 * payload: payload
 * runtime: runtime
-* deploy: deploy / desplegar, choose one consistently
-* deployment: deployment / despliegue, choose one consistently
+* deploy: desplegar
+* deployment: despliegue
 * logging: logging
 * traceback: traceback
 * decorator: decorador
