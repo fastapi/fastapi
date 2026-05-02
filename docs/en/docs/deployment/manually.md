@@ -56,7 +56,6 @@ There are several alternatives, including:
 * [Hypercorn](https://hypercorn.readthedocs.io/): an ASGI server compatible with HTTP/2 and Trio among other features.
 * [Daphne](https://github.com/django/daphne): the ASGI server built for Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): A Rust HTTP server for Python applications.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit is a lightweight and versatile web application runtime.
 
 ## Server Machine and Server Program { #server-machine-and-server-program }
 
