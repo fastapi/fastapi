@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from typing import Annotated, Any
 
 import pytest
@@ -83,7 +84,8 @@ class TestAnnotatedBodyDependsMergeBody:
         assert r.json() == {"extra": "x"}
 
         bad = client.post("/c", json={"kind": "foo"})
-        assert bad.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        # not status.*: Starlette confused HTTP_422_UNPROCESSABLE_CONTENT HTTP_422_UNPROCESSABLE_ENTITY
+        assert bad.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
 
     def test_merge_depends_empty_falls_back_to_declared_model(self) -> None:
         app = FastAPI()

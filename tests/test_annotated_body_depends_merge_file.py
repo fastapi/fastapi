@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from io import BytesIO
 from typing import Annotated, Any
 
@@ -81,7 +82,8 @@ class TestAnnotatedBodyDependsMergeFile:
             data={"kind": "foo"},
             files={"blob": ("up.txt", BytesIO(b"x"), "text/plain")},
         )
-        assert bad.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        # not status.*: Starlette confused HTTP_422_UNPROCESSABLE_CONTENT HTTP_422_UNPROCESSABLE_ENTITY
+        assert bad.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
 
     def test_rejects_file_and_form_together(self) -> None:
         app = FastAPI()

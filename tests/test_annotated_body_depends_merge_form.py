@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from typing import Annotated, Any
 
 import pytest
@@ -61,4 +62,5 @@ class TestAnnotatedBodyDependsMergeForm:
         assert r.json() == {"extra": "z"}
 
         bad = client.post("/form-c", data={"kind": "foo"})
-        assert bad.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        # not status.*: Starlette confused HTTP_422_UNPROCESSABLE_CONTENT HTTP_422_UNPROCESSABLE_ENTITY
+        assert bad.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
