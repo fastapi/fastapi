@@ -1,6 +1,6 @@
 import time
 from collections.abc import Awaitable, Callable
-from typing import Any, List, Set, Union
+from typing import Any
 
 from fastapi import APIRouter, FastAPI, Request, Response
 from fastapi.responses import JSONResponse
@@ -67,7 +67,7 @@ class AppRouter(APIRouter):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        methods: Union[Set[str], List[str]],  # noqa
+        methods: set[str] | list[str],
         name: str,
         **kwargs,
     ):
