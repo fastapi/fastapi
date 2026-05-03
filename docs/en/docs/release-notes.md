@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#15471](https://github.com/fastapi/fastapi/pull/15471) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15467](https://github.com/fastapi/fastapi/pull/15467) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix missing credentials issue in `translate` workflow. PR [#15468](https://github.com/fastapi/fastapi/pull/15468) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump sqlmodel from 0.0.32 to 0.0.38. PR [#15437](https://github.com/fastapi/fastapi/pull/15437) by [@dependabot[bot]](https://github.com/apps/dependabot).
