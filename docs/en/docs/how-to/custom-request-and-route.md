@@ -108,29 +108,29 @@ In this example, the *path operations* under the `router` will use the custom `T
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
 
-## Custom `APIRouter` class in a router
+## Custom `APIRouter` class in a router { #custom-apirouter-class-in-a-router }
 
 You can also set the `router_class` parameter of an `APIRouter`:
 
 {* ../../docs_src/custom_api_router/tutorial001.py hl[100:102] *}
 
-#### 🚀 Custom FastAPI Router with Timed Responses
+#### 🚀 Custom FastAPI Router with Timed Responses { #custom-fastapi-router-with-timed-responses }
 
 This example enhances FastAPI with structured routing and response timing, making APIs more organized and observable.
 
-##### ✨ Features
+##### ✨ Features { #features }
 
 - **`TimedRoute`**: Measures request duration and adds `X-Response-Time` to response headers.
 - **`AppRouter`**: A custom router that:
   - Supports **nested routers** with automatic hierarchical route naming.
   - Includes a **built-in `/healthz` endpoint** for every router.
   - Ensures **clean API structure** with logical parent-child relationships.
-##### 📌 API Structure
+##### 📌 API Structure { #api-structure }
 - **`/healthz`**: Health check endpoint for the main router. it path name is `Global.health-check`.
 - **`/model/create`**: Model creation endpoint for the model router with path name `Model.create`.
 - **`/model/{model_id}/item/create`**: Item creation endpoint for the item router and its child router of model
   router with path name `Model.Item.create`.
-##### 🔥 Benefits
+##### 🔥 Benefits { #benefits }
 
 - **Clear & maintainable API design** with structured route naming.
 - **Built-in health checks** for easier observability.

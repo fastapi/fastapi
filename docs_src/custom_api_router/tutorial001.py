@@ -1,5 +1,6 @@
 import time
-from typing import Any, Awaitable, Callable, List, Optional, Set, Union
+from collections.abc import Awaitable, Callable
+from typing import Any, List, Set, Union
 
 from fastapi import APIRouter, FastAPI, Request, Response
 from fastapi.responses import JSONResponse
@@ -36,7 +37,7 @@ class AppRouter(APIRouter):
         tags = tags or []
         tags.insert(0, name)
         super().__init__(prefix=prefix, tags=tags, **kwargs)
-        self._parent: Optional[AppRouter] = None
+        self._parent: AppRouter | None = None
         self._add_health_check()
 
     @property
@@ -82,9 +83,9 @@ class AppRouter(APIRouter):
     def add_route(
         self,
         path: str,
-        endpoint: Callable[[Request], Union[Awaitable[Response], Response]],
-        methods: Union[List[str], None] = None,
-        name: Union[str, None] = None,
+        endpoint: Callable[[Request], Awaitable[Response] | Response],
+        methods: list[str] | None = None,
+        name: str | None = None,
         include_in_schema: bool = True,
     ) -> None:
         name = f"{self.request_name_prefix}.{name}"
