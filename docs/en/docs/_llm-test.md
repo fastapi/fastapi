@@ -8,7 +8,7 @@ Use as follows:
 
 * Have a language specific prompt - `docs/{language code}/llm-prompt.md`.
 * Do a fresh translation of this document into your desired target language (see e.g. the `translate-page` command of the `translate.py`). This will create the translation under `docs/{language code}/docs/_llm-test.md`.
-* Check if things are okay in the translation.
+* Verify that the translation is accurate, consistent, and preserves the original meaning.
 * If necessary, improve your language specific prompt, the general prompt, or the English document.
 * Then manually fix the remaining issues in the translation, so that it is a good translation.
 * Retranslate, having the good translation in place. The ideal result would be that the LLM makes no changes anymore to the translation. That means that the general prompt and your language specific prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that [LLMs are not deterministic algorithms](https://doublespeak.chat/#/handbook#deterministic-output)).
@@ -39,7 +39,7 @@ Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelle
 
 /// note
 
-The LLM will probably translate this wrong. Interesting is only if it keeps the fixed translation when retranslating.
+The LLM might translate this incorrectly. Verify it preserves the corrected version on retranslation. Interesting is only if it keeps the fixed translation when retranslating.
 
 ///
 
@@ -47,7 +47,7 @@ The LLM will probably translate this wrong. Interesting is only if it keeps the 
 
 //// tab | Info
 
-The prompt designer may choose if they want to convert neutral quotes to typographic quotes. It is okay to leave them as is.
+The prompt designer may choose if they want to convert neutral quotes to typographic quotes. Neutral quotes (") are straight quotes used in code and plain text, while typographic quotes (“ ”) are curved quotes used in formatted writing. It is also acceptable to leave them unchanged.
 
 See for example section `### Quotes` in `docs/de/llm-prompt.md`.
 
@@ -183,7 +183,7 @@ The link text should get translated, the link address should point to the transl
 
 //// tab | Info
 
-Links should be translated, but their address shall remain unchanged. An exception are absolute links to pages of the FastAPI documentation. In that case it should link to the translation.
+Links should be translated, but their URL should remain unchanged. An exception is absolute links to FastAPI documentation pages, which should point to the corresponding translated version.
 
 See section `### Links` in the general prompt in `scripts/translate.py`.
 
