@@ -811,7 +811,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         route_class: Annotated[
-            Type[routing.APIRoute],
+            type[routing.APIRoute],
             Doc(
                 """
                 Custom route (*path operation*) class to be used by this router.
@@ -822,7 +822,7 @@ class FastAPI(Starlette):
             ),
         ] = routing.APIRoute,
         router_class: Annotated[
-            Type[routing.APIRouter],
+            type[routing.APIRouter],
             Doc(
                 """
                 Custom router class to be used by this application.
