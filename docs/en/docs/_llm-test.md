@@ -39,7 +39,8 @@ Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelle
 
 /// note
 
-The LLM might translate this incorrectly. Verify it preserves the corrected version on retranslation. Interesting is only if it keeps the fixed translation when retranslating.
+
+The LLM might translate this incorrectly. Verify that, after you correct the translation, it preserves the corrected version on retranslation. This test is only interesting if it keeps the corrected translation during retranslation.
 
 ///
 
@@ -47,7 +48,7 @@ The LLM might translate this incorrectly. Verify it preserves the corrected vers
 
 //// tab | Info
 
-The prompt designer may choose if they want to convert neutral quotes to typographic quotes. Neutral quotes (") are straight quotes used in code and plain text, while typographic quotes (“ ”) are curved quotes used in formatted writing. It is also acceptable to leave them unchanged.
+The prompt designer may choose whether to convert neutral quotes to typographic quotes. Neutral quotes (") are straight quotes used in code and plain text, while typographic quotes (“ ”) are curved quotes used in formatted writing. It is also acceptable to leave them unchanged.
 
 See for example section `### Quotes` in `docs/de/llm-prompt.md`.
 
@@ -183,7 +184,7 @@ The link text should get translated, the link address should point to the transl
 
 //// tab | Info
 
-Links should be translated, but their URL should remain unchanged. An exception is absolute links to FastAPI documentation pages, which should point to the corresponding translated version.
+Link text should be translated, but their URL should remain unchanged. An exception is absolute links to FastAPI documentation pages, which should point to the corresponding translated version.
 
 See section `### Links` in the general prompt in `scripts/translate.py`.
 
