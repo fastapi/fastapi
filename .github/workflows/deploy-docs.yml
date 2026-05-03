@@ -1,45 +1,42 @@
 name: Deploy Docs
 on:
-  workflow_run:
+  workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows:
       - Build Docs
     types:
       - completed
 
-permissions:
-  deployments: write
-  issues: write
-  pull-requests: write
-  statuses: write
-
-env:
-  UV_SYSTEM_PYTHON: 1
+permissions: {}
 
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      issues: write
+      pull-requests: write
+      statuses: write
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
-          version: "0.4.15"
-          enable-cache: true
-          cache-dependency-glob: |
-            requirements**.txt
-            pyproject.toml
+          version: "0.11.4"
+          enable-cache: false
       - name: Install GitHub Actions dependencies
-        run: uv pip install -r requirements-github-actions.txt
+        run: uv sync --locked --no-dev --group github-actions
       - name: Deploy Docs Status Pending
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
@@ -49,7 +46,7 @@ jobs:
         run: |
           rm -rf ./site
           mkdir ./site
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           path: ./site/
           pattern: docs-site-*
@@ -63,21 +60,21 @@ jobs:
         env:
           PROJECT_NAME: fastapitiangolo
           BRANCH: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} # zizmor: ignore[secrets-outside-env]
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} # zizmor: ignore[secrets-outside-env]
           command: pages deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
       - name: Deploy Docs Status Error
         if: failure()
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
           RUN_ID: ${{ github.run_id }}
           STATE: "error"
       - name: Comment Deploy
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}

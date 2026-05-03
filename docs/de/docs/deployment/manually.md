@@ -1,6 +1,6 @@
 # Einen Server manuell ausführen { #run-a-server-manually }
 
-## Den `fastapi run` Befehl verwenden { #use-the-fastapi-run-command }
+## Den `fastapi run`-Befehl verwenden { #use-the-fastapi-run-command }
 
 Kurz gesagt, nutzen Sie `fastapi run`, um Ihre FastAPI-Anwendung bereitzustellen:
 
@@ -52,11 +52,11 @@ Das Wichtigste, was Sie benötigen, um eine **FastAPI**-Anwendung (oder eine and
 
 Es gibt mehrere Alternativen, einschließlich:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ein hochperformanter ASGI-Server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der unter anderem kompatibel mit HTTP/2 und Trio ist.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: der für Django Channels entwickelte ASGI-Server.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Ein Rust HTTP-Server für Python-Anwendungen.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit ist eine leichte und vielseitige Laufzeitumgebung für Webanwendungen.
+* [Uvicorn](https://www.uvicorn.dev/): ein hochperformanter ASGI-Server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): ein ASGI-Server, der unter anderem kompatibel mit HTTP/2 und Trio ist.
+* [Daphne](https://github.com/django/daphne): der für Django Channels entwickelte ASGI-Server.
+* [Granian](https://github.com/emmett-framework/granian): Ein Rust HTTP-Server für Python-Anwendungen.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit ist eine leichte und vielseitige Laufzeitumgebung für Webanwendungen.
 
 ## Servermaschine und Serverprogramm { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ Wenn Sie FastAPI installieren, wird es mit einem Produktionsserver, Uvicorn, gel
 
 Aber Sie können auch ein ASGI-Serverprogramm manuell installieren.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann die Serveranwendung installieren.
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann die Serveranwendung installieren.
 
 Zum Beispiel, um Uvicorn zu installieren:
 
@@ -94,7 +94,7 @@ Ein ähnlicher Prozess würde für jedes andere ASGI-Serverprogramm gelten.
 
 Durch das Hinzufügen von `standard` installiert und verwendet Uvicorn einige empfohlene zusätzliche Abhängigkeiten.
 
-Dazu gehört `uvloop`, der hochperformante Drop-in-Ersatz für `asyncio`, der den großen Nebenläufigkeits-Performanz-Schub bietet.
+Dazu gehört `uvloop`, der hochperformante Drop-in-Ersatz für `asyncio`, der den großen Nebenläufigkeits-Leistungsschub bietet.
 
 Wenn Sie FastAPI mit etwas wie `pip install "fastapi[standard]"` installieren, erhalten Sie auch `uvicorn[standard]`.
 

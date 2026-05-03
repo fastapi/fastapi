@@ -1,115 +1,76 @@
-# Generate Clients
+# Gerando SDKs { #generating-sdks }
 
-Como o **FastAPI** é baseado na especificação **OpenAPI**, você obtém compatibilidade automática com muitas ferramentas, incluindo a documentação automática da API (fornecida pelo Swagger UI).
+Como o **FastAPI** é baseado na especificação **OpenAPI**, suas APIs podem ser descritas em um formato padrão que muitas ferramentas entendem.
 
-Uma vantagem particular que nem sempre é óbvia é que você pode **gerar clientes** (às vezes chamados de <abbr title="Software Development Kits">**SDKs**</abbr>) para a sua API, para muitas **linguagens de programação** diferentes.
+Isso facilita gerar **documentação** atualizada, bibliotecas clientes (<abbr title="Software Development Kits - Kits de Desenvolvimento de Software">**SDKs**</abbr>) em várias linguagens e **testes** ou **fluxos de trabalho de automação** que permanecem em sincronia com o seu código.
 
-## Geradores de Clientes OpenAPI
+Neste guia, você aprenderá como gerar um **SDK em TypeScript** para o seu backend FastAPI.
 
-Existem muitas ferramentas para gerar clientes a partir do **OpenAPI**.
+## Geradores de SDK de código aberto { #open-source-sdk-generators }
 
-Uma ferramenta comum é o <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>.
+Uma opção versátil é o [OpenAPI Generator](https://openapi-generator.tech/), que suporta **muitas linguagens de programação** e pode gerar SDKs a partir da sua especificação OpenAPI.
 
-Se voce está construindo um **frontend**, uma alternativa muito interessante é o <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>.
+Para **clientes TypeScript**, o [Hey API](https://heyapi.dev/) é uma solução feita sob medida, oferecendo uma experiência otimizada para o ecossistema TypeScript.
 
-## Geradores de Clientes e SDKs - Patrocinadores
+Você pode descobrir mais geradores de SDK em [OpenAPI.Tools](https://openapi.tools/#sdk).
 
-Existem também alguns geradores de clientes e SDKs baseados na OpenAPI (FastAPI) **patrocinados por empresas**, em alguns casos eles podem oferecer **recursos adicionais** além de SDKs/clientes gerados de alta qualidade.
+/// tip | Dica
 
-Alguns deles também ✨ [**patrocinam o FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, isso garante o **desenvolvimento** contínuo e saudável do FastAPI e seu **ecossistema**.
+O FastAPI gera automaticamente especificações **OpenAPI 3.1**, então qualquer ferramenta que você usar deve suportar essa versão.
 
-E isso mostra o verdadeiro compromisso deles com o FastAPI e sua **comunidade** (você), pois eles não apenas querem fornecer um **bom serviço**, mas também querem garantir que você tenha um **framework bom e saudável**, o FastAPI. 🙇
+///
+
+## Geradores de SDK dos patrocinadores do FastAPI { #sdk-generators-from-fastapi-sponsors }
+
+Esta seção destaca soluções **financiadas por investimento** e **com suporte de empresas** que patrocinam o FastAPI. Esses produtos fornecem **funcionalidades adicionais** e **integrações** além de SDKs gerados com alta qualidade.
+
+Ao ✨ [**patrocinar o FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, essas empresas ajudam a garantir que o framework e seu **ecossistema** continuem saudáveis e **sustentáveis**.
+
+O patrocínio também demonstra um forte compromisso com a **comunidade** FastAPI (você), mostrando que elas se importam não apenas em oferecer um **ótimo serviço**, mas também em apoiar um **framework robusto e próspero**, o FastAPI. 🙇
 
 Por exemplo, você pode querer experimentar:
 
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi/?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
+* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
+* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
-Existem também várias outras empresas que oferecem serviços semelhantes que você pode pesquisar e encontrar online. 🤓
+Algumas dessas soluções também podem ser open source ou oferecer planos gratuitos, para que você possa testá-las sem compromisso financeiro. Outros geradores comerciais de SDK estão disponíveis e podem ser encontrados online. 🤓
 
-## Gerar um Cliente Frontend TypeScript
+## Crie um SDK em TypeScript { #create-a-typescript-sdk }
 
-Vamos começar com um aplicativo **FastAPI** simples:
+Vamos começar com uma aplicação FastAPI simples:
 
-{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
 Note que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`.
 
-### Documentação da API
+### Documentação da API { #api-docs }
 
-Se você acessar a documentação da API, verá que ela tem os **schemas** para os dados a serem enviados nas requisições e recebidos nas respostas:
+Se você for para `/docs`, verá que ela tem os **schemas** para os dados a serem enviados nas requisições e recebidos nas respostas:
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
 Você pode ver esses schemas porque eles foram declarados com os modelos no app.
 
-Essas informações estão disponíveis no **OpenAPI schema** do app e são mostradas na documentação da API (pelo Swagger UI).
+Essas informações estão disponíveis no **schema OpenAPI** do app e são mostradas na documentação da API.
 
 E essas mesmas informações dos modelos que estão incluídas no OpenAPI são o que pode ser usado para **gerar o código do cliente**.
 
-### Gerar um Cliente TypeScript
+### Hey API { #hey-api }
 
-Agora que temos o app com os modelos, podemos gerar o código do cliente para o frontend.
+Depois que tivermos uma aplicação FastAPI com os modelos, podemos usar o Hey API para gerar um cliente TypeScript. A forma mais rápida é via npx.
 
-#### Instalar o `openapi-ts`
-
-Você pode instalar o `openapi-ts` no seu código frontend com:
-
-<div class="termy">
-
-```console
-$ npm install @hey-api/openapi-ts --save-dev
-
----> 100%
+```sh
+npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 ```
 
-</div>
+Isso gerará um SDK TypeScript em `./src/client`.
 
-#### Gerar o Código do Cliente
+Você pode aprender como [instalar `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started) e ler sobre o [resultado gerado](https://heyapi.dev/openapi-ts/output) no site deles.
 
-Para gerar o código do cliente, você pode usar a aplicação de linha de comando `openapi-ts` que agora está instalada.
+### Usando o SDK { #using-the-sdk }
 
-Como ela está instalada no projeto local, você provavelmente não conseguiria chamar esse comando diretamente, mas você o colocaria no seu arquivo `package.json`.
-
-Poderia ser assim:
-
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
-  }
-}
-```
-
-Depois de ter esse script NPM `generate-client` lá, você pode executá-lo com:
-
-<div class="termy">
-
-```console
-$ npm run generate-client
-
-frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
-```
-
-</div>
-
-Esse comando gerará o código em `./src/client` e usará o `axios` (a biblioteca HTTP frontend) internamente.
-
-### Experimente o Código do Cliente
-
-Agora você pode importar e usar o código do cliente, ele poderia ser assim, observe que você obtém preenchimento automático para os métodos:
+Agora você pode importar e usar o código do cliente. Poderia ser assim, observe que você obtém preenchimento automático para os métodos:
 
 <img src="/img/tutorial/generate-clients/image02.png">
 
@@ -119,7 +80,7 @@ Você também obterá preenchimento automático para o corpo a ser enviado:
 
 /// tip | Dica
 
-Observe o preenchimento automático para `name` e `price`, que foi definido no aplicativo FastAPI, no modelo `Item`.
+Observe o preenchimento automático para `name` e `price`, que foi definido na aplicação FastAPI, no modelo `Item`.
 
 ///
 
@@ -131,17 +92,17 @@ O objeto de resposta também terá preenchimento automático:
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
-## App FastAPI com Tags
+## Aplicação FastAPI com Tags { #fastapi-app-with-tags }
 
-Em muitos casos seu app FastAPI será maior, e você provavelmente usará tags para separar diferentes grupos de *operações de rota*.
+Em muitos casos, sua aplicação FastAPI será maior, e você provavelmente usará tags para separar diferentes grupos de *operações de rota*.
 
 Por exemplo, você poderia ter uma seção para **items** e outra seção para **users**, e elas poderiam ser separadas por tags:
 
-{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
 
-### Gerar um Cliente TypeScript com Tags
+### Gere um cliente TypeScript com Tags { #generate-a-typescript-client-with-tags }
 
-Se você gerar um cliente para um app FastAPI usando tags, normalmente também separará o código do cliente com base nas tags.
+Se você gerar um cliente para uma aplicação FastAPI usando tags, normalmente também separará o código do cliente com base nas tags.
 
 Dessa forma, você poderá ter as coisas ordenadas e agrupadas corretamente para o código do cliente:
 
@@ -152,49 +113,49 @@ Nesse caso você tem:
 * `ItemsService`
 * `UsersService`
 
-### Nomes dos Métodos do Cliente
+### Nomes dos métodos do cliente { #client-method-names }
 
-Agora os nomes dos métodos gerados como `createItemItemsPost` não parecem muito "limpos":
+Agora os nomes dos métodos gerados como `createItemItemsPost` não parecem muito “limpos”:
 
 ```TypeScript
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...isto ocorre porque o gerador de clientes usa o **operation ID** interno do OpenAPI para cada *operação de rota*.
+...isso ocorre porque o gerador de clientes usa o **ID de operação** interno do OpenAPI para cada *operação de rota*.
 
-O OpenAPI exige que cada operation ID seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **caminho** e o **método/operacao HTTP** para gerar esse operation ID, porque dessa forma ele pode garantir que os operation IDs sejam únicos.
+O OpenAPI exige que cada ID de operação seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **path** e o **método/operação HTTP** para gerar esse ID de operação, porque dessa forma ele pode garantir que os IDs de operação sejam únicos.
 
 Mas eu vou te mostrar como melhorar isso a seguir. 🤓
 
-### IDs de Operação Personalizados e Melhores Nomes de Método
+## IDs de operação personalizados e nomes de métodos melhores { #custom-operation-ids-and-better-method-names }
 
 Você pode **modificar** a maneira como esses IDs de operação são **gerados** para torná-los mais simples e ter **nomes de método mais simples** nos clientes.
 
 Neste caso, você terá que garantir que cada ID de operação seja **único** de alguma outra maneira.
 
-Por exemplo, você poderia garantir que cada *operação de rota* tenha uma tag, e então gerar o ID da operação com base na **tag** e no **nome** da *operação de rota* (o nome da função).
+Por exemplo, você poderia garantir que cada *operação de rota* tenha uma tag, e então gerar o ID de operação com base na **tag** e no **nome** da *operação de rota* (o nome da função).
 
-### Função Personalizada para Gerar IDs de Operação Únicos
+### Função personalizada para gerar IDs exclusivos { #custom-generate-unique-id-function }
 
-O FastAPI usa um **ID único** para cada *operação de rota*, ele é usado para o **ID da operação** e também para os nomes de quaisquer modelos personalizados necessários, para requisições ou respostas.
+O FastAPI usa um **ID exclusivo** para cada *operação de rota*, ele é usado para o **ID de operação** e também para os nomes de quaisquer modelos personalizados necessários, para requisições ou respostas.
 
-Você pode personalizar essa função. Ela recebe uma `APIRoute` e gera uma string.
+Você pode personalizar essa função. Ela recebe uma `APIRoute` e retorna uma string.
 
-Por exemplo, aqui está usando a primeira tag (você provavelmente terá apenas uma tag) e o nome da *operação de rota* (o nome da função).
+Por exemplo, aqui está usando a primeira tag (Você provavelmente terá apenas uma tag) e o nome da *operação de rota* (o nome da função).
 
 Você pode então passar essa função personalizada para o **FastAPI** como o parâmetro `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
 
-### Gerar um Cliente TypeScript com IDs de Operação Personalizados
+### Gere um cliente TypeScript com IDs de operação personalizados { #generate-a-typescript-client-with-custom-operation-ids }
 
 Agora, se você gerar o cliente novamente, verá que ele tem os nomes dos métodos melhorados:
 
 <img src="/img/tutorial/generate-clients/image07.png">
 
-Como você pode ver, os nomes dos métodos agora têm a tag e, em seguida, o nome da função. Agora eles não incluem informações do caminho da URL e da operação HTTP.
+Como você pode ver, os nomes dos métodos agora têm a tag e, em seguida, o nome da função. Agora eles não incluem informações do path da URL e da operação HTTP.
 
-### Pré-processar a Especificação OpenAPI para o Gerador de Clientes
+### Pré-processar a especificação OpenAPI para o gerador de clientes { #preprocess-the-openapi-specification-for-the-client-generator }
 
 O código gerado ainda tem algumas **informações duplicadas**.
 
@@ -202,11 +163,11 @@ Nós já sabemos que esse método está relacionado aos **items** porque essa pa
 
 Provavelmente ainda queremos mantê-lo para o OpenAPI em geral, pois isso garantirá que os IDs de operação sejam **únicos**.
 
-Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do OpenAPI logo antes de gerar os clientes, apenas para tornar esses nomes de método mais **simples**.
+Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do OpenAPI logo antes de gerar os clientes, apenas para tornar esses nomes de método mais agradáveis e **limpos**.
 
 Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então poderíamos **remover essa tag prefixada** com um script como este:
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py310.py *}
 
 //// tab | Node.js
 
@@ -218,44 +179,30 @@ Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então pod
 
 Com isso, os IDs de operação seriam renomeados de coisas como `items-get_items` para apenas `get_items`, dessa forma o gerador de clientes pode gerar nomes de métodos mais simples.
 
-### Gerar um Cliente TypeScript com o OpenAPI Pré-processado
+### Gere um cliente TypeScript com o OpenAPI pré-processado { #generate-a-typescript-client-with-the-preprocessed-openapi }
 
-Agora, como o resultado final está em um arquivo `openapi.json`, você modificaria o `package.json` para usar esse arquivo local, por exemplo:
+Como o resultado final está agora em um arquivo `openapi.json`, você precisa atualizar o local de entrada:
 
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
-  }
-}
+```sh
+npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 ```
 
-Depois de gerar o novo cliente, você teria agora **nomes de métodos "limpos"**, com todo o **preenchimento automático**, **erros em linha**, etc:
+Depois de gerar o novo cliente, você terá agora **nomes de métodos “limpos”**, com todo o **preenchimento automático**, **erros em linha**, etc:
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
-## Benefícios
+## Benefícios { #benefits }
 
-Ao usar os clientes gerados automaticamente, você teria **preenchimento automático** para:
+Ao usar os clientes gerados automaticamente, você terá **preenchimento automático** para:
 
 * Métodos.
-* Corpo de requisições, parâmetros da query, etc.
-* Corpo de respostas.
+* Corpos de requisições, parâmetros de query, etc.
+* Corpos de respostas.
 
-Você também teria **erros em linha** para tudo.
+Você também terá **erros em linha** para tudo.
 
-E sempre que você atualizar o código do backend, e **regenerar** o frontend, ele teria quaisquer novas *operações de rota* disponíveis como métodos, as antigas removidas, e qualquer outra alteração seria refletida no código gerado. 🤓
+E sempre que você atualizar o código do backend e **regenerar** o frontend, ele terá quaisquer novas *operações de rota* disponíveis como métodos, as antigas removidas, e qualquer outra alteração será refletida no código gerado. 🤓
 
-Isso também significa que se algo mudar, será **refletido** no código do cliente automaticamente. E se você **construir** o cliente, ele dará erro se houver alguma **incompatibilidade** nos dados usados.
+Isso também significa que, se algo mudou, será **refletido** no código do cliente automaticamente. E se você **construir** o cliente, ele falhará caso haja qualquer **incompatibilidade** nos dados usados.
 
-Então, você **detectaria vários erros** muito cedo no ciclo de desenvolvimento, em vez de ter que esperar que os erros apareçam para seus usuários finais em produção e então tentar depurar onde está o problema. ✨
+Assim, você **detectará muitos erros** muito cedo no ciclo de desenvolvimento, em vez de ter que esperar que os erros apareçam para seus usuários finais em produção e então tentar depurar onde está o problema. ✨

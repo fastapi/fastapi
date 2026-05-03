@@ -8,35 +8,13 @@ Here are several ways to do it.
 
 You can declare `examples` for a Pydantic model that will be added to the generated JSON Schema.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
-
-////
 
 That extra info will be added as-is to the output **JSON Schema** for that model, and it will be used in the API docs.
 
-//// tab | Pydantic v2
-
-In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
+You can use the attribute `model_config` that takes a `dict` as described in [Pydantic's docs: Configuration](https://docs.pydantic.dev/latest/api/config/).
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
-
-//// tab | Pydantic v1
-
-In Pydantic version 1, you would use an internal class `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>.
-
-You can set `schema_extra` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
 
 /// tip
 
@@ -96,7 +74,7 @@ You can of course also pass multiple `examples`:
 
 When you do this, the examples will be part of the internal **JSON Schema** for that body data.
 
-Nevertheless, at the <abbr title="2023-08-26">time of writing this</abbr>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
+Nevertheless, at the <dfn title="2023-08-26">time of writing this</dfn>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
 
 ### OpenAPI-specific `examples` { #openapi-specific-examples }
 
@@ -167,12 +145,12 @@ JSON Schema didn't have `examples`, so OpenAPI added its own `example` field to 
 
 OpenAPI also added `example` and `examples` fields to other parts of the specification:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (in the specification)</a> that was used by FastAPI's:
+* [`Parameter Object` (in the specification)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object) that was used by FastAPI's:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`, in the field `content`, on the `Media Type Object` (in the specification)</a> that was used by FastAPI's:
+* [`Request Body Object`, in the field `content`, on the `Media Type Object` (in the specification)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object) that was used by FastAPI's:
     * `Body()`
     * `File()`
     * `Form()`
@@ -185,7 +163,7 @@ This old OpenAPI-specific `examples` parameter is now `openapi_examples` since F
 
 ### JSON Schema's `examples` field { #json-schemas-examples-field }
 
-But then JSON Schema added an <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> field to a new version of the specification.
+But then JSON Schema added an [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) field to a new version of the specification.
 
 And then the new OpenAPI 3.1.0 was based on the latest version (JSON Schema 2020-12) that included this new field `examples`.
 

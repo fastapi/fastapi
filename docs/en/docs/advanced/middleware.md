@@ -1,8 +1,8 @@
 # Advanced Middleware { #advanced-middleware }
 
-In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md){.internal-link target=_blank} to your application.
+In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md) to your application.
 
-And then you also read how to handle [CORS with the `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+And then you also read how to handle [CORS with the `CORSMiddleware`](../tutorial/cors.md).
 
 In this section we'll see how to use other middlewares.
 
@@ -57,13 +57,13 @@ Enforces that all incoming requests must either be `https` or `wss`.
 
 Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 The following arguments are supported:
 
@@ -78,7 +78,7 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 
 The middleware will handle both standard and streaming responses.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 The following arguments are supported:
 
@@ -91,7 +91,7 @@ There are many other ASGI middlewares.
 
 For example:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [Uvicorn's `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-To see other available middlewares check <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlette's Middleware docs</a> and the <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.
+To see other available middlewares check [Starlette's Middleware docs](https://www.starlette.dev/middleware/) and the [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).

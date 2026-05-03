@@ -8,7 +8,7 @@ The same way you can specify a response model, you can also declare the HTTP sta
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note
 
@@ -20,7 +20,7 @@ The `status_code` parameter receives a number with the HTTP status code.
 
 /// info
 
-`status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+`status_code` can alternatively also receive an `IntEnum`, such as Python's [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus).
 
 ///
 
@@ -66,7 +66,7 @@ In short:
 
 /// tip
 
-To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+To know more about each status code and which code is for what, check the [<abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -74,7 +74,7 @@ To know more about each status code and which code is for what, check the <a hre
 
 Let's see the previous example again:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201` is the status code for "Created".
 
@@ -82,7 +82,7 @@ But you don't have to memorize what each of these codes mean.
 
 You can use the convenience variables from `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 
@@ -98,4 +98,4 @@ You could also use `from starlette import status`.
 
 ## Changing the default { #changing-the-default }
 
-Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.
+Later, in the [Advanced User Guide](../advanced/response-change-status-code.md), you will see how to return a different status code than the default you are declaring here.

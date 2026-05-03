@@ -8,35 +8,13 @@ Hier sind mehrere Möglichkeiten, das zu tun.
 
 Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, welche dem generierten JSON-Schema hinzugefügt werden.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
-
-////
 
 Diese zusätzlichen Informationen werden unverändert zum für dieses Modell ausgegebenen **JSON-Schema** hinzugefügt und in der API-Dokumentation verwendet.
 
-//// tab | Pydantic v2
-
-In Pydantic Version 2 würden Sie das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic-Dokumentation: Configuration</a>.
+Sie können das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in [Pydantic-Dokumentation: Configuration](https://docs.pydantic.dev/latest/api/config/).
 
 Sie können `json_schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
-
-////
-
-//// tab | Pydantic v1
-
-In Pydantic Version 1 würden Sie eine interne Klasse `Config` und `schema_extra` verwenden, wie beschrieben in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic-Dokumentation: Schema customization</a>.
-
-Sie können `schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
-
-////
 
 /// tip | Tipp
 
@@ -96,7 +74,7 @@ Sie können natürlich auch mehrere `examples` übergeben:
 
 Wenn Sie das tun, werden die Beispiele Teil des internen **JSON-Schemas** für diese Body-Daten.
 
-<abbr title="2023-08-26">Während dies geschrieben wird</abbr>, unterstützt Swagger UI, das für die Anzeige der Dokumentations-Benutzeroberfläche zuständige Tool, jedoch nicht die Anzeige mehrerer Beispiele für die Daten in **JSON Schema**. Aber lesen Sie unten für einen Workaround weiter.
+Nichtsdestotrotz unterstützt Swagger UI, das für die Anzeige der Dokumentations-Benutzeroberfläche zuständige Tool, zum <dfn title="2023-08-26">Zeitpunkt der Erstellung</dfn> nicht die Anzeige mehrerer Beispiele für die Daten in **JSON Schema**. Aber lesen Sie unten für einen Workaround weiter.
 
 ### OpenAPI-spezifische `examples` { #openapi-specific-examples }
 
@@ -167,12 +145,12 @@ JSON Schema hatte keine `examples`, daher fügte OpenAPI seiner eigenen modifizi
 
 OpenAPI fügte auch die Felder `example` und `examples` zu anderen Teilen der Spezifikation hinzu:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (in der Spezifikation)</a>, das verwendet wurde von FastAPIs:
+* [`Parameter Object` (in der Spezifikation)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object), das verwendet wurde von FastAPIs:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object` im Feld `content` des `Media Type Object`s (in der Spezifikation)</a>, das verwendet wurde von FastAPIs:
+* [`Request Body Object` im Feld `content` des `Media Type Object`s (in der Spezifikation)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object), das verwendet wurde von FastAPIs:
     * `Body()`
     * `File()`
     * `Form()`
@@ -185,7 +163,7 @@ Dieser alte, OpenAPI-spezifische `examples`-Parameter heißt seit FastAPI `0.103
 
 ### JSON Schemas Feld `examples` { #json-schemas-examples-field }
 
-Aber dann fügte JSON Schema ein <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a>-Feld zu einer neuen Version der Spezifikation hinzu.
+Aber dann fügte JSON Schema ein [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5)-Feld zu einer neuen Version der Spezifikation hinzu.
 
 Und dann basierte das neue OpenAPI 3.1.0 auf der neuesten Version (JSON Schema 2020-12), die dieses neue Feld `examples` enthielt.
 

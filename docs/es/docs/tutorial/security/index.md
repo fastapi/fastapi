@@ -1,4 +1,4 @@
-# Seguridad
+# Seguridad { #security }
 
 Hay muchas formas de manejar la seguridad, autenticación y autorización.
 
@@ -10,11 +10,11 @@ En muchos frameworks y sistemas, solo manejar la seguridad y autenticación requ
 
 Pero primero, vamos a revisar algunos pequeños conceptos.
 
-## ¿Con prisa?
+## ¿Con prisa? { #in-a-hurry }
 
 Si no te importan ninguno de estos términos y solo necesitas agregar seguridad con autenticación basada en nombre de usuario y contraseña *ahora mismo*, salta a los siguientes capítulos.
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2 es una especificación que define varias maneras de manejar la autenticación y autorización.
 
@@ -24,7 +24,7 @@ Incluye formas de autenticarse usando un "tercero".
 
 Eso es lo que todos los sistemas con "iniciar sesión con Facebook, Google, X (Twitter), GitHub" utilizan internamente.
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 Hubo un OAuth 1, que es muy diferente de OAuth2, y más complejo, ya que incluía especificaciones directas sobre cómo encriptar la comunicación.
 
@@ -38,7 +38,7 @@ En la sección sobre **deployment** verás cómo configurar HTTPS de forma gratu
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect es otra especificación, basada en **OAuth2**.
 
@@ -48,7 +48,7 @@ Por ejemplo, el login de Google usa OpenID Connect (que internamente usa OAuth2)
 
 Pero el login de Facebook no soporta OpenID Connect. Tiene su propia versión de OAuth2.
 
-### OpenID (no "OpenID Connect")
+### OpenID (no "OpenID Connect") { #openid-not-openid-connect }
 
 Hubo también una especificación "OpenID". Que intentaba resolver lo mismo que **OpenID Connect**, pero no estaba basada en OAuth2.
 
@@ -56,7 +56,7 @@ Entonces, era un sistema completo adicional.
 
 No es muy popular o usado hoy en día.
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI (anteriormente conocido como Swagger) es la especificación abierta para construir APIs (ahora parte de la Linux Foundation).
 
@@ -96,7 +96,7 @@ El problema más complejo es construir un proveedor de autenticación/autorizaci
 
 ///
 
-## Utilidades de **FastAPI**
+## Utilidades de **FastAPI** { #fastapi-utilities }
 
 FastAPI proporciona varias herramientas para cada uno de estos esquemas de seguridad en el módulo `fastapi.security` que simplifican el uso de estos mecanismos de seguridad.
 

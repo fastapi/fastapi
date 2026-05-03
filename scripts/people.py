@@ -3,23 +3,78 @@ import secrets
 import subprocess
 import time
 from collections import Counter
+from collections.abc import Container
 from datetime import datetime, timedelta, timezone
+from math import ceil
 from pathlib import Path
-from typing import Any, Container, Union
+from typing import Annotated, Any
 
 import httpx
 import yaml
 from github import Github
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel, BeforeValidator, SecretStr
 from pydantic_settings import BaseSettings
 
 github_graphql_url = "https://api.github.com/graphql"
-questions_category_id = "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDAxNDM0"
+questions_category_id = "DIC_kwDOCZduT84B6E2a"
+
+
+POINTS_PER_MINUTE_LIMIT = 84  # 5000 points per hour
+
+MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE = {"abuse", "off-topic", "duplicate", "spam"}
+
+
+class RateLimiter:
+    def __init__(self) -> None:
+        self.last_query_cost: int = 1
+        self.remaining_points: int = 5000
+        self.reset_at: datetime = datetime.fromtimestamp(0, timezone.utc)
+        self.last_request_start_time: datetime = datetime.fromtimestamp(0, timezone.utc)
+        self.speed_multiplier: float = 1.0
+
+    def __enter__(self) -> "RateLimiter":
+        now = datetime.now(tz=timezone.utc)
+
+        # Handle primary rate limits
+        primary_limit_wait_time = 0.0
+        if self.remaining_points <= self.last_query_cost:
+            primary_limit_wait_time = (self.reset_at - now).total_seconds() + 2
+            logging.warning(
+                f"Approaching GitHub API rate limit, remaining points: {self.remaining_points}, "
+                f"reset time in {primary_limit_wait_time} seconds"
+            )
+
+        # Handle secondary rate limits
+        secondary_limit_wait_time = 0.0
+        points_per_minute = POINTS_PER_MINUTE_LIMIT * self.speed_multiplier
+        interval = 60 / (points_per_minute / self.last_query_cost)
+        time_since_last_request = (now - self.last_request_start_time).total_seconds()
+        if time_since_last_request < interval:
+            secondary_limit_wait_time = interval - time_since_last_request
+
+        final_wait_time = ceil(max(primary_limit_wait_time, secondary_limit_wait_time))
+        logging.info(f"Sleeping for {final_wait_time} seconds to respect rate limit")
+        time.sleep(max(final_wait_time, 1))
+
+        self.last_request_start_time = datetime.now(tz=timezone.utc)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        pass
+
+    def update_request_info(self, cost: int, remaining: int, reset_at: str) -> None:
+        self.last_query_cost = cost
+        self.remaining_points = remaining
+        self.reset_at = datetime.fromisoformat(reset_at.replace("Z", "+00:00"))
+
+
+rate_limiter = RateLimiter()
+
 
 discussions_query = """
 query Q($after: String, $category_id: ID) {
   repository(name: "fastapi", owner: "fastapi") {
-    discussions(first: 100, after: $after, categoryId: $category_id) {
+    discussions(first: 30, after: $after, categoryId: $category_id) {
       edges {
         cursor
         node {
@@ -49,16 +104,27 @@ query Q($after: String, $category_id: ID) {
                     avatarUrl
                     url
                   }
+                  minimizedReason
                 }
               }
+              minimizedReason
             }
           }
         }
       }
     }
   }
+  rateLimit {
+    cost
+    remaining
+    resetAt
+  }
 }
 """
+
+LowerStr = Annotated[
+    str, BeforeValidator(lambda v: v.lower() if isinstance(v, str) else v)
+]
 
 
 class Author(BaseModel):
@@ -69,7 +135,8 @@ class Author(BaseModel):
 
 class CommentsNode(BaseModel):
     createdAt: datetime
-    author: Union[Author, None] = None
+    author: Author | None = None
+    minimizedReason: LowerStr | None = None
 
 
 class Replies(BaseModel):
@@ -78,6 +145,7 @@ class Replies(BaseModel):
 
 
 class DiscussionsCommentsNode(CommentsNode):
+    minimizedReason: LowerStr | None = None
     replies: Replies
 
 
@@ -88,7 +156,7 @@ class DiscussionsComments(BaseModel):
 
 class DiscussionsNode(BaseModel):
     number: int
-    author: Union[Author, None] = None
+    author: Author | None = None
     title: str | None = None
     createdAt: datetime
     comments: DiscussionsComments
@@ -119,15 +187,15 @@ class Settings(BaseSettings):
     github_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
-    sleep_interval: int = 5
+    speed_multiplier: float = 1.0
 
 
 def get_graphql_response(
     *,
     settings: Settings,
     query: str,
-    after: Union[str, None] = None,
-    category_id: Union[str, None] = None,
+    after: str | None = None,
+    category_id: str | None = None,
 ) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {"after": after, "category_id": category_id}
@@ -155,13 +223,20 @@ def get_graphql_response(
 def get_graphql_question_discussion_edges(
     *,
     settings: Settings,
-    after: Union[str, None] = None,
+    after: str | None = None,
 ) -> list[DiscussionsEdge]:
-    data = get_graphql_response(
-        settings=settings,
-        query=discussions_query,
-        after=after,
-        category_id=questions_category_id,
+    with rate_limiter:
+        data = get_graphql_response(
+            settings=settings,
+            query=discussions_query,
+            after=after,
+            category_id=questions_category_id,
+        )
+
+    rate_limiter.update_request_info(
+        cost=data["data"]["rateLimit"]["cost"],
+        remaining=data["data"]["rateLimit"]["remaining"],
+        reset_at=data["data"]["rateLimit"]["resetAt"],
     )
     graphql_response = DiscussionsResponse.model_validate(data)
     return graphql_response.data.repository.discussions.edges
@@ -184,8 +259,6 @@ def get_discussion_nodes(settings: Settings) -> list[DiscussionsNode]:
         for discussion_edge in discussion_edges:
             discussion_nodes.append(discussion_edge.node)
         last_edge = discussion_edges[-1]
-        # Handle GitHub secondary rate limits, requests per minute
-        time.sleep(settings.sleep_interval)
         discussion_edges = get_graphql_question_discussion_edges(
             settings=settings, after=last_edge.cursor
         )
@@ -215,7 +288,10 @@ def get_discussions_experts(
             discussion_author_name = discussion.author.login
         discussion_commentors: dict[str, datetime] = {}
         for comment in discussion.comments.nodes:
-            if comment.author:
+            if (
+                comment.minimizedReason not in MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE
+                and comment.author
+            ):
                 authors[comment.author.login] = comment.author
                 if comment.author.login != discussion_author_name:
                     author_time = discussion_commentors.get(
@@ -225,7 +301,10 @@ def get_discussions_experts(
                         author_time, comment.createdAt
                     )
             for reply in comment.replies.nodes:
-                if reply.author:
+                if (
+                    reply.minimizedReason not in MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE
+                    and reply.author
+                ):
                     authors[reply.author.login] = reply.author
                     if reply.author.login != discussion_author_name:
                         author_time = discussion_commentors.get(
@@ -317,6 +396,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
+    rate_limiter.speed_multiplier = settings.speed_multiplier
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 
@@ -378,9 +458,10 @@ def main() -> None:
         return
 
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions@github.com"], check=True
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        check=True,
     )
     branch_name = f"fastapi-people-experts-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")

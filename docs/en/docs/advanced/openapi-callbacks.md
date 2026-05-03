@@ -31,11 +31,11 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
 
 /// tip
 
-The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
+The `callback_url` query parameter uses a Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type.
 
 ///
 
@@ -66,7 +66,7 @@ This example doesn't implement the callback itself (that could be just a line of
 
 The actual callback is just an HTTP request.
 
-When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+When implementing the callback yourself, you could use something like [HTTPX](https://www.python-httpx.org) or [Requests](https://requests.readthedocs.io/).
 
 ///
 
@@ -90,7 +90,7 @@ Temporarily adopting this point of view (of the *external developer*) can help y
 
 First create a new `APIRouter` that will contain one or more callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
 ### Create the callback *path operation* { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ It should look just like a normal FastAPI *path operation*:
 * It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression { #the-callback-path-expression }
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -169,7 +169,7 @@ At this point you have the *callback path operation(s)* needed (the one(s) that 
 
 Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip
 
@@ -179,7 +179,7 @@ Notice that you are not passing the router itself (`invoices_callback_router`) t
 
 ### Check the docs { #check-the-docs }
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
 

@@ -6,7 +6,7 @@ Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion*
 
 Und dann können Sie Cookies in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt setzen.
 
-{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -20,11 +20,11 @@ Sie können den `Response`-Parameter auch in Abhängigkeiten deklarieren und dar
 
 Sie können Cookies auch erstellen, wenn Sie eine `Response` direkt in Ihrem Code zurückgeben.
 
-Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} beschrieben.
+Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurückgeben](response-directly.md) beschrieben.
 
 Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 
-{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
 /// tip | Tipp
 
@@ -48,4 +48,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.
+Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren [Dokumentation in Starlette](https://www.starlette.dev/responses/#set-cookie) an.

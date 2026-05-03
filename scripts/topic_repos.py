@@ -56,9 +56,10 @@ def main() -> None:
         return
     repos_path.write_text(new_repos_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions@github.com"], check=True
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        check=True,
     )
     branch_name = f"fastapi-topic-repos-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")

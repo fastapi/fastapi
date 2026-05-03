@@ -16,9 +16,9 @@ But for security, as the server doesn't know it is behind a trusted proxy, it wo
 
 The proxy headers are:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 For example, let's say you define a *path operation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
 
@@ -60,11 +60,11 @@ https://mysuperapp.com/items/
 
 /// tip
 
-If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md){.internal-link target=_blank}.
+If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md).
 
 ///
 
-### How Proxy Forwarded Headers Work
+### How Proxy Forwarded Headers Work { #how-proxy-forwarded-headers-work }
 
 Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
 
@@ -115,7 +115,7 @@ In this case, the original path `/app` would actually be served at `/api/v1/app`
 
 Even though all your code is written assuming there's just `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
@@ -193,7 +193,7 @@ You can get the current `root_path` used by your application for each request, i
 
 Here we are including it in the message just for demonstration purposes.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Then, if you start Uvicorn with:
 
@@ -220,7 +220,7 @@ The response would be something like:
 
 Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
 
@@ -228,7 +228,7 @@ Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--r
 
 Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
-But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
+But if you go with your browser to [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) you will see the normal response:
 
 ```JSON
 {
@@ -251,9 +251,9 @@ In a case like that (without a stripped path prefix), the proxy would listen on 
 
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
-You can easily run the experiment locally with a stripped path prefix using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+You can easily run the experiment locally with a stripped path prefix using [Traefik](https://docs.traefik.io/).
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Download Traefik</a>, it's a single binary, you can extract the compressed file and run it directly from the terminal.
+[Download Traefik](https://github.com/containous/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
 Then create a file `traefik.toml` with:
 
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### Check the responses { #check-the-responses }
 
-Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, you will see the normal response:
+Now, if you go to the URL with the port for Uvicorn: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), you will see the normal response:
 
 ```JSON
 {
@@ -345,7 +345,7 @@ Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it s
 
 ///
 
-And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+And now open the URL with the port for Traefik, including the path prefix: [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app).
 
 We get the same response:
 
@@ -370,13 +370,13 @@ But here's the fun part. ✨
 
 The "official" way to access the app would be through the proxy with the path prefix that we defined. So, as we would expect, if you try the docs UI served by Uvicorn directly, without the path prefix in the URL, it won't work, because it expects to be accessed through the proxy.
 
-You can check it at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+You can check it at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 But if we access the docs UI at the "official" URL using the proxy with port `9999`, at `/api/v1/docs`, it works correctly! 🎉
 
-You can check it at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+You can check it at [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -400,7 +400,7 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Will generate an OpenAPI schema like:
 
@@ -433,7 +433,7 @@ Notice the auto-generated server with a `url` value of `/api/v1`, taken from the
 
 ///
 
-In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
+In the docs UI at [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) it would look like:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -443,16 +443,24 @@ The docs UI will interact with the server that you select.
 
 ///
 
+/// note | Technical Details
+
+The `servers` property in the OpenAPI specification is optional.
+
+If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely by default, which is the equivalent of a single server with a `url` value of `/`.
+
+///
+
 ### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application { #mounting-a-sub-application }
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md)) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 
 FastAPI will internally use the `root_path` smartly, so it will just work. ✨

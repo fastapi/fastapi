@@ -1,3 +1,3 @@
-# Recursos
+# Recursos { #resources }
 
-Recursos adicionales, enlaces externos, artículos y más. ✈️
+Recursos adicionales, enlaces externos y más. ✈️

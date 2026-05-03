@@ -38,4 +38,4 @@ You could also use `from starlette.responses import JSONResponse`.
 
 If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know beforehand what you are going to return.
 
-But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+But you can document that in your code, using: [Additional Responses](additional-responses.md).

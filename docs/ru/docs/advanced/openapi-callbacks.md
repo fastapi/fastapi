@@ -31,11 +31,11 @@
 
 Эта часть вполне обычна, большая часть кода вам уже знакома:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
 
 /// tip | Совет
 
-Query-параметр `callback_url` использует тип Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>.
+Query-параметр `callback_url` использует тип Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Сам обратный вызов — это всего лишь HTTP-запрос.
 
-Реализуя обратный вызов, вы можете использовать, например, <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> или <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+Реализуя обратный вызов, вы можете использовать, например, [HTTPX](https://www.python-httpx.org) или [Requests](https://requests.readthedocs.io/).
 
 ///
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Сначала создайте новый `APIRouter`, который будет содержать один или несколько обратных вызовов.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
 ### Создайте *операцию пути* для обратного вызова { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * Вероятно, в ней должно быть объявление тела запроса, например `body: InvoiceEvent`.
 * А также может быть объявление модели ответа, например `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
 Есть 2 основных отличия от обычной *операции пути*:
 
 * Ей не нужен реальный код, потому что ваше приложение никогда не будет вызывать эту функцию. Она используется только для документирования *внешнего API*. Поэтому в функции может быть просто `pass`.
-* *Путь* может содержать <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">выражение OpenAPI 3</a> (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
+* *Путь* может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
 
 ### Выражение пути для обратного вызова { #the-callback-path-expression }
 
-*Путь* обратного вызова может содержать <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">выражение OpenAPI 3</a>, которое может включать части исходного запроса, отправленного *вашему API*.
+*Путь* обратного вызова может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression), которое может включать части исходного запроса, отправленного *вашему API*.
 
 В нашем случае это `str`:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 Теперь используйте параметр `callbacks` в *декораторе операции пути вашего API*, чтобы передать атрибут `.routes` (это, по сути, просто `list` маршрутов/*операций пути*) из этого маршрутизатора обратных вызовов:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Совет
 
@@ -179,7 +179,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 ### Проверьте документацию { #check-the-docs }
 
-Теперь вы можете запустить приложение и перейти по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Теперь вы можете запустить приложение и перейти по адресу [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Вы увидите документацию, включающую раздел «Callbacks» для вашей *операции пути*, который показывает, как должен выглядеть *внешний API*:
 

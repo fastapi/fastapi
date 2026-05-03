@@ -1,8 +1,8 @@
 # Расширенное использование middleware { #advanced-middleware }
 
-В основном руководстве вы читали, как добавить [пользовательское middleware](../tutorial/middleware.md){.internal-link target=_blank} в ваше приложение.
+В основном руководстве вы читали, как добавить [пользовательское middleware](../tutorial/middleware.md) в ваше приложение.
 
-А затем — как работать с [CORS с помощью `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+А затем — как работать с [CORS с помощью `CORSMiddleware`](../tutorial/cors.md).
 
 В этом разделе посмотрим, как использовать другие middleware.
 
@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Любой входящий запрос по `http` или `ws` будет перенаправлен на безопасную схему.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Гарантирует, что во всех входящих запросах корректно установлен `Host`‑заголовок, чтобы защититься от атак на HTTP‑заголовок Host.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Поддерживаются следующие аргументы:
 
@@ -78,12 +78,12 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Это middleware обрабатывает как обычные, так и потоковые ответы.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Поддерживаются следующие аргументы:
 
 - `minimum_size` — не сжимать GZip‑ом ответы, размер которых меньше этого минимального значения в байтах. По умолчанию — `500`.
-- `compresslevel` — уровень GZip‑сжатия. Целое число от 1 до 9. По умолчанию — `9`. Более низкое значение — быстреее сжатие, но больший размер файла; более высокое значение — более медленное сжатие, но меньший размер файла.
+- `compresslevel` — уровень GZip‑сжатия. Целое число от 1 до 9. По умолчанию — `9`. Более низкое значение — быстрее сжатие, но больший размер файла; более высокое значение — более медленное сжатие, но меньший размер файла.
 
 ## Другие middleware { #other-middlewares }
 
@@ -91,7 +91,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Например:
 
-- <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">`ProxyHeadersMiddleware` от Uvicorn</a>
-- <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+- [`ProxyHeadersMiddleware` от Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Чтобы увидеть другие доступные middleware, посмотрите <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">документацию по middleware в Starlette</a> и <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">список ASGI Awesome</a>.
+Чтобы увидеть другие доступные middleware, посмотрите [документацию по middleware в Starlette](https://www.starlette.dev/middleware/) и [список ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

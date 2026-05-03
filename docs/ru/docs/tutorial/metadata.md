@@ -14,11 +14,11 @@
 | `version` | `string` | Версия API. Версия вашего собственного приложения, а не OpenAPI. К примеру `2.5.0`. |
 | `terms_of_service` | `str` | Ссылка к условиям пользования API. Если указано, то это должен быть URL-адрес. |
 | `contact` | `dict` | Контактная информация для открытого API. Может содержать несколько полей. <details><summary>поля <code>contact</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>Идентификационное имя контактного лица/организации.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL указывающий на контактную информацию. ДОЛЖЕН быть в формате URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>Email адрес контактного лица/организации. ДОЛЖЕН быть в формате email адреса.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | Информация о лицензии открытого API. Может содержать несколько полей. <details><summary>поля <code>license_info</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ОБЯЗАТЕЛЬНО</strong> (если установлен параметр <code>license_info</code>). Название лицензии, используемой для API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Выражение лицензии <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> для API. Поле <code>identifier</code> взаимоисключающее с полем <code>url</code>. <small>Доступно начиная с OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL, указывающий на лицензию, используемую для API. ДОЛЖЕН быть в формате URL.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | Информация о лицензии открытого API. Может содержать несколько полей. <details><summary>поля <code>license_info</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ОБЯЗАТЕЛЬНО</strong> (если установлен параметр <code>license_info</code>). Название лицензии, используемой для API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Выражение лицензии [SPDX](https://spdx.org/licenses/) для API. Поле <code>identifier</code> взаимоисключающее с полем <code>url</code>. <small>Доступно начиная с OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL, указывающий на лицензию, используемую для API. ДОЛЖЕН быть в формате URL.</td></tr></tbody></table></details> |
 
 Вы можете задать их следующим образом:
 
-{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
 
 /// tip | Подсказка
 
@@ -36,7 +36,7 @@
 
 К примеру:
 
-{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
 
 ## Метаданные для тегов { #metadata-for-tags }
 
@@ -58,7 +58,7 @@
 
 Создайте метаданные для ваших тегов и передайте их в параметре `openapi_tags`:
 
-{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
 
 Помните, что вы можете использовать Markdown внутри описания, к примеру "login" будет отображен жирным шрифтом (**login**) и "fancy" будет отображаться курсивом (_fancy_).
 
@@ -72,11 +72,11 @@
 
 Используйте параметр `tags` с вашими *операциями пути* (и `APIRouter`ами), чтобы присвоить им различные теги:
 
-{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
 /// info | Дополнительная информация
 
-Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags).
 
 ///
 
@@ -100,7 +100,7 @@
 
 К примеру, чтобы задать её отображение по адресу `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
 
 Если вы хотите отключить схему OpenAPI полностью, вы можете задать `openapi_url=None`, это также отключит пользовательские интерфейсы документации, которые её используют.
 
@@ -117,4 +117,4 @@
 
 К примеру, чтобы задать отображение Swagger UI по адресу `/documentation` и отключить ReDoc:
 
-{* ../../docs_src/metadata/tutorial003.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}

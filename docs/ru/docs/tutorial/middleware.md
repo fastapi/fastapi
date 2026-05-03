@@ -1,10 +1,8 @@
 # Middleware (Промежуточный слой) { #middleware }
 
-Вы можете добавить промежуточный слой (middleware) в **FastAPI** приложение.
+Вы можете добавить middleware (промежуточный слой) в **FastAPI** приложение.
 
-"Middleware" это функция, которая выполняется с каждым запросом до его обработки какой-либо конкретной *операцией пути*.
-А также с каждым ответом перед его возвращением.
-
+"Middleware" - это функция, которая выполняется с каждым **запросом** до его обработки какой-либо конкретной *операцией пути*. А также с каждым **ответом** перед его возвращением.
 
 * Она принимает каждый поступающий **запрос**.
 * Может что-то сделать с этим **запросом** или выполнить любой нужный код.
@@ -17,29 +15,29 @@
 
 Если у вас есть зависимости с `yield`, то код выхода (код после `yield`) будет выполняться *после* middleware.
 
-Если были какие‑либо фоновые задачи (рассматриваются в разделе [Фоновые задачи](background-tasks.md){.internal-link target=_blank}, вы увидите это позже), они будут запущены *после* всех middleware.
+Если были какие‑либо фоновые задачи (рассматриваются в разделе [Фоновые задачи](background-tasks.md), вы увидите это позже), они будут запущены *после* всех middleware.
 
 ///
 
 ## Создание middleware { #create-a-middleware }
 
-Для создания middleware используйте декоратор `@app.middleware("http")`.
+Для создания middleware используйте декоратор `@app.middleware("http")` поверх функции.
 
 Функция middleware получает:
 
-* `request` (объект запроса).
+* `request`.
 * Функцию `call_next`, которая получает `request` в качестве параметра.
     * Эта функция передаёт `request` соответствующей *операции пути*.
-    * Затем она возвращает ответ `response`, сгенерированный *операцией пути*.
-* Также имеется возможность видоизменить `response`, перед тем как его вернуть.
+    * Затем она возвращает `response`, сгенерированный соответствующей *операцией пути*.
+* Также имеется возможность видоизменить `response` перед тем как его вернуть.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
-/// tip | Примечание
+/// tip | Совет
 
-Имейте в виду, что можно добавлять свои собственные заголовки <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">при помощи префикса 'X-'</a>.
+Имейте в виду, что можно добавлять проприетарные HTTP-заголовки [с префиксом `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Если же вы хотите добавить собственные заголовки, которые клиент сможет увидеть в браузере, то вам потребуется добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, см. документацию <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+Но если вы хотите, чтобы клиент в браузере мог видеть ваши пользовательские заголовки, необходимо добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)), используя параметр `expose_headers`, описанный в [документации по CORS Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -53,17 +51,17 @@
 
 ### До и после `response` { #before-and-after-the-response }
 
-Вы можете добавить код, использующий `request` до передачи его какой-либо *операции пути*.
+Вы можете добавить код, использующий `request`, до передачи его какой-либо *операции пути*.
 
 А также после формирования `response`, до того, как вы его вернёте.
 
 Например, вы можете добавить собственный заголовок `X-Process-Time`, содержащий время в секундах, необходимое для обработки запроса и генерации ответа:
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
-/// tip | Примечание
+/// tip | Совет
 
-Мы используем <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> вместо `time.time()` для обеспечения большей точности наших примеров. 🤓
+Мы используем [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) вместо `time.time()` для обеспечения большей точности в таких случаях. 🤓
 
 ///
 
@@ -92,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## Другие middleware { #other-middlewares }
 
-О других middleware вы можете узнать больше в разделе [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
+О других middleware вы можете узнать больше в разделе [Расширенное руководство пользователя: Продвинутое middleware](../advanced/middleware.md).
 
-В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing – совместное использование ресурсов между источниками">CORS</abbr> с помощью middleware.
+В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing - совместное использование ресурсов между источниками">CORS</abbr> с помощью middleware.

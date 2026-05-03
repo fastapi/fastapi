@@ -1,9 +1,8 @@
-from typing import Any
+from typing import Annotated, Any
 
 import pytest
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 class CustomError(Exception):

@@ -22,7 +22,7 @@
 
 На этой странице вы узнаете, как пользоваться **виртуальными окружениями** и как они работают.
 
-Если вы готовы начать использовать **инструмент, который управляет всем** за вас (включая установку Python), попробуйте <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Если вы готовы начать использовать **инструмент, который управляет всем** за вас (включая установку Python), попробуйте [uv](https://github.com/astral-sh/uv).
 
 ///
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Создание виртуального окружения { #create-a-virtual-environment }
 
-Когда вы начинаете работать над Python‑проектом **впервые**, создайте виртуальное окружение **<abbr title="есть и другие опции, но это простой ориентир">внутри вашего проекта</abbr>**.
+Когда вы начинаете работать над Python‑проектом **впервые**, создайте виртуальное окружение **<dfn title="есть и другие опции, но это простой ориентир">внутри вашего проекта</dfn>**.
 
 /// tip | Подсказка
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Если у вас установлен <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, вы можете использовать его для создания виртуального окружения.
+Если у вас установлен [`uv`](https://github.com/astral-sh/uv), вы можете использовать его для создания виртуального окружения.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Или если вы используете Bash для Windows (например, <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Или если вы используете Bash для Windows (например, [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Каждый раз, когда вы устанавливаете **новый пакет** в это окружение, **активируйте** окружение снова.
 
-Это гарантирует, что если вы используете **программу терминала (<abbr title="command line interface – интерфейс командной строки">CLI</abbr>)**, установленную этим пакетом, вы будете использовать именно ту, что из вашего виртуального окружения, а не какую‑то глобально установленную, возможно другой версии, чем вам нужна.
+Это гарантирует, что если вы используете **программу терминала (<abbr title="command line interface - интерфейс командной строки">CLI</abbr>)**, установленную этим пакетом, вы будете использовать именно ту, что из вашего виртуального окружения, а не какую‑то глобально установленную, возможно другой версии, чем вам нужна.
 
 ///
 
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip | Подсказка
 
-Если вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, то для установки вы будете использовать его вместо `pip`, поэтому обновлять `pip` не нужно. 😎
+Если вы используете [`uv`](https://github.com/astral-sh/uv), то для установки вы будете использовать его вместо `pip`, поэтому обновлять `pip` не нужно. 😎
 
 ///
 
@@ -242,13 +242,33 @@ $ python -m pip install --upgrade pip
 
 </div>
 
+/// tip | Подсказка
+
+Иногда при попытке обновить pip вы можете получить ошибку **`No module named pip`**.
+
+Если это произошло, установите и обновите pip с помощью команды ниже:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+Эта команда установит pip, если он ещё не установлен, а также гарантирует, что установленная версия pip будет не старее, чем версия, доступная в `ensurepip`.
+
+///
+
 ## Добавление `.gitignore` { #add-gitignore }
 
 Если вы используете **Git** (а вам стоит его использовать), добавьте файл `.gitignore`, чтобы исключить из Git всё, что находится в вашей `.venv`.
 
 /// tip | Подсказка
 
-Если вы использовали <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> для создания виртуального окружения, он уже сделал это за вас — можно пропустить этот шаг. 😎
+Если вы использовали [`uv`](https://github.com/astral-sh/uv) для создания виртуального окружения, он уже сделал это за вас — можно пропустить этот шаг. 😎
 
 ///
 
@@ -320,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Если у вас установлен <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Если у вас установлен [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -352,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Если у вас установлен <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Если у вас установлен [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -396,8 +416,8 @@ Hello World
 
 Например:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | Подсказка
 
@@ -435,7 +455,7 @@ $ deactivate
 
 ## Зачем нужны виртуальные окружения { #why-virtual-environments }
 
-Чтобы работать с FastAPI, вам нужно установить <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+Чтобы работать с FastAPI, вам нужно установить [Python](https://www.python.org/).
 
 После этого вам нужно будет **установить** FastAPI и другие **пакеты**, которые вы хотите использовать.
 
@@ -544,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Будет загружен сжатый файл с кодом FastAPI, обычно с <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+Будет загружен сжатый файл с кодом FastAPI, обычно с [PyPI](https://pypi.org/project/fastapi/).
 
 Также будут **загружены** файлы для других пакетов, от которых зависит FastAPI.
 
@@ -607,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Или если вы используете Bash для Windows (например, <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Или если вы используете Bash для Windows (например, [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -619,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Эта команда создаст или изменит некоторые [переменные окружения](environment-variables.md){.internal-link target=_blank}, которые будут доступны для следующих команд.
+Эта команда создаст или изменит некоторые [переменные окружения](environment-variables.md), которые будут доступны для следующих команд.
 
 Одна из таких переменных — `PATH`.
 
 /// tip | Подсказка
 
-Вы можете узнать больше о переменной окружения `PATH` в разделе [Переменные окружения](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
+Вы можете узнать больше о переменной окружения `PATH` в разделе [Переменные окружения](environment-variables.md#path-environment-variable).
 
 ///
 
@@ -826,7 +846,7 @@ I solemnly swear 🐺
 
 Существует много **альтернатив** для управления виртуальными окружениями, зависимостями (requirements), проектами.
 
-Когда вы будете готовы и захотите использовать инструмент для **управления всем проектом** — зависимостями пакетов, виртуальными окружениями и т. п., я бы предложил попробовать <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Когда вы будете готовы и захотите использовать инструмент для **управления всем проектом** — зависимостями пакетов, виртуальными окружениями и т.п., я бы предложил попробовать [uv](https://github.com/astral-sh/uv).
 
 `uv` может многое:
 
@@ -834,7 +854,7 @@ I solemnly swear 🐺
 * Управлять **виртуальным окружением** ваших проектов
 * Устанавливать **пакеты**
 * Управлять **зависимостями и версиями** пакетов вашего проекта
-* Обеспечивать наличие **точного** набора пакетов и версий к установке, включая их зависимости, чтобы вы были уверены, что сможете запускать проект в продакшне точно так же, как и на компьютере при разработке — это называется **locking**
+* Обеспечивать наличие **точного** набора пакетов и версий к установке, включая их зависимости, чтобы вы были уверены, что сможете запускать проект в продакшн точно так же, как и на компьютере при разработке — это называется **locking**
 * И многое другое
 
 ## Заключение { #conclusion }

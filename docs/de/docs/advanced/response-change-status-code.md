@@ -1,6 +1,6 @@
 # Response – Statuscode ändern { #response-change-status-code }
 
-Sie haben wahrscheinlich schon vorher gelesen, dass Sie einen Default-[Response-Statuscode](../tutorial/response-status-code.md){.internal-link target=_blank} festlegen können.
+Sie haben wahrscheinlich schon vorher gelesen, dass Sie einen Default-[Response-Statuscode](../tutorial/response-status-code.md) festlegen können.
 
 In manchen Fällen müssen Sie jedoch einen anderen als den Default-Statuscode zurückgeben.
 
@@ -20,7 +20,7 @@ Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion*
 
 Anschließend können Sie den `status_code` in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt festlegen.
 
-{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
 Und dann können Sie jedes benötigte Objekt zurückgeben, wie Sie es normalerweise tun würden (ein `dict`, ein Datenbankmodell usw.).
 

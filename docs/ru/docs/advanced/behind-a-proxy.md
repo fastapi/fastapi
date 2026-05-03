@@ -16,9 +16,9 @@
 
 Заголовки прокси:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Например, вы объявили операцию пути `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 Если клиент обратится к `/items`, по умолчанию произойдёт редирект на `/items/`.
 
@@ -60,11 +60,11 @@ https://mysuperapp.com/items/
 
 /// tip | Совет
 
-Если хотите узнать больше об HTTPS, смотрите руководство [О HTTPS](../deployment/https.md){.internal-link target=_blank}.
+Если хотите узнать больше об HTTPS, смотрите руководство [О HTTPS](../deployment/https.md).
 
 ///
 
-### Как работают пересылаемые заголовки прокси
+### Как работают пересылаемые заголовки прокси { #how-proxy-forwarded-headers-work }
 
 Ниже показано, как прокси добавляет пересылаемые заголовки между клиентом и сервером приложения:
 
@@ -115,7 +115,7 @@ sequenceDiagram
 
 Хотя весь ваш код написан с расчётом, что путь один — `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 Прокси будет «обрезать» префикс пути на лету перед передачей запроса на сервер приложения (скорее всего Uvicorn, запущенный через FastAPI CLI), поддерживая у вашего приложения иллюзию, что его обслуживают по `/app`, чтобы вам не пришлось менять весь код и добавлять префикс `/api/v1`.
 
@@ -193,7 +193,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Здесь мы добавляем его в сообщение лишь для демонстрации.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Затем, если вы запустите Uvicorn так:
 
@@ -220,7 +220,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Если нет возможности передать опцию командной строки `--root-path` (или аналог), вы можете указать параметр `root_path` при создании приложения FastAPI:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Передача `root_path` в `FastAPI` эквивалентна опции командной строки `--root-path` для Uvicorn или Hypercorn.
 
@@ -228,7 +228,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Учтите, что сервер (Uvicorn) не использует `root_path` ни для чего, кроме как передать его в приложение.
 
-Если вы откроете в браузере <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, вы увидите обычный ответ:
+Если вы откроете в браузере [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), вы увидите обычный ответ:
 
 ```JSON
 {
@@ -241,19 +241,19 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Uvicorn ожидает, что прокси обратится к нему по `http://127.0.0.1:8000/app`, а уже задача прокси — добавить сверху префикс `/api/v1`.
 
-## О прокси с урезанным префиксом пути { #about-proxies-with-a-stripped-path-prefix }
+## О прокси с функцией удаления префикса пути { #about-proxies-with-a-stripped-path-prefix }
 
-Помните, что прокси с урезанным префиксом пути — лишь один из вариантов настройки.
+Помните, что прокси с функцией удаления префикса пути — лишь один из вариантов настройки.
 
-Во многих случаях по умолчанию прокси будет без урезанного префикса пути.
+Во многих случаях по умолчанию прокси будет без функции удаления префикса пути.
 
-В таком случае (без урезанного префикса) прокси слушает, например, по адресу `https://myawesomeapp.com`, и если браузер идёт на `https://myawesomeapp.com/api/v1/app`, а ваш сервер (например, Uvicorn) слушает на `http://127.0.0.1:8000`, то прокси (без урезанного префикса) обратится к Uvicorn по тому же пути: `http://127.0.0.1:8000/api/v1/app`.
+В таком случае (без функции удаления префикса пути) прокси слушает, например, по адресу `https://myawesomeapp.com`, и если браузер идёт на `https://myawesomeapp.com/api/v1/app`, а ваш сервер (например, Uvicorn) слушает на `http://127.0.0.1:8000`, то прокси (без урезанного префикса) обратится к Uvicorn по тому же пути: `http://127.0.0.1:8000/api/v1/app`.
 
 ## Локальное тестирование с Traefik { #testing-locally-with-traefik }
 
-Вы можете легко поэкспериментировать локально с урезанным префиксом пути, используя <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+Вы можете легко поэкспериментировать локально с функцией удаления префикса пути, используя [Traefik](https://docs.traefik.io/).
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Скачайте Traefik</a> — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
+[Скачайте Traefik](https://github.com/containous/traefik/releases) — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
 
 Затем создайте файл `traefik.toml` со следующим содержимым:
 
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### Проверьте ответы { #check-the-responses }
 
-Теперь, если вы перейдёте на URL с портом Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, вы увидите обычный ответ:
+Теперь, если вы перейдёте на URL с портом Uvicorn: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), вы увидите обычный ответ:
 
 ```JSON
 {
@@ -345,7 +345,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-А теперь откройте URL с портом Traefik и префиксом пути: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+А теперь откройте URL с портом Traefik и префиксом пути: [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app).
 
 Мы получим тот же ответ:
 
@@ -370,13 +370,13 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 «Официальный» способ доступа к приложению — через прокси с заданным префиксом пути. Поэтому, как и ожидается, если открыть интерфейс документации, отдаваемый напрямую Uvicorn, без префикса пути в URL, он не будет работать, так как предполагается доступ через прокси.
 
-Проверьте по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Проверьте по адресу [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 А вот если открыть интерфейс документации по «официальному» URL через прокси на порту `9999`, по `/api/v1/docs`, всё работает корректно! 🎉
 
-Проверьте по адресу <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+Проверьте по адресу [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -400,7 +400,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Например:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Будет сгенерирована схема OpenAPI примерно такая:
 
@@ -433,7 +433,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-В интерфейсе документации по адресу <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> это будет выглядеть так:
+В интерфейсе документации по адресу [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) это будет выглядеть так:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -443,16 +443,24 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
+/// note | Технические детали
+
+Свойство `servers` в спецификации OpenAPI является необязательным.
+
+Если вы не укажете параметр `servers`, а `root_path` равен `/`, то свойство `servers` в сгенерированной схеме OpenAPI по умолчанию будет опущено. Это эквивалентно серверу со значением `url` равным `/`.
+
+///
+
 ### Отключить автоматическое добавление сервера из `root_path` { #disable-automatic-server-from-root-path }
 
 Если вы не хотите, чтобы FastAPI добавлял автоматический сервер, используя `root_path`, укажите параметр `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 и тогда этот сервер не будет добавлен в схему OpenAPI.
 
 ## Монтирование вложенного приложения { #mounting-a-sub-application }
 
-Если вам нужно смонтировать вложенное приложение (как описано в [Вложенные приложения — монтирование](sub-applications.md){.internal-link target=_blank}), и при этом вы используете прокси с `root_path`, делайте это обычным образом — всё будет работать, как ожидается.
+Если вам нужно смонтировать вложенное приложение (как описано в [Вложенные приложения — монтирование](sub-applications.md)), и при этом вы используете прокси с `root_path`, делайте это обычным образом — всё будет работать, как ожидается.
 
 FastAPI умно использует `root_path` внутри, так что всё просто работает. ✨

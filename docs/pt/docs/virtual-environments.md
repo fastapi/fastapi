@@ -1,6 +1,6 @@
-# Ambientes Virtuais
+# Ambientes Virtuais { #virtual-environments }
 
-Ao trabalhar em projetos Python, você provavelmente deve usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
+Ao trabalhar em projetos Python, você provavelmente deveria usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
 
 /// info | Informação
 
@@ -22,11 +22,11 @@ Um **ambiente virtual** é um diretório com alguns arquivos.
 
 Esta página lhe ensinará como usar **ambientes virtuais** e como eles funcionam.
 
-Se você estiver pronto para adotar uma **ferramenta que gerencia tudo** para você (incluindo a instalação do Python), experimente <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Se você estiver pronto para adotar uma **ferramenta que gerencia tudo** para você (incluindo a instalação do Python), experimente [uv](https://github.com/astral-sh/uv).
 
 ///
 
-## Criar um Projeto
+## Criar um Projeto { #create-a-project }
 
 Primeiro, crie um diretório para seu projeto.
 
@@ -51,9 +51,9 @@ $ cd awesome-project
 
 </div>
 
-## Crie um ambiente virtual
+## Crie um ambiente virtual { #create-a-virtual-environment }
 
-Ao começar a trabalhar em um projeto Python **pela primeira vez**, crie um ambiente virtual **<abbr title="existem outras opções, esta é uma diretriz simples">dentro do seu projeto</abbr>**.
+Ao começar a trabalhar em um projeto Python **pela primeira vez**, crie um ambiente virtual **<dfn title="existem outras opções, esta é uma diretriz simples">dentro do seu projeto</dfn>**.
 
 /// tip | Dica
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Se você tiver o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> instalado, poderá usá-lo para criar um ambiente virtual.
+Se você tiver [`uv`](https://github.com/astral-sh/uv) instalado, poderá usá-lo para criar um ambiente virtual.
 
 <div class="termy">
 
@@ -114,7 +114,7 @@ Você pode criar o ambiente virtual em um diretório diferente, mas há uma conv
 
 ///
 
-## Ative o ambiente virtual
+## Ative o ambiente virtual { #activate-the-virtual-environment }
 
 Ative o novo ambiente virtual para que qualquer comando Python que você executar ou pacote que você instalar o utilize.
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ou se você usa o Bash para Windows (por exemplo, <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ou se você usa o Bash para Windows (por exemplo, [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -166,11 +166,11 @@ $ source .venv/Scripts/activate
 
 Toda vez que você instalar um **novo pacote** naquele ambiente, **ative** o ambiente novamente.
 
-Isso garante que, se você usar um **programa de terminal (<abbr title="interface de linha de comando">CLI</abbr>)** instalado por esse pacote, você usará aquele do seu ambiente virtual e não qualquer outro que possa ser instalado globalmente, provavelmente com uma versão diferente do que você precisa.
+Isso garante que, se você usar um **programa de terminal (<abbr title="command line interface - interface de linha de comando">CLI</abbr>)** instalado por esse pacote, você usará aquele do seu ambiente virtual e não qualquer outro que possa ser instalado globalmente, provavelmente com uma versão diferente do que você precisa.
 
 ///
 
-## Verifique se o ambiente virtual está ativo
+## Verifique se o ambiente virtual está ativo { #check-the-virtual-environment-is-active }
 
 Verifique se o ambiente virtual está ativo (o comando anterior funcionou).
 
@@ -212,15 +212,15 @@ Se ele mostrar o binário `python` em `.venv\Scripts\python`, dentro do seu proj
 
 ////
 
-## Atualizar `pip`
+## Atualizar `pip` { #upgrade-pip }
 
 /// tip | Dica
 
-Se você usar <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, você o usará para instalar coisas em vez do `pip`, então não precisará atualizar o `pip`. 😎
+Se você usar [`uv`](https://github.com/astral-sh/uv), você o usará para instalar coisas em vez do `pip`, então não precisará atualizar o `pip`. 😎
 
 ///
 
-Se você estiver usando `pip` para instalar pacotes (ele vem por padrão com o Python), você deve **atualizá-lo** para a versão mais recente.
+Se você estiver usando `pip` para instalar pacotes (ele vem por padrão com o Python), você deveria **atualizá-lo** para a versão mais recente.
 
 Muitos erros exóticos durante a instalação de um pacote são resolvidos apenas atualizando o `pip` primeiro.
 
@@ -242,13 +242,33 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## Adicionar `.gitignore`
+/// tip | Dica
+
+Às vezes, você pode receber um erro **`No module named pip`** ao tentar atualizar o pip.
+
+Se isso acontecer, instale e atualize o pip usando o comando abaixo:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+Esse comando instalará o pip caso ele ainda não esteja instalado e também garante que a versão instalada do pip seja pelo menos tão recente quanto a disponível em `ensurepip`.
+
+///
+
+## Adicionar `.gitignore` { #add-gitignore }
 
 Se você estiver usando **Git** (você deveria), adicione um arquivo `.gitignore` para excluir tudo em seu `.venv` do Git.
 
 /// tip | Dica
 
-Se você usou <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> para criar o ambiente virtual, ele já fez isso para você, você pode pular esta etapa. 😎
+Se você usou [`uv`](https://github.com/astral-sh/uv) para criar o ambiente virtual, ele já fez isso para você, você pode pular esta etapa. 😎
 
 ///
 
@@ -282,7 +302,7 @@ Esse comando criará um arquivo `.gitignore` com o conteúdo:
 
 ///
 
-## Instalar Pacotes
+## Instalar Pacotes { #install-packages }
 
 Após ativar o ambiente, você pode instalar pacotes nele.
 
@@ -294,7 +314,7 @@ Se precisar atualizar uma versão ou adicionar um novo pacote, você **fará iss
 
 ///
 
-### Instalar pacotes diretamente
+### Instalar pacotes diretamente { #install-packages-directly }
 
 Se estiver com pressa e não quiser usar um arquivo para declarar os requisitos de pacote do seu projeto, você pode instalá-los diretamente.
 
@@ -320,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Se você tem o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Se você tem o [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -333,7 +353,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Instalar a partir de `requirements.txt`
+### Instalar a partir de `requirements.txt` { #install-from-requirements-txt }
 
 Se você tiver um `requirements.txt`, agora poderá usá-lo para instalar seus pacotes.
 
@@ -352,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Se você tem o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Se você tem o [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -376,7 +396,7 @@ pydantic==2.8.0
 
 ///
 
-## Execute seu programa
+## Execute seu programa { #run-your-program }
 
 Depois de ativar o ambiente virtual, você pode executar seu programa, e ele usará o Python dentro do seu ambiente virtual com os pacotes que você instalou lá.
 
@@ -390,14 +410,14 @@ Hello World
 
 </div>
 
-## Configure seu editor
+## Configure seu editor { #configure-your-editor }
 
-Você provavelmente usaria um editor. Certifique-se de configurá-lo para usar o mesmo ambiente virtual que você criou (ele provavelmente o detectará automaticamente) para que você possa obter erros de preenchimento automático e em linha.
+Você provavelmente usaria um editor. Certifique-se de configurá-lo para usar o mesmo ambiente virtual que você criou (ele provavelmente o detectará automaticamente) para que você possa obter preenchimento automático e erros em linha.
 
 Por exemplo:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | Dica
 
@@ -405,7 +425,7 @@ Normalmente, você só precisa fazer isso **uma vez**, ao criar o ambiente virtu
 
 ///
 
-## Desativar o ambiente virtual
+## Desativar o ambiente virtual { #deactivate-the-virtual-environment }
 
 Quando terminar de trabalhar no seu projeto, você pode **desativar** o ambiente virtual.
 
@@ -419,7 +439,7 @@ $ deactivate
 
 Dessa forma, quando você executar `python`, ele não tentará executá-lo naquele ambiente virtual com os pacotes instalados nele.
 
-## Pronto para trabalhar
+## Pronto para trabalhar { #ready-to-work }
 
 Agora você está pronto para começar a trabalhar no seu projeto.
 
@@ -433,9 +453,9 @@ Continue lendo. 👇🤓
 
 ///
 
-## Por que ambientes virtuais
+## Por que ambientes virtuais { #why-virtual-environments }
 
-Para trabalhar com o FastAPI, você precisa instalar o <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+Para trabalhar com o FastAPI, você precisa instalar o [Python](https://www.python.org/).
 
 Depois disso, você precisará **instalar** o FastAPI e quaisquer outros **pacotes** que queira usar.
 
@@ -443,7 +463,7 @@ Para instalar pacotes, você normalmente usaria o comando `pip` que vem com o Py
 
 No entanto, se você usar `pip` diretamente, os pacotes serão instalados no seu **ambiente Python global** (a instalação global do Python).
 
-### O Problema
+### O Problema { #the-problem }
 
 Então, qual é o problema em instalar pacotes no ambiente global do Python?
 
@@ -526,7 +546,7 @@ Agora, imagine isso com **muitos** outros **pacotes** dos quais todos os seus **
 
 Além disso, dependendo do seu sistema operacional (por exemplo, Linux, Windows, macOS), ele pode ter vindo com o Python já instalado. E, nesse caso, provavelmente tinha alguns pacotes pré-instalados com algumas versões específicas **necessárias para o seu sistema**. Se você instalar pacotes no ambiente global do Python, poderá acabar **quebrando** alguns dos programas que vieram com seu sistema operacional.
 
-## Onde os pacotes são instalados
+## Onde os pacotes são instalados { #where-are-packages-installed }
 
 Quando você instala o Python, ele cria alguns diretórios com alguns arquivos no seu computador.
 
@@ -544,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-Isso fará o download de um arquivo compactado com o código FastAPI, normalmente do <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+Isso fará o download de um arquivo compactado com o código FastAPI, normalmente do [PyPI](https://pypi.org/project/fastapi/).
 
 Ele também fará o **download** de arquivos para outros pacotes dos quais o FastAPI depende.
 
@@ -552,7 +572,7 @@ Em seguida, ele **extrairá** todos esses arquivos e os colocará em um diretór
 
 Por padrão, ele colocará os arquivos baixados e extraídos no diretório que vem com a instalação do Python, que é o **ambiente global**.
 
-## O que são ambientes virtuais
+## O que são ambientes virtuais { #what-are-virtual-environments }
 
 A solução para os problemas de ter todos os pacotes no ambiente global é usar um **ambiente virtual para cada projeto** em que você trabalha.
 
@@ -577,7 +597,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## O que significa ativar um ambiente virtual
+## O que significa ativar um ambiente virtual { #what-does-activating-a-virtual-environment-mean }
 
 Quando você ativa um ambiente virtual, por exemplo com:
 
@@ -607,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ou se você usa o Bash para Windows (por exemplo, <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ou se você usa o Bash para Windows (por exemplo, [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -619,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Esse comando criará ou modificará algumas [variáveis ​​de ambiente](environment-variables.md){.internal-link target=_blank} que estarão disponíveis para os próximos comandos.
+Esse comando criará ou modificará algumas [variáveis ​​de ambiente](environment-variables.md) que estarão disponíveis para os próximos comandos.
 
 Uma dessas variáveis ​​é a variável `PATH`.
 
 /// tip | Dica
 
-Você pode aprender mais sobre a variável de ambiente `PATH` na seção [Variáveis ​​de ambiente](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
+Você pode aprender mais sobre a variável de ambiente `PATH` na seção [Variáveis ​​de ambiente](environment-variables.md#path-environment-variable).
 
 ///
 
@@ -714,7 +734,7 @@ Um detalhe importante é que ele colocará o caminho do ambiente virtual no **in
 
 Ativar um ambiente virtual também muda algumas outras coisas, mas esta é uma das mais importantes.
 
-## Verificando um ambiente virtual
+## Verificando um ambiente virtual { #checking-a-virtual-environment }
 
 Ao verificar se um ambiente virtual está ativo, por exemplo com:
 
@@ -752,7 +772,7 @@ você usa `which` no Linux e macOS e `Get-Command` no Windows PowerShell.
 
 A maneira como esse comando funciona é que ele vai e verifica na variável de ambiente `PATH`, passando por **cada caminho em ordem**, procurando pelo programa chamado `python`. Uma vez que ele o encontre, ele **mostrará o caminho** para esse programa.
 
-A parte mais importante é que quando você chama ``python`, esse é exatamente o "`python`" que será executado.
+A parte mais importante é que quando você chama `python`, esse é exatamente o "`python`" que será executado.
 
 Assim, você pode confirmar se está no ambiente virtual correto.
 
@@ -766,7 +786,7 @@ E o segundo projeto **não funcionaria** porque você está usando o **Python in
 
 ///
 
-## Por que desativar um ambiente virtual
+## Por que desativar um ambiente virtual { #why-deactivate-a-virtual-environment }
 
 Por exemplo, você pode estar trabalhando em um projeto `philosophers-stone`, **ativar esse ambiente virtual**, instalar pacotes e trabalhar com esse ambiente.
 
@@ -815,18 +835,18 @@ $ source .venv/bin/activate
 // Agora, quando você executar o python, ele encontrará o pacote sirius instalado neste ambiente virtual ✨
 $ python main.py
 
-Eu juro solenemente 🐺
+I solemnly swear 🐺
 ```
 
 </div>
 
-## Alternativas
+## Alternativas { #alternatives }
 
 Este é um guia simples para você começar e lhe ensinar como tudo funciona **por baixo**.
 
 Existem muitas **alternativas** para gerenciar ambientes virtuais, dependências de pacotes (requisitos) e projetos.
 
-Quando estiver pronto e quiser usar uma ferramenta para **gerenciar todo o projeto**, dependências de pacotes, ambientes virtuais, etc., sugiro que você experimente o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Quando estiver pronto e quiser usar uma ferramenta para **gerenciar todo o projeto**, dependências de pacotes, ambientes virtuais, etc., sugiro que você experimente o [uv](https://github.com/astral-sh/uv).
 
 `uv` pode fazer muitas coisas, ele pode:
 
@@ -834,10 +854,10 @@ Quando estiver pronto e quiser usar uma ferramenta para **gerenciar todo o proje
 * Gerenciar o **ambiente virtual** para seus projetos
 * Instalar **pacotes**
 * Gerenciar **dependências e versões** de pacotes para seu projeto
-* Certifique-se de ter um conjunto **exato** de pacotes e versões para instalar, incluindo suas dependências, para que você possa ter certeza de que pode executar seu projeto em produção exatamente da mesma forma que em seu computador durante o desenvolvimento, isso é chamado de **bloqueio**
+* Certificar-se de que você tenha um conjunto **exato** de pacotes e versões para instalar, incluindo suas dependências, para que você possa ter certeza de que pode executar seu projeto em produção exatamente da mesma forma que em seu computador durante o desenvolvimento, isso é chamado de **bloqueio**
 * E muitas outras coisas
 
-## Conclusão
+## Conclusão { #conclusion }
 
 Se você leu e entendeu tudo isso, agora **você sabe muito mais** sobre ambientes virtuais do que muitos desenvolvedores por aí. 🤓
 

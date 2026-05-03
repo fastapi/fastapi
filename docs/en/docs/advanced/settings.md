@@ -8,7 +8,7 @@ For this reason it's common to provide them in environment variables that are re
 
 /// tip
 
-To understand environment variables you can read [Environment Variables](../environment-variables.md){.internal-link target=_blank}.
+To understand environment variables you can read [Environment Variables](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@ That means that any value read in Python from an environment variable will be a 
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Install `pydantic-settings` { #install-pydantic-settings }
 
-First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install the `pydantic-settings` package:
+First, make sure you create your [virtual environment](../virtual-environments.md), activate it, and then install the `pydantic-settings` package:
 
 <div class="termy">
 
@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info
-
-In Pydantic v1 it came included with the main package. Now it is distributed as this independent package so that you can choose to install it or not if you don't need that functionality.
-
-///
-
 ### Create the `Settings` object { #create-the-settings-object }
 
 Import `BaseSettings` from Pydantic and create a sub-class, very much like with a Pydantic model.
@@ -60,23 +54,7 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info
-
-In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
-
-////
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip
 
@@ -92,7 +70,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 
 Then you can use the new `settings` object in your application:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Run the server { #run-the-server }
 
@@ -122,19 +100,19 @@ And the `items_per_user` would keep its default value of `50`.
 
 ## Settings in another module { #settings-in-another-module }
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md).
 
 For example, you could have a file `config.py` with:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 And then use it in a file `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip
 
-You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md).
 
 ///
 
@@ -148,7 +126,7 @@ This could be especially useful during testing, as it's very easy to override a 
 
 Coming from the previous example, your `config.py` file could look like:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Notice that now we don't create a default instance `settings = Settings()`.
 
@@ -156,7 +134,7 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip
 
@@ -168,13 +146,13 @@ For now you can assume `get_settings()` is a normal function.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Settings and testing { #settings-and-testing }
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 In the dependency override we set a new value for the `admin_email` when creating the new `Settings` object, and then we return that new object.
 
@@ -194,7 +172,7 @@ But a dotenv file doesn't really have to have that exact filename.
 
 ///
 
-Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic has support for reading from these types of files using an external library. You can read more at [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip
 
-The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
-
-/// tip
-
-The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info
-
-In Pydantic version 1 the configuration was done in an internal class `Config`, in Pydantic version 2 it's done in an attribute `model_config`. This attribute takes a `dict`, and to get autocompletion and inline errors you can import and use `SettingsConfigDict` to define that `dict`.
+The `model_config` attribute is used just for Pydantic configuration. You can read more at [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -270,7 +226,7 @@ we would create that object for each request, and we would be reading the `.env`
 
 But as we are using the `@lru_cache` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Then for any subsequent call of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 
@@ -335,7 +291,7 @@ In the case of our dependency `get_settings()`, the function doesn't even take a
 
 That way, it behaves almost as if it was just a global variable. But as it uses a dependency function, then we can override it easily for testing.
 
-`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
+`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the [Python docs for `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Recap { #recap }
 

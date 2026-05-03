@@ -20,17 +20,17 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Ausführen { #run-it }
 
 /// info | Info
 
-Das Paket <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
+Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
 
 Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und es dann mit:
+Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und es dann mit:
 
 ```console
 $ pip install python-multipart
@@ -47,7 +47,7 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -56,7 +56,7 @@ $ fastapi dev main.py
 
 ## Es testen { #check-it }
 
-Gehen Sie zu der interaktiven Dokumentation unter: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Gehen Sie zu der interaktiven Dokumentation unter: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Sie werden etwa Folgendes sehen:
 
@@ -111,7 +111,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 * Der Benutzer klickt im Frontend, um zu einem anderen Abschnitt der Frontend-Web-Anwendung zu gelangen.
 * Das Frontend muss weitere Daten von der API abrufen.
     * Es benötigt jedoch eine Authentifizierung für diesen bestimmten Endpunkt.
-    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer ` plus dem Token.
+    * Um sich also bei unserer API zu authentifizieren, sendet es einen `Authorization`-Header mit dem Wert `Bearer ` plus dem Token.
     * Wenn der Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
 
 ## **FastAPI**s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
@@ -134,7 +134,7 @@ In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen br
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | Tipp
 
@@ -142,7 +142,7 @@ Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch
 
 Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
 
-Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
+Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [Hinter einem Proxy](../../advanced/behind-a-proxy.md), weiterhin funktioniert.
 
 ///
 
@@ -172,7 +172,7 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 

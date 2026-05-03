@@ -16,11 +16,11 @@ Auch wenn Ihre **FastAPI**-Anwendung normale `def`-Funktionen anstelle von `asyn
 
 Der `TestClient` betreibt unter der Haube etwas Magie, um die asynchrone FastAPI-Anwendung in Ihren normalen `def`-Testfunktionen, mithilfe von Standard-Pytest aufzurufen. Aber diese Magie funktioniert nicht mehr, wenn wir sie in asynchronen Funktionen verwenden. Durch die asynchrone Ausführung unserer Tests können wir den `TestClient` nicht mehr in unseren Testfunktionen verwenden.
 
-Der `TestClient` basiert auf <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> und glücklicherweise können wir es direkt verwenden, um die API zu testen.
+Der `TestClient` basiert auf [HTTPX](https://www.python-httpx.org) und glücklicherweise können wir es direkt verwenden, um die API zu testen.
 
 ## Beispiel { #example }
 
-Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größere Anwendungen](../tutorial/bigger-applications.md){.internal-link target=_blank} und [Testen](../tutorial/testing.md){.internal-link target=_blank}:
+Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größere Anwendungen](../tutorial/bigger-applications.md) und [Testen](../tutorial/testing.md):
 
 ```
 .
@@ -32,11 +32,11 @@ Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größ
 
 Die Datei `main.py` hätte als Inhalt:
 
-{* ../../docs_src/async_tests/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 Die Datei `test_main.py` hätte die Tests für `main.py`, das könnte jetzt so aussehen:
 
-{* ../../docs_src/async_tests/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## Es ausführen { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 Der Marker `@pytest.mark.anyio` teilt pytest mit, dass diese Testfunktion asynchron aufgerufen werden soll:
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | Tipp
 
@@ -66,7 +66,7 @@ Beachten Sie, dass die Testfunktion jetzt `async def` ist und nicht nur `def` wi
 
 Dann können wir einen `AsyncClient` mit der App erstellen und mit `await` asynchrone Requests an ihn senden.
 
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 Das ist das Äquivalent zu:
 
@@ -84,7 +84,7 @@ Beachten Sie, dass wir async/await mit dem neuen `AsyncClient` verwenden – der
 
 /// warning | Achtung
 
-Falls Ihre Anwendung auf Lifespan-Events angewiesen ist, der `AsyncClient` löst diese Events nicht aus. Um sicherzustellen, dass sie ausgelöst werden, verwenden Sie `LifespanManager` von <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Falls Ihre Anwendung auf Lifespan-Events angewiesen ist, der `AsyncClient` löst diese Events nicht aus. Um sicherzustellen, dass sie ausgelöst werden, verwenden Sie `LifespanManager` von [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).
 
 ///
 
@@ -94,6 +94,6 @@ Da die Testfunktion jetzt asynchron ist, können Sie in Ihren Tests neben dem Se
 
 /// tip | Tipp
 
-Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDBs MotorClient</a>), dann denken Sie daran, Objekte zu instanziieren, die einen Event Loop nur innerhalb asynchroner Funktionen benötigen, z. B. einen `@app.on_event("startup")`-Callback.
+Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von [MongoDBs MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), dann denken Sie daran, Objekte zu instanziieren, die einen Event Loop nur innerhalb asynchroner Funktionen benötigen, z. B. einen `@app.on_event("startup")`-Callback.
 
 ///

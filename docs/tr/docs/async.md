@@ -1,18 +1,18 @@
-# Concurrency ve async / await
+# Eşzamanlılık ve async / await { #concurrency-and-async-await }
 
-*path operasyon fonksiyonu* için `async def `sözdizimi,  asenkron kod, eşzamanlılık ve paralellik hakkında bazı ayrıntılar.
+*path operasyon fonksiyonları* için `async def` sözdizimi hakkında detaylar ve asenkron kod, eşzamanlılık (concurrency) ve paralellik üzerine arka plan bilgisi.
 
-## Aceleniz mi var?
+## Aceleniz mi var? { #in-a-hurry }
 
-<abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
+<abbr title="too long; didn't read - çok uzun; okumadım"><strong>TL;DR:</strong></abbr>
 
-Eğer `await` ile çağrılması gerektiğini belirten üçüncü taraf kütüphaneleri kullanıyorsanız, örneğin:
+Eğer `await` ile çağırmanız gerektiğini söyleyen üçüncü taraf kütüphaneler kullanıyorsanız, örneğin:
 
 ```Python
 results = await some_library()
 ```
 
-O zaman *path operasyon fonksiyonunu* `async def` ile tanımlayın örneğin:
+O zaman *path operasyon fonksiyonlarınızı* aşağıdaki gibi `async def` ile tanımlayın:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -23,13 +23,13 @@ async def read_results():
 
 /// note | Not
 
-Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
+`await` yalnızca `async def` ile oluşturulan fonksiyonların içinde kullanılabilir.
 
 ///
 
 ---
 
-Eğer bir veritabanı, bir API, dosya sistemi vb. ile iletişim kuran bir üçüncü taraf bir kütüphane kullanıyorsanız ve `await` kullanımını desteklemiyorsa, (bu şu anda çoğu veritabanı kütüphanesi için geçerli bir durumdur), o zaman *path operasyon fonksiyonunuzu* `def` kullanarak normal bir şekilde tanımlayın, örneğin:
+Eğer bir veritabanı, bir API, dosya sistemi vb. ile iletişim kuran ve `await` desteği olmayan bir üçüncü taraf kütüphane kullanıyorsanız (bu şu anda çoğu veritabanı kütüphanesi için geçerlidir), o zaman *path operasyon fonksiyonlarınızı* normal olarak `def` ile tanımlayın:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -40,279 +40,307 @@ def results():
 
 ---
 
-Eğer uygulamanız (bir şekilde) başka bir şeyle iletişim kurmak ve onun cevap vermesini beklemek zorunda değilse, `async def` kullanın.
+Uygulamanız (bir şekilde) başka bir şeyle iletişim kurmak ve onun yanıtını beklemek zorunda değilse, içinde `await` kullanmanız gerekmese bile `async def` kullanın.
 
 ---
 
-Sadece bilmiyorsanız, normal `def` kullanın.
+Emin değilseniz, normal `def` kullanın.
 
 ---
 
-**Not**: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyaç duyduğunuz gibi karıştırabilir ve her birini sizin için en iyi seçeneği kullanarak tanımlayabilirsiniz. FastAPI onlarla doğru olanı yapacaktır.
+Not: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyacınız kadar karıştırabilirsiniz, her birini sizin için en iyi seçenekle tanımlayın. FastAPI onlar için doğru olanı yapacaktır.
 
-Her neyse, yukarıdaki durumlardan herhangi birinde, FastAPI yine de asenkron olarak çalışacak ve son derece hızlı olacaktır.
+Yukarıdaki durumların herhangi birinde FastAPI yine de asenkron olarak çalışır ve son derece hızlıdır.
 
-Ancak yukarıdaki adımları takip ederek, bazı performans optimizasyonları yapılabilecektir.
+Ancak yukarıdaki adımları izleyerek bazı performans optimizasyonları mümkün olur.
 
-## Teknik Detaylar
+## Teknik Detaylar { #technical-details }
 
-Python'un modern versiyonlarında **`async` ve `await`** sözdizimi ile **"coroutines"**  kullanan **"asenkron kod"** desteğine sahiptir.
+Python’un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
 
-Bu ifadeyi aşağıdaki bölümlerde daha da ayrıntılı açıklayalım:
+Aşağıdaki bölümlerde bu ifadeyi parça parça ele alalım:
 
-* **Asenkron kod**
+* **Asenkron Kod**
 * **`async` ve `await`**
-* **Coroutines**
+* **Coroutine'ler**
 
-## Asenkron kod
+## Asenkron Kod { #asynchronous-code }
 
-Asenkron kod programlama dilinin 💬 bilgisayara / programa 🤖 kodun bir noktasında, *başka bir kodun* bir yerde bitmesini 🤖 beklemesi gerektiğini söylemenin bir yoludur. Bu *başka koda* "slow-file" denir 📝.
+Asenkron kod, dilin 💬 bilgisayara / programa 🤖 kodun bir noktasında, bir yerde *başka bir şeyin* bitmesini beklemesi gerektiğini söylemesinin bir yoludur. Diyelim ki bu *başka şeye* "slow-file" 📝 diyoruz.
 
-Böylece, bu süreçte bilgisayar "slow-file" 📝 tamamlanırken gidip başka işler yapabilir.
+Bu sırada bilgisayar, "slow-file" 📝 biterken gidip başka işler yapabilir.
 
-Sonra bilgisayar / program 🤖 her fırsatı olduğunda o noktada yaptığı tüm işleri 🤖 bitirene kadar geri dönücek. Ve 🤖 yapması gerekeni yaparak, beklediği görevlerden herhangi birinin bitip bitmediğini görecek.
+Sonra bilgisayar / program 🤖, ya tekrar beklediği için ya da o anda elindeki tüm işleri bitirdiğinde fırsat buldukça geri gelir. Ve beklediği görevlerden herhangi biri bittiyse, yapılması gerekenleri yapar.
 
-Ardından, 🤖 bitirmek için ilk görevi alır ("slow-file" 📝) ve onunla ne yapması gerekiyorsa onu devam ettirir.
+Ardından, 🤖 ilk biten görevi alır (örneğin bizim "slow-file" 📝) ve onunla yapması gerekenlere devam eder.
 
-Bu "başka bir şey için bekle" normalde, aşağıdakileri beklemek gibi (işlemcinin ve RAM belleğinin hızına kıyasla) nispeten "yavaş" olan <abbr title="Input ve Output (Giriş ve Çıkış)">I/O</abbr> işlemlerine atıfta bulunur:
+Bu "başka bir şeyi beklemek" genelde işlemci ve RAM hızına kıyasla nispeten "yavaş" olan <abbr title="Input and Output - Giriş ve Çıkış">I/O</abbr> işlemlerine atıfta bulunur, örneğin şunları beklemek gibi:
 
-* istemci tarafından ağ üzerinden veri göndermek
-* ağ üzerinden istemciye gönderilen veriler
-* sistem tarafından okunacak ve programınıza verilecek bir dosya içeriği
-* programınızın diske yazılmak üzere sisteme verdiği dosya içerikleri
+* istemciden verinin ağ üzerinden gelmesi
+* programınızın gönderdiği verinin ağ üzerinden istemciye ulaşması
+* diskteki bir dosyanın içeriğinin sistem tarafından okunup programınıza verilmesi
+* programınızın sisteme verdiği içeriğin diske yazılması
 * uzak bir API işlemi
-* bir veritabanı bitirme işlemi
-* sonuçları döndürmek için bir veritabanı sorgusu
+* bir veritabanı işleminin bitmesi
+* bir veritabanı sorgusunun sonuç döndürmesi
 * vb.
 
-Yürütme süresi çoğunlukla  <abbr title="Input ve Output (Giriş ve Çıkış)">I/O</abbr> işlemleri beklenerek tüketildiğinden bunlara "I/O bağlantılı" işlemler denir.
+Çalışma süresi çoğunlukla <abbr title="Input and Output - Giriş ve Çıkış">I/O</abbr> işlemlerini beklemekle geçtiğinden, bunlara "I/O bound" işlemler denir.
 
-Buna "asenkron" denir, çünkü bilgisayar/program yavaş görevle "senkronize" olmak zorunda değildir, görevin tam olarak biteceği anı bekler, hiçbir şey yapmadan, görev sonucunu alabilmek ve çalışmaya devam edebilmek için .
+"Bunun" asenkron" denmesinin sebebi, bilgisayarın / programın yavaş görevle "senkronize" olmak, görev tam bittiği anda orada olup görev sonucunu almak ve işe devam etmek için hiçbir şey yapmadan beklemek zorunda olmamasıdır.
 
-Bunun yerine, "asenkron" bir sistem olarak, bir kez bittiğinde,  bilgisayarın / programın yapması gerekeni bitirmesi için biraz (birkaç mikrosaniye) sırada bekleyebilir ve ardından sonuçları almak için geri gelebilir ve onlarla çalışmaya devam edebilir.
+Bunun yerine "asenkron" bir sistem olarak, görev bittiğinde, bilgisayarın / programın o sırada yaptığı işi bitirmesi için biraz (birkaç mikrosaniye) sırada bekleyebilir ve sonra sonuçları almak üzere geri dönüp onlarla çalışmaya devam edebilir.
 
-"Senkron" ("asenkron"un aksine) için genellikle "sıralı" terimini de kullanırlar, çünkü bilgisayar/program, bu adımlar beklemeyi içerse bile, farklı bir göreve geçmeden önce tüm adımları sırayla izler.
+"Senkron" (asenkronun tersi) için genelde "sıralı" terimi de kullanılır; çünkü bilgisayar / program, farklı bir göreve geçmeden önce tüm adımları sırayla izler, bu adımlar beklemeyi içerse bile.
 
+### Eşzamanlılık ve Burgerler { #concurrency-and-burgers }
 
-### Eşzamanlılık (Concurrency) ve Burgerler
+Yukarıda anlatılan **asenkron** kod fikrine bazen **"eşzamanlılık"** (concurrency) da denir. **"Paralellik"**ten (parallelism) farklıdır.
 
+**Eşzamanlılık** ve **paralellik**, "aynı anda az çok birden fazla şeyin olması" ile ilgilidir.
 
-Yukarıda açıklanan bu **asenkron** kod fikrine bazen **"eşzamanlılık"** da denir. **"Paralellikten"** farklıdır.
+Ama *eşzamanlılık* ve *paralellik* arasındaki ayrıntılar oldukça farklıdır.
 
-**Eşzamanlılık** ve **paralellik**, "aynı anda az ya da çok olan farklı işler" ile ilgilidir.
+Farkı görmek için burgerlerle ilgili şu hikayeyi hayal edin:
 
-Ancak *eşzamanlılık* ve *paralellik* arasındaki ayrıntılar oldukça farklıdır.
+### Eşzamanlı Burgerler { #concurrent-burgers }
 
+Aşkınla fast food almaya gidiyorsun, kasiyer senden önceki insanların siparişlerini alırken sıraya giriyorsun. 😍
 
-Farkı görmek için burgerlerle ilgili aşağıdaki hikayeyi hayal edin:
+<img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-### Eşzamanlı Burgerler
+Sonra sıra size geliyor, sen ve aşkın için 2 çok havalı burger sipariş ediyorsun. 🍔🍔
 
-<!-- Cinsiyetten bağımsız olan aşçı emojisi "🧑‍🍳" tarayıcılarda yeterince iyi görüntülenmiyor. Bu yüzden erken "👨‍🍳" ve kadın "👩‍🍳" aşçıları karışık bir şekilde kullanıcağım. -->
+<img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
-Aşkınla beraber 😍 dışarı hamburger yemeye çıktınız 🍔, kasiyer 💁 öndeki insanlardan sipariş alırken siz sıraya girdiniz.
+Kasiyer, mutfaktaki aşçıya burgerlerini hazırlamaları gerektiğini söylüyor (o an önceki müşterilerin burgerlerini hazırlıyor olsalar bile).
 
-Sıra sizde ve sen aşkın 😍 ve kendin için 2 çılgın hamburger 🍔 söylüyorsun.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
 
-Ödemeyi yaptın 💸.
+Ödeme yapıyorsun. 💸
 
-Kasiyer 💁 mutfakdaki aşçıya 👨‍🍳 hamburgerleri 🍔 hazırlaması gerektiğini söyler ve aşçı bunu bilir (o an önceki müşterilerin siparişlerini hazırlıyor olsa bile).
+Kasiyer sana sıra numaranı veriyor.
 
-Kasiyer 💁 size bir sıra numarası verir.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-Beklerken askınla 😍 bir masaya oturur ve uzun bir süre konuşursunuz(Burgerleriniz çok çılgın olduğundan ve hazırlanması biraz zaman alıyor ✨🍔✨).
+Beklerken aşkınla bir masa seçip oturuyorsunuz, uzun uzun sohbet ediyorsunuz (burgerler baya havalı ve hazırlanması biraz zaman alıyor).
 
-Hamburgeri beklerkenki zamanı 🍔, aşkının ne kadar zeki ve tatlı olduğuna hayran kalarak harcayabilirsin ✨😍✨.
+Masada aşkınla otururken, burgerleri beklerken, o zamanı aşkının ne kadar harika, tatlı ve zeki olduğuna hayran kalarak geçirebilirsin ✨😍✨.
 
-Aşkınla 😍 konuşurken arada sıranın size gelip gelmediğini kontrol ediyorsun.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
 
-Nihayet sıra size geldi. Tezgaha gidip hamburgerleri 🍔kapıp masaya geri dönüyorsun.
+Bekler ve sohbet ederken, ara ara tezgâhtaki numaraya bakıp sıranın size gelip gelmediğini kontrol ediyorsun.
 
-Aşkınla hamburgerlerinizi yiyor 🍔 ve iyi vakit geçiriyorsunuz ✨.
+Bir noktada, nihayet sıra size geliyor. Tezgâha gidiyor, burgerleri alıp masaya dönüyorsun.
 
----
+<img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
 
-Bu hikayedeki bilgisayar / program 🤖 olduğunuzu hayal edin.
+Aşkınla burgerleri yiyip güzel vakit geçiriyorsunuz. ✨
 
-Sırada beklerken boştasın 😴, sıranı beklerken herhangi bir "üretim" yapmıyorsun. Ama bu sıra hızlı çünkü kasiyer sadece siparişleri alıyor (onları hazırlamıyor), burada bir sıknıtı yok.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-Sonra sıra size geldiğinde gerçekten "üretken" işler yapabilirsiniz 🤓, menüyü oku, ne istediğine larar ver, aşkının seçimini al 😍, öde 💸, doğru kartı çıkart, ödemeyi kontrol et, faturayı kontrol et, siparişin doğru olup olmadığını kontrol et, vb.
+/// info | Bilgi
 
-Ama hamburgerler 🍔 hazır olmamasına rağmen Kasiyer 💁 ile işiniz "duraklıyor" ⏸, çünkü hamburgerlerin hazır olmasını bekliyoruz 🕙.
+Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
-Ama tezgahtan uzaklaşıp sıranız gelene kadarmasanıza dönebilir 🔀 ve dikkatinizi aşkınıza 😍 verebilirsiniz vr bunun üzerine "çalışabilirsiniz" ⏯ 🤓. Artık "üretken" birşey yapıyorsunuz 🤓, sevgilinle 😍 flört eder gibi.
-
-Kasiyer 💁  "Hamburgerler hazır !" 🍔 dediğinde ve görüntülenen numara sizin numaranız olduğunda hemen koşup hamburgerlerinizi almaya çalışmıyorsunuz. Biliyorsunuzki kimse sizin hamburgerlerinizi 🍔 çalmayacak çünkü sıra sizin.
-
-Yani Aşkınızın😍 hikayeyi bitirmesini bekliyorsunuz (çalışmayı bitir ⏯ / görev işleniyor.. 🤓), nazikçe gülümseyin ve hamburger yemeye gittiğinizi söyleyin ⏸.
-
-Ardından tezgaha 🔀, şimdi biten ilk göreve ⏯ gidin, Hamburgerleri 🍔 alın, teşekkür edin ve masaya götürün. sayacın bu adımı tamamlanır ⏹. Bu da yeni bir görev olan  "hamburgerleri ye" 🔀 ⏯ görevini başlatırken "hamburgerleri al" ⏹ görevini bitirir.
-
-### Parallel Hamburgerler
-
-Şimdi bunların "Eşzamanlı Hamburger" değil, "Paralel Hamburger" olduğunu düşünelim.
-
-Hamburger 🍔 almak için 😍 aşkınla Paralel fast food'a gidiyorsun.
-
-Birden fazla kasiyer varken (varsayalım 8) sıraya girdiniz👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳 ve sıranız gelene kadar bekliyorsunuz.
-
-Sizden önceki herkez ayrılmadan önce hamburgerlerinin 🍔 hazır olmasını bekliyor 🕙. Çünkü kasiyerlerin her biri bir hamburger hazırlanmadan önce bir sonraki siparişe geçmiiyor.
-
-Sonunda senin sıran, aşkın 😍 ve kendin için 2 hamburger 🍔 siparişi verdiniz.
-
-Ödemeyi yaptınız 💸.
-
-Kasiyer mutfağa gider 👨‍🍳.
-
-Sırada bekliyorsunuz 🕙, kimse sizin burgerinizi 🍔 almaya çalışmıyor çünkü sıra sizin.
-
-Sen ve aşkın 😍 sıranızı korumak ve hamburgerleri almakla o kadar meşgulsünüz ki birbirinize vakit 🕙 ayıramıyorsunuz 😞.
-
-İşte bu "senkron" çalışmadır.  Kasiyer/aşçı 👨‍🍳ile senkron hareket ediyorsunuz. Bu yüzden beklemek 🕙 ve kasiyer/aşçı burgeri 🍔bitirip size getirdiğinde  orda olmak zorundasınız yoksa başka biri alabilir.
-
-Sonra kasiyeri/aşçı 👨‍🍳 nihayet hamburgerlerinizle 🍔, uzun bir süre sonra 🕙 tezgaha  geri geliyor.
-
-Burgerlerinizi 🍔 al ve aşkınla masanıza doğru ilerle 😍.
-
-Sadece burgerini yiyorsun 🍔 ve bitti ⏹.
-
-Bekleyerek çok fazla zaman geçtiğinden 🕙 konuşmaya çok fazla vakit kalmadı 😞.
+///
 
 ---
 
-Paralel burger senaryosunda ise,  siz iki işlemcili birer robotsunuz 🤖 (sen ve sevgilin 😍), Beklıyorsunuz 🕙 hem konuşarak güzel vakit geçirirken ⏯ hem de sıranızı bekliyorsunuz 🕙.
+Bu hikâyede bilgisayar / program 🤖 olduğunu hayal et.
 
-Mağazada ise 8 işlemci bulunuyor (Kasiyer/aşçı) 👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳. Eşzamanlı burgerde yalnızca 2 kişi olabiliyordu (bir kasiyer ve bir aşçı) 💁 👨‍🍳.
+Sıradayken sadece boştasın 😴, sıranı bekliyorsun, çok "üretken" bir şey yapmıyorsun. Ama sorun yok, çünkü kasiyer sadece sipariş alıyor (hazırlamıyor), bu yüzden sıra hızlı ilerliyor.
 
-Ama yine de bu  en iyisi değil 😞.
+Sıra sana geldiğinde gerçekten "üretken" işler yapıyorsun: menüyü işliyorsun, ne istediğine karar veriyorsun, aşkının seçimini alıyorsun, ödüyorsun, doğru para ya da kartı verdiğini kontrol ediyorsun, doğru ücretlendirildiğini kontrol ediyorsun, sipariş kalemlerinin doğru olduğunu kontrol ediyorsun, vb.
 
----
+Ama sonra, burgerlerin hâlâ gelmemiş olsa da, kasiyerle olan işin "duraklatılıyor" ⏸, çünkü burgerlerin hazır olmasını 🕙 beklemen gerekiyor.
 
-Bu hikaye burgerler 🍔 için paralel.
+Fakat tezgâhtan uzaklaşıp masada sıra numaranla oturduğun için, dikkatinizi 🔀 aşkına çevirebilir, onunla "çalışmaya" ⏯ 🤓 odaklanabilirsin. Yani yine çok "üretken" bir şey yapıyorsun, aşkınla flört etmek gibi 😍.
 
-Bir gerçek hayat örneği verelim. Bir banka hayal edin.
+Ardından kasiyer 💁, tezgâh ekranına numaranı koyarak "burgerleri bitirdim" diyor; ama numara seninki olduğunda çılgınca sıçramıyorsun. Sıra numaran sende, herkesin kendi numarası var; kimse burgerlerini çalamaz.
 
-Bankaların çoğunda birkaç kasiyer  👨‍💼👨‍💼👨‍💼👨‍💼  ve uzun bir sıra var 🕙🕙🕙🕙🕙🕙🕙🕙.
+Bu yüzden aşkının hikâyeyi bitirmesini (mevcut işi ⏯ / işlenen görevi 🤓 bitirmesini) bekliyor, nazikçe gülümsüyor ve burgerleri almaya gittiğini söylüyorsun ⏸.
 
-Tüm işi sırayla bir müşteri ile yapan tüm kasiyerler 👨‍💼⏯.
+Sonra tezgâha 🔀 gidip artık bitmiş olan ilk göreve ⏯ dönüyor, burgerleri alıyor, teşekkür ediyor ve masaya getiriyorsun. Tezgâhla etkileşimin bu adımı / görevi böylece bitiyor ⏹. Bu da yeni bir görev olan "burgerleri yemek" 🔀 ⏯ görevini oluşturuyor, ama "burgerleri almak" görevi tamamlandı ⏹.
 
-Ve uzun süre kuyrukta beklemek 🕙 zorundasın yoksa sıranı kaybedersin.
+### Paralel Burgerler { #parallel-burgers }
 
-Muhtemelen ayak işlerı yaparken sevgilini 😍 bankaya 🏦 getirmezsin.
+Şimdi bunların "Eşzamanlı Burgerler" değil, "Paralel Burgerler" olduğunu hayal edelim.
 
-### Burger Sonucu
+Aşkınla paralel fast food almaya gidiyorsun.
 
-Bu "aşkınla fast food burgerleri" senaryosunda, çok fazla bekleme olduğu için 🕙, eşzamanlı bir sisteme sahip olmak çok daha mantıklı ⏸🔀⏯.
+Aynı anda aşçı da olan birden fazla (8 diyelim) kasiyerin, senden önceki insanların siparişlerini aldığı bir sırada bekliyorsun.
 
-Web uygulamalarının çoğu için durum böyledir.
+Senden önceki herkes, tezgâhtan ayrılmadan önce burgerlerinin hazırlanmasını bekliyor; çünkü 8 kasiyerin her biri bir sonraki siparişe geçmeden önce burgeri hemen gidip hazırlıyor.
 
-Pek çok kullanıcı var, ama sunucunuz pek de iyi olmayan bir bağlantı ile istek atmalarını bekliyor.
+<img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Ve sonra yanıtların geri gelmesi için tekrar 🕙 bekliyor
+Sonunda sıra size geliyor, sen ve aşkın için 2 çok havalı burger siparişi veriyorsun.
 
-Bu "bekleme" 🕙 mikrosaniye cinsinden ölçülür, yine de, hepsini toplarsak çok fazla bekleme var.
+Ödüyorsun 💸.
 
-Bu nedenle, web API'leri için asenkron ⏸🔀⏯ kod kullanmak çok daha mantıklı.
+<img src="/img/async/parallel-burgers/parallel-burgers-02.png" class="illustration">
 
-Mevcut popüler Python frameworklerinin çoğu (Flask ve Django gibi), Python'daki yeni asenkron özellikler mevcut olmadan önce yazıldı. Bu nedenle, dağıtılma biçimleri paralel yürütmeyi ve yenisi kadar güçlü olmayan eski bir eşzamansız yürütme biçimini destekler.
+Kasiyer mutfağa gidiyor.
 
-Asenkron web (ASGI) özelliği, WebSockets için destek eklemek için Django'ya eklenmiş olsa da.
+Tezgâhın önünde ayakta 🕙 bekliyorsun; sıra numarası olmadığından, burgerlerini senden önce kimsenin almaması için orada durman gerekiyor.
 
-Asenkron çalışabilme NodeJS in popüler olmasının sebebi (paralel olamasa bile) ve Go dilini güçlü yapan özelliktir.
+<img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
 
-Ve bu **FastAPI** ile elde ettiğiniz performans düzeyiyle aynıdır.
+Sen ve aşkın, kimsenin önünüze geçip burgerler gelince almaması için meşgul olduğunuzdan, aşkına dikkatini veremiyorsun. 😞
 
-Aynı anda paralellik ve asenkronluğa sahip olabildiğiniz için, test edilen NodeJS çerçevelerinin çoğundan daha yüksek performans elde edersiniz ve C'ye daha yakın derlenmiş bir dil olan Go ile eşit bir performans elde edersiniz <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(bütün teşekkürler Starlette'e )</a>.
+Bu "senkron" bir iştir; kasiyer/aşçı 👨‍🍳 ile "senkronize"sin. 🕙 Beklemen ve kasiyer/aşçı 👨‍🍳 burgerleri bitirip sana verdiği anda tam orada olman gerekir; yoksa bir başkası alabilir.
 
-### Eşzamanlılık paralellikten daha mı iyi?
+<img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-Hayır!  Hikayenin ahlakı bu değil.
+Sonra kasiyer/aşçı 👨‍🍳, uzun süre tezgâhın önünde 🕙 bekledikten sonra nihayet burgerlerinle geri geliyor.
 
-Eşzamanlılık paralellikten farklıdır. Ve çok fazla bekleme içeren **belirli** senaryolarda daha iyidir. Bu nedenle, genellikle web uygulamaları için paralellikten çok daha iyidir. Ama her şey için değil.
+<img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
-Yanı, bunu aklınızda oturtmak için aşağıdaki kısa hikayeyi hayal edin:
+Burgerleri alıyor ve aşkınla masaya gidiyorsun.
 
-> Büyük, kirli bir evi temizlemelisin.
+Sadece yiyorsunuz ve iş bitiyor. ⏹
 
-*Evet, tüm hikaye bu*.
+<img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
 
----
+Vaktin çoğu tezgâhın önünde 🕙 beklemekle geçtiğinden, pek konuşma ya da flört olmadı. 😞
 
-Beklemek yok 🕙. Hiçbir yerde.  Sadece evin birden fazla yerinde yapılacak fazlasıyla iş var.
+/// info | Bilgi
 
-You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything.
-Hamburger örneğindeki gibi dönüşleriniz olabilir, önce oturma odası, sonra mutfak, ama hiçbir şey için 🕙 beklemediğinizden, sadece temizlik, temizlik ve temizlik, dönüşler hiçbir şeyi etkilemez.
+Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
-Sıralı veya sırasız (eşzamanlılık) bitirmek aynı zaman alır ve aynı miktarda işi yaparsınız.
-
-Ama bu durumda, 8 eski kasiyer/aşçı - yeni temizlikçiyi getirebilseydiniz 👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳 ve her birini (artı siz) evin bir bölgesini temizlemek için görevlendirseydiniz, ekstra yardımla tüm işleri **paralel** olarak yapabilir ve çok daha erken bitirebilirdiniz.
-
-Bu senaryoda, temizlikçilerin her biri (siz dahil) birer işlemci olacak ve üzerine düşeni yapacaktır.
-
-Yürütme süresinin çoğu (beklemek yerine) iş yapıldığından ve bilgisayardaki iş bir <abbr title="Central Processing Unit">CPU</abbr> tarafından yapıldığından, bu sorunlara "CPU bound" diyorlar".
+///
 
 ---
 
-CPU'ya bağlı işlemlerin yaygın örnekleri, karmaşık matematik işlemleri gerektiren işlerdir.
+Bu paralel burger senaryosunda, ikiniz (sen ve aşkın) iki işlemcili bir bilgisayar / programsınız 🤖; ikiniz de uzun süre tezgâhta "bekleme" işine 🕙 dikkat ⏯ ayırıyorsunuz.
+
+Fast food dükkânında 8 işlemci var (kasiyer/aşçılar). Eşzamanlı burger dükkânında yalnızca 2 kişi olabilir (bir kasiyer ve bir aşçı).
+
+Ama yine de nihai deneyim pek iyi değil. 😞
+
+---
+
+Bu, burgerler için paralel karşılık gelen hikâye olurdu. 🍔
+
+Daha "gerçek hayat" bir örnek için, bir banka hayal edin.
+
+Yakın zamana kadar, bankaların çoğunda birden çok gişe memuru 👨‍💼👨‍💼👨‍💼👨‍💼 ve uzun bir sıra 🕙🕙🕙🕙🕙🕙🕙🕙 vardı.
+
+Tüm gişe memurları bir müşteriyle tüm işi yapar, sonra sıradakiyle 👨‍💼⏯.
+
+Ve sıranı kaybetmemek için uzun süre 🕙 kuyrukta beklemen gerekir.
+
+Muhtemelen, bankada 🏦 işlerini hallederken aşkını 😍 yanında götürmek istemezsin.
+
+### Burger Sonucu { #burger-conclusion }
+
+"Fast food burgerleri ve aşkın" senaryosunda, çok fazla bekleme 🕙 olduğundan, eşzamanlı bir sistem ⏸🔀⏯ çok daha mantıklıdır.
+
+Bu, çoğu web uygulaması için de geçerlidir.
+
+Çok fazla kullanıcı vardır; ancak sunucunuz, iyi olmayan bağlantılarından gelen istekleri 🕙 bekler.
+
+Ve sonra yanıtların geri gelmesini yine 🕙 bekler.
+
+Bu "beklemeler" 🕙 mikrosaniyelerle ölçülür; ama hepsi toplandığında sonuçta oldukça fazla bekleme olur.
+
+Bu yüzden web API’leri için asenkron ⏸🔀⏯ kod kullanmak çok mantıklıdır.
+
+Bu tür asenkronluk, NodeJS’i popüler yapan şeydir (NodeJS paralel olmasa bile) ve Go dilinin gücüdür.
+
+Ve **FastAPI** ile elde ettiğiniz performans seviyesi de budur.
+
+Ayrıca, aynı anda hem paralellik hem de asenkronluk kullanabildiğiniz için, test edilen çoğu NodeJS framework’ünden daha yüksek ve C’ye daha yakın derlenen bir dil olan Go ile başa baş performans elde edersiniz [(hepsi Starlette sayesinde)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
+
+### Eşzamanlılık paralellikten daha mı iyi? { #is-concurrency-better-than-parallelism }
+
+Hayır! Hikâyenin özü bu değil.
+
+Eşzamanlılık paralellikten farklıdır. Ve çok fazla bekleme içeren **belirli** senaryolarda daha iyidir. Bu nedenle, genellikle web uygulaması geliştirme için paralellikten çok daha iyidir. Ama her şey için değil.
+
+Bunu dengelemek için, şu kısa hikâyeyi hayal edin:
+
+> Büyük, kirli bir evi temizlemen gerekiyor.
+
+*Evet, tüm hikâye bu kadar*.
+
+---
+
+Hiçbir yerde 🕙 bekleme yok; sadece evin birden fazla yerinde yapılacak çok iş var.
+
+Hamburger örneğindeki gibi dönüşlerle ilerleyebilirsin, önce salon, sonra mutfak; ama hiçbir şey 🕙 beklemediğin için, sadece temizlik yaptığından, dönüşlerin hiçbir etkisi olmaz.
+
+Dönüşlerle ya da dönüşsüz (eşzamanlılık) bitirmek aynı zaman alır ve aynı miktarda iş yapmış olursun.
+
+Ama bu durumda, 8 eski kasiyer/aşçı—yeni temizlikçiyi getirip her birine (artı sana) evin bir bölümünü versen, fazladan yardımla tüm işleri **paralel** yaparak çok daha çabuk bitirebilirdin.
+
+Bu senaryoda, her bir temizlikçi (sen dâhil) birer işlemci olur ve kendi iş payını yapar.
+
+Ve yürütme süresinin çoğu gerçek işten (bekleme yerine) oluştuğu ve bilgisayardaki işi bir <abbr title="Central Processing Unit - Merkezi İşlem Birimi">CPU</abbr> yaptığı için, bu sorunlara "CPU bound" denir.
+
+---
+
+CPU’ya bağlı işlemlerin yaygın örnekleri, karmaşık matematiksel işlem gerektiren iş yükleridir.
 
 Örneğin:
 
 * **Ses** veya **görüntü işleme**.
-* **Bilgisayar görüsü**: bir görüntü milyonlarca pikselden oluşur, her pikselin 3 değeri / rengi vardır, bu pikseller üzerinde aynı anda bir şeyler hesaplamayı gerektiren işleme.
-* **Makine Öğrenimi**: Çok sayıda "matris" ve "vektör" çarpımı gerektirir. Sayıları olan ve hepsini aynı anda çarpan büyük bir elektronik tablo düşünün.
-* **Derin Öğrenme**: Bu, Makine Öğreniminin bir alt alanıdır, dolayısıyla aynısı geçerlidir. Sadece çarpılacak tek bir sayı tablosu değil, büyük bir sayı kümesi vardır ve çoğu durumda bu modelleri oluşturmak ve/veya kullanmak için özel işlemciler kullanırsınız.
+* **Bilgisayar görüsü**: bir görüntü milyonlarca pikselden oluşur, her pikselin 3 değeri / rengi vardır; işleme genellikle bu pikseller üzerinde aynı anda bir şeyler hesaplamayı gerektirir.
+* **Makine Öğrenimi**: genellikle çok sayıda "matris" ve "vektör" çarpımı gerekir. Sayılar içeren devasa bir elektronik tabloyu ve hepsini aynı anda çarpmayı düşünün.
+* **Derin Öğrenme**: Makine Öğreniminin bir alt alanıdır, dolayısıyla aynısı geçerlidir. Sadece çarpılacak tek bir sayı tablosu değil, kocaman bir sayı kümesi vardır ve çoğu durumda bu modelleri kurmak ve/veya kullanmak için özel işlemciler kullanırsınız.
 
-### Eşzamanlılık + Paralellik: Web + Makine Öğrenimi
+### Eşzamanlılık + Paralellik: Web + Makine Öğrenimi { #concurrency-parallelism-web-machine-learning }
 
-**FastAPI** ile web geliştirme için çok yaygın olan eşzamanlılıktan yararlanabilirsiniz (NodeJS'in aynı çekiciliği).
+**FastAPI** ile web geliştirmede çok yaygın olan eşzamanlılıktan (NodeJS’in başlıca cazibesiyle aynı) yararlanabilirsiniz.
 
-Ancak, Makine Öğrenimi sistemlerindekile gibi **CPU'ya bağlı** iş yükleri için paralellik ve çoklu işlemenin (birden çok işlemin paralel olarak çalışması) avantajlarından da yararlanabilirsiniz.
+Ama ayrıca **CPU’ya bağlı** iş yükleri (Makine Öğrenimi sistemlerindeki gibi) için paralellik ve çoklu işlemden (paralel çalışan birden çok işlem) de yararlanabilirsiniz.
 
-Buna ek olarak Python'un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olduğu gerçeği, FastAPI'yi Veri Bilimi / Makine Öğrenimi web API'leri ve uygulamaları için çok iyi bir seçenek haline getirir.
+Buna ek olarak Python’un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olması, FastAPI’yi Veri Bilimi / Makine Öğrenimi web API’leri ve uygulamaları için çok iyi bir seçenek yapar.
 
-Production'da nasıl oldugunu görmek için şu bölüme bakın [Deployment](deployment/index.md){.internal-link target=_blank}.
+Production’da bu paralelliği nasıl sağlayacağınızı görmek için [Deployment](deployment/index.md) bölümüne bakın.
 
-## `async` ve `await`
+## `async` ve `await` { #async-and-await }
 
-Python'un modern sürümleri, asenkron kodu tanımlamanın çok sezgisel bir yoluna sahiptir. Bu, normal "sequentıal" (sıralı) kod gibi görünmesini ve doğru anlarda sizin için "awaıt" ile bekleme yapmasını sağlar.
+Python’un modern sürümleri, asenkron kodu tanımlamak için oldukça sezgisel bir yol sunar. Bu sayede kod normal "sıralı" kod gibi görünür ve doğru anlarda sizin yerinize "beklemeyi" yapar.
 
-Sonuçları vermeden önce beklemeyi gerektirecek ve yeni Python özelliklerini destekleyen bir işlem olduğunda aşağıdaki gibi kodlayabilirsiniz:
+Sonuçları vermeden önce bekleme gerektiren ve bu yeni Python özelliklerini destekleyen bir işlem olduğunda, şöyle kodlayabilirsiniz:
 
 ```Python
 burgers = await get_burgers(2)
 ```
 
-Buradaki `await` anahtari Python'a, sonuçları `burgers` degiskenine atamadan önce `get_burgers(2)` kodunun işini bitirmesini 🕙 beklemesi gerektiğini söyler. Bununla Python, bu ara zamanda başka bir şey 🔀 ⏯ yapabileceğini bilecektir (başka bir istek almak gibi).
+Buradaki kilit nokta `await`. Python’a, sonuçları `burgers` değişkenine koymadan önce `get_burgers(2)` çalışmasının bitmesini 🕙 beklemesi ⏸ gerektiğini söyler. Böylece Python, bu arada başka bir şey 🔀 ⏯ yapabileceğini bilir (ör. başka bir request almak gibi).
 
- `await`kodunun çalışması için, eşzamansızlığı destekleyen bir fonksiyonun içinde olması gerekir. Bunu da yapmak için fonksiyonu `async def` ile tanımlamamız yeterlidir:
+`await`’in çalışabilmesi için, bu asenkronluğu destekleyen bir fonksiyonun içinde olması gerekir. Bunu yapmak için fonksiyonu `async def` ile tanımlayın:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # burgerleri oluşturmak için asenkron birkaç iş
+    # Burgerleri yaratmak için bazı asenkron işler yap
     return burgers
 ```
 
 ...`def` yerine:
 
 ```Python hl_lines="2"
-# bu kod asenkron değil
+# Bu asenkron değildir
 def get_sequential_burgers(number: int):
-    # burgerleri oluşturmak için senkron bırkaç iş
+    # Burgerleri yaratmak için bazı sıralı işler yap
     return burgers
 ```
 
-`async def` ile Python, bu fonksıyonun içinde, `await` ifadelerinin farkında olması gerektiğini ve çalışma zamanı gelmeden önce bu işlevin yürütülmesini "duraklatabileceğini" ve başka bir şey yapabileceğini 🔀 bilir.
+`async def` ile Python, bu fonksiyonun içinde `await` ifadelerinin olabileceğini bilir ve bu fonksiyonun yürütülmesini "duraklatıp" ⏸ başka bir şey yapabileceğini 🔀, sonra geri dönebileceğini anlar.
 
-`async def` fonksiyonunu çağırmak istediğinizde, onu "awaıt" ıle kullanmanız gerekir. Yani, bu işe yaramaz:
+`async def` fonksiyonunu çağırmak istediğinizde, onu "await" etmeniz gerekir. Yani şu çalışmaz:
 
 ```Python
-# Bu işe yaramaz, çünkü get_burgers, şu şekilde tanımlandı: async def
+# Bu çalışmaz, çünkü get_burgers şöyle tanımlandı: async def
 burgers = get_burgers(2)
 ```
 
 ---
 
-Bu nedenle, size onu `await` ile çağırabileceğinizi söyleyen bir kitaplık kullanıyorsanız, onu `async def` ile tanımlanan *path fonksiyonu* içerisinde kullanmanız gerekir, örneğin:
+Dolayısıyla, `await` ile çağrılabileceğini söyleyen bir kütüphane kullanıyorsanız, onu kullanan *path operasyon fonksiyonunu* `async def` ile oluşturmanız gerekir, örneğin:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -321,87 +349,96 @@ async def read_burgers():
     return burgers
 ```
 
-### Daha fazla teknik detay
+### Daha teknik detaylar { #more-technical-details }
 
-`await` in yalnızca `async def` ile tanımlanan fonksıyonların içinde kullanılabileceğini fark etmişsinizdir.
+`await`’in yalnızca `async def` ile tanımlanan fonksiyonların içinde kullanılabildiğini fark etmiş olabilirsiniz.
 
-Ama aynı zamanda, `async def` ile tanımlanan fonksiyonların "await" ile beklenmesi gerekir. Bu nedenle, "`async def` içeren fonksiyonlar yalnızca "`async def` ile tanımlanan fonksiyonların içinde çağrılabilir.
+Aynı zamanda, `async def` ile tanımlanan fonksiyonların da "await" edilmesi gerekir. Yani `async def` ile tanımlanan fonksiyonlar yalnızca `async def` ile tanımlanan fonksiyonların içinde çağrılabilir.
 
+Peki, tavuk-yumurta meselesi: ilk `async` fonksiyon nasıl çağrılır?
 
-Yani yumurta mı tavukdan, tavuk mu yumurtadan gibi ilk `async` fonksiyonu nasıl çağırılır?
+**FastAPI** ile çalışıyorsanız bunu dert etmenize gerek yok; çünkü o "ilk" fonksiyon sizin *path operasyon fonksiyonunuz* olacaktır ve FastAPI doğru olanı yapmasını bilir.
 
-**FastAPI** ile çalışıyorsanız bunun için endişelenmenize gerek yok, çünkü bu "ilk" fonksiyon sizin *path fonksiyonunuz* olacak ve FastAPI doğru olanı nasıl yapacağını bilecek.
+Ama FastAPI olmadan da `async` / `await` kullanmak isterseniz, bunu da yapabilirsiniz.
 
-Ancak FastAPI olmadan `async` / `await` kullanmak istiyorsanız, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">resmi Python belgelerini kontrol edin</a>.
+### Kendi async kodunuzu yazın { #write-your-own-async-code }
 
-### Asenkron kodun diğer biçimleri
+Starlette (ve **FastAPI**) [AnyIO](https://anyio.readthedocs.io/en/stable/) üzerine kuruludur; bu sayede Python standart kütüphanesindeki [asyncio](https://docs.python.org/3/library/asyncio-task.html) ve [Trio](https://trio.readthedocs.io/en/stable/) ile uyumludur.
 
-Bu `async` ve `await` kullanimi oldukça yenidir.
+Özellikle, kendi kodunuzda daha gelişmiş desenler gerektiren ileri seviye eşzamanlılık kullanım senaryoları için doğrudan [AnyIO](https://anyio.readthedocs.io/en/stable/) kullanabilirsiniz.
 
-Ancak asenkron kodla çalışmayı çok daha kolay hale getirir.
+Hatta FastAPI kullanmıyor olsanız bile, yüksek uyumluluk ve avantajları (ör. *structured concurrency*) için [AnyIO](https://anyio.readthedocs.io/en/stable/) ile kendi async uygulamalarınızı yazabilirsiniz.
 
-Aynı sözdizimi (hemen hemen aynı) son zamanlarda JavaScript'in modern sürümlerine de dahil edildi (Tarayıcı ve NodeJS'de).
+AnyIO’nun üzerine, tür açıklamalarını biraz iyileştirmek ve daha iyi **otomatik tamamlama**, **satır içi hatalar** vb. elde etmek için ince bir katman olarak başka bir kütüphane daha oluşturdum. Ayrıca **kendi async kodunuzu** anlamanıza ve yazmanıza yardımcı olacak dostça bir giriş ve eğitim içerir: [Asyncer](https://asyncer.tiangolo.com/). Özellikle **async kodu normal** (bloklayan/senkron) **kodla birleştirmeniz** gerektiğinde faydalı olacaktır.
 
-Ancak bundan önce, asenkron kodu işlemek oldukça karmaşık ve zordu.
+### Asenkron kodun diğer biçimleri { #other-forms-of-asynchronous-code }
 
-Python'un önceki sürümlerinde, threadlerı veya <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> kullanıyor olabilirdin. Ancak kodu anlamak, hata ayıklamak ve düşünmek çok daha karmaşık olurdu.
+`async` ve `await` kullanma tarzı, dilde nispeten yenidir.
 
-NodeJS / Browser JavaScript'in önceki sürümlerinde, "callback" kullanırdınız. Bu da "callbacks cehennemine" yol açar.
+Ama asenkron kodla çalışmayı çok daha kolaylaştırır.
 
-## Coroutine'ler
+Aynı (ya da neredeyse aynı) sözdizimi yakın zamanda modern JavaScript sürümlerine (Tarayıcı ve NodeJS) de eklendi.
 
-**Coroutine**, bir `async def` fonksiyonu tarafından döndürülen değer için çok süslü bir terimdir. Python bunun bir fonksiyon gibi bir noktada başlayıp biteceğini bilir, ancak içinde bir `await` olduğunda dahili olarak da duraklatılabilir ⏸.
+Bundan önce, asenkron kodu ele almak oldukça daha karmaşık ve zordu.
 
-Ancak, `async` ve `await` ile asenkron kod kullanmanın tüm bu işlevselliği, çoğu zaman "Coroutine" kullanmak olarak adlandırılır. Go'nun ana özelliği olan "Goroutines" ile karşılaştırılabilir.
+Python’un önceki sürümlerinde thread’ler veya [Gevent](https://www.gevent.org/) kullanabilirdiniz. Ama kodu anlamak, hata ayıklamak ve üzerine düşünmek çok daha zordu.
 
-## Sonuç
+NodeJS / Tarayıcı JavaScript’in önceki sürümlerinde "callback" kullanırdınız. Bu da "callback cehennemi"ne yol açardı.
 
-Aynı ifadeyi yukarıdan görelim:
+## Coroutine'ler { #coroutines }
 
-> Python'ın modern sürümleri, **"async" ve "await"** sözdizimi ile birlikte **"coroutines"** adlı bir özelliği kullanan **"asenkron kod"** desteğine sahiptir.
+**Coroutine**, bir `async def` fonksiyonunun döndürdüğü şeye verilen süslü isimdir. Python bunun bir fonksiyona benzer bir şey olduğunu, bir noktada başlayıp biteceğini bilir; ama içinde bir `await` olduğunda dahili olarak duraklatılabileceğini ⏸ de bilir.
 
-Şimdi daha mantıklı gelmeli. ✨
+`async` ve `await` ile asenkron kod kullanmanın bu işlevselliği çoğu zaman "coroutine" kullanmak olarak özetlenir. Go’nun ana kilit özelliği olan "Goroutines" ile karşılaştırılabilir.
 
-FastAPI'ye (Starlette aracılığıyla) güç veren ve bu kadar etkileyici bir performansa sahip olmasını sağlayan şey budur.
+## Sonuç { #conclusion }
 
-## Çok Teknik Detaylar
+Yukarıdaki cümleyi tekrar görelim:
 
-/// warning
+> Python’un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
 
-Muhtemelen burayı atlayabilirsiniz.
+Artık daha anlamlı gelmeli. ✨
 
-Bunlar, **FastAPI**'nin altta nasıl çalıştığına dair çok teknik ayrıntılardır.
+Bunların hepsi, FastAPI’ye (Starlette aracılığıyla) güç verir ve böylesine etkileyici bir performansa sahip olmasını sağlar.
 
-Biraz teknik bilginiz varsa (co-routines, threads, blocking, vb)ve FastAPI'nin "async def" ile normal "def" arasındaki farkı nasıl işlediğini merak ediyorsanız, devam edin.
+## Çok Teknik Detaylar { #very-technical-details }
+
+/// warning | Uyarı
+
+Büyük ihtimalle burayı atlayabilirsiniz.
+
+Bunlar, **FastAPI**’nin altında nasıl çalıştığına dair oldukça teknik ayrıntılardır.
+
+Coroutine’ler, thread’ler, blocking vb. hakkında teknik bilginiz varsa ve FastAPI’nin `async def` ile normal `def` arasındaki farkı nasıl ele aldığını merak ediyorsanız, devam edin.
 
 ///
 
-### Path fonksiyonu
+### Path Operasyon Fonksiyonları { #path-operation-functions }
 
-"async def" yerine normal "def" ile bir *yol işlem işlevi* bildirdiğinizde, doğrudan çağrılmak yerine (sunucuyu bloke edeceğinden) daha sonra beklenen harici bir iş parçacığı havuzunda çalıştırılır.
+Bir *path operasyon fonksiyonunu* `async def` yerine normal `def` ile tanımladığınızda, (sunucuyu bloklayacağından) doğrudan çağrılmak yerine, harici bir thread pool’da çalıştırılır ve ardından beklenir.
 
-Yukarıda açıklanan şekilde çalışmayan başka bir asenkron framework'den geliyorsanız ve küçük bir performans kazancı (yaklaşık 100 nanosaniye) için  "def" ile *path fonksiyonu* tanımlamaya alışkınsanız, **FastAPI**'de tam tersi olacağını unutmayın. Bu durumlarda, *path fonksiyonu* <abbr title="Input/Output: disk okuma veya yazma, ağ iletişimleri.">G/Ç</abbr> engelleyen durum oluşturmadıkça "async def" kullanmak daha iyidir.
+Yukarıda açıklanan şekilde çalışmayan başka bir async framework’ten geliyorsanız ve ufak bir performans kazancı (yaklaşık 100 nanosaniye) için yalnızca hesaplama yapan basit *path operasyon fonksiyonlarını* düz `def` ile tanımlamaya alışkınsanız, **FastAPI**’de etkinin tam tersi olacağını unutmayın. Bu durumlarda, *path operasyon fonksiyonlarınız* bloklayan <abbr title="Input/Output - Giriş/Çıkış: disk okuma veya yazma, ağ iletişimi.">I/O</abbr> yapan kod kullanmadıkça `async def` kullanmak daha iyidir.
 
-Yine de, her iki durumda da, **FastAPI**'nin önceki frameworkden [hala daha hızlı](index.md#performans){.internal-link target=_blank} (veya en azından karşılaştırılabilir) olma olasılığı vardır.
+Yine de her iki durumda da, **FastAPI**’nin önceki framework’ünüzden [hala daha hızlı](index.md#performance) (ya da en azından karşılaştırılabilir) olması muhtemeldir.
 
-### Bagımlılıklar
+### Bağımlılıklar { #dependencies }
 
-Aynısı bağımlılıklar için de geçerlidir. Bir bağımlılık, "async def" yerine standart bir "def" işleviyse, harici iş parçacığı havuzunda çalıştırılır.
+Aynısı [bağımlılıklar](tutorial/dependencies/index.md) için de geçerlidir. Bir bağımlılık `async def` yerine standart bir `def` fonksiyonuysa, harici thread pool’da çalıştırılır.
 
-### Alt-bağımlıklar
+### Alt-bağımlılıklar { #sub-dependencies }
 
-Birbirini gerektiren (fonksiyonlarin parametreleri olarak) birden fazla bağımlılık ve alt bağımlılıklarınız olabilir, bazıları 'async def' ve bazıları normal 'def' ile oluşturulabilir. Yine de normal 'def' ile oluşturulanlar, "await" kulanilmadan harici bir iş parçacığında (iş parçacığı havuzundan) çağrılır.
+Birbirini gerektiren birden çok bağımlılık ve [alt-bağımlılık](tutorial/dependencies/sub-dependencies.md) olabilir (fonksiyon tanımlarının parametreleri olarak). Bazıları `async def` ile, bazıları normal `def` ile oluşturulmuş olabilir. Yine de çalışır ve normal `def` ile oluşturulanlar "await" edilmek yerine harici bir thread’de (thread pool’dan) çağrılır.
 
-### Diğer yardımcı fonksiyonlar
+### Diğer yardımcı fonksiyonlar { #other-utility-functions }
 
-Doğrudan çağırdığınız diğer herhangi bir yardımcı fonksiyonu, normal "def" veya "async def" ile tanimlayabilirsiniz. FastAPI onu çağırma şeklinizi etkilemez.
+Doğrudan çağırdığınız diğer yardımcı fonksiyonları normal `def` veya `async def` ile tanımlayabilirsiniz ve FastAPI onları çağırma biçiminizi etkilemez.
 
-Bu, FastAPI'nin sizin için çağırdığı fonksiyonlarin tam tersidir: *path fonksiyonu* ve bağımlılıklar.
+Bu, FastAPI’nin sizin için çağırdığı fonksiyonların tersidir: *path operasyon fonksiyonları* ve bağımlılıklar.
 
-Yardımcı program fonksiyonunuz 'def' ile normal bir işlevse, bir iş parçacığı havuzunda değil doğrudan (kodunuzda yazdığınız gibi) çağrılır, işlev 'async def' ile oluşturulmuşsa çağırıldığı yerde 'await' ile beklemelisiniz.
+Yardımcı fonksiyonunuz `def` ile tanımlı normal bir fonksiyonsa, bir thread pool’da değil doğrudan (kodunuzda yazdığınız gibi) çağrılır; fonksiyon `async def` ile tanımlıysa kodunuzda çağırırken onu `await` etmelisiniz.
 
 ---
 
-Yeniden, bunlar, onları aramaya geldiğinizde muhtemelen işinize yarayacak çok teknik ayrıntılardır.
+Yine, bunlar muhtemelen özellikle aradığınızda işinize yarayacak çok teknik ayrıntılardır.
 
-Aksi takdirde, yukarıdaki bölümdeki yönergeleri iyi bilmelisiniz: <a href="#in-a-hurry">Aceleniz mi var?</a>.
+Aksi hâlde, yukarıdaki bölümdeki yönergeler yeterlidir: <a href="#in-a-hurry">Aceleniz mi var?</a>.

@@ -1,6 +1,6 @@
 # Deployment-Konzepte { #deployments-concepts }
 
-Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zur **Bereitstellung Ihrer Anwendung** finden können.
+Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zum **Deployment Ihrer Anwendung** finden können.
 
 Einige wichtige Konzepte sind:
 
@@ -15,17 +15,17 @@ Wir werden sehen, wie diese sich auf das **Deployment** auswirken.
 
 Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu versorgen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
 
-Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen bereitstellen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
+Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen deployen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
 
-Durch die Berücksichtigung dieser Konzepte können Sie die beste Variante der Bereitstellung **Ihrer eigenen APIs** **evaluieren und konzipieren**.
+Durch die Berücksichtigung dieser Konzepte können Sie die beste Variante des Deployments **Ihrer eigenen APIs** **evaluieren und konzipieren**.
 
-In den nächsten Kapiteln werde ich Ihnen mehr **konkrete Rezepte** für die Bereitstellung von FastAPI-Anwendungen geben.
+In den nächsten Kapiteln werde ich Ihnen mehr **konkrete Rezepte** für das Deployment von FastAPI-Anwendungen geben.
 
 Aber schauen wir uns zunächst einmal diese grundlegenden **konzeptionellen Ideen** an. Diese Konzepte gelten auch für jede andere Art von Web-API. 💡
 
 ## Sicherheit – HTTPS { #security-https }
 
-Im [vorherigen Kapitel über HTTPS](https.md){.internal-link target=_blank} haben wir erfahren, wie HTTPS Verschlüsselung für Ihre API bereitstellt.
+Im [vorherigen Kapitel über HTTPS](https.md) haben wir erfahren, wie HTTPS Verschlüsselung für Ihre API bereitstellt.
 
 Wir haben auch gesehen, dass HTTPS normalerweise von einer Komponente **außerhalb** Ihres Anwendungsservers bereitgestellt wird, einem **TLS-Terminierungsproxy**.
 
@@ -45,7 +45,7 @@ Einige der Tools, die Sie als TLS-Terminierungsproxy verwenden können, sind:
     * Mit einer externen Komponente wie Certbot für Zertifikat-Erneuerungen
 * Kubernetes mit einem Ingress Controller wie Nginx
     * Mit einer externen Komponente wie cert-manager für Zertifikat-Erneuerungen
-* Es wird intern von einem Cloud-Anbieter als Teil seiner Dienste verwaltet (siehe unten 👇)
+* Es wird intern von einem Cloudanbieter als Teil seiner Dienste verwaltet (siehe unten 👇)
 
 Eine andere Möglichkeit besteht darin, dass Sie einen **Cloud-Dienst** verwenden, der den größten Teil der Arbeit übernimmt, einschließlich der Einrichtung von HTTPS. Er könnte einige Einschränkungen haben oder Ihnen mehr in Rechnung stellen, usw. In diesem Fall müssten Sie jedoch nicht selbst einen TLS-Terminierungsproxy einrichten.
 
@@ -100,7 +100,7 @@ Und es wird funktionieren und **während der Entwicklung** nützlich sein.
 
 Wenn Ihre Verbindung zum Server jedoch unterbrochen wird, wird der **laufende Prozess** wahrscheinlich abstürzen.
 
-Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloud-Anbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
+Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloudanbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
 
 ### Beim Hochfahren automatisch ausführen { #run-automatically-on-startup }
 
@@ -120,7 +120,7 @@ Einige Beispiele für Tools, die diese Aufgabe übernehmen können, sind:
 * Docker im Schwarm-Modus
 * Systemd
 * Supervisor
-* Es wird intern von einem Cloud-Anbieter im Rahmen seiner Dienste verwaltet
+* Es wird intern von einem Cloudanbieter im Rahmen seiner Dienste verwaltet
 * Andere ...
 
 In den nächsten Kapiteln werde ich Ihnen konkretere Beispiele geben.
@@ -173,7 +173,7 @@ Dies könnte zum Beispiel erledigt werden durch:
 * Docker im Schwarm-Modus
 * Systemd
 * Supervisor
-* Intern von einem Cloud-Anbieter im Rahmen seiner Dienste
+* Intern von einem Cloudanbieter im Rahmen seiner Dienste
 * Andere ...
 
 ## Replikation – Prozesse und Arbeitsspeicher { #replication-processes-and-memory }
@@ -190,7 +190,7 @@ Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden die
 
 ### Workerprozesse und Ports { #worker-processes-and-ports }
 
-Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md){.internal-link target=_blank}, dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
+Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md), dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
 
 Das ist immer noch wahr.
 
@@ -243,7 +243,7 @@ Hier sind einige mögliche Kombinationen und Strategien:
 
 Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
 
-Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md).
 
 ///
 
@@ -271,7 +271,7 @@ In diesem Fall müssen Sie sich darüber keine Sorgen machen. 🤷
 
 ### Beispiele für Strategien für Vorab-Schritte { #examples-of-previous-steps-strategies }
 
-Es hängt **stark** davon ab, wie Sie **Ihr System bereitstellen**, und hängt wahrscheinlich mit der Art und Weise zusammen, wie Sie Programme starten, Neustarts durchführen, usw.
+Es hängt **stark** davon ab, wie Sie **Ihr System deployen**, und hängt wahrscheinlich mit der Art und Weise zusammen, wie Sie Programme starten, Neustarts durchführen, usw.
 
 Hier sind einige mögliche Ideen:
 
@@ -281,7 +281,7 @@ Hier sind einige mögliche Ideen:
 
 /// tip | Tipp
 
-Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md).
 
 ///
 
@@ -307,7 +307,7 @@ Sie können einfache Tools wie `htop` verwenden, um die in Ihrem Server verwende
 
 ## Zusammenfassung { #recap }
 
-Sie haben hier einige der wichtigsten Konzepte gelesen, die Sie wahrscheinlich berücksichtigen müssen, wenn Sie entscheiden, wie Sie Ihre Anwendung bereitstellen:
+Sie haben hier einige der wichtigsten Konzepte gelesen, die Sie wahrscheinlich berücksichtigen müssen, wenn Sie entscheiden, wie Sie Ihre Anwendung deployen:
 
 * Sicherheit – HTTPS
 * Beim Hochfahren ausführen

@@ -4,7 +4,7 @@
 
 Вы можете использовать этот шаблон для старта: в нём уже сделана значительная часть начальной настройки, безопасность, база данных и несколько эндпоинтов API.
 
-Репозиторий GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+Репозиторий GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI — Технологический стек и возможности { #full-stack-fastapi-template-technology-stack-and-features }
 
@@ -13,12 +13,12 @@
     - 🔍 [Pydantic](https://docs.pydantic.dev), используется FastAPI, для валидации данных и управления настройками.
     - 💾 [PostgreSQL](https://www.postgresql.org) в качестве SQL‑базы данных.
 - 🚀 [React](https://react.dev) для фронтенда.
-    - 💃 Используются TypeScript, хуки, [Vite](https://vitejs.dev) и другие части современного фронтенд‑стека.
-    - 🎨 [Chakra UI](https://chakra-ui.com) для компонентов фронтенда.
+    - 💃 Используются TypeScript, хуки, Vite и другие части современного фронтенд‑стека.
+    - 🎨 [Tailwind CSS](https://tailwindcss.com) и [shadcn/ui](https://ui.shadcn.com) для компонентов фронтенда.
     - 🤖 Автоматически сгенерированный фронтенд‑клиент.
     - 🧪 [Playwright](https://playwright.dev) для End‑to‑End тестирования.
     - 🦇 Поддержка тёмной темы.
-- 🐋 [Docker Compose](https://www.docker.com) для разработки и продакшна.
+- 🐋 [Docker Compose](https://www.docker.com) для разработки и продакшн.
 - 🔒 Безопасное хэширование паролей по умолчанию.
 - 🔑 Аутентификация по JWT‑токенам.
 - 📫 Восстановление пароля по электронной почте.

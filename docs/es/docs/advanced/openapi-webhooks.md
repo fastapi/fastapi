@@ -1,4 +1,4 @@
-# Webhooks de OpenAPI
+# Webhooks de OpenAPI { #openapi-webhooks }
 
 Hay casos donde quieres decirle a los **usuarios** de tu API que tu aplicación podría llamar a *su* aplicación (enviando una request) con algunos datos, normalmente para **notificar** de algún tipo de **evento**.
 
@@ -6,7 +6,7 @@ Esto significa que en lugar del proceso normal de tus usuarios enviando requests
 
 Esto normalmente se llama un **webhook**.
 
-## Pasos de los webhooks
+## Pasos de los webhooks { #webhooks-steps }
 
 El proceso normalmente es que **tú defines** en tu código cuál es el mensaje que enviarás, el **body de la request**.
 
@@ -16,7 +16,7 @@ Y **tus usuarios** definen de alguna manera (por ejemplo en un panel web en alg�
 
 Toda la **lógica** sobre cómo registrar los URLs para webhooks y el código para realmente enviar esas requests depende de ti. Lo escribes como quieras en **tu propio código**.
 
-## Documentando webhooks con **FastAPI** y OpenAPI
+## Documentando webhooks con **FastAPI** y OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
 
 Con **FastAPI**, usando OpenAPI, puedes definir los nombres de estos webhooks, los tipos de operaciones HTTP que tu aplicación puede enviar (por ejemplo, `POST`, `PUT`, etc.) y los **bodies** de las requests que tu aplicación enviaría.
 
@@ -28,11 +28,11 @@ Los webhooks están disponibles en OpenAPI 3.1.0 y superiores, soportados por Fa
 
 ///
 
-## Una aplicación con webhooks
+## Una aplicación con webhooks { #an-app-with-webhooks }
 
 Cuando creas una aplicación de **FastAPI**, hay un atributo `webhooks` que puedes usar para definir *webhooks*, de la misma manera que definirías *path operations*, por ejemplo con `@app.webhooks.post()`.
 
-{* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Los webhooks que defines terminarán en el esquema de **OpenAPI** y en la interfaz automática de **documentación**.
 
@@ -46,9 +46,9 @@ Nota que con los webhooks en realidad no estás declarando un *path* (como `/ite
 
 Esto es porque se espera que **tus usuarios** definan el actual **URL path** donde quieren recibir la request del webhook de alguna otra manera (por ejemplo, un panel web).
 
-### Revisa la documentación
+### Revisa la documentación { #check-the-docs }
 
-Ahora puedes iniciar tu app e ir a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ahora puedes iniciar tu app e ir a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás que tu documentación tiene las *path operations* normales y ahora también algunos **webhooks**:
 

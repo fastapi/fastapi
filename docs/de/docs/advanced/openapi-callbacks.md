@@ -31,11 +31,11 @@ Sie verfügt über eine *Pfadoperation*, die einen `Invoice`-Body empfängt, und
 
 Dieser Teil ist ziemlich normal, der größte Teil des Codes ist Ihnen wahrscheinlich bereits bekannt:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
 
 /// tip | Tipp
 
-Der Query-Parameter `callback_url` verwendet einen Pydantic-<a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>-Typ.
+Der Query-Parameter `callback_url` verwendet einen Pydantic-[Url](https://docs.pydantic.dev/latest/api/networks/)-Typ.
 
 ///
 
@@ -54,7 +54,7 @@ callback_url = "https://example.com/api/v1/invoices/events/"
 httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
-Der möglicherweise wichtigste Teil des Callbacks besteht jedoch darin, sicherzustellen, dass Ihr API-Benutzer (der externe Entwickler) die *externe API* gemäß den Daten, die *Ihre API* im Requestbody des Callbacks senden wird, korrekt implementiert, usw.
+Der möglicherweise wichtigste Teil des Callbacks besteht jedoch darin, sicherzustellen, dass Ihr API-Benutzer (der externe Entwickler) die *externe API* korrekt implementiert, gemäß den Daten, die *Ihre API* im Requestbody des Callbacks senden wird, usw.
 
 Als Nächstes fügen wir den Code hinzu, um zu dokumentieren, wie diese *externe API* aussehen sollte, um den Callback von *Ihrer API* zu empfangen.
 
@@ -66,7 +66,7 @@ In diesem Beispiel wird nicht der Callback selbst implementiert (das könnte nur
 
 Der eigentliche Callback ist nur ein HTTP-Request.
 
-Wenn Sie den Callback selbst implementieren, können Sie beispielsweise <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> oder <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a> verwenden.
+Wenn Sie den Callback selbst implementieren, können Sie beispielsweise [HTTPX](https://www.python-httpx.org) oder [Requests](https://requests.readthedocs.io/) verwenden.
 
 ///
 
@@ -90,7 +90,7 @@ Wenn Sie diese Sichtweise (des *externen Entwicklers*) vorübergehend übernehme
 
 Erstellen Sie zunächst einen neuen `APIRouter`, der einen oder mehrere Callbacks enthält.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
 ### Die Callback-*Pfadoperation* erstellen { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 * Sie sollte wahrscheinlich eine Deklaration des Bodys enthalten, die sie erhalten soll, z. B. `body: InvoiceEvent`.
 * Und sie könnte auch eine Deklaration der Response enthalten, die zurückgegeben werden soll, z. B. `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
 Es gibt zwei Hauptunterschiede zu einer normalen *Pfadoperation*:
 
 * Es muss kein tatsächlicher Code vorhanden sein, da Ihre Anwendung diesen Code niemals aufruft. Sie wird nur zur Dokumentation der *externen API* verwendet. Die Funktion könnte also einfach `pass` enthalten.
-* Der *Pfad* kann einen <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI-3-Ausdruck</a> enthalten (mehr dazu weiter unten), wo er Variablen mit Parametern und Teilen des ursprünglichen Requests verwenden kann, der an *Ihre API* gesendet wurde.
+* Der *Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) enthalten (mehr dazu weiter unten), wo er Variablen mit Parametern und Teilen des ursprünglichen Requests verwenden kann, der an *Ihre API* gesendet wurde.
 
 ### Der Callback-Pfadausdruck { #the-callback-path-expression }
 
-Der Callback-*Pfad* kann einen <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI-3-Ausdruck</a> enthalten, welcher Teile des ursprünglichen Requests enthalten kann, der an *Ihre API* gesendet wurde.
+Der Callback-*Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) enthalten, welcher Teile des ursprünglichen Requests enthalten kann, der an *Ihre API* gesendet wurde.
 
 In diesem Fall ist es der `str`:
 
@@ -169,7 +169,7 @@ An diesem Punkt haben Sie die benötigte(n) *Callback-Pfadoperation(en)* (diejen
 
 Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer API*, um das Attribut `.routes` (das ist eigentlich nur eine `list`e von Routen/*Pfadoperationen*) dieses Callback-Routers zu übergeben:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Tipp
 
@@ -179,7 +179,7 @@ Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `
 
 ### Es in der Dokumentation testen { #check-the-docs }
 
-Jetzt können Sie Ihre Anwendung starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
+Jetzt können Sie Ihre Anwendung starten und auf [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) gehen.
 
 Sie sehen Ihre Dokumentation, einschließlich eines Abschnitts „Callbacks“ für Ihre *Pfadoperation*, der zeigt, wie die *externe API* aussehen sollte:
 

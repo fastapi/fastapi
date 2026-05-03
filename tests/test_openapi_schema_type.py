@@ -1,5 +1,3 @@
-from typing import List, Optional, Union
-
 import pytest
 from fastapi.openapi.models import Schema, SchemaType
 
@@ -13,7 +11,7 @@ from fastapi.openapi.models import Schema, SchemaType
     ],
 )
 def test_allowed_schema_type(
-    type_value: Optional[Union[SchemaType, List[SchemaType]]],
+    type_value: SchemaType | list[SchemaType] | None,
 ) -> None:
     """Test that Schema accepts SchemaType, List[SchemaType] and None for type field."""
     schema = Schema(type=type_value)

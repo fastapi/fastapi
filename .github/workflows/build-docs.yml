@@ -8,8 +8,7 @@ on:
       - opened
       - synchronize
 
-env:
-  UV_SYSTEM_PYTHON: 1
+permissions: {}
 
 jobs:
   changes:
@@ -21,9 +20,11 @@ jobs:
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        persist-credentials: false
     # For pull requests it's not necessary to checkout the code but for the main branch it is
-    - uses: dorny/paths-filter@v3
+    - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
       id: filter
       with:
         filters: |
@@ -31,13 +32,10 @@ jobs:
             - README.md
             - docs/**
             - docs_src/**
-            - requirements-docs.txt
-            - requirements-docs-insiders.txt
             - pyproject.toml
+            - uv.lock
             - mkdocs.yml
-            - mkdocs.insiders.yml
-            - mkdocs.maybe-insiders.yml
-            - mkdocs.no-insiders.yml
+            - mkdocs.env.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
             - scripts/mkdocs_hooks.py
@@ -48,33 +46,27 @@ jobs:
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
-          version: "0.4.15"
+          version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install docs extras
-        run: uv pip install -r requirements-docs.txt
-      # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
-      - name: Verify Docs
-        run: python ./scripts/docs.py verify-docs
+        run: uv sync --locked --no-dev --group docs
       - name: Export Language Codes
         id: show-langs
         run: |
-          echo "langs=$(python ./scripts/docs.py langs-json)" >> $GITHUB_OUTPUT
+          echo "langs=$(uv run ./scripts/docs.py langs-json)" >> $GITHUB_OUTPUT
 
   build-docs:
     needs:
@@ -90,35 +82,33 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
-          version: "0.4.15"
+          version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install docs extras
-        run: uv pip install -r requirements-docs.txt
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
+        run: uv sync --locked --no-dev --group docs
       - name: Update Languages
-        run: python ./scripts/docs.py update-languages
-      - uses: actions/cache@v4
+        run: uv run ./scripts/docs.py update-languages
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
           path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
-        run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
-      - uses: actions/upload-artifact@v4
+        run: | # zizmor: ignore[template-injection] - comes from trusted source
+          uv run ./scripts/docs.py build-lang ${{ matrix.lang }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: docs-site-${{ matrix.lang }}
           path: ./site/**
@@ -132,7 +122,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@release/v1
+        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
         with:
           jobs: ${{ toJSON(needs) }}
           allowed-skips: build-docs

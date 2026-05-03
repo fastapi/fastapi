@@ -2,7 +2,7 @@
 
 ## Ersetzendes Aktualisieren mit `PUT` { #update-replacing-with-put }
 
-Um einen Artikel zu aktualisieren, können Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> Operation verwenden.
+Um einen Artikel zu aktualisieren, können Sie die [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) Operation verwenden.
 
 Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (z. B. in einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
@@ -28,7 +28,7 @@ Und die Daten würden mit diesem „neuen“ `tax` von `10.5` gespeichert werden
 
 ## Teil-Aktualisierungen mit `PATCH` { #partial-updates-with-patch }
 
-Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> Operation verwenden, um Daten *teilweise* zu ersetzen.
+Sie können auch die [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) Operation verwenden, um Daten *teilweise* zu ersetzen.
 
 Das bedeutet, Sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
 
@@ -50,14 +50,6 @@ Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter
 
 Wie in `item.model_dump(exclude_unset=True)`.
 
-/// info | Info
-
-In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
-
-Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
-
 Das wird ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> erstellen, mit nur den Daten, die gesetzt wurden, als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
 Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>) gesendeten Daten enthält, ohne Defaultwerte:
@@ -67,14 +59,6 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr tit
 ### Pydantics `update`-Parameter verwenden { #using-pydantics-update-parameter }
 
 Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
-
-/// info | Info
-
-In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
-
-Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
-
-///
 
 Wie in `stored_item_model.model_copy(update=update_data)`:
 
@@ -111,6 +95,6 @@ Beachten Sie, dass das hereinkommende Modell immer noch validiert wird.
 
 Wenn Sie also Teil-Aktualisierungen empfangen wollen, die alle Attribute auslassen können, müssen Sie ein Modell haben, dessen Attribute alle als optional gekennzeichnet sind (mit Defaultwerten oder `None`).
 
-Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
+Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md) beschrieben wurden.
 
 ///
