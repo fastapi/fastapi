@@ -36,10 +36,27 @@ class TestAnnotatedBodyDependsMergeBody:
             "model_cls",
             "expected_ref_suffix",
             "assert_no_query_params",
+            "payload",
         ),
         [
-            ("/a", Body(), Depends(FooPayload), FooPayload, "FooPayload", True),
-            ("/b", Depends(BarPayload), Body(), BarPayload, "BarPayload", False),
+            pytest.param(
+                "/a",
+                Body(),
+                Depends(FooPayload),
+                FooPayload,
+                "FooPayload",
+                True,
+                {"kind": "foo", "extra_foo": "hit"},
+            ),
+            pytest.param(
+                "/b",
+                Depends(BarPayload),
+                Body(),
+                BarPayload,
+                "BarPayload",
+                False,
+                {"kind": "bar", "extra_bar": "hit"},
+            ),
         ],
     )
     def test_openapi_json_body_depends_merge(
@@ -50,6 +67,7 @@ class TestAnnotatedBodyDependsMergeBody:
         model_cls: type[BasePayload],
         expected_ref_suffix: str,
         assert_no_query_params: bool,
+        payload: dict[str, str],
     ) -> None:
         app = FastAPI()
 
@@ -69,6 +87,9 @@ class TestAnnotatedBodyDependsMergeBody:
         )
         assert ref.endswith(f"/{expected_ref_suffix}")
 
+        ok = client.post(path, json=payload)
+        assert ok.status_code == status.HTTP_200_OK
+
     def test_runtime_json_validates_concrete_model(self) -> None:
         app = FastAPI()
 
@@ -79,9 +100,12 @@ class TestAnnotatedBodyDependsMergeBody:
             return {"extra": data.extra_foo}
 
         client = TestClient(app)
-        r = client.post("/c", json={"kind": "foo", "extra_foo": "x"})
+        extra = "ricksanchez"
+        payload = {"kind": "foo", "extra_foo": extra}
+        expected_json = {"extra": extra}
+        r = client.post("/c", json=payload)
         assert r.status_code == status.HTTP_200_OK
-        assert r.json() == {"extra": "x"}
+        assert r.json() == expected_json
 
         bad = client.post("/c", json={"kind": "foo"})
         # not status.*: Starlette confused HTTP_422_UNPROCESSABLE_CONTENT HTTP_422_UNPROCESSABLE_ENTITY
@@ -97,9 +121,12 @@ class TestAnnotatedBodyDependsMergeBody:
             return {"extra": data.extra_foo}
 
         client = TestClient(app)
-        r = client.post("/depends-empty", json={"kind": "foo", "extra_foo": "z"})
+        extra = "foobar"
+        payload = {"kind": "foo", "extra_foo": extra}
+        expected_json = {"extra": extra}
+        r = client.post("/depends-empty", json=payload)
         assert r.status_code == status.HTTP_200_OK
-        assert r.json() == {"extra": "z"}
+        assert r.json() == expected_json
 
     def test_merged_body_parameter_signature_default(self) -> None:
         app = FastAPI()
@@ -115,13 +142,15 @@ class TestAnnotatedBodyDependsMergeBody:
         client = TestClient(app)
         empty = client.post("/merged-default")
         assert empty.status_code == status.HTTP_200_OK
-        assert empty.json() == {"extra": "default"}
+        expected_default = {"extra": "default"}
+        assert empty.json() == expected_default
 
-        overridden = client.post(
-            "/merged-default", json={"kind": "foo", "extra_foo": "ov"}
-        )
+        override_extra = "hello world"
+        override_payload = {"kind": "foo", "extra_foo": override_extra}
+        expected_override = {"extra": override_extra}
+        overridden = client.post("/merged-default", json=override_payload)
         assert overridden.status_code == status.HTTP_200_OK
-        assert overridden.json() == {"extra": "ov"}
+        assert overridden.json() == expected_override
 
     def test_put_patch_json_body_depends_openapi(self) -> None:
         app = FastAPI()
@@ -149,16 +178,20 @@ class TestAnnotatedBodyDependsMergeBody:
             )
             assert ref.endswith("/FooPayload")
 
-        r = client.put("/items/1", json={"kind": "foo", "extra_foo": "a"})
+        put_extra = "fizz"
+        put_payload = {"kind": "foo", "extra_foo": put_extra}
+        r = client.put("/items/1", json=put_payload)
         assert r.status_code == status.HTTP_200_OK
-        r2 = client.patch("/items/1", json={"kind": "foo", "extra_foo": "b"})
+        patch_extra = "buzz"
+        patch_payload = {"kind": "foo", "extra_foo": patch_extra}
+        r2 = client.patch("/items/1", json=patch_payload)
         assert r2.status_code == status.HTTP_200_OK
 
     def test_rejects_body_with_callable_depends(self) -> None:
         app = FastAPI()
 
         def not_a_model() -> None:
-            return None
+            pass  # pragma: no cover
 
         with pytest.raises(FastAPIError, match="Pydantic model class"):
 
@@ -278,5 +311,4 @@ class TestAnnotatedBodyDependsMergeBody:
             @app.post("/path/{data}")
             def route_path(
                 data: Annotated[BasePayload, Body(), Depends(FooPayload)],
-            ) -> None:
-                pass  # pragma: no cover
+            ) -> None: ...

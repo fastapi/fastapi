@@ -3,7 +3,7 @@
 from io import BytesIO
 from typing import Annotated, Any
 
-from fastapi import Body, Depends, FastAPI, File, Form, Query
+from fastapi import Body, Depends, FastAPI, File, Form, Query, status
 from fastapi.testclient import TestClient
 
 from tests._annotated_body_depends_merge_common import (
@@ -44,6 +44,10 @@ class TestQueryPlusMergedShape:
         )
         assert ref.endswith("/FooPayload")
 
+        hit_payload = {"kind": "foo", "extra_foo": "x"}
+        hit = client.post("/mix-json?client_id=hit", json=hit_payload)
+        assert hit.status_code == status.HTTP_200_OK
+
     def test_runtime_query_plus_json_body(self) -> None:
         app = FastAPI()
 
@@ -55,12 +59,13 @@ class TestQueryPlusMergedShape:
             return {"client": client_id, "extra": data.extra_foo}
 
         client = TestClient(app)
-        r = client.post(
-            "/r-json?client_id=c1",
-            json={"kind": "foo", "extra_foo": "e"},
-        )
-        assert r.status_code == 200
-        assert r.json() == {"client": "c1", "extra": "e"}
+        client_id = "c1"
+        extra = "helloworld"
+        payload = {"kind": "foo", "extra_foo": extra}
+        expected_json = {"client": client_id, "extra": extra}
+        r = client.post(f"/r-json?client_id={client_id}", json=payload)
+        assert r.status_code == status.HTTP_200_OK
+        assert r.json() == expected_json
 
     def test_openapi_query_plus_form(self) -> None:
         app = FastAPI()
@@ -81,6 +86,10 @@ class TestQueryPlusMergedShape:
         ref = rb["application/x-www-form-urlencoded"]["schema"]["$ref"]
         assert ref.endswith("/BarPayload")
 
+        hit_payload = {"kind": "bar", "extra_bar": "y"}
+        hit = client.post("/mix-form", params={"client_id": "hit"}, data=hit_payload)
+        assert hit.status_code == status.HTTP_200_OK
+
     def test_runtime_query_plus_form(self) -> None:
         app = FastAPI()
 
@@ -92,13 +101,13 @@ class TestQueryPlusMergedShape:
             return {"client": client_id, "extra": data.extra_foo}
 
         client = TestClient(app)
-        r = client.post(
-            "/r-form",
-            params={"client_id": "c2"},
-            data={"kind": "foo", "extra_foo": "f"},
-        )
-        assert r.status_code == 200
-        assert r.json() == {"client": "c2", "extra": "f"}
+        client_id = "c2"
+        extra = "foo"
+        payload = {"kind": "foo", "extra_foo": extra}
+        expected_json = {"client": client_id, "extra": extra}
+        r = client.post("/r-form", params={"client_id": client_id}, data=payload)
+        assert r.status_code == status.HTTP_200_OK
+        assert r.json() == expected_json
 
     def test_openapi_query_plus_file_multipart(self) -> None:
         app = FastAPI()
@@ -119,6 +128,18 @@ class TestQueryPlusMergedShape:
         ref = rb["multipart/form-data"]["schema"]["$ref"]
         assert ref.endswith("/FooFilePayload")
 
+        hit_form = {"kind": "foo", "extra_foo": "u"}
+        hit_files = {
+            "blob": ("up.bin", BytesIO(b"abc"), "application/octet-stream"),
+        }
+        hit = client.post(
+            "/mix-file",
+            params={"client_id": "hit"},
+            data=hit_form,
+            files=hit_files,
+        )
+        assert hit.status_code == status.HTTP_200_OK
+
     def test_runtime_query_plus_file_multipart(self) -> None:
         app = FastAPI()
 
@@ -134,11 +155,17 @@ class TestQueryPlusMergedShape:
             }
 
         client = TestClient(app)
+        client_id = "c3"
+        extra = "bar"
+        filename = "up.bin"
+        payload = {"kind": "bar", "extra_bar": extra}
+        file_field = (filename, BytesIO(b"abc"), "application/octet-stream")
+        expected_json = {"client": client_id, "extra": extra, "fn": filename}
         r = client.post(
             "/r-file",
-            params={"client_id": "c3"},
-            data={"kind": "bar", "extra_bar": "b"},
-            files={"blob": ("up.bin", BytesIO(b"abc"), "application/octet-stream")},
+            params={"client_id": client_id},
+            data=payload,
+            files={"blob": file_field},
         )
-        assert r.status_code == 200
-        assert r.json() == {"client": "c3", "extra": "b", "fn": "up.bin"}
+        assert r.status_code == status.HTTP_200_OK
+        assert r.json() == expected_json

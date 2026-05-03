@@ -17,7 +17,7 @@ from tests._annotated_body_depends_merge_common import (
 
 class TestAnnotatedBodyDependsMergeFile:
     @pytest.mark.parametrize(
-        ("path", "ann1", "ann2", "model_cls", "expected_ref_suffix"),
+        ("path", "ann1", "ann2", "model_cls", "expected_ref_suffix", "payload"),
         [
             (
                 "/file-a",
@@ -25,6 +25,7 @@ class TestAnnotatedBodyDependsMergeFile:
                 Depends(FooFilePayload),
                 FooFilePayload,
                 "FooFilePayload",
+                {"kind": "foo", "extra_foo": "hit"},
             ),
             (
                 "/file-b",
@@ -32,6 +33,7 @@ class TestAnnotatedBodyDependsMergeFile:
                 File(),
                 BarFilePayload,
                 "BarFilePayload",
+                {"kind": "bar", "extra_bar": "hit"},
             ),
         ],
     )
@@ -42,6 +44,7 @@ class TestAnnotatedBodyDependsMergeFile:
         ann2: Any,
         model_cls: type[BasePayload],
         expected_ref_suffix: str,
+        payload: dict[str, str],
     ) -> None:
         app = FastAPI()
 
@@ -59,6 +62,10 @@ class TestAnnotatedBodyDependsMergeFile:
         ref = content["multipart/form-data"]["schema"]["$ref"]
         assert ref.endswith(f"/{expected_ref_suffix}")
 
+        blob = ("blob.bin", BytesIO(b"x"), "application/octet-stream")
+        ok = client.post(path, data=payload, files={"blob": blob})
+        assert ok.status_code == status.HTTP_200_OK
+
     def test_runtime_file_validates_concrete_model(self) -> None:
         app = FastAPI()
 
@@ -69,13 +76,14 @@ class TestAnnotatedBodyDependsMergeFile:
             return {"extra": data.extra_foo, "fn": data.blob.filename or ""}
 
         client = TestClient(app)
-        r = client.post(
-            "/file-c",
-            data={"kind": "foo", "extra_foo": "u"},
-            files={"blob": ("up.txt", BytesIO(b"xyz"), "text/plain")},
-        )
+        extra = "info"
+        filename = "file.txt"
+        payload = {"kind": "foo", "extra_foo": extra}
+        file_field = (filename, BytesIO(b"xyz"), "text/plain")
+        expected_json = {"extra": extra, "fn": filename}
+        r = client.post("/file-c", data=payload, files={"blob": file_field})
         assert r.status_code == status.HTTP_200_OK
-        assert r.json() == {"extra": "u", "fn": "up.txt"}
+        assert r.json() == expected_json
 
         bad = client.post(
             "/file-c",
@@ -98,5 +106,4 @@ class TestAnnotatedBodyDependsMergeFile:
                     Form(),
                     Depends(FooPayload),
                 ],
-            ) -> None:
-                pass  # pragma: no cover
+            ) -> None: ...
