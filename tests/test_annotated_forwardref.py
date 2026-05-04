@@ -9,7 +9,6 @@ from typing import Annotated
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
-
 # ── App setup ─────────────────────────────────────────────────────────────────
 
 
