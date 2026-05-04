@@ -14,6 +14,12 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.46.0
+    hooks:
+      - id: typos
+        args: [--force-exclude]
+
   - repo: local
     hooks:
       - id: local-ruff-check
