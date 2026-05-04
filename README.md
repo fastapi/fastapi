@@ -187,6 +187,13 @@ app = FastAPI()
 async def read_root():
     return {"Hello": "World"}
 
+#### Explanation
+
+- `@app.get("/")` defines an HTTP GET endpoint for the root URL (`/`)
+- When a client accesses this URL, the function `read_root()` is executed
+- The returned dictionary is automatically converted into a JSON response
+
+This shows how FastAPI maps routes directly to Python functions.
 
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, q: str | None = None):
