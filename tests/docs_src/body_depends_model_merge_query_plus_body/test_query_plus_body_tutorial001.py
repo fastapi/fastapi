@@ -16,18 +16,19 @@ def client():
 @pytest.mark.parametrize(
     ("path", "query", "json_body"),
     [
-        (
+        pytest.param(
             "/clients/case-files/",
             {"client_id": "rick", "region": "west"},
             {"title": "Q1", "case_number": "C-9"},
+            id="case_file",
         ),
-        (
+        pytest.param(
             "/clients/contracts/",
             {"client_id": "morty", "contract_ref": "R-9"},
             {"title": "Partner deal", "contract_id": "Z-1"},
+            id="contract",
         ),
     ],
-    ids=["case_file", "contract"],
 )
 def test_query_plus_merged_json_body(client, path, query, json_body):
     response = client.post(path, params=query, json=json_body)
