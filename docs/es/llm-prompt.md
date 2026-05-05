@@ -97,16 +97,3 @@ For the next terms, use the following translations:
 * load balance: load balance (do not translate to "balancear carga")
 * self hosting: self hosting (do not translate to "auto alojamiento")
 * timing attack: timing attack (do not translate to "ataque de temporización")
-* endpoint: endpoint (do not translate to "punto final")
-* middleware: middleware (do not translate to "software intermedio")
-* handler: handler (do not translate to "manejador")
-* payload: payload
-* runtime: runtime
-* deploy: desplegar
-* deployment: despliegue
-* logging: logging
-* traceback: traceback
-* decorator: decorador
-* dependency injection: inyección de dependencias
-* background task: background task
-* WebSocket: WebSocket
