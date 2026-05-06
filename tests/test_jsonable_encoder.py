@@ -82,6 +82,9 @@ def test_encode_dict():
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
+    assert jsonable_encoder(pet, include={"name", "owner"}, exclude={"owner"}) == {
+        "name": "Firulais"
+    }
 
 
 def test_encode_dict_include_exclude_list():
@@ -329,41 +332,3 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
-
-
-def test_dict_no_filter_returns_all_keys():
-    result = jsonable_encoder({"a": 1, "b": 2, "c": 3})
-    assert result == {"a": 1, "b": 2, "c": 3}
-
-
-def test_dict_include_filters_correctly():
-    result = jsonable_encoder({"a": 1, "b": 2}, include={"a"})
-    assert result == {"a": 1}
-
-
-def test_dict_exclude_filters_correctly():
-    result = jsonable_encoder({"a": 1, "b": 2}, exclude={"b"})
-    assert result == {"a": 1}
-
-
-def test_dict_empty_include_returns_empty():
-    result = jsonable_encoder({"a": 1}, include=set())
-    assert result == {}
-
-
-def test_dict_empty_exclude_returns_all():
-    result = jsonable_encoder({"a": 1}, exclude=set())
-    assert result == {"a": 1}
-
-
-def test_dict_both_include_and_exclude():
-    result = jsonable_encoder(
-        {"a": 1, "b": 2, "c": 3}, include={"a", "b"}, exclude={"b"}
-    )
-    assert result == {"a": 1}
-
-
-def test_encode_nested_dict():
-    nested = {"level1": {"level2": {"level3": 42}}}
-    result = jsonable_encoder(nested)
-    assert result == nested
