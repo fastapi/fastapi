@@ -244,7 +244,7 @@ def test_depend_err_middleware():
             return await call_next()
         except Exception as e:
             await websocket.close(code=status.WS_1006_ABNORMAL_CLOSURE, reason=repr(e))
-            
+
     myapp = make_app(middleware=[Middleware(errorhandler)])
     client = TestClient(myapp)
     with pytest.raises(WebSocketDisconnect) as e:
