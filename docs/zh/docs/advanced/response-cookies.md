@@ -18,7 +18,7 @@
 
 你还可以在直接响应`Response`时直接创建cookies。
 
-你可以参考[直接返回 Response](response-directly.md){.internal-link target=_blank}来创建response
+为此，你可以按照[直接返回 Response](response-directly.md)中的说明创建一个响应。
 
 然后设置Cookies，并返回：
 
@@ -46,4 +46,4 @@
 
 ///
 
-如果你想查看所有可用的参数和选项，可以参考 <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette帮助文档</a>
+如果你想查看所有可用的参数和选项，可以参考 [Starlette 文档](https://www.starlette.dev/responses/#set-cookie)。

@@ -1,18 +1,18 @@
 # 測試 { #testing }
 
-多虧了 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>，測試 **FastAPI** 應用既簡單又好用。
+多虧了 [Starlette](https://www.starlette.dev/testclient/)，測試 **FastAPI** 應用既簡單又好用。
 
-它是基於 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> 打造，而 HTTPX 的設計又參考了 Requests，所以用起來非常熟悉、直覺。
+它是基於 [HTTPX](https://www.python-httpx.org) 打造，而 HTTPX 的設計又參考了 Requests，所以用起來非常熟悉、直覺。
 
-借助它，你可以直接用 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> 來測試 **FastAPI**。
+借助它，你可以直接用 [pytest](https://docs.pytest.org/) 來測試 **FastAPI**。
 
 ## 使用 `TestClient` { #using-testclient }
 
 /// info
 
-要使用 `TestClient`，請先安裝 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>。
+要使用 `TestClient`，請先安裝 [`httpx`](https://www.python-httpx.org)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，然後安裝，例如：
+請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip
 
-如果你想在測試中呼叫其他 `async` 函式，而不只是對 FastAPI 應用發送請求（例如非同步的資料庫函式），請參考進階教學中的[非同步測試](../advanced/async-tests.md){.internal-link target=_blank}。
+如果你想在測試中呼叫其他 `async` 函式，而不只是對 FastAPI 應用發送請求（例如非同步的資料庫函式），請參考進階教學中的[非同步測試](../advanced/async-tests.md)。
 
 ///
 
@@ -64,7 +64,7 @@ $ pip install httpx
 
 ### **FastAPI** 應用檔案 { #fastapi-app-file }
 
-假設你的檔案結構如[更大型的應用](bigger-applications.md){.internal-link target=_blank}所述：
+假設你的檔案結構如[更大型的應用](bigger-applications.md)所述：
 
 ```
 .
@@ -142,13 +142,13 @@ $ pip install httpx
 * 要傳遞標頭（headers），在 `headers` 參數中放一個 `dict`。
 * 對於 Cookie（cookies），在 `cookies` 參數中放一個 `dict`。
 
-關於如何把資料傳給後端（使用 `httpx` 或 `TestClient`），更多資訊請參考 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX 文件</a>。
+關於如何把資料傳給後端（使用 `httpx` 或 `TestClient`），更多資訊請參考 [HTTPX 文件](https://www.python-httpx.org)。
 
 /// info
 
 請注意，`TestClient` 接收的是可轉為 JSON 的資料，而不是 Pydantic models。
 
-如果你的測試裡有一個 Pydantic model，並想在測試時把它的資料送給應用，你可以使用[JSON 相容編碼器](encoder.md){.internal-link target=_blank}中介紹的 `jsonable_encoder`。
+如果你的測試裡有一個 Pydantic model，並想在測試時把它的資料送給應用，你可以使用[JSON 相容編碼器](encoder.md)中介紹的 `jsonable_encoder`。
 
 ///
 
@@ -156,7 +156,7 @@ $ pip install httpx
 
 接下來，你只需要安裝 `pytest`。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，然後安裝，例如：
+請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
 
 <div class="termy">
 

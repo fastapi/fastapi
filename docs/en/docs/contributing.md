@@ -191,7 +191,11 @@ If you see mistakes in your language, you can make suggestions to the prompt in 
 
 #### Reviewing Translation PRs
 
-You can also check the currently [existing pull requests](https://github.com/fastapi/fastapi/pulls) for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review).
+We don’t require approval from native speakers for translation PRs generated automatically by our translation workflow. However, you can still review them and suggest improvements to the LLM prompt for that language to make the future translations better.
+
+You can check the currently [existing pull requests](https://github.com/fastapi/fastapi/pulls) for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review).
+
+You can also review already merged translation PRs. To do this, go to the [closed pull requests](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aclosed) and filter by your language label. For example, for Spanish, you can use [`lang-es`](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aclosed+label%3Alang-es).
 
 When reviewing a pull request, it's better not to suggest changes in the same pull request, because it is LLM generated, and it won't be possible to make sure that small individual changes are replicated in other similar sections, or that they are preserved when translating the same content again.
 
@@ -202,6 +206,8 @@ Instead of adding suggestions to the translation PR, make the suggestions to the
 Check the docs about [adding a pull request review](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews) to approve it or request changes.
 
 ///
+
+PRs with suggestions to the language-specific LLM prompt require approval from at least one native speaker. Your help here is very much appreciated!
 
 #### Subscribe to Notifications for Your Language
 

@@ -12,7 +12,7 @@ Yardım almanın da birkaç yolu var.
 
 ## Bültene abone olun { #subscribe-to-the-newsletter }
 
-Şunlardan haberdar olmak için (seyrek yayımlanan) [**FastAPI and friends** bültenine](newsletter.md){.internal-link target=_blank} abone olabilirsiniz:
+Şunlardan haberdar olmak için (seyrek yayımlanan) [**FastAPI and friends** bültenine](newsletter.md) abone olabilirsiniz:
 
 * FastAPI ve friends ile ilgili haberler 🚀
 * Rehberler 📝
@@ -22,17 +22,17 @@ Yardım almanın da birkaç yolu var.
 
 ## X (Twitter) üzerinden FastAPI'yi takip edin { #follow-fastapi-on-x-twitter }
 
-**FastAPI** ile ilgili en güncel haberleri almak için <a href="https://x.com/fastapi" class="external-link" target="_blank">@fastapi hesabını **X (Twitter)** üzerinde takip edin</a>. 🐦
+[**X (Twitter)** üzerinde @fastapi hesabını takip edin](https://x.com/fastapi) ve **FastAPI** ile ilgili en güncel haberleri alın. 🐦
 
 ## GitHub'da **FastAPI**'ye yıldız verin { #star-fastapi-in-github }
 
-GitHub'da FastAPI'ye "star" verebilirsiniz (sağ üstteki yıldız butonuna tıklayarak): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
+GitHub'da FastAPI'ye "star" verebilirsiniz (sağ üstteki yıldız butonuna tıklayarak): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). ⭐️
 
 Yıldız verince, diğer kullanıcılar projeyi daha kolay bulabilir ve başkaları için de faydalı olduğunu görebilir.
 
 ## GitHub repository'sini release'ler için izleyin { #watch-the-github-repository-for-releases }
 
-GitHub'da FastAPI'yi "watch" edebilirsiniz (sağ üstteki "watch" butonuna tıklayarak): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+GitHub'da FastAPI'yi "watch" edebilirsiniz (sağ üstteki "watch" butonuna tıklayarak): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
 
 Orada "Releases only" seçebilirsiniz.
 
@@ -40,45 +40,45 @@ Böylece **FastAPI**'nin bug fix'ler ve yeni özelliklerle gelen her yeni releas
 
 ## Yazarla bağlantı kurun { #connect-with-the-author }
 
-Yazar olan <a href="https://tiangolo.com" class="external-link" target="_blank">benimle (Sebastián Ramírez / `tiangolo`)</a> bağlantı kurabilirsiniz.
+Yazar olan [benimle (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com) bağlantı kurabilirsiniz.
 
 Şunları yapabilirsiniz:
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">Beni **GitHub**'da takip edin</a>.
+* [Beni **GitHub**'da takip edin](https://github.com/tiangolo).
     * Size yardımcı olabilecek oluşturduğum diğer Open Source projelere göz atın.
     * Yeni bir Open Source proje oluşturduğumda haberdar olmak için beni takip edin.
-* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Beni **X (Twitter)** üzerinde</a> veya <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>'da takip edin.
+* [Beni **X (Twitter)** üzerinde](https://x.com/tiangolo) veya [Mastodon](https://fosstodon.org/@tiangolo)'da takip edin.
     * FastAPI'yi nasıl kullandığınızı anlatın (bunu duymayı seviyorum).
     * Duyuru yaptığımda veya yeni araçlar yayınladığımda haberdar olun.
-    * Ayrıca (ayrı bir hesap olan) <a href="https://x.com/fastapi" class="external-link" target="_blank">X (Twitter) üzerinde @fastapi hesabını da takip edebilirsiniz</a>.
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Beni **LinkedIn**'de takip edin</a>.
+    * Ayrıca (ayrı bir hesap olan) [X (Twitter) üzerinde @fastapi hesabını da takip edebilirsiniz](https://x.com/fastapi).
+* [Beni **LinkedIn**'de takip edin](https://www.linkedin.com/in/tiangolo/).
     * Duyuru yaptığımda veya yeni araçlar yayınladığımda haberdar olun (gerçi X (Twitter)'ı daha sık kullanıyorum 🤷‍♂).
-* <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> veya <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> üzerinde yazdıklarımı okuyun (ya da beni takip edin).
+* [**Dev.to**](https://dev.to/tiangolo) veya [**Medium**](https://medium.com/@tiangolo) üzerinde yazdıklarımı okuyun (ya da beni takip edin).
     * Diğer fikirleri, yazıları ve oluşturduğum araçlarla ilgili içerikleri okuyun.
     * Yeni bir şey yayınladığımda görmek için beni takip edin.
 
 ## **FastAPI** hakkında tweet atın { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI** hakkında tweet atın</a> ve neden sevdiğinizi bana ve diğerlerine söyleyin. 🎉
+[**FastAPI** hakkında tweet atın](https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi) ve neden sevdiğinizi bana ve diğerlerine söyleyin. 🎉
 
 **FastAPI**'nin nasıl kullanıldığını, nelerini sevdiğinizi, hangi projede/şirkette kullandığınızı vb. duymayı seviyorum.
 
 ## FastAPI için oy verin { #vote-for-fastapi }
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Slant'ta **FastAPI** için oy verin</a>.
-* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">AlternativeTo'da **FastAPI** için oy verin</a>.
-* <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">StackShare'de **FastAPI** kullandığınızı belirtin</a>.
+* [Slant'ta **FastAPI** için oy verin](https://www.slant.co/options/34241/~fastapi-review).
+* [AlternativeTo'da **FastAPI** için oy verin](https://alternativeto.net/software/fastapi/about/).
+* [StackShare'de **FastAPI** kullandığınızı belirtin](https://stackshare.io/pypi-fastapi).
 
 ## GitHub'da sorularla başkalarına yardım edin { #help-others-with-questions-in-github }
 
 Şuralarda insanların sorularına yardımcı olmayı deneyebilirsiniz:
 
-* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
-* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+* [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered)
+* [GitHub Issues](https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+)
 
 Birçok durumda bu soruların cevabını zaten biliyor olabilirsiniz. 🤓
 
-Eğer insanların sorularına çok yardım ederseniz, resmi bir [FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank} olabilirsiniz. 🎉
+Eğer insanların sorularına çok yardım ederseniz, resmi bir [FastAPI Expert](fastapi-people.md#fastapi-experts) olabilirsiniz. 🎉
 
 Şunu unutmayın: en önemli nokta, nazik olmaya çalışmak. İnsanlar çoğu zaman biriken stresle geliyor ve birçok durumda soruyu en iyi şekilde sormuyor; yine de elinizden geldiğince nazik olmaya çalışın. 🤗
 
@@ -104,7 +104,7 @@ Sorularda (discussions veya issues içinde) başkalarına yardım etmek için ş
 
 Birçok kişi sadece kodun bir parçasını kopyalar, ama bu **problemi yeniden üretmek** için yeterli olmaz.
 
-* Çalıştırıp aynı hatayı/davranışı görebileceğiniz veya kullanım senaryosunu daha iyi anlayabileceğiniz, yerelde **kopyala-yapıştır** yaparak çalıştırılabilen bir <a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">minimal, reproducible, example</a> paylaşmalarını isteyebilirsiniz.
+* Çalıştırıp aynı hatayı/davranışı görebileceğiniz veya kullanım senaryosunu daha iyi anlayabileceğiniz, yerelde **kopyala-yapıştır** yaparak çalıştırılabilen bir [minimal, reproducible, example](https://stackoverflow.com/help/minimal-reproducible-example) paylaşmalarını isteyebilirsiniz.
 
 * Çok cömert hissediyorsanız, problemi anlatan açıklamadan yola çıkarak kendiniz de böyle bir **örnek oluşturmayı** deneyebilirsiniz. Ancak bunun çok zaman alabileceğini unutmayın; çoğu zaman önce problemi netleştirmelerini istemek daha iyidir.
 
@@ -125,7 +125,7 @@ Eğer yanıt verirlerse, büyük ihtimalle problemi çözmüşsünüzdür, tebri
 
 ## GitHub repository'sini izleyin { #watch-the-github-repository }
 
-GitHub'da FastAPI'yi "watch" edebilirsiniz (sağ üstteki "watch" butonuna tıklayarak): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+GitHub'da FastAPI'yi "watch" edebilirsiniz (sağ üstteki "watch" butonuna tıklayarak): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
 
 "Releases only" yerine "Watching" seçerseniz biri yeni bir issue veya soru oluşturduğunda bildirim alırsınız. Ayrıca sadece yeni issue'lar, ya da discussions, ya da PR'lar vb. için bildirim almak istediğinizi belirtebilirsiniz.
 
@@ -133,7 +133,7 @@ Sonra da bu soruları çözmelerine yardımcı olmayı deneyebilirsiniz.
 
 ## Soru Sorun { #ask-questions }
 
-GitHub repository'sinde örneğin şunlar için <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">yeni bir soru oluşturabilirsiniz</a>:
+GitHub repository'sinde örneğin şunlar için [yeni bir soru oluşturabilirsiniz](https://github.com/fastapi/fastapi/discussions/new?category=questions):
 
 * Bir **soru** sorun veya bir **problem** hakkında danışın.
 * Yeni bir **feature** önerin.
@@ -196,12 +196,12 @@ Bu yüzden kodu gerçekten okuyup çalıştırmanız ve bunu yorumlarda bana bil
 
 ## Pull Request Oluşturun { #create-a-pull-request }
 
-Örneğin şunlar için Pull Request'lerle kaynak koda [katkıda bulunabilirsiniz](contributing.md){.internal-link target=_blank}:
+Örneğin şunlar için Pull Request'lerle kaynak koda [katkıda bulunabilirsiniz](contributing.md):
 
 * Dokümantasyonda bulduğunuz bir yazım hatasını düzeltmek.
-* FastAPI hakkında oluşturduğunuz veya bulduğunuz bir makaleyi, videoyu ya da podcast'i <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">bu dosyayı düzenleyerek</a> paylaşmak.
+* FastAPI hakkında oluşturduğunuz veya bulduğunuz bir makaleyi, videoyu ya da podcast'i [bu dosyayı düzenleyerek](https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml) paylaşmak.
     * Link'inizi ilgili bölümün başına eklediğinizden emin olun.
-* Dokümantasyonu kendi dilinize [çevirmeye yardımcı olmak](contributing.md#translations){.internal-link target=_blank}.
+* Dokümantasyonu kendi dilinize [çevirmeye yardımcı olmak](contributing.md#translations).
     * Başkalarının yaptığı çevirileri gözden geçirmeye de yardımcı olabilirsiniz.
 * Yeni dokümantasyon bölümleri önermek.
 * Mevcut bir issue/bug'ı düzeltmek.
@@ -218,8 +218,8 @@ Yapılacak çok iş var ve bunların çoğunu **SİZ** yapabilirsiniz.
 
 Şu anda yapabileceğiniz ana işler:
 
-* [GitHub'da sorularla başkalarına yardım edin](#help-others-with-questions-in-github){.internal-link target=_blank} (yukarıdaki bölüme bakın).
-* [Pull Request'leri inceleyin](#review-pull-requests){.internal-link target=_blank} (yukarıdaki bölüme bakın).
+* [GitHub'da sorularla başkalarına yardım edin](#help-others-with-questions-in-github) (yukarıdaki bölüme bakın).
+* [Pull Request'leri inceleyin](#review-pull-requests) (yukarıdaki bölüme bakın).
 
 Bu iki iş, **en çok zamanı alan** işlerdir. FastAPI bakımının ana yükü buradadır.
 
@@ -227,11 +227,11 @@ Burada yardımcı olursanız, **FastAPI'nin bakımını yapmama yardım etmiş**
 
 ## Sohbete katılın { #join-the-chat }
 
-FastAPI topluluğundan diğer kişilerle takılmak için 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 sohbetine katılın.
+FastAPI topluluğundan diğer kişilerle takılmak için 👥 [Discord chat server](https://discord.gg/VQjSZaeJmf) 👥 sohbetine katılın.
 
 /// tip | İpucu
 
-Sorular için <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>'a sorun; [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank} tarafından yardım alma ihtimaliniz çok daha yüksektir.
+Sorular için [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/new?category=questions)'a sorun; [FastAPI Experts](fastapi-people.md#fastapi-experts) tarafından yardım alma ihtimaliniz çok daha yüksektir.
 
 Chat'i sadece genel sohbetler için kullanın.
 
@@ -243,13 +243,13 @@ Chat sistemleri daha "serbest sohbet"e izin verdiği için, çok genel ve yanıt
 
 GitHub'da ise şablon (template) doğru soruyu yazmanız için sizi yönlendirir; böylece daha kolay iyi bir cevap alabilir, hatta bazen sormadan önce problemi kendiniz çözebilirsiniz. Ayrıca GitHub'da (zaman alsa bile) her şeye mutlaka cevap verdiğimden emin olabilirim. Chat sistemlerinde bunu kişisel olarak yapamam. 😅
 
-Chat sistemlerindeki konuşmalar GitHub kadar kolay aranabilir değildir; bu yüzden soru ve cevaplar sohbet içinde kaybolabilir. Ayrıca [FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank} olmak için sadece GitHub'daki katkılar sayılır; dolayısıyla büyük olasılıkla GitHub'da daha fazla ilgi görürsünüz.
+Chat sistemlerindeki konuşmalar GitHub kadar kolay aranabilir değildir; bu yüzden soru ve cevaplar sohbet içinde kaybolabilir. Ayrıca [FastAPI Expert](fastapi-people.md#fastapi-experts) olmak için sadece GitHub'daki katkılar sayılır; dolayısıyla büyük olasılıkla GitHub'da daha fazla ilgi görürsünüz.
 
 Öte yandan chat sistemlerinde binlerce kullanıcı vardır; bu yüzden neredeyse her zaman konuşacak birini bulma ihtimaliniz yüksektir. 😄
 
 ## Yazara sponsor olun { #sponsor-the-author }
 
-Eğer **ürününüz/şirketiniz** **FastAPI**'ye bağlıysa veya onunla ilişkiliyse ve FastAPI kullanıcılarına ulaşmak istiyorsanız, <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a> üzerinden yazara (bana) sponsor olabilirsiniz. Tier'a göre dokümantasyonda bir rozet gibi ek faydalar elde edebilirsiniz. 🎁
+Eğer **ürününüz/şirketiniz** **FastAPI**'ye bağlıysa veya onunla ilişkiliyse ve FastAPI kullanıcılarına ulaşmak istiyorsanız, [GitHub sponsors](https://github.com/sponsors/tiangolo) üzerinden yazara (bana) sponsor olabilirsiniz. Tier'a göre dokümantasyonda bir rozet gibi ek faydalar elde edebilirsiniz. 🎁
 
 ---
 

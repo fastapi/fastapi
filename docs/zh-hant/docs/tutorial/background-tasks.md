@@ -61,7 +61,7 @@
 
 ## 技術細節 { #technical-details }
 
-類別 `BackgroundTasks` 直接來自 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>。
+類別 `BackgroundTasks` 直接來自 [`starlette.background`](https://www.starlette.dev/background/)。
 
 它被直接匯入/包含到 FastAPI 中，因此你可以從 `fastapi` 匯入它，並避免不小心從 `starlette.background` 匯入另一個同名的 `BackgroundTask`（結尾沒有 s）。
 
@@ -69,11 +69,11 @@
 
 在 FastAPI 中仍可單獨使用 `BackgroundTask`，但你需要在程式碼中自行建立該物件，並回傳包含它的 Starlette `Response`。
 
-更多細節請參閱 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette 官方的 Background Tasks 文件</a>。
+更多細節請參閱 [Starlette 官方的 Background Tasks 文件](https://www.starlette.dev/background/)。
 
 ## 注意事項 { #caveat }
 
-如果你需要執行繁重的背景計算，且不一定要由同一個行程執行（例如不需要共用記憶體、變數等），可以考慮使用更大型的工具，例如 <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>。
+如果你需要執行繁重的背景計算，且不一定要由同一個行程執行（例如不需要共用記憶體、變數等），可以考慮使用更大型的工具，例如 [Celery](https://docs.celeryq.dev)。
 
 這類工具通常需要較複雜的設定，以及訊息/工作佇列管理器（如 RabbitMQ 或 Redis），但它們允許你在多個行程，甚至多台伺服器上執行背景任務。
 

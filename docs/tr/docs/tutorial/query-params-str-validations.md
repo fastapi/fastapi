@@ -35,13 +35,13 @@ FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve önermeye başlad
 
 Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalışırken hata alırsınız.
 
-`Annotated` kullanmadan önce FastAPI sürümünü en az 0.95.1’e yükseltmek için [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce FastAPI sürümünü en az 0.95.1’e yükseltmek için [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
 ## `q` parametresinin tipinde `Annotated` kullanın { #use-annotated-in-the-type-for-the-q-parameter }
 
-[Python Types Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} içinde `Annotated` ile parametrelerinize metadata ekleyebileceğinizi söylemiştim, hatırlıyor musunuz?
+[Python Tiplerine Giriş](../python-types.md#type-hints-with-metadata-annotations) içinde `Annotated` ile parametrelerinize metadata ekleyebileceğinizi söylemiştim, hatırlıyor musunuz?
 
 Şimdi bunu FastAPI ile kullanmanın zamanı. 🚀
 
@@ -158,7 +158,7 @@ Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** 
 
 `Annotated` kullanmayıp bunun yerine **(eski) varsayılan değer stilini** kullanırsanız, o fonksiyonu FastAPI olmadan **başka yerlerde** çağırdığınızda doğru çalışması için argümanları geçmeniz gerektiğini **hatırlamak** zorunda kalırsınız; yoksa değerler beklediğinizden farklı olur (ör. `QueryInfo` veya benzeri). Üstelik editörünüz de şikayet etmez ve Python da fonksiyonu çalıştırırken şikayet etmez; ancak içerideki operasyonlar hata verince ortaya çıkar.
 
-`Annotated` birden fazla metadata anotasyonu alabildiği için, artık aynı fonksiyonu <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a> gibi başka araçlarla da kullanabilirsiniz. 🚀
+`Annotated` birden fazla metadata anotasyonu alabildiği için, artık aynı fonksiyonu [Typer](https://typer.tiangolo.com/) gibi başka araçlarla da kullanabilirsiniz. 🚀
 
 ## Daha fazla doğrulama ekleyin { #add-more-validations }
 
@@ -210,7 +210,7 @@ q: str
 q: str | None = None
 ```
 
-Acak biz artık `Query` ile tanımlıyoruz; örneğin şöyle:
+Ancak biz artık `Query` ile tanımlıyoruz; örneğin şöyle:
 
 ```Python
 q: Annotated[str | None, Query(min_length=3)] = None
@@ -370,11 +370,11 @@ Yukarıdaki parametrelerle yapılamayan bazı **özel doğrulama** ihtiyaçları
 
 Bu durumlarda, normal doğrulamadan sonra (ör. değerin `str` olduğunun doğrulanmasından sonra) uygulanacak bir **custom validator function** kullanabilirsiniz.
 
-Bunu, `Annotated` içinde <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic’in `AfterValidator`</a>’ını kullanarak yapabilirsiniz.
+Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
 
 /// tip | İpucu
 
-Pydantic’te <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> ve başka validator’lar da vardır. 🤓
+Pydantic’te [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
 
 ///
 

@@ -57,7 +57,7 @@ FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（
 
 古いバージョンを使用している場合、`Annotated` を使おうとするとエラーになります。
 
-`Annotated` を使用する前に、少なくとも 0.95.1 まで [FastAPI のバージョンをアップグレード](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} してください。
+`Annotated` を使用する前に、少なくとも 0.95.1 まで [FastAPI のバージョンをアップグレード](../../deployment/versions.md#upgrading-the-fastapi-versions) してください。
 
 ///
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 備考
 
-わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+わからない場合は、ドキュメントの[Async: *「急いでいますか？」*](../../async.md#in-a-hurry)の中の`async`と`await`についてのセクションを確認してください。
 
 ///
 

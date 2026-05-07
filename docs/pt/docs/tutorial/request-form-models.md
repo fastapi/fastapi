@@ -4,9 +4,9 @@ Você pode utilizar **Modelos Pydantic** para declarar **campos de formulários*
 
 /// info | Informação
 
-Para utilizar formulários, instale primeiramente o <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para utilizar formulários, instale primeiramente o [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo, e então instalar. Por exemplo:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo, e então instalar. Por exemplo:
 
 ```console
 $ pip install python-multipart

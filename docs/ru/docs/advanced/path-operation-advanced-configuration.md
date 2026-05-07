@@ -60,7 +60,7 @@
 
 Также можно объявлять дополнительные ответы с их моделями, статус-кодами и т.д.
 
-В документации есть целая глава об этом — [Дополнительные ответы в OpenAPI](additional-responses.md){.internal-link target=_blank}.
+В документации есть целая глава об этом — [Дополнительные ответы в OpenAPI](additional-responses.md).
 
 ## Дополнительные данные OpenAPI { #openapi-extra }
 
@@ -68,7 +68,7 @@
 
 /// note | Технические детали
 
-В спецификации OpenAPI это называется <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Объект операции</a>.
+В спецификации OpenAPI это называется [Объект операции](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@
 
 Это низкоуровневая возможность расширения.
 
-Если вам нужно лишь объявить дополнительные ответы, удобнее сделать это через [Дополнительные ответы в OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Если вам нужно лишь объявить дополнительные ответы, удобнее сделать это через [Дополнительные ответы в OpenAPI](additional-responses.md).
 
 ///
 

@@ -6,7 +6,7 @@
 
 路徑參數 `item_id` 的值會作為引數 `item_id` 傳入你的函式。
 
-所以，如果你執行這個範例並前往 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，你會看到這樣的回應：
+所以，如果你執行這個範例並前往 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)，你會看到這樣的回應：
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@
 
 ## 資料 <dfn title="也稱為：序列化、解析、封送">轉換</dfn> { #data-conversion }
 
-如果你執行這個範例並在瀏覽器開啟 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，你會看到這樣的回應：
+如果你執行這個範例並在瀏覽器開啟 [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3)，你會看到這樣的回應：
 
 ```JSON
 {"item_id":3}
@@ -44,7 +44,7 @@
 
 ## 資料驗證 { #data-validation }
 
-但如果你在瀏覽器前往 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，你會看到漂亮的 HTTP 錯誤：
+但如果你在瀏覽器前往 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)，你會看到漂亮的 HTTP 錯誤：
 
 ```JSON
 {
@@ -64,7 +64,7 @@
 
 因為路徑參數 `item_id` 的值是 `"foo"`，它不是 `int`。
 
-同樣的錯誤也會在你提供 `float` 而不是 `int` 時出現，例如：<a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+同樣的錯誤也會在你提供 `float` 而不是 `int` 時出現，例如：[http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// check
 
@@ -78,7 +78,7 @@
 
 ## 文件 { #documentation }
 
-當你在瀏覽器開啟 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>，你會看到自動產生、可互動的 API 文件，例如：
+當你在瀏覽器開啟 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)，你會看到自動產生、可互動的 API 文件，例如：
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -92,9 +92,9 @@
 
 ## 基於標準的優勢與替代文件 { #standards-based-benefits-alternative-documentation }
 
-而且因為產生的 schema 來自 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> 標準，有很多相容的工具可用。
+而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準，有很多相容的工具可用。
 
-因此，**FastAPI** 本身也提供另一種 API 文件（使用 ReDoc），你可以在 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 存取：
+因此，**FastAPI** 本身也提供另一種 API 文件（使用 ReDoc），你可以在 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 存取：
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-所有資料驗證都由 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 在底層處理，因此你能直接受惠。而且你可以放心使用。
+所有資料驗證都由 [Pydantic](https://docs.pydantic.dev/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
 
 你可以用相同的型別宣告搭配 `str`、`float`、`bool` 與許多更複雜的資料型別。
 

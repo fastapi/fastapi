@@ -8,14 +8,13 @@ from typing import Any, Literal, cast
 from fastapi import routing
 from fastapi._compat import (
     ModelField,
-    Undefined,
     get_definitions,
     get_flat_models_from_fields,
     get_model_name_map,
     get_schema_from_model_field,
     lenient_issubclass,
 )
-from fastapi.datastructures import DefaultPlaceholder
+from fastapi.datastructures import DefaultPlaceholder, _Unset
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
@@ -170,7 +169,7 @@ def _get_openapi_operation_parameters(
             example = getattr(field_info, "example", None)
             if openapi_examples:
                 parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example != Undefined:
+            elif example is not _Unset:
                 parameter["example"] = jsonable_encoder(example)
             if getattr(field_info, "deprecated", None):
                 parameter["deprecated"] = True
@@ -207,7 +206,7 @@ def get_openapi_operation_request_body(
         request_media_content["examples"] = jsonable_encoder(
             field_info.openapi_examples
         )
-    elif field_info.example != Undefined:
+    elif field_info.example is not _Unset:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
@@ -245,10 +244,8 @@ def get_openapi_operation_metadata(
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
-        message = (
-            f"Duplicate Operation ID {operation_id} for function "
-            + f"{route.endpoint.__name__}"
-        )
+        endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
+        message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
@@ -606,4 +603,4 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore  # ty: ignore[unused-ignore-comment]

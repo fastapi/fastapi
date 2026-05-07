@@ -10,12 +10,12 @@ Es ist auch so gestaltet, dass es als zukünftige Referenz dient, sodass Sie jed
 
 Alle Codeblöcke können kopiert und direkt verwendet werden (es sind tatsächlich getestete Python-Dateien).
 
-Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py` und starten Sie `fastapi dev` mit:
+Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ Die Verwendung in Ihrem eigenen Editor zeigt Ihnen die Vorteile von FastAPI am b
 
 Der erste Schritt besteht darin, FastAPI zu installieren.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann **FastAPI installieren**:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann **FastAPI installieren**:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | Hinweis
 
-Wenn Sie mit `pip install "fastapi[standard]"` installieren, werden einige optionale Standard-Abhängigkeiten mit installiert, einschließlich `fastapi-cloud-cli`, welches Ihnen das Deployment in der <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> ermöglicht.
+Wenn Sie mit `pip install "fastapi[standard]"` installieren, werden einige optionale Standard-Abhängigkeiten mit installiert, einschließlich `fastapi-cloud-cli`, welches Ihnen das Deployment in der [FastAPI Cloud](https://fastapicloud.com) ermöglicht.
 
 Wenn Sie diese optionalen Abhängigkeiten nicht haben möchten, können Sie stattdessen `pip install fastapi` installieren.
 
 Wenn Sie die Standard-Abhängigkeiten, aber ohne das `fastapi-cloud-cli` installieren möchten, können Sie mit `pip install "fastapi[standard-no-fastapi-cloud-cli]"` installieren.
+
+///
+
+/// tip | Tipp
+
+FastAPI hat eine [offizielle Erweiterung für VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (und Cursor), die viele Funktionen bereitstellt, darunter einen Pfadoperation-Explorer, eine Pfadoperation-Suche, CodeLens-Navigation in Tests (zur Definition aus Tests springen) sowie FastAPI-Cloud-Deployment und Logs – alles direkt aus Ihrem Editor.
 
 ///
 
