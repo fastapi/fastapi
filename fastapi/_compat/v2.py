@@ -173,7 +173,7 @@ class ModelField:
     def validate(
         self,
         value: Any,
-        values: dict[str, Any] = {},  # noqa: B006
+        values: dict[str, Any] | None = None,
         *,
         loc: tuple[int | str, ...] = (),
     ) -> tuple[Any, list[dict[str, Any]]]:
