@@ -844,7 +844,17 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.stream_item_type: Any | None = None
-        if isinstance(response_model, DefaultPlaceholder):
+        # Run stream-item detection both when response_model is the
+        # DefaultPlaceholder (the original code path: user-defined route)
+        # and when it's an explicit ``None``. The ``None`` case fires when
+        # ``include_router`` re-instantiates a route from a source whose
+        # ``response_model`` was already collapsed to ``None`` during the
+        # first ``__init__``: without it, the merged route would silently
+        # drop ``stream_item_type`` and the OpenAPI ``contentSchema`` for
+        # the streaming endpoint (#15401). Explicit ``response_model=None``
+        # for streaming endpoints is also a documented pattern, so opting
+        # those into detection is intentional.
+        if isinstance(response_model, DefaultPlaceholder) or response_model is None:
             return_annotation = get_typed_return_annotation(endpoint)
             if lenient_issubclass(return_annotation, Response):
                 response_model = None
@@ -863,7 +873,12 @@ class APIRoute(routing.Route):
                     ) and not lenient_issubclass(stream_item, ServerSentEvent):
                         self.stream_item_type = stream_item
                     response_model = None
-                else:
+                elif isinstance(response_model, DefaultPlaceholder):
+                    # Only fall back to using the return annotation as the
+                    # response_model when the caller did not pass an
+                    # explicit value: an explicit ``None`` must stay
+                    # ``None`` (otherwise we'd reintroduce response
+                    # validation that the caller deliberately turned off).
                     response_model = return_annotation
         self.response_model = response_model
         self.summary = summary

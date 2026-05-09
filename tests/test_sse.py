@@ -316,3 +316,60 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+def test_stream_item_type_propagated_through_include_router():
+    """Regression test for #15401.
+
+    When an SSE route is defined on an ``APIRouter`` and merged onto a
+    ``FastAPI`` app via ``include_router``, the merged route must carry
+    the same ``stream_item_type`` as the source route, and the emitted
+    OpenAPI schema must include the ``contentSchema`` describing the
+    streamed item under
+    ``responses.200.content["text/event-stream"].itemSchema.properties.data``.
+
+    Before the fix, ``stream_item_type`` detection in ``APIRoute.__init__``
+    was gated on ``response_model`` being a ``DefaultPlaceholder``. The
+    source route's ``response_model`` was collapsed to ``None`` during
+    its first ``__init__``, so when ``include_router`` re-instantiated
+    the route with that ``None``, detection was skipped and the merged
+    route's ``stream_item_type`` stayed ``None``.
+    """
+
+    class Frame(BaseModel):
+        kind: str
+
+    # Case A — route registered directly on the app (control)
+    app_a = FastAPI()
+
+    @app_a.post("/s", response_class=EventSourceResponse)
+    async def direct() -> AsyncIterable[Frame]:
+        yield Frame(kind="x")
+
+    # Case B — route on a router, then ``include_router`` (regression case)
+    router_b = APIRouter()
+
+    @router_b.post("/s", response_class=EventSourceResponse)
+    async def via_router() -> AsyncIterable[Frame]:
+        yield Frame(kind="x")
+
+    app_b = FastAPI()
+    app_b.include_router(router_b)
+
+    # Both routes must carry the detected item type.
+    direct_route = app_a.routes[-1]
+    merged_route = app_b.routes[-1]
+    assert direct_route.stream_item_type is Frame  # type: ignore[union-attr]
+    assert merged_route.stream_item_type is Frame  # type: ignore[union-attr]
+
+    # And both must surface the contentSchema in the emitted OpenAPI.
+    def has_content_schema(spec: dict) -> bool:
+        sse = spec["paths"]["/s"]["post"]["responses"]["200"]["content"][
+            "text/event-stream"
+        ]
+        return "contentSchema" in sse.get("itemSchema", {}).get("properties", {}).get(
+            "data", {}
+        )
+
+    assert has_content_schema(app_a.openapi())
+    assert has_content_schema(app_b.openapi())
