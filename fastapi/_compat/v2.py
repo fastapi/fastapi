@@ -198,19 +198,27 @@ class ModelField:
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
+        polymorphic_serialization: bool = False,
     ) -> Any:
         # What calls this code passes a value that already called
         # self._type_adapter.validate_python(value)
-        return self._type_adapter.dump_python(
-            value,
-            mode=mode,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
+        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (2, 13):  # pragma: no cover
+            raise ValueError(
+                "polymorphic_serialization requires Pydantic >= 2.13. "
+                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+            )
+        kwargs = {
+            "mode": mode,
+            "include": include,
+            "exclude": exclude,
+            "by_alias": by_alias,
+            "exclude_unset": exclude_unset,
+            "exclude_defaults": exclude_defaults,
+            "exclude_none": exclude_none,
+        }
+        if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 13):
+            kwargs["polymorphic_serialization"] = polymorphic_serialization
+        return self._type_adapter.dump_python(value, **kwargs)  # type: ignore[arg-type]
 
     def serialize_json(
         self,
@@ -222,21 +230,29 @@ class ModelField:
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
+        polymorphic_serialization: bool = False,
     ) -> bytes:
         # What calls this code passes a value that already called
         # self._type_adapter.validate_python(value)
         # This uses Pydantic's dump_json() which serializes directly to JSON
         # bytes in one pass (via Rust), avoiding the intermediate Python dict
         # step of dump_python(mode="json") + json.dumps().
-        return self._type_adapter.dump_json(
-            value,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
+        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (2, 13):  # pragma: no cover
+            raise ValueError(
+                "polymorphic_serialization requires Pydantic >= 2.13. "
+                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+            )
+        kwargs = {
+            "include": include,
+            "exclude": exclude,
+            "by_alias": by_alias,
+            "exclude_unset": exclude_unset,
+            "exclude_defaults": exclude_defaults,
+            "exclude_none": exclude_none,
+        }
+        if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 13):
+            kwargs["polymorphic_serialization"] = polymorphic_serialization
+        return self._type_adapter.dump_json(value, **kwargs)  # type: ignore[arg-type]
 
     def __hash__(self) -> int:
         # Each ModelField is unique for our purposes, to allow making a dict from
