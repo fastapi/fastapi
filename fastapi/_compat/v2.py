@@ -202,7 +202,10 @@ class ModelField:
     ) -> Any:
         # What calls this code passes a value that already called
         # self._type_adapter.validate_python(value)
-        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (2, 13):  # pragma: no cover
+        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (
+            2,
+            13,
+        ):  # pragma: no cover
             raise ValueError(
                 "polymorphic_serialization requires Pydantic >= 2.13. "
                 f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
@@ -237,7 +240,10 @@ class ModelField:
         # This uses Pydantic's dump_json() which serializes directly to JSON
         # bytes in one pass (via Rust), avoiding the intermediate Python dict
         # step of dump_python(mode="json") + json.dumps().
-        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (2, 13):  # pragma: no cover
+        if polymorphic_serialization and shared.PYDANTIC_VERSION_MINOR_TUPLE < (
+            2,
+            13,
+        ):  # pragma: no cover
             raise ValueError(
                 "polymorphic_serialization requires Pydantic >= 2.13. "
                 f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
