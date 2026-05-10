@@ -84,6 +84,19 @@ AsyncBrokenSessionDep = Annotated[Session, Depends(async_broken_dep_session)]
 app = FastAPI()
 
 
+@app.get("/data")
+def get_data(session: SessionDep) -> Any:
+    return list(session)
+
+
+@app.get("/sse-simple", response_class=EventSourceResponse)
+def sse_simple(session: SessionDep) -> Any:
+    def gen() -> Generator[str, None, None]:
+        yield from ["x", "y", "z"]
+
+    return gen()
+
+
 @app.get("/sse-sync", response_class=EventSourceResponse)
 def sse_sync(session: SessionDep) -> Any:
     def gen() -> Generator[Item, None, None]:
@@ -112,6 +125,15 @@ async def sse_broken_async(
 ) -> AsyncGenerator[Item, None]:
     async for item in session:
         yield item
+
+
+@app.get("/sse-producer-raises", response_class=EventSourceResponse)
+def sse_producer_raises(session: SessionDep) -> Any:
+    def gen() -> Generator[Item, None, None]:
+        yield session.items[0]
+        raise RuntimeError("producer error")
+
+    return gen()
 
 
 client = TestClient(app)
@@ -215,3 +237,64 @@ def test_sse_broken_async_no_raise():
         response = c.get("/sse-broken-async")
     assert response.status_code == 200
     assert _parse_sse_data_lines(response.text) == []
+
+
+def test_regular_no_stream():
+    response = client.get("/data")
+    assert response.json() == [{"name": "foo"}, {"name": "bar"}, {"name": "baz"}]
+
+
+def test_sse_simple():
+    response = client.get("/sse-simple")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = _parse_sse_data_lines(response.text)
+    assert data_lines == ['"x"', '"y"', '"z"']
+
+
+def test_sse_producer_raises_cleanup_runs():
+    """Yield dependency cleanup runs even when the SSE producer raises mid-stream."""
+    sessions: list[Session] = []
+
+    def tracking_dep() -> Any:
+        with acquire_session() as s:
+            sessions.append(s)
+            yield s
+
+    app.dependency_overrides[dep_session] = tracking_dep
+    try:
+        with TestClient(app, raise_server_exceptions=False) as c:
+            c.get("/sse-producer-raises")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert len(sessions) == 1
+    assert sessions[0].open is False
+
+
+def test_lifo_cleanup_order():
+    """Chained yield dependencies are torn down in LIFO order."""
+    calls: list[str] = []
+
+    def dep_a() -> Any:
+        yield "a"
+        calls.append("a-cleanup")
+
+    def dep_b(a: Annotated[str, Depends(dep_a)]) -> Any:
+        yield "b"
+        calls.append("b-cleanup")
+
+    lifo_app = FastAPI()
+
+    @lifo_app.get("/sse-lifo", response_class=EventSourceResponse)
+    def sse_lifo(b: Annotated[str, Depends(dep_b)]) -> Any:
+        def gen() -> Generator[str, None, None]:
+            yield b
+
+        return gen()
+
+    with TestClient(lifo_app) as c:
+        with c.stream("GET", "/sse-lifo") as r:
+            list(r.iter_lines())
+
+    assert calls == ["b-cleanup", "a-cleanup"]
