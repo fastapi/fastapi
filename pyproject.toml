@@ -335,3 +335,40 @@ keep-runtime-typing = true
 [tool.inline-snapshot]
 # default-flags=["fix"]
 # default-flags=["create"]
+
+[tool.typos.files]
+extend-exclude = [
+    "coverage/",
+    "dist/",
+    "docs/de/",
+    "docs/en/data/",
+    "docs/en/docs/img/",
+    "docs/en/docs/release-notes.md",
+    "docs/es/",
+    "docs/fr/",
+    "docs/ja/",
+    "docs/ko/",
+    "docs/language_names.yml",
+    "docs/pt/",
+    "docs/ru/",
+    "docs/tr/",
+    "docs/uk/",
+    "docs/zh/",
+    "docs/zh-hant/",
+    "htmlcov/",
+    "scripts/general-llm-prompt.md",
+    "scripts/tests/test_translation_fixer/test_complex_doc/",
+    "site/",
+    "site_build/",
+    "uv.lock",
+]
+
+[tool.typos.default.extend-identifiers]
+alls = "alls"
+
+[tool.typos.default.extend-words]
+ba = "ba"
+fo = "fo"
+havin = "havin"
+Ines = "Ines"
+ser = "ser"

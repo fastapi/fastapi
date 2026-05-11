@@ -82,7 +82,7 @@ def test_post_no_body(client: TestClient):
     }
 
 
-def test_post_like_not_embeded(client: TestClient):
+def test_post_like_not_embedded(client: TestClient):
     response = client.put(
         "/items/5",
         json={

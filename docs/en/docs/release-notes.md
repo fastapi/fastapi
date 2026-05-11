@@ -9,12 +9,21 @@ hide:
 
 ### Docs
 
+* ✏️ Fix Azkaban spelling typo in `virtual-environments.md‎`. PR [#15463](https://github.com/fastapi/fastapi/pull/15463) by [@isaacbernat](https://github.com/isaacbernat).
 * 💄 Improve layout and styling. PR [#15462](https://github.com/fastapi/fastapi/pull/15462) by [@alejsdev](https://github.com/alejsdev).
 * 💄 Refactor opinions section with interactive tabs and new logos. PR [#15458](https://github.com/fastapi/fastapi/pull/15458) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Add FastAPI Conf '26 announcement to docs. PR [#15457](https://github.com/fastapi/fastapi/pull/15457) by [@alejsdev](https://github.com/alejsdev).
 
+### Translations
+
+* 🌐 Fix typos in Spanish LLM-prompt. PR [#15472](https://github.com/fastapi/fastapi/pull/15472) by [@crr004](https://github.com/crr004).
+
 ### Internal
 
+* 👷 Add pre-commit to check typos. PR [#15482](https://github.com/fastapi/fastapi/pull/15482) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15470](https://github.com/fastapi/fastapi/pull/15470) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Experts. PR [#15471](https://github.com/fastapi/fastapi/pull/15471) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15467](https://github.com/fastapi/fastapi/pull/15467) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix missing credentials issue in `translate` workflow. PR [#15468](https://github.com/fastapi/fastapi/pull/15468) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump sqlmodel from 0.0.32 to 0.0.38. PR [#15437](https://github.com/fastapi/fastapi/pull/15437) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump CodSpeedHQ/action from 4.12.1 to 4.14.0. PR [#15436](https://github.com/fastapi/fastapi/pull/15436) by [@dependabot[bot]](https://github.com/apps/dependabot).
