@@ -1295,7 +1295,7 @@ dev = [
     { name = "ruff", specifier = ">=0.14.14" },
     { name = "sqlmodel", specifier = ">=0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
-    { name = "ty", specifier = ">=0.0.9" },
+    { name = "ty", specifier = ">=0.0.25" },
     { name = "typer", specifier = ">=0.21.1" },
     { name = "zizmor", specifier = ">=1.23.1" },
 ]
@@ -1352,7 +1352,7 @@ tests = [
     { name = "ruff", specifier = ">=0.14.14" },
     { name = "sqlmodel", specifier = ">=0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
-    { name = "ty", specifier = ">=0.0.9" },
+    { name = "ty", specifier = ">=0.0.25" },
 ]
 translations = [
     { name = "gitpython", specifier = ">=3.1.46" },
