@@ -37,7 +37,7 @@
 
 위 정보를 바탕으로, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성하고 필요한 각 부분을 덮어쓸 수 있습니다.
 
-예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
+예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
 
 ### 일반적인 **FastAPI** { #normal-fastapi }
 

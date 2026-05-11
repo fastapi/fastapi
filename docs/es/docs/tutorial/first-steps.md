@@ -78,7 +78,7 @@ Verás la documentación interactiva automática de la API (proporcionada por [S
 
 Y ahora, ve a [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

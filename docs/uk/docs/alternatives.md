@@ -125,7 +125,7 @@ def read_url():
 Інтегрувати інструменти інтерфейсу на основі стандартів:
 
 * [Інтерфейс Swagger](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Ці два було обрано через те, що вони досить популярні та стабільні, але, виконавши швидкий пошук, ви можете знайти десятки додаткових альтернативних інтерфейсів для OpenAPI (які можна використовувати з **FastAPI**).
 

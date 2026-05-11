@@ -37,7 +37,7 @@
 
 基于以上信息，你可以用同一个工具函数生成 OpenAPI 架构，并按需覆盖其中的各个部分。
 
-例如，让我们添加 [ReDoc 的 OpenAPI 扩展以包含自定义 Logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
+例如，让我们添加 [ReDoc 的 OpenAPI 扩展以包含自定义 Logo](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 常规 **FastAPI** { #normal-fastapi }
 

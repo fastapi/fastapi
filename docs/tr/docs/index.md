@@ -274,7 +274,7 @@ Otomatik etkileşimli API dokümantasyonunu göreceksiniz ([Swagger UI](https://
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
+Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

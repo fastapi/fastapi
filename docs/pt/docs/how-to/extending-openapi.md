@@ -37,7 +37,7 @@ O parâmetro `summary` está disponível no OpenAPI 3.1.0 e superior, suportado 
 
 Com as informações acima, você pode usar a mesma função utilitária para gerar o esquema OpenAPI e sobrescrever cada parte que precisar.
 
-Por exemplo, vamos adicionar [Extensão OpenAPI do ReDoc para incluir um logo personalizado](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+Por exemplo, vamos adicionar [Extensão OpenAPI do ReDoc para incluir um logo personalizado](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### **FastAPI** Normal { #normal-fastapi }
 
