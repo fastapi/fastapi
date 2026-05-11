@@ -134,7 +134,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Path(Param):  # type: ignore[misc]
     in_ = ParamTypes.path
 
     def __init__(
@@ -218,7 +218,7 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Query(Param):  # type: ignore[misc]
     in_ = ParamTypes.query
 
     def __init__(
@@ -300,7 +300,7 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Header(Param):  # type: ignore[misc]
     in_ = ParamTypes.header
 
     def __init__(
@@ -384,7 +384,7 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Cookie(Param):  # type: ignore[misc]
     in_ = ParamTypes.cookie
 
     def __init__(
@@ -578,7 +578,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Form(Body):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -660,7 +660,7 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class File(Form):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
