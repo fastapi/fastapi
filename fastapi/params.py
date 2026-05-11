@@ -23,7 +23,7 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
-class Param(FieldInfo):  # type: ignore[misc]
+class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-class]
     in_: ParamTypes
 
     def __init__(
@@ -128,7 +128,7 @@ class Param(FieldInfo):  # type: ignore[misc]
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
-        super().__init__(**use_kwargs)
+        super().__init__(**use_kwargs)  # ty: ignore[invalid-argument-type]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -466,7 +466,7 @@ class Cookie(Param):  # type: ignore[misc]
         )
 
 
-class Body(FieldInfo):  # type: ignore[misc]
+class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-class]
     def __init__(
         self,
         default: Any = Undefined,
@@ -572,7 +572,7 @@ class Body(FieldInfo):  # type: ignore[misc]
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
-        super().__init__(**use_kwargs)
+        super().__init__(**use_kwargs)  # ty: ignore[invalid-argument-type]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
