@@ -92,20 +92,15 @@ from starlette.websockets import WebSocket
 from typing_extensions import deprecated
 
 
-# Copy of starlette.routing.request_response modified to include the
-# dependencies' AsyncExitStack
+# Copy of starlette.routing.request_response, modified to include the
+# dependencies' AsyncExitStack and to remove support for non-awaitable
+# functions.
 def request_response(
-    func: Callable[[Request], Awaitable[Response] | Response],
+    func: Callable[[Request], Awaitable[Response]],
 ) -> ASGIApp:
     """
-    Takes a function or coroutine `func(request) -> response`,
-    and returns an ASGI application.
+    Takes a coroutine `func(request) -> response` and returns an ASGI application.
     """
-    f: Callable[[Request], Awaitable[Response]] = (
-        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
-        if is_async_callable(func)
-        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
-    )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -117,7 +112,7 @@ def request_response(
                 scope["fastapi_inner_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
                     scope["fastapi_function_astack"] = function_stack
-                    response = await f(request)
+                    response = await func(request)
                 await response(scope, receive, send)
                 # Continues customization
                 response_awaited = True
