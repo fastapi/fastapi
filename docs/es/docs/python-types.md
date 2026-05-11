@@ -80,7 +80,7 @@ Esas son las "anotaciones de tipos":
 
 {* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-Eso no es lo mismo que declarar valores predeterminados como sería con:
+Eso no es lo mismo que declarar valores por defecto como sería con:
 
 ```Python
     first_name="john", last_name="doe"
@@ -269,7 +269,7 @@ No significa "`one_person` es la **clase** llamada `Person`".
 
 ## Modelos Pydantic { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> es un paquete de Python para realizar la validación de datos.
+[Pydantic](https://docs.pydantic.dev/) es un paquete de Python para realizar la validación de datos.
 
 Declaras la "forma" de los datos como clases con atributos.
 
@@ -285,13 +285,13 @@ Un ejemplo de la documentación oficial de Pydantic:
 
 /// info | Información
 
-Para saber más sobre <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, revisa su documentación</a>.
+Para saber más sobre [Pydantic, revisa su documentación](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** está completamente basado en Pydantic.
 
-Verás mucho más de todo esto en práctica en el [Tutorial - Guía del Usuario](tutorial/index.md){.internal-link target=_blank}.
+Verás mucho más de todo esto en práctica en el [Tutorial - Guía del Usuario](tutorial/index.md).
 
 ## Anotaciones de tipos con metadata { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ Con **FastAPI** declaras parámetros con anotaciones de tipos y obtienes:
 * **Documentar** la API usando OpenAPI:
     * Que luego es usada por las interfaces de documentación interactiva automática.
 
-Todo esto puede sonar abstracto. No te preocupes. Verás todo esto en acción en el [Tutorial - Guía del Usuario](tutorial/index.md){.internal-link target=_blank}.
+Todo esto puede sonar abstracto. No te preocupes. Verás todo esto en acción en el [Tutorial - Guía del Usuario](tutorial/index.md).
 
 Lo importante es que al usar tipos estándar de Python, en un solo lugar (en lugar de agregar más clases, decoradores, etc.), **FastAPI** hará gran parte del trabajo por ti.
 
 /// info | Información
 
-Si ya revisaste todo el tutorial y volviste para ver más sobre tipos, un buen recurso es <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">la "cheat sheet" de `mypy`</a>.
+Si ya revisaste todo el tutorial y volviste para ver más sobre tipos, un buen recurso es [la "cheat sheet" de `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

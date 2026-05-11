@@ -137,7 +137,7 @@ UserInDB(
 ```
 
 /// info | Дополнительная информация
-Более полное объяснение `**user_dict` можно найти в [документации к **Дополнительным моделям**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Более полное объяснение `**user_dict` можно найти в [документации к **Дополнительным моделям**](../extra-models.md#about-user-in-dict).
 ///
 
 ## Возврат токена { #return-the-token }
@@ -200,7 +200,7 @@ UserInDB(
 
 ## Посмотрим, как это работает { #see-it-in-action }
 
-Откройте интерактивную документацию: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Откройте интерактивную документацию: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Аутентификация { #authenticate }
 

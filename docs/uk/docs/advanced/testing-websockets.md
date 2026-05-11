@@ -8,6 +8,6 @@
 
 /// note | Примітка
 
-Докладніше дивіться документацію Starlette з <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">тестування WebSocket</a>.
+Докладніше дивіться документацію Starlette щодо [тестування WebSocket](https://www.starlette.dev/testclient/#testing-websocket-sessions).
 
 ///

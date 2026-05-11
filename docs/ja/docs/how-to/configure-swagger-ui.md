@@ -1,6 +1,6 @@
 # Swagger UI の設定 { #configure-swagger-ui }
 
-いくつかの追加の <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI パラメータ</a>を設定できます。
+いくつかの追加の [Swagger UI パラメータ](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)を設定できます。
 
 設定するには、`FastAPI()` のアプリオブジェクトを作成するとき、または `get_swagger_ui_html()` 関数に `swagger_ui_parameters` 引数を渡します。
 
@@ -50,7 +50,7 @@ FastAPI には、多くのユースケースに適した既定の設定パラメ
 
 ## その他の Swagger UI パラメータ { #other-swagger-ui-parameters }
 
-利用可能な他のすべての設定については、公式の <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI パラメータのドキュメント</a>を参照してください。
+利用可能な他のすべての設定については、公式の [Swagger UI パラメータのドキュメント](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)を参照してください。
 
 ## JavaScript 専用の設定 { #javascript-only-settings }
 

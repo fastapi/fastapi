@@ -150,11 +150,11 @@ async with lifespan(app):
 
 Немного технических подробностей для любопытных умников. 🤓
 
-Под капотом, в ASGI-технической спецификации, это часть <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Протокола Lifespan</a>, и он определяет события `startup` и `shutdown`.
+Под капотом, в ASGI-технической спецификации, это часть [Протокола Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), и он определяет события `startup` и `shutdown`.
 
 /// info | Информация
 
-Вы можете прочитать больше про обработчики `lifespan` в Starlette в <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">документации Starlette по Lifespan</a>.
+Вы можете прочитать больше про обработчики `lifespan` в Starlette в [документации Starlette по Lifespan](https://www.starlette.dev/lifespan/).
 
 Включая то, как работать с состоянием lifespan, которое можно использовать в других частях вашего кода.
 
@@ -162,4 +162,4 @@ async with lifespan(app):
 
 ## Подприложения { #sub-applications }
 
-🚨 Имейте в виду, что эти события lifespan (startup и shutdown) будут выполнены только для основного приложения, а не для [Подприложения — Mounts](sub-applications.md){.internal-link target=_blank}.
+🚨 Имейте в виду, что эти события lifespan (startup и shutdown) будут выполнены только для основного приложения, а не для [Подприложения — Mounts](sub-applications.md).

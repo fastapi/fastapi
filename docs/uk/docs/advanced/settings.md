@@ -8,7 +8,7 @@
 
 /// tip | Порада
 
-Щоб зрозуміти змінні оточення, ви можете прочитати [Змінні оточення](../environment-variables.md){.internal-link target=_blank}.
+Щоб зрозуміти змінні оточення, ви можете прочитати [Змінні оточення](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Встановіть `pydantic-settings` { #install-pydantic-settings }
 
-Спершу переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили пакет `pydantic-settings`:
+Спершу переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його, а потім встановили пакет `pydantic-settings`:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## Налаштування в іншому модулі { #settings-in-another-module }
 
-Ви можете розмістити ці налаштування в іншому модулі, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Ви можете розмістити ці налаштування в іншому модулі, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md).
 
 Наприклад, у вас може бути файл `config.py` з:
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | Порада
 
-Вам також знадобиться файл `__init__.py`, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам також знадобиться файл `__init__.py`, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Порада
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | Порада
 
-Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 Таким чином, вона поводиться майже так само, якби це була просто глобальна змінна. Але оскільки використовується функція залежності, ми можемо легко переписати її для тестування.
 
-`@lru_cache` є частиною `functools`, що входить до стандартної бібліотеки Python, більше про це можна прочитати в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документації Python для `@lru_cache`</a>.
+`@lru_cache` є частиною `functools`, що входить до стандартної бібліотеки Python, більше про це можна прочитати в [документації Python для `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Підсумок { #recap }
 

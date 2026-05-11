@@ -32,7 +32,7 @@
 
 この例では、架空のカスタムヘッダー `X-Key` と `X-Token` を使用しています。
 
-しかし実際のケースでセキュリティを実装する際は、統合された[Security utilities（次の章）](../security/index.md){.internal-link target=_blank}を使うことで、より多くの利点を得られます。
+しかし実際のケースでセキュリティを実装する際は、統合された[Security utilities（次の章）](../security/index.md)を使うことで、より多くの利点を得られます。
 
 ///
 
@@ -62,7 +62,7 @@
 
 ## *path operation*のグループに対する依存関係 { #dependencies-for-a-group-of-path-operations }
 
-後で、より大きなアプリケーションを（おそらく複数ファイルで）構造化する方法（[Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}）について読むときに、*path operation*のグループに対して単一の`dependencies`パラメータを宣言する方法を学びます。
+後で、より大きなアプリケーションを（おそらく複数ファイルで）構造化する方法（[Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md)）について読むときに、*path operation*のグループに対して単一の`dependencies`パラメータを宣言する方法を学びます。
 
 ## グローバル依存関係 { #global-dependencies }
 

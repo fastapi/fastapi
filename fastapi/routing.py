@@ -103,9 +103,9 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        func  # type: ignore[assignment]
         if is_async_callable(func)
-        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
+        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
     )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -221,7 +221,7 @@ def _merge_lifespan_context(
                 else:
                     yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
-    return merged_lifespan  # type: ignore[return-value]
+    return merged_lifespan  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
 
 class _DefaultLifespan:
@@ -907,7 +907,6 @@ class APIRoute(routing.Route):
             assert is_body_allowed_for_status_code(status_code), (
                 f"Status code {status_code} must not have a response body"
             )
-
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,

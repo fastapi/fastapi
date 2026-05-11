@@ -1,6 +1,6 @@
 # 歴史、設計、そしてこれから { #history-design-and-future }
 
-少し前に、<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">**FastAPI**のユーザーに以下の様に尋ねられました</a>:
+しばらく前に、[ある **FastAPI** ユーザーが質問しました](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > このプロジェクトの歴史は？何もないところから、数週間ですごいものができているようです。 [...]
 
@@ -14,7 +14,7 @@
 
 **FastAPI** の歴史は、その前身の歴史が大部分を占めています。
 
-[代替ツールから受けたインスピレーションと比較](alternatives.md){.internal-link target=_blank}のセクションでこう述べています:
+[代替手段](alternatives.md)のセクションでこう述べています:
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@
 
 もっとも人気のあるPythonエディターでいくつかのアイデアをテストしました。PyCharm、VS Code、Jediベースのエディターです。
 
-最新の <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python開発者調査</a>で、それらのエディターがユーザーの80%をカバーしていました。
+最新の [Python開発者調査](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)で、それらのエディターがユーザーの80%をカバーしていました。
 
 これは、**FastAPI**がPython開発者の80%が使用しているエディターで特別にテストされたことを意味します。また、ほとんどの他のエディターも同様に動作する傾向があるため、この恩恵は事実上すべてのエディターでうけられるはずです。
 
@@ -54,11 +54,11 @@
 
 ## 要件 { #requirements }
 
-いくつかの代替手法を試したあと、私は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>の強みを利用することを決めました。
+いくつかの代替手法を試したあと、私は[**Pydantic**](https://docs.pydantic.dev/)の強みを利用することを決めました。
 
 そして、JSON Schemaに完全に準拠するようにしたり、制約宣言を定義するさまざまな方法をサポートしたり、いくつかのエディターでのテストに基づいてエディターのサポート (型チェック、自動補完) を改善するために貢献しました。
 
-開発中、もう1つの重要な鍵となる<a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>にも貢献しました。
+開発中、もう1つの重要な鍵となる[**Starlette**](https://www.starlette.dev/)にも貢献しました。
 
 ## 開発 { #development }
 
@@ -76,4 +76,4 @@
 
 **FastAPI**には大きな未来が待っています。
 
-そして、[あなたの助け](help-fastapi.md){.internal-link target=_blank}を大いに歓迎します。
+そして、[あなたの助け](help-fastapi.md)を大いに歓迎します。

@@ -22,7 +22,6 @@ from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color  # ty: ignore[deprecated]
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
@@ -31,6 +30,23 @@ from ._compat import (
     Url,
     is_pydantic_v1_model_instance,
 )
+
+try:
+    # pydantic.color.Color is deprecated since v2.0b3, but supporting for bwd-compat
+    from pydantic.color import Color  # ty: ignore[deprecated]
+except ImportError:  # pragma: no cover
+
+    class Color:  # type: ignore[no-redef]
+        pass
+
+
+try:
+    # Supporting the new Color format for newer versions of Pydantic
+    from pydantic_extra_types.color import Color as PyExtraColor
+except ImportError:  # pragma: no cover
+
+    class PyExtraColor:  # type: ignore[no-redef]
+        pass
 
 
 # Taken from Pydantic v1 as is
@@ -67,7 +83,8 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
 
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
-    Color: str,  # ty: ignore[deprecated]
+    Color: str,
+    PyExtraColor: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -220,9 +237,9 @@ def jsonable_encoder(
                 if isinstance(obj, encoder_type):
                     return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
-        include = set(include)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        include = set(include)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
-        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",

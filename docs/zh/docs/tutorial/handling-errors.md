@@ -81,7 +81,7 @@
 
 ## 安装自定义异常处理器 { #install-custom-exception-handlers }
 
-可以使用<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">与 Starlette 相同的异常处理工具</a>添加自定义异常处理器。
+可以使用[与 Starlette 相同的异常处理工具](https://www.starlette.dev/exceptions/)添加自定义异常处理器。
 
 假设有一个自定义异常 `UnicornException`（你自己或你使用的库可能会 `raise` 它）。
 

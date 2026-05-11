@@ -6,8 +6,8 @@
 
 ### 基于开放标准 { #based-on-open-standards }
 
-* 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>，包含对<dfn title="也称为：端点、路由">路径</dfn> <dfn title="也称为 HTTP 方法，如 POST、GET、PUT、DELETE">操作</dfn>、参数、请求体、安全等的声明。
-* 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> 自动生成数据模型文档（因为 OpenAPI 本身就是基于 JSON Schema 的）。
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) 用于创建 API，包含对<dfn title="也称为：端点、路由">路径</dfn> <dfn title="也称为 HTTP 方法，如 POST、GET、PUT、DELETE">操作</dfn>、参数、请求体、安全等的声明。
+* 使用 [**JSON Schema**](https://json-schema.org/) 自动生成数据模型文档（因为 OpenAPI 本身就是基于 JSON Schema 的）。
 * 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
 * 这也允许了在很多语言中自动**生成客户端代码**。
 
@@ -15,11 +15,11 @@
 
 交互式 API 文档以及具探索性 web 界面。因为该框架是基于 OpenAPI，所以有很多可选项，FastAPI 默认自带两个交互式 API 文档。
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>，可交互式操作，能在浏览器中直接调用和测试你的 API。
+* [**Swagger UI**](https://github.com/swagger-api/swagger-ui)，可交互式操作，能在浏览器中直接调用和测试你的 API。
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 另外的 API 文档：<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>
+* 另外的 API 文档：[**ReDoc**](https://github.com/Rebilly/ReDoc)
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -27,7 +27,7 @@
 
 全部都基于标准的 **Python 类型** 声明（感谢 Pydantic）。没有新的语法需要学习。只需要标准的现代 Python。
 
-如果你需要2分钟来学习如何使用 Python 类型（即使你不使用 FastAPI），看看这个简短的教程：[Python Types](python-types.md){.internal-link target=_blank}。
+如果你需要2分钟来学习如何使用 Python 类型（即使你不使用 FastAPI），看看这个简短的教程：[Python 类型](python-types.md)。
 
 编写带有类型标注的标准 Python：
 
@@ -76,7 +76,7 @@ my_second_user: User = User(**second_user_data)
 
 整个框架都被设计得易于使用且直观，所有的决定都在开发之前就在多个编辑器上进行了测试，来确保最佳的开发体验。
 
-在最近的 Python 开发者调查中，我们能看到 <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">被使用最多的功能是“自动补全”</a>。
+在 Python 开发者调查中，我们能看到[被使用最多的功能之一是“自动补全”](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)。
 
 整个 **FastAPI** 框架就是基于这一点的。任何地方都可以进行自动补全。
 
@@ -84,11 +84,11 @@ my_second_user: User = User(**second_user_data)
 
 在这里，你的编辑器可能会这样帮助你：
 
-* 在 <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a> 中:
+* 在 [Visual Studio Code](https://code.visualstudio.com/) 中:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* 在 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 中:
+* 在 [PyCharm](https://www.jetbrains.com/pycharm/) 中:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -125,7 +125,7 @@ my_second_user: User = User(**second_user_data)
 OpenAPI 中定义的安全模式，包括：
 
 * HTTP 基本认证。
-* **OAuth2**（也使用 **JWT tokens**）。在 [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}查看教程。
+* **OAuth2**（也使用 **JWT tokens**）。在 [使用 JWT 的 OAuth2](tutorial/security/oauth2-jwt.md) 查看教程。
 * API 密钥，在:
     * 请求头。
     * 查询参数。
@@ -142,7 +142,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 * 甚至依赖也可以有依赖，创建一个层级或者**“图”依赖**。
 * 所有**自动化处理**都由框架完成。
 * 所有的依赖关系都可以从请求中获取数据，并且**增加了路径操作**约束和自动文档生成。
-* 即使在依赖项中被定义的*路径操作* 也会**自动验证**。
+* 即使是在依赖项中定义的路径操作参数也会**自动验证**。
 * 支持复杂的用户身份认证系统，**数据库连接**等等。
 * **不依赖**数据库，前端等。但是和它们集成很简单。
 
@@ -160,11 +160,11 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 ## Starlette 特性 { #starlette-features }
 
-**FastAPI** 和 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> 完全兼容（并基于）。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette` 的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
+**FastAPI** 和 [**Starlette**](https://www.starlette.dev/) 完全兼容（并基于）。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette` 的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
 
 通过 **FastAPI** 你可以获得所有 **Starlette** 的特性（FastAPI 就像加强版的 Starlette）：
 
-* 令人惊叹的性能。它是 <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">Python 可用的最快的框架之一，和 **NodeJS** 及 **Go** 相当</a>。
+* 令人惊叹的性能。它是[Python 可用的最快的框架之一，和 **NodeJS** 及 **Go** 相当](https://github.com/encode/starlette#performance)。
 * **支持 WebSocket**。
 * 进程内后台任务。
 * Startup 和 shutdown 事件。
@@ -176,7 +176,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 ## Pydantic 特性 { #pydantic-features }
 
-**FastAPI** 和 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> 完全兼容（并基于）。所以，你有的其他的 Pydantic 代码也能正常工作。
+**FastAPI** 和 [**Pydantic**](https://docs.pydantic.dev/) 完全兼容（并基于）。所以，你有的其他的 Pydantic 代码也能正常工作。
 
 兼容包括基于 Pydantic 的外部库，例如用于数据库的 <abbr title="Object-Relational Mapper - 对象关系映射">ORM</abbr>s、<abbr title="Object-Document Mapper - 对象文档映射">ODM</abbr>s。
 

@@ -4,9 +4,9 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
 /// info | 信息
 
-接收上传的文件和/或表单数据，首先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+接收上传的文件和/或表单数据，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请先创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+请先创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 ```console
 $ pip install python-multipart

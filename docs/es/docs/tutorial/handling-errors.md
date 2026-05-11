@@ -81,7 +81,7 @@ Pero en caso de que los necesites para un escenario avanzado, puedes agregar hea
 
 ## Instalar manejadores de excepciones personalizados { #install-custom-exception-handlers }
 
-Puedes agregar manejadores de excepciones personalizados con <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">las mismas utilidades de excepciones de Starlette</a>.
+Puedes agregar manejadores de excepciones personalizados con [las mismas utilidades de excepciones de Starlette](https://www.starlette.dev/exceptions/).
 
 Supongamos que tienes una excepción personalizada `UnicornException` que tú (o un paquete que usas) podrías lanzar.
 

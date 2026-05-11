@@ -18,7 +18,7 @@ Bu "ileri seviye" bir özelliktir.
 
 Bazı kullanım senaryoları:
 
-* JSON olmayan request body'leri JSON'a dönüştürmek (örn. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* JSON olmayan request body'leri JSON'a dönüştürmek (örn. [`msgpack`](https://msgpack.org/index.html)).
 * gzip ile sıkıştırılmış request body'leri açmak (decompress).
 * Tüm request body'lerini otomatik olarak loglamak.
 
@@ -32,7 +32,7 @@ Ayrıca, o özel request sınıfını kullanmak için bir `APIRoute` alt sınıf
 
 /// tip | İpucu
 
-Bu, nasıl çalıştığını göstermek için hazırlanmış basit bir örnektir; Gzip desteğine ihtiyacınız varsa sağlanan [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} bileşenini kullanabilirsiniz.
+Bu, nasıl çalıştığını göstermek için hazırlanmış basit bir örnektir; Gzip desteğine ihtiyacınız varsa sağlanan [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) bileşenini kullanabilirsiniz.
 
 ///
 
@@ -66,7 +66,7 @@ Bir `Request` ayrıca `request.receive` içerir; bu, request'in body'sini "almak
 
 Ve bu iki şey, `scope` ve `receive`, yeni bir `Request` instance'ı oluşturmak için gerekenlerdir.
 
-`Request` hakkında daha fazla bilgi için <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette'ın Request dokümantasyonuna</a> bakın.
+`Request` hakkında daha fazla bilgi için [Starlette'ın Request dokümantasyonu](https://www.starlette.dev/requests/) bölümüne bakın.
 
 ///
 
@@ -82,7 +82,7 @@ Ancak `GzipRequest.body` içindeki değişikliklerimiz sayesinde, request body g
 
 /// tip | İpucu
 
-Aynı problemi çözmek için, muhtemelen `RequestValidationError` için özel bir handler içinde `body` kullanmak çok daha kolaydır ([Hataları Ele Alma](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Aynı problemi çözmek için, muhtemelen `RequestValidationError` için özel bir handler içinde `body` kullanmak çok daha kolaydır ([Hataları Ele Alma](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Yine de bu örnek geçerlidir ve dahili bileşenlerle nasıl etkileşime geçileceğini gösterir.
 

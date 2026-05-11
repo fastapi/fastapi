@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip
 
-第二個參數是 <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的預設回傳值。
+第二個參數是 [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) 的預設回傳值。
 
 如果沒有提供，預設值為 `None`，這裡我們提供 `"World"` 作為預設值。
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip
 
-你可以在 <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多資訊。
+你可以在 [The Twelve-Factor App: 配置](https://12factor.net/config) 中了解更多資訊。
 
 ///
 
@@ -163,7 +163,7 @@ Hello World from Python
 
 這意味著從環境變數中讀取的**任何值**在 Python 中都將是一個 `str`，任何型別轉換或驗證都必須在程式碼中完成。
 
-你將在[進階使用者指南 - 設定和環境變數](./advanced/settings.md){.internal-link target=_blank}中了解更多關於使用環境變數處理**應用程式設定**的資訊。
+你將在[進階使用者指南 - 設定和環境變數](./advanced/settings.md)中了解更多關於使用環境變數處理**應用程式設定**的資訊。
 
 ## `PATH` 環境變數 { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-當學習[虛擬環境](virtual-environments.md){.internal-link target=_blank}時，這些資訊將會很有用。
+當學習[虛擬環境](virtual-environments.md)時，這些資訊將會很有用。
 
 ## 結論 { #conclusion }
 
 透過這個教學，你應該對**環境變數**是什麼以及如何在 Python 中使用它們有了基本的了解。
 
-你也可以在 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">環境變數的維基百科條目</a> 中閱讀更多。
+你也可以在 [環境變數的維基百科條目](https://en.wikipedia.org/wiki/Environment_variable) 中閱讀更多。
 
 在許多情況下，環境變數的用途和適用性可能不會立刻顯現。但是在開發過程中，它們會在許多不同的場景中出現，因此瞭解它們是非常必要的。
 

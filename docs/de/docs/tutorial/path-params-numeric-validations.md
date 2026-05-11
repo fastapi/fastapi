@@ -14,7 +14,7 @@ FastAPI hat in Version 0.95.0 Unterstützung für `Annotated` hinzugefügt und e
 
 Wenn Sie eine ältere Version haben, würden Fehler angezeigt werden, wenn Sie versuchen, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions), auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
@@ -122,7 +122,7 @@ Und das Gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code
 
 ## Zusammenfassung { #recap }
 
-Mit `Query`, `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und Stringvalidierungen auf die gleichen Weisen deklarieren wie in [Query-Parameter und Stringvalidierungen](query-params-str-validations.md){.internal-link target=_blank} beschrieben.
+Mit `Query`, `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und Stringvalidierungen auf die gleichen Weisen deklarieren wie in [Query-Parameter und Stringvalidierungen](query-params-str-validations.md) beschrieben.
 
 Und Sie können auch Zahlenvalidierungen deklarieren:
 
