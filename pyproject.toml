@@ -372,3 +372,6 @@ fo = "fo"
 havin = "havin"
 Ines = "Ines"
 ser = "ser"
+
+[tool.ty.terminal]
+error-on-warning = true
