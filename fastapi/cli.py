@@ -1,12 +1,15 @@
+from collections.abc import Callable
+
+cli_main: Callable[[], None] | None = None
 try:
     from fastapi_cli.cli import main as cli_main
 
 except ImportError:  # pragma: no cover
-    cli_main = None  # type: ignore
+    pass
 
 
 def main() -> None:
-    if not cli_main:  # type: ignore[truthy-function]  # ty: ignore[unused-ignore-comment]
+    if cli_main is None:
         message = 'To use the fastapi command, please install "fastapi[standard]":\n\n\tpip install "fastapi[standard]"\n'
         print(message)
         raise RuntimeError(message)  # noqa: B904
