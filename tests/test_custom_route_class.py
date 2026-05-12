@@ -120,7 +120,10 @@ def test_openapi_schema():
         }
     )
 
-from typing import Any, Callable, Sequence
+
+from collections.abc import Callable, Sequence
+from typing import Any
+
 
 class LegacyAPIRoute(APIRoute):
     """Route subclass with explicit __init__ matching the pre-strict_content_type signature."""
