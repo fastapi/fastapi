@@ -1383,37 +1383,37 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
-        route_kwargs: dict[str, Any] = dict(
-            path=self.prefix + path,
-            endpoint=endpoint,
-            response_model=response_model,
-            status_code=status_code,
-            tags=current_tags,
-            dependencies=current_dependencies,
-            summary=summary,
-            description=description,
-            response_description=response_description,
-            responses=combined_responses,
-            deprecated=deprecated or self.deprecated,
-            methods=methods,
-            operation_id=operation_id,
-            response_model_include=response_model_include,
-            response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
-            include_in_schema=include_in_schema and self.include_in_schema,
-            response_class=current_response_class,
-            name=name,
-            dependency_overrides_provider=self.dependency_overrides_provider,
-            callbacks=current_callbacks,
-            openapi_extra=openapi_extra,
-            generate_unique_id_function=current_generate_unique_id,
-            strict_content_type=get_value_or_default(
+        route_kwargs: dict[str, Any] = {
+            "path": self.prefix + path,
+            "endpoint": endpoint,
+            "response_model": response_model,
+            "status_code": status_code,
+            "tags": current_tags,
+            "dependencies": current_dependencies,
+            "summary": summary,
+            "description": description,
+            "response_description": response_description,
+            "responses": combined_responses,
+            "deprecated": deprecated or self.deprecated,
+            "methods": methods,
+            "operation_id": operation_id,
+            "response_model_include": response_model_include,
+            "response_model_exclude": response_model_exclude,
+            "response_model_by_alias": response_model_by_alias,
+            "response_model_exclude_unset": response_model_exclude_unset,
+            "response_model_exclude_defaults": response_model_exclude_defaults,
+            "response_model_exclude_none": response_model_exclude_none,
+            "include_in_schema": include_in_schema and self.include_in_schema,
+            "response_class": current_response_class,
+            "name": name,
+            "dependency_overrides_provider": self.dependency_overrides_provider,
+            "callbacks": current_callbacks,
+            "openapi_extra": openapi_extra,
+            "generate_unique_id_function": current_generate_unique_id,
+            "strict_content_type": get_value_or_default(
                 strict_content_type, self.strict_content_type
             ),
-        )
+        }
         # For custom route classes that define an explicit __init__ without
         # strict_content_type (added in FastAPI 0.118+), fall back gracefully
         # by omitting the parameter instead of raising TypeError.
