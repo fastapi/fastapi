@@ -10,7 +10,6 @@ class PassageProcessingRequest(BaseModel):
     callback_url: str
 
 
-
 @app.post("/callback")
 async def callback(request: Request):
     """
@@ -27,9 +26,7 @@ async def callback(request: Request):
 
     print(data)
 
-    return {
-        "received": True
-    }
+    return {"received": True}
 
 
 async def send_processing_result(callback_url: str, generated_passage: str):
@@ -40,17 +37,13 @@ async def send_processing_result(callback_url: str, generated_passage: str):
     async with httpx.AsyncClient() as client:
         await client.post(
             callback_url,
-            json={
-                "processed_passage": generated_passage,
-                "status": "completed"
-            }
+            json={"processed_passage": generated_passage, "status": "completed"},
         )
 
 
 @app.post("/process-passage")
 async def process_passage(
-    data: PassageProcessingRequest,
-    background_tasks: BackgroundTasks
+    data: PassageProcessingRequest, background_tasks: BackgroundTasks
 ):
     """
     Receives a passage processing request from the client.
@@ -64,11 +57,7 @@ async def process_passage(
     """
 
     background_tasks.add_task(
-        send_processing_result,
-        data.callback_url,
-        data.passage_topic
+        send_processing_result, data.callback_url, data.passage_topic
     )
 
-    return {
-        "message": "Passage processing started"
-    }
+    return {"message": "Passage processing started"}
