@@ -20,9 +20,7 @@ def test_process_passage(mock_post):
     )
 
     assert response.status_code == 200
-    assert response.json() == {
-        "message": "Passage processing started"
-    }
+    assert response.json() == {"message": "Passage processing started"}
 
 
 def test_callback():
@@ -35,6 +33,4 @@ def test_callback():
     )
 
     assert response.status_code == 200
-    assert response.json() == {
-        "received": True
-    }
+    assert response.json() == {"received": True}
