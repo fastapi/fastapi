@@ -1383,8 +1383,8 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
-        route = route_class(
-            self.prefix + path,
+        route_kwargs: dict[str, Any] = dict(
+            path=self.prefix + path,
             endpoint=endpoint,
             response_model=response_model,
             status_code=status_code,
@@ -1414,6 +1414,14 @@ class APIRouter(routing.Router):
                 strict_content_type, self.strict_content_type
             ),
         )
+        # For custom route classes that define an explicit __init__ without
+        # strict_content_type (added in FastAPI 0.118+), fall back gracefully
+        # by omitting the parameter instead of raising TypeError.
+        try:
+            route = route_class(**route_kwargs)
+        except TypeError:
+            route_kwargs.pop("strict_content_type", None)
+            route = route_class(**route_kwargs)
         self.routes.append(route)
 
     def api_route(

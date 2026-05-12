@@ -119,3 +119,85 @@ def test_openapi_schema():
             },
         }
     )
+
+from typing import Any, Callable, Sequence
+
+class LegacyAPIRoute(APIRoute):
+    """Route subclass with explicit __init__ matching the pre-strict_content_type signature."""
+
+    def __init__(
+        self,
+        path: str,
+        endpoint: "Callable[..., Any]",
+        *,
+        response_model: Any = None,
+        status_code: "int | None" = None,
+        tags: "list[str] | None" = None,
+        dependencies: "Sequence[Any] | None" = None,
+        summary: "str | None" = None,
+        description: "str | None" = None,
+        response_description: str = "Successful Response",
+        responses: "dict[int | str, dict[str, Any]] | None" = None,
+        deprecated: "bool | None" = None,
+        methods: "set[str] | list[str] | None" = None,
+        operation_id: "str | None" = None,
+        response_model_include: "Any | None" = None,
+        response_model_exclude: "Any | None" = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
+        include_in_schema: bool = True,
+        response_class: Any = None,
+        name: "str | None" = None,
+        dependency_overrides_provider: "Any | None" = None,
+        callbacks: "list[Any] | None" = None,
+        openapi_extra: "dict[str, Any] | None" = None,
+        generate_unique_id_function: Any = None,
+    ) -> None:
+        super().__init__(
+            path,
+            endpoint,
+            response_model=response_model,
+            status_code=status_code,
+            tags=tags,
+            dependencies=dependencies,
+            summary=summary,
+            description=description,
+            response_description=response_description,
+            responses=responses,
+            deprecated=deprecated,
+            methods=methods,
+            operation_id=operation_id,
+            response_model_include=response_model_include,
+            response_model_exclude=response_model_exclude,
+            response_model_by_alias=response_model_by_alias,
+            response_model_exclude_unset=response_model_exclude_unset,
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
+            include_in_schema=include_in_schema,
+            response_class=response_class,
+            name=name,
+            dependency_overrides_provider=dependency_overrides_provider,
+            callbacks=callbacks,
+            openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
+        )
+
+
+def test_legacy_route_class_with_explicit_init() -> None:
+    """Custom APIRoute subclasses with explicit constructors (pre-strict_content_type)
+    should work with APIRouter.add_api_route without raising TypeError."""
+    app = FastAPI()
+    router = APIRouter(route_class=LegacyAPIRoute)
+
+    @router.get("/items")
+    def read_items():
+        return {"items": []}
+
+    app.include_router(router)
+
+    client = TestClient(app)
+    response = client.get("/items")
+    assert response.status_code == 200
+    assert response.json() == {"items": []}
