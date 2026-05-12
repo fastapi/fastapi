@@ -30,9 +30,8 @@ class Session:
 
     async def _async_iter(self) -> AsyncGenerator[Item, None]:
         for item in self.items:
-            if self.open:
-                yield item
-            else:
+            yield item
+            if not self.open:
                 raise ValueError("Session closed")
 
 
