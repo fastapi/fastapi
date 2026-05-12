@@ -1,6 +1,6 @@
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from enum import Enum
-from typing import Any, Callable
+from typing import Any
 
 import pytest
 from fastapi import APIRouter, FastAPI, params
@@ -128,6 +128,7 @@ def test_openapi_schema():
         }
     )
 
+
 def test_custom_api_route_without_strict_content_type():
     """
     Regression test for #15503:
@@ -212,6 +213,7 @@ def test_custom_api_route_without_strict_content_type():
     assert response.status_code == 200
     assert response.json() == {"ok": True}
 
+
 def test_custom_api_route_with_kwargs():
     """
     Custom APIRoute classes using **kwargs should still receive
@@ -219,7 +221,9 @@ def test_custom_api_route_with_kwargs():
     """
 
     class KwargsRoute(APIRoute):
-        def __init__(self, path: str, endpoint: Callable[..., Any], **kwargs: Any) -> None:
+        def __init__(
+            self, path: str, endpoint: Callable[..., Any], **kwargs: Any
+        ) -> None:
             super().__init__(path, endpoint, **kwargs)
 
     app_kwargs = FastAPI()

@@ -1412,12 +1412,8 @@ class APIRouter(routing.Router):
             "openapi_extra": openapi_extra,
             "generate_unique_id_function": current_generate_unique_id,
         }
-        if (
-            "strict_content_type" in route_init_params
-            or any(
-                p.kind == inspect.Parameter.VAR_KEYWORD
-                for p in route_init_params.values()
-            )
+        if "strict_content_type" in route_init_params or any(
+            p.kind == inspect.Parameter.VAR_KEYWORD for p in route_init_params.values()
         ):
             route_kwargs["strict_content_type"] = get_value_or_default(
                 strict_content_type, self.strict_content_type
