@@ -5,6 +5,7 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from starlette.routing import Route
 
+from typing import Any, Callable, Sequence
 app = FastAPI()
 
 
@@ -119,10 +120,6 @@ def test_openapi_schema():
             },
         }
     )
-
-
-from collections.abc import Callable, Sequence
-from typing import Any
 
 
 class LegacyAPIRoute(APIRoute):
