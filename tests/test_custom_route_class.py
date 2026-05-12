@@ -1,11 +1,12 @@
+from collections.abc import Callable, Sequence
+from typing import Any
+
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from starlette.routing import Route
-from typing import Any
-from collections.abc import Callable, Sequence
 
 app = FastAPI()
 
@@ -123,8 +124,6 @@ def test_openapi_schema():
     )
 
 
-
-
 class LegacyAPIRoute(APIRoute):
     """Route subclass with explicit __init__ matching the pre-strict_content_type signature."""
 
@@ -204,4 +203,3 @@ def test_legacy_route_class_with_explicit_init() -> None:
     response = client.get("/items")
     assert response.status_code == 200
     assert response.json() == {"items": []}
-
