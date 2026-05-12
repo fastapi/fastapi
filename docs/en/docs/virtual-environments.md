@@ -20,7 +20,7 @@ A **virtual environment** is a directory with some files in it.
 
 /// info
 
-This page will teach you how to use **virtual environments** and how they work.
+This page will teach you how to create, use, and understand **virtual environments**.
 
 If you are ready to adopt a **tool that manages everything** for you (including installing Python), try [uv](https://github.com/astral-sh/uv).
 
