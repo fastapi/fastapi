@@ -102,9 +102,9 @@ def request_response(
     and returns an ASGI application.
     """
     f: Callable[[Request], Awaitable[Response]] = (
-        func  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        func  # type: ignore[assignment]
         if is_async_callable(func)
-        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]  # ty: ignore[unused-ignore-comment]
+        else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
     )  # ty: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
@@ -220,7 +220,7 @@ def _merge_lifespan_context(
                 else:
                     yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
-    return merged_lifespan  # type: ignore[return-value]
+    return merged_lifespan  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
 
 class _DefaultLifespan:
@@ -921,7 +921,7 @@ class APIRoute(routing.Route):
                 mode="serialization",
             )
         else:
-            self.response_field = None  # type: ignore  # ty: ignore[unused-ignore-comment]
+            self.response_field = None  # type: ignore[assignment]
         if self.stream_item_type:
             stream_item_name = "StreamItem_" + self.unique_id
             self.stream_item_field: ModelField | None = create_model_field(
