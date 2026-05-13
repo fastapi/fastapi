@@ -178,7 +178,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
       - name: CodSpeed benchmarks
-        uses: CodSpeedHQ/action@658a901452bb54c799643e060733b7afe9121b8d # v4.14.0
+        uses: CodSpeedHQ/action@3194d9a39c4d46684cb44bf7207fc56626aad8fd # v4.15.1
         with:
           mode: simulation
           run: uv run --no-sync pytest tests/benchmarks --codspeed
