@@ -224,6 +224,14 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
+/// info
+
+Keep in mind that for **query parameters** specifically, since they are extracted from the URL as strings, it's not really possible to send a `None` value natively. If you omit the parameter from the URL, you will get an error saying it's required. If you send it empty like `?q=`, the value will be an empty string `""`, not `None`.
+
+This "required but can be None" pattern is much more useful and common when working with JSON data (request bodies) where you can explicitly send a `null` value. 🤓
+
+///
+
 To do that, you can declare that `None` is a valid type but simply do not declare a default value:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
