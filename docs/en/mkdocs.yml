@@ -198,7 +198,6 @@ nav:
     - advanced/advanced-python-types.md
     - advanced/json-base64-bytes.md
     - advanced/strict-content-type.md
-    - advanced/vibe.md
   - fastapi-cli.md
   - editor-support.md
   - Deployment:
