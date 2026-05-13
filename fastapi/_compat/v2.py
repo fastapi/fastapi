@@ -208,7 +208,7 @@ class ModelField:
         ):  # pragma: no cover
             raise ValueError(
                 "polymorphic_serialization requires Pydantic >= 2.13. "
-                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]
             )
         kwargs = {
             "mode": mode,
@@ -221,7 +221,7 @@ class ModelField:
         }
         if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 13):
             kwargs["polymorphic_serialization"] = polymorphic_serialization
-        return self._type_adapter.dump_python(value, **kwargs)  # type: ignore[arg-type]
+        return self._type_adapter.dump_python(value, **kwargs)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
     def serialize_json(
         self,
@@ -246,7 +246,7 @@ class ModelField:
         ):  # pragma: no cover
             raise ValueError(
                 "polymorphic_serialization requires Pydantic >= 2.13. "
-                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+                f"Current version: {shared.PYDANTIC_VERSION}"  # type: ignore[attr-defined]
             )
         kwargs = {
             "include": include,
@@ -258,7 +258,7 @@ class ModelField:
         }
         if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 13):
             kwargs["polymorphic_serialization"] = polymorphic_serialization
-        return self._type_adapter.dump_json(value, **kwargs)  # type: ignore[arg-type]
+        return self._type_adapter.dump_json(value, **kwargs)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
     def __hash__(self) -> int:
         # Each ModelField is unique for our purposes, to allow making a dict from
