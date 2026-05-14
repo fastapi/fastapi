@@ -36,7 +36,7 @@ try:
     from pydantic.color import Color  # ty: ignore[deprecated]
 except ImportError:  # pragma: no cover
 
-    class Color:  # type: ignore[no-redef]  # ty: ignore[unused-ignore-comment]
+    class Color:  # type: ignore[no-redef]
         pass
 
 
@@ -45,7 +45,7 @@ try:
     from pydantic_extra_types.color import Color as PyExtraColor
 except ImportError:  # pragma: no cover
 
-    class PyExtraColor:  # type: ignore[no-redef]  # ty: ignore[unused-ignore-comment]
+    class PyExtraColor:  # type: ignore[no-redef]
         pass
 
 
@@ -237,9 +237,9 @@ def jsonable_encoder(
                 if isinstance(obj, encoder_type):
                     return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
-        include = set(include)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        include = set(include)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
-        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[unused-ignore-comment]
+        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",
