@@ -32,6 +32,12 @@ This gives you a lot of **flexibility**. You can return any data type, override 
 
 It also gives you a lot of **responsibility**. You have to make sure that the data you return is correct, in the correct format, that it can be serialized, etc.
 
+/// warning
+
+If you inject `BackgroundTasks` into a path operation and also return a `Response` directly with its own `background` parameter, the background task attached to the returned `Response` is used. To avoid unintentionally losing background tasks, keep all background work in the same `BackgroundTasks` object or attach a single combined background task to the response.
+
+///
+
 ## Using the `jsonable_encoder` in a `Response` { #using-the-jsonable-encoder-in-a-response }
 
 Because **FastAPI** doesn't make any changes to a `Response` you return, you have to make sure its contents are ready for it.
