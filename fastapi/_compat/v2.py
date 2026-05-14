@@ -187,6 +187,31 @@ class ModelField:
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 
+    def validate_json(
+        self,
+        value: str | bytes,
+        values: dict[str, Any] = {},  # noqa: B006
+        *,
+        loc: tuple[int | str, ...] = (),
+    ) -> tuple[Any, list[dict[str, Any]]]:
+        try:
+            return (
+                self._type_adapter.validate_json(value),
+                [],
+            )
+        except ValidationError as exc:
+            errors = exc.errors(include_url=False)
+            decoded_value: Any = Undefined
+            try:
+                import json
+
+                decoded_value = json.loads(value)
+            except Exception:
+                pass
+            return None, _regenerate_error_with_loc(
+                errors=errors, loc_prefix=loc, decoded_value=decoded_value
+            )
+
     def serialize(
         self,
         value: Any,
@@ -484,10 +509,50 @@ def get_flat_models_from_fields(
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: tuple[str | int, ...]
+    *,
+    errors: Sequence[Any],
+    loc_prefix: tuple[str | int, ...],
+    decoded_value: Any = Undefined,
 ) -> list[dict[str, Any]]:
-    updated_loc_errors: list[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
-    ]
+    updated_loc_errors: list[Any] = []
+    for err in errors:
+            if decoded_value is not Undefined:
+                new_err = {**err, "loc": loc_prefix + err.get("loc", ())}
+                # If we are validating a Body with multiple fields, Pydantic's
+                # "input" might be just the value of one field.
+                # But when we decode the whole body, we might need to drill down.
+                # However, for tutorials, usually "input" matches the decoded value
+                # if the error is at the top level of the body.
+                # Let's try to match Pydantic's behavior more closely but with
+                # decoded values.
+                curr_input = decoded_value
+                # If the error is inside the body, try to find the specific input
+                # that caused it, based on the relative location from the body root.
+                # loc_prefix is usually ('body',)
+                rel_loc = err.get("loc", ())
+                for path_item in rel_loc:
+                    if path_item == "[key]":
+                        # For dict key errors, Pydantic includes "[key]" in the loc.
+                        # The "input" should be the key itself, which was the previous
+                        # path_item.
+                        break
+                    try:
+                        if isinstance(curr_input, (dict, list)):
+                            curr_input = curr_input[path_item]  # type: ignore[index]
+                        else:
+                            break
+                    except (KeyError, IndexError, TypeError):
+                        break
+
+                # If it's a key error, the input is the key which is the last path item before "[key]"
+                if rel_loc and rel_loc[-1] == "[key]":
+                    new_err["input"] = rel_loc[-2]
+                else:
+                    new_err["input"] = curr_input
+                if new_err.get("msg") == "Input should be a valid array":
+                    new_err["msg"] = "Input should be a valid list"
+            else:
+                new_err = {**err, "loc": loc_prefix + err.get("loc", ())}
+            updated_loc_errors.append(new_err)
 
     return updated_loc_errors

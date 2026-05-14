@@ -59,7 +59,11 @@ from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
-from fastapi.utils import create_model_field, get_path_param_names
+from fastapi.utils import (
+    FastAPIOptimizedJsonBytes,
+    create_model_field,
+    get_path_param_names,
+)
 from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
@@ -743,11 +747,32 @@ def _validate_value_with_model_field(
             return None, [get_missing_field_error(loc=loc)]
         else:
             return deepcopy(field.default), []
+    if (
+        isinstance(value, (str, bytes))
+        and not field_annotation_is_scalar(field.field_info.annotation)
+        and not is_scalar_field(field)
+        and not _is_json_field(field)
+    ):
+        if isinstance(value, FastAPIOptimizedJsonBytes):
+            return field.validate_json(value, values, loc=loc)
+        return field.validate(value, values, loc=loc)
+    
+    # If it's a scalar and we have bytes, we MUST decode it first because Pydantic's
+    # validate_python doesn't handle JSON-encoded scalar bytes (like b'"-1"')
+    if isinstance(value, bytes) and field_annotation_is_scalar(field.field_info.annotation):
+        try:
+            import json
+            value = json.loads(value)
+        except json.JSONDecodeError:
+            pass
+
     return field.validate(value, values, loc=loc)
 
 
 def _is_json_field(field: ModelField) -> bool:
-    return any(type(item) is Json for item in field.field_info.metadata)
+    return any(
+        (type(item) is Json) or (item is Json) for item in field.field_info.metadata
+    )
 
 
 def _get_multidict_value(
@@ -978,6 +1003,22 @@ async def request_body_to_args(
             field=first_field, value=body_to_process, values=values, loc=loc
         )
         return {first_field.name: v_}, errors_
+
+    if isinstance(received_body, bytes):
+        try:
+            import json
+            body_to_process = json.loads(received_body)
+        except json.JSONDecodeError as e:
+            return values, [
+                {
+                    "type": "json_invalid",
+                    "loc": ("body", e.pos),
+                    "msg": "JSON decode error",
+                    "input": {},
+                    "ctx": {"error": e.msg},
+                }
+            ]
+
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
         value: Any | None = None

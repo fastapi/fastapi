@@ -67,6 +67,7 @@ from fastapi.sse import (
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
+    FastAPIOptimizedJsonBytes,
     create_model_field,
     generate_unique_id,
     get_value_or_default,
@@ -421,9 +422,11 @@ def get_request_handler(
                                 if subtype == "json" or subtype.endswith("+json"):
                                     json_body = await request.json()
                         if json_body != Undefined:
-                            body = json_body
+                            body = FastAPIOptimizedJsonBytes(body_bytes)
                         else:
                             body = body_bytes
+        except RequestValidationError:
+            raise
         except json.JSONDecodeError as e:
             validation_error = RequestValidationError(
                 [
@@ -717,6 +720,14 @@ def get_request_handler(
                         response.body = b""
                     response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
+            # If the body is still bytes (because of the optimization), decode it
+            # back to a Python object for the exception handler to be consistent
+            # with previous versions of FastAPI.
+            if isinstance(body, bytes):
+                try:
+                    body = json.loads(body)
+                except Exception:
+                    pass
             validation_error = RequestValidationError(
                 errors, body=body, endpoint_ctx=endpoint_ctx
             )
