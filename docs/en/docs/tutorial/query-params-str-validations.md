@@ -224,9 +224,9 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
-However, **this does not apply to Query Parameters**. 
+However, **this does not apply to Query Parameters**.
 
-Because query parameters are extracted from the URL, they are always parsed as strings. 
+Because query parameters are extracted from the URL, they are always parsed as strings.
 
 * If a user does not include the query parameter in the URL, FastAPI will return an error because the parameter is required (`= ...`).
 * If a user includes the parameter as `?q=None` or `?q=null`, FastAPI will read it as the literal string `"None"` or `"null"`, not the Python `None` object.
