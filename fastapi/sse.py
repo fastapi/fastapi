@@ -143,6 +143,16 @@ class ServerSentEvent(BaseModel):
         return self
 
 
+def _split_sse_lines(value: str) -> list[str]:
+    # SSE recognizes only `\n`, `\r\n`, and `\r` as line terminators
+    # (https://html.spec.whatwg.org/multipage/server-sent-events.html).
+    # `str.splitlines()` is wrong on two counts: it treats 8 extra characters
+    # (`\v`, `\f`, `\x1c`-`\x1e`, `\x85`, U+2028, U+2029) as line breaks, and
+    # it drops a trailing empty string, so e.g. `"hello\n"` would emit only
+    # one `data:` line instead of two.
+    return value.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+
+
 def format_sse_event(
     *,
     data_str: Annotated[
@@ -193,14 +203,14 @@ def format_sse_event(
     lines: list[str] = []
 
     if comment is not None:
-        for line in comment.splitlines():
+        for line in _split_sse_lines(comment):
             lines.append(f": {line}")
 
     if event is not None:
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        for line in _split_sse_lines(data_str):
             lines.append(f"data: {line}")
 
     if id is not None:
