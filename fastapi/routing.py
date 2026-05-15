@@ -284,6 +284,7 @@ async def serialize_response(
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
+    polymorphic_serialization: bool = False,
     is_coroutine: bool = True,
     endpoint_ctx: EndpointContext | None = None,
     dump_json: bool = False,
@@ -311,6 +312,7 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            polymorphic_serialization=polymorphic_serialization,
         )
 
     else:
@@ -360,6 +362,7 @@ def get_request_handler(
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
+    response_model_polymorphic_serialization: bool = False,
     dependency_overrides_provider: Any | None = None,
     embed_body_fields: bool = False,
     strict_content_type: bool | DefaultPlaceholder = Default(True),
@@ -488,6 +491,7 @@ def get_request_handler(
                         exclude_unset=response_model_exclude_unset,
                         exclude_defaults=response_model_exclude_defaults,
                         exclude_none=response_model_exclude_none,
+                        polymorphic_serialization=response_model_polymorphic_serialization,
                     )
                 else:
                     data = jsonable_encoder(data)
@@ -701,6 +705,7 @@ def get_request_handler(
                         exclude_unset=response_model_exclude_unset,
                         exclude_defaults=response_model_exclude_defaults,
                         exclude_none=response_model_exclude_none,
+                        polymorphic_serialization=response_model_polymorphic_serialization,
                         is_coroutine=is_coroutine,
                         endpoint_ctx=endpoint_ctx,
                         dump_json=use_dump_json,
@@ -832,6 +837,7 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_polymorphic_serialization: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
         dependency_overrides_provider: Any | None = None,
@@ -876,6 +882,9 @@ class APIRoute(routing.Route):
         self.response_model_exclude_unset = response_model_exclude_unset
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
+        self.response_model_polymorphic_serialization = (
+            response_model_polymorphic_serialization
+        )
         self.include_in_schema = include_in_schema
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -988,6 +997,7 @@ class APIRoute(routing.Route):
             response_model_exclude_unset=self.response_model_exclude_unset,
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
+            response_model_polymorphic_serialization=self.response_model_polymorphic_serialization,
             dependency_overrides_provider=self.dependency_overrides_provider,
             embed_body_fields=self._embed_body_fields,
             strict_content_type=self.strict_content_type,
@@ -1355,6 +1365,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_polymorphic_serialization: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
         name: str | None = None,
@@ -1403,6 +1414,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -1437,6 +1449,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_polymorphic_serialization: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] = Default(JSONResponse),
         name: str | None = None,
@@ -1467,6 +1480,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_polymorphic_serialization=response_model_polymorphic_serialization,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -2082,6 +2096,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2197,6 +2228,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2459,6 +2491,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2579,6 +2628,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2841,6 +2891,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2961,6 +3028,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3223,6 +3291,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3338,6 +3423,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3600,6 +3686,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3715,6 +3818,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3977,6 +4081,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4097,6 +4218,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4359,6 +4481,23 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4479,6 +4618,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4738,6 +4878,23 @@ class APIRouter(routing.Router):
 
                 Read more about it in the
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
+                """
+            ),
+        ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
                 """
             ),
         ] = False,

@@ -1180,6 +1180,7 @@ class FastAPI(Starlette):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_polymorphic_serialization: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
         name: str | None = None,
@@ -1208,6 +1209,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1236,6 +1238,7 @@ class FastAPI(Starlette):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_polymorphic_serialization: bool = False,
         include_in_schema: bool = True,
         response_class: type[Response] = Default(JSONResponse),
         name: str | None = None,
@@ -1265,6 +1268,7 @@ class FastAPI(Starlette):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_polymorphic_serialization=response_model_polymorphic_serialization,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -1814,6 +1818,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -1925,6 +1946,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2187,6 +2209,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2303,6 +2342,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2565,6 +2605,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2681,6 +2738,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2943,6 +3001,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3054,6 +3129,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3316,6 +3392,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3427,6 +3520,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3689,6 +3783,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3800,6 +3911,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4062,6 +4174,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4178,6 +4307,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4440,6 +4570,23 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_polymorphic_serialization: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to enable polymorphic serialization.
+
+                When `True`, if you return a subclass instance through a base-class-typed
+                response model, the serialized response will include fields from the
+                subclass. Requires Pydantic >= 2.13.
+
+                When `False` (default), only base class fields are included in the response.
+
+                Read more about it in the
+                [Pydantic docs for Polymorphic Serialization](https://docs.pydantic.dev/latest/concepts/serialization/#subclass-instances-for-fields-of-baseclass-type).
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4551,6 +4698,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_polymorphic_serialization=response_model_polymorphic_serialization,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
