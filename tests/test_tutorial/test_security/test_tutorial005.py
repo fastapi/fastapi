@@ -1,4 +1,5 @@
 import importlib
+from functools import lru_cache
 from types import ModuleType
 
 import pytest
@@ -14,11 +15,26 @@ from ...utils import needs_py310
         pytest.param("tutorial005_py310", marks=needs_py310),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
+    scope="module",
 )
 def get_mod(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.security.{request.param}")
 
     return mod
+
+
+@pytest.fixture(scope="module", autouse=True)
+def cache_verify_password(mod: ModuleType):
+    assert hasattr(mod, "verify_password"), (
+        f"Module {mod.__name__} does not have attribute 'verify_password'"
+    )
+
+    original_func = mod.verify_password
+    cached_func = lru_cache()(original_func)
+
+    mod.verify_password = cached_func
+    yield
+    mod.verify_password = original_func
 
 
 def get_access_token(
