@@ -164,3 +164,5 @@ But adding the type annotations will allow your editor to give you better suppor
 ## Without Pydantic { #without-pydantic }
 
 If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body).
+
+If you need to provide a model for validation on-the-go, see [Composing Annotated metadata for runtime validation schemas](../advanced/body-depends-model-merge/index.md).

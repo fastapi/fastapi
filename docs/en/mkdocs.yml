@@ -173,6 +173,12 @@ nav:
     - advanced/response-headers.md
     - advanced/response-change-status-code.md
     - advanced/advanced-dependencies.md
+    - Composing Annotated metadata for runtime validation schemas:
+      - advanced/body-depends-model-merge/index.md
+      - advanced/body-depends-model-merge/body.md
+      - advanced/body-depends-model-merge/form.md
+      - advanced/body-depends-model-merge/file.md
+      - advanced/body-depends-model-merge/query.md
     - Advanced Security:
       - advanced/security/index.md
       - advanced/security/oauth2-scopes.md
