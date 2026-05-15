@@ -751,7 +751,11 @@ def _is_json_field(field: ModelField) -> bool:
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: str | None = None,
+    *,
+    use_default_when_missing: bool = True,
 ) -> Any:
     alias = alias or get_validation_alias(field)
     if (
@@ -776,8 +780,9 @@ def _get_multidict_value(
     ):
         if field.field_info.is_required():
             return
-        else:
+        if use_default_when_missing:
             return deepcopy(field.default)
+        return
     return value
 
 
@@ -795,11 +800,13 @@ def request_params_to_args(
     fields_to_extract = fields
     single_not_embedded_field = False
     default_convert_underscores = True
+    is_model_param = False
     if len(fields) == 1 and lenient_issubclass(
         first_field.field_info.annotation, BaseModel
     ):
         fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
         single_not_embedded_field = True
+        is_model_param = True
         # If headers are in a Pydantic model, the way to disable convert_underscores
         # would be with Header(convert_underscores=False) at the Pydantic model level
         default_convert_underscores = getattr(
@@ -822,7 +829,12 @@ def request_params_to_args(
                 alias = get_validation_alias(field)
                 if alias == field.name:
                     alias = alias.replace("_", "-")
-        value = _get_multidict_value(field, received_params, alias=alias)
+        value = _get_multidict_value(
+            field,
+            received_params,
+            alias=alias,
+            use_default_when_missing=not is_model_param,
+        )
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
@@ -912,11 +924,15 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
 async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
+    *,
+    use_default_when_missing: bool = True,
 ) -> dict[str, Any]:
     values = {}
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        value = _get_multidict_value(
+            field, received_body, use_default_when_missing=use_default_when_missing
+        )
         field_info = field.field_info
         if (
             isinstance(field_info, params.File)
@@ -970,7 +986,16 @@ async def request_body_to_args(
         fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
 
     if isinstance(received_body, FormData):
-        body_to_process = await _extract_form_body(fields_to_extract, received_body)
+        body_to_process = await _extract_form_body(
+            fields_to_extract,
+            received_body,
+            # Keep omitted fields absent so Pydantic can apply defaults without
+            # marking them as explicitly provided on the resulting model.
+            use_default_when_missing=not (
+                single_not_embedded_field
+                and lenient_issubclass(first_field.field_info.annotation, BaseModel)
+            ),
+        )
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
