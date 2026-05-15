@@ -1,0 +1,127 @@
+import importlib
+
+import pytest
+from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
+
+from ...utils import needs_py310
+
+
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        pytest.param("tutorial002_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.header_params.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+@pytest.mark.parametrize(
+    "path,headers,expected_status,expected_response",
+    [
+        ("/items", None, 200, {"strange_header": None}),
+        ("/items", {"X-Header": "notvalid"}, 200, {"strange_header": None}),
+        (
+            "/items",
+            {"strange_header": "FastAPI test"},
+            200,
+            {"strange_header": "FastAPI test"},
+        ),
+        (
+            "/items",
+            {"strange-header": "Not really underscore"},
+            200,
+            {"strange_header": None},
+        ),
+    ],
+)
+def test(path, headers, expected_status, expected_response, client: TestClient):
+    response = client.get(path, headers=headers)
+    assert response.status_code == expected_status
+    assert response.json() == expected_response
+
+
+def test_openapi_schema(client: TestClient):
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                        "summary": "Read Items",
+                        "operationId": "read_items_items__get",
+                        "parameters": [
+                            {
+                                "required": False,
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Strange Header",
+                                },
+                                "name": "strange_header",
+                                "in": "header",
+                            }
+                        ],
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                }
+            },
+        }
+    )

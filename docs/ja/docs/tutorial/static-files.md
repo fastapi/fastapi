@@ -1,0 +1,40 @@
+# 静的ファイル { #static-files }
+
+`StaticFiles` を使用して、ディレクトリから静的ファイルを自動的に提供できます。
+
+## `StaticFiles` の使用 { #use-staticfiles }
+
+* `StaticFiles` をインポート。
+* `StaticFiles()` インスタンスを特定のパスに「マウント」。
+
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+
+/// note | 技術詳細
+
+`from starlette.staticfiles import StaticFiles` も使用できます。
+
+**FastAPI**は、開発者の利便性のために、`starlette.staticfiles` と同じ `fastapi.staticfiles` を提供します。しかし、実際にはStarletteから直接渡されています。
+
+///
+
+### 「マウント」とは { #what-is-mounting }
+
+「マウント」とは、特定のパスに完全な「独立した」アプリケーションを追加することを意味します。これにより、すべてのサブパスの処理がなされます。
+
+これは、マウントされたアプリケーションが完全に独立しているため、`APIRouter` とは異なります。メインアプリケーションのOpenAPIとドキュメントには、マウントされたアプリケーションの内容などは含まれません。
+
+これについて詳しくは、[高度なユーザーガイド](../advanced/index.md) をご覧ください。
+
+## 詳細 { #details }
+
+最初の `"/static"` は、この「サブアプリケーション」が「マウント」されるサブパスを指します。したがって、`"/static"` から始まるパスはすべてサブアプリケーションによって処理されます。
+
+`directory="static"` は、静的ファイルを含むディレクトリの名前を指します。
+
+`name="static"` は、**FastAPI** が内部で使用できる名前を付けます。
+
+これらのパラメータはすべて「`static`」とは異なる場合があり、独自のアプリケーションのニーズと詳細に合わせて調整します。
+
+## より詳しい情報 { #more-info }
+
+詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://www.starlette.dev/staticfiles/)を確認してください。
