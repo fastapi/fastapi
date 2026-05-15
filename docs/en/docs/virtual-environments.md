@@ -164,7 +164,7 @@ $ source .venv/Scripts/activate
 
 /// tip
 
-Every time you install a **new package** in that environment, **activate** the environment again.
+Once a virtual environment is activated, newly installed **packages** become available immediately, so re-activating the environment is usually not necessary.
 
 This makes sure that if you use a **terminal (<abbr title="command line interface">CLI</abbr>) program** installed by that package, you use the one from your virtual environment and not any other that could be installed globally, probably with a different version than what you need.
 
