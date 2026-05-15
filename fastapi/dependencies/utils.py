@@ -60,7 +60,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel, Json
+from pydantic import AliasChoices, AliasPath, BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -750,18 +750,72 @@ def _is_json_field(field: ModelField) -> bool:
     return any(type(item) is Json for item in field.field_info.metadata)
 
 
+def _get_alias_path_name(alias_path: AliasPath) -> str | None:
+    # Query/header/cookie/form/file values are flat mappings, so only single-key
+    # alias paths can be resolved here.
+    if len(alias_path.path) == 1 and isinstance(alias_path.path[0], str):
+        return alias_path.path[0]
+    return None
+
+
+def get_validation_aliases(field: ModelField) -> tuple[str, ...]:
+    validation_alias = getattr(field.field_info, "validation_alias", None)
+
+    if validation_alias is None:
+        return (field.alias,)
+
+    if isinstance(validation_alias, str):
+        return (validation_alias,)
+
+    if isinstance(validation_alias, AliasPath):
+        alias = _get_alias_path_name(validation_alias)
+        if alias is not None:
+            return (alias,)
+        return (field.alias,)
+
+    if isinstance(validation_alias, AliasChoices):
+        aliases: list[str] = []
+        for alias_choice in validation_alias.choices:
+            if isinstance(alias_choice, str):
+                aliases.append(alias_choice)
+            elif isinstance(alias_choice, AliasPath):
+                alias = _get_alias_path_name(alias_choice)
+                if alias is not None:
+                    aliases.append(alias)
+        if aliases:
+            # Keep first-seen order for predictable precedence.
+            return tuple(dict.fromkeys(aliases))
+
+    return (field.alias,)
+
+
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: str | Sequence[str] | None = None,
 ) -> Any:
-    alias = alias or get_validation_alias(field)
-    if (
-        (not _is_json_field(field))
-        and field_annotation_is_sequence(field.field_info.annotation)
-        and isinstance(values, (ImmutableMultiDict, Headers))
-    ):
-        value = values.getlist(alias)
+    if alias is None:
+        aliases = get_validation_aliases(field)
+    elif isinstance(alias, str):
+        aliases = (alias,)
     else:
-        value = values.get(alias, None)
+        aliases = tuple(alias)
+
+    value: Any = None
+    for alias_name in aliases:
+        if (
+            (not _is_json_field(field))
+            and field_annotation_is_sequence(field.field_info.annotation)
+            and isinstance(values, (ImmutableMultiDict, Headers))
+        ):
+            candidate = values.getlist(alias_name)
+            if candidate:
+                value = candidate
+                break
+        else:
+            if alias_name in values:
+                value = values.get(alias_name)
+                break
     if (
         value is None
         or (
@@ -822,10 +876,13 @@ def request_params_to_args(
                 alias = get_validation_alias(field)
                 if alias == field.name:
                     alias = alias.replace("_", "-")
-        value = _get_multidict_value(field, received_params, alias=alias)
+        aliases_to_process = (
+            (alias,) if alias is not None else get_validation_aliases(field)
+        )
+        value = _get_multidict_value(field, received_params, alias=aliases_to_process)
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
-        processed_keys.add(alias or get_validation_alias(field))
+        processed_keys.update(aliases_to_process)
 
     for key in received_params.keys():
         if key not in processed_keys:
@@ -937,7 +994,9 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[get_validation_alias(field)] = value
-    field_aliases = {get_validation_alias(field) for field in body_fields}
+    field_aliases = {
+        alias for field in body_fields for alias in get_validation_aliases(field)
+    }
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)
@@ -983,7 +1042,10 @@ async def request_body_to_args(
         value: Any | None = None
         if body_to_process is not None and not isinstance(body_to_process, bytes):
             try:
-                value = body_to_process.get(get_validation_alias(field))
+                for alias in get_validation_aliases(field):
+                    if alias in body_to_process:
+                        value = body_to_process.get(alias)
+                        break
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
@@ -1053,5 +1115,4 @@ def get_body_field(
 
 
 def get_validation_alias(field: ModelField) -> str:
-    va = getattr(field, "validation_alias", None)
-    return va or field.alias
+    return get_validation_aliases(field)[0]
