@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -316,3 +316,54 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# format_sse_event line-splitting tests
+#
+# These cover the splitlines() footgun: it drops trailing empty strings and
+# treats 8 extra characters as line breaks (vertical tab, form feed, FS/GS/RS,
+# NEL, LINE SEPARATOR, PARAGRAPH SEPARATOR). SSE only recognizes \n, \r\n, \r.
+
+
+def test_format_sse_event_preserves_trailing_newline():
+    # "Hello\n" should produce TWO data lines: "Hello" and "" (the trailing
+    # empty line). Pre-fix, splitlines() ate the trailing empty string.
+    assert format_sse_event(data_str="Hello\n") == b"data: Hello\ndata: \n\n"
+
+
+def test_format_sse_event_preserves_trailing_double_newline():
+    assert format_sse_event(data_str="Hello\n\n") == b"data: Hello\ndata: \ndata: \n\n"
+
+
+def test_format_sse_event_single_newline_data():
+    assert format_sse_event(data_str="\n") == b"data: \ndata: \n\n"
+
+
+def test_format_sse_event_crlf_normalizes_to_lf():
+    # \r\n is a valid SSE line terminator and should be normalized to \n
+    # for output, producing the same two data lines as \n input would.
+    assert (
+        format_sse_event(data_str="Hello\r\nWorld") == b"data: Hello\ndata: World\n\n"
+    )
+
+
+def test_format_sse_event_bare_cr_treated_as_line_break():
+    # Lone \r is also a valid SSE line terminator per the spec.
+    assert format_sse_event(data_str="Hello\rWorld") == b"data: Hello\ndata: World\n\n"
+
+
+def test_format_sse_event_unicode_line_separator_not_split():
+    # U+2028 LINE SEPARATOR is treated as a line break by str.splitlines()
+    # but is NOT a line terminator in the SSE spec. It must stay inside the
+    # data payload, not be promoted to a new "data:" line.
+    assert format_sse_event(data_str="A B") == "data: A B\n\n".encode()
+
+
+def test_format_sse_event_vertical_tab_not_split():
+    # \v is treated as a line break by splitlines() but not by SSE.
+    assert format_sse_event(data_str="A\vB") == b"data: A\x0bB\n\n"
+
+
+def test_format_sse_event_comment_preserves_trailing_newline():
+    # Same bug existed in the comment branch.
+    assert format_sse_event(comment="hi\n") == b": hi\n: \n\n"
