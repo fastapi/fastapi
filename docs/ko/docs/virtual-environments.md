@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-[`uv`](https://github.com/astral-sh/uv`)가 있다면:
+[`uv`](https://github.com/astral-sh/uv)가 있다면:
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-[`uv`](https://github.com/astral-sh/uv`)가 있다면:
+[`uv`](https://github.com/astral-sh/uv)가 있다면:
 
 <div class="termy">
 
