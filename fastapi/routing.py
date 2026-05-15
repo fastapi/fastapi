@@ -213,12 +213,16 @@ def _merge_lifespan_context(
     async def merged_lifespan(
         app: AppType,
     ) -> AsyncIterator[Mapping[str, Any] | None]:
-        async with original_context(app) as maybe_original_state:
-            async with nested_context(app) as maybe_nested_state:
-                if maybe_nested_state is None and maybe_original_state is None:
-                    yield None  # old ASGI compatibility
-                else:
-                    yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
+        async with AsyncExitStack() as stack:
+            maybe_original_state = await stack.enter_async_context(
+                original_context(app)
+            )
+            maybe_nested_state = await stack.enter_async_context(nested_context(app))
+
+            if maybe_nested_state is None and maybe_original_state is None:
+                yield None  # old ASGI compatibility
+            else:
+                yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
     return merged_lifespan  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
@@ -1823,10 +1827,17 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
-        self.lifespan_context = _merge_lifespan_context(
-            self.lifespan_context,
-            router.lifespan_context,
-        )
+
+        if type(router.lifespan_context) is _DefaultLifespan:
+            return
+
+        if type(self.lifespan_context) is _DefaultLifespan:
+            self.lifespan_context = router.lifespan_context
+        else:
+            self.lifespan_context = _merge_lifespan_context(
+                self.lifespan_context,
+                router.lifespan_context,
+            )
 
     def get(
         self,
