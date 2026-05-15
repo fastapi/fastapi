@@ -86,16 +86,16 @@ Seine Schlüssel-Merkmale sind:
 <div class="fastapi-opinions" data-fastapi-opinions>
   <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
-      <span class="fastapi-opinions__mark"><img src="img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
     </button>
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
-      <span class="fastapi-opinions__mark"><img src="img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
     </button>
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
-      <span class="fastapi-opinions__mark"><img src="img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
     </button>
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
-      <span class="fastapi-opinions__mark"><img src="img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
     </button>
   </div>
 
