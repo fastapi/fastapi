@@ -91,9 +91,9 @@ router = APIRouter()
 
 
 @router.get("/events", response_class=EventSourceResponse)
-async def stream_events():
-    yield {"msg": "hello"}
-    yield {"msg": "world"}
+async def stream_events() -> AsyncIterable[Item]:
+    yield items[0]
+    yield items[1]
 
 
 app.include_router(router, prefix="/api")
@@ -256,6 +256,17 @@ def test_data_and_raw_data_mutually_exclusive():
 
 
 def test_sse_on_router_included_in_app(client: TestClient):
+    route = next(r for r in app.routes if getattr(r, "path", None) == "/api/events")
+    assert route.stream_item_type is Item
+    assert route.stream_item_field is not None
+
+    openapi = app.openapi()
+    item_schema = openapi["paths"]["/api/events"]["get"]["responses"]["200"]["content"][
+        "text/event-stream"
+    ]["itemSchema"]
+    assert "contentSchema" in item_schema["properties"]["data"]
+    assert "Item" in openapi["components"]["schemas"]
+
     response = client.get("/api/events")
     assert response.status_code == 200
     assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
