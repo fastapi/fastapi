@@ -3,6 +3,7 @@ import email.message
 import functools
 import inspect
 import json
+import operator
 import types
 from collections.abc import (
     AsyncIterator,
@@ -26,7 +27,10 @@ from typing import (
     Annotated,
     Any,
     TypeVar,
+    Union,
     cast,
+    get_args,
+    get_origin,
 )
 
 import anyio
@@ -65,7 +69,7 @@ from fastapi.sse import (
     ServerSentEvent,
     format_sse_event,
 )
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, IncEx, UnionType
 from fastapi.utils import (
     create_model_field,
     generate_unique_id,
@@ -844,27 +848,54 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.stream_item_type: Any | None = None
+        self.return_response_models = []
+        self.return_response_classes = []
+
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
-            if lenient_issubclass(return_annotation, Response):
+            stream_item = get_stream_item_type(return_annotation)
+
+            if stream_item is not None:
+                # Extract item type for JSONL or SSE streaming when
+                # response_class is DefaultPlaceholder (JSONL) or
+                # EventSourceResponse (SSE).
+                # ServerSentEvent is excluded: it's a transport
+                # wrapper, not a data model, so it shouldn't feed
+                # into validation or OpenAPI schema generation.
+                if (
+                    isinstance(response_class, DefaultPlaceholder)
+                    or lenient_issubclass(response_class, EventSourceResponse)
+                ) and not lenient_issubclass(stream_item, ServerSentEvent):
+                    self.stream_item_type = stream_item
+
                 response_model = None
             else:
-                stream_item = get_stream_item_type(return_annotation)
-                if stream_item is not None:
-                    # Extract item type for JSONL or SSE streaming when
-                    # response_class is DefaultPlaceholder (JSONL) or
-                    # EventSourceResponse (SSE).
-                    # ServerSentEvent is excluded: it's a transport
-                    # wrapper, not a data model, so it shouldn't feed
-                    # into validation or OpenAPI schema generation.
-                    if (
-                        isinstance(response_class, DefaultPlaceholder)
-                        or lenient_issubclass(response_class, EventSourceResponse)
-                    ) and not lenient_issubclass(stream_item, ServerSentEvent):
-                        self.stream_item_type = stream_item
-                    response_model = None
+                origin = get_origin(return_annotation)
+
+                if origin is Union or origin is UnionType:
+                    for arg in get_args(return_annotation):
+                        if arg is type(None):
+                            continue
+
+                        if lenient_issubclass(arg, Response):
+                            self.return_response_classes.append(arg)
+                        else:
+                            self.return_response_models.append(arg)
+                elif lenient_issubclass(return_annotation, Response):
+                    self.return_response_classes.append(return_annotation)
                 else:
-                    response_model = return_annotation
+                    self.return_response_models.append(return_annotation)
+
+                if self.return_response_models:
+                    if len(self.return_response_models) == 1:
+                        response_model = self.return_response_models[0]
+                    else:
+                        response_model = functools.reduce(
+                            operator.or_, self.return_response_models
+                        )
+                else:
+                    response_model = None
+
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
