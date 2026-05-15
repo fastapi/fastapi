@@ -231,6 +231,7 @@ addopts = [
 strict_xfail = true
 filterwarnings = [
     "error",
+    'ignore:The private ForwardRef._evaluate method is deprecated:DeprecationWarning',
 ]
 timeout = "20"
 

@@ -258,17 +258,17 @@ def _resolve_forward_ref_lenient(
     fwd_ref: ForwardRef,
     globalns: dict[str, Any],
 ) -> Any:
-    class _LenientNamespace(dict):
+    class _LenientNamespace(dict[str, Any]):
         def __missing__(self, key: str) -> Any:
             return Any
 
     localns = _LenientNamespace(globalns)
     if sys.version_info >= (3, 13):
-        result = fwd_ref.evaluate(
+        result = fwd_ref._evaluate(
             globalns, localns, recursive_guard=frozenset(), type_params=()
         )
     else:
-        result = fwd_ref.evaluate(globalns, localns, recursive_guard=frozenset())
+        result = fwd_ref._evaluate(globalns, localns, recursive_guard=frozenset())
     return result
 
 
