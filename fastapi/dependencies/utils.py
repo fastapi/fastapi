@@ -302,6 +302,8 @@ def get_dependant(
         own_oauth_scopes=own_oauth_scopes,
         parent_oauth_scopes=parent_oauth_scopes,
     )
+    unwrapped_call = inspect.unwrap(call)
+    globalns = getattr(unwrapped_call, "__globals__", {})
     current_scopes = (parent_oauth_scopes or []) + (own_oauth_scopes or [])
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -313,6 +315,7 @@ def get_dependant(
             annotation=param.annotation,
             value=param.default,
             is_path_param=is_path_param,
+            globalns=globalns,
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
@@ -396,6 +399,7 @@ def analyze_param(
     annotation: Any,
     value: Any,
     is_path_param: bool,
+    globalns: dict[str, Any] | None = None,
 ) -> ParamDetails:
     field_info = None
     depends = None
@@ -407,10 +411,39 @@ def analyze_param(
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
         type_annotation = annotation
+    # When ``from __future__ import annotations`` is active, the annotation
+    # may still be a ForwardRef (e.g. ``Annotated[Potato, Depends(...)]``
+    # where *Potato* hasn't been defined yet).  The lenient evaluator leaves
+    # it as a ForwardRef because it cannot resolve *Potato*, but we still
+    # need to unpack the Annotated wrapper so that FastAPI-specific markers
+    # (Depends / Field / Body) are discovered.  We use ``eval`` with a
+    # dict that turns undefined names into ForwardRef objects, which gives
+    # us the same partial-evaluation behaviour that the normal code-path
+    # expects.
+    if isinstance(use_annotation, ForwardRef):
+        if globalns is not None:
+            try:
+                _safe_ns: dict[str, Any] = dict(globalns)
+                _missing = ForwardRef  # noqa: F811
+                class _SafeDict(dict):
+                    def __missing__(self, key):  # type: ignore[override]
+                        return _missing(key)
+                use_annotation = eval(
+                    use_annotation.__forward_arg__, {"__builtins__": {}}, _SafeDict(_safe_ns)
+                )
+                if use_annotation is not inspect.Signature.empty:
+                    type_annotation = use_annotation
+            except Exception:
+                pass
     # Extract Annotated info
     if get_origin(use_annotation) is Annotated:
-        annotated_args = get_args(annotation)
+        annotated_args = get_args(use_annotation)
         type_annotation = annotated_args[0]
+        # Resolve forward references in the inner type (e.g. when using
+        # ``from __future__ import annotations`` with Annotated[..., Depends()])
+        if isinstance(type_annotation, (str, ForwardRef)):
+            if globalns is not None:
+                type_annotation = get_typed_annotation(type_annotation, globalns)
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
