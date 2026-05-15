@@ -817,7 +817,7 @@ Traceback (most recent call last):
 
 </div>
 
-Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-askaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
+Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-azkaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
 
 <div class="termy">
 
