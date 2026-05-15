@@ -20,7 +20,7 @@ async def read_root(potato: Annotated[Potato, Depends(get_potato)]):
     return {"color": potato.color, "size": potato.size}
 
 
-from dataclasses import dataclass
+from dataclasses import dataclass  # noqa: E402
 
 
 @dataclass
