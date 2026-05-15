@@ -20,6 +20,7 @@ hide:
 
 ### Internal
 
+* 🔧 Remove Ruff ignored rule for tabs. PR [#15533](https://github.com/fastapi/fastapi/pull/15533) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors badge. PR [#15532](https://github.com/fastapi/fastapi/pull/15532) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add sponsor: TalorData. PR [#15531](https://github.com/fastapi/fastapi/pull/15531) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump ty from 0.0.21 to 0.0.34. PR [#15443](https://github.com/fastapi/fastapi/pull/15443) by [@dependabot[bot]](https://github.com/apps/dependabot).
