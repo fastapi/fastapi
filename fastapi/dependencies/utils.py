@@ -248,9 +248,7 @@ def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
         annotation = evaluate_forwardref(annotation, globalns, globalns)
         if isinstance(annotation, ForwardRef):
             if "Annotated[" in annotation.__forward_arg__:
-                annotation = _resolve_forward_ref_lenient(
-                    annotation, globalns
-                )
+                annotation = _resolve_forward_ref_lenient(annotation, globalns)
         elif annotation is type(None):
             return None
     return annotation
