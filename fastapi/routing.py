@@ -31,6 +31,7 @@ from typing import (
 
 import anyio
 from annotated_doc import Doc
+from anyio import CapacityLimiter
 from anyio.abc import ObjectReceiveStream
 from fastapi import params
 from fastapi._compat import (
@@ -292,8 +293,11 @@ async def serialize_response(
         if is_coroutine:
             value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors = await run_in_threadpool(
-                field.validate, response_content, {}, loc=("response",)
+            # Run without a capacity limit for similar reasons as marked in fastapi/concurrency.py
+            exit_limiter = CapacityLimiter(1)
+            validate_func = functools.partial(field.validate, loc=("response",))
+            value, errors = await anyio.to_thread.run_sync(
+                validate_func, response_content, {}, limiter=exit_limiter
             )
         if errors:
             ctx = endpoint_ctx or EndpointContext()
