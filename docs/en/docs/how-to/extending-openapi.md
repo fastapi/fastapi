@@ -37,7 +37,7 @@ The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by Fa
 
 Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.
 
-For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Normal **FastAPI** { #normal-fastapi }
 
