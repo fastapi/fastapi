@@ -243,11 +243,42 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 
 
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
+    # Resolve bare string / ForwardRef annotations (e.g. produced by
+    # `from __future__ import annotations` when the annotation itself is a
+    # plain type name).
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
         if annotation is type(None):
             return None
+
+    # When `from __future__ import annotations` is active, the *base* type
+    # inside `Annotated[SomeType, ...]` may still be a string or ForwardRef
+    # even after the outer annotation has been evaluated.  Handle that by
+    # resolving the base type and reconstructing the Annotated alias.
+    if get_origin(annotation) is Annotated:
+        args = get_args(annotation)
+        # args[0] is the base type; args[1:] are the metadata (Depends, etc.)
+        base_type = args[0]
+        metadata = args[1:]
+
+        # Resolve the base type if it is still a string or ForwardRef
+        if isinstance(base_type, str):
+            base_type = ForwardRef(base_type)
+        if isinstance(base_type, ForwardRef):
+            base_type = evaluate_forwardref(base_type, globalns, globalns)
+
+        # Recursively resolve in case of nested Annotated / ForwardRef
+        base_type = get_typed_annotation(base_type, globalns)
+
+        # Keep NoneType handling consistent with the bare-string path above
+        if base_type is type(None):
+            base_type = None
+
+        # Reconstruct Annotated correctly via __class_getitem__ so that
+        # Annotated[T, meta1, meta2] is produced, not Annotated[(T, meta1, meta2)].
+        annotation = Annotated.__class_getitem__((base_type, *metadata))
+
     return annotation
 
 
