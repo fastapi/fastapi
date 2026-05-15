@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Annotated
 
-from inline_snapshot import snapshot
-
 from fastapi import Depends, FastAPI
+from inline_snapshot import snapshot
 
 # Simulate the real-world bug: Potato is defined AFTER the route decorator
 # under `from __future__ import annotations`.
