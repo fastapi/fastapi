@@ -49,6 +49,7 @@ class Dependant:
     use_cache: bool = True
     path: str | None = None
     scope: Literal["function", "request"] | None = None
+    param_annotation: Any = field(default=inspect.Parameter.empty)
 
     @cached_property
     def oauth_scopes(self) -> list[str]:

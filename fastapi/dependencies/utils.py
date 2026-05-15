@@ -1,6 +1,7 @@
 import dataclasses
 import inspect
 import sys
+import types
 from collections.abc import (
     AsyncGenerator,
     AsyncIterable,
@@ -71,6 +72,7 @@ from starlette.datastructures import (
     QueryParams,
     UploadFile,
 )
+from starlette.exceptions import HTTPException
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
@@ -89,6 +91,19 @@ multipart_incorrect_install_error = (
     'And then install "python-multipart" with: \n\n'
     "pip install python-multipart\n"
 )
+
+
+def _annotation_allows_none(annotation: Any) -> bool:
+    if annotation is inspect.Parameter.empty or annotation is Any:
+        return True
+    if annotation is type(None) or annotation is None:
+        return True
+    origin = get_origin(annotation)
+    if origin is Annotated:
+        return _annotation_allows_none(get_args(annotation)[0])
+    if origin is Union or origin is types.UnionType:
+        return type(None) in get_args(annotation)
+    return False
 
 
 def ensure_multipart_is_installed() -> None:
@@ -340,6 +355,7 @@ def get_dependant(
                 use_cache=param_details.depends.use_cache,
                 scope=param_details.depends.scope,
             )
+            sub_dependant.param_annotation = param.annotation
             dependant.dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
@@ -679,6 +695,21 @@ async def solve_dependencies(
         else:
             solved = await run_in_threadpool(call, **solved_result.values)
         if sub_dependant.name is not None:
+            if (
+                solved is None
+                and sub_dependant._is_security_scheme
+                and sub_dependant.param_annotation is not inspect.Parameter.empty
+                and not _annotation_allows_none(sub_dependant.param_annotation)
+            ):
+                raise HTTPException(
+                    status_code=500,
+                    detail=(
+                        f"Security dependency returned None for parameter"
+                        f" '{sub_dependant.name}' which is annotated as"
+                        f" non-optional. Use 'Optional[...]' or '... | None'"
+                        f" when the security scheme has auto_error=False."
+                    ),
+                )
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
