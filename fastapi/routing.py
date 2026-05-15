@@ -64,6 +64,7 @@ from fastapi.sse import (
     EventSourceResponse,
     ServerSentEvent,
     format_sse_event,
+    get_sse_data_type,
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
@@ -854,14 +855,26 @@ class APIRoute(routing.Route):
                     # Extract item type for JSONL or SSE streaming when
                     # response_class is DefaultPlaceholder (JSONL) or
                     # EventSourceResponse (SSE).
-                    # ServerSentEvent is excluded: it's a transport
-                    # wrapper, not a data model, so it shouldn't feed
-                    # into validation or OpenAPI schema generation.
-                    if (
-                        isinstance(response_class, DefaultPlaceholder)
-                        or lenient_issubclass(response_class, EventSourceResponse)
-                    ) and not lenient_issubclass(stream_item, ServerSentEvent):
-                        self.stream_item_type = stream_item
+                    # Bare ServerSentEvent is excluded: it's a transport
+                    # wrapper with no specific data type, so it doesn't
+                    # feed into validation or OpenAPI schema generation.
+                    # Parameterized ServerSentEvent[Data] is handled by
+                    # extracting Data and using it as the item type.
+                    if isinstance(
+                        response_class, DefaultPlaceholder
+                    ) or lenient_issubclass(response_class, EventSourceResponse):
+                        sse_data_type = get_sse_data_type(stream_item)
+                        if sse_data_type is not None:
+                            # ServerSentEvent[Data]: use Data for contentSchema
+                            self.stream_item_type = sse_data_type
+                        elif lenient_issubclass(stream_item, ServerSentEvent):
+                            # Bare ServerSentEvent (no type param): transport
+                            # wrapper with no specific data type, so no
+                            # contentSchema in OpenAPI.
+                            pass
+                        else:
+                            # Plain model (e.g. Item): use as-is
+                            self.stream_item_type = stream_item
                     response_model = None
                 else:
                     response_model = return_annotation
