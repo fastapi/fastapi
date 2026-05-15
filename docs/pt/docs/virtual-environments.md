@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Mas se você desativar o ambiente virtual e ativar o novo para `prisoner-of-askaban`, quando você executar `python`, ele usará o Python do ambiente virtual em `prisoner-of-azkaban`.
+Mas se você desativar o ambiente virtual e ativar o novo para `prisoner-of-azkaban`, quando você executar `python`, ele usará o Python do ambiente virtual em `prisoner-of-azkaban`.
 
 <div class="termy">
 
