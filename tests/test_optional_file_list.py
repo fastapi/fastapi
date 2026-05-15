@@ -26,3 +26,13 @@ def test_optional_bytes_list_no_files():
     response = client.post("/files")
     assert response.status_code == 200
     assert response.json() == {"files_count": 0}
+
+
+def test_optional_bytes_list_send_empty_str():
+    client = TestClient(app)
+    response = client.post(
+        "/files",
+        data={"files": ""},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"files_count": 1, "sizes": [0]}
