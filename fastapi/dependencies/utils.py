@@ -246,9 +246,30 @@ def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
-        if annotation is type(None):
+        if isinstance(annotation, ForwardRef):
+            if "Annotated[" in annotation.__forward_arg__:
+                annotation = _resolve_forward_ref_lenient(annotation, globalns)
+        elif annotation is type(None):
             return None
     return annotation
+
+
+def _resolve_forward_ref_lenient(
+    fwd_ref: ForwardRef,
+    globalns: dict[str, Any],
+) -> Any:
+    class _LenientNamespace(dict[str, Any]):
+        def __missing__(self, key: str) -> Any:
+            return Any
+
+    localns = _LenientNamespace(globalns)
+    if sys.version_info >= (3, 13):
+        result = fwd_ref._evaluate(
+            globalns, localns, recursive_guard=frozenset(), type_params=()
+        )
+    else:
+        result = fwd_ref._evaluate(globalns, localns, recursive_guard=frozenset())
+    return result
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
