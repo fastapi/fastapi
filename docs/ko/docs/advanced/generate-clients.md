@@ -30,7 +30,6 @@ FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 
 
 예를 들어 다음을 사용해 볼 수 있습니다:
 
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
 * [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
