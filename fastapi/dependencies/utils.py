@@ -278,7 +278,7 @@ def _resolve_forward_ref_lenient(
             return Any
 
     localns = _LenientNamespace(globalns)
-    if sys.version_info >= (3, 14):
+    if sys.version_info >= (3, 13):
         result = fwd_ref._evaluate(
             globalns, localns, recursive_guard=set(), type_params=()
         )
