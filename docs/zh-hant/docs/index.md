@@ -54,24 +54,71 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 ### 基石贊助商 { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### 金級與銀級贊助商 { #gold-and-silver-sponsors }
+### 金級贊助商 { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### 銀級贊助商 { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
 [其他贊助商](https://fastapi.tiangolo.com/zh-hant/fastapi-people/#sponsors)
 
 ## 評價 { #opinions }
+
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
+
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">「近期大量使用 <strong>FastAPI</strong>。我實際上打算把它用在我在 <strong>微軟</strong> 團隊的所有 <strong>機器學習服務</strong> 上。其中一些正整合進核心的 <strong>Windows</strong> 與部分 <strong>Office</strong> 產品。」</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan，<strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[for Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">「<strong>Netflix</strong> 很高興宣布我們的 <strong>危機管理</strong> 協調框架 <strong>Dispatch</strong> 開源！」 <em>[使用 FastAPI 建構]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson、Marc Vilanova、Forest Monsen，<strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">「如果有人想要打造一個可用於生產環境的 Python API，我強力推薦 <strong>FastAPI</strong>。它 <strong>設計優雅</strong>、<strong>簡單易用</strong> 且 <strong>高度可擴展</strong>——已成為我們 API-first 開發策略中的 <strong>關鍵元件</strong>。」</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury，<strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
 
 "_[...] 近期大量使用 **FastAPI**。[...] 我實際上打算在我在**微軟**團隊的所有**機器學習**服務上使用它。其中一些正在整合到核心的 **Windows** 產品，以及一些 **Office** 產品。_"
 
@@ -91,37 +138,25 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 ---
 
-"_我對 **FastAPI** 興奮得不得了。超好玩！_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) podcast 主持人</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_老實說，你們做的看起來非常穩健又精緻。很多方面都正是我希望 **Hug** 成為的樣子——看到有人把它建出來真的很鼓舞人心。_"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>[Hug](https://github.com/hugapi/hug) 創作者</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
-
----
-
-"_如果你想學一個用於構建 REST API 的**現代框架**，看看 **FastAPI** [...] 它很快、易用、也容易學習 [...]_"
-
-"_我們的 **API** 已經改用 **FastAPI** [...] 我想你會喜歡它 [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>[Explosion AI](https://explosion.ai) 創辦人 - [spaCy](https://spacy.io) 創作者</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
-"_如果有人想要打造一個可用於生產環境的 Python API，我強力推薦 **FastAPI**。它**設計優雅**、**簡單易用**且**高度可擴展**，已經成為我們 API first 開發策略中的**關鍵元件**，推動了許多自動化與服務，例如我們的 Virtual TAC Engineer。_"
+"_如果有人想要打造一個可用於生產環境的 Python API，我強力推薦 **FastAPI**。它**設計優雅**、**簡單易用**且**高度可擴展**，已經成為我們 API first 開發策略中的**關鍵元件**，推動了許多自動化與服務，例如我們的 Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
+## FastAPI 大會 { #fastapi-conf }
+
+[**FastAPI Conf '26**](https://fastapiconf.com) 將於 **2026 年 10 月 28 日** 在 **荷蘭阿姆斯特丹** 舉行。全部關於 FastAPI，來自第一手來源。🎤
+
+<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
+
 ## FastAPI 迷你紀錄片 { #fastapi-mini-documentary }
 
 在 2025 年底發布了一支 [FastAPI 迷你紀錄片](https://www.youtube.com/watch?v=mpR8ngthqiE)，你可以在線上觀看：
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**，命令列的 FastAPI { #typer-the-fastapi-of-clis }
 
