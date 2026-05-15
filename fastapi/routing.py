@@ -1001,7 +1001,7 @@ class APIRoute(routing.Route):
         )
 
     @cached_property
-    def app(self) -> ASGIApp:  # type: ignore
+    def app(self) -> ASGIApp:  # type: ignore[override]
         return request_response(self.get_route_handler())
 
     def init_attributes(self) -> None:
