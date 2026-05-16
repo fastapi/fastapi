@@ -19,9 +19,13 @@ def test_optional_imports_broken_installation(monkeypatch: pytest.MonkeyPatch) -
 
     monkeypatch.setattr(importlib, "import_module", fake_import_module)
 
-    # Force a reload to ensure the module initialization runs with our monkeypatch
-    if "fastapi.responses" in sys.modules:
-        del sys.modules["fastapi.responses"]
+    import fastapi.responses
 
-    # This should not raise an ImportError
-    import fastapi.responses  # noqa: F401
+    # Force a reload to ensure the module initialization runs with our monkeypatch
+    try:
+        importlib.reload(fastapi.responses)
+    finally:
+        # Revert the monkeypatch manually early so we can restore the module
+        monkeypatch.undo()
+        # Restore test isolation by reloading the module cleanly
+        importlib.reload(fastapi.responses)
