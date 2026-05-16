@@ -4,6 +4,7 @@ from typing import Any
 
 import pytest
 
+
 def test_optional_imports_broken_installation(monkeypatch: pytest.MonkeyPatch) -> None:
     """
     Test that an ImportError during the import of an optional JSON library
