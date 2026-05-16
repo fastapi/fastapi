@@ -1794,6 +1794,11 @@ class APIRouter(routing.Router):
                         self.strict_content_type,
                     ),
                 )
+                if route.stream_item_type is not None:
+                    new_route = self.routes[-1]
+                    assert isinstance(new_route, APIRoute)
+                    new_route.stream_item_type = route.stream_item_type
+                    new_route.stream_item_field = route.stream_item_field
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
                 self.add_route(
