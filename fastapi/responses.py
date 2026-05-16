@@ -61,7 +61,7 @@ class UJSONResponse(JSONResponse):
     separately, e.g. `pip install ujson`.
     """
 
-    def render(self, content: Any) -> bytes:
+    def render(self, content: Any) -> bytes:  # pragma: nocover
         assert ujson is not None, "ujson must be installed to use UJSONResponse"
         return ujson.dumps(content, ensure_ascii=False).encode("utf-8")
 
@@ -91,7 +91,7 @@ class ORJSONResponse(JSONResponse):
     separately, e.g. `pip install orjson`.
     """
 
-    def render(self, content: Any) -> bytes:
+    def render(self, content: Any) -> bytes:  # pragma: nocover
         assert orjson is not None, "orjson must be installed to use ORJSONResponse"
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
