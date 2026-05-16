@@ -13,9 +13,13 @@ def test_optional_imports_broken_installation(monkeypatch: pytest.MonkeyPatch) -
 
     def fake_import_module(name: str, package: str | None = None) -> Any:
         if name == "ujson":
-            raise ImportError("simulated binary/load failure for ujson")  # pragma: no cover
+            raise ImportError(
+                "simulated binary/load failure for ujson"
+            )  # pragma: no cover
         if name == "orjson":
-            raise ImportError("simulated binary/load failure for orjson")  # pragma: no cover
+            raise ImportError(
+                "simulated binary/load failure for orjson"
+            )  # pragma: no cover
         return real_import_module(name, package)
 
     monkeypatch.setattr(importlib, "import_module", fake_import_module)
