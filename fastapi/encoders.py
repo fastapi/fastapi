@@ -33,7 +33,7 @@ from ._compat import (
 
 try:
     # pydantic.color.Color is deprecated since v2.0b3, but supporting for bwd-compat
-    from pydantic.color import Color  # ty: ignore[deprecated]
+    from pydantic.color import Color  # type: ignore[deprecated]
 except ImportError:  # pragma: no cover
 
     class Color:  # type: ignore[no-redef]
@@ -237,9 +237,9 @@ def jsonable_encoder(
                 if isinstance(obj, encoder_type):
                     return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
-        include = set(include)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
+        include = set(include)  # type: ignore[assignment]  # type: ignore[invalid-assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
-        exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
+        exclude = set(exclude)  # type: ignore[assignment]  # type: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",

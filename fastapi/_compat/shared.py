@@ -23,7 +23,7 @@ _T = TypeVar("_T")
 
 # Copy from Pydantic: pydantic/_internal/_typing_extra.py
 WithArgsTypes: tuple[Any, ...] = (
-    typing._GenericAlias,  # type: ignore[attr-defined]  # ty: ignore[unresolved-attribute]
+    typing._GenericAlias,  # type: ignore[attr-defined]  # type: ignore[unresolved-attribute]
     types.GenericAlias,
     types.UnionType,
 )  # pyright: ignore[reportAttributeAccessIssue]
@@ -48,7 +48,7 @@ def lenient_issubclass(
     cls: Any, class_or_tuple: type[_T] | tuple[type[_T], ...] | None
 ) -> TypeGuard[type[_T]]:
     try:
-        return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+        return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]  # type: ignore[invalid-argument-type]
     except TypeError:  # pragma: no cover
         if isinstance(cls, WithArgsTypes):
             return False

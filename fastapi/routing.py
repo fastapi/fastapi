@@ -105,7 +105,7 @@ def request_response(
         func  # type: ignore[assignment]
         if is_async_callable(func)
         else functools.partial(run_in_threadpool, func)  # type: ignore[call-arg]
-    )  # ty: ignore[invalid-assignment]
+    )  # type: ignore[invalid-assignment]
 
     async def app(scope: Scope, receive: Receive, send: Send) -> None:
         request = Request(scope, receive, send)
@@ -220,7 +220,7 @@ def _merge_lifespan_context(
                 else:
                     yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
-    return merged_lifespan  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
+    return merged_lifespan  # type: ignore[return-value]  # type: ignore[invalid-return-type]
 
 
 class _DefaultLifespan:
@@ -639,7 +639,7 @@ def get_request_handler(
                 else:
 
                     def _sync_stream_jsonl() -> Iterator[bytes]:
-                        for item in gen:  # ty: ignore[not-iterable]
+                        for item in gen:  # type: ignore[not-iterable]
                             yield _serialize_item(item)
 
                     jsonl_stream_content = _sync_stream_jsonl()

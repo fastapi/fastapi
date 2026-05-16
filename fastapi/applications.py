@@ -4595,7 +4595,7 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
-        return self.router.on_event(event_type)  # ty: ignore[deprecated]
+        return self.router.on_event(event_type)  # type: ignore[deprecated]
 
     def middleware(
         self,

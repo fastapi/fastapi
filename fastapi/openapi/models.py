@@ -215,7 +215,7 @@ class Example(TypedDict, total=False):
     value: Any | None
     externalValue: AnyUrl | None
 
-    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]  # ty: ignore[invalid-typed-dict-statement]
+    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]  # type: ignore[invalid-typed-dict-statement]
 
 
 class ParameterInType(Enum):
