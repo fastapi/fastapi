@@ -808,6 +808,33 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         return match, child_scope
 
 
+_ACCEPTS_KWARG_CACHE: dict[tuple[type, str], bool] = {}
+
+
+def _accepts_kwarg(cls: type, kwarg: str) -> bool:
+    """Check if ``cls.__init__`` accepts a given keyword argument.
+
+    Uses a module-level cache to avoid repeated ``inspect.signature`` calls.
+    Returns ``True`` when the parameter is explicitly declared or when the
+    signature includes ``**kwargs``.
+    """
+    key = (cls, kwarg)
+    if key not in _ACCEPTS_KWARG_CACHE:
+        try:
+            sig = inspect.signature(cls)
+            params: Mapping[str, inspect.Parameter] = sig.parameters
+        except (ValueError, TypeError):
+            params = {}
+        if kwarg in params:
+            _ACCEPTS_KWARG_CACHE[key] = True
+        else:
+            _ACCEPTS_KWARG_CACHE[key] = any(
+                p.kind == inspect.Parameter.VAR_KEYWORD
+                for p in params.values()
+            )
+    return _ACCEPTS_KWARG_CACHE[key]
+
+
 class APIRoute(routing.Route):
     def __init__(
         self,
@@ -840,6 +867,7 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Callable[["APIRoute"], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
+        **kwargs: Any,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -1383,9 +1411,7 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
-        route = route_class(
-            self.prefix + path,
-            endpoint=endpoint,
+        route_kwargs: dict[str, Any] = dict(
             response_model=response_model,
             status_code=status_code,
             tags=current_tags,
@@ -1410,10 +1436,12 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
-            strict_content_type=get_value_or_default(
-                strict_content_type, self.strict_content_type
-            ),
         )
+        if _accepts_kwarg(route_class, "strict_content_type"):
+            route_kwargs["strict_content_type"] = get_value_or_default(
+                strict_content_type, self.strict_content_type
+            )
+        route = route_class(self.prefix + path, endpoint=endpoint, **route_kwargs)
         self.routes.append(route)
 
     def api_route(
