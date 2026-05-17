@@ -829,8 +829,7 @@ def _accepts_kwarg(cls: type, kwarg: str) -> bool:
             _ACCEPTS_KWARG_CACHE[key] = True
         else:
             _ACCEPTS_KWARG_CACHE[key] = any(
-                p.kind == inspect.Parameter.VAR_KEYWORD
-                for p in params.values()
+                p.kind == inspect.Parameter.VAR_KEYWORD for p in params.values()
             )
     return _ACCEPTS_KWARG_CACHE[key]
 

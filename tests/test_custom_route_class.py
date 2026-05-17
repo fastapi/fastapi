@@ -1,7 +1,8 @@
-import pytest
+from collections.abc import Callable, Sequence
 from enum import Enum
-from typing import Any, Callable, Sequence
+from typing import Any
 
+import pytest
 from fastapi import APIRouter, FastAPI, params
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.responses import JSONResponse, Response
@@ -159,9 +160,7 @@ class LegacyRoute(APIRoute):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: type[Response] | DefaultPlaceholder = Default(
-            JSONResponse
-        ),
+        response_class: type[Response] | DefaultPlaceholder = Default(JSONResponse),
         dependency_overrides_provider: Any | None = None,
         callbacks: list[BaseRoute] | None = None,
         openapi_extra: dict[str, Any] | None = None,
