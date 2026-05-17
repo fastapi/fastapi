@@ -19,10 +19,8 @@ If you think you found a vulnerability, and even if you are not sure about it, p
 I (the author, [@tiangolo](https://x.com/tiangolo)) will review it thoroughly and get back to you.
 
 ## Public Discussions
-
-Please restrain from publicly discussing a potential security vulnerability. 🙊
-
-It's better to discuss privately and try to find a solution first, to limit the potential impact as much as possible.
+Please refrain from publicly disclosing a potential security vulnerability. 🙊
+Kindly report it privately so it can be assessed and addressed responsibly, reducing any possible security impact.
 
 ---
 
