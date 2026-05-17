@@ -235,3 +235,24 @@ def test_custom_route_explicit_constructor_include_router():
     resp = TestClient(app_outer).get("/outer/r/inner")
     assert resp.status_code == 200
     assert resp.json() == {"inner": True}
+
+
+def test_accepts_kwarg_signature_error():
+    """Cover the fallback when inspect.signature raises (line 826-827)."""
+    from unittest.mock import patch
+
+    from fastapi.routing import _accepts_kwarg, _ACCEPTS_KWARG_CACHE
+
+    class SimpleRoute:
+        def __init__(self, x):
+            pass
+
+    # Clear cache to force re-evaluation
+    _ACCEPTS_KWARG_CACHE.clear()
+
+    with patch("fastapi.routing.inspect.signature", side_effect=ValueError("mock")):
+        result = _accepts_kwarg(SimpleRoute, "strict_content_type")
+
+    # When signature inspection fails, params defaults to {} and the kwarg
+    # is not found, so the function returns False.
+    assert result is False
