@@ -241,7 +241,7 @@ def test_accepts_kwarg_signature_error():
     """Cover the fallback when inspect.signature raises (line 826-827)."""
     from unittest.mock import patch
 
-    from fastapi.routing import _accepts_kwarg, _ACCEPTS_KWARG_CACHE
+    from fastapi.routing import _ACCEPTS_KWARG_CACHE, _accepts_kwarg
 
     class SimpleRoute:
         def __init__(self, x):
