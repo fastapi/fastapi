@@ -2,7 +2,7 @@
 
 Ao trabalhar em projetos Python, você provavelmente deveria usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
 
-/// info | Informação
+/// note | Nota
 
 Se você já sabe sobre ambientes virtuais, como criá-los e usá-los, talvez seja melhor pular esta seção. 🤓
 
@@ -18,7 +18,7 @@ Um **ambiente virtual** é um diretório com alguns arquivos.
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Esta página lhe ensinará como usar **ambientes virtuais** e como eles funcionam.
 
