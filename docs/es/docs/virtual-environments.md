@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Cada vez que instales un **nuevo paquete** en ese entorno, **activa** el entorno de nuevo.
 
-Esto asegura que si usas un programa de **terminal (<abbr title="command line interface – interfaz de línea de comandos">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
+Esto asegura que si usas un **programa de terminal (<abbr title="command line interface - interfaz de línea de comandos">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
 
 ///
 
@@ -817,7 +817,7 @@ Traceback (most recent call last):
 
 </div>
 
-Pero si desactivas el entorno virtual y activas el nuevo para `prisoner-of-askaban` entonces cuando ejecutes `python` utilizará el Python del entorno virtual en `prisoner-of-azkaban`.
+Pero si desactivas el entorno virtual y activas el nuevo para `prisoner-of-azkaban` entonces cuando ejecutes `python` utilizará el Python del entorno virtual en `prisoner-of-azkaban`.
 
 <div class="termy">
 
