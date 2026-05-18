@@ -100,14 +100,14 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import (  # type: ignore[no-redef,import-untyped]  # ty: ignore[unused-ignore-comment]
+            from multipart import (  # type: ignore[no-redef,import-untyped]
                 __version__,
             )
 
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]  # ty: ignore[unused-ignore-comment]
+                from multipart.multipart import (  # type: ignore[import-untyped]
                     parse_options_header,
                 )
 
@@ -622,7 +622,7 @@ async def solve_dependencies(
     if response is None:
         response = Response()
         del response.headers["content-length"]
-        response.status_code = None  # type: ignore  # ty: ignore[unused-ignore-comment]
+        response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
     for sub_dependant in dependant.dependencies:
