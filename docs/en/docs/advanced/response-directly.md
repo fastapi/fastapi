@@ -28,6 +28,14 @@ And when you return a `Response`, **FastAPI** will pass it directly.
 
 It won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.
 
+/// note | Background Tasks
+
+If you add tasks to an injected `BackgroundTasks` object and also return a custom `Response` with its own `background`, the tasks from the `Response` are used, and the injected background tasks are not automatically merged.
+
+Use the injected `BackgroundTasks` object directly, as explained in [Background Tasks](../tutorial/background-tasks.md), when you want **FastAPI** to collect background tasks from path operations and dependencies.
+
+///
+
 This gives you a lot of **flexibility**. You can return any data type, override any data declaration or validation, etc.
 
 It also gives you a lot of **responsibility**. You have to make sure that the data you return is correct, in the correct format, that it can be serialized, etc.
