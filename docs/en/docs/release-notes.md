@@ -17,6 +17,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ru (update-outdated). PR [#15521](https://github.com/fastapi/fastapi/pull/15521) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Fix typos in Spanish LLM-prompt. PR [#15472](https://github.com/fastapi/fastapi/pull/15472) by [@crr004](https://github.com/crr004).
 
 ### Internal
