@@ -120,7 +120,7 @@ To add a function that should be run when the application is shutting down, decl
 
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 
-/// info
+/// note
 
 In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
 
@@ -152,7 +152,7 @@ Just a technical detail for the curious nerds. 🤓
 
 Underneath, in the ASGI technical specification, this is part of the [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), and it defines events called `startup` and `shutdown`.
 
-/// info
+/// note
 
 You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://www.starlette.dev/lifespan/).
 

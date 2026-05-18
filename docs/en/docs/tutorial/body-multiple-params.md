@@ -111,7 +111,7 @@ For example:
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 
-/// info
+/// note
 
 `Body` also has all the same extra validation and metadata parameters as `Query`, `Path` and others you will see later.
 
