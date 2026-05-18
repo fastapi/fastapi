@@ -52,6 +52,9 @@ silver:
   - url: https://dribia.com/en/
     title: Dribia - Data Science within your reach
     img: https://fastapi.tiangolo.com/img/sponsors/dribia.png
+  - url: https://talordata.com/?campaignid=oh5dVZ3Zc3YGiAI2&utm_source=fastapi&utm_term=fastapi
+    title: TalorData SERP API - Multi-Engine Search Results Data
+    img: https://fastapi.tiangolo.com/img/sponsors/talordata.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
