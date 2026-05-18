@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix image URLs in `index.md`. PR [#15534](https://github.com/fastapi/fastapi/pull/15534) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ✏️ Fix Azkaban spelling typo in `virtual-environments.md‎`. PR [#15463](https://github.com/fastapi/fastapi/pull/15463) by [@isaacbernat](https://github.com/isaacbernat).
 * 💄 Improve layout and styling. PR [#15462](https://github.com/fastapi/fastapi/pull/15462) by [@alejsdev](https://github.com/alejsdev).
 * 💄 Refactor opinions section with interactive tabs and new logos. PR [#15458](https://github.com/fastapi/fastapi/pull/15458) by [@alejsdev](https://github.com/alejsdev).
