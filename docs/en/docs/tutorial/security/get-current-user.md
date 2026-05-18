@@ -52,7 +52,7 @@ Here **FastAPI** won't get confused because you are using `Depends`.
 
 ///
 
-/// check
+/// tip
 
 The way this dependency system is designed allows us to have different dependencies (different "dependables") that all return a `User` model.
 

@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Mais si vous désactivez l’environnement virtuel et activez le nouveau pour `prisoner-of-askaban`, alors lorsque vous exécuterez `python`, il utilisera le Python de l’environnement virtuel de `prisoner-of-azkaban`.
+Mais si vous désactivez l’environnement virtuel et activez le nouveau pour `prisoner-of-azkaban`, alors lorsque vous exécuterez `python`, il utilisera le Python de l’environnement virtuel de `prisoner-of-azkaban`.
 
 <div class="termy">
 

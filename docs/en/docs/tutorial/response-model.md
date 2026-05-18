@@ -72,7 +72,7 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info
+/// note
 
 To use `EmailStr`, first install [`email-validator`](https://github.com/JoshData/python-email-validator).
 
@@ -251,7 +251,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 }
 ```
 
-/// info
+/// note
 
 You can also use:
 
