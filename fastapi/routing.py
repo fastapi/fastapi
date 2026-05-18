@@ -25,6 +25,7 @@ from enum import Enum, IntEnum
 from typing import (
     Annotated,
     Any,
+    TypedDict,
     TypeVar,
     cast,
 )
@@ -90,9 +91,7 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
-import inspect
-import weakref
-from typing import Any, TypedDict
+
 
 # Copy of starlette.routing.request_response modified to include the
 # dependencies' AsyncExitStack
@@ -256,12 +255,12 @@ class EndpointContext(TypedDict, total=False):
     function: str
 
 
-# Use a WeakKeyDictionary instead of a standard dict to prevent memory leaks 
+# Use a WeakKeyDictionary instead of a standard dict to prevent memory leaks
 # and cache collisions when endpoints are dynamically created and destroyed.
 # This cache will only be used for the fallback "slow path"._endpoint_context_cache: weakref.WeakKeyDictionary[Any, EndpointContext] = weakref.WeakKeyDictionary()
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
-    
+
     ctx: EndpointContext = {}
 
     # Fast path: Read __code__ directly. This is ~2000x faster than inspect,
