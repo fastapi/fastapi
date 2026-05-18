@@ -257,7 +257,8 @@ class EndpointContext(TypedDict, total=False):
 
 # Use a WeakKeyDictionary instead of a standard dict to prevent memory leaks
 # and cache collisions when endpoints are dynamically created and destroyed.
-# This cache will only be used for the fallback "slow path"._endpoint_context_cache: weakref.WeakKeyDictionary[Any, EndpointContext] = weakref.WeakKeyDictionary()
+# This cache will only be used for the fallback "slow path".
+_endpoint_context_cache: weakref.WeakKeyDictionary[Any, EndpointContext] = weakref.WeakKeyDictionary()
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
 
