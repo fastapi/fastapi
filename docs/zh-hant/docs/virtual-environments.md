@@ -294,7 +294,7 @@ $ echo "*" > .venv/.gitignore
 
 而 `*` 對於 Git 來說意味著「所有內容」。所以，它會忽略 `.venv` 目錄中的所有內容。
 
-該指令會建立一個名為 .gitignore 的檔案，內容如下：
+該指令會建立一個名為 `.gitignore` 的檔案，內容如下：
 
 ```gitignore
 *
