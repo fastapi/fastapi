@@ -2,7 +2,7 @@
 
 Python projeleriyle çalışırken, her proje için kurduğunuz package'leri birbirinden izole etmek adına büyük ihtimalle bir **virtual environment** (veya benzer bir mekanizma) kullanmalısınız.
 
-/// info | Bilgi
+/// note | Not
 
 Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıklarını zaten biliyorsanız bu bölümü atlamak isteyebilirsiniz. 🤓
 
@@ -18,7 +18,7 @@ Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıkla
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Bu sayfada **virtual environment**'leri nasıl kullanacağınızı ve nasıl çalıştıklarını öğreneceksiniz.
 
