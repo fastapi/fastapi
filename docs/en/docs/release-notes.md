@@ -24,6 +24,7 @@ hide:
 
 ### Internal
 
+* 🔒️ Only allow team members to modify dependencies. PR [#15548](https://github.com/fastapi/fastapi/pull/15548) by [@svlandeg](https://github.com/svlandeg).
 * ⬆ Bump actions/add-to-project from 1.0.2 to 2.0.0. PR [#15490](https://github.com/fastapi/fastapi/pull/15490) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/labeler from 6.0.1 to 6.1.0. PR [#15507](https://github.com/fastapi/fastapi/pull/15507) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Remove Ruff ignored rule for tabs. PR [#15533](https://github.com/fastapi/fastapi/pull/15533) by [@tiangolo](https://github.com/tiangolo).
