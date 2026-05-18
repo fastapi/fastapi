@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info
+/// note
 
 Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
 
