@@ -347,6 +347,8 @@ extra:
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
+  - link: /hi/
+    name: hi - हिन्दी
 extra_css:
 - css/termynal.css
 - css/custom.css
