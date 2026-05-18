@@ -72,7 +72,7 @@ So, the line:
 
 will not be executed.
 
-/// info
+/// note
 
 For more information, check [the official Python docs](https://docs.python.org/3/library/__main__.html).
 
