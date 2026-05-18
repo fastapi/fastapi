@@ -270,7 +270,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note
 
 A "path" is also commonly called an "endpoint" or a "route".
 
@@ -322,7 +322,7 @@ The `@app.get("/")` tells **FastAPI** that the function right below is in charge
 * the path `/`
 * using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
-/// info | `@decorator` Info
+/// note | `@decorator` Info
 
 That `@something` syntax in Python is called a "decorator".
 
