@@ -210,6 +210,9 @@ You can [contribute](contributing.md) to the source code with Pull Requests, for
     * Make sure to add tests.
     * Make sure to add documentation if it's relevant.
 
+Note that PRs from non-team members are not allowed to modify `pyproject.toml` or `uv.lock`, to prevent supply chain risk.
+If you would like to add a new dependency, create a new [Discussion](https://github.com/fastapi/fastapi/discussions/categories/questions) to explain why.
+
 ## Help Maintain FastAPI { #help-maintain-fastapi }
 
 Help me maintain **FastAPI**! 🤓
