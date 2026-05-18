@@ -222,7 +222,17 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 ### Required, can be `None` { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+You can declare that a parameter can accept `None`, but that it's still required.
+
+This means that clients have to include the parameter in the request, even if its value could be `None` in the Python code.
+
+/// note
+
+Query parameters are sent in the URL, so they are normally strings. There isn't a standard way to send a Python `None` value in a query parameter.
+
+For example, omitting `q` would make the parameter missing, and sending `?q=` would send an empty string instead of `None`.
+
+///
 
 To do that, you can declare that `None` is a valid type but simply do not declare a default value:
 
