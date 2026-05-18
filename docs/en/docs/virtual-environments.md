@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-But if you deactivate the virtual environment and activate the new one for `prisoner-of-askaban` then when you run `python` it will use the Python from the virtual environment in `prisoner-of-azkaban`.
+But if you deactivate the virtual environment and activate the new one for `prisoner-of-azkaban` then when you run `python` it will use the Python from the virtual environment in `prisoner-of-azkaban`.
 
 <div class="termy">
 

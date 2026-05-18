@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
     hooks:
       - id: check-added-large-files
         args: ['--maxkb=750']
@@ -13,6 +13,12 @@ repos:
         - --unsafe
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
+  - repo: https://github.com/crate-ci/typos
+    rev: bbaefadf97b0ec5fdc942684b647f1a6ab250274 # v1.46.0
+    hooks:
+      - id: typos
+        args: [--force-exclude]
 
   - repo: local
     hooks:
@@ -84,4 +90,12 @@ repos:
         name: add date to latest release header
         entry: uv run python scripts/add_latest_release_date.py
         files: ^docs/en/docs/release-notes\.md$
+        pass_filenames: false
+
+      - id: zizmor
+        name: zizmor
+        language: python
+        entry: uv run zizmor .
+        files: ^\.github\/workflows\/
+        require_serial: true
         pass_filenames: false

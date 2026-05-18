@@ -1,4 +1,7 @@
+import pytest
 from fastapi.testclient import TestClient
+
+pytest.importorskip("orjson")
 
 from docs_src.custom_response.tutorial009c_py310 import app
 
