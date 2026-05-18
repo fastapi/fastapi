@@ -172,7 +172,7 @@ As the list is a type that contains some internal types, you put them in square 
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info
+/// note
 
 Those internal types in the square brackets are called "type parameters".
 
@@ -283,7 +283,7 @@ An example from the official Pydantic docs:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info
+/// note
 
 To learn more about [Pydantic, check its docs](https://docs.pydantic.dev/).
 
@@ -341,7 +341,7 @@ This might all sound abstract. Don't worry. You'll see all this in action in the
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
-/// info
+/// note
 
 If you already went through all the tutorial and came back to see more about types, a good resource is [the "cheat sheet" from `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 

@@ -170,7 +170,7 @@ And if there's any other style or consistency need, I'll ask directly for that, 
 
 * Then **comment** saying that you did that, that's how I will know you really checked it.
 
-/// info
+/// note
 
 Unfortunately, I can't simply trust PRs that just have several approvals.
 

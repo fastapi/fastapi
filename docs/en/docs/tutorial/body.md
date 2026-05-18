@@ -8,7 +8,7 @@ Your API almost always has to send a **response** body. But clients don't necess
 
 To declare a **request** body, you use [Pydantic](https://docs.pydantic.dev/) models with all their power and benefits.
 
-/// info
+/// note
 
 To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 

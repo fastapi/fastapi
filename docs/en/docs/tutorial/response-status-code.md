@@ -18,7 +18,7 @@ Notice that `status_code` is a parameter of the "decorator" method (`get`, `post
 
 The `status_code` parameter receives a number with the HTTP status code.
 
-/// info
+/// note
 
 `status_code` can alternatively also receive an `IntEnum`, such as Python's [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus).
 

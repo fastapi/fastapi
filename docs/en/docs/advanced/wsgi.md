@@ -6,7 +6,7 @@ For that, you can use the `WSGIMiddleware` and use it to wrap your WSGI applicat
 
 ## Using `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info
+/// note
 
 This requires installing `a2wsgi` for example with `pip install a2wsgi`.
 

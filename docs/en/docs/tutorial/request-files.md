@@ -2,7 +2,7 @@
 
 You can define files to be uploaded by the client using `File`.
 
-/// info
+/// note
 
 To receive uploaded files, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info
+/// note
 
 `File` is a class that inherits directly from `Form`.
 
