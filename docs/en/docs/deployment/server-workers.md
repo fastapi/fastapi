@@ -17,7 +17,7 @@ As you saw in the previous chapter about [Deployment Concepts](concepts.md), the
 
 Here I'll show you how to use **Uvicorn** with **worker processes** using the `fastapi` command or the `uvicorn` command directly.
 
-/// info
+/// note
 
 If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md).
 

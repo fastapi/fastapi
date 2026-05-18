@@ -2,7 +2,7 @@
 
 You could have a sequence of data that you would like to send in a "**stream**", you could do it with **JSON Lines**.
 
-/// info
+/// note
 
 Added in FastAPI 0.134.0.
 
@@ -48,7 +48,7 @@ A response would have a content type of `application/jsonl` (instead of `applica
 
 It's very similar to a JSON array (equivalent of a Python list), but instead of being wrapped in `[]` and having `,` between the items, it has **one JSON object per line**, they are separated by a new line character.
 
-/// info
+/// note
 
 The important point is that your app will be able to produce each line in turn, while the client consumes the previous lines.
 

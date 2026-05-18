@@ -6,7 +6,7 @@ There are many posts, articles, tools, and projects, related to **FastAPI**.
 
 You could easily use a search engine or video platform to find many resources related to FastAPI.
 
-/// info
+/// note
 
 Before, this page used to list links to external articles.
 

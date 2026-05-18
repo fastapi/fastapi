@@ -8,7 +8,7 @@ With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI*
 
 ## Using `TestClient` { #using-testclient }
 
-/// info
+/// note
 
 To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).
 
@@ -144,7 +144,7 @@ E.g.:
 
 For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the [HTTPX documentation](https://www.python-httpx.org).
 
-/// info
+/// note
 
 Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
 
