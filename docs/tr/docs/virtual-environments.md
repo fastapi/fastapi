@@ -817,7 +817,7 @@ Traceback (most recent call last):
 
 </div>
 
-Ama virtual environment'i deactivate edip `prisoner-of-askaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
+Ama virtual environment'i deactivate edip `prisoner-of-azkaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
 
 <div class="termy">
 
