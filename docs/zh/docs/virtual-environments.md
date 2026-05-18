@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-但是如果你停用虚拟环境并激活 `prisoner-of-askaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-askaban` 中的虚拟环境中的 Python。
+但是如果你停用虚拟环境并激活 `prisoner-of-azkaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-azkaban` 中的虚拟环境中的 Python。
 
 <div class="termy">
 
@@ -861,4 +861,4 @@ I solemnly swear 🐺
 
 如果你读过并理解了所有这些，现在**你对虚拟环境的了解比很多开发者都要多**。🤓
 
-在未来当你调试看起来复杂的东西时，了解这些细节很可能会有用，你会知道**它是如何在底层工作的**。😎
+在未来当你调看看起来复杂的东西时，了解这些细节很可能会有用，你会知道**它是如何在底层工作的**。😎
