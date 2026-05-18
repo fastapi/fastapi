@@ -31,6 +31,7 @@ from fastapi.responses import Response
 from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
+    _generate_unique_id_for_method,
     deep_dict_update,
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
@@ -242,7 +243,15 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation_id = route.operation_id or route.unique_id
+    if (
+        route.operation_id is None
+        and isinstance(route.generate_unique_id_function, DefaultPlaceholder)
+        and route.methods
+        and len(route.methods) > 1
+    ):
+        operation_id = _generate_unique_id_for_method(route, method=method)
+    else:
+        operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
         endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
         message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
