@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/hi"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI फ़्रेमवर्क, उच्च प्रदर्शन, सीखने में आसान, कोड लिखने में तेज़, प्रोडक्शन के लिए तैयार</em>
