@@ -175,7 +175,7 @@ tests = [
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
-    "ty>=0.0.9",
+    "ty>=0.0.25",
     "a2wsgi >=1.9.0,<=2.0.0",
     "pytest-xdist[psutil]>=2.5.0",
     "pytest-cov>=4.0.0",
@@ -278,7 +278,6 @@ ignore = [
     "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
-    "W191",  # indentation contains tabs
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -335,3 +334,43 @@ keep-runtime-typing = true
 [tool.inline-snapshot]
 # default-flags=["fix"]
 # default-flags=["create"]
+
+[tool.typos.files]
+extend-exclude = [
+    "coverage/",
+    "dist/",
+    "docs/de/",
+    "docs/en/data/",
+    "docs/en/docs/img/",
+    "docs/en/docs/release-notes.md",
+    "docs/es/",
+    "docs/fr/",
+    "docs/ja/",
+    "docs/ko/",
+    "docs/language_names.yml",
+    "docs/pt/",
+    "docs/ru/",
+    "docs/tr/",
+    "docs/uk/",
+    "docs/zh/",
+    "docs/zh-hant/",
+    "htmlcov/",
+    "scripts/general-llm-prompt.md",
+    "scripts/tests/test_translation_fixer/test_complex_doc/",
+    "site/",
+    "site_build/",
+    "uv.lock",
+]
+
+[tool.typos.default.extend-identifiers]
+alls = "alls"
+
+[tool.typos.default.extend-words]
+ba = "ba"
+fo = "fo"
+havin = "havin"
+Ines = "Ines"
+ser = "ser"
+
+[tool.ty.terminal]
+error-on-warning = true

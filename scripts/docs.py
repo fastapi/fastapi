@@ -190,12 +190,14 @@ index_sponsors_template = """
 {% for sponsor in sponsors.keystone -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
-### Gold and Silver Sponsors
+### Gold Sponsors
 
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
-{% endfor -%}
-{%- for sponsor in sponsors.silver -%}
+{% endfor %}
+### Silver Sponsors
+
+{% for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
 

@@ -1006,7 +1006,7 @@ class FastAPI(Starlette):
         # Starlette still has incorrect type specification for the handlers
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
-            websocket_request_validation_exception_handler,  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+            websocket_request_validation_exception_handler,  # type: ignore[arg-type]
         )  # ty: ignore[no-matching-overload]
 
         self.user_middleware: list[Middleware] = (
@@ -1029,11 +1029,11 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware,  # ty: ignore[invalid-argument-type]
+                    ExceptionMiddleware,
                     handlers=exception_handlers,
                     debug=debug,
                 ),
@@ -1056,7 +1056,7 @@ class FastAPI(Starlette):
                 # user middlewares, the same context is used.
                 # This is currently not needed, only for closing files, but used to be
                 # important when dependencies with yield were closed here.
-                Middleware(AsyncExitStackMiddleware),  # ty: ignore[invalid-argument-type]
+                Middleware(AsyncExitStackMiddleware),
             ]
         )
 
@@ -4638,7 +4638,7 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_middleware(BaseHTTPMiddleware, dispatch=func)  # ty: ignore[invalid-argument-type]
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
             return func
 
         return decorator
