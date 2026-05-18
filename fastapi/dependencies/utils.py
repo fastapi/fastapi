@@ -242,10 +242,21 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+class _DictWithForwardRefs(dict[str, Any]):
+    def __missing__(self, key: str) -> Any:
+        value = ForwardRef(key)
+        self[key] = value
+        return value
+
+
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
+        annotation_string = annotation
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
+        if isinstance(annotation, ForwardRef) and "Annotated" in annotation_string:
+            annotationns = _DictWithForwardRefs(globalns)
+            annotation = eval(annotation_string, annotationns, annotationns)
         if annotation is type(None):
             return None
     return annotation
