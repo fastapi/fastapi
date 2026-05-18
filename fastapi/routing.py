@@ -4,6 +4,7 @@ import functools
 import inspect
 import json
 import types
+import weakref
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -91,9 +92,6 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
-import inspect
-import weakref
-from typing import Any, TypedDict
 
 
 # Copy of starlette.routing.request_response modified to include the
