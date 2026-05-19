@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>

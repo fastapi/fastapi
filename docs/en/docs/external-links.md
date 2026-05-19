@@ -1,3 +1,8 @@
+---
+include_yaml:
+  topic_repos: data/topic_repos.yml
+---
+
 # External Links
 
 **FastAPI** has a great community constantly growing.

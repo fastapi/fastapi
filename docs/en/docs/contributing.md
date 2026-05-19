@@ -100,10 +100,10 @@ Go into the language directory, for the main docs in English it's at `docs/en/`:
 $ cd docs/en/
 ```
 
-Then run `mkdocs` in that directory:
+Then run `zensical` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 127.0.0.1:8008
+$ zensical serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -129,7 +129,7 @@ Completion will take effect once you restart the terminal.
 
 ### Docs Structure
 
-The documentation uses [MkDocs](https://www.mkdocs.org/).
+The documentation uses [Zensical](https://zensical.org).
 
 And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
 
