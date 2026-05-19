@@ -290,7 +290,10 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tilde: null
   pymdownx.blocks.admonition:
+    # TODO: remove types section (with custom types) once translations are migrated to
+    # not use custom types too
     types:
+    # Default types
     - note
     - attention
     - caution
@@ -299,6 +302,7 @@ markdown_extensions:
     - tip
     - hint
     - warning
+    # Custom types
     - info
     - check
   pymdownx.blocks.details: null

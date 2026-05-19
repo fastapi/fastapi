@@ -98,7 +98,7 @@ For example, if you had a database session in a dependency with `yield`, the `St
 
 This behavior was reverted in 0.118.0, to make the exit code after `yield` be executed after the response is sent.
 
-/// info
+/// note
 
 As you will see below, this is very similar to the behavior before version 0.106.0, but with several improvements and bug fixes for corner cases.
 

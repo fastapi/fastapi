@@ -54,24 +54,71 @@ Os recursos chave são:
 
 ### Patrocinador Keystone { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### Patrocinadores Ouro e Prata { #gold-and-silver-sponsors }
+### Patrocinadores Ouro { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### Patrocinadores Prata { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
 [Outros patrocinadores](https://fastapi.tiangolo.com/pt/fastapi-people/#sponsors)
 
 ## Opiniões { #opinions }
+
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Empresas que usam FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
+
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">"Estou usando o <strong>FastAPI</strong> muito esses dias. Estou na verdade planejando utilizá-lo em todos os meus times de <strong>serviços ML na Microsoft</strong>. Alguns deles estão sendo integrados no produto <strong>Windows</strong> principal e alguns produtos do <strong>Office</strong>."</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"Nós adotamos a biblioteca <strong>FastAPI</strong> para iniciar um servidor <strong>REST</strong> que pode ser consultado para obter <strong>previsões</strong>." <em>[para o Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"A <strong>Netflix</strong> tem o prazer de anunciar o lançamento open-source do nosso framework de orquestração de <strong>gerenciamento de crises</strong>: <strong>Dispatch</strong>!" <em>[criado com FastAPI]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"Se alguém estiver procurando construir uma API Python para produção, eu recomendaria fortemente o <strong>FastAPI</strong>. Ele é <strong>lindamente projetado</strong>, <strong>simples de usar</strong> e <strong>altamente escalável</strong> — tornou-se um <strong>componente chave</strong> na nossa estratégia de desenvolvimento API first."</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
 
 "_[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizar ele em todos os times de **serviços ML na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**._"
 
@@ -81,7 +128,7 @@ Os recursos chave são:
 
 "_Nós adotamos a biblioteca **FastAPI** para iniciar um servidor **REST** que pode ser consultado para obter **previsões**. [para o Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, e Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -91,37 +138,25 @@ Os recursos chave são:
 
 ---
 
-"_Estou muito entusiasmado com o **FastAPI**. É tão divertido!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) apresentador do podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_Honestamente, o que você construiu parece super sólido e refinado. De muitas formas, é o que eu queria que o **Hug** fosse - é realmente inspirador ver alguém construir isso._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>criador do [Hug](https://github.com/hugapi/hug)</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
-
----
-
-"_Se você está procurando aprender um **framework moderno** para construir APIs REST, dê uma olhada no **FastAPI** [...] É rápido, fácil de usar e fácil de aprender [...]_"
-
-"_Nós trocamos nossas **APIs** por **FastAPI** [...] Acredito que você gostará dele [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>fundadores da [Explosion AI](https://explosion.ai) - criadores da [spaCy](https://spacy.io)</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
 "_Se alguém estiver procurando construir uma API Python para produção, eu recomendaria fortemente o **FastAPI**. Ele é **lindamente projetado**, **simples de usar** e **altamente escalável**, e se tornou um **componente chave** para a nossa estratégia de desenvolvimento API first, impulsionando diversas automações e serviços, como o nosso Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
+## FastAPI Conf { #fastapi-conf }
+
+[**FastAPI Conf '26**](https://fastapiconf.com) acontece em **28 de outubro de 2026** em **Amsterdã, NL**. Tudo sobre FastAPI, direto da fonte. 🎤
+
+<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
+
 ## Mini documentário do FastAPI { #fastapi-mini-documentary }
 
 Há um [mini documentário do FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE) lançado no fim de 2025, você pode assisti-lo online:
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, o FastAPI das interfaces de linhas de comando { #typer-the-fastapi-of-clis }
 

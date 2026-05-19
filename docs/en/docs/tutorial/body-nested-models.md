@@ -136,7 +136,7 @@ This will expect (convert, validate, document, etc.) a JSON body like:
 }
 ```
 
-/// info
+/// note
 
 Notice how the `images` key now has a list of image objects.
 
@@ -148,7 +148,7 @@ You can define arbitrarily deeply nested models:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info
+/// note
 
 Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
 

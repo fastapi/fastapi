@@ -34,7 +34,7 @@ Keep in mind that you have to return the `JSONResponse` directly.
 
 ///
 
-/// info
+/// note
 
 The `model` key is not part of OpenAPI.
 
@@ -183,7 +183,7 @@ Notice that you have to return the image using a `FileResponse` directly.
 
 ///
 
-/// info
+/// note
 
 Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
 
