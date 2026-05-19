@@ -150,9 +150,11 @@ def build_lang(
     ),
 ) -> None:
     """
-    Build the Zensical docs for a language.
+    Build the docs for a language.
     """
-    build_zensical_lang(lang)
+    build_zensical_lang_to_stage(lang)
+    copy_zensical_stage_to_site(lang)
+    typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
 
 
 def split_markdown_header(markdown: str) -> tuple[str, str]:
@@ -304,48 +306,6 @@ def copy_zensical_stage_to_site(lang: str) -> None:
     shutil.copytree(build_site_dist_path, dist_path, dirs_exist_ok=True)
 
 
-@app.command()
-def build_zensical_lang(
-    lang: str = typer.Argument(
-        ..., callback=lang_callback, autocompletion=complete_existing_lang
-    ),
-) -> None:
-    """
-    Build the docs for a language with Zensical using staged sources.
-    """
-    build_zensical_lang_to_stage(lang)
-    copy_zensical_stage_to_site(lang)
-    typer.secho(
-        f"Successfully built Zensical docs for: {lang}", color=typer.colors.GREEN
-    )
-
-
-@app.command()
-def build_zensical_all() -> None:
-    """
-    Build the full translated docs site with Zensical into ./site/.
-    """
-    update_languages()
-    shutil.rmtree(site_path, ignore_errors=True)
-    shutil.rmtree(zensical_src_path, ignore_errors=True)
-    shutil.copytree(Path("docs_src"), zensical_src_path / "docs_src")
-    langs = [
-        lang.name
-        for lang in get_lang_paths()
-        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
-    ]
-    process_pool_size = min(4, len(langs), os.cpu_count() or 1)
-    typer.echo(f"Using process pool size: {process_pool_size}")
-    with Pool(process_pool_size) as p:
-        p.map(build_zensical_lang_to_stage, langs)
-    if "en" in langs:
-        copy_zensical_stage_to_site("en")
-    for lang in langs:
-        if lang != "en":
-            copy_zensical_stage_to_site(lang)
-    typer.secho("Successfully built all Zensical docs", color=typer.colors.GREEN)
-
-
 index_sponsors_template = """
 ### Keystone Sponsor
 
@@ -427,9 +387,27 @@ def generate_readme() -> None:
 @app.command()
 def build_all() -> None:
     """
-    Build the full translated docs site with Zensical into ./site/.
+    Build the full translated docs site into ./site/.
     """
-    build_zensical_all()
+    update_languages()
+    shutil.rmtree(site_path, ignore_errors=True)
+    shutil.rmtree(zensical_src_path, ignore_errors=True)
+    shutil.copytree(Path("docs_src"), zensical_src_path / "docs_src")
+    langs = [
+        lang.name
+        for lang in get_lang_paths()
+        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
+    ]
+    process_pool_size = min(4, len(langs), os.cpu_count() or 1)
+    typer.echo(f"Using process pool size: {process_pool_size}")
+    with Pool(process_pool_size) as p:
+        p.map(build_zensical_lang_to_stage, langs)
+    if "en" in langs:
+        copy_zensical_stage_to_site("en")
+    for lang in langs:
+        if lang != "en":
+            copy_zensical_stage_to_site(lang)
+    typer.secho("Successfully built all docs", color=typer.colors.GREEN)
 
 
 @app.command()

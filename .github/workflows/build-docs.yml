@@ -40,6 +40,7 @@ jobs:
   langs:
     needs:
       - changes
+    if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
@@ -105,10 +106,12 @@ jobs:
           path: site_zensical_src/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: | # zizmor: ignore[template-injection] - comes from trusted source
-          uv run ./scripts/docs.py build-zensical-lang ${{ matrix.lang }}
+          uv run ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: docs-site-${{ matrix.lang }}
+          # English owns root static assets. Translated pages reference /img, /css,
+          # and /js, so omit duplicated language-local copies from artifacts.
           path: |
             ./site/**
             !./site/${{ matrix.lang }}/img/**
