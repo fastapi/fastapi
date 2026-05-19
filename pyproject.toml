@@ -132,21 +132,17 @@ docs = [
     { include-group = "docs-tests" },
     "black >=25.1.0",
     "cairosvg >=2.8.2",
-    # for MkDocs live reload
-    "click==8.2.1",
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
     "markdown-include-variants >=0.0.8",
     "mdx-include >=1.4.1,<2.0.0",
-    "mkdocs-macros-plugin >=1.5.0",
-    "mkdocs-material >=9.7.0",
-    "mkdocs-redirects >=1.2.1,<1.3.0",
-    "mkdocstrings[python] >=0.30.1",
+    "mkdocstrings[python] >=1.0.3",
     "pillow >=11.3.0",
     "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
     "typer >=0.21.1",
+    "zensical >=0.0.42",
 ]
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
