@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 🍱 Update sponsors: TalorData image. PR [#15562](https://github.com/fastapi/fastapi/pull/15562) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs, simplify usage of admonitions, only default ones. PR [#15553](https://github.com/fastapi/fastapi/pull/15553) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Fix image URLs in `index.md`. PR [#15534](https://github.com/fastapi/fastapi/pull/15534) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ✏️ Fix Azkaban spelling typo in `virtual-environments.md‎`. PR [#15463](https://github.com/fastapi/fastapi/pull/15463) by [@isaacbernat](https://github.com/isaacbernat).
