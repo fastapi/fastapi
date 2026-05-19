@@ -53,7 +53,7 @@ def get_username():
     try:
         yield "Rick"
     finally:
-        print("Cleanup up before response is sent")
+        print("Clean up before response is sent")
 
 UserNameDep = Annotated[str, Depends(get_username, scope="function")]
 
