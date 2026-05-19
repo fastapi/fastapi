@@ -36,7 +36,7 @@ You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right)
 
 There you can select "Releases only".
 
-By doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
+By doing so, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
 
 ## Connect with the author { #connect-with-the-author }
 
@@ -224,7 +224,7 @@ The main tasks that you can do right now are:
 * [Help others with questions in GitHub](#help-others-with-questions-in-github) (see the section above).
 * [Review Pull Requests](#review-pull-requests) (see the section above).
 
-Those two tasks are what **consume time the most**. That's the main work of maintaining FastAPI.
+Those two tasks are what **take up the most time**. That's the main work of maintaining FastAPI.
 
 If you can help me with that, **you are helping me maintain FastAPI** and making sure it keeps **advancing faster and better**. 🚀
 
