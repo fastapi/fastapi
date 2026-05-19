@@ -17,7 +17,6 @@ updates:
       github-actions:
         patterns:
           - "*"
-
   # Python
   - package-ecosystem: "uv"
     directory: "/"
