@@ -473,33 +473,20 @@ def serve() -> None:
 
 
 @app.command()
-def live(
-    lang: str = typer.Argument(
-        None, callback=lang_callback, autocompletion=complete_existing_lang
-    ),
-) -> None:
+def live() -> None:
     """
-    Serve with livereload a docs site for a specific language.
-
-    This only shows the actual translated files, not the placeholders created with
-    build-all.
-
-    Takes an optional LANG argument with the name of the language to serve, by default
-    en.
+    Serve the English docs with livereload from the source files.
     """
-    if lang is None:
-        lang = "en"
-    config_path = stage_zensical_docs(lang)
     subprocess.run(
         [
             "zensical",
             "serve",
             "--config-file",
-            config_path.name,
+            mkdocs_name,
             "--dev-addr",
             "127.0.0.1:8008",
         ],
-        cwd=config_path.parent,
+        cwd=en_docs_path,
         check=True,
     )
 
