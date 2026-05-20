@@ -132,7 +132,7 @@ checker(q="somequery")
 
 如此一來，該 session 就會釋放資料庫連線，讓其他請求可以使用。
 
-如果你有不同的情境，需要從含有 `yield` 的相依中提早結束，請建立一個 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub 討論問題</a>，描述你的具體情境，以及為何提早關閉含有 `yield` 的相依對你有幫助。
+如果你有不同的情境，需要從含有 `yield` 的相依中提早結束，請建立一個 [GitHub 討論問題](https://github.com/fastapi/fastapi/discussions/new?category=questions)，描述你的具體情境，以及為何提早關閉含有 `yield` 的相依對你有幫助。
 
 如果有令人信服的案例需要在含有 `yield` 的相依中提前關閉，我會考慮加入一種新的選項，讓你可以選擇性啟用提前關閉。
 
@@ -144,7 +144,7 @@ checker(q="somequery")
 
 ### 背景任務與含有 `yield` 的相依，技術細節 { #background-tasks-and-dependencies-with-yield-technical-details }
 
-在 FastAPI 0.106.0 之前，不可能在 `yield` 之後拋出例外；含有 `yield` 的相依的結束程式碼會在回應送出之後才執行，因此[例外處理器](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} 早就已經跑完了。
+在 FastAPI 0.106.0 之前，不可能在 `yield` 之後拋出例外；含有 `yield` 的相依的結束程式碼會在回應送出之後才執行，因此[例外處理器](../tutorial/handling-errors.md#install-custom-exception-handlers) 早就已經跑完了。
 
 當初這樣設計主要是為了允許在背景任務中使用由相依「yield」出來的同一組物件，因為結束程式碼會在背景任務結束後才執行。
 

@@ -17,7 +17,7 @@ MARKDOWN_LINK_RE = re.compile(
     r"(?P<url>[^)\s]+)"  # url (no spaces and `)`)
     r'(?:\s+["\'](?P<title>.*?)["\'])?'  # optional title in "" or ''
     r"\)"
-    r"(?:\s*\{(?P<attrs>[^}]*)\})?"  # optional attributes in {}
+    r"(?:\{(?P<attrs>[^}]*)\})?"  # optional attributes in {}
 )
 
 HTML_LINK_RE = re.compile(r"<a\s+[^>]*>.*?</a>")

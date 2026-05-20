@@ -35,13 +35,13 @@ FastAPI 在 0.95.0 版本中添加了对 `Annotated` 的支持（并开始推荐
 
 如果你的版本更旧，使用 `Annotated` 会报错。
 
-在使用 `Annotated` 之前，请确保先[升级 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}到至少 0.95.1。
+在使用 `Annotated` 之前，请确保先[升级 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions)到至少 0.95.1。
 
 ///
 
 ## 在 `q` 参数的类型中使用 `Annotated` { #use-annotated-in-the-type-for-the-q-parameter }
 
-还记得我之前在[Python 类型简介](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}中说过可以用 `Annotated` 给参数添加元数据吗？
+还记得我之前在[Python 类型简介](../python-types.md#type-hints-with-metadata-annotations)中说过可以用 `Annotated` 给参数添加元数据吗？
 
 现在正是与 FastAPI 搭配使用它的时候。🚀
 
@@ -105,7 +105,7 @@ FastAPI 现在会：
 q: str | None = Query(default=None)
 ```
 
-……会让参数变成可选，默认值为 `None`，等同于：
+...会让参数变成可选，默认值为 `None`，等同于：
 
 ```Python
 q: str | None = None
@@ -133,7 +133,7 @@ q: str | None = Query(default=None, max_length=50)
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-……因为不清楚默认值应该是 `"rick"` 还是 `"morty"`。
+...因为不清楚默认值应该是 `"rick"` 还是 `"morty"`。
 
 因此，你应该这样用（推荐）：
 
@@ -141,7 +141,7 @@ q: Annotated[str, Query(default="rick")] = "morty"
 q: Annotated[str, Query()] = "rick"
 ```
 
-……或者在旧代码库中你会见到：
+...或者在旧代码库中你会见到：
 
 ```Python
 q: str = Query(default="rick")
@@ -157,7 +157,7 @@ q: str = Query(default="rick")
 
 当你不使用 `Annotated` 而是使用**（旧的）默认值风格**时，如果你在**其他地方**不通过 FastAPI 调用该函数，你必须**记得**给函数传参，否则得到的值会和预期不同（例如得到 `QueryInfo` 之类的对象而不是 `str`）。而你的编辑器不会报错，Python 也不会在调用时报错，只有在函数内部的操作出错时才会暴露问题。
 
-由于 `Annotated` 可以包含多个元数据标注，你甚至可以用同一个函数与其他工具配合，例如 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>。🚀
+由于 `Annotated` 可以包含多个元数据标注，你甚至可以用同一个函数与其他工具配合，例如 [Typer](https://typer.tiangolo.com/)。🚀
 
 ## 添加更多校验 { #add-more-validations }
 
@@ -337,7 +337,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 最接近的有效名称是 `item_query`。
 
-但你仍然需要它在 URL 中就是 `item-query`……
+但你仍然需要它在 URL 中就是 `item-query`...
 
 这时可以用 `alias` 参数声明一个别名，FastAPI 会用该别名在 URL 中查找参数值：
 
@@ -369,11 +369,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 在这些情况下，你可以使用**自定义校验函数**，该函数会在正常校验之后应用（例如，在先校验值是 `str` 之后）。
 
-你可以在 `Annotated` 中使用 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic 的 `AfterValidator`</a> 来实现。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 来实现。
 
 /// tip | 提示
 
-Pydantic 还有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> 等。🤓
+Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等。🤓
 
 ///
 
@@ -421,7 +421,7 @@ Pydantic 还有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#f
 
 所以，即使用户没有提供条目 ID，他们仍然会收到一个随机推荐。
 
-……而我们把这些都放在**一行简单的代码**里完成。🤯 你不爱 Python 吗？🐍
+...而我们把这些都放在**一行简单的代码**里完成。🤯 你不爱 Python 吗？🐍
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 

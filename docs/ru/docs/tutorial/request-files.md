@@ -4,9 +4,9 @@
 
 /// info | Дополнительная информация
 
-Чтобы получать загруженные файлы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы получать загруженные файлы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет, например:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет, например:
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ $ pip install python-multipart
     * Файл, хранящийся в памяти до максимального предела размера, после преодоления которого он будет храниться на диске.
 * Это означает, что он будет хорошо работать с большими файлами, такими как изображения, видео, большие бинарные файлы и т.д., не потребляя при этом всю память.
 * Из загруженного файла можно получить метаданные.
-* Он реализует <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` интерфейс.
-* Он предоставляет реальный объект Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> который вы можете передать непосредственно другим библиотекам, которые ожидают файл в качестве объекта.
+* Он реализует [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async` интерфейс.
+* Он предоставляет реальный объект Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile), который вы можете передать непосредственно другим библиотекам, которые ожидают файл в качестве объекта.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ $ pip install python-multipart
 
 * `filename`: Строка `str` с исходным именем файла, который был загружен (например, `myimage.jpg`).
 * `content_type`: Строка `str` с типом содержимого (MIME type / media type) (например, `image/jpeg`).
-* `file`: <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> объект). Это фактический файл Python, который можно передавать непосредственно другим функциям или библиотекам, ожидающим файл в качестве объекта.
+* `file`: [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (a [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) объект). Это фактический файл Python, который можно передавать непосредственно другим функциям или библиотекам, ожидающим файл в качестве объекта.
 
 `UploadFile` имеет следующие методы `async`. Все они вызывают соответствующие файловые методы (используя внутренний `SpooledTemporaryFile`).
 
@@ -120,9 +120,9 @@ contents = myfile.file.read()
 
 Данные из форм обычно кодируются с использованием "media type" `application/x-www-form-urlencoded` когда он не включает файлы.
 
-Но когда форма включает файлы, она кодируется как multipart/form-data. Если вы используете `File`, **FastAPI** будет знать, что ему нужно получить файлы из нужной части тела.
+Но когда форма включает файлы, она кодируется как `multipart/form-data`. Если вы используете `File`, **FastAPI** будет знать, что ему нужно получить файлы из нужной части тела.
 
-Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> web docs for <code>POST</code></a>.
+Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке [<abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> web docs for `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

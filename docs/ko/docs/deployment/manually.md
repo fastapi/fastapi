@@ -52,11 +52,11 @@ FastAPI는 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버
 
 다음을 포함해 여러 대안이 있습니다:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: 고성능 ASGI 서버.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: HTTP/2 및 Trio 등 여러 기능과 호환되는 ASGI 서버.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: Django Channels를 위해 만들어진 ASGI 서버.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Python 애플리케이션을 위한 Rust HTTP 서버.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit은 가볍고 다용도로 사용할 수 있는 웹 애플리케이션 런타임입니다.
+* [Uvicorn](https://www.uvicorn.dev/): 고성능 ASGI 서버.
+* [Hypercorn](https://hypercorn.readthedocs.io/): HTTP/2 및 Trio 등 여러 기능과 호환되는 ASGI 서버.
+* [Daphne](https://github.com/django/daphne): Django Channels를 위해 만들어진 ASGI 서버.
+* [Granian](https://github.com/emmett-framework/granian): Python 애플리케이션을 위한 Rust HTTP 서버.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit은 가볍고 다용도로 사용할 수 있는 웹 애플리케이션 런타임입니다.
 
 ## 서버 머신과 서버 프로그램 { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ FastAPI를 설치하면 프로덕션 서버인 Uvicorn이 함께 설치되며, `
 
 하지만 ASGI 서버를 수동으로 설치할 수도 있습니다.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음, 서버 애플리케이션을 설치하세요.
+[가상 환경](../virtual-environments.md)을 만들고 활성화한 다음, 서버 애플리케이션을 설치하세요.
 
 예를 들어 Uvicorn을 설치하려면:
 
@@ -94,7 +94,7 @@ $ pip install "uvicorn[standard]"
 
 `standard`를 추가하면 Uvicorn이 권장되는 추가 의존성 몇 가지를 설치하고 사용합니다.
 
-여기에는 `asyncio`를 고성능으로 대체할 수 있는 드롭인 대체재인 `uvloop`가 포함되며, 큰 동시성 성능 향상을 제공합니다.
+여기에는 `uvloop`가 포함되며, 이는 `asyncio`를 고성능으로 대체할 수 있는 드롭인 대체재로, 큰 동시성 성능 향상을 제공합니다.
 
 `pip install "fastapi[standard]"` 같은 방식으로 FastAPI를 설치하면 `uvicorn[standard]`도 함께 설치됩니다.
 

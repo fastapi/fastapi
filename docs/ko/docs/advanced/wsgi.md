@@ -1,6 +1,6 @@
 # WSGI 포함하기 - Flask, Django 등 { #including-wsgi-flask-django-others }
 
-[서브 애플리케이션 - 마운트](sub-applications.md){.internal-link target=_blank}, [프록시 뒤에서](behind-a-proxy.md){.internal-link target=_blank}에서 본 것처럼 WSGI 애플리케이션을 마운트할 수 있습니다.
+[서브 애플리케이션 - 마운트](sub-applications.md), [프록시 뒤에서](behind-a-proxy.md)에서 본 것처럼 WSGI 애플리케이션을 마운트할 수 있습니다.
 
 이를 위해 `WSGIMiddleware`를 사용해 WSGI 애플리케이션(예: Flask, Django 등)을 감쌀 수 있습니다.
 
@@ -36,13 +36,13 @@
 
 그리고 나머지는 **FastAPI**에 의해 처리됩니다.
 
-실행하고 <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>로 이동하면 Flask의 응답을 볼 수 있습니다:
+실행하고 [http://localhost:8000/v1/](http://localhost:8000/v1/)로 이동하면 Flask의 응답을 볼 수 있습니다:
 
 ```txt
 Hello, World from Flask!
 ```
 
-그리고 <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>로 이동하면 **FastAPI**의 응답을 볼 수 있습니다:
+그리고 [http://localhost:8000/v2](http://localhost:8000/v2)로 이동하면 **FastAPI**의 응답을 볼 수 있습니다:
 
 ```JSON
 {

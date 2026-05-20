@@ -10,12 +10,12 @@
 
 Все блоки кода можно копировать и использовать напрямую (это действительно протестированные файлы Python).
 
-Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `fastapi dev` с:
+Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 Первый шаг — установить FastAPI.
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, и затем **установите FastAPI**:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, и затем **установите FastAPI**:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | Примечание
 
-При установке с помощью `pip install "fastapi[standard]"` добавляются некоторые стандартные необязательные зависимости по умолчанию, включая `fastapi-cloud-cli`, который позволяет развернуть приложение на <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+При установке с помощью `pip install "fastapi[standard]"` добавляются некоторые стандартные необязательные зависимости по умолчанию, включая `fastapi-cloud-cli`, который позволяет развернуть приложение на [FastAPI Cloud](https://fastapicloud.com).
 
 Если вы не хотите иметь эти необязательные зависимости, установите просто `pip install fastapi`.
 
 Если вы хотите установить стандартные зависимости, но без `fastapi-cloud-cli`, установите `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+
+///
+
+/// tip | Совет
+
+У FastAPI есть [официальное расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (и Cursor), которое предоставляет множество функций, включая обзор операций пути, поиск операций пути, навигацию CodeLens в тестах (переход к определению из тестов), а также развертывание в FastAPI Cloud и просмотр логов - всё прямо из вашего редактора кода.
 
 ///
 

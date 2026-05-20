@@ -8,6 +8,6 @@
 
 /// tip | 팁
 
-**FastAPI를 구조적으로 학습**하고 싶다면(권장), 대신 [튜토리얼 - 사용자 가이드](../tutorial/index.md){.internal-link target=_blank}를 장별로 읽어보세요.
+**FastAPI를 구조적으로 학습**하고 싶다면(권장), 대신 [튜토리얼 - 사용자 가이드](../tutorial/index.md)를 장별로 읽어보세요.
 
 ///

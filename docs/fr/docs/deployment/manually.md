@@ -52,11 +52,11 @@ La principale chose dont vous avez besoin pour exécuter une application **FastA
 
 Il existe plusieurs alternatives, notamment :
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a> : un serveur ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI conçu pour Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a> : un serveur HTTP Rust pour les applications Python.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a> : NGINX Unit est un environnement d'exécution d'applications web léger et polyvalent.
+* [Uvicorn](https://www.uvicorn.dev/) : un serveur ASGI haute performance.
+* [Hypercorn](https://hypercorn.readthedocs.io/) : un serveur ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
+* [Daphne](https://github.com/django/daphne) : le serveur ASGI conçu pour Django Channels.
+* [Granian](https://github.com/emmett-framework/granian) : un serveur HTTP Rust pour les applications Python.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/) : NGINX Unit est un environnement d'exécution d'applications web léger et polyvalent.
 
 ## Machine serveur et programme serveur { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ Lorsque vous installez FastAPI, il est fourni avec un serveur de production, Uvi
 
 Mais vous pouvez également installer un serveur ASGI manuellement.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l'activer, puis vous pouvez installer l'application serveur.
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis vous pouvez installer l'application serveur.
 
 Par exemple, pour installer Uvicorn :
 

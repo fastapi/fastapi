@@ -38,4 +38,4 @@ También podrías usar `from starlette.responses import JSONResponse`.
 
 Si devuelves códigos de estado adicionales y responses directamente, no se incluirán en el esquema de OpenAPI (la documentación de la API), porque FastAPI no tiene una forma de saber de antemano qué vas a devolver.
 
-Pero puedes documentarlo en tu código, usando: [Responses Adicionales](additional-responses.md){.internal-link target=_blank}.
+Pero puedes documentarlo en tu código, usando: [Responses Adicionales](additional-responses.md).

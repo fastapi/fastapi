@@ -1,18 +1,18 @@
 # Test Etme { #testing }
 
-<a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
+[Starlette](https://www.starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
 
-Temelde <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> üzerine kuruludur; HTTPX de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
+Temelde [HTTPX](https://www.python-httpx.org) üzerine kuruludur; HTTPX de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
 
-Bununla birlikte **FastAPI** ile <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>'i doğrudan kullanabilirsiniz.
+Bununla birlikte **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
 
 ## `TestClient` Kullanımı { #using-testclient }
 
 /// info | Bilgi
 
-`TestClient` kullanmak için önce <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>'i kurun.
+`TestClient` kullanmak için önce [`httpx`](https://www.python-httpx.org)'i kurun.
 
-Bir [Sanal Ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ Bu sayede `pytest`'i ek bir karmaşıklık olmadan doğrudan kullanabilirsiniz.
 
 /// tip | İpucu
 
-FastAPI uygulamanıza request göndermenin dışında testlerinizde `async` fonksiyonlar çağırmak istiyorsanız (örn. asenkron veritabanı fonksiyonları), ileri seviye bölümdeki [Asenkron Testler](../advanced/async-tests.md){.internal-link target=_blank} dokümanına göz atın.
+FastAPI uygulamanıza request göndermenin dışında testlerinizde `async` fonksiyonlar çağırmak istiyorsanız (örn. asenkron veritabanı fonksiyonları), ileri seviye bölümdeki [Asenkron Testler](../advanced/async-tests.md) dokümanına göz atın.
 
 ///
 
@@ -64,7 +64,7 @@ Ayrıca **FastAPI** uygulamanız birden fazla dosya/modül vb. ile de oluşturul
 
 ### **FastAPI** Uygulama Dosyası { #fastapi-app-file }
 
-[Daha Büyük Uygulamalar](bigger-applications.md){.internal-link target=_blank}'te anlatılan şekilde bir dosya yapınız olduğunu varsayalım:
+[Daha Büyük Uygulamalar](bigger-applications.md)'te anlatılan şekilde bir dosya yapınız olduğunu varsayalım:
 
 ```
 .
@@ -139,13 +139,13 @@ Sonra testlerinizde aynısını uygularsınız.
 * *headers* göndermek için, `headers` parametresine bir `dict` verin.
 * *cookies* için, `cookies` parametresine bir `dict` verin.
 
-Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient` kullanarak) <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX dokümantasyonu</a>'na bakın.
+Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient` kullanarak) [HTTPX dokümantasyonu](https://www.python-httpx.org)'na bakın.
 
 /// info | Bilgi
 
 `TestClient`'ın Pydantic model'lerini değil, JSON'a dönüştürülebilen verileri aldığını unutmayın.
 
-Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya göndermek istiyorsanız, [JSON Uyumlu Encoder](encoder.md){.internal-link target=_blank} içinde açıklanan `jsonable_encoder`'ı kullanabilirsiniz.
+Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya göndermek istiyorsanız, [JSON Uyumlu Encoder](encoder.md) içinde açıklanan `jsonable_encoder`'ı kullanabilirsiniz.
 
 ///
 
@@ -153,7 +153,7 @@ Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya
 
 Bundan sonra yapmanız gereken tek şey `pytest`'i kurmaktır.
 
-Bir [Sanal Ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
 
 <div class="termy">
 

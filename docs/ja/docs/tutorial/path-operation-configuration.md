@@ -58,7 +58,7 @@
 
 説明文は長くて複数行におよぶ傾向があるので、関数<dfn title="関数内の最初の式（どの変数にも代入されない）として記述される、ドキュメント用の複数行の文字列">docstring</dfn>内に*path operation*の説明文を宣言できます。すると、**FastAPI** は説明文を読み込んでくれます。
 
-docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
+docstringに[Markdown](https://en.wikipedia.org/wiki/Markdown)を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 

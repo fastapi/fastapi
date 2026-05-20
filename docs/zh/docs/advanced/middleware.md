@@ -1,8 +1,8 @@
 # 高级中间件 { #advanced-middleware }
 
-用户指南介绍了如何为应用添加[自定义中间件](../tutorial/middleware.md){.internal-link target=_blank} 。
+用户指南介绍了如何为应用添加[自定义中间件](../tutorial/middleware.md)。
 
-以及如何[使用 `CORSMiddleware` 处理 CORS](../tutorial/cors.md){.internal-link target=_blank}。
+以及如何[使用 `CORSMiddleware` 处理 CORS](../tutorial/cors.md)。
 
 本章学习如何使用其它中间件。
 
@@ -87,11 +87,11 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ## 其它中间件 { #other-middlewares }
 
-除了上述中间件外，FastAPI 还支持其它ASGI 中间件。
+除了上述中间件外，FastAPI 还支持其它 ASGI 中间件。
 
 例如：
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn 的 `ProxyHeadersMiddleware`</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-其它可用中间件详见 <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette 官档 - 中间件</a> 及 <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome 列表</a>。
+其它可用中间件详见 [Starlette 官档 - 中间件](https://www.starlette.dev/middleware/) 及 [ASGI Awesome 列表](https://github.com/florimondmanca/awesome-asgi)。

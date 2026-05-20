@@ -15,7 +15,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 첫 단계는 FastAPI를 설치하는 것입니다.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고 활성화한 다음, **FastAPI를 설치**하세요:
+[가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, **FastAPI를 설치**하세요:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | 참고
 
-`pip install "fastapi[standard]"`로 설치하면 `fastapi-cloud-cli`를 포함한 몇 가지 기본 선택적 standard 의존성이 함께 설치되며, 이를 사용해 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>에 배포할 수 있습니다.
+`pip install "fastapi[standard]"`로 설치하면 `fastapi-cloud-cli`를 포함한 몇 가지 기본 선택적 standard 의존성이 함께 설치되며, 이를 사용해 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다.
 
 이러한 선택적 의존성이 필요 없다면 `pip install fastapi`로 대신 설치할 수 있습니다.
 
 standard 의존성은 설치하되 `fastapi-cloud-cli` 없이 설치하려면 `pip install "fastapi[standard-no-fastapi-cloud-cli]"`로 설치할 수 있습니다.
+
+///
+
+/// tip | 팁
+
+FastAPI는 VS Code(및 Cursor)용 [공식 확장 프로그램](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)이 있습니다. 경로 처리 탐색기, 경로 처리 검색, 테스트에서의 CodeLens 탐색(테스트에서 정의로 바로 이동), FastAPI Cloud 배포와 로그 등 많은 기능을 에디터에서 바로 제공합니다.
 
 ///
 

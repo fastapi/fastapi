@@ -60,7 +60,7 @@ Eso define los metadatos sobre el response principal de una *path operation*.
 
 También puedes declarar responses adicionales con sus modelos, códigos de estado, etc.
 
-Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Responses Adicionales en OpenAPI](additional-responses.md).
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@ Cuando declaras una *path operation* en tu aplicación, **FastAPI** genera autom
 
 /// note | Detalles técnicos
 
-En la especificación de OpenAPI se llama el <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objeto de Operación</a>.
+En la especificación de OpenAPI se llama el [Objeto de Operación](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ Este esquema de OpenAPI específico de *path operation* normalmente se genera au
 
 Este es un punto de extensión de bajo nivel.
 
-Si solo necesitas declarar responses adicionales, una forma más conveniente de hacerlo es con [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Si solo necesitas declarar responses adicionales, una forma más conveniente de hacerlo es con [Responses Adicionales en OpenAPI](additional-responses.md).
 
 ///
 
@@ -141,7 +141,7 @@ Podrías hacer eso con `openapi_extra`:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
 
-En este ejemplo, no declaramos ningún modelo Pydantic. De hecho, el request body ni siquiera es <dfn title="convertido desde algún formato plano, como bytes, a objetos de Python">parseado</dfn> como JSON, se lee directamente como `bytes`, y la función `magic_data_reader()` sería la encargada de parsearlo de alguna manera.
+En este ejemplo, no declaramos ningún modelo Pydantic. De hecho, el request body ni siquiera es <dfn title="convertido desde algún formato plano, como bytes, a objetos de Python">parseado</dfn> como JSON, se lee directamente como `bytes`, y la función `magic_data_reader()` sería la encargada de hacer parse de él de alguna manera.
 
 Sin embargo, podemos declarar el esquema esperado para el request body.
 
@@ -157,9 +157,9 @@ Por ejemplo, en esta aplicación no usamos la funcionalidad integrada de FastAPI
 
 Sin embargo, aunque no estamos usando la funcionalidad integrada por defecto, aún estamos usando un modelo Pydantic para generar manualmente el JSON Schema para los datos que queremos recibir en YAML.
 
-Luego usamos el request directamente, y extraemos el cuerpo como `bytes`. Esto significa que FastAPI ni siquiera intentará parsear la carga útil del request como JSON.
+Luego usamos el request directamente, y extraemos el cuerpo como `bytes`. Esto significa que FastAPI ni siquiera intentará hacer parse de la carga útil del request como JSON.
 
-Y luego en nuestro código, parseamos ese contenido YAML directamente, y nuevamente estamos usando el mismo modelo Pydantic para validar el contenido YAML:
+Y luego en nuestro código, hacemos parse de ese contenido YAML directamente, y nuevamente estamos usando el mismo modelo Pydantic para validar el contenido YAML:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
 

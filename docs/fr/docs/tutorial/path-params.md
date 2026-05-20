@@ -6,7 +6,7 @@ Vous pouvez déclarer des « paramètres » ou « variables » de chemin avec la
 
 La valeur du paramètre de chemin `item_id` sera transmise à votre fonction dans l'argument `item_id`.
 
-Donc, si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vous verrez comme réponse :
+Donc, si vous exécutez cet exemple et allez sur [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), vous verrez comme réponse :
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@ Cela vous apporte la prise en charge par l'éditeur dans votre fonction, avec v�
 
 ## <dfn title="également appelé : sérialisation, parsing, marshalling">Conversion</dfn> de données { #data-conversion }
 
-Si vous exécutez cet exemple et ouvrez votre navigateur sur <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, vous verrez comme réponse :
+Si vous exécutez cet exemple et ouvrez votre navigateur sur [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3), vous verrez comme réponse :
 
 ```JSON
 {"item_id":3}
@@ -44,7 +44,7 @@ Ainsi, avec cette déclaration de type, **FastAPI** vous fournit automatiquement
 
 ## Validation de données { #data-validation }
 
-Mais si vous allez dans le navigateur sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vous verrez une belle erreur HTTP :
+Mais si vous allez dans le navigateur sur [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), vous verrez une belle erreur HTTP :
 
 ```JSON
 {
@@ -64,7 +64,7 @@ Mais si vous allez dans le navigateur sur <a href="http://127.0.0.1:8000/items/f
 
 car le paramètre de chemin `item_id` a pour valeur « foo », qui n'est pas un `int`.
 
-La même erreur apparaîtrait si vous fournissiez un `float` au lieu d'un `int`, comme ici : <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+La même erreur apparaîtrait si vous fournissiez un `float` au lieu d'un `int`, comme ici : [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// check | Vérifications
 
@@ -78,7 +78,7 @@ C'est incroyablement utile lors du développement et du débogage du code qui in
 
 ## Documentation { #documentation }
 
-Et lorsque vous ouvrez votre navigateur sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, vous verrez une documentation d'API automatique et interactive comme :
+Et lorsque vous ouvrez votre navigateur sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), vous verrez une documentation d'API automatique et interactive comme :
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -92,9 +92,9 @@ Remarquez que le paramètre de chemin est déclaré comme entier.
 
 ## Les avantages d'une norme, documentation alternative { #standards-based-benefits-alternative-documentation }
 
-Et comme le schéma généré suit la norme <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, il existe de nombreux outils compatibles.
+Et comme le schéma généré suit la norme [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), il existe de nombreux outils compatibles.
 
-Grâce à cela, **FastAPI** fournit lui-même une documentation d'API alternative (utilisant ReDoc), accessible sur <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> :
+Grâce à cela, **FastAPI** fournit lui-même une documentation d'API alternative (utilisant ReDoc), accessible sur [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) :
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@ De la même façon, il existe de nombreux outils compatibles, y compris des outi
 
 ## Pydantic { #pydantic }
 
-Toute la validation de données est effectuée sous le capot par <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, vous en bénéficiez donc pleinement. Vous savez ainsi que vous êtes entre de bonnes mains.
+Toute la validation de données est effectuée sous le capot par [Pydantic](https://docs.pydantic.dev/), vous en bénéficiez donc pleinement. Vous savez ainsi que vous êtes entre de bonnes mains.
 
 Vous pouvez utiliser les mêmes déclarations de type avec `str`, `float`, `bool` et de nombreux autres types de données complexes.
 
@@ -130,7 +130,7 @@ Le premier sera toujours utilisé puisque le chemin correspond en premier.
 
 ## Valeurs prédéfinies { #predefined-values }
 
-Si vous avez un *chemin d'accès* qui reçoit un *paramètre de chemin*, mais que vous voulez que les valeurs possibles de ce *paramètre de chemin* soient prédéfinies, vous pouvez utiliser une <abbr title="Enumeration - Énumération">`Enum`</abbr> Python standard.
+Si vous avez un *chemin d'accès* qui reçoit un *paramètre de chemin*, mais que vous voulez que les valeurs possibles de ce *paramètre de chemin* soient prédéfinies, vous pouvez utiliser une <abbr title="Énumération">`Enum`</abbr> Python standard.
 
 ### Créer une classe `Enum` { #create-an-enum-class }
 

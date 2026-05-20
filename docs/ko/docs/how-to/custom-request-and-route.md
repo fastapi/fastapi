@@ -18,7 +18,7 @@
 
 사용 사례에는 다음이 포함됩니다:
 
-* JSON이 아닌 요청 바디를 JSON으로 변환하기(예: <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* JSON이 아닌 요청 바디를 JSON으로 변환하기(예: [`msgpack`](https://msgpack.org/index.html)).
 * gzip으로 압축된 요청 바디 압축 해제하기.
 * 모든 요청 바디를 자동으로 로깅하기.
 
@@ -32,7 +32,7 @@
 
 /// tip | 팁
 
-이 예시는 동작 방식 시연을 위한 장난감 예제입니다. Gzip 지원이 필요하다면 제공되는 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}를 사용할 수 있습니다.
+이 예시는 동작 방식 시연을 위한 장난감 예제입니다. Gzip 지원이 필요하다면 제공되는 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware)를 사용할 수 있습니다.
 
 ///
 
@@ -66,7 +66,7 @@
 
 그리고 이 두 가지, `scope`와 `receive`가 새로운 `Request` 인스턴스를 만드는 데 필요한 것들입니다.
 
-`Request`에 대해 더 알아보려면 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette의 Requests 문서</a>를 확인하세요.
+`Request`에 대해 더 알아보려면 [Starlette의 Requests 문서](https://www.starlette.dev/requests/)를 확인하세요.
 
 ///
 
@@ -82,7 +82,7 @@
 
 /// tip | 팁
 
-같은 문제를 해결하려면 `RequestValidationError`에 대한 커스텀 핸들러에서 `body`를 사용하는 편이 아마 훨씬 더 쉽습니다([오류 처리하기](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+같은 문제를 해결하려면 `RequestValidationError`에 대한 커스텀 핸들러에서 `body`를 사용하는 편이 아마 훨씬 더 쉽습니다([오류 처리하기](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 하지만 이 예시도 여전히 유효하며, 내부 컴포넌트와 상호작용하는 방법을 보여줍니다.
 

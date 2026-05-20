@@ -183,6 +183,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | Порада
 
-Ви також можете використовувати `Enum` так само, як і з [Параметри шляху](path-params.md#predefined-values){.internal-link target=_blank}.
+Ви також можете використовувати `Enum` так само, як і з [Параметри шляху](path-params.md#predefined-values).
 
 ///

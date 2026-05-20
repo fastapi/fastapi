@@ -20,9 +20,9 @@ Pour y parvenir, importez `JSONResponse` et renvoyez-y directement votre contenu
 
 Lorsque vous renvoyez une `Response` directement, comme dans l'exemple ci-dessus, elle sera renvoyée directement.
 
-Elle ne sera pas sérialisée avec un modèle.
+Elle ne sera pas sérialisée avec un modèle, etc.
 
-Assurez-vous qu'il contient les données souhaitées et que les valeurs sont dans un format JSON valide (si vous utilisez une `JSONResponse`).
+Vous devez vous assurer qu'elle contient les données souhaitées et que les valeurs sont dans un format JSON valide (si vous utilisez une `JSONResponse`).
 
 ///
 
@@ -30,7 +30,7 @@ Assurez-vous qu'il contient les données souhaitées et que les valeurs sont dan
 
 Vous pouvez également utiliser `from starlette.responses import JSONResponse`.
 
-Pour plus de commodités, **FastAPI** fournit les objets `starlette.responses` sous forme d'un alias accessible par `fastapi.responses`. Mais la plupart des réponses disponibles proviennent directement de Starlette. Il en est de même avec `status`.
+Par commodité pour vous, le développeur, **FastAPI** fournit les mêmes `starlette.responses` sous la forme de `fastapi.responses`. Mais la plupart des réponses disponibles proviennent directement de Starlette. Il en est de même avec `status`.
 
 ///
 
@@ -38,4 +38,4 @@ Pour plus de commodités, **FastAPI** fournit les objets `starlette.responses` s
 
 Si vous renvoyez directement des codes HTTP et des réponses supplémentaires, ils ne seront pas inclus dans le schéma OpenAPI (les documents de l'API), car FastAPI n'a aucun moyen de savoir à l'avance ce que vous allez renvoyer.
 
-Mais vous pouvez documenter cela dans votre code, en utilisant : [Réponses supplémentaires](additional-responses.md){.internal-link target=_blank}.
+Mais vous pouvez documenter cela dans votre code, en utilisant : [Réponses supplémentaires](additional-responses.md).

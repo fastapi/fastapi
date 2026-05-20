@@ -96,7 +96,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 `str`, `int`, `float` 등과 같은 일반적인 단일 타입과는 별개로, `str`을 상속하는 더 복잡한 단일 타입을 사용할 수 있습니다.
 
-사용할 수 있는 모든 옵션을 보려면 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic의 Type Overview</a>를 확인하세요. 다음 장에서 몇 가지 예제를 볼 수 있습니다.
+사용할 수 있는 모든 옵션을 보려면 [Pydantic의 Type Overview](https://docs.pydantic.dev/latest/concepts/types/)를 확인하세요. 다음 장에서 몇 가지 예제를 볼 수 있습니다.
 
 예를 들어 `Image` 모델에는 `url` 필드가 있으므로, 이를 `str` 대신 Pydantic의 `HttpUrl` 인스턴스로 선언할 수 있습니다:
 

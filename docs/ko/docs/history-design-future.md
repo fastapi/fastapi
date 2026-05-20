@@ -1,6 +1,6 @@
 # 역사, 디자인 그리고 미래 { #history-design-and-future }
 
-얼마 전, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">한 **FastAPI** 사용자가 이렇게 물었습니다</a>:
+얼마 전, [한 **FastAPI** 사용자가 이렇게 물었습니다](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > 이 프로젝트의 역사는 무엇인가요? 몇 주 만에 아무 데서도 갑자기 나타나 엄청나게 좋아진 것처럼 보이네요 [...]
 
@@ -14,7 +14,7 @@
 
 **FastAPI**의 역사는 상당 부분 그 이전에 있던 도구들의 역사입니다.
 
-[대안](alternatives.md){.internal-link target=_blank} 섹션에서 언급된 것처럼:
+[대안](alternatives.md) 섹션에서 언급된 것처럼:
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@
 
 가장 인기 있는 Python 편집기들: PyCharm, VS Code, Jedi 기반 편집기에서 여러 아이디어를 테스트했습니다.
 
-약 80%의 사용자를 포함하는 최근 <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>에 따르면 그렇습니다.
+약 80%의 사용자를 포함하는 최근 [Python Developer Survey](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)에 따르면 그렇습니다.
 
 즉, **FastAPI**는 Python 개발자의 80%가 사용하는 편집기들로 특별히 테스트되었습니다. 그리고 대부분의 다른 편집기도 유사하게 동작하는 경향이 있으므로, 그 모든 이점은 사실상 모든 편집기에서 동작해야 합니다.
 
@@ -54,15 +54,15 @@
 
 ## 필요조건 { #requirements }
 
-여러 대안을 테스트한 후, 장점 때문에 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>을 사용하기로 결정했습니다.
+여러 대안을 테스트한 후, 장점 때문에 [**Pydantic**](https://docs.pydantic.dev/)을 사용하기로 결정했습니다.
 
 그 후, JSON Schema를 완전히 준수하도록 하고, 제약 조건 선언을 정의하는 다양한 방식을 지원하며, 여러 편집기에서의 테스트를 바탕으로 편집기 지원(타입 검사, 자동 완성)을 개선하기 위해 기여했습니다.
 
-개발 과정에서, 또 다른 핵심 필요조건인 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>에도 기여했습니다.
+개발 과정에서, 또 다른 핵심 필요조건인 [**Starlette**](https://www.starlette.dev/)에도 기여했습니다.
 
 ## 개발 { #development }
 
-**FastAPI** 자체를 만들기 시작했을 때쯤에는, 대부분의 조각들이 이미 갖춰져 있었고, 디자인은 정의되어 있었으며, 필요조건과 도구는 준비되어 있었고, 표준과 명세에 대한 지식도 명확하고 최신 상태였습니다.
+**FastAPI** 자체를 만들기 시작했을 때쯤에는, 대부분의 조각들이 이미 갖춰져 있었고, 디자인은 정의되어 있었며, 필요조건과 도구는 준비되어 있었고, 표준과 명세에 대한 지식도 명확하고 최신 상태였습니다.
 
 ## 미래 { #future }
 
@@ -76,4 +76,4 @@
 
 **FastAPI**의 미래는 밝습니다.
 
-그리고 [여러분의 도움](help-fastapi.md){.internal-link target=_blank}은 큰 힘이 됩니다.
+그리고 [여러분의 도움](help-fastapi.md)은 큰 힘이 됩니다.

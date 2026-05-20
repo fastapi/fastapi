@@ -6,7 +6,7 @@
 
 你的 API 幾乎總是需要傳回**回應**本文。但用戶端不一定每次都要送出**請求本文**，有時只會請求某個路徑，可能帶一些查詢參數，但不會傳送本文。
 
-要宣告**請求**本文，你會使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型，享受其完整的功能與優點。
+要宣告**請求**本文，你會使用 [Pydantic](https://docs.pydantic.dev/) 模型，享受其完整的功能與優點。
 
 /// info
 
@@ -72,7 +72,7 @@
     - 若資料無效，會回傳清楚易懂的錯誤，指出哪裡、哪筆資料不正確。
 - 把接收到的資料放在參數 `item` 中提供給你。
     - 由於你在函式中將其宣告為 `Item` 型別，你也會獲得完整的編輯器支援（自動完成等）以及所有屬性與其型別。
-- 為你的模型產生 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定義，如有需要，你也可以在專案中的其他地方使用。
+- 為你的模型產生 [JSON Schema](https://json-schema.org) 定義，如有需要，你也可以在專案中的其他地方使用。
 - 這些 schema 會成為產生的 OpenAPI schema 的一部分，並由自動文件 <abbr title="User Interfaces - 使用者介面">UIs</abbr> 使用。
 
 ## 自動文件 { #automatic-docs }
@@ -101,15 +101,15 @@
 
 甚至為了支援這點，Pydantic 本身也做了些修改。
 
-前面的螢幕截圖是使用 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a> 拍的。
+前面的螢幕截圖是使用 [Visual Studio Code](https://code.visualstudio.com) 拍的。
 
-但你在 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 與大多數其它 Python 編輯器中也會得到相同的編輯器支援：
+但你在 [PyCharm](https://www.jetbrains.com/pycharm/) 與大多數其它 Python 編輯器中也會得到相同的編輯器支援：
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip
 
-如果你使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 作為編輯器，可以安裝 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>。
+如果你使用 [PyCharm](https://www.jetbrains.com/pycharm/) 作為編輯器，可以安裝 [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/)。
 
 它能增強 Pydantic 模型的編輯器支援，包含：
 
@@ -161,4 +161,4 @@ FastAPI 會因為預設值 `= None` 而知道 `q` 的值不是必填。
 
 ## 不使用 Pydantic { #without-pydantic }
 
-若你不想使用 Pydantic 模型，也可以使用 **Body** 參數。請參考[Body - 多個參數：本文中的單一值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+若你不想使用 Pydantic 模型，也可以使用 **Body** 參數。請參考[Body - 多個參數：本文中的單一值](body-multiple-params.md#singular-values-in-body)。

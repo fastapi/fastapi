@@ -6,7 +6,7 @@
 
 경로 매개변수 `item_id`의 값은 함수의 `item_id` 인자로 전달됩니다.
 
-그래서 이 예제를 실행하고 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>로 이동하면, 다음 응답을 볼 수 있습니다:
+그래서 이 예제를 실행하고 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)로 이동하면, 다음 응답을 볼 수 있습니다:
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@
 
 ## 데이터 <dfn title="다음으로도 알려져 있습니다: 직렬화, 파싱, 마샬링">변환</dfn> { #data-conversion }
 
-이 예제를 실행하고 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>을 열면, 다음 응답을 볼 수 있습니다:
+이 예제를 실행하고 [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3)을 열면, 다음 응답을 볼 수 있습니다:
 
 ```JSON
 {"item_id":3}
@@ -44,7 +44,7 @@
 
 ## 데이터 검증 { #data-validation }
 
-하지만 브라우저에서 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>로 이동하면, 다음과 같은 HTTP 오류를 볼 수 있습니다:
+하지만 브라우저에서 [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo)로 이동하면, 다음과 같은 HTTP 오류를 볼 수 있습니다:
 
 ```JSON
 {
@@ -64,7 +64,7 @@
 
 경로 매개변수 `item_id`가 `int`가 아닌 `"foo"` 값을 가졌기 때문입니다.
 
-`int` 대신 `float`을 제공하면(예: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>) 동일한 오류가 나타납니다.
+`int` 대신 `float`을 제공하면(예: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)) 동일한 오류가 나타납니다.
 
 /// check | 확인
 
@@ -78,7 +78,7 @@
 
 ## 문서화 { #documentation }
 
-그리고 브라우저에서 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>를 열면, 다음과 같이 자동 대화식 API 문서를 볼 수 있습니다:
+그리고 브라우저에서 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)를 열면, 다음과 같이 자동 대화식 API 문서를 볼 수 있습니다:
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -92,9 +92,9 @@
 
 ## 표준 기반의 이점, 대체 문서 { #standards-based-benefits-alternative-documentation }
 
-그리고 생성된 스키마는 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
+그리고 생성된 스키마는 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
 
-이 덕분에 **FastAPI** 자체에서 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 접속할 수 있는 (ReDoc을 사용하는) 대체 API 문서를 제공합니다:
+이 덕분에 **FastAPI** 자체에서 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 접속할 수 있는 (ReDoc을 사용하는) 대체 API 문서를 제공합니다:
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-모든 데이터 검증은 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
+모든 데이터 검증은 [Pydantic](https://docs.pydantic.dev/)에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
 
 `str`, `float`, `bool`, 그리고 다른 여러 복잡한 데이터 타입 선언을 할 수 있습니다.
 
@@ -130,7 +130,7 @@
 
 ## 사전정의 값 { #predefined-values }
 
-만약 *경로 매개변수*를 받는 *경로 처리*가 있지만, 가능한 유효한 *경로 매개변수* 값들을 미리 정의하고 싶다면 파이썬 표준 <abbr title="열거형">`Enum`</abbr>을 사용할 수 있습니다.
+만약 *경로 매개변수*를 받는 *경로 처리*가 있지만, 가능한 유효한 *경로 매개변수* 값들을 미리 정의하고 싶다면 파이썬 표준 <abbr title="Enumeration - 열거형">`Enum`</abbr>을 사용할 수 있습니다.
 
 ### `Enum` 클래스 생성 { #create-an-enum-class }
 
@@ -150,7 +150,7 @@
 
 ### *경로 매개변수* 선언 { #declare-a-path-parameter }
 
-생성한 열거형 클래스(`ModelName`)를 사용하는 타입 어노테이션으로 *경로 매개변수*를 만듭니다:
+생성한 열거형 클래스(`ModelName`)를 사용하는 타입 어노테이션으로 *경로 매개변수를* 만듭니다:
 
 {* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 

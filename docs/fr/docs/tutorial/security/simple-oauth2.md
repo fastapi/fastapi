@@ -4,7 +4,7 @@ Construisons maintenant à partir du chapitre précédent et ajoutons les élém
 
 ## Obtenir `username` et `password` { #get-the-username-and-password }
 
-Nous allons utiliser les utilitaires de sécurité de **FastAPI** pour obtenir `username` et `password`.
+Nous allons utiliser les utilités de sécurité de **FastAPI** pour obtenir `username` et `password`.
 
 OAuth2 spécifie que lorsqu'on utilise le « password flow » (ce que nous utilisons), le client/utilisateur doit envoyer des champs `username` et `password` en tant que données de formulaire.
 
@@ -46,7 +46,7 @@ Pour OAuth2, ce ne sont que des chaînes.
 
 ## Écrire le code pour obtenir `username` et `password` { #code-to-get-the-username-and-password }
 
-Utilisons maintenant les utilitaires fournis par **FastAPI** pour gérer cela.
+Utilisons maintenant les utilités fournies par **FastAPI** pour gérer cela.
 
 ### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
@@ -146,7 +146,7 @@ UserInDB(
 
 /// info
 
-Pour une explication plus complète de `**user_dict`, consultez [la documentation pour **Modèles supplémentaires**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Pour une explication plus complète de `**user_dict`, consultez [la documentation pour **Modèles supplémentaires**](../extra-models.md#about-user-in-dict).
 
 ///
 
@@ -216,7 +216,7 @@ C'est l'avantage des standards ...
 
 ## Voir en action { #see-it-in-action }
 
-Ouvrez la documentation interactive : <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ouvrez la documentation interactive : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### S'authentifier { #authenticate }
 

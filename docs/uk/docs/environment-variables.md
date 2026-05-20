@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | Порада
 
-Другий аргумент до <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> - це значення за замовчуванням, яке буде повернено.
+Другий аргумент до [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) - це значення за замовчуванням, яке буде повернено.
 
 Якщо його не вказано, за замовчуванням це `None`. Тут ми надаємо `"World"` як значення за замовчуванням.
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | Порада
 
-Докладніше про це можна прочитати у <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+Ви можете прочитати більше у [The Twelve-Factor App: Config](https://12factor.net/config).
 
 ///
 
@@ -163,7 +163,7 @@ Hello World from Python
 
 Це означає, що будь-яке значення, прочитане в Python зі змінної оточення, буде `str`, а будь-яке перетворення до іншого типу або будь-яка перевірка має виконуватися в коді.
 
-Ви дізнаєтеся більше про використання змінних оточення для роботи з налаштуваннями застосунку в розділі [Просунутий посібник користувача - Налаштування і змінні оточення](./advanced/settings.md){.internal-link target=_blank}.
+Ви дізнаєтеся більше про використання змінних оточення для роботи з налаштуваннями застосунку в розділі [Просунутий посібник користувача - Налаштування і змінні оточення](./advanced/settings.md).
 
 ## Змінна оточення `PATH` { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Ця інформація стане у пригоді під час вивчення [Віртуальних середовищ](virtual-environments.md){.internal-link target=_blank}.
+Ця інформація стане у пригоді під час вивчення [Віртуальних середовищ](virtual-environments.md).
 
 ## Висновок { #conclusion }
 
 Тепер ви маєте базове розуміння того, що таке змінні оточення і як їх використовувати в Python.
 
-Також можна прочитати більше у <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Вікіпедії про змінну оточення</a>.
+Також можна прочитати більше у [Вікіпедії про змінну оточення](https://en.wikipedia.org/wiki/Environment_variable).
 
 У багатьох випадках не одразу очевидно, як змінні оточення будуть корисними та застосовними. Але вони постійно з’являються в різних сценаріях під час розробки, тож варто про них знати.
 

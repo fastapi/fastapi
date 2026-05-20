@@ -5,7 +5,7 @@ Reprenons ces concepts de déploiement vus précédemment :
 * Sécurité - HTTPS
 * Exécution au démarrage
 * Redémarrages
-* Réplication (le nombre de processus en cours d'exécution)
+* **Réplication (le nombre de processus en cours d'exécution)**
 * Mémoire
 * Étapes préalables avant le démarrage
 
@@ -13,15 +13,15 @@ Jusqu'à présent, avec tous les tutoriels dans les documents, vous avez probabl
 
 Lors du déploiement d'applications, vous voudrez probablement avoir une réplication de processus pour tirer parti de plusieurs cœurs et pouvoir gérer davantage de requêtes.
 
-Comme vous l'avez vu dans le chapitre précédent sur les [Concepts de déploiement](concepts.md){.internal-link target=_blank}, il existe plusieurs stratégies possibles.
+Comme vous l'avez vu dans le chapitre précédent sur les [Concepts de déploiement](concepts.md), il existe plusieurs stratégies possibles.
 
 Ici, je vais vous montrer comment utiliser Uvicorn avec des processus workers en utilisant la commande `fastapi` ou directement la commande `uvicorn`.
 
 /// info | Info
 
-Si vous utilisez des conteneurs, par exemple avec Docker ou Kubernetes, je vous en dirai plus à ce sujet dans le prochain chapitre : [FastAPI dans des conteneurs - Docker](docker.md){.internal-link target=_blank}.
+Si vous utilisez des conteneurs, par exemple avec Docker ou Kubernetes, je vous en dirai plus à ce sujet dans le prochain chapitre : [FastAPI dans des conteneurs - Docker](docker.md).
 
-En particulier, lorsque vous exécutez sur Kubernetes, vous ne voudrez probablement pas utiliser de workers et plutôt exécuter un seul processus Uvicorn par conteneur, mais je vous en parlerai plus en détail dans ce chapitre.
+En particulier, lorsque vous exécutez sur **Kubernetes**, vous ne voudrez probablement **pas** utiliser de workers et plutôt exécuter **un seul processus Uvicorn par conteneur**, mais je vous en parlerai plus en détail dans ce chapitre.
 
 ///
 
@@ -109,7 +109,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 La seule option nouvelle ici est `--workers` qui indique à Uvicorn de démarrer 4 processus workers.
 
-Vous pouvez aussi voir qu'il affiche le PID de chaque processus, `27365` pour le processus parent (c'est le gestionnaire de processus) et un pour chaque processus worker : `27368`, `27369`, `27370` et `27367`.
+Vous pouvez aussi voir qu'il affiche le **PID** de chaque processus, `27365` pour le processus parent (c'est le **gestionnaire de processus**) et un pour chaque processus worker : `27368`, `27369`, `27370` et `27367`.
 
 ## Concepts de déploiement { #deployment-concepts }
 
@@ -117,23 +117,23 @@ Ici, vous avez vu comment utiliser plusieurs workers pour paralléliser l'exécu
 
 Dans la liste des concepts de déploiement ci-dessus, l'utilisation de workers aide principalement à la partie réplication, et un peu aux redémarrages, mais vous devez toujours vous occuper des autres :
 
-* Sécurité - HTTPS
-* Exécution au démarrage
+* **Sécurité - HTTPS**
+* **Exécution au démarrage**
 * ***Redémarrages***
 * Réplication (le nombre de processus en cours d'exécution)
-* Mémoire
-* Étapes préalables avant le démarrage
+* **Mémoire**
+* **Étapes préalables avant le démarrage**
 
 ## Conteneurs et Docker { #containers-and-docker }
 
-Dans le prochain chapitre sur [FastAPI dans des conteneurs - Docker](docker.md){.internal-link target=_blank}, j'expliquerai quelques stratégies que vous pourriez utiliser pour gérer les autres concepts de déploiement.
+Dans le prochain chapitre sur [FastAPI dans des conteneurs - Docker](docker.md), j'expliquerai quelques stratégies que vous pourriez utiliser pour gérer les autres **concepts de déploiement**.
 
-Je vous montrerai comment créer votre propre image à partir de zéro pour exécuter un seul processus Uvicorn. C'est un processus simple et c'est probablement ce que vous voudrez faire lorsque vous utilisez un système distribué de gestion de conteneurs comme Kubernetes.
+Je vous montrerai comment créer votre propre image à partir de zéro pour exécuter un seul processus Uvicorn. C'est un processus simple et c'est probablement ce que vous voudrez faire lorsque vous utilisez un système distribué de gestion de conteneurs comme **Kubernetes**.
 
 ## Récapitulatif { #recap }
 
-Vous pouvez utiliser plusieurs processus workers avec l'option CLI `--workers` des commandes `fastapi` ou `uvicorn` pour tirer parti des CPU multicœurs, et exécuter plusieurs processus en parallèle.
+Vous pouvez utiliser plusieurs processus workers avec l'option CLI `--workers` des commandes `fastapi` ou `uvicorn` pour tirer parti des **CPU multicœurs**, et exécuter **plusieurs processus en parallèle**.
 
 Vous pourriez utiliser ces outils et idées si vous mettez en place votre propre système de déploiement tout en prenant vous-même en charge les autres concepts de déploiement.
 
-Consultez le prochain chapitre pour en savoir plus sur FastAPI avec des conteneurs (par exemple Docker et Kubernetes). Vous verrez que ces outils offrent aussi des moyens simples de résoudre les autres concepts de déploiement. ✨
+Consultez le prochain chapitre pour en savoir plus sur **FastAPI** avec des conteneurs (par exemple Docker et Kubernetes). Vous verrez que ces outils offrent aussi des moyens simples de résoudre les autres **concepts de déploiement**. ✨

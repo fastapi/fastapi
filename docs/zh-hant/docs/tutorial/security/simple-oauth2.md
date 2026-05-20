@@ -146,7 +146,7 @@ UserInDB(
 
 /// info
 
-想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict){.internal-link target=_blank}。
+想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict)。
 
 ///
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## 實際操作看看 { #see-it-in-action }
 
-開啟互動式文件：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+開啟互動式文件：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 ### 驗證身分 { #authenticate }
 

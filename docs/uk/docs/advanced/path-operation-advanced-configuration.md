@@ -24,7 +24,7 @@
 
 /// tip | Порада
 
-Якщо ви вручну викликаєте `app.openapi()`, оновіть значення `operationId` до цього.
+Якщо ви вручну викликаєте `app.openapi()`, оновіть усі `operationId` до цього.
 
 ///
 
@@ -60,7 +60,7 @@
 
 Також можна оголосити додаткові відповіді з їхніми моделями, кодами статусу тощо.
 
-У документації є цілий розділ про це, ви можете прочитати його тут: [Додаткові відповіді в OpenAPI](additional-responses.md){.internal-link target=_blank}.
+У документації є цілий розділ про це, ви можете прочитати його тут: [Додаткові відповіді в OpenAPI](additional-responses.md).
 
 ## Додатково в OpenAPI { #openapi-extra }
 
@@ -68,7 +68,7 @@
 
 /// note | Технічні деталі
 
-У специфікації OpenAPI це називається <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Об'єкт Operation</a>.
+У специфікації OpenAPI це називається [Об'єкт Operation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@
 
 Це низькорівнева точка розширення.
 
-Якщо вам потрібно лише оголосити додаткові відповіді, зручніше зробити це через [Додаткові відповіді в OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Якщо вам потрібно лише оголосити додаткові відповіді, зручніше зробити це через [Додаткові відповіді в OpenAPI](additional-responses.md).
 
 ///
 

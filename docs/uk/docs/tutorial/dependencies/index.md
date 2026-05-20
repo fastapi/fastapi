@@ -57,7 +57,7 @@ FastAPI додав підтримку `Annotated` (і почав її реком
 
 Якщо у вас старіша версія, ви отримаєте помилки при спробі використати `Annotated`.
 
-Переконайтеся, що ви [Оновіть версію FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} щонайменше до 0.95.1 перед використанням `Annotated`.
+Переконайтеся, що ви [Оновіть версію FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions) щонайменше до 0.95.1 перед використанням `Annotated`.
 
 ///
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | Примітка
 
-Якщо ви не впевнені, перегляньте розділ [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} про `async` і `await` у документації.
+Якщо ви не впевнені, перегляньте розділ [Async: *"In a hurry?"*](../../async.md#in-a-hurry) про `async` і `await` у документації.
 
 ///
 

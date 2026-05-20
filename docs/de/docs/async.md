@@ -4,7 +4,7 @@ Details zur `async def`-Syntax für *Pfadoperation-Funktionen* und Hintergrundin
 
 ## In Eile? { #in-a-hurry }
 
-<abbr title="too long; didn't read – Zu lang; nicht gelesen"><strong>TL;DR:</strong></abbr>
+<abbr title="too long; didn't read - Zu lang; nicht gelesen"><strong>TL;DR:</strong></abbr>
 
 Wenn Sie Bibliotheken von Dritten verwenden, die mit `await` aufgerufen werden müssen, wie zum Beispiel:
 
@@ -74,7 +74,7 @@ Dann kommt der Computer / das Programm 🤖 bei jeder Gelegenheit zurück, weil 
 
 Dann nimmt es 🤖 die erste erledigte Aufgabe (sagen wir, unsere „Langsam-Datei“ 📝) und bearbeitet sie weiter.
 
-Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen, die relativ „langsam“ sind (im Vergleich zur Geschwindigkeit des Prozessors und des Arbeitsspeichers), wie etwa das Warten darauf, dass:
+Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="Input and Output - Eingabe und Ausgabe">I/O</abbr>-Operationen, die relativ „langsam“ sind (im Vergleich zur Geschwindigkeit des Prozessors und des Arbeitsspeichers), wie etwa das Warten darauf, dass:
 
 * die Daten des Clients über das Netzwerk empfangen wurden
 * die von Ihrem Programm gesendeten Daten vom Client über das Netzwerk empfangen wurden
@@ -85,7 +85,7 @@ Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="I
 * eine Datenbankabfrage die Ergebnisse zurückgegeben hat
 * usw.
 
-Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch „I/O-lastige“ („I/O bound“) Operationen.
+Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output - Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch „I/O-lastige“ („I/O bound“) Operationen.
 
 „Asynchron“, sagt man, weil der Computer / das Programm nicht mit einer langsamen Aufgabe „synchronisiert“ werden muss und nicht auf den genauen Moment warten muss, in dem die Aufgabe beendet ist, ohne dabei etwas zu tun, um schließlich das Ergebnis der Aufgabe zu übernehmen und die Arbeit fortsetzen zu können.
 
@@ -141,7 +141,7 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 /// info | Info
 
-Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Die wunderschönen Illustrationen stammen von [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -207,7 +207,7 @@ Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 v
 
 /// info | Info
 
-Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Die wunderschönen Illustrationen stammen von [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -251,7 +251,7 @@ Diese Art der Asynchronität hat NodeJS populär gemacht (auch wenn NodeJS nicht
 
 Und das ist das gleiche Leistungsniveau, das Sie mit **FastAPI** erhalten.
 
-Und da Sie Parallelität und Asynchronität gleichzeitig haben können, erzielen Sie eine höhere Performanz als die meisten getesteten NodeJS-Frameworks und sind mit Go auf Augenhöhe, einer kompilierten Sprache, die näher an C liegt <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(alles dank Starlette)</a>.
+Und da Sie Parallelität und Asynchronität gleichzeitig haben können, erzielen Sie eine höhere Performanz als die meisten getesteten NodeJS-Frameworks und sind mit Go auf Augenhöhe, einer kompilierten Sprache, die näher an C liegt [(alles dank Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Ist Nebenläufigkeit besser als Parallelität? { #is-concurrency-better-than-parallelism }
 
@@ -277,7 +277,7 @@ Aber wenn Sie in diesem Fall die acht Ex-Kassierer/Köche/jetzt Reinigungskräft
 
 In diesem Szenario wäre jede einzelne Reinigungskraft (einschließlich Ihnen) ein Prozessor, der seinen Teil der Arbeit erledigt.
 
-Und da die meiste Ausführungszeit durch tatsächliche Arbeit (anstatt durch Warten) in Anspruch genommen wird und die Arbeit in einem Computer von einer <abbr title="Central Processing Unit – Zentrale Recheneinheit">CPU</abbr> erledigt wird, werden diese Probleme als „CPU-lastig“ („CPU bound“) bezeichnet.
+Und da die meiste Ausführungszeit durch tatsächliche Arbeit (anstatt durch Warten) in Anspruch genommen wird und die Arbeit in einem Computer von einer <abbr title="Central Processing Unit - Zentrale Recheneinheit">CPU</abbr> erledigt wird, werden diese Probleme als „CPU-lastig“ („CPU bound“) bezeichnet.
 
 ---
 
@@ -298,7 +298,7 @@ Sie können aber auch die Vorteile von Parallelität und Multiprocessing (mehrer
 
 Dies und die einfache Tatsache, dass Python die Hauptsprache für **Data Science**, maschinelles Lernen und insbesondere Deep Learning ist, machen FastAPI zu einem sehr passenden Werkzeug für Web-APIs und Anwendungen für Data Science / maschinelles Lernen (neben vielen anderen).
 
-Wie Sie diese Parallelität in der Produktion erreichen, erfahren Sie im Abschnitt über [Deployment](deployment/index.md){.internal-link target=_blank}.
+Wie Sie diese Parallelität in der Produktion erreichen, erfahren Sie im Abschnitt über [Deployment](deployment/index.md).
 
 ## `async` und `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie d
 
 ### Schreiben Sie Ihren eigenen asynchronen Code { #write-your-own-async-code }
 
-Starlette (und **FastAPI**) basieren auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> ist.
+Starlette (und **FastAPI**) basieren auf [AnyIO](https://anyio.readthedocs.io/en/stable/), was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek [asyncio](https://docs.python.org/3/library/asyncio-task.html) als auch mit [Trio](https://trio.readthedocs.io/en/stable/) ist.
 
-Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschrittenen nebenläufigen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
+Insbesondere können Sie [AnyIO](https://anyio.readthedocs.io/en/stable/) direkt verwenden für Ihre fortgeschrittenen nebenläufigen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
 
-Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
+Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit [AnyIO](https://anyio.readthedocs.io/en/stable/) schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
 
-Ich habe eine weitere Bibliothek auf Basis von AnyIO erstellt, als dünne Schicht obendrauf, um die Typannotationen etwas zu verbessern und bessere **Autovervollständigung**, **Inline-Fehler** usw. zu erhalten. Sie hat auch eine freundliche Einführung und ein Tutorial, um Ihnen zu helfen, **Ihren eigenen asynchronen Code zu verstehen** und zu schreiben: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Sie ist insbesondere nützlich, wenn Sie **asynchronen Code mit regulärem** (blockierendem/synchronem) Code kombinieren müssen.
+Ich habe eine weitere Bibliothek auf Basis von AnyIO erstellt, als dünne Schicht obendrauf, um die Typannotationen etwas zu verbessern und bessere **Autovervollständigung**, **Inline-Fehler** usw. zu erhalten. Sie hat auch eine freundliche Einführung und ein Tutorial, um Ihnen zu helfen, **Ihren eigenen asynchronen Code zu verstehen** und zu schreiben: [Asyncer](https://asyncer.tiangolo.com/). Sie ist insbesondere nützlich, wenn Sie **asynchronen Code mit regulärem** (blockierendem/synchronem) Code kombinieren müssen.
 
 ### Andere Formen von asynchronem Code { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Die gleiche Syntax (oder fast identisch) wurde kürzlich auch in moderne Version
 
 Davor war der Umgang mit asynchronem Code jedoch deutlich komplexer und schwieriger.
 
-In früheren Versionen von Python hätten Sie Threads oder <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> verwenden können. Der Code ist jedoch viel komplexer zu verstehen, zu debuggen und nachzuvollziehen.
+In früheren Versionen von Python hätten Sie Threads oder [Gevent](https://www.gevent.org/) verwenden können. Der Code ist jedoch viel komplexer zu verstehen, zu debuggen und nachzuvollziehen.
 
 In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur „Callback-Hölle“ führt.
 
@@ -417,17 +417,17 @@ Wenn Sie über gute technische Kenntnisse verfügen (Coroutinen, Threads, Blocki
 
 Wenn Sie eine *Pfadoperation-Funktion* mit normalem `def` anstelle von `async def` deklarieren, wird sie in einem externen Threadpool ausgeführt, der dann `await`et wird, anstatt direkt aufgerufen zu werden (da dies den Server blockieren würde).
 
-Wenn Sie von einem anderen asynchronen Framework kommen, das nicht auf die oben beschriebene Weise funktioniert, und Sie es gewohnt sind, triviale, nur-berechnende *Pfadoperation-Funktionen* mit einfachem `def` zu definieren, um einen geringfügigen Geschwindigkeitsgewinn (etwa 100 Nanosekunden) zu erzielen, beachten Sie bitte, dass der Effekt in **FastAPI** genau gegenteilig wäre. In solchen Fällen ist es besser, `async def` zu verwenden, es sei denn, Ihre *Pfadoperation-Funktionen* verwenden Code, der blockierende <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben von/auf Festplatte, Netzwerkkommunikation.">I/O</abbr>-Operationen durchführt.
+Wenn Sie von einem anderen asynchronen Framework kommen, das nicht auf die oben beschriebene Weise funktioniert, und Sie es gewohnt sind, triviale, nur-berechnende *Pfadoperation-Funktionen* mit einfachem `def` zu definieren, um einen geringfügigen Geschwindigkeitsgewinn (etwa 100 Nanosekunden) zu erzielen, beachten Sie bitte, dass der Effekt in **FastAPI** genau gegenteilig wäre. In solchen Fällen ist es besser, `async def` zu verwenden, es sei denn, Ihre *Pfadoperation-Funktionen* verwenden Code, der blockierende <abbr title="Input/Output - Eingabe/Ausgabe: Lesen oder Schreiben von/auf Festplatte, Netzwerkkommunikation.">I/O</abbr>-Operationen durchführt.
 
-Dennoch besteht in beiden Fällen eine gute Chance, dass **FastAPI** [immer noch schneller](index.md#performance){.internal-link target=_blank} als Ihr bisheriges Framework (oder zumindest damit vergleichbar) ist.
+Dennoch besteht in beiden Fällen eine gute Chance, dass **FastAPI** [immer noch schneller](index.md#performance) als Ihr bisheriges Framework (oder zumindest damit vergleichbar) ist.
 
 ### Abhängigkeiten { #dependencies }
 
-Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md){.internal-link target=_blank}. Wenn eine Abhängigkeit eine normale `def`-Funktion anstelle einer `async def` ist, wird sie im externen Threadpool ausgeführt.
+Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md). Wenn eine Abhängigkeit eine normale `def`-Funktion anstelle einer `async def` ist, wird sie im externen Threadpool ausgeführt.
 
 ### Unterabhängigkeiten { #sub-dependencies }
 
-Sie können mehrere Abhängigkeiten und [Unterabhängigkeiten](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} haben, die einander bedingen (als Parameter der Funktionsdefinitionen), einige davon könnten erstellt werden mit `async def` und einige mit normalem `def`. Es würde immer noch funktionieren, und diejenigen, die mit normalem `def` erstellt wurden, würden in einem externen Thread (vom Threadpool stammend) aufgerufen werden, anstatt `await`et zu werden.
+Sie können mehrere Abhängigkeiten und [Unterabhängigkeiten](tutorial/dependencies/sub-dependencies.md) haben, die einander bedingen (als Parameter der Funktionsdefinitionen), einige davon könnten erstellt werden mit `async def` und einige mit normalem `def`. Es würde immer noch funktionieren, und diejenigen, die mit normalem `def` erstellt wurden, würden in einem externen Thread (vom Threadpool stammend) aufgerufen werden, anstatt `await`et zu werden.
 
 ### Andere Hilfsfunktionen { #other-utility-functions }
 

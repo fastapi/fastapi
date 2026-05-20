@@ -15,7 +15,7 @@
 
 Если у вас есть зависимости с `yield`, то код выхода (код после `yield`) будет выполняться *после* middleware.
 
-Если были какие‑либо фоновые задачи (рассматриваются в разделе [Фоновые задачи](background-tasks.md){.internal-link target=_blank}, вы увидите это позже), они будут запущены *после* всех middleware.
+Если были какие‑либо фоновые задачи (рассматриваются в разделе [Фоновые задачи](background-tasks.md), вы увидите это позже), они будут запущены *после* всех middleware.
 
 ///
 
@@ -35,9 +35,9 @@
 
 /// tip | Совет
 
-Имейте в виду, что можно добавлять проприетарные HTTP-заголовки <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">с префиксом `X-`</a>.
+Имейте в виду, что можно добавлять проприетарные HTTP-заголовки [с префиксом `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Но если вы хотите, чтобы клиент в браузере мог видеть ваши пользовательские заголовки, необходимо добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, описанный в <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">документации по CORS Starlette</a>.
+Но если вы хотите, чтобы клиент в браузере мог видеть ваши пользовательские заголовки, необходимо добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)), используя параметр `expose_headers`, описанный в [документации по CORS Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -61,7 +61,7 @@
 
 /// tip | Совет
 
-Мы используем <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> вместо `time.time()` для обеспечения большей точности в таких случаях. 🤓
+Мы используем [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) вместо `time.time()` для обеспечения большей точности в таких случаях. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## Другие middleware { #other-middlewares }
 
-О других middleware вы можете узнать больше в разделе [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
+О других middleware вы можете узнать больше в разделе [Расширенное руководство пользователя: Продвинутое middleware](../advanced/middleware.md).
 
 В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing - совместное использование ресурсов между источниками">CORS</abbr> с помощью middleware.

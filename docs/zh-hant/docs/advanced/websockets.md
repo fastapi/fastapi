@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-你可以在 **FastAPI** 中使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>。
+你可以在 **FastAPI** 中使用 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)。
 
 ## 安裝 `websockets` { #install-websockets }
 
-請先建立[虛擬環境](../virtual-environments.md){.internal-link target=_blank}、啟用它，然後安裝 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）：
+請先建立[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）：
 
 <div class="termy">
 
@@ -69,14 +69,14 @@ $ pip install websockets
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在瀏覽器開啟 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在瀏覽器開啟 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 你會看到一個像這樣的簡單頁面：
 
@@ -115,25 +115,25 @@ $ fastapi dev main.py
 
 因為這是 WebSocket，拋出 `HTTPException` 並沒有意義，因此我們改為拋出 `WebSocketException`。
 
-你可以使用規範中定義的<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">有效關閉代碼</a>之一。
+你可以使用規範中定義的[有效關閉代碼](https://tools.ietf.org/html/rfc6455#section-7.4.1)之一。
 
 ///
 
 ### 用依賴試用 WebSocket { #try-the-websockets-with-dependencies }
 
-如果你的檔案名為 `main.py`，用以下指令執行應用：
+執行你的應用：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在瀏覽器開啟 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在瀏覽器開啟 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 在那裡你可以設定：
 
@@ -174,7 +174,7 @@ Client #1596980209979 left the chat
 
 但請注意，因為所有狀態都在記憶體中的單一 list 裡管理，它只會在該程序執行期間生效，且僅適用於單一程序。
 
-如果你需要一個容易與 FastAPI 整合、但更健壯，且可由 Redis、PostgreSQL 等後端支援的方案，請參考 <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>。
+如果你需要一個容易與 FastAPI 整合、但更健壯，且可由 Redis、PostgreSQL 等後端支援的方案，請參考 [encode/broadcaster](https://github.com/encode/broadcaster)。
 
 ///
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 想了解更多選項，請參考 Starlette 的文件：
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` 類別</a>。
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">以類別為基礎的 WebSocket 處理</a>。
+* [`WebSocket` 類別](https://www.starlette.dev/websockets/)。
+* [以類別為基礎的 WebSocket 處理](https://www.starlette.dev/endpoints/#websocketendpoint)。

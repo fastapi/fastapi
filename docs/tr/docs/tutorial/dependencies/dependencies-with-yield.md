@@ -14,8 +14,8 @@ Her dependency için yalnızca bir kez `yield` kullandığınızdan emin olun.
 
 Şunlarla kullanılabilen herhangi bir fonksiyon:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> veya
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) veya
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 bir **FastAPI** dependency'si olarak kullanılabilir.
 
@@ -87,7 +87,7 @@ Ayrıca birden fazla `yield` kullanan dependency gerektiren tek bir dependency'n
 
 /// note | Teknik Detaylar
 
-Bu, Python'un <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a> yapısı sayesinde çalışır.
+Bu, Python'un [Context Managers](https://docs.python.org/3/library/contextlib.html) yapısı sayesinde çalışır.
 
 **FastAPI** bunu sağlamak için içeride onları kullanır.
 
@@ -111,7 +111,7 @@ Ama ihtiyaç duyarsanız diye burada. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} oluşturun.
+Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers) oluşturun.
 
 ## `yield` ve `except` ile Dependency'ler { #dependencies-with-yield-and-except }
 
@@ -233,14 +233,14 @@ participant operation as Path Operation
 
 `yield` kullanan dependency'ler, zaman içinde farklı kullanım senaryolarını kapsamak ve bazı sorunları düzeltmek için gelişti.
 
-FastAPI'nin farklı sürümlerinde nelerin değiştiğini görmek isterseniz, advanced guide'da şu bölümü okuyabilirsiniz: [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+FastAPI'nin farklı sürümlerinde nelerin değiştiğini görmek isterseniz, advanced guide'da şu bölümü okuyabilirsiniz: [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
 ## Context Managers { #context-managers }
 
 ### "Context Managers" Nedir? { #what-are-context-managers }
 
 "Context Managers", `with` ifadesiyle kullanabildiğiniz Python nesneleridir.
 
-Örneğin, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">bir dosyayı okumak için `with` kullanabilirsiniz</a>:
+Örneğin, [bir dosyayı okumak için `with` kullanabilirsiniz](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +264,7 @@ Bu, az çok "ileri seviye" bir fikirdir.
 
 ///
 
-Python'da Context Manager'ları, <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">iki method'a sahip bir class oluşturarak: `__enter__()` ve `__exit__()`</a> yaratabilirsiniz.
+Python'da Context Manager'ları, [iki method'a sahip bir class oluşturarak: `__enter__()` ve `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers) yaratabilirsiniz.
 
 Ayrıca dependency fonksiyonunun içinde `with` veya `async with` ifadeleri kullanarak **FastAPI**'de `yield` kullanan dependency'lerin içinde de kullanabilirsiniz:
 
@@ -274,8 +274,8 @@ Ayrıca dependency fonksiyonunun içinde `with` veya `async with` ifadeleri kull
 
 Bir context manager oluşturmanın başka bir yolu da şunlardır:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> veya
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) veya
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 Bunları, tek bir `yield` içeren bir fonksiyonu decorate etmek için kullanabilirsiniz.
 

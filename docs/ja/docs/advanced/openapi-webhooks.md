@@ -48,7 +48,7 @@ Webhook では（`/items/` のような）*パス*を宣言しているわけで
 
 ### ドキュメントの確認 { #check-the-docs }
 
-アプリを起動し、<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> にアクセスします。
+アプリを起動し、[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) にアクセスします。
 
 ドキュメントには通常の *path operations* に加えて、**webhooks** も表示されます:
 

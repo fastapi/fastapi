@@ -30,25 +30,25 @@ Neste caso, ela será montada no path `/subapi`:
 
 ### Verifique a documentação automática da API { #check-the-automatic-api-docs }
 
-Agora, execute o comando `fastapi` com o seu arquivo:
+Agora, execute o comando `fastapi`:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-E abra a documentação em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+E abra a documentação em [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Você verá a documentação automática da API para a aplicação principal, incluindo apenas suas próprias _operações de rota_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-E então, abra a documentação para a sub-aplicação, em <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+E então, abra a documentação para a sub-aplicação, em [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 Você verá a documentação automática da API para a sub-aplicação, incluindo apenas suas próprias _operações de rota_, todas sob o prefixo de sub-path correto `/subapi`:
 
@@ -64,4 +64,4 @@ Dessa forma, a sub-aplicação saberá usar esse prefixo de path para a interfac
 
 E a sub-aplicação também poderia ter suas próprias sub-aplicações montadas e tudo funcionaria corretamente, porque o FastAPI lida com todos esses `root_path`s automaticamente.
 
-Você aprenderá mais sobre o `root_path` e como usá-lo explicitamente na seção sobre [Atrás de um Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Você aprenderá mais sobre o `root_path` e como usá-lo explicitamente na seção sobre [Atrás de um Proxy](behind-a-proxy.md).

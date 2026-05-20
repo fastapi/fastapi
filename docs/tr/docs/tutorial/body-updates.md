@@ -2,7 +2,7 @@
 
 ## `PUT` ile değiştirerek güncelleme { #update-replacing-with-put }
 
-Bir öğeyi güncellemek için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> operasyonunu kullanabilirsiniz.
+Bir öğeyi güncellemek için [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) operasyonunu kullanabilirsiniz.
 
 Girdi verisini JSON olarak saklanabilecek bir formata (ör. bir NoSQL veritabanı ile) dönüştürmek için `jsonable_encoder` kullanabilirsiniz. Örneğin, `datetime` değerlerini `str`'ye çevirmek gibi.
 
@@ -28,7 +28,7 @@ Ve veri, bu "yeni" `tax` değeri olan `10.5` ile kaydedilecektir.
 
 ## `PATCH` ile kısmi güncellemeler { #partial-updates-with-patch }
 
-Veriyi *kısmen* güncellemek için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operasyonunu da kullanabilirsiniz.
+Veriyi *kısmen* güncellemek için [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) operasyonunu da kullanabilirsiniz.
 
 Bu, yalnızca güncellemek istediğiniz veriyi gönderip, geri kalanını olduğu gibi bırakabileceğiniz anlamına gelir.
 
@@ -95,6 +95,6 @@ Input modelin yine de doğrulandığına dikkat edin.
 
 Dolayısıyla, tüm attribute'ların atlanabildiği kısmi güncellemeler almak istiyorsanız, tüm attribute'ları optional olarak işaretlenmiş (varsayılan değerlerle veya `None` ile) bir modele ihtiyacınız vardır.
 
-**Güncelleme** için tüm değerleri optional olan modeller ile **oluşturma** için zorunlu değerlere sahip modelleri ayırmak için, [Extra Models](extra-models.md){.internal-link target=_blank} bölümünde anlatılan fikirleri kullanabilirsiniz.
+**Güncelleme** için tüm değerleri optional olan modeller ile **oluşturma** için zorunlu değerlere sahip modelleri ayırmak için, [Extra Models](extra-models.md) bölümünde anlatılan fikirleri kullanabilirsiniz.
 
 ///

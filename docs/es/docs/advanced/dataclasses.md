@@ -2,11 +2,11 @@
 
 FastAPI está construido sobre **Pydantic**, y te he estado mostrando cómo usar modelos de Pydantic para declarar requests y responses.
 
-Pero FastAPI también soporta el uso de <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> de la misma manera:
+Pero FastAPI también soporta el uso de [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) de la misma manera:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Esto sigue siendo soportado gracias a **Pydantic**, ya que tiene <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">soporte interno para `dataclasses`</a>.
+Esto sigue siendo soportado gracias a **Pydantic**, ya que tiene [soporte interno para `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
 
 Así que, incluso con el código anterior que no usa Pydantic explícitamente, FastAPI está usando Pydantic para convertir esos dataclasses estándar en su propia versión de dataclasses de Pydantic.
 
@@ -74,7 +74,7 @@ En ese caso, simplemente puedes intercambiar los `dataclasses` estándar con `py
 
     Como siempre, en FastAPI puedes combinar `def` y `async def` según sea necesario.
 
-    Si necesitas un repaso sobre cuándo usar cuál, revisa la sección _"¿Con prisa?"_ en la documentación sobre [`async` y `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Si necesitas un repaso sobre cuándo usar cuál, revisa la sección _"¿Con prisa?"_ en la documentación sobre [`async` y `await`](../async.md#in-a-hurry).
 
 9. Esta *path operation function* no está devolviendo dataclasses (aunque podría), sino una lista de diccionarios con datos internos.
 
@@ -88,7 +88,7 @@ Revisa las anotaciones en el código arriba para ver más detalles específicos.
 
 También puedes combinar `dataclasses` con otros modelos de Pydantic, heredar de ellos, incluirlos en tus propios modelos, etc.
 
-Para saber más, revisa la <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">documentación de Pydantic sobre dataclasses</a>.
+Para saber más, revisa la [documentación de Pydantic sobre dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
 
 ## Versión { #version }
 

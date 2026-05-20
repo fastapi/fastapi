@@ -32,7 +32,7 @@
 
 在這個範例中我們使用了自訂的（虛構的）標頭 `X-Key` 與 `X-Token`。
 
-但在實際情況下，當你實作安全機制時，使用整合的 [Security utilities（下一章）](../security/index.md){.internal-link target=_blank} 會獲得更多好處。
+但在實際情況下，當你實作安全機制時，使用整合的 [Security utilities（下一章）](../security/index.md) 會獲得更多好處。
 
 ///
 
@@ -62,7 +62,7 @@
 
 ## 一組路徑操作的依賴 { #dependencies-for-a-group-of-path-operations }
 
-之後在閱讀如何組織較大的應用程式（[較大型應用程式——多個檔案](../../tutorial/bigger-applications.md){.internal-link target=_blank}）時，你會學到如何為一組路徑操作宣告一個共同的 `dependencies` 參數。
+之後在閱讀如何組織較大的應用程式（[較大型應用程式——多個檔案](../../tutorial/bigger-applications.md)）時，你會學到如何為一組路徑操作宣告一個共同的 `dependencies` 參數。
 
 ## 全域依賴 { #global-dependencies }
 

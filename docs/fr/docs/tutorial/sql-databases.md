@@ -2,9 +2,9 @@
 
 **FastAPI** ne vous oblige pas à utiliser une base de données SQL (relationnelle). Mais vous pouvez utiliser **n'importe quelle base de données** que vous voulez.
 
-Ici, nous allons voir un exemple utilisant <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>.
+Ici, nous allons voir un exemple utilisant [SQLModel](https://sqlmodel.tiangolo.com/).
 
-**SQLModel** est construit au-dessus de <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> et de Pydantic. Il a été créé par le même auteur que **FastAPI** pour être l'accord parfait pour les applications FastAPI qui ont besoin d'utiliser des **bases de données SQL**.
+**SQLModel** est construit au-dessus de [SQLAlchemy](https://www.sqlalchemy.org/) et de Pydantic. Il a été créé par le même auteur que **FastAPI** pour être l'accord parfait pour les applications FastAPI qui ont besoin d'utiliser des **bases de données SQL**.
 
 /// tip | Astuce
 
@@ -26,15 +26,15 @@ Plus tard, pour votre application de production, vous voudrez peut-être utilise
 
 /// tip | Astuce
 
-Il existe un générateur de projet officiel avec **FastAPI** et **PostgreSQL**, incluant un frontend et plus d'outils : <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+Il existe un générateur de projet officiel avec **FastAPI** et **PostgreSQL**, incluant un frontend et plus d'outils : [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur les bases de données en général, sur SQL, ou des fonctionnalités plus avancées, allez voir la <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">documentation SQLModel</a>.
+Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur les bases de données en général, sur SQL, ou des fonctionnalités plus avancées, allez voir la [documentation SQLModel](https://sqlmodel.tiangolo.com/).
 
 ## Installer `SQLModel` { #install-sqlmodel }
 
-D'abord, assurez-vous de créer votre [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer `sqlmodel` :
+D'abord, assurez-vous de créer votre [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer `sqlmodel` :
 
 <div class="termy">
 
@@ -65,7 +65,7 @@ Il y a quelques différences :
 
 * `Field(primary_key=True)` indique à SQLModel que `id` est la **clé primaire** dans la base SQL (vous pouvez en savoir plus sur les clés primaires SQL dans la documentation SQLModel).
 
-    Remarque : nous utilisons `int | None` pour le champ clé primaire afin qu'en Python nous puissions *créer un objet sans `id`* (`id=None`), en supposant que la base *le génère à l'enregistrement*. SQLModel comprend que la base fournira l'`id` et *définit la colonne comme un `INTEGER` non nul* dans le schéma de base. Voir la <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">documentation SQLModel sur les clés primaires</a> pour plus de détails.
+    Remarque : nous utilisons `int | None` pour le champ clé primaire afin qu'en Python nous puissions *créer un objet sans `id`* (`id=None`), en supposant que la base *le génère à l'enregistrement*. SQLModel comprend que la base fournira l'`id` et *définit la colonne comme un `INTEGER` non nul* dans le schéma de base. Voir la [documentation SQLModel sur les clés primaires](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) pour plus de détails.
 
 * `Field(index=True)` indique à SQLModel qu'il doit créer un **index SQL** pour cette colonne, ce qui permettra des recherches plus rapides dans la base lors de la lecture de données filtrées par cette colonne.
 
@@ -111,7 +111,7 @@ En production, vous utiliseriez probablement un script de migration qui s'exécu
 
 /// tip | Astuce
 
-SQLModel aura des utilitaires de migration enveloppant Alembic, mais pour l'instant, vous pouvez utiliser <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> directement.
+SQLModel aura des utilitaires de migration enveloppant Alembic, mais pour l'instant, vous pouvez utiliser [Alembic](https://alembic.sqlalchemy.org/en/latest/) directement.
 
 ///
 
@@ -152,7 +152,7 @@ Vous pouvez exécuter l'application :
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Vous pouvez exécuter l'application à nouveau :
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ Si vous allez sur l'UI `/docs` de l'API, vous verrez qu'elle est maintenant à j
 
 ## Récapitulatif { #recap }
 
-Vous pouvez utiliser <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> pour interagir avec une base SQL et simplifier le code avec des *modèles de données* et des *modèles de table*.
+Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données* et des *modèles de table*.
 
-Vous pouvez en apprendre beaucoup plus dans la documentation **SQLModel**, il y a un mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**</a>. 🚀
+Vous pouvez en apprendre beaucoup plus dans la documentation **SQLModel**, il y a un mini [tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

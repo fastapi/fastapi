@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -63,28 +64,58 @@ def test_openapi_schema(client: TestClient):
                 }
             },
             "components": {
-                "schemas": {
-                    "PlatformRole": {
-                        "type": "string",
-                        "enum": ["admin", "user"],
-                        "title": "PlatformRole",
-                    },
-                    "User": {
-                        "properties": {
-                            "username": {"type": "string", "title": "Username"},
-                            "role": {
-                                "anyOf": [
-                                    {"$ref": "#/components/schemas/PlatformRole"},
-                                    {"enum": [], "title": "OtherRole"},
-                                ],
-                                "title": "Role",
-                            },
+                "schemas": IsOneOf(
+                    # Pydantic >= 2.11: no top-level OtherRole
+                    {
+                        "PlatformRole": {
+                            "type": "string",
+                            "enum": ["admin", "user"],
+                            "title": "PlatformRole",
                         },
-                        "type": "object",
-                        "required": ["username", "role"],
-                        "title": "User",
+                        "User": {
+                            "properties": {
+                                "username": {"type": "string", "title": "Username"},
+                                "role": {
+                                    "anyOf": [
+                                        {"$ref": "#/components/schemas/PlatformRole"},
+                                        {"enum": [], "title": "OtherRole"},
+                                    ],
+                                    "title": "Role",
+                                },
+                            },
+                            "type": "object",
+                            "required": ["username", "role"],
+                            "title": "User",
+                        },
                     },
-                }
+                    # Pydantic < 2.11: adds a top-level OtherRole schema
+                    {
+                        "OtherRole": {
+                            "enum": [],
+                            "title": "OtherRole",
+                        },
+                        "PlatformRole": {
+                            "type": "string",
+                            "enum": ["admin", "user"],
+                            "title": "PlatformRole",
+                        },
+                        "User": {
+                            "properties": {
+                                "username": {"type": "string", "title": "Username"},
+                                "role": {
+                                    "anyOf": [
+                                        {"$ref": "#/components/schemas/PlatformRole"},
+                                        {"enum": [], "title": "OtherRole"},
+                                    ],
+                                    "title": "Role",
+                                },
+                            },
+                            "type": "object",
+                            "required": ["username", "role"],
+                            "title": "User",
+                        },
+                    },
+                )
             },
         }
     )

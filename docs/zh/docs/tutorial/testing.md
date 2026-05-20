@@ -1,18 +1,18 @@
 # 测试 { #testing }
 
-感谢 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>，测试**FastAPI** 应用轻松又愉快。
+感谢 [Starlette](https://www.starlette.dev/testclient/)，测试**FastAPI** 应用轻松又愉快。
 
-它基于 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>， 而HTTPX又是基于Requests设计的，所以很相似且易懂。
+它基于 [HTTPX](https://www.python-httpx.org)，而HTTPX又是基于Requests设计的，所以很相似且易懂。
 
-有了它，你可以直接与**FastAPI**一起使用 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>。
+有了它，你可以直接与**FastAPI**一起使用 [pytest](https://docs.pytest.org/)。
 
 ## 使用 `TestClient` { #using-testclient }
 
 /// info | 信息
 
-要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>。
+要使用 `TestClient`，先要安装 [`httpx`](https://www.python-httpx.org)。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | 提示
 
-除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} 。
+除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md) 。
 
 ///
 
@@ -64,7 +64,7 @@ $ pip install httpx
 
 ### **FastAPI** app 文件 { #fastapi-app-file }
 
-假设你有一个像 [更大的应用](bigger-applications.md){.internal-link target=_blank} 中所描述的文件结构:
+假设你有一个像[更大的应用](bigger-applications.md)中所描述的文件结构:
 
 ```
 .
@@ -112,7 +112,7 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-假设现在包含**FastAPI** app的文件 `main.py`  有些其他**路径操作**。
+假设现在包含**FastAPI** app的文件 `main.py` 有些其他**路径操作**。
 
 有个 `GET` 操作会返回错误。
 
@@ -128,7 +128,7 @@ $ pip install httpx
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
-每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx`做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
+每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx` 做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
 
 接着只需在测试中同样操作。
 
@@ -140,13 +140,13 @@ $ pip install httpx
 * 要发送 *headers*，传 `dict` 给 `headers` 参数。
 * 对于 *cookies*，传 `dict` 给 `cookies` 参数。
 
-关于如何传数据给后端的更多信息 (使用`httpx` 或 `TestClient`)，请查阅 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX 文档</a>.
+关于如何传数据给后端的更多信息（使用 `httpx` 或 `TestClient`），请查阅 [HTTPX 文档](https://www.python-httpx.org)。
 
 /// info | 信息
 
 注意 `TestClient` 接收可以被转化为JSON的数据，而不是Pydantic模型。
 
-如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON Compatible Encoder](encoder.md){.internal-link target=_blank}介绍的`jsonable_encoder` 。
+如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON Compatible Encoder](encoder.md)介绍的`jsonable_encoder` 。
 
 ///
 
@@ -154,7 +154,7 @@ $ pip install httpx
 
 之后，你只需要安装 `pytest`。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 <div class="termy">
 

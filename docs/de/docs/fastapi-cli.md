@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** ist ein Kommandozeilenprogramm, mit dem Sie Ihre FastAPI-App bereitstellen, Ihr FastAPI-Projekt verwalten und mehr.
+**FastAPI <abbr title="command line interface - Kommandozeileninterface">CLI</abbr>** ist ein Kommandozeilenprogramm, mit dem Sie Ihre FastAPI-App bereitstellen, Ihr FastAPI-Projekt verwalten und mehr.
 
-Wenn Sie FastAPI installieren (z. B. mit `pip install "fastapi[standard]"`), wird ein Package namens `fastapi-cli` mitgeliefert, das den Befehl `fastapi` im Terminal bereitstellt.
+Wenn Sie FastAPI installieren (z. B. mit `pip install "fastapi[standard]"`), erhalten Sie ein Kommandozeilenprogramm, das Sie im Terminal ausführen können.
 
 Um Ihre FastAPI-App für die Entwicklung auszuführen, können Sie den Befehl `fastapi dev` verwenden:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,66 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-Das Kommandozeilenprogramm namens `fastapi` ist das **FastAPI CLI**.
+/// tip | Tipp
 
-FastAPI CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt automatisch die `FastAPI`-Instanz (häufig `app` genannt), bestimmt den korrekten Importprozess und stellt sie dann bereit.
+Für die Produktion würden Sie statt `fastapi dev` `fastapi run` verwenden. 🚀
 
-Für die Produktion würden Sie stattdessen `fastapi run` verwenden. 🚀
+///
 
-Intern verwendet das **FastAPI CLI** <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
+Intern verwendet das **FastAPI CLI** [Uvicorn](https://www.uvicorn.dev), einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
+
+Das `fastapi`-CLI versucht automatisch, die auszuführende FastAPI-App zu erkennen, und geht davon aus, dass es sich um ein Objekt namens `app` in einer Datei `main.py` handelt (oder ein paar weitere Varianten).
+
+Sie können aber auch explizit konfigurieren, welche App verwendet werden soll.
+
+## Den App-`entrypoint` in `pyproject.toml` konfigurieren { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Sie können in einer `pyproject.toml`-Datei konfigurieren, wo sich Ihre App befindet, etwa so:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Dieser `entrypoint` teilt dem Befehl `fastapi` mit, dass die App so importiert werden soll:
+
+```python
+from main import app
+```
+
+Wenn Ihr Code so strukturiert wäre:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Dann würden Sie den `entrypoint` wie folgt setzen:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+was gleichbedeutend wäre mit:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` mit Pfad { #fastapi-dev-with-path }
+
+Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, dann wird das zu verwendende FastAPI-App-Objekt erraten:
+
+```console
+$ fastapi dev main.py
+```
+
+Aber Sie müssten sich merken, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad zu übergeben.
+
+Zusätzlich könnten andere Tools sie nicht finden, z. B. die [VS Code Extension](editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com), daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -62,7 +115,7 @@ Standardmäßig ist **Autoreload** aktiviert, das den Server automatisch neu lä
 
 ## `fastapi run` { #fastapi-run }
 
-Das Ausführen von `fastapi run` startet FastAPI standardmäßig im Produktionsmodus.
+Das Ausführen von `fastapi run` startet FastAPI im Produktionsmodus.
 
 Standardmäßig ist **Autoreload** deaktiviert. Es horcht auch auf der IP-Adresse `0.0.0.0`, was alle verfügbaren IP-Adressen bedeutet, so wird es öffentlich zugänglich für jeden, der mit der Maschine kommunizieren kann. So würden Sie es normalerweise in der Produktion ausführen, beispielsweise in einem Container.
 
@@ -70,6 +123,6 @@ In den meisten Fällen würden (und sollten) Sie einen „Terminierungsproxy“ 
 
 /// tip | Tipp
 
-Sie können mehr darüber in der [Deployment-Dokumentation](deployment/index.md){.internal-link target=_blank} erfahren.
+Sie können mehr darüber in der [Deployment-Dokumentation](deployment/index.md) erfahren.
 
 ///

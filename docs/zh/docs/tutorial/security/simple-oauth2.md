@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 信息
 
-`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user-in-dict){.internal-link target=_blank}。
+`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user-in-dict)。
 
 ///
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## 实际效果 { #see-it-in-action }
 
-打开 API 文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+打开交互式文档：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 ### 身份验证 { #authenticate }
 

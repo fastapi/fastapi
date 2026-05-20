@@ -14,7 +14,7 @@
 | `version` | `string` | API 的版本號。這是你自己的應用程式版本，不是 OpenAPI 的版本，例如 `2.5.0`。 |
 | `terms_of_service` | `str` | 指向 API 服務條款的 URL。若提供，必須是 URL。 |
 | `contact` | `dict` | 對外公開的 API 聯絡資訊。可包含多個欄位。<details><summary><code>contact</code> 欄位</summary><table><thead><tr><th>參數</th><th>型別</th><th>說明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>聯絡人／組織的識別名稱。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>指向聯絡資訊的 URL。必須是 URL 格式。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>聯絡人／組織的電子郵件地址。必須是電子郵件格式。</td></tr></tbody></table></details> |
-| `license_info` | `dict` | 對外公開的 API 授權資訊。可包含多個欄位。<details><summary><code>license_info</code> 欄位</summary><table><thead><tr><th>參數</th><th>型別</th><th>說明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必填</strong>（若有設定 <code>license_info</code>）。API 使用的授權名稱。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API 的 <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> 授權表示式。<code>identifier</code> 欄位與 <code>url</code> 欄位互斥。<small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API 所採用授權的 URL。必須是 URL 格式。</td></tr></tbody></table></details> |
+| `license_info` | `dict` | 對外公開的 API 授權資訊。可包含多個欄位。<details><summary><code>license_info</code> 欄位</summary><table><thead><tr><th>參數</th><th>型別</th><th>說明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必填</strong>（若有設定 <code>license_info</code>）。API 使用的授權名稱。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API 的 [SPDX](https://spdx.org/licenses/) 授權表示式。<code>identifier</code> 欄位與 <code>url</code> 欄位互斥。<small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API 所採用授權的 URL。必須是 URL 格式。</td></tr></tbody></table></details> |
 
 你可以這樣設定它們：
 
@@ -76,7 +76,7 @@
 
 /// info | 資訊
 
-在［路徑操作設定］中閱讀更多關於標籤的內容：[Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}。
+在 [Path Operation Configuration](path-operation-configuration.md#tags) 中閱讀更多關於標籤的內容。
 
 ///
 

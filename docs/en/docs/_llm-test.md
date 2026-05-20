@@ -124,19 +124,11 @@ See section `### Content of code blocks` in the general prompt in `scripts/trans
 
 //// tab | Test
 
-/// info
-Some text
-///
-
 /// note
 Some text
 ///
 
 /// note | Technical details
-Some text
-///
-
-/// check
 Some text
 ///
 

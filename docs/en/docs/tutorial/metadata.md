@@ -74,7 +74,7 @@ Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assig
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info
+/// note
 
 Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags).
 

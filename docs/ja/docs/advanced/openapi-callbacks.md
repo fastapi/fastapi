@@ -35,7 +35,7 @@
 
 /// tip | 豆知識
 
-`callback_url` クエリパラメータは、Pydantic の <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> 型を使用します。
+`callback_url` クエリパラメータは、Pydantic の [Url](https://docs.pydantic.dev/latest/api/networks/) 型を使用します。
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 実際のコールバックは単なる HTTP リクエストです。
 
-自分でコールバックを実装する場合は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> や <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a> のようなものを使えます。
+自分でコールバックを実装する場合は、[HTTPX](https://www.python-httpx.org) や [Requests](https://requests.readthedocs.io/) のようなものを使えます。
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 通常の *path operation* と異なる主な点が 2 つあります:
 
 * 実際のコードは不要です。あなたのアプリはこのコードを決して呼びません。これは *外部 API* をドキュメント化するためだけに使われます。したがって、関数本体は `pass` で構いません。
-* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 の式</a>（後述）を含められます。
+* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（後述）を含められます。
 
 ### コールバックのパス式 { #the-callback-path-expression }
 
-コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 の式</a>を使用できます。
+コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)を使用できます。
 
 この例では、`str` は次のとおりです:
 
@@ -179,7 +179,7 @@ JSON ボディは次のような内容です:
 
 ### ドキュメントを確認 { #check-the-docs }
 
-アプリを起動して <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> にアクセスします。
+アプリを起動して [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) にアクセスします。
 
 あなたの *path operation* に「Callbacks」セクションが含まれ、*外部 API* がどうあるべきかが表示されているのが確認できます:
 

@@ -20,7 +20,7 @@ También puedes declarar el parámetro `Response` en las dependencias, y estable
 
 También puedes crear cookies al devolver una `Response` directamente en tu código.
 
-Para hacer eso, puedes crear un response como se describe en [Devolver un Response Directamente](response-directly.md){.internal-link target=_blank}.
+Para hacer eso, puedes crear un response como se describe en [Devolver un Response Directamente](response-directly.md).
 
 Luego establece Cookies en ella, y luego devuélvela:
 
@@ -48,4 +48,4 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 ///
 
-Para ver todos los parámetros y opciones disponibles, revisa la <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentación en Starlette</a>.
+Para ver todos los parámetros y opciones disponibles, revisa la [documentación en Starlette](https://www.starlette.dev/responses/#set-cookie).

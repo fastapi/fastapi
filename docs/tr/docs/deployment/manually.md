@@ -52,11 +52,11 @@ Uzak bir sunucu makinesinde **FastAPI** uygulamasını (veya herhangi bir ASGI u
 
 Buna alternatif birkaç seçenek daha vardır, örneğin:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: yüksek performanslı bir ASGI server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: diğer özelliklerin yanında HTTP/2 ve Trio ile uyumlu bir ASGI server.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: Django Channels için geliştirilmiş ASGI server.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Python uygulamaları için bir Rust HTTP server.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit, hafif ve çok yönlü bir web uygulaması runtime'ıdır.
+* [Uvicorn](https://www.uvicorn.dev/): yüksek performanslı bir ASGI server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): diğer özelliklerin yanında HTTP/2 ve Trio ile uyumlu bir ASGI server.
+* [Daphne](https://github.com/django/daphne): Django Channels için geliştirilmiş ASGI server.
+* [Granian](https://github.com/emmett-framework/granian): Python uygulamaları için bir Rust HTTP server.
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit, hafif ve çok yönlü bir web uygulaması runtime'ıdır.
 
 ## Sunucu Makinesi ve Sunucu Programı { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ FastAPI'yi kurduğunuzda, production sunucusu olarak Uvicorn da beraberinde geli
 
 Ancak bir ASGI server'ı manuel olarak da kurabilirsiniz.
 
-Bir [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden emin olun; ardından server uygulamasını kurabilirsiniz.
+Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, etkinleştirdiğinizden emin olun; ardından server uygulamasını kurabilirsiniz.
 
 Örneğin Uvicorn'u kurmak için:
 

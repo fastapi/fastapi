@@ -60,7 +60,7 @@
 
 你也可以为它声明带有各自模型、状态码等的附加响应。
 
-文档中有一个完整章节，你可以阅读这里的[OpenAPI 中的附加响应](additional-responses.md){.internal-link target=_blank}。
+文档中有一个完整章节，你可以阅读这里的[OpenAPI 中的附加响应](additional-responses.md)。
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@
 
 /// note | 技术细节
 
-在 OpenAPI 规范中，这被称为 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation 对象</a>。
+在 OpenAPI 规范中，这被称为 [Operation 对象](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object)。
 
 ///
 
@@ -82,7 +82,7 @@
 
 这是一个较低层级的扩展点。
 
-如果你只需要声明附加响应，更方便的方式是使用[OpenAPI 中的附加响应](additional-responses.md){.internal-link target=_blank}。
+如果你只需要声明附加响应，更方便的方式是使用[OpenAPI 中的附加响应](additional-responses.md)。
 
 ///
 

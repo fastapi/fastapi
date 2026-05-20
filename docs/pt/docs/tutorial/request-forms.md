@@ -4,9 +4,9 @@ Quando você precisar receber campos de formulário em vez de JSON, você pode u
 
 /// info | Informação
 
-Para usar formulários, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para usar formulários, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalá-lo, por exemplo:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e então instalá-lo, por exemplo:
 
 ```console
 $ pip install python-multipart
@@ -56,7 +56,7 @@ Os dados dos formulários são normalmente codificados usando o "media type" `ap
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o [<abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

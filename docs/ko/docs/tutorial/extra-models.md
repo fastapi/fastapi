@@ -12,7 +12,7 @@
 
 절대 사용자의 비밀번호를 평문으로 저장하지 마세요. 항상 이후에 검증 가능한 "안전한 해시(secure hash)"로 저장하세요.
 
-만약 이게 무엇인지 모르겠다면, [보안 장](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}에서 "password hash"가 무엇인지 배울 수 있습니다.
+만약 이게 무엇인지 모르겠다면, [보안 장](security/simple-oauth2.md#password-hashing)에서 "password hash"가 무엇인지 배울 수 있습니다.
 
 ///
 
@@ -162,11 +162,11 @@ UserInDB(
 
 OpenAPI에서는 이를 `anyOf`로 정의합니다.
 
-이를 위해 표준 Python 타입 힌트인 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>을 사용할 수 있습니다:
+이를 위해 표준 Python 타입 힌트인 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)을 사용할 수 있습니다:
 
 /// note
 
-<a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>을 정의할 때는 더 구체적인 타입을 먼저 포함하고, 덜 구체적인 타입을 그 뒤에 나열해야 합니다. 아래 예제에서는 `Union[PlaneItem, CarItem]`에서 더 구체적인 `PlaneItem`이 `CarItem`보다 앞에 위치합니다.
+[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)을 정의할 때는 더 구체적인 타입을 먼저 포함하고, 덜 구체적인 타입을 그 뒤에 나열해야 합니다. 아래 예제에서는 `Union[PlaneItem, CarItem]`에서 더 구체적인 `PlaneItem`이 `CarItem`보다 앞에 위치합니다.
 
 ///
 

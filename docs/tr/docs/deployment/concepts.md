@@ -25,7 +25,7 @@ Ama şimdilik, bu önemli **kavramsal fikirleri** inceleyelim. Bu kavramlar diğ
 
 ## Güvenlik - HTTPS { #security-https }
 
-[HTTPS hakkındaki önceki bölümde](https.md){.internal-link target=_blank} HTTPS'in API'niz için nasıl şifreleme sağladığını öğrenmiştik.
+[HTTPS hakkındaki önceki bölümde](https.md) HTTPS'in API'niz için nasıl şifreleme sağladığını öğrenmiştik.
 
 Ayrıca HTTPS'in genellikle uygulama server'ınızın **dışında** yer alan bir bileşen tarafından sağlandığını, yani bir **TLS Termination Proxy** ile yapıldığını da görmüştük.
 
@@ -190,7 +190,7 @@ Aynı API programının **birden fazla process**'ini çalıştırdığınızda, 
 
 ### Worker Process'ler ve Port'lar { #worker-processes-and-ports }
 
-[HTTPS hakkındaki dokümanda](https.md){.internal-link target=_blank} bir server'da aynı port ve IP adresi kombinasyonunu yalnızca tek bir process'in dinleyebileceğini hatırlıyor musunuz?
+[HTTPS hakkındaki dokümanda](https.md) bir server'da aynı port ve IP adresi kombinasyonunu yalnızca tek bir process'in dinleyebileceğini hatırlıyor musunuz?
 
 Bu hâlâ geçerli.
 
@@ -243,7 +243,7 @@ Olası kombinasyonlar ve stratejiler:
 
 **Container**, Docker veya Kubernetes ile ilgili bazı maddeler şimdilik çok anlamlı gelmiyorsa dert etmeyin.
 
-Container image'ları, Docker, Kubernetes vb. konuları ilerideki bir bölümde daha detaylı anlatacağım: [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank}.
+Container image'ları, Docker, Kubernetes vb. konuları ilerideki bir bölümde daha detaylı anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 
 ///
 
@@ -281,7 +281,7 @@ Bazı olası fikirler:
 
 /// tip | İpucu
 
-Bunu container'larla nasıl yapabileceğinize dair daha somut örnekleri ilerideki bir bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank}.
+Bunu container'larla nasıl yapabileceğinize dair daha somut örnekleri ilerideki bir bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 
 ///
 

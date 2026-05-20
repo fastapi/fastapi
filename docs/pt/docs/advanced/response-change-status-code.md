@@ -1,6 +1,6 @@
 # Retorno - Altere o Código de Status { #response-change-status-code }
 
-Você provavelmente leu anteriormente que você pode definir um [Código de Status do Retorno](../tutorial/response-status-code.md){.internal-link target=_blank} padrão.
+Você provavelmente leu anteriormente que você pode definir um [Código de Status do Retorno](../tutorial/response-status-code.md) padrão.
 
 Porém em alguns casos você precisa retornar um código de status diferente do padrão.
 

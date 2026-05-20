@@ -321,7 +321,7 @@ class HTTPDigest(HTTPBase):
     HTTP Digest authentication.
 
     **Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,
-    but it doesn't implement the full Digest scheme, you would need to to subclass it
+    but it doesn't implement the full Digest scheme, you would need to subclass it
     and implement it in your code.
 
     Ref: https://datatracker.ietf.org/doc/html/rfc7616

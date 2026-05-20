@@ -1,3 +1,4 @@
+import importlib
 import sys
 
 import pytest
@@ -7,6 +8,16 @@ needs_py310 = pytest.mark.skipif(
 )
 needs_py314 = pytest.mark.skipif(
     sys.version_info < (3, 14), reason="requires python3.14+"
+)
+
+needs_orjson = pytest.mark.skipif(
+    importlib.util.find_spec("orjson") is None,
+    reason="requires orjson",
+)
+
+needs_ujson = pytest.mark.skipif(
+    importlib.util.find_spec("ujson") is None,
+    reason="requires ujson",
 )
 
 workdir_lock = pytest.mark.xdist_group("workdir_lock")

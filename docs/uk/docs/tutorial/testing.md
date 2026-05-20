@@ -1,18 +1,18 @@
 # Тестування { #testing }
 
-Завдяки <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> тестувати застосунки **FastAPI** просто й приємно.
+Завдяки [Starlette](https://www.starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
 
-Воно базується на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
+Воно базується на [HTTPX](https://www.python-httpx.org), який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
 
-З його допомогою ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
+З його допомогою ви можете використовувати [pytest](https://docs.pytest.org/) безпосередньо з **FastAPI**.
 
 ## Використання `TestClient` { #using-testclient }
 
 /// info | Інформація
 
-Щоб використовувати `TestClient`, спочатку встановіть <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Щоб використовувати `TestClient`, спочатку встановіть [`httpx`](https://www.python-httpx.org).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили `httpx`, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили `httpx`, наприклад:
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | Порада
 
-Якщо ви хочете викликати `async`-функції у ваших тестах, окрім відправлення запитів до вашого застосунку FastAPI (наприклад, асинхронні функції роботи з базою даних), перегляньте [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} у розширеному керівництві.
+Якщо ви хочете викликати `async`-функції у ваших тестах, окрім відправлення запитів до вашого застосунку FastAPI (наприклад, асинхронні функції роботи з базою даних), перегляньте [Async Tests](../advanced/async-tests.md) у розширеному керівництві.
 
 ///
 
@@ -64,7 +64,7 @@ $ pip install httpx
 
 ### Файл застосунку **FastAPI** { #fastapi-app-file }
 
-Припустимо, у вас є структура файлів, описана в розділі [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
+Припустимо, у вас є структура файлів, описана в розділі [Bigger Applications](bigger-applications.md):
 
 ```
 .
@@ -142,13 +142,13 @@ $ pip install httpx
 * Щоб передати заголовки *headers*, використовуйте `dict` у параметрі `headers`.
 * Для *cookies* використовуйте `dict` у параметрі `cookies`.
 
-Докладніше про передачу даних у бекенд (за допомогою `httpx` або `TestClient`) можна знайти в <a href="https://www.python-httpx.org" class="external-link" target="_blank">документації HTTPX</a>.
+Докладніше про передачу даних у бекенд (за допомогою `httpx` або `TestClient`) можна знайти в [документації HTTPX](https://www.python-httpx.org).
 
 /// info | Інформація
 
 Зверніть увагу, що `TestClient` отримує дані, які можна конвертувати в JSON, а не Pydantic-моделі.
 
-Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в застосунок під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в застосунок під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md).
 
 ///
 
@@ -156,7 +156,7 @@ $ pip install httpx
 
 Після цього вам потрібно встановити `pytest`.
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його і встановили необхідні пакети, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його і встановили необхідні пакети, наприклад:
 
 <div class="termy">
 

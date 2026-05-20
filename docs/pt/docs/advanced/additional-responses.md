@@ -199,7 +199,7 @@ Você pode declarar um `response_model`, utilizando o código de status padrão 
 
 O **FastAPI** manterá as informações adicionais do `responses`, e combinará com o esquema JSON do seu modelo.
 
-Por exemplo, você pode declarar um retorno com o código de status `404` que utiliza um modelo do Pydantic que possui um `description` customizado.
+Por exemplo, você pode declarar um retorno com o código de status `404` que utiliza um modelo do Pydantic e tem uma `description` customizada.
 
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
@@ -243,5 +243,5 @@ Por exemplo:
 
 Para verificar exatamente o que você pode incluir nos retornos, você pode conferir estas seções na especificação do OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Retornos do OpenAPI</a>, inclui o `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Retorno do OpenAPI</a>, você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.
+* [Objeto de Retornos do OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), inclui o `Response Object`.
+* [Objeto de Retorno do OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), você pode incluir qualquer coisa dele diretamente em cada retorno dentro do seu parâmetro `responses`. Incluindo `description`, `headers`, `content` (dentro dele que você declara diferentes media types e esquemas JSON), e `links`.

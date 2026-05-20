@@ -54,7 +54,7 @@ Swagger UI bunu arka planda sizin için yönetir, ancak bu "redirect" yardımcı
 
 ### Test edin { #test-it }
 
-Artık <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresinden dokümanlarınıza gidebilmeli ve sayfayı yenilediğinizde bu varlıkların yeni CDN'den yüklendiğini görebilmelisiniz.
+Artık [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresinden dokümanlarınıza gidebilmeli ve sayfayı yenilediğinizde bu varlıkların yeni CDN'den yüklendiğini görebilmelisiniz.
 
 ## Dokümanlar için JavaScript ve CSS'i Self-Hosting ile barındırma { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Muhtemelen her bir linke sağ tıklayıp "Save link as..." benzeri bir seçenek 
 
 **Swagger UI** şu dosyaları kullanır:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+* [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 **ReDoc** ise şu dosyayı kullanır:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 Bundan sonra dosya yapınız şöyle görünebilir:
 
@@ -122,7 +122,7 @@ Bundan sonra dosya yapınız şöyle görünebilir:
 
 ### Statik dosyaları test edin { #test-the-static-files }
 
-Uygulamanızı başlatın ve <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a> adresine gidin.
+Uygulamanızı başlatın ve [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js) adresine gidin.
 
 **ReDoc** için çok uzun bir JavaScript dosyası görmelisiniz.
 
@@ -180,6 +180,6 @@ Swagger UI bunu arka planda sizin için yönetir, ancak bu "redirect" yardımcı
 
 ### Statik Dosyalar UI'ını Test Edin { #test-static-files-ui }
 
-Artık WiFi bağlantınızı kesip <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresindeki dokümanlarınıza gidebilmeli ve sayfayı yenileyebilmelisiniz.
+Artık WiFi bağlantınızı kesip [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresindeki dokümanlarınıza gidebilmeli ve sayfayı yenileyebilmelisiniz.
 
 Ve İnternet olmasa bile API dokümanlarınızı görebilir ve onunla etkileşime geçebilirsiniz.

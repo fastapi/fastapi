@@ -4,9 +4,9 @@ Vous pouvez définir des fichiers et des champs de formulaire en même temps à 
 
 /// info
 
-Pour recevoir des fichiers téléversés et/ou des données de formulaire, installez d'abord <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Pour recevoir des fichiers téléversés et/ou des données de formulaire, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l'activer, puis installer ce paquet, par exemple :
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis installer ce paquet, par exemple :
 
 ```console
 $ pip install python-multipart

@@ -24,13 +24,13 @@ Dessa forma, você pode criar um token com um prazo de expiração, digamos, de 
 
 Depois de uma semana, o token expirará e o usuário não estará autorizado, precisando fazer login novamente para obter um novo token. E se o usuário (ou uma terceira parte) tentar modificar o token para alterar a expiração, você seria capaz de descobrir isso, pois as assinaturas não iriam corresponder.
 
-Se você quiser brincar com tokens JWT e ver como eles funcionam, visite <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Se você quiser brincar com tokens JWT e ver como eles funcionam, visite [https://jwt.io](https://jwt.io/).
 
 ## Instalar `PyJWT` { #install-pyjwt }
 
 Nós precisamos instalar o `PyJWT` para criar e verificar os tokens JWT em Python.
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar o `pyjwt`:
+Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o `pyjwt`:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ pip install pyjwt
 
 Se você pretente utilizar algoritmos de assinatura digital como o RSA ou o ECDSA, você deve instalar a dependência da biblioteca de criptografia `pyjwt[crypto]`.
 
-Você pode ler mais sobre isso na <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentação de instalação do PyJWT</a>.
+Você pode ler mais sobre isso na [documentação de instalação do PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ Ele suporta muitos algoritmos de hashing seguros e utilitários para trabalhar c
 
 O algoritmo recomendado é o "Argon2".
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar o pwdlib com Argon2:
+Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o pwdlib com Argon2:
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ O importante a se lembrar é que a chave `sub` deve ter um identificador único 
 
 ## Verifique { #check-it }
 
-Execute o servidor e vá para a documentação: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Execute o servidor e vá para a documentação: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Você verá a interface de usuário assim:
 

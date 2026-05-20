@@ -81,7 +81,7 @@ Mais si vous en aviez besoin pour un scénario avancé, vous pouvez ajouter des 
 
 ## Installer des gestionnaires d'exception personnalisés { #install-custom-exception-handlers }
 
-Vous pouvez ajouter des gestionnaires d'exception personnalisés avec <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">les mêmes utilitaires d'exception de Starlette</a>.
+Vous pouvez ajouter des gestionnaires d'exception personnalisés avec [les mêmes utilitaires d'exception de Starlette](https://www.starlette.dev/exceptions/).
 
 Supposons que vous ayez une exception personnalisée `UnicornException` que vous (ou une bibliothèque que vous utilisez) pourriez `raise`.
 

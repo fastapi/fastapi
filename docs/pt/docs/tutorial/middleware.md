@@ -15,7 +15,7 @@ Um "middleware" é uma função que manipula cada **requisição** antes de ser 
 
 Se você tiver dependências com `yield`, o código de saída será executado *depois* do middleware.
 
-Se houver alguma tarefa em segundo plano (abordada na seção [Tarefas em segundo plano](background-tasks.md){.internal-link target=_blank}, que você verá mais adiante), ela será executada *depois* de todo o middleware.
+Se houver alguma tarefa em segundo plano (abordada na seção [Tarefas em segundo plano](background-tasks.md), que você verá mais adiante), ela será executada *depois* de todo o middleware.
 
 ///
 
@@ -35,9 +35,9 @@ A função middleware recebe:
 
 /// tip | Dica
 
-Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo `X-`</a>.
+Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Documentação CORS da Starlette</a>.
+Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando o parâmetro `expose_headers` documentado na [Documentação CORS da Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -61,7 +61,7 @@ Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` c
 
 /// tip | Dica
 
-Aqui usamos <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> em vez de `time.time()` porque ele pode ser mais preciso para esses casos de uso. 🤓
+Aqui usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) em vez de `time.time()` porque ele pode ser mais preciso para esses casos de uso. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ Esse comportamento de empilhamento garante que os middlewares sejam executados e
 
 ## Outros middlewares { #other-middlewares }
 
-Mais tarde, você pode ler mais sobre outros middlewares no [Guia do usuário avançado: Middleware avançado](../advanced/middleware.md){.internal-link target=_blank}.
+Mais tarde, você pode ler mais sobre outros middlewares no [Guia do usuário avançado: Middleware avançado](../advanced/middleware.md).
 
 Você lerá sobre como manipular <abbr title="Cross-Origin Resource Sharing">CORS</abbr> com um middleware na próxima seção.

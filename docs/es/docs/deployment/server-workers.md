@@ -13,13 +13,13 @@ Hasta este punto, con todos los tutoriales en la documentación, probablemente h
 
 Al desplegar aplicaciones probablemente querrás tener algo de **replicación de procesos** para aprovechar **múltiples núcleos** y poder manejar más requests.
 
-Como viste en el capítulo anterior sobre [Conceptos de Despliegue](concepts.md){.internal-link target=_blank}, hay múltiples estrategias que puedes usar.
+Como viste en el capítulo anterior sobre [Conceptos de Despliegue](concepts.md), hay múltiples estrategias que puedes usar.
 
 Aquí te mostraré cómo usar **Uvicorn** con **worker processes** usando el comando `fastapi` o el comando `uvicorn` directamente.
 
 /// info | Información
 
-Si estás usando contenedores, por ejemplo con Docker o Kubernetes, te contaré más sobre eso en el próximo capítulo: [FastAPI en Contenedores - Docker](docker.md){.internal-link target=_blank}.
+Si estás usando contenedores, por ejemplo con Docker o Kubernetes, te contaré más sobre eso en el próximo capítulo: [FastAPI en Contenedores - Docker](docker.md).
 
 En particular, cuando corras en **Kubernetes** probablemente **no** querrás usar workers y en cambio correr **un solo proceso de Uvicorn por contenedor**, pero te contaré sobre eso más adelante en ese capítulo.
 
@@ -126,7 +126,7 @@ De la lista de conceptos de despliegue de antes, usar workers ayudaría principa
 
 ## Contenedores y Docker { #containers-and-docker }
 
-En el próximo capítulo sobre [FastAPI en Contenedores - Docker](docker.md){.internal-link target=_blank} te explicaré algunas estrategias que podrías usar para manejar los otros **conceptos de despliegue**.
+En el próximo capítulo sobre [FastAPI en Contenedores - Docker](docker.md) te explicaré algunas estrategias que podrías usar para manejar los otros **conceptos de despliegue**.
 
 Te mostraré cómo **construir tu propia imagen desde cero** para ejecutar un solo proceso de Uvicorn. Es un proceso sencillo y probablemente es lo que querrías hacer al usar un sistema de gestión de contenedores distribuido como **Kubernetes**.
 

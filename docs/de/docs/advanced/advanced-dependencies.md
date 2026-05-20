@@ -132,7 +132,7 @@ Wenn Sie diesen spezifischen Anwendungsfall mit SQLModel (oder SQLAlchemy) haben
 
 Auf diese Weise würde die Session die Datenbankverbindung freigeben, sodass andere Requests sie verwenden könnten.
 
-Wenn Sie einen anderen Anwendungsfall haben, der ein frühes Beenden aus einer Abhängigkeit mit `yield` benötigt, erstellen Sie bitte eine <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub-Diskussion-Frage</a> mit Ihrem spezifischen Anwendungsfall und warum Sie von einem frühen Schließen für Abhängigkeiten mit `yield` profitieren würden.
+Wenn Sie einen anderen Anwendungsfall haben, der ein frühes Beenden aus einer Abhängigkeit mit `yield` benötigt, erstellen Sie bitte eine [GitHub-Diskussion-Frage](https://github.com/fastapi/fastapi/discussions/new?category=questions) mit Ihrem spezifischen Anwendungsfall und warum Sie von einem frühen Schließen für Abhängigkeiten mit `yield` profitieren würden.
 
 Wenn es überzeugende Anwendungsfälle für ein frühes Schließen bei Abhängigkeiten mit `yield` gibt, würde ich erwägen, eine neue Möglichkeit hinzuzufügen, um ein frühes Schließen optional zu aktivieren.
 
@@ -144,7 +144,7 @@ Dies wurde in Version 0.110.0 geändert, um unbehandelten Speicherverbrauch durc
 
 ### Hintergrundtasks und Abhängigkeiten mit `yield`, Technische Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} bereits ausgeführt worden wären.
+Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers) bereits ausgeführt worden wären.
 
 Dies war so designt, hauptsächlich um die Verwendung derselben von Abhängigkeiten „geyieldeten“ Objekte in Hintergrundtasks zu ermöglichen, da der Exit-Code erst ausgeführt wurde, nachdem die Hintergrundtasks abgeschlossen waren.
 
