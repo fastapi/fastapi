@@ -8,7 +8,7 @@
 
 ## 의존성 설치 { #install-dependencies }
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고, 활성화한 후 `jinja2`를 설치해야 합니다:
+[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 후 `jinja2`를 설치해야 합니다:
 
 <div class="termy">
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## 더 많은 세부 사항 { #more-details }
 
-템플릿 테스트를 포함한 더 많은 세부 사항은 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette의 템플릿 문서</a>를 확인하세요.
+템플릿 테스트를 포함한 더 많은 세부 사항은 [Starlette의 템플릿 문서](https://www.starlette.dev/templates/)를 확인하세요.

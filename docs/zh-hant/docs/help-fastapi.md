@@ -12,7 +12,7 @@
 
 ## 訂閱電子報 { #subscribe-to-the-newsletter }
 
-你可以訂閱（不常發送的）[**FastAPI 與夥伴**電子報](newsletter.md){.internal-link target=_blank}，隨時掌握：
+你可以訂閱（不常發送的）[**FastAPI 與夥伴**電子報](newsletter.md)，隨時掌握：
 
 * 關於 FastAPI 與夥伴的最新消息 🚀
 * 教學指南 📝
@@ -22,17 +22,17 @@
 
 ## 在 X（Twitter）關注 FastAPI { #follow-fastapi-on-x-twitter }
 
-<a href="https://x.com/fastapi" class="external-link" target="_blank">在 **X（Twitter）** 關注 @fastapi</a>，獲取 **FastAPI** 的最新消息。🐦
+[在 **X（Twitter）** 關注 @fastapi](https://x.com/fastapi)，獲取 **FastAPI** 的最新消息。🐦
 
 ## 在 GitHub 為 **FastAPI** 加星 { #star-fastapi-in-github }
 
-你可以在 GitHub 為 FastAPI「加星」（點擊右上角的 star 星號按鈕）：<a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。⭐️
+你可以在 GitHub 為 FastAPI「加星」（點擊右上角的 star 星號按鈕）：[https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。⭐️
 
 加上星標後，其他使用者會更容易發現它，並看到它已經對許多人很有幫助。
 
 ## 追蹤 GitHub 儲存庫的發行版 { #watch-the-github-repository-for-releases }
 
-你可以在 GitHub「watch」FastAPI（點擊右上角的「watch」按鈕）：<a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。👀
+你可以在 GitHub「watch」FastAPI（點擊右上角的「watch」按鈕）：[https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。👀
 
 在那裡你可以選擇「Releases only」。
 
@@ -40,45 +40,45 @@
 
 ## 與作者連結 { #connect-with-the-author }
 
-你可以與作者 <a href="https://tiangolo.com" class="external-link" target="_blank">我（Sebastián Ramírez / `tiangolo`）</a> 建立連結。
+你可以與作者 [我（Sebastián Ramírez / `tiangolo`）](https://tiangolo.com) 建立連結。
 
 你可以：
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">在 **GitHub** 關注我</a>。
+* [在 **GitHub** 關注我](https://github.com/tiangolo)。
     * 看看我建立的其他開源專案，可能對你有幫助。
     * 關注我以便知道我何時建立新的開源專案。
-* <a href="https://x.com/tiangolo" class="external-link" target="_blank">在 **X（Twitter）**</a> 或 <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a> 關注我。
+* [在 **X（Twitter）**](https://x.com/tiangolo) 或 [Mastodon](https://fosstodon.org/@tiangolo) 關注我。
     * 告訴我你如何使用 FastAPI（我很愛聽這些）。
     * 接收我發布公告或釋出新工具時的消息。
-    * 你也可以<a href="https://x.com/fastapi" class="external-link" target="_blank">在 X（Twitter）關注 @fastapi</a>（另外的帳號）。
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">在 **LinkedIn** 關注我</a>。
+    * 你也可以[在 X（Twitter）關注 @fastapi](https://x.com/fastapi)（另外的帳號）。
+* [在 **LinkedIn** 關注我](https://www.linkedin.com/in/tiangolo/)。
     * 接收我發布公告或釋出新工具時的消息（不過我更常用 X（Twitter）🤷‍♂）。
-* 在 <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> 或 <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> 閱讀我寫的內容（或關注我）。
+* 在 [**Dev.to**](https://dev.to/tiangolo) 或 [**Medium**](https://medium.com/@tiangolo) 閱讀我寫的內容（或關注我）。
     * 閱讀我的想法、文章，以及我建立的工具。
     * 關注我以便在我發佈新內容時能第一時間看到。
 
 ## 在 X（Twitter）發文談談 **FastAPI** { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">發一則關於 **FastAPI** 的推文</a>，讓我與其他人知道你為什麼喜歡它。🎉
+[發一則關於 **FastAPI** 的推文](https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi)，讓我與其他人知道你為什麼喜歡它。🎉
 
 我很樂於聽到 **FastAPI** 是如何被使用、你喜歡它的哪些地方、在哪個專案／公司使用它等等。
 
 ## 為 FastAPI 投票 { #vote-for-fastapi }
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">在 Slant 為 **FastAPI** 投票</a>。
-* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">在 AlternativeTo 為 **FastAPI** 投票</a>。
-* <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">在 StackShare 表示你使用 **FastAPI**</a>。
+* [在 Slant 為 **FastAPI** 投票](https://www.slant.co/options/34241/~fastapi-review)。
+* [在 AlternativeTo 為 **FastAPI** 投票](https://alternativeto.net/software/fastapi/about/)。
+* [在 StackShare 表示你使用 **FastAPI**](https://stackshare.io/pypi-fastapi)。
 
 ## 在 GitHub 幫助他人解答問題 { #help-others-with-questions-in-github }
 
 你可以嘗試幫助他人回答以下地方的問題：
 
-* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
-* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+* [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered)
+* [GitHub Issues](https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+)
 
 很多時候你可能已經知道這些問題的解答。🤓
 
-如果你經常幫大家解決問題，你會成為官方的 [FastAPI 專家](fastapi-people.md#fastapi-experts){.internal-link target=_blank}。🎉
+如果你經常幫大家解決問題，你會成為官方的 [FastAPI 專家](fastapi-people.md#fastapi-experts)。🎉
 
 請記得，最重要的是：盡量友善。大家可能帶著挫折而來，很多時候提問方式不夠理想，但請盡你所能保持友善。🤗
 
@@ -104,7 +104,7 @@
 
 很多時候他們只會貼出一小段程式碼，但那不足以**重現問題**。
 
-* 你可以請他們提供一個<a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">最小可重現範例</a>，讓你可以**複製貼上**並在本機執行，看到與他們相同的錯誤或行為，或更好地理解他們的使用情境。
+* 你可以請他們提供一個[最小可重現範例](https://stackoverflow.com/help/minimal-reproducible-example)，讓你可以**複製貼上**並在本機執行，看到與他們相同的錯誤或行為，或更好地理解他們的使用情境。
 
 * 如果你有心力，你也可以嘗試自己**建立一個範例**，僅依據問題描述來還原。不過請記得這可能很耗時，或許更好的是先請他們把問題說清楚。
 
@@ -124,7 +124,7 @@
 
 ## 追蹤 GitHub 儲存庫 { #watch-the-github-repository }
 
-你可以在 GitHub「watch」FastAPI（點擊右上角的「watch」按鈕）：<a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。👀
+你可以在 GitHub「watch」FastAPI（點擊右上角的「watch」按鈕）：[https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。👀
 
 如果你選擇「Watching」而不是「Releases only」，當有人建立新的 issue 或問題時你會收到通知。你也可以指定只想被通知新的 issues、discussions、PR 等等。
 
@@ -132,7 +132,7 @@
 
 ## 提問 { #ask-questions }
 
-你可以在 GitHub 儲存庫<a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">建立一個新的問題（Question）</a>，例如用來：
+你可以在 GitHub 儲存庫[建立一個新的問題（Question）](https://github.com/fastapi/fastapi/discussions/new?category=questions)，例如用來：
 
 * 提出**問題**或詢問某個**疑難**。
 * 建議一個新的**功能**。
@@ -195,12 +195,12 @@
 
 ## 建立 Pull Request { #create-a-pull-request }
 
-你可以透過 Pull Request 來[貢獻](contributing.md){.internal-link target=_blank}原始碼，例如：
+你可以透過 Pull Request 來[貢獻](contributing.md)原始碼，例如：
 
 * 修正文檔中你發現的錯字。
-* 分享你建立或發現的 FastAPI 相關文章、影片或 podcast，方法是<a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">編輯這個檔案</a>。
+* 分享你建立或發現的 FastAPI 相關文章、影片或 podcast，方法是[編輯這個檔案](https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml)。
     * 請確保把你的連結加到對應章節的開頭。
-* 協助把[文件翻譯](contributing.md#translations){.internal-link target=_blank}成你的語言。
+* 協助把[文件翻譯](contributing.md#translations)成你的語言。
     * 你也可以幫忙審查他人提交的翻譯。
 * 提議新的文件章節。
 * 修復既有的 issue／bug。
@@ -217,8 +217,8 @@
 
 你現在就能做的主要任務有：
 
-* [在 GitHub 幫助他人解答問題](#help-others-with-questions-in-github){.internal-link target=_blank}（見上方章節）。
-* [審核 Pull Request](#review-pull-requests){.internal-link target=_blank}（見上方章節）。
+* [在 GitHub 幫助他人解答問題](#help-others-with-questions-in-github)（見上方章節）。
+* [審核 Pull Request](#review-pull-requests)（見上方章節）。
 
 這兩件事是**最耗時**的。這也是維護 FastAPI 的主要工作。
 
@@ -226,11 +226,11 @@
 
 ## 加入聊天室 { #join-the-chat }
 
-加入 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord 聊天伺服器</a> 👥，與 FastAPI 社群的其他人一起交流。
+加入 👥 [Discord 聊天伺服器](https://discord.gg/VQjSZaeJmf) 👥，與 FastAPI 社群的其他人一起交流。
 
 /// tip
 
-若要提問，請到 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>，在那裡更有機會獲得[FastAPI 專家](fastapi-people.md#fastapi-experts){.internal-link target=_blank}的協助。
+若要提問，請到 [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/new?category=questions)，在那裡更有機會獲得[FastAPI 專家](fastapi-people.md#fastapi-experts)的協助。
 
 聊天室請僅用於其他一般性的交流。
 
@@ -242,13 +242,13 @@
 
 在 GitHub 上，模板會引導你寫出合適的提問，讓你更容易得到好的解答，甚至在提問前就自己解決問題。而且在 GitHub 上，我能確保最終都會回覆（即使需要一些時間）。我個人無法在聊天系統做到這一點。😅
 
-聊天系統中的對話也不像 GitHub 那樣容易被搜尋，因此問題與答案可能在對話中淹沒。而且只有 GitHub 上的問題與回答才會被計入成為[FastAPI 專家](fastapi-people.md#fastapi-experts){.internal-link target=_blank}，因此你在 GitHub 上更有機會獲得關注。
+聊天系統中的對話也不像 GitHub 那樣容易被搜尋，因此問題與答案可能在對話中淹沒。而且只有 GitHub 上的問題與回答才會被計入成為[FastAPI 專家](fastapi-people.md#fastapi-experts)，因此你在 GitHub 上更有機會獲得關注。
 
 另一方面，聊天室裡有成千上萬的使用者，所以幾乎隨時都有很大的機會能找到人聊天。😄
 
 ## 贊助作者 { #sponsor-the-author }
 
-如果你的**產品／公司**依賴或與 **FastAPI** 相關，且你想觸及它的使用者，你可以透過 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a> 贊助作者（我）。依據不同級別，你可能會得到一些額外福利，例如在文件中顯示徽章。🎁
+如果你的**產品／公司**依賴或與 **FastAPI** 相關，且你想觸及它的使用者，你可以透過 [GitHub sponsors](https://github.com/sponsors/tiangolo) 贊助作者（我）。依據不同級別，你可能會得到一些額外福利，例如在文件中顯示徽章。🎁
 
 ---
 

@@ -132,7 +132,7 @@ Se você tiver esse caso específico usando SQLModel (ou SQLAlchemy), você pode
 
 Dessa forma a sessão liberaria a conexão com o banco de dados, para que outras requisições pudessem usá-la.
 
-Se você tiver um caso diferente que precise sair antecipadamente de uma dependência com `yield`, por favor crie uma <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Pergunta no GitHub Discussions</a> com o seu caso específico e por que você se beneficiaria de ter o fechamento antecipado para dependências com `yield`.
+Se você tiver um caso diferente que precise sair antecipadamente de uma dependência com `yield`, por favor crie uma [Pergunta no GitHub Discussions](https://github.com/fastapi/fastapi/discussions/new?category=questions) com o seu caso específico e por que você se beneficiaria de ter o fechamento antecipado para dependências com `yield`.
 
 Se houver casos de uso convincentes para fechamento antecipado em dependências com `yield`, considerarei adicionar uma nova forma de optar por esse fechamento antecipado.
 
@@ -144,7 +144,7 @@ Isso foi alterado na versão 0.110.0 para corrigir consumo de memória não trat
 
 ### Tarefas em Segundo Plano e Dependências com `yield`, Detalhes Técnicos { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Antes do FastAPI 0.106.0, lançar exceções após o `yield` não era possível, o código de saída em dependências com `yield` era executado depois que a resposta era enviada, então [Tratadores de Exceções](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} já teriam sido executados.
+Antes do FastAPI 0.106.0, lançar exceções após o `yield` não era possível, o código de saída em dependências com `yield` era executado depois que a resposta era enviada, então [Tratadores de Exceções](../tutorial/handling-errors.md#install-custom-exception-handlers) já teriam sido executados.
 
 Isso foi projetado assim principalmente para permitir o uso dos mesmos objetos "yielded" por dependências dentro de tarefas em segundo plano, porque o código de saída seria executado depois que as tarefas em segundo plano fossem concluídas.
 

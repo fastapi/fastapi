@@ -25,7 +25,7 @@ Pero por ahora, revisemos estas importantes **ideas conceptuales**. Estos concep
 
 ## Seguridad - HTTPS { #security-https }
 
-En el [capítulo anterior sobre HTTPS](https.md){.internal-link target=_blank} aprendimos sobre cómo HTTPS proporciona cifrado para tu API.
+En el [capítulo anterior sobre HTTPS](https.md) aprendimos sobre cómo HTTPS proporciona cifrado para tu API.
 
 También vimos que HTTPS es normalmente proporcionado por un componente **externo** a tu servidor de aplicaciones, un **Proxy de Terminación TLS**.
 
@@ -190,7 +190,7 @@ Cuando ejecutas **múltiples procesos** del mismo programa de API, comúnmente s
 
 ### Worker Processes y Puertos { #worker-processes-and-ports }
 
-Recuerda de la documentación [Sobre HTTPS](https.md){.internal-link target=_blank} que solo un proceso puede estar escuchando en una combinación de puerto y dirección IP en un servidor.
+Recuerda de la documentación [Sobre HTTPS](https.md) que solo un proceso puede estar escuchando en una combinación de puerto y dirección IP en un servidor.
 
 Esto sigue siendo cierto.
 
@@ -243,7 +243,7 @@ Aquí hay algunas combinaciones y estrategias posibles:
 
 No te preocupes si algunos de estos elementos sobre **contenedores**, Docker, o Kubernetes no tienen mucho sentido todavía.
 
-Te contaré más sobre imágenes de contenedores, Docker, Kubernetes, etc. en un capítulo futuro: [FastAPI en Contenedores - Docker](docker.md){.internal-link target=_blank}.
+Te contaré más sobre imágenes de contenedores, Docker, Kubernetes, etc. en un capítulo futuro: [FastAPI en Contenedores - Docker](docker.md).
 
 ///
 
@@ -281,7 +281,7 @@ Aquí hay algunas ideas posibles:
 
 /// tip | Consejo
 
-Te daré más ejemplos concretos para hacer esto con contenedores en un capítulo futuro: [FastAPI en Contenedores - Docker](docker.md){.internal-link target=_blank}.
+Te daré más ejemplos concretos para hacer esto con contenedores en un capítulo futuro: [FastAPI en Contenedores - Docker](docker.md).
 
 ///
 

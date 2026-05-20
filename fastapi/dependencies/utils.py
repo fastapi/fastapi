@@ -33,7 +33,7 @@ from fastapi._compat import (
     Undefined,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,  # ty: ignore[deprecated]
+    evaluate_forwardref,
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -100,14 +100,14 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import (  # type: ignore[no-redef,import-untyped]  # ty: ignore[unused-ignore-comment]
+            from multipart import (  # type: ignore[no-redef,import-untyped]
                 __version__,
             )
 
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]  # ty: ignore[unused-ignore-comment]
+                from multipart.multipart import (  # type: ignore[import-untyped]
                     parse_options_header,
                 )
 
@@ -245,7 +245,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
+        annotation = evaluate_forwardref(annotation, globalns, globalns)
         if annotation is type(None):
             return None
     return annotation
@@ -622,7 +622,7 @@ async def solve_dependencies(
     if response is None:
         response = Response()
         del response.headers["content-length"]
-        response.status_code = None  # type: ignore  # ty: ignore[unused-ignore-comment]
+        response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
     for sub_dependant in dependant.dependencies:

@@ -11,7 +11,7 @@
 * 翻訳が問題ないか確認します。
 * 必要であれば、言語固有プロンプト、general プロンプト、または英語ドキュメントを改善します。
 * その後、翻訳に残っている問題を手動で修正し、良い翻訳にします。
-* 良い翻訳を用意した状態でもう一度翻訳します。理想的な結果は、LLM が翻訳に一切変更を加えないことです。つまり general プロンプトと言語固有プロンプトが最良であることを意味します（時々いくつかランダムに見える変更を行うことがあります。理由は <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM は決定論的アルゴリズムではない</a> ためです）。
+* 良い翻訳を用意した状態でもう一度翻訳します。理想的な結果は、LLM が翻訳に一切変更を加えないことです。つまり general プロンプトと言語固有プロンプトが最良であることを意味します（時々いくつかランダムに見える変更を行うことがあります。理由は [LLM は決定論的アルゴリズムではない](https://doublespeak.chat/#/handbook#deterministic-output) ためです）。
 
 テスト内容:
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...さらに別のコンソールのコード例です...
 
 ```console
-// ディレクトリ "code" を作成
+// ディレクトリ "Code" を作成
 $ mkdir code
 // そのディレクトリに移動
 $ cd code
@@ -169,15 +169,15 @@ works(foo="bar")  # これは動作します 🎉
 リンクのテキストは翻訳し、リンク先のアドレスは変更しないでください:
 
 * [上の見出しへのリンク](#code-snippets)
-* [内部リンク](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">外部リンク</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">スタイルへのリンク</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">スクリプトへのリンク</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">画像へのリンク</a>
+* [内部リンク](index.md#installation)
+* [外部リンク](https://sqlmodel.tiangolo.com/)
+* [スタイルへのリンク](https://fastapi.tiangolo.com/css/styles.css)
+* [スクリプトへのリンク](https://fastapi.tiangolo.com/js/logic.js)
+* [画像へのリンク](https://fastapi.tiangolo.com/img/foo.jpg)
 
 リンクのテキストは翻訳し、リンク先のアドレスは翻訳版を指すようにしてください:
 
-* <a href="https://fastapi.tiangolo.com/ja/" class="external-link" target="_blank">FastAPI リンク</a>
+* [FastAPI リンク](https://fastapi.tiangolo.com/ja/)
 
 ////
 

@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 レスポンスに正確に何を含められるかは、OpenAPI 仕様の次のセクションを参照してください:
 
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI の Responses Object</a>。ここには `Response Object` が含まれます。
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI の Response Object</a>。`responses` パラメータ内の各レスポンスに、ここで定義されている要素を直接含められます。`description`、`headers`、`content`（ここで異なるメディアタイプや JSON Schema を宣言します）、`links` など。
+- [OpenAPI の Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object)、ここには `Response Object` が含まれます。
+- [OpenAPI の Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object)、`responses` パラメータ内の各レスポンスに、ここで定義されている要素を直接含められます。`description`、`headers`、`content`（ここで異なるメディアタイプや JSON Schema を宣言します）、`links` など。

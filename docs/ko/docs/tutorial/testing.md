@@ -1,18 +1,18 @@
 # 테스팅 { #testing }
 
-<a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 애플리케이션을 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
+[Starlette](https://www.starlette.dev/testclient/) 덕분에 **FastAPI** 애플리케이션을 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
 
-이는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
+이는 [HTTPX](https://www.python-httpx.org)를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
 
-이를 사용하면 **FastAPI**에서 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>를 직접 사용할 수 있습니다.
+이를 사용하면 **FastAPI**에서 [pytest](https://docs.pytest.org/)를 직접 사용할 수 있습니다.
 
 ## `TestClient` 사용하기 { #using-testclient }
 
 /// info | 정보
 
-`TestClient` 사용하려면, 우선 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>를 설치해야 합니다.
+`TestClient` 사용하려면, 우선 [`httpx`](https://www.python-httpx.org)를 설치해야 합니다.
 
-[virtual environment](../virtual-environments.md){.internal-link target=_blank}를 만들고, 활성화 시킨 뒤에 설치하세요. 예시:
+[가상 환경](../virtual-environments.md)을 만들고, 활성화한 뒤 설치하세요. 예시:
 
 ```console
 $ pip install httpx
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | 팁
 
-FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 `async` 함수를 호출하고 싶다면 (예: 비동기 데이터베이스 함수), 심화 튜토리얼의 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank}를 참조하세요.
+FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 `async` 함수를 호출하고 싶다면 (예: 비동기 데이터베이스 함수), 심화 튜토리얼의 [비동기 테스트](../advanced/async-tests.md)를 참조하세요.
 
 ///
 
@@ -64,7 +64,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 ### **FastAPI** app 파일 { #fastapi-app-file }
 
-[Bigger Applications](bigger-applications.md){.internal-link target=_blank}에 묘사된 파일 구조를 가지고 있는 것으로 가정해봅시다.
+[더 큰 애플리케이션](bigger-applications.md)에 묘사된 파일 구조를 가지고 있는 것으로 가정해봅시다.
 
 ```
 .
@@ -142,13 +142,13 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 * *헤더*를 전달하려면, `headers` 파라미터에 `dict`를 전달한다.
 * *쿠키*를 전달하려면, `cookies` 파라미터에 `dict`를 전달한다.
 
-백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient`를 이용해서) <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a>를 확인하세요.
+백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient`를 이용해서) [HTTPX 문서](https://www.python-httpx.org)를 확인하세요.
 
 /// info | 정보
 
 `TestClient`는 Pydantic 모델이 아니라 JSON으로 변환될 수 있는 데이터를 받습니다.
 
-만약 테스트 중 Pydantic 모델을 가지고 있고 테스트 중에 애플리케이션으로 해당 데이터를 보내고 싶다면, [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}에 설명되어 있는 `jsonable_encoder`를 사용할 수 있습니다.
+만약 테스트 중 Pydantic 모델을 가지고 있고 테스트 중에 애플리케이션으로 해당 데이터를 보내고 싶다면, [JSON 호환 인코더](encoder.md)에 설명되어 있는 `jsonable_encoder`를 사용할 수 있습니다.
 
 ///
 
@@ -156,7 +156,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 그 후에는 `pytest`를 설치하기만 하면 됩니다.
 
-[virtual environment](../virtual-environments.md){.internal-link target=_blank}를 만들고, 활성화 시킨 뒤에 설치하세요. 예시:
+[가상 환경](../virtual-environments.md)을 만들고, 활성화 시킨 뒤에 설치하세요. 예시:
 
 <div class="termy">
 

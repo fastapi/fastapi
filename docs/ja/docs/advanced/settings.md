@@ -8,7 +8,7 @@
 
 /// tip | 豆知識
 
-環境変数について理解するには、[環境変数](../environment-variables.md){.internal-link target=_blank}を参照してください。
+環境変数について理解するには、[環境変数](../environment-variables.md)を参照してください。
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic の `Settings` { #pydantic-settings }
 
-幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a> で提供されています。
+幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、[Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) で提供されています。
 
 ### `pydantic-settings` のインストール { #install-pydantic-settings }
 
-まず、[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化し、`pydantic-settings` パッケージをインストールします:
+まず、[仮想環境](../virtual-environments.md)を作成して有効化し、`pydantic-settings` パッケージをインストールします:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 別モジュールでの設定 { #settings-in-another-module }
 
-[大規模アプリケーション - 複数ファイル](../tutorial/bigger-applications.md){.internal-link target=_blank} で見たように、これらの設定を別のモジュールファイルに置くこともできます。
+[大規模アプリケーション - 複数ファイル](../tutorial/bigger-applications.md) で見たように、これらの設定を別のモジュールファイルに置くこともできます。
 
 たとえば、`config.py` というファイルに次のように書けます:
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | 豆知識
 
-[大規模アプリケーション - 複数ファイル](../tutorial/bigger-applications.md){.internal-link target=_blank} で見たように、`__init__.py` ファイルも必要です。
+[大規模アプリケーション - 複数ファイル](../tutorial/bigger-applications.md) で見たように、`__init__.py` ファイルも必要です。
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a> を参照してください。
+Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support) を参照してください。
 
 /// tip | 豆知識
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 豆知識
 
-`model_config` 属性は Pydantic の設定専用です。詳しくは <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a> を参照してください。
+`model_config` 属性は Pydantic の設定専用です。詳しくは [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/) を参照してください。
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 この方法は、ほとんどグローバル変数のように振る舞います。しかし、依存関数を使っているので、テストのために簡単にオーバーライドできます。
 
-`@lru_cache` は Python 標準ライブラリの `functools` の一部です。詳細は <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python の `@lru_cache` ドキュメント</a>を参照してください。
+`@lru_cache` は Python 標準ライブラリの `functools` の一部です。詳細は [Python の `@lru_cache` ドキュメント](https://docs.python.org/3/library/functools.html#functools.lru_cache)を参照してください。
 
 ## まとめ { #recap }
 

@@ -8,7 +8,7 @@ Bu nedenle bunları, uygulama tarafından okunan environment variable'lar ile sa
 
 /// tip | İpucu
 
-Environment variable'ları anlamak için [Environment Variables](../environment-variables.md){.internal-link target=_blank} dokümanını okuyabilirsiniz.
+Environment variable'ları anlamak için [Ortam Değişkenleri](../environment-variables.md) dokümanını okuyabilirsiniz.
 
 ///
 
@@ -20,11 +20,11 @@ Bu da, Python içinde bir environment variable'dan okunan herhangi bir değerin 
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a> ile çok iyi bir yardımcı araç sunar.
+Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için [Pydantic: Settings yönetimi](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ile çok iyi bir yardımcı araç sunar.
 
 ### `pydantic-settings`'i kurun { #install-pydantic-settings }
 
-Önce, [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, aktive ettiğinizden emin olun ve ardından `pydantic-settings` paketini kurun:
+Önce, [Sanal ortam](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden emin olun ve ardından `pydantic-settings` paketini kurun:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ Böylece `admin_email` ayarı `"deadpool@example.com"` olur.
 
 ## Ayarları başka bir module'de tutma { #settings-in-another-module }
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank} bölümünde gördüğünüz gibi, bu ayarları başka bir module dosyasına koyabilirsiniz.
+[Daha Büyük Uygulamalar - Birden Fazla Dosya](../tutorial/bigger-applications.md) bölümünde gördüğünüz gibi, bu ayarları başka bir module dosyasına koyabilirsiniz.
 
 Örneğin `config.py` adında bir dosyanız şu şekilde olabilir:
 
@@ -112,7 +112,7 @@ Ve ardından bunu `main.py` dosyasında kullanabilirsiniz:
 
 /// tip | İpucu
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank} bölümünde gördüğünüz gibi, ayrıca bir `__init__.py` dosyasına da ihtiyacınız olacak.
+[Daha Büyük Uygulamalar - Birden Fazla Dosya](../tutorial/bigger-applications.md) bölümünde gördüğünüz gibi, ayrıca bir `__init__.py` dosyasına da ihtiyacınız olacak.
 
 ///
 
@@ -172,7 +172,7 @@ Ancak dotenv dosyasının mutlaka bu dosya adına sahip olması gerekmez.
 
 ///
 
-Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: [Pydantic Settings: Dotenv (.env) desteği](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | İpucu
 
@@ -197,7 +197,7 @@ Ardından `config.py` dosyanızı şöyle güncelleyin:
 
 /// tip | İpucu
 
-`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için [Pydantic: Kavramlar: Konfigürasyon](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ Bizim `get_settings()` dependency'miz özelinde ise fonksiyon hiç argüman alma
 
 Bu şekilde, neredeyse global bir değişken gibi davranır. Ancak bir dependency fonksiyonu kullandığı için testte kolayca override edebiliriz.
 
-`@lru_cache`, Python standart kütüphanesinin bir parçası olan `functools` içindedir. Daha fazla bilgi için: <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
+`@lru_cache`, Python standart kütüphanesinin bir parçası olan `functools` içindedir. Daha fazla bilgi için: [Python dokümanları: `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Özet { #recap }
 

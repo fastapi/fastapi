@@ -23,7 +23,7 @@
 
 這與使用 `APIRouter` 不同，因為被掛載的應用是完全獨立的。主應用的 OpenAPI 與文件不會包含掛載應用的任何內容，等等。
 
-你可以在[進階使用者指南](../advanced/index.md){.internal-link target=_blank}中閱讀更多相關內容。
+你可以在[進階使用者指南](../advanced/index.md)中閱讀更多相關內容。
 
 ## 細節 { #details }
 
@@ -37,4 +37,4 @@
 
 ## 更多資訊 { #more-info }
 
-如需更多細節與選項，請參考 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette 關於靜態檔案的文件</a>。
+如需更多細節與選項，請參考 [Starlette 關於靜態檔案的文件](https://www.starlette.dev/staticfiles/)。

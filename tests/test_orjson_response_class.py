@@ -1,5 +1,9 @@
 import warnings
 
+import pytest
+
+pytest.importorskip("orjson")
+
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.responses import ORJSONResponse

@@ -269,7 +269,7 @@ Bunun "`one_person`, `Person` sınıfının bir **instance**'ıdır" anlamına g
 
 ## Pydantic modelleri { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, data validation yapmak için bir Python kütüphanesidir.
+[Pydantic](https://docs.pydantic.dev/), data validation yapmak için bir Python kütüphanesidir.
 
 Verinin "shape"'ini attribute'lara sahip sınıflar olarak tanımlarsınız.
 
@@ -285,13 +285,13 @@ Resmî Pydantic dokümanlarından bir örnek:
 
 /// info | Bilgi
 
-Daha fazlasını öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'in dokümanlarına bakın</a>.
+Daha fazlasını öğrenmek için [Pydantic'in dokümanlarına bakın](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** tamamen Pydantic üzerine kuruludur.
 
-Bunların pratikte nasıl çalıştığını [Eğitim - Kullanım Kılavuzu](tutorial/index.md){.internal-link target=_blank} içinde çok daha fazla göreceksiniz.
+Bunların pratikte nasıl çalıştığını [Eğitim - Kullanım Kılavuzu](tutorial/index.md) içinde çok daha fazla göreceksiniz.
 
 ## Metadata Annotations ile Type Hints { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ Ayrıca kodunuzun pek çok başka Python aracı ve kütüphanesiyle çok uyumlu 
 * OpenAPI kullanarak API'yi **dokümante etmek**:
     * bu, daha sonra otomatik etkileşimli dokümantasyon kullanıcı arayüzleri tarafından kullanılır.
 
-Bunların hepsi kulağa soyut gelebilir. Merak etmeyin. Tüm bunları [Eğitim - Kullanım Kılavuzu](tutorial/index.md){.internal-link target=_blank} içinde çalışırken göreceksiniz.
+Bunların hepsi kulağa soyut gelebilir. Merak etmeyin. Tüm bunları [Eğitim - Kullanım Kılavuzu](tutorial/index.md) içinde çalışırken göreceksiniz.
 
 Önemli olan, standart Python tiplerini tek bir yerde kullanarak (daha fazla sınıf, decorator vb. eklemek yerine), **FastAPI**'nin sizin için işin büyük kısmını yapmasıdır.
 
 /// info | Bilgi
 
-Tüm tutorial'ı zaten bitirdiyseniz ve tipler hakkında daha fazlasını görmek için geri döndüyseniz, iyi bir kaynak: <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`'nin "cheat sheet"i</a>.
+Tüm tutorial'ı zaten bitirdiyseniz ve tipler hakkında daha fazlasını görmek için geri döndüyseniz, iyi bir kaynak: [`mypy`'nin "cheat sheet"i](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

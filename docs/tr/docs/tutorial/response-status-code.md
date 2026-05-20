@@ -20,7 +20,7 @@ Bir response model tanımlayabildiğiniz gibi, herhangi bir *path operation* iç
 
 /// info | Bilgi
 
-Alternatif olarak `status_code`, Python'un <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>'ı gibi bir `IntEnum` da alabilir.
+Alternatif olarak `status_code`, Python'un [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)'ı gibi bir `IntEnum` da alabilir.
 
 ///
 
@@ -66,7 +66,7 @@ Kısaca:
 
 /// tip | İpucu
 
-Her bir status code hakkında daha fazla bilgi almak ve hangi kodun ne için kullanıldığını görmek için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> dokümantasyonu: HTTP status code'lar hakkında</a> göz atın.
+Her bir status code hakkında daha fazla bilgi almak ve hangi kodun ne için kullanıldığını görmek için [<abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> dokümantasyonu: HTTP status code'lar hakkında](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)'na göz atın.
 
 ///
 
@@ -98,4 +98,4 @@ Bunlar sadece kolaylık sağlar; aynı sayıyı taşırlar. Ancak bu şekilde ed
 
 ## Varsayılanı değiştirmek { #changing-the-default }
 
-Daha sonra, [İleri Düzey Kullanıcı Kılavuzu](../advanced/response-change-status-code.md){.internal-link target=_blank} içinde, burada tanımladığınız varsayılanın dışında farklı bir status code nasıl döndüreceğinizi göreceksiniz.
+Daha sonra, [İleri Düzey Kullanıcı Kılavuzu](../advanced/response-change-status-code.md) içinde, burada tanımladığınız varsayılanın dışında farklı bir status code nasıl döndüreceğinizi göreceksiniz.

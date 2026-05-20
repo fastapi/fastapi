@@ -4,9 +4,9 @@ Vous pouvez définir des fichiers à téléverser par le client en utilisant `Fi
 
 /// info
 
-Pour recevoir des fichiers téléversés, installez d'abord <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Pour recevoir des fichiers téléversés, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer le paquet, par exemple :
+Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer le paquet, par exemple :
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ Utiliser `UploadFile` présente plusieurs avantages par rapport à `bytes` :
     - Un fichier stocké en mémoire jusqu'à une taille maximale, puis, au-delà de cette limite, stocké sur le disque.
 - Cela fonctionne donc bien pour des fichiers volumineux comme des images, des vidéos, de gros binaires, etc., sans consommer toute la mémoire.
 - Vous pouvez obtenir des métadonnées à partir du fichier téléversé.
-- Il offre une interface `async` de type <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a>.
-- Il expose un véritable objet Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que vous pouvez passer directement à d'autres bibliothèques qui attendent un objet « file-like ».
+- Il offre une interface `async` de type [file-like](https://docs.python.org/3/glossary.html#term-file-like-object).
+- Il expose un véritable objet Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) que vous pouvez passer directement à d'autres bibliothèques qui attendent un objet « file-like ».
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ Utiliser `UploadFile` présente plusieurs avantages par rapport à `bytes` :
 
 - `filename` : une `str` contenant le nom de fichier original téléversé (par ex. `myimage.jpg`).
 - `content_type` : une `str` avec le type de contenu (type MIME / type média) (par ex. `image/jpeg`).
-- `file` : un <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (un objet <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">de type fichier</a>). C'est l'objet fichier Python réel que vous pouvez passer directement à d'autres fonctions ou bibliothèques qui attendent un objet « file-like ».
+- `file` : un [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (un objet [file-like](https://docs.python.org/3/glossary.html#term-file-like-object)). C'est l'objet fichier Python réel que vous pouvez passer directement à d'autres fonctions ou bibliothèques qui attendent un objet « file-like ».
 
 `UploadFile` a les méthodes `async` suivantes. Elles appellent toutes les méthodes correspondantes du fichier sous-jacent (en utilisant le `SpooledTemporaryFile` interne).
 
@@ -121,7 +121,7 @@ Les données des formulaires sont normalement encodées avec le « type de médi
 
 Mais lorsque le formulaire inclut des fichiers, il est encodé en `multipart/form-data`. Si vous utilisez `File`, **FastAPI** saura qu'il doit récupérer les fichiers depuis la partie appropriée du corps.
 
-Si vous souhaitez en savoir plus sur ces encodages et les champs de formulaire, consultez la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> Web Docs pour <code>POST</code></a>.
+Si vous souhaitez en savoir plus sur ces encodages et les champs de formulaire, consultez la [<abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> Web Docs pour `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

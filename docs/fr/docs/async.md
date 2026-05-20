@@ -40,11 +40,11 @@ def results():
 
 ---
 
-Si votre application n'a pas à communiquer avec une autre chose et à attendre sa réponse, utilisez `async def`, même si vous n'avez pas besoin d'utiliser `await` à l'intérieur.
+Si votre application (d'une certaine manière) n'a pas à communiquer avec une autre chose et à attendre sa réponse, utilisez `async def`, même si vous n'avez pas besoin d'utiliser `await` à l'intérieur.
 
 ---
 
-Si vous ne savez pas, utilisez seulement `def` comme vous le feriez habituellement.
+Si vous ne savez pas, utilisez seulement `def`.
 
 ---
 
@@ -141,7 +141,7 @@ Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
 
 /// info
 
-Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Illustrations proposées par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -207,7 +207,7 @@ Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts ca
 
 /// info
 
-Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Illustrations proposées par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -251,7 +251,7 @@ Ce type d'asynchronicité est ce qui a rendu NodeJS populaire (bien que NodeJS n
 
 Et c'est le même niveau de performance que celui obtenu avec **FastAPI**.
 
-Et comme on peut avoir du parallélisme et de l'asynchronicité en même temps, on obtient des performances plus hautes que la plupart des frameworks NodeJS testés et égales à celles du Go, qui est un langage compilé plus proche du C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(tout ça grâce à Starlette)</a>.
+Et comme on peut avoir du parallélisme et de l'asynchronicité en même temps, on obtient des performances plus hautes que la plupart des frameworks NodeJS testés et égales à celles du Go, qui est un langage compilé plus proche du C [(tout ça grâce à Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Est-ce que la concurrence est mieux que le parallélisme ? { #is-concurrency-better-than-parallelism }
 
@@ -298,7 +298,7 @@ Mais vous pouvez aussi profiter du parallélisme et du multiprocessing (plusieur
 
 Ça, ajouté au fait que Python soit le langage le plus populaire pour la **Data Science**, le **Machine Learning** et surtout le **Deep Learning**, font de **FastAPI** un très bon choix pour les APIs et applications de **Data Science** / **Machine Learning**.
 
-Pour comprendre comment mettre en place ce parallélisme en production, allez lire la section [Déploiement](deployment/index.md){.internal-link target=_blank}.
+Pour comprendre comment mettre en place ce parallélisme en production, allez lire la section [Déploiement](deployment/index.md).
 
 ## `async` et `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ Mais si vous souhaitez utiliser `async` / `await` sans FastAPI, vous pouvez éga
 
 ### Écrire votre propre code async { #write-your-own-async-code }
 
-Starlette (et **FastAPI**) s’appuie sur <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ce qui le rend compatible à la fois avec la bibliothèque standard <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> de Python et avec <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (et **FastAPI**) s’appuie sur [AnyIO](https://anyio.readthedocs.io/en/stable/), ce qui le rend compatible à la fois avec la bibliothèque standard [asyncio](https://docs.python.org/3/library/asyncio-task.html) de Python et avec [Trio](https://trio.readthedocs.io/en/stable/).
 
-En particulier, vous pouvez utiliser directement <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> pour vos cas d’usage de concurrence avancés qui nécessitent des schémas plus élaborés dans votre propre code.
+En particulier, vous pouvez utiliser directement [AnyIO](https://anyio.readthedocs.io/en/stable/) pour vos cas d’usage de concurrence avancés qui nécessitent des schémas plus élaborés dans votre propre code.
 
-Et même si vous n’utilisiez pas FastAPI, vous pourriez aussi écrire vos propres applications async avec <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> pour une grande compatibilité et pour bénéficier de ses avantages (par ex. la « structured concurrency »).
+Et même si vous n’utilisiez pas FastAPI, vous pourriez aussi écrire vos propres applications async avec [AnyIO](https://anyio.readthedocs.io/en/stable/) pour une grande compatibilité et pour bénéficier de ses avantages (par ex. la « structured concurrency »).
 
-J’ai créé une autre bibliothèque au-dessus d’AnyIO, comme une fine surcouche, pour améliorer un peu les annotations de type et obtenir une meilleure **autocomplétion**, des **erreurs en ligne**, etc. Elle propose également une introduction et un tutoriel accessibles pour vous aider à **comprendre** et écrire **votre propre code async** : <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Elle sera particulièrement utile si vous devez **combiner du code async avec du code classique** (bloquant/synchrone).
+J’ai créé une autre bibliothèque au-dessus d’AnyIO, comme une fine surcouche, pour améliorer un peu les annotations de type et obtenir une meilleure **autocomplétion**, des **erreurs en ligne**, etc. Elle propose également une introduction et un tutoriel accessibles pour vous aider à **comprendre** et écrire **votre propre code async** : [Asyncer](https://asyncer.tiangolo.com/). Elle sera particulièrement utile si vous devez **combiner du code async avec du code classique** (bloquant/synchrone).
 
 ### Autres formes de code asynchrone { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Cette même syntaxe (ou presque) a aussi été incluse récemment dans les versi
 
 Mais avant ça, gérer du code asynchrone était bien plus complexe et difficile.
 
-Dans les versions précédentes de Python, vous auriez utilisé des threads ou <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>.  Mais le code aurait été bien plus difficile à comprendre, débugger, et concevoir.
+Dans les versions précédentes de Python, vous auriez utilisé des threads ou [Gevent](https://www.gevent.org/).  Mais le code aurait été bien plus difficile à comprendre, débugger, et concevoir.
 
 Dans les versions précédentes de JavaScript côté navigateur / NodeJS, vous auriez utilisé des « callbacks ». Menant potentiellement à ce que l'on appelle le « callback hell ».
 
@@ -419,15 +419,15 @@ Quand vous déclarez une *fonction de chemin d'accès* avec un `def` normal et n
 
 Si vous venez d'un autre framework asynchrone qui ne fonctionne pas comme de la façon décrite ci-dessus et que vous êtes habitué à définir des *fonctions de chemin d'accès* basiques et purement calculatoires avec un simple `def` pour un faible gain de performance (environ 100 nanosecondes), veuillez noter que dans **FastAPI**, l'effet serait plutôt contraire. Dans ces cas-là, il vaut mieux utiliser `async def` à moins que votre *fonction de chemin d'accès* utilise du code qui effectue des opérations <abbr title="Input/Output - Entrées/Sorties: lecture ou écriture sur le disque, communications réseau.">I/O</abbr> bloquantes.
 
-Au final, dans les deux situations, il est fort probable que **FastAPI** soit tout de même [plus rapide](index.md#performance){.internal-link target=_blank} que (ou au moins de vitesse égale à) votre framework précédent.
+Au final, dans les deux situations, il est fort probable que **FastAPI** soit tout de même [plus rapide](index.md#performance) que (ou au moins de vitesse égale à) votre framework précédent.
 
 ### Dépendances { #dependencies }
 
-La même chose s'applique aux [dépendances](tutorial/dependencies/index.md){.internal-link target=_blank}. Si une dépendance est définie avec `def` plutôt que `async def`, elle est exécutée dans la threadpool externe.
+La même chose s'applique aux [dépendances](tutorial/dependencies/index.md). Si une dépendance est définie avec `def` plutôt que `async def`, elle est exécutée dans la threadpool externe.
 
 ### Sous-dépendances { #sub-dependencies }
 
-Vous pouvez avoir de multiples dépendances et [sous-dépendances](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} dépendant les unes des autres (en tant que paramètres de la définition de la *fonction de chemin d'accès*), certaines créées avec `async def` et d'autres avec `def`. Cela fonctionnerait aussi, et celles définies avec un simple `def` seraient exécutées sur un thread externe (venant de la threadpool) plutôt que d'être « attendues ».
+Vous pouvez avoir de multiples dépendances et [sous-dépendances](tutorial/dependencies/sub-dependencies.md) dépendant les unes des autres (en tant que paramètres de la définition de la *fonction de chemin d'accès*), certaines créées avec `async def` et d'autres avec `def`. Cela fonctionnerait aussi, et celles définies avec un simple `def` seraient exécutées sur un thread externe (venant de la threadpool) plutôt que d'être « attendues ».
 
 ### Autres fonctions utilitaires { #other-utility-functions }
 

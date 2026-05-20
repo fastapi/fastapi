@@ -1,6 +1,6 @@
 # CORS（跨來源資源共用） { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 或「Cross-Origin Resource Sharing」</a>指的是：當在瀏覽器中執行的前端以 JavaScript 與後端通訊，而後端與前端位於不同「來源（origin）」時的情境。
+[CORS 或「Cross-Origin Resource Sharing」](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)指的是：當在瀏覽器中執行的前端以 JavaScript 與後端通訊，而後端與前端位於不同「來源（origin）」時的情境。
 
 ## 來源（Origin） { #origin }
 
@@ -55,10 +55,10 @@
 * `allow_origins` - 允許進行跨來源請求的來源清單。例如 `['https://example.org', 'https://www.example.org']`。你可以使用 `['*']` 來允許任何來源。
 * `allow_origin_regex` - 允許進行跨來源請求的來源，使用正規表示式字串比對。例如 `'https://.*\.example\.org'`。
 * `allow_methods` - 允許跨來源請求的 HTTP 方法清單。預設為 `['GET']`。你可以使用 `['*']` 來允許所有標準方法。
-* `allow_headers` - 允許跨來源請求所支援的 HTTP 請求標頭清單。預設為 `[]`。你可以使用 `['*']` 來允許所有標頭。對於<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">簡單 CORS 請求</a>，`Accept`、`Accept-Language`、`Content-Language` 與 `Content-Type` 標頭一律被允許。
+* `allow_headers` - 允許跨來源請求所支援的 HTTP 請求標頭清單。預設為 `[]`。你可以使用 `['*']` 來允許所有標頭。對於[簡單 CORS 請求](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)，`Accept`、`Accept-Language`、`Content-Language` 與 `Content-Type` 標頭一律被允許。
 * `allow_credentials` - 指示是否支援跨來源請求的 Cookie。預設為 `False`。
 
-    當 `allow_credentials` 設為 `True` 時，`allow_origins`、`allow_methods` 與 `allow_headers` 都不能設為 `['*']`。上述各項必須<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">明確指定</a>。
+    當 `allow_credentials` 設為 `True` 時，`allow_origins`、`allow_methods` 與 `allow_headers` 都不能設為 `['*']`。上述各項必須[明確指定](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards)。
 
 * `expose_headers` - 指示哪些回應標頭應該讓瀏覽器可存取。預設為 `[]`。
 * `max_age` - 設定瀏覽器快取 CORS 回應的最長秒數。預設為 `600`。
@@ -77,7 +77,7 @@
 
 ## 更多資訊 { #more-info }
 
-想進一步了解 <abbr title="Cross-Origin Resource Sharing - 跨來源資源共用">CORS</abbr>，請參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla 的 CORS 文件</a>。
+想進一步了解 <abbr title="Cross-Origin Resource Sharing - 跨來源資源共用">CORS</abbr>，請參考 [Mozilla 的 CORS 文件](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)。
 
 /// note | 技術細節
 

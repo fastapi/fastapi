@@ -4,7 +4,7 @@ If you are building an application or a web API, it's rarely the case that you c
 
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
-/// info
+/// note
 
 If you come from Flask, this would be the equivalent of Flask's Blueprints.
 
@@ -194,7 +194,7 @@ Having `dependencies` in the `APIRouter` can be used, for example, to require au
 
 ///
 
-/// check
+/// tip
 
 The `prefix`, `tags`, `responses`, and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
@@ -339,7 +339,7 @@ We could also import them like:
 from app.routers import items, users
 ```
 
-/// info
+/// note
 
 The first version is a "relative import":
 
@@ -382,7 +382,7 @@ Now, let's include the `router`s from the submodules `users` and `items`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info
+/// note
 
 `users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
 
@@ -402,7 +402,7 @@ So, behind the scenes, it will actually work as if everything was the same singl
 
 ///
 
-/// check
+/// tip
 
 You don't have to worry about performance when including routers.
 
@@ -451,7 +451,7 @@ Here we do it... just to show that we can 🤷:
 
 and it will work correctly, together with all the other *path operations* added with `app.include_router()`.
 
-/// info | Very Technical Details
+/// note | Very Technical Details
 
 **Note**: this is a very technical detail that you probably can **just skip**.
 

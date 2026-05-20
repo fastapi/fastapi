@@ -4,9 +4,9 @@ Puedes definir archivos y campos de formulario al mismo tiempo usando `File` y `
 
 /// info | Información
 
-Para recibir archivos subidos y/o form data, primero instala <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para recibir archivos subidos y/o form data, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo y luego instálalo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), actívalo y luego instálalo, por ejemplo:
 
 ```console
 $ pip install python-multipart

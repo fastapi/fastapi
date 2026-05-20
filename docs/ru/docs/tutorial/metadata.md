@@ -14,7 +14,7 @@
 | `version` | `string` | Версия API. Версия вашего собственного приложения, а не OpenAPI. К примеру `2.5.0`. |
 | `terms_of_service` | `str` | Ссылка к условиям пользования API. Если указано, то это должен быть URL-адрес. |
 | `contact` | `dict` | Контактная информация для открытого API. Может содержать несколько полей. <details><summary>поля <code>contact</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>Идентификационное имя контактного лица/организации.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL указывающий на контактную информацию. ДОЛЖЕН быть в формате URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>Email адрес контактного лица/организации. ДОЛЖЕН быть в формате email адреса.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | Информация о лицензии открытого API. Может содержать несколько полей. <details><summary>поля <code>license_info</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ОБЯЗАТЕЛЬНО</strong> (если установлен параметр <code>license_info</code>). Название лицензии, используемой для API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Выражение лицензии <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> для API. Поле <code>identifier</code> взаимоисключающее с полем <code>url</code>. <small>Доступно начиная с OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL, указывающий на лицензию, используемую для API. ДОЛЖЕН быть в формате URL.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | Информация о лицензии открытого API. Может содержать несколько полей. <details><summary>поля <code>license_info</code></summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Описание</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ОБЯЗАТЕЛЬНО</strong> (если установлен параметр <code>license_info</code>). Название лицензии, используемой для API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Выражение лицензии [SPDX](https://spdx.org/licenses/) для API. Поле <code>identifier</code> взаимоисключающее с полем <code>url</code>. <small>Доступно начиная с OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL, указывающий на лицензию, используемую для API. ДОЛЖЕН быть в формате URL.</td></tr></tbody></table></details> |
 
 Вы можете задать их следующим образом:
 
@@ -76,7 +76,7 @@
 
 /// info | Дополнительная информация
 
-Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags).
 
 ///
 

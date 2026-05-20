@@ -8,7 +8,7 @@
 
 /// tip | Совет
 
-Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md){.internal-link target=_blank}.
+Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: управление настройками</a>.
+К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — [Pydantic: управление настройками](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Установка `pydantic-settings` { #install-pydantic-settings }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет `pydantic-settings`:
+Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет `pydantic-settings`:
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## Настройки в другом модуле { #settings-in-another-module }
 
-Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 Например, у вас может быть файл `config.py` со следующим содержимым:
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | Совет
 
-Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: поддержка Dotenv (.env)</a>.
+Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: [Pydantic Settings: поддержка Dotenv (.env)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Совет
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | Совет
 
-Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 Таким образом, она ведет себя почти как глобальная переменная. Но так как используется функция‑зависимость, мы можем легко переопределить ее для тестирования.
 
-`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документации Python по `@lru_cache`</a>.
+`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в [документации Python по `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Итоги { #recap }
 

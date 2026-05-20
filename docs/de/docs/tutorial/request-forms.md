@@ -4,9 +4,9 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 
 /// info | Info
 
-Um Formulare zu verwenden, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}, aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
+Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
 
 ```console
 $ pip install python-multipart
@@ -56,7 +56,7 @@ Daten aus Formularen werden normalerweise mit dem <abbr title="Medientyp">„med
 
 Wenn das Formular stattdessen Dateien enthält, werden diese mit `multipart/form-data` kodiert. Im nächsten Kapitel erfahren Sie mehr über die Handhabung von Dateien.
 
-Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
+Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die [<abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

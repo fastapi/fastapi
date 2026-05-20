@@ -60,7 +60,7 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 
 追加のレスポンスについても、モデルやステータスコードなどとともに宣言できます。
 
-これについてはドキュメントに章全体があります。 [OpenAPIの追加レスポンス](additional-responses.md){.internal-link target=_blank} で読めます。
+これについてはドキュメントに章全体があります。 [OpenAPIの追加レスポンス](additional-responses.md) で読めます。
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +68,7 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 
 /// note | 技術詳細
 
-OpenAPI仕様では <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a> と呼ばれています。
+OpenAPI仕様では [Operation Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object) と呼ばれています。
 
 ///
 
@@ -82,7 +82,7 @@ OpenAPI仕様では <a href="https://github.com/OAI/OpenAPI-Specification/blob/m
 
 これは低レベルな拡張ポイントです。
 
-追加レスポンスを宣言するだけなら、より便利な方法として [OpenAPIの追加レスポンス](additional-responses.md){.internal-link target=_blank} を使うことができます。
+追加レスポンスを宣言するだけなら、より便利な方法として [OpenAPIの追加レスポンス](additional-responses.md) を使うことができます。
 
 ///
 

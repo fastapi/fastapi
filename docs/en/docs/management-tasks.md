@@ -114,7 +114,14 @@ For these language translation PRs, confirm that:
 
 * The PR was automated (authored by @tiangolo), not made by another user.
 * It has the labels `lang-all` and `lang-{lang code}`.
-* If the PR is approved by at least one native speaker, you can merge it.
+
+For PRs that update language-specific LLM prompts, confirm that:
+
+* The PR has the labels `lang-all` and `lang-{lang code}`.
+* It is approved by at least one native speaker.
+* In some cases you might need to translate several pages with new prompt to make sure it works as expected.
+
+If the PR meets the above conditions, you can merge it. 😎
 
 ## Review PRs
 

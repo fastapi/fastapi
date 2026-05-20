@@ -12,7 +12,7 @@ FastAPIや他のユーザー、作者を応援したいですか？
 
 ## ニュースレターを購読 { #subscribe-to-the-newsletter }
 
-[**FastAPI and friends** ニュースレター](newsletter.md){.internal-link target=_blank}（配信はまれです）を購読すると、次の情報をキャッチアップできます:
+[**FastAPI and friends** ニュースレター](newsletter.md)（配信はまれです）を購読すると、次の情報をキャッチアップできます:
 
 * FastAPI と関連プロジェクトのニュース 🚀
 * ガイド 📝
@@ -22,17 +22,17 @@ FastAPIや他のユーザー、作者を応援したいですか？
 
 ## X (Twitter) で FastAPI をフォロー { #follow-fastapi-on-x-twitter }
 
-<a href="https://x.com/fastapi" class="external-link" target="_blank">**X (Twitter)** で @fastapi をフォロー</a>して、**FastAPI** の最新情報を受け取りましょう。🐦
+[**X (Twitter)** で @fastapi をフォロー](https://x.com/fastapi)して、**FastAPI** の最新情報を受け取りましょう。🐦
 
 ## GitHubで **FastAPI** にStar { #star-fastapi-in-github }
 
-GitHubでFastAPIに「Star」をつけることができます（右上部のStarボタンをクリック）: <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。⭐️
+GitHubでFastAPIに「Star」をつけることができます（右上部のStarボタンをクリック）: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。⭐️
 
 スターを増やすことで、他のユーザーの目につきやすくなり、すでに多くの人の役に立っていることが伝わります。
 
 ## GitHubレポジトリのリリースをWatch { #watch-the-github-repository-for-releases }
 
-GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンをクリック）: <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。👀
+GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンをクリック）: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。👀
 
 そこで「Releases only」を選択できます。
 
@@ -40,45 +40,45 @@ GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンを
 
 ## 開発者とつながる { #connect-with-the-author }
 
-作者である<a href="https://tiangolo.com" class="external-link" target="_blank">私（Sebastián Ramírez / `tiangolo`）</a>とつながれます。
+作者である[私（Sebastián Ramírez / `tiangolo`）](https://tiangolo.com)とつながれます。
 
 できること:
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub** でフォロー</a>。
+* [**GitHub** でフォロー](https://github.com/tiangolo)。
     * 役に立つかもしれない、私が作成した他のオープンソースプロジェクトを見られます。
     * 新しいオープンソースプロジェクトを作成したときにわかります。
-* <a href="https://x.com/tiangolo" class="external-link" target="_blank">**X (Twitter)** でフォロー</a> または <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>。
+* [**X (Twitter)** でフォロー](https://x.com/tiangolo) または [Mastodon](https://fosstodon.org/@tiangolo)。
     * あなたがどのようにFastAPIを使っているか教えてください（聞けると嬉しいです）。
     * 新しいツールの告知やリリースを聞けます。
-    * さらに、<a href="https://x.com/fastapi" class="external-link" target="_blank">X (Twitter) の @fastapi</a>（別アカウント）もフォローできます。
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**LinkedIn** でフォロー</a>。
+    * さらに、[X (Twitter) の @fastapi](https://x.com/fastapi)（別アカウント）もフォローできます。
+* [**LinkedIn** でフォロー](https://www.linkedin.com/in/tiangolo/)。
     * 新しいツールの告知やリリースを聞けます（ただしX (Twitter) の方をよく使っています 🤷‍♂）。
-* <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> や <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> で執筆内容を読む（またはフォロー）。
+* [**Dev.to**](https://dev.to/tiangolo) や [**Medium**](https://medium.com/@tiangolo) で執筆内容を読む（またはフォロー）。
     * 私のアイデアや、作成したツールに関する記事を読めます。
     * 新しい記事を公開したときに読めます。
 
 ## **FastAPI** についてツイート { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI** についてツイート</a>して、なぜ気に入っているのかを私や他の人に教えてください。🎉
+[**FastAPI** についてツイート](https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi)して、なぜ気に入っているのかを私や他の人に教えてください。🎉
 
 **FastAPI** がどのように使われているか、どこを気に入っているか、どのプロジェクト/会社で使っているか等、聞けると嬉しいです。
 
 ## FastAPIに投票 { #vote-for-fastapi }
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Slantで **FastAPI** に投票</a>。
-* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">AlternativeToで **FastAPI** に投票</a>。
-* <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">StackShare で **FastAPI** を使っていると宣言</a>。
+* [Slantで **FastAPI** に投票](https://www.slant.co/options/34241/~fastapi-review)。
+* [AlternativeToで **FastAPI** に投票](https://alternativeto.net/software/fastapi/about/)。
+* [StackShare で **FastAPI** を使っていると宣言](https://stackshare.io/pypi-fastapi)。
 
 ## GitHubで質問に困っている人を助ける { #help-others-with-questions-in-github }
 
 次の場所で、他の人の質問を手助けできます:
 
-* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
-* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+* [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered)
+* [GitHub Issues](https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+)
 
 多くの場合、その質問の答えをすでに知っているかもしれません。🤓
 
-もし多くの人の質問に答えて助けてくれたなら、あなたは公式の[FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank}になります。🎉
+もし多くの人の質問に答えて助けてくれたなら、あなたは公式の[FastAPI Expert](fastapi-people.md#fastapi-experts)になります。🎉
 
 最も大事なポイントは「親切であること」を心がけることです。人はフラストレーションを抱えてやって来るので、必ずしも最良の聞き方をしているとは限りませんが、できる限り親切に対応しましょう。🤗
 
@@ -98,13 +98,13 @@ GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンを
 
 * 質問が理解できない場合は、さらに「詳細」を尋ねます。
 
-### 問題を再現する { #reproduce-the-problem }
+### 问題を再現する { #reproduce-the-problem }
 
 多くのケースや質問は、その人の「元のコード」に関係しています。
 
 しばしばコードの断片だけが共有されますが、それでは問題を「再現」するには不十分です。
 
-* ローカルで同じエラーや挙動を確認できるように、またはユースケースをよりよく理解できるように、**コピー&ペースト**して実行できる<a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">最小の再現可能な例</a>の提供を依頼できます。
+* ローカルで同じエラーや挙動を確認できるように、またはユースケースをよりよく理解できるように、**コピー&ペースト**して実行できる[最小の再現可能な例](https://stackoverflow.com/help/minimal-reproducible-example)の提供を依頼できます。
 
 * とても寛大な気分なら、問題の説明だけをもとに、あなた自身でそのような**例を作成**してみることもできます。ただし時間がかかる可能性が高いので、まずは問題の明確化を依頼した方が良い場合もあります。
 
@@ -125,7 +125,7 @@ GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンを
 
 ## GitHubレポジトリをWatch { #watch-the-github-repository }
 
-GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンをクリック）: <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>。👀
+GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンをクリック）: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。👀
 
 「Releases only」ではなく「Watching」を選択すると、新しい issue や質問が作成されたときに通知を受け取れます。新しい issue のみ、Discussions のみ、PR のみ、など通知対象を絞ることもできます。
 
@@ -133,7 +133,7 @@ GitHubでFastAPIを「Watch」できます（右上部の「Watch」ボタンを
 
 ## 質問する { #ask-questions }
 
-GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">新しい質問</a>を作成できます。例えば:
+GitHubレポジトリで[新しい質問](https://github.com/fastapi/fastapi/discussions/new?category=questions)を作成できます。例えば:
 
 * **質問**をする、または**問題**について尋ねる。
 * 新しい**機能**を提案する。
@@ -196,12 +196,12 @@ GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/discussions/
 
 ## プルリクエストを作成 { #create-a-pull-request }
 
-[貢献](contributing.md){.internal-link target=_blank}として、次のようにプルリクエストでソースコードに貢献できます:
+[貢献](contributing.md)として、次のようにプルリクエストでソースコードに貢献できます:
 
 * ドキュメントで見つけたタイポの修正。
-* 自分が作成/発見した FastAPI に関する記事・動画・ポッドキャストを、<a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">このファイルを編集</a>して共有。
+* 自分が作成/発見した FastAPI に関する記事・動画・ポッドキャストを、[このファイルを編集](https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml)して共有。
     * 該当セクションの先頭にリンクを追加してください。
-* 自分の言語への[ドキュメント翻訳を手伝う](contributing.md#translations){.internal-link target=_blank}。
+* 自分の言語への[ドキュメント翻訳を手伝う](contributing.md#translations)。
     * 他の人が作成した翻訳のレビューも手伝えます。
 * 新しいドキュメントセクションの提案。
 * 既存のissue/バグの修正。
@@ -218,8 +218,8 @@ GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/discussions/
 
 今すぐできる主なタスクは次のとおりです:
 
-* [GitHubで質問に困っている人を助ける](#help-others-with-questions-in-github){.internal-link target=_blank}（上のセクションを参照）。
-* [プルリクエストをレビュー](#review-pull-requests){.internal-link target=_blank}（上のセクションを参照）。
+* [GitHubで質問に困っている人を助ける](#help-others-with-questions-in-github)（上のセクションを参照）。
+* [プルリクエストをレビュー](#review-pull-requests)（上のセクションを参照）。
 
 この2つが**最も時間を消費**します。FastAPI のメンテナンス作業の中心です。
 
@@ -227,11 +227,11 @@ GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/discussions/
 
 ## チャットに参加 { #join-the-chat }
 
-👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord チャットサーバー</a> 👥 に参加し、FastAPI コミュニティのみんなと交流しましょう。
+👥 [Discord チャットサーバー](https://discord.gg/VQjSZaeJmf) 👥 に参加し、FastAPI コミュニティのみんなと交流しましょう。
 
 /// tip | 豆知識
 
-質問は <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a> に投稿してください。そこなら[FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}から助けてもらえる可能性がずっと高いです。
+質問は [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/new?category=questions) に投稿してください。そこなら[FastAPI Experts](fastapi-people.md#fastapi-experts)から助けてもらえる可能性がずっと高いです。
 
 チャットは一般的な会話のみに使いましょう。
 
@@ -243,13 +243,13 @@ GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/discussions/
 
 GitHub では、テンプレートが正しい形で質問を書くのを助けてくれるため、良い回答を得やすくなりますし、質問する前に自分で問題を解決できることもあります。さらにGitHubなら、時間がかかっても私が必ずすべてに回答できるようにできます。チャットでは私個人にはそれができません。😅
 
-チャットでの会話はGitHubほど検索しやすくないため、質問と回答が会話に埋もれがちです。そして、[FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank}になるためにカウントされるのはGitHub上の活動だけです。ですから、GitHubの方が注目を集めやすいでしょう。
+チャットでの会話はGitHubほど検索しやすくないため、質問と回答が会話に埋もれがちです。そして、[FastAPI Expert](fastapi-people.md#fastapi-experts)になるためにカウントされるのはGitHub上の活動だけです。ですから、GitHubの方が注目を集めやすいでしょう。
 
 一方で、チャットには数千人のユーザーがいるため、ほぼ常に誰かと会話できる可能性が高いです。😄
 
 ## 作者をスポンサー { #sponsor-the-author }
 
-あなたの**製品/会社**が **FastAPI** に依存している、または関連しており、そのユーザーにリーチしたい場合は、<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a> を通じて作者（私）を支援できます。プランに応じて、ドキュメントにバッジが表示されるなどの特典がある場合があります。🎁
+あなたの**製品/会社**が **FastAPI** に依存している、または関連しており、そのユーザーにリーチしたい場合は、[GitHub sponsors](https://github.com/sponsors/tiangolo) を通じて作者（私）を支援できます。プランに応じて、ドキュメントにバッジが表示されるなどの特典がある場合があります。🎁
 
 ---
 

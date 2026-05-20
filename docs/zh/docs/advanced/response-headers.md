@@ -20,7 +20,7 @@
 
 你也可以在直接返回 `Response` 时添加头部。
 
-按照[直接返回响应](response-directly.md){.internal-link target=_blank}中所述创建响应，并将头部作为附加参数传递：
+按照[直接返回响应](response-directly.md)中所述创建响应，并将头部作为附加参数传递：
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@
 
 ## 自定义头部 { #custom-headers }
 
-请注意，可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">使用 `X-` 前缀</a>添加自定义专有头部。
+请注意，可以通过[使用 `X-` 前缀](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)添加自定义专有头部。
 
-但是，如果你有自定义头部，并希望浏览器中的客户端能够看到它们，你需要将它们添加到你的 CORS 配置中（在 [CORS（跨源资源共享）](../tutorial/cors.md){.internal-link target=_blank} 中阅读更多），使用在 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette 的 CORS 文档</a>中记录的 `expose_headers` 参数。
+但是，如果你有自定义头部，并希望浏览器中的客户端能够看到它们，你需要将它们添加到你的 CORS 配置中（在 [CORS（跨源资源共享）](../tutorial/cors.md) 中阅读更多），使用在 [Starlette 的 CORS 文档](https://www.starlette.dev/middleware/#corsmiddleware)中记录的 `expose_headers` 参数。

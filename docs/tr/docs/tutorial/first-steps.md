@@ -11,7 +11,7 @@ Canlı sunucuyu çalıştırın:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +58,7 @@ Bu satır, uygulamanızın yerel makinenizde hangi URL'de sunulduğunu gösterir
 
 ### Kontrol Edelim { #check-it }
 
-Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> adresine gidin.
+Tarayıcınızı açıp [http://127.0.0.1:8000](http://127.0.0.1:8000) adresine gidin.
 
 Şu şekilde bir JSON response göreceksiniz:
 
@@ -68,17 +68,17 @@ Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" ta
 
 ### Etkileşimli API Dokümantasyonu { #interactive-api-docs }
 
-Şimdi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidin.
+Şimdi [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidin.
 
-Otomatik etkileşimli API dokümantasyonunu ( <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan) göreceksiniz:
+Otomatik etkileşimli API dokümantasyonunu ([Swagger UI](https://github.com/swagger-api/swagger-ui) tarafından sağlanan) göreceksiniz:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Alternatif API Dokümantasyonu { #alternative-api-docs }
 
-Ve şimdi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresine gidin.
+Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu ( <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan) göreceksiniz:
+Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanan) göreceksiniz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ Alternatif otomatik dokümantasyonu ( <a href="https://github.com/Rebilly/ReDoc"
 
 #### API "şeması" { #api-schema }
 
-Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API'nızın şemasını nasıl tanımlayacağınızı belirleyen bir şartnamedir.
+Bu durumda, [OpenAPI](https://github.com/OAI/OpenAPI-Specification), API'nızın şemasını nasıl tanımlayacağınızı belirleyen bir şartnamedir.
 
 Bu şema tanımı, API path'leriniz, alabilecekleri olası parametreler vb. şeyleri içerir.
 
@@ -110,7 +110,7 @@ OpenAPI, API'nız için bir API şeması tanımlar. Ve bu şema, JSON veri şema
 
 Ham OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'nızın açıklamalarını içeren bir JSON (şema) üretir.
 
-Bunu doğrudan şuradan görebilirsiniz: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Bunu doğrudan şuradan görebilirsiniz: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 Şuna benzer bir şekilde başlayan bir JSON gösterecektir:
 
@@ -143,9 +143,58 @@ Ve OpenAPI tabanlı düzinelerce alternatif vardır. **FastAPI** ile oluşturulm
 
 Ayrıca, API'nızla iletişim kuran istemciler için otomatik olarak kod üretmekte de kullanabilirsiniz. Örneğin frontend, mobil veya IoT uygulamaları.
 
+### `pyproject.toml` içinde uygulama `entrypoint`'ını yapılandırın { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Uygulamanızın nerede bulunduğunu `pyproject.toml` dosyasında şöyle yapılandırabilirsiniz:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Bu `entrypoint`, `fastapi` komutuna uygulamayı şu şekilde import etmesi gerektiğini söyler:
+
+```python
+from main import app
+```
+
+Kodunuz şöyle yapılandırılmışsa:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+O zaman `entrypoint`'i şöyle ayarlardınız:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+Bu da şuna eşdeğer olur:
+
+```python
+from backend.main import app
+```
+
+### Path ile `fastapi dev` { #fastapi-dev-with-path }
+
+Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
+
+```console
+$ fastapi dev main.py
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i geçmeyi hatırlamanız gerekir.
+
+Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
+
 ### Uygulamanızı Yayınlayın (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>'a deploy edebilirsiniz; henüz katılmadıysanız gidip bekleme listesine yazılın. 🚀
+İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; henüz katılmadıysanız gidip bekleme listesine yazılın. 🚀
 
 Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek komutla deploy edebilirsiniz.
 
@@ -191,7 +240,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 `FastAPI`, doğrudan `Starlette`'ten miras alan bir class'tır.
 
-<a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+[Starlette](https://www.starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ///
 
@@ -336,7 +385,7 @@ Bunu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz:
 
 /// note | Not
 
-Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasına bakın.
+Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry) sayfasına bakın.
 
 ///
 
@@ -352,11 +401,11 @@ Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok ne
 
 ### Adım 6: Deploy edin { #step-6-deploy-it }
 
-Uygulamanızı tek komutla **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**'a deploy edin: `fastapi deploy`. 🎉
+Uygulamanızı tek komutla **[FastAPI Cloud](https://fastapicloud.com)**'a deploy edin: `fastapi deploy`. 🎉
 
 #### FastAPI Cloud Hakkında { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**, **FastAPI**'ın arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
+**[FastAPI Cloud](https://fastapicloud.com)**, **FastAPI**'ın arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
 
 Minimum eforla bir API'ı **oluşturma**, **deploy etme** ve **erişme** sürecini sadeleştirir.
 

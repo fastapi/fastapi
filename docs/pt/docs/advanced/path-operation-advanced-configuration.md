@@ -60,7 +60,7 @@ Isso define os metadados sobre a resposta principal da *operação de rota*.
 
 Você também pode declarar respostas adicionais, com seus modelos, códigos de status, etc.
 
-Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ## Extras do OpenAPI { #openapi-extra }
 
@@ -68,7 +68,7 @@ Quando você declara uma *operação de rota* na sua aplicação, o **FastAPI** 
 
 /// note | Detalhes Técnicos
 
-Na especificação do OpenAPI, isso é chamado de um <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objeto de Operação</a>.
+Na especificação do OpenAPI, isso é chamado de um [Objeto de Operação](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +82,7 @@ Esse esquema específico para uma *operação de rota* normalmente é gerado aut
 
 Esse é um ponto de extensão de baixo nível.
 
-Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ///
 

@@ -150,11 +150,11 @@ Por causa disso, agora é recomendado usar o `lifespan`, como explicado acima.
 
 Apenas um detalhe técnico para nerds curiosos. 🤓
 
-Por baixo, na especificação técnica do ASGI, isso é parte do <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Protocolo Lifespan</a>, e define eventos chamados `startup` e `shutdown`.
+Por baixo, na especificação técnica do ASGI, isso é parte do [Protocolo Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), e define eventos chamados `startup` e `shutdown`.
 
 /// info | Informação
 
-Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Documentação do Lifespan do Starlette</a>.
+Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://www.starlette.dev/lifespan/).
 
 Incluindo como lidar com estado do lifespan que pode ser usado em outras áreas do seu código.
 
@@ -162,4 +162,4 @@ Incluindo como lidar com estado do lifespan que pode ser usado em outras áreas 
 
 ## Sub Aplicações { #sub-applications }
 
-🚨 Tenha em mente que esses eventos de lifespan (inicialização e encerramento) serão executados apenas para a aplicação principal, não para [Sub Aplicações - Montagem](sub-applications.md){.internal-link target=_blank}.
+🚨 Tenha em mente que esses eventos de lifespan (inicialização e encerramento) serão executados apenas para a aplicação principal, não para [Sub Aplicações - Montagem](sub-applications.md).

@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Вы можете развернуть своё приложение FastAPI в <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> одной командой, присоединяйтесь к списку ожидания, если ещё не сделали этого. 🚀
+Вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com) одной командой, присоединяйтесь к списку ожидания, если ещё не сделали этого. 🚀
 
 ## Вход { #login }
 
@@ -40,7 +40,7 @@ Deploying to FastAPI Cloud...
 
 ## О FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** создан тем же автором и командой, что и **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** создан тем же автором и командой, что и **FastAPI**.
 
 Он упрощает процесс **создания образа**, **развертывания** и **доступа** к API с минимальными усилиями.
 

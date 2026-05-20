@@ -52,11 +52,11 @@ FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Async
 
 有數個替代方案，包括：
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>：高效能 ASGI 伺服器。
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>：支援 HTTP/2 與 Trio 等功能的 ASGI 伺服器。
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>：為 Django Channels 打造的 ASGI 伺服器。
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>：針對 Python 應用的 Rust HTTP 伺服器。
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>：NGINX Unit 是輕量且多功能的網頁應用執行環境。
+* [Uvicorn](https://www.uvicorn.dev/)：高效能 ASGI 伺服器。
+* [Hypercorn](https://hypercorn.readthedocs.io/)：支援 HTTP/2 與 Trio 等功能的 ASGI 伺服器。
+* [Daphne](https://github.com/django/daphne)：為 Django Channels 打造的 ASGI 伺服器。
+* [Granian](https://github.com/emmett-framework/granian)：針對 Python 應用的 Rust HTTP 伺服器。
+* [NGINX Unit](https://unit.nginx.org/howto/fastapi/)：NGINX Unit 是輕量且多功能的網頁應用執行環境。
 
 ## 伺服器機器與伺服器程式 { #server-machine-and-server-program }
 
@@ -74,7 +74,7 @@ FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Async
 
 但你也可以手動安裝 ASGI 伺服器。
 
-請先建立並啟用一個 [虛擬環境](../virtual-environments.md){.internal-link target=_blank}，接著再安裝伺服器程式。
+請先建立並啟用一個 [虛擬環境](../virtual-environments.md)，接著再安裝伺服器程式。
 
 例如，安裝 Uvicorn：
 

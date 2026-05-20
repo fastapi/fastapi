@@ -1,6 +1,6 @@
 # Inclure WSGI - Flask, Django, autres { #including-wsgi-flask-django-others }
 
-Vous pouvez monter des applications WSGI comme vous l'avez vu avec [Sous-applications - Montages](sub-applications.md){.internal-link target=_blank}, [Derrière un proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Vous pouvez monter des applications WSGI comme vous l'avez vu avec [Sous-applications - Montages](sub-applications.md), [Derrière un proxy](behind-a-proxy.md).
 
 Pour cela, vous pouvez utiliser `WSGIMiddleware` et l'utiliser pour envelopper votre application WSGI, par exemple Flask, Django, etc.
 
@@ -36,13 +36,13 @@ Désormais, chaque requête sous le chemin `/v1/` sera gérée par l'application
 
 Et le reste sera géré par **FastAPI**.
 
-Si vous l'exécutez et allez à <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>, vous verrez la réponse de Flask :
+Si vous l'exécutez et allez à [http://localhost:8000/v1/](http://localhost:8000/v1/) vous verrez la réponse de Flask :
 
 ```txt
 Hello, World from Flask!
 ```
 
-Et si vous allez à <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>, vous verrez la réponse de FastAPI :
+Et si vous allez à [http://localhost:8000/v2](http://localhost:8000/v2) vous verrez la réponse de FastAPI :
 
 ```JSON
 {

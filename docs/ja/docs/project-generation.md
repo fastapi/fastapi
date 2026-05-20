@@ -4,7 +4,7 @@
 
 このテンプレートを使って開始できます。初期セットアップ、セキュリティ、データベース、いくつかのAPIエンドポイントがすでに用意されています。
 
-GitHubリポジトリ: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHubリポジトリ: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI テンプレート - 技術スタックと機能 { #full-stack-fastapi-template-technology-stack-and-features }
 

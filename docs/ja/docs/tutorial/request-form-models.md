@@ -1,12 +1,12 @@
 # フォームモデル { #form-models }
 
-FastAPI では、フォームフィールドを宣言するために Pydantic モデルを使用できます。
+FastAPI では、フォームフィールドを宣言するために **Pydantic モデル**を使用できます。
 
 /// info | 情報
 
-フォームを使うには、まず <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> をインストールします。
+フォームを使うには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-まず [仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成して有効化し、そのうえでインストールしてください。例えば:
+まず [仮想環境](../virtual-environments.md) を作成して有効化し、そのうえでインストールしてください。例えば:
 
 ```console
 $ pip install python-multipart

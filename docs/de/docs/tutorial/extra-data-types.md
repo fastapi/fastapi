@@ -36,7 +36,7 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `datetime.timedelta`:
     * Ein Python-`datetime.timedelta`.
     * Wird in Requests und Responses als `float` der Gesamtsekunden dargestellt.
-    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">siehe die Dokumentation für weitere Informationen</a>.
+    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, [siehe die Dokumentation für weitere Informationen](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * Wird in Requests und Responses wie ein `set` behandelt:
         * Bei Requests wird eine Liste gelesen, Duplikate entfernt und in ein `set` umgewandelt.
@@ -49,7 +49,7 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `Decimal`:
     * Standard-Python-`Decimal`.
     * In Requests und Responses wird es wie ein `float` behandelt.
-* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic-Datentypen</a>.
+* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: [Pydantic-Datentypen](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## Beispiel { #example }
 

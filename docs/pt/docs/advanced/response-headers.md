@@ -20,7 +20,7 @@ Você também pode declarar o parâmetro `Response` em dependências e definir c
 
 Você também pode adicionar cabeçalhos quando retornar uma `Response` diretamente.
 
-Crie uma resposta conforme descrito em [Retornar uma resposta diretamente](response-directly.md){.internal-link target=_blank} e passe os cabeçalhos como um parâmetro adicional:
+Crie uma resposta conforme descrito em [Retornar uma resposta diretamente](response-directly.md) e passe os cabeçalhos como um parâmetro adicional:
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@ E como a `Response` pode ser usada frequentemente para definir cabeçalhos e coo
 
 ## Cabeçalhos personalizados { #custom-headers }
 
-Tenha em mente que cabeçalhos personalizados proprietários podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo `X-`</a>.
+Tenha em mente que cabeçalhos personalizados proprietários podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando o parâmetro `expose_headers` descrito na <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">documentação de CORS do Starlette</a>.
+Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando o parâmetro `expose_headers` descrito na [documentação de CORS do Starlette](https://www.starlette.dev/middleware/#corsmiddleware).

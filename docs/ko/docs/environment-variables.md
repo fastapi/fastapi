@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | 팁
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 의 두 번째 인자는 반환할 기본값입니다.
+[`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) 의 두 번째 인자는 반환할 기본값입니다.
 
 제공하지 않으면 기본값은 `None`이며, 여기서는 사용할 기본값으로 `"World"`를 제공합니다.
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | 팁
 
-<a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> 에서 좀 더 자세히 알아볼 수 있습니다.
+[The Twelve-Factor App: Config](https://12factor.net/config) 에서 좀 더 자세히 알아볼 수 있습니다.
 
 ///
 
@@ -163,7 +163,7 @@ Hello World from Python
 
 즉, 파이썬에서 환경 변수로부터 읽은 **모든 값**은 **`str`**이 되고, 다른 타입으로의 변환이나 검증은 코드에서 수행해야 합니다.
 
-**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md){.internal-link target=_blank} 에서 확인할 수 있습니다.
+**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md) 에서 확인할 수 있습니다.
 
 ## `PATH` 환경 변수 { #path-environment-variable }
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-이 정보는 [가상 환경](virtual-environments.md){.internal-link target=_blank} 에 대해 알아볼 때 유용할 것입니다.
+이 정보는 [가상 환경](virtual-environments.md) 에 대해 알아볼 때 유용할 것입니다.
 
 ## 결론 { #conclusion }
 
 이 문서를 통해 **환경 변수**가 무엇이고 파이썬에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
-또한 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">환경 변수에 대한 위키피디아</a>에서 이에 대해 자세히 알아볼 수 있습니다.
+또한 [환경 변수에 대한 위키피디아](https://en.wikipedia.org/wiki/Environment_variable)에서 이에 대해 자세히 알아볼 수 있습니다.
 
 많은 경우에서, 환경 변수가 어떻게 유용하고 적용 가능한지 바로 명확하게 알 수는 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
 

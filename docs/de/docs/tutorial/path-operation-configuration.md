@@ -58,7 +58,7 @@ Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr t
 
 Da Beschreibungen oft mehrere Zeilen lang sind, können Sie die Beschreibung der *Pfadoperation* im <dfn title="Ein mehrzeiliger String (keiner Variable zugewiesen) als erster Ausdruck in einer Funktion, wird für die Dokumentation derselben verwendet">Docstring</dfn> der Funktion deklarieren, und **FastAPI** wird sie daraus auslesen.
 
-Sie können <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> im Docstring schreiben, es wird korrekt interpretiert und angezeigt (unter Berücksichtigung der Einrückung des Docstring).
+Sie können [Markdown](https://en.wikipedia.org/wiki/Markdown) im Docstring schreiben, es wird korrekt interpretiert und angezeigt (unter Berücksichtigung der Einrückung des Docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 

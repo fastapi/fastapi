@@ -4,7 +4,7 @@ Les modèles, bien qu'ils soient généralement livrés avec une configuration s
 
 Vous pouvez utiliser ce modèle pour démarrer, car il inclut une grande partie de la configuration initiale, la sécurité, la base de données et quelques endpoints d'API déjà prêts pour vous.
 
-Dépôt GitHub : <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Modèle Full Stack FastAPI</a>
+Dépôt GitHub : [Modèle Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Modèle Full Stack FastAPI - Pile technologique et fonctionnalités { #full-stack-fastapi-template-technology-stack-and-features }
 

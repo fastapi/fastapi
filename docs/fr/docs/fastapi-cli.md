@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** est un programme en ligne de commande que vous pouvez utiliser pour servir votre application FastAPI, gérer votre projet FastAPI, et plus encore.
+**FastAPI <abbr title="command line interface - interface en ligne de commande">CLI</abbr>** est un programme en ligne de commande que vous pouvez utiliser pour servir votre application FastAPI, gérer votre projet FastAPI, et plus encore.
 
-Lorsque vous installez FastAPI (par exemple avec `pip install "fastapi[standard]"`), cela inclut un package appelé `fastapi-cli` ; ce package fournit la commande `fastapi` dans le terminal.
+Lorsque vous installez FastAPI (par exemple avec `pip install "fastapi[standard]"`), il est fourni avec un programme en ligne de commande que vous pouvez exécuter dans le terminal.
 
 Pour exécuter votre application FastAPI en développement, vous pouvez utiliser la commande `fastapi dev` :
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,66 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-Le programme en ligne de commande nommé `fastapi` est **FastAPI CLI**.
+/// tip | Astuce
 
-FastAPI CLI prend le chemin vers votre programme Python (par exemple `main.py`), détecte automatiquement l’instance `FastAPI` (généralement nommée `app`), détermine la procédure d’importation correcte, puis la sert.
+Pour la production, utilisez `fastapi run` plutôt que `fastapi dev`. 🚀
 
-Pour la production, vous utiliserez plutôt `fastapi run`. 🚀
+///
 
-En interne, **FastAPI CLI** utilise <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, un serveur ASGI haute performance, prêt pour la production. 😎
+En interne, **FastAPI CLI** utilise [Uvicorn](https://www.uvicorn.dev), un serveur ASGI haute performance, prêt pour la production. 😎
+
+La CLI `fastapi` tentera de détecter automatiquement l’application FastAPI à exécuter, en supposant qu’il s’agit d’un objet nommé `app` dans un fichier `main.py` (ou quelques autres variantes).
+
+Mais vous pouvez configurer explicitement l’application à utiliser.
+
+## Configurer le `entrypoint` de l’application dans `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Vous pouvez configurer l’endroit où se trouve votre application dans un fichier `pyproject.toml` comme suit :
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Cet `entrypoint` indiquera à la commande `fastapi` qu’elle doit importer l’application comme ceci :
+
+```python
+from main import app
+```
+
+Si votre code était structuré comme ceci :
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Vous définiriez alors le `entrypoint` comme suit :
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+ce qui serait équivalent à :
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` avec un chemin { #fastapi-dev-with-path }
+
+Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
+
+```console
+$ fastapi dev main.py
+```
+
+Mais vous devez vous rappeler de passer le bon chemin à chaque fois que vous appelez la commande `fastapi`.
+
+De plus, d’autres outils pourraient ne pas pouvoir le trouver, par exemple l’[extension VS Code](editor-support.md) ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d’utiliser le `entrypoint` dans `pyproject.toml`.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -70,6 +123,6 @@ Dans la plupart des cas, vous avez (et devez avoir) un « termination proxy » a
 
 /// tip | Astuce
 
-Vous pouvez en savoir plus à ce sujet dans la [documentation de déploiement](deployment/index.md){.internal-link target=_blank}.
+Vous pouvez en savoir plus à ce sujet dans la [documentation de déploiement](deployment/index.md).
 
 ///

@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 情報
 
-`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict){.internal-link target=_blank}を参照してください。
+`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict)を参照してください。
 
 ///
 
@@ -188,7 +188,7 @@ UserInDB(
 
 アクティブなユーザーの場合にのみ `current_user` を取得したいとします。
 
-そこで、`get_current_user` を依存関係として利用する追加の依存関係 `get_current_active_user` を作成します。
+そこで、`get_current_active_user` を依存関係として利用する追加の依存関係 `get_current_active_user` を作成します。
 
 これら2つの依存関係は、ユーザーが存在しない、または非アクティブである場合に、HTTPエラーを返すだけです。
 
@@ -216,7 +216,7 @@ HTTP（エラー）ステータスコード 401「UNAUTHORIZED」は、`WWW-Auth
 
 ## 動作確認 { #see-it-in-action }
 
-インタラクティブドキュメントを開きます: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+インタラクティブドキュメントを開きます: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 ### 認証 { #authenticate }
 

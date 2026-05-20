@@ -61,7 +61,7 @@ Y luego otra tarea en segundo plano generada en la *path operation function* esc
 
 ## Detalles Técnicos { #technical-details }
 
-La clase `BackgroundTasks` proviene directamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+La clase `BackgroundTasks` proviene directamente de [`starlette.background`](https://www.starlette.dev/background/).
 
 Se importa/incluye directamente en FastAPI para que puedas importarla desde `fastapi` y evitar importar accidentalmente la alternativa `BackgroundTask` (sin la `s` al final) de `starlette.background`.
 
@@ -69,11 +69,11 @@ Al usar solo `BackgroundTasks` (y no `BackgroundTask`), es posible usarla como u
 
 Todavía es posible usar `BackgroundTask` solo en FastAPI, pero debes crear el objeto en tu código y devolver una `Response` de Starlette incluyéndolo.
 
-Puedes ver más detalles en <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">la documentación oficial de Starlette sobre Background Tasks</a>.
+Puedes ver más detalles en [la documentación oficial de Starlette sobre Background Tasks](https://www.starlette.dev/background/).
 
 ## Advertencia { #caveat }
 
-Si necesitas realizar una computación intensa en segundo plano y no necesariamente necesitas que se ejecute por el mismo proceso (por ejemplo, no necesitas compartir memoria, variables, etc.), podrías beneficiarte del uso de otras herramientas más grandes como <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+Si necesitas realizar una computación intensa en segundo plano y no necesariamente necesitas que se ejecute por el mismo proceso (por ejemplo, no necesitas compartir memoria, variables, etc.), podrías beneficiarte del uso de otras herramientas más grandes como [Celery](https://docs.celeryq.dev).
 
 Tienden a requerir configuraciones más complejas, un gestor de cola de mensajes/trabajos, como RabbitMQ o Redis, pero te permiten ejecutar tareas en segundo plano en múltiples procesos, y especialmente, en múltiples servidores.
 

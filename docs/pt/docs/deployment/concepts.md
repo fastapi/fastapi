@@ -25,7 +25,7 @@ Mas por enquanto, vamos verificar essas importantes **ideias conceituais**. Esse
 
 ## Segurança - HTTPS { #security-https }
 
-No [capítulo anterior sobre HTTPS](https.md){.internal-link target=_blank} aprendemos como o HTTPS fornece criptografia para sua API.
+No [capítulo anterior sobre HTTPS](https.md) aprendemos como o HTTPS fornece criptografia para sua API.
 
 Também vimos que o HTTPS normalmente é fornecido por um componente **externo** ao seu servidor de aplicativos, um **Proxy de terminação TLS**.
 
@@ -145,7 +145,7 @@ O cliente receberá um **Erro Interno do Servidor 500** para essa solicitação,
 
 No entanto, pode haver casos em que escrevemos algum código que **trava todo o aplicativo**, fazendo com que o Uvicorn e o Python travem. 💥
 
-E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse inativo porque houve um erro em um lugar, você provavelmente quer que ele **continue em execução** pelo menos para as *operações de caminho* que não estão quebradas.
+E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse inativo porque houve um erro em um lugar, você provavelmente quer que ele **continue em execução** pelo menos para as *operações de rota* que não estão quebradas.
 
 ### Reiniciar após falha { #restart-after-crash }
 
@@ -190,7 +190,7 @@ Quando você executa **vários processos** do mesmo programa de API, eles são c
 
 ### Processos do Trabalhador e Portas { #worker-processes-and-ports }
 
-Lembra da documentação [Sobre HTTPS](https.md){.internal-link target=_blank} que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
+Lembra da documentação [Sobre HTTPS](https.md) que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
 
 Isso ainda é verdade.
 
@@ -204,7 +204,7 @@ E vários processos normalmente **não compartilham nenhuma memória**. Isso sig
 
 ### Memória do servidor { #server-memory }
 
-Por exemplo, se seu código carrega um modelo de Machine Learning com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
+Por exemplo, se seu código carrega um modelo de Aprendizado de Máquina com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
 
 E se o seu servidor remoto ou máquina virtual tiver apenas 3 GB de RAM, tentar carregar mais de 4 GB de RAM causará problemas. 🚨
 
@@ -243,7 +243,7 @@ Aqui estão algumas combinações e estratégias possíveis:
 
 Não se preocupe se alguns desses itens sobre **contêineres**, Docker ou Kubernetes ainda não fizerem muito sentido.
 
-Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 
@@ -281,7 +281,7 @@ Aqui estão algumas ideias possíveis:
 
 /// tip | Dica
 
-Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 

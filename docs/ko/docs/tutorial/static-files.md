@@ -23,7 +23,7 @@
 
 마운트된 애플리케이션은 완전히 독립적이므로 `APIRouter`를 사용하는 것과는 다릅니다. 메인 애플리케이션의 OpenAPI 및 문서에는 마운트된 애플리케이션의 내용 등이 포함되지 않습니다.
 
-자세한 내용은 [고급 사용자 가이드](../advanced/index.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+자세한 내용은 [고급 사용자 가이드](../advanced/index.md)에서 확인할 수 있습니다.
 
 ## 세부사항 { #details }
 
@@ -37,4 +37,4 @@
 
 ## 추가 정보 { #more-info }
 
-자세한 내용과 옵션은 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette의 정적 파일 문서</a>를 확인하세요.
+자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://www.starlette.dev/staticfiles/)를 확인하세요.

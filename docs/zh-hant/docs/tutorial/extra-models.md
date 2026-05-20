@@ -12,7 +12,7 @@
 
 切勿儲存使用者的明文密碼。務必只儲存可供驗證的「安全雜湊」。
 
-若你還不清楚，稍後會在[安全性章節](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}學到什麼是「密碼雜湊」。
+若你還不清楚，稍後會在[安全性章節](security/simple-oauth2.md#password-hashing)學到什麼是「密碼雜湊」。
 
 ///
 
@@ -162,11 +162,11 @@ UserInDB(
 
 在 OpenAPI 中會以 `anyOf` 定義。
 
-要達成這點，使用標準的 Python 型別提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
+要達成這點，使用標準的 Python 型別提示 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)：
 
 /// note
 
-在定義 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
+在定義 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
 
 ///
 

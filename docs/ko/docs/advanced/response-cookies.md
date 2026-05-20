@@ -20,13 +20,13 @@
 
 코드에서 `Response`를 직접 반환할 때도 쿠키를 생성할 수 있습니다.
 
-이를 위해 [Response를 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성할 수 있습니다.
+이를 위해 [Response를 직접 반환하기](response-directly.md)에서 설명한 대로 응답을 생성할 수 있습니다.
 
 그런 다음 쿠키를 설정하고 반환하면 됩니다:
 
 {* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip | 팁
+/// tip
 
 `Response` 매개변수를 사용하지 않고 응답을 직접 반환하는 경우, FastAPI는 이를 직접 반환한다는 점에 유의하세요.
 
@@ -48,4 +48,4 @@
 
 ///
 
-사용 가능한 모든 매개변수와 옵션은 <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette의 문서</a>에서 확인할 수 있습니다.
+사용 가능한 모든 매개변수와 옵션은 [Starlette의 문서](https://www.starlette.dev/responses/#set-cookie)에서 확인할 수 있습니다.

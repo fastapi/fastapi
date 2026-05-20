@@ -16,7 +16,7 @@ E os **seus usuários** definem de alguma forma (em algum painel por exemplo) a 
 
 Toda a **lógica** sobre como cadastrar as URLs para os webhooks e o código para enviar de fato as requisições cabe a você definir. Você escreve da maneira que você desejar no **seu próprio código**.
 
-## Documentando webhooks com o FastAPI e OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
+## Documentando webhooks com o **FastAPI** e OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
 
 Com o **FastAPI**, utilizando o OpenAPI, você pode definir os nomes destes webhooks, os tipos das operações HTTP que a sua aplicação pode enviar (e.g. `POST`, `PUT`, etc.) e os **corpos** da requisição que a sua aplicação enviaria.
 
@@ -48,7 +48,7 @@ Isto porque espera-se que os **seus usuários** definam o verdadeiro **URL path*
 
 ### Confira a documentação { #check-the-docs }
 
-Agora você pode iniciar a sua aplicação e ir até <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Agora você pode iniciar a sua aplicação e ir até [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Você verá que a sua documentação possui as *operações de rota* normais e agora também possui alguns **webhooks**:
 

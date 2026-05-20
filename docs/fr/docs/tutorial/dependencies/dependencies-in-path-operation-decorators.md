@@ -32,7 +32,7 @@ Cela peut également éviter toute confusion pour les nouveaux développeurs qui
 
 Dans cet exemple, nous utilisons des en-têtes personnalisés fictifs `X-Key` et `X-Token`.
 
-Mais dans des cas réels, lors de l'implémentation de la sécurité, vous tirerez davantage d'avantages en utilisant les [utilitaires de sécurité (chapitre suivant)](../security/index.md){.internal-link target=_blank} intégrés.
+Mais dans des cas réels, lors de l'implémentation de la sécurité, vous tirerez davantage d'avantages en utilisant les [utilitaires de sécurité (chapitre suivant)](../security/index.md) intégrés.
 
 ///
 
@@ -62,7 +62,7 @@ Vous pouvez donc réutiliser une dépendance normale (qui retourne une valeur) q
 
 ## Définir des dépendances pour un groupe de chemins d'accès { #dependencies-for-a-group-of-path-operations }
 
-Plus tard, en lisant comment structurer des applications plus grandes ([Applications plus grandes - Plusieurs fichiers](../../tutorial/bigger-applications.md){.internal-link target=_blank}), éventuellement avec plusieurs fichiers, vous apprendrez à déclarer un unique paramètre `dependencies` pour un groupe de *chemins d'accès*.
+Plus tard, en lisant comment structurer des applications plus grandes ([Applications plus grandes - Plusieurs fichiers](../../tutorial/bigger-applications.md)), éventuellement avec plusieurs fichiers, vous apprendrez à déclarer un unique paramètre `dependencies` pour un groupe de *chemins d'accès*.
 
 ## Définir des dépendances globales { #global-dependencies }
 

@@ -7,12 +7,12 @@ from collections.abc import Container
 from datetime import datetime, timedelta, timezone
 from math import ceil
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any
 
 import httpx
 import yaml
 from github import Github
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel, BeforeValidator, SecretStr
 from pydantic_settings import BaseSettings
 
 github_graphql_url = "https://api.github.com/graphql"
@@ -20,6 +20,8 @@ questions_category_id = "DIC_kwDOCZduT84B6E2a"
 
 
 POINTS_PER_MINUTE_LIMIT = 84  # 5000 points per hour
+
+MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE = {"abuse", "off-topic", "duplicate", "spam"}
 
 
 class RateLimiter:
@@ -102,8 +104,10 @@ query Q($after: String, $category_id: ID) {
                     avatarUrl
                     url
                   }
+                  minimizedReason
                 }
               }
+              minimizedReason
             }
           }
         }
@@ -118,6 +122,10 @@ query Q($after: String, $category_id: ID) {
 }
 """
 
+LowerStr = Annotated[
+    str, BeforeValidator(lambda v: v.lower() if isinstance(v, str) else v)
+]
+
 
 class Author(BaseModel):
     login: str
@@ -128,6 +136,7 @@ class Author(BaseModel):
 class CommentsNode(BaseModel):
     createdAt: datetime
     author: Author | None = None
+    minimizedReason: LowerStr | None = None
 
 
 class Replies(BaseModel):
@@ -136,6 +145,7 @@ class Replies(BaseModel):
 
 
 class DiscussionsCommentsNode(CommentsNode):
+    minimizedReason: LowerStr | None = None
     replies: Replies
 
 
@@ -278,7 +288,10 @@ def get_discussions_experts(
             discussion_author_name = discussion.author.login
         discussion_commentors: dict[str, datetime] = {}
         for comment in discussion.comments.nodes:
-            if comment.author:
+            if (
+                comment.minimizedReason not in MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE
+                and comment.author
+            ):
                 authors[comment.author.login] = comment.author
                 if comment.author.login != discussion_author_name:
                     author_time = discussion_commentors.get(
@@ -288,7 +301,10 @@ def get_discussions_experts(
                         author_time, comment.createdAt
                     )
             for reply in comment.replies.nodes:
-                if reply.author:
+                if (
+                    reply.minimizedReason not in MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE
+                    and reply.author
+                ):
                     authors[reply.author.login] = reply.author
                     if reply.author.login != discussion_author_name:
                         author_time = discussion_commentors.get(

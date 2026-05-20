@@ -1,4 +1,4 @@
-# Declarar dados de exemplo da requisição { #declare-request-example-data }
+# Declare dados de exemplo da requisição { #declare-request-example-data }
 
 Você pode declarar exemplos dos dados que sua aplicação pode receber.
 
@@ -12,7 +12,7 @@ Você pode declarar `examples` para um modelo Pydantic que serão adicionados ao
 
 Essas informações extras serão adicionadas como estão ao **JSON Schema** de saída para esse modelo e serão usadas na documentação da API.
 
-Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">documentação do Pydantic: Configuration</a>.
+Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na [documentação do Pydantic: Configuration](https://docs.pydantic.dev/latest/api/config/).
 
 Você pode definir `"json_schema_extra"` com um `dict` contendo quaisquer dados adicionais que você queira que apareçam no JSON Schema gerado, incluindo `examples`.
 
@@ -145,12 +145,12 @@ O JSON Schema não tinha `examples`, então o OpenAPI adicionou seu próprio cam
 
 O OpenAPI também adicionou os campos `example` e `examples` a outras partes da especificação:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (na especificação)</a>, usado no FastAPI por:
+* [`Parameter Object` (na especificação)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object), usado no FastAPI por:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`, no campo `content`, no `Media Type Object` (na especificação)</a>, usado no FastAPI por:
+* [`Request Body Object`, no campo `content`, no `Media Type Object` (na especificação)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object), usado no FastAPI por:
     * `Body()`
     * `File()`
     * `Form()`
@@ -163,7 +163,7 @@ Esse parâmetro antigo `examples` específico do OpenAPI agora é `openapi_examp
 
 ### Campo `examples` do JSON Schema { #json-schemas-examples-field }
 
-Depois, o JSON Schema adicionou um campo <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> em uma nova versão da especificação.
+Depois, o JSON Schema adicionou um campo [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) em uma nova versão da especificação.
 
 E então o novo OpenAPI 3.1.0 passou a se basear na versão mais recente (JSON Schema 2020-12), que incluiu esse novo campo `examples`.
 

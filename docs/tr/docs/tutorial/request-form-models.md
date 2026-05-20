@@ -4,9 +4,9 @@ FastAPI'de **form field**'larını tanımlamak için **Pydantic model**'lerini k
 
 /// info | Bilgi
 
-Form'ları kullanmak için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>'ı yükleyin.
+Form'ları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart)'ı yükleyin.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
 
 ```console
 $ pip install python-multipart

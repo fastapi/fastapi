@@ -8,6 +8,6 @@
 
 /// note | 注意
 
-想了解更多，請參考 Starlette 的 <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">測試 WebSocket</a> 文件。
+想了解更多，請參考 Starlette 的[測試 WebSocket](https://www.starlette.dev/testclient/#testing-websocket-sessions)文件。
 
 ///

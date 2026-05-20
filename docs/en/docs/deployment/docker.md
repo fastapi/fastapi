@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info
+/// note
 
 There are other formats and tools to define and install package dependencies.
 
@@ -556,7 +556,7 @@ If you are using containers (e.g. Docker, Kubernetes), then there are two main a
 
 If you have **multiple containers**, probably each one running a **single process** (for example, in a **Kubernetes** cluster), then you would probably want to have a **separate container** doing the work of the **previous steps** in a single container, running a single process, **before** running the replicated worker containers.
 
-/// info
+/// note
 
 If you are using Kubernetes, this would probably be an [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

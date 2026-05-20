@@ -8,7 +8,7 @@
 
 ## Установка зависимостей { #install-dependencies }
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его и установили `jinja2`:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его и установили `jinja2`:
 
 <div class="termy">
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## Подробнее { #more-details }
 
-Больше подробностей, включая то, как тестировать шаблоны, смотрите в <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">документации Starlette по шаблонам</a>.
+Больше подробностей, включая то, как тестировать шаблоны, смотрите в [документации Starlette по шаблонам](https://www.starlette.dev/templates/).

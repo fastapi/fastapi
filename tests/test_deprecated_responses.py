@@ -7,6 +7,8 @@ from fastapi.responses import ORJSONResponse, UJSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
+from tests.utils import needs_orjson, needs_ujson
+
 
 class Item(BaseModel):
     name: str
@@ -28,6 +30,7 @@ def _make_orjson_app() -> FastAPI:
     return app
 
 
+@needs_orjson
 def test_orjson_response_returns_correct_data():
     app = _make_orjson_app()
     client = TestClient(app)
@@ -38,6 +41,7 @@ def test_orjson_response_returns_correct_data():
     assert response.json() == {"name": "widget", "price": 9.99}
 
 
+@needs_orjson
 def test_orjson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="ORJSONResponse is deprecated"):
         ORJSONResponse(content={"hello": "world"})
@@ -58,6 +62,7 @@ def _make_ujson_app() -> FastAPI:
     return app
 
 
+@needs_ujson
 def test_ujson_response_returns_correct_data():
     app = _make_ujson_app()
     client = TestClient(app)
@@ -68,6 +73,7 @@ def test_ujson_response_returns_correct_data():
     assert response.json() == {"name": "widget", "price": 9.99}
 
 
+@needs_ujson
 def test_ujson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="UJSONResponse is deprecated"):
         UJSONResponse(content={"hello": "world"})

@@ -10,7 +10,7 @@ Se você está com pressa ou não se importa, continue com as seções seguintes
 
 ///
 
-Para aprender o básico de HTTPS do ponto de vista do consumidor, verifique <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
+Para aprender o básico de HTTPS do ponto de vista do consumidor, verifique [https://howhttps.works/](https://howhttps.works/).
 
 Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas para ter em mente ao pensar em HTTPS:
 
@@ -28,13 +28,13 @@ Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas 
 * Por padrão, isso significa que você só pode ter um certificado HTTPS por endereço IP.
     * Não importa o tamanho do seu servidor ou quão pequeno cada aplicativo que você tem nele possa ser.
     * No entanto, existe uma solução para isso.
-* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - Indicação do Nome do Servidor">SNI</abbr></a>.
+* Há uma extensão para o protocolo TLS (aquele que lida com a criptografia no nível TCP, antes do HTTP) chamada [<abbr title="Server Name Indication - Indicação do Nome do Servidor">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication).
     * Esta extensão SNI permite que um único servidor (com um único endereço IP) tenha vários certificados HTTPS e atenda a vários domínios / aplicativos HTTPS.
     * Para que isso funcione, um único componente (programa) em execução no servidor, ouvindo no endereço IP público, deve ter todos os certificados HTTPS no servidor.
 * Depois de obter uma conexão segura, o protocolo de comunicação ainda é HTTP.
     * Os conteúdos são criptografados, embora sejam enviados com o protocolo HTTP.
 
-É uma prática comum ter um programa/servidor HTTP em execução no servidor (máquina, host, etc.) e gerenciar todas as partes HTTPS: recebendo as requisições HTTPS encriptadas, enviando as solicitações HTTP descriptografadas para o aplicativo HTTP real em execução no mesmo servidor (a aplicação FastAPI, neste caso), pegar a resposta HTTP do aplicativo, criptografá-la usando o certificado HTTPS apropriado e enviá-la de volta ao cliente usando HTTPS. Este servidor é frequentemente chamado de <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">Proxy de Terminação TLS</a>.
+É uma prática comum ter um programa/servidor HTTP em execução no servidor (máquina, host, etc.) e gerenciar todas as partes HTTPS: recebendo as requisições HTTPS encriptadas, enviando as solicitações HTTP descriptografadas para o aplicativo HTTP real em execução no mesmo servidor (a aplicação FastAPI, neste caso), pegar a resposta HTTP do aplicativo, criptografá-la usando o certificado HTTPS apropriado e enviá-la de volta ao cliente usando HTTPS. Este servidor é frequentemente chamado de [Proxy de Terminação TLS](https://en.wikipedia.org/wiki/TLS_termination_proxy).
 
 Algumas das opções que você pode usar como Proxy de Terminação TLS são:
 
@@ -49,7 +49,7 @@ Antes de Let's Encrypt, esses certificados HTTPS eram vendidos por terceiros con
 
 O processo de aquisição de um desses certificados costumava ser complicado, exigia bastante papelada e os certificados eram bastante caros.
 
-Mas então o <a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a> foi criado.
+Mas então o [Let's Encrypt](https://letsencrypt.org/) foi criado.
 
 Ele é um projeto da Linux Foundation que fornece certificados HTTPS gratuitamente. De forma automatizada. Esses certificados usam toda a segurança criptográfica padrão e têm vida curta (cerca de 3 meses), então a segurança é, na verdade, melhor por causa do seu lifespan reduzido.
 
@@ -200,9 +200,9 @@ Esse proxy normalmente define alguns cabeçalhos HTTP dinamicamente antes de tra
 
 Os cabeçalhos do proxy são:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -218,7 +218,7 @@ Isso seria útil, por exemplo, para lidar corretamente com redirecionamentos.
 
 /// tip | Dica
 
-Você pode saber mais sobre isso na documentação em [Atrás de um Proxy - Habilitar cabeçalhos encaminhados pelo proxy](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+Você pode saber mais sobre isso na documentação em [Atrás de um Proxy - Habilitar cabeçalhos encaminhados pelo proxy](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers)
 
 ///
 

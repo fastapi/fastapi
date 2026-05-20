@@ -26,11 +26,11 @@
 
 /// info | 정보
 
-<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
+[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
 
 하지만 `pip install fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
 
-수동으로 설치하려면, [가상 환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음, 아래로 설치하세요:
+수동으로 설치하려면, [가상 환경](../../virtual-environments.md)을 만들고 활성화한 다음, 아래로 설치하세요:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,7 +54,7 @@ $ fastapi dev main.py
 
 ## 확인하기 { #check-it }
 
-대화형 문서로 이동하세요: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서로 이동하세요: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 다음과 비슷한 화면이 보일 것입니다:
 
@@ -140,7 +140,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 상대 URL을 사용하므로, 예를 들어 API가 `https://example.com/`에 있다면 `https://example.com/token`을 가리킵니다. 하지만 API가 `https://example.com/api/v1/`에 있다면 `https://example.com/api/v1/token`을 가리킵니다.
 
-상대 URL을 사용하는 것은 [프록시 뒤에서](../../advanced/behind-a-proxy.md){.internal-link target=_blank} 같은 고급 사용 사례에서도 애플리케이션이 계속 동작하도록 보장하는 데 중요합니다.
+상대 URL을 사용하는 것은 [프록시 뒤에서](../../advanced/behind-a-proxy.md) 같은 고급 사용 사례에서도 애플리케이션이 계속 동작하도록 보장하는 데 중요합니다.
 
 ///
 

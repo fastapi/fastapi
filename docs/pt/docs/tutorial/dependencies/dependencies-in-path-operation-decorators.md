@@ -8,7 +8,7 @@ Mas você ainda precisa que ela seja executada/resolvida.
 
 Para esses casos, em vez de declarar um parâmetro em uma *função de operação de rota* com `Depends`, você pode adicionar um argumento `dependencies` do tipo `list` ao decorador da operação de rota.
 
-## Adicione `dependencies` ao decorador da operação de rota { #add-dependencies-to-the-path-operation-decorator }
+## Adicione `dependencies` ao *decorador da operação de rota* { #add-dependencies-to-the-path-operation-decorator }
 
 O *decorador da operação de rota* recebe um argumento opcional `dependencies`.
 
@@ -32,7 +32,7 @@ Isso também pode ser útil para evitar confundir novos desenvolvedores que ao v
 
 Neste exemplo utilizamos cabeçalhos personalizados inventados `X-Key` e `X-Token`.
 
-Mas em situações reais, como implementações de segurança, você pode obter mais vantagens em usar as [Ferramentas de segurança integradas (o próximo capítulo)](../security/index.md){.internal-link target=_blank}.
+Mas em situações reais, como implementações de segurança, você pode obter mais vantagens em usar as [Ferramentas de segurança integradas (o próximo capítulo)](../security/index.md).
 
 ///
 
@@ -62,7 +62,7 @@ Então, você pode reutilizar uma dependência comum (que retorna um valor) que 
 
 ## Dependências para um grupo de *operações de rota* { #dependencies-for-a-group-of-path-operations }
 
-Mais a frente, quando você ler sobre como estruturar aplicações maiores ([Aplicações maiores - Múltiplos arquivos](../../tutorial/bigger-applications.md){.internal-link target=_blank}), possivelmente com múltiplos arquivos, você aprenderá a declarar um único parâmetro `dependencies` para um grupo de *operações de rota*.
+Mais a frente, quando você ler sobre como estruturar aplicações maiores ([Aplicações maiores - Múltiplos arquivos](../../tutorial/bigger-applications.md)), possivelmente com múltiplos arquivos, você aprenderá a declarar um único parâmetro `dependencies` para um grupo de *operações de rota*.
 
 ## Dependências globais { #global-dependencies }
 

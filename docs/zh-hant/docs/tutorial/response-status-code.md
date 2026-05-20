@@ -20,7 +20,7 @@
 
 /// info | 資訊
 
-`status_code` 也可以接收一個 `IntEnum`，例如 Python 的 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>。
+`status_code` 也可以接收一個 `IntEnum`，例如 Python 的 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)。
 
 ///
 
@@ -66,7 +66,7 @@ FastAPI 知道這點，並會產生聲明「無回應本文」的 OpenAPI 文件
 
 /// tip | 提示
 
-想深入瞭解各狀態碼與其用途，請參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> 關於 HTTP 狀態碼的文件</a>。
+想深入瞭解各狀態碼與其用途，請參考 [<abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> 關於 HTTP 狀態碼的文件](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)。
 
 ///
 
@@ -98,4 +98,4 @@ FastAPI 知道這點，並會產生聲明「無回應本文」的 OpenAPI 文件
 
 ## 變更預設值 { #changing-the-default }
 
-稍後在 [進階使用者指南](../advanced/response-change-status-code.md){.internal-link target=_blank} 中，你會看到如何回傳一個不同於此處所宣告預設值的狀態碼。
+稍後在 [進階使用者指南](../advanced/response-change-status-code.md) 中，你會看到如何回傳一個不同於此處所宣告預設值的狀態碼。

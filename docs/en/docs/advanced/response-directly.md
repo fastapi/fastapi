@@ -18,7 +18,7 @@ You will normally have much better performance using a [Response Model](../tutor
 
 You can return a `Response` or any sub-class of it.
 
-/// info
+/// note
 
 `JSONResponse` itself is a sub-class of `Response`.
 

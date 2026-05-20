@@ -141,7 +141,7 @@ def results():
 
 /// info | 정보
 
-아름다운 일러스트: <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+아름다운 일러스트: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -207,7 +207,7 @@ def results():
 
 /// info | 정보
 
-아름다운 일러스트: <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+아름다운 일러스트: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -251,7 +251,7 @@ def results():
 
 그리고 이것이 **FastAPI**로 얻는 것과 같은 수준의 성능입니다.
 
-또한 병렬성과 비동기성을 동시에 사용할 수 있으므로, 대부분의 테스트된 NodeJS 프레임워크보다 더 높은 성능을 얻고, C에 더 가까운 컴파일 언어인 Go와 동등한 성능을 얻을 수 있습니다 <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(모두 Starlette 덕분입니다)</a>.
+또한 병렬성과 비동기성을 동시에 사용할 수 있으므로, 대부분의 테스트된 NodeJS 프레임워크보다 더 높은 성능을 얻고, C에 더 가까운 컴파일 언어인 Go와 동등한 성능을 얻을 수 있습니다 [(모두 Starlette 덕분입니다)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### 동시성이 병렬성보다 더 나은가요? { #is-concurrency-better-than-parallelism }
 
@@ -298,7 +298,7 @@ CPU bound 작업의 흔한 예시는 복잡한 수학 처리가 필요한 것들
 
 이것은 파이썬이 **데이터 사이언스**, 머신러닝, 특히 딥러닝의 주요 언어라는 단순한 사실과 더해져, FastAPI를 데이터 사이언스/머신러닝 웹 API 및 애플리케이션(그 외에도 많은 것들)에 매우 잘 맞는 선택으로 만들어 줍니다.
 
-프로덕션에서 이 병렬성을 어떻게 달성하는지 보려면 [배포](deployment/index.md){.internal-link target=_blank} 섹션을 참고하세요.
+프로덕션에서 이 병렬성을 어떻게 달성하는지 보려면 [배포](deployment/index.md) 섹션을 참고하세요.
 
 ## `async`와 `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ async def read_burgers():
 
 ### 여러분만의 async 코드 작성하기 { #write-your-own-async-code }
 
-Starlette(그리고 **FastAPI**)는 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>를 기반으로 하고 있으며, 파이썬 표준 라이브러리 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a>와 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> 모두와 호환됩니다.
+Starlette(그리고 **FastAPI**)는 [AnyIO](https://anyio.readthedocs.io/en/stable/)를 기반으로 하고 있으며, 파이썬 표준 라이브러리 [asyncio](https://docs.python.org/3/library/asyncio-task.html)와 [Trio](https://trio.readthedocs.io/en/stable/) 모두와 호환됩니다.
 
-특히, 코드에서 더 고급 패턴이 필요한 고급 동시성 사용 사례에서는 직접 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>를 사용할 수 있습니다.
+특히, 코드에서 더 고급 패턴이 필요한 고급 동시성 사용 사례에서는 직접 [AnyIO](https://anyio.readthedocs.io/en/stable/)를 사용할 수 있습니다.
 
-그리고 FastAPI를 사용하지 않더라도, 높은 호환성을 확보하고 그 이점(예: *structured concurrency*)을 얻기 위해 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>로 여러분만의 async 애플리케이션을 작성할 수도 있습니다.
+그리고 FastAPI를 사용하지 않더라도, 높은 호환성을 확보하고 그 이점(예: *structured concurrency*)을 얻기 위해 [AnyIO](https://anyio.readthedocs.io/en/stable/)로 여러분만의 async 애플리케이션을 작성할 수도 있습니다.
 
-저는 AnyIO 위에 얇은 레이어로 또 다른 라이브러리를 만들었는데, 타입 어노테이션을 조금 개선하고 더 나은 **자동완성**, **인라인 오류** 등을 얻기 위한 것입니다. 또한 **이해**하고 **여러분만의 async 코드**를 작성하도록 돕는 친절한 소개와 튜토리얼도 제공합니다: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. 특히 **async 코드와 일반**(blocking/동기) 코드를 **결합**해야 한다면 아주 유용합니다.
+저는 AnyIO 위에 얇은 레이어로 또 다른 라이브러리를 만들었는데, 타입 어노테이션을 조금 개선하고 더 나은 **자동완성**, **인라인 오류** 등을 얻기 위한 것입니다. 또한 **이해**하고 **여러분만의 async 코드**를 작성하도록 돕는 친절한 소개와 튜토리얼도 제공합니다: [Asyncer](https://asyncer.tiangolo.com/). 특히 **async 코드와 일반**(blocking/동기) 코드를 **결합**해야 한다면 아주 유용합니다.
 
 ### 비동기 코드의 다른 형태 { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Starlette(그리고 **FastAPI**)는 <a href="https://anyio.readthedocs.io/en/sta
 
 하지만 그 이전에는 비동기 코드를 처리하는 것이 훨씬 더 복잡하고 어려웠습니다.
 
-이전 버전의 파이썬에서는 스레드 또는 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>를 사용할 수 있었을 것입니다. 하지만 코드를 이해하고, 디버깅하고, 이에 대해 생각하는 것이 훨씬 더 복잡합니다.
+이전 버전의 파이썬에서는 스레드 또는 [Gevent](https://www.gevent.org/)를 사용할 수 있었을 것입니다. 하지만 코드를 이해하고, 디버깅하고, 이에 대해 생각하는 것이 훨씬 더 복잡합니다.
 
 이전 버전의 NodeJS/브라우저 JavaScript에서는 "callback"을 사용했을 것입니다. 이는 "callback hell"로 이어집니다.
 
@@ -419,15 +419,15 @@ Starlette(그리고 **FastAPI**)는 <a href="https://anyio.readthedocs.io/en/sta
 
 위에서 설명한 방식으로 동작하지 않는 다른 async 프레임워크를 사용해본 적이 있고, 아주 작은 성능 향상(약 100 나노초)을 위해 계산만 하는 사소한 *경로 처리 함수*를 일반 `def`로 정의하곤 했다면, **FastAPI**에서는 그 효과가 정반대가 될 수 있다는 점에 유의하세요. 이런 경우에는 *경로 처리 함수*에서 블로킹 <abbr title="Input/Output - 입력/출력: 디스크 읽기 또는 쓰기, 네트워크 통신.">I/O</abbr> 를 수행하는 코드를 사용하지 않는 한 `async def`를 사용하는 편이 더 낫습니다.
 
-그럼에도 두 경우 모두, **FastAPI**는 이전에 사용하던 프레임워크보다 [여전히 더 빠를](index.md#performance){.internal-link target=_blank} 가능성이 높습니다(또는 최소한 비슷합니다).
+그럼에도 두 경우 모두, **FastAPI**는 이전에 사용하던 프레임워크보다 [여전히 더 빠를](index.md#performance) 가능성이 높습니다(또는 최소한 비슷합니다).
 
 ### 의존성 { #dependencies }
 
-[의존성](tutorial/dependencies/index.md){.internal-link target=_blank}에도 동일하게 적용됩니다. 의존성이 `async def` 대신 표준 `def` 함수라면, 외부 스레드풀에서 실행됩니다.
+[의존성](tutorial/dependencies/index.md)에도 동일하게 적용됩니다. 의존성이 `async def` 대신 표준 `def` 함수라면, 외부 스레드풀에서 실행됩니다.
 
 ### 하위 의존성 { #sub-dependencies }
 
-서로를 필요로 하는 여러 의존성과 [하위 의존성](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank}을 함수 정의의 매개변수로 가질 수 있으며, 그중 일부는 `async def`로, 다른 일부는 일반 `def`로 생성되었을 수 있습니다. 그래도 정상 동작하며, 일반 `def`로 생성된 것들은 "await"되는 대신 (스레드풀에서) 외부 스레드에서 호출됩니다.
+서로를 필요로 하는 여러 의존성과 [하위 의존성](tutorial/dependencies/sub-dependencies.md)을 함수 정의의 매개변수로 가질 수 있으며, 그중 일부는 `async def`로, 다른 일부는 일반 `def`로 생성되었을 수 있습니다. 그래도 정상 동작하며, 일반 `def`로 생성된 것들은 "await"되는 대신 (스레드풀에서) 외부 스레드에서 호출됩니다.
 
 ### 다른 유틸리티 함수 { #other-utility-functions }
 

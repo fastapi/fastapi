@@ -30,25 +30,25 @@
 
 ### 自動 API ドキュメントの確認 { #check-the-automatic-api-docs }
 
-では、`fastapi` コマンドでこのファイルを実行します:
+では、`fastapi` コマンドを実行します:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-そして、<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> を開きます。
+そして、[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) を開きます。
 
 メインアプリ用の自動 API ドキュメントが表示され、そのアプリ自身の path operation のみが含まれます:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-次に、サブアプリケーションのドキュメント <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a> を開きます。
+次に、サブアプリケーションのドキュメント [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs) を開きます。
 
 サブアプリケーション用の自動 API ドキュメントが表示され、そのアプリ自身の path operation のみが、正しいサブパス接頭辞 `/subapi` の下で表示されます:
 
@@ -64,4 +64,4 @@ $ fastapi dev main.py
 
 さらに、サブアプリケーション自身が別のサブアプリケーションをマウントしていても問題ありません。FastAPI がこれらの `root_path` をすべて自動的に処理するためです。
 
-`root_path` の詳細や明示的な指定方法については、[プロキシの背後で](behind-a-proxy.md){.internal-link target=_blank} の節で学べます。
+`root_path` の詳細や明示的な指定方法については、[プロキシの背後で](behind-a-proxy.md) の節で学べます。

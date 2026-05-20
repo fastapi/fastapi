@@ -6,7 +6,7 @@
 
 你的 API 几乎总是需要发送**响应体**。但客户端不一定总是要发送**请求体**，有时它们只请求某个路径，可能带一些查询参数，但不会发送请求体。
 
-使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求体**，能充分利用它的功能和优点。
+使用 [Pydantic](https://docs.pydantic.dev/) 模型来声明**请求体**，能充分利用它的功能和优点。
 
 /// info | 信息
 
@@ -72,7 +72,7 @@
     * 数据无效时返回清晰的错误信息，并指出错误数据的确切位置和内容。
 * 把接收的数据赋值给参数 `item`。
     * 因为你把函数中的参数类型声明为 `Item`，所以还能获得所有属性及其类型的编辑器支持（补全等）。
-* 为你的模型生成 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定义，如果对你的项目有意义，还可以在其他地方使用它们。
+* 为你的模型生成 [JSON Schema](https://json-schema.org) 定义，如果对你的项目有意义，还可以在其他地方使用它们。
 * 这些 schema 会成为生成的 OpenAPI Schema 的一部分，并被自动文档的 <abbr title="User Interfaces - 用户界面">UIs</abbr> 使用。
 
 ## 自动文档 { #automatic-docs }
@@ -101,15 +101,15 @@
 
 我们甚至对 Pydantic 本身做了一些改动以支持这些功能。
 
-上面的截图来自 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>。
+上面的截图来自 [Visual Studio Code](https://code.visualstudio.com)。
 
-但使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 和大多数其他 Python 编辑器，你也会获得相同的编辑器支持：
+但使用 [PyCharm](https://www.jetbrains.com/pycharm/) 和大多数其他 Python 编辑器，你也会获得相同的编辑器支持：
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | 提示
 
-如果你使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 作为编辑器，可以使用 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>。
+如果你使用 [PyCharm](https://www.jetbrains.com/pycharm/) 作为编辑器，可以使用 [Pydantic PyCharm 插件](https://github.com/koxudaxi/pydantic-pycharm-plugin/)。
 
 它能改进对 Pydantic 模型的编辑器支持，包括：
 
@@ -161,4 +161,4 @@ FastAPI 会根据默认值 `= None` 知道 `q` 的值不是必填的。
 
 ## 不使用 Pydantic { #without-pydantic }
 
-即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body)。
