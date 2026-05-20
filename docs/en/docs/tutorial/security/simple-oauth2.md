@@ -32,7 +32,7 @@ They are normally used to declare specific security permissions, for example:
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
-/// info
+/// note
 
 In OAuth2 a "scope" is just a string that declares a specific permission required.
 
@@ -72,7 +72,7 @@ If you need to enforce it, use `OAuth2PasswordRequestFormStrict` instead of `OAu
 * An optional `client_id` (we don't need it for our example).
 * An optional `client_secret` (we don't need it for our example).
 
-/// info
+/// note
 
 The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
 
@@ -144,7 +144,7 @@ UserInDB(
 )
 ```
 
-/// info
+/// note
 
 For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user-in-dict).
 
@@ -196,7 +196,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info
+/// note
 
 The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.
 

@@ -14,7 +14,7 @@ jobs:
     name: Add to project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # v1.0.2
+      - uses: actions/add-to-project@5afcf98fcd03f1c2f92c3c83f58ae24323cc57fd # v2.0.0
         with:
           project-url: https://github.com/orgs/fastapi/projects/2
           github-token: ${{ secrets.PROJECTS_TOKEN }} # zizmor: ignore[secrets-outside-env]

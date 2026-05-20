@@ -23,7 +23,7 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
-class Param(FieldInfo):  # type: ignore[misc]
+class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-class]
     in_: ParamTypes
 
     def __init__(
@@ -128,13 +128,13 @@ class Param(FieldInfo):  # type: ignore[misc]
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
-        super().__init__(**use_kwargs)
+        super().__init__(**use_kwargs)  # ty: ignore[invalid-argument-type]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Path(Param):  # type: ignore[misc]
     in_ = ParamTypes.path
 
     def __init__(
@@ -218,7 +218,7 @@ class Path(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Query(Param):  # type: ignore[misc]
     in_ = ParamTypes.query
 
     def __init__(
@@ -300,7 +300,7 @@ class Query(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Header(Param):  # type: ignore[misc]
     in_ = ParamTypes.header
 
     def __init__(
@@ -384,7 +384,7 @@ class Header(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Cookie(Param):  # type: ignore[misc]
     in_ = ParamTypes.cookie
 
     def __init__(
@@ -466,7 +466,7 @@ class Cookie(Param):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class Body(FieldInfo):  # type: ignore[misc]
+class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-class]
     def __init__(
         self,
         default: Any = Undefined,
@@ -572,13 +572,13 @@ class Body(FieldInfo):  # type: ignore[misc]
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
-        super().__init__(**use_kwargs)
+        super().__init__(**use_kwargs)  # ty: ignore[invalid-argument-type]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class Form(Body):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -660,7 +660,7 @@ class Form(Body):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
         )
 
 
-class File(Form):  # type: ignore[misc]  # ty: ignore[unused-ignore-comment]
+class File(Form):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,

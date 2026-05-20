@@ -65,7 +65,7 @@ The same way, you can declare optional query parameters, by setting their defaul
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
-/// check
+/// tip
 
 Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 

@@ -2,7 +2,7 @@
 
 Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die <abbr title="Python Installationspakete">Packages</abbr>, die Sie für jedes Projekt installieren, zu isolieren.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie bereits über virtuelle Umgebungen Bescheid wissen, wie man sie erstellt und verwendet, möchten Sie diesen Abschnitt vielleicht überspringen. 🤓
 
@@ -18,7 +18,7 @@ Eine **virtuelle Umgebung** ist ein Verzeichnis mit einigen Dateien darin.
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Diese Seite wird Ihnen beibringen, wie Sie **virtuelle Umgebungen** verwenden und wie sie funktionieren.
 
@@ -817,7 +817,7 @@ Traceback (most recent call last):
 
 </div>
 
-Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-askaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
+Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-azkaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
 
 <div class="termy">
 

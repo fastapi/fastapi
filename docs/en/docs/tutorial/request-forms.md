@@ -2,7 +2,7 @@
 
 When you need to receive form fields instead of JSON, you can use `Form`.
 
-/// info
+/// note
 
 To use forms, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -32,7 +32,7 @@ The <dfn title="specification">spec</dfn> requires the fields to be exactly name
 
 With `Form` you can declare the same configurations as with `Body` (and `Query`, `Path`, `Cookie`), including validation, examples, an alias (e.g. `user-name` instead of `username`), etc.
 
-/// info
+/// note
 
 `Form` is a class that inherits directly from `Body`.
 
