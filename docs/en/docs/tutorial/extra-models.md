@@ -184,7 +184,9 @@ If it was in a type annotation we could have used the vertical bar, as:
 some_variable: PlaneItem | CarItem
 ```
 
-But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+In Python 3.10 and later, using `PlaneItem | CarItem` in assignments such as `response_model=...` is valid, since `|` represents a type union (PEP 604) and produces a `UnionType` object at runtime.
+In Python versions prior to 3.10, this syntax raises an error because `|` is interpreted as a bitwise OR operator.
+Therefore, this limitation only applies to Python 3.9 and earlier.
 
 ## List of models { #list-of-models }
 
