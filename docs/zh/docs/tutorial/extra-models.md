@@ -183,8 +183,11 @@ UserInDB(
 ```Python
 some_variable: PlaneItem | CarItem
 ```
+在 Python 3.10 及以上版本中，`PlaneItem | CarItem` 在赋值表达式中是合法的，因为 `|` 已被用于表示类型联合（PEP 604），并返回 `UnionType` 对象。
 
-但如果把它写成赋值 `response_model=PlaneItem | CarItem`，就会报错，因为 Python 会尝试在 `PlaneItem` 和 `CarItem` 之间执行一个“无效的运算”，而不是把它当作类型注解来解析。
+在 Python 3.10 之前版本中，这种写法会被当作按位或运算符处理，因此会报错。
+
+因此，该限制仅适用于 Python 3.9 及以下版本。
 
 ## 模型列表 { #list-of-models }
 
