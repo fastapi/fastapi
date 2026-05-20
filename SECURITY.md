@@ -44,6 +44,18 @@ Please restrain from publicly discussing a potential security vulnerability. ðŸ™
 
 It's better to discuss privately and try to find a solution first, to limit the potential impact as much as possible.
 
+## How FastAPI Handles Security
+
+If you are wondering, we implement security best practices in how the repository is handled, including:
+
+* Protected branches with required checks.
+* MFA required for team members.
+* Packages published via trusted publishing.
+* Sha-pinned GitHub Actions.
+* No GitHub Actions' workflows combining `pull_request_target` and `actions/checkout`.
+* Automated dependency PR updates, with a cool down period.
+* etc.
+
 ---
 
 Thanks for your help!
