@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add docs references to central contributing docs. PR [#15580](https://github.com/fastapi/fastapi/pull/15580) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update security policy. PR [#15577](https://github.com/fastapi/fastapi/pull/15577) by [@tiangolo](https://github.com/tiangolo).
 * 🍱 Update sponsors: TalorData image. PR [#15562](https://github.com/fastapi/fastapi/pull/15562) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs, simplify usage of admonitions, only default ones. PR [#15553](https://github.com/fastapi/fastapi/pull/15553) by [@tiangolo](https://github.com/tiangolo).
