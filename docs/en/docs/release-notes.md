@@ -36,6 +36,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump idna from 3.11 to 3.15. PR [#15565](https://github.com/fastapi/fastapi/pull/15565) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cloudflare/wrangler-action from 3.15.0 to 4.0.0. PR [#15571](https://github.com/fastapi/fastapi/pull/15571) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Migrate docs from MkDocs to Zensical. PR [#15563](https://github.com/fastapi/fastapi/pull/15563) by [@tiangolo](https://github.com/tiangolo).
 * 🔒️ Only allow team members to modify dependencies. PR [#15548](https://github.com/fastapi/fastapi/pull/15548) by [@svlandeg](https://github.com/svlandeg).
