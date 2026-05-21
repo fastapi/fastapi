@@ -76,6 +76,9 @@ from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_inspection.typing_objects import is_typealiastype
 
+# Primitive types whose instances are immutable — safe to return without deepcopy.
+_IMMUTABLE_TYPES = (int, float, str, bytes, bool, type(None))
+
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
     'You can install "python-multipart" with: \n\n'
@@ -742,7 +745,13 @@ def _validate_value_with_model_field(
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
         else:
-            return deepcopy(field.default), []
+            if field.field_info.default_factory is not None:
+                # factory already produces a fresh object; deepcopy would be redundant
+                return field.get_default(), []
+            default = field.default
+            return (
+                default if isinstance(default, _IMMUTABLE_TYPES) else deepcopy(default)
+            ), []
     return field.validate(value, values, loc=loc)
 
 
@@ -777,7 +786,13 @@ def _get_multidict_value(
         if field.field_info.is_required():
             return
         else:
-            return deepcopy(field.default)
+            if field.field_info.default_factory is not None:
+                # factory already produces a fresh object; deepcopy would be redundant
+                return field.get_default()
+            default = field.default
+            return (
+                default if isinstance(default, _IMMUTABLE_TYPES) else deepcopy(default)
+            )
     return value
 
 
