@@ -227,6 +227,7 @@ nav:
   - resources/index.md
   - help-fastapi.md
   - contributing.md
+  - translations.md
   - project-generation.md
   - external-links.md
   - newsletter.md

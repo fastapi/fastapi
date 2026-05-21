@@ -24,6 +24,7 @@ non_translated_sections = (
     "management-tasks.md",
     "management.md",
     "contributing.md",
+    "translations.md",
 )
 
 general_prompt_path = Path(__file__).absolute().parent / "general-llm-prompt.md"

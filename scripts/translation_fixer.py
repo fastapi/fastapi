@@ -16,6 +16,7 @@ non_translated_sections = (
     "management-tasks.md",
     "management.md",
     "contributing.md",
+    "translations.md",
 )
 
 
