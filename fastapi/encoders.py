@@ -242,7 +242,7 @@ def jsonable_encoder(
         include = set(include)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
-    
+
     if not custom_encoder and not sqlalchemy_safe:
         try:
             return _any_type_adapter.dump_python(

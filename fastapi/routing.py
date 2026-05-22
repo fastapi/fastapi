@@ -35,7 +35,6 @@ from anyio.abc import ObjectReceiveStream
 from fastapi import params
 from fastapi._compat import (
     ModelField,
-    Undefined,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -73,6 +72,7 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
+from pydantic import TypeAdapter
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
@@ -91,7 +91,6 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
-from pydantic import TypeAdapter
 
 _any_type_adapter = TypeAdapter(Any)
 
@@ -424,7 +423,7 @@ def get_request_handler(
                                 subtype = message.get_content_subtype()
                                 if subtype == "json" or subtype.endswith("+json"):
                                     is_json_content = True
-                        
+
                         if is_json_content:
                             body = FastAPIOptimizedJsonBytes(body_bytes)
                         else:
@@ -515,7 +514,9 @@ def get_request_handler(
                             if hasattr(item.data, "model_dump_json"):
                                 data_str = item.data.model_dump_json()
                             else:
-                                data_str = _any_type_adapter.dump_json(item.data).decode("utf-8")
+                                data_str = _any_type_adapter.dump_json(
+                                    item.data
+                                ).decode("utf-8")
                         else:
                             data_str = None
                         return format_sse_event(
