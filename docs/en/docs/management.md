@@ -12,19 +12,7 @@ I normally give the final review to each PR before merging them. I make the fina
 
 There's a team of people that help manage and maintain the project. 😎
 
-They have different levels of permissions and [specific instructions](./management-tasks.md).
-
-Some of the tasks they can perform include:
-
-* Adding labels to PRs.
-* Editing PR titles.
-* Adding commits on top of PRs to tweak them.
-* Mark answers in GitHub Discussions questions, etc.
-* Merge some specific types of PRs.
-
-You can see the current team members in [FastAPI People - Team](./fastapi-people.md#team).
-
-Joining the team is by invitation only, and I could update or remove permissions, instructions, or membership.
+Learn more about it in [tiangolo.com - GitHub FastAPI](https://tiangolo.com/github-fastapi/).
 
 ## FastAPI Experts
 
@@ -32,8 +20,6 @@ The people that help others the most in GitHub Discussions can become [**FastAPI
 
 This is normally the best way to contribute to the project.
 
-## External Contributions
+## External Help
 
-External contributions are very welcome and appreciated, including answering questions, submitting PRs, etc. 🙇‍♂️
-
-There are many ways to [help maintain FastAPI](./help-fastapi.md#help-maintain-fastapi).
+External help is very much appreciated. There are many ways to [help](./help-fastapi.md). ☕️
