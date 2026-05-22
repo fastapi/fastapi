@@ -21,7 +21,7 @@ from uuid import UUID
 from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
@@ -124,6 +124,8 @@ def generate_encoders_by_class_tuples(
 
 
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
+
+_any_type_adapter = TypeAdapter(Any)
 
 
 def jsonable_encoder(
@@ -240,6 +242,22 @@ def jsonable_encoder(
         include = set(include)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
+    
+    if not custom_encoder and not sqlalchemy_safe:
+        try:
+            return _any_type_adapter.dump_python(
+                obj,
+                mode="json",
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
+        except Exception:
+            pass
+
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",

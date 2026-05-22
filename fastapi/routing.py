@@ -91,6 +91,9 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
+from pydantic import TypeAdapter
+
+_any_type_adapter = TypeAdapter(Any)
 
 
 # Copy of starlette.routing.request_response modified to include the
@@ -493,8 +496,7 @@ def get_request_handler(
                         exclude_none=response_model_exclude_none,
                     )
                 else:
-                    data = jsonable_encoder(data)
-                    return json.dumps(data).encode("utf-8")
+                    return _any_type_adapter.dump_json(data)
 
             if is_sse_stream:
                 # Generator endpoint: stream as Server-Sent Events
@@ -512,7 +514,7 @@ def get_request_handler(
                             if hasattr(item.data, "model_dump_json"):
                                 data_str = item.data.model_dump_json()
                             else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
+                                data_str = _any_type_adapter.dump_json(item.data).decode("utf-8")
                         else:
                             data_str = None
                         return format_sse_event(

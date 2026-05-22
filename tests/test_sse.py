@@ -191,7 +191,7 @@ def test_sse_events_with_fields(client: TestClient):
 
     assert "event: json-data\n" in text
     assert "id: 2\n" in text
-    assert 'data: {"key": "value"}\n' in text
+    assert 'data: {"key":"value"}\n' in text
 
     assert ": just a comment\n" in text
 
