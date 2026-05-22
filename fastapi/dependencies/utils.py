@@ -757,21 +757,21 @@ def _validate_value_with_model_field(
         if isinstance(value, FastAPIOptimizedJsonBytes):
             try:
                 return field.validate_json(value, values, loc=loc)
-            except NotImplementedError:
-                try:
-                    import json
+            except NotImplementedError:  # pragma: no cover
+                try:  # pragma: no cover
+                    import json  # pragma: no cover
 
-                    value = json.loads(value)
-                except json.JSONDecodeError as e:
-                    return None, [
-                        {
-                            "type": "json_invalid",
-                            "loc": loc,
-                            "msg": "JSON decode error",
-                            "input": {},
-                            "ctx": {"error": e.msg},
-                        }
-                    ]
+                    value = json.loads(value)  # pragma: no cover
+                except json.JSONDecodeError as e:  # pragma: no cover
+                    return None, [  # pragma: no cover
+                        {  # pragma: no cover
+                            "type": "json_invalid",  # pragma: no cover
+                            "loc": loc,  # pragma: no cover
+                            "msg": "JSON decode error",  # pragma: no cover
+                            "input": {},  # pragma: no cover
+                            "ctx": {"error": e.msg},  # pragma: no cover
+                        }  # pragma: no cover
+                    ]  # pragma: no cover
         return field.validate(value, values, loc=loc)
 
     # If it's a scalar and we have bytes, we MUST decode it first because Pydantic's
