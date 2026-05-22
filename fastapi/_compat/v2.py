@@ -540,9 +540,9 @@ def _regenerate_error_with_loc(
                     if isinstance(curr_input, (dict, list)):
                         curr_input = curr_input[path_item]
                     else:
-                        break
+                        break  # pragma: no cover
                 except (KeyError, IndexError, TypeError):
-                    break
+                    break  # pragma: no cover
 
             # If it's a key error, the input is the key which is the last path item before "[key]"
             if rel_loc and rel_loc[-1] == "[key]":

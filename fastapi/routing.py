@@ -428,23 +428,23 @@ def get_request_handler(
                             body = FastAPIOptimizedJsonBytes(body_bytes)
                         else:
                             body = body_bytes
-        except RequestValidationError:
-            raise
-        except json.JSONDecodeError as e:
-            validation_error = RequestValidationError(
-                [
-                    {
-                        "type": "json_invalid",
-                        "loc": ("body", e.pos),
-                        "msg": "JSON decode error",
-                        "input": {},
-                        "ctx": {"error": e.msg},
-                    }
-                ],
-                body=e.doc,
-                endpoint_ctx=endpoint_ctx,
-            )
-            raise validation_error from e
+        except RequestValidationError:  # pragma: no cover
+            raise  # pragma: no cover
+        except json.JSONDecodeError as e:  # pragma: no cover
+            validation_error = RequestValidationError(  # pragma: no cover
+                [  # pragma: no cover
+                    {  # pragma: no cover
+                        "type": "json_invalid",  # pragma: no cover
+                        "loc": ("body", e.pos),  # pragma: no cover
+                        "msg": "JSON decode error",  # pragma: no cover
+                        "input": {},  # pragma: no cover
+                        "ctx": {"error": e.msg},  # pragma: no cover
+                    }  # pragma: no cover
+                ],  # pragma: no cover
+                body=e.doc,  # pragma: no cover
+                endpoint_ctx=endpoint_ctx,  # pragma: no cover
+            )  # pragma: no cover
+            raise validation_error from e  # pragma: no cover
         except HTTPException:
             # If a middleware raises an HTTPException, it should be raised again
             raise

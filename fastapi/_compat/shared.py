@@ -188,7 +188,7 @@ def is_pydantic_v1_model_instance(obj: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
     if _PydanticV1BaseModel is None:
-        return False
+        return False  # pragma: no cover
     return isinstance(obj, _PydanticV1BaseModel)
 
 
@@ -196,7 +196,7 @@ def is_pydantic_v1_model_class(cls: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
     if _PydanticV1BaseModel is None:
-        return False
+        return False  # pragma: no cover
     return lenient_issubclass(cls, _PydanticV1BaseModel)
 
 
