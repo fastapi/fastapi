@@ -538,7 +538,7 @@ def _regenerate_error_with_loc(
                     break
                 try:
                     if isinstance(curr_input, (dict, list)):
-                        curr_input = curr_input[path_item]  # type: ignore[index]
+                        curr_input = curr_input[path_item]
                     else:
                         break
                 except (KeyError, IndexError, TypeError):

@@ -918,9 +918,11 @@ def request_params_to_args(
                 # model_dump might convert inner models, which we don't want (FastAPI keeps them as objects)
                 values.update(validated_data.__dict__)
             else:
-                values.update(validated_data)  # type: ignore
+                values.update(validated_data)
         except ValidationError as exc:
-            field_in = fields[0].field_info.in_.value
+            first_field_info = fields[0].field_info
+            assert isinstance(first_field_info, params.Param)
+            field_in = first_field_info.in_.value
 
             # Map f.name to f.alias in case Pydantic returned the internal name
             name_to_alias = {f.name: get_validation_alias(f) for f in fields}
@@ -928,8 +930,8 @@ def request_params_to_args(
             for err in exc.errors(include_url=False):
                 err_loc = list(err["loc"])
                 if err_loc and err_loc[0] in name_to_alias:
-                    err_loc[0] = name_to_alias[err_loc[0]]  # type: ignore
-                err["loc"] = (field_in, *err_loc)  # type: ignore
+                    err_loc[0] = name_to_alias[err_loc[0]]
+                err["loc"] = (field_in, *err_loc)
 
                 if err["type"] == "missing":
                     err["input"] = None

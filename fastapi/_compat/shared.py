@@ -179,7 +179,7 @@ try:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", UserWarning)
         from pydantic import v1 as _pydantic_v1
-    _PydanticV1BaseModel = _pydantic_v1.BaseModel
+    _PydanticV1BaseModel: Any = _pydantic_v1.BaseModel
 except ImportError:  # pragma: no cover
     _PydanticV1BaseModel = None
 
