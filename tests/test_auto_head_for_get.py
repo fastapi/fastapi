@@ -53,6 +53,9 @@ def test_head_not_in_openapi_schema():
         return {"item_id": item_id}
 
     client = TestClient(app)
+    assert client.get("/").json() == {"hello": "world"}
+    assert client.get("/items/42").json() == {"item_id": 42}
+
     schema = client.get("/openapi.json").json()
     # HEAD should NOT appear in OpenAPI paths
     assert list(schema["paths"]["/"].keys()) == ["get"]
@@ -71,6 +74,8 @@ def test_head_not_added_to_non_get_routes():
         return {"item_id": item_id}
 
     client = TestClient(app)
+    assert client.post("/submit").json() == {"ok": True}
+    assert client.put("/items/1").json() == {"item_id": 1}
     assert client.head("/submit").status_code == 405
     assert client.head("/items/1").status_code == 405
 
