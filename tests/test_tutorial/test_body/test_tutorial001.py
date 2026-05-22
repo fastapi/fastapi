@@ -147,10 +147,10 @@ def test_post_broken_body(client: TestClient):
         "detail": [
             {
                 "type": "json_invalid",
-                "loc": ["body", 1],
-                "msg": "JSON decode error",
-                "input": {},
-                "ctx": {"error": "Expecting property name enclosed in double quotes"},
+                "loc": ["body"],
+                "msg": "Invalid JSON: key must be a string at line 1 column 2",
+                "input": "{some broken json}",
+                "ctx": {"error": "key must be a string at line 1 column 2"},
             }
         ]
     }
@@ -246,7 +246,7 @@ def test_wrong_headers(client: TestClient):
 
 
 def test_other_exceptions(client: TestClient):
-    with patch("json.loads", side_effect=Exception):
+    with patch("fastapi.routing.Request.body", side_effect=Exception):
         response = client.post("/items/", json={"test": "test2"})
         assert response.status_code == 400, response.text
 
