@@ -1011,10 +1011,8 @@ class APIRoute(routing.Route):
         # RFC 7231 §4.3.2: the server SHOULD send the same header fields in
         # response to a HEAD request as it would have sent for GET.
         # HEAD is NOT added to self.methods so it stays out of the OpenAPI
-        # schema. Instead, we promote the match at routing time and allow
-        # it through in handle().
-        if match == Match.PARTIAL and self._is_head_for_get(scope):
-            match = Match.FULL
+        # schema. Keep the match partial so an explicit HEAD route registered
+        # later can still take precedence.
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
