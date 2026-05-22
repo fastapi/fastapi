@@ -931,7 +931,11 @@ def request_params_to_args(
 
             for err in exc.errors(include_url=False):
                 err_loc = list(err["loc"])
-                if err_loc and isinstance(err_loc[0], str) and err_loc[0] in name_to_alias:
+                if (
+                    err_loc
+                    and isinstance(err_loc[0], str)
+                    and err_loc[0] in name_to_alias
+                ):
                     err_loc[0] = name_to_alias[err_loc[0]]
                 err["loc"] = (field_in, *err_loc)
 
