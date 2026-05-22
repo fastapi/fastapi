@@ -175,28 +175,29 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
     )
 
 
+try:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1 as _pydantic_v1
+    _PydanticV1BaseModel = _pydantic_v1.BaseModel
+except ImportError:  # pragma: no cover
+    _PydanticV1BaseModel = None
+
+
 def is_pydantic_v1_model_instance(obj: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
-    try:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", UserWarning)
-            from pydantic import v1
-    except ImportError:  # pragma: no cover
+    if _PydanticV1BaseModel is None:
         return False
-    return isinstance(obj, v1.BaseModel)
+    return isinstance(obj, _PydanticV1BaseModel)
 
 
 def is_pydantic_v1_model_class(cls: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
-    try:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", UserWarning)
-            from pydantic import v1
-    except ImportError:  # pragma: no cover
+    if _PydanticV1BaseModel is None:
         return False
-    return lenient_issubclass(cls, v1.BaseModel)
+    return lenient_issubclass(cls, _PydanticV1BaseModel)
 
 
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
