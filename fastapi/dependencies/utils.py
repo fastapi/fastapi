@@ -64,10 +64,11 @@ from fastapi.utils import (
     create_model_field,
     get_path_param_names,
 )
-from pydantic import BaseModel, Json
+from pydantic import BaseModel, Json, TypeAdapter, create_model, ValidationError
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
+from functools import lru_cache
 from starlette.datastructures import (
     FormData,
     Headers,
@@ -806,6 +807,15 @@ def _get_multidict_value(
     return value
 
 
+@lru_cache(maxsize=1024)
+def get_grouped_adapter(fields: tuple[ModelField, ...]) -> TypeAdapter | None:  # type: ignore[type-arg]
+    if len(fields) <= 1:
+        return None
+    field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
+    GroupedModel: type[BaseModel] = create_model("GroupedModel", **field_params)  # type: ignore[call-overload]
+    return TypeAdapter(GroupedModel)
+
+
 def request_params_to_args(
     fields: Sequence[ModelField],
     received_params: Mapping[str, Any] | QueryParams | Headers,
@@ -830,6 +840,8 @@ def request_params_to_args(
         default_convert_underscores = getattr(
             first_field.field_info, "convert_underscores", True
         )
+
+    grouped_adapter = get_grouped_adapter(tuple(fields))
 
     params_to_process: dict[str, Any] = {}
 
@@ -873,6 +885,38 @@ def request_params_to_args(
             field=first_field, value=params_to_process, values=values, loc=loc
         )
         return {first_field.name: v_}, errors_
+
+    if grouped_adapter is not None:
+        try:
+            # We use from_attributes=True because the request might be an object? 
+            # No, params_to_process is a dict, but from_attributes doesn't hurt.
+            validated_data = grouped_adapter.validate_python(params_to_process)
+            
+            # validated_data is a dict (or BaseModel? TypeAdapter(BaseModel) returns BaseModel)
+            # We need to extract to values dict.
+            if hasattr(validated_data, "model_dump"):
+                # Dump it to get dict without triggering re-validation, or just __dict__?
+                # model_dump might convert inner models, which we don't want (FastAPI keeps them as objects)
+                values.update(validated_data.__dict__)
+            else:
+                values.update(validated_data) # type: ignore
+        except ValidationError as exc:
+            field_in = fields[0].field_info.in_.value
+            
+            # Map f.name to f.alias in case Pydantic returned the internal name
+            name_to_alias = {f.name: get_validation_alias(f) for f in fields}
+            
+            for err in exc.errors(include_url=False):
+                err_loc = list(err["loc"])
+                if err_loc and err_loc[0] in name_to_alias:
+                    err_loc[0] = name_to_alias[err_loc[0]]  # type: ignore
+                err["loc"] = (field_in, *err_loc)  # type: ignore
+                
+                if err["type"] == "missing":
+                    err["input"] = None
+                    
+                errors.append(err)  # type: ignore
+        return values, errors
 
     for field in fields:
         value = _get_multidict_value(field, received_params)
