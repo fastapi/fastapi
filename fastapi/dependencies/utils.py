@@ -831,7 +831,9 @@ def get_grouped_adapter(fields: tuple[ModelField, ...]) -> TypeAdapter | None:  
     if len(fields) <= 1:
         return None
     field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-    GroupedModel: type[BaseModel] = create_model("GroupedModel", **field_params)  # type: ignore[call-overload]
+    GroupedModel: type[BaseModel] = create_model(
+        "GroupedModel", **cast(Any, field_params)
+    )
     return TypeAdapter(GroupedModel)
 
 
@@ -929,7 +931,7 @@ def request_params_to_args(
 
             for err in exc.errors(include_url=False):
                 err_loc = list(err["loc"])
-                if err_loc and err_loc[0] in name_to_alias:
+                if err_loc and isinstance(err_loc[0], str) and err_loc[0] in name_to_alias:
                     err_loc[0] = name_to_alias[err_loc[0]]
                 err["loc"] = (field_in, *err_loc)
 
