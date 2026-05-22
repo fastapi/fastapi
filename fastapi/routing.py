@@ -412,19 +412,20 @@ def get_request_handler(
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
-                        json_body: Any = Undefined
+                        is_json_content = False
                         content_type_value = request.headers.get("content-type")
                         if not content_type_value:
                             if not actual_strict_content_type:
-                                json_body = await request.json()
+                                is_json_content = True
                         else:
                             message = email.message.Message()
                             message["content-type"] = content_type_value
                             if message.get_content_maintype() == "application":
                                 subtype = message.get_content_subtype()
                                 if subtype == "json" or subtype.endswith("+json"):
-                                    json_body = await request.json()
-                        if json_body != Undefined:
+                                    is_json_content = True
+                        
+                        if is_json_content:
                             body = FastAPIOptimizedJsonBytes(body_bytes)
                         else:
                             body = body_bytes
