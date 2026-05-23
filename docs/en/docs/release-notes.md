@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Document `--entrypoint` CLI option. PR [#15464](https://github.com/fastapi/fastapi/pull/15464) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update and simplify docs about help and management. PR [#15583](https://github.com/fastapi/fastapi/pull/15583) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add docs references to central contributing docs. PR [#15580](https://github.com/fastapi/fastapi/pull/15580) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update security policy. PR [#15577](https://github.com/fastapi/fastapi/pull/15577) by [@tiangolo](https://github.com/tiangolo).
