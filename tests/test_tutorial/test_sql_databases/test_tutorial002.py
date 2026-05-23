@@ -45,8 +45,6 @@ def get_client(request: pytest.FixtureRequest):
     # Clean up connection explicitly to avoid resource warning
     mod.engine.dispose()
 
-    mod.engine.dispose()
-
 
 def test_crud_app(client: TestClient):
     # TODO: this warns that SQLModel.from_orm is deprecated in Pydantic v1, refactor
