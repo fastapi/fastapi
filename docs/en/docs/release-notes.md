@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.136.3 (2026-05-23)
+
 ### Refactors
 
 * ♻️ Do not accept underscore headers when using `convert_underscores=True` (the default). PR [#15589](https://github.com/fastapi/fastapi/pull/15589) by [@tiangolo](https://github.com/tiangolo).
