@@ -39,6 +39,7 @@ hide:
 
 ### Internal
 
+* ✅ Update tests, don't double dispose the engine. PR [#15587](https://github.com/fastapi/fastapi/pull/15587) by [@tiangolo](https://github.com/tiangolo).
 * ⚡️ Speed up test suite via caching and fixture scopes to make it ~24% faster. PR [#13583](https://github.com/fastapi/fastapi/pull/13583) by [@dikos1337](https://github.com/dikos1337).
 * 🔥 Remove config files now in central GitHub repo. PR [#15585](https://github.com/fastapi/fastapi/pull/15585) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump urllib3 from 2.6.3 to 2.7.0. PR [#15502](https://github.com/fastapi/fastapi/pull/15502) by [@dependabot[bot]](https://github.com/apps/dependabot).
