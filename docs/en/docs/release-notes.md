@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.136.2 (2026-05-23)
+
 ### Refactors
 
 * ♻️ Validate Server Sent Event fields to avoid applications from sending broken data. PR [#15588](https://github.com/fastapi/fastapi/pull/15588) by [@tiangolo](https://github.com/tiangolo).
