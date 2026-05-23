@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Validate Server Sent Event fields to avoid applications from sending broken data. PR [#15588](https://github.com/fastapi/fastapi/pull/15588) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Document `--entrypoint` CLI option. PR [#15464](https://github.com/fastapi/fastapi/pull/15464) by [@YuriiMotov](https://github.com/YuriiMotov).
