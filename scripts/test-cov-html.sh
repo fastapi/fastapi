@@ -3,7 +3,4 @@
 set -e
 set -x
 
-bash scripts/test.sh ${@}
-coverage combine
-coverage report
-coverage html
+bash scripts/test-cov.sh --cov-report=term-missing --cov-report=html ${@}

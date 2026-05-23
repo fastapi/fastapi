@@ -1,4 +1,4 @@
-# Extra Data Types
+# Extra Data Types { #extra-data-types }
 
 Up to now, you have been using common data types, like:
 
@@ -17,7 +17,7 @@ And you will still have the same features as seen up to now:
 * Data validation.
 * Automatic annotation and documentation.
 
-## Other data types
+## Other data types { #other-data-types }
 
 Here are some of the additional data types you can use:
 
@@ -36,7 +36,7 @@ Here are some of the additional data types you can use:
 * `datetime.timedelta`:
     * A Python `datetime.timedelta`.
     * In requests and responses will be represented as a `float` of total seconds.
-    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">see the docs for more info</a>.
+    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", [see the docs for more info](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * In requests and responses, treated the same as a `set`:
         * In requests, a list will be read, eliminating duplicates and converting it to a `set`.
@@ -49,9 +49,9 @@ Here are some of the additional data types you can use:
 * `Decimal`:
     * Standard Python `Decimal`.
     * In requests and responses, handled the same as a `float`.
-* You can check all the valid Pydantic data types here: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
+* You can check all the valid Pydantic data types here: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/).
 
-## Example
+## Example { #example }
 
 Here's an example *path operation* with parameters using some of the above types.
 

@@ -1,4 +1,4 @@
-# Environment Variables
+# Environment Variables { #environment-variables }
 
 /// tip
 
@@ -10,7 +10,7 @@ An environment variable (also known as "**env var**") is a variable that lives *
 
 Environment variables could be useful for handling application **settings**, as part of the **installation** of Python, etc.
 
-## Create and Use Env Vars
+## Create and Use Env Vars { #create-and-use-env-vars }
 
 You can **create** and use environment variables in the **shell (terminal)**, without needing Python:
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Read env vars in Python
+## Read env vars in Python { #read-env-vars-in-python }
 
 You could also create environment variables **outside** of Python, in the terminal (or with any other method), and then **read them in Python**.
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip
 
-The second argument to <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> is the default value to return.
+The second argument to [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) is the default value to return.
 
 If not provided, it's `None` by default, here we provide `"World"` as the default value to use.
 
@@ -153,19 +153,19 @@ Hello World from Python
 
 /// tip
 
-You can read more about it at <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+You can read more about it at [The Twelve-Factor App: Config](https://12factor.net/config).
 
 ///
 
-## Types and Validation
+## Types and Validation { #types-and-validation }
 
 These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
 That means that **any value** read in Python from an environment variable **will be a `str`**, and any conversion to a different type or any validation has to be done in code.
 
-You will learn more about using environment variables for handling **application settings** in the [Advanced User Guide - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank}.
+You will learn more about using environment variables for handling **application settings** in the [Advanced User Guide - Settings and Environment Variables](./advanced/settings.md).
 
-## `PATH` Environment Variable
+## `PATH` Environment Variable { #path-environment-variable }
 
 There is a **special** environment variable called **`PATH`** that is used by the operating systems (Linux, macOS, Windows) to find programs to run.
 
@@ -209,7 +209,7 @@ For example, when you type `python` in the terminal, the operating system looks 
 
 If it finds it, then it will **use it**. Otherwise it keeps looking in the **other directories**.
 
-### Installing Python and Updating the `PATH`
+### Installing Python and Updating the `PATH` { #installing-python-and-updating-the-path }
 
 When you install Python, you might be asked if you want to update the `PATH` environment variable.
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-This information will be useful when learning about [Virtual Environments](virtual-environments.md){.internal-link target=_blank}.
+This information will be useful when learning about [Virtual Environments](virtual-environments.md).
 
-## Conclusion
+## Conclusion { #conclusion }
 
 With this you should have a basic understanding of what **environment variables** are and how to use them in Python.
 
-You can also read more about them in the <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a>.
+You can also read more about them in the [Wikipedia for Environment Variable](https://en.wikipedia.org/wiki/Environment_variable).
 
 In many cases it's not very obvious how environment variables would be useful and applicable right away. But they keep showing up in many different scenarios when you are developing, so it's good to know about them.
 

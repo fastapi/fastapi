@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import Body, FastAPI, Query
 from fastapi.testclient import TestClient
 
@@ -7,17 +5,17 @@ app = FastAPI()
 
 
 @app.get("/query")
-def read_query(q: Union[str, None]):
+def read_query(q: str | None):
     return q
 
 
 @app.get("/explicit-query")
-def read_explicit_query(q: Union[str, None] = Query()):
+def read_explicit_query(q: str | None = Query()):
     return q
 
 
 @app.post("/body-embed")
-def send_body_embed(b: Union[str, None] = Body(embed=True)):
+def send_body_embed(b: str | None = Body(embed=True)):
     return b
 
 

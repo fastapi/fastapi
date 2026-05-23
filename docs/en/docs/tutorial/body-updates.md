@@ -1,8 +1,8 @@
-# Body - Updates
+# Body - Updates { #body-updates }
 
-## Update replacing with `PUT`
+## Update replacing with `PUT` { #update-replacing-with-put }
 
-To update an item you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> operation.
+To update an item you can use the [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) operation.
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
@@ -10,7 +10,7 @@ You can use the `jsonable_encoder` to convert the input data to data that can be
 
 `PUT` is used to receive data that should replace the existing data.
 
-### Warning about replacing
+### Warning about replacing { #warning-about-replacing }
 
 That means that if you want to update the item `bar` using `PUT` with a body containing:
 
@@ -26,9 +26,9 @@ because it doesn't include the already stored attribute `"tax": 20.2`, the input
 
 And the data would be saved with that "new" `tax` of `10.5`.
 
-## Partial updates with `PATCH`
+## Partial updates with `PATCH` { #partial-updates-with-patch }
 
-You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to *partially* update data.
+You can also use the [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) operation to *partially* update data.
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 
@@ -44,19 +44,11 @@ But this guide shows you, more or less, how they are intended to be used.
 
 ///
 
-### Using Pydantic's `exclude_unset` parameter
+### Using Pydantic's `exclude_unset` parameter { #using-pydantics-exclude-unset-parameter }
 
 If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.model_dump()`.
 
 Like `item.model_dump(exclude_unset=True)`.
-
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
 
 That would generate a `dict` with only the data that was set when creating the `item` model, excluding default values.
 
@@ -64,23 +56,15 @@ Then you can use this to generate a `dict` with only the data that was set (sent
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-### Using Pydantic's `update` parameter
+### Using Pydantic's `update` parameter { #using-pydantics-update-parameter }
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
-
-/// info
-
-In Pydantic v1 the method was called `.copy()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_copy()`.
-
-The examples here use `.copy()` for compatibility with Pydantic v1, but you should use `.model_copy()` instead if you can use Pydantic v2.
-
-///
 
 Like `stored_item_model.model_copy(update=update_data)`:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-### Partial updates recap
+### Partial updates recap { #partial-updates-recap }
 
 In summary, to apply partial updates you would:
 
@@ -111,6 +95,6 @@ Notice that the input model is still validated.
 
 So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
 
-To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md){.internal-link target=_blank}.
+To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md).
 
 ///

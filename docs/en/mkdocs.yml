@@ -1,10 +1,10 @@
-INHERIT: ../en/mkdocs.maybe-insiders.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
 theme:
+  variant: classic
   name: material
-  custom_dir: ../en/overrides
+  custom_dir: overrides
   palette:
   - media: (prefers-color-scheme)
     toggle:
@@ -45,35 +45,13 @@ theme:
   - search.suggest
   - toc.follow
   icon:
-    repo: fontawesome/brands/github-alt
+    repo: octicons/mark-github-24
   logo: img/icon-white.svg
   favicon: img/favicon.png
   language: en
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
-  search: null
-  macros:
-    include_yaml:
-    - external_links: ../en/data/external_links.yml
-    - github_sponsors: ../en/data/github_sponsors.yml
-    - people: ../en/data/people.yml
-    - contributors: ../en/data/contributors.yml
-    - translators: ../en/data/translators.yml
-    - translation_reviewers: ../en/data/translation_reviewers.yml
-    - skip_users: ../en/data/skip_users.yml
-    - members: ../en/data/members.yml
-    - sponsors_badge: ../en/data/sponsors_badge.yml
-    - sponsors: ../en/data/sponsors.yml
-    - topic_repos: ../en/data/topic_repos.yml
-  redirects:
-    redirect_maps:
-      deployment/deta.md: deployment/cloud.md
-      advanced/graphql.md: how-to/graphql.md
-      advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
-      advanced/conditional-openapi.md: how-to/conditional-openapi.md
-      advanced/extending-openapi.md: how-to/extending-openapi.md
-      advanced/testing-database.md: how-to/testing-database.md
   mkdocstrings:
     handlers:
       python:
@@ -99,13 +77,13 @@ plugins:
 nav:
 - FastAPI: index.md
 - features.md
-- Learn:
+- "":
   - learn/index.md
   - python-types.md
   - async.md
   - environment-variables.md
   - virtual-environments.md
-  - Tutorial - User Guide:
+  - "":
     - tutorial/index.md
     - tutorial/first-steps.md
     - tutorial/path-params.md
@@ -134,14 +112,14 @@ nav:
     - tutorial/path-operation-configuration.md
     - tutorial/encoder.md
     - tutorial/body-updates.md
-    - Dependencies:
+    - "":
       - tutorial/dependencies/index.md
       - tutorial/dependencies/classes-as-dependencies.md
       - tutorial/dependencies/sub-dependencies.md
       - tutorial/dependencies/dependencies-in-path-operation-decorators.md
       - tutorial/dependencies/global-dependencies.md
       - tutorial/dependencies/dependencies-with-yield.md
-    - Security:
+    - "":
       - tutorial/security/index.md
       - tutorial/security/first-steps.md
       - tutorial/security/get-current-user.md
@@ -151,13 +129,16 @@ nav:
     - tutorial/cors.md
     - tutorial/sql-databases.md
     - tutorial/bigger-applications.md
+    - tutorial/stream-json-lines.md
+    - tutorial/server-sent-events.md
     - tutorial/background-tasks.md
     - tutorial/metadata.md
     - tutorial/static-files.md
     - tutorial/testing.md
     - tutorial/debugging.md
-  - Advanced User Guide:
+  - "":
     - advanced/index.md
+    - advanced/stream-data.md
     - advanced/path-operation-advanced-configuration.md
     - advanced/additional-status-codes.md
     - advanced/response-directly.md
@@ -167,7 +148,7 @@ nav:
     - advanced/response-headers.md
     - advanced/response-change-status-code.md
     - advanced/advanced-dependencies.md
-    - Advanced Security:
+    - "":
       - advanced/security/index.md
       - advanced/security/oauth2-scopes.md
       - advanced/security/http-basic-auth.md
@@ -188,19 +169,25 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
+    - advanced/json-base64-bytes.md
+    - advanced/strict-content-type.md
   - fastapi-cli.md
-  - Deployment:
+  - editor-support.md
+  - "":
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
     - deployment/cloud.md
     - deployment/server-workers.md
     - deployment/docker.md
-  - How To - Recipes:
+  - "":
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -209,7 +196,8 @@ nav:
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
     - how-to/testing-database.md
-- Reference (Code API):
+    - how-to/authentication-error-status-code.md
+- "":
   - reference/index.md
   - reference/fastapi.md
   - reference/parameters.md
@@ -225,7 +213,7 @@ nav:
   - reference/response.md
   - reference/responses.md
   - reference/middleware.md
-  - OpenAPI:
+  - "":
     - reference/openapi/index.md
     - reference/openapi/docs.md
     - reference/openapi/models.md
@@ -235,15 +223,15 @@ nav:
   - reference/templating.md
   - reference/testclient.md
 - fastapi-people.md
-- Resources:
+- "":
   - resources/index.md
   - help-fastapi.md
   - contributing.md
+  - translations.md
   - project-generation.md
   - external-links.md
   - newsletter.md
-  - management-tasks.md
-- About:
+- "":
   - about/index.md
   - alternatives.md
   - history-design-future.md
@@ -251,6 +239,7 @@ nav:
   - management.md
 - release-notes.md
 markdown_extensions:
+  zensical.extensions.macros: null
   abbr: null
   attr_list: null
   footnotes: null
@@ -262,6 +251,7 @@ markdown_extensions:
   pymdownx.caret: null
   pymdownx.highlight:
     line_spans: __span
+    linenums_style: pymdownx-inline
   pymdownx.inlinehilite: null
   pymdownx.keys: null
   pymdownx.mark: null
@@ -272,7 +262,10 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tilde: null
   pymdownx.blocks.admonition:
+    # TODO: remove types section (with custom types) once translations are migrated to
+    # not use custom types too
     types:
+    # Default types
     - note
     - attention
     - caution
@@ -281,6 +274,7 @@ markdown_extensions:
     - tip
     - hint
     - warning
+    # Custom types
     - info
     - check
   pymdownx.blocks.details: null
@@ -290,47 +284,29 @@ markdown_extensions:
   markdown_include_variants: null
 extra:
   social:
-  - icon: fontawesome/brands/github-alt
+  - icon: octicons/mark-github-24
     link: https://github.com/fastapi/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
-  - icon: fontawesome/brands/twitter
-    link: https://twitter.com/fastapi
+  - icon: fontawesome/brands/x-twitter
+    link: https://x.com/fastapi
+  - icon: fontawesome/brands/bluesky
+    link: https://bsky.app/profile/fastapi.tiangolo.com
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/company/fastapi
-  - icon: fontawesome/solid/globe
-    link: https://tiangolo.com
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /bn/
-    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
     name: es - español
-  - link: /fa/
-    name: fa - فارسی
   - link: /fr/
     name: fr - français
-  - link: /he/
-    name: he - עברית
-  - link: /hu/
-    name: hu - magyar
-  - link: /id/
-    name: id - Bahasa Indonesia
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /nl/
-    name: nl - Nederlands
-  - link: /pl/
-    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -339,23 +315,16 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /ur/
-    name: ur - اردو
-  - link: /vi/
-    name: vi - Tiếng Việt
-  - link: /yo/
-    name: yo - Yorùbá
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
-  - link: /em/
-    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
 - js/termynal.js
 - js/custom.js
-hooks:
-- ../../scripts/mkdocs_hooks.py
+- js/init_kapa_widget.js
+validation:
+  unresolved_references: false

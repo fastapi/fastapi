@@ -1,22 +1,22 @@
-# 現在のユーザーの取得
+# 現在のユーザーの取得 { #get-current-user }
 
-一つ前の章では、（依存性注入システムに基づいた）セキュリティシステムは、 *path operation関数* に `str` として `token` を与えていました:
+一つ前の章では、（依存性注入システムに基づいた）セキュリティシステムは、 *path operation 関数* に `str` として `token` を与えていました:
 
-{* ../../docs_src/security/tutorial001.py hl[10] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 しかし、それはまだそんなに有用ではありません。
 
 現在のユーザーを取得するようにしてみましょう。
 
-## ユーザーモデルの作成
+## ユーザーモデルの作成 { #create-a-user-model }
 
 まずは、Pydanticのユーザーモデルを作成しましょう。
 
 ボディを宣言するのにPydanticを使用するのと同じやり方で、Pydanticを別のどんなところでも使うことができます:
 
-{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## 依存関係 `get_current_user` を作成
+## 依存関係 `get_current_user` を作成 { #create-a-get-current-user-dependency }
 
 依存関係 `get_current_user` を作ってみましょう。
 
@@ -24,21 +24,21 @@
 
 `get_current_user` は前に作成した `oauth2_scheme` と同じ依存関係を持ちます。
 
-以前直接 *path operation* の中でしていたのと同じように、新しい依存関係である `get_current_user` は `str` として `token` を受け取るようになります:
+以前直接 *path operation* の中でしていたのと同じように、新しい依存関係である `get_current_user` はサブ依存関係である `oauth2_scheme` から `str` として `token` を受け取るようになります:
 
-{* ../../docs_src/security/tutorial002.py hl[25] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## ユーザーの取得
+## ユーザーの取得 { #get-the-user }
 
 `get_current_user` は作成した（偽物の）ユーティリティ関数を使って、 `str` としてトークンを受け取り、先ほどのPydanticの `User` モデルを返却します:
 
-{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## 現在のユーザーの注入
+## 現在のユーザーの注入 { #inject-the-current-user }
 
 ですので、 `get_current_user` に対して同様に *path operation* の中で `Depends` を利用できます。
 
-{* ../../docs_src/security/tutorial002.py hl[31] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
 
 Pydanticモデルの `User` として、 `current_user` の型を宣言することに注意してください。
 
@@ -54,15 +54,15 @@ Pydanticモデルの `User` として、 `current_user` の型を宣言するこ
 
 /// check | 確認
 
-依存関係システムがこのように設計されているおかげで、 `User` モデルを返却する別の依存関係（別の"dependables"）を持つことができます。
+依存関係システムがこのように設計されているおかげで、 `User` モデルを返却する別の依存関係（別の「dependables」）を持つことができます。
 
 同じデータ型を返却する依存関係は一つだけしか持てない、という制約が入ることはないのです。
 
 ///
 
-## 別のモデル
+## 別のモデル { #other-models }
 
-これで、*path operation関数* の中で現在のユーザーを直接取得し、`Depends` を使って、 **依存性注入** レベルでセキュリティメカニズムを処理できるようになりました。
+これで、*path operation 関数* の中で現在のユーザーを直接取得し、`Depends` を使って、 **依存性注入** レベルでセキュリティメカニズムを処理できるようになりました。
 
 そして、セキュリティ要件のためにどんなモデルやデータでも利用することができます。（この場合は、 Pydanticモデルの `User`）
 
@@ -76,10 +76,9 @@ Pydanticモデルの `User` として、 `current_user` の型を宣言するこ
 
 あなたのアプリケーションに必要なのがどんな種類のモデル、どんな種類のクラス、どんな種類のデータベースであったとしても、 **FastAPI** は依存性注入システムでカバーしてくれます。
 
+## コードサイズ { #code-size }
 
-## コードサイズ
-
-この例は冗長に見えるかもしれません。セキュリティとデータモデルユーティリティ関数および *path operations* が同じファイルに混在しているということを覚えておいてください。
+この例は冗長に見えるかもしれません。セキュリティとデータモデルユーティリティ関数および *path operation* が同じファイルに混在しているということを覚えておいてください。
 
 しかし、ここに重要なポイントがあります。
 
@@ -87,20 +86,20 @@ Pydanticモデルの `User` として、 `current_user` の型を宣言するこ
 
 そして、それは好きなだけ複雑にすることができます。それでも、一箇所に、一度だけ書くのです。すべての柔軟性を備えます。
 
-しかし、同じセキュリティシステムを使って何千ものエンドポイント（*path operations*）を持つことができます。
+しかし、同じセキュリティシステムを使って何千ものエンドポイント（*path operation*）を持つことができます。
 
 そして、それらエンドポイントのすべて（必要な、どの部分でも）がこうした依存関係や、あなたが作成する別の依存関係を再利用する利点を享受できるのです。
 
-さらに、こうした何千もの *path operations* は、たった3行で表現できるのです:
+さらに、こうした何千もの *path operation* は、たった3行で表現できるのです:
 
-{* ../../docs_src/security/tutorial002.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## まとめ
+## まとめ { #recap }
 
-これで、 *path operation関数* の中で直接現在のユーザーを取得できるようになりました。
+これで、 *path operation 関数* の中で直接現在のユーザーを取得できるようになりました。
 
 既に半分のところまで来ています。
 
-あとは、 `username` と `password` を実際にそのユーザーやクライアントに送る、 *path operation* を追加する必要があるだけです。
+あとは、ユーザー/クライアントが実際に `username` と `password` を送信するための *path operation* を追加する必要があるだけです。
 
 次はそれを説明します。

@@ -1,102 +1,118 @@
-# İlk Adımlar
+# İlk Adımlar { #first-steps }
 
 En sade FastAPI dosyası şu şekilde görünür:
 
-{* ../../docs_src/first_steps/tutorial001.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
-Yukarıdaki içeriği bir `main.py` dosyasına kopyalayalım.
+Yukarıdakini `main.py` adlı bir dosyaya kopyalayın.
 
-Uygulamayı çalıştıralım:
+Canlı sunucuyu çalıştırın:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
 
-/// note | Not
-
-`uvicorn main:app` komutunu şu şekilde açıklayabiliriz:
-
-* `main`: dosya olan `main.py` (yani Python "modülü").
-* `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` nesnesi.
-* `--reload`: kod değişikliklerinin ardından sunucuyu otomatik olarak yeniden başlatır. Bu parameteyi sadece geliştirme aşamasında kullanmalıyız.
-
-///
-
-Çıktı olarak şöyle bir satır ile karşılaşacaksınız:
+Çıktıda, şuna benzer bir satır göreceksiniz:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Bu satır, yerel makinenizde uygulamanızın çalıştığı bağlantıyı gösterir.
+Bu satır, uygulamanızın yerel makinenizde hangi URL'de sunulduğunu gösterir.
 
-### Kontrol Edelim
+### Kontrol Edelim { #check-it }
 
-Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> bağlantısına gidin.
+Tarayıcınızı açıp [http://127.0.0.1:8000](http://127.0.0.1:8000) adresine gidin.
 
-Şu şekilde bir JSON yanıtı ile karşılaşacağız:
+Şu şekilde bir JSON response göreceksiniz:
 
 ```JSON
 {"message": "Hello World"}
 ```
 
-### Etkileşimli API Dokümantasyonu
+### Etkileşimli API Dokümantasyonu { #interactive-api-docs }
 
-Şimdi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> bağlantısını açalım.
+Şimdi [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidin.
 
-<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan otomatik etkileşimli bir API dokümantasyonu göreceğiz:
+Otomatik etkileşimli API dokümantasyonunu ([Swagger UI](https://github.com/swagger-api/swagger-ui) tarafından sağlanan) göreceksiniz:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternatif API Dokümantasyonu
+### Alternatif API Dokümantasyonu { #alternative-api-docs }
 
-Şimdi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> bağlantısını açalım.
+Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan otomatik dokümantasyonu göreceğiz:
+Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanan) göreceksiniz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+### OpenAPI { #openapi }
 
-**FastAPI**, **OpenAPI** standardını kullanarak tüm API'ınızın tamamını tanımlayan bir "şema" oluşturur.
+**FastAPI**, API'ları tanımlamak için **OpenAPI** standardını kullanarak tüm API'nızın tamamını içeren bir "şema" üretir.
 
-#### "Şema"
+#### "Şema" { #schema }
 
-"Şema", bir şeyin tanımı veya açıklamasıdır. Geliştirilen koddan ziyade soyut bir açıklamadır.
+"Şema", bir şeyin tanımı veya açıklamasıdır. Onu uygulayan kod değil, sadece soyut bir açıklamadır.
 
-#### API "Şeması"
+#### API "şeması" { #api-schema }
 
-Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten bir şartnamedir.
+Bu durumda, [OpenAPI](https://github.com/OAI/OpenAPI-Specification), API'nızın şemasını nasıl tanımlayacağınızı belirleyen bir şartnamedir.
 
-Bu şema tanımı, API yollarınızla birlikte yollarınızın aldığı olası parametreler gibi tanımlamaları içerir.
+Bu şema tanımı, API path'leriniz, alabilecekleri olası parametreler vb. şeyleri içerir.
 
-#### Veri "Şeması"
+#### Veri "şeması" { #data-schema }
 
 "Şema" terimi, JSON içeriği gibi bazı verilerin şeklini de ifade edebilir.
 
-Bu durumda, JSON özellikleri ve sahip oldukları veri türleri gibi anlamlarına gelir.
+Bu durumda, JSON attribute'ları ve sahip oldukları veri türleri vb. anlamına gelir.
 
-#### OpenAPI ve JSON Şema
+#### OpenAPI ve JSON Schema { #openapi-and-json-schema }
 
-OpenAPI, API'niz için bir API şeması tanımlar. Ve bu şema, JSON veri şemaları standardı olan **JSON Şema** kullanılarak API'niz tarafından gönderilen ve alınan verilerin tanımlarını (veya "şemalarını") içerir.
+OpenAPI, API'nız için bir API şeması tanımlar. Ve bu şema, JSON veri şemaları standardı olan **JSON Schema** kullanılarak API'nız tarafından gönderilen ve alınan verilerin tanımlarını (veya "şemalarını") içerir.
 
-#### `openapi.json` Dosyasına Göz At
+#### `openapi.json` Dosyasına Göz At { #check-the-openapi-json }
 
-Ham OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'ınızın tanımlamalarını içeren bir JSON (şeması) oluşturur.
+Ham OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'nızın açıklamalarını içeren bir JSON (şema) üretir.
 
-Bu şemayı direkt olarak <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> bağlantısından görüntüleyebilirsiniz.
+Bunu doğrudan şuradan görebilirsiniz: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
-Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
+Şuna benzer bir şekilde başlayan bir JSON gösterecektir:
 
 ```JSON
 {
@@ -119,79 +135,136 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 ...
 ```
 
-#### OpenAPI Ne İşe Yarar?
+#### OpenAPI Ne İşe Yarar? { #what-is-openapi-for }
 
-OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
+OpenAPI şeması, dahil edilen iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
-OpenAPI'ya dayalı düzinelerce alternatif etkileşimli dokümantasyon aracı mevcuttur. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
+Ve OpenAPI tabanlı düzinelerce alternatif vardır. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
 
-Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gibi istemciler için otomatik olarak kod oluşturabilirsiniz.
+Ayrıca, API'nızla iletişim kuran istemciler için otomatik olarak kod üretmekte de kullanabilirsiniz. Örneğin frontend, mobil veya IoT uygulamaları.
 
-## Adım Adım Özetleyelim
+### `pyproject.toml` içinde uygulama `entrypoint`'ını yapılandırın { #configure-the-app-entrypoint-in-pyproject-toml }
 
-### Adım 1: `FastAPI`yı Projemize Dahil Edelim
+Uygulamanızın nerede bulunduğunu `pyproject.toml` dosyasında şöyle yapılandırabilirsiniz:
 
-{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
 
-`FastAPI`, API'niz için tüm işlevselliği sağlayan bir Python sınıfıdır.
+Bu `entrypoint`, `fastapi` komutuna uygulamayı şu şekilde import etmesi gerektiğini söyler:
+
+```python
+from main import app
+```
+
+Kodunuz şöyle yapılandırılmışsa:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+O zaman `entrypoint`'i şöyle ayarlardınız:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+Bu da şuna eşdeğer olur:
+
+```python
+from backend.main import app
+```
+
+### Path ile `fastapi dev` { #fastapi-dev-with-path }
+
+Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
+
+```console
+$ fastapi dev main.py
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i geçmeyi hatırlamanız gerekir.
+
+Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
+
+### Uygulamanızı Yayınlayın (opsiyonel) { #deploy-your-app-optional }
+
+İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; henüz katılmadıysanız gidip bekleme listesine yazılın. 🚀
+
+Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek komutla deploy edebilirsiniz.
+
+Deploy etmeden önce giriş yaptığınızdan emin olun:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Ardından uygulamanızı deploy edin:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
+
+## Adım Adım Özetleyelim { #recap-step-by-step }
+
+### Adım 1: `FastAPI` import edin { #step-1-import-fastapi }
+
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+
+`FastAPI`, API'nız için tüm işlevselliği sağlayan bir Python class'ıdır.
 
 /// note | Teknik Detaylar
 
-`FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
+`FastAPI`, doğrudan `Starlette`'ten miras alan bir class'tır.
 
-<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+[Starlette](https://www.starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ///
 
-### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
+### Adım 2: bir `FastAPI` "instance"ı oluşturun { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
-Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
+Burada `app` değişkeni `FastAPI` class'ının bir "instance"ı olacaktır.
 
-Bu, tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
+Bu, tüm API'nızı oluşturmak için ana etkileşim noktası olacaktır.
 
-Bu `app` değişkeni, `uvicorn` komutunda atıfta bulunulan değişkenin ta kendisidir.
+### Adım 3: bir *path operation* oluşturun { #step-3-create-a-path-operation }
 
-<div class="termy">
+#### Path { #path }
 
-```console
-$ uvicorn main:app --reload
+Buradaki "Path", URL'in ilk `/` işaretinden başlayarak son kısmını ifade eder.
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-Uygulamanızı aşağıdaki gibi oluşturursanız:
-
-{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
-
-Ve bunu `main.py` dosyasına yerleştirirseniz eğer `uvicorn` komutunu şu şekilde çalıştırabilirsiniz:
-
-<div class="termy">
-
-```console
-$ uvicorn main:my_awesome_api --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-### Adım 3: Bir *Yol Operasyonu* Oluşturalım
-
-#### <abbr title="Yol: Path">Yol</abbr>
-
-Burada "yol" bağlantıda bulunan ilk `/` ile başlayan ve sonrasında gelen kısmı ifade eder.
-
-Yani, şu şekilde bir bağlantıda:
+Yani, şu şekilde bir URL'de:
 
 ```
 https://example.com/items/foo
 ```
 
-... yol şöyle olur:
+...path şöyle olur:
 
 ```
 /items/foo
@@ -199,77 +272,77 @@ https://example.com/items/foo
 
 /// info | Bilgi
 
-"Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
+Bir "path" genellikle "endpoint" veya "route" olarak da adlandırılır.
 
 ///
 
-Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yöntemidir.
+Bir API oluştururken, "path", "concerns" ve "resources" ayrımını yapmanın ana yoludur.
 
-#### Operasyonlar
+#### Operation { #operation }
 
-Burada "operasyon" HTTP "metodlarından" birini ifade eder.
+Burada "Operation", HTTP "method"larından birini ifade eder.
 
-Bunlardan biri:
+Şunlardan biri:
 
 * `POST`
 * `GET`
 * `PUT`
 * `DELETE`
 
-...veya daha az kullanılan diğerleri:
+...ve daha egzotik olanlar:
 
 * `OPTIONS`
 * `HEAD`
 * `PATCH`
 * `TRACE`
 
-HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her bir yol ile iletişim kurabilirsiniz.
+HTTP protokolünde, her bir path ile bu "method"lardan biri (veya birden fazlası) ile iletişim kurabilirsiniz.
 
 ---
 
-API oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
+API oluştururken, normalde belirli bir aksiyon için bu spesifik HTTP method'larını kullanırsınız.
 
-Normalde kullanılan:
+Normalde şunları kullanırsınız:
 
-* `POST`: veri oluşturmak.
-* `GET`: veri okumak.
-* `PUT`: veriyi güncellemek.
-* `DELETE`: veriyi silmek.
+* `POST`: veri oluşturmak için.
+* `GET`: veri okumak için.
+* `PUT`: veriyi güncellemek için.
+* `DELETE`: veriyi silmek için.
 
-Bu nedenle, OpenAPI'da HTTP metodlarından her birine "operasyon" denir.
+Bu nedenle, OpenAPI'da HTTP method'larının her birine "operation" denir.
 
-Biz de onları "**operasyonlar**" olarak adlandıracağız.
+Biz de bunlara "**operation**" diyeceğiz.
 
-#### Bir *Yol Operasyonu Dekoratörü* Tanımlayalım
+#### Bir *path operation decorator* tanımlayın { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
-`@app.get("/")` dekoratörü, **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
+`@app.get("/")`, **FastAPI**'a hemen altındaki fonksiyonun şuraya giden request'leri ele almakla sorumlu olduğunu söyler:
 
-* <abbr title="Bir HTTP GET metodu"><code>get</code> operasyonu</abbr> ile
-* `/` yoluna gelen istekler
+* path `/`
+* <dfn title="bir HTTP GET methodu"><code>get</code> operation</dfn> kullanarak
 
 /// info | `@decorator` Bilgisi
 
-Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
+Python'daki `@something` söz dizimi "decorator" olarak adlandırılır.
 
-Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor) fonksiyonların üzerlerine yerleştirilirler.
+Onu bir fonksiyonun üstüne koyarsınız. Güzel, dekoratif bir şapka gibi (sanırım terim de buradan geliyor).
 
-Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
+Bir "decorator", altındaki fonksiyonu alır ve onunla bir şey yapar.
 
-Bizim durumumuzda, kullandığımız dekoratör, **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
+Bizim durumumuzda bu decorator, **FastAPI**'a altındaki fonksiyonun **path** `/` ile **operation** `get`'e karşılık geldiğini söyler.
 
-Bu bir **yol operasyonu dekoratörüdür**.
+Bu, "**path operation decorator**"dır.
 
 ///
 
-Ayrıca diğer operasyonları da kullanabilirsiniz:
+Diğer operation'ları da kullanabilirsiniz:
 
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
 
-Daha az kullanılanları da kullanabilirsiniz:
+Ve daha egzotik olanları:
 
 * `@app.options()`
 * `@app.head()`
@@ -278,58 +351,79 @@ Daha az kullanılanları da kullanabilirsiniz:
 
 /// tip | İpucu
 
-Her işlemi (HTTP metod) istediğiniz gibi kullanmakta özgürsünüz.
+Her bir operation'ı (HTTP method'unu) istediğiniz gibi kullanmakta özgürsünüz.
 
-**FastAPI** herhangi bir özel amacı veya anlamı olması konusunda ısrarcı olmaz.
+**FastAPI** herhangi bir özel anlamı zorunlu kılmaz.
 
 Buradaki bilgiler bir gereklilik değil, bir kılavuz olarak sunulmaktadır.
 
-Mesela GraphQL kullanırkan genelde tüm işlemleri yalnızca `POST` operasyonunu kullanarak gerçekleştirirsiniz.
+Örneğin GraphQL kullanırken, normalde tüm aksiyonları yalnızca `POST` operation'ları kullanarak gerçekleştirirsiniz.
 
 ///
 
-### Adım 4: **Yol Operasyonu Fonksiyonunu** Tanımlayın
+### Adım 4: **path operation function**'ı tanımlayın { #step-4-define-the-path-operation-function }
 
-Aşağıdaki, bizim **yol operasyonu fonksiyonumuzdur**:
+Bu bizim "**path operation function**"ımız:
 
-* **yol**: `/`
-* **operasyon**: `get`
-* **fonksiyon**: "dekoratör"ün (`@app.get("/")`'in) altındaki fonksiyondur.
+* **path**: `/`.
+* **operation**: `get`.
+* **function**: "decorator"ün altındaki fonksiyondur (`@app.get("/")`'in altındaki).
 
-{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Bu bir Python fonksiyonudur.
 
-Bu fonksiyon bir `GET` işlemi kullanılarak "`/`" bağlantısına bir istek geldiğinde **FastAPI** tarafından çağrılır.
+**FastAPI**, "`/`" URL'ine `GET` operation kullanarak bir request aldığında bu fonksiyonu çağıracaktır.
 
-Bu durumda bu fonksiyon bir `async` fonksiyondur.
+Bu durumda, bu bir `async` fonksiyondur.
 
 ---
 
-Bu fonksiyonu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz.
+Bunu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz:
 
-{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Not
 
-Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasını kontrol edebilirsiniz.
+Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry) sayfasına bakın.
 
 ///
 
-### Adım 5: İçeriği Geri Döndürün
+### Adım 5: içeriği döndürün { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
-Bir `dict`, `list` veya `str`, `int` gibi tekil değerler döndürebilirsiniz.
+Bir `dict`, `list`, `str`, `int` vb. tekil değerler döndürebilirsiniz.
 
-Ayrıca, Pydantic modelleri de döndürebilirsiniz (bu konu ileriki aşamalarda irdelenecektir).
+Ayrıca Pydantic modelleri de döndürebilirsiniz (bununla ilgili daha fazlasını ileride göreceksiniz).
 
-Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok nesne ve model vardır. En beğendiklerinizi kullanmayı deneyin, yüksek ihtimalle destekleniyordur.
+Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok nesne ve model vardır. En sevdiğiniz nesne/model'leri kullanmayı deneyin; büyük ihtimalle zaten destekleniyordur.
 
-## Özet
+### Adım 6: Deploy edin { #step-6-deploy-it }
 
-* `FastAPI`'yı projemize dahil ettik.
-* Bir `app` örneği oluşturduk.
-* Bir **yol operasyonu dekoratörü** (`@app.get("/")` gibi) yazdık.
-* Bir **yol operasyonu fonksiyonu** (`def root(): ...` gibi) yazdık.
-* Geliştirme sunucumuzu (`uvicorn main:app --reload` gibi) çalıştırdık.
+Uygulamanızı tek komutla **[FastAPI Cloud](https://fastapicloud.com)**'a deploy edin: `fastapi deploy`. 🎉
+
+#### FastAPI Cloud Hakkında { #about-fastapi-cloud }
+
+**[FastAPI Cloud](https://fastapicloud.com)**, **FastAPI**'ın arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
+
+Minimum eforla bir API'ı **oluşturma**, **deploy etme** ve **erişme** sürecini sadeleştirir.
+
+FastAPI ile uygulama geliştirirken yaşadığınız aynı **developer experience**'ı, onları buluta **deploy etme** aşamasına da taşır. 🎉
+
+FastAPI Cloud, *FastAPI and friends* açık kaynak projelerinin birincil sponsoru ve finansman sağlayıcısıdır. ✨
+
+#### Diğer cloud sağlayıcılarına deploy edin { #deploy-to-other-cloud-providers }
+
+FastAPI açık kaynaklıdır ve standartlara dayanır. FastAPI uygulamalarını seçtiğiniz herhangi bir cloud sağlayıcısına deploy edebilirsiniz.
+
+FastAPI uygulamalarını onlarla deploy etmek için cloud sağlayıcınızın kılavuzlarını takip edin. 🤓
+
+## Özet { #recap }
+
+* `FastAPI` import edin.
+* Bir `app` instance'ı oluşturun.
+* `@app.get("/")` gibi decorator'ları kullanarak bir **path operation decorator** yazın.
+* Bir **path operation function** tanımlayın; örneğin `def root(): ...`.
+* `fastapi dev` komutunu kullanarak geliştirme sunucusunu çalıştırın.
+* İsterseniz `fastapi deploy` ile uygulamanızı deploy edin.

@@ -1,22 +1,26 @@
-# レスポンスを直接返す
+# レスポンスを直接返す { #return-a-response-directly }
 
-**FastAPI** の *path operation* では、通常は任意のデータを返すことができます: 例えば、 `dict`、`list`、Pydanticモデル、データベースモデルなどです。
+**FastAPI** の *path operation* では、通常は任意のデータを返すことができます: 例えば、`dict`、`list`、Pydanticモデル、データベースモデルなどです。
 
-デフォルトでは、**FastAPI** は [JSON互換エンコーダ](../tutorial/encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` により、返す値を自動的にJSONに変換します。
+[レスポンスモデル](../tutorial/response-model.md) を宣言した場合、FastAPI は Pydantic を使ってデータをJSONにシリアライズします。
 
-このとき背後では、JSON互換なデータ (例えば`dict`) を、クライアントへ送信されるレスポンスとして利用される `JSONResponse` の中に含めます。
+レスポンスモデルを宣言しない場合、FastAPI は [JSON互換エンコーダ](../tutorial/encoder.md) で説明されている `jsonable_encoder` を使用し、その結果を `JSONResponse` に入れます。
 
-しかし、*path operation* から `JSONResponse` を直接返すこともできます。
+また、`JSONResponse` を直接作成して返すこともできます。
 
-これは例えば、カスタムヘッダーやcookieを返すときに便利です。
+/// tip
 
-## `Response` を返す
+通常は、`JSONResponse` を直接返すよりも、[レスポンスモデル](../tutorial/response-model.md) を使うほうがパフォーマンスが大幅に良くなります。これは、Pydantic によるシリアライズが Rust で実行されるためです。
+
+///
+
+## `Response` を返す { #return-a-response }
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
-/// tip | 豆知識
+/// info
 
-`JSONResponse` それ自体は、 `Response` のサブクラスです。
+`JSONResponse` それ自体は、`Response` のサブクラスです。
 
 ///
 
@@ -26,7 +30,9 @@
 
 これは多くの柔軟性を提供します。任意のデータ型を返したり、任意のデータ宣言やバリデーションをオーバーライドできます。
 
-## `jsonable_encoder` を `Response` の中で使う
+同時に多くの責任も伴います。返すデータが正しく、正しいフォーマットであり、シリアライズ可能であることなどを、あなたが保証しなければなりません。
+
+## `jsonable_encoder` を `Response` の中で使う { #using-the-jsonable-encoder-in-a-response }
 
 **FastAPI** はあなたが返す `Response` に対して何も変更を加えないので、コンテンツが準備できていることを保証しなければなりません。
 
@@ -34,7 +40,7 @@
 
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | 技術詳細
 
@@ -44,22 +50,34 @@
 
 ///
 
-## カスタム `Response` を返す
+## カスタム `Response` を返す { #returning-a-custom-response }
 
-上記の例では必要な部分を全て示していますが、あまり便利ではありません。`item` を直接返すことができるし、**FastAPI** はそれを `dict` に変換して `JSONResponse`　に含めてくれるなど。すべて、デフォルトの動作です。
+上記の例では必要な部分を全て示していますが、あまり便利ではありません。`item` を直接返すことができるし、**FastAPI** はそれを `dict` に変換して `JSONResponse` に含めてくれるなど。すべて、デフォルトの動作です。
 
 では、これを使ってカスタムレスポンスをどう返すか見てみましょう。
 
-<a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>レスポンスを返したいとしましょう。
+[XML](https://en.wikipedia.org/wiki/XML)レスポンスを返したいとしましょう。
 
 XMLを文字列にし、`Response` に含め、それを返します。
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
-## 備考
+## Response Model の仕組み { #how-a-response-model-works }
+
+path operation で [Response Model - 戻り値の型](../tutorial/response-model.md) を宣言すると、**FastAPI** はそれを使って Pydantic によりデータをJSONにシリアライズします。
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
+これは Rust 側で行われるため、通常の Python と `JSONResponse` クラスで行う場合より、パフォーマンスははるかに良くなります。
+
+`response_model` や戻り値の型を使用する場合、FastAPI はデータ変換に（低速になりうる）`jsonable_encoder` も `JSONResponse` クラスも使いません。
+
+代わりに、response model（または戻り値の型）を使って Pydantic が生成した JSON のバイト列をそのまま用い、JSON 用の正しいメディアタイプ（`application/json`）を持つ `Response` を直接返します。
+
+## 備考 { #notes }
 
 `Response` を直接返す場合、バリデーションや、変換 (シリアライズ) や、自動ドキュメントは行われません。
 
-しかし、[Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}に記載されたようにドキュメントを書くこともできます。
+しかし、[Additional Responses in OpenAPI](additional-responses.md)に記載されたようにドキュメントを書くこともできます。
 
 後のセクションで、カスタム `Response` を使用・宣言しながら、自動的なデータ変換やドキュメンテーションを行う方法を説明します。

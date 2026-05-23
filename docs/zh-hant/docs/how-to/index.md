@@ -1,4 +1,4 @@
-# 使用指南 - 範例集
+# 使用指南 - 範例集 { #how-to-recipes }
 
 在這裡，你將會看到**不同主題**的範例或「如何使用」的指南。
 
@@ -8,6 +8,6 @@
 
 /// tip
 
-如果你想要以結構化的方式**學習 FastAPI**（推薦），請前往[教學 - 使用者指南](../tutorial/index.md){.internal-link target=_blank}逐章閱讀。
+如果你想要以結構化的方式**學習 FastAPI**（推薦），請前往[教學 - 使用者指南](../tutorial/index.md)逐章閱讀。
 
 ///

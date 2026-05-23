@@ -1,34 +1,27 @@
-from typing import List
-
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class RecursiveItem(BaseModel):
-    sub_items: List["RecursiveItem"] = []
+    sub_items: list["RecursiveItem"] = []
     name: str
 
 
 class RecursiveSubitemInSubmodel(BaseModel):
-    sub_items2: List["RecursiveItemViaSubmodel"] = []
+    sub_items2: list["RecursiveItemViaSubmodel"] = []
     name: str
 
 
 class RecursiveItemViaSubmodel(BaseModel):
-    sub_items1: List[RecursiveSubitemInSubmodel] = []
+    sub_items1: list[RecursiveSubitemInSubmodel] = []
     name: str
 
 
-if PYDANTIC_V2:
-    RecursiveItem.model_rebuild()
-    RecursiveSubitemInSubmodel.model_rebuild()
-    RecursiveItemViaSubmodel.model_rebuild()
-else:
-    RecursiveItem.update_forward_refs()
-    RecursiveSubitemInSubmodel.update_forward_refs()
+RecursiveItem.model_rebuild()
+RecursiveSubitemInSubmodel.model_rebuild()
+RecursiveItemViaSubmodel.model_rebuild()
 
 
 @app.get("/items/recursive", response_model=RecursiveItem)

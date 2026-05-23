@@ -4,56 +4,6 @@ Use the informal grammar (use "tú" instead of "usted").
 
 For instructions or titles in imperative, keep them in imperative, for example "Edit it" to "Edítalo".
 
-There are special blocks of notes, tips and others that look like:
-
-/// note
-
-To translate it, keep the same line and add the translation after a vertical bar:
-
-/// note | Nota
-
-Some examples:
-
-Source:
-
-/// tip
-
-Result:
-
-/// tip | Consejo
-
-Source:
-
-/// details | Preview
-
-Result:
-
-/// details | Vista previa
-
-Source:
-
-/// warning
-
-Result:
-
-/// warning | Advertencia
-
-Source:
-
-/// info
-
-Result:
-
-/// info | Información
-
-Source:
-
-/// note | Technical Details
-
-Result:
-
-/// note | Detalles Técnicos
-
 ---
 
 For the next terms, use the following translations:
@@ -99,7 +49,7 @@ For the next terms, use the following translations:
 * Deep Learning: Deep Learning (do not translate to "Aprendizaje Profundo")
 * callback hell: callback hell (do not translate to "infierno de callbacks")
 * tip: Consejo (do not translate to "tip")
-* check: Revisa (do not translate to "chequea" or "comprobación)
+* check: Revisa (do not translate to "chequea" or "comprobación")
 * Cross-Origin Resource Sharing: Cross-Origin Resource Sharing (do not translate to "Compartición de Recursos de Origen Cruzado")
 * Release Notes: Release Notes (do not translate to "Notas de la Versión")
 * Semantic Versioning: Semantic Versioning (do not translate to "Versionado Semántico")
@@ -133,8 +83,8 @@ For the next terms, use the following translations:
 * instantiate: crear un instance (do not translate to "instanciar")
 * OAuth2 Scopes: Scopes de OAuth2 (do not translate to "Alcances de OAuth2")
 * on the fly: sobre la marcha (do not translate to "al vuelo")
-* terminal: terminal (femenine, as in "la terminal")
-* terminals: terminales (plural femenine, as in "las terminales")
+* terminal: terminal (feminine, as in "la terminal")
+* terminals: terminales (plural feminine, as in "las terminales")
 * lifespan: lifespan (do not translate to "vida útil" or "tiempo de vida")
 * unload: quitar de memoria (do not translate to "descargar")
 * mount (noun): mount (do not translate to "montura")
@@ -146,3 +96,4 @@ For the next terms, use the following translations:
 * load balancer: load balancer (do not translate to "balanceador de carga")
 * load balance: load balance (do not translate to "balancear carga")
 * self hosting: self hosting (do not translate to "auto alojamiento")
+* timing attack: timing attack (do not translate to "ataque de temporización")

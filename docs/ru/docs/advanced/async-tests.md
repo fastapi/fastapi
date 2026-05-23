@@ -1,4 +1,4 @@
-# Асинхронное тестирование
+# Асинхронное тестирование { #async-tests }
 
 Вы уже видели как тестировать **FastAPI** приложение, используя имеющийся класс `TestClient`. К этому моменту вы видели только как писать тесты в синхронном стиле без использования `async` функций.
 
@@ -6,21 +6,21 @@
 
 Давайте рассмотрим, как мы можем это реализовать.
 
-## pytest.mark.anyio
+## pytest.mark.anyio { #pytest-mark-anyio }
 
 Если мы хотим вызывать асинхронные функции в наших тестах, то наши тестовые функции должны быть асинхронными. AnyIO предоставляет для этого отличный плагин, который позволяет нам указывать, какие тестовые функции должны вызываться асинхронно.
 
-## HTTPX
+## HTTPX { #httpx }
 
 Даже если **FastAPI** приложение использует обычные функции `def` вместо `async def`, это все равно `async` приложение 'под капотом'.
 
 Чтобы работать с асинхронным FastAPI приложением в ваших обычных тестовых функциях `def`, используя стандартный pytest, `TestClient` внутри себя делает некоторую магию. Но эта магия перестает работать, когда мы используем его внутри асинхронных функций. Запуская наши тесты асинхронно, мы больше не можем использовать `TestClient` внутри наших тестовых функций.
 
-`TestClient` основан на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, и, к счастью, мы можем использовать его (`HTTPX`) напрямую для тестирования API.
+`TestClient` основан на [HTTPX](https://www.python-httpx.org), и, к счастью, мы можем использовать его (`HTTPX`) напрямую для тестирования API.
 
-## Пример
+## Пример { #example }
 
-В качестве простого примера, давайте рассмотрим файловую структуру, схожую с описанной в [Большие приложения](../tutorial/bigger-applications.md){.internal-link target=_blank} и [Тестирование](../tutorial/testing.md){.internal-link target=_blank}:
+В качестве простого примера, давайте рассмотрим файловую структуру, схожую с описанной в [Большие приложения](../tutorial/bigger-applications.md) и [Тестирование](../tutorial/testing.md):
 
 ```
 .
@@ -32,13 +32,13 @@
 
 Файл `main.py`:
 
-{* ../../docs_src/async_tests/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 Файл `test_main.py` содержит тесты для `main.py`, теперь он может выглядеть так:
 
-{* ../../docs_src/async_tests/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
-## Запуск тестов
+## Запуск тестов { #run-it }
 
 Вы можете запустить свои тесты как обычно:
 
@@ -52,11 +52,11 @@ $ pytest
 
 </div>
 
-## Подробнее
+## Подробнее { #in-detail }
 
 Маркер `@pytest.mark.anyio` говорит pytest, что тестовая функция должна быть вызвана асинхронно:
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | Подсказка
 
@@ -66,7 +66,7 @@ $ pytest
 
 Затем мы можем создать `AsyncClient` со ссылкой на приложение и посылать асинхронные запросы, используя `await`.
 
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 Это эквивалентно следующему:
 
@@ -84,16 +84,16 @@ response = client.get('/')
 
 /// warning | Внимание
 
-Если ваше приложение полагается на lifespan события, то `AsyncClient` не запустит эти события. Чтобы обеспечить их срабатывание используйте `LifespanManager` из <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Если ваше приложение полагается на lifespan события, то `AsyncClient` не запустит эти события. Чтобы обеспечить их срабатывание используйте `LifespanManager` из [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).
 
 ///
 
-## Вызов других асинхронных функций
+## Вызов других асинхронных функций { #other-asynchronous-function-calls }
 
 Теперь тестовая функция стала асинхронной, поэтому внутри нее вы можете вызывать также и другие `async` функции, не связанные с отправлением запросов в ваше FastAPI приложение. Как если бы вы вызывали их в любом другом месте вашего кода.
 
 /// tip | Подсказка
 
-Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), то не забывайте инициализировать объекты, которым нужен цикл событий (event loop), только внутри асинхронных функций, например, в `'@app.on_event("startup")` callback.
+Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании [MongoDB's MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), то не забывайте создавать экземпляры объектов, которым нужен цикл событий (event loop), только внутри асинхронных функций, например, в `@app.on_event("startup")` callback.
 
 ///

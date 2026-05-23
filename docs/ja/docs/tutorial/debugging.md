@@ -1,14 +1,14 @@
-# デバッグ
+# デバッグ { #debugging }
 
 Visual Studio CodeやPyCharmなどを使用して、エディター上でデバッガーと連携できます。
 
-## `uvicorn` の実行
+## `uvicorn` を呼び出す { #call-uvicorn }
 
 FastAPIアプリケーション上で、`uvicorn` を直接インポートして実行します:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
-### `__name__ == "__main__"` について
+### `__name__ == "__main__"` について { #about-name-main }
 
 `__name__ == "__main__"` の主な目的は、ファイルが次のコマンドで呼び出されたときに実行されるコードを用意することです:
 
@@ -26,7 +26,7 @@ $ python myapp.py
 from myapp import app
 ```
 
-#### より詳しい説明
+#### より詳しい説明 { #more-details }
 
 ファイルの名前が `myapp.py` だとします。
 
@@ -59,10 +59,10 @@ Pythonによって自動的に作成されたファイル内の内部変数 `__n
 ```Python
 from myapp import app
 
-# Some more code
+# その他のコード
 ```
 
-`myapp.py` 内の自動変数には、値が `"__main __"` の変数 `__name__` はありません。
+その場合、`myapp.py` 内の自動的に作成された変数 `__name__` は、値として `"__main__"` を持ちません。
 
 したがって、以下の行:
 
@@ -74,11 +74,11 @@ from myapp import app
 
 /// info | 情報
 
-より詳しい情報は、<a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">公式Pythonドキュメント</a>を参照してください。
+より詳しい情報は、[公式Pythonドキュメント](https://docs.python.org/3/library/__main__.html)を参照してください。
 
 ///
 
-## デバッガーでコードを実行
+## デバッガーでコードを実行 { #run-your-code-with-your-debugger }
 
 コードから直接Uvicornサーバーを実行しているため、デバッガーから直接Pythonプログラム (FastAPIアプリケーション) を呼び出せます。
 

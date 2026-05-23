@@ -1,14 +1,14 @@
-# SQL (Relational) Databases
+# SQL (Relational) Databases { #sql-relational-databases }
 
 **FastAPI** doesn't require you to use a SQL (relational) database. But you can use **any database** that you want.
 
-Here we'll see an example using <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>.
+Here we'll see an example using [SQLModel](https://sqlmodel.tiangolo.com/).
 
-**SQLModel** is built on top of <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> and Pydantic. It was made by the same author of **FastAPI** to be the perfect match for FastAPI applications that need to use **SQL databases**.
+**SQLModel** is built on top of [SQLAlchemy](https://www.sqlalchemy.org/) and Pydantic. It was made by the same author of **FastAPI** to be the perfect match for FastAPI applications that need to use **SQL databases**.
 
 /// tip
 
-You could use any other SQL or NoSQL database library you want (in some cases called <abbr title="Object Relational Mapper, a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>), FastAPI doesn't force you to use anything. 😎
+You could use any other SQL or NoSQL database library you want (in some cases called <abbr title="Object Relational Mapper: a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>), FastAPI doesn't force you to use anything. 😎
 
 ///
 
@@ -26,15 +26,15 @@ Later, for your production application, you might want to use a database server 
 
 /// tip
 
-There is an official project generator with **FastAPI** and **PostgreSQL** including a frontend and more tools: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+There is an official project generator with **FastAPI** and **PostgreSQL** including a frontend and more tools: [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-This is a very simple and short tutorial, if you want to learn about databases in general, about SQL, or more advanced features, go to the <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel docs</a>.
+This is a very simple and short tutorial, if you want to learn about databases in general, about SQL, or more advanced features, go to the [SQLModel docs](https://sqlmodel.tiangolo.com/).
 
-## Install `SQLModel`
+## Install `SQLModel` { #install-sqlmodel }
 
-First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `sqlmodel`:
+First, make sure you create your [virtual environment](../virtual-environments.md), activate it, and then install `sqlmodel`:
 
 <div class="termy">
 
@@ -45,13 +45,13 @@ $ pip install sqlmodel
 
 </div>
 
-## Create the App with a Single Model
+## Create the App with a Single Model { #create-the-app-with-a-single-model }
 
 We'll create the simplest first version of the app with a single **SQLModel** model first.
 
 Later we'll improve it increasing security and versatility with **multiple models** below. 🤓
 
-### Create Models
+### Create Models { #create-models }
 
 Import `SQLModel` and create a database model:
 
@@ -65,13 +65,13 @@ There are a few differences:
 
 * `Field(primary_key=True)` tells SQLModel that the `id` is the **primary key** in the SQL database (you can learn more about SQL primary keys in the SQLModel docs).
 
-    By having the type as `int | None`, SQLModel will know that this column should be an `INTEGER` in the SQL database and that it should be `NULLABLE`.
+    **Note:** We use `int | None` for the primary key field so that in Python code we can *create an object without an `id`* (`id=None`), assuming the database will *generate it when saving*. SQLModel understands that the database will provide the `id` and *defines the column as a non-null `INTEGER`* in the database schema. See [SQLModel docs on primary keys](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) for details.
 
 * `Field(index=True)` tells SQLModel that it should create a **SQL index** for this column, that would allow faster lookups in the database when reading data filtered by this column.
 
     SQLModel will know that something declared as `str` will be a SQL column of type `TEXT` (or `VARCHAR`, depending on the database).
 
-### Create an Engine
+### Create an Engine { #create-an-engine }
 
 A SQLModel `engine` (underneath it's actually a SQLAlchemy `engine`) is what **holds the connections** to the database.
 
@@ -83,13 +83,13 @@ Using `check_same_thread=False` allows FastAPI to use the same SQLite database i
 
 Don't worry, with the way the code is structured, we'll make sure we use **a single SQLModel *session* per request** later, this is actually what the `check_same_thread` is trying to achieve.
 
-### Create the Tables
+### Create the Tables { #create-the-tables }
 
 We then add a function that uses `SQLModel.metadata.create_all(engine)` to **create the tables** for all the *table models*.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
 
-### Create a Session Dependency
+### Create a Session Dependency { #create-a-session-dependency }
 
 A **`Session`** is what stores the **objects in memory** and keeps track of any changes needed in the data, then it **uses the `engine`** to communicate with the database.
 
@@ -99,7 +99,7 @@ Then we create an `Annotated` dependency `SessionDep` to simplify the rest of th
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-### Create Database Tables on Startup
+### Create Database Tables on Startup { #create-database-tables-on-startup }
 
 We will create the database tables when the application starts.
 
@@ -111,11 +111,11 @@ For production you would probably use a migration script that runs before you st
 
 /// tip
 
-SQLModel will have migration utilities wrapping Alembic, but for now, you can use <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> directly.
+SQLModel will have migration utilities wrapping Alembic, but for now, you can use [Alembic](https://alembic.sqlalchemy.org/en/latest/) directly.
 
 ///
 
-### Create a Hero
+### Create a Hero { #create-a-hero }
 
 Because each SQLModel model is also a Pydantic model, you can use it in the same **type annotations** that you could use Pydantic models.
 
@@ -127,32 +127,32 @@ The same way, you can declare it as the function's **return type**, and then the
 
 Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
 
-### Read Heroes
+### Read Heroes { #read-heroes }
 
 We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-### Read One Hero
+### Read One Hero { #read-one-hero }
 
 We can **read** a single `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-### Delete a Hero
+### Delete a Hero { #delete-a-hero }
 
 We can also **delete** a `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
-### Run the App
+### Run the App { #run-the-app }
 
 You can run the app:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -165,7 +165,7 @@ Then go to the `/docs` UI, you will see that **FastAPI** is using these **models
 <img src="/img/tutorial/sql-databases/image01.png">
 </div>
 
-## Update the App with Multiple Models
+## Update the App with Multiple Models { #update-the-app-with-multiple-models }
 
 Now let's **refactor** this app a bit to increase **security** and **versatility**.
 
@@ -177,7 +177,7 @@ Additionally, we create a `secret_name` for the hero, but so far, we are returni
 
 We'll fix these things by adding a few **extra models**. Here's where SQLModel will shine. ✨
 
-### Create Multiple Models
+### Create Multiple Models { #create-multiple-models }
 
 In **SQLModel**, any model class that has `table=True` is a **table model**.
 
@@ -185,7 +185,7 @@ And any model class that doesn't have `table=True` is a **data model**, these on
 
 With SQLModel, we can use **inheritance** to **avoid duplicating** all the fields in all the cases.
 
-#### `HeroBase` - the base class
+#### `HeroBase` - the base class { #herobase-the-base-class }
 
 Let's start with a `HeroBase` model that has all the **fields that are shared** by all the models:
 
@@ -194,7 +194,7 @@ Let's start with a `HeroBase` model that has all the **fields that are shared** 
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
 
-#### `Hero` - the *table model*
+#### `Hero` - the *table model* { #hero-the-table-model }
 
 Then let's create `Hero`, the actual *table model*, with the **extra fields** that are not always in the other models:
 
@@ -210,7 +210,7 @@ Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
 
-#### `HeroPublic` - the public *data model*
+#### `HeroPublic` - the public *data model* { #heropublic-the-public-data-model }
 
 Next, we create a `HeroPublic` model, this is the one that will be **returned** to the clients of the API.
 
@@ -236,7 +236,7 @@ All the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
 
-#### `HeroCreate` - the *data model* to create a hero
+#### `HeroCreate` - the *data model* to create a hero { #herocreate-the-data-model-to-create-a-hero }
 
 Now we create a `HeroCreate` model, this is the one that will **validate** the data from the clients.
 
@@ -260,7 +260,7 @@ The fields of `HeroCreate` are:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
 
-#### `HeroUpdate` - the *data model* to update a hero
+#### `HeroUpdate` - the *data model* to update a hero { #heroupdate-the-data-model-to-update-a-hero }
 
 We didn't have a way to **update a hero** in the previous version of the app, but now with **multiple models**, we can do it. 🎉
 
@@ -278,7 +278,7 @@ The fields of `HeroUpdate` are:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
 
-### Create with `HeroCreate` and return a `HeroPublic`
+### Create with `HeroCreate` and return a `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
 Now that we have **multiple models**, we can update the parts of the app that use them.
 
@@ -300,19 +300,19 @@ By declaring it in `response_model` we are telling **FastAPI** to do its thing, 
 
 ///
 
-### Read Heroes with `HeroPublic`
+### Read Heroes with `HeroPublic` { #read-heroes-with-heropublic }
 
 We can do the same as before to **read** `Hero`s, again, we use `response_model=list[HeroPublic]` to ensure that the data is validated and serialized correctly.
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
 
-### Read One Hero with `HeroPublic`
+### Read One Hero with `HeroPublic` { #read-one-hero-with-heropublic }
 
 We can **read** a single hero:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
 
-### Update a Hero with `HeroUpdate`
+### Update a Hero with `HeroUpdate` { #update-a-hero-with-heroupdate }
 
 We can **update a hero**. For this we use an HTTP `PATCH` operation.
 
@@ -322,7 +322,7 @@ Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with th
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
 
-### Delete a Hero Again
+### Delete a Hero Again { #delete-a-hero-again }
 
 **Deleting** a hero stays pretty much the same.
 
@@ -330,14 +330,14 @@ We won't satisfy the desire to refactor everything in this one. 😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
-### Run the App Again
+### Run the App Again { #run-the-app-again }
 
 You can run the app again:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -350,8 +350,8 @@ If you go to the `/docs` API UI, you will see that it is now updated, and it won
 <img src="/img/tutorial/sql-databases/image02.png">
 </div>
 
-## Recap
+## Recap { #recap }
 
-You can use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> to interact with a SQL database and simplify the code with *data models*  and *table models*.
+You can use [**SQLModel**](https://sqlmodel.tiangolo.com/) to interact with a SQL database and simplify the code with *data models*  and *table models*.
 
-You can learn a lot more at the **SQLModel** docs, there's a longer mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial on using SQLModel with **FastAPI**</a>. 🚀
+You can learn a lot more at the **SQLModel** docs, there's a longer mini [tutorial on using SQLModel with **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

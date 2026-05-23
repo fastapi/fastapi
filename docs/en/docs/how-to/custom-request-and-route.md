@@ -1,4 +1,4 @@
-# Custom Request and APIRoute class
+# Custom Request and APIRoute class { #custom-request-and-apiroute-class }
 
 In some cases, you may want to override the logic used by the `Request` and `APIRoute` classes.
 
@@ -14,25 +14,25 @@ If you are just starting with **FastAPI** you might want to skip this section.
 
 ///
 
-## Use cases
+## Use cases { #use-cases }
 
 Some use cases include:
 
-* Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Converting non-JSON request bodies to JSON (e.g. [`msgpack`](https://msgpack.org/index.html)).
 * Decompressing gzip-compressed request bodies.
 * Automatically logging all request bodies.
 
-## Handling custom request body encodings
+## Handling custom request body encodings { #handling-custom-request-body-encodings }
 
 Let's see how to make use of a custom `Request` subclass to decompress gzip requests.
 
 And an `APIRoute` subclass to use that custom request class.
 
-### Create a custom `GzipRequest` class
+### Create a custom `GzipRequest` class { #create-a-custom-gziprequest-class }
 
 /// tip
 
-This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware).
 
 ///
 
@@ -42,9 +42,9 @@ If there's no `gzip` in the header, it will not try to decompress the body.
 
 That way, the same route class can handle gzip compressed or uncompressed requests.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
-### Create a custom `GzipRoute` class
+### Create a custom `GzipRoute` class { #create-a-custom-gziproute-class }
 
 Next, we create a custom subclass of `fastapi.routing.APIRoute` that will make use of the `GzipRequest`.
 
@@ -54,7 +54,7 @@ This method returns a function. And that function is what will receive a request
 
 Here we use it to create a `GzipRequest` from the original request.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
 
 /// note | Technical Details
 
@@ -66,7 +66,7 @@ The `scope` `dict` and `receive` function are both part of the ASGI specificatio
 
 And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
 
-To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+To learn more about the `Request` check [Starlette's docs about Requests](https://www.starlette.dev/requests/).
 
 ///
 
@@ -78,11 +78,11 @@ After that, all of the processing logic is the same.
 
 But because of our changes in `GzipRequest.body`, the request body will be automatically decompressed when it is loaded by **FastAPI** when needed.
 
-## Accessing the request body in an exception handler
+## Accessing the request body in an exception handler { #accessing-the-request-body-in-an-exception-handler }
 
 /// tip
 
-To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 But this example is still valid and it shows how to interact with the internal components.
 
@@ -92,18 +92,18 @@ We can also use this same approach to access the request body in an exception ha
 
 All we need to do is handle the request inside a `try`/`except` block:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
 
 If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
 
-## Custom `APIRoute` class in a router
+## Custom `APIRoute` class in a router { #custom-apiroute-class-in-a-router }
 
 You can also set the `route_class` parameter of an `APIRouter`:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}

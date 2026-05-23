@@ -1,28 +1,32 @@
-# Загрузка файлов
+# Загрузка файлов { #request-files }
 
 Используя класс `File`, мы можем позволить клиентам загружать файлы.
 
 /// info | Дополнительная информация
 
-Чтобы получать загруженные файлы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы получать загруженные файлы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Например: `pip install python-multipart`.
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет, например:
 
-Это связано с тем, что загружаемые файлы передаются как данные формы.
+```console
+$ pip install python-multipart
+```
+
+Это связано с тем, что загружаемые файлы передаются как "данные формы".
 
 ///
 
-## Импорт `File`
+## Импорт `File` { #import-file }
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
-## Определите параметры `File`
+## Определите параметры `File` { #define-file-parameters }
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
 /// info | Дополнительная информация
 
@@ -46,11 +50,11 @@
 
 Однако возможны случаи, когда использование `UploadFile` может оказаться полезным.
 
-## Загрузка файла с помощью `UploadFile`
+## Параметры файла с `UploadFile` { #file-parameters-with-uploadfile }
 
 Определите параметр файла с типом `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -59,23 +63,23 @@
     * Файл, хранящийся в памяти до максимального предела размера, после преодоления которого он будет храниться на диске.
 * Это означает, что он будет хорошо работать с большими файлами, такими как изображения, видео, большие бинарные файлы и т.д., не потребляя при этом всю память.
 * Из загруженного файла можно получить метаданные.
-* Он реализует <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` интерфейс.
-* Он предоставляет реальный объект Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> который вы можете передать непосредственно другим библиотекам, которые ожидают файл в качестве объекта.
+* Он реализует [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async` интерфейс.
+* Он предоставляет реальный объект Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile), который вы можете передать непосредственно другим библиотекам, которые ожидают файл в качестве объекта.
 
-### `UploadFile`
+### `UploadFile` { #uploadfile }
 
 `UploadFile` имеет следующие атрибуты:
 
 * `filename`: Строка `str` с исходным именем файла, который был загружен (например, `myimage.jpg`).
 * `content_type`: Строка `str` с типом содержимого (MIME type / media type) (например, `image/jpeg`).
-* `file`: <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> объект). Это фактический файл Python, который можно передавать непосредственно другим функциям или библиотекам, ожидающим файл в качестве объекта.
+* `file`: [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (a [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) объект). Это фактический файл Python, который можно передавать непосредственно другим функциям или библиотекам, ожидающим файл в качестве объекта.
 
-`UploadFile` имеет следующие методы `async`. Все они вызывают соответствующие файловые методы (используя внутренний SpooledTemporaryFile).
+`UploadFile` имеет следующие методы `async`. Все они вызывают соответствующие файловые методы (используя внутренний `SpooledTemporaryFile`).
 
 * `write(data)`: Записать данные `data` (`str` или `bytes`) в файл.
 * `read(size)`: Прочитать количество `size` (`int`) байт/символов из файла.
 * `seek(offset)`: Перейти к байту на позиции `offset` (`int`) в файле.
-    * Наример, `await myfile.seek(0)` перейдет к началу файла.
+    * Например, `await myfile.seek(0)` перейдет к началу файла.
     * Это особенно удобно, если вы один раз выполнили команду `await myfile.read()`, а затем вам нужно прочитать содержимое файла еще раз.
 * `close()`: Закрыть файл.
 
@@ -93,6 +97,7 @@ contents = await myfile.read()
 contents = myfile.file.read()
 ```
 
+
 /// note | Технические детали `async`
 
 При использовании методов `async` **FastAPI** запускает файловые методы в пуле потоков и ожидает их.
@@ -105,7 +110,7 @@ contents = myfile.file.read()
 
 ///
 
-## Про данные формы ("Form Data")
+## Что такое «данные формы» { #what-is-form-data }
 
 Способ, которым HTML-формы (`<form></form>`) отправляют данные на сервер, обычно использует "специальную" кодировку для этих данных, отличную от JSON.
 
@@ -115,9 +120,9 @@ contents = myfile.file.read()
 
 Данные из форм обычно кодируются с использованием "media type" `application/x-www-form-urlencoded` когда он не включает файлы.
 
-Но когда форма включает файлы, она кодируется как multipart/form-data. Если вы используете `File`, **FastAPI** будет знать, что ему нужно получить файлы из нужной части тела.
+Но когда форма включает файлы, она кодируется как `multipart/form-data`. Если вы используете `File`, **FastAPI** будет знать, что ему нужно получить файлы из нужной части тела.
 
-Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
+Если вы хотите узнать больше об этих кодировках и полях форм, перейдите по ссылке [<abbr title="Mozilla Developer Network - Сеть разработчиков Mozilla">MDN</abbr> web docs for `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
@@ -129,19 +134,19 @@ contents = myfile.file.read()
 
 ///
 
-## Необязательная загрузка файлов
+## Необязательная загрузка файлов { #optional-file-upload }
 
 Вы можете сделать загрузку файла необязательной, используя стандартные аннотации типов и установив значение по умолчанию `None`:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
-## `UploadFile` с дополнительными метаданными
+## `UploadFile` с дополнительными метаданными { #uploadfile-with-additional-metadata }
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
-## Загрузка нескольких файлов
+## Загрузка нескольких файлов { #multiple-file-uploads }
 
 Можно одновременно загружать несколько файлов.
 
@@ -149,11 +154,11 @@ contents = myfile.file.read()
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
 Вы получите, как и было объявлено, список `list` из `bytes` или `UploadFile`.
 
-/// note | Technical Details
+/// note | Технические детали
 
 Можно также использовать `from starlette.responses import HTMLResponse`.
 
@@ -161,12 +166,12 @@ contents = myfile.file.read()
 
 ///
 
-### Загрузка нескольких файлов с дополнительными метаданными
+### Загрузка нескольких файлов с дополнительными метаданными { #multiple-file-uploads-with-additional-metadata }
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
-## Резюме
+## Резюме { #recap }
 
 Используйте `File`, `bytes` и `UploadFile` для работы с файлами, которые будут загружаться и передаваться в виде данных формы.

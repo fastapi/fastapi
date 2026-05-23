@@ -1,83 +1,101 @@
-# Учебник - Руководство пользователя
+# Учебник - Руководство пользователя { #tutorial-user-guide }
 
-В этом руководстве шаг за шагом показано, как использовать **FastApi** с большинством его функций.
+В этом руководстве шаг за шагом показано, как использовать **FastAPI** с большинством его функций.
 
-Каждый раздел постепенно основывается на предыдущих, но он структурирован по отдельным темам, так что вы можете перейти непосредственно к конкретной теме для решения ваших конкретных потребностей в API.
+Каждый раздел постепенно основывается на предыдущих, но структура разделяет темы, так что вы можете сразу перейти к нужной теме для решения ваших конкретных задач по API.
 
-Он также создан для использования в качестве будущего справочника.
+Он также создан как справочник на будущее, чтобы вы могли вернуться и посмотреть именно то, что вам нужно.
 
-Так что вы можете вернуться и посмотреть именно то, что вам нужно.
+## Запустите код { #run-the-code }
 
-## Запустите код
+Все блоки кода можно копировать и использовать напрямую (это действительно протестированные файлы Python).
 
-Все блоки кода можно копировать и использовать напрямую (на самом деле это проверенные файлы Python).
-
-Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `uvicorn` с параметрами:
+Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
 
-**НАСТОЯТЕЛЬНО рекомендуется**, чтобы вы написали или скопировали код, отредактировали его и запустили локально.
+**НАСТОЯТЕЛЬНО рекомендуется** написать или скопировать код, отредактировать его и запустить локально.
 
-Использование кода в вашем редакторе — это то, что действительно показывает вам преимущества FastAPI, видя, как мало кода вам нужно написать, все проверки типов, автодополнение и т.д.
+Использование кода в вашем редакторе кода — это то, что действительно показывает преимущества FastAPI: вы увидите, как мало кода нужно написать, все проверки типов, автозавершение и т.д.
 
 ---
 
-## Установка FastAPI
+## Установка FastAPI { #install-fastapi }
 
 Первый шаг — установить FastAPI.
 
-Для руководства вы, возможно, захотите установить его со всеми дополнительными зависимостями и функциями:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, и затем **установите FastAPI**:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-...это также включает `uvicorn`, который вы можете использовать в качестве сервера, который запускает ваш код.
+/// note | Примечание
 
-/// note | Технические детали
+При установке с помощью `pip install "fastapi[standard]"` добавляются некоторые стандартные необязательные зависимости по умолчанию, включая `fastapi-cloud-cli`, который позволяет развернуть приложение на [FastAPI Cloud](https://fastapicloud.com).
 
-Вы также можете установить его по частям.
+Если вы не хотите иметь эти необязательные зависимости, установите просто `pip install fastapi`.
 
-Это то, что вы, вероятно, сделаете, когда захотите развернуть свое приложение в рабочей среде:
-
-```
-pip install fastapi
-```
-
-Также установите `uvicorn` для работы в качестве сервера:
-
-```
-pip install "uvicorn[standard]"
-```
-
-И то же самое для каждой из необязательных зависимостей, которые вы хотите использовать.
+Если вы хотите установить стандартные зависимости, но без `fastapi-cloud-cli`, установите `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ///
 
-## Продвинутое руководство пользователя
+/// tip | Совет
 
-Существует также **Продвинутое руководство пользователя**, которое вы сможете прочитать после руководства **Учебник - Руководство пользователя**.
+У FastAPI есть [официальное расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (и Cursor), которое предоставляет множество функций, включая обзор операций пути, поиск операций пути, навигацию CodeLens в тестах (переход к определению из тестов), а также развертывание в FastAPI Cloud и просмотр логов - всё прямо из вашего редактора кода.
 
-**Продвинутое руководство пользователя** основано на этом, использует те же концепции и учит вас некоторым дополнительным функциям.
+///
 
-Но вы должны сначала прочитать **Учебник - Руководство пользователя** (то, что вы читаете прямо сейчас).
+## Продвинутое руководство пользователя { #advanced-user-guide }
 
-Он разработан таким образом, что вы можете создать полноценное приложение, используя только **Учебник - Руководство пользователя**, а затем расширить его различными способами, в зависимости от ваших потребностей, используя некоторые дополнительные идеи из **Продвинутого руководства пользователя**.
+Существует также **Продвинутое руководство пользователя**, которое вы сможете прочитать после **Учебник - Руководство пользователя**.
+
+**Продвинутое руководство пользователя** основано на этом, использует те же концепции и обучает некоторым дополнительным функциям.
+
+Но сначала вам следует прочитать **Учебник - Руководство пользователя** (то, что вы читаете прямо сейчас).
+
+Оно спроектировано так, что вы можете создать полноценное приложение, используя только **Учебник - Руководство пользователя**, а затем расширить его различными способами, в зависимости от ваших потребностей, используя дополнительные идеи из **Продвинутого руководства пользователя**.

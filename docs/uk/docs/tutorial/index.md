@@ -1,29 +1,53 @@
-# Туторіал - Посібник користувача
+# Навчальний посібник - Посібник користувача { #tutorial-user-guide }
 
 У цьому посібнику показано, як користуватися **FastAPI** з більшістю його функцій, крок за кроком.
 
 Кожен розділ поступово надбудовується на попередні, але він структурований на окремі теми, щоб ви могли перейти безпосередньо до будь-якої конкретної, щоб вирішити ваші конкретні потреби API.
 
-Він також створений як довідник для роботи у майбутньому.
+Також він створений як довідник для роботи у майбутньому, тож ви можете повернутися і побачити саме те, що вам потрібно.
 
-Тож ви можете повернутися і побачити саме те, що вам потрібно.
-
-## Запустіть код
+## Запустіть код { #run-the-code }
 
 Усі блоки коду можна скопіювати та використовувати безпосередньо (це фактично перевірені файли Python).
 
-Щоб запустити будь-який із прикладів, скопіюйте код у файл `main.py` і запустіть `uvicorn` за допомогою:
+Щоб запустити будь-який із прикладів, скопіюйте код у файл `main.py`, і запустіть `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -34,50 +58,44 @@ $ uvicorn main:app --reload
 
 ---
 
-## Встановлення FastAPI
+## Встановлення FastAPI { #install-fastapi }
 
 Першим кроком є встановлення FastAPI.
 
-Для туторіалу ви можете встановити його з усіма необов’язковими залежностями та функціями:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім **встановіть FastAPI**:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-...який також включає `uvicorn`, який ви можете використовувати як сервер, який запускає ваш код.
+/// note | Примітка
 
-/// note
+Коли ви встановлюєте через `pip install "fastapi[standard]"`, він постачається з деякими типовими необов’язковими стандартними залежностями, включно з `fastapi-cloud-cli`, який дозволяє розгортати в [FastAPI Cloud](https://fastapicloud.com).
 
-Ви також можете встановити його частина за частиною.
+Якщо ви не хочете мати ці необов’язкові залежності, натомість можете встановити `pip install fastapi`.
 
-Це те, що ви, ймовірно, зробили б, коли захочете розгорнути свою програму у виробничому середовищі:
-
-```
-pip install fastapi
-```
-
-Також встановіть `uvicorn`, щоб він працював як сервер:
-
-```
-pip install "uvicorn[standard]"
-```
-
-І те саме для кожної з опціональних залежностей, які ви хочете використовувати.
+Якщо ви хочете встановити стандартні залежності, але без `fastapi-cloud-cli`, ви можете встановити через `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ///
 
-## Розширений посібник користувача
+/// tip | Порада
 
-Існує також **Розширений посібник користувача**, який ви зможете прочитати пізніше після цього **Туторіал - Посібник користувача**.
+FastAPI має [офіційне розширення для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (та Cursor), яке надає багато можливостей, включно з переглядачем операцій шляху, пошуком операцій шляху, навігацією CodeLens у тестах (перехід до визначення з тестів), а також розгортанням і журналами FastAPI Cloud — усе безпосередньо з вашого редактора.
 
-**Розширений посібник користувача** засновано на цьому, використовує ті самі концепції та навчає вас деяким додатковим функціям.
+///
 
-Але вам слід спочатку прочитати **Туторіал - Посібник користувача** (те, що ви зараз читаєте).
+## Просунутий посібник користувача { #advanced-user-guide }
 
-Він розроблений таким чином, що ви можете створити повну програму лише за допомогою **Туторіал - Посібник користувача**, а потім розширити її різними способами, залежно від ваших потреб, використовуючи деякі з додаткових ідей з **Розширеного посібника користувача** .
+Існує також **Просунутий посібник користувача**, який ви зможете прочитати пізніше після цього **Навчальний посібник - Посібник користувача**.
+
+**Просунутий посібник користувача** засновано на цьому, використовує ті самі концепції та навчає вас деяким додатковим функціям.
+
+Але вам слід спочатку прочитати **Навчальний посібник - Посібник користувача** (те, що ви зараз читаєте).
+
+Він розроблений таким чином, що ви можете створити повну програму лише за допомогою **Навчальний посібник - Посібник користувача**, а потім розширити її різними способами, залежно від ваших потреб, використовуючи деякі з додаткових ідей з **Просунутого посібника користувача**.

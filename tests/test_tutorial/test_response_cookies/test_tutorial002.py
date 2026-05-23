@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.response_cookies.tutorial002 import app
+from docs_src.response_cookies.tutorial002_py310 import app
 
 client = TestClient(app)
 

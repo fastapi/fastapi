@@ -1,232 +1,272 @@
-# カスタムレスポンス - HTML、ストリーム、ファイル、その他のレスポンス
+# カスタムレスポンス - HTML、ストリーム、ファイル、その他 { #custom-response-html-stream-file-others }
 
-デフォルトでは、**FastAPI** は `JSONResponse` を使ってレスポンスを返します。
+デフォルトでは、**FastAPI** はJSONレスポンスを返します。
 
-[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、 `Response` を直接返すことでこの挙動をオーバーライドできます。
+[レスポンスを直接返す](response-directly.md)で見たように、`Response` を直接返してこの挙動を上書きできます。
 
-しかし、`Response` を直接返すと、データは自動的に変換されず、ドキュメントも自動生成されません (例えば、生成されるOpenAPIの一部としてHTTPヘッダー `Content-Type` に特定の「メディアタイプ」を含めるなど) 。
+しかし、`Response`（または `JSONResponse` のような任意のサブクラス）を直接返す場合、（`response_model` を宣言していても）データは自動的に変換されず、ドキュメントも自動生成されません（例えば、生成されるOpenAPIの一部としてHTTPヘッダー `Content-Type` に特定の「メディアタイプ」を含めるなど）。
 
-しかし、*path operationデコレータ* に、使いたい `Response` を宣言することもできます。
+一方で、*path operation デコレータ* の `response_class` パラメータを使って、使用したい `Response`（`Response` の任意のサブクラス）を宣言することもできます。
 
-*path operation関数* から返されるコンテンツは、その `Response` に含まれます。
-
-そしてもし、`Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ (`application/json`) ならば、データは *path operationデコレータ* に宣言したPydantic `response_model` により自動的に変換 (もしくはフィルタ) されます。
+*path operation 関数* から返したコンテンツは、その `Response` に格納されます。
 
 /// note | 備考
 
-メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待します。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
+メディアタイプを持たないレスポンスクラスを使用すると、FastAPIはレスポンスにコンテンツがないものと見なします。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットは記載されません。
 
 ///
 
-## `ORJSONResponse` を使う
+## JSONレスポンス { #json-responses }
 
-例えば、パフォーマンスを出したい場合は、<a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>をインストールし、`ORJSONResponse`をレスポンスとしてセットすることができます。
+FastAPI はデフォルトでJSONレスポンスを返します。
 
-使いたい `Response` クラス (サブクラス) をインポートし、 *path operationデコレータ* に宣言します。
+[レスポンスモデル](../tutorial/response-model.md) を宣言すると、FastAPI は Pydantic を使ってデータをJSONにシリアライズします。
 
-{* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
+レスポンスモデルを宣言しない場合、FastAPI は [JSON Compatible Encoder](../tutorial/encoder.md) で説明した `jsonable_encoder` を使い、その結果を `JSONResponse` に入れます。
+
+`JSONResponse` のようにJSONメディアタイプ（`application/json`）を持つ `response_class` を宣言した場合、*path operation デコレータ* に宣言した任意のPydanticの `response_model` に従って、返すデータは自動的に変換（およびフィルタ）されます。ただし、そのデータは Pydantic でJSONのバイト列にシリアライズされるわけではなく、まず `jsonable_encoder` で変換された後に `JSONResponse` クラスへ渡され、Pythonの標準JSONライブラリでバイト列にシリアライズされます。
+
+### JSONのパフォーマンス { #json-performance }
+
+結論として、最大のパフォーマンスを得たい場合は、[レスポンスモデル](../tutorial/response-model.md) を使い、*path operation デコレータ* で `response_class` は宣言しないでください。
+
+{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+
+## HTMLレスポンス { #html-response }
+
+**FastAPI** からHTMLを直接返すには、`HTMLResponse` を使います。
+
+* `HTMLResponse` をインポートする
+* *path operation デコレータ* のパラメータ `response_class` に `HTMLResponse` を渡す
+
+{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
 /// info | 情報
 
-パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用することもできます。
+パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するためにも使用されます。
 
-この場合、HTTPヘッダー `Content-Type` には `application/json` がセットされます。
+この場合、HTTPヘッダー `Content-Type` には `text/html` が設定されます。
 
-そして、OpenAPIにはそのようにドキュメントされます。
-
-///
-
-/// tip | 豆知識
-
-`ORJSONResponse` は、現在はFastAPIのみで利用可能で、Starletteでは利用できません。
+そして、OpenAPIにもそのようにドキュメント化されます。
 
 ///
 
-## HTMLレスポンス
+### `Response` を返す { #return-a-response }
 
-**FastAPI** からHTMLを直接返す場合は、`HTMLResponse` を使います。
+[レスポンスを直接返す](response-directly.md)で見たように、*path operation* の中でレスポンスを直接返して上書きすることもできます。
 
-* `HTMLResponse` をインポートする。
-* *path operation* のパラメータ `content_type` に `HTMLResponse` を渡す。
+上記と同じ例で、`HTMLResponse` を返すと次のようになります:
 
-{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
-
-/// info | 情報
-
-パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用されます。
-
-この場合、HTTPヘッダー `Content-Type` には `text/html` がセットされます。
-
-そして、OpenAPIにはそのようにドキュメント化されます。
-
-///
-
-### `Response` を返す
-
-[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、レスポンスを直接返すことで、*path operation* の中でレスポンスをオーバーライドできます。
-
-上記と同じ例において、 `HTMLResponse` を返すと、このようになります:
-
-{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
 
 /// warning | 注意
 
-*path operation関数* から直接返される `Response` は、OpenAPIにドキュメントされず (例えば、 `Content-Type` がドキュメントされない) 、自動的な対話的ドキュメントからも閲覧できません。
+*path operation 関数* から直接返される `Response` は、OpenAPIにドキュメント化されず（例えば `Content-Type` がドキュメント化されない）、自動生成の対話的ドキュメントにも表示されません。
 
 ///
 
 /// info | 情報
 
-もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返された `Response` オブジェクトに由来しています。
+もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返した `Response` オブジェクトに由来します。
 
 ///
 
-### OpenAPIドキュメントと `Response` のオーバーライド
+### OpenAPIにドキュメント化しつつ `Response` を上書き { #document-in-openapi-and-override-response }
 
-関数の中でレスポンスをオーバーライドしつつも、OpenAPI に「メディアタイプ」をドキュメント化したいなら、 `response_class` パラメータを使い、 `Response` オブジェクトを返します。
+関数の中からレスポンスを上書きしつつ、同時にOpenAPIで「メディアタイプ」をドキュメント化したい場合は、`response_class` パラメータを使用し、かつ `Response` オブジェクトを返します。
 
-`response_class` はOpenAPIの *path operation* ドキュメントにのみ使用されますが、 `Response` はそのまま使用されます。
+この場合、`response_class` はOpenAPIの *path operation* をドキュメント化するためだけに使われ、実際には返した `Response` がそのまま使用されます。
 
-#### `HTMLResponse` を直接返す
+#### `HTMLResponse` を直接返す { #return-an-htmlresponse-directly }
 
-例えば、このようになります:
+例えば、次のようになります:
 
-{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
 
-この例では、関数 `generate_html_response()` は、`str` のHTMLを返すのではなく `Response` を生成して返しています。
+この例では、関数 `generate_html_response()` はHTMLの `str` を返すのではなく、すでに `Response` を生成して返しています。
 
-`generate_html_response()` を呼び出した結果を返すことにより、**FastAPI** の振る舞いを上書きする `Response` が既に返されています。
+`generate_html_response()` の呼び出し結果を返すことで、デフォルトの **FastAPI** の挙動を上書きする `Response` をすでに返しています。
 
-しかし、一方では `response_class` に `HTMLResponse` を渡しているため、 **FastAPI** はOpenAPIや対話的ドキュメントでHTMLとして `text/html` でドキュメント化する方法を知っています。
+しかし、`response_class` にも `HTMLResponse` を渡しているため、**FastAPI** はOpenAPIおよび対話的ドキュメントで、それが `text/html` のHTMLであると正しくドキュメント化できます:
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## 利用可能なレスポンス
+## 利用可能なレスポンス { #available-responses }
 
-以下が利用可能なレスポンスの一部です。
+以下は利用可能なレスポンスの一部です。
 
-`Response` を使って他の何かを返せますし、カスタムのサブクラスも作れることを覚えておいてください。
+`Response` を使って他のものを返したり、カスタムサブクラスを作成することもできます。
 
 /// note | 技術詳細
 
-`from starlette.responses import HTMLResponse` も利用できます。
+`from starlette.responses import HTMLResponse` を使うこともできます。
 
-**FastAPI** は開発者の利便性のために `fastapi.responses` として `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+**FastAPI** は開発者の利便性のために、`starlette.responses` と同じものを `fastapi.responses` として提供しています。ただし、利用可能なレスポンスの多くはStarletteから直接提供されています。
 
 ///
 
-### `Response`
+### `Response` { #response }
 
-メインの `Response` クラスで、他の全てのレスポンスはこれを継承しています。
+メインの `Response` クラスで、他のすべてのレスポンスはこれを継承しています。
 
 直接返すことができます。
 
 以下のパラメータを受け付けます。
 
-* `content` - `str` か `bytes`。
-* `status_code` - `int` のHTTPステータスコード。
-* `headers` - 文字列の `dict` 。
-* `media_type` - メディアタイプを示す `str` 。例えば `"text/html"` 。
+* `content` - `str` または `bytes`
+* `status_code` - `int` のHTTPステータスコード
+* `headers` - 文字列の `dict`
+* `media_type` - メディアタイプを示す `str`。例: `"text/html"`
 
-FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含みます。また、media_typeに基づいたContent-Typeヘッダーを含み、テキストタイプのためにcharsetを追加します。
+FastAPI（実際にはStarlette）は自動的に Content-Length ヘッダーを含めます。また、`media_type` に基づいた Content-Type ヘッダーを含め、テキストタイプには charset を追加します。
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
 
-### `HTMLResponse`
+### `HTMLResponse` { #htmlresponse }
 
-上で読んだように、テキストやバイトを受け取り、HTMLレスポンスを返します。
+上で読んだように、テキストやバイト列を受け取り、HTMLレスポンスを返します。
 
-### `PlainTextResponse`
+### `PlainTextResponse` { #plaintextresponse }
 
-テキストやバイトを受け取り、プレーンテキストのレスポンスを返します。
+テキストやバイト列を受け取り、プレーンテキストのレスポンスを返します。
 
-{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
 
-### `JSONResponse`
+### `JSONResponse` { #jsonresponse }
 
-データを受け取り、 `application/json` としてエンコードされたレスポンスを返します。
+データを受け取り、`application/json` としてエンコードされたレスポンスを返します。
 
-上で読んだように、**FastAPI** のデフォルトのレスポンスとして利用されます。
+これは、上で述べたように **FastAPI** のデフォルトのレスポンスです。
 
-### `ORJSONResponse`
+/// note | 技術詳細
 
-上で読んだように、<a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>を使った、高速な代替のJSONレスポンスです。
+ただし、レスポンスモデルや返却型を宣言した場合は、それが直接データのJSONシリアライズに使われ、適切なJSONのメディアタイプを持つレスポンスが `JSONResponse` クラスを使わずに直接返されます。
 
-### `UJSONResponse`
-
-<a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>を使った、代替のJSONレスポンスです。
-
-/// warning | 注意
-
-`ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも作りこまれていません。
+これが最適なパフォーマンスを得る理想的な方法です。
 
 ///
 
-{* ../../docs_src/custom_response/tutorial001.py hl[2,7] *}
+### `RedirectResponse` { #redirectresponse }
+
+HTTPリダイレクトを返します。デフォルトでは307ステータスコード（Temporary Redirect）を使用します。
+
+`RedirectResponse` を直接返せます:
+
+{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+
+---
+
+または、`response_class` パラメータで使用できます:
+
+{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+
+その場合、*path operation* 関数からURLを直接返せます。
+
+この場合に使用される `status_code` は、`RedirectResponse` のデフォルトである `307` になります。
+
+---
+
+さらに、`status_code` パラメータを `response_class` パラメータと組み合わせて使うこともできます:
+
+{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+
+### `StreamingResponse` { #streamingresponse }
+
+非同期ジェネレータ、または通常のジェネレータ/イテレータ（`yield` を持つ関数）を受け取り、レスポンスボディをストリームします。
+
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+
+/// note | 技術詳細
+
+`async` タスクは `await` に到達したときにのみキャンセルできます。`await` がない場合、ジェネレータ（`yield` を持つ関数）は適切にキャンセルできず、キャンセル要求後も実行が続く可能性があります。
+
+この小さな例では `await` が不要なため、イベントループにキャンセルを処理する機会を与えるために `await anyio.sleep(0)` を追加しています。
+
+これは大きなストリームや無限ストリームではさらに重要になります。
+
+///
 
 /// tip | 豆知識
 
-`ORJSONResponse` のほうが高速な代替かもしれません。
+`StreamingResponse` を直接返す代わりに、[データをストリームする](./stream-data.md) スタイルに従うことをおすすめします。こちらのほうがはるかに便利で、裏側でキャンセル処理も行ってくれます。
+
+JSON Lines をストリームする場合は、[JSON Lines をストリームする](../tutorial/stream-json-lines.md) チュートリアルを参照してください。
 
 ///
 
-### `RedirectResponse`
+### `FileResponse` { #fileresponse }
 
-HTTPリダイレクトを返します。デフォルトでは307ステータスコード (Temporary Redirect) となります。
+ファイルをレスポンスとして非同期にストリームします。
 
-{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
+他のレスポンスタイプとは異なる引数セットでインスタンス化します:
 
-### `StreamingResponse`
+* `path` - ストリームするファイルのファイルパス
+* `headers` - 含めたい任意のカスタムヘッダー（辞書）
+* `media_type` - メディアタイプを示す文字列。未設定の場合、ファイル名やパスから推測されます
+* `filename` - 設定した場合、レスポンスの `Content-Disposition` に含まれます
 
-非同期なジェネレータか通常のジェネレータ・イテレータを受け取り、レスポンスボディをストリームします。
+ファイルレスポンスには、適切な `Content-Length`、`Last-Modified`、`ETag` ヘッダーが含まれます。
 
-{* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
-#### `StreamingResponse` をファイルライクなオブジェクトとともに使う
+`response_class` パラメータを使うこともできます:
 
-ファイルライクなオブジェクト (例えば、 `open()` で返されたオブジェクト) がある場合、 `StreamingResponse` に含めて返すことができます。
+{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
-これにはクラウドストレージとの連携や映像処理など、多くのライブラリが含まれています。
+この場合、*path operation* 関数からファイルパスを直接返せます。
 
-{* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
+## カスタムレスポンスクラス { #custom-response-class }
+
+`Response` を継承して、独自のカスタムレスポンスクラスを作成し、使用できます。
+
+例えば、[`orjson`](https://github.com/ijl/orjson) を特定の設定で使いたいとします。
+
+インデントされた整形済みJSONを返したいので、orjson のオプション `orjson.OPT_INDENT_2` を使いたいとします。
+
+`CustomORJSONResponse` を作成できます。主に必要なのは、`bytes` を返す `Response.render(content)` メソッドを作ることです:
+
+{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+
+これまでは次のように返していたものが:
+
+```json
+{"message": "Hello World"}
+```
+
+...このレスポンスでは次のように返されます:
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+もちろん、JSONの整形以外にも、これを活用するもっと良い方法が見つかるはずです。 😉
+
+### `orjson` か レスポンスモデルか { #orjson-or-response-model }
+
+もし求めているのがパフォーマンスであれば、`orjson` レスポンスを使うより、[レスポンスモデル](../tutorial/response-model.md) を使うほうが良い場合が多いです。
+
+レスポンスモデルがあると、FastAPI は中間ステップ（他の場合に行われる `jsonable_encoder` による変換など）を介さずに、Pydantic を使ってデータをJSONにシリアライズします。
+
+内部的には、Pydantic はJSONシリアライズに `orjson` と同じRust由来の仕組みを用いているため、レスポンスモデルを使うだけで最良のパフォーマンスが得られます。
+
+## デフォルトレスポンスクラス { #default-response-class }
+
+**FastAPI** クラスのインスタンスや `APIRouter` を作成する際に、デフォルトで使用するレスポンスクラスを指定できます。
+
+これを定義するパラメータは `default_response_class` です。
+
+以下の例では、**FastAPI** はすべての *path operation* で、JSONの代わりにデフォルトで `HTMLResponse` を使用します。
+
+{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
 /// tip | 豆知識
 
-ここでは `async` や `await` をサポートしていない標準の `open()` を使っているので、通常の `def` でpath operationを宣言していることに注意してください。
+これまでと同様に、*path operation* ごとに `response_class` をオーバーライドできます。
 
 ///
 
-### `FileResponse`
+## その他のドキュメント { #additional-documentation }
 
-レスポンスとしてファイルを非同期的にストリームします。
-
-他のレスポンスタイプとは異なる引数のセットを受け取りインスタンス化します。
-
-* `path` - ストリームするファイルのファイルパス。
-* `headers` - 含めたい任意のカスタムヘッダーの辞書。
-* `media_type` - メディアタイプを示す文字列。セットされなかった場合は、ファイル名やパスからメディアタイプが推察されます。
-* `filename` - セットされた場合、レスポンスの `Content-Disposition` に含まれます。
-
-ファイルレスポンスには、適切な `Content-Length` 、 `Last-Modified` 、 `ETag` ヘッダーが含まれます。
-
-{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
-
-## デフォルトレスポンスクラス
-
-**FastAPI** クラスのインスタンスか `APIRouter` を生成するときに、デフォルトのレスポンスクラスを指定できます。
-
-定義するためのパラメータは、 `default_response_class` です。
-
-以下の例では、 **FastAPI** は、全ての *path operation* で `JSONResponse` の代わりに `ORJSONResponse` をデフォルトとして利用します。
-
-{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
-
-/// tip | 豆知識
-
-前に見たように、 *path operation* の中で `response_class` をオーバーライドできます。
-
-///
-
-## その他のドキュメント
-
-また、OpenAPIでは `responses` を使ってメディアタイプやその他の詳細を宣言することもできます: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}
+OpenAPIでは `responses` を使ってメディアタイプやその他の詳細を宣言することもできます: [OpenAPI の追加レスポンス](additional-responses.md)。

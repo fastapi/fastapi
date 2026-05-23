@@ -7,6 +7,7 @@ __pycache__
 htmlcov
 dist
 site
+site_zensical_src
 .coverage*
 coverage.xml
 .netlify
@@ -28,3 +29,5 @@ archive.zip
 
 # macOS
 .DS_Store
+
+.codspeed

@@ -3,7 +3,7 @@ import random
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Union, cast
+from typing import Any, cast
 
 import httpx
 from github import Github
@@ -120,7 +120,7 @@ class CommentsEdge(BaseModel):
 
 
 class Comments(BaseModel):
-    edges: List[CommentsEdge]
+    edges: list[CommentsEdge]
 
 
 class CommentsDiscussion(BaseModel):
@@ -149,7 +149,7 @@ class AllDiscussionsLabelsEdge(BaseModel):
 
 
 class AllDiscussionsDiscussionLabels(BaseModel):
-    edges: List[AllDiscussionsLabelsEdge]
+    edges: list[AllDiscussionsLabelsEdge]
 
 
 class AllDiscussionsDiscussionNode(BaseModel):
@@ -160,7 +160,7 @@ class AllDiscussionsDiscussionNode(BaseModel):
 
 
 class AllDiscussionsDiscussions(BaseModel):
-    nodes: List[AllDiscussionsDiscussionNode]
+    nodes: list[AllDiscussionsDiscussionNode]
 
 
 class AllDiscussionsRepository(BaseModel):
@@ -181,9 +181,9 @@ class Settings(BaseSettings):
     github_repository: str
     github_token: SecretStr
     github_event_path: Path
-    github_event_name: Union[str, None] = None
+    github_event_name: str | None = None
     httpx_timeout: int = 30
-    debug: Union[bool, None] = False
+    debug: bool | None = False
     number: int | None = None
 
 
@@ -199,13 +199,13 @@ def get_graphql_response(
     *,
     settings: Settings,
     query: str,
-    after: Union[str, None] = None,
-    category_id: Union[str, None] = None,
-    discussion_number: Union[int, None] = None,
-    discussion_id: Union[str, None] = None,
-    comment_id: Union[str, None] = None,
-    body: Union[str, None] = None,
-) -> Dict[str, Any]:
+    after: str | None = None,
+    category_id: str | None = None,
+    discussion_number: int | None = None,
+    discussion_id: str | None = None,
+    comment_id: str | None = None,
+    body: str | None = None,
+) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {
         "after": after,
@@ -233,12 +233,12 @@ def get_graphql_response(
         logging.error(data["errors"])
         logging.error(response.text)
         raise RuntimeError(response.text)
-    return cast(Dict[str, Any], data)
+    return cast(dict[str, Any], data)
 
 
 def get_graphql_translation_discussions(
     *, settings: Settings
-) -> List[AllDiscussionsDiscussionNode]:
+) -> list[AllDiscussionsDiscussionNode]:
     data = get_graphql_response(
         settings=settings,
         query=all_discussions_query,
@@ -249,8 +249,8 @@ def get_graphql_translation_discussions(
 
 
 def get_graphql_translation_discussion_comments_edges(
-    *, settings: Settings, discussion_number: int, after: Union[str, None] = None
-) -> List[CommentsEdge]:
+    *, settings: Settings, discussion_number: int, after: str | None = None
+) -> list[CommentsEdge]:
     data = get_graphql_response(
         settings=settings,
         query=translation_discussion_query,
@@ -264,7 +264,7 @@ def get_graphql_translation_discussion_comments_edges(
 def get_graphql_translation_discussion_comments(
     *, settings: Settings, discussion_number: int
 ) -> list[Comment]:
-    comment_nodes: List[Comment] = []
+    comment_nodes: list[Comment] = []
     discussion_edges = get_graphql_translation_discussion_comments_edges(
         settings=settings, discussion_number=discussion_number
     )
@@ -316,7 +316,7 @@ def main() -> None:
         raise RuntimeError(
             f"No github event file available at: {settings.github_event_path}"
         )
-    contents = settings.github_event_path.read_text()
+    contents = settings.github_event_path.read_text("utf-8")
     github_event = PartialGitHubEvent.model_validate_json(contents)
     logging.info(f"Using GitHub event: {github_event}")
     number = (
@@ -348,7 +348,7 @@ def main() -> None:
 
     # Generate translation map, lang ID to discussion
     discussions = get_graphql_translation_discussions(settings=settings)
-    lang_to_discussion_map: Dict[str, AllDiscussionsDiscussionNode] = {}
+    lang_to_discussion_map: dict[str, AllDiscussionsDiscussionNode] = {}
     for discussion in discussions:
         for edge in discussion.labels.edges:
             label = edge.node.name
@@ -372,8 +372,8 @@ def main() -> None:
             f"Found a translation discussion for language: {lang} in discussion: #{discussion.number}"
         )
 
-        already_notified_comment: Union[Comment, None] = None
-        already_done_comment: Union[Comment, None] = None
+        already_notified_comment: Comment | None = None
+        already_done_comment: Comment | None = None
 
         logging.info(
             f"Checking current comments in discussion: #{discussion.number} to see if already notified about this PR: #{pr.number}"

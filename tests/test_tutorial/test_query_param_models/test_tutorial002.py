@@ -1,28 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
+from tests.utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002", marks=needs_pydanticv2),
-        pytest.param("tutorial002_py39", marks=[needs_py39, needs_pydanticv2]),
-        pytest.param("tutorial002_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_an", marks=needs_pydanticv2),
-        pytest.param("tutorial002_an_py39", marks=[needs_py39, needs_pydanticv2]),
-        pytest.param("tutorial002_an_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_pv1", marks=[needs_pydanticv1, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_py39", marks=[needs_py39, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_py310", marks=[needs_py310, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an", marks=[needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py39", marks=[needs_py39, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py310", marks=[needs_py310, needs_pydanticv1]),
+        pytest.param("tutorial002_py310", marks=[needs_py310]),
+        pytest.param("tutorial002_an_py310", marks=[needs_py310]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -73,61 +62,31 @@ def test_query_param_model_invalid(client: TestClient):
     )
     assert response.status_code == 422
     assert response.json() == snapshot(
-        IsDict(
-            {
-                "detail": [
-                    {
-                        "type": "less_than_equal",
-                        "loc": ["query", "limit"],
-                        "msg": "Input should be less than or equal to 100",
-                        "input": "150",
-                        "ctx": {"le": 100},
-                    },
-                    {
-                        "type": "greater_than_equal",
-                        "loc": ["query", "offset"],
-                        "msg": "Input should be greater than or equal to 0",
-                        "input": "-1",
-                        "ctx": {"ge": 0},
-                    },
-                    {
-                        "type": "literal_error",
-                        "loc": ["query", "order_by"],
-                        "msg": "Input should be 'created_at' or 'updated_at'",
-                        "input": "invalid",
-                        "ctx": {"expected": "'created_at' or 'updated_at'"},
-                    },
-                ]
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "detail": [
-                    {
-                        "type": "value_error.number.not_le",
-                        "loc": ["query", "limit"],
-                        "msg": "ensure this value is less than or equal to 100",
-                        "ctx": {"limit_value": 100},
-                    },
-                    {
-                        "type": "value_error.number.not_ge",
-                        "loc": ["query", "offset"],
-                        "msg": "ensure this value is greater than or equal to 0",
-                        "ctx": {"limit_value": 0},
-                    },
-                    {
-                        "type": "value_error.const",
-                        "loc": ["query", "order_by"],
-                        "msg": "unexpected value; permitted: 'created_at', 'updated_at'",
-                        "ctx": {
-                            "given": "invalid",
-                            "permitted": ["created_at", "updated_at"],
-                        },
-                    },
-                ]
-            }
-        )
+        {
+            "detail": [
+                {
+                    "type": "less_than_equal",
+                    "loc": ["query", "limit"],
+                    "msg": "Input should be less than or equal to 100",
+                    "input": "150",
+                    "ctx": {"le": 100},
+                },
+                {
+                    "type": "greater_than_equal",
+                    "loc": ["query", "offset"],
+                    "msg": "Input should be greater than or equal to 0",
+                    "input": "-1",
+                    "ctx": {"ge": 0},
+                },
+                {
+                    "type": "literal_error",
+                    "loc": ["query", "order_by"],
+                    "msg": "Input should be 'created_at' or 'updated_at'",
+                    "input": "invalid",
+                    "ctx": {"expected": "'created_at' or 'updated_at'"},
+                },
+            ]
+        }
     )
 
 
@@ -146,22 +105,12 @@ def test_query_param_model_extra(client: TestClient):
     assert response.json() == snapshot(
         {
             "detail": [
-                IsDict(
-                    {
-                        "type": "extra_forbidden",
-                        "loc": ["query", "tool"],
-                        "msg": "Extra inputs are not permitted",
-                        "input": "plumbus",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "type": "value_error.extra",
-                        "loc": ["query", "tool"],
-                        "msg": "extra fields not permitted",
-                    }
-                )
+                {
+                    "type": "extra_forbidden",
+                    "loc": ["query", "tool"],
+                    "msg": "Extra inputs are not permitted",
+                    "input": "plumbus",
+                }
             ]
         }
     )
@@ -262,6 +211,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

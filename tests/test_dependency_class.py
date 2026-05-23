@@ -1,4 +1,4 @@
-from typing import AsyncGenerator, Generator
+from collections.abc import AsyncGenerator, Generator
 
 import pytest
 from fastapi import Depends, FastAPI
@@ -46,6 +46,34 @@ callable_gen_dependency = CallableGenDependency()
 async_callable_dependency = AsyncCallableDependency()
 async_callable_gen_dependency = AsyncCallableGenDependency()
 methods_dependency = MethodsDependency()
+
+
+@app.get("/callable-dependency-class")
+async def get_callable_dependency_class(
+    value: str, instance: CallableDependency = Depends()
+):
+    return instance(value)
+
+
+@app.get("/callable-gen-dependency-class")
+async def get_callable_gen_dependency_class(
+    value: str, instance: CallableGenDependency = Depends()
+):
+    return next(instance(value))
+
+
+@app.get("/async-callable-dependency-class")
+async def get_async_callable_dependency_class(
+    value: str, instance: AsyncCallableDependency = Depends()
+):
+    return await instance(value)
+
+
+@app.get("/async-callable-gen-dependency-class")
+async def get_async_callable_gen_dependency_class(
+    value: str, instance: AsyncCallableGenDependency = Depends()
+):
+    return await instance(value).__anext__()
 
 
 @app.get("/callable-dependency")
@@ -114,6 +142,10 @@ client = TestClient(app)
         ("/synchronous-method-gen-dependency", "synchronous-method-gen-dependency"),
         ("/asynchronous-method-dependency", "asynchronous-method-dependency"),
         ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
+        ("/callable-dependency-class", "callable-dependency-class"),
+        ("/callable-gen-dependency-class", "callable-gen-dependency-class"),
+        ("/async-callable-dependency-class", "async-callable-dependency-class"),
+        ("/async-callable-gen-dependency-class", "async-callable-gen-dependency-class"),
     ],
 )
 def test_class_dependency(route, value):

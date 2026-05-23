@@ -1,84 +1,28 @@
-# Proje oluşturma - Şablonlar
+# Full Stack FastAPI Şablonu { #full-stack-fastapi-template }
 
-Başlamak için bir proje oluşturucu kullanabilirsiniz, çünkü sizin için önceden yapılmış birçok başlangıç ​​kurulumu, güvenlik, veritabanı ve temel API endpoinlerini içerir.
+Şablonlar genellikle belirli bir kurulumla gelir, ancak esnek ve özelleştirilebilir olacak şekilde tasarlanırlar. Bu sayede şablonu projenizin gereksinimlerine göre değiştirip uyarlayabilir, çok iyi bir başlangıç noktası olarak kullanabilirsiniz. 🏁
 
-Bir proje oluşturucu, her zaman kendi ihtiyaçlarınıza göre güncellemeniz ve uyarlamanız gereken esnek bir kuruluma sahip olacaktır, ancak bu, projeniz için iyi bir başlangıç ​​noktası olabilir.
+Bu şablonu başlangıç için kullanabilirsiniz; çünkü ilk kurulumun, güvenliğin, veritabanının ve bazı API endpoint'lerinin önemli bir kısmı sizin için zaten hazırlanmıştır.
 
-## Full Stack FastAPI PostgreSQL
+GitHub Repository: [Full Stack FastAPI Şablonu](https://github.com/tiangolo/full-stack-fastapi-template)
 
-GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+## Full Stack FastAPI Şablonu - Teknoloji Yığını ve Özellikler { #full-stack-fastapi-template-technology-stack-and-features }
 
-### Full Stack FastAPI PostgreSQL - Özellikler
-
-* Full **Docker** entegrasyonu (Docker based).
-* Docker Swarm Mode ile deployment.
-* **Docker Compose** entegrasyonu ve lokal geliştirme için optimizasyon.
-* Uvicorn ve Gunicorn ile **Production ready** Python web server'ı.
-* Python <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
-    * **Hızlı**: **NodeJS** ve **Go** ile eşit, çok yüksek performans (Starlette ve Pydantic'e teşekkürler).
-    * **Sezgisel**: Editor desteğı. <abbr title="auto-complete, IntelliSense gibi isimlerle de bilinir">Otomatik tamamlama</abbr>. Daha az debugging.
-    * **Kolay**: Kolay öğrenip kolay kullanmak için tasarlandı. Daha az döküman okuma daha çok iş.
-    * **Kısa**: Minimum kod tekrarı. Her parametre bildiriminde birden çok özellik.
-    * **Güçlü**: Production-ready. Otomatik interaktif dökümantasyon.
-    * **Standartlara dayalı**: API'ler için açık standartlara dayanır (ve tamamen uyumludur): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Şeması</a>.
-    * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Birçok diger özelliği**</a> dahili otomatik doğrulama, serialization, interaktif dokümantasyon, OAuth2 JWT token ile authentication, vb.
-* **Güvenli şifreleme** .
-* **JWT token** kimlik doğrulama.
-* **SQLAlchemy** models (Flask dan bağımsızdır. Celery worker'ları ile kullanılabilir).
-* Kullanıcılar için temel başlangıç ​​modeli (gerektiği gibi değiştirin ve kaldırın).
-* **Alembic** migration.
-* **CORS** (Cross Origin Resource Sharing).
-* **Celery** worker'ları ile backend içerisinden seçilen işleri çalıştırabilirsiniz.
-* **Pytest**'e dayalı, Docker ile entegre REST backend testleri ile veritabanından bağımsız olarak tam API etkileşimini test edebilirsiniz. Docker'da çalıştığı için her seferinde sıfırdan yeni bir veri deposu oluşturabilir (böylece ElasticSearch, MongoDB, CouchDB veya ne istersen kullanabilirsin ve sadece API'nin çalışıp çalışmadığını test edebilirsin).
-* Atom Hydrogen veya Visual Studio Code Jupyter gibi uzantılarla uzaktan veya Docker içi geliştirme için **Jupyter Çekirdekleri** ile kolay Python entegrasyonu.
-* **Vue** ile frontend:
-    * Vue CLI ile oluşturulmuş.
-    * Dahili **JWT kimlik doğrulama**.
-    * Dahili Login.
-    * Login sonrası, Kontrol paneli.
-    * Kullanıcı oluşturma ve düzenleme kontrol paneli
-    * Kendi kendine kullanıcı sürümü.
-    * **Vuex**.
-    * **Vue-router**.
-    * **Vuetify** güzel material design kompanentleri için.
-    * **TypeScript**.
-    * **Nginx** tabanlı Docker sunucusu (Vue-router için yapılandırılmış).
-    * Docker ile multi-stage yapı, böylece kodu derlemeniz, kaydetmeniz veya işlemeniz gerekmez.
-    * Derleme zamanında Frontend testi (devre dışı bırakılabilir).
-    * Mümkün olduğu kadar modüler yapılmıştır, bu nedenle kutudan çıktığı gibi çalışır, ancak Vue CLI ile yeniden oluşturabilir veya ihtiyaç duyduğunuz şekilde oluşturabilir ve istediğinizi yeniden kullanabilirsiniz.
-* **PGAdmin** PostgreSQL database admin tool'u, PHPMyAdmin ve MySQL ile kolayca değiştirilebilir.
-* **Flower** ile Celery job'larını monitörleme.
-* **Traefik** ile backend ve frontend arasında yük dengeleme, böylece her ikisini de aynı domain altında, path ile ayrılmış, ancak farklı kapsayıcılar tarafından sunulabilirsiniz.
-* Let's Encrypt **HTTPS** sertifikalarının otomatik oluşturulması dahil olmak üzere Traefik entegrasyonu.
-* GitLab **CI** (sürekli entegrasyon), backend ve frontend testi dahil.
-
-## Full Stack FastAPI Couchbase
-
-GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
-
-⚠️ **UYARI** ⚠️
-
-Sıfırdan bir projeye başlıyorsanız alternatiflerine bakın.
-
-Örneğin,  <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a> daha iyi bir alternatif olabilir, aktif olarak geliştiriliyor ve kullanılıyor. Ve yeni özellik ve ilerlemelere sahip.
-
-İsterseniz Couchbase tabanlı generator'ı kullanmakta özgürsünüz, hala iyi çalışıyor olmalı ve onunla oluşturulmuş bir projeniz varsa bu da sorun değil (ve muhtemelen zaten ihtiyaçlarınıza göre güncellediniz).
-
-Bununla ilgili daha fazla bilgiyi repo belgelerinde okuyabilirsiniz.
-
-## Full Stack FastAPI MongoDB
-
-... müsaitliğime ve diğer faktörlere bağlı olarak daha sonra gelebilir. 😅 🎉
-
-## Machine Learning modelleri, spaCy ve FastAPI
-
-GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class="external-link" target="_blank">https://github.com/microsoft/cookiecutter-spacy-fastapi</a>
-
-### Machine Learning modelleri, spaCy ve FastAPI - Features
-
-* **spaCy** NER model entegrasyonu.
-* **Azure Cognitive Search** yerleşik istek biçimi.
-* Uvicorn ve Gunicorn ile **Production ready** Python web server'ı.
-* Dahili **Azure DevOps** Kubernetes (AKS) CI/CD deployment.
-* **Multilingual**, Proje kurulumu sırasında spaCy'nin yerleşik dillerinden birini kolayca seçin.
-* **Esnetilebilir** diğer frameworkler (Pytorch, Tensorflow) ile de çalışır sadece spaCy değil.
+- ⚡ Python backend API için [**FastAPI**](https://fastapi.tiangolo.com/tr).
+  - 🧰 Python SQL veritabanı etkileşimleri (ORM) için [SQLModel](https://sqlmodel.tiangolo.com).
+  - 🔍 FastAPI'nin kullandığı; veri doğrulama ve ayarlar yönetimi için [Pydantic](https://docs.pydantic.dev).
+  - 💾 SQL veritabanı olarak [PostgreSQL](https://www.postgresql.org).
+- 🚀 frontend için [React](https://react.dev).
+  - 💃 TypeScript, hooks, Vite ve modern bir frontend stack'inin diğer parçalarını kullanır.
+  - 🎨 frontend component'leri için [Tailwind CSS](https://tailwindcss.com) ve [shadcn/ui](https://ui.shadcn.com).
+  - 🤖 Otomatik üretilen bir frontend client.
+  - 🧪 End-to-End testleri için [Playwright](https://playwright.dev).
+  - 🦇 Dark mode desteği.
+- 🐋 Geliştirme ve production için [Docker Compose](https://www.docker.com).
+- 🔒 Varsayılan olarak güvenli password hashing.
+- 🔑 JWT (JSON Web Token) authentication.
+- 📫 E-posta tabanlı şifre kurtarma.
+- ✅ [Pytest](https://pytest.org) ile testler.
+- 📞 Reverse proxy / load balancer olarak [Traefik](https://traefik.io).
+- 🚢 Docker Compose kullanarak deployment talimatları; otomatik HTTPS sertifikalarını yönetmek için bir frontend Traefik proxy'sini nasıl kuracağınız dahil.
+- 🏭 GitHub Actions tabanlı CI (continuous integration) ve CD (continuous deployment).

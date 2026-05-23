@@ -1,39 +1,42 @@
-# Geral - Como Fazer - Receitas
+# Geral - Como Fazer - Receitas { #general-how-to-recipes }
 
-Aqui estão vários links para outros locais na documentação, para perguntas gerais ou frequentes
+Aqui estão vários links para outros locais na documentação, para perguntas gerais ou frequentes.
 
-## Filtro de dados- Segurança
+## Filtro de dados- Segurança { #filter-data-security }
 
-Para assegurar que você não vai retornar mais dados do que deveria, leia a seção [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank}.
+Para assegurar que você não vai retornar mais dados do que deveria, leia a documentação de [Tutorial - Modelo de Resposta - Tipo de Retorno](../tutorial/response-model.md).
 
-## Tags de Documentação - OpenAPI
-Para adicionar tags às suas *rotas* e agrupá-las na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
+## Otimizar Desempenho da Resposta - Modelo de Resposta - Tipo de Retorno { #optimize-response-performance-response-model-return-type }
 
-## Resumo e Descrição da documentação - OpenAPI
+Para otimizar o desempenho ao retornar dados JSON, use um tipo de retorno ou modelo de resposta; assim, o Pydantic fará a serialização para JSON no lado do Rust, sem passar pelo Python. Leia mais na documentação de [Tutorial - Modelo de Resposta - Tipo de Retorno](../tutorial/response-model.md).
 
-Para adicionar um resumo e uma descrição às suas *rotas* e exibi-los na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank}.
+## Tags de Documentação - OpenAPI { #documentation-tags-openapi }
+Para adicionar tags às suas *operações de rota* e agrupá-las na UI da documentação, leia a documentação de [Tutorial - Configurações da Operação de Rota - Tags](../tutorial/path-operation-configuration.md#tags).
 
-## Documentação das Descrições de Resposta - OpenAPI
+## Resumo e Descrição da documentação - OpenAPI { #documentation-summary-and-description-openapi }
 
-Para definir a descrição de uma resposta exibida na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank}.
+Para adicionar um resumo e uma descrição às suas *operações de rota* e exibi-los na UI da documentação, leia a documentação de [Tutorial - Configurações da Operação de Rota - Resumo e Descrição](../tutorial/path-operation-configuration.md#summary-and-description).
 
-## Documentação para Depreciar uma *Operação de Rota* - OpenAPI
+## Documentação - Descrição da Resposta - OpenAPI { #documentation-response-description-openapi }
 
-Para depreciar uma *operação de rota* e exibi-la na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Deprecation](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
+Para definir a descrição de uma resposta exibida na interface da documentação, leia a documentação de [Tutorial - Configurações da Operação de Rota - Descrição da Resposta](../tutorial/path-operation-configuration.md#response-description).
 
-## Converter qualquer dado para JSON
+## Documentação - Descontinuar uma *Operação de Rota* - OpenAPI { #documentation-deprecate-a-path-operation-openapi }
 
+Para descontinuar uma *operação de rota* e exibi-la na UI da documentação, leia a documentação de [Tutorial - Configurações da Operação de Rota - Descontinuação](../tutorial/path-operation-configuration.md#deprecate-a-path-operation).
 
-Para converter qualquer dado para um formato compatível com JSON, leia a seção [Tutorial - JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+## Converter qualquer dado para compatível com JSON { #convert-any-data-to-json-compatible }
 
-## OpenAPI Metadata - Docs
+Para converter qualquer dado para um formato compatível com JSON, leia a documentação de [Tutorial - Codificador Compatível com JSON](../tutorial/encoder.md).
 
-Para adicionar metadados ao seu esquema OpenAPI, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md){.internal-link target=_blank}.
+## OpenAPI Metadata - Docs { #openapi-metadata-docs }
 
-## OpenAPI com URL customizada
+Para adicionar metadados ao seu esquema OpenAPI, incluindo licença, versão, contato, etc, leia a documentação de [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md).
 
-Para customizar a URL do OpenAPI (ou removê-la), leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#openapi-url){.internal-link target=_blank}.
+## OpenAPI com URL customizada { #openapi-custom-url }
 
-## URLs de documentação do OpenAPI
+Para customizar a URL do OpenAPI (ou removê-la), leia a documentação de [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md#openapi-url).
 
-Para alterar as URLs usadas ​​para as interfaces de usuário da documentação gerada automaticamente, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
+## URLs de documentação do OpenAPI { #openapi-docs-urls }
+
+Para alterar as URLs usadas ​​para as interfaces de usuário da documentação gerada automaticamente, leia a documentação de [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md#docs-urls).

@@ -17,6 +17,7 @@ lang-all:
         - docs/*/docs/**
       - all-globs-to-all-files:
         - '!docs/en/docs/**'
+        - '!docs/*/**/_*.md'
         - '!fastapi/**'
         - '!pyproject.toml'
 
@@ -28,8 +29,7 @@ internal:
         - scripts/**
         - .gitignore
         - .pre-commit-config.yaml
-        - pdm_build.py
-        - requirements*.txt
+        - uv.lock
         - docs/en/data/sponsors.yml
         - docs/en/overrides/main.html
       - all-globs-to-all-files:

@@ -1,24 +1,24 @@
-# ボディ - 複数のパラメータ
+# ボディ - 複数のパラメータ { #body-multiple-parameters }
 
-これまで`Path`と`Query`をどう使うかを見てきましたが、リクエストボディの宣言のより高度な使い方を見てみましょう。
+これまで`Path`と`Query`をどう使うかを見てきましたが、リクエストボディ宣言のより高度な使い方を見てみましょう。
 
-## `Path`、`Query`とボディパラメータを混ぜる
+## `Path`、`Query`とボディパラメータを混ぜる { #mix-path-query-and-body-parameters }
 
-まず、もちろん、`Path`と`Query`とリクエストボディのパラメータの宣言は自由に混ぜることができ、 **FastAPI** は何をするべきかを知っています。
+まず、もちろん、`Path`と`Query`とリクエストボディのパラメータ宣言は自由に混ぜることができ、 **FastAPI** は何をするべきかを知っています。
 
-また、デフォルトの`None`を設定することで、ボディパラメータをオプションとして宣言することもできます:
+また、デフォルトを`None`に設定することで、ボディパラメータをオプションとして宣言することもできます:
 
-{* ../../docs_src/body_multiple_params/tutorial001.py hl[19,20,21] *}
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note | 備考
 
-この場合、ボディから取得する`item`はオプションであることに注意してください。デフォルト値は`None`です。
+この場合、ボディから取得する`item`はオプションであることに注意してください。デフォルト値が`None`になっているためです。
 
 ///
 
-## 複数のボディパラメータ
+## 複数のボディパラメータ { #multiple-body-parameters }
 
-上述の例では、*path operations*は`item`の属性を持つ以下のようなJSONボディを期待していました:
+上述の例では、*path operations*は`Item`の属性を持つ以下のようなJSONボディを期待していました:
 
 ```JSON
 {
@@ -31,11 +31,12 @@
 
 しかし、`item`と`user`のように複数のボディパラメータを宣言することもできます:
 
-{* ../../docs_src/body_multiple_params/tutorial002.py hl[22] *}
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-この場合、**FastAPI**は関数内に複数のボディパラメータ（Pydanticモデルである２つのパラメータ）があることに気付きます。
 
-そのため、パラメータ名をボディのキー（フィールド名）として使用し、以下のようなボディを期待しています:
+この場合、**FastAPI**は関数内に複数のボディパラメータがあることに気付きます（Pydanticモデルである2つのパラメータがあります）。
+
+そのため、パラメータ名をボディのキー（フィールド名）として使用し、以下のようなボディを期待します:
 
 ```JSON
 {
@@ -62,7 +63,7 @@
 
 複合データの検証を行い、OpenAPIスキーマや自動ドキュメントのように文書化してくれます。
 
-## ボディ内の単数値
+## ボディ内の単数値 { #singular-values-in-body }
 
 クエリとパスパラメータの追加データを定義するための `Query` と `Path` があるのと同じように、 **FastAPI** は同等の `Body` を提供します。
 
@@ -72,11 +73,10 @@
 
 しかし、`Body`を使用して、**FastAPI** に別のボディキーとして扱うように指示することができます:
 
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 この場合、**FastAPI** は以下のようなボディを期待します:
-
 
 ```JSON
 {
@@ -96,41 +96,42 @@
 
 繰り返しになりますが、データ型の変換、検証、文書化などを行います。
 
-## 複数のボディパラメータとクエリ
+## 複数のボディパラメータとクエリ { #multiple-body-params-and-query }
 
 もちろん、ボディパラメータに加えて、必要に応じて追加のクエリパラメータを宣言することもできます。
 
-デフォルトでは、単数値はクエリパラメータとして解釈されるので、明示的に `Query` を追加する必要はありません。
+デフォルトでは、単数値はクエリパラメータとして解釈されるので、明示的に `Query` を追加する必要はなく、次のようにできます:
 
 ```Python
-q: str = None
+q: str | None = None
 ```
 
-以下において:
+例えば:
 
-{* ../../docs_src/body_multiple_params/tutorial004.py hl[27] *}
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 /// info | 情報
 
-`Body`もまた、後述する `Query` や `Path` などと同様に、すべての検証パラメータとメタデータパラメータを持っています。
+`Body`もまた、後述する `Query` や `Path` などと同様に、すべての追加検証パラメータとメタデータパラメータを持っています。
 
 ///
 
-## 単一のボディパラメータの埋め込み
+## 単一のボディパラメータの埋め込み { #embed-a-single-body-parameter }
 
-Pydanticモデル`Item`のボディパラメータ`item`を1つだけ持っているとしましょう。
+Pydanticモデル`Item`の単一の`item`ボディパラメータしかないとしましょう。
 
 デフォルトでは、**FastAPI**はそのボディを直接期待します。
 
-しかし、追加のボディパラメータを宣言したときのように、キー `item` を持つ JSON とその中のモデルの内容を期待したい場合は、特別な `Body` パラメータ `embed` を使うことができます:
+しかし、追加のボディパラメータを宣言したときのように、キー `item` を持つ JSON と、その中のモデル内容を期待したい場合は、特別な `Body` パラメータ `embed` を使うことができます:
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 以下において:
 
-{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+
 
 この場合、**FastAPI** は以下のようなボディを期待します:
 
@@ -156,9 +157,9 @@ item: Item = Body(..., embed=True)
 }
 ```
 
-## まとめ
+## まとめ { #recap }
 
-リクエストが単一のボディしか持てない場合でも、*path operation関数*に複数のボディパラメータを追加することができます。
+リクエストが単一のボディしか持てない場合でも、*path operation function*に複数のボディパラメータを追加することができます。
 
 しかし、**FastAPI** はそれを処理し、関数内の正しいデータを与え、*path operation*内の正しいスキーマを検証し、文書化します。
 

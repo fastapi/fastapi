@@ -1,9 +1,8 @@
-from typing import Any, List
+from typing import Any
 
-from dirty_equals import IsOneOf
-from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
+from fastapi.params import Body, Cookie, Header, Param, Path, Query
 
-test_data: List[Any] = ["teststr", None, ..., 1, []]
+test_data: list[Any] = ["teststr", None, ..., 1, []]
 
 
 def get_user():
@@ -19,11 +18,7 @@ def test_param_repr_none():
 
 
 def test_param_repr_ellipsis():
-    assert repr(Param(...)) == IsOneOf(
-        "Param(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Param(Ellipsis)",
-    )
+    assert repr(Param(...)) == "Param(PydanticUndefined)"
 
 
 def test_param_repr_number():
@@ -35,16 +30,8 @@ def test_param_repr_list():
 
 
 def test_path_repr():
-    assert repr(Path()) == IsOneOf(
-        "Path(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Path(Ellipsis)",
-    )
-    assert repr(Path(...)) == IsOneOf(
-        "Path(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Path(Ellipsis)",
-    )
+    assert repr(Path()) == "Path(PydanticUndefined)"
+    assert repr(Path(...)) == "Path(PydanticUndefined)"
 
 
 def test_query_repr_str():
@@ -56,11 +43,7 @@ def test_query_repr_none():
 
 
 def test_query_repr_ellipsis():
-    assert repr(Query(...)) == IsOneOf(
-        "Query(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Query(Ellipsis)",
-    )
+    assert repr(Query(...)) == "Query(PydanticUndefined)"
 
 
 def test_query_repr_number():
@@ -80,11 +63,7 @@ def test_header_repr_none():
 
 
 def test_header_repr_ellipsis():
-    assert repr(Header(...)) == IsOneOf(
-        "Header(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Header(Ellipsis)",
-    )
+    assert repr(Header(...)) == "Header(PydanticUndefined)"
 
 
 def test_header_repr_number():
@@ -104,11 +83,7 @@ def test_cookie_repr_none():
 
 
 def test_cookie_repr_ellipsis():
-    assert repr(Cookie(...)) == IsOneOf(
-        "Cookie(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Cookie(Ellipsis)",
-    )
+    assert repr(Cookie(...)) == "Cookie(PydanticUndefined)"
 
 
 def test_cookie_repr_number():
@@ -128,11 +103,7 @@ def test_body_repr_none():
 
 
 def test_body_repr_ellipsis():
-    assert repr(Body(...)) == IsOneOf(
-        "Body(PydanticUndefined)",
-        # TODO: remove when deprecating Pydantic v1
-        "Body(Ellipsis)",
-    )
+    assert repr(Body(...)) == "Body(PydanticUndefined)"
 
 
 def test_body_repr_number():
@@ -141,12 +112,3 @@ def test_body_repr_number():
 
 def test_body_repr_list():
     assert repr(Body([])) == "Body([])"
-
-
-def test_depends_repr():
-    assert repr(Depends()) == "Depends(NoneType)"
-    assert repr(Depends(get_user)) == "Depends(get_user)"
-    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=False)"
-    assert (
-        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
-    )

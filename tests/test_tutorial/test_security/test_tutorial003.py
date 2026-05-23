@@ -1,19 +1,16 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003",
         pytest.param("tutorial003_py310", marks=needs_py310),
-        "tutorial003_an",
-        pytest.param("tutorial003_an_py39", marks=needs_py39),
         pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )
@@ -66,7 +63,7 @@ def test_token(client: TestClient):
 def test_incorrect_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
@@ -88,147 +85,131 @@ def test_inactive_user(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/token": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/token": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Login",
+                        "operationId": "login_token_post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "application/x-www-form-urlencoded": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_login_token_post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Login",
-                    "operationId": "login_token_post",
-                    "requestBody": {
-                        "content": {
-                            "application/x-www-form-urlencoded": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_login_token_post"
-                                }
+                    }
+                },
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             }
                         },
-                        "required": True,
-                    },
-                }
+                        "summary": "Read Users Me",
+                        "operationId": "read_users_me_users_me_get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                    }
+                },
             },
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Users Me",
-                    "operationId": "read_users_me_users_me_get",
-                    "security": [{"OAuth2PasswordBearer": []}],
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "Body_login_token_post": {
-                    "title": "Body_login_token_post",
-                    "required": ["username", "password"],
-                    "type": "object",
-                    "properties": {
-                        "grant_type": IsDict(
-                            {
+            "components": {
+                "schemas": {
+                    "Body_login_token_post": {
+                        "title": "Body_login_token_post",
+                        "required": ["username", "password"],
+                        "type": "object",
+                        "properties": {
+                            "grant_type": {
                                 "title": "Grant Type",
                                 "anyOf": [
                                     {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Grant Type",
-                                "pattern": "^password$",
+                            },
+                            "username": {"title": "Username", "type": "string"},
+                            "password": {
+                                "title": "Password",
                                 "type": "string",
-                            }
-                        ),
-                        "username": {"title": "Username", "type": "string"},
-                        "password": {
-                            "title": "Password",
-                            "type": "string",
-                            "format": "password",
-                        },
-                        "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
+                                "format": "password",
+                            },
+                            "scope": {
+                                "title": "Scope",
+                                "type": "string",
+                                "default": "",
+                            },
+                            "client_id": {
                                 "title": "Client Id",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
+                            },
+                            "client_secret": {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
                                 "format": "password",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Client Secret",
-                                "type": "string",
-                                "format": "password",
-                            }
-                        ),
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
                     },
                 },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
+                "securitySchemes": {
+                    "OAuth2PasswordBearer": {
+                        "type": "oauth2",
+                        "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
+                    }
                 },
             },
-            "securitySchemes": {
-                "OAuth2PasswordBearer": {
-                    "type": "oauth2",
-                    "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
-                }
-            },
-        },
-    }
+        }
+    )
