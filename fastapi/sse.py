@@ -227,7 +227,7 @@ def format_sse_event(
     return "\n".join(lines).encode("utf-8")
 
 
-# Keep-alive comment, per the SSE spec recommendation
+# Keep-alive comment, per the SSE spec recommendation.
 KEEPALIVE_COMMENT = b": ping\n\n"
 
 # Seconds between keep-alive pings when a generator is idle.
