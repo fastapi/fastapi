@@ -2,13 +2,13 @@
 
 La documentación de la API utiliza **Swagger UI** y **ReDoc**, y cada uno de estos necesita algunos archivos JavaScript y CSS.
 
-Por defecto, esos archivos se sirven desde un <abbr title="Content Delivery Network – Red de entrega de contenidos: Un servicio, normalmente compuesto de varios servidores, que proporciona archivos estáticos, como JavaScript y CSS. Se usa comúnmente para servir esos archivos desde el servidor más cercano al cliente, mejorando el rendimiento.">CDN</abbr>.
+Por defecto, esos archivos se sirven desde un <abbr title="Content Delivery Network - Red de entrega de contenidos: Un servicio, normalmente compuesto de varios servidores, que proporciona archivos estáticos, como JavaScript y CSS. Se usa comúnmente para servir esos archivos desde el servidor más cercano al cliente, mejorando el rendimiento.">CDN</abbr>.
 
 Pero es posible personalizarlo, puedes establecer un CDN específico, o servir los archivos tú mismo.
 
 ## CDN Personalizado para JavaScript y CSS { #custom-cdn-for-javascript-and-css }
 
-Digamos que quieres usar un <abbr title="Content Delivery Network – Red de entrega de contenidos">CDN</abbr> diferente, por ejemplo, quieres usar `https://unpkg.com/`.
+Digamos que quieres usar un <abbr title="Content Delivery Network - Red de entrega de contenidos">CDN</abbr> diferente, por ejemplo, quieres usar `https://unpkg.com/`.
 
 Esto podría ser útil si, por ejemplo, vives en un país que restringe algunas URLs.
 
@@ -54,7 +54,7 @@ Ahora, para poder probar que todo funciona, crea una *path operation*:
 
 ### Pruébalo { #test-it }
 
-Ahora, deberías poder ir a tu documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, y recargar la página, cargará esos recursos desde el nuevo CDN.
+Ahora, deberías poder ir a tu documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), y recargar la página, cargará esos recursos desde el nuevo CDN.
 
 ## self hosting de JavaScript y CSS para la documentación { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Probablemente puedas hacer clic derecho en cada enlace y seleccionar una opción
 
 **Swagger UI** utiliza los archivos:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+* [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 Y **ReDoc** utiliza el archivo:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 Después de eso, tu estructura de archivos podría verse así:
 
@@ -122,7 +122,7 @@ Después de eso, tu estructura de archivos podría verse así:
 
 ### Prueba los archivos estáticos { #test-the-static-files }
 
-Inicia tu aplicación y ve a <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Inicia tu aplicación y ve a [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js).
 
 Deberías ver un archivo JavaScript muy largo de **ReDoc**.
 
@@ -180,6 +180,6 @@ Ahora, para poder probar que todo funciona, crea una *path operation*:
 
 ### Prueba la UI de Archivos Estáticos { #test-static-files-ui }
 
-Ahora, deberías poder desconectar tu WiFi, ir a tu documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, y recargar la página.
+Ahora, deberías poder desconectar tu WiFi, ir a tu documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), y recargar la página.
 
 E incluso sin Internet, podrás ver la documentación de tu API e interactuar con ella.

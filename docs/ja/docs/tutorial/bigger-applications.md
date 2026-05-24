@@ -58,17 +58,17 @@ from app.routers import items
 
 ```bash
 .
-├── app                  # "app" is a Python package
-│   ├── __init__.py      # this file makes "app" a "Python package"
-│   ├── main.py          # "main" module, e.g. import app.main
-│   ├── dependencies.py  # "dependencies" module, e.g. import app.dependencies
-│   └── routers          # "routers" is a "Python subpackage"
-│   │   ├── __init__.py  # makes "routers" a "Python subpackage"
-│   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
-│   │   └── users.py     # "users" submodule, e.g. import app.routers.users
-│   └── internal         # "internal" is a "Python subpackage"
-│       ├── __init__.py  # makes "internal" a "Python subpackage"
-│       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
+├── app                  # "app" は Python パッケージ
+│   ├── __init__.py      # このファイルにより "app" は「Python パッケージ」になる
+│   ├── main.py          # "main" モジュール（例: import app.main）
+│   ├── dependencies.py  # "dependencies" モジュール（例: import app.dependencies）
+│   └── routers          # "routers" は「Python サブパッケージ」
+│   │   ├── __init__.py  # このファイルにより "routers" は「Python サブパッケージ」になる
+│   │   ├── items.py     # "items" サブモジュール（例: import app.routers.items）
+│   │   └── users.py     # "users" サブモジュール（例: import app.routers.users）
+│   └── internal         # "internal" は「Python サブパッケージ」
+│       ├── __init__.py  # このファイルにより "internal" は「Python サブパッケージ」になる
+│       └── admin.py     # "admin" サブモジュール（例: import app.internal.admin）
 ```
 
 ## `APIRouter` { #apirouter }
@@ -123,7 +123,7 @@ from app.routers import items
 
 この例を簡単にするために架空のヘッダーを使っています。
 
-しかし実際には、組み込みの [Security utilities](security/index.md){.internal-link target=_blank} を使う方が良い結果になります。
+しかし実際には、組み込みの [Security utilities](security/index.md) を使う方が良い結果になります。
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | 豆知識
 
-[*path operation デコレータ*の依存関係](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} と同様に、*path operation 関数*には値は渡されない点に注意してください。
+[*path operation デコレータ*の依存関係](dependencies/dependencies-in-path-operation-decorators.md) と同様に、*path operation 関数*には値は渡されない点に注意してください。
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * すべてに事前定義した `responses` が含まれます。
 * これらすべての *path operations* では、実行前に `dependencies` のリストが評価・実行されます。
     * 特定の *path operation* に依存関係を宣言した場合は、**それらも実行されます**。
-    * ルーターの依存関係が先に実行され、その後に[デコレータ内の `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}、次に通常のパラメータ依存関係が続きます。
-    * [`scopes` を伴う `Security` 依存関係](../advanced/security/oauth2-scopes.md){.internal-link target=_blank} を追加することもできます。
+    * ルーターの依存関係が先に実行され、その後に[デコレータ内の `dependencies`](dependencies/dependencies-in-path-operation-decorators.md)、次に通常のパラメータ依存関係が続きます。
+    * [`scopes` を伴う `Security` 依存関係](../advanced/security/oauth2-scopes.md) を追加することもできます。
 
 /// tip | 豆知識
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 通常どおり `FastAPI` クラスをインポートして作成します。
 
-さらに、各 `APIRouter` の依存関係と組み合わされる[グローバル依存関係](dependencies/global-dependencies.md){.internal-link target=_blank}も宣言できます:
+さらに、各 `APIRouter` の依存関係と組み合わされる[グローバル依存関係](dependencies/global-dependencies.md)も宣言できます:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-Python のパッケージとモジュールについて詳しくは、<a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">公式の Python モジュールに関するドキュメント</a>をご覧ください。
+Python のパッケージとモジュールについて詳しくは、[公式の Python モジュールに関するドキュメント](https://docs.python.org/3/tutorial/modules.html)をご覧ください。
 
 ///
 
@@ -465,6 +465,37 @@ from .routers.users import router
 
 ///
 
+## `pyproject.toml` の `entrypoint` を設定 { #configure-the-entrypoint-in-pyproject-toml }
+
+FastAPI の `app` オブジェクトは `app/main.py` にあるので、`pyproject.toml` で `entrypoint` を次のように設定できます:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+これは次のようにインポートするのと同等です:
+
+```python
+from app.main import app
+```
+
+このようにすると、`fastapi` コマンドがアプリの場所を把握できます。
+
+/// Note | 備考
+
+コマンドにパスを渡すこともできます。例えば:
+
+```console
+$ fastapi dev app/main.py
+```
+
+しかし、そのたびに `fastapi` コマンドを呼ぶ際、正しいパスを渡すのを忘れないようにする必要があります。
+
+さらに、[VS Code Extension](../editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、他のツールが見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使うことを推奨します。
+
+///
+
 ## 自動APIドキュメントの確認 { #check-the-automatic-api-docs }
 
 アプリを実行します:
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-そして <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> を開きます。
+そして [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) を開きます。
 
 すべてのサブモジュール由来のパスを含む自動 API ドキュメントが表示され、正しいパス（および prefix）と正しいタグが使われているのが分かります:
 

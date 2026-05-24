@@ -16,7 +16,7 @@ Kullanım durumunuza ve kullandığınız araçlara bağlı olarak bunu yapmanı
 
 Bir dizi araç kombinasyonunu kullanarak kendiniz **bir sunucu deploy edebilirsiniz**, yayınlama sürecinin bir kısmını sizin için gerçekleştiren bir **bulut hizmeti** veya diğer olası seçenekleri kullanabilirsiniz.
 
-Örneğin, FastAPI'nin arkasındaki ekip olarak, FastAPI uygulamalarını buluta mümkün olduğunca akıcı şekilde deploy etmeyi sağlamak için, FastAPI ile çalışmanın aynı geliştirici deneyimini sunarak <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>'u oluşturduk.
+Örneğin, FastAPI'nin arkasındaki ekip olarak, FastAPI uygulamalarını buluta mümkün olduğunca akıcı şekilde deploy etmeyi sağlamak için, FastAPI ile çalışmanın aynı geliştirici deneyimini sunarak [**FastAPI Cloud**](https://fastapicloud.com)'u oluşturduk.
 
 **FastAPI** uygulamasını yayınlarken aklınızda bulundurmanız gereken ana kavramlardan bazılarını size göstereceğim (ancak bunların çoğu diğer web uygulamaları için de geçerlidir).
 

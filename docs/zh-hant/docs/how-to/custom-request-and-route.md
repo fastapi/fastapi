@@ -18,7 +18,7 @@
 
 可能的使用情境包括：
 
-* 將非 JSON 的請求本文轉換為 JSON（例如 <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>）。
+* 將非 JSON 的請求本文轉換為 JSON（例如 [`msgpack`](https://msgpack.org/index.html)）。
 * 解壓縮以 gzip 壓縮的請求本文。
 * 自動記錄所有請求本文。
 
@@ -32,7 +32,7 @@
 
 /// tip
 
-這是一個示範用的簡化範例；如果你需要 Gzip 支援，可以直接使用提供的 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}。
+這是一個示範用的簡化範例；如果你需要 Gzip 支援，可以直接使用提供的 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware)。
 
 ///
 
@@ -40,7 +40,7 @@
 
 如果標頭中沒有 `gzip`，它就不會嘗試解壓縮本文。
 
-如此一來，相同的路由類別即可同時處理經 gzip 壓縮與未壓縮的請求.
+如此一來，相同的路由類別即可同時處理經 gzip 壓縮與未壓縮的請求。
 
 {* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
@@ -66,7 +66,7 @@
 
 而 `scope` 與 `receive` 這兩者，就是建立一個新的 `Request` 實例所需的資料。
 
-想了解更多 `Request`，請參考 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette 的 Request 文件</a>。
+想了解更多 `Request`，請參考 [Starlette 的 Request 文件](https://www.starlette.dev/requests/)。
 
 ///
 
@@ -82,7 +82,7 @@
 
 /// tip
 
-要解決相同問題，使用針對 `RequestValidationError` 的自訂處理器來讀取 `body` 通常更簡單（[處理錯誤](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}）。
+要解決相同問題，使用針對 `RequestValidationError` 的自訂處理器來讀取 `body` 通常更簡單（[處理錯誤](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)）。
 
 但本範例仍然有效，並示範了如何與內部元件互動。
 

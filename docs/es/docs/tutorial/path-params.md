@@ -6,7 +6,7 @@ Puedes declarar "parámetros" o "variables" de path con la misma sintaxis que se
 
 El valor del parámetro de path `item_id` se pasará a tu función como el argumento `item_id`.
 
-Así que, si ejecutas este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás un response de:
+Así que, si ejecutas este ejemplo y vas a [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), verás un response de:
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@ Esto te dará soporte del editor dentro de tu función, con chequeo de errores, 
 
 ## <dfn title="también conocido como: serialización, parsing, marshalling">Conversión</dfn> de datos { #data-conversion }
 
-Si ejecutas este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, verás un response de:
+Si ejecutas este ejemplo y abres tu navegador en [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3), verás un response de:
 
 ```JSON
 {"item_id":3}
@@ -44,7 +44,7 @@ Entonces, con esa declaración de tipo, **FastAPI** te ofrece <dfn title="conver
 
 ## Validación de datos { #data-validation }
 
-Pero si vas al navegador en <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás un bonito error HTTP de:
+Pero si vas al navegador en [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), verás un bonito error HTTP de:
 
 ```JSON
 {
@@ -64,7 +64,7 @@ Pero si vas al navegador en <a href="http://127.0.0.1:8000/items/foo" class="ext
 
 porque el parámetro de path `item_id` tenía un valor de `"foo"`, que no es un `int`.
 
-El mismo error aparecería si proporcionaras un `float` en lugar de un `int`, como en: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+El mismo error aparecería si proporcionaras un `float` en lugar de un `int`, como en: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// check | Revisa
 
@@ -78,7 +78,7 @@ Esto es increíblemente útil mientras desarrollas y depuras código que interac
 
 ## Documentación { #documentation }
 
-Y cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, verás una documentación de API automática e interactiva como:
+Y cuando abras tu navegador en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), verás una documentación de API automática e interactiva como:
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -92,9 +92,9 @@ Nota que el parámetro de path está declarado como un entero.
 
 ## Beneficios basados en estándares, documentación alternativa { #standards-based-benefits-alternative-documentation }
 
-Y porque el esquema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, hay muchas herramientas compatibles.
+Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), hay muchas herramientas compatibles.
 
-Debido a esto, el propio **FastAPI** proporciona una documentación de API alternativa (usando ReDoc), a la cual puedes acceder en <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
+Debido a esto, el propio **FastAPI** proporciona una documentación de API alternativa (usando ReDoc), a la cual puedes acceder en [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@ De la misma manera, hay muchas herramientas compatibles. Incluyendo herramientas
 
 ## Pydantic { #pydantic }
 
-Toda la validación de datos se realiza internamente con <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
+Toda la validación de datos se realiza internamente con [Pydantic](https://docs.pydantic.dev/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
 
 Puedes usar las mismas declaraciones de tipo con `str`, `float`, `bool` y muchos otros tipos de datos complejos.
 

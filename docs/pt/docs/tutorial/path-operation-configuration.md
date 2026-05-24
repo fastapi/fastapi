@@ -40,7 +40,7 @@ Eles serão adicionados ao esquema OpenAPI e usados pelas interfaces de document
 
 ### Tags com Enums { #tags-with-enums }
 
-Se você tem uma grande aplicação, você pode acabar acumulando **várias tags**, e você gostaria de ter certeza de que você sempre usa a **mesma tag** para *operações de rota* relacionadas.
+Se você tem uma grande aplicação, você pode acabar acumulando **várias tags**, e você gostaria de ter certeza de que você sempre usa a ** mesma tag** para *operações de rota* relacionadas.
 
 Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
@@ -58,7 +58,7 @@ Você pode adicionar um `summary` e uma `description`:
 
 Como as descrições tendem a ser longas e cobrir várias linhas, você pode declarar a descrição da *operação de rota* na <dfn title="uma string de várias linhas como a primeira expressão dentro de uma função (não atribuída a nenhuma variável) usada para documentação">docstring</dfn> da função e o **FastAPI** irá lê-la de lá.
 
-Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
+Você pode escrever [Markdown](https://en.wikipedia.org/wiki/Markdown) na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 

@@ -4,7 +4,7 @@ _Templates_, embora tipicamente venham com alguma configuração específica, s�
 
 Você pode usar esse _template_ para começar, já que ele inclui várias configurações iniciais, segurança, banco de dados, e alguns _endpoints_ de API já feitos para você.
 
-Repositório GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+Repositório GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Template - Pilha de Tecnologias e Recursos { #full-stack-fastapi-template-technology-stack-and-features }
 
@@ -19,10 +19,10 @@ Repositório GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-tem
     - 🧪 [Playwright](https://playwright.dev) para testes Ponta-a-Ponta.
     - 🦇 Suporte para modo escuro.
 - 🐋 [Docker Compose](https://www.docker.com) para desenvolvimento e produção.
-- 🔒 _Hash_ seguro de senhas por padrão.
-- 🔑 Autenticação por token JWT.
+- 🔒 Hash seguro de senhas por padrão.
+- 🔑 Autenticação JWT (JSON Web Token).
 - 📫 Recuperação de senhas baseada em email.
 - ✅ Testes com [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) como proxy reverso / balanceador de carga.
-- 🚢 Instruções de _deployment_ usando Docker Compose, incluindo como configurar um proxy frontend com Traefik para gerenciar automaticamente certificados HTTPS.
+- 🚢 Instruções de deployment usando Docker Compose, incluindo como configurar um proxy frontend com Traefik para gerenciar automaticamente certificados HTTPS.
 - 🏭 CI (Integração Contínua) e CD (_Deploy_ Contínuo) baseado em GitHub Actions.

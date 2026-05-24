@@ -63,7 +63,7 @@ Und dann schreibt ein weiterer Hintergrundtask, der in der *Pfadoperation-Funkti
 
 ## Technische Details { #technical-details }
 
-Die Klasse `BackgroundTasks` stammt direkt von <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+Die Klasse `BackgroundTasks` stammt direkt von [`starlette.background`](https://www.starlette.dev/background/).
 
 Sie wird direkt in FastAPI importiert/inkludiert, sodass Sie sie von `fastapi` importieren können und vermeiden, versehentlich das alternative `BackgroundTask` (ohne das `s` am Ende) von `starlette.background` zu importieren.
 
@@ -71,11 +71,11 @@ Indem Sie nur `BackgroundTasks` (und nicht `BackgroundTask`) verwenden, ist es d
 
 Es ist immer noch möglich, `BackgroundTask` allein in FastAPI zu verwenden, aber Sie müssen das Objekt in Ihrem Code erstellen und eine Starlette-`Response` zurückgeben, die es enthält.
 
-Weitere Details finden Sie in <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlettes offizieller Dokumentation für Hintergrundtasks</a>.
+Weitere Details finden Sie in [Starlettes offizieller Dokumentation für Hintergrundtasks](https://www.starlette.dev/background/).
 
 ## Vorbehalt { #caveat }
 
-Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nicht unbedingt vom selben Prozess ausgeführt werden müssen (z. B. müssen Sie Speicher, Variablen, usw. nicht gemeinsam nutzen), könnte die Verwendung anderer größerer Tools wie z. B. <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a> von Vorteil sein.
+Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nicht unbedingt vom selben Prozess ausgeführt werden müssen (z. B. müssen Sie Speicher, Variablen, usw. nicht gemeinsam nutzen), könnte die Verwendung anderer größerer Tools wie z. B. [Celery](https://docs.celeryq.dev) von Vorteil sein.
 
 Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrundtasks in mehreren Prozessen und insbesondere auf mehreren Servern.
 

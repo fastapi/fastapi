@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-FastAPI uygulamanızı <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>'a **tek bir komutla** deploy edebilirsiniz. Henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
+FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a **tek bir komutla** deploy edebilirsiniz. Henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
 
 ## Giriş Yapma { #login }
 
@@ -40,7 +40,7 @@ Hepsi bu! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 ## FastAPI Cloud Hakkında { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**, **FastAPI**'nin arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
+**[FastAPI Cloud](https://fastapicloud.com)**, **FastAPI**'nin arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
 
 Bir API'yi minimum eforla **geliştirme**, **deploy etme** ve **erişilebilir kılma** sürecini sadeleştirir.
 

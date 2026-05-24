@@ -4,9 +4,9 @@
 
 /// info
 
-若要接收上傳的檔案，請先安裝 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+若要接收上傳的檔案，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，然後安裝，例如：
+請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ $ pip install python-multipart
     * 檔案在記憶體中保存到某個大小上限，超過上限後會存到磁碟。
 * 因此適合處理大型檔案（例如圖片、影片、大型二進位檔等），而不會耗盡記憶體。
 * 你可以取得上傳檔案的中繼資料。
-* 它提供一個<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">類檔案</a>的 `async` 介面。
-* 它會提供實際的 Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> 物件，你可以直接傳給需要類檔案物件的其他函式或函式庫。
+* 它提供一個[file-like](https://docs.python.org/3/glossary.html#term-file-like-object) 的 `async` 介面。
+* 它會提供實際的 Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) 物件，你可以直接傳給需要類檔案物件的其他函式或函式庫。
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,13 +72,13 @@ $ pip install python-multipart
 
 * `filename`：一個 `str`，為上傳的原始檔名（例如 `myimage.jpg`）。
 * `content_type`：一個 `str`，為內容類型（MIME type / media type）（例如 `image/jpeg`）。
-* `file`：一個 <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">類檔案</a>物件）。這是真正的 Python 檔案物件，你可以直接傳給期待「類檔案」物件的其他函式或函式庫。
+* `file`：一個 [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile)（一個[file-like](https://docs.python.org/3/glossary.html#term-file-like-object) 物件）。這是真正的 Python 檔案物件，你可以直接傳給期待「類檔案」物件的其他函式或函式庫。
 
 `UploadFile` 有以下 `async` 方法。它們底層會呼叫對應的檔案方法（使用內部的 `SpooledTemporaryFile`）。
 
-* `write(data)`：將 `data`（`str` 或 `bytes`）寫入檔案。
-* `read(size)`：讀取檔案的 `size`（`int`）個位元組/字元。
-* `seek(offset)`：移動到檔案中的位元組位置 `offset`（`int`）。
+* `write(data)`：將 `data` (`str` 或 `bytes`) 寫入檔案。
+* `read(size)`：讀取檔案的 `size` (`int`) 個位元組/字元。
+* `seek(offset)`：移動到檔案中的位元組位置 `offset` (`int`)。
     * 例如，`await myfile.seek(0)` 會移到檔案開頭。
     * 當你已經執行過 `await myfile.read()`，之後需要再次讀取內容時特別有用。
 * `close()`：關閉檔案。
@@ -121,7 +121,7 @@ HTML 表單（`<form></form>`）送到伺服器的資料通常使用一種「特
 
 但當表單包含檔案時，會使用 `multipart/form-data` 編碼。若你使用 `File`，**FastAPI** 會知道要從請求本文的正確部分取得檔案。
 
-若想進一步了解這些編碼與表單欄位，請參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> Web Docs 的 <code>POST</code></a>。
+若想進一步了解這些編碼與表單欄位，請參考 [<abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> web docs 的 `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)。
 
 ///
 

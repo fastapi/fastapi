@@ -12,7 +12,7 @@ Esto es especialmente el caso para los modelos de usuario, porque:
 
 Nunca almacenes contraseñas de usuarios en texto plano. Siempre almacena un "hash seguro" que puedas verificar luego.
 
-Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos de seguridad](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos de seguridad](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ Puedes declarar un response que sea la `Union` de dos o más tipos, eso signific
 
 Se definirá en OpenAPI con `anyOf`.
 
-Para hacerlo, usa la anotación de tipos estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para hacerlo, usa la anotación de tipos estándar de Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Nota
 
-Al definir una <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
+Al definir una [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
 
 ///
 

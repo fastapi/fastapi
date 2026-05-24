@@ -8,7 +8,7 @@ C'est pourquoi il est courant de les fournir via des variables d'environnement l
 
 /// tip | Astuce
 
-Pour comprendre les variables d'environnement, vous pouvez lire [Variables d'environnement](../environment-variables.md){.internal-link target=_blank}.
+Pour comprendre les variables d'environnement, vous pouvez lire [Variables d'environnement](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@ Cela signifie que toute valeur lue en Python depuis une variable d'environnement
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Heureusement, Pydantic fournit un excellent utilitaire pour gérer ces paramètres provenant des variables d'environnement avec <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic : gestion des paramètres</a>.
+Heureusement, Pydantic fournit un excellent utilitaire pour gérer ces paramètres provenant des variables d'environnement avec [Pydantic : gestion des paramètres](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Installer `pydantic-settings` { #install-pydantic-settings }
 
-D'abord, vous devez créer votre [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, l'activer, puis installer le paquet `pydantic-settings` :
+D'abord, vous devez créer votre [environnement virtuel](../virtual-environments.md), l'activer, puis installer le paquet `pydantic-settings` :
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ Et `items_per_user` conservera sa valeur par défaut de `50`.
 
 ## Paramètres dans un autre module { #settings-in-another-module }
 
-Vous pouvez placer ces paramètres dans un autre module comme vous l'avez vu dans [Applications plus grandes - Plusieurs fichiers](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Vous pouvez placer ces paramètres dans un autre module comme vous l'avez vu dans [Applications plus grandes - Plusieurs fichiers](../tutorial/bigger-applications.md).
 
 Par exemple, vous pourriez avoir un fichier `config.py` avec :
 
@@ -112,7 +112,7 @@ Puis l'utiliser dans un fichier `main.py` :
 
 /// tip | Astuce
 
-Vous aurez également besoin d'un fichier `__init__.py` comme vous l'avez vu dans [Applications plus grandes - Plusieurs fichiers](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Vous aurez également besoin d'un fichier `__init__.py` comme vous l'avez vu dans [Applications plus grandes - Plusieurs fichiers](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,7 +172,7 @@ Mais un fichier dotenv n'a pas forcément exactement ce nom de fichier.
 
 ///
 
-Pydantic prend en charge la lecture depuis ce type de fichiers en utilisant une bibliothèque externe. Vous pouvez en lire davantage ici : <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings : prise en charge de Dotenv (.env)</a>.
+Pydantic prend en charge la lecture depuis ce type de fichiers en utilisant une bibliothèque externe. Vous pouvez en lire davantage ici : [Pydantic Settings : prise en charge de Dotenv (.env)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Astuce
 
@@ -197,7 +197,7 @@ Puis mettre à jour votre `config.py` avec :
 
 /// tip | Astuce
 
-L'attribut `model_config` est utilisé uniquement pour la configuration Pydantic. Vous pouvez en lire davantage ici : <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic : Concepts : Configuration</a>.
+L'attribut `model_config` est utilisé uniquement pour la configuration Pydantic. Vous pouvez en lire davantage ici : [Pydantic : Concepts : Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ Dans le cas de notre dépendance `get_settings()`, la fonction ne prend même au
 
 De cette façon, elle se comporte presque comme s'il s'agissait simplement d'une variable globale. Mais comme elle utilise une fonction de dépendance, nous pouvons alors la surcharger facilement pour les tests.
 
-`@lru_cache` fait partie de `functools` qui fait partie de la bibliothèque standard de Python, vous pouvez en lire davantage dans la <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">documentation Python pour `@lru_cache`</a>.
+`@lru_cache` fait partie de `functools` qui fait partie de la bibliothèque standard de Python, vous pouvez en lire davantage dans la [documentation Python pour `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Récapitulatif { #recap }
 

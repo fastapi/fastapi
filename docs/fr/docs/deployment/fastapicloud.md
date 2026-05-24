@@ -1,6 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Vous pouvez déployer votre application FastAPI sur <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> avec une **seule commande**, allez vous inscrire sur la liste d’attente si ce n’est pas déjà fait. 🚀
+Vous pouvez déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com) avec une **seule commande**, allez vous inscrire sur la liste d’attente si ce n’est pas déjà fait. 🚀
 
 ## Se connecter { #login }
 
@@ -40,7 +40,7 @@ C’est tout ! Vous pouvez maintenant accéder à votre application à cette URL
 
 ## À propos de FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** est développé par le même auteur et la même équipe à l’origine de **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** est développé par le même auteur et la même équipe à l’origine de **FastAPI**.
 
 Cela simplifie le processus de **création**, de **déploiement** et **d’accès** à une API avec un effort minimal.
 

@@ -32,7 +32,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 使用依赖项检查用户名与密码是否正确。
 
-为此要使用 Python 标准模块 <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> 检查用户名与密码。
+为此要使用 Python 标准模块 [`secrets`](https://docs.python.org/3/library/secrets.html) 检查用户名与密码。
 
 `secrets.compare_digest()` 需要仅包含 ASCII 字符（英语字符）的 `bytes` 或 `str`，这意味着它不适用于像`á`一样的字符，如 `Sebastián`。
 

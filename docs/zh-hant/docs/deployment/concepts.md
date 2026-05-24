@@ -25,7 +25,7 @@
 
 ## 安全性 - HTTPS { #security-https }
 
-在[前一章關於 HTTPS](https.md){.internal-link target=_blank} 中，我們學到 HTTPS 如何為你的 API 提供加密。
+在[前一章關於 HTTPS](https.md) 中，我們學到 HTTPS 如何為你的 API 提供加密。
 
 我們也看到，HTTPS 通常由應用伺服器外部的元件提供，即 TLS Termination Proxy。
 
@@ -190,7 +190,7 @@
 
 ### 工作行程與連接埠 { #worker-processes-and-ports }
 
-還記得文件中[關於 HTTPS](https.md){.internal-link target=_blank} 的說明嗎：在一台伺服器上，一組 IP 與連接埠的組合只能由「一個行程」監聽？
+還記得文件中[關於 HTTPS](https.md) 的說明嗎：在一台伺服器上，一組 IP 與連接埠的組合只能由「一個行程」監聽？
 
 這裡同樣適用。
 
@@ -243,7 +243,7 @@
 
 先別擔心這裡提到的「容器」、Docker 或 Kubernetes 如果現在還不太懂。
 
-我會在未來的章節進一步說明容器映像、Docker、Kubernetes 等等：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
+我會在未來的章節進一步說明容器映像、Docker、Kubernetes 等等：[容器中的 FastAPI - Docker](docker.md)。
 
 ///
 
@@ -281,7 +281,7 @@
 
 /// tip
 
-我會在未來關於容器的章節提供更具體的範例：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
+我會在未來關於容器的章節提供更具體的範例：[容器中的 FastAPI - Docker](docker.md)。
 
 ///
 

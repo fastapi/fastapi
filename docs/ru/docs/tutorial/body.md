@@ -6,7 +6,7 @@
 
 Ваш API почти всегда должен отправлять тело **ответа**. Но клиентам не обязательно всегда отправлять **тело запроса**: иногда они запрашивают только путь, возможно с некоторыми параметрами запроса, но без тела.
 
-Чтобы объявить тело **запроса**, используйте модели <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, со всей их мощью и преимуществами.
+Чтобы объявить тело **запроса**, используйте модели [Pydantic](https://docs.pydantic.dev/), со всей их мощью и преимуществами.
 
 /// info | Информация
 
@@ -73,7 +73,7 @@
     * Если данные некорректны, вернёт понятную и наглядную ошибку, указывающую, где именно и что было некорректно.
 * Передаст полученные данные в параметр `item`.
     * Поскольку внутри функции вы объявили его с типом `Item`, у вас будет поддержка со стороны редактора кода (автозавершение и т.п.) для всех атрибутов и их типов.
-* Сгенерирует определения <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> для вашей модели; вы можете использовать их и в других местах, если это имеет смысл для вашего проекта.
+* Сгенерирует определения [JSON Schema](https://json-schema.org) для вашей модели; вы можете использовать их и в других местах, если это имеет смысл для вашего проекта.
 * Эти схемы будут частью сгенерированной схемы OpenAPI и будут использоваться автоматической документацией <abbr title="User Interfaces - Пользовательские интерфейсы">UIs</abbr>.
 
 ## Автоматическая документация { #automatic-docs }
@@ -102,15 +102,15 @@ JSON Schema ваших моделей будет частью сгенериро
 
 В сам Pydantic даже были внесены некоторые изменения для поддержки этого.
 
-Предыдущие скриншоты сделаны в <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+Предыдущие скриншоты сделаны в [Visual Studio Code](https://code.visualstudio.com).
 
-Но вы получите такую же поддержку редактора кода в <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> и большинстве других редакторов Python:
+Но вы получите такую же поддержку редактора кода в [PyCharm](https://www.jetbrains.com/pycharm/) и большинстве других редакторов Python:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | Совет
 
-Если вы используете <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> в качестве редактора кода, вы можете использовать плагин <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+Если вы используете [PyCharm](https://www.jetbrains.com/pycharm/) в качестве редактора кода, вы можете использовать плагин [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/).
 
 Он улучшает поддержку моделей Pydantic в редакторе кода, включая:
 
@@ -163,4 +163,4 @@ FastAPI понимает, что значение `q` не является об
 
 ## Без Pydantic { #without-pydantic }
 
-Если вы не хотите использовать модели Pydantic, вы также можете использовать параметры **Body**. См. раздел документации [Тело запроса - Несколько параметров: Единичные значения в теле](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Если вы не хотите использовать модели Pydantic, вы также можете использовать параметры **Body**. См. раздел документации [Тело запроса - Несколько параметров: Единичные значения в теле](body-multiple-params.md#singular-values-in-body).

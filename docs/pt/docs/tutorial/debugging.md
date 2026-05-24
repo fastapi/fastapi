@@ -74,7 +74,7 @@ não será executada.
 
 /// info | Informação
 
-Para mais informações, consulte <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">a documentação oficial do Python</a>.
+Para mais informações, consulte [a documentação oficial do Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 

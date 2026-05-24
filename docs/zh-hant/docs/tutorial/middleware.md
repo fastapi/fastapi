@@ -15,7 +15,7 @@
 
 如果你有使用帶有 `yield` 的相依性，其釋放階段的程式碼會在中介軟體之後執行。
 
-若有背景工作（在[背景工作](background-tasks.md){.internal-link target=_blank}一節會介紹，你稍後會看到），它們會在所有中介軟體之後執行。
+若有背景工作（在[背景工作](background-tasks.md)一節會介紹，你稍後會看到），它們會在所有中介軟體之後執行。
 
 ///
 
@@ -35,9 +35,9 @@
 
 /// tip
 
-請記得，自訂的非標準標頭可以<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">使用 `X-` 前綴</a>。
+請記得，自訂的非標準標頭可以[使用 `X-` 前綴](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)。
 
-但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（Cross-Origin Resource Sharing）](cors.md){.internal-link target=_blank}）中使用 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette 的 CORS 文件</a>所記載的參數 `expose_headers` 將它們加入。
+但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（跨來源資源共用）](cors.md)）中使用 [Starlette 的 CORS 文件](https://www.starlette.dev/middleware/#corsmiddleware)所記載的參數 `expose_headers` 將它們加入。
 
 ///
 
@@ -61,7 +61,7 @@
 
 /// tip
 
-這裡我們使用 <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> 而不是 `time.time()`，因為在這些用例中它可能更精確。🤓
+這裡我們使用 [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) 而不是 `time.time()`，因為在這些用例中它可能更精確。🤓
 
 ///
 
@@ -90,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## 其他中介軟體 { #other-middlewares }
 
-你之後可以在[進階使用者指南：進階中介軟體](../advanced/middleware.md){.internal-link target=_blank}閱讀更多關於其他中介軟體的內容。
+你之後可以在[進階使用者指南：進階中介軟體](../advanced/middleware.md)閱讀更多關於其他中介軟體的內容。
 
 下一節你將會讀到如何使用中介軟體處理 <abbr title="Cross-Origin Resource Sharing - 跨來源資源共用">CORS</abbr>。

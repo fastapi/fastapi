@@ -54,7 +54,7 @@ Swagger UI 会在幕后为你处理这些，但它需要这个“重定向”辅
 
 ### 测试 { #test-it }
 
-现在，你应该可以访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>，并刷新页面，页面会从新的 CDN 加载这些资源。
+现在，你应该可以访问 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)，并刷新页面，页面会从新的 CDN 加载这些资源。
 
 ## 为文档自托管 JavaScript 和 CSS { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Swagger UI 会在幕后为你处理这些，但它需要这个“重定向”辅
 
 Swagger UI 使用以下文件：
 
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+- [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+- [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 而 ReDoc 使用以下文件：
 
-- <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+- [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 之后，你的文件结构可能如下：
 
@@ -122,7 +122,7 @@ Swagger UI 使用以下文件：
 
 ### 测试静态文件 { #test-the-static-files }
 
-启动你的应用，并访问 <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>。
+启动你的应用，并访问 [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js)。
 
 你应该会看到一个非常长的 **ReDoc** 的 JavaScript 文件。
 
@@ -180,6 +180,6 @@ Swagger UI 会在幕后为你处理这些，但它需要这个“重定向”辅
 
 ### 测试静态文件 UI { #test-static-files-ui }
 
-现在，你可以断开 WiFi，访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>，并刷新页面。
+现在，你可以断开 WiFi，访问 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)，并刷新页面。
 
 即使没有互联网，你也能看到 API 的文档并与之交互。

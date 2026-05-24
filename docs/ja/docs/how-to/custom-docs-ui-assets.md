@@ -54,7 +54,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 ### テスト { #test-it }
 
-これで、<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> にアクセスしてページを再読み込みすると、新しい CDN からそれらのアセットが読み込まれるはずです。
+これで、[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) にアクセスしてページを再読み込みすると、新しい CDN からそれらのアセットが読み込まれるはずです。
 
 ## ドキュメント用 JavaScript と CSS のセルフホスティング { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 **Swagger UI** では次のファイルを使用します:
 
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+- [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+- [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 そして **ReDoc** では次のファイルを使用します:
 
-- <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+- [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 その後、ファイル構成は次のようになります:
 
@@ -122,7 +122,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 ### 静的ファイルのテスト { #test-the-static-files }
 
-アプリケーションを起動し、<a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a> にアクセスします。
+アプリケーションを起動し、[http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js) にアクセスします。
 
 **ReDoc** 用の非常に長い JavaScript ファイルが表示されるはずです。
 
@@ -180,6 +180,6 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 ### 静的ファイル UI のテスト { #test-static-files-ui }
 
-これで、WiFi を切断して <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> にアクセスし、ページを再読み込みできるはずです。
+これで、WiFi を切断して [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) にアクセスし、ページを再読み込みできるはずです。
 
 インターネットに接続していなくても、API のドキュメントを表示し、API と対話できます。

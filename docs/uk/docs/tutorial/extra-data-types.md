@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Пайтонівський `datetime.timedelta`.
     * У запитах та відповідях буде представлений як `float` загальної кількості секунд.
-    * Pydantic також дозволяє представляти це як "ISO 8601 time diff encoding", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">дивіться документацію для отримання додаткової інформації</a>.
+    * Pydantic також дозволяє представляти це як "ISO 8601 time diff encoding", [дивіться документацію для отримання додаткової інформації](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * У запитах і відповідях це буде оброблено так само, як і `set`:
         * У запитах список буде зчитано, дублікати буде видалено, і його буде перетворено на `set`.
@@ -49,7 +49,7 @@
 * `Decimal`:
     * Стандартний Пайтонівський `Decimal`.
     * У запитах і відповідях це буде оброблено так само, як і `float`.
-* Ви можете перевірити всі дійсні типи даних Pydantic тут: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">типи даних Pydantic</a>.
+* Ви можете перевірити всі дійсні типи даних Pydantic тут: [типи даних Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## Приклад { #example }
 

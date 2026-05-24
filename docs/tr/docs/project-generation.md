@@ -4,7 +4,7 @@
 
 Bu şablonu başlangıç için kullanabilirsiniz; çünkü ilk kurulumun, güvenliğin, veritabanının ve bazı API endpoint'lerinin önemli bir kısmı sizin için zaten hazırlanmıştır.
 
-GitHub Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHub Repository: [Full Stack FastAPI Şablonu](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Şablonu - Teknoloji Yığını ve Özellikler { #full-stack-fastapi-template-technology-stack-and-features }
 

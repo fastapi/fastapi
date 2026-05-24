@@ -4,9 +4,9 @@ JSON yerine form alanlarını almanız gerektiğinde `Form` kullanabilirsiniz.
 
 /// info | Bilgi
 
-Formları kullanmak için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> paketini kurun.
+Formları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu etkinleştirdiğinizden emin olun ve ardından örneğin şöyle kurun:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden emin olun ve ardından örneğin şöyle kurun:
 
 ```console
 $ pip install python-multipart
@@ -56,7 +56,7 @@ Formlardan gelen veri normalde "media type" `application/x-www-form-urlencoded` 
 
 Ancak form dosyalar içerdiğinde `multipart/form-data` olarak encode edilir. Dosyaları ele almayı bir sonraki bölümde okuyacaksınız.
 
-Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> web docs for <code>POST</code></a> sayfasına gidin.
+Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, [<abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> `POST` için web dokümanları](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) sayfasına gidin.
 
 ///
 

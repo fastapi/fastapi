@@ -2,7 +2,7 @@
 
 When you work in Python projects you probably should use a **virtual environment** (or a similar mechanism) to isolate the packages you install for each project.
 
-/// info
+/// note
 
 If you already know about virtual environments, how to create them and use them, you might want to skip this section. 🤓
 
@@ -18,7 +18,7 @@ A **virtual environment** is a directory with some files in it.
 
 ///
 
-/// info
+/// note
 
 This page will teach you how to use **virtual environments** and how they work.
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-But if you deactivate the virtual environment and activate the new one for `prisoner-of-askaban` then when you run `python` it will use the Python from the virtual environment in `prisoner-of-azkaban`.
+But if you deactivate the virtual environment and activate the new one for `prisoner-of-azkaban` then when you run `python` it will use the Python from the virtual environment in `prisoner-of-azkaban`.
 
 <div class="termy">
 

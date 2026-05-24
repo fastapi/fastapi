@@ -37,7 +37,7 @@ Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von 
 
 Mithilfe der oben genannten Informationen können Sie dieselbe Hilfsfunktion verwenden, um das OpenAPI-Schema zu generieren und jeden benötigten Teil zu überschreiben.
 
-Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos</a> hinzu.
+Fügen wir beispielsweise [ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) hinzu.
 
 ### Normales **FastAPI** { #normal-fastapi }
 
@@ -75,6 +75,6 @@ Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 
 ### Es testen { #check-it }
 
-Sobald Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
+Sobald Sie auf [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

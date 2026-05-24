@@ -35,7 +35,7 @@ Esta parte es bastante normal, probablemente ya estés familiarizado con la mayo
 
 /// tip | Consejo
 
-El parámetro de query `callback_url` utiliza un tipo <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> de Pydantic.
+El parámetro de query `callback_url` utiliza un tipo [Url](https://docs.pydantic.dev/latest/api/networks/) de Pydantic.
 
 ///
 
@@ -66,7 +66,7 @@ Este ejemplo no implementa el callback en sí (eso podría ser solo una línea d
 
 El callback real es solo un request HTTP.
 
-Cuando implementes el callback tú mismo, podrías usar algo como <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> o <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+Cuando implementes el callback tú mismo, podrías usar algo como [HTTPX](https://www.python-httpx.org) o [Requests](https://requests.readthedocs.io/).
 
 ///
 
@@ -106,11 +106,11 @@ Debería verse como una *path operation* normal de FastAPI:
 Hay 2 diferencias principales respecto a una *path operation* normal:
 
 * No necesita tener ningún código real, porque tu aplicación nunca llamará a este código. Solo se usa para documentar la *API externa*. Así que, la función podría simplemente tener `pass`.
-* El *path* puede contener una <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expresión OpenAPI 3</a> (ver más abajo) donde puede usar variables con parámetros y partes del request original enviado a *tu API*.
+* El *path* puede contener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (ver más abajo) donde puede usar variables con parámetros y partes del request original enviado a *tu API*.
 
 ### La expresión del path del callback { #the-callback-path-expression }
 
-El *path* del callback puede tener una <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">expresión OpenAPI 3</a> que puede contener partes del request original enviado a *tu API*.
+El *path* del callback puede tener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) que puede contener partes del request original enviado a *tu API*.
 
 En este caso, es el `str`:
 
@@ -179,7 +179,7 @@ Observa que no estás pasando el router en sí (`invoices_callback_router`) a `c
 
 ### Revisa la documentación { #check-the-docs }
 
-Ahora puedes iniciar tu aplicación e ir a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ahora puedes iniciar tu aplicación e ir a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás tu documentación incluyendo una sección de "Callbacks" para tu *path operation* que muestra cómo debería verse la *API externa*:
 

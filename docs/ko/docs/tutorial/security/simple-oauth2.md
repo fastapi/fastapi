@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 정보
 
-`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict){.internal-link target=_blank}를 다시 확인해보세요.
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict)를 다시 확인해보세요.
 
 ///
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## 확인하기 { #see-it-in-action }
 
-대화형 문서 열기: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서 열기: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### 인증하기 { #authenticate }
 

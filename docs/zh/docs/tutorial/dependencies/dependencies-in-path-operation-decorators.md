@@ -32,7 +32,7 @@
 
 本例中，使用的是自定义响应头 `X-Key` 和 `X-Token`。
 
-但实际开发中，尤其是在实现安全措施时，最好使用 FastAPI 内置的[安全工具](../security/index.md){.internal-link target=_blank}（详见下一章）。
+但实际开发中，尤其是在实现安全措施时，最好使用 FastAPI 内置的[安全工具（下一章）](../security/index.md)。
 
 ///
 
@@ -62,7 +62,7 @@
 
 ## 为一组路径操作定义依赖项 { #dependencies-for-a-group-of-path-operations }
 
-稍后，[大型应用 - 多文件](../../tutorial/bigger-applications.md){.internal-link target=_blank}一章中会介绍如何使用多个文件创建大型应用程序，在这一章中，您将了解到如何为一组*路径操作*声明单个 `dependencies` 参数。
+稍后，[大型应用 - 多文件](../../tutorial/bigger-applications.md)一章中会介绍如何使用多个文件创建大型应用程序，在这一章中，您将了解到如何为一组*路径操作*声明单个 `dependencies` 参数。
 
 ## 全局依赖项 { #global-dependencies }
 

@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | Інформація
 
-Для повнішого пояснення `**user_dict` перегляньте [документацію для **Додаткових моделей**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+Для повнішого пояснення `**user_dict` перегляньте [документацію для **Додаткових моделей**](../extra-models.md#about-user-in-dict).
 
 ///
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## Подивіться в дії { #see-it-in-action }
 
-Відкрийте інтерактивну документацію: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Відкрийте інтерактивну документацію: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Автентифікація { #authenticate }
 

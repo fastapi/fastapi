@@ -1,18 +1,18 @@
 # Testing { #testing }
 
-Gracias a <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
+Gracias a [Starlette](https://www.starlette.dev/testclient/), escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
 
-Está basado en <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que a su vez está diseñado basado en Requests, por lo que es muy familiar e intuitivo.
+Está basado en [HTTPX](https://www.python-httpx.org), que a su vez está diseñado basado en Requests, por lo que es muy familiar e intuitivo.
 
-Con él, puedes usar <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directamente con **FastAPI**.
+Con él, puedes usar [pytest](https://docs.pytest.org/) directamente con **FastAPI**.
 
 ## Usando `TestClient` { #using-testclient }
 
 /// info | Información
 
-Para usar `TestClient`, primero instala <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Para usar `TestClient`, primero instala [`httpx`](https://www.python-httpx.org).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalarlo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
 
 ```console
 $ pip install httpx
@@ -42,7 +42,7 @@ Esto te permite usar `pytest` directamente sin complicaciones.
 
 ///
 
-/// note | Nota Técnica
+/// note | Detalles técnicos
 
 También podrías usar `from starlette.testclient import TestClient`.
 
@@ -52,7 +52,7 @@ También podrías usar `from starlette.testclient import TestClient`.
 
 /// tip | Consejo
 
-Si quieres llamar a funciones `async` en tus pruebas además de enviar requests a tu aplicación FastAPI (por ejemplo, funciones asincrónicas de bases de datos), echa un vistazo a las [Pruebas Asincrónicas](../advanced/async-tests.md){.internal-link target=_blank} en el tutorial avanzado.
+Si quieres llamar a funciones `async` en tus pruebas además de enviar requests a tu aplicación FastAPI (por ejemplo, funciones asincrónicas de bases de datos), echa un vistazo a las [Pruebas Asincrónicas](../advanced/async-tests.md) en el tutorial avanzado.
 
 ///
 
@@ -64,7 +64,7 @@ Y tu aplicación de **FastAPI** también podría estar compuesta de varios archi
 
 ### Archivo de aplicación **FastAPI** { #fastapi-app-file }
 
-Digamos que tienes una estructura de archivos como se describe en [Aplicaciones Más Grandes](bigger-applications.md){.internal-link target=_blank}:
+Digamos que tienes una estructura de archivos como se describe en [Aplicaciones Más Grandes](bigger-applications.md):
 
 ```
 .
@@ -74,6 +74,7 @@ Digamos que tienes una estructura de archivos como se describe en [Aplicaciones 
 ```
 
 En el archivo `main.py` tienes tu aplicación de **FastAPI**:
+
 
 {* ../../docs_src/app_testing/app_a_py310/main.py *}
 
@@ -139,13 +140,13 @@ Por ejemplo:
 * Para pasar *headers*, usa un `dict` en el parámetro `headers`.
 * Para *cookies*, un `dict` en el parámetro `cookies`.
 
-Para más información sobre cómo pasar datos al backend (usando `httpx` o el `TestClient`) revisa la <a href="https://www.python-httpx.org" class="external-link" target="_blank">documentación de HTTPX</a>.
+Para más información sobre cómo pasar datos al backend (usando `httpx` o el `TestClient`) revisa la [documentación de HTTPX](https://www.python-httpx.org).
 
 /// info | Información
 
 Ten en cuenta que el `TestClient` recibe datos que pueden ser convertidos a JSON, no modelos de Pydantic.
 
-Si tienes un modelo de Pydantic en tu prueba y quieres enviar sus datos a la aplicación durante las pruebas, puedes usar el `jsonable_encoder` descrito en [Codificador Compatible con JSON](encoder.md){.internal-link target=_blank}.
+Si tienes un modelo de Pydantic en tu prueba y quieres enviar sus datos a la aplicación durante las pruebas, puedes usar el `jsonable_encoder` descrito en [Codificador Compatible con JSON](encoder.md).
 
 ///
 
@@ -153,7 +154,7 @@ Si tienes un modelo de Pydantic en tu prueba y quieres enviar sus datos a la apl
 
 Después de eso, solo necesitas instalar `pytest`.
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalarlo, por ejemplo:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
 
 <div class="termy">
 

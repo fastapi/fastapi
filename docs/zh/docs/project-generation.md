@@ -4,7 +4,7 @@
 
 你可以使用此模板开始，它已经为你完成了大量的初始设置、安全性、数据库以及一些 API 端点。
 
-GitHub 仓库： <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHub 仓库：[Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## FastAPI全栈模板 - 技术栈和特性 { #full-stack-fastapi-template-technology-stack-and-features }
 

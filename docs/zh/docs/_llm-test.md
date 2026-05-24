@@ -11,7 +11,7 @@
 * 检查翻译是否正确。
 * 如有需要，改进你的语言特定提示、通用提示，或英文文档。
 * 然后手动修正翻译中剩余的问题，确保这是一个优秀的译文。
-* 重新翻译，在已有的优秀译文基础上进行。理想情况是 LLM 不再对译文做任何更改。这意味着通用提示和你的语言特定提示已经尽可能完善（有时它仍会做一些看似随机的改动，原因是<a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM 不是确定性算法</a>）。
+* 重新翻译，在已有的优秀译文基础上进行。理想情况是 LLM 不再对译文做任何更改。这意味着通用提示和你的语言特定提示已经尽可能完善（有时它仍会做一些看似随机的改动，原因是[LLM 不是确定性算法](https://doublespeak.chat/#/handbook#deterministic-output)）。
 
 测试如下：
 
@@ -169,15 +169,15 @@ Some text
 链接文本应被翻译，链接地址应保持不变：
 
 * [链接到上面的标题](#code-snippets)
-* [内部链接](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">外部链接</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">样式链接</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">脚本链接</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">图片链接</a>
+* [内部链接](index.md#installation)
+* [外部链接](https://sqlmodel.tiangolo.com/)
+* [样式链接](https://fastapi.tiangolo.com/css/styles.css)
+* [脚本链接](https://fastapi.tiangolo.com/js/logic.js)
+* [图片链接](https://fastapi.tiangolo.com/img/foo.jpg)
 
 链接文本应被翻译，且链接地址应指向对应的译文页面：
 
-* <a href="https://fastapi.tiangolo.com/zh/" class="external-link" target="_blank">FastAPI 链接</a>
+* [FastAPI 链接](https://fastapi.tiangolo.com/zh/)
 
 ////
 
@@ -499,257 +499,5 @@ Hello again.
 这是一份不完整且非规范性的（主要是）技术术语清单，取自文档中常见的词汇。它可能有助于提示词设计者判断哪些术语需要对 LLM 提供额外指引。例如当它总是把一个好的译法改回次优译法，或在你的语言中对某个术语的词形变化有困难时。
 
 参见例如 `docs/de/llm-prompt.md` 中的 `### List of English terms and their preferred German translations` 部分。
-
-////
-
-////
-
-翻译（术语）对照：
-
-//// tab | 测试（译文）
-
-* 你
-* 你的
-
-* 例如
-* 等等
-
-* 将 `foo` 作为 `int`
-* 将 `bar` 作为 `str`
-* 将 `baz` 作为 `list`
-
-* 教程 - 用户指南
-* 高级用户指南
-* SQLModel 文档
-* API 文档
-* 自动文档
-
-* 数据科学
-* 深度学习
-* 机器学习
-* 依赖注入
-* HTTP 基本认证
-* HTTP 摘要认证
-* ISO 格式
-* JSON Schema 标准
-* JSON 模式
-* 模式定义
-* 密码流
-* 移动端
-
-* 已弃用
-* 设计的
-* 无效
-* 即时
-* 标准的
-* 默认的
-* 区分大小写
-* 不区分大小写
-
-* 为应用提供服务
-* 为页面提供服务
-
-* 应用
-* 应用程序
-
-* 请求
-* 响应
-* 错误响应
-
-* 路径操作
-* 路径操作装饰器
-* 路径操作函数
-
-* 主体
-* 请求体
-* 响应体
-* JSON 体
-* 表单体
-* 文件体
-* 函数体
-
-* 参数
-* 请求体参数
-* 路径参数
-* 查询参数
-* Cookie 参数
-* Header 参数
-* 表单参数
-* 函数参数
-
-* 事件
-* 启动事件
-* 服务器的启动
-* 关闭事件
-* 生命周期事件
-
-* 处理器
-* 事件处理器
-* 异常处理器
-* 处理
-
-* 模型
-* Pydantic 模型
-* 数据模型
-* 数据库模型
-* 表单模型
-* 模型对象
-
-* 类
-* 基类
-* 父类
-* 子类
-* 子类
-* 兄弟类
-* 类方法
-
-* 请求头
-* 请求头
-* 授权头
-* `Authorization` 头
-* 转发头
-
-* 依赖注入系统
-* 依赖
-* 可依赖对象
-* 依赖项
-
-* I/O 受限
-* CPU 受限
-* 并发
-* 并行
-* 多进程
-
-* 环境变量
-* 环境变量
-* `PATH`
-* `PATH` 变量
-
-* 认证
-* 认证提供方
-* 授权
-* 授权表单
-* 授权提供方
-* 用户进行认证
-* 系统对用户进行认证
-
-* CLI
-* 命令行界面
-
-* 服务器
-* 客户端
-
-* 云服务提供商
-* 云服务
-
-* 开发
-* 开发阶段
-
-* dict
-* 字典
-* 枚举
-* 枚举
-* 枚举成员
-
-* 编码器
-* 解码器
-* 编码
-* 解码
-
-* 异常
-* 抛出
-
-* 表达式
-* 语句
-
-* 前端
-* 后端
-
-* GitHub 讨论
-* GitHub Issue
-
-* 性能
-* 性能优化
-
-* 返回类型
-* 返回值
-
-* 安全
-* 安全方案
-
-* 任务
-* 后台任务
-* 任务函数
-
-* 模板
-* 模板引擎
-
-* 类型注解
-* 类型提示
-
-* 服务器 worker
-* Uvicorn worker
-* Gunicorn worker
-* worker 进程
-* worker 类
-* 工作负载
-
-* 部署
-* 部署
-
-* SDK
-* 软件开发工具包
-
-* `APIRouter`
-* `requirements.txt`
-* Bearer Token
-* 破坏性变更
-* Bug
-* 按钮
-* 可调用对象
-* 代码
-* 提交
-* 上下文管理器
-* 协程
-* 数据库会话
-* 磁盘
-* 域名
-* 引擎
-* 假 X
-* HTTP GET 方法
-* 项
-* 库
-* 生命周期
-* 锁
-* 中间件
-* 移动应用
-* 模块
-* 挂载
-* 网络
-* 源
-* 覆盖
-* 负载
-* 处理器
-* 属性
-* 代理
-* Pull Request
-* 查询
-* RAM
-* 远程机器
-* 状态码
-* 字符串
-* 标签
-* Web 框架
-* 通配符
-* 返回
-* 校验
-
-////
-
-//// tab | 信息（译文）
-
-此清单是不完整且非规范性的，列出（主要是）文档中出现的技术术语。它有助于提示词设计者确定哪些术语需要额外的指引。例如当 LLM 总是把更好的译法改回次优译法，或在你的语言中难以正确变形时。
-
-也可参见 `docs/de/llm-prompt.md` 中的 `### List of English terms and their preferred German translations` 部分。
 
 ////

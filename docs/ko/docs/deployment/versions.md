@@ -4,7 +4,7 @@
 
 새로운 기능이 자주 추가되고, 버그가 규칙적으로 수정되며, 코드는 계속해서 지속적으로 개선되고 있습니다.
 
-그래서 현재 버전이 아직 `0.x.x`인 것입니다. 이는 각 버전이 잠재적으로 하위 호환성이 깨지는 변경을 포함할 수 있음을 반영합니다. 이는 <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a> 관례를 따릅니다.
+그래서 현재 버전이 아직 `0.x.x`인 것입니다. 이는 각 버전이 잠재적으로 하위 호환성이 깨지는 변경을 포함할 수 있음을 반영합니다. 이는 [Semantic Versioning](https://semver.org/) 관례를 따릅니다.
 
 지금 바로 **FastAPI**로 프로덕션 애플리케이션을 만들 수 있습니다(그리고 아마도 한동안 그렇게 해오셨을 것입니다). 다만 나머지 코드와 함께 올바르게 동작하는 버전을 사용하고 있는지 확인하기만 하면 됩니다.
 
@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 이용 가능한 버전들 { #available-versions }
 
-사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [릴리스 노트](../release-notes.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [릴리스 노트](../release-notes.md)에서 확인할 수 있습니다.
 
 ## 버전들에 대해 { #about-versions }
 
@@ -66,7 +66,7 @@ fastapi>=0.45.0,<0.46.0
 
 앱에 테스트를 추가해야 합니다.
 
-**FastAPI**에서는 매우 쉽습니다(Starlette 덕분에). 문서를 확인해 보세요: [테스트](../tutorial/testing.md){.internal-link target=_blank}
+**FastAPI**에서는 매우 쉽습니다(Starlette 덕분에). 문서를 확인해 보세요: [테스트](../tutorial/testing.md)
 
 테스트를 갖춘 뒤에는 **FastAPI** 버전을 더 최신 버전으로 업그레이드하고, 테스트를 실행하여 모든 코드가 올바르게 동작하는지 확인하세요.
 

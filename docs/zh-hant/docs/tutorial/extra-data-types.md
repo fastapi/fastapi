@@ -36,7 +36,7 @@
 * `datetime.timedelta`：
     * Python 的 `datetime.timedelta`。
     * 在請求與回應中會以總秒數的 `float` 表示。
-    * Pydantic 也允許用「ISO 8601 time diff encoding」來表示，<a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">詳情見文件</a>。
+    * Pydantic 也允許用「ISO 8601 time diff encoding」來表示，[詳情見文件](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers)。
 * `frozenset`：
     * 在請求與回應中與 `set` 相同處理：
         * 在請求中，會讀取一個 list，去除重複並轉為 `set`。
@@ -49,7 +49,7 @@
 * `Decimal`：
     * 標準的 Python `Decimal`。
     * 在請求與回應中，與 `float` 的處理方式相同。
-* 你可以在此查閱所有可用的 Pydantic 資料型別：<a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic 資料型別</a>。
+* 你可以在此查閱所有可用的 Pydantic 資料型別：[Pydantic 資料型別](https://docs.pydantic.dev/latest/usage/types/types/)。
 
 ## 範例 { #example }
 

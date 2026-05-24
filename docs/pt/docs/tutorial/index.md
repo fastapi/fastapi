@@ -10,12 +10,12 @@ Ele também foi construído para servir como uma referência futura, então voc�
 
 Todos os blocos de código podem ser copiados e utilizados diretamente (eles são, na verdade, arquivos Python testados).
 
-Para rodar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev` com:
+Para rodar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -62,7 +62,7 @@ Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ve
 
 O primeiro passo é instalar o FastAPI.
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então **instalar o FastAPI**:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e então **instalar o FastAPI**:
 
 <div class="termy">
 
@@ -76,11 +76,17 @@ $ pip install "fastapi[standard]"
 
 /// note | Nota
 
-Quando você instala com `pip install "fastapi[standard]"`, ele vem com algumas dependências opcionais padrão, incluindo `fastapi-cloud-cli`, que permite fazer deploy na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+Quando você instala com `pip install "fastapi[standard]"`, ele vem com algumas dependências opcionais padrão, incluindo `fastapi-cloud-cli`, que permite fazer deploy na [FastAPI Cloud](https://fastapicloud.com).
 
 Se você não quiser ter essas dependências opcionais, pode instalar `pip install fastapi` em vez disso.
 
 Se você quiser instalar as dependências padrão, mas sem o `fastapi-cloud-cli`, você pode instalar com `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+
+///
+
+/// tip | Dica
+
+O FastAPI tem uma [extensão oficial para o VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (e para o Cursor), que fornece vários recursos, incluindo um explorador de operações de rota, busca de operações de rota, navegação CodeLens em testes (ir para a definição a partir dos testes) e deploy e logs da FastAPI Cloud, tudo direto do seu editor.
 
 ///
 

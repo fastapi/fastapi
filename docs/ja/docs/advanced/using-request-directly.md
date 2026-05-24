@@ -15,7 +15,7 @@
 
 ## `Request` オブジェクトの詳細 { #details-about-the-request-object }
 
-**FastAPI** は内部的には **Starlette** の上にいくつかのツール層を載せたものなので、必要に応じて Starlette の <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> オブジェクトを直接使えます。
+**FastAPI** は内部的には **Starlette** の上にいくつかのツール層を載せたものなので、必要に応じて Starlette の [`Request`](https://www.starlette.dev/requests/) オブジェクトを直接使えます。
 
 また、`Request` オブジェクトから直接データ（例: ボディ）を取得する場合、そのデータは FastAPI によって検証・変換・ドキュメント化（OpenAPI による自動 API ユーザーインターフェース向け）されません。
 
@@ -45,7 +45,7 @@ path operation 関数の引数として `Request` 型のパラメータを宣言
 
 ## `Request` のドキュメント { #request-documentation }
 
-より詳しくは、<a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">公式 Starlette ドキュメントサイトの `Request` オブジェクト</a>を参照してください。
+より詳しくは、[公式 Starlette ドキュメントサイトの `Request` オブジェクト](https://www.starlette.dev/requests/)を参照してください。
 
 /// note | 技術詳細
 

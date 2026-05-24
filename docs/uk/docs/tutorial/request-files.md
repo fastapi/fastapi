@@ -4,9 +4,9 @@
 
 /// info | Інформація
 
-Щоб отримувати завантажені файли, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Щоб отримувати завантажені файли, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили пакет, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили його, наприклад:
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ $ pip install python-multipart
     * Файл зберігається в пам'яті до досягнення максимального обмеження розміру, після чого він буде збережений на диску.
 * Це означає, що він добре працюватиме для великих файлів, таких як зображення, відео, великі двійкові файли тощо, не споживаючи всю пам'ять.
 * Ви можете отримати метадані про завантажений файл.
-* Він має <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` інтерфейс.
-* Він надає фактичний об'єкт Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>, який можна передавати безпосередньо іншим бібліотекам, що очікують file-like об'єкт.
+* Він має [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async` інтерфейс.
+* Він надає фактичний об'єкт Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile), який можна передавати безпосередньо іншим бібліотекам, що очікують file-like об'єкт.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ $ pip install python-multipart
 
 * `filename`: Рядок `str` з оригінальною назвою файлу, який був завантажений (наприклад, `myimage.jpg`).
 * `content_type`: Рядок `str` з типом вмісту (MIME type / media type) (наприклад, `image/jpeg`).
-* `file`: <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> об'єкт). Це фактичний файловий об'єкт Python, який ви можете передавати безпосередньо іншим функціям або бібліотекам, що очікують «file-like» об'єкт.
+* `file`: [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) ([file-like](https://docs.python.org/3/glossary.html#term-file-like-object) об'єкт). Це фактичний файловий об'єкт Python, який ви можете передавати безпосередньо іншим функціям або бібліотекам, що очікують «file-like» об'єкт.
 
 `UploadFile` має такі асинхронні `async` методи. Вони всі викликають відповідні методи файлу під капотом (використовуючи внутрішній `SpooledTemporaryFile`).
 
@@ -121,7 +121,7 @@ contents = myfile.file.read()
 
 Але якщо форма містить файли, вона кодується як `multipart/form-data`. Якщо ви використовуєте `File`, **FastAPI** знатиме, що потрібно отримати файли з правильної частини тіла.
 
-Якщо ви хочете дізнатися більше про ці типи кодування та формові поля, ознайомтеся з <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> web docs для <code>POST</code></a>.
+Якщо ви хочете дізнатися більше про ці типи кодування та формові поля, ознайомтеся з [<abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> web docs для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

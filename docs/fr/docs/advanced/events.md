@@ -38,7 +38,7 @@ Puis, juste après le `yield`, nous déchargeons le modèle. Ce code sera exécu
 
 /// tip | Astuce
 
-L’« arrêt » se produit lorsque vous **arrêtez** l'application.
+Le `shutdown` se produit lorsque vous **arrêtez** l'application.
 
 Peut-être devez-vous démarrer une nouvelle version, ou vous en avez simplement assez de l'exécuter. 🤷
 
@@ -150,11 +150,11 @@ Pour cette raison, il est désormais recommandé d'utiliser plutôt le `lifespan
 
 Juste un détail technique pour les nerds curieux. 🤓
 
-Sous le capot, dans la spécification technique ASGI, cela fait partie du <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">protocole Lifespan</a>, et il y définit des événements appelés `startup` et `shutdown`.
+Sous le capot, dans la spécification technique ASGI, cela fait partie du [protocole Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), et il y définit des événements appelés `startup` et `shutdown`.
 
 /// info
 
-Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans la <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">documentation « Lifespan » de Starlette</a>.
+Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans la [documentation « Lifespan » de Starlette](https://www.starlette.dev/lifespan/).
 
 Y compris comment gérer l'état de cycle de vie qui peut être utilisé dans d'autres parties de votre code.
 
@@ -162,4 +162,4 @@ Y compris comment gérer l'état de cycle de vie qui peut être utilisé dans d'
 
 ## Sous-applications { #sub-applications }
 
-🚨 Gardez à l'esprit que ces événements de cycle de vie (démarrage et arrêt) ne seront exécutés que pour l'application principale, pas pour [Sous-applications - Montages](sub-applications.md){.internal-link target=_blank}.
+🚨 Gardez à l'esprit que ces événements de cycle de vie (démarrage et arrêt) ne seront exécutés que pour l'application principale, pas pour [Sous-applications - Montages](sub-applications.md).

@@ -123,7 +123,7 @@ from app.routers import items
 
 我们正在使用虚构的请求首部来简化此示例。
 
-但在实际情况下，使用集成的[安全性实用工具](security/index.md){.internal-link target=_blank}会得到更好的效果。
+但在实际情况下，使用集成的[安全性实用工具](security/index.md)会得到更好的效果。
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | 提示
 
-请注意，和[*路径操作装饰器*中的依赖项](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}很类似，没有值会被传递给你的*路径操作函数*。
+请注意，和[*路径操作装饰器*中的依赖项](dependencies/dependencies-in-path-operation-decorators.md)很类似，没有值会被传递给你的*路径操作函数*。
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * 所有的路径操作都将包含预定义的 `responses`。
 * 所有的这些*路径操作*都将在自身之前计算/执行 `dependencies` 列表。
     * 如果你还在一个具体的*路径操作*中声明了依赖项，**它们也会被执行**。
-    * 路由器的依赖项最先执行，然后是[装饰器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}，再然后是普通的参数依赖项。
-    * 你还可以添加[具有 `scopes` 的 `Security` 依赖项](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}。
+    * 路由器的依赖项最先执行，然后是[装饰器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md)，再然后是普通的参数依赖项。
+    * 你还可以添加[具有 `scopes` 的 `Security` 依赖项](../advanced/security/oauth2-scopes.md)。
 
 /// tip | 提示
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 你可以像平常一样导入并创建一个 `FastAPI` 类。
 
-我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md){.internal-link target=_blank}，它会和每个 `APIRouter` 的依赖项组合在一起：
+我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md)，它会和每个 `APIRouter` 的依赖项组合在一起：
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-要了解有关 Python 包和模块的更多信息，请查阅<a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">关于 Modules 的 Python 官方文档</a>。
+要了解有关 Python 包和模块的更多信息，请查阅[关于 Modules 的 Python 官方文档](https://docs.python.org/3/tutorial/modules.html)。
 
 ///
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 它将与通过 `app.include_router()` 添加的所有其他*路径操作*一起正常运行。
 
-/// info | 特别的技术细节
+/// info | 非常技术细节
 
 **注意**：这是一个非常技术性的细节，你也许可以**直接跳过**。
 
@@ -465,6 +465,37 @@ from .routers.users import router
 
 ///
 
+## 在 `pyproject.toml` 中配置 `entrypoint` { #configure-the-entrypoint-in-pyproject-toml }
+
+因为你的 FastAPI `app` 对象位于 `app/main.py` 中，你可以在 `pyproject.toml` 中这样配置 `entrypoint`：
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+等价于像这样导入：
+
+```python
+from app.main import app
+```
+
+这样 `fastapi` 命令就知道到哪里去找到你的应用了。
+
+/// Note | 注意
+
+你也可以把路径传给命令，比如：
+
+```console
+$ fastapi dev app/main.py
+```
+
+但是每次调用 `fastapi` 命令时，你都需要记得传入正确的路径。
+
+另外，其他工具可能找不到它，比如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
+
+///
+
 ## 查看自动化的 API 文档 { #check-the-automatic-api-docs }
 
 现在，运行你的应用：
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-然后打开位于 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 的文档。
+然后打开位于 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 的文档。
 
 你将看到使用了正确路径（和前缀）和正确标签的自动化 API 文档，包括了来自所有子模块的路径：
 

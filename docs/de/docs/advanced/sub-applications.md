@@ -30,25 +30,25 @@ In diesem Fall wird sie im Pfad `/subapi` gemountet:
 
 ### Die automatische API-Dokumentation testen { #check-the-automatic-api-docs }
 
-Führen Sie nun den `fastapi`-Befehl mit Ihrer Datei aus:
+Führen Sie nun den Befehl `fastapi` aus:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Und öffnen Sie die Dokumentation unter [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Sie sehen die automatische API-Dokumentation für die Hauptanwendung, welche nur deren eigene _Pfadoperationen_ anzeigt:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-Öffnen Sie dann die Dokumentation für die Unteranwendung unter <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+Öffnen Sie dann die Dokumentation für die Unteranwendung unter [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 Sie sehen die automatische API-Dokumentation für die Unteranwendung, welche nur deren eigene _Pfadoperationen_ anzeigt, alle unter dem korrekten Unterpfad-Präfix `/subapi`:
 
@@ -64,4 +64,4 @@ Auf diese Weise weiß die Unteranwendung, dass sie dieses Pfadpräfix für die B
 
 Und die Unteranwendung könnte auch ihre eigenen gemounteten Unteranwendungen haben und alles würde korrekt funktionieren, da FastAPI sich um alle diese `root_path`s automatisch kümmert.
 
-Mehr über den `root_path` und dessen explizite Verwendung erfahren Sie im Abschnitt [Hinter einem Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Mehr über den `root_path` und dessen explizite Verwendung erfahren Sie im Abschnitt [Hinter einem Proxy](behind-a-proxy.md).

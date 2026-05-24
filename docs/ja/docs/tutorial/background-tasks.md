@@ -63,7 +63,7 @@
 
 ## 技術的な詳細 { #technical-details }
 
-`BackgroundTasks` クラスは、<a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>から直接取得されます。
+`BackgroundTasks` クラスは、[`starlette.background`](https://www.starlette.dev/background/) から直接取得されます。
 
 これは、FastAPI に直接インポート/インクルードされるため、`fastapi` からインポートできる上に、`starlette.background`から別の `BackgroundTask` (末尾に `s` がない) を誤ってインポートすることを回避できます。
 
@@ -71,11 +71,11 @@
 
 それでも、FastAPI で `BackgroundTask` を単独で使用することは可能ですが、コード内でオブジェクトを作成し、それを含むStarlette `Response` を返す必要があります。
 
-詳細については、<a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette のバックグラウンドタスクに関する公式ドキュメント</a>を参照して下さい。
+詳細については、[Starlette のバックグラウンドタスクに関する公式ドキュメント](https://www.starlette.dev/background/)を参照して下さい。
 
 ## 注意 { #caveat }
 
-大量のバックグラウンド計算が必要であり、必ずしも同じプロセスで実行する必要がない場合 (たとえば、メモリや変数などを共有する必要がない場合)、<a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a> のようなより大きな他のツールを使用するとメリットがあるかもしれません。
+大量のバックグラウンド計算が必要であり、必ずしも同じプロセスで実行する必要がない場合 (たとえば、メモリや変数などを共有する必要がない場合)、[Celery](https://docs.celeryq.dev) のようなより大きな他のツールを使用するとメリットがあるかもしれません。
 
 これらは、より複雑な構成、RabbitMQ や Redis などのメッセージ/ジョブキューマネージャーを必要とする傾向がありますが、複数のプロセス、特に複数のサーバーでバックグラウンドタスクを実行できます。
 

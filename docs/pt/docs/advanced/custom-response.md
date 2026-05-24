@@ -1,58 +1,42 @@
 # Resposta Personalizada - HTML, Stream, File e outras { #custom-response-html-stream-file-others }
 
-Por padrão, o **FastAPI** irá retornar respostas utilizando `JSONResponse`.
+Por padrão, o **FastAPI** retornará respostas JSON.
 
-Mas você pode sobrescrever esse comportamento utilizando `Response` diretamente, como visto em [Retornando uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
+Você pode sobrescrever isso retornando uma `Response` diretamente, como visto em [Retornando uma Resposta Diretamente](response-directly.md).
 
-Mas se você retornar uma `Response` diretamente (ou qualquer subclasse, como `JSONResponse`), os dados não serão convertidos automaticamente (mesmo que você declare um `response_model`), e a documentação não será gerada automaticamente (por exemplo, incluindo o "media type", no cabeçalho HTTP `Content-Type` como parte do esquema OpenAPI gerado).
+Mas se você retornar uma `Response` diretamente (ou qualquer subclasse, como `JSONResponse`), os dados não serão convertidos automaticamente (mesmo que você declare um `response_model`), e a documentação não será gerada automaticamente (por exemplo, incluindo o "media type" específico, no cabeçalho HTTP `Content-Type` como parte do OpenAPI gerado).
 
-Mas você também pode declarar a `Response` que você deseja utilizar (e.g. qualquer subclasse de `Response`), em um *decorador de operação de rota* utilizando o parâmetro `response_class`.
+Mas você também pode declarar a `Response` que deseja utilizar (e.g. qualquer subclasse de `Response`), no *decorador de operação de rota* usando o parâmetro `response_class`.
 
-Os conteúdos que você retorna em sua *função de operação de rota* serão colocados dentro dessa `Response`.
-
-E se a `Response` tiver um media type JSON (`application/json`), como é o caso com `JSONResponse` e `UJSONResponse`, os dados que você retornar serão automaticamente convertidos (e filtrados) com qualquer `response_model` do Pydantic que for declarado no decorador de operação de rota.
+O conteúdo que você retorna da sua *função de operação de rota* será colocado dentro dessa `Response`.
 
 /// note | Nota
 
-Se você utilizar uma classe de Resposta sem media type, o FastAPI esperará que sua resposta não tenha conteúdo, então ele não irá documentar o formato da resposta na documentação OpenAPI gerada.
+Se você utilizar uma classe de resposta sem media type, o FastAPI esperará que sua resposta não tenha conteúdo, então ele não irá documentar o formato da resposta na documentação OpenAPI gerada.
 
 ///
 
-## Utilizando `ORJSONResponse` { #use-orjsonresponse }
+## Respostas JSON { #json-responses }
 
-Por exemplo, se você precisa bastante de performance, você pode instalar e utilizar o <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> e definir a resposta para ser uma `ORJSONResponse`.
+Por padrão, o FastAPI retorna respostas JSON.
 
-Importe a classe, ou subclasse, de `Response` que você deseja utilizar e declare ela no *decorador de operação de rota*.
+Se você declarar um [Modelo de Resposta](../tutorial/response-model.md), o FastAPI irá usá-lo para serializar os dados para JSON, usando Pydantic.
 
-Para respostas grandes, retornar uma `Response` diretamente é muito mais rápido que retornar um dicionário.
+Se você não declarar um modelo de resposta, o FastAPI usará o `jsonable_encoder` explicado em [Codificador Compatível com JSON](../tutorial/encoder.md) e o colocará em uma `JSONResponse`.
 
-Isso ocorre por que, por padrão, o FastAPI irá verificar cada item dentro do dicionário e garantir que ele seja serializável para JSON, utilizando o mesmo[Codificador Compatível com JSON](../tutorial/encoder.md){.internal-link target=_blank} explicado no tutorial. Isso permite que você retorne **objetos abstratos**, como modelos do banco de dados, por exemplo.
+Se você declarar uma `response_class` com um media type JSON (`application/json`), como no caso de `JSONResponse`, os dados que você retorna serão automaticamente convertidos (e filtrados) com qualquer `response_model` do Pydantic que você declarou no *decorador de operação de rota*. Mas os dados não serão serializados para bytes JSON com Pydantic; em vez disso, serão convertidos com o `jsonable_encoder` e então passados para a classe `JSONResponse`, que fará a serialização para bytes usando a biblioteca padrão de JSON do Python.
 
-Mas se você tem certeza que o conteúdo que você está retornando é **serializável com JSON**, você pode passá-lo diretamente para a classe de resposta e evitar o trabalho extra que o FastAPI teria ao passar o conteúdo pelo `jsonable_encoder` antes de passar para a classe de resposta.
+### Performance com JSON { #json-performance }
 
-{* ../../docs_src/custom_response/tutorial001b_py310.py hl[2,7] *}
+Resumindo, se você quer o máximo de performance, use um [Modelo de Resposta](../tutorial/response-model.md) e não declare uma `response_class` no *decorador de operação de rota*.
 
-/// info | Informação
-
-O parâmetro `response_class` também será usado para definir o "media type" da resposta.
-
-Neste caso, o cabeçalho HTTP `Content-Type` irá ser definido como `application/json`.
-
-E será documentado como tal no OpenAPI.
-
-///
-
-/// tip | Dica
-
-A `ORJSONResponse` está disponível apenas no FastAPI, e não no Starlette.
-
-///
+{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
 
 ## Resposta HTML { #html-response }
 
 Para retornar uma resposta com HTML diretamente do **FastAPI**, utilize `HTMLResponse`.
 
-* Importe `HTMLResponse`
+* Importe `HTMLResponse`.
 * Passe `HTMLResponse` como o parâmetro de `response_class` do seu *decorador de operação de rota*.
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
@@ -69,7 +53,7 @@ E será documentado como tal no OpenAPI.
 
 ### Retornando uma `Response` { #return-a-response }
 
-Como visto em [Retornando uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}, você também pode sobrescrever a resposta diretamente na sua *operação de rota*, ao retornar ela.
+Como visto em [Retornando uma Resposta Diretamente](response-directly.md), você também pode sobrescrever a resposta diretamente na sua *operação de rota*, ao retornar ela.
 
 O mesmo exemplo de antes, retornando uma `HTMLResponse`, poderia parecer com:
 
@@ -103,13 +87,13 @@ Neste exemplo, a função `generate_html_response()` já cria e retorna uma `Res
 
 Ao retornar o resultado chamando `generate_html_response()`, você já está retornando uma `Response` que irá sobrescrever o comportamento padrão do **FastAPI**.
 
-Mas se você passasse uma `HTMLResponse` em `response_class` também, o **FastAPI** saberia como documentar isso no OpenAPI e na documentação interativa como um HTML com `text/html`:
+Mas como você passou `HTMLResponse` em `response_class` também, o **FastAPI** saberá como documentar isso no OpenAPI e na documentação interativa como um HTML com `text/html`:
 
 <img src="/img/tutorial/custom-response/image01.png">
 
 ## Respostas disponíveis { #available-responses }
 
-Aqui estão algumas dos tipos de resposta disponíveis.
+Aqui estão algumas das respostas disponíveis.
 
 Lembre-se que você pode utilizar `Response` para retornar qualquer outra coisa, ou até mesmo criar uma subclasse personalizada.
 
@@ -129,9 +113,9 @@ Você pode retorná-la diretamente.
 
 Ela aceita os seguintes parâmetros:
 
-* `content` - Uma sequência de caracteres (`str`) ou `bytes`.
+* `content` - Uma `str` ou `bytes`.
 * `status_code` - Um código de status HTTP do tipo `int`.
-* `headers` - Um dicionário `dict` de strings.
+* `headers` - Um `dict` de strings.
 * `media_type` - Uma `str` informando o media type. E.g. `"text/html"`.
 
 O FastAPI (Starlette, na verdade) irá incluir o cabeçalho Content-Length automaticamente. Ele também irá incluir o cabeçalho Content-Type, baseado no `media_type` e acrescentando uma codificação para tipos textuais.
@@ -154,37 +138,11 @@ Pega alguns dados e retorna uma resposta com codificação `application/json`.
 
 É a resposta padrão utilizada no **FastAPI**, como você leu acima.
 
-### `ORJSONResponse` { #orjsonresponse }
+/// note | Detalhes Técnicos
 
-Uma alternativa mais rápida de resposta JSON utilizando o <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, como você leu acima.
+Mas se você declarar um modelo de resposta ou tipo de retorno, isso será usado diretamente para serializar os dados para JSON, e uma resposta com o media type correto para JSON será retornada diretamente, sem usar a classe `JSONResponse`.
 
-/// info | Informação
-
-Essa resposta requer a instalação do pacote `orjson`, com o comando `pip install orjson`, por exemplo.
-
-///
-
-### `UJSONResponse` { #ujsonresponse }
-
-Uma alternativa de resposta JSON utilizando a biblioteca <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
-
-/// info | Informação
-
-Essa resposta requer a instalação do pacote `ujson`, com o comando `pip install ujson`, por exemplo.
-
-///
-
-/// warning | Atenção
-
-`ujson` é menos cauteloso que a implementação nativa do Python na forma que os casos especiais são tratados
-
-///
-
-{* ../../docs_src/custom_response/tutorial001_py310.py hl[2,7] *}
-
-/// tip | Dica
-
-É possível que `ORJSONResponse` seja uma alternativa mais rápida.
+Esta é a forma ideal para obter a melhor performance.
 
 ///
 
@@ -202,9 +160,9 @@ Ou você pode utilizá-la no parâmetro `response_class`:
 
 {* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 
-Se você fizer isso, então você pode retornar a URL diretamente da sua *função de operação de rota*
+Se você fizer isso, então você pode retornar a URL diretamente da sua *função de operação de rota*.
 
-Neste caso, o `status_code` utilizada será o padrão de `RedirectResponse`, que é `307`.
+Neste caso, o `status_code` utilizado será o padrão de `RedirectResponse`, que é `307`.
 
 ---
 
@@ -214,46 +172,40 @@ Você também pode utilizar o parâmetro `status_code` combinado com o parâmetr
 
 ### `StreamingResponse` { #streamingresponse }
 
-Recebe um gerador assíncrono ou um gerador/iterador comum e retorna o corpo da resposta de forma contínua (stream).
+Recebe um gerador assíncrono ou um gerador/iterador comum (uma função com `yield`) e transmite (stream) o corpo da resposta.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
 
-#### Utilizando `StreamingResponse` com objetos semelhantes a arquivos { #using-streamingresponse-with-file-like-objects }
+/// note | Detalhes Técnicos
 
-Se você tiver um objeto <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">semelhante a um arquivo</a> (e.g. o objeto retornado por `open()`), você pode criar uma função geradora para iterar sobre esse objeto.
+Uma tarefa `async` só pode ser cancelada quando alcança um `await`. Se não houver `await`, o gerador (função com `yield`) não pode ser cancelado adequadamente e pode continuar executando mesmo após o cancelamento ser solicitado.
 
-Dessa forma, você não precisa ler todo o arquivo na memória primeiro, e você pode passar essa função geradora para `StreamingResponse` e retorná-la.
+Como este pequeno exemplo não precisa de nenhuma instrução `await`, adicionamos um `await anyio.sleep(0)` para dar ao event loop a chance de lidar com o cancelamento.
 
-Isso inclui muitas bibliotecas que interagem com armazenamento em nuvem, processamento de vídeos, entre outras.
+Isso seria ainda mais importante com streams grandes ou infinitos.
 
-{* ../../docs_src/custom_response/tutorial008_py310.py hl[2,10:12,14] *}
-
-1. Essa é a função geradora. É definida como "função geradora" porque contém declarações `yield` nela.
-2. Ao utilizar o bloco `with`, nós garantimos que o objeto semelhante a um arquivo é fechado após a função geradora ser finalizada. Isto é, após a resposta terminar de ser enviada.
-3. Essa declaração `yield from` informa a função para iterar sobre essa coisa nomeada de `file_like`. E então, para cada parte iterada, fornece essa parte como se viesse dessa função geradora (`iterfile`).
-
-    Então, é uma função geradora que transfere o trabalho de "geração" para alguma outra coisa interna.
-
-    Fazendo dessa forma, podemos colocá-la em um bloco `with`, e assim garantir que o objeto semelhante a um arquivo é fechado quando a função termina.
+///
 
 /// tip | Dica
 
-Perceba que aqui estamos utilizando o `open()` da biblioteca padrão que não suporta `async` e `await`, e declaramos a operação de rota com o `def` básico.
+Em vez de retornar uma `StreamingResponse` diretamente, você deveria provavelmente seguir o estilo em [Transmitir Dados](./stream-data.md), é muito mais conveniente e lida com cancelamento nos bastidores para você.
+
+Se você estiver transmitindo JSON Lines, siga o tutorial [Transmitir JSON Lines](../tutorial/stream-json-lines.md).
 
 ///
 
 ### `FileResponse` { #fileresponse }
 
-Envia um arquivo  de forma assíncrona e contínua (stream).
+Envia um arquivo de forma assíncrona e contínua (stream).
 
 Recebe um conjunto de argumentos do construtor diferente dos outros tipos de resposta:
 
-* `path` - O caminho do arquivo que será transmitido
-* `headers` - quaisquer cabeçalhos que serão incluídos, como um dicionário.
-* `media_type` - Uma string com o media type. Se não for definida, o media type é inferido a partir do nome ou caminho do arquivo.
-* `filename` - Se for definido, é incluído no cabeçalho `Content-Disposition`.
+* `path` - O caminho do arquivo que será transmitido.
+* `headers` - Quaisquer cabeçalhos personalizados a serem incluídos, como um dicionário.
+* `media_type` - Uma string com o media type. Se não for definida, o nome do arquivo ou path será usado para inferir um media type.
+* `filename` - Se definido, será incluído no cabeçalho `Content-Disposition`.
 
-Respostas de Arquivos incluem o tamanho do arquivo, data da última modificação e ETags apropriados, nos cabeçalhos `Content-Length`, `Last-Modified` e `ETag`, respectivamente.
+Respostas de arquivos incluirão os cabeçalhos apropriados `Content-Length`, `Last-Modified` e `ETag`.
 
 {* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
 
@@ -261,17 +213,17 @@ Você também pode usar o parâmetro `response_class`:
 
 {* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
 
-Nesse caso, você pode retornar o caminho do arquivo diretamente da sua *função de operação de rota*.
+Nesse caso, você pode retornar o path do arquivo diretamente da sua *função de operação de rota*.
 
 ## Classe de resposta personalizada { #custom-response-class }
 
-Você pode criar sua própria classe de resposta, herdando de `Response` e usando essa nova classe.
+Você pode criar sua própria classe de resposta personalizada, herdando de `Response` e usando-a.
 
-Por exemplo, vamos supor que você queira utilizar o <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, mas com algumas configurações personalizadas que não estão incluídas na classe `ORJSONResponse`.
+Por exemplo, vamos supor que você queira usar [`orjson`](https://github.com/ijl/orjson) com algumas configurações.
 
-Vamos supor também que você queira retornar um JSON indentado e formatado, então você quer utilizar a opção `orjson.OPT_INDENT_2` do orjson.
+Vamos supor que você queira retornar um JSON indentado e formatado, então você quer utilizar a opção `orjson.OPT_INDENT_2` do orjson.
 
-Você poderia criar uma classe `CustomORJSONResponse`. A principal coisa a ser feita é sobrecarregar o método render da classe Response, `Response.render(content)`, que retorna o conteúdo em bytes:
+Você poderia criar uma `CustomORJSONResponse`. A principal coisa que você tem que fazer é criar um método `Response.render(content)` que retorne o conteúdo como `bytes`:
 
 {* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
 
@@ -291,13 +243,21 @@ Agora em vez de retornar:
 
 Obviamente, você provavelmente vai encontrar maneiras muito melhores de se aproveitar disso do que a formatação de JSON. 😉
 
+### `orjson` ou Modelo de Resposta { #orjson-or-response-model }
+
+Se o que você procura é performance, provavelmente é melhor usar um [Modelo de Resposta](../tutorial/response-model.md) do que uma resposta com `orjson`.
+
+Com um modelo de resposta, o FastAPI usará o Pydantic para serializar os dados para JSON, sem passos intermediários, como convertê-los com `jsonable_encoder`, o que aconteceria em qualquer outro caso.
+
+E, por baixo dos panos, o Pydantic usa os mesmos mecanismos em Rust que o `orjson` para serializar para JSON, então você já terá a melhor performance com um modelo de resposta.
+
 ## Classe de resposta padrão { #default-response-class }
 
 Quando você criar uma instância da classe **FastAPI** ou um `APIRouter` você pode especificar qual classe de resposta utilizar por padrão.
 
-O padrão que define isso é o `default_response_class`.
+O parâmetro que define isso é o `default_response_class`.
 
-No exemplo abaixo, o **FastAPI** irá utilizar `ORJSONResponse` por padrão, em todas as *operações de rota*, em vez de `JSONResponse`.
+No exemplo abaixo, o **FastAPI** utilizará `HTMLResponse` por padrão, em todas as *operações de rota*, em vez de JSON.
 
 {* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
 
@@ -309,4 +269,4 @@ Você ainda pode substituir `response_class` em *operações de rota* como antes
 
 ## Documentação adicional { #additional-documentation }
 
-Você também pode declarar o media type e muitos outros detalhes no OpenAPI utilizando `responses`: [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Você também pode declarar o media type e muitos outros detalhes no OpenAPI utilizando `responses`: [Respostas Adicionais no OpenAPI](additional-responses.md).

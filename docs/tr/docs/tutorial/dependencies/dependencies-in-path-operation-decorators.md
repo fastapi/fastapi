@@ -32,7 +32,7 @@ Ayrıca kodunuzda kullanılmayan bir parametreyi gören yeni geliştiricilerin b
 
 Bu örnekte uydurma özel header'lar olan `X-Key` ve `X-Token` kullanıyoruz.
 
-Ancak gerçek senaryolarda, security uygularken, entegre [Security yardımcı araçlarını (bir sonraki bölüm)](../security/index.md){.internal-link target=_blank} kullanmak size daha fazla fayda sağlar.
+Ancak gerçek senaryolarda, security uygularken, entegre [Security yardımcı araçlarını (bir sonraki bölüm)](../security/index.md) kullanmak size daha fazla fayda sağlar.
 
 ///
 
@@ -62,7 +62,7 @@ Yani başka bir yerde zaten kullandığınız, değer döndüren normal bir depe
 
 ## Bir *Path Operation* Grubu İçin Dependency'ler { #dependencies-for-a-group-of-path-operations }
 
-Daha sonra, muhtemelen birden fazla dosya kullanarak daha büyük uygulamaları nasıl yapılandıracağınızı okurken ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), bir *path operation* grubu için tek bir `dependencies` parametresini nasıl tanımlayacağınızı öğreneceksiniz.
+Daha sonra, muhtemelen birden fazla dosya kullanarak daha büyük uygulamaları nasıl yapılandıracağınızı okurken ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md)), bir *path operation* grubu için tek bir `dependencies` parametresini nasıl tanımlayacağınızı öğreneceksiniz.
 
 ## Global Dependency'ler { #global-dependencies }
 

@@ -8,7 +8,7 @@
 
 /// tip | 提示
 
-要理解环境变量，你可以阅读[环境变量](../environment-variables.md){.internal-link target=_blank}。
+要理解环境变量，你可以阅读[环境变量](../environment-variables.md)。
 
 ///
 
@@ -20,11 +20,11 @@
 
 ## Pydantic 的 `Settings` { #pydantic-settings }
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：[Pydantic：Settings 管理](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)。
 
 ### 安装 `pydantic-settings` { #install-pydantic-settings }
 
-首先，确保你创建并激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装 `pydantic-settings` 包：
+首先，确保你创建并激活了[虚拟环境](../virtual-environments.md)，然后安装 `pydantic-settings` 包：
 
 <div class="termy">
 
@@ -100,7 +100,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一个模块中放置设置 { #settings-in-another-module }
 
-你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 例如，可以有一个 `config.py` 文件：
 
@@ -112,7 +112,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | 提示
 
-你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 ///
 
@@ -172,7 +172,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a> 中阅读更多信息。
+Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 [Pydantic Settings：Dotenv（.env）支持](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support) 中阅读更多信息。
 
 /// tip | 提示
 
@@ -197,7 +197,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 提示
 
-`model_config` 属性仅用于 Pydantic 配置。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a> 中阅读更多信息。
+`model_config` 属性仅用于 Pydantic 配置。你可以在 [Pydantic：概念：配置](https://docs.pydantic.dev/latest/concepts/config/) 中阅读更多信息。
 
 ///
 
@@ -291,7 +291,7 @@ participant execute as Execute function
 
 这样，它的行为几乎就像是一个全局变量。但由于它使用了依赖项函数，我们可以在测试时很容易地覆盖它。
 
-`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文档中关于 `@lru_cache` 的章节</a>阅读更多信息。
+`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 [Python 文档中关于 `@lru_cache` 的章节](https://docs.python.org/3/library/functools.html#functools.lru_cache)阅读更多信息。
 
 ## 小结 { #recap }
 

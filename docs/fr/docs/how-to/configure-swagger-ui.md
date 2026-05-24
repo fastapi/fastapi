@@ -1,6 +1,6 @@
 # Configurer Swagger UI { #configure-swagger-ui }
 
-Vous pouvez configurer des <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">paramètres supplémentaires de Swagger UI</a>.
+Vous pouvez configurer des [paramètres supplémentaires de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Pour les configurer, passez l'argument `swagger_ui_parameters` lors de la création de l'objet d'application `FastAPI()` ou à la fonction `get_swagger_ui_html()`.
 
@@ -50,7 +50,7 @@ Par exemple, pour désactiver `deepLinking`, vous pourriez passer ces paramètre
 
 ## Autres paramètres de Swagger UI { #other-swagger-ui-parameters }
 
-Pour voir toutes les autres configurations possibles que vous pouvez utiliser, lisez la <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">documentation officielle des paramètres de Swagger UI</a>.
+Pour voir toutes les autres configurations possibles que vous pouvez utiliser, lisez les [documents officiels pour les paramètres de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Paramètres JavaScript uniquement { #javascript-only-settings }
 

@@ -20,7 +20,7 @@
 
 `Response`를 직접 반환할 때에도 헤더를 추가할 수 있습니다.
 
-[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요:
+[응답을 직접 반환하기](response-directly.md)에 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요:
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@
 
 ## 커스텀 헤더 { #custom-headers }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">`X-` 접두어를 사용하여</a> 커스텀 사설 헤더를 추가할 수 있다는 점을 기억하세요.
+커스텀 사설 헤더는 [`X-` 접두어를 사용하여](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) 추가할 수 있다는 점을 기억하세요.
 
-하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}에서 자세히 알아보세요). <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette의 CORS 문서</a>에 문서화된 `expose_headers` 매개변수를 사용하세요.
+하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)에서 자세히 알아보세요). [Starlette의 CORS 문서](https://www.starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용하세요.

@@ -4,9 +4,9 @@
 
 /// info | 信息
 
-要接收上传的文件，请先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要接收上传的文件，请先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请确保你创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}、激活它，然后安装，例如：
+请确保你创建一个[虚拟环境](../virtual-environments.md)、激活它，然后安装，例如：
 
 ```console
 $ pip install python-multipart
@@ -63,8 +63,8 @@ $ pip install python-multipart
     * 文件会先存储在内存中，直到达到最大上限，超过该上限后会写入磁盘。
 * 因此，非常适合处理图像、视频、大型二进制等大文件，而不会占用所有内存。
 * 你可以获取上传文件的元数据。
-* 它提供 <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> 的 `async` 接口。
-* 它暴露了一个实际的 Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> 对象，你可以直接传给期望「file-like」对象的其他库。
+* 它提供 [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) 的 `async` 接口。
+* 它暴露了一个实际的 Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) 对象，你可以直接传给期望「file-like」对象的其他库。
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ $ pip install python-multipart
 
 * `filename`：上传的原始文件名字符串（`str`），例如 `myimage.jpg`。
 * `content_type`：内容类型（MIME 类型 / 媒体类型）的字符串（`str`），例如 `image/jpeg`。
-* `file`：<a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（一个 <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> 对象）。这是实际的 Python 文件对象，你可以直接传递给其他期望「file-like」对象的函数或库。
+* `file`：[`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile)（一个 [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) 对象）。这是实际的 Python 文件对象，你可以直接传递给其他期望「file-like」对象的函数或库。
 
 `UploadFile` 具有以下 `async` 方法。它们都会在底层调用对应的文件方法（使用内部的 `SpooledTemporaryFile`）。
 
@@ -97,13 +97,13 @@ contents = await myfile.read()
 contents = myfile.file.read()
 ```
 
-/// note | 注意
+/// note | `async` 技术细节
 
 当你使用这些 `async` 方法时，**FastAPI** 会在线程池中运行相应的文件方法并等待其完成。
 
 ///
 
-/// note | 注意
+/// note | Starlette 技术细节
 
 **FastAPI** 的 `UploadFile` 直接继承自 **Starlette** 的 `UploadFile`，但添加了一些必要的部分，使其与 **Pydantic** 以及 FastAPI 的其他部分兼容。
 
@@ -115,13 +115,13 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 **FastAPI** 会确保从正确的位置读取这些数据，而不是从 JSON 中读取。
 
-/// note | 注意
+/// note | 技术细节
 
 当不包含文件时，来自表单的数据通常使用「媒体类型」`application/x-www-form-urlencoded` 编码。
 
 但当表单包含文件时，会编码为 `multipart/form-data`。如果你使用 `File`，**FastAPI** 会知道需要从请求体的正确位置获取文件。
 
-如果你想进一步了解这些编码和表单字段，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> 关于 <code>POST</code> 的 Web 文档</a>。
+如果你想进一步了解这些编码和表单字段，请参阅 [<abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> 关于 `POST` 的 Web 文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)。
 
 ///
 
@@ -135,13 +135,13 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 ## 可选文件上传 { #optional-file-upload }
 
-您可以通过使用标准类型注解并将 `None` 作为默认值的方式将一个文件参数设为可选:
+你可以通过使用标准类型注解并将 `None` 作为默认值的方式将一个文件参数设为可选:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## 带有额外元数据的 `UploadFile` { #uploadfile-with-additional-metadata }
 
-您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
+你也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
 {* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
 
@@ -157,7 +157,7 @@ FastAPI 支持同时上传多个文件。
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
 
-/// note | 注意
+/// note | 技术细节
 
 也可以使用 `from starlette.responses import HTMLResponse`。
 

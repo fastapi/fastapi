@@ -11,7 +11,7 @@
 * Перевірте, чи все гаразд у перекладі.
 * За потреби покращіть вашу мовно-специфічну підсказку, загальну підсказку або англійський документ.
 * Потім вручну виправте решту проблем у перекладі, щоб він був якісним.
-* Перекладіть повторно, маючи якісний переклад на місці. Ідеальний результат - коли LLM більше не вносить змін до перекладу. Це означає, що загальна підсказка та ваша мовно-специфічна підсказка настільки добрі, наскільки це можливо (інколи він робитиме кілька, здавалося б, випадкових змін, причина в тому, що <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM-и не є детерміністичними алгоритмами</a>).
+* Перекладіть повторно, маючи якісний переклад на місці. Ідеальний результат - коли LLM більше не вносить змін до перекладу. Це означає, що загальна підсказка та ваша мовно-специфічна підсказка настільки добрі, наскільки це можливо (інколи він робитиме кілька, здавалося б, випадкових змін, причина в тому, що [LLM-и не є детерміністичними алгоритмами](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Тести:
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...і ще один приклад коду консолі...
 
 ```console
-// Створіть каталог "code"
+// Створіть каталог "Code"
 $ mkdir code
 // Перейдіть до цього каталогу
 $ cd code
@@ -125,31 +125,31 @@ works(foo="bar")  # Це працює 🎉
 //// tab | Тест
 
 /// info | Інформація
-Some text
+Деякий текст
 ///
 
 /// note | Примітка
-Some text
+Деякий текст
 ///
 
 /// note | Технічні деталі
-Some text
+Деякий текст
 ///
 
 /// check | Перевірте
-Some text
+Деякий текст
 ///
 
 /// tip | Порада
-Some text
+Деякий текст
 ///
 
 /// warning | Попередження
-Some text
+Деякий текст
 ///
 
 /// danger | Обережно
-Some text
+Деякий текст
 ///
 
 ////
@@ -169,15 +169,15 @@ Some text
 Текст посилання має бути перекладений, адреса посилання має залишитися незмінною:
 
 * [Посилання на заголовок вище](#code-snippets)
-* [Внутрішнє посилання](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Зовнішнє посилання</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Посилання на стиль</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Посилання на скрипт</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Посилання на зображення</a>
+* [Внутрішнє посилання](index.md#installation)
+* [Зовнішнє посилання](https://sqlmodel.tiangolo.com/)
+* [Посилання на стиль](https://fastapi.tiangolo.com/css/styles.css)
+* [Посилання на скрипт](https://fastapi.tiangolo.com/js/logic.js)
+* [Посилання на зображення](https://fastapi.tiangolo.com/img/foo.jpg)
 
 Текст посилання має бути перекладений, адреса посилання має вказувати на переклад:
 
-* <a href="https://fastapi.tiangolo.com/uk/" class="external-link" target="_blank">Посилання на FastAPI</a>
+* [Посилання на FastAPI](https://fastapi.tiangolo.com/uk/)
 
 ////
 
@@ -313,6 +313,7 @@ Some text
 * тіло відповіді
 * тіло JSON
 * тіло форми
+* тіло файлу
 * тіло функції
 
 * параметр

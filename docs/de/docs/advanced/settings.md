@@ -8,7 +8,7 @@ Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestell
 
 /// tip | Tipp
 
-Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md){.internal-link target=_blank} lesen.
+Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md) lesen.
 
 ///
 
@@ -20,11 +20,11 @@ Das bedeutet, dass jeder in Python aus einer Umgebungsvariablen gelesene Wert ei
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings Management</a>.
+Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings Management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### `pydantic-settings` installieren { #install-pydantic-settings }
 
-Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
+Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md) erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
 
 <div class="termy">
 
@@ -92,15 +92,15 @@ Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen S
 
 ///
 
-Und dann würde die Einstellung `admin_email` auf `"deadpool@example.com"` gesetzt.
+Und dann würde die Einstellung `admin_email` auf „deadpool@example.com“ gesetzt.
 
-Der `app_name` wäre `"ChimichangApp"`.
+Der `app_name` wäre „ChimichangApp“.
 
 Und `items_per_user` würde seinen Defaultwert von `50` behalten.
 
 ## Einstellungen in einem anderen Modul { #settings-in-another-module }
 
-Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen haben.
+Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md) gesehen haben.
 
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
@@ -112,7 +112,7 @@ Und dann verwenden Sie diese in einer Datei `main.py`:
 
 /// tip | Tipp
 
-Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen.
+Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md) gesehen.
 
 ///
 
@@ -172,7 +172,7 @@ Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
 
 ///
 
-Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Tipp
 
@@ -197,7 +197,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 
 /// tip | Tipp
 
-Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -291,7 +291,7 @@ Im Fall unserer Abhängigkeit `get_settings()` akzeptiert die Funktion nicht ein
 
 Auf diese Weise verhält es sich fast so, als wäre es nur eine globale Variable. Da es jedoch eine Abhängigkeitsfunktion verwendet, können wir diese zu Testzwecken problemlos überschreiben.
 
-`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python Dokumentation für `@lru_cache`</a>.
+`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der [Python Dokumentation für `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Zusammenfassung { #recap }
 

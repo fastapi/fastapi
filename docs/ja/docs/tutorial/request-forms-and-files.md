@@ -4,9 +4,9 @@
 
 /// info | 情報
 
-アップロードされたファイルやフォームデータを受信するには、まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+アップロードされたファイルやフォームデータを受信するには、まず[`python-multipart`](https://github.com/Kludex/python-multipart)をインストールします。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成し、それを有効化してから、例えば次のようにインストールしてください:
+[仮想環境](../virtual-environments.md)を作成し、それを有効化してから、例えば次のようにインストールしてください:
 
 ```console
 $ pip install python-multipart

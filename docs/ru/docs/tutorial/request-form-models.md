@@ -4,9 +4,9 @@
 
 /// info | Дополнительная информация
 
-Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы использовать формы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали и активировали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, а затем установите пакет, например:
+Убедитесь, что вы создали и активировали [виртуальное окружение](../virtual-environments.md), а затем установите пакет, например:
 
 ```console
 $ pip install python-multipart

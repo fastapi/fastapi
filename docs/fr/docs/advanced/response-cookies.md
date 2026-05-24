@@ -2,7 +2,7 @@
 
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
-Vous pouvez déclarer un paramètre de type `Response` dans votre fonction de chemin d'accès.
+Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès*.
 
 Vous pouvez ensuite définir des cookies dans cet objet de réponse *temporaire*.
 
@@ -20,7 +20,7 @@ Vous pouvez également déclarer le paramètre `Response` dans des dépendances,
 
 Vous pouvez également créer des cookies en renvoyant une `Response` directement dans votre code.
 
-Pour ce faire, vous pouvez créer une réponse comme décrit dans [Renvoyer une Response directement](response-directly.md){.internal-link target=_blank}.
+Pour ce faire, vous pouvez créer une réponse comme décrit dans [Renvoyer une Response directement](response-directly.md).
 
 Définissez ensuite des cookies dessus, puis renvoyez-la :
 
@@ -48,4 +48,4 @@ Et comme `Response` peut être utilisé fréquemment pour définir des en-têtes
 
 ///
 
-Pour voir tous les paramètres et options disponibles, consultez la <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentation de Starlette</a>.
+Pour voir tous les paramètres et options disponibles, consultez la [documentation de Starlette](https://www.starlette.dev/responses/#set-cookie).

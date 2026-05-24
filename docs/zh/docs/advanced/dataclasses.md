@@ -2,11 +2,11 @@
 
 FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydantic 模型声明请求与响应。
 
-但 FastAPI 也支持以相同方式使用 <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>：
+但 FastAPI 也支持以相同方式使用 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)：
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-这仍然得益于 **Pydantic**，因为它对 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` 的内置支持</a>。
+这仍然得益于 **Pydantic**，因为它对 [`dataclasses` 的内置支持](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel)。
 
 因此，即便上面的代码没有显式使用 Pydantic，FastAPI 也会使用 Pydantic 将那些标准数据类转换为 Pydantic 风格的 dataclasses。
 
@@ -67,7 +67,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
    一如既往，在 FastAPI 中你可以按需组合 `def` 和 `async def`。
 
-   如果需要回顾何时用哪一个，请查看关于 [`async` 和 `await`](../async.md#in-a-hurry){.internal-link target=_blank} 的文档中的 _“急不可待？”_ 一节。
+   如果需要回顾何时用哪一个，请查看关于 [`async` 和 `await`](../async.md#in-a-hurry) 的文档中的 _“急不可待？”_ 一节。
 9. 这个 *路径操作函数* 返回的不是数据类（当然也可以返回数据类），而是包含内部数据的字典列表。
 
    FastAPI 会使用（包含数据类的）`response_model` 参数来转换响应。
@@ -80,7 +80,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 你还可以把 `dataclasses` 与其它 Pydantic 模型组合、从它们继承、把它们包含到你自己的模型中等。
 
-想了解更多，请查看 <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic 关于 dataclasses 的文档</a>。
+想了解更多，请查看 [Pydantic 关于 dataclasses 的文档](https://docs.pydantic.dev/latest/concepts/dataclasses/)。
 
 ## 版本 { #version }
 

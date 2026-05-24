@@ -12,7 +12,7 @@
 
 ## Підпишіться на розсилку { #subscribe-to-the-newsletter }
 
-Ви можете підписатися на (нечасту) розсилку [**FastAPI and friends**](newsletter.md){.internal-link target=_blank}, щоб бути в курсі:
+Ви можете підписатися на (нечасту) розсилку [**FastAPI and friends**](newsletter.md), щоб бути в курсі:
 
 * Новин про FastAPI та друзів 🚀
 * Посібників 📝
@@ -22,17 +22,17 @@
 
 ## Стежте за FastAPI в X (Twitter) { #follow-fastapi-on-x-twitter }
 
-<a href="https://x.com/fastapi" class="external-link" target="_blank">Стежте за @fastapi в **X (Twitter)**</a>, щоб отримувати найсвіжіші новини про **FastAPI**. 🐦
+[Стежте за @fastapi в **X (Twitter)**](https://x.com/fastapi), щоб отримувати найсвіжіші новини про **FastAPI**. 🐦
 
 ## Додайте зірочку **FastAPI** на GitHub { #star-fastapi-in-github }
 
-Ви можете «поставити зірочку» FastAPI на GitHub (натиснувши кнопку зірочки у верхньому правому куті): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
+Ви можете «поставити зірочку» FastAPI на GitHub (натиснувши кнопку зірочки у верхньому правому куті): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). ⭐️
 
 Додавши зірочку, іншим користувачам буде легше його знайти і побачити, що він уже був корисним для інших.
 
 ## Стежте за випусками в репозиторії GitHub { #watch-the-github-repository-for-releases }
 
-Ви можете «спостерігати» за FastAPI на GitHub (натиснувши кнопку «watch» у верхньому правому куті): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+Ви можете «спостерігати» за FastAPI на GitHub (натиснувши кнопку «watch» у верхньому правому куті): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
 
 Там ви можете вибрати «Releases only».
 
@@ -40,45 +40,45 @@
 
 ## Зв'яжіться з автором { #connect-with-the-author }
 
-Ви можете зв'язатися зі <a href="https://tiangolo.com" class="external-link" target="_blank">мною (Sebastián Ramírez / `tiangolo`)</a>, автором.
+Ви можете зв'язатися зі [мною (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com), автором.
 
 Ви можете:
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">Стежити за мною на **GitHub**</a>.
+* [Стежити за мною на **GitHub**](https://github.com/tiangolo).
     * Подивитися інші Open Source-проєкти, які я створив і які можуть вам допомогти.
     * Стежити, щоб бачити, коли я створюю новий Open Source-проєкт.
-* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Стежити за мною в **X (Twitter)**</a> або <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
+* [Стежити за мною в **X (Twitter)**](https://x.com/tiangolo) або [Mastodon](https://fosstodon.org/@tiangolo).
     * Розкажіть мені, як ви використовуєте FastAPI (мені дуже приємно це чути).
     * Дізнаватися, коли я роблю оголошення або випускаю нові інструменти.
-    * Також ви можете <a href="https://x.com/fastapi" class="external-link" target="_blank">стежити за @fastapi в X (Twitter)</a> (окремий акаунт).
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Стежити за мною в **LinkedIn**</a>.
+    * Також ви можете [стежити за @fastapi в X (Twitter)](https://x.com/fastapi) (окремий акаунт).
+* [Стежити за мною в **LinkedIn**](https://www.linkedin.com/in/tiangolo/).
     * Дізнаватися, коли я роблю оголошення або випускаю нові інструменти (хоча X (Twitter) я використовую частіше 🤷‍♂).
-* Читати, що я пишу (або стежити за мною) на <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> або <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
+* Читати, що я пишу (або стежити за мною) на [**Dev.to**](https://dev.to/tiangolo) або [**Medium**](https://medium.com/@tiangolo).
     * Читати інші ідеї, статті та про інструменти, які я створив.
     * Стежити, щоб читати нове, коли я щось публікую.
 
 ## Твітніть про **FastAPI** { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Твітніть про **FastAPI**</a> і дайте мені та іншим знати, чому він вам подобається. 🎉
+[Твітніть про **FastAPI**](https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi) і дайте мені та іншим знати, чому він вам подобається. 🎉
 
 Мені дуже подобається дізнаватися, як використовують **FastAPI**, що вам у ньому сподобалося, у якому проєкті/компанії ви його застосовуєте тощо.
 
 ## Голосуйте за FastAPI { #vote-for-fastapi }
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Проголосуйте за **FastAPI** на Slant</a>.
-* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">Проголосуйте за **FastAPI** на AlternativeTo</a>.
-* <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">Повідомте, що ви використовуєте **FastAPI**, на StackShare</a>.
+* [Проголосуйте за **FastAPI** на Slant](https://www.slant.co/options/34241/~fastapi-review).
+* [Проголосуйте за **FastAPI** на AlternativeTo](https://alternativeto.net/software/fastapi/about/).
+* [Повідомте, що ви використовуєте **FastAPI**, на StackShare](https://stackshare.io/pypi-fastapi).
 
 ## Допомагайте іншим з питаннями на GitHub { #help-others-with-questions-in-github }
 
 Ви можете спробувати допомагати іншим з їхніми питаннями у:
 
-* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
-* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+* [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered)
+* [GitHub Issues](https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+)
 
 У багатьох випадках ви вже можете знати відповідь на ці питання. 🤓
 
-Якщо ви багато допомагаєте людям із їхніми питаннями, ви станете офіційним [Експертом FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}. 🎉
+Якщо ви багато допомагаєте людям із їхніми питаннями, ви станете офіційним [Експертом FastAPI](fastapi-people.md#fastapi-experts). 🎉
 
 Пам'ятайте, найважливіше: намагайтеся бути добрими. Люди приходять зі своєю фрустрацією і часто питають не найкращим чином, але постарайтеся бути якомога доброзичливішими. 🤗
 
@@ -104,7 +104,7 @@
 
 Часто вони наводять лише фрагмент коду, але цього недостатньо, щоб **відтворити проблему**.
 
-* Ви можете попросити надати <a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">мінімальний, відтворюваний приклад</a>, який ви зможете **скопіювати-вставити** і запустити локально, щоб побачити ту саму помилку або поведінку, яку бачать вони, або краще зрозуміти їхній варіант використання.
+* Ви можете попросити надати [мінімальний, відтворюваний приклад](https://stackoverflow.com/help/minimal-reproducible-example), який ви зможете **скопіювати-вставити** і запустити локально, щоб побачити ту саму помилку або поведінку, яку бачать вони, або краще зрозуміти їхній варіант використання.
 
 * Якщо ви дуже щедрі, можете спробувати **створити такий приклад** самостійно, лише на основі опису проблеми. Просто майте на увазі, що це може зайняти багато часу, і краще спочатку попросити їх уточнити проблему.
 
@@ -125,7 +125,7 @@
 
 ## Стежте за репозиторієм GitHub { #watch-the-github-repository }
 
-Ви можете «спостерігати» за FastAPI на GitHub (натиснувши кнопку «watch» у верхньому правому куті): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+Ви можете «спостерігати» за FastAPI на GitHub (натиснувши кнопку «watch» у верхньому правому куті): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
 
 Якщо вибрати «Watching» замість «Releases only», ви отримуватимете сповіщення, коли хтось створює нове issue або питання. Ви також можете вказати, що хочете отримувати сповіщення лише про нові issues, або discussions, або PR тощо.
 
@@ -133,7 +133,7 @@
 
 ## Ставте питання { #ask-questions }
 
-Ви можете <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">створити нове питання</a> у репозиторії GitHub, наприклад, щоб:
+Ви можете [створити нове питання](https://github.com/fastapi/fastapi/discussions/new?category=questions) у репозиторії GitHub, наприклад, щоб:
 
 * Поставити **питання** або запитати про **проблему**.
 * Запропонувати нову **можливість**.
@@ -170,7 +170,7 @@
 
 * Потім залиште **коментар**, що ви це зробили, так я знатиму, що ви справді перевірили.
 
-/// info | Інформація
+/// info
 
 На жаль, я не можу просто довіряти PR, які мають кілька схвалень.
 
@@ -196,12 +196,12 @@
 
 ## Створіть запит на витяг { #create-a-pull-request }
 
-Ви можете [зробити внесок](contributing.md){.internal-link target=_blank} у вихідний код із запитами на витяг, наприклад:
+Ви можете [зробити внесок](contributing.md) у вихідний код із запитами на витяг, наприклад:
 
 * Щоб виправити описку, знайдену в документації.
-* Щоб поділитися статтею, відео або подкастом про FastAPI, який ви створили або знайшли, <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">відредагувавши цей файл</a>.
+* Щоб поділитися статтею, відео або подкастом про FastAPI, який ви створили або знайшли, [відредагувавши цей файл](https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml).
     * Обов'язково додайте ваше посилання на початок відповідного розділу.
-* Щоб допомогти [перекласти документацію](contributing.md#translations){.internal-link target=_blank} вашою мовою.
+* Щоб допомогти [перекласти документацію](contributing.md#translations) вашою мовою.
     * Ви також можете допомогти з переглядом перекладів, створених іншими.
 * Щоб запропонувати нові розділи документації.
 * Щоб виправити наявну проблему/помилку.
@@ -218,8 +218,8 @@
 
 Основні завдання, які ви можете виконувати вже зараз:
 
-* [Допомагайте іншим з питаннями на GitHub](#help-others-with-questions-in-github){.internal-link target=_blank} (див. розділ вище).
-* [Переглядайте запити на витяг](#review-pull-requests){.internal-link target=_blank} (див. розділ вище).
+* [Допомагайте іншим з питаннями на GitHub](#help-others-with-questions-in-github) (див. розділ вище).
+* [Переглядайте запити на витяг](#review-pull-requests) (див. розділ вище).
 
 Ці два завдання **найбільше споживають час**. Це основна робота з підтримки FastAPI.
 
@@ -227,11 +227,11 @@
 
 ## Долучайтеся до чату { #join-the-chat }
 
-Долучайтеся до 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">серверу чату Discord</a> 👥 і спілкуйтеся з іншими в спільноті FastAPI.
+Долучайтеся до 👥 [серверу чату Discord](https://discord.gg/VQjSZaeJmf) 👥 і спілкуйтеся з іншими в спільноті FastAPI.
 
-/// tip | Порада
+/// tip
 
-Для запитань ставте їх у <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, там значно вища ймовірність, що вам допоможуть [Експерти FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
+Для запитань ставте їх у [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/new?category=questions), там значно вища ймовірність, що вам допоможуть [Експерти FastAPI](fastapi-people.md#fastapi-experts).
 
 Використовуйте чат лише для інших загальних розмов.
 
@@ -243,13 +243,13 @@
 
 У GitHub шаблон підкаже вам, як написати правильне питання, щоб ви легше отримали хорошу відповідь, або навіть вирішили проблему самостійно ще до запиту. І в GitHub я можу гарантувати, що завжди на все відповім, навіть якщо це займе трохи часу. Особисто я не можу робити це в чатах. 😅
 
-Розмови в чатах також не так просто шукати, як у GitHub, тож питання та відповіді можуть загубитися. І лише ті, що в GitHub, зараховуються, щоб стати [Експертом FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}, тож швидше за все ви отримаєте більше уваги саме в GitHub.
+Розмови в чатах також не так просто шукати, як у GitHub, тож питання та відповіді можуть загубитися. І лише ті, що в GitHub, зараховуються, щоб стати [Експертом FastAPI](fastapi-people.md#fastapi-experts), тож швидше за все ви отримаєте більше уваги саме в GitHub.
 
 З іншого боку, у чатах є тисячі користувачів, тож дуже ймовірно, що ви майже завжди знайдете там співрозмовника. 😄
 
 ## Спонсоруйте автора { #sponsor-the-author }
 
-Якщо ваш **продукт/компанія** залежить від **FastAPI** або пов'язана з ним і ви хочете охопити його користувачів, ви можете спонсорувати автора (мене) через <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>. Залежно від рівня ви можете отримати додаткові переваги, наприклад значок у документації. 🎁
+Якщо ваш **продукт/компанія** залежить від **FastAPI** або пов'язана з ним і ви хочете охопити його користувачів, ви можете спонсорувати автора (мене) через [GitHub sponsors](https://github.com/sponsors/tiangolo). Залежно від рівня ви можете отримати додаткові переваги, наприклад значок у документації. 🎁
 
 ---
 

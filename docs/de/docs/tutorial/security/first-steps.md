@@ -26,11 +26,11 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 /// info | Info
 
-Das Paket <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
+Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
 
 Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und es dann mit:
+Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und es dann mit:
 
 ```console
 $ pip install python-multipart
@@ -47,7 +47,7 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -56,7 +56,7 @@ $ fastapi dev main.py
 
 ## Es testen { #check-it }
 
-Gehen Sie zu der interaktiven Dokumentation unter: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Gehen Sie zu der interaktiven Dokumentation unter: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Sie werden etwa Folgendes sehen:
 
@@ -142,7 +142,7 @@ Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch
 
 Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
 
-Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
+Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [Hinter einem Proxy](../../advanced/behind-a-proxy.md), weiterhin funktioniert.
 
 ///
 

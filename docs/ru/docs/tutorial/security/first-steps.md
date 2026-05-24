@@ -26,11 +26,11 @@
 
 /// info | Дополнительная информация
 
-Пакет <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> автоматически устанавливается вместе с **FastAPI**, если вы запускаете команду `pip install "fastapi[standard]"`.
+Пакет [`python-multipart`](https://github.com/Kludex/python-multipart) автоматически устанавливается вместе с **FastAPI**, если вы запускаете команду `pip install "fastapi[standard]"`.
 
 Однако, если вы используете команду `pip install fastapi`, пакет `python-multipart` по умолчанию не включается.
 
-Чтобы установить его вручную, убедитесь, что вы создали [виртуальное окружение](../../virtual-environments.md){.internal-link target=_blank}, активировали его и затем установили пакет:
+Чтобы установить его вручную, убедитесь, что вы создали [виртуальное окружение](../../virtual-environments.md), активировали его и затем установили пакет:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,7 +54,7 @@ $ fastapi dev main.py
 
 ## Проверка { #check-it }
 
-Перейдите к интерактивной документации по адресу: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Перейдите к интерактивной документации по адресу: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Вы увидите примерно следующее:
 
@@ -140,7 +140,7 @@ OAuth2 был спроектирован так, чтобы бэкенд или 
 
 Поскольку мы используем относительный URL, если ваш API расположен по адресу `https://example.com/`, то он будет ссылаться на `https://example.com/token`. А если ваш API расположен по адресу `https://example.com/api/v1/`, то он будет ссылаться на `https://example.com/api/v1/token`.
 
-Использование относительного URL важно для того, чтобы ваше приложение продолжало работать даже в таком продвинутом случае, как [За прокси-сервером](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+Использование относительного URL важно для того, чтобы ваше приложение продолжало работать даже в таком продвинутом случае, как [За прокси-сервером](../../advanced/behind-a-proxy.md).
 
 ///
 

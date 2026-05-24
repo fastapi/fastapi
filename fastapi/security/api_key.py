@@ -9,6 +9,8 @@ from starlette.status import HTTP_401_UNAUTHORIZED
 
 
 class APIKeyBase(SecurityBase):
+    model: APIKey
+
     def __init__(
         self,
         location: APIKeyIn,
@@ -20,7 +22,7 @@ class APIKeyBase(SecurityBase):
         self.auto_error = auto_error
 
         self.model: APIKey = APIKey(
-            **{"in": location},
+            **{"in": location},  # ty: ignore[invalid-argument-type]
             name=name,
             description=description,
         )

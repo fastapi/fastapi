@@ -2,7 +2,7 @@
 
 FastAPI 버전 `0.122.0` 이전에는, 통합 보안 유틸리티가 인증 실패 후 클라이언트에 오류를 반환할 때 HTTP 상태 코드 `403 Forbidden`을 사용했습니다.
 
-FastAPI 버전 `0.122.0`부터는 더 적절한 HTTP 상태 코드 `401 Unauthorized`를 사용하며, HTTP 명세인 <a href="https://datatracker.ietf.org/doc/html/rfc7235#section-3.1" class="external-link" target="_blank">RFC 7235</a>, <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized" class="external-link" target="_blank">RFC 9110</a>를 따라 응답에 합리적인 `WWW-Authenticate` 헤더를 반환합니다.
+FastAPI 버전 `0.122.0`부터는 더 적절한 HTTP 상태 코드 `401 Unauthorized`를 사용하며, HTTP 명세인 [RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235#section-3.1), [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized)를 따라 응답에 합리적인 `WWW-Authenticate` 헤더를 반환합니다.
 
 하지만 어떤 이유로든 클라이언트가 이전 동작에 의존하고 있다면, 보안 클래스에서 `make_not_authenticated_error` 메서드를 오버라이드하여 이전 동작으로 되돌릴 수 있습니다.
 

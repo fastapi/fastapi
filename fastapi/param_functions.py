@@ -4,11 +4,10 @@ from typing import Annotated, Any, Literal
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
+from fastapi.datastructures import _Unset
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
 from typing_extensions import deprecated
-
-_Unset: Any = Undefined
 
 
 def Path(  # noqa: N802

@@ -18,18 +18,18 @@ Assurez-vous d'évaluer si les **bénéfices** pour votre cas d'utilisation comp
 
 Voici quelques bibliothèques **GraphQL** qui prennent en charge **ASGI**. Vous pouvez les utiliser avec **FastAPI** :
 
-* <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> 🍓
-    * Avec <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">la documentation pour FastAPI</a>
-* <a href="https://ariadnegraphql.org/" class="external-link" target="_blank">Ariadne</a>
-    * Avec <a href="https://ariadnegraphql.org/docs/fastapi-integration" class="external-link" target="_blank">la documentation pour FastAPI</a>
-* <a href="https://tartiflette.io/" class="external-link" target="_blank">Tartiflette</a>
-    * Avec <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a> pour fournir l'intégration ASGI
-* <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
-    * Avec <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>
+* [Strawberry](https://strawberry.rocks/) 🍓
+    * Avec [la documentation pour FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
+* [Ariadne](https://ariadnegraphql.org/)
+    * Avec [la documentation pour FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+* [Tartiflette](https://tartiflette.io/)
+    * Avec [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) pour fournir l'intégration ASGI
+* [Graphene](https://graphene-python.org/)
+    * Avec [starlette-graphene3](https://github.com/ciscorn/starlette-graphene3)
 
 ## GraphQL avec Strawberry { #graphql-with-strawberry }
 
-Si vous avez besoin ou souhaitez travailler avec **GraphQL**, <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> est la bibliothèque **recommandée** car sa conception est la plus proche de celle de **FastAPI**, tout est basé sur des **annotations de type**.
+Si vous avez besoin ou souhaitez travailler avec **GraphQL**, [**Strawberry**](https://strawberry.rocks/) est la bibliothèque **recommandée** car sa conception est la plus proche de celle de **FastAPI**, tout est basé sur des **annotations de type**.
 
 Selon votre cas d'utilisation, vous pourriez préférer une autre bibliothèque, mais si vous me le demandiez, je vous suggérerais probablement d'essayer **Strawberry**.
 
@@ -37,24 +37,24 @@ Voici un petit aperçu de la manière dont vous pouvez intégrer Strawberry avec
 
 {* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
 
-Vous pouvez en apprendre davantage sur Strawberry dans la <a href="https://strawberry.rocks/" class="external-link" target="_blank">documentation de Strawberry</a>.
+Vous pouvez en apprendre davantage sur Strawberry dans la [documentation de Strawberry](https://strawberry.rocks/).
 
-Et également la documentation sur <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry avec FastAPI</a>.
+Et également la documentation sur [Strawberry avec FastAPI](https://strawberry.rocks/docs/integrations/fastapi).
 
 ## Ancien `GraphQLApp` de Starlette { #older-graphqlapp-from-starlette }
 
-Les versions précédentes de Starlette incluaient une classe `GraphQLApp` pour s'intégrer à <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
+Les versions précédentes de Starlette incluaient une classe `GraphQLApp` pour s'intégrer à [Graphene](https://graphene-python.org/).
 
-Elle a été dépréciée dans Starlette, mais si vous avez du code qui l'utilisait, vous pouvez facilement **migrer** vers <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, qui couvre le même cas d'utilisation et propose une **interface presque identique**.
+Elle a été dépréciée dans Starlette, mais si vous avez du code qui l'utilisait, vous pouvez facilement **migrer** vers [starlette-graphene3](https://github.com/ciscorn/starlette-graphene3), qui couvre le même cas d'utilisation et propose une **interface presque identique**.
 
 /// tip | Astuce
 
-Si vous avez besoin de GraphQL, je vous recommande tout de même de regarder <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, car il est basé sur des annotations de type plutôt que sur des classes et types personnalisés.
+Si vous avez besoin de GraphQL, je vous recommande tout de même de regarder [Strawberry](https://strawberry.rocks/), car il est basé sur des annotations de type plutôt que sur des classes et types personnalisés.
 
 ///
 
 ## En savoir plus { #learn-more }
 
-Vous pouvez en apprendre davantage sur **GraphQL** dans la <a href="https://graphql.org/" class="external-link" target="_blank">documentation officielle de GraphQL</a>.
+Vous pouvez en apprendre davantage sur **GraphQL** dans la [documentation officielle de GraphQL](https://graphql.org/).
 
 Vous pouvez également en lire davantage sur chacune des bibliothèques décrites ci-dessus via leurs liens.

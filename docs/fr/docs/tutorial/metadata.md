@@ -14,7 +14,7 @@ Vous pouvez définir les champs suivants qui sont utilisés dans la spécificati
 | `version` | `string` | La version de l’API. C’est la version de votre propre application, pas d’OpenAPI. Par exemple `2.5.0`. |
 | `terms_of_service` | `str` | Une URL vers les Conditions d’utilisation de l’API. Le cas échéant, il doit s’agir d’une URL. |
 | `contact` | `dict` | Les informations de contact pour l’API exposée. Cela peut contenir plusieurs champs. <details><summary>champs de <code>contact</code></summary><table><thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>Le nom identifiant de la personne/organisation de contact.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>L’URL pointant vers les informations de contact. DOIT être au format d’une URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>L’adresse e-mail de la personne/organisation de contact. DOIT être au format d’une adresse e-mail.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | Les informations de licence pour l’API exposée. Cela peut contenir plusieurs champs. <details><summary>champs de <code>license_info</code></summary><table><thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBLIGATOIRE</strong> (si un <code>license_info</code> est défini). Le nom de la licence utilisée pour l’API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Une expression de licence <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> pour l’API. Le champ <code>identifier</code> est mutuellement exclusif du champ <code>url</code>. <small>Disponible depuis OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Une URL vers la licence utilisée pour l’API. DOIT être au format d’une URL.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | Les informations de licence pour l’API exposée. Cela peut contenir plusieurs champs. <details><summary>champs de <code>license_info</code></summary><table><thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>OBLIGATOIRE</strong> (si un <code>license_info</code> est défini). Le nom de la licence utilisée pour l’API.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Une expression de licence [SPDX](https://spdx.org/licenses/) pour l’API. Le champ <code>identifier</code> est mutuellement exclusif du champ <code>url</code>. <small>Disponible depuis OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Une URL vers la licence utilisée pour l’API. DOIT être au format d’une URL.</td></tr></tbody></table></details> |
 
 Vous pouvez les définir comme suit :
 
@@ -76,7 +76,7 @@ Utilisez le paramètre `tags` avec vos *chemins d'accès* (et `APIRouter`s) pour
 
 /// info
 
-En savoir plus sur les tags dans [Configuration de chemins d'accès](path-operation-configuration.md#tags){.internal-link target=_blank}.
+En savoir plus sur les tags dans [Configuration de chemins d'accès](path-operation-configuration.md#tags).
 
 ///
 

@@ -4,9 +4,9 @@ Vous pouvez utiliser des **modèles Pydantic** pour déclarer des **champs de fo
 
 /// info
 
-Pour utiliser les formulaires, installez d'abord <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Pour utiliser les formulaires, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer le paquet, par exemple :
+Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer le paquet, par exemple :
 
 ```console
 $ pip install python-multipart

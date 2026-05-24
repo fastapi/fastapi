@@ -72,13 +72,13 @@ You can specify the response description with the parameter `response_descriptio
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info
+/// note
 
 Notice that `response_description` refers specifically to the response, the `description` refers to the *path operation* in general.
 
 ///
 
-/// check
+/// tip
 
 OpenAPI specifies that each *path operation* requires a response description.
 

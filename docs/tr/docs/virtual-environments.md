@@ -2,7 +2,7 @@
 
 Python projeleriyle çalışırken, her proje için kurduğunuz package'leri birbirinden izole etmek adına büyük ihtimalle bir **virtual environment** (veya benzer bir mekanizma) kullanmalısınız.
 
-/// info | Bilgi
+/// note | Not
 
 Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıklarını zaten biliyorsanız bu bölümü atlamak isteyebilirsiniz. 🤓
 
@@ -18,11 +18,11 @@ Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıkla
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Bu sayfada **virtual environment**'leri nasıl kullanacağınızı ve nasıl çalıştıklarını öğreneceksiniz.
 
-Eğer Python'ı kurmak dahil her şeyi sizin yerinize yöneten bir **tool** kullanmaya hazırsanız, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>'yi deneyin.
+Eğer Python'ı kurmak dahil her şeyi sizin yerinize yöneten bir **tool** kullanmaya hazırsanız, [uv](https://github.com/astral-sh/uv)'yi deneyin.
 
 ///
 
@@ -37,15 +37,15 @@ Sonra bunun içinde her proje için ayrı bir klasör oluştururum.
 <div class="termy">
 
 ```console
-// Go to the home directory
+// Gelelim home dizinine
 $ cd
-// Create a directory for all your code projects
+// Tüm kod projeleriniz için bir klasör oluşturun
 $ mkdir code
-// Enter into that code directory
+// Bu code klasörüne girin
 $ cd code
-// Create a directory for this project
+// Bu proje için bir klasör oluşturun
 $ mkdir awesome-project
-// Enter into that project directory
+// Proje klasörüne girin
 $ cd awesome-project
 ```
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> kuruluysa, onunla da virtual environment oluşturabilirsiniz.
+Eğer [`uv`](https://github.com/astral-sh/uv) kuruluysa, onunla da virtual environment oluşturabilirsiniz.
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ya da Windows'ta Bash kullanıyorsanız (örn. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ya da Windows'ta Bash kullanıyorsanız (örn. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ Eğer `python` binary'sini projenizin içinde (bu örnekte `awesome-project`) `.
 
 /// tip | İpucu
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> kullanıyorsanız, `pip` yerine onunla kurulum yaparsınız; dolayısıyla `pip`'i yükseltmeniz gerekmez. 😎
+[`uv`](https://github.com/astral-sh/uv) kullanıyorsanız, `pip` yerine onunla kurulum yaparsınız; dolayısıyla `pip`'i yükseltmeniz gerekmez. 😎
 
 ///
 
@@ -268,7 +268,7 @@ Bu komut pip kurulu değilse kurar ve ayrıca kurulu pip sürümünün `ensurepi
 
 /// tip | İpucu
 
-Virtual environment'i <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> ile oluşturduysanız, bunu zaten sizin için yaptı; bu adımı atlayabilirsiniz. 😎
+Virtual environment'i [`uv`](https://github.com/astral-sh/uv) ile oluşturduysanız, bunu zaten sizin için yaptı; bu adımı atlayabilirsiniz. 😎
 
 ///
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> varsa:
+Eğer [`uv`](https://github.com/astral-sh/uv) varsa:
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Eğer <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> varsa:
+Eğer [`uv`](https://github.com/astral-sh/uv) varsa:
 
 <div class="termy">
 
@@ -416,8 +416,8 @@ Muhtemelen bir editör kullanırsınız; otomatik tamamlamayı ve satır içi ha
 
 Örneğin:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | İpucu
 
@@ -453,7 +453,7 @@ Okumaya devam edin. 👇🤓
 
 ## Neden Virtual Environment { #why-virtual-environments }
 
-FastAPI ile çalışmak için <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> kurmanız gerekir.
+FastAPI ile çalışmak için [Python](https://www.python.org/) kurmanız gerekir.
 
 Sonrasında FastAPI'yi ve kullanmak istediğiniz diğer tüm **package**'leri **kurmanız** gerekir.
 
@@ -517,7 +517,7 @@ $ pip install "harry==3"
 
 Sonuç olarak global Python environment'ınızda `harry` versiyon `3` kurulu olur.
 
-Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`'e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
+Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
 
 ```mermaid
 flowchart LR
@@ -555,14 +555,14 @@ Bu klasörlerin bir kısmı, kurduğunuz tüm package'leri barındırmaktan soru
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// Bunu şimdi çalıştırmayın, bu sadece bir örnek 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
 
 </div>
 
-Bu, FastAPI kodunu içeren sıkıştırılmış bir dosyayı genellikle <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>'dan indirir.
+Bu, FastAPI kodunu içeren sıkıştırılmış bir dosyayı genellikle [PyPI](https://pypi.org/project/fastapi/)'dan indirir.
 
 Ayrıca FastAPI'nin bağımlı olduğu diğer package'ler için de dosyaları **indirir**.
 
@@ -625,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Ya da Windows'ta Bash kullanıyorsanız (örn. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Ya da Windows'ta Bash kullanıyorsanız (örn. [Git Bash](https://gitforwindows.org/)):
 
 <div class="termy">
 
@@ -637,13 +637,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-Bu komut, sonraki komutlarda kullanılabilecek bazı [environment variable](environment-variables.md){.internal-link target=_blank}'ları oluşturur veya değiştirir.
+Bu komut, sonraki komutlarda kullanılabilecek bazı [environment variable](environment-variables.md)'ları oluşturur veya değiştirir.
 
 Bunlardan biri `PATH` değişkenidir.
 
 /// tip | İpucu
 
-`PATH` environment variable hakkında daha fazla bilgiyi [Environment Variables](environment-variables.md#path-environment-variable){.internal-link target=_blank} bölümünde bulabilirsiniz.
+`PATH` environment variable hakkında daha fazla bilgiyi [Environment Variables](environment-variables.md#path-environment-variable) bölümünde bulabilirsiniz.
 
 ///
 
@@ -809,7 +809,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// sirius import edilirken hata, kurulu değil 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -817,20 +817,20 @@ Traceback (most recent call last):
 
 </div>
 
-Ama virtual environment'i deactivate edip `prisoner-of-askaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
+Ama virtual environment'i deactivate edip `prisoner-of-azkaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// Deactivate etmek için eski klasörde olmanız gerekmez; nerede olursanız olun, hatta diğer projeye geçtikten sonra bile yapabilirsiniz 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// prisoner-of-azkaban/.venv içindeki virtual environment'i aktive edin 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// Artık python çalıştırdığınızda, bu virtual environment'e kurulu olan sirius package'ini bulacak ✨
 $ python main.py
 
 I solemnly swear 🐺
@@ -844,7 +844,7 @@ Bu, başlamanız için basit bir rehber ve alttaki mekanizmaların nasıl çalı
 
 Virtual environment'leri, package bağımlılıklarını (requirements) ve projeleri yönetmek için birçok **alternatif** vardır.
 
-Hazır olduğunuzda ve package bağımlılıkları, virtual environment'ler vb. dahil **tüm projeyi yönetmek** için bir tool kullanmak istediğinizde, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>'yi denemenizi öneririm.
+Hazır olduğunuzda ve package bağımlılıkları, virtual environment'ler vb. dahil **tüm projeyi yönetmek** için bir tool kullanmak istediğinizde, [uv](https://github.com/astral-sh/uv)'yi denemenizi öneririm.
 
 `uv` birçok şey yapabilir, örneğin:
 

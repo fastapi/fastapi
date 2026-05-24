@@ -11,7 +11,7 @@
 * 檢查翻譯是否正確。
 * 如有需要，改進你的語言特定提示、通用提示，或英文原文。
 * 然後手動修正翻譯中剩下的問題，讓它成為一個好的譯文。
-* 重新翻譯，並保留這份好的譯文。理想結果是 LLM 不再對該譯文做任何變更。這代表通用提示與你的語言特定提示已經盡可能完善（有時它仍可能做出幾個看似隨機的變更，原因是<a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs 並非決定性演算法</a>）。
+* 重新翻譯，並保留這份好的譯文。理想結果是 LLM 不再對該譯文做任何變更。這代表通用提示與你的語言特定提示已經盡可能完善（有時它仍可能做出幾個看似隨機的變更，原因是[LLMs 並非決定性演算法](https://doublespeak.chat/#/handbook#deterministic-output)）。
 
 測試：
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...以及另一個主控台範例...
 
 ```console
-// 建立目錄 "code"
+// 建立目錄 "Code"
 $ mkdir code
 // 切換到該目錄
 $ cd code
@@ -169,15 +169,15 @@ Some text
 連結文字應被翻譯，連結位址應保持不變：
 
 * [連結到上方標題](#code-snippets)
-* [內部連結](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">外部連結</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">連結到樣式</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">連結到腳本</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">連結到圖片</a>
+* [內部連結](index.md#installation)
+* [外部連結](https://sqlmodel.tiangolo.com/)
+* [連結到樣式](https://fastapi.tiangolo.com/css/styles.css)
+* [連結到腳本](https://fastapi.tiangolo.com/js/logic.js)
+* [連結到圖片](https://fastapi.tiangolo.com/img/foo.jpg)
 
 連結文字應被翻譯，連結位址應指向對應的翻譯版本：
 
-* <a href="https://fastapi.tiangolo.com/zh-hant/" class="external-link" target="_blank">FastAPI 連結</a>
+* [FastAPI 連結](https://fastapi.tiangolo.com/zh-hant/)
 
 ////
 
@@ -291,7 +291,7 @@ Hello again.
 * 即時
 * 標準
 * 預設
-* 區分大小寫
+* 区分大小寫
 * 不區分大小寫
 
 * 提供應用程式服務

@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI**는 FastAPI 애플리케이션을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 커맨드 라인 프로그램입니다.
+**FastAPI <abbr title="command line interface - 명령줄 인터페이스">CLI</abbr>**는 FastAPI 애플리케이션을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 커맨드 라인 프로그램입니다.
 
-FastAPI를 설치할 때(예: `pip install "fastapi[standard]"`), `fastapi-cli`라는 패키지가 포함되며, 이 패키지는 터미널에서 `fastapi` 명령어를 제공합니다.
+FastAPI를 설치하면(예: `pip install "fastapi[standard]"`) 터미널에서 실행할 수 있는 커맨드 라인 프로그램이 함께 제공됩니다.
 
 개발용으로 FastAPI 애플리케이션을 실행하려면 `fastapi dev` 명령어를 사용할 수 있습니다:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,66 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-`fastapi`라고 불리는 커맨드 라인 프로그램은 **FastAPI CLI**입니다.
+/// tip | 팁
 
-FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 받아 `FastAPI` 인스턴스(일반적으로 `app`으로 이름을 붙임)를 자동으로 감지하고, 올바른 임포트 과정을 결정한 다음 서빙합니다.
+프로덕션에서는 `fastapi dev` 대신 `fastapi run`을 사용합니다. 🚀
 
-프로덕션에서는 대신 `fastapi run`을 사용합니다. 🚀
+///
 
-내부적으로 **FastAPI CLI**는 고성능의, 프로덕션에 적합한 ASGI 서버인 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>을 사용합니다. 😎
+내부적으로 **FastAPI CLI**는 고성능의, 프로덕션에 적합한 ASGI 서버인 [Uvicorn](https://www.uvicorn.dev)을 사용합니다. 😎
+
+`fastapi` CLI는 기본적으로 실행할 FastAPI 앱을 자동으로 감지하려고 시도합니다. `main.py` 파일 안의 `app`이라는 객체(또는 몇 가지 변형)가 있다고 가정합니다.
+
+하지만 사용할 앱을 명시적으로 구성할 수도 있습니다.
+
+## `pyproject.toml`에서 앱 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
+
+`pyproject.toml` 파일에서 앱이 어디에 있는지 다음과 같이 구성할 수 있습니다:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+이 `entrypoint`는 `fastapi` 명령어에 다음과 같이 앱을 임포트하라고 알려줍니다:
+
+```python
+from main import app
+```
+
+코드 구조가 다음과 같다면:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+`entrypoint`를 다음과 같이 설정합니다:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+이는 다음과 동일합니다:
+
+```python
+from backend.main import app
+```
+
+### 경로와 함께 `fastapi dev` { #fastapi-dev-with-path }
+
+`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 앱 객체를 추정합니다:
+
+```console
+$ fastapi dev main.py
+```
+
+하지만 매번 `fastapi` 명령어를 호출할 때 올바른 경로를 전달하는 것을 기억해야 합니다.
+
+또한 [VS Code 확장](editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com) 같은 다른 도구에서는 이를 찾지 못할 수도 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -62,7 +115,7 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 받아 `FastAPI`
 
 ## `fastapi run` { #fastapi-run }
 
-`fastapi run`을 실행하면 기본적으로 프로덕션 모드로 FastAPI가 시작됩니다.
+`fastapi run`을 실행하면 프로덕션 모드로 FastAPI가 시작됩니다.
 
 기본적으로 **auto-reload**는 비활성화되어 있습니다. 또한 사용 가능한 모든 IP 주소를 의미하는 `0.0.0.0`에서 연결을 대기하므로, 해당 컴퓨터와 통신할 수 있는 누구에게나 공개적으로 접근 가능해집니다. 보통 프로덕션에서는 이렇게 실행하며, 예를 들어 컨테이너에서 이런 방식으로 실행합니다.
 
@@ -70,6 +123,6 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 받아 `FastAPI`
 
 /// tip | 팁
 
-자세한 내용은 [배포 문서](deployment/index.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+자세한 내용은 [배포 문서](deployment/index.md)에서 확인할 수 있습니다.
 
 ///

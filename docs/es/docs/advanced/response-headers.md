@@ -20,7 +20,7 @@ También puedes declarar el parámetro `Response` en dependencias y establecer h
 
 También puedes agregar headers cuando devuelves un `Response` directamente.
 
-Crea un response como se describe en [Retorna un Response Directamente](response-directly.md){.internal-link target=_blank} y pasa los headers como un parámetro adicional:
+Crea un response como se describe en [Retorna un Response Directamente](response-directly.md) y pasa los headers como un parámetro adicional:
 
 {* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
@@ -36,6 +36,6 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 ## Headers Personalizados { #custom-headers }
 
-Ten en cuenta que los headers propietarios personalizados se pueden agregar <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo `X-`</a>.
+Ten en cuenta que los headers propietarios personalizados se pueden agregar [usando el prefijo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación CORS de Starlette</a>.
+Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando el parámetro `expose_headers` documentado en [la documentación CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).

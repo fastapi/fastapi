@@ -2,11 +2,11 @@
 
 FastAPI побудовано поверх **Pydantic**, і я показував вам, як використовувати моделі Pydantic для оголошення запитів і відповідей.
 
-Але FastAPI також підтримує використання <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> таким самим чином:
+Але FastAPI також підтримує використання [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) таким самим чином:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Це підтримується завдяки **Pydantic**, адже він має <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">внутрішню підтримку `dataclasses`</a>.
+Це підтримується завдяки **Pydantic**, адже він має [внутрішню підтримку `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
 
 Тож навіть із наведеним вище кодом, який явно не використовує Pydantic, FastAPI використовує Pydantic, щоб перетворити стандартні dataclasses у власний варіант dataclasses Pydantic.
 
@@ -18,7 +18,7 @@ FastAPI побудовано поверх **Pydantic**, і я показував
 
 Це працює так само, як із моделями Pydantic. Насправді під капотом це також досягається за допомогою Pydantic.
 
-/// info | Інформація
+/// info
 
 Майте на увазі, що dataclasses не можуть робити все те, що можуть моделі Pydantic.
 
@@ -64,7 +64,7 @@ Dataclass буде автоматично перетворено на dataclass 
 
 6. Тут ми повертаємо словник, що містить `items`, який є списком dataclass.
 
-    FastAPI усе ще здатний <dfn title="перетворення даних у формат, який можна передати">серіалізувати</dfn> дані до JSON.
+    FastAPI усе ще здатний <dfn title="перетворення даних у формат, який можна передати">серіалізувати</dfн> дані до JSON.
 
 7. Тут у `response_model` використано анотацію типу список dataclass `Author`.
 
@@ -74,7 +74,7 @@ Dataclass буде автоматично перетворено на dataclass 
 
     Як завжди, у FastAPI ви можете поєднувати `def` і `async def` за потреби.
 
-    Якщо вам потрібне коротке нагадування, коли що використовувати, перегляньте розділ _«Поспішаєте?»_ у документації про [`async` та `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Якщо вам потрібне коротке нагадування, коли що використовувати, перегляньте розділ _«Поспішаєте?»_ у документації про [`async` та `await`](../async.md#in-a-hurry).
 
 9. Ця *функція операції шляху* не повертає dataclasses (хоча могла б), а список словників із внутрішніми даними.
 
@@ -88,7 +88,7 @@ Dataclass буде автоматично перетворено на dataclass 
 
 Можна поєднувати `dataclasses` з іншими моделями Pydantic, наслідувати їх, включати у власні моделі тощо.
 
-Щоб дізнатися більше, перегляньте <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">документацію Pydantic про dataclasses</a>.
+Щоб дізнатися більше, перегляньте [документацію Pydantic про dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
 
 ## Версія { #version }
 

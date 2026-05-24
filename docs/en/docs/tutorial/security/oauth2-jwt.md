@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info
+/// note
 
 If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
@@ -213,7 +213,7 @@ Using the credentials:
 Username: `johndoe`
 Password: `secret`
 
-/// check
+/// tip
 
 Notice that nowhere in the code is the plaintext password "`secret`", we only have the hashed version.
 

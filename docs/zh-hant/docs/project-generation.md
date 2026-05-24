@@ -4,7 +4,7 @@
 
 你可以使用此範本快速起步，裡面已替你完成大量初始設定、安全性、資料庫，以及部分 API 端點。
 
-GitHub 儲存庫：<a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">全端 FastAPI 範本</a>
+GitHub 儲存庫：[全端 FastAPI 範本](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## 全端 FastAPI 範本 - 技術堆疊與功能 { #full-stack-fastapi-template-technology-stack-and-features }
 

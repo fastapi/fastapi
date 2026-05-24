@@ -6,7 +6,7 @@ Você pode declarar "parâmetros" ou "variáveis" de path com a mesma sintaxe us
 
 O valor do parâmetro de path `item_id` será passado para a sua função como o argumento `item_id`.
 
-Então, se você executar este exemplo e acessar <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, você verá uma resposta:
+Então, se você executar este exemplo e acessar [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), você verá uma resposta:
 
 ```JSON
 {"item_id":"foo"}
@@ -26,7 +26,7 @@ Isso fornecerá suporte do editor dentro da sua função, com verificações de 
 
 ## Dados <dfn title="também conhecido como: serialização, parsing, marshalling">conversão</dfn> { #data-conversion }
 
-Se você executar este exemplo e abrir seu navegador em <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, você verá uma resposta:
+Se você executar este exemplo e abrir seu navegador em [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3), você verá uma resposta:
 
 ```JSON
 {"item_id":3}
@@ -40,7 +40,7 @@ Então, com essa declaração de tipo, o **FastAPI** fornece <dfn title="convert
 
 ## Validação de dados { #data-validation }
 
-Mas se você for no navegador para <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verá um bom erro HTTP:
+Mas se você for no navegador para [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), verá um bom erro HTTP:
 
 ```JSON
 {
@@ -60,7 +60,7 @@ Mas se você for no navegador para <a href="http://127.0.0.1:8000/items/foo" cla
 
 porque o parâmetro de path `item_id` tinha o valor `"foo"`, que não é um `int`.
 
-O mesmo erro apareceria se você fornecesse um `float` em vez de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+O mesmo erro apareceria se você fornecesse um `float` em vez de um `int`, como em: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// check | Verifique
 Então, com a mesma declaração de tipo do Python, o **FastAPI** fornece validação de dados.
@@ -72,7 +72,7 @@ Isso é incrivelmente útil ao desenvolver e depurar código que interage com su
 
 ## Documentação { #documentation }
 
-E quando você abrir seu navegador em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, você verá documentação automática, interativa, da API como:
+E quando você abrir seu navegador em [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), você verá documentação automática, interativa, da API como:
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -84,9 +84,9 @@ Observe que o parâmetro de path está declarado como um inteiro.
 
 ## Benefícios baseados em padrões, documentação alternativa { #standards-based-benefits-alternative-documentation }
 
-E como o schema gerado é do padrão <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, existem muitas ferramentas compatíveis.
+E como o schema gerado é do padrão [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), existem muitas ferramentas compatíveis.
 
-Por causa disso, o próprio **FastAPI** fornece uma documentação alternativa da API (usando ReDoc), que você pode acessar em <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
+Por causa disso, o próprio **FastAPI** fornece uma documentação alternativa da API (usando ReDoc), que você pode acessar em [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -94,7 +94,7 @@ Da mesma forma, existem muitas ferramentas compatíveis. Incluindo ferramentas d
 
 ## Pydantic { #pydantic }
 
-Toda a validação de dados é realizada nos bastidores pelo <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, então você recebe todos os benefícios disso. E você sabe que está em boas mãos.
+Toda a validação de dados é realizada nos bastidores pelo [Pydantic](https://docs.pydantic.dev/), então você recebe todos os benefícios disso. E você sabe que está em boas mãos.
 
 Você pode usar as mesmas declarações de tipo com `str`, `float`, `bool` e muitos outros tipos de dados complexos.
 
@@ -122,7 +122,7 @@ A primeira sempre será usada, já que o path corresponde primeiro.
 
 ## Valores predefinidos { #predefined-values }
 
-Se você tem uma *operação de rota* que recebe um *parâmetro de path*, mas quer que os valores válidos possíveis do *parâmetro de path* sejam predefinidos, você pode usar um <abbr title="Enumeration - Enumeração">`Enum`</abbr> padrão do Python.
+Se você tem uma *operação de rota* que recebe um *parâmetro de path*, mas quer que os valores válidos possíveis do *parâmetro de path* sejam predefinidos, você pode usar um <abbr title="Enumeração">`Enum`</abbr> padrão do Python.
 
 ### Crie uma classe `Enum` { #create-an-enum-class }
 
