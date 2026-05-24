@@ -13,6 +13,10 @@ hide:
 * 📝 Remove "NGINX Unit" from the list of ASGI-servers in docs. PR [#15475](https://github.com/fastapi/fastapi/pull/15475) by [@angryfoxx](https://github.com/angryfoxx).
 * 📝 Update `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#14781](https://github.com/fastapi/fastapi/pull/14781) by [@zadevhub](https://github.com/zadevhub).
 
+### Internal
+
+* 👷 Configure Dependabot to group updates and update weekly. PR [#15560](https://github.com/fastapi/fastapi/pull/15560) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.136.3 (2026-05-23)
 
 ### Refactors
