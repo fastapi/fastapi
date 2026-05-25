@@ -32,6 +32,7 @@ jobs:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
+          enable-cache: "false"
       - name: Build distribution
         run: uv build
       - name: Publish
