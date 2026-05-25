@@ -1,3 +1,36 @@
+import os
+from fastapi.testclient import TestClient
+from typing import Type
+
+
+def get_access_token(username: str, password: str, scope: str, client: TestClient):
+    # 使用环境变量来存储密码，避免硬编码
+    if not password or password == "secretalice":
+        password = os.getenv("USER_PASSWORD")
+    
+    # 假设这里有一个登录接口，返回access token
+    response = client.post("/token", json={
+        "username": username,
+        "password": password,
+        "scope": scope
+    })
+    return response.json()["access_token"]
+
+def test_token_inactive_user(mod: Type['ModuleType']):
+    client = TestClient(mod.app)
+
+    access_token = get_access_token(
+        username="alice", password=os.getenv("USER_PASSWORD"), scope="me", client=client
+    )
+    response = client.get(
+        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert response.status_code == 400, response.text
+    assert response.json() == {"detail": "Inactive user"}
+
+def test_read_items(mod: Type['ModuleType']):
+    client = TestClient(mod.app)
+
 import importlib
 from functools import lru_cache
 from types import ModuleType
