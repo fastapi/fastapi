@@ -268,11 +268,7 @@ If you are using **Git** (you should), add a `.gitignore` file to exclude everyt
 
 /// tip
 
-If you used Python 3.13 or newer, it already did this for you, you can skip this step. 😎
-
-///
-
-/// tip
+`python -m venv` also creates a `.gitignore` file by default starting with Python 3.13.
 
 If you used [`uv`](https://github.com/astral-sh/uv) to create the virtual environment, it already did this for you, you can skip this step. 😎
 
