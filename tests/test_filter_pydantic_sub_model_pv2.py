@@ -1,3 +1,34 @@
+import os
+from fastapi import Depends, FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class ModelC(BaseModel):
+    username: str
+    password: str
+
+def get_db_password() -> str:
+    # 从环境变量中获取密码，确保安全性
+    db_password = os.getenv("DB_PASSWORD")
+    if not db_password:
+        raise RuntimeError("Environment variable DB_PASSWORD is not set.")
+    return db_password
+
+async def get_model_c() -> ModelC:
+    return ModelC(username="test-user", password=get_db_password())
+
+@app.get("/model/{name}", response_model=BaseModel)
+async def get_model_a(name: str, model_c=Depends(get_model_c)):
+    if not name.endswith('A'):
+        raise ValueError("name must end in A")
+    return {
+        "name": name,
+        "description": "model-a-desc",
+        "foo": model_c,
+        "tags": {"key1": "value1", "key2": "value2"},
+    }
+
 import pytest
 from dirty_equals import HasRepr
 from fastapi import Depends, FastAPI
