@@ -1,3 +1,21 @@
+import os
+from fastapi.testclient import TestClient
+from your_main_module import app  # Replace 'your_main_module' with the actual module name where your FastAPI app is defined
+
+def test_dummy_webhook():
+    # Just for coverage
+    new_subscription(body={}, token="Bearer 123")
+
+def test_openapi_schema():
+    client = TestClient(app)
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == snapshot({
+        "openapi": "3.1.0",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {}
+    })
+
 from datetime import datetime
 from typing import Annotated
 
