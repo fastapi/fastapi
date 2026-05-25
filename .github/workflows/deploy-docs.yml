@@ -16,6 +16,7 @@ jobs:
       issues: write
       pull-requests: write
       statuses: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:

@@ -13,6 +13,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:

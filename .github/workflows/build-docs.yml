@@ -16,6 +16,7 @@ jobs:
     # Required permissions
     permissions:
       pull-requests: read
+    timeout-minutes: 5
     # Set job outputs to values from filter step
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
@@ -42,6 +43,7 @@ jobs:
       - changes
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
@@ -75,6 +77,7 @@ jobs:
       - langs
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 7
     strategy:
       matrix:
         lang: ${{ fromJson(needs.langs.outputs.langs) }}

@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       discussions: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:

@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+    timeout-minutes: 7
     steps:
     - name: Dump GitHub context
       env:

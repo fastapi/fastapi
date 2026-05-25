@@ -12,6 +12,7 @@ jobs:
   zizmor:
     name: Run zizmor
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       security-events: write # Required for upload-sarif (used by zizmor-action) to upload SARIF files.
     timeout-minutes: 5

@@ -25,6 +25,7 @@ jobs:
     permissions:
       pull-requests: read
     # Set job outputs to values from filter step
+    timeout-minutes: 5
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
@@ -50,6 +51,7 @@ jobs:
     needs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
@@ -154,6 +156,7 @@ jobs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       UV_PYTHON: "3.13"
       UV_RESOLUTION: highest
@@ -191,6 +194,7 @@ jobs:
     needs:
       - test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
@@ -238,6 +242,7 @@ jobs:
       - coverage-combine
       - benchmark
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
