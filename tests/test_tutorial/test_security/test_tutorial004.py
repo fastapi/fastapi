@@ -1,3 +1,29 @@
+import os
+from fastapi.testclient import TestClient
+from unittest.mock import patch, ModuleType
+
+
+def test_read_items(mod: ModuleType):
+    client = TestClient(mod.app)
+
+    # 使用环境变量获取密码，避免硬编码
+    password = os.getenv("USER_PASSWORD")
+    if not password:
+        raise ValueError("Environment variable 'USER_PASSWORD' is not set.")
+
+    alice_user_data = {
+        "disabled": True,
+    }
+    with patch.dict(f"{mod.__name__}.fake_users_db", {"alice": alice_user_data}):
+        access_token = get_access_token(
+            username="alice", password=password, client=client
+        )
+        response = client.get(
+            "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+        )
+    assert response.status_code == 400, response.text
+    assert response.json() == {"detail": "Inactive user"}
+
 import importlib
 from types import ModuleType
 from unittest.mock import patch
