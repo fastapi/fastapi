@@ -1,3 +1,23 @@
+import os
+from fastapi import FastAPI, Header, HTTPException
+from pydantic import BaseModel
+
+fake_secret_token = os.getenv("FAKE_SECRET_TOKEN")
+if not fake_secret_token:
+    raise RuntimeError("Environment variable FAKE_SECRET_TOKEN is not set.")
+
+fake_db = {
+    "foo": {"id": "foo", "title": "Foo", "description": "There goes my hero"},
+    "bar": {"id": "bar", "title": "Bar", "description": "The bartenders"},
+}
+
+app = FastAPI()
+
+class Item(BaseModel):
+    id: str
+    title: str
+    description: str
+
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
