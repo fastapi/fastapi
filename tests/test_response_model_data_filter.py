@@ -1,3 +1,36 @@
+import os
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
+
+app = FastAPI()
+
+class UserDB(BaseModel):
+    email: str
+    hashed_password: str
+
+class PetDB(BaseModel):
+    name: str
+    owner: UserDB
+
+class PetOut(BaseModel):
+    name: str
+
+@app.get("/pets/", response_model=List[PetOut])
+async def read_pets():
+    user = UserDB(
+        email="johndoe@example.com",
+        hashed_password=os.getenv("HASHED_PASSWORD", "default_hashed_value"),
+    )
+    pet1 = PetDB(name="Nibbler", owner=user)
+    pet2 = PetDB(name="Zoidberg", owner=user)
+    return [pet1, pet2]
+
+client = TestClient(app)
+
+def test_filter_top_level_model():
+    pass
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
