@@ -90,7 +90,7 @@ With `pwdlib`, you could even configure it to be able to read passwords created 
 
 So, you would be able to, for example, share the same data from a Django application in a database with a FastAPI application. Or gradually migrate a Django application using the same database.
 
-And your users would be able to login from your Django app or from your **FastAPI** app, at the same time.
+And your users would be able to log in from your Django app or from your **FastAPI** app, at the same time.
 
 ///
 
