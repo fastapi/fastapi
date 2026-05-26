@@ -188,7 +188,7 @@ def format_sse_event(
 ) -> bytes:
     """Build SSE wire-format bytes from **pre-serialized** data.
 
-    The result always ends with `\n\n` (the event terminator).
+    The result always ends with `\\n\\n` (the event terminator).
     """
     lines: list[str] = []
 
