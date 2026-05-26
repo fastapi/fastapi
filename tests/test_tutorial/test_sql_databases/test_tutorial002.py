@@ -25,6 +25,7 @@ def clear_sqlmodel():
         pytest.param("tutorial002_py310", marks=needs_py310),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
+    scope="module",
 )
 def get_client(request: pytest.FixtureRequest):
     clear_sqlmodel()

@@ -33,10 +33,20 @@ class EventSourceResponse(StreamingResponse):
     media_type = "text/event-stream"
 
 
-def _check_id_no_null(v: str | None) -> str | None:
+def _check_single_line(v: str | None, field_name: str) -> str | None:
+    if v is not None and ("\r" in v or "\n" in v):
+        raise ValueError(f"SSE '{field_name}' must be a single line")
+    return v
+
+
+def _check_event_single_line(v: str | None) -> str | None:
+    return _check_single_line(v, "event")
+
+
+def _check_id_valid(v: str | None) -> str | None:
     if v is not None and "\0" in v:
         raise ValueError("SSE 'id' must not contain null characters")
-    return v
+    return _check_single_line(v, "id")
 
 
 class ServerSentEvent(BaseModel):
@@ -86,24 +96,27 @@ class ServerSentEvent(BaseModel):
     ] = None
     event: Annotated[
         str | None,
+        AfterValidator(_check_event_single_line),
         Doc(
             """
             Optional event type name.
 
             Maps to `addEventListener(event, ...)` on the browser. When omitted,
-            the browser dispatches on the generic `message` event.
+            the browser dispatches on the generic `message` event. Must be a
+            single line.
             """
         ),
     ] = None
     id: Annotated[
         str | None,
-        AfterValidator(_check_id_no_null),
+        AfterValidator(_check_id_valid),
         Doc(
             """
             Optional event ID.
 
             The browser sends this value back as the `Last-Event-ID` header on
-            automatic reconnection. **Must not contain null (`\\0`) characters.**
+            automatic reconnection. **Must be a single line** and must not contain
+            null (`\\0`) characters.
             """
         ),
     ] = None

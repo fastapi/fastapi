@@ -9,6 +9,30 @@ hide:
 
 ### Docs
 
+* ✏️ Use `Annotated` in inline example in `docs/en/docs/tutorial/body-multiple-params.md`. PR [#15591](https://github.com/fastapi/fastapi/pull/15591) by [@TheArchons](https://github.com/TheArchons).
+* 📝 Remove "NGINX Unit" from the list of ASGI-servers in docs. PR [#15475](https://github.com/fastapi/fastapi/pull/15475) by [@angryfoxx](https://github.com/angryfoxx).
+* 📝 Update `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#14781](https://github.com/fastapi/fastapi/pull/14781) by [@zadevhub](https://github.com/zadevhub).
+
+### Internal
+
+* ⬆ Bump the python-packages group with 15 updates. PR [#15594](https://github.com/fastapi/fastapi/pull/15594) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Configure Dependabot to group updates and update weekly. PR [#15560](https://github.com/fastapi/fastapi/pull/15560) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.136.3 (2026-05-23)
+
+### Refactors
+
+* ♻️ Do not accept underscore headers when using `convert_underscores=True` (the default). PR [#15589](https://github.com/fastapi/fastapi/pull/15589) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.136.2 (2026-05-23)
+
+### Refactors
+
+* ♻️ Validate Server Sent Event fields to avoid applications from sending broken data. PR [#15588](https://github.com/fastapi/fastapi/pull/15588) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Document `--entrypoint` CLI option. PR [#15464](https://github.com/fastapi/fastapi/pull/15464) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update and simplify docs about help and management. PR [#15583](https://github.com/fastapi/fastapi/pull/15583) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add docs references to central contributing docs. PR [#15580](https://github.com/fastapi/fastapi/pull/15580) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update security policy. PR [#15577](https://github.com/fastapi/fastapi/pull/15577) by [@tiangolo](https://github.com/tiangolo).
@@ -38,6 +62,8 @@ hide:
 
 ### Internal
 
+* ✅ Update tests, don't double dispose the engine. PR [#15587](https://github.com/fastapi/fastapi/pull/15587) by [@tiangolo](https://github.com/tiangolo).
+* ⚡️ Speed up test suite via caching and fixture scopes to make it ~24% faster. PR [#13583](https://github.com/fastapi/fastapi/pull/13583) by [@dikos1337](https://github.com/dikos1337).
 * 🔥 Remove config files now in central GitHub repo. PR [#15585](https://github.com/fastapi/fastapi/pull/15585) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump urllib3 from 2.6.3 to 2.7.0. PR [#15502](https://github.com/fastapi/fastapi/pull/15502) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump idna from 3.11 to 3.15. PR [#15565](https://github.com/fastapi/fastapi/pull/15565) by [@dependabot[bot]](https://github.com/apps/dependabot).
