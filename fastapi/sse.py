@@ -206,14 +206,14 @@ def format_sse_event(
     lines: list[str] = []
 
     if comment is not None:
-        for line in comment.splitlines():
+        for line in comment.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
             lines.append(f": {line}")
 
     if event is not None:
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        for line in data_str.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
             lines.append(f"data: {line}")
 
     if id is not None:
