@@ -23,6 +23,7 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
