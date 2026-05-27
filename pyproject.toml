@@ -146,6 +146,7 @@ docs = [
 ]
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
+    "httpx2>=2.0.0",
     "ruff >=0.14.14",
 ]
 github-actions = [
