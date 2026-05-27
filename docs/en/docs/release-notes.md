@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 🔒️ Improve GitHub actions security. PR [#15607](https://github.com/fastapi/fastapi/pull/15607) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⚰️ Remove ruff and coverage ignores for non-existing files. PR [#15610](https://github.com/fastapi/fastapi/pull/15610) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ✅ Use custom `changing_dir` instead of `CLIRunner.isolated_filesystem` to set working dir. PR [#15616](https://github.com/fastapi/fastapi/pull/15616) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ✅ Add `httpx2` test dependency to avoid deprecation warning. PR [#15603](https://github.com/fastapi/fastapi/pull/15603) by [@YuriiMotov](https://github.com/YuriiMotov).
