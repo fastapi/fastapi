@@ -1151,6 +1151,7 @@ dev = [
     { name = "griffe-typingdoc" },
     { name = "griffe-warnings-deprecated" },
     { name = "httpx" },
+    { name = "httpx2" },
     { name = "inline-snapshot" },
     { name = "jieba" },
     { name = "markdown-include-variants" },
@@ -1186,6 +1187,7 @@ docs = [
     { name = "griffe-typingdoc" },
     { name = "griffe-warnings-deprecated" },
     { name = "httpx" },
+    { name = "httpx2" },
     { name = "jieba" },
     { name = "markdown-include-variants" },
     { name = "mdx-include" },
@@ -1199,6 +1201,7 @@ docs = [
 ]
 docs-tests = [
     { name = "httpx" },
+    { name = "httpx2" },
     { name = "ruff" },
 ]
 github-actions = [
@@ -1216,6 +1219,7 @@ tests = [
     { name = "dirty-equals" },
     { name = "flask" },
     { name = "httpx" },
+    { name = "httpx2" },
     { name = "inline-snapshot" },
     { name = "mypy" },
     { name = "pwdlib", extra = ["argon2"] },
@@ -1288,6 +1292,7 @@ dev = [
     { name = "griffe-typingdoc", specifier = ">=0.3.0" },
     { name = "griffe-warnings-deprecated", specifier = ">=1.1.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
+    { name = "httpx2", specifier = ">=2.0.0" },
     { name = "inline-snapshot", specifier = ">=0.21.1" },
     { name = "jieba", specifier = ">=0.42.1" },
     { name = "markdown-include-variants", specifier = ">=0.0.8" },
@@ -1323,6 +1328,7 @@ docs = [
     { name = "griffe-typingdoc", specifier = ">=0.3.0" },
     { name = "griffe-warnings-deprecated", specifier = ">=1.1.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
+    { name = "httpx2", specifier = ">=2.0.0" },
     { name = "jieba", specifier = ">=0.42.1" },
     { name = "markdown-include-variants", specifier = ">=0.0.8" },
     { name = "mdx-include", specifier = ">=1.4.1,<2.0.0" },
@@ -1336,6 +1342,7 @@ docs = [
 ]
 docs-tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
+    { name = "httpx2", specifier = ">=2.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
 ]
 github-actions = [
@@ -1353,6 +1360,7 @@ tests = [
     { name = "dirty-equals", specifier = ">=0.9.0" },
     { name = "flask", specifier = ">=3.0.0,<4.0.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
+    { name = "httpx2", specifier = ">=2.0.0" },
     { name = "inline-snapshot", specifier = ">=0.21.1" },
     { name = "mypy", specifier = ">=1.14.1" },
     { name = "pwdlib", extras = ["argon2"], specifier = ">=0.2.1" },
@@ -2130,6 +2138,19 @@ wheels = [
 ]
 
 [[package]]
+name = "httpcore2"
+version = "2.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "h11" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1a/7e/8ab39aab1d392845b6512009a9be57d24a5bd4ec7a22d02e513d0645e7a8/httpcore2-2.2.0.tar.gz", hash = "sha256:10e0e142f1ecc1c1cb2a9ebbce82e57f16169f61d163ea336abf36799e89294b", size = 63533, upload-time = "2026-05-17T05:29:55.836Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/39/22/64de17e7956e8c002f7558ed667d924c2a288344aeff4bd8ff5dc5fdb70b/httpcore2-2.2.0-py3-none-any.whl", hash = "sha256:ce859f268bf8d34fa2d7753e09e4dd5194f557e1b3038439b68a89b2999572fa", size = 79288, upload-time = "2026-05-17T05:29:52.56Z" },
+]
+
+[[package]]
 name = "httptools"
 version = "0.7.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2194,6 +2215,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/0f/4c/751061ffa58615a32c31b2d82e8482be8dd4a89154f003147acee90f2be9/httpx_sse-0.4.3.tar.gz", hash = "sha256:9b1ed0127459a66014aec3c56bebd93da3c1bc8bb6618c8082039a44889a755d", size = 15943, upload-time = "2025-10-10T21:48:22.271Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d2/fd/6668e5aec43ab844de6fc74927e155a3b37bf40d7c3790e49fc0406b6578/httpx_sse-0.4.3-py3-none-any.whl", hash = "sha256:0ac1c9fe3c0afad2e0ebb25a934a59f4c7823b60792691f779fad2c5568830fc", size = 8960, upload-time = "2025-10-10T21:48:21.158Z" },
+]
+
+[[package]]
+name = "httpx2"
+version = "2.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "certifi" },
+    { name = "httpcore2" },
+    { name = "idna" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f4/aa/c3119de1aa7ad870a01aaddbf3bc3445ed9a681c31d45e3838fd8b7bc155/httpx2-2.2.0.tar.gz", hash = "sha256:f3428d59b1752b8f5629826277262fb4d65e3a683f48af8a5b16c4d012e0b801", size = 80477, upload-time = "2026-05-17T05:29:57.376Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/be/e0/e0a52596c14194e428c20de4903f4abec38c0dfb5364d20f1d4a2b6266ef/httpx2-2.2.0-py3-none-any.whl", hash = "sha256:12347ebd2daeaefd50b529359778fff767082a09c5826752c963e71269722ff0", size = 74083, upload-time = "2026-05-17T05:29:54.543Z" },
 ]
 
 [[package]]
