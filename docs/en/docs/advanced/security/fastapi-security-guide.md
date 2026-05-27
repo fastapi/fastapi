@@ -1,10 +1,10 @@
-# FastAPI Security Guide
+# FastAPI Security Guide { #fastapi-security-guide }
 
 Complete guide to implementing authentication and authorization in FastAPI applications.
 
 ---
 
-## Table of Contents
+## Table of Contents { #table-of-contents }
 
 1. [Security Overview](#security-overview)
 2. [Core Concepts](#core-concepts)
@@ -18,18 +18,18 @@ Complete guide to implementing authentication and authorization in FastAPI appli
 
 ---
 
-## Security Overview
+## Security Overview { #security-overview }
 
 Security is a fundamental aspect of API development. FastAPI provides built-in tools to handle authentication and authorization efficiently.
 
-### Why Security Matters
+### Why Security Matters { #why-security-matters }
 
 - **Protection**: Secures user data and prevents unauthorized access
 - **Compliance**: Meets industry standards and regulations
 - **Trust**: Builds confidence in your application
 - **Flexibility**: FastAPI allows customization without compromising security
 
-### Key Statistics
+### Key Statistics { #key-statistics }
 
 - Security and authentication typically account for 50%+ of development effort in many frameworks
 - FastAPI abstracts this complexity while maintaining flexibility
@@ -37,48 +37,48 @@ Security is a fundamental aspect of API development. FastAPI provides built-in t
 
 ---
 
-## Core Concepts
+## Core Concepts { #core-concepts }
 
-### Authentication vs Authorization
+### Authentication vs Authorization { #authentication-vs-authorization }
 
 | Concept | Definition | Example |
 |---------|-----------|---------|
 | **Authentication** | Verifying who you are | Login with username/password |
 | **Authorization** | Determining what you can do | User can view their profile but not admin panel |
 
-### Common Security Schemes
+### Common Security Schemes { #common-security-schemes }
 
 FastAPI supports multiple security schemes through OpenAPI:
 
-#### 1. **API Key**
+#### 1. **API Key** { #1-api-key }
 - Simple key-based authentication
 - Source: Query parameter, header, or cookie
 - Use case: Internal APIs, third-party integrations
 
-#### 2. **HTTP Authentication**
+#### 2. **HTTP Authentication** { #2-http-authentication }
 - **Basic**: Username and password (Base64 encoded)
 - **Bearer**: Token-based (OAuth2, JWT)
 - **Digest**: More complex HTTP standard
 
-#### 3. **OAuth2**
+#### 3. **OAuth2** { #3-oauth2 }
 - Industry standard for delegation
 - Enables "Login with Google/Facebook/GitHub"
 - Multiple flows for different use cases
 
-#### 4. **OpenID Connect**
+#### 4. **OpenID Connect** { #4-openid-connect }
 - Built on OAuth2
 - Adds standardized identity layer
 - Used by Google, Microsoft
 
 ---
 
-## OAuth2 Explained
+## OAuth2 Explained { #oauth2-explained }
 
-### What is OAuth2?
+### What is OAuth2? { #what-is-oauth2 }
 
 OAuth2 is a specification defining how to handle authentication and authorization. It's designed so your backend API can be independent of the authentication server.
 
-### OAuth2 Flows
+### OAuth2 Flows { #oauth2-flows }
 
 | Flow | Use Case | Best For |
 |------|----------|----------|
@@ -88,21 +88,21 @@ OAuth2 is a specification defining how to handle authentication and authorizatio
 | **Password** | Own application | Backend + Frontend |
 | **Refresh Token** | Token renewal | Long-lived sessions |
 
-### Evolution of OAuth Standards
+### Evolution of OAuth Standards { #evolution-of-oauth-standards }
 
 - **OAuth 1.0**: Original standard (complex, rarely used)
 - **OAuth 2.0**: Modern standard (flexible, widely adopted)
 - **OpenID Connect**: Extends OAuth2 with identity verification
 
-### HTTPS Requirement
+### HTTPS Requirement { #https-requirement }
 
 ⚠️ **Important**: OAuth2 doesn't specify encryption. Always use HTTPS in production.
 
 ---
 
-## First Steps
+## First Steps { #first-steps }
 
-### Installation
+### Installation { #installation }
 
 Ensure FastAPI is installed with security dependencies:
 
@@ -111,7 +111,7 @@ pip install "fastapi[standard]"
 pip install python-multipart
 ```
 
-### Basic OAuth2 Setup
+### Basic OAuth2 Setup { #basic-oauth2-setup }
 
 Create a simple OAuth2 password bearer scheme:
 
@@ -136,14 +136,14 @@ async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
     return {"token": token}
 ```
 
-### How It Works
+### How It Works { #how-it-works }
 
 1. **Client Request**: Browser sends `Authorization: Bearer <token>`
 2. **FastAPI Extraction**: OAuth2PasswordBearer extracts the token
 3. **Validation**: Your function receives the token as a string
 4. **Auto-docs**: Interactive documentation shows "Authorize" button
 
-### Interactive Documentation
+### Interactive Documentation { #interactive-documentation }
 
 Run your app and visit `/docs`:
 - See an "Authorize" button
@@ -152,9 +152,9 @@ Run your app and visit `/docs`:
 
 ---
 
-## Getting Current User
+## Getting Current User { #getting-current-user }
 
-### Architecture
+### Architecture { #architecture }
 
 Instead of just getting a token, extract user information:
 
@@ -162,7 +162,7 @@ Instead of just getting a token, extract user information:
 Request → Extract Token → Decode Token → Get User → Return User
 ```
 
-### Step 1: Create User Model
+### Step 1: Create User Model { #step-1-create-user-model }
 
 ```python
 from pydantic import BaseModel
@@ -174,7 +174,7 @@ class User(BaseModel):
     disabled: bool | None = None
 ```
 
-### Step 2: Create Utility Functions
+### Step 2: Create Utility Functions { #step-2-create-utility-functions }
 
 ```python
 def fake_decode_token(token: str):
@@ -189,7 +189,7 @@ def fake_decode_token(token: str):
     )
 ```
 
-### Step 3: Create Dependency Chain
+### Step 3: Create Dependency Chain { #step-3-create-dependency-chain }
 
 ```python
 async def get_current_user(
@@ -205,7 +205,7 @@ async def get_current_user(
     return user
 ```
 
-### Step 4: Use in Endpoints
+### Step 4: Use in Endpoints { #step-4-use-in-endpoints }
 
 ```python
 @app.get("/users/me")
@@ -216,7 +216,7 @@ async def read_users_me(
     return current_user
 ```
 
-### Dependency Injection Benefits
+### Dependency Injection Benefits { #dependency-injection-benefits }
 
 - **Reusability**: Use `get_current_user` in any endpoint
 - **Composability**: Chain dependencies together
@@ -225,9 +225,9 @@ async def read_users_me(
 
 ---
 
-## Password Flow with Bearer Tokens
+## Password Flow with Bearer Tokens { #password-flow-with-bearer-tokens }
 
-### Complete Flow Diagram
+### Complete Flow Diagram { #complete-flow-diagram }
 
 ```
 1. User enters username/password in UI
@@ -247,9 +247,9 @@ async def read_users_me(
 8. Token expires after set time, user must re-login
 ```
 
-### Implementation
+### Implementation { #implementation }
 
-#### Step 1: Set Up Form Input
+#### Step 1: Set Up Form Input { #step-1-set-up-form-input }
 
 ```python
 from fastapi.security import OAuth2PasswordRequestForm
@@ -268,7 +268,7 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     pass
 ```
 
-#### Step 2: Create Database Models
+#### Step 2: Create Database Models { #step-2-create-database-models }
 
 ```python
 class User(BaseModel):
@@ -299,7 +299,7 @@ fake_users_db = {
 }
 ```
 
-#### Step 3: Implement Login Logic
+#### Step 3: Implement Login Logic { #step-3-implement-login-logic }
 
 ```python
 def fake_hash_password(password: str) -> str:
@@ -327,7 +327,7 @@ def verify_password(plain: str, hashed: str) -> bool:
     return fake_hash_password(plain) == hashed
 ```
 
-#### Step 4: Create Token Endpoint
+#### Step 4: Create Token Endpoint { #step-4-create-token-endpoint }
 
 ```python
 from typing import Annotated
@@ -342,28 +342,28 @@ async def login(
     Called when user clicks "Authorize" in docs.
     """
     user_dict = fake_users_db.get(form_data.username)
-    
+
     if not user_dict:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
         )
-    
+
     user = UserInDB(**user_dict)
     hashed_password = fake_hash_password(form_data.password)
-    
+
     if hashed_password != user.hashed_password:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     # In production, return JWT token instead of username
     return {"access_token": user.username, "token_type": "bearer"}
 ```
 
-#### Step 5: Add User Status Check
+#### Step 5: Add User Status Check { #step-5-add-user-status-check }
 
 ```python
 async def get_current_active_user(
@@ -385,7 +385,7 @@ async def read_users_me(
     return current_user
 ```
 
-### Testing the Flow
+### Testing the Flow { #testing-the-flow }
 
 **In interactive docs (/docs):**
 
@@ -396,9 +396,9 @@ async def read_users_me(
 
 ---
 
-## JWT Tokens with Password Hashing
+## JWT Tokens with Password Hashing { #jwt-tokens-with-password-hashing }
 
-### What is JWT?
+### What is JWT? { #what-is-jwt }
 
 JWT (JSON Web Tokens) is a standard for encoding data securely.
 
@@ -414,16 +414,16 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVm
 - ✓ Expirable (includes expiration time)
 - ✗ Not encrypted (anyone can read contents)
 
-### Installation
+### Installation { #installation_1 }
 
 ```bash
 pip install pyjwt
 pip install "pwdlib[argon2]"  # Secure password hashing
 ```
 
-### Complete Implementation
+### Complete Implementation { #complete-implementation }
 
-#### Configuration
+#### Configuration { #configuration }
 
 ```python
 from datetime import datetime, timedelta, timezone
@@ -441,7 +441,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 password_hash = PasswordHash.recommended()  # Uses Argon2
 ```
 
-#### Password Hashing Functions
+#### Password Hashing Functions { #password-hashing-functions }
 
 ```python
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -457,7 +457,7 @@ def get_password_hash(password: str) -> str:
 # verify_password("mypassword", hashed)  # True
 ```
 
-#### Token Creation
+#### Token Creation { #token-creation }
 
 ```python
 def create_access_token(
@@ -466,33 +466,33 @@ def create_access_token(
 ) -> str:
     """
     Create JWT token with optional expiration.
-    
+
     Args:
         data: Claims to encode (e.g., {"sub": "username"})
         expires_delta: Token lifetime (default: 15 minutes)
-    
+
     Returns:
         Signed JWT token string
     """
     to_encode = data.copy()
-    
+
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
-    
+
     to_encode.update({"exp": expire})
-    
+
     encoded_jwt = jwt.encode(
         to_encode,
         SECRET_KEY,
         algorithm=ALGORITHM
     )
-    
+
     return encoded_jwt
 ```
 
-#### Token Validation
+#### Token Validation { #token-validation }
 
 ```python
 async def get_current_user(
@@ -500,7 +500,7 @@ async def get_current_user(
 ) -> User:
     """
     Validate JWT token and return user.
-    
+
     Raises:
         HTTPException: If token invalid, expired, or user not found
     """
@@ -509,7 +509,7 @@ async def get_current_user(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    
+
     try:
         # Decode and verify signature
         payload = jwt.decode(
@@ -517,28 +517,28 @@ async def get_current_user(
             SECRET_KEY,
             algorithms=[ALGORITHM]
         )
-        
+
         # Extract username from "sub" claim
         username: str | None = payload.get("sub")
-        
+
         if username is None:
             raise credentials_exception
-        
+
         token_data = TokenData(username=username)
-        
+
     except InvalidTokenError:
         raise credentials_exception
-    
+
     # Get user from database
     user = get_user(fake_users_db, username=token_data.username)
-    
+
     if user is None:
         raise credentials_exception
-    
+
     return user
 ```
 
-#### Login Endpoint with JWT
+#### Login Endpoint with JWT { #login-endpoint-with-jwt }
 
 ```python
 @app.post("/token", response_model=Token)
@@ -547,7 +547,7 @@ async def login_for_access_token(
 ) -> Token:
     """
     Create access token for user.
-    
+
     Called by frontend to exchange username/password for JWT.
     """
     user = authenticate_user(
@@ -555,32 +555,32 @@ async def login_for_access_token(
         form_data.username,
         form_data.password
     )
-    
+
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     # Set token expiration
     access_token_expires = timedelta(
         minutes=ACCESS_TOKEN_EXPIRE_MINUTES
     )
-    
+
     # Create JWT
     access_token = create_access_token(
         data={"sub": user.username},
         expires_delta=access_token_expires
     )
-    
+
     return Token(
         access_token=access_token,
         token_type="bearer"
     )
 ```
 
-#### Models
+#### Models { #models }
 
 ```python
 class Token(BaseModel):
@@ -604,7 +604,7 @@ class UserInDB(User):
     hashed_password: str
 ```
 
-### Why Hash Passwords?
+### Why Hash Passwords? { #why-hash-passwords }
 
 | Scenario | Unhashed | Hashed |
 |----------|----------|--------|
@@ -612,7 +612,7 @@ class UserInDB(User):
 | User reuses password | Account compromised everywhere | Single account compromised |
 | Compliance | Violates GDPR, PCI-DSS | Meets security standards |
 
-### JWT Subject Claim ("sub")
+### JWT Subject Claim ("sub") { #jwt-subject-claim-sub }
 
 The JWT spec defines `sub` for the token subject (typically the user ID):
 
@@ -626,9 +626,9 @@ The JWT spec defines `sub` for the token subject (typically the user ID):
 
 ---
 
-## Advanced Topics
+## Advanced Topics { #advanced-topics }
 
-### OAuth2 with Scopes
+### OAuth2 with Scopes { #oauth2-with-scopes }
 
 Scopes define granular permissions:
 
@@ -647,7 +647,7 @@ async def read_own_items(
 - `read:items` - List items
 - `admin:all` - Full admin access
 
-### Refresh Tokens
+### Refresh Tokens { #refresh-tokens }
 
 For long-lived sessions without constant re-authentication:
 
@@ -662,7 +662,7 @@ async def refresh_token(
     pass
 ```
 
-### Third-Party Authentication
+### Third-Party Authentication { #third-party-authentication }
 
 Integrate with external providers:
 
@@ -678,7 +678,7 @@ async def get_current_user_google(token: str):
     pass
 ```
 
-### Role-Based Access Control (RBAC)
+### Role-Based Access Control (RBAC) { #role-based-access-control-rbac }
 
 ```python
 class UserRole(str, Enum):
@@ -713,9 +713,9 @@ async def delete_user(
 
 ---
 
-## Best Practices
+## Best Practices { #best-practices }
 
-### 1. **Never Log Passwords**
+### 1. **Never Log Passwords** { #1-never-log-passwords }
 
 ```python
 # ✗ Bad
@@ -725,7 +725,7 @@ logger.info(f"User login: {username}:{password}")
 logger.info(f"User login attempt: {username}")
 ```
 
-### 2. **Use HTTPS in Production**
+### 2. **Use HTTPS in Production** { #2-use-https-in-production }
 
 ```python
 # Development
@@ -735,7 +735,7 @@ uvicorn main:app --reload
 uvicorn main:app --ssl-keyfile=key.pem --ssl-certfile=cert.pem
 ```
 
-### 3. **Rotate Secrets Regularly**
+### 3. **Rotate Secrets Regularly** { #3-rotate-secrets-regularly }
 
 ```python
 # Store in environment variables, not code
@@ -744,7 +744,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ```
 
-### 4. **Implement Rate Limiting**
+### 4. **Implement Rate Limiting** { #4-implement-rate-limiting }
 
 ```python
 from slowapi import Limiter
@@ -758,7 +758,7 @@ async def login(request: Request, ...):
     pass
 ```
 
-### 5. **Add CORS Configuration**
+### 5. **Add CORS Configuration** { #5-add-cors-configuration }
 
 ```python
 from fastapi.middleware.cors import CORSMiddleware
@@ -772,7 +772,7 @@ app.add_middleware(
 )
 ```
 
-### 6. **Use Strong Hashing Algorithms**
+### 6. **Use Strong Hashing Algorithms** { #6-use-strong-hashing-algorithms }
 
 | Algorithm | Status | Note |
 |-----------|--------|------|
@@ -782,7 +782,7 @@ app.add_middleware(
 | Argon2 | ✓ Best | Modern standard |
 | scrypt | ✓ Good | Alternative |
 
-### 7. **Token Expiration Strategy**
+### 7. **Token Expiration Strategy** { #7-token-expiration-strategy }
 
 ```python
 # Short-lived access tokens (security)
@@ -792,7 +792,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 15
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 ```
 
-### 8. **Timing Attack Prevention**
+### 8. **Timing Attack Prevention** { #8-timing-attack-prevention }
 
 ```python
 from pwdlib import PasswordHash
@@ -811,7 +811,7 @@ def authenticate_user(db, username, password):
     return user
 ```
 
-### 9. **Validate Token Claims**
+### 9. **Validate Token Claims** { #9-validate-token-claims }
 
 ```python
 async def get_current_user(token: str):
@@ -830,7 +830,7 @@ async def get_current_user(token: str):
         raise HTTPException(detail="Invalid token")
 ```
 
-### 10. **Audit Logging**
+### 10. **Audit Logging** { #10-audit-logging }
 
 ```python
 import logging
@@ -851,9 +851,9 @@ async def login(form_data):
 
 ---
 
-## Complete Example
+## Complete Example { #complete-example }
 
-### Full Application Code
+### Full Application Code { #full-application-code }
 
 ```python
 from datetime import datetime, timedelta, timezone
@@ -940,7 +940,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
             raise exception
     except InvalidTokenError:
         raise exception
-    
+
     user = get_user(fake_users_db, username)
     if user is None:
         raise exception
@@ -979,9 +979,9 @@ async def read_own_items(current_user: Annotated[User, Depends(get_current_activ
 
 ---
 
-## Troubleshooting
+## Troubleshooting { #troubleshooting }
 
-### Common Issues
+### Common Issues { #common-issues }
 
 **Q: "Could not validate credentials"**
 - Token expired? Check expiration time
@@ -998,7 +998,7 @@ async def read_own_items(current_user: Annotated[User, Depends(get_current_activ
 
 ---
 
-## Resources
+## Resources { #resources }
 
 - [FastAPI Security Docs](https://fastapi.tiangolo.com/tutorial/security/)
 - [JWT.io](https://jwt.io) - JWT debugger and information
@@ -1007,6 +1007,6 @@ async def read_own_items(current_user: Annotated[User, Depends(get_current_activ
 
 ---
 
-**Document Version**: 1.0  
-**Last Updated**: May 2026  
+**Document Version**: 1.0
+**Last Updated**: May 2026
 **Status**: Ready for contribution
