@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -262,6 +262,18 @@ def test_data_and_raw_data_mutually_exclusive():
     """Cannot set both data and raw_data."""
     with pytest.raises(ValueError, match="Cannot set both"):
         ServerSentEvent(data="json", raw_data="raw")
+
+
+def test_format_sse_event_keeps_empty_data_line():
+    """An explicit empty payload should emit one `data:` line."""
+    payload = format_sse_event(data_str="")
+    assert payload == b"data: \n\n"
+
+
+def test_format_sse_event_normalizes_crlf_and_keeps_trailing_empty_line():
+    """CRLF and trailing newline should produce valid SSE data lines."""
+    payload = format_sse_event(data_str="first\r\nsecond\r\n")
+    assert payload == b"data: first\ndata: second\ndata: \n\n"
 
 
 def test_sse_on_router_included_in_app(client: TestClient):

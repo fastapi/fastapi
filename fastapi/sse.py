@@ -88,7 +88,8 @@ class ServerSentEvent(BaseModel):
 
             Use this when you need to send pre-formatted text, HTML fragments,
             CSV lines, or any non-JSON payload. The string is placed directly
-            into the `data:` field as-is.
+            into the `data:` field as-is. An empty string still emits a single
+            empty `data:` line.
 
             Mutually exclusive with `data`.
             """
@@ -213,7 +214,11 @@ def format_sse_event(
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        # Normalize line endings and preserve empty data lines.
+        # This keeps explicit empty payloads (`data_str=""`) and trailing
+        # newlines represented as `data:` lines in SSE wire format.
+        normalized_data = data_str.replace("\r\n", "\n").replace("\r", "\n")
+        for line in normalized_data.split("\n"):
             lines.append(f"data: {line}")
 
     if id is not None:
