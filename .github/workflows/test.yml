@@ -84,6 +84,11 @@ jobs:
             codspeed: codspeed
             deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
+            python-version: "3.13"
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+            without-httpx2: true
+          - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
@@ -133,15 +138,19 @@ jobs:
       - name: Install deprecated libraries just for testing
         if: matrix.deprecated-tests == 'test-deprecation'
         run: uv pip install orjson ujson
+      - name: Uninstall httpx2 to run tests with httpx
+        if: matrix.without-httpx2 == 'true'
+        run: uv pip uninstall httpx2
       - name: Reinstall SQLAlchemy without Cython extensions
         if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
         run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
-        run: uv run --no-sync bash scripts/test-cov.sh
+        run: uv run --no-sync bash scripts/test-cov.sh $PYTEST_OPTIONS
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          PYTEST_OPTIONS: ${{ (matrix.without-httpx2 == 'true') && '-W ignore::UserWarning' || '' }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
