@@ -2,7 +2,7 @@
 
 Python projeleriyle çalışırken, her proje için kurduğunuz package'leri birbirinden izole etmek adına büyük ihtimalle bir **virtual environment** (veya benzer bir mekanizma) kullanmalısınız.
 
-/// info | Bilgi
+/// note | Not
 
 Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıklarını zaten biliyorsanız bu bölümü atlamak isteyebilirsiniz. 🤓
 
@@ -18,7 +18,7 @@ Virtual environment'leri, nasıl oluşturulduklarını ve nasıl kullanıldıkla
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Bu sayfada **virtual environment**'leri nasıl kullanacağınızı ve nasıl çalıştıklarını öğreneceksiniz.
 
@@ -37,15 +37,15 @@ Sonra bunun içinde her proje için ayrı bir klasör oluştururum.
 <div class="termy">
 
 ```console
-// Go to the home directory
+// Gelelim home dizinine
 $ cd
-// Create a directory for all your code projects
+// Tüm kod projeleriniz için bir klasör oluşturun
 $ mkdir code
-// Enter into that code directory
+// Bu code klasörüne girin
 $ cd code
-// Create a directory for this project
+// Bu proje için bir klasör oluşturun
 $ mkdir awesome-project
-// Enter into that project directory
+// Proje klasörüne girin
 $ cd awesome-project
 ```
 
@@ -555,7 +555,7 @@ Bu klasörlerin bir kısmı, kurduğunuz tüm package'leri barındırmaktan soru
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// Bunu şimdi çalıştırmayın, bu sadece bir örnek 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
@@ -809,7 +809,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// sirius import edilirken hata, kurulu değil 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -817,20 +817,20 @@ Traceback (most recent call last):
 
 </div>
 
-Ama virtual environment'i deactivate edip `prisoner-of-askaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
+Ama virtual environment'i deactivate edip `prisoner-of-azkaban` için yeni olanı aktive ederseniz, `python` çalıştırdığınızda `prisoner-of-azkaban` içindeki virtual environment'dan gelen Python kullanılır.
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// Deactivate etmek için eski klasörde olmanız gerekmez; nerede olursanız olun, hatta diğer projeye geçtikten sonra bile yapabilirsiniz 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// prisoner-of-azkaban/.venv içindeki virtual environment'i aktive edin 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// Artık python çalıştırdığınızda, bu virtual environment'e kurulu olan sirius package'ini bulacak ✨
 $ python main.py
 
 I solemnly swear 🐺

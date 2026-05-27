@@ -46,7 +46,7 @@ They are normally used to declare specific security permissions, for example:
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
-/// info
+/// note
 
 In OAuth2 a "scope" is just a string that declares a specific permission required.
 
@@ -126,7 +126,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Technical Details
+/// note | Technical Details
 
 `Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
 

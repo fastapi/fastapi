@@ -41,7 +41,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info
+/// note
 
 The parameter `response_class` will also be used to define the "media type" of the response.
 
@@ -65,7 +65,7 @@ A `Response` returned directly by your *path operation function* won't be docume
 
 ///
 
-/// info
+/// note
 
 Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
 

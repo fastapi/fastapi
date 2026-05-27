@@ -34,14 +34,13 @@ jobs:
             - docs_src/**
             - pyproject.toml
             - uv.lock
-            - mkdocs.yml
-            - mkdocs.env.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
-            - scripts/mkdocs_hooks.py
+            - scripts/docs.py
   langs:
     needs:
       - changes
+    if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
@@ -103,21 +102,28 @@ jobs:
         run: uv run ./scripts/docs.py update-languages
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
-          path: docs/${{ matrix.lang }}/.cache
+          key: zensical-${{ matrix.lang }}-${{ github.ref }}
+          path: site_zensical_src/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: | # zizmor: ignore[template-injection] - comes from trusted source
           uv run ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: docs-site-${{ matrix.lang }}
-          path: ./site/**
+          # English owns root static assets. Translated pages reference /img, /css,
+          # and /js, so omit duplicated language-local copies from artifacts.
+          path: |
+            ./site/**
+            !./site/${{ matrix.lang }}/img/**
+            !./site/${{ matrix.lang }}/css/**
+            !./site/${{ matrix.lang }}/js/**
           include-hidden-files: true
 
   # https://github.com/marketplace/actions/alls-green#why
   docs-all-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
+      - langs
       - build-docs
     runs-on: ubuntu-latest
     steps:
@@ -125,4 +131,4 @@ jobs:
         uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
         with:
           jobs: ${{ toJSON(needs) }}
-          allowed-skips: build-docs
+          allowed-skips: langs, build-docs

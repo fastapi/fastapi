@@ -1,6 +1,16 @@
 ---
 hide:
   - navigation
+
+include_yaml:
+  github_sponsors: data/github_sponsors.yml
+  people: data/people.yml
+  contributors: data/contributors.yml
+  translation_reviewers: data/translation_reviewers.yml
+  skip_users: data/skip_users.yml
+  members: data/members.yml
+  sponsors_badge: data/sponsors_badge.yml
+  sponsors: data/sponsors.yml
 ---
 
 # FastAPI People

@@ -221,6 +221,15 @@ def test_server_sent_event_null_id_rejected():
         ServerSentEvent(data="test", id="has\0null")
 
 
+@pytest.mark.parametrize("field_name", ["event", "id"])
+@pytest.mark.parametrize("value", ["first\nsecond", "first\rsecond", "first\r\nsecond"])
+def test_server_sent_event_single_line_fields_reject_newlines(
+    field_name: str, value: str
+):
+    with pytest.raises(ValueError, match=f"SSE '{field_name}' must be a single line"):
+        ServerSentEvent(data="test", **{field_name: value})
+
+
 def test_server_sent_event_negative_retry_rejected():
     with pytest.raises(ValueError):
         ServerSentEvent(data="test", retry=-1)
