@@ -96,6 +96,6 @@ repos:
         name: zizmor
         language: python
         entry: uv run zizmor .
-        files: ^\.github\/workflows\/
+        files: ^\.github/workflows/|^uv\.lock$
         require_serial: true
         pass_filenames: false

@@ -1,5 +1,8 @@
+import os
 import shutil
 import sys
+from collections.abc import Generator
+from contextlib import contextmanager
 from pathlib import Path
 
 import pytest
@@ -23,11 +26,20 @@ def pytest_collection_modifyitems(config, items: list[pytest.Item]) -> None:
             item.add_marker(skip_on_windows)
 
 
+@contextmanager
+def changing_dir(directory: str | Path) -> Generator[None, None, None]:
+    initial_dir = os.getcwd()
+    os.chdir(directory)
+    try:
+        yield
+    finally:
+        os.chdir(initial_dir)
+
+
 @pytest.fixture(name="runner")
-def get_runner():
-    runner = CliRunner()
-    with runner.isolated_filesystem():
-        yield runner
+def get_runner(tmp_path: Path):
+    with changing_dir(tmp_path):
+        yield CliRunner()
 
 
 @pytest.fixture(name="root_dir")

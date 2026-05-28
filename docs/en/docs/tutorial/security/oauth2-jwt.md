@@ -18,7 +18,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 It is not encrypted, so, anyone could recover the information from the contents.
 
-But it's signed. So, when you receive a token that you emitted, you can verify that you actually emitted it.
+But it's signed. So, when you receive a token that you issued, you can verify that it was you who issued it.
 
 That way, you can create a token with an expiration of, let's say, 1 week. And then when the user comes back the next day with the token, you know that user is still logged in to your system.
 
