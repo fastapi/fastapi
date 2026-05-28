@@ -25,6 +25,7 @@ jobs:
     permissions:
       pull-requests: read
     # Set job outputs to values from filter step
+    timeout-minutes: 5
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
@@ -50,6 +51,7 @@ jobs:
     needs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
@@ -82,6 +84,11 @@ jobs:
             codspeed: codspeed
             deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
+            python-version: "3.13"
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+            without-httpx2: true
+          - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
@@ -113,6 +120,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
@@ -129,15 +138,19 @@ jobs:
       - name: Install deprecated libraries just for testing
         if: matrix.deprecated-tests == 'test-deprecation'
         run: uv pip install orjson ujson
+      - name: Uninstall httpx2 to run tests with httpx
+        if: matrix.without-httpx2 == 'true'
+        run: uv pip uninstall httpx2
       - name: Reinstall SQLAlchemy without Cython extensions
         if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
         run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
-        run: uv run --no-sync bash scripts/test-cov.sh
+        run: uv run --no-sync bash scripts/test-cov.sh $PYTEST_OPTIONS
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          PYTEST_OPTIONS: ${{ (matrix.without-httpx2 == 'true') && '-W ignore::UserWarning' || '' }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
@@ -152,6 +165,7 @@ jobs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       UV_PYTHON: "3.13"
       UV_RESOLUTION: highest
@@ -170,6 +184,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
@@ -187,6 +203,7 @@ jobs:
     needs:
       - test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
@@ -201,6 +218,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
@@ -232,6 +251,7 @@ jobs:
       - coverage-combine
       - benchmark
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
