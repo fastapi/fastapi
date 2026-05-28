@@ -14,6 +14,7 @@ permissions: {}
 jobs:
   test-redistribute:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
@@ -57,6 +58,7 @@ jobs:
     needs:
       - test-redistribute
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2

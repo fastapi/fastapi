@@ -826,6 +826,10 @@ def request_params_to_args(
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
+        # For headers with convert_underscores=True, mark both the converted
+        # header name and the original field alias as processed to avoid
+        # accepting the original alias as an extra header.
+        processed_keys.add(get_validation_alias(field))
 
     for key in received_params.keys():
         if key not in processed_keys:

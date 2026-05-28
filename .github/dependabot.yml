@@ -4,26 +4,47 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     cooldown:
       default-days: 7
     commit-message:
       prefix: ⬆
+    labels:
+      - "internal"
+      - "dependencies"
+      - "github_actions"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
   # Python
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     cooldown:
       default-days: 7
     commit-message:
       prefix: ⬆
+    groups:
+      python-packages:
+        dependency-type: "development"
+        patterns:
+          - "*"
   # pre-commit
   - package-ecosystem: "pre-commit"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     cooldown:
       default-days: 7
     commit-message:
       prefix: ⬆
+    labels:
+      - "internal"
+      - "dependencies"
+      - "pre-commit"
+    groups:
+      pre-commit:
+        patterns:
+          - "*"

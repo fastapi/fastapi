@@ -18,7 +18,7 @@ And of course, it supports the same:
 
 This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
 
-/// info
+/// note
 
 Keep in mind that dataclasses can't do everything Pydantic models can do.
 

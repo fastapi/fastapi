@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Но если вы деактивируете виртуальное окружение и активируете новое для `prisoner-of-askaban`, тогда при запуске `python` он будет использовать Python из виртуального окружения `prisoner-of-azkaban`.
+Но если вы деактивируете виртуальное окружение и активируете новое для `prisoner-of-azkaban`, тогда при запуске `python` он будет использовать Python из виртуального окружения `prisoner-of-azkaban`.
 
 <div class="termy">
 
