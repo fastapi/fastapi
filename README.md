@@ -537,6 +537,44 @@ Additional optional FastAPI dependencies:
 * [`orjson`](https://github.com/ijl/orjson) - Required if you want to use `ORJSONResponse`.
 * [`ujson`](https://github.com/esnme/ultrajson) - Required if you want to use `UJSONResponse`.
 
+## Develop the FastAPI Documentation Locally
+
+To work on the FastAPI documentation locally, install the documentation dependencies first:
+
+```console
+$ uv sync --locked --no-dev --group docs
+```
+
+Then start the local documentation server with live reload:
+
+```console
+$ uv run python ./scripts/docs.py live
+```
+
+This serves the English documentation locally and automatically reloads on changes.
+
+### Preview the Full Multilingual Documentation Site
+
+To build and preview the complete documentation site with all translations:
+
+```console
+$ uv run python ./scripts/docs.py build-all
+$ uv run python ./scripts/docs.py serve
+```
+
+This serves the generated `./site/` directory locally.
+
+### Alternative: Direct MkDocs Usage
+
+The English documentation can also be served directly from `docs/en/`:
+
+```console
+$ cd docs/en
+$ mkdocs serve
+```
+
+However, the `scripts/docs.py` commands are the preferred project-integrated workflow.
+
 ## License
 
 This project is licensed under the terms of the MIT license.
