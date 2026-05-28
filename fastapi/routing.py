@@ -1,5 +1,4 @@
 import contextlib
-import email.message
 import functools
 import inspect
 import json
@@ -348,6 +347,36 @@ def _build_response_args(
     return response_args
 
 
+def _is_json_content_type(content_type: str) -> bool:
+    """Check if a content-type header value indicates JSON content.
+
+    Matches ``application/json`` and ``application/*+json`` variants
+    (e.g. ``application/geo+json``, ``application/vnd.api+json``),
+    ignoring parameters like ``charset=utf-8``.
+
+    This replaces the previous ``email.message.Message`` approach which
+    carried significant per-request overhead.
+
+    >>> _is_json_content_type("application/json")
+    True
+    >>> _is_json_content_type("application/json; charset=utf-8")
+    True
+    >>> _is_json_content_type("application/geo+json")
+    True
+    >>> _is_json_content_type("text/plain")
+    False
+    """
+    media_type = content_type.split(";", 1)[0].strip().lower()
+    slash = media_type.find("/")
+    if slash == -1:
+        return False
+    main_type = media_type[:slash]
+    if main_type != "application":
+        return False
+    subtype = media_type[slash + 1 :]
+    return subtype == "json" or subtype.endswith("+json")
+
+
 def get_request_handler(
     dependant: Dependant,
     body_field: ModelField | None = None,
@@ -414,12 +443,8 @@ def get_request_handler(
                             if not actual_strict_content_type:
                                 json_body = await request.json()
                         else:
-                            message = email.message.Message()
-                            message["content-type"] = content_type_value
-                            if message.get_content_maintype() == "application":
-                                subtype = message.get_content_subtype()
-                                if subtype == "json" or subtype.endswith("+json"):
-                                    json_body = await request.json()
+                            if _is_json_content_type(content_type_value):
+                                json_body = await request.json()
                         if json_body != Undefined:
                             body = json_body
                         else:
