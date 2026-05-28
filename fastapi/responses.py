@@ -24,16 +24,22 @@ class _OrjsonModule(Protocol):
     def dumps(self, __obj: Any, *, option: int = ...) -> bytes: ...
 
 
+ujson: _UjsonModule | None
+ujson_import_error: ImportError | None = None
 try:
     ujson = cast(_UjsonModule, importlib.import_module("ujson"))
-except ModuleNotFoundError:  # pragma: nocover
-    ujson = None  # type: ignore[assignment]
+except ImportError as e:
+    ujson = None
+    ujson_import_error = e
 
 
+orjson: _OrjsonModule | None
+orjson_import_error: ImportError | None = None
 try:
     orjson = cast(_OrjsonModule, importlib.import_module("orjson"))
-except ModuleNotFoundError:  # pragma: nocover
-    orjson = None  # type: ignore[assignment]
+except ImportError as e:
+    orjson = None
+    orjson_import_error = e
 
 
 @deprecated(
@@ -62,7 +68,10 @@ class UJSONResponse(JSONResponse):
     """
 
     def render(self, content: Any) -> bytes:
-        assert ujson is not None, "ujson must be installed to use UJSONResponse"
+        if ujson is None:
+            raise RuntimeError(
+                "ujson must be installed to use UJSONResponse"
+            ) from ujson_import_error
         return ujson.dumps(content, ensure_ascii=False).encode("utf-8")
 
 
@@ -92,7 +101,10 @@ class ORJSONResponse(JSONResponse):
     """
 
     def render(self, content: Any) -> bytes:
-        assert orjson is not None, "orjson must be installed to use ORJSONResponse"
+        if orjson is None:
+            raise RuntimeError(
+                "orjson must be installed to use ORJSONResponse"
+            ) from orjson_import_error
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
         )
