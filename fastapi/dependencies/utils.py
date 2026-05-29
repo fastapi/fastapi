@@ -139,22 +139,23 @@ def get_flat_dependant(
     dependant: Dependant,
     *,
     skip_repeats: bool = False,
-    visited: list[DependencyCacheKey] | None = None,
+    visited: set[DependencyCacheKey] | None = None,
     parent_oauth_scopes: list[str] | None = None,
 ) -> Dependant:
-    if visited is None:
-        visited = []
-    visited.append(dependant.cache_key)
-    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
-        dependant.oauth_scopes or []
-    )
+    visited_set: set[DependencyCacheKey] | None = None
+    if skip_repeats:
+        visited_set = set() if visited is None else visited
+        visited_set.add(dependant.cache_key)
+    if (
+        parent_oauth_scopes
+        or dependant.parent_oauth_scopes
+        or dependant.own_oauth_scopes
+    ):
+        use_parent_oauth_scopes = (parent_oauth_scopes or []) + dependant.oauth_scopes
+    else:
+        use_parent_oauth_scopes = []
 
     flat_dependant = Dependant(
-        path_params=dependant.path_params.copy(),
-        query_params=dependant.query_params.copy(),
-        header_params=dependant.header_params.copy(),
-        cookie_params=dependant.cookie_params.copy(),
-        body_params=dependant.body_params.copy(),
         name=dependant.name,
         call=dependant.call,
         request_param_name=dependant.request_param_name,
@@ -169,21 +170,41 @@ def get_flat_dependant(
         path=dependant.path,
         scope=dependant.scope,
     )
+    if dependant.path_params:
+        flat_dependant.path_params = dependant.path_params.copy()
+    if dependant.query_params:
+        flat_dependant.query_params = dependant.query_params.copy()
+    if dependant.header_params:
+        flat_dependant.header_params = dependant.header_params.copy()
+    if dependant.cookie_params:
+        flat_dependant.cookie_params = dependant.cookie_params.copy()
+    if dependant.body_params:
+        flat_dependant.body_params = dependant.body_params.copy()
+    child_parent_oauth_scopes = (
+        flat_dependant.oauth_scopes
+        if flat_dependant.parent_oauth_scopes or flat_dependant.own_oauth_scopes
+        else []
+    )
     for sub_dependant in dependant.dependencies:
-        if skip_repeats and sub_dependant.cache_key in visited:
+        if visited_set is not None and sub_dependant.cache_key in visited_set:
             continue
         flat_sub = get_flat_dependant(
             sub_dependant,
             skip_repeats=skip_repeats,
-            visited=visited,
-            parent_oauth_scopes=flat_dependant.oauth_scopes,
+            visited=visited_set,
+            parent_oauth_scopes=child_parent_oauth_scopes,
         )
         flat_dependant.dependencies.append(flat_sub)
-        flat_dependant.path_params.extend(flat_sub.path_params)
-        flat_dependant.query_params.extend(flat_sub.query_params)
-        flat_dependant.header_params.extend(flat_sub.header_params)
-        flat_dependant.cookie_params.extend(flat_sub.cookie_params)
-        flat_dependant.body_params.extend(flat_sub.body_params)
+        if flat_sub.path_params:
+            flat_dependant.path_params.extend(flat_sub.path_params)
+        if flat_sub.query_params:
+            flat_dependant.query_params.extend(flat_sub.query_params)
+        if flat_sub.header_params:
+            flat_dependant.header_params.extend(flat_sub.header_params)
+        if flat_sub.cookie_params:
+            flat_dependant.cookie_params.extend(flat_sub.cookie_params)
+        if flat_sub.body_params:
+            flat_dependant.body_params.extend(flat_sub.body_params)
         flat_dependant.dependencies.extend(flat_sub.dependencies)
 
     return flat_dependant
@@ -201,8 +222,11 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
     return fields
 
 
-def get_flat_params(dependant: Dependant) -> list[ModelField]:
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
+def get_flat_params(
+    dependant: Dependant, *, flat_dependant: Dependant | None = None
+) -> list[ModelField]:
+    if flat_dependant is None:
+        flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     path_params = _get_flat_fields_from_params(flat_dependant.path_params)
     query_params = _get_flat_fields_from_params(flat_dependant.query_params)
     header_params = _get_flat_fields_from_params(flat_dependant.header_params)

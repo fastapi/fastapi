@@ -82,31 +82,34 @@ def get_openapi_security_definitions(
     flat_dependant: Dependant,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     security_definitions = {}
+    security_definition_cache: dict[int, dict[str, Any]] = {}
     # Use a dict to merge scopes for same security scheme
-    operation_security_dict: dict[str, list[str]] = {}
+    operation_security_dict: dict[str, dict[str, None]] = {}
     for security_dependency in flat_dependant._security_dependencies:
-        security_definition = jsonable_encoder(
-            security_dependency._security_scheme.model,
-            by_alias=True,
-            exclude_none=True,
-        )
-        security_name = security_dependency._security_scheme.scheme_name
+        security_scheme = security_dependency._security_scheme
+        security_name = security_scheme.scheme_name
+        security_definition = security_definition_cache.get(id(security_scheme))
+        if security_definition is None:
+            security_definition = jsonable_encoder(
+                security_scheme.model,
+                by_alias=True,
+                exclude_none=True,
+            )
+            security_definition_cache[id(security_scheme)] = security_definition
         security_definitions[security_name] = security_definition
-        # Merge scopes for the same security scheme
-        if security_name not in operation_security_dict:
-            operation_security_dict[security_name] = []
-        for scope in security_dependency.oauth_scopes or []:
-            if scope not in operation_security_dict[security_name]:
-                operation_security_dict[security_name].append(scope)
+        # Merge scopes for the same security scheme, preserving insertion order
+        operation_security_dict.setdefault(security_name, {}).update(
+            dict.fromkeys(security_dependency.oauth_scopes)
+        )
     operation_security = [
-        {name: scopes} for name, scopes in operation_security_dict.items()
+        {name: list(scopes)} for name, scopes in operation_security_dict.items()
     ]
     return security_definitions, operation_security
 
 
 def _get_openapi_operation_parameters(
     *,
-    dependant: Dependant,
+    flat_dependant: Dependant,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
@@ -114,7 +117,6 @@ def _get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
     parameters = []
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     path_params = _get_flat_fields_from_params(flat_dependant.path_params)
     query_params = _get_flat_fields_from_params(flat_dependant.query_params)
     header_params = _get_flat_fields_from_params(flat_dependant.header_params)
@@ -278,12 +280,12 @@ def get_openapi_path(
     assert current_response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
+        flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
         for method in route.methods:
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
             parameters: list[dict[str, Any]] = []
-            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
                 flat_dependant=flat_dependant
             )
@@ -292,7 +294,7 @@ def get_openapi_path(
             if security_definitions:
                 security_schemes.update(security_definitions)
             operation_parameters = _get_openapi_operation_parameters(
-                dependant=route.dependant,
+                flat_dependant=flat_dependant,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -452,7 +454,9 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = "422"
-            all_route_params = get_flat_params(route.dependant)
+            all_route_params = get_flat_params(
+                route.dependant, flat_dependant=flat_dependant
+            )
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
