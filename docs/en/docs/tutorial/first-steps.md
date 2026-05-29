@@ -66,6 +66,16 @@ You will see the JSON response as:
 {"message": "Hello World"}
 ```
 
+To return additional fields, update your app to the following:
+
+{* ../../docs_src/first_steps/tutorial004_py310.py *}
+
+Then you will see a JSON response like:
+
+```JSON
+{"message": "Hello World", "status": "ok"}
+```
+
 ### Interactive API docs { #interactive-api-docs }
 
 Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
