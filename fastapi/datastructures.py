@@ -1,4 +1,5 @@
 from collections.abc import Callable, Mapping
+from dataclasses import dataclass
 from typing import (
     Annotated,
     Any,
@@ -16,6 +17,23 @@ from starlette.datastructures import Headers as Headers  # noqa: F401
 from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
+from starlette.exceptions import HTTPException
+
+
+@dataclass
+class ValidationResult:
+    is_valid: Annotated[
+        bool,
+        Doc("Whether the file passed all validation checks."),
+    ]
+    file_size: Annotated[
+        int | None,
+        Doc("The size of the file in bytes."),
+    ] = None
+    content_type: Annotated[
+        str | None,
+        Doc("The content type of the request, from the headers."),
+    ] = None
 
 
 class UploadFile(StarletteUploadFile):
@@ -62,6 +80,24 @@ class UploadFile(StarletteUploadFile):
     content_type: Annotated[
         str | None, Doc("The content type of the request, from the headers.")
     ]
+    max_size: Annotated[
+        int | None,
+        Doc(
+            """
+            Maximum allowed file size in bytes. When set, files exceeding this size
+            will fail validation with a 413 error.
+            """
+        ),
+    ] = None
+    allowed_content_types: Annotated[
+        list[str] | None,
+        Doc(
+            """
+            List of allowed MIME types for the uploaded file. When set, files with
+            a content type not in this list will fail validation with a 415 error.
+            """
+        ),
+    ] = None
 
     async def write(
         self,
@@ -128,6 +164,78 @@ class UploadFile(StarletteUploadFile):
         To be awaitable, compatible with async, this is run in threadpool.
         """
         return await super().close()
+
+    def __init__(
+        self,
+        file: Annotated[
+            BinaryIO,
+            Doc("The file-like object to upload."),
+        ],
+        *,
+        size: Annotated[
+            int | None,
+            Doc("The size of the file in bytes."),
+        ] = None,
+        filename: Annotated[
+            str | None,
+            Doc("The original file name."),
+        ] = None,
+        headers: Annotated[
+            Headers | None,
+            Doc("The headers of the request."),
+        ] = None,
+        max_size: Annotated[
+            int | None,
+            Doc(
+                """
+                Maximum allowed file size in bytes. When set, the `validate` method
+                will raise ``HTTPException`` 413 if the file exceeds this limit.
+                """
+            ),
+        ] = None,
+        allowed_content_types: Annotated[
+            list[str] | None,
+            Doc(
+                """
+                List of allowed MIME types. When set, the `validate` method will
+                raise ``HTTPException`` 415 if the file type is not in this list.
+                """
+            ),
+        ] = None,
+    ) -> None:
+        super().__init__(file=file, size=size, filename=filename, headers=headers)
+        self.max_size = max_size
+        self.allowed_content_types = allowed_content_types
+
+    async def validate(
+        self,
+    ) -> ValidationResult:
+        """
+        Validate the file against the configured size and content type constraints.
+
+        If validation passes, returns a :class:`ValidationResult` with ``is_valid``
+        set to ``True`` and the file's metadata.
+
+        If ``max_size`` is set and the file exceeds it, raises ``HTTPException``
+        with status 413.
+
+        If ``allowed_content_types`` is set and the file's content type is not in
+        the list, raises ``HTTPException`` with status 415.
+        """
+        if self.max_size is not None and self.size is not None and self.size > self.max_size:
+            raise HTTPException(
+                status_code=413,
+                detail=f"File size {self.size} exceeds the maximum allowed size of {self.max_size} bytes",
+            )
+        if self.allowed_content_types is not None and self.content_type not in self.allowed_content_types:
+            raise HTTPException(
+                status_code=415,
+                detail=(
+                    f"Content type '{self.content_type}' is not allowed. "
+                    f"Must be one of: {self.allowed_content_types}"
+                ),
+            )
+        return ValidationResult(is_valid=True, file_size=self.size, content_type=self.content_type)
 
     @classmethod
     def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
