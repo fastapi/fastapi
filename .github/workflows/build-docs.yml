@@ -16,6 +16,7 @@ jobs:
     # Required permissions
     permissions:
       pull-requests: read
+    timeout-minutes: 5
     # Set job outputs to values from filter step
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
@@ -42,6 +43,7 @@ jobs:
       - changes
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
@@ -55,6 +57,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
@@ -73,6 +77,7 @@ jobs:
       - langs
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 7
     strategy:
       matrix:
         lang: ${{ fromJson(needs.langs.outputs.langs) }}
@@ -91,6 +96,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.4"
           enable-cache: true
           cache-dependency-glob: |
