@@ -170,7 +170,7 @@ def format_sse_event(
         str | None,
         Doc(
             """
-            Optional event type name (`event:` field).
+            Optional event type name (`event:` field). Must be a single line.
             """
         ),
     ] = None,
@@ -178,7 +178,8 @@ def format_sse_event(
         str | None,
         Doc(
             """
-            Optional event ID (`id:` field).
+            Optional event ID (`id:` field). Must be a single line and must
+            not contain null (`\\0`) characters.
             """
         ),
     ] = None,
@@ -201,8 +202,14 @@ def format_sse_event(
 ) -> bytes:
     """Build SSE wire-format bytes from **pre-serialized** data.
 
-    The result always ends with `\n\n` (the event terminator).
+    Validates `event` and `id` for protocol safety (same rules as
+    `ServerSentEvent`): both must be single-line strings, and `id` must not
+    contain null characters.
+
+    The result always ends with `\\n\\n` (the event terminator).
     """
+    _check_event_single_line(event)
+    _check_id_valid(id)
     lines: list[str] = []
 
     if comment is not None:

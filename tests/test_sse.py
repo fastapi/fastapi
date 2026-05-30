@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -325,3 +325,29 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# format_sse_event validation tests
+
+
+@pytest.mark.parametrize("value", ["first\nsecond", "first\rsecond", "first\r\nsecond"])
+def test_format_sse_event_rejects_multiline_event(value: str):
+    with pytest.raises(ValueError, match="SSE 'event' must be a single line"):
+        format_sse_event(event=value)
+
+
+@pytest.mark.parametrize("value", ["first\nsecond", "first\rsecond", "first\r\nsecond"])
+def test_format_sse_event_rejects_multiline_id(value: str):
+    with pytest.raises(ValueError, match="SSE 'id' must be a single line"):
+        format_sse_event(id=value)
+
+
+def test_format_sse_event_rejects_null_id():
+    with pytest.raises(ValueError, match="null"):
+        format_sse_event(id="has\0null")
+
+
+def test_format_sse_event_injection_prevented():
+    """Newlines in event/id must not produce extra SSE field lines."""
+    with pytest.raises(ValueError):
+        format_sse_event(event="legit\ndata: injected", data_str="safe")
