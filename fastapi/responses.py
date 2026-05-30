@@ -26,13 +26,13 @@ class _OrjsonModule(Protocol):
 
 try:
     ujson = cast(_UjsonModule, importlib.import_module("ujson"))
-except ModuleNotFoundError:  # pragma: nocover
+except ImportError:  # pragma: nocover
     ujson = None  # type: ignore[assignment]
 
 
 try:
     orjson = cast(_OrjsonModule, importlib.import_module("orjson"))
-except ModuleNotFoundError:  # pragma: nocover
+except ImportError:  # pragma: nocover
     orjson = None  # type: ignore[assignment]
 
 

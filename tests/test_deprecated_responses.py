@@ -1,3 +1,4 @@
+import importlib
 import warnings
 
 import pytest
@@ -77,3 +78,25 @@ def test_ujson_response_returns_correct_data():
 def test_ujson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="UJSONResponse is deprecated"):
         UJSONResponse(content={"hello": "world"})
+
+
+@pytest.mark.parametrize("module_name", ["orjson", "ujson"])
+def test_importing_fastapi_responses_ignores_broken_optional_json_installs(
+    monkeypatch: pytest.MonkeyPatch, module_name: str
+) -> None:
+    import fastapi.responses as responses
+
+    real_import_module = importlib.import_module
+
+    def fake_import_module(name: str, package: str | None = None):
+        if name == module_name:
+            raise ImportError(f"simulated broken {module_name} install")
+        return real_import_module(name, package)
+
+    monkeypatch.setattr(importlib, "import_module", fake_import_module)
+    try:
+        reloaded = importlib.reload(responses)
+        assert getattr(reloaded, module_name) is None
+    finally:
+        monkeypatch.setattr(importlib, "import_module", real_import_module)
+        importlib.reload(responses)
