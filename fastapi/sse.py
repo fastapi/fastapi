@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import Annotated, Any
 
 from annotated_doc import Doc
@@ -225,6 +226,167 @@ def format_sse_event(
     lines.append("")
     lines.append("")
     return "\n".join(lines).encode("utf-8")
+
+
+@dataclass(frozen=True)
+class ParsedSSEEvent:
+    """A Server-Sent Event parsed from the wire format.
+
+    Returned by `parse_sse_events()`. This is the *receiver-side* counterpart
+    to [`ServerSentEvent`](#serversentevent) (used to *send* events): `data`
+    here is the raw string from the wire (multi-line `data:` lines joined
+    with `\\n`), not JSON-decoded. Decoding is up to the caller, since the
+    payload may be JSON, plain text, or any other format depending on the
+    server.
+
+    Each instance reflects only fields explicitly set in its own event block
+    on the wire — `id` and `retry` are not sticky across events here, unlike
+    a browser `EventSource` client. Stickiness is left to the caller when
+    needed.
+    """
+
+    data: Annotated[
+        str,
+        Doc(
+            """
+            The event payload — multi-line `data:` lines joined with `\\n`,
+            with a single trailing `\\n` stripped per the SSE spec.
+            """
+        ),
+    ]
+    event: Annotated[
+        str,
+        Doc(
+            """
+            The event type. Defaults to `"message"` when no `event:` field
+            is present, matching what an `EventSource` browser client would
+            dispatch.
+            """
+        ),
+    ] = "message"
+    id: Annotated[
+        str | None,
+        Doc(
+            """
+            The event ID from the `id:` field, or `None` if not set on this
+            event block. (Not carried over from the previous event.)
+            """
+        ),
+    ] = None
+    retry: Annotated[
+        int | None,
+        Doc(
+            """
+            The reconnection time in milliseconds from the `retry:` field,
+            or `None` if not set on this event block.
+            """
+        ),
+    ] = None
+
+
+def parse_sse_events(
+    raw: Annotated[
+        bytes | str,
+        Doc(
+            """
+            SSE wire-format text or bytes. Typically the full body of a
+            `text/event-stream` response.
+            """
+        ),
+    ],
+) -> list[ParsedSSEEvent]:
+    """Parse an SSE event stream into a list of `ParsedSSEEvent` objects.
+
+    Implements the [WHATWG SSE parsing algorithm](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation)
+    for a complete stream. This is the receiver-side counterpart to
+    `format_sse_event()`.
+
+    Useful for **tests**, **clients**, or any code that consumes the response
+    of an `EventSourceResponse` *path operation*.
+
+    Parsing rules followed (per spec):
+
+    * Lines may be separated by `\\n`, `\\r`, or `\\r\\n`.
+    * A leading UTF-8 BOM is stripped.
+    * Comment lines (those starting with `:`) are skipped.
+    * Multi-line `data:` fields are joined with `\\n`, with a single trailing
+      `\\n` stripped.
+    * Events with an empty data buffer are not emitted.
+    * Unknown field names are ignored.
+    * `id` values containing NULL bytes are ignored.
+    * `retry` values that aren't decimal integers are ignored.
+
+    Note: this returns events as they appear on the wire. `id` and `retry`
+    are **not sticky** across events in the returned list — each
+    `ParsedSSEEvent` reflects only the fields seen in its own block.
+    """
+    if isinstance(raw, bytes):
+        raw = raw.decode("utf-8")
+
+    # Strip a single leading BOM if present (per spec).
+    if raw.startswith("﻿"):
+        raw = raw[1:]
+    # Normalize line endings: \r\n or \r → \n.
+    text = raw.replace("\r\n", "\n").replace("\r", "\n")
+
+    events: list[ParsedSSEEvent] = []
+    data_buf: list[str] = []
+    event_type: str | None = None
+    last_id: str | None = None
+    retry: int | None = None
+
+    def _dispatch() -> None:
+        nonlocal event_type, last_id, retry
+        # Per spec: if the data buffer is empty, do not dispatch the event.
+        if not data_buf:
+            event_type = None
+            return
+        data_str = "\n".join(data_buf)
+        events.append(
+            ParsedSSEEvent(
+                data=data_str,
+                event=event_type if event_type else "message",
+                id=last_id,
+                retry=retry,
+            )
+        )
+        data_buf.clear()
+        event_type = None
+        last_id = None
+        retry = None
+
+    for line in text.split("\n"):
+        if line == "":
+            _dispatch()
+            continue
+        if line.startswith(":"):
+            # Comment line, ignored per spec.
+            continue
+        if ":" in line:
+            field, _, value = line.partition(":")
+            # An optional single leading space after the colon is stripped.
+            if value.startswith(" "):
+                value = value[1:]
+        else:
+            # A line with no colon is treated as a field with empty value.
+            field = line
+            value = ""
+
+        if field == "data":
+            data_buf.append(value)
+        elif field == "event":
+            event_type = value
+        elif field == "id":
+            # Per spec: ignore IDs containing NULL bytes.
+            if "\0" not in value:
+                last_id = value
+        elif field == "retry":
+            # Per spec: must be a base-10 integer.
+            if value.isdigit():
+                retry = int(value)
+        # Other fields are ignored per spec.
+
+    return events
 
 
 # Keep-alive comment, per the SSE spec recommendation

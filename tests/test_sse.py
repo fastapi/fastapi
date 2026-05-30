@@ -6,7 +6,12 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import (
+    ParsedSSEEvent,
+    ServerSentEvent,
+    format_sse_event,
+    parse_sse_events,
+)
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -325,3 +330,63 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+def test_parse_sse_events_format_round_trip():
+    """parse_sse_events reverses format_sse_event for the supported fields."""
+    stream = (
+        format_sse_event(data_str="hello", event="greeting", id="1")
+        + format_sse_event(data_str='{"k": 1}', event="json", id="2", retry=5000)
+        + format_sse_event(data_str="plain")
+    )
+    events = parse_sse_events(stream)
+    assert events == [
+        ParsedSSEEvent(data="hello", event="greeting", id="1"),
+        ParsedSSEEvent(data='{"k": 1}', event="json", id="2", retry=5000),
+        ParsedSSEEvent(data="plain"),
+    ]
+
+
+def test_parse_sse_events_multiline_data_joined_with_newline():
+    """Multiple `data:` lines in one event are joined with `\\n`."""
+    events = parse_sse_events("data: line1\ndata: line2\ndata: line3\n\n")
+    assert events == [ParsedSSEEvent(data="line1\nline2\nline3")]
+
+
+def test_parse_sse_events_comments_and_unknown_fields_ignored():
+    """Comment lines and unrecognized fields are skipped per the spec."""
+    raw = ": this is a comment\nfoo: bar\ndata: payload\n\n"
+    assert parse_sse_events(raw) == [ParsedSSEEvent(data="payload")]
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        b"data: hi\n\n",  # bytes input
+        "data: hi\r\n\r\n",  # CRLF line endings
+        "data: hi\r\r",  # CR-only line endings
+        "﻿data: hi\n\n",  # BOM-prefixed
+    ],
+)
+def test_parse_sse_events_input_variants(raw: bytes | str):
+    """Bytes, CRLF, CR-only, and BOM-prefixed inputs are all accepted."""
+    assert parse_sse_events(raw) == [ParsedSSEEvent(data="hi")]
+
+
+def test_parse_sse_events_invalid_id_and_retry_dropped():
+    """NULL-containing ids and non-decimal retry values are dropped per spec."""
+    raw = "id: bad\0id\nretry: not-a-number\ndata: ok\n\n"
+    assert parse_sse_events(raw) == [ParsedSSEEvent(data="ok")]
+
+
+def test_parse_sse_events_round_trip_through_endpoint(client: TestClient):
+    """End-to-end: parse the response from a real EventSourceResponse endpoint."""
+    response = client.get("/items/stream-sse-event")
+    assert response.status_code == 200
+    events = parse_sse_events(response.text)
+    # The fixture endpoint yields events with greeting/json-data/etc., so we
+    # should have at least one event with a non-default `event` set.
+    assert events, "expected at least one parsed event"
+    assert any(e.event != "message" for e in events)
+    # `id`s on the wire are strings (per the SSE spec); we don't coerce them.
+    assert all(e.id is None or isinstance(e.id, str) for e in events)
