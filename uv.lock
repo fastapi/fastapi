@@ -1236,6 +1236,7 @@ tests = [
     { name = "sqlmodel" },
     { name = "strawberry-graphql" },
     { name = "ty" },
+    { name = "typer" },
 ]
 translations = [
     { name = "gitpython" },
@@ -1320,6 +1321,7 @@ dev = [
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.25" },
     { name = "typer", specifier = ">=0.21.1" },
+    { name = "typer", specifier = ">=0.24.1" },
     { name = "zensical", specifier = ">=0.0.42" },
     { name = "zizmor", specifier = ">=1.23.1" },
 ]
@@ -1377,6 +1379,7 @@ tests = [
     { name = "sqlmodel", specifier = ">=0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "ty", specifier = ">=0.0.25" },
+    { name = "typer", specifier = ">=0.24.1" },
 ]
 translations = [
     { name = "gitpython", specifier = ">=3.1.46" },

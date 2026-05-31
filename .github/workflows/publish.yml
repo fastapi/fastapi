@@ -3,7 +3,7 @@ name: Publish
 on:
   release:
     types:
-      - created
+      - published
 
 permissions: {}
 

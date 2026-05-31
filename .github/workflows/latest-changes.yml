@@ -39,7 +39,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-      - uses: tiangolo/latest-changes@c9d329cb147f0ddf4fb631214e3f838ff17ccbbd # 0.4.1
+      - uses: tiangolo/latest-changes@eb3f6e7ff0073896ecb561e774a121de9418fa06 # 0.5.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
