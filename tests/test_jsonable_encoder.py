@@ -12,7 +12,7 @@ import pytest
 from fastapi._compat import Undefined
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import PydanticV1NotSupportedError
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_serializer
 
 
 class Person:
@@ -238,6 +238,50 @@ def test_custom_encoder_model_field():
         ModelWithCustomValue(value=CustomValue()),
         custom_encoder={CustomValue: lambda _: "encoded"},
     ) == {"value": "encoded"}
+
+
+def test_custom_encoder_model_field_preserves_json_mode_serializers():
+    class CustomValue:
+        pass
+
+    class ModelWithJsonSerializer(BaseModel):
+        model_config = ConfigDict(arbitrary_types_allowed=True)
+
+        created_at: datetime
+        value: CustomValue
+
+        @field_serializer("created_at", when_used="json")
+        def serialize_created_at(self, value):
+            return "serialized"
+
+    assert jsonable_encoder(
+        ModelWithJsonSerializer(
+            created_at=datetime(2024, 1, 1),
+            value=CustomValue(),
+        ),
+        custom_encoder={CustomValue: lambda _: "encoded"},
+    ) == {"created_at": "serialized", "value": "encoded"}
+
+
+def test_custom_encoder_model_field_uses_caller_options():
+    class CustomValue:
+        pass
+
+    class EncodedValue(BaseModel):
+        required: int = Field(alias="Required")
+        optional: int = 2
+
+    class ModelWithCustomValue(BaseModel):
+        model_config = ConfigDict(arbitrary_types_allowed=True)
+
+        value: CustomValue
+
+    assert jsonable_encoder(
+        ModelWithCustomValue(value=CustomValue()),
+        by_alias=False,
+        exclude_unset=True,
+        custom_encoder={CustomValue: lambda _: EncodedValue(Required=1)},
+    ) == {"value": {"required": 1}}
 
 
 def test_custom_enum_encoders():
