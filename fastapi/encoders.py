@@ -265,7 +265,8 @@ def jsonable_encoder(
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
 
-            obj_dict = obj.model_dump(
+            obj_dict = obj.__pydantic_serializer__.to_python(
+                obj,
                 mode="json",
                 include=include,
                 exclude=exclude,
@@ -277,11 +278,8 @@ def jsonable_encoder(
             )
             return jsonable_encoder(
                 obj_dict,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
                 exclude_none=exclude_none,
                 exclude_defaults=exclude_defaults,
-                custom_encoder=custom_encoder,
                 sqlalchemy_safe=sqlalchemy_safe,
             )
         obj_dict = obj.model_dump(

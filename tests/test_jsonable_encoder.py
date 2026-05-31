@@ -284,6 +284,21 @@ def test_custom_encoder_model_field_uses_caller_options():
     ) == {"value": {"required": 1}}
 
 
+def test_custom_encoder_model_field_does_not_encode_field_names():
+    class CustomValue:
+        pass
+
+    class ModelWithCustomValue(BaseModel):
+        model_config = ConfigDict(arbitrary_types_allowed=True)
+
+        value: CustomValue
+
+    assert jsonable_encoder(
+        ModelWithCustomValue(value=CustomValue()),
+        custom_encoder={CustomValue: lambda _: "encoded", str: str.upper},
+    ) == {"value": "ENCODED"}
+
+
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
         return v.value.lower()
