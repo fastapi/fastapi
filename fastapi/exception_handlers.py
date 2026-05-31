@@ -1,3 +1,11 @@
+"""
+Default exception handlers for FastAPI applications.
+
+Provides async handler functions for HTTP exceptions, request validation
+errors, and WebSocket validation errors. These are registered automatically
+when a FastAPI application is created.
+"""
+
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.utils import is_body_allowed_for_status_code
