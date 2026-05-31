@@ -12,7 +12,7 @@ import pytest
 from fastapi._compat import Undefined
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import PydanticV1NotSupportedError
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 
 class Person:
@@ -223,6 +223,21 @@ def test_custom_encoders():
 
     encoded_instance2 = jsonable_encoder(instance)
     assert encoded_instance2["dt_field"] == instance["dt_field"].isoformat()
+
+
+def test_custom_encoder_model_field():
+    class CustomValue:
+        pass
+
+    class ModelWithCustomValue(BaseModel):
+        model_config = ConfigDict(arbitrary_types_allowed=True)
+
+        value: CustomValue
+
+    assert jsonable_encoder(
+        ModelWithCustomValue(value=CustomValue()),
+        custom_encoder={CustomValue: lambda _: "encoded"},
+    ) == {"value": "encoded"}
 
 
 def test_custom_enum_encoders():
