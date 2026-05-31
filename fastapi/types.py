@@ -1,3 +1,11 @@
+"""
+Internal type aliases for FastAPI.
+
+Provides shared type definitions used throughout the framework, including
+the decorated callable type variable, union type compatibility shim, and
+Pydantic model name mapping types.
+"""
+
 import types
 from collections.abc import Callable
 from enum import Enum
