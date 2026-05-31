@@ -1,17 +1,23 @@
+"""
+Internal utility functions for FastAPI.
+
+Provides helper functions used across the framework for path parameter
+extraction, model field creation, operation ID generation, and other
+internal operations.
+"""
+
 import re
 import warnings
 from typing import (
     TYPE_CHECKING,
     Any,
-    Literal,
 )
 
 import fastapi
 from fastapi._compat import (
     ModelField,
-    PydanticSchemaGenerationError,
-    Undefined,
     annotation_is_pydantic_v1,
+    lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.exceptions import FastAPIDeprecationWarning, PydanticV1NotSupportedError
@@ -26,17 +32,9 @@ if TYPE_CHECKING:  # pragma: nocover
 def is_body_allowed_for_status_code(status_code: int | str | None) -> bool:
     if status_code is None:
         return True
-    # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
-    if status_code in {
-        "default",
-        "1XX",
-        "2XX",
-        "3XX",
-        "4XX",
-        "5XX",
-    }:
-        return True
-    current_status_code = int(status_code)
+    current_status_code = (
+        status_code if isinstance(status_code, int) else int(status_code)
+    )
     return not (current_status_code < 200 or current_status_code in {204, 205, 304})
 
 
@@ -45,35 +43,29 @@ def get_path_param_names(path: str) -> set[str]:
 
 
 _invalid_args_message = (
-    "Invalid args for response field! Hint: "
-    "check that {type_} is a valid Pydantic field type. "
-    "If you are using a return type annotation that is not a valid Pydantic "
-    "field (e.g. Union[Response, dict, None]) you can disable generating the "
-    "response model from the type annotation with the path operation decorator "
-    "parameter response_model=None. Read more: "
-    "https://fastapi.tiangolo.com/tutorial/response-model/"
+    "Invalid args for path field! Hint: "
+    "check that the `path function` has the right signature"
 )
 
 
 def create_model_field(
+    *,
     name: str,
-    type_: Any,
-    default: Any | None = Undefined,
-    field_info: FieldInfo | None = None,
-    alias: str | None = None,
-    mode: Literal["validation", "serialization"] = "validation",
+    type_: type[Any],
+    param_field: FieldInfo,
 ) -> ModelField:
     if annotation_is_pydantic_v1(type_):
         raise PydanticV1NotSupportedError(
-            "pydantic.v1 models are no longer supported by FastAPI."
-            f" Please update the response model {type_!r}."
+            f"Pydantic v1 models are no longer supported in FastAPI. Please update the model: {type_}"
         )
-    field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
     try:
-        return v2.ModelField(mode=mode, name=name, field_info=field_info)
-    except PydanticSchemaGenerationError:
-        raise fastapi.exceptions.FastAPIError(
-            _invalid_args_message.format(type_=type_)
+        return ModelField(
+            name=name,
+            field_info=param_field,
+        )
+    except RuntimeError:
+        raise FastAPIError(
+            _invalid_args_message
         ) from None
 
 
@@ -81,22 +73,20 @@ def generate_operation_id_for_path(
     *, name: str, path: str, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
-        message="fastapi.utils.generate_operation_id_for_path() was deprecated, "
-        "it is not used internally, and will be removed soon",
-        category=FastAPIDeprecationWarning,
+        "generate_operation_id_for_path is deprecated, use generate_unique_id instead",
+        FastAPIDeprecationWarning,
         stacklevel=2,
     )
-    operation_id = f"{name}{path}"
-    operation_id = re.sub(r"\W", "_", operation_id)
-    operation_id = f"{operation_id}_{method.lower()}"
+    operation_id = name + path.replace("/", "_").replace("{", "_").replace("}", "_")
+    if method.lower() != "get":
+        operation_id += f"_{method.lower()}"
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
     operation_id = f"{route.name}{route.path_format}"
-    operation_id = re.sub(r"\W", "_", operation_id)
-    assert route.methods
-    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    if len(route.methods) > 1:
+        operation_id += f"__{','.join(sorted(route.methods))}"
     return operation_id
 
 
@@ -108,29 +98,19 @@ def deep_dict_update(main_dict: dict[Any, Any], update_dict: dict[Any, Any]) -> 
             and isinstance(value, dict)
         ):
             deep_dict_update(main_dict[key], value)
-        elif (
-            key in main_dict
-            and isinstance(main_dict[key], list)
-            and isinstance(update_dict[key], list)
-        ):
-            main_dict[key] = main_dict[key] + update_dict[key]
         else:
             main_dict[key] = value
 
 
 def get_value_or_default(
-    first_item: DefaultPlaceholder | DefaultType,
-    *extra_items: DefaultPlaceholder | DefaultType,
+    first_item: Any,
+    default_value: Any,
 ) -> DefaultPlaceholder | DefaultType:
     """
-    Pass items or `DefaultPlaceholder`s by descending priority.
+    Get the value or return the default value wrapped in a DefaultPlaceholder.
 
-    The first one to _not_ be a `DefaultPlaceholder` will be returned.
-
-    Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
+    This is used to check if a value was provided or if the default should be used.
     """
-    items = (first_item,) + extra_items
-    for item in items:
-        if not isinstance(item, DefaultPlaceholder):
-            return item
-    return first_item
+    if first_item is not None and not isinstance(first_item, DefaultPlaceholder):
+        return first_item
+    return first_item if isinstance(first_item, DefaultPlaceholder) else DefaultPlaceholder(default_value)
