@@ -285,18 +285,36 @@ def test_custom_encoder_model_field_uses_caller_options():
 
 
 def test_custom_encoder_model_field_does_not_encode_field_names():
+    class ModelWithString(BaseModel):
+        value: str
+
+    assert jsonable_encoder(
+        ModelWithString(value="encoded"),
+        custom_encoder={str: str.upper},
+    ) == {"value": "ENCODED"}
+
+
+def test_custom_encoder_model_field_applies_to_known_field_types():
     class CustomValue:
         pass
+
+    class NestedModel(BaseModel):
+        value: int
 
     class ModelWithCustomValue(BaseModel):
         model_config = ConfigDict(arbitrary_types_allowed=True)
 
         value: CustomValue
+        nested: NestedModel
 
     assert jsonable_encoder(
-        ModelWithCustomValue(value=CustomValue()),
-        custom_encoder={CustomValue: lambda _: "encoded", str: str.upper},
-    ) == {"value": "ENCODED"}
+        ModelWithCustomValue(value=CustomValue(), nested=NestedModel(value=1)),
+        custom_encoder={
+            CustomValue: lambda _: "encoded",
+            NestedModel: lambda _: "nested",
+            str: str.upper,
+        },
+    ) == {"value": "ENCODED", "nested": "NESTED"}
 
 
 def test_custom_enum_encoders():

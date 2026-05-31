@@ -242,19 +242,23 @@ def jsonable_encoder(
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
         if custom_encoder:
+            encoded_values: dict[int, Any] = {}
+            no_encoder = object()
 
-            def custom_encoder_fallback(value: Any) -> Any:
+            def custom_encode(value: Any) -> Any:
                 if type(value) in custom_encoder:
-                    encoded_value = custom_encoder[type(value)](value)
-                else:
-                    for encoder_type, encoder_instance in custom_encoder.items():
-                        if isinstance(value, encoder_type):
-                            encoded_value = encoder_instance(value)
-                            break
-                    else:
-                        raise TypeError(
-                            f"Object of type {type(value).__name__} is not JSON serializable"
-                        )
+                    return custom_encoder[type(value)](value)
+                for encoder_type, encoder_instance in custom_encoder.items():
+                    if isinstance(value, encoder_type):
+                        return encoder_instance(value)
+                return no_encoder
+
+            def jsonable_custom_encoded(value: Any) -> Any:
+                encoded_value = custom_encode(value)
+                if encoded_value is no_encoder:
+                    raise TypeError(
+                        f"Object of type {type(value).__name__} is not JSON serializable"
+                    )
                 return jsonable_encoder(
                     encoded_value,
                     by_alias=by_alias,
@@ -264,6 +268,11 @@ def jsonable_encoder(
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
+
+            def custom_encoder_fallback(value: Any) -> Any:
+                encoded_value = jsonable_custom_encoded(value)
+                encoded_values[id(value)] = encoded_value
+                return encoded_value
 
             obj_dict = obj.__pydantic_serializer__.to_python(
                 obj,
@@ -276,6 +285,27 @@ def jsonable_encoder(
                 exclude_defaults=exclude_defaults,
                 fallback=custom_encoder_fallback,
             )
+            for field_name, field in type(obj).model_fields.items():
+                value = getattr(obj, field_name)
+                encoded_value = encoded_values.get(id(value), no_encoder)
+                if encoded_value is no_encoder:
+                    encoded_value = custom_encode(value)
+                    if encoded_value is no_encoder:
+                        continue
+                    encoded_value = jsonable_encoder(
+                        encoded_value,
+                        by_alias=by_alias,
+                        exclude_unset=exclude_unset,
+                        exclude_defaults=exclude_defaults,
+                        exclude_none=exclude_none,
+                        custom_encoder=custom_encoder,
+                        sqlalchemy_safe=sqlalchemy_safe,
+                    )
+                field_key = field_name
+                if by_alias:
+                    field_key = field.serialization_alias or field.alias or field_name
+                if field_key in obj_dict:
+                    obj_dict[field_key] = encoded_value
             return jsonable_encoder(
                 obj_dict,
                 exclude_none=exclude_none,
