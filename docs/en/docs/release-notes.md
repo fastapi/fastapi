@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 🔥 Remove slim package stub, deprecated for a while. PR [#15649](https://github.com/fastapi/fastapi/pull/15649) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump authlib from 1.6.11 to 1.7.2. PR [#15512](https://github.com/fastapi/fastapi/pull/15512) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pymdown-extensions from 10.21.2 to 10.21.3. PR [#15569](https://github.com/fastapi/fastapi/pull/15569) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump CodSpeedHQ/action from 4.14.0 to 4.15.1. PR [#15513](https://github.com/fastapi/fastapi/pull/15513) by [@dependabot[bot]](https://github.com/apps/dependabot).
