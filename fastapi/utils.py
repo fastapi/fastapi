@@ -13,17 +13,13 @@ from typing import (
     Any,
 )
 
-import fastapi
 from fastapi._compat import (
     ModelField,
     annotation_is_pydantic_v1,
-    lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.exceptions import FastAPIDeprecationWarning, PydanticV1NotSupportedError
 from pydantic.fields import FieldInfo
-
-from ._compat import v2
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -64,9 +60,7 @@ def create_model_field(
             field_info=param_field,
         )
     except RuntimeError:
-        raise FastAPIError(
-            _invalid_args_message
-        ) from None
+        raise FastAPIError(_invalid_args_message) from None
 
 
 def generate_operation_id_for_path(
@@ -113,4 +107,8 @@ def get_value_or_default(
     """
     if first_item is not None and not isinstance(first_item, DefaultPlaceholder):
         return first_item
-    return first_item if isinstance(first_item, DefaultPlaceholder) else DefaultPlaceholder(default_value)
+    return (
+        first_item
+        if isinstance(first_item, DefaultPlaceholder)
+        else DefaultPlaceholder(default_value)
+    )
