@@ -241,29 +241,49 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
+        if custom_encoder:
 
-        def custom_encoder_fallback(value: Any) -> Any:
-            if type(value) in custom_encoder:
-                encoded_value = custom_encoder[type(value)](value)
-            else:
-                for encoder_type, encoder_instance in custom_encoder.items():
-                    if isinstance(value, encoder_type):
-                        encoded_value = encoder_instance(value)
-                        break
+            def custom_encoder_fallback(value: Any) -> Any:
+                if type(value) in custom_encoder:
+                    encoded_value = custom_encoder[type(value)](value)
                 else:
-                    raise TypeError(
-                        f"Object of type {type(value).__name__} is not JSON serializable"
-                    )
-            return jsonable_encoder(
-                encoded_value,
+                    for encoder_type, encoder_instance in custom_encoder.items():
+                        if isinstance(value, encoder_type):
+                            encoded_value = encoder_instance(value)
+                            break
+                    else:
+                        raise TypeError(
+                            f"Object of type {type(value).__name__} is not JSON serializable"
+                        )
+                return jsonable_encoder(
+                    encoded_value,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                    custom_encoder=custom_encoder,
+                    sqlalchemy_safe=sqlalchemy_safe,
+                )
+
+            obj_dict = obj.model_dump(
+                mode="json",
+                include=include,
+                exclude=exclude,
                 by_alias=by_alias,
                 exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
+                exclude_defaults=exclude_defaults,
+                fallback=custom_encoder_fallback,
+            )
+            return jsonable_encoder(
+                obj_dict,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_none=exclude_none,
+                exclude_defaults=exclude_defaults,
                 custom_encoder=custom_encoder,
                 sqlalchemy_safe=sqlalchemy_safe,
             )
-
         obj_dict = obj.model_dump(
             mode="json",
             include=include,
@@ -272,15 +292,11 @@ def jsonable_encoder(
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            fallback=custom_encoder_fallback if custom_encoder else None,
         )
         return jsonable_encoder(
             obj_dict,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
