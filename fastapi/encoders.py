@@ -241,6 +241,7 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
+
         def custom_encoder_fallback(value: Any) -> Any:
             if type(value) in custom_encoder:
                 encoded_value = custom_encoder[type(value)](value)
