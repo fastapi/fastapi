@@ -1,3 +1,11 @@
+"""
+Concurrency utilities for FastAPI.
+
+Provides helpers for running context managers in thread pools to avoid
+blocking the async event loop, with re-exports of common Starlette
+concurrency primitives.
+"""
+
 from collections.abc import AsyncGenerator
 from contextlib import AbstractContextManager
 from contextlib import asynccontextmanager as asynccontextmanager
