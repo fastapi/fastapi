@@ -72,7 +72,7 @@ Bu yüzden şu satır:
 
 çalıştırılmaz.
 
-/// info | Bilgi
+/// note | Not
 
 Daha fazla bilgi için [resmi Python dokümantasyonuna](https://docs.python.org/3/library/__main__.html) bakın.
 
