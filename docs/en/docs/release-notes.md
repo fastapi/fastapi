@@ -15,6 +15,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for de (update-outdated). PR [#15673](https://github.com/fastapi/fastapi/pull/15673) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (update-outdated). PR [#15672](https://github.com/fastapi/fastapi/pull/15672) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ru (update-outdated). PR [#15674](https://github.com/fastapi/fastapi/pull/15674) by [@tiangolo](https://github.com/tiangolo).
 
