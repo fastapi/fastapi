@@ -13,6 +13,10 @@ hide:
 * 📝 Remove "NGINX Unit" from the list of ASGI-servers in docs. PR [#15475](https://github.com/fastapi/fastapi/pull/15475) by [@angryfoxx](https://github.com/angryfoxx).
 * 📝 Update `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#14781](https://github.com/fastapi/fastapi/pull/14781) by [@zadevhub](https://github.com/zadevhub).
 
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#15674](https://github.com/fastapi/fastapi/pull/15674) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15662](https://github.com/fastapi/fastapi/pull/15662) by [@tiangolo](https://github.com/tiangolo).
