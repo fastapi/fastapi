@@ -26,6 +26,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI GitHub topic repositories. PR [#15675](https://github.com/fastapi/fastapi/pull/15675) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15662](https://github.com/fastapi/fastapi/pull/15662) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Automate release preparation. PR [#15661](https://github.com/fastapi/fastapi/pull/15661) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove slim package stub, deprecated for a while. PR [#15649](https://github.com/fastapi/fastapi/pull/15649) by [@tiangolo](https://github.com/tiangolo).
