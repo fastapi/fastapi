@@ -64,7 +64,7 @@ my_second_user: User = User(**second_user_data)
 ```
 
 
-/// info | 信息
+/// note | 注意
 
 `**second_user_data` 意思是：
 
