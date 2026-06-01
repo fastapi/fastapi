@@ -139,7 +139,7 @@ Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info
+/// note | Remarque
 
 Illustrations proposées par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Vous les mangez, et vous avez terminé 🍔 ⏹.
 
 Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre 🕙 devant le comptoir 😞.
 
-/// info
+/// note | Remarque
 
 Illustrations proposées par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 

@@ -124,19 +124,11 @@ Voir la section `### Content of code blocks` dans l’invite générale dans `sc
 
 //// tab | Test
 
-/// info | Info
-Du texte
-///
-
 /// note | Remarque
 Du texte
 ///
 
 /// note | Détails techniques
-Du texte
-///
-
-/// check | Vérifications
 Du texte
 ///
 
