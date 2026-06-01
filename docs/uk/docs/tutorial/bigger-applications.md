@@ -4,7 +4,7 @@
 
 **FastAPI** надає зручний інструмент для структурування вашого застосунку, зберігаючи всю гнучкість.
 
-/// info | Інформація
+/// note | Примітка
 
 Якщо ви прийшли з Flask, це еквівалент «Blueprints» у Flask.
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | Перевірте
+/// tip | Порада
 
 Параметри `prefix`, `tags`, `responses` і `dependencies` - це (як і в багатьох інших випадках) просто можливість **FastAPI**, яка допомагає уникати дублювання коду.
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | Інформація
+/// note | Примітка
 
 Перша версія - «відносний імпорт»:
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Інформація
+/// note | Примітка
 
 `users.router` містить `APIRouter` у файлі `app/routers/users.py`.
 
@@ -402,7 +402,7 @@ from .routers.users import router
 
 ///
 
-/// check | Перевірте
+/// tip | Порада
 
 Вам не потрібно перейматися продуктивністю під час включення router'ів.
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 і це працюватиме коректно разом з усіма іншими *операціями шляху*, доданими через `app.include_router()`.
 
-/// info | Дуже технічні деталі
+/// note | Дуже технічні деталі
 
 Примітка: це дуже технічна деталь, яку ви, ймовірно, можете просто пропустити.
 
