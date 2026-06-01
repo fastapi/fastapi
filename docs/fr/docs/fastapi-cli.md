@@ -58,7 +58,7 @@ La CLI `fastapi` tentera de détecter automatiquement l’application FastAPI à
 
 Mais vous pouvez configurer explicitement l’application à utiliser.
 
-## Configurer le `entrypoint` de l’application dans `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject.toml }
+## Configurer le `entrypoint` de l’application dans `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
 Vous pouvez configurer l’endroit où se trouve votre application dans un fichier `pyproject.toml` comme suit :
 
