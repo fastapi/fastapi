@@ -37,7 +37,7 @@
 
 昨天，我的朋友写道："如果你把 incorrectly 拼对了，你就把它拼错了"。我回答："没错，但 'incorrectly' 错的不是 '"incorrectly"'"。
 
-/// note | 注意
+/// note
 
 LLM 很可能会把这段翻错。我们只关心在重新翻译时它是否能保持修正后的译文。
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...以及另一个控制台代码示例...
 
 ```console
-// 创建目录 "code"
+// 创建目录 "Code"
 $ mkdir code
 // 切换到该目录
 $ cd code
@@ -124,11 +124,7 @@ works(foo="bar")  # 这可行 🎉
 
 //// tab | 测试
 
-/// info | 信息
-Some text
-///
-
-/// note | 注意
+/// note
 Some text
 ///
 
@@ -136,19 +132,15 @@ Some text
 Some text
 ///
 
-/// check | 检查
+/// tip
 Some text
 ///
 
-/// tip | 提示
+/// warning
 Some text
 ///
 
-/// warning | 警告
-Some text
-///
-
-/// danger | 危险
+/// danger
 Some text
 ///
 

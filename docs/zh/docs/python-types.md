@@ -135,7 +135,7 @@ John Doe
 
 {* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
 
-### typing 模块 { #typing-module }
+### `typing` 模块 { #typing-module }
 
 在一些额外的用例中，你可能需要从标准库的 `typing` 模块导入内容。比如当你想声明“任意类型”时，可以使用 `typing` 中的 `Any`：
 
@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 信息
+/// note | 注意
 
 方括号中的这些内部类型称为“类型参数”（type parameters）。
 
@@ -283,7 +283,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 信息
+/// note | 注意
 
 想了解更多关于 [Pydantic](https://docs.pydantic.dev/) 的信息，请查看其文档。
 
@@ -341,7 +341,7 @@ Python 本身不会对这个 `Annotated` 做任何处理。对于编辑器和其
 
 重要的是，通过使用标准的 Python 类型，而且只在一个地方声明（而不是添加更多类、装饰器等），**FastAPI** 会为你完成大量工作。
 
-/// info | 信息
+/// note | 注意
 
 如果你已经读完所有教程，又回来想进一步了解类型，一个不错的资源是 [`mypy` 的“速查表”](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)。
 

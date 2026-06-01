@@ -95,7 +95,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### 带路径的 `fastapi dev` { #fastapi-dev-with-path }
+### 带路径或使用 `--entrypoint` CLI 选项的 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 你也可以把文件路径传给 `fastapi dev` 命令，它会猜测要使用的 FastAPI 应用对象：
 
@@ -103,7 +103,13 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-但每次运行 `fastapi` 命令都需要记得传入正确的路径。
+或者，你也可以给 `fastapi dev` 命令传入 `--entrypoint` 选项：
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+但每次运行 `fastapi` 命令都需要记得传入正确的路径或 entrypoint。
 
 另外，其他工具可能找不到它，例如 [VS Code 扩展](editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
 
