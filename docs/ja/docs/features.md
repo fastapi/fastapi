@@ -36,13 +36,13 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# 変数を str として宣言
+# 関数内でエディタの支援を受ける
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Pydantic モデル
 class User(BaseModel):
     id: int
     name: str
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note | 備考
 
 `**second_user_data` は次の意味です:
 

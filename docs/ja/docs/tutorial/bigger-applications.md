@@ -4,7 +4,7 @@
 
 **FastAPI** は、柔軟性を保ったままアプリケーションを構造化できる便利なツールを提供します。
 
-/// info | 情報
+/// note | 備考
 
 Flask 出身であれば、Flask の Blueprint に相当します。
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 `prefix`、`tags`、`responses`、`dependencies` の各パラメータは（ほかの多くのケースと同様に）コード重複を避けるための **FastAPI** の機能です。
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 情報
+/// note | 備考
 
 最初のバージョンは「相対インポート」です:
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 情報
+/// note | 備考
 
 `users.router` は、ファイル `app/routers/users.py` 内の `APIRouter` を含みます。
 
@@ -402,7 +402,7 @@ from .routers.users import router
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 ルーターを取り込んでもパフォーマンスを心配する必要はありません。
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 そして、`app.include_router()` で追加したほかの *path operations* と一緒に正しく動作します。
 
-/// info | 非常に技術的な詳細
+/// note | 技術詳細
 
 注記: これは非常に技術的な詳細で、**読み飛ばして構いません**。
 
