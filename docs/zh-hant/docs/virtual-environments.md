@@ -2,7 +2,7 @@
 
 當你在 Python 專案中工作時，你可能會需要使用一個**虛擬環境**（或類似的機制）來隔離你為每個專案安裝的套件。
 
-/// info
+/// note
 
 如果你已經了解虛擬環境，知道如何建立和使用它們，你可以考慮跳過這一部分。🤓
 
@@ -18,7 +18,7 @@
 
 ///
 
-/// info
+/// note
 
 這個頁面將教你如何使用**虛擬環境**以及了解它們的工作原理。
 
@@ -385,7 +385,7 @@ $ uv pip install -r requirements.txt
 
 ////
 
-/// details | 關於 `requirements.txt`
+/// details | `requirements.txt`
 
 一個包含一些套件的 `requirements.txt` 檔案看起來應該是這樣的：
 
