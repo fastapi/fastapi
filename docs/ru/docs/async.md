@@ -139,7 +139,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Информация
+/// note | Примечание
 
 Прекрасные иллюстрации от [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ def results():
 
 Разговоров и флирта было немного, потому что большую часть времени вы ждали 🕙 у стойки. 😞
 
-/// info | Информация
+/// note | Примечание
 
 Прекрасные иллюстрации от [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
