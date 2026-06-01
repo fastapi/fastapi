@@ -2,7 +2,7 @@
 
 Cuando trabajas en proyectos de Python probablemente deberías usar un **entorno virtual** (o un mecanismo similar) para aislar los paquetes que instalas para cada proyecto.
 
-/// info | Información
+/// note | Nota
 
 Si ya sabes sobre entornos virtuales, cómo crearlos y usarlos, podrías querer saltar esta sección. 🤓
 
@@ -18,7 +18,7 @@ Un **entorno virtual** es un directorio con algunos archivos en él.
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Esta página te enseñará cómo usar **entornos virtuales** y cómo funcionan.
 
