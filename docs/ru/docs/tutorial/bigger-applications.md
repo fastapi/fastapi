@@ -465,7 +465,7 @@ from .routers.users import router
 
 ///
 
-## Настройка `entrypoint` в `pyproject.toml` { #configure-the-entrypoint-in-pyproject.toml }
+## Настройка `entrypoint` в `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
 
 Так как ваш объект FastAPI `app` находится в `app/main.py`, вы можете настроить `entrypoint` в файле `pyproject.toml` следующим образом:
 
