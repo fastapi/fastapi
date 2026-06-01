@@ -15,6 +15,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15671](https://github.com/fastapi/fastapi/pull/15671) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for es (update-outdated). PR [#15670](https://github.com/fastapi/fastapi/pull/15670) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (update-outdated). PR [#15669](https://github.com/fastapi/fastapi/pull/15669) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ja (update-outdated). PR [#15668](https://github.com/fastapi/fastapi/pull/15668) by [@tiangolo](https://github.com/tiangolo).
