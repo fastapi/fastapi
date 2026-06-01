@@ -139,7 +139,7 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Info
+/// note | Hinweis
 
 Die wunderschönen Illustrationen stammen von [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Sie essen sie und sind fertig. ⏹
 
 Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 vor der Theke verbracht wurde. 😞
 
-/// info | Info
+/// note | Hinweis
 
 Die wunderschönen Illustrationen stammen von [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 

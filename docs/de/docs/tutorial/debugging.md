@@ -72,7 +72,7 @@ Daher wird die Zeile:
 
 nicht ausgeführt.
 
-/// info | Info
+/// note | Hinweis
 
 Für weitere Informationen besuchen Sie bitte [die offizielle Python-Dokumentation](https://docs.python.org/3/library/__main__.html).
 

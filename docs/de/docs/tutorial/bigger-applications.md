@@ -4,7 +4,7 @@ Wenn Sie eine Anwendung oder eine Web-API erstellen, ist es selten der Fall, das
 
 **FastAPI** bietet ein praktisches Werkzeug zur Strukturierung Ihrer Anwendung bei gleichzeitiger Wahrung der Flexibilität.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie von Flask kommen, wäre dies das Äquivalent zu Flasks Blueprints.
 
@@ -194,7 +194,7 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Die Parameter `prefix`, `tags`, `responses` und `dependencies` sind (wie in vielen anderen Fällen) nur ein Feature von **FastAPI**, um Ihnen dabei zu helfen, Codeverdoppelung zu vermeiden.
 
@@ -339,7 +339,7 @@ Wir könnten sie auch wie folgt importieren:
 from app.routers import items, users
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Die erste Version ist ein „relativer Import“:
 
@@ -382,7 +382,7 @@ Inkludieren wir nun die `router` aus diesen Submodulen `users` und `items`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Info
+/// note | Hinweis
 
 `users.router` enthält den `APIRouter` in der Datei `app/routers/users.py`.
 
@@ -402,7 +402,7 @@ Hinter den Kulissen wird es also tatsächlich so funktionieren, als ob alles die
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Leistung machen.
 
@@ -451,7 +451,7 @@ Hier machen wir es ... nur um zu zeigen, dass wir es können 🤷:
 
 und es wird korrekt funktionieren, zusammen mit allen anderen *Pfadoperationen*, die mit `app.include_router()` hinzugefügt wurden.
 
-/// info | Sehr technische Details
+/// note | Sehr technische Details
 
 **Hinweis**: Dies ist ein sehr technisches Detail, das Sie wahrscheinlich **einfach überspringen** können.
 

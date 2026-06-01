@@ -172,7 +172,7 @@ Da die Liste ein Typ ist, welcher innere Typen enthält, werden diese von eckige
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Info
+/// note | Hinweis
 
 Die inneren Typen in den eckigen Klammern werden als „Typ-Parameter“ bezeichnet.
 
@@ -283,7 +283,7 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Info
+/// note | Hinweis
 
 Um mehr über [Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an](https://docs.pydantic.dev/).
 
@@ -341,7 +341,7 @@ Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das
 
 Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard-Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource [der „Cheat Sheet“ von `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
