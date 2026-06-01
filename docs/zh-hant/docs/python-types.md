@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 資訊
+/// note | 注意
 
 方括號裡的那些內部型別稱為「型別參數」。
 
@@ -283,7 +283,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 資訊
+/// note | 注意
 
 想了解更多 [Pydantic，請查看它的文件](https://docs.pydantic.dev/)。
 
@@ -341,7 +341,7 @@ Python 本身不會對這個 `Annotated` 做任何事。對編輯器與其他工
 
 重點是，透過在單一位置使用標準的 Python 型別（而不是新增更多類別、裝飾器等），**FastAPI** 會幫你完成很多工作。
 
-/// info | 資訊
+/// note | 注意
 
 如果你已經完整讀完整個教學，並回來想多看一些關於型別的內容，一個不錯的資源是 [`mypy` 的「小抄」](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)。
 

@@ -139,7 +139,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info
+/// note | 注意
 
 漂亮的插畫來自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。 🎨
 
@@ -205,7 +205,7 @@ def results():
 
 整個過程中沒有太多的談情說愛，因為大部分時間 🕙 都花在櫃檯前等待。😞
 
-/// info
+/// note | 注意
 
 漂亮的插畫來自 [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot)。 🎨
 

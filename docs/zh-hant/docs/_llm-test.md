@@ -124,19 +124,11 @@ works(foo="bar")  # 這可以運作 🎉
 
 //// tab | 測試
 
-/// info | 資訊
-Some text
-///
-
 /// note | 注意
 Some text
 ///
 
 /// note | 技術細節
-Some text
-///
-
-/// check | 檢查
 Some text
 ///
 

@@ -4,7 +4,7 @@
 
 FastAPI 提供了一個方便的工具，讓你在維持彈性的同時，幫你組織應用程式的結構。
 
-/// info | 資訊
+/// note | 注意
 
 如果你來自 Flask，這相當於 Flask 的 Blueprints。
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 檢查
+/// tip | 提示
 
 `prefix`、`tags`、`responses` 與 `dependencies` 參數（就像許多其他情況一樣）只是 FastAPI 提供的功能，幫助你避免重複程式碼。
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 資訊
+/// note | 注意
 
 第一種是「相對匯入」：
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 資訊
+/// note | 注意
 
 `users.router` 是位於 `app/routers/users.py` 檔案內的 `APIRouter`。
 
@@ -402,7 +402,7 @@ from .routers.users import router
 
 ///
 
-/// check | 檢查
+/// tip | 提示
 
 把 router 納入時不需要擔心效能。
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 而且它會和透過 `app.include_router()` 加入的其他路徑操作正確地一起運作。
 
-/// info | 非常技術細節
+/// note | 非常技術細節
 
 注意：這是個非常技術性的細節，你大概可以直接略過。
 
