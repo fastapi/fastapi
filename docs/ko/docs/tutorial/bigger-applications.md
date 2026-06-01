@@ -4,7 +4,7 @@
 
 **FastAPI**는 모든 유연성을 유지하면서도 애플리케이션을 구조화할 수 있게 해주는 편리한 도구를 제공합니다.
 
-/// info | 정보
+/// note | 참고
 
 Flask를 사용해 보셨다면, 이는 Flask의 Blueprints에 해당하는 개념입니다.
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 확인
+/// tip | 팁
 
 `prefix`, `tags`, `responses`, `dependencies` 파라미터는 (다른 많은 경우와 마찬가지로) 코드 중복을 피하도록 도와주는 **FastAPI**의 기능입니다.
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 정보
+/// note | 참고
 
 첫 번째 버전은 "상대 import"입니다:
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 정보
+/// note | 참고
 
 `users.router`는 `app/routers/users.py` 파일 안의 `APIRouter`를 담고 있습니다.
 
@@ -402,7 +402,7 @@ from .routers.users import router
 
 ///
 
-/// check | 확인
+/// tip | 팁
 
 router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 
@@ -451,7 +451,7 @@ router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 
 그리고 `app.include_router()`로 추가한 다른 모든 *path operations*와 함께 올바르게 동작합니다.
 
-/// info | 매우 기술적인 세부사항
+/// note | 매우 기술적인 세부사항
 
 **참고**: 이는 매우 기술적인 세부사항이라 아마 **그냥 건너뛰어도 됩니다**.
 
