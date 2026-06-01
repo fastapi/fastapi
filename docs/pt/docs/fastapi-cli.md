@@ -38,7 +38,7 @@ $ <font color="#4E9A06">fastapi</font> dev
              <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C to
              quit<b>)</b>
-     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
@@ -58,7 +58,7 @@ O CLI `fastapi` tentará detectar automaticamente a aplicação FastAPI a ser ex
 
 Mas você pode configurar explicitamente a aplicação a ser usada.
 
-## Configure o `entrypoint` da aplicação em `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject.toml }
+## Configure o `entrypoint` da aplicação em `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
 Você pode configurar onde sua aplicação está localizada em um arquivo `pyproject.toml`, assim:
 
