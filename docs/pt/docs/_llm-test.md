@@ -124,19 +124,11 @@ Veja a seção `### Content of code blocks` no prompt geral em `scripts/translat
 
 //// tab | Teste
 
-/// info | Informação
-Algum texto
-///
-
 /// note | Nota
 Algum texto
 ///
 
 /// note | Detalhes Técnicos
-Algum texto
-///
-
-/// check | Verifique
 Algum texto
 ///
 

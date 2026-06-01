@@ -172,7 +172,7 @@ Como a lista é um tipo que contém tipos internos, você os coloca entre colche
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Informação
+/// note | Nota
 
 Esses tipos internos dentro dos colchetes são chamados de "parâmetros de tipo".
 
@@ -283,7 +283,7 @@ Um exemplo da documentação oficial do Pydantic:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Informação
+/// note | Nota
 
 Para saber mais sobre o [Pydantic, verifique a documentação](https://docs.pydantic.dev/).
 
@@ -341,7 +341,7 @@ Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em aç�
 
 O importante é que, usando tipos padrão de Python, em um único local (em vez de adicionar mais classes, decoradores, etc.), o **FastAPI** fará muito trabalho para você.
 
-/// info | Informação
+/// note | Nota
 
 Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é [a "cheat sheet" do `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
