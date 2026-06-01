@@ -1,16 +1,16 @@
 tiangolo:
   login: tiangolo
-  count: 942
+  count: 961
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 189
+  count: 201
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 YuriiMotov:
   login: YuriiMotov
-  count: 70
+  count: 78
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 alejsdev:
@@ -35,7 +35,7 @@ Kludex:
   url: https://github.com/Kludex
 svlandeg:
   login: svlandeg
-  count: 23
+  count: 24
   avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
   url: https://github.com/svlandeg
 dmontagu:
@@ -578,6 +578,11 @@ Taoup:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/22348542?v=4
   url: https://github.com/Taoup
+zadevhub:
+  login: zadevhub
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/138465437?v=4
+  url: https://github.com/zadevhub
 savannahostrowski:
   login: savannahostrowski
   count: 2
