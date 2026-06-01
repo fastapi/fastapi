@@ -4,7 +4,7 @@ Bir uygulama veya web API geliştirirken, her şeyi tek bir dosyaya sığdırabi
 
 **FastAPI**, tüm esnekliği korurken uygulamanızı yapılandırmanıza yardımcı olan pratik bir araç sunar.
 
-/// info | Bilgi
+/// note | Not
 
 Flask'ten geliyorsanız, bu yapı Flask'in Blueprints'ine denk gelir.
 
@@ -138,7 +138,7 @@ Diyelim ki uygulamanızdaki "items" ile ilgili endpoint'ler de `app/routers/item
 
 Bu, `app/routers/users.py` ile aynı yapıdadır.
 
-Ancak biraz daha akıllı davranıp kodu sadeleştirmek istiyoruz.
+Namun biraz daha akıllı davranıp kodu sadeleştirmek istiyoruz.
 
 Bu module’deki tüm *path operation*’ların şu ortak özelliklere sahip olduğunu biliyoruz:
 
@@ -194,7 +194,7 @@ Sonuç olarak item path’leri artık:
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 `prefix`, `tags`, `responses` ve `dependencies` parametreleri (çoğu başka örnekte olduğu gibi) kod tekrarını önlemenize yardımcı olan, **FastAPI**’nin bir özelliğidir.
 
@@ -339,7 +339,7 @@ Ayrıca şöyle de import edebilirdik:
 from app.routers import items, users
 ```
 
-/// info | Bilgi
+/// note | Not
 
 İlk sürüm "relative import"tur:
 
@@ -382,7 +382,7 @@ Bu yüzden ikisini de aynı dosyada kullanabilmek için submodule’leri doğrud
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Bilgi
+/// note | Not
 
 `users.router`, `app/routers/users.py` dosyasının içindeki `APIRouter`’ı içerir.
 
@@ -402,7 +402,7 @@ Yani perde arkasında, her şey tek bir uygulamaymış gibi çalışır.
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Router’ları dahil ederken performans konusunda endişelenmeniz gerekmez.
 
@@ -451,7 +451,7 @@ Burada bunu yapıyoruz... sadece yapabildiğimizi göstermek için 🤷:
 
 ve `app.include_router()` ile eklenen diğer tüm *path operation*’larla birlikte doğru şekilde çalışır.
 
-/// info | Çok Teknik Detaylar
+/// note | Çok Teknik Detaylar
 
 **Not**: Bu oldukça teknik bir detay; büyük ihtimalle **direkt geçebilirsiniz**.
 
