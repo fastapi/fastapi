@@ -95,7 +95,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### パス指定での `fastapi dev` { #fastapi-dev-with-path }
+### パス指定または `--entrypoint` オプション付きの `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 `fastapi dev` コマンドにファイルパスを渡すこともでき、使用する FastAPI アプリオブジェクトを推測します:
 
@@ -103,7 +103,13 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-ただし、そのたびに `fastapi` コマンドを呼び出す際に正しいパスを渡す必要があります。
+または、`fastapi dev` コマンドに `--entrypoint` オプションを渡すこともできます:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+ただし、そのたびに `fastapi` コマンドを呼び出す際に正しいパスや entrypoint を渡す必要があります。
 
 さらに、[VS Code 拡張機能](editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、ほかのツールがそれを見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使用することを推奨します。
 
