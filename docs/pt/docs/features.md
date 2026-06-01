@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | Informação
+/// note | Nota
 
 `**second_user_data` quer dizer:
 
@@ -105,9 +105,9 @@ Por padrão, tudo **"simplesmente funciona"**.
 
 * Validação para a maioria dos (ou todos?) **tipos de dados** do Python, incluindo:
     * objetos JSON (`dict`).
-    * arrays JSON (`list`), definindo tipos dos itens.
-    * campos String (`str`), definindo tamanho mínimo e máximo.
-    * Numbers (`int`, `float`) com valores mínimos e máximos, etc.
+    * JSON array (`list`), definindo tipos dos itens.
+    * campos string (`str`), definindo tamanho mínimo e máximo.
+    * Números (`int`, `float`) com valores mínimos e máximos, etc.
 
 * Validação de tipos mais exóticos, como:
     * URL.
