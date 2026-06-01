@@ -174,7 +174,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 정보
+/// note | 참고
 
 대괄호 안의 내부 타입은 "type parameters"라고 부릅니다.
 
@@ -285,7 +285,7 @@ Pydantic 공식 문서의 예시:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 정보
+/// note | 참고
 
 Pydantic에 대해 더 알아보려면 [문서를 확인하세요](https://docs.pydantic.dev/).
 
@@ -343,7 +343,7 @@ Pydantic에 대해 더 알아보려면 [문서를 확인하세요](https://docs.
 
 가장 중요한 점은 표준 파이썬 타입을 한 곳에서 사용함으로써(더 많은 클래스, 데코레이터 등을 추가하는 대신) **FastAPI**가 여러분을 위해 많은 일을 해준다는 사실입니다.
 
-/// info | 정보
+/// note | 참고
 
 자습서를 모두 끝내고 타입에 대해 더 알아보기 위해 다시 돌아왔다면, 좋은 자료로 [`mypy`의 "cheat sheet"](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)가 있습니다.
 
