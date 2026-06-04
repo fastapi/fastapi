@@ -60,7 +60,7 @@ from fastapi.websockets import WebSocketDisconnect, WebSocketState
 
 When a client disconnects, a `WebSocketDisconnect` exception is raised, you can catch it.
 
-You can import it directly form `fastapi`:
+You can import it directly from `fastapi`:
 
 ```python
 from fastapi import WebSocketDisconnect
