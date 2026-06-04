@@ -62,6 +62,3 @@ bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
   #   img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
-  - url: https://www.testmu.ai/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
-    title: TestMu AI. The Native AI-Agentic Cloud Platform to Supercharge Quality Engineering.
-    img: https://fastapi.tiangolo.com/img/sponsors/testmu.png
