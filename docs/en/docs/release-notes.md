@@ -29,6 +29,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump aiohttp from 3.13.4 to 3.14.0. PR [#15681](https://github.com/fastapi/fastapi/pull/15681) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group with 2 updates. PR [#15682](https://github.com/fastapi/fastapi/pull/15682) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.0.0 to 1.1.0. PR [#15684](https://github.com/fastapi/fastapi/pull/15684) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Experts. PR [#15677](https://github.com/fastapi/fastapi/pull/15677) by [@tiangolo](https://github.com/tiangolo).
