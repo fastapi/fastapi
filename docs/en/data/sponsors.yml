@@ -55,6 +55,9 @@ silver:
   - url: https://talordata.com/?campaignid=oh5dVZ3Zc3YGiAI2&utm_source=fastapi&utm_term=fastapi
     title: TalorData SERP API - Multi-Engine Search Results Data
     img: https://fastapi.tiangolo.com/img/sponsors/talordata.png
+  - url: https://www.rapidproxy.io/?ref=fastapi
+    title: Try RapidProxy for free - Residential Proxies with 90M+ Global IPs. Starting from $0.65/GB for web scraping, automation, and data collection.
+    img: https://fastapi.tiangolo.com/img/sponsors/rapidproxy.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.

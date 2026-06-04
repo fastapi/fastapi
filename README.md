@@ -71,6 +71,7 @@ The key features are:
 <a href="https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring" target="_blank" title="InterviewPal - AI Interview Coach for Engineers and Devs"><img src="https://fastapi.tiangolo.com/img/sponsors/interviewpal.png"></a>
 <a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a>
 <a href="https://talordata.com/?campaignid=oh5dVZ3Zc3YGiAI2&utm_source=fastapi&utm_term=fastapi" target="_blank" title="TalorData SERP API - Multi-Engine Search Results Data"><img src="https://fastapi.tiangolo.com/img/sponsors/talordata.png"></a>
+<a href="https://www.rapidproxy.io/?ref=fastapi" target="_blank" title="Try RapidProxy for free - Residential Proxies with 90M+ Global IPs. Starting from $0.65/GB for web scraping, automation, and data collection."><img src="https://fastapi.tiangolo.com/img/sponsors/rapidproxy.png"></a>
 
 <!-- /sponsors -->
 
