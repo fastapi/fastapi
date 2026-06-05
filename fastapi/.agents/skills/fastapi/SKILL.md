@@ -298,7 +298,7 @@ Apply shared dependencies at the router level via `dependencies=[Depends(...)]`.
 
 ## Async vs Sync *path operations*
 
-Use `async` *path operations* only when fully certain that the logic called inside is compatible with async and await (it's called with `await`) or that doesn't block.
+Use `async` *path operations* only when fully certain that the logic called inside is compatible with async and await (it's called with `await`) or that it doesn't block.
 
 ```python
 from fastapi import FastAPI
