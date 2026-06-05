@@ -4,7 +4,7 @@
 
 You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies).
 
-And then you can set headers in that *temporal* response object.
+And then you can set headers in that *temporary* response object.
 
 {* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 

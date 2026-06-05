@@ -54,7 +54,7 @@ A round of applause to them. 👏 🙇
 
 This is the current list of team members. 😎
 
-They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md) and together we  [manage the FastAPI repository](./management.md).
+They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md) and together we [manage the FastAPI repository](./management.md).
 
 <div class="user-list user-list-center">
 

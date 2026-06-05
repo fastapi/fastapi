@@ -18,7 +18,7 @@ For those cases, you can use a `Response` parameter.
 
 You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies and headers).
 
-And then you can set the `status_code` in that *temporal* response object.
+And then you can set the `status_code` in that *temporary* response object.
 
 {* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 

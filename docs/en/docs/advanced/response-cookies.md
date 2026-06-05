@@ -4,7 +4,7 @@
 
 You can declare a parameter of type `Response` in your *path operation function*.
 
-And then you can set cookies in that *temporal* response object.
+And then you can set cookies in that *temporary* response object.
 
 {* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 

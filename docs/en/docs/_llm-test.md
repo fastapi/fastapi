@@ -185,7 +185,7 @@ See section `### Links` in the general prompt in `scripts/translate.py`.
 
 //// tab | Test
 
-Here some things wrapped in HTML "abbr" elements (Some are invented):
+Here are some things wrapped in HTML "abbr" elements (Some are invented):
 
 ### The abbr gives a full phrase { #the-abbr-gives-a-full-phrase }
 

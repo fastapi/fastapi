@@ -57,4 +57,4 @@ If you need GraphQL, I still would recommend you check out [Strawberry](https://
 
 You can learn more about **GraphQL** in the [official GraphQL documentation](https://graphql.org/).
 
-You can also read more about each those libraries described above in their links.
+You can also read more about each of those libraries described above in their links.

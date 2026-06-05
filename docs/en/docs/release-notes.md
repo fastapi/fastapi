@@ -295,7 +295,7 @@ hide:
 ### Features
 
 * ✨ Add support for streaming JSON Lines and binary data with `yield`. PR [#15022](https://github.com/fastapi/fastapi/pull/15022) by [@tiangolo](https://github.com/tiangolo).
-    * This also upgrades Starlette from `>=0.40.0` to `>=0.46.0`, as it's needed to properly unrwap and re-raise exceptions from exception groups.
+    * This also upgrades Starlette from `>=0.40.0` to `>=0.46.0`, as it's needed to properly unwrap and re-raise exceptions from exception groups.
     * New docs: [Stream JSON Lines](https://fastapi.tiangolo.com/tutorial/stream-json-lines/).
     * And new docs: [Stream Data](https://fastapi.tiangolo.com/advanced/stream-data/).
 
@@ -3115,7 +3115,7 @@ def my_dep():
 
 ### Security fixes
 
-* ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDos attack. You can also simply upgrade `python-multipart`.
+* ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDoS attack. You can also simply upgrade `python-multipart`.
 
 Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiangolo/fastapi/security/advisories/GHSA-qf9m-vfgh-m389).
 
@@ -5766,7 +5766,7 @@ router = APIRouter(prefix="/users", dependencies=[Depends(some_dependency)])
 
 Most of these settings are now supported in `APIRouter`, which normally lives closer to the related code, so it is recommended to use `APIRouter` when possible.
 
-But `include_router` is still useful to, for example, adding options (like `dependencies`, `prefix`, and `tags`) when including a third party router, or a generic router that is shared between several projects.
+But `include_router` is still useful to, for example, add options (like `dependencies`, `prefix`, and `tags`) when including a third party router, or a generic router that is shared between several projects.
 
 This PR allows setting the (mostly new) parameters (additionally to the already existing parameters):
 
@@ -5956,7 +5956,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix typo in docs for query parameters. PR [#1832](https://github.com/tiangolo/fastapi/pull/1832) by [@ycd](https://github.com/ycd).
 * Add docs about [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/). PR [#1619](https://github.com/tiangolo/fastapi/pull/1619) by [@empicano](https://github.com/empicano).
 * Raise an exception when using form data (`Form`, `File`) without having `python-multipart` installed.
-    * Up to now the application would run, and raise an exception only when receiving a request with form data, the new behavior, raising early, will prevent from deploying applications with broken dependencies.
+    * Up to now the application would run, and raise an exception only when receiving a request with form data, the new behavior, raising early, will prevent deploying applications with broken dependencies.
     * It also detects if the correct package `python-multipart` is installed instead of the incorrect `multipart` (both importable as `multipart`).
     * PR [#1851](https://github.com/tiangolo/fastapi/pull/1851) based on original PR [#1627](https://github.com/tiangolo/fastapi/pull/1627) by [@chrisngyn](https://github.com/chrisngyn), [@YKo20010](https://github.com/YKo20010), [@kx-chen](https://github.com/kx-chen).
 * Re-enable Gitter releases bot. PR [#1831](https://github.com/tiangolo/fastapi/pull/1831).
@@ -6512,7 +6512,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
         * When declaring a `response_model` it is used directly to generate the response content, from whatever was returned from the *path operation function*.
         * Before this, the return content was first passed through `jsonable_encoder` to ensure it was a "jsonable" object, like a `dict`, instead of an arbitrary object with attributes (like an ORM model). That's why you should make sure to update your Pydantic models for objects with attributes to use `orm_mode = True`.
         * If you don't have a `response_model`, the return object will still be passed through `jsonable_encoder` first.
-        * When a `response_model` is declared, the same `response_model` type declaration won't be used as is, it will be "cloned" to create an new one (a cloned Pydantic `Field` with all the submodels cloned as well).
+        * When a `response_model` is declared, the same `response_model` type declaration won't be used as is, it will be "cloned" to create a new one (a cloned Pydantic `Field` with all the submodels cloned as well).
         * This avoids/fixes a potential security issue: as the returned object is passed directly to Pydantic, if the returned object was a subclass of the `response_model` (e.g. you return a `UserInDB` that inherits from `User` but contains extra fields, like `hashed_password`, and `User` is used in the `response_model`), it would still pass the validation (because `UserInDB` is a subclass of `User`) and the object would be returned as-is, including the `hashed_password`. To fix this, the declared `response_model` is cloned, if it is a Pydantic model class (or contains Pydantic model classes in it, e.g. in a `List[Item]`), the Pydantic model class(es) will be a different one (the "cloned" one). So, an object that is a subclass won't simply pass the validation and returned as-is, because it is no longer a sub-class of the cloned `response_model`. Instead, a new Pydantic model object will be created with the contents of the returned object. So, it will be a new object (made with the data from the returned one), and will be filtered by the cloned `response_model`, containing only the declared fields as normally.
     * PR [#322](https://github.com/tiangolo/fastapi/pull/322).
 

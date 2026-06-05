@@ -159,7 +159,7 @@ You can read more about it at [The Twelve-Factor App: Config](https://12factor.n
 
 ## Types and Validation { #types-and-validation }
 
-These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
+These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, such as Linux, Windows, and macOS).
 
 That means that **any value** read in Python from an environment variable **will be a `str`**, and any conversion to a different type or any validation has to be done in code.
 

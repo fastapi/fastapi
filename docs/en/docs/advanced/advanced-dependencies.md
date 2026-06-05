@@ -54,7 +54,7 @@ checker(q="somequery")
 
 /// tip
 
-All this might seem contrived. And it might not be very clear how is it useful yet.
+All this might seem contrived. And it might not be very clear how it is useful yet.
 
 These examples are intentionally simple, but show how it all works.
 

@@ -173,7 +173,7 @@ Now use the parameter `callbacks` in *your API's path operation decorator* to pa
 
 /// tip
 
-Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+Notice that you are not passing the router itself (`invoices_callback_router`) to `callbacks=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
 
 ///
 

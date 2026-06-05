@@ -130,6 +130,6 @@ First try with `bump-pydantic`, if your tests pass and that works, then you're d
 
 If `bump-pydantic` doesn't work for your use case, you can use the support for both Pydantic v1 and v2 models in the same app to do the migration to Pydantic v2 gradually.
 
-You could fist upgrade Pydantic to use the latest version 2, and change the imports to use `pydantic.v1` for all your models.
+You could first upgrade Pydantic to use the latest version 2, and change the imports to use `pydantic.v1` for all your models.
 
 Then, you can start migrating your models from Pydantic v1 to v2 in groups, in gradual steps. 🚶
