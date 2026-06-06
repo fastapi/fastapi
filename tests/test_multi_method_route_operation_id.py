@@ -43,6 +43,11 @@ def test_multi_method_route_generates_unique_operation_ids() -> None:
 
     assert response.status_code == 200
 
+    # Execute the handler to ensure coverage and runtime correctness
+    response_multi = client.get("/multi")
+    assert response_multi.status_code == 200
+    assert response_multi.json() == {"method": "GET"}
+
     # No duplicate-operation-ID warning must be emitted
     dup_warnings = [w for w in caught if "Duplicate Operation ID" in str(w.message)]
     assert dup_warnings == [], f"Unexpected duplicate-ID warnings: {dup_warnings}"
