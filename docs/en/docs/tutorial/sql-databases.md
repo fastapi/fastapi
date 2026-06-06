@@ -143,7 +143,7 @@ We can **read** a single `Hero`.
 
 We can also **delete** a `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[69:76] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[69:76] hl[74] *}
 
 ### Run the App { #run-the-app }
 
@@ -328,7 +328,7 @@ Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with th
 
 We won't satisfy the desire to refactor everything in this one. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[100:107] hl[102] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[100:107] hl[105] *}
 
 ### Run the App Again { #run-the-app-again }
 
