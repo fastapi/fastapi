@@ -12,11 +12,9 @@ generation.
 
 import warnings
 
-import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from starlette.requests import Request
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -116,8 +114,14 @@ def test_single_method_routes_operation_ids_unchanged() -> None:
     paths = response.json()["paths"]
     assert paths["/items"]["get"]["operationId"] == "get_items_items_get"
     assert paths["/items"]["post"]["operationId"] == "create_item_items_post"
-    assert paths["/items/{item_id}"]["put"]["operationId"] == "update_item_items__item_id__put"
-    assert paths["/items/{item_id}"]["delete"]["operationId"] == "delete_item_items__item_id__delete"
+    assert (
+        paths["/items/{item_id}"]["put"]["operationId"]
+        == "update_item_items__item_id__put"
+    )
+    assert (
+        paths["/items/{item_id}"]["delete"]["operationId"]
+        == "delete_item_items__item_id__delete"
+    )
 
 
 # ---------------------------------------------------------------------------
