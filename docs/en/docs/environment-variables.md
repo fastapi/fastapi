@@ -291,7 +291,7 @@ This information will be useful when learning about [Virtual Environments](virtu
 
 With this you should have a basic understanding of what **environment variables** are and how to use them in Python.
 
-You can also read more about them in the [Wikipedia for Environment Variable](https://en.wikipedia.org/wiki/Environment_variable).
+You can also read more about them in the [Wikipedia for Environment Variables](https://en.wikipedia.org/wiki/Environment_variable).
 
 In many cases it's not very obvious how environment variables would be useful and applicable right away. But they keep showing up in many different scenarios when you are developing, so it's good to know about them.
 
