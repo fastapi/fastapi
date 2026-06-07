@@ -8,6 +8,8 @@ FastAPI version 0.119.0 introduced partial support for Pydantic v1 from inside o
 
 FastAPI 0.126.0 dropped support for Pydantic v1, while still supporting `pydantic.v1` for a little while.
 
+FastAPI 0.128.0 dropped support for `pydantic.v1` as well, so the latest versions of FastAPI require Pydantic v2.
+
 /// warning
 
 The Pydantic team stopped support for Pydantic v1 for the latest versions of Python, starting with **Python 3.14**.
@@ -53,6 +55,16 @@ This means that you can install the latest version of Pydantic v2 and import and
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### FastAPI support for Pydantic v1 in v2 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning
+
+This FastAPI support for `pydantic.v1` models was added in **FastAPI 0.119.0** and removed in **FastAPI 0.128.0**. It was meant to be a temporary aid for the migration to Pydantic v2.
+
+In current versions of FastAPI, using a `pydantic.v1` model in your app will raise an error.
+
+The rest of this section describes the temporary support available only in those older versions.
+
+///
 
 Since FastAPI 0.119.0, there's also partial support for Pydantic v1 from inside of Pydantic v2, to facilitate the migration to v2.
 
@@ -121,6 +133,12 @@ If you need to use some of the FastAPI-specific tools for parameters like `Body`
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### Migrate in steps { #migrate-in-steps }
+
+/// warning
+
+The gradual migration using both Pydantic v1 and v2 models in the same app described below only works in **FastAPI 0.119.0 to 0.127.x**. It was removed in **FastAPI 0.128.0**, the latest versions require **Pydantic v2** models.
+
+///
 
 /// tip
 
