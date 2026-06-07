@@ -629,6 +629,12 @@ async def solve_dependencies(
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
+        # Reuse the cached result and skip re-solving the whole sub-tree.
+        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant.cache_key]
+            if sub_dependant.name is not None:
+                values[sub_dependant.name] = solved
+            continue
         if (
             dependency_overrides_provider
             and dependency_overrides_provider.dependency_overrides

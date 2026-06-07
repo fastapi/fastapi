@@ -35,6 +35,23 @@ async def get_sub_counter_no_cache(
     return {"counter": count, "subcounter": subcount}
 
 
+async def super_dep_no_cache_child(
+    count: int = Depends(dep_counter, use_cache=False),
+):
+    return count
+
+
+@app.get("/cached-parent-no-cache-child/")
+async def get_cached_parent_no_cache_child(
+    # The same cached dependency is referenced twice. On the second reference the
+    # cached result is reused without re-solving its sub-tree, so its non-cached
+    # child (dep_counter) runs only once instead of once per reference.
+    first: int = Depends(super_dep_no_cache_child),
+    second: int = Depends(super_dep_no_cache_child),
+):
+    return {"first": first, "second": second}
+
+
 @app.get("/scope-counter")
 async def get_scope_counter(
     count: int = Security(dep_counter),
@@ -79,6 +96,16 @@ def test_sub_counter_no_cache():
     response = client.get("/sub-counter-no-cache/")
     assert response.status_code == 200, response.text
     assert response.json() == {"counter": 4, "subcounter": 3}
+
+
+def test_cached_parent_does_not_resolve_no_cache_child_twice():
+    counter_holder["counter"] = 0
+    response = client.get("/cached-parent-no-cache-child/")
+    assert response.status_code == 200, response.text
+    # The cached parent is solved once; its non-cached child runs only once and
+    # the second reference reuses the cached parent value.
+    assert response.json() == {"first": 1, "second": 1}
+    assert counter_holder["counter"] == 1
 
 
 def test_security_cache():
