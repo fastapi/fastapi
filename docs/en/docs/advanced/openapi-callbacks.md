@@ -4,7 +4,7 @@ You could create an API with a *path operation* that could trigger a request to 
 
 The process that happens when your API app calls the *external API* is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API *calls back*, sending a request to an *external API* (that was probably created by the same developer).
 
-In this case, you could want to document how that external API *should* look like. What *path operation* it should have, what body it should expect, what response it should return, etc.
+In this case, you could want to document what that external API *should* look like. What *path operation* it should have, what body it should expect, what response it should return, etc.
 
 ## An app with callbacks { #an-app-with-callbacks }
 
@@ -25,7 +25,7 @@ Then your API will (let's imagine):
 
 ## The normal **FastAPI** app { #the-normal-fastapi-app }
 
-Let's first see how the normal API app would look like before adding the callback.
+Let's first see what the normal API app would look like before adding the callback.
 
 It will have a *path operation* that will receive an `Invoice` body, and a query parameter `callback_url` that will contain the URL for the callback.
 
@@ -56,7 +56,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 But possibly the most important part of the callback is making sure that your API user (the external developer) implements the *external API* correctly, according to the data that *your API* is going to send in the request body of the callback, etc.
 
-So, what we will do next is add the code to document how that *external API* should look like to receive the callback from *your API*.
+So, what we will do next is add the code to document what that *external API* should look like to receive the callback from *your API*.
 
 That documentation will show up in the Swagger UI at `/docs` in your API, and it will let external developers know how to build the *external API*.
 
@@ -72,11 +72,11 @@ When implementing the callback yourself, you could use something like [HTTPX](ht
 
 ## Write the callback documentation code { #write-the-callback-documentation-code }
 
-This code won't be executed in your app, we only need it to *document* how that *external API* should look like.
+This code won't be executed in your app, we only need it to *document* what that *external API* should look like.
 
 But, you already know how to easily create automatic documentation for an API with **FastAPI**.
 
-So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
+So we are going to use that same knowledge to document what the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
 
 /// tip
 
@@ -181,6 +181,6 @@ Notice that you are not passing the router itself (`invoices_callback_router`) t
 
 Now you can start your app and go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
+You will see your docs including a "Callbacks" section for your *path operation* that shows what the *external API* should look like:
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

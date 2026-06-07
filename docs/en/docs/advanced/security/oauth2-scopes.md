@@ -198,7 +198,7 @@ As the `get_current_active_user` dependency has `get_current_user` as a sub-depe
 
 The *path operation* itself also declares a scope, `"items"`, so this will also be in the list of `security_scopes.scopes` passed to `get_current_user`.
 
-Here's how the hierarchy of dependencies and scopes looks like:
+Here's what the hierarchy of dependencies and scopes looks like:
 
 * The *path operation* `read_own_items` has:
     * Required scopes `["items"]` with the dependency:

@@ -112,7 +112,7 @@ For example, imagine you have code that uses a database session in a dependency 
 
 In this case, the database session would be held until the response is finished being sent, but if you don't use it, then it wouldn't be necessary to hold it.
 
-Here's how it could look like:
+Here's what it could look like:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py *}
 

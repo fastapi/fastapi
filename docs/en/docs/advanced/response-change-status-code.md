@@ -26,6 +26,6 @@ And then you can return any object you need, as you normally would (a `dict`, a 
 
 And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
 
-**FastAPI** will use that *temporal* response to extract the status code (also cookies and headers), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
+**FastAPI** will use that *temporary* response to extract the status code (also cookies and headers), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
 
 You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win.

@@ -16,7 +16,7 @@ PRs with suggestions to the language-specific LLM prompt require approval from a
 
 Let's say that you want to request translations for a language that is not yet translated, not even some pages. For example, Latin.
 
-* The first step would be for you to find other 2 people that would be willing to be reviewing translation PRs for that language with you.
+* The first step would be for you to find 2 other people who would be willing to be reviewing translation PRs for that language with you.
 * Once there are at least 3 people that would be willing to commit to help maintain that language, you can continue the next steps.
 * Create a new discussion following the template.
 * Tag the other 2 people that will help with the language, and ask them to confirm in the comments that they will help.

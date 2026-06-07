@@ -6106,7 +6106,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
         * [Using FastAPI with Django](https://www.stavros.io/posts/fastapi-with-django/)  by [Stavros Korokithakis](https://x.com/Stavros).
         * [Introducing Dispatch](https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072) by [Netflix](https://netflixtechblog.com/).
     * **Podcasts**:
-        * [Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastían Ramírez (tiangolo)](https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/) by [Podcast.`__init__`](https://www.pythonpodcast.com/).
+        * [Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastián Ramírez (tiangolo)](https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/) by [Podcast.`__init__`](https://www.pythonpodcast.com/).
     * **Talks**:
         * [PyConBY 2020: Serve ML models easily with FastAPI](https://www.youtube.com/watch?v=z9K5pwb0rt8) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
         * [[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI](https://www.youtube.com/watch?v=PnpTY1f4k2U) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
@@ -6655,7 +6655,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add support for `dependencies` parameter:
     * A parameter in *path operation decorators*, for dependencies that should be executed but the return value is not important or not used in the *path operation function*.
     * A parameter in the `.include_router()` method of FastAPI applications and routers, to include dependencies that should be executed in each *path operation* in a router.
-        * This is useful, for example, to require authentication or permissions in specific group of *path operations*.
+        * This is useful, for example, to require authentication or permissions in a specific group of *path operations*.
         * Different `dependencies` can be applied to different routers.
     * These `dependencies` are run before the normal parameter dependencies. And normal dependencies are run too. They can be combined.
     * Dependencies declared in a router are executed first, then the ones defined in *path operation decorators*, and then the ones declared in normal parameters. They are all combined and executed.

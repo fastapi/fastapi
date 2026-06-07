@@ -519,7 +519,7 @@ Here are some examples of when that could make sense:
 
 #### A Simple App { #a-simple-app }
 
-You could want a process manager in the container if your application is **simple enough** that can run it on a **single server**, not a cluster.
+You could want a process manager in the container if your application is **simple enough** that you can run it on a **single server**, not a cluster.
 
 #### Docker Compose { #docker-compose }
 

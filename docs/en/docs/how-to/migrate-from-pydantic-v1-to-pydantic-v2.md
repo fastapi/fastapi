@@ -88,7 +88,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-...but, you can have separated models using Pydantic v1 and v2 in the same app.
+...but you can have separate models, some using Pydantic v1 and others using Pydantic v2, in the same app.
 
 ```mermaid
 graph TB
