@@ -507,7 +507,14 @@ def get_request_handler(
                             data_str: str | None = item.raw_data
                         elif item.data is not None:
                             if hasattr(item.data, "model_dump_json"):
-                                data_str = item.data.model_dump_json()
+                                data_str = item.data.model_dump_json(
+                                    include=response_model_include,
+                                    exclude=response_model_exclude,
+                                    by_alias=response_model_by_alias,
+                                    exclude_unset=response_model_exclude_unset,
+                                    exclude_defaults=response_model_exclude_defaults,
+                                    exclude_none=response_model_exclude_none,
+                                )
                             else:
                                 data_str = json.dumps(jsonable_encoder(item.data))
                         else:
