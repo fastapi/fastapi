@@ -1,3 +1,5 @@
+import subprocess
+import sys
 import warnings
 
 import pytest
@@ -77,3 +79,44 @@ def test_ujson_response_returns_correct_data():
 def test_ujson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="UJSONResponse is deprecated"):
         UJSONResponse(content={"hello": "world"})
+
+
+# Optional-import resilience
+
+
+def test_responses_importable_when_orjson_raises_import_error():
+    # A corrupt/broken orjson install raises ImportError (not ModuleNotFoundError)
+    # when its C extension fails to load. fastapi.responses must remain importable.
+    script = (
+        "import importlib; _real = importlib.import_module\n"
+        "def _fake(name, package=None):\n"
+        "    if name == 'orjson': raise ImportError('binary load failed')\n"
+        "    return _real(name, package)\n"
+        "importlib.import_module = _fake\n"
+        "import fastapi.responses\n"
+        "assert fastapi.responses.orjson is None\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+
+
+def test_responses_importable_when_ujson_raises_import_error():
+    script = (
+        "import importlib; _real = importlib.import_module\n"
+        "def _fake(name, package=None):\n"
+        "    if name == 'ujson': raise ImportError('binary load failed')\n"
+        "    return _real(name, package)\n"
+        "importlib.import_module = _fake\n"
+        "import fastapi.responses\n"
+        "assert fastapi.responses.ujson is None\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
