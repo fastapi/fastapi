@@ -8,12 +8,16 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Item(BaseModel):
     name: str
     description: str | None = None
+
+
+class AliasedItem(BaseModel):
+    name: str = Field(serialization_alias="itemName")
 
 
 items = [
@@ -78,6 +82,11 @@ async def sse_items_string():
 async def sse_items_post() -> AsyncIterable[Item]:
     for item in items:
         yield item
+
+
+@app.get("/items/stream-sse-aliased", response_class=EventSourceResponse)
+async def sse_items_aliased():
+    yield ServerSentEvent(data=AliasedItem(name="Portal Gun"))
 
 
 @app.get("/items/stream-raw", response_class=EventSourceResponse)
@@ -197,6 +206,17 @@ def test_sse_events_with_fields(client: TestClient):
 
     assert "retry: 5000\n" in text
     assert 'data: "retry-test"\n' in text
+
+
+def test_sse_event_model_data_uses_serialization_alias(client: TestClient):
+    response = client.get("/items/stream-sse-aliased")
+    assert response.status_code == 200
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 1
+    assert '"itemName":"Portal Gun"' in data_lines[0]
+    assert '"name"' not in data_lines[0]
 
 
 def test_mixed_plain_and_sse_events(client: TestClient):

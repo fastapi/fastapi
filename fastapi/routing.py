@@ -507,7 +507,7 @@ def get_request_handler(
                             data_str: str | None = item.raw_data
                         elif item.data is not None:
                             if hasattr(item.data, "model_dump_json"):
-                                data_str = item.data.model_dump_json()
+                                data_str = item.data.model_dump_json(by_alias=True)
                             else:
                                 data_str = json.dumps(jsonable_encoder(item.data))
                         else:
