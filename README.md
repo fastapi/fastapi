@@ -450,9 +450,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ### Deploy your app (optional)
 
-You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
-
-If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀
 
 <div class="termy">
 
@@ -467,6 +465,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+The CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.
 
 That's it! Now you can access your app at that URL. ✨
 
