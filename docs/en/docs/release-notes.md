@@ -30,6 +30,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the github-actions group with 3 updates. PR [#15720](https://github.com/fastapi/fastapi/pull/15720) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.1.0 to 1.2.1. PR [#15722](https://github.com/fastapi/fastapi/pull/15722) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump https://github.com/crate-ci/typos from v1.46.0 to v1.47.1 in the pre-commit group. PR [#15719](https://github.com/fastapi/fastapi/pull/15719) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors, add Rapidproxy. PR [#15689](https://github.com/fastapi/fastapi/pull/15689) by [@tiangolo](https://github.com/tiangolo).
