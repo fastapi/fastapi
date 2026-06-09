@@ -23,7 +23,7 @@ Write like a developer explaining something to a colleague over lunch — clear,
 | 将其复制到...文件中 | 复制到...里 | "将其" is literary, not spoken |
 | 该行显示了...的URL地址 | 这行告诉你...的地址 | "该" as a pronoun is stiff; "地址" already implies URL |
 | 你将会看到 | 你会看到 | "将会" is news-anchor tone |
-| 它并非...而只是... | 不是...就是... | "并非...而只是" is essay-style |
+| 它并非...而只是... | 不是...只是... | "并非...而只是" is essay-style; "不是...只是..." preserves the contrast |
 | 可能像下面这样 | 长这样 / 像这样 | "可能" is unnecessary hedging |
 | 由于路径首先匹配，因此始终会使用第一个定义的 | 路径优先匹配，永远走第一个 | Remove "由于...因此" scaffolding |
 | 通过从 str 继承，API 文档就能... | 继承 str 后，API 文档会... | "通过从...继承" is English grammar mapped to Chinese |
