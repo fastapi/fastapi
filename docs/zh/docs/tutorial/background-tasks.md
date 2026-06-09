@@ -1,84 +1,84 @@
 # 后台任务 { #background-tasks }
 
-你可以定义在返回响应后运行的后台任务。
+你可以定义后台任务。它会在返回响应之后运行。
 
-这对需要在请求之后执行的操作很有用，但客户端不必在接收响应之前等待操作完成。
+这适合那些请求后需要做，但没必要让客户端等着的操作。
 
-包括这些例子：
+比如：
 
-* 执行操作后发送的电子邮件通知：
-    * 由于连接到电子邮件服务器并发送电子邮件往往很“慢”（几秒钟），您可以立即返回响应并在后台发送电子邮件通知。
+* 动作完成后发邮件通知：
+    * 连接邮件服务器并发送邮件比较慢（要几秒）。可以先返回响应，把发邮件放到后台跑。
 * 处理数据：
-    * 例如，假设您收到的文件必须经过一个缓慢的过程，您可以返回一个"Accepted"(HTTP 202)响应并在后台处理它。
+    * 比如你收到一个需要慢处理的文件。可以先返回 "Accepted"（HTTP 202），把文件在后台处理。
 
 ## 使用 `BackgroundTasks` { #using-backgroundtasks }
 
-首先导入 `BackgroundTasks` 并在 *路径操作函数* 中使用类型声明 `BackgroundTasks` 定义一个参数：
+先导入 `BackgroundTasks`。在你的*路径操作函数*里声明一个类型为 `BackgroundTasks` 的参数：
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
-**FastAPI** 会创建一个 `BackgroundTasks` 类型的对象并作为该参数传入。
+**FastAPI** 会帮你创建 `BackgroundTasks` 实例，并注入到这个参数里。
 
-## 创建一个任务函数 { #create-a-task-function }
+## 写任务函数 { #create-a-task-function }
 
-创建要作为后台任务运行的函数。
+写一个要在后台跑的函数。
 
-它只是一个可以接收参数的标准函数。
+就是普通函数。可以接收参数。
 
-它可以是 `async def` 或普通的 `def` 函数，**FastAPI** 知道如何正确处理。
+可以是 `async def`，也可以是普通 `def`。**FastAPI** 都能正确处理。
 
-在这种情况下，任务函数将写入一个文件（模拟发送电子邮件）。
+这个例子里，任务函数会写文件（模拟发邮件）。
 
-由于写操作不使用 `async` 和 `await`，我们用普通的 `def` 定义函数：
+写文件不需要 `async/await`，所以用普通 `def`：
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## 添加后台任务 { #add-the-background-task }
 
-在你的 *路径操作函数* 里，用 `.add_task()` 方法将任务函数传到 *后台任务* 对象中：
+在你的*路径操作函数*里，用 `.add_task()` 把任务函数加到 `BackgroundTasks` 对象里：
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
-`.add_task()` 接收以下参数：
+`.add_task()` 的参数：
 
-* 在后台运行的任务函数(`write_notification`)。
-* 应按顺序传递给任务函数的任意参数序列(`email`)。
-* 应传递给任务函数的任意关键字参数(`message="some notification"`)。
+* 要在后台运行的任务函数（`write_notification`）。
+* 按位置传给任务函数的参数序列（`email`）。
+* 传给任务函数的关键字参数（`message="some notification"`）。
 
 ## 依赖注入 { #dependency-injection }
 
-使用 `BackgroundTasks` 也适用于依赖注入系统，你可以在多个级别声明 `BackgroundTasks` 类型的参数：在 *路径操作函数* 里，在依赖中(可依赖)，在子依赖中，等等。
+配合依赖注入也能用。你可以在多层级声明 `BackgroundTasks` 参数：在*路径操作函数*、依赖、子依赖等。
 
-**FastAPI** 知道在每种情况下该做什么以及如何复用同一对象，因此所有后台任务被合并在一起并且随后在后台运行：
+**FastAPI** 会复用同一个对象。把各处添加的后台任务合并。等响应发出后再统一执行：
 
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
-该示例中，信息会在响应发出 *之后* 被写到 `log.txt` 文件。
+这个示例里，响应发出后才把消息写进 `log.txt`。
 
-如果请求中有查询，它将在后台任务中写入日志。
+如果请求里有 query，会由后台任务写入日志。
 
-然后另一个在 *路径操作函数* 生成的后台任务会使用路径参数 `email` 写入一条信息。
+然后路径操作函数里再加一个后台任务。它会用 `email` 路径参数写一条消息。
 
 ## 技术细节 { #technical-details }
 
-`BackgroundTasks` 类直接来自 [`starlette.background`](https://www.starlette.dev/background/)。
+`BackgroundTasks` 类来自 [`starlette.background`](https://www.starlette.dev/background/)。
 
-它被直接导入/包含到FastAPI以便你可以从 `fastapi` 导入，并避免意外从 `starlette.background` 导入备用的 `BackgroundTask` (后面没有 `s`)。
+它在 FastAPI 里被直接导出。这样你可以从 `fastapi` 导入，避免不小心从 `starlette.background` 导入另一个 `BackgroundTask`（没有结尾的 s）。
 
-通过仅使用 `BackgroundTasks` (而不是 `BackgroundTask`)，使得能将它作为 *路径操作函数* 的参数 ，并让**FastAPI**为您处理其余部分, 就像直接使用 `Request` 对象。
+只用 `BackgroundTasks`（不是 `BackgroundTask`）时，就能把它当作*路径操作函数*的参数。剩下的交给 **FastAPI**，跟直接用 `Request` 类似。
 
-在FastAPI中仍然可以单独使用 `BackgroundTask`，但您必须在代码中创建对象，并返回包含它的Starlette `Response`。
+当然也能在 FastAPI 里单独用 `BackgroundTask`。但你要自己创建对象，并返回包含它的 Starlette `Response`。
 
-更多细节查看 [Starlette 后台任务的官方文档](https://www.starlette.dev/background/)。
+更多细节看 [Starlette 的 Background Tasks 文档](https://www.starlette.dev/background/)。
 
-## 告诫 { #caveat }
+## 注意事项 { #caveat }
 
-如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 [Celery](https://docs.celeryq.dev)）可能更好。
+如果后台计算很重，而且不需要在同一进程里跑（不需要共享内存、变量等），用更大的工具会更好，比如 [Celery](https://docs.celeryq.dev)。
 
-它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
+它们配置更复杂。需要消息/任务队列管理器，比如 RabbitMQ 或 Redis。好处是能在多个进程，尤其是多台服务器上跑后台任务。
 
-但是，如果您需要从同一个**FastAPI**应用程序访问变量和对象，或者您需要执行小型后台任务（如发送电子邮件通知），您只需使用 `BackgroundTasks` 即可。
+但如果你要访问同一个 **FastAPI** 应用里的变量和对象。或者任务很轻（比如发邮件通知）。用 `BackgroundTasks` 就够了。
 
 ## 回顾 { #recap }
 
-导入并使用 `BackgroundTasks` 通过 *路径操作函数* 中的参数和依赖项来添加后台任务。
+在*路径操作函数*和依赖里导入并使用 `BackgroundTasks` 参数，给应用添加后台任务。

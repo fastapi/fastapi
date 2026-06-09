@@ -1,24 +1,24 @@
-# 请求体 - 多个参数 { #body-multiple-parameters }
+# Body - 多个参数 { #body-multiple-parameters }
 
-既然我们已经知道了如何使用 `Path` 和 `Query`，下面让我们来了解一下请求体声明的更高级用法。
+前面看了 `Path` 和 `Query`。现在来看更高级的请求体声明用法。
 
-## 混合使用 `Path`、`Query` 和请求体参数 { #mix-path-query-and-body-parameters }
+## 混用 `Path`、`Query` 和请求体参数 { #mix-path-query-and-body-parameters }
 
-首先，毫无疑问地，你可以随意地混合使用 `Path`、`Query` 和请求体参数声明，**FastAPI** 会知道该如何处理。
+先说结论。`Path`、`Query` 和请求体参数可以随意混用。**FastAPI** 会自己分辨。
 
-你还可以通过将默认值设置为 `None` 来将请求体参数声明为可选参数：
+Body 参数也能是可选的。把默认值设为 `None` 就行：
 
 {* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note | 注意
 
-请注意，在这种情况下，将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。
+注意，这里从请求体取出的 `item` 是可选的。因为它的默认值是 `None`。
 
 ///
 
 ## 多个请求体参数 { #multiple-body-parameters }
 
-在上面的示例中，*路径操作*将期望一个具有 `Item` 的属性的 JSON 请求体，就像：
+上个例子里，*路径操作* 期望收到一个包含 `Item` 属性的 JSON：
 
 ```JSON
 {
@@ -29,13 +29,13 @@
 }
 ```
 
-但是你也可以声明多个请求体参数，例如 `item` 和 `user`：
+也可以声明多个请求体参数，比如 `item` 和 `user`：
 
 {* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-在这种情况下，**FastAPI** 将注意到该函数中有多个请求体参数（两个 Pydantic 模型参数）。
+这时函数里有不止一个请求体参数（两个都是 Pydantic 模型）。**FastAPI** 会识别出来。
 
-因此，它将使用参数名称作为请求体中的键（字段名称），并期望一个类似于以下内容的请求体：
+它会用参数名作为请求体里的键（字段名）。期望的请求体长这样：
 
 ```JSON
 {
@@ -54,27 +54,27 @@
 
 /// note | 注意
 
-请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
+注意，`item` 的声明和之前一样。现在它需要包在请求体的 `item` 键里。
 
 ///
 
-**FastAPI** 将自动对请求中的数据进行转换，因此 `item` 参数将接收指定的内容，`user` 参数也是如此。
+**FastAPI** 会把请求自动转换。`item` 和 `user` 各拿到各自的内容。
 
-它将执行对复合数据的校验，并且像现在这样为 OpenAPI 模式和自动化文档对其进行记录。
+它会校验组合数据。还会按这个结构生成 OpenAPI 模式和自动文档。
 
-## 请求体中的单一值 { #singular-values-in-body }
+## 请求体里的单个值 { #singular-values-in-body }
 
-与使用 `Query` 和 `Path` 为查询参数和路径参数定义额外数据的方式相同，**FastAPI** 提供了一个同等的 `Body`。
+就像有 `Query`、`Path` 用来给查询参数和路径参数加额外信息。**FastAPI** 也提供了等价的 `Body`。
 
-例如，为了扩展先前的模型，你可能决定除了 `item` 和 `user` 之外，还想在同一请求体中具有另一个键 `importance`。
+比如，在上面的模型上再加一个同级的键 `importance`，和 `item`、`user` 并列。
 
-如果你就按原样声明它，因为它是一个单一值，**FastAPI** 将假定它是一个查询参数。
+如果直接这么声明。因为它是单个值，**FastAPI** 会把它当成查询参数。
 
-但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。
+但你可以用 `Body` 告诉 **FastAPI** 把它当成请求体里的另一个键：
 
 {* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-在这种情况下，**FastAPI** 将期望像这样的请求体：
+这时，**FastAPI** 期望的请求体是：
 
 ```JSON
 {
@@ -92,45 +92,45 @@
 }
 ```
 
-同样的，它将转换数据类型，校验，生成文档等。
+同样会做类型转换、校验和文档生成。
 
-## 多个请求体参数和查询参数 { #multiple-body-params-and-query }
+## 多个请求体参数配合查询参数 { #multiple-body-params-and-query }
 
-当然，除了请求体参数外，你还可以在任何需要的时候声明额外的查询参数。
+当然，也可以在有请求体参数时再加查询参数。
 
-由于默认情况下单一值会被解释为查询参数，因此你不必显式地添加 `Query`，你可以这样写：
+默认单个值会被当成查询参数。你不必显式用 `Query`，直接写：
 
 ```Python
 q: str | None = None
 ```
 
-比如：
+例如：
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | 信息
+/// note | 注意
 
-`Body` 同样具有与 `Query`、`Path` 以及其他后面将看到的类完全相同的额外校验和元数据参数。
+`Body` 也支持和 `Query`、`Path` 一样的额外校验和元数据参数。后面会用到。
 
 ///
 
-## 嵌入单个请求体参数 { #embed-a-single-body-parameter }
+## 嵌套单个请求体参数 { #embed-a-single-body-parameter }
 
-假设你只有一个来自 Pydantic 模型 `Item` 的请求体参数 `item`。
+假设你只有一个 Pydantic 模型 `Item` 的 `item` 请求体参数。
 
-默认情况下，**FastAPI** 将直接期望这样的请求体。
+默认会直接期望模型本身作为请求体。
 
-但是，如果你希望它期望一个拥有 `item` 键并在值中包含模型内容的 JSON，就像在声明额外的请求体参数时所做的那样，则可以使用一个特殊的 `Body` 参数 `embed`：
+但如果你想让它期望一个带 `item` 键的 JSON。模型内容放在这个键里。就像有额外请求体参数时那样。可以用 `Body` 的特殊参数 `embed`：
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
-比如：
+例如：
 
 {* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
-在这种情况下，**FastAPI** 将期望像这样的请求体：
+这时 **FastAPI** 期望的请求体是：
 
 ```JSON hl_lines="2"
 {
@@ -154,12 +154,12 @@ item: Item = Body(embed=True)
 }
 ```
 
-## 总结 { #recap }
+## 小结 { #recap }
 
-你可以添加多个请求体参数到*路径操作函数*中，即使一个请求只能有一个请求体。
+即使一个请求只有一个请求体。你也能在路径操作函数里声明多个请求体参数。
 
-但是 **FastAPI** 会处理它，在函数中为你提供正确的数据，并在*路径操作*中校验并记录正确的模式。
+**FastAPI** 会处理好这些映射。把正确的数据传给函数。并校验并在路径操作里生成正确的模式文档。
 
-你还可以声明将作为请求体的一部分所接收的单一值。
+你也能把单个值声明为请求体的一部分。
 
-你还可以指示 **FastAPI** 在仅声明了一个请求体参数的情况下，将原本的请求体嵌入到一个键中。
+只有一个参数时。也可以让 **FastAPI** 把它嵌在某个键里。
