@@ -6,216 +6,199 @@ Language code: zh.
 
 ### Writing style
 
-Write like a developer explaining something to a colleague over lunch — clear, direct, slightly casual. The reader is a Chinese-speaking programmer, not a professor or a manager.
+Write like a developer explaining something to a colleague — clear, direct, slightly casual. The reader is a Chinese-speaking programmer.
 
 **Core rules:**
 
-1. One sentence, one idea. If a sentence has "并且" or "同时" or "并...并" connecting two independent thoughts, split it.
+1. One sentence, one idea. Split sentences connected by "并且" or "同时" into separate sentences.
 2. Prefer short sentences (under 30 characters) over long ones.
 3. Use spoken Chinese word order, not English-influenced structure.
-4. Technical terms can stay in English if they're more commonly used that way (e.g. API, JSON). See terminology tiers below.
-5. Don't hedge. If something is true, say it. Don't write "可能" or "或许" unless the original text genuinely expresses uncertainty.
-6. Do not drop meaning-carrying words for brevity. If the original says "you can choose to", keep the sense of choice — don't simplify it to "you can".
-7. Distinguish between "can" (ability) and "may" (permission/option). "you can" = 你可以 (ability); "you may" = 你也可以 / 可以 (option).
-8. Stay professional but friendly. Avoid slang or overly casual terms like "小老弟". Use "小兄弟" or "姊妹项目" instead.
-9. Use "其他" (not "其它") in Simplified Chinese. "其它" is an older variant that should be avoided.
-10. Do not repeat conjunctions. "并...并" is incorrect — split into separate sentences or rephrase.
-11. When a Tier 3 term (e.g. "import", "form", "file") appears in prose, always translate it — even if it's also a Python keyword. "import" in prose = "导入"; "import" in code = keep as-is.
-12. Prefer omitting "会" when describing deterministic behavior. "FastAPI 会自动生成" → "FastAPI 自动生成". Keep "会" only for conditional or future-tense contexts.
+4. Technical terms can stay in English if they're more commonly used that way (e.g. API, JSON). See glossary below.
+5. Don't hedge. "可能" / "或许" only when the original genuinely expresses uncertainty.
+6. Distinguish "can" (ability → 你可以) from "may" (option → 你也可以 / 可以).
+7. Use "其他" not "其它" in Simplified Chinese.
+8. When a term appears in prose, translate it per glossary. In code, keep as-is.
+9. Prefer omitting "会" for deterministic behavior: "FastAPI 自动生成" not "FastAPI 会自动生成".
 
-**Patterns to avoid (AI-style Chinese):**
+### Anti-patterns
 
-| ❌ Don't write | ✅ Write instead | Why |
+| ❌ Don't | ✅ Write instead | Why |
 |---|---|---|
-| 将其复制到...文件中 | 复制到...里 | "将其" is literary, not spoken |
-| 该行显示了...的URL地址 | 这行告诉你...的地址 | "该" as a pronoun is stiff; "地址" already implies URL |
+| 将其复制到... | 复制到... | "将其" is literary, not spoken |
+| 该行显示了... | 这行告诉你... | "该" is stiff |
 | 你将会看到 | 你会看到 | "将会" is news-anchor tone |
-| 它并非...而只是... | 不是...只是... | "并非...而只是" is essay-style; "不是...只是..." preserves the contrast |
-| 可能像下面这样 | 长这样 / 像这样 | "可能" is unnecessary hedging |
-| 由于路径首先匹配，因此始终会使用第一个定义的 | 路径优先匹配，永远走第一个 | Remove "由于...因此" scaffolding |
-| 通过从 str 继承，API 文档就能... | 继承 str 后，API 文档会... | "通过从...继承" is English grammar mapped to Chinese |
-| 能充分利用它的功能和优点 | 功能强还好用 | Don't inflate simple ideas |
-| 在使用 GET 时，...的交互式文档不会显示... | GET 请求不显示... | Remove filler ("在使用...时") |
-| 这并非偶然，整个框架都是围绕这种设计构建的 | 这不是巧合，整个框架就是这么设计的 | "围绕...构建" is a translation of "built around" |
-| 导入 Enum 并创建继承自...的子类 | 导入 Enum，写个继承...的子类 | "并创建" is formal; "写个" is natural |
-| 在路径操作函数内部直接访问模型对象的所有属性 | 在路径操作函数里直接访问模型的所有属性 | "内部" → "里"; "对象的" is redundant |
-| 基于某内部开发团队 | 基于内部团队 | "某" adds unnecessary hedging |
-| 依赖和基座 | 依赖项 | "基座" is not standard terminology |
-| 小老弟 | 小兄弟 / 姊妹项目 | "小老弟" is too colloquial for docs |
-| 剧透警告 | 剧透预警 | "剧透" alone loses the warning tone |
-| 另一个自动生成的文档 | 另一套自动文档 | "另一个" is vague; "套" is more precise |
-| 另一个 API 文档 | 另一套 API 文档 | Use "套" for document sets, not "个" |
+| 它并非...而只是... | 不是...只是... | essay-style → spoken |
+| 由于...因此... | (remove scaffolding) | 由于/因此 is redundant |
+| 在编辑器中，函数内部你会在各处得到... | 编辑器里函数各处都有... | 三重冗余 |
+| 通过从 str 继承 | 继承 str 后 | English grammar mapped to Chinese |
+| 并创建继承...的子类 | 写个继承...的子类 | "并创建" is formal |
 | 模型对象的所有属性 | 模型的所有属性 | "对象的" is redundant |
-| 并校验并在... | 先校验，再在... | Avoid "并...并" repetition |
+| 值得注意的是 | 注意 / (just state it) | filler |
+| 在这种情况下 | 这时 / 这种时候 | filler |
+| 从...的角度来看 | (remove) | filler |
+| 对于...而言 | (remove) | filler |
+| 包含默认值的模型属性是可选的，否则就是必选的 | 模型属性有默认值就不是必填 | 太绕 |
+| 发送数据应使用以下之一 | 发数据用这些方法之一 | 太正式 |
+| 例如，上述模型声明如下 JSON | 比如，上面的模型对应的 JSON | 三重正式 |
 
-**More patterns to watch for:**
+### Terminology glossary
 
-- ❌ "你可以在...中找到..." → ✅ "在...里" or just state it directly
-- ❌ "值得注意的是" → ✅ "注意" or just make the point
-- ❌ "在这种情况下" → ✅ "这时" or "这种时候"
-- ❌ "从...的角度来看" → ✅ Remove; just state the fact
-- ❌ "对于...而言" → ✅ Remove; restructure the sentence
-- ❌ "关于...的问题" → ✅ Remove; just name the topic
-- ❌ Redundant "你的" (your) — English needs "your API", Chinese often drops it when context is clear. Examples:
-  - ❌ "为你的 API 生成" → ✅ "为 API 生成"
-  - ❌ "定义你的 API 的 schema" → ✅ "定义 API 的模式"
-  - ❌ "按你的云厂商的文档部署" → ✅ "按云厂商的文档部署"
-  - ❌ "它提供你的 API 所需的一切功能" → ✅ "它提供 API 所需的一切功能"
+**FastAPI 核心概念（必须统一翻译）:**
 
-**Reference style:**
-
-Think of how these write technical Chinese:
-- Vue.js Chinese docs (vuejs.org/zh) — clean, direct, developer-friendly
-- 阮一峰's blog — conversational but precise
-- Go by Example Chinese (gobyexample-cn.github.io) — minimal, no fluff
-
-### Grammar and tone
-
-- Use "你" (not "您") to address the reader.
-- Keep the tone helpful but not condescending. Don't over-explain things that are obvious to a developer.
-- If the original English uses "you can..." or "you will see...", consider whether the Chinese version even needs the subject. Often you can drop "你" and just state the action.
-
-### Headings
-
-- Follow existing Simplified Chinese heading style (short and descriptive).
-- Do not add trailing punctuation to headings.
-- If a heading contains only the name of a FastAPI feature, do not translate it.
-- Anchor IDs (the `{#...}` part) must stay in English. Never translate them.
-
-### Quotes and punctuation
-
-- Keep punctuation style consistent with existing Simplified Chinese docs (they often mix English terms like "FastAPI" with Chinese text).
-- Never change punctuation inside inline code, code blocks, URLs, or file paths.
-
-### Ellipsis
-
-- Keep ellipsis style consistent within each document, prefer `...` over `……`.
-- Never change ellipsis in code, URLs, or CLI examples.
-
-### Code blocks
-
-- Do not translate text inside code blocks.
-- Do not translate code comments inside code blocks. Keep them in English.
-- Do not translate variable names, function names, or class names inside code blocks.
-
-### Spacing (中英文排版)
-
-Follow W3C Chinese text formatting rules:
-
-- Add a space between Chinese and English words:
-  - ✅ "使用 FastAPI 构建"
-  - ❌ "使用FastAPI构建"
-- No space between English and punctuation:
-  - ✅ "FastAPI，Django"
-  - ❌ "FastAPI ， Django"
-- No space between Chinese and Chinese punctuation:
-  - ✅ "中文，中文。"
-  - ❌ "中文 ， 中文 。"
-- Add spaces around inline code and links when next to Chinese:
-  - ✅ "使用 `FastAPI` 构建"
-  - ✅ "查看 [文档](https://example.com) 了解更多"
-  - ❌ "使用`FastAPI`构建"
-
-### Admonitions
-
-- Do NOT change the admonition type during translation:
-  - If the source uses `info`, keep `info`. Do not change it to `note`.
-  - If the source uses `tip`, keep `tip`. Do not change it to `note`.
-  - If the source uses `warning`, keep `warning`. Do not change it to `danger`.
-- You may translate the title text (e.g., `info | 信息`, `tip | 提示`).
-- The admonition keyword must stay in English: `note`, `tip`, `warning`, `info`, `danger`.
-
-### HTML attributes
-
-- Keep alt text in Simplified Chinese. Do not translate alt text to English.
-  - ✅ `alt="FastAPI 微纪录片"`
-  - ❌ `alt="FastAPI Mini Documentary"`
-  - ✅ `alt="FastAPI 大会 '26 - 2026 年 10 月 28 日 - 荷兰阿姆斯特丹"`
-  - ❌ `alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"`
-- Keep title attributes in Chinese when they are user-facing.
-- Do not change text inside `<abbr>` or `<dfn>` tags unless it's natural Chinese.
-
-### Terminology tiers
-
-**Tier 1 — Always translate (术语必须翻译):**
-
-| English | Chinese |
-|---|---|
-| request (HTTP) | 请求 |
-| response (HTTP) | 响应 |
-| path operation | 路径操作 |
-| path operation function | 路径操作函数 |
-| dependency injection | 依赖注入 |
-| middleware | 中间件 |
-| validation | 校验 |
-| request body | 请求体 |
-| background task | 后台任务 |
-| form | 表单 |
-| file | 文件 |
-| schema | 模式 |
-| decorator | 装饰器 |
-| parameter | 参数 |
-| argument | 参数（调用时传入的值） |
-| return | 返回 |
-| raise | 抛出 |
-| import | 导入 |
-| module | 模块 |
-| package | 包 |
-| instance | 实例 |
-| attribute | 属性 |
-| method | 方法 |
-| function | 函数 |
-| class | 类 |
-| type | 类型 |
-| annotation | 注解 |
-| declare | 声明 |
-| async | 异步 |
-| serialization | 序列化 |
-| marshalling | 封送 |
-| alternative | 另一套 |
-
-**Tier 2 — Keep English (保留英文，不翻译):**
-
-Protocols and standards: API, JSON, HTTP, REST, OAuth, JWT, Swagger, OpenAPI, GET, POST, PUT, DELETE, PATCH
-
-Tools and frameworks: Pydantic, Starlette, Uvicorn, FastAPI, Typer, Celery, Redis, RabbitMQ, Visual Studio Code, PyCharm
-
-Acronyms: CLI, SDK, IDE, URL, URI
-
-Keywords in code: async, await
-
-**Tier 3 — Translate in prose, keep English in code (正文翻译，代码/参数名保留英文):**
-
-| English | Prose | Code |
+| English | Chinese | NOT |
 |---|---|---|
-| body | 请求体 | body |
-| Body (FastAPI class) | — (keep as-is) | `Body` |
-| schema | 模式 | Schema |
-| annotation | 注解 | annotation |
-| form | 表单 | form |
-| file | 文件 | file |
-| endpoint | 端点 | endpoint |
-| decorator | 装饰器 | decorator |
+| path operation | 路径操作 | NOT 操作路径, NOT 路由操作 |
+| path operation function | 路径操作函数 | NOT 路径操作功能 |
+| path operation decorator | 路径操作装饰器 | NOT 路径操作修饰器 |
+| dependency injection | 依赖注入 | NOT 依赖性注入 |
+| request body | 请求体 | NOT 请求正文, NOT 请求体内容 |
+| response body | 响应体 | NOT 响应正文 |
+| response model | 响应模型 | NOT 回应模型 |
+| query parameter | 查询参数 | NOT 查询变量 |
+| path parameter | 路径参数 | NOT 路径变量 |
+| background task | 后台任务 | NOT 后台线程 |
+| schema | 模式 | NOT 架构, NOT 方案 (in JSON Schema context) |
+| handler | 处理器 | NOT 句柄 |
+| exception handler | 异常处理器 | NOT 例外处理器 |
+| event handler | 事件处理器 | NOT 事件处理程序 |
+| lifespan | 生命周期 | NOT 寿命, NOT 存活时间 |
+| lifespan event | 生命周期事件 | NOT 寿命事件 |
+| startup event | 启动事件 | NOT 启动事件监听器 |
+| shutdown event | 关闭事件 | NOT 关闭事件监听器 |
+| middleware | 中间件 | NOT 中间层 |
+| endpoint | 端点 | NOT 终结点 |
+| security scheme | 安全方案 | NOT 安全模式 |
+| worker process | 工作进程 | NOT 工人进程 |
+| deployment | 部署 | NOT 部属 |
 
-Note: When "Body" refers to FastAPI's `Body` class or decorator, keep it in English even in prose. When "body" means the concept of request body, translate to "请求体".
+**Web 开发通用:**
+
+| English | Chinese | NOT |
+|---|---|---|
+| request | 请求 | NOT 要求 |
+| response | 响应 | NOT 回复 (in HTTP context) |
+| header | 请求头 / 响应头 | NOT 标题 (in HTTP context) |
+| form | 表单 | NOT 格式 |
+| status code | 状态码 | NOT 状态代码 |
+| validation | 校验 | NOT 验证 (when referring to data validation) |
+| error response | 错误响应 | NOT 错误回复 |
+| frontend | 前端 | NOT 前台 |
+| backend | 后端 | NOT 后台 (when referring to backend server) |
+| authentication | 认证 | NOT 验证 (when referring to auth) |
+| authorization | 授权 | NOT 鉴权 |
+| Bearer Token | Bearer 令牌 | NOT 承载令牌 |
+| password flow | 密码流程 | NOT 密码流 |
+| deprecated | 已弃用 | NOT 已过时, NOT 已废弃 |
+
+**Python / 编程通用:**
+
+| English | Chinese | NOT |
+|---|---|---|
+| class | 类 | NOT 类别 |
+| function | 函数 | NOT 功能 |
+| method | 方法 | NOT 方式 |
+| parameter | 参数 | NOT 变量 (when referring to function params) |
+| attribute | 属性 | NOT 特性 |
+| module | 模块 | NOT 模组 |
+| import | 导入 | NOT 引入 |
+| return | 返回 | NOT 回传 |
+| return type | 返回类型 | NOT 回传类型 |
+| return value | 返回值 | NOT 回传值 |
+| raise | 抛出 | NOT 抛掷, NOT 引发 |
+| exception | 异常 | NOT 例外 |
+| decorator | 装饰器 | NOT 修饰器 |
+| annotation | 注解 | NOT 标注 |
+| type hint | 类型提示 | NOT 类型线索 |
+| type annotation | 类型注解 | NOT 类型标注 |
+| instance | 实例 | NOT 例子 |
+| serialization | 序列化 | NOT 串行化 |
+| inheritance | 继承 | NOT 继派 |
+| concurrency | 并发 | NOT 共行 |
+| parallelism | 并行 | NOT 平行 |
+| multiprocessing | 多进程 | NOT 多处理器 |
+| template | 模板 | NOT 范本 |
+| performance | 性能 | NOT 效能 |
+
+**开发环境与工具:**
+
+| English | Chinese | NOT |
+|---|---|---|
+| virtual environment | 虚拟环境 | NOT 虚拟目录 |
+| environment variable | 环境变量 | NOT 环境参量 |
+| command line | 命令行 | NOT 指令行 |
+| editor support | 编辑器支持 | NOT 编辑器辅助 |
+| code completion | 代码补全 | NOT 代码自动完成 |
+| data validation | 数据校验 | NOT 数据验证 |
+| data conversion | 数据转换 | NOT 数据格式转换 |
+| interactive docs | 交互式文档 | NOT 互动文档 |
+| automatic docs | 自动文档 | NOT 自动化文档 |
+| error message | 错误信息 | NOT 错误消息 |
+
+**保留英文（不翻译）:**
+
+- 框架/工具: FastAPI, Pydantic, Starlette, Uvicorn, Typer, Celery, Redis
+- 协议/标准: JSON, HTTP, REST, OAuth, JWT, Swagger, OpenAPI
+- HTTP 方法: GET, POST, PUT, DELETE, PATCH
+- 缩写: CLI, SDK, IDE, URL, URI, API, CSS, HTML
+- 代码关键字: async, await
+- 常见编程术语（保留英文更自然时）: framework, plugin, payload, callback, endpoint (in code)
+- 安全相关（保留英文）: OAuth2, Bearer, Basic, Digest, CORS, CSRF, TLS, SSL
+- FastAPI 类名（保留英文）: Depends, Query, Body, Form, File, Header, Cookie, Annotated
 
 ### Consistency rules
 
-- Pick one translation for each term and stick with it **throughout all documents**, not just within a single document.
-- Do not switch between "请求体" and "body" in the same document. Choose one:
-  - Recommended: use "请求体" in prose, keep "body" only in code and parameter names.
-- Do not switch between "表单" and "Forms" in the same document. Choose one.
-- Do not switch between "补全" and "自动补全" in the same document. Choose one (recommended: "自动补全").
-- Do not switch between "另一个" and "另一套" for the same concept across documents. Choose one (recommended: "另一套" for document sets).
+- Pick one translation per term and stick with it **across all documents**.
+- Do not switch between "请求体" and "body" in the same document.
+- Do not switch between "表单" and "Forms" in the same document.
+- Do not switch between "另一个" and "另一套" for document sets (use "另一套").
 
-### Terminology teaching
+### Headings
 
-When a chapter explains a specific English term (e.g. "schema", "decorator"), you may keep the English term on first occurrence with a Chinese annotation in parentheses. After that, use the Chinese translation consistently.
+- Follow existing Simplified Chinese heading style (short, descriptive).
+- Do not add trailing punctuation to headings.
+- If a heading contains only a FastAPI feature name, do not translate it.
+- Anchor IDs (`{#...}`) must stay in English.
 
-Example: "一个 **schema**（模式）描述了..." → subsequent uses: "这个模式包含了..."
+### Code blocks
 
-If the chapter is NOT specifically explaining the term, translate it directly per Tier 1/3 rules.
+- Do not translate code, variable names, function names, or class names inside code blocks.
+- Do not translate code comments inside code blocks. Keep them in English.
 
-### Pre-translation scan
+### Admonitions
 
-Before translating a file, scan existing translated files in the same directory to confirm term choices. This prevents cross-document inconsistencies (e.g. "另一个" vs "另一套").
+- Keep the admonition keyword in English: `note`, `tip`, `warning`, `info`, `danger`.
+- Do NOT change the admonition type during translation (e.g. `info` → keep `info`, not `note`).
+- Translate the title: `tip | 提示`, `note | 注意`, `warning | 警告`, `info | 信息`.
+
+### Spacing (中英文排版)
+
+- Add a space between Chinese and English words: ✅ `使用 FastAPI 构建` / ❌ `使用FastAPI构建`
+- No space between English and punctuation: ✅ `FastAPI，Django`
+- Add spaces around inline code next to Chinese: ✅ `使用 `FastAPI` 构建`
+
+### HTML attributes
+
+- Keep alt text in Simplified Chinese.
+- Keep title attributes in Chinese when user-facing.
+
+### Good translation examples
+
+When in doubt, prefer the concise, spoken style over formal writing:
+
+| English | ✅ Good Chinese | ❌ Avoid |
+|---|---|---|
+| The simplest FastAPI file could look like this | 最简单的 FastAPI 文件长这样 | 最简单的 FastAPI 文件可能像下面这样 |
+| Copy that to a file `main.py` | 复制到 `main.py` 里 | 将其复制到 `main.py` 文件中 |
+| That line shows the URL... | 这行告诉你...的地址 | 该行显示了...的URL地址 |
+| model attribute has a default value, it is not required | 模型属性有默认值就不是必填 | 包含默认值的模型属性是可选的，否则就是必选的 |
+| declare it the same way you declared path and query parameters | 和声明路径参数、查询参数的方式一样 | 使用与声明路径和查询参数相同的方式 |
+| That's it. **2 lines**. | 大功告成。**2 行**。 | 就这样。**2 行代码**。 |
+| Let's first just use the code and see how it works | 先直接运行代码看看效果 | 让我们先直接使用代码看看它是如何工作的 |
+
+### Post-translation review
+
+After translating, check:
+1. Are all glossary terms used consistently?
+2. Are there any "AI-style" phrases from the anti-patterns table?
+3. Does the translation read like natural Chinese, not a word-for-word translation?
+4. Are code blocks, links, and admonitions preserved correctly?
