@@ -41,7 +41,8 @@ def is_body_allowed_for_status_code(status_code: int | str | None) -> bool:
 
 
 def get_path_param_names(path: str) -> set[str]:
-    return set(re.findall("{(.*?)}", path))
+    params = re.findall("{(.*?)}", path)
+    return {param.split(":", 1)[0] for param in params}
 
 
 _invalid_args_message = (
