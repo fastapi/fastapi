@@ -245,9 +245,22 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)
+    if isinstance(annotation, ForwardRef):
+        annotation = evaluate_forwardref(annotation, globalns, globalns)  # ty: ignore[deprecated]
         if annotation is type(None):
             return None
+    # Resolve any ForwardRef inside the first argument of Annotated.
+    # Python automatically wraps string args in ForwardRef, e.g.:
+    #   Annotated["Potato", Depends(get_potato)]
+    # becomes Annotated[ForwardRef("Potato"), Depends(get_potato)] at runtime.
+    # Without this, FastAPI never sees the resolved type and treats the
+    # parameter as Any, producing an incorrect OpenAPI schema.
+    if get_origin(annotation) is Annotated:
+        args = get_args(annotation)
+        first_arg = args[0]
+        if isinstance(first_arg, (str, ForwardRef)):
+            resolved_first = get_typed_annotation(first_arg, globalns)
+            annotation = Annotated[tuple([resolved_first] + list(args[1:]))]
     return annotation
 
 
