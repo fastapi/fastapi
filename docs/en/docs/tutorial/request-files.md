@@ -171,6 +171,60 @@ And the same way as before, you can use `File()` to set additional parameters, e
 
 {* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
 
+## File Upload with Validation { #file-upload-with-validation }
+
+In production applications, you often need to validate uploaded files to ensure they meet certain requirements.
+
+Here's an example that validates:
+
+* **File type**: Only allows specific image formats (JPEG, PNG, GIF, WebP)
+* **File size**: Maximum 5MB per file
+* **Number of files**: Maximum 10 files per request
+
+{* ../../docs_src/request_files/tutorial004_an_py39.py hl[9:13,22:24,26:30,33:50] *}
+
+/// tip
+
+Notice how we:
+
+1. Check the `content_type` attribute to validate the file type
+2. Read the file contents with `await file.read()` to check the size
+3. Use `await file.seek(0)` to reset the file pointer for potential further processing
+4. Raise `HTTPException` with appropriate status codes and clear error messages
+
+///
+
+/// warning
+
+Be careful when reading file contents to check the size. For very large files, this could consume significant memory. Consider using streaming validation for production applications with very large file uploads.
+
+///
+
+## Saving Uploaded Files { #saving-uploaded-files }
+
+When you need to save uploaded files to disk, you can use Python's built-in file operations along with `shutil` for efficient copying.
+
+Here's a practical example of uploading and saving product images:
+
+{* ../../docs_src/request_files/tutorial005_an_py39.py hl[1:4,10:12,16:20,53:59,61:63] *}
+
+/// tip
+
+**Security best practices:**
+
+* Generate unique filenames using `uuid4()` to avoid conflicts and potential security issues
+* Validate file extensions to prevent malicious uploads
+* Store files outside your application's source code directory
+* Consider using a dedicated storage service (like AWS S3, Google Cloud Storage) for production applications
+
+///
+
+/// note | Technical Details
+
+The `shutil.copyfileobj()` function efficiently copies the file content from the `UploadFile.file` object to the destination file. This is more memory-efficient than reading the entire file into memory first.
+
+///
+
 ## Recap { #recap }
 
 Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data.
