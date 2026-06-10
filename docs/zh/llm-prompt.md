@@ -20,6 +20,8 @@ Write like a developer explaining something to a colleague over lunch — clear,
 8. Stay professional but friendly. Avoid slang or overly casual terms like "小老弟". Use "小兄弟" or "姊妹项目" instead.
 9. Use "其他" (not "其它") in Simplified Chinese. "其它" is an older variant that should be avoided.
 10. Do not repeat conjunctions. "并...并" is incorrect — split into separate sentences or rephrase.
+11. When a Tier 3 term (e.g. "import", "form", "file") appears in prose, always translate it — even if it's also a Python keyword. "import" in prose = "导入"; "import" in code = keep as-is.
+12. Prefer omitting "会" when describing deterministic behavior. "FastAPI 会自动生成" → "FastAPI 自动生成". Keep "会" only for conditional or future-tense contexts.
 
 **Patterns to avoid (AI-style Chinese):**
 
@@ -205,3 +207,15 @@ Note: When "Body" refers to FastAPI's `Body` class or decorator, keep it in Engl
 - Do not switch between "表单" and "Forms" in the same document. Choose one.
 - Do not switch between "补全" and "自动补全" in the same document. Choose one (recommended: "自动补全").
 - Do not switch between "另一个" and "另一套" for the same concept across documents. Choose one (recommended: "另一套" for document sets).
+
+### Terminology teaching
+
+When a chapter explains a specific English term (e.g. "schema", "decorator"), you may keep the English term on first occurrence with a Chinese annotation in parentheses. After that, use the Chinese translation consistently.
+
+Example: "一个 **schema**（模式）描述了..." → subsequent uses: "这个模式包含了..."
+
+If the chapter is NOT specifically explaining the term, translate it directly per Tier 1/3 rules.
+
+### Pre-translation scan
+
+Before translating a file, scan existing translated files in the same directory to confirm term choices. This prevents cross-document inconsistencies (e.g. "另一个" vs "另一套").
