@@ -10,14 +10,16 @@ Write like a developer explaining something to a colleague over lunch — clear,
 
 **Core rules:**
 
-1. One sentence, one idea. If a sentence has "并且" or "同时" connecting two independent thoughts, split it.
+1. One sentence, one idea. If a sentence has "并且" or "同时" or "并...并" connecting two independent thoughts, split it.
 2. Prefer short sentences (under 30 characters) over long ones.
 3. Use spoken Chinese word order, not English-influenced structure.
-4. Technical terms can stay in English if they're more commonly used that way (e.g. API, JSON, decorator, endpoint). See terminology tiers below.
+4. Technical terms can stay in English if they're more commonly used that way (e.g. API, JSON). See terminology tiers below.
 5. Don't hedge. If something is true, say it. Don't write "可能" or "或许" unless the original text genuinely expresses uncertainty.
 6. Do not drop meaning-carrying words for brevity. If the original says "you can choose to", keep the sense of choice — don't simplify it to "you can".
 7. Distinguish between "can" (ability) and "may" (permission/option). "you can" = 你可以 (ability); "you may" = 你也可以 / 可以 (option).
 8. Stay professional but friendly. Avoid slang or overly casual terms like "小老弟". Use "小兄弟" or "姊妹项目" instead.
+9. Use "其他" (not "其它") in Simplified Chinese. "其它" is an older variant that should be avoided.
+10. Do not repeat conjunctions. "并...并" is incorrect — split into separate sentences or rephrase.
 
 **Patterns to avoid (AI-style Chinese):**
 
@@ -40,6 +42,9 @@ Write like a developer explaining something to a colleague over lunch — clear,
 | 小老弟 | 小兄弟 / 姊妹项目 | "小老弟" is too colloquial for docs |
 | 剧透警告 | 剧透预警 | "剧透" alone loses the warning tone |
 | 另一个自动生成的文档 | 另一套自动文档 | "另一个" is vague; "套" is more precise |
+| 另一个 API 文档 | 另一套 API 文档 | Use "套" for document sets, not "个" |
+| 模型对象的所有属性 | 模型的所有属性 | "对象的" is redundant |
+| 并校验并在... | 先校验，再在... | Avoid "并...并" repetition |
 
 **More patterns to watch for:**
 
@@ -49,7 +54,11 @@ Write like a developer explaining something to a colleague over lunch — clear,
 - ❌ "从...的角度来看" → ✅ Remove; just state the fact
 - ❌ "对于...而言" → ✅ Remove; restructure the sentence
 - ❌ "关于...的问题" → ✅ Remove; just name the topic
-- ❌ Redundant "你的" (your) — English needs "your API", Chinese often drops it when context is clear
+- ❌ Redundant "你的" (your) — English needs "your API", Chinese often drops it when context is clear. Examples:
+  - ❌ "为你的 API 生成" → ✅ "为 API 生成"
+  - ❌ "定义你的 API 的 schema" → ✅ "定义 API 的模式"
+  - ❌ "按你的云厂商的文档部署" → ✅ "按云厂商的文档部署"
+  - ❌ "它提供你的 API 所需的一切功能" → ✅ "它提供 API 所需的一切功能"
 
 **Reference style:**
 
@@ -69,6 +78,7 @@ Think of how these write technical Chinese:
 - Follow existing Simplified Chinese heading style (short and descriptive).
 - Do not add trailing punctuation to headings.
 - If a heading contains only the name of a FastAPI feature, do not translate it.
+- Anchor IDs (the `{#...}` part) must stay in English. Never translate them.
 
 ### Quotes and punctuation
 
@@ -79,6 +89,12 @@ Think of how these write technical Chinese:
 
 - Keep ellipsis style consistent within each document, prefer `...` over `……`.
 - Never change ellipsis in code, URLs, or CLI examples.
+
+### Code blocks
+
+- Do not translate text inside code blocks.
+- Do not translate code comments inside code blocks. Keep them in English.
+- Do not translate variable names, function names, or class names inside code blocks.
 
 ### Spacing (中英文排版)
 
@@ -112,6 +128,8 @@ Follow W3C Chinese text formatting rules:
 - Keep alt text in Simplified Chinese. Do not translate alt text to English.
   - ✅ `alt="FastAPI 微纪录片"`
   - ❌ `alt="FastAPI Mini Documentary"`
+  - ✅ `alt="FastAPI 大会 '26 - 2026 年 10 月 28 日 - 荷兰阿姆斯特丹"`
+  - ❌ `alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"`
 - Keep title attributes in Chinese when they are user-facing.
 - Do not change text inside `<abbr>` or `<dfn>` tags unless it's natural Chinese.
 
@@ -133,7 +151,6 @@ Follow W3C Chinese text formatting rules:
 | form | 表单 |
 | file | 文件 |
 | schema | 模式 |
-| endpoint | 端点 |
 | decorator | 装饰器 |
 | parameter | 参数 |
 | argument | 参数（调用时传入的值） |
@@ -157,22 +174,34 @@ Follow W3C Chinese text formatting rules:
 
 **Tier 2 — Keep English (保留英文，不翻译):**
 
-API, JSON, HTTP, REST, OAuth, JWT, Swagger, OpenAPI, GET, POST, PUT, DELETE, PATCH, async, await, decorator, endpoint, Pydantic, Starlette, Uvicorn, FastAPI, Typer, CLI, SDK, IDE, URL, URI
+Protocols and standards: API, JSON, HTTP, REST, OAuth, JWT, Swagger, OpenAPI, GET, POST, PUT, DELETE, PATCH
+
+Tools and frameworks: Pydantic, Starlette, Uvicorn, FastAPI, Typer, Celery, Redis, RabbitMQ, Visual Studio Code, PyCharm
+
+Acronyms: CLI, SDK, IDE, URL, URI
+
+Keywords in code: async, await
 
 **Tier 3 — Translate in prose, keep English in code (正文翻译，代码/参数名保留英文):**
 
 | English | Prose | Code |
 |---|---|---|
 | body | 请求体 | body |
+| Body (FastAPI class) | — (keep as-is) | `Body` |
 | schema | 模式 | Schema |
 | annotation | 标注 | annotation |
 | form | 表单 | form |
 | file | 文件 | file |
+| endpoint | 端点 | endpoint |
+| decorator | 装饰器 | decorator |
+
+Note: When "Body" refers to FastAPI's `Body` class or decorator, keep it in English even in prose. When "body" means the concept of request body, translate to "请求体".
 
 ### Consistency rules
 
-- Pick one translation for each term and stick with it throughout the document.
+- Pick one translation for each term and stick with it **throughout all documents**, not just within a single document.
 - Do not switch between "请求体" and "body" in the same document. Choose one:
   - Recommended: use "请求体" in prose, keep "body" only in code and parameter names.
 - Do not switch between "表单" and "Forms" in the same document. Choose one.
 - Do not switch between "补全" and "自动补全" in the same document. Choose one (recommended: "自动补全").
+- Do not switch between "另一个" and "另一套" for the same concept across documents. Choose one (recommended: "另一套" for document sets).
