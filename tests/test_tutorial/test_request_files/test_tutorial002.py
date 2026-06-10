@@ -197,6 +197,7 @@ def test_openapi_schema(client: TestClient):
                                 "type": "array",
                                 "items": {
                                     "type": "string",
+                                    "format": "binary",
                                     "contentMediaType": "application/octet-stream",
                                 },
                             }
@@ -212,6 +213,7 @@ def test_openapi_schema(client: TestClient):
                                 "type": "array",
                                 "items": {
                                     "type": "string",
+                                    "format": "binary",
                                     "contentMediaType": "application/octet-stream",
                                 },
                             }

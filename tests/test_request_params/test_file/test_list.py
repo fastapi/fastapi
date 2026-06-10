@@ -3,6 +3,7 @@ from typing import Annotated
 import pytest
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 
 from .utils import get_body_model_name
 
@@ -33,21 +34,24 @@ def test_list_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "binary",
+                        "contentMediaType": "application/octet-stream",
+                    },
+                    "title": "P",
                 },
-                "title": "P",
             },
-        },
-        "required": ["p"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -114,21 +118,24 @@ def test_list_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_alias": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_alias": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "binary",
+                        "contentMediaType": "application/octet-stream",
+                    },
+                    "title": "P Alias",
                 },
-                "title": "P Alias",
             },
-        },
-        "required": ["p_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -223,21 +230,24 @@ def test_list_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_val_alias": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_val_alias": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "binary",
+                        "contentMediaType": "application/octet-stream",
+                    },
+                    "title": "P Val Alias",
                 },
-                "title": "P Val Alias",
             },
-        },
-        "required": ["p_val_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_val_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -343,21 +353,24 @@ def test_list_alias_and_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_val_alias": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_val_alias": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "binary",
+                        "contentMediaType": "application/octet-stream",
+                    },
+                    "title": "P Val Alias",
                 },
-                "title": "P Val Alias",
             },
-        },
-        "required": ["p_val_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_val_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
