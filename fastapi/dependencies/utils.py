@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import json
 import sys
 from collections.abc import (
     AsyncGenerator,
@@ -599,7 +600,8 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: dict[str, Any] | FormData | bytes | None = None,
+    body: bytes | FormData | None = None,
+    is_body_json: bool = False,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -650,6 +652,7 @@ async def solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
+            is_body_json=is_body_json,
             background_tasks=background_tasks,
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
@@ -706,6 +709,7 @@ async def solve_dependencies(
         ) = await request_body_to_args(  # body_params checked above
             body_fields=dependant.body_params,
             received_body=body,
+            is_body_json=is_body_json,
             embed_body_fields=embed_body_fields,
         )
         values.update(body_values)
@@ -735,15 +739,30 @@ async def solve_dependencies(
     )
 
 
+def _validate_json_body_as_model_field(
+    *, field: ModelField, value: bytes, loc: tuple[str, ...]
+) -> tuple[Any, list[Any]]:
+    result, errors = field.validate_json(value, loc=loc)
+    for i, error in enumerate(errors):
+        # Pydantic model.validate_json returns raw body data, bytes with json content
+        # Replace with parsed JSON data
+        if "input" in error and isinstance(error["input"], bytes):
+            try:
+                errors[i]["input"] = json.loads(error["input"])
+            except ValueError:
+                pass
+    return result, errors
+
+
 def _validate_value_with_model_field(
-    *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
+    *, field: ModelField, value: Any, loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
     if value is None:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
         else:
             return deepcopy(field.default), []
-    return field.validate(value, values, loc=loc)
+    return field.validate(value, loc=loc)
 
 
 def _is_json_field(field: ModelField) -> bool:
@@ -849,7 +868,7 @@ def request_params_to_args(
         )
         loc: tuple[str, ...] = (field_info.in_.value,)
         v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
+            field=first_field, value=params_to_process, loc=loc
         )
         return {first_field.name: v_}, errors_
 
@@ -861,7 +880,7 @@ def request_params_to_args(
         )
         loc = (field_info.in_.value, get_validation_alias(field))
         v_, errors_ = _validate_value_with_model_field(
-            field=field, value=value, values=values, loc=loc
+            field=field, value=value, loc=loc
         )
         if errors_:
             errors.extend(errors_)
@@ -954,7 +973,8 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: dict[str, Any] | FormData | bytes | None,
+    received_body: bytes | FormData | None,
+    is_body_json: bool,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -962,7 +982,7 @@ async def request_body_to_args(
     assert body_fields, "request_body_to_args() should be called with fields"
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
-    body_to_process = received_body
+    body_to_process: bytes | FormData | dict[str, Any] | None = received_body
 
     fields_to_extract: list[ModelField] = body_fields
 
@@ -976,12 +996,25 @@ async def request_body_to_args(
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(fields_to_extract, received_body)
 
+    loc: tuple[str, ...] = ("body",)
     if single_not_embedded_field:
-        loc: tuple[str, ...] = ("body",)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=body_to_process, values=values, loc=loc
-        )
+        if is_body_json:
+            v_, errors_ = _validate_json_body_as_model_field(
+                field=first_field, value=cast("bytes", received_body), loc=loc
+            )
+        else:
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=body_to_process, loc=loc
+            )
         return {first_field.name: v_}, errors_
+
+    if is_body_json:
+        # for multiple fields there is no one TypeAdapter,
+        # fallback to parsing body with json module
+        body_to_process, errors = parse_json(cast("bytes", received_body), loc=loc)
+        if errors:
+            return values, errors
+
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
         value: Any | None = None
@@ -993,7 +1026,7 @@ async def request_body_to_args(
                 errors.append(get_missing_field_error(loc))
                 continue
         v_, errors_ = _validate_value_with_model_field(
-            field=field, value=value, values=values, loc=loc
+            field=field, value=value, loc=loc
         )
         if errors_:
             errors.extend(errors_)
@@ -1059,3 +1092,27 @@ def get_body_field(
 def get_validation_alias(field: ModelField) -> str:
     va = getattr(field, "validation_alias", None)
     return va or field.alias
+
+
+def parse_json(
+    data: bytes,
+    loc: tuple[str, ...],
+) -> tuple[Any, list[dict[str, Any]]]:
+    try:
+        return json.loads(data), []
+    except json.JSONDecodeError as e:
+        # Pydantic JSON parser returns different error message and context,
+        # but other fields are the same
+        return None, [
+            {
+                "type": "json_invalid",
+                "loc": loc,
+                "input": data,
+                "msg": f"Invalid JSON: {e.msg}",
+                "ctx": {
+                    "pos": e.pos,
+                    "lineno": e.lineno,
+                    "colno": e.colno,
+                },
+            }
+        ]
