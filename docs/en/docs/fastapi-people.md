@@ -44,7 +44,7 @@ These are the people that:
 * [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github).
 * [Create Pull Requests](help-fastapi.md#create-a-pull-request).
 * Review Pull Requests, [especially important for translations](contributing.md#translations).
-* Help [manage the repository](management-tasks.md) (team members).
+* Help [manage the repository](https://tiangolo.com/github-fastapi/) (team members).
 
 All these tasks help maintain the repository.
 
@@ -54,7 +54,7 @@ A round of applause to them. 👏 🙇
 
 This is the current list of team members. 😎
 
-They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md) and together we  [manage the FastAPI repository](./management.md).
+They have different levels of involvement and permissions, they can perform [repository management tasks](https://tiangolo.com/github-fastapi/) and together we  [manage the FastAPI repository](./management.md).
 
 <div class="user-list user-list-center">
 
