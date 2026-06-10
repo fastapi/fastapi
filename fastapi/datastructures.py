@@ -182,5 +182,5 @@ def Default(value: DefaultType) -> DefaultType:
 
 
 # Sentinel for "parameter not provided" in Param/FieldInfo.
-# Typed as None to satisfy ty
+# Typed as None to satisfy type checkers
 _Unset = Default(None)
