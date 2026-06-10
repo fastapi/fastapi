@@ -154,32 +154,24 @@ Write like a developer explaining something to a colleague — clear, direct, sl
 
 ### Headings
 
+*(Supplements the general prompt's heading rules with Chinese-specific guidance.)*
+
 - Follow existing Simplified Chinese heading style (short, descriptive).
 - Do not add trailing punctuation to headings.
 - If a heading contains only a FastAPI feature name, do not translate it.
-- Anchor IDs (`{#...}`) must stay in English.
-
-### Code blocks
-
-- Do not translate code, variable names, function names, or class names inside code blocks.
-- Do not translate code comments inside code blocks. Keep them in English.
 
 ### Admonitions
 
-- Keep the admonition keyword in English: `note`, `tip`, `warning`, `info`, `danger`.
+*(Supplements the general prompt's admonition rules with Chinese-specific titles.)*
+
 - Do NOT change the admonition type during translation (e.g. `info` → keep `info`, not `note`).
-- Translate the title: `tip | 提示`, `note | 注意`, `warning | 警告`, `info | 信息`.
+- Chinese title mappings: `tip | 提示`, `note | 注意`, `warning | 警告`, `info | 信息`.
 
 ### Spacing (中英文排版)
 
 - Add a space between Chinese and English words: ✅ `使用 FastAPI 构建` / ❌ `使用FastAPI构建`
 - No space between English and punctuation: ✅ `FastAPI，Django`
 - Add spaces around inline code next to Chinese: ✅ `使用 `FastAPI` 构建`
-
-### HTML attributes
-
-- Keep alt text in Simplified Chinese.
-- Keep title attributes in Chinese when user-facing.
 
 ### Good translation examples
 
@@ -194,11 +186,3 @@ When in doubt, prefer the concise, spoken style over formal writing:
 | declare it the same way you declared path and query parameters | 和声明路径参数、查询参数的方式一样 | 使用与声明路径和查询参数相同的方式 |
 | That's it. **2 lines**. | 大功告成。**2 行**。 | 就这样。**2 行代码**。 |
 | Let's first just use the code and see how it works | 先直接运行代码看看效果 | 让我们先直接使用代码看看它是如何工作的 |
-
-### Post-translation review
-
-After translating, check:
-1. Are all glossary terms used consistently?
-2. Are there any "AI-style" phrases from the anti-patterns table?
-3. Does the translation read like natural Chinese, not a word-for-word translation?
-4. Are code blocks, links, and admonitions preserved correctly?
