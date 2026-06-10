@@ -142,7 +142,7 @@ def test_post_broken_body(client: TestClient):
         headers={"content-type": "application/json"},
         content="{some broken json}",
     )
-    assert response.status_code == 422, response.text
+    assert response.status_code == 400, response.text
     assert response.json() == {
         "detail": [
             {
