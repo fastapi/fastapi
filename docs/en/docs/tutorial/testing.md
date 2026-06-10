@@ -24,7 +24,7 @@ Import `TestClient`.
 
 Create a `TestClient` by passing your **FastAPI** application to it.
 
-Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
+Create functions with a name that starts with `test_` (this is a standard `pytest` convention).
 
 Use the `TestClient` object the same way as you do with `httpx`.
 

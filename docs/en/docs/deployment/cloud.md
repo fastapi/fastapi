@@ -16,7 +16,7 @@ FastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and f
 
 ## Cloud Providers - Sponsors { #cloud-providers-sponsors }
 
-Some other cloud providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ too. 🙇
+Some other cloud providers ✨ [**sponsor FastAPI**](https://github.com/sponsors/tiangolo) ✨ too. 🙇
 
 You might also want to consider them to follow their guides and try their services:
 

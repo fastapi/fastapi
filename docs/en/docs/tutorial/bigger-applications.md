@@ -232,7 +232,7 @@ would mean:
 
 But that file doesn't exist, our dependencies are in a file at `app/dependencies.py`.
 
-Remember how our app/file structure looks like:
+Remember what our app/file structure looks like:
 
 <img src="/img/tutorial/bigger-applications/package.drawio.svg">
 

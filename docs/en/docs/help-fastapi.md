@@ -26,7 +26,7 @@ You can follow **FastAPI** online in several places:
 
 You can "star" FastAPI in GitHub (clicking the star button at the top right): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). ⭐️
 
-By adding a star, other users will be able to find it more easily and see that it has been already useful for others.
+By adding a star, other users will be able to find it more easily and see that it has already been useful for others.
 
 ## Watch the GitHub repository for releases { #watch-the-github-repository-for-releases }
 
