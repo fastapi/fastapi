@@ -45,6 +45,7 @@ The key features are:
 ## Sponsors
 
 <!-- sponsors -->
+
 ### Keystone Sponsor
 
 <a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
@@ -77,7 +78,6 @@ The key features are:
 [Other sponsors](https://fastapi.tiangolo.com/fastapi-people/#sponsors)
 
 ## Opinions
-
 
 
 <div class="only-github" markdown="1">
