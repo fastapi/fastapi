@@ -299,6 +299,11 @@ def test_decimal_encoder_infinity():
     assert isinf(jsonable_encoder(data)["value"])
 
 
+def test_encode_bytes_with_invalid_utf8_does_not_raise():
+    data = {"value": b"\xff"}
+    assert jsonable_encoder(data) == {"value": "\ufffd"}
+
+
 def test_encode_deque_encodes_child_models():
     class Model(BaseModel):
         test: str
