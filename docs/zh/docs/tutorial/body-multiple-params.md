@@ -123,7 +123,7 @@ q: str | None = None
 但是，如果你希望它期望一个拥有 `item` 键并在值中包含模型内容的 JSON，就像在声明额外的请求体参数时所做的那样，则可以使用一个特殊的 `Body` 参数 `embed`：
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 比如：

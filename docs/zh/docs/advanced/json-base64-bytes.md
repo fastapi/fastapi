@@ -4,7 +4,7 @@
 
 ## Base64 与文件 { #base64-vs-files }
 
-请先考虑是否可以使用 [请求文件](../tutorial/request-files.md) 来上传二进制数据，并使用 [自定义响应 - FileResponse](./custom-response.md#fileresponse--fileresponse-) 来发送二进制数据，而不是把它编码进 JSON。
+请先考虑是否可以使用 [请求文件](../tutorial/request-files.md) 来上传二进制数据，并使用 [自定义响应 - FileResponse](./custom-response.md#fileresponse) 来发送二进制数据，而不是把它编码进 JSON。
 
 JSON 只能包含 UTF-8 编码的字符串，因此无法直接包含原始字节。
 
