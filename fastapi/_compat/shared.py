@@ -63,6 +63,10 @@ def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
     origin = get_origin(annotation)
+
+    if origin is Annotated:
+        return field_annotation_is_sequence(get_args(annotation)[0])
+
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
             if field_annotation_is_sequence(arg):
@@ -108,6 +112,10 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
 
 def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
     origin = get_origin(annotation)
+
+    if origin is Annotated:
+        return field_annotation_is_scalar_sequence(get_args(annotation)[0])
+
     if origin is Union or origin is UnionType:
         at_least_one_scalar_sequence = False
         for arg in get_args(annotation):
