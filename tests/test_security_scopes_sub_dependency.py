@@ -37,7 +37,7 @@ def app_fixture(call_counts: dict[str, int]):
         }
 
     def get_user_me(
-        current_user: Annotated[dict, Security(get_current_user, scopes=["me"])],
+        current_user: Annotated[dict, Security(get_current_user, oauth_scopes=["me"])],
     ):
         call_counts["get_user_me"] += 1
         return {
@@ -59,7 +59,7 @@ def app_fixture(call_counts: dict[str, int]):
     @app.get("/")
     def path_operation(
         user_me: Annotated[dict, Depends(get_user_me)],
-        user_items: Annotated[dict, Security(get_user_items, scopes=["items"])],
+        user_items: Annotated[dict, Security(get_user_items, oauth_scopes=["items"])],
     ):
         return {
             "user_me": user_me,
