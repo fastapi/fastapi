@@ -8,7 +8,7 @@
 
 * [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) for API creation, including declarations of <dfn title="also known as: endpoints, routes">path</dfn> <dfn title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</dfn>, parameters, request bodies, security, etc.
 * Automatic data model documentation with [**JSON Schema**](https://json-schema.org/) (as OpenAPI itself is based on JSON Schema).
-* Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
+* It is designed around these standards after a meticulous study, rather than being an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
 ### Automatic docs { #automatic-docs }
@@ -73,7 +73,7 @@ Pass the keys and values of the `second_user_data` dict directly as key-value ar
 
 ### Editor support { #editor-support }
 
-All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+The entire framework was designed to be easy and intuitive to use; all decisions were tested on multiple editors even before starting development to ensure the best experience.
 
 In the Python developer surveys, it's clear [that one of the most used features is "autocompletion"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
@@ -147,7 +147,7 @@ FastAPI includes an extremely easy to use, but extremely powerful <dfn title='al
 
 ### Unlimited "plug-ins" { #unlimited-plug-ins }
 
-Or in other way, no need for them, import and use the code you need.
+In other words, there is no need for them; import and use the code you need.
 
 Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
 
@@ -159,7 +159,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ## Starlette features { #starlette-features }
 
-**FastAPI** is fully compatible with (and based on) [**Starlette**](https://www.starlette.dev/). So, any additional Starlette code you have, will also work.
+**FastAPI** is fully compatible with (and based on) [**Starlette**](https://www.starlette.dev/). So, any additional Starlette code you have will also work.
 
 `FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 

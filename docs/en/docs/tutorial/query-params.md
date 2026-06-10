@@ -21,7 +21,7 @@ As they are part of the URL, they are "naturally" strings.
 
 But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.
 
-All the same process that applied for path parameters also applies for query parameters:
+All the same processes that apply to path parameters also apply to query parameters:
 
 * Editor support (obviously)
 * Data <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>
@@ -32,7 +32,7 @@ All the same process that applied for path parameters also applies for query par
 
 As query parameters are not a fixed part of a path, they can be optional and can have default values.
 
-In the example above they have default values of `skip=0` and `limit=10`.
+In the example above, they have default values of `skip=0` and `limit=10`.
 
 So, going to the URL:
 
@@ -107,7 +107,7 @@ or
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+or any other case variation (uppercase, first letter in uppercase, etc.), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
 
 
 ## Multiple path and query parameters { #multiple-path-and-query-parameters }
@@ -132,7 +132,7 @@ But when you want to make a query parameter required, you can just not declare a
 
 Here the query parameter `needy` is a required query parameter of type `str`.
 
-If you open in your browser a URL like:
+If you open a URL like this in your browser:
 
 ```
 http://127.0.0.1:8000/items/foo-item
