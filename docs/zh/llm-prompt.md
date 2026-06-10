@@ -167,7 +167,7 @@ Follow W3C Chinese text formatting rules:
 | function | 函数 |
 | class | 类 |
 | type | 类型 |
-| annotation | 标注 |
+| annotation | 注解 |
 | declare | 声明 |
 | async | 异步 |
 | serialization | 序列化 |
@@ -191,7 +191,7 @@ Keywords in code: async, await
 | body | 请求体 | body |
 | Body (FastAPI class) | — (keep as-is) | `Body` |
 | schema | 模式 | Schema |
-| annotation | 标注 | annotation |
+| annotation | 注解 | annotation |
 | form | 表单 | form |
 | file | 文件 | file |
 | endpoint | 端点 | endpoint |
