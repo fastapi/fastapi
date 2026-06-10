@@ -146,7 +146,7 @@ UserInDB(
 
 /// info | 信息
 
-`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#unpacking-a-dict)。
+`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user-in-dict)。
 
 ///
 
