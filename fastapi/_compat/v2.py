@@ -176,10 +176,13 @@ class ModelField:
         values: dict[str, Any] = {},  # noqa: B006
         *,
         loc: tuple[int | str, ...] = (),
+        context: Any | None = None,
     ) -> tuple[Any, list[dict[str, Any]]]:
         try:
             return (
-                self._type_adapter.validate_python(value, from_attributes=True),
+                self._type_adapter.validate_python(
+                    value, from_attributes=True, context=context
+                ),
                 [],
             )
         except ValidationError as exc:

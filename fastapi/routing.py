@@ -287,10 +287,13 @@ async def serialize_response(
     is_coroutine: bool = True,
     endpoint_ctx: EndpointContext | None = None,
     dump_json: bool = False,
+    context: Any | None = None,
 ) -> Any:
     if field:
         if is_coroutine:
-            value, errors = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(
+                response_content, {}, loc=("response",), context=context
+            )
         else:
             value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
@@ -704,6 +707,7 @@ def get_request_handler(
                         is_coroutine=is_coroutine,
                         endpoint_ctx=endpoint_ctx,
                         dump_json=use_dump_json,
+                        context=request,
                     )
                     if use_dump_json:
                         response = Response(
