@@ -24,12 +24,7 @@ def test_openapi_schema():
                     "get": {
                         "summary": "Get Teleport",
                         "operationId": "get_teleport_teleport_get",
-                        "responses": {
-                            "200": {
-                                "description": "Successful Response",
-                                "content": {"application/json": {"schema": {}}},
-                            }
-                        },
+                        "responses": {"307": {"description": "Successful Response"}},
                     }
                 }
             },

@@ -1,6 +1,6 @@
 import pytest
 from fastapi import FastAPI
-from fastapi.exceptions import FastAPIError, ResponseValidationError
+from fastapi.exceptions import ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -246,6 +246,11 @@ def no_response_model_annotation_response_class() -> Response:
 @app.get("/no_response_model-annotation_json_response_class")
 def no_response_model_annotation_json_response_class() -> JSONResponse:
     return JSONResponse(content={"foo": "bar"})
+
+
+@app.get("/no_response_model-annotation_response_or_none")
+def no_response_model_annotation_response_or_none() -> Response | None:
+    return Response(content="Foo")
 
 
 client = TestClient(app)
@@ -496,16 +501,10 @@ def test_no_response_model_annotation_json_response_class():
     assert response.json() == {"foo": "bar"}
 
 
-def test_invalid_response_model_field():
-    app = FastAPI()
-    with pytest.raises(FastAPIError) as e:
-
-        @app.get("/")
-        def read_root() -> Response | None:
-            return Response(content="Foo")  # pragma: no cover
-
-    assert "valid Pydantic field type" in e.value.args[0]
-    assert "parameter response_model=None" in e.value.args[0]
+def test_no_response_model_annotation_response_or_none():
+    response = client.get("/no_response_model-annotation_response_or_none")
+    assert response.status_code == 200
+    assert response.text == "Foo"
 
 
 def test_openapi_schema():
@@ -1077,7 +1076,6 @@ def test_openapi_schema():
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": {"application/json": {"schema": {}}},
                             }
                         },
                     }
@@ -1092,6 +1090,13 @@ def test_openapi_schema():
                                 "content": {"application/json": {"schema": {}}},
                             }
                         },
+                    }
+                },
+                "/no_response_model-annotation_response_or_none": {
+                    "get": {
+                        "summary": "No Response Model Annotation Response Or None",
+                        "operationId": "no_response_model_annotation_response_or_none_no_response_model_annotation_response_or_none_get",
+                        "responses": {"200": {"description": "Successful Response"}},
                     }
                 },
             },

@@ -45,7 +45,6 @@ def test_openapi_schema():
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": {"application/json": {"schema": {}}},
                             },
                             "422": {
                                 "description": "Validation Error",
