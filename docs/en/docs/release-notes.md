@@ -30,6 +30,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove TalorData. PR [#15744](https://github.com/fastapi/fastapi/pull/15744) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove ExoFlare. PR [#15736](https://github.com/fastapi/fastapi/pull/15736) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove InterviewPal. PR [#15735](https://github.com/fastapi/fastapi/pull/15735) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Liblab. PR [#15731](https://github.com/fastapi/fastapi/pull/15731) by [@tiangolo](https://github.com/tiangolo).
