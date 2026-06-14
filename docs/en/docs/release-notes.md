@@ -7,10 +7,54 @@ hide:
 
 ## Latest Changes
 
-* ♻️ Refactor router inclusion so included `APIRouter` and `APIRoute` subclasses remain active matching and dispatch extension points.
-* ♻️ Treat router inclusion as live when using documented APIs, so path operations and nested routers added after `.include_router()` are available through earlier inclusions and reflected in OpenAPI.
-* ♻️ Preserve OpenAPI generation, `url_path_for()`, prefix parameters, and include-time metadata for repeated and nested included routers without copying included `APIRoute` objects as the runtime dispatch target.
-* 🔧 Code that directly inspects `app.routes` or `router.routes` can now see FastAPI internal route candidates for included routers instead of a flat list of copied `APIRoute` objects. Prefer documented APIs for route registration, and avoid direct mutation of `router.routes` after inclusion.
+♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances
+
+Unblocks ✨ SO MANY THINGS ✨
+
+Before this, `router.include_router(other_router)` would take each path operation from `other_router` and "clone" it, or recreate it from scratch.
+
+This would mean that in the end there was only one top level router, part of the app.
+
+The way it is structured here is that there are a few additional classes to handle intermediate metadata for router and route inclusion. That way the information of "router X includes Y and Y includes Z" is stored somewhere, without affecting (recreating / clonning) the final route.
+
+#### Non Objectives
+
+Dependencies for 404: previously I intended to support dependencies that would be executed even for 404, but that would conflict with the fact that a router could _not_ find a match, but the next router _did_ find a match. Executing dependencies in the router that did not find a match would not make sense, they could consume the request, body, etc. This original idea was discarded.
+
+#### Breaking Changes
+
+Now `router.routes` is no longer a plain list of `APIRoute` objects, it can contain these intermediate objects that can contain additional routers, forming a tree.
+
+Any logic that depended on iterating on the `router.routes` directly would be affected, that logic cannot expect to be able to extract data from a plain list of routes, as it's no longer a plain list but a tree.
+
+Additionally, any logic that iterated on `router.routes` to modify them would now also see these new objects, and would not see all the routes in the app.
+
+`router.routes` should be considered an internal implementation detail, only passed around to the FastAPI functions that need it.
+
+#### Features
+
+* Adding routes (path operations) after a router is included now works, they are reflected as they are not copied.
+* Including `subrouter` in `mainrouter` can be done before adding routes (path operations) to `subrouter`, because now the the entire object is stored instead of copying the routes.
+* As routes are not copied, in some cases that might save some memory.
+
+#### Alpha Features
+
+This is not documented yet, so it's not officially supported yet and could change in the future.
+
+But, as `APIRoute` and `APIRouter` instances are now preserved, they could be customized.
+
+`APIRouter` has two new methods, `.matches()` and `.handle()`, counterpart to the existing ones in `APIRoute`. With this a router could customize how it matches and handles requests. For example, it could match only requests that include some specific header, for example for handling versions in headers.
+
+Still, for now, consider this very experimental and potentially changing and breaking in the future.
+
+#### Future Features Enabled
+
+* Custom `APIRoute` subclasses (undocumented, but alraedy works as desccribed above)
+* Custom `APIRouter` subclasses (undocumented, but already works as described above)
+* Dependencies per router
+* Exception handlers per router
+* Middleware per router
+* Other features planned
 
 ### Docs
 
