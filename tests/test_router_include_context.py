@@ -231,7 +231,7 @@ def test_url_path_for_uses_distinct_repeated_inclusion_contexts():
     )
 
 
-def test_indirect_router_inclusion_cycle_is_rejected():
+def test_indirect_router_inclusion_cycles_are_rejected():
     parent_router = APIRouter()
     child_router = APIRouter()
 
@@ -239,6 +239,16 @@ def test_indirect_router_inclusion_cycle_is_rejected():
 
     with pytest.raises(AssertionError, match="already includes this router"):
         child_router.include_router(parent_router, prefix="/parent")
+
+    parent_router = APIRouter()
+    child_router = APIRouter()
+    grandchild_router = APIRouter()
+
+    parent_router.include_router(child_router, prefix="/child")
+    child_router.include_router(grandchild_router, prefix="/grandchild")
+
+    with pytest.raises(AssertionError, match="already includes this router"):
+        grandchild_router.include_router(parent_router, prefix="/parent")
 
 
 def test_original_api_route_subclass_instance_is_called_after_inclusion():
@@ -402,47 +412,6 @@ def test_original_nested_api_router_subclasses_are_called_after_inclusion():
     assert response.status_code == 200
     assert parent_router.calls == 1
     assert child_router.calls == 1
-
-
-def test_original_api_router_subclass_instance_is_called_after_inclusion():
-    class TrackingRouter(APIRouter):
-        calls = 0
-
-        async def handle(self, scope, receive, send):
-            self.calls += 1
-            await super().handle(scope, receive, send)
-
-    router = TrackingRouter()
-
-    @router.get("/items")
-    def read_items():
-        return []
-
-    app = FastAPI()
-    app.include_router(router, prefix="/api")
-
-    response = TestClient(app).get("/api/items")
-
-    assert response.status_code == 200
-    assert router.calls == 1
-
-
-def test_route_added_after_inclusion_is_visible_through_existing_inclusion():
-    router = APIRouter()
-    app = FastAPI()
-    app.include_router(router, prefix="/api")
-
-    @router.get("/later")
-    def read_later():
-        return {"later": True}
-
-    client = TestClient(app)
-
-    response = client.get("/api/later")
-
-    assert response.status_code == 200
-    assert response.json() == {"later": True}
-    assert "/api/later" in client.get("/openapi.json").json()["paths"]
 
 
 def test_router_and_include_prefix_path_params_reach_endpoint_and_openapi():
@@ -836,18 +805,6 @@ def test_no_prefix_include_validation_sees_effective_starlette_route_candidates(
     candidates = list(_iter_included_route_candidates(parent_router.routes))
 
     assert cast(Route, candidates[0]).path == "/child/items"
-
-
-def test_indirect_router_inclusion_cycle_is_rejected_from_outer_parent():
-    parent_router = APIRouter()
-    child_router = APIRouter()
-    grandchild_router = APIRouter()
-
-    parent_router.include_router(child_router, prefix="/child")
-    child_router.include_router(grandchild_router, prefix="/grandchild")
-
-    with pytest.raises(AssertionError, match="already includes this router"):
-        grandchild_router.include_router(parent_router, prefix="/parent")
 
 
 def test_apirouter_matches_fallback_without_include_context():
