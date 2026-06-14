@@ -1655,6 +1655,8 @@ def _iter_routes_with_context(
                 yield route_context.original_route, route_context
         else:
             yield route, None
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
