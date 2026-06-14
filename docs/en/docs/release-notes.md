@@ -7,7 +7,9 @@ hide:
 
 ## Latest Changes
 
-♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances
+### Breaking Changes
+
+* ♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances. PR [#15745](https://github.com/fastapi/fastapi/pull/15745) by [@tiangolo](https://github.com/tiangolo).
 
 Unblocks ✨ SO MANY THINGS ✨
 
@@ -21,7 +23,7 @@ The way it is structured here is that there are a few additional classes to hand
 
 Dependencies for 404: previously I intended to support dependencies that would be executed even for 404, but that would conflict with the fact that a router could _not_ find a match, but the next router _did_ find a match. Executing dependencies in the router that did not find a match would not make sense, they could consume the request, body, etc. This original idea was discarded.
 
-#### Breaking Changes
+#### Specific Breaking Changes
 
 Now `router.routes` is no longer a plain list of `APIRoute` objects, it can contain these intermediate objects that can contain additional routers, forming a tree.
 
@@ -55,10 +57,6 @@ Still, for now, consider this very experimental and potentially changing and bre
 * Exception handlers per router
 * Middleware per router
 * Other features planned
-
-### Breaking Changes
-
-* ♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances. PR [#15745](https://github.com/fastapi/fastapi/pull/15745) by [@tiangolo](https://github.com/tiangolo).
 
 ### Docs
 
