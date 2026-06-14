@@ -33,7 +33,7 @@ def test_router_include_context_matches_flattened_include_metadata():
     callback_router = APIRouter()
 
     @callback_router.post("/callback")
-    def callback():
+    def callback():  # pragma: no cover
         return {"ok": True}
 
     callback_route = callback_router.routes[0]
@@ -150,7 +150,7 @@ def test_openapi_cache_updates_after_live_route_addition():
     assert "/api/later" not in first_schema["paths"]
 
     @router.get("/later")
-    def read_later():
+    def read_later():  # pragma: no cover
         return {"later": True}
 
     second_schema = client.get("/openapi.json").json()
@@ -207,7 +207,7 @@ def test_url_path_for_uses_effective_context_for_live_included_route():
     app.include_router(router, prefix="/api")
 
     @router.get("/items/{item_id}", name="read_item")
-    def read_item(item_id: str):
+    def read_item(item_id: str):  # pragma: no cover
         return {"item_id": item_id}
 
     assert app.url_path_for("read_item", item_id="abc") == "/api/items/abc"
@@ -217,7 +217,7 @@ def test_url_path_for_uses_distinct_repeated_inclusion_contexts():
     router = APIRouter()
 
     @router.get("/items/{item_id}", name="read_item")
-    def read_item(item_id: str):
+    def read_item(item_id: str):  # pragma: no cover
         return {"item_id": item_id}
 
     parent_router = APIRouter()
@@ -502,7 +502,7 @@ def test_later_full_match_wins_over_earlier_included_partial_match():
     post_router = APIRouter()
 
     @get_router.get("/items")
-    def read_items():
+    def read_items():  # pragma: no cover
         return {"method": "get"}
 
     @post_router.post("/items")
@@ -523,7 +523,7 @@ def test_included_partial_match_returns_405_when_no_later_full_match_exists():
     router = APIRouter()
 
     @router.get("/items")
-    def read_items():
+    def read_items():  # pragma: no cover
         return []
 
     app = FastAPI()
@@ -540,7 +540,7 @@ def test_included_slash_redirect_does_not_block_later_exact_match():
     exact_router = APIRouter()
 
     @redirect_router.get("/items/")
-    def read_items_with_slash():
+    def read_items_with_slash():  # pragma: no cover
         return {"path": "slash"}
 
     @exact_router.get("/items")
@@ -566,7 +566,7 @@ def test_failed_included_match_does_not_leak_effective_context_to_later_route():
     fallback_router = APIRouter()
 
     @rejecting_router.get("/items")
-    def rejected_item():
+    def rejected_item():  # pragma: no cover
         return {"source": "rejected"}
 
     @fallback_router.get("/items")
@@ -650,7 +650,7 @@ async def test_included_api_route_without_app_scope_returns_405_response():
     router = APIRouter()
 
     @router.get("/items")
-    def read_items():
+    def read_items():  # pragma: no cover
         return {"items": []}
 
     app = FastAPI()
@@ -660,7 +660,7 @@ async def test_included_api_route_without_app_scope_returns_405_response():
     route = effective_context.original_route
     messages = []
 
-    async def receive():
+    async def receive():  # pragma: no cover
         return {"type": "http.request", "body": b"", "more_body": False}
 
     async def send(message):
@@ -689,7 +689,7 @@ def test_effective_api_route_context_does_not_match_websocket_scope():
     router = APIRouter()
 
     @router.get("/items")
-    def read_items():
+    def read_items():  # pragma: no cover
         return {"items": []}
 
     app = FastAPI()
@@ -713,7 +713,7 @@ def test_effective_api_route_context_url_path_for_no_match():
     router = APIRouter()
 
     @router.get("/items/{item_id}")
-    def read_item(item_id: str):
+    def read_item(item_id: str):  # pragma: no cover
         return {"item_id": item_id}
 
     app = FastAPI()
@@ -749,13 +749,13 @@ def test_included_starlette_host_without_prefix_keeps_original_app():
 
 
 class UnknownRoute(BaseRoute):
-    def matches(self, scope):
+    def matches(self, scope):  # pragma: no cover
         return Match.NONE, {}
 
-    async def handle(self, scope, receive, send):
+    async def handle(self, scope, receive, send):  # pragma: no cover
         raise AssertionError("UnknownRoute should not be handled")
 
-    def url_path_for(self, name, /, **path_params):
+    def url_path_for(self, name, /, **path_params):  # pragma: no cover
         raise NoMatchFound(name, path_params)
 
 
@@ -770,7 +770,7 @@ async def test_included_unknown_route_is_ignored_and_can_return_default_404():
 
     messages = []
 
-    async def receive():
+    async def receive():  # pragma: no cover
         return {"type": "http.request", "body": b"", "more_body": False}
 
     async def send(message):
@@ -795,7 +795,7 @@ async def test_included_unknown_route_is_ignored_and_can_return_default_404():
 
 
 def test_no_prefix_include_validation_sees_effective_starlette_route_candidates():
-    def endpoint(request):
+    def endpoint(request):  # pragma: no cover
         return PlainTextResponse("ok")
 
     child_router = APIRouter(routes=[Route("/items", endpoint, name="read_items")])
@@ -810,7 +810,7 @@ def test_no_prefix_include_validation_sees_effective_starlette_route_candidates(
 def test_apirouter_matches_fallback_without_include_context():
     router = APIRouter()
 
-    def read_items(request):
+    def read_items(request):  # pragma: no cover
         return PlainTextResponse("items")
 
     router.add_route("/items", read_items)
@@ -831,7 +831,7 @@ async def test_apirouter_handle_fallback_without_include_context():
     router.add_route("/items", read_items)
     messages = []
 
-    async def receive():
+    async def receive():  # pragma: no cover
         return {"type": "http.request", "body": b"", "more_body": False}
 
     async def send(message):
