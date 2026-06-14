@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.137.0 (2026-06-14)
+
 ### Breaking Changes
 
 * ♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances. PR [#15745](https://github.com/fastapi/fastapi/pull/15745) by [@tiangolo](https://github.com/tiangolo).
