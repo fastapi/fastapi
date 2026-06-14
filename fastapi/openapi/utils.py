@@ -213,7 +213,7 @@ def get_openapi_operation_request_body(
 
 
 def generate_operation_id(
-    *, route: routing.APIRoute, method: str
+    *, route: routing._APIRouteLike, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
         message="fastapi.openapi.utils.generate_operation_id() was deprecated, "
@@ -227,14 +227,14 @@ def generate_operation_id(
     return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
-def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_summary(*, route: routing._APIRouteLike, method: str) -> str:
     if route.summary:
         return route.summary
     return route.name.replace("_", " ").title()
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str, operation_ids: set[str]
+    *, route: routing._APIRouteLike, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
     operation: dict[str, Any] = {}
     if route.tags:
@@ -259,7 +259,7 @@ def get_openapi_operation_metadata(
 
 def get_openapi_path(
     *,
-    route: routing.APIRoute,
+    route: routing._APIRouteLike,
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
@@ -329,7 +329,7 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback,
+                            route=cast(routing._APIRouteLike, callback),
                             operation_ids=operation_ids,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
@@ -478,6 +478,18 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
+def _get_api_route_for_openapi(
+    route: BaseRoute, route_context: routing._EffectiveRouteContext | None
+) -> routing._APIRouteLike | None:
+    if route_context is not None and isinstance(
+        route_context.original_route, routing.APIRoute
+    ):
+        return cast(routing._APIRouteLike, route_context)
+    if isinstance(route, routing.APIRoute):
+        return cast(routing._APIRouteLike, route)
+    return None
+
+
 def get_fields_from_routes(
     routes: Sequence[BaseRoute],
 ) -> list[ModelField]:
@@ -485,24 +497,25 @@ def get_fields_from_routes(
     responses_from_routes: list[ModelField] = []
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
-    for route in routes:
-        if not isinstance(route, routing.APIRoute):
+    for route, route_context in routing._iter_routes_with_context(routes):
+        api_route = _get_api_route_for_openapi(route, route_context)
+        if api_route is None:
             continue
-        if route.include_in_schema:
-            if route.body_field:
-                assert isinstance(route.body_field, ModelField), (
+        if api_route.include_in_schema:
+            if api_route.body_field:
+                assert isinstance(api_route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
-                body_fields_from_routes.append(route.body_field)
-            if route.response_field:
-                responses_from_routes.append(route.response_field)
-            if route.response_fields:
-                responses_from_routes.extend(route.response_fields.values())
-            if route.stream_item_field:
-                responses_from_routes.append(route.stream_item_field)
-            if route.callbacks:
-                callback_flat_models.extend(get_fields_from_routes(route.callbacks))
-            params = get_flat_params(route.dependant)
+                body_fields_from_routes.append(api_route.body_field)
+            if api_route.response_field:
+                responses_from_routes.append(api_route.response_field)
+            if api_route.response_fields:
+                responses_from_routes.extend(api_route.response_fields.values())
+            if api_route.stream_item_field:
+                responses_from_routes.append(api_route.stream_item_field)
+            if api_route.callbacks:
+                callback_flat_models.extend(get_fields_from_routes(api_route.callbacks))
+            params = get_flat_params(api_route.dependant)
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(
@@ -546,7 +559,7 @@ def get_openapi(
     paths: dict[str, dict[str, Any]] = {}
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
-    all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
+    all_fields = get_fields_from_routes(list(routes) + list(webhooks or []))
     flat_models = get_flat_models_from_fields(all_fields, known_models=set())
     model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
@@ -554,10 +567,11 @@ def get_openapi(
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    for route in routes or []:
-        if isinstance(route, routing.APIRoute):
+    for route, route_context in routing._iter_routes_with_context(routes):
+        api_route = _get_api_route_for_openapi(route, route_context)
+        if api_route is not None:
             result = get_openapi_path(
-                route=route,
+                route=api_route,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -566,17 +580,18 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    paths.setdefault(api_route.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
-    for webhook in webhooks or []:
-        if isinstance(webhook, routing.APIRoute):
+    for webhook, webhook_context in routing._iter_routes_with_context(webhooks or []):
+        api_webhook = _get_api_route_for_openapi(webhook, webhook_context)
+        if api_webhook is not None:
             result = get_openapi_path(
-                route=webhook,
+                route=api_webhook,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -585,7 +600,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                    webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
