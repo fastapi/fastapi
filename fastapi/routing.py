@@ -1157,10 +1157,11 @@ class APIRoute(routing.Route):
     ) -> bool:
         """Check if this is a HEAD request that should be served by a GET route."""
         route_methods = methods if methods is not None else self.methods
+        if not route_methods:
+            return False
         return (
             scope.get("type") == "http"
             and scope.get("method") == "HEAD"
-            and bool(route_methods)
             and "GET" in route_methods
             and "HEAD" not in route_methods
         )
