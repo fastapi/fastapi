@@ -7,6 +7,11 @@ hide:
 
 ## Latest Changes
 
+* ♻️ Refactor router inclusion so included `APIRouter` and `APIRoute` subclasses remain active matching and dispatch extension points.
+* ♻️ Treat router inclusion as live when using documented APIs, so path operations and nested routers added after `.include_router()` are available through earlier inclusions and reflected in OpenAPI.
+* ♻️ Preserve OpenAPI generation, `url_path_for()`, prefix parameters, and include-time metadata for repeated and nested included routers without copying included `APIRoute` objects as the runtime dispatch target.
+* 🔧 Code that directly inspects `app.routes` or `router.routes` can now see FastAPI internal route candidates for included routers instead of a flat list of copied `APIRoute` objects. Prefer documented APIs for route registration, and avoid direct mutation of `router.routes` after inclusion.
+
 ### Docs
 
 * 📝 Update FastAPI Cloud deployment instructions. PR [#15724](https://github.com/fastapi/fastapi/pull/15724) by [@alejsdev](https://github.com/alejsdev).
