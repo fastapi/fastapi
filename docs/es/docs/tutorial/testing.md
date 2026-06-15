@@ -1,4 +1,4 @@
-# Testing { #testing }
+# Pruebas { #testing }
 
 Gracias a [Starlette](https://www.starlette.dev/testclient/), escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
 
@@ -8,7 +8,7 @@ Con él, puedes usar [pytest](https://docs.pytest.org/) directamente con **FastA
 
 ## Usando `TestClient` { #using-testclient }
 
-/// info | Información
+/// note | Nota
 
 Para usar `TestClient`, primero instala [`httpx`](https://www.python-httpx.org).
 
@@ -142,7 +142,7 @@ Por ejemplo:
 
 Para más información sobre cómo pasar datos al backend (usando `httpx` o el `TestClient`) revisa la [documentación de HTTPX](https://www.python-httpx.org).
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que el `TestClient` recibe datos que pueden ser convertidos a JSON, no modelos de Pydantic.
 

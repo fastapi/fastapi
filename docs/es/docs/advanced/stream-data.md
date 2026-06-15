@@ -4,7 +4,7 @@ Si quieres transmitir datos que se puedan estructurar como JSON, deberías [Tran
 
 Pero si quieres transmitir datos binarios puros o strings, aquí tienes cómo hacerlo.
 
-/// info | Información
+/// note | Nota
 
 Añadido en FastAPI 0.134.0.
 
@@ -90,7 +90,7 @@ Por ejemplo, no tienen un `await file.read()`, ni un `async for chunk in file`.
 
 Y en muchos casos leerlos sería una operación bloqueante (que podría bloquear el event loop), porque se leen desde disco o desde la red.
 
-/// info | Información
+/// note | Nota
 
 El ejemplo anterior es en realidad una excepción, porque el objeto `io.BytesIO` ya está en memoria, así que leerlo no bloqueará nada.
 

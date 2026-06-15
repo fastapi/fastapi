@@ -227,7 +227,7 @@ def test_server_sent_event_single_line_fields_reject_newlines(
     field_name: str, value: str
 ):
     with pytest.raises(ValueError, match=f"SSE '{field_name}' must be a single line"):
-        ServerSentEvent(data="test", **{field_name: value})
+        ServerSentEvent(data="test", **{field_name: value})  # ty: ignore[invalid-argument-type]
 
 
 def test_server_sent_event_negative_retry_rejected():
@@ -237,7 +237,7 @@ def test_server_sent_event_negative_retry_rejected():
 
 def test_server_sent_event_float_retry_rejected():
     with pytest.raises(ValueError):
-        ServerSentEvent(data="test", retry=1.5)  # type: ignore[arg-type]
+        ServerSentEvent(data="test", retry=1.5)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
 
 def test_raw_data_sent_without_json_encoding(client: TestClient):

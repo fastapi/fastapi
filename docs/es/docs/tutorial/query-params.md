@@ -65,7 +65,7 @@ De la misma manera, puedes declarar parámetros de query opcionales, establecien
 
 En este caso, el parámetro de función `q` será opcional y será `None` por defecto.
 
-/// check | Revisa
+/// tip | Consejo
 
 Además, nota que **FastAPI** es lo suficientemente inteligente para notar que el parámetro de path `item_id` es un parámetro de path y `q` no lo es, por lo tanto, es un parámetro de query.
 

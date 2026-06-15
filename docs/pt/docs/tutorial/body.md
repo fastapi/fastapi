@@ -8,7 +8,7 @@ Sua API quase sempre precisa enviar um corpo na **resposta**. Mas os clientes n�
 
 Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://docs.pydantic.dev/) com todos os seus poderes e benefícios.
 
-/// info | Informação
+/// note | Nota
 
 Para enviar dados, você deveria usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
 

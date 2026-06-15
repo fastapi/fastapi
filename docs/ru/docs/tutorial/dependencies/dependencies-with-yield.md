@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | Дополнительная информация
+/// note | Примечание
 
 Клиенту будет отправлен только **один ответ**. Это может быть один из ответов об ошибке или ответ от *операции пути*.
 
@@ -219,7 +219,7 @@ participant operation as Функция-обработчик пути
     Note over dep_req: Выполнить код до yield
     dep_req ->> dep_func: Передать значение
     Note over dep_func: Выполнить код до yield
-    dep_func ->> operation: Выполнить функцию-обработчик пути
+    dep_func ->> operation: Выполнить функцию-обработчика пути
     operation ->> dep_func: Выход из функции-обработчика пути
     Note over dep_func: Выполнить код после yield
     Note over dep_func: ✅ Зависимость закрыта

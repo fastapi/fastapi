@@ -29,7 +29,7 @@ class ModelDefaults(BaseModel):
 
 @app.get("/", response_model=Model, response_model_exclude_unset=True)
 def get_root() -> ModelSubclass:
-    return ModelSubclass(sub={}, y=1, z=0)
+    return ModelSubclass(sub={}, y=1, z=0)  # ty: ignore[invalid-argument-type]
 
 
 @app.get(

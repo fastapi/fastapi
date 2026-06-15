@@ -167,13 +167,13 @@ Perceba como a URL de callback usada contém a URL recebida como um parâmetro d
 
 Nesse ponto você tem a(s) *operação(ões) de rota de callback* necessária(s) (a(s) que o *desenvolvedor externo* deveria implementar na *API externa*) no roteador de callback que você criou acima.
 
-Agora use o parâmetro `callbacks` no decorador da *operação de rota da sua API* para passar o atributo `.routes` (que é na verdade apenas uma `list` de rotas/*operações de path*) do roteador de callback:
+Agora use o parâmetro `callbacks` no decorador da *operação de rota da sua API* para passar o atributo `.routes` do roteador de callback:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Dica
 
-Perceba que você não está passando o roteador em si (`invoices_callback_router`) para `callback=`, mas o atributo `.routes`, como em `invoices_callback_router.routes`.
+Perceba que você não está passando o roteador em si (`invoices_callback_router`) para `callbacks=`, mas o atributo `.routes`, como em `invoices_callback_router.routes`. O FastAPI usará essas rotas para gerar a documentação OpenAPI do callback.
 
 ///
 
