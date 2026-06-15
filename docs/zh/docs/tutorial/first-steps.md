@@ -180,7 +180,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev` 带路径 { #fastapi-dev-with-path }
+### 带路径或使用 `--entrypoint` CLI 选项的 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：
 
@@ -188,29 +188,19 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径。
+或者，你也可以给 `fastapi dev` 命令传入 `--entrypoint` 选项：
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径/entrypoint。
 
 另外，其他工具可能无法找到它，例如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
 
 ### 部署你的应用（可选） { #deploy-your-app-optional }
 
-你可以选择将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果还没有，先去加入候补名单。🚀
-
-如果你已经拥有 **FastAPI Cloud** 账户（我们从候补名单邀请了你 😉），你可以用一条命令部署应用。
-
-部署前，先确保已登录：
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-然后部署你的应用：
+你可以选择用一条命令将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚未登录，浏览器会打开以完成认证流程。
 
 就这些！现在你可以通过该 URL 访问你的应用了。✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note | 注意
 
 「路径」也通常被称为「端点」或「路由」。
 
@@ -322,7 +314,7 @@ https://example.com/items/foo
 * 请求路径为 `/`
 * 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
-/// info | `@decorator` 信息
+/// note | `@decorator` 信息
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -349,7 +341,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip
+/// tip | 提示
 
 你可以随意使用任何一个操作（HTTP方法）。
 
@@ -383,7 +375,7 @@ https://example.com/items/foo
 
 {* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note
+/// note | 注意
 
 如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry)。
 
