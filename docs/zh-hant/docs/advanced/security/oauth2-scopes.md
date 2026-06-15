@@ -46,7 +46,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 - `instagram_basic` 是 Facebook / Instagram 使用的。
 - `https://www.googleapis.com/auth/drive` 是 Google 使用的。
 
-/// info
+/// note
 
 在 OAuth2 中，「scope」只是宣告所需特定權限的一個字串。
 
@@ -126,7 +126,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | 技術細節
+/// note | 技術細節
 
 `Security` 其實是 `Depends` 的子類別，僅多了一個我們稍後會看到的參數。
 

@@ -18,7 +18,7 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 
 它的運作方式與 Pydantic 模型相同；實際上，底層就是透過 Pydantic 達成的。
 
-/// info
+/// note
 
 請記得，dataclass 無法做到 Pydantic 模型能做的一切。
 

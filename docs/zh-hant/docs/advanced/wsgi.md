@@ -6,7 +6,7 @@
 
 ## 使用 `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info
+/// note
 
 這需要先安裝 `a2wsgi`，例如使用 `pip install a2wsgi`。
 

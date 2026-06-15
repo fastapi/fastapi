@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info
+/// note
 
 只會向用戶端送出「一個回應」。可能是其中一個錯誤回應，或是來自該路徑操作的回應。
 

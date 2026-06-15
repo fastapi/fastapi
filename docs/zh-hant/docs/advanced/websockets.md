@@ -111,7 +111,7 @@ $ fastapi dev
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note
 
 因為這是 WebSocket，拋出 `HTTPException` 並沒有意義，因此我們改為拋出 `WebSocketException`。
 

@@ -396,9 +396,9 @@ from .routers.users import router
 
 /// note | 技術細節
 
-實際上，它會在內部為 `APIRouter` 中宣告的每一個「路徑操作」建立一個對應的「路徑操作」。
+當 router 被納入主應用時，FastAPI 會保留原本的 `APIRouter` 與其 `APIRoute` 仍然是活的。
 
-所以在幕後，它實際運作起來就像是一個單一的應用。
+這表示自訂的 `APIRouter` 與 `APIRoute` 子類別在被納入之後依然會參與運作。
 
 ///
 
@@ -406,7 +406,7 @@ from .routers.users import router
 
 把 router 納入時不需要擔心效能。
 
-這只會在啟動時花費微秒等級，且只發生一次。
+這個設計相當輕量，且避免為每次請求增加額外負擔。
 
 因此不會影響效能。⚡
 
@@ -461,7 +461,7 @@ from .routers.users import router
 
 這是因為我們要把它們的路徑操作包含進 OpenAPI 結構與使用者介面中。
 
-由於無法將它們隔離並獨立「掛載」，所以這些路徑操作會被「複製」（重新建立），而不是直接包含進來。
+FastAPI 會保留原始的 routers 與路徑操作處於活躍狀態，並在處理請求與產生 OpenAPI 時，合併 router 的前綴、相依性、標籤、回應與其他中繼資料。
 
 ///
 
@@ -532,4 +532,16 @@ $ fastapi dev
 router.include_router(other_router)
 ```
 
-請確保在把 `router` 納入 `FastAPI` 應用之前先這麼做，這樣 `other_router` 的路徑操作也會被包含進去。
+你可以在把 `router` 納入 `FastAPI` 應用的前或後這麼做。FastAPI 仍會在路由與 OpenAPI 中包含 `other_router` 的路徑操作。
+
+同樣地，之後新增到這些 routers 的路徑操作也適用。透過先前的納入，它們也會被看見。
+
+/// warning | 技術細節
+
+避免在納入 router 之後直接修改 `router.routes`。FastAPI 將 router 的納入視為即時的，因此原始 router 與其 routes 仍然是路由與 OpenAPI 產生的一部分。
+
+請使用有文件記載的 API，例如路徑操作的裝飾器與 `.include_router()` 來新增路由與 routers。
+
+把 `router.routes` 視為較低階的路由樹結構，它可能同時包含路由定義與被納入的 routers，避免將它當成最終路徑操作的平lat清單來依賴。
+
+///
