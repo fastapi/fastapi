@@ -625,14 +625,14 @@ def replace_multiline_code_block(
             _line_b_code, line_b_comment = _split_hash_comment(line_b)
             res_line = line_b
             if line_b_comment:
-                res_line = res_line.replace(line_b_comment, line_a_comment, 1)
+                res_line = res_line.replace(line_b_comment, line_a_comment or "", 1)
             code_block.append(res_line)
         elif block_language in {"console", "json", "slash-style-comments"}:
             _line_a_code, line_a_comment = _split_slashes_comment(line_a)
             _line_b_code, line_b_comment = _split_slashes_comment(line_b)
             res_line = line_b
             if line_b_comment:
-                res_line = res_line.replace(line_b_comment, line_a_comment, 1)
+                res_line = res_line.replace(line_b_comment, line_a_comment or "", 1)
             code_block.append(res_line)
         else:
             code_block.append(line_b)
