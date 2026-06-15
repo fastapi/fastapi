@@ -24,13 +24,13 @@ Mais rappelez-vous que lorsque vous importez `Query`, `Path`, `Cookie` et d'autr
 
 ///
 
-/// info
+/// note | Remarque
 
 Pour déclarer des cookies, vous devez utiliser `Cookie`, sinon les paramètres seraient interprétés comme des paramètres de requête.
 
 ///
 
-/// info
+/// note | Remarque
 
 Gardez à l'esprit que, comme **les navigateurs gèrent les cookies** de manière particulière et en coulisses, ils **n'autorisent pas** facilement **JavaScript** à y accéder.
 
