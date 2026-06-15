@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Información
+/// note | Nota
 
 Si planeas usar algoritmos de firma digital como RSA o ECDSA, deberías instalar la dependencia del paquete de criptografía `pyjwt[crypto]`.
 
@@ -213,7 +213,7 @@ Usando las credenciales:
 Usuario: `johndoe`
 Contraseña: `secret`
 
-/// check | Revisa
+/// tip | Consejo
 
 Observa que en ninguna parte del código está la contraseña en texto claro "`secret`", solo tenemos la versión con hash.
 
