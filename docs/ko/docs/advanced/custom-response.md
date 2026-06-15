@@ -41,7 +41,7 @@
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | 정보
+/// note | 참고
 
 `response_class` 매개변수는 응답의 "미디어 타입"을 정의하는 데에도 사용됩니다.
 
@@ -65,7 +65,7 @@
 
 ///
 
-/// info | 정보
+/// note | 참고
 
 물론 실제 `Content-Type` 헤더, 상태 코드 등은 반환된 `Response` 객체에서 가져옵니다.
 
@@ -173,7 +173,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 ### `StreamingResponse` { #streamingresponse }
 
-비동기 제너레이터 또는 일반 제너레이터/이터레이터(`yield`가 있는 함수)를 받아 응답 본문을 스트리밍합니다.
+비동기 제너레이터 또는 일반 제너레이터/이터레이터(`yield`가 있는 함수`)를 받아 응답 본문을 스트리밍합니다.
 
 {* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
 

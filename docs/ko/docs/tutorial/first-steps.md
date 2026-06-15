@@ -180,7 +180,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev`에 경로 지정하기 { #fastapi-dev-with-path }
+### `fastapi dev`를 경로 또는 `--entrypoint` CLI 옵션과 함께 사용하기 { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 `fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI app 객체를 추정합니다:
 
@@ -188,29 +188,19 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 경로를 전달해야 합니다.
+또는 `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 path\entrypoint를 전달해야 합니다.
 
 또한 다른 도구들, 예를 들어 [VS Code 확장](../editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com)가 이를 찾지 못할 수 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
 
 ### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직 대기자 명단에 등록하지 않았다면, 등록하러 가세요. 🚀
-
-이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
-
-배포하기 전에, 로그인되어 있는지 확인하세요:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-그 다음 앱을 배포합니다:
+선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 단 한 번의 명령으로 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클라우드에 배포합니다. 로그인되어 있지 않다면 브라우저가 열려 인증 과정을 완료합니다.
 
 이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
 
@@ -269,8 +261,7 @@ https://example.com/items/foo
 ```
 /items/foo
 ```
-
-/// info | 정보
+/// note | 참고
 
 "경로"는 일반적으로 "엔드포인트" 또는 "라우트"라고도 불립니다.
 
@@ -322,7 +313,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * 경로 `/`
 * <dfn title="HTTP GET 메소드"><code>get</code> 작동</dfn> 사용
 
-/// info | `@decorator` 정보
+/// note | `@decorator` 정보
 
 이 `@something` 문법은 파이썬에서 "데코레이터"라 부릅니다.
 

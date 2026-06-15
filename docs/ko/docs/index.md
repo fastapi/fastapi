@@ -143,7 +143,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
-"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나** 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었습니다._"
+"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나** 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었고, 우리의 Virtual TAC Engineer와 같은 여러 자동화와 서비스들을 추진하고 있습니다._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
@@ -492,9 +492,7 @@ item: Item
 
 ### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
-
-이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
+선택적으로 FastAPI 앱을 한 번의 명령어로 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -509,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하여 클라우드에 배포합니다. 로그인되어 있지 않다면, 인증을 완료하기 위해 브라우저가 열립니다.
 
 이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
 
