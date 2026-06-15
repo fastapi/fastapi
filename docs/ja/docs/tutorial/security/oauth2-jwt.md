@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | 情報
+/// note | 備考
 
 RSAやECDSAのようなデジタル署名アルゴリズムを使用する予定がある場合は、cryptographyライブラリの依存関係`pyjwt[crypto]`をインストールしてください。
 
@@ -213,7 +213,7 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-/// check | 確認
+/// tip | 豆知識
 
 コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
 

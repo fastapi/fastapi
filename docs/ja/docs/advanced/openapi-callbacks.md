@@ -167,13 +167,13 @@ JSON ボディは次のような内容です:
 
 これで、上で作成したコールバック用ルーター内に、必要なコールバックの *path operation(s)*（*外部開発者* が *外部 API* に実装すべきもの）が用意できました。
 
-次に、*あなたの API の path operation デコレータ*の `callbacks` パラメータに、そのコールバック用ルーターの属性 `.routes`（実体はルート/*path operations* の `list`）を渡します:
+次に、*あなたの API の path operation デコレータ*の `callbacks` パラメータに、そのコールバック用ルーターの属性 `.routes` を渡します:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | 豆知識
 
-`callback=` に渡すのはルーター本体（`invoices_callback_router`）ではなく、属性 `.routes`（`invoices_callback_router.routes`）である点に注意してください。
+`callbacks=` に渡すのはルーター本体（`invoices_callback_router`）ではなく、属性 `.routes`（`invoices_callback_router.routes`）である点に注意してください。FastAPI はそれらのルートを使ってコールバックの OpenAPI ドキュメントを生成します。
 
 ///
 
