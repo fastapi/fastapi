@@ -24,7 +24,7 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 ## Ausführen { #run-it }
 
-/// info | Info
+/// note | Hinweis
 
 Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
 
@@ -62,7 +62,7 @@ Sie werden etwa Folgendes sehen:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize-Button!
+/// tip | Authorize-Button!
 
 Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
 
@@ -120,7 +120,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 
 In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem **Bearer**-Token. Wir machen das mit der Klasse `OAuth2PasswordBearer`.
 
-/// info | Info
+/// note | Hinweis
 
 Ein „Bearer“-Token ist nicht die einzige Option.
 
@@ -150,7 +150,7 @@ Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern
 
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
 
@@ -178,7 +178,7 @@ Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pf
 
 **FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein „Sicherheitsschema“ im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
-/// info | Technische Details
+/// note | Technische Details
 
 **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
 

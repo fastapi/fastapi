@@ -17,7 +17,7 @@ Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md) gesehen h
 
 Hier zeige ich Ihnen, wie Sie **Uvicorn** mit **Workerprozessen** verwenden, indem Sie den `fastapi`-Befehl oder den `uvicorn`-Befehl direkt verwenden.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md).
 
@@ -67,12 +67,12 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>

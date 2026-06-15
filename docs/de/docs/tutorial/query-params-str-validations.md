@@ -29,7 +29,7 @@ Um dies zu erreichen, importieren Sie zuerst:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Info
+/// note | Hinweis
 
 FastAPI hat Unterstützung für `Annotated` hinzugefügt (und begonnen, es zu empfehlen) in der Version 0.95.0.
 
@@ -381,7 +381,7 @@ Zum Beispiel überprüft dieser benutzerdefinierte Validator, ob die Artikel-ID 
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Info
+/// note | Hinweis
 
 Dies ist verfügbar seit Pydantic Version 2 oder höher. 😎
 

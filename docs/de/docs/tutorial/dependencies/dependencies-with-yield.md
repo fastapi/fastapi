@@ -170,7 +170,7 @@ participant tasks as Hintergrundtasks
     end
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Es wird nur **eine Response** an den Client gesendet. Es kann eine Error-Response oder die Response der *Pfadoperation* sein.
 

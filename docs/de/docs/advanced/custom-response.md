@@ -41,7 +41,7 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | Info
+/// note | Hinweis
 
 Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
 
@@ -65,7 +65,7 @@ Eine `Response`, die direkt von Ihrer *Pfadoperation-Funktion* zurückgegeben wi
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Natürlich stammen der eigentliche `Content-Type`-Header, der Statuscode, usw., aus dem `Response`-Objekt, das Sie zurückgegeben haben.
 
@@ -116,7 +116,7 @@ Sie akzeptiert die folgenden Parameter:
 * `content` – Ein `str` oder `bytes`.
 * `status_code` – Ein `int`-HTTP-Statuscode.
 * `headers` – Ein `dict` von Strings.
-* `media_type` – Ein `str`, der den Medientyp angibt. Z. B. `"text/html"`.
+* `media_type` – Ein `str`, der den Medientyp angibt. Z. B. „text/html“.
 
 FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem `media_type` basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
@@ -157,6 +157,7 @@ Sie können eine `RedirectResponse` direkt zurückgeben:
 ---
 
 Oder Sie können sie im Parameter `response_class` verwenden:
+
 
 {* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
 

@@ -18,7 +18,7 @@ Sie benötigen nicht unbedingt OAuth2-Scopes, und Sie können die Authentifizier
 
 Aber OAuth2 mit Scopes kann bequem in Ihre API (mit OpenAPI) und deren API-Dokumentation integriert werden.
 
-Dennoch, verwenden Sie solche Scopes oder andere Sicherheits-/Autorisierungsanforderungen in Ihrem Code so wie Sie es möchten.
+Dennoch erzwingen Sie solche Scopes oder andere Sicherheits-/Autorisierungsanforderungen in Ihrem Code so, wie Sie es benötigen.
 
 In vielen Fällen kann OAuth2 mit Scopes ein Overkill sein.
 
@@ -46,7 +46,7 @@ Er wird normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu dekla
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info | Info
+/// note | Hinweis
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -126,7 +126,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Technische Details
+/// note | Technische Details
 
 `Security` ist tatsächlich eine Unterklasse von `Depends` und hat nur noch einen zusätzlichen Parameter, den wir später kennenlernen werden.
 
