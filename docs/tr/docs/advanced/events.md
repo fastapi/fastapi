@@ -120,7 +120,7 @@ Uygulama kapanırken çalıştırılacak bir fonksiyon eklemek için, `"shutdown
 
 Burada `shutdown` event handler fonksiyonu, `log.txt` dosyasına `"Application shutdown"` satırını yazar.
 
-/// info | Bilgi
+/// note | Not
 
 `open()` fonksiyonunda `mode="a"` "append" anlamına gelir; yani satır, önceki içeriği silmeden dosyada ne varsa onun sonuna eklenir.
 
@@ -152,7 +152,7 @@ Meraklı nerd’ler için küçük bir teknik detay. 🤓
 
 Altta, ASGI teknik spesifikasyonunda bu, [Lifespan Protokolü](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)’nün bir parçasıdır ve `startup` ile `shutdown` adında event’ler tanımlar.
 
-/// info | Bilgi
+/// note | Not
 
 Starlette `lifespan` handler’ları hakkında daha fazlasını [Starlette Lifespan dokümanları](https://www.starlette.dev/lifespan/) içinde okuyabilirsiniz.
 

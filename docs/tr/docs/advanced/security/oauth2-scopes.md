@@ -46,7 +46,7 @@ Genellikle belirli güvenlik izinlerini tanımlamak için kullanılır, örneği
 * `instagram_basic` Facebook / Instagram tarafından kullanılır.
 * `https://www.googleapis.com/auth/drive` Google tarafından kullanılır.
 
-/// info | Bilgi
+/// note | Not
 
 OAuth2'de "scope", gereken belirli bir izni bildiren bir string'den ibarettir.
 
@@ -126,7 +126,7 @@ Burada, **FastAPI**'nin farklı seviyelerde tanımlanan scope'ları nasıl ele a
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Teknik Detaylar
+/// note | Teknik Detaylar
 
 `Security` aslında `Depends`'in bir alt sınıfıdır ve sadece birazdan göreceğimiz bir ek parametreye sahiptir.
 

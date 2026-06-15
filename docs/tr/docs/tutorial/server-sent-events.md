@@ -4,7 +4,7 @@
 
 Bu, [JSON Lines Akışı](stream-json-lines.md) ile benzerdir ancak tarayıcılar tarafından yerel olarak desteklenen [`EventSource` API'si](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) ile `text/event-stream` formatını kullanır.
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI 0.135.0'da eklendi.
 

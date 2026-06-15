@@ -43,7 +43,7 @@ $ <font color="#4E9A06">fastapi</font> dev
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -180,7 +180,7 @@ Bu da şuna eşdeğer olur:
 from backend.main import app
 ```
 
-### Path ile `fastapi dev` { #fastapi-dev-with-path }
+### Path ile veya `--entrypoint` CLI seçeneğiyle `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
 
@@ -188,29 +188,19 @@ Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objes
 $ fastapi dev main.py
 ```
 
-Ancak `fastapi` komutunu her çağırdığınızda doğru path'i geçmeyi hatırlamanız gerekir.
+Veya `fastapi dev` komutuna `--entrypoint` seçeneğini de geçebilirsiniz:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i veya entrypoint'i geçmeyi hatırlamanız gerekir.
 
 Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 
 ### Uygulamanızı Yayınlayın (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; henüz katılmadıysanız gidip bekleme listesine yazılın. 🚀
-
-Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek komutla deploy edebilirsiniz.
-
-Deploy etmeden önce giriş yaptığınızdan emin olun:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Ardından uygulamanızı deploy edin:
+İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a tek komutla deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve buluta deploy eder. Giriş yapmadıysanız, kimlik doğrulama işlemini tamamlamak için tarayıcınız açılır.
 
 Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Bir "path" genellikle "endpoint" veya "route" olarak da adlandırılır.
 
@@ -322,7 +314,7 @@ Biz de bunlara "**operation**" diyeceğiz.
 * path `/`
 * <dfn title="bir HTTP GET methodu"><code>get</code> operation</dfn> kullanarak
 
-/// info | `@decorator` Bilgisi
+/// note | `@decorator` Bilgisi
 
 Python'daki `@something` söz dizimi "decorator" olarak adlandırılır.
 

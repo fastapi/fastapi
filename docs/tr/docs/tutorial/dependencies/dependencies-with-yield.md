@@ -1,6 +1,6 @@
 # `yield` ile Dependency'ler { #dependencies-with-yield }
 
-FastAPI, işini bitirdikten sonra <dfn title='bazen "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code" vb. olarak da adlandırılır'>ek adımlar</dfn> çalıştıran dependency'leri destekler.
+FastAPI, işini bitirdikten sonra <dfn title='bazen "çıkış kodu", "temizleme kodu", "sökme kodu", "kapatma kodu", "bağlam yöneticisi çıkış kodu" vb. olarak da adlandırılır'>ek adımlar</dfn> çalıştıran dependency'leri destekler.
 
 Bunu yapmak için `return` yerine `yield` kullanın ve ek adımları (kodu) `yield` satırından sonra yazın.
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Client'a yalnızca **tek bir response** gönderilir. Bu, error response'lardan biri olabilir ya da *path operation*'dan dönen response olabilir.
 
