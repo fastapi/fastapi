@@ -120,7 +120,7 @@ async with lifespan(app):
 
 여기서 `shutdown` 이벤트 핸들러 함수는 텍스트 한 줄 `"Application shutdown"`을 `log.txt` 파일에 기록합니다.
 
-/// info | 정보
+/// note | 참고
 
 `open()` 함수에서 `mode="a"`는 "append"(추가)를 의미하므로, 기존 내용을 덮어쓰지 않고 파일에 있던 내용 뒤에 줄이 추가됩니다.
 
@@ -150,9 +150,9 @@ async with lifespan(app):
 
 호기심 많은 분들을 위한 기술적인 세부사항입니다. 🤓
 
-내부적으로 ASGI 기술 사양에서는 이것이 [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
+내부적으로 ASGI 기술 사양에서는 이것이 [Lifespan 프로토콜](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
 
-/// info | 정보
+/// note | 참고
 
 Starlette `lifespan` 핸들러에 대해서는 [Starlette의 Lifespan 문서](https://www.starlette.dev/lifespan/)에서 더 읽어볼 수 있습니다.
 

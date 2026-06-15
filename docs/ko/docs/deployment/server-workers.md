@@ -17,7 +17,7 @@
 
 여기서는 `fastapi` 명령어를 사용하거나 `uvicorn` 명령어를 직접 사용해서, **워커 프로세스**와 함께 **Uvicorn**을 사용하는 방법을 보여드리겠습니다.
 
-/// info | 정보
+/// note | 참고
 
 Docker나 Kubernetes 같은 컨테이너를 사용하고 있다면, 다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md)에서 더 자세히 설명하겠습니다.
 
@@ -60,19 +60,19 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C to
              quit<b>)</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started parent process <b>[</b><font color="#34E2E2"><b>27365</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started parent process <b>[</b><font color="#34E2E2"><b>27365</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>

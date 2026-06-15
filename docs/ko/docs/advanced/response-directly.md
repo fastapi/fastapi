@@ -18,7 +18,7 @@
 
 `Response` 또는 그 하위 클래스를 반환할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
 `JSONResponse` 자체도 `Response`의 하위 클래스입니다.
 
