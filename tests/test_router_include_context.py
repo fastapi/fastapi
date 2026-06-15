@@ -807,6 +807,26 @@ def test_no_prefix_include_validation_sees_effective_starlette_route_candidates(
     assert cast(Route, candidates[0]).path == "/child/items"
 
 
+def test_no_prefix_include_validation_sees_effective_api_route_path():
+    leaf_router = APIRouter()
+
+    @leaf_router.get("")
+    def read_items():
+        return []
+
+    parent_router = APIRouter()
+    parent_router.include_router(leaf_router, prefix="/items")
+
+    app = FastAPI()
+    app.include_router(parent_router)
+    client = TestClient(app)
+
+    response = client.get("/items")
+
+    assert response.status_code == 200, response.text
+    assert response.json() == []
+
+
 def test_apirouter_matches_fallback_without_include_context():
     router = APIRouter()
 
