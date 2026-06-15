@@ -120,7 +120,7 @@ Para adicionar uma função que deve ser executada quando a aplicação estiver 
 
 Aqui, a função de manipulador do evento `shutdown` escreverá uma linha de texto `"Application shutdown"` no arquivo `log.txt`.
 
-/// info | Informação
+/// note | Nota
 
 Na função `open()`, o `mode="a"` significa "acrescentar", então a linha será adicionada depois do que já estiver naquele arquivo, sem sobrescrever o conteúdo anterior.
 
@@ -152,7 +152,7 @@ Apenas um detalhe técnico para nerds curiosos. 🤓
 
 Por baixo, na especificação técnica do ASGI, isso é parte do [Protocolo Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), e define eventos chamados `startup` e `shutdown`.
 
-/// info | Informação
+/// note | Nota
 
 Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://www.starlette.dev/lifespan/).
 

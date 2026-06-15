@@ -46,7 +46,7 @@ Eles são normalmente utilizados para declarar permissões de segurança especí
 * `instagram_basic` é utilizado pelo Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` é utilizado pelo Google.
 
-/// info | Informação
+/// note | Nota
 
 No OAuth2, um "escopo" é apenas uma string que declara uma permissão específica necessária.
 

@@ -18,7 +18,7 @@ Da mesma forma que usamos o Pydantic para declarar corpos, podemos usá-lo em qu
 
 ## Criar uma dependência `get_current_user` { #create-a-get-current-user-dependency }
 
-Vamos criar uma dependência chamada `get_current_user`.
+Vamos criar uma dependência `get_current_user`.
 
 Lembra que as dependências podem ter subdependências?
 
@@ -52,7 +52,7 @@ Aqui, o **FastAPI** não ficará confuso porque você está usando `Depends`.
 
 ///
 
-/// check | Verifique
+/// tip | Dica
 
 A forma como esse sistema de dependências foi projetado nos permite ter diferentes dependências (diferentes "dependables") que retornam um modelo `User`.
 
