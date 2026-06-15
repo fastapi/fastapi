@@ -74,7 +74,7 @@
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Дополнительная информация
+/// note | Примечание
 
 Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags).
 

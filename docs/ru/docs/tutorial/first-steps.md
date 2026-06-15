@@ -180,7 +180,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev` с путём { #fastapi-dev-with-path }
+### `fastapi dev` с путём или с опцией CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Вы также можете передать путь к файлу в команду `fastapi dev`, и она попытается определить объект приложения FastAPI для использования:
 
@@ -188,29 +188,19 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-Но в этом случае вам придётся каждый раз помнить о передаче корректного пути при вызове команды `fastapi`.
+Или вы можете передать опцию `--entrypoint` команде `fastapi dev`:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Но в этом случае вам придётся каждый раз помнить о передаче корректного пути/entrypoint при вызове команды `fastapi`.
 
 Кроме того, другие инструменты могут его не найти, например [Расширение VS Code](../editor-support.md) или [FastAPI Cloud](https://fastapicloud.com), поэтому рекомендуется использовать `entrypoint` в `pyproject.toml`.
 
 ### Разверните приложение (необязательно) { #deploy-your-app-optional }
 
-При желании вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com), перейдите и присоединитесь к списку ожидания, если ещё не сделали этого. 🚀
-
-Если у вас уже есть аккаунт **FastAPI Cloud** (мы пригласили вас из списка ожидания 😉), вы можете развернуть приложение одной командой.
-
-Перед развертыванием убедитесь, что вы вошли в систему:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Затем разверните приложение:
+При желании вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com) одной командой. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI автоматически определит ваше приложение FastAPI и развернёт его в облаке. Если вы не вошли в систему, откроется браузер для завершения процесса аутентификации.
 
 Готово! Теперь вы можете открыть своё приложение по этому URL. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Информация
+/// note | Примечание
 
 «Путь» также часто называют «эндпоинт» или «маршрут».
 
@@ -322,7 +314,7 @@ https://example.com/items/foo
 * по пути `/`
 * с использованием <dfn title="метод HTTP GET"><code>get</code> операции</dfn>
 
-/// info | Информация о `@decorator`
+/// note | Информация о `@decorator`
 
 Синтаксис `@something` в Python называется «декоратор».
 
