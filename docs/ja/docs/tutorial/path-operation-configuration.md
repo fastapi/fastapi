@@ -72,13 +72,13 @@ docstringに[Markdown](https://en.wikipedia.org/wiki/Markdown)を記述すれば
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 情報
+/// note | 備考
 
 `response_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
 
