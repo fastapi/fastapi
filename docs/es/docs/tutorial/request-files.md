@@ -2,7 +2,7 @@
 
 Puedes definir archivos que serán subidos por el cliente utilizando `File`.
 
-/// info | Información
+/// note | Nota
 
 Para recibir archivos subidos, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Crea parámetros de archivo de la misma manera que lo harías para `Body` o `For
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Información
+/// note | Nota
 
 `File` es una clase que hereda directamente de `Form`.
 
