@@ -1061,6 +1061,7 @@ def _populate_api_route_state(
     else:
         route.stream_item_field = None
 
+
 class APIRoute(routing.Route):
     stream_item_type: Any | None
     response_model: Any
