@@ -56,7 +56,6 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 * [Hypercorn](https://hypercorn.readthedocs.io/): 与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
 * [Daphne](https://github.com/django/daphne): 为 Django Channels 构建的 ASGI 服务器。
 * [Granian](https://github.com/emmett-framework/granian): 基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit 是一个轻量级且灵活的 Web 应用运行时环境。
 
 ## 服务器主机和服务器程序 { #server-machine-and-server-program }
 
