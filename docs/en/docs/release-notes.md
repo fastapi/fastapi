@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#15758](https://github.com/fastapi/fastapi/pull/15758) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 🔥 Remove unused scripts. PR [#15771](https://github.com/fastapi/fastapi/pull/15771) by [@tiangolo](https://github.com/tiangolo).
