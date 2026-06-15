@@ -167,13 +167,13 @@ https://www.external.org/events/invoices/2expen51ve
 
 此時你已經在先前建立的回呼 router 中，擁有所需的回呼「路徑操作（們）」（也就是「外部開發者」應該在「外部 API」中實作的那些）。
 
-現在在「你的 API 的路徑操作裝飾器」中使用參數 `callbacks`，將該回呼 router 的屬性 `.routes`（實際上就是一個由路由／「路徑操作」所組成的 `list`）傳入：
+現在在「你的 API 的路徑操作裝飾器」中使用參數 `callbacks`，將該回呼 router 的屬性 `.routes` 傳入：
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip
 
-注意你傳給 `callback=` 的不是整個 router 本身（`invoices_callback_router`），而是它的屬性 `.routes`，也就是 `invoices_callback_router.routes`。
+注意你不是把整個 router 本身（`invoices_callback_router`）傳給 `callbacks=`，而是它的 `.routes`，也就是 `invoices_callback_router.routes`。FastAPI 會使用這些路由來產生回呼的 OpenAPI 文件。
 
 ///
 

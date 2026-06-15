@@ -41,7 +41,7 @@ FastAPI 預設回傳 JSON 回應。
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info
+/// note
 
 參數 `response_class` 也會用來定義回應的「media type」。
 
@@ -65,7 +65,7 @@ FastAPI 預設回傳 JSON 回應。
 
 ///
 
-/// info
+/// note
 
 當然，實際的 `Content-Type` 標頭、狀態碼等，會來自你回傳的 `Response` 物件。
 

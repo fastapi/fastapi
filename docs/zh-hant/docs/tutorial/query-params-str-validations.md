@@ -29,7 +29,7 @@ FastAPI 會因為預設值是 `= None` 而知道 `q` 不是必填。
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | 說明
+/// note | 注意
 
 FastAPI 自 0.95.0 版起加入並開始推薦使用 `Annotated`。
 
@@ -167,7 +167,7 @@ q: str = Query(default="rick")
 
 ## 加入正規表示式 { #add-regular-expressions }
 
-你可以定義參數必須符合的 <dfn title="正規表示式（regex、regexp）是一組用於定義字串搜尋樣式的字元序列。">regular expression</dfn> `pattern`：
+你可以定義參數必須符合的 <dfn title="正規表示式（regex、regexp）是一組用於定義字串搜尋樣式的字元序列。">正規表示式</dfn> `pattern`：
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -381,7 +381,7 @@ Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | 說明
+/// note | 注意
 
 這需搭配 Pydantic 2 或以上版本。😎
 
@@ -411,7 +411,7 @@ Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 #### 隨機項目 { #a-random-item }
 
-透過 `data.items()` 我們會得到一個包含每個字典項目鍵值對 tuple 的 <dfn title="可以用 for 迴圈遍歷的東西，例如 list、set 等等。">iterable object</dfn>。
+透過 `data.items()` 我們會得到一個包含每個字典項目鍵值對 tuple 的 <dfn title="可以用 for 迴圈遍歷的東西，例如 list、set 等等。">可疊代物件</dfn>。
 
 我們用 `list(data.items())` 把這個可疊代物件轉成正式的 `list`。
 
