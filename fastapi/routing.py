@@ -1062,6 +1062,41 @@ def _populate_api_route_state(
 
 
 class APIRoute(routing.Route):
+    stream_item_type: Any | None
+    response_model: Any
+    summary: str | None
+    response_description: str
+    deprecated: bool | None
+    operation_id: str | None
+    response_model_include: IncEx | None
+    response_model_exclude: IncEx | None
+    response_model_by_alias: bool
+    response_model_exclude_unset: bool
+    response_model_exclude_defaults: bool
+    response_model_exclude_none: bool
+    include_in_schema: bool
+    response_class: type[Response] | DefaultPlaceholder
+    dependency_overrides_provider: Any | None
+    callbacks: list[BaseRoute] | None
+    openapi_extra: dict[str, Any] | None
+    generate_unique_id_function: Callable[[Any], str] | DefaultPlaceholder
+    strict_content_type: bool | DefaultPlaceholder
+    tags: list[str | Enum]
+    responses: dict[int | str, dict[str, Any]]
+    unique_id: str
+    status_code: int | None
+    response_field: ModelField | None
+    stream_item_field: ModelField | None
+    dependencies: list[params.Depends]
+    description: str
+    response_fields: dict[int | str, ModelField]
+    dependant: Dependant
+    _flat_dependant: Dependant
+    _embed_body_fields: bool
+    body_field: ModelField | None
+    is_sse_stream: bool
+    is_json_stream: bool
+
     def __init__(
         self,
         path: str,
