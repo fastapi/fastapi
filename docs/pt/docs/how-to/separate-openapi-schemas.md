@@ -38,7 +38,7 @@ Mas se você usar o mesmo modelo como saída, como aqui:
 
 ### Modelo para Dados de Resposta de Saída { #model-for-output-response-data }
 
-Se você interagir com a documentação e verificar a resposta, mesmo que o código não tenha adicionado nada em um dos campos `description`, a resposta JSON contém o valor padrão (`null`):
+Se você interagir com a documentação e verificar a resposta, mesmo que o código não tenha adicionado nada em um dos campos `description`, a response JSON contém o valor padrão (`null`):
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image02.png">
@@ -81,11 +81,11 @@ Com esse recurso do **Pydantic v2**, sua documentação da API fica mais **preci
 
 Agora, há alguns casos em que você pode querer ter o **mesmo esquema para entrada e saída**.
 
-Provavelmente, o principal caso de uso para isso é se você já tem algum código de cliente/SDK gerado automaticamente e não quer atualizar todo o código de cliente/SDK gerado ainda, você provavelmente vai querer fazer isso em algum momento, mas talvez não agora.
+Provavelmente, o principal caso de uso para isso é se você já tem algum código de cliente/SDKs gerado automaticamente e não quer atualizar todo o código de cliente/SDKs gerado ainda, você provavelmente vai querer fazer isso em algum momento, mas talvez não agora.
 
 Nesse caso, você pode desativar esse recurso no **FastAPI**, com o parâmetro `separate_input_output_schemas=False`.
 
-/// info | Informação
+/// note | Nota
 
 O suporte para `separate_input_output_schemas` foi adicionado no FastAPI `0.102.0`. 🤓
 

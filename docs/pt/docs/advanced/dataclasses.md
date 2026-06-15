@@ -18,7 +18,7 @@ E claro, ele suporta o mesmo:
 
 Isso funciona da mesma forma que com os modelos Pydantic. E na verdade é alcançado da mesma maneira por baixo dos panos, usando Pydantic.
 
-/// info | Informação
+/// note | Nota
 
 Lembre-se de que dataclasses não podem fazer tudo o que os modelos Pydantic podem fazer.
 
