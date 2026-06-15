@@ -396,9 +396,9 @@ Incluirá todas las rutas de ese router como parte de ella.
 
 /// note | Detalles Técnicos
 
-En realidad creará internamente una *path operation* para cada *path operation* que fue declarada en el `APIRouter`.
+FastAPI mantiene activo el `APIRouter` original y sus `APIRoute`s cuando el router se incluye en la aplicación principal.
 
-Así, detrás de escena, funcionará como si todo fuera la misma única app.
+Eso significa que las subclases personalizadas de `APIRouter` y `APIRoute` aún pueden participar después de incluir el router.
 
 ///
 
@@ -406,7 +406,7 @@ Así, detrás de escena, funcionará como si todo fuera la misma única app.
 
 No tienes que preocuparte por el rendimiento al incluir routers.
 
-Esto tomará microsegundos y solo sucederá al inicio.
+Esto está diseñado para ser liviano y evitar añadir sobrecarga a cada request.
 
 Así que no afectará el rendimiento. ⚡
 
@@ -461,7 +461,7 @@ Los `APIRouter`s no están "montados", no están aislados del resto de la aplica
 
 Esto se debe a que queremos incluir sus *path operations* en el esquema de OpenAPI y las interfaces de usuario.
 
-Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, las *path operations* se "clonan" (se vuelven a crear), no se incluyen directamente.
+FastAPI mantiene los routers y *path operations* originales activos, y combina los prefijos del router, dependencias, tags, responses y otros metadatos al manejar requests y generar OpenAPI.
 
 ///
 
@@ -532,4 +532,16 @@ De la misma manera que puedes incluir un `APIRouter` en una aplicación `FastAPI
 router.include_router(other_router)
 ```
 
-Asegúrate de hacerlo antes de incluir `router` en la app de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.
+Puedes hacerlo antes o después de incluir `router` en la app de `FastAPI`. FastAPI seguirá incluyendo las *path operations* de `other_router` en el ruteo y en OpenAPI.
+
+Lo mismo aplica a las *path operations* añadidas después a los routers. También serán visibles a través de la inclusión anterior.
+
+/// warning | Detalles Técnicos
+
+Evita mutar directamente `router.routes` después de incluir un router. FastAPI trata la inclusión de routers como “en vivo”, así que el router original y sus rutas siguen formando parte del ruteo y de la generación de OpenAPI.
+
+Usa APIs documentadas como los decoradores de *path operations* y `.include_router()` para agregar rutas y routers.
+
+Trata `router.routes` como un árbol de rutas de nivel bajo que puede contener definiciones de rutas y routers incluidos, y evita depender de él como una lista plana de *path operations* finales.
+
+///

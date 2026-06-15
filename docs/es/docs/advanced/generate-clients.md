@@ -22,16 +22,15 @@ FastAPI genera automáticamente especificaciones **OpenAPI 3.1**, así que cualq
 
 ## Generadores de SDKs de sponsors de FastAPI { #sdk-generators-from-fastapi-sponsors }
 
-Esta sección destaca soluciones **respaldadas por empresas** y **venture-backed** de compañías que sponsorean FastAPI. Estos productos ofrecen **funcionalidades adicionales** e **integraciones** además de SDKs generados de alta calidad.
+Esta sección destaca soluciones **respaldadas por empresas** y **venture-backed** de compañías que sponsor FastAPI. Estos productos ofrecen **funcionalidades adicionales** e **integraciones** además de SDKs generados de alta calidad.
 
-Al ✨ [**sponsorear FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, estas compañías ayudan a asegurar que el framework y su **ecosistema** se mantengan saludables y **sustentables**.
+Al ✨ [**ser sponsor de FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, estas compañías ayudan a asegurar que el framework y su **ecosistema** se mantengan saludables y **sustentables**.
 
 Su sponsorship también demuestra un fuerte compromiso con la **comunidad** de FastAPI (tú), mostrando que no solo les importa ofrecer un **gran servicio**, sino también apoyar un **framework robusto y próspero**, FastAPI. 🙇
 
 Por ejemplo, podrías querer probar:
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Algunas de estas soluciones también pueden ser open source u ofrecer niveles gratuitos, así que puedes probarlas sin un compromiso financiero. Hay otros generadores de SDK comerciales disponibles y se pueden encontrar en línea. 🤓
 
