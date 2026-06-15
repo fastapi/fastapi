@@ -818,6 +818,10 @@ def test_no_prefix_include_validation_sees_effective_api_route_path():
     parent_router = APIRouter()
     parent_router.include_router(leaf_router, prefix="/items")
 
+    # for coverage
+    candidates = list(_iter_included_route_candidates(parent_router.routes))
+    assert cast(APIRoute, candidates[0]).path == ""
+
     app = FastAPI()
     app.include_router(parent_router)
     client = TestClient(app)
