@@ -2,7 +2,7 @@
 
 Sie können Dateien, die vom Client hochgeladen werden, mithilfe von `File` definieren.
 
-/// info | Info
+/// note | Hinweis
 
 Um hochgeladene Dateien zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Info
+/// note | Hinweis
 
 `File` ist eine Klasse, die direkt von `Form` erbt.
 

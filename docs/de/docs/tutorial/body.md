@@ -8,7 +8,7 @@ Ihre API muss fast immer einen **Response**body senden. Aber Clients müssen nic
 
 Um einen **Request**body zu deklarieren, verwenden Sie [Pydantic](https://docs.pydantic.dev/)-Modelle mit all deren Fähigkeiten und Vorzügen.
 
-/// info | Info
+/// note | Hinweis
 
 Um Daten zu senden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
 
