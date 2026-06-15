@@ -2,11 +2,11 @@
 
 Lorsque vous devez recevoir des champs de formulaire au lieu de JSON, vous pouvez utiliser `Form`.
 
-/// info
+/// note | Remarque
 
 Pour utiliser les formulaires, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis installez-le, par exemple :
+Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis installer le paquet, par exemple :
 
 ```console
 $ pip install python-multipart
@@ -32,7 +32,7 @@ La <dfn title="spécification">spécification</dfn> exige que les champs soient 
 
 Avec `Form`, vous pouvez déclarer les mêmes configurations que pour `Body` (ainsi que `Query`, `Path`, `Cookie`), y compris la validation, des exemples, un alias (p. ex. `user-name` au lieu de `username`), etc.
 
-/// info
+/// note | Remarque
 
 `Form` est une classe qui hérite directement de `Body`.
 

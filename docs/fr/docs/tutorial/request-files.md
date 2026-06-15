@@ -2,7 +2,7 @@
 
 Vous pouvez définir des fichiers à téléverser par le client en utilisant `File`.
 
-/// info
+/// note | Remarque
 
 Pour recevoir des fichiers téléversés, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Créez des paramètres de fichier de la même manière que pour `Body` ou `Form`
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info
+/// note | Remarque
 
 `File` est une classe qui hérite directement de `Form`.
 
@@ -44,7 +44,7 @@ Pour déclarer des fichiers dans le corps de la requête, vous devez utiliser `F
 
 Les fichiers seront téléversés en « données de formulaire ».
 
-Si vous déclarez le type de votre paramètre de *fonction de chemin d'accès* comme `bytes`, **FastAPI** lira le fichier pour vous et vous recevrez le contenu sous forme de `bytes`.
+Si vous déclarez le type de votre *fonction de chemin d'accès* comme `bytes`, **FastAPI** lira le fichier pour vous et vous recevrez le contenu sous forme de `bytes`.
 
 Gardez à l'esprit que cela signifie que tout le contenu sera stocké en mémoire. Cela fonctionnera bien pour de petits fichiers.
 

@@ -396,9 +396,9 @@ Cela inclura toutes les routes de ce routeur comme faisant partie de l'applicati
 
 /// note | Détails techniques
 
-En interne, cela créera en fait un *chemin d'accès* pour chaque *chemin d'accès* qui a été déclaré dans le `APIRouter`.
+FastAPI conserve le `APIRouter` original et ses `APIRoute` actifs lorsque le routeur est inclus dans l'application principale.
 
-Donc, en coulisses, cela fonctionnera comme si tout faisait partie d'une seule et même application.
+Cela signifie que des sous-classes personnalisées de `APIRouter` et `APIRoute` peuvent toujours intervenir après l'inclusion du routeur.
 
 ///
 
@@ -406,7 +406,7 @@ Donc, en coulisses, cela fonctionnera comme si tout faisait partie d'une seule e
 
 Vous n'avez pas à vous soucier de la performance lors de l'inclusion de routeurs.
 
-Cela prendra des microsecondes et ne se produira qu'au démarrage.
+C'est conçu pour être léger et pour éviter d'ajouter une surcharge à chaque requête.
 
 Donc cela n'affectera pas la performance. ⚡
 
@@ -461,7 +461,7 @@ Les `APIRouter` ne sont pas « montés », ils ne sont pas isolés du reste de l
 
 C'est parce que nous voulons inclure leurs *chemins d'accès* dans le schéma OpenAPI et les interfaces utilisateur.
 
-Comme nous ne pouvons pas simplement les isoler et les « monter » indépendamment du reste, les *chemins d'accès* sont « clonés » (recréés), pas inclus directement.
+FastAPI conserve les routeurs et chemins d'accès originaux actifs, et combine les préfixes de routeur, dépendances, tags, réponses et autres métadonnées lors du traitement des requêtes et de la génération d'OpenAPI.
 
 ///
 
@@ -482,7 +482,7 @@ from app.main import app
 
 De cette façon, la commande `fastapi` saura où trouver votre app.
 
-/// note | Remarque
+/// Note | Remarque
 
 Vous pourriez aussi passer le chemin à la commande, comme :
 
@@ -532,4 +532,16 @@ De la même manière que vous pouvez inclure un `APIRouter` dans une application
 router.include_router(other_router)
 ```
 
-Vous devez vous assurer de le faire avant d'inclure `router` dans l'application `FastAPI`, afin que les *chemins d'accès* de `other_router` soient également inclus.
+Vous pouvez le faire avant ou après avoir inclus `router` dans l'application `FastAPI`. FastAPI inclura quand même les *chemins d'accès* de `other_router` dans le routage et dans OpenAPI.
+
+Il en va de même pour les *chemins d'accès* ajoutés plus tard aux routeurs. Ils seront visibles via l'inclusion antérieure également.
+
+/// warning | Détails techniques
+
+Évitez de modifier directement `router.routes` après avoir inclus un routeur. FastAPI considère l'inclusion d'un routeur comme « en direct », de sorte que le routeur original et ses routes restent utilisés pour le routage et la génération d'OpenAPI.
+
+Utilisez les API documentées comme les décorateurs de *chemin d'accès* et `.include_router()` pour ajouter des routes et des routeurs.
+
+Considérez `router.routes` comme un arbre de routes de plus bas niveau pouvant contenir des définitions de routes et des routeurs inclus, et évitez de vous y fier comme à une liste plate de *chemins d'accès* finaux.
+
+///

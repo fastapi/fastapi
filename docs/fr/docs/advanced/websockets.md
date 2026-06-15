@@ -111,7 +111,7 @@ Ils fonctionnent de la même manière que pour les autres endpoints/*chemins d'a
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note | Remarque
 
 Comme il s'agit d'un WebSocket, il n'est pas vraiment logique de lever une `HTTPException`, nous levons plutôt une `WebSocketException`.
 

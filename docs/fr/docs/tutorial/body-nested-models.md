@@ -135,7 +135,7 @@ Cela attendra (convertira, validera, documentera, etc.) un corps JSON comme :
     ]
 }
 ```
-/// info
+/// note | Remarque
 
 Remarquez que la clé `images` contient maintenant une liste d'objets image.
 
@@ -147,7 +147,7 @@ Vous pouvez définir des modèles imbriqués à une profondeur arbitraire :
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info
+/// note | Remarque
 
 Remarquez que `Offer` a une liste d’`Item`, qui à leur tour ont une liste optionnelle d’`Image`.
 

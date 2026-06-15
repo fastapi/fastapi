@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info
+/// note | Remarque
 
 Une **seule réponse** sera envoyée au client. Il peut s'agir d'une des réponses d'erreur ou de la réponse provenant du *chemin d'accès*.
 

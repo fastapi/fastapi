@@ -4,7 +4,7 @@ Si vous voulez diffuser des données pouvant être structurées en JSON, vous de
 
 Mais si vous voulez diffuser des données binaires pures ou des chaînes, voici comment procéder.
 
-/// info
+/// note | Remarque
 
 Ajouté dans FastAPI 0.134.0.
 
@@ -90,7 +90,7 @@ Par exemple, ils n'ont pas de `await file.read()`, ni de `async for chunk in fil
 
 Et dans de nombreux cas, leur lecture serait une opération bloquante (pouvant bloquer la boucle d'événements), car ils sont lus depuis le disque ou le réseau.
 
-/// info
+/// note | Remarque
 
 L'exemple ci-dessus est en réalité une exception, car l'objet `io.BytesIO` est déjà en mémoire ; sa lecture ne bloquera donc rien.
 
