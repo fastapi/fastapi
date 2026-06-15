@@ -524,7 +524,7 @@ $ fastapi dev
 
 Это продвинутое использование, которое вам может и не понадобиться, но оно есть на случай, если понадобится.
 
-## Подключение `APIRouter` в другой { #include-an-apirouter-in-another }
+## Подключение `APIRouter` в другой  `APIRouter` { #include-an-apirouter-in-another }
 
 Точно так же, как вы можете подключить `APIRouter` к приложению `FastAPI`, вы можете подключить `APIRouter` к другому `APIRouter`, используя:
 
