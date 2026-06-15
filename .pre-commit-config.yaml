@@ -45,7 +45,7 @@ repos:
 
       - id: local-ty
         name: ty check
-        entry: uv run ty check fastapi
+        entry: uv run ty check fastapi docs_src --force-exclude
         require_serial: true
         language: unsupported
         pass_filenames: false
