@@ -1,6 +1,6 @@
 # 使用密碼（與雜湊）的 OAuth2、以 Bearer 搭配 JWT 權杖 { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-現在我們已經有完整的安全流程了，接下來用 <abbr title="JSON 網路權杖">JWT</abbr> 權杖與安全的密碼雜湊，讓應用真正安全。
+現在我們已經有完整的安全流程了，接下來用 <abbr title="JSON Web Tokens - JSON 網路權杖">JWT</abbr> 權杖與安全的密碼雜湊，讓應用真正安全。
 
 這份程式碼可以直接用在你的應用中，把密碼雜湊存進資料庫等等。
 
