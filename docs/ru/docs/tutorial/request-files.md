@@ -2,7 +2,7 @@
 
 Используя класс `File`, мы можем позволить клиентам загружать файлы.
 
-/// info | Дополнительная информация
+/// note | Примечание
 
 Чтобы получать загруженные файлы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Дополнительная информация
+/// note | Примечание
 
 `File` - это класс, который наследуется непосредственно от `Form`.
 

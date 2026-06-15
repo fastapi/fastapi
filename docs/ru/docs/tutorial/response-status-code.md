@@ -18,7 +18,7 @@
 
 Параметр `status_code` принимает число, обозначающее HTTP статус-код.
 
-/// info | Информация
+/// note | Примечание
 
 В качестве значения параметра `status_code` также может использоваться `IntEnum`, например, из библиотеки [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) в Python.
 
