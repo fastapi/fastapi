@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.137.1 (2026-06-15)
+
 ### Fixes
 
 * 🚨 Fix typing checks for APIRoute. PR [#15765](https://github.com/fastapi/fastapi/pull/15765) by [@tiangolo](https://github.com/tiangolo).
