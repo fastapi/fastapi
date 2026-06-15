@@ -72,7 +72,7 @@ from myapp import app
 
 就不會被執行。
 
-/// info | 說明
+/// note
 
 想了解更多，參考 [Python 官方文件](https://docs.python.org/3/library/__main__.html)。
 
