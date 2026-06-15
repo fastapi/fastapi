@@ -4,7 +4,7 @@ Veriyi JSON olarak yapılandırabiliyorsanız, [JSON Lines Akışı](../tutorial
 
 Ancak saf ikili (binary) veri ya da string akıtmak istiyorsanız, bunu şöyle yapabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI 0.134.0 ile eklendi.
 
@@ -90,7 +90,7 @@ Bu özel örnekte o kadar da önemli değil, çünkü sahte ve bellekte (yani `i
 
 Ve birçok durumda, diskte ya da ağda okundukları için, okumak engelleyici (event loop'u bloke edebilen) bir işlem olabilir.
 
-/// info | Bilgi
+/// note | Not
 
 Yukarıdaki örnek aslında bir istisna; çünkü `io.BytesIO` nesnesi zaten bellekte, dolayısıyla onu okumak hiçbir şeyi bloke etmez.
 
