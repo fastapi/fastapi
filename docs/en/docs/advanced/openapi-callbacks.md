@@ -167,13 +167,13 @@ Notice how the callback URL used contains the URL received as a query parameter 
 
 At this point you have the *callback path operation(s)* needed (the one(s) that the *external developer*  should implement in the *external API*) in the callback router you created above.
 
-Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
+Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` from that callback router:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip
 
-Notice that you are not passing the router itself (`invoices_callback_router`) to `callbacks=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+Notice that you are not passing the router itself (`invoices_callback_router`) to `callbacks=`, but its `.routes`, as in `invoices_callback_router.routes`. FastAPI will use those routes to generate the callback OpenAPI documentation.
 
 ///
 
