@@ -85,7 +85,7 @@ Le cas d'usage principal est probablement que vous avez déjà du code client/SD
 
 Dans ce cas, vous pouvez désactiver cette fonctionnalité dans **FastAPI**, avec le paramètre `separate_input_output_schemas=False`.
 
-/// info | info
+/// note | Remarque
 
 La prise en charge de `separate_input_output_schemas` a été ajoutée dans FastAPI `0.102.0`. 🤓
 

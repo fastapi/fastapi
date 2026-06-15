@@ -8,7 +8,7 @@ Votre API aura presque toujours à envoyer un corps de **réponse**. Mais un cli
 
 Pour déclarer un corps de **requête**, on utilise les modèles de [Pydantic](https://docs.pydantic.dev/) en profitant de tous leurs avantages et fonctionnalités.
 
-/// info
+/// note | Remarque
 
 Pour envoyer de la donnée, vous devez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
 

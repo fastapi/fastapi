@@ -120,7 +120,7 @@ Pour ajouter une fonction qui doit être exécutée lorsque l'application s'arr�
 
 Ici, la fonction gestionnaire de l'événement `shutdown` écrira une ligne de texte « Application shutdown » dans un fichier `log.txt`.
 
-/// info
+/// note | Remarque
 
 Dans la fonction `open()`, le `mode="a"` signifie « append » (ajouter) ; la ligne sera donc ajoutée après ce qui se trouve déjà dans ce fichier, sans écraser le contenu précédent.
 
@@ -152,7 +152,7 @@ Juste un détail technique pour les nerds curieux. 🤓
 
 Sous le capot, dans la spécification technique ASGI, cela fait partie du [protocole Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), et il y définit des événements appelés `startup` et `shutdown`.
 
-/// info
+/// note | Remarque
 
 Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans la [documentation « Lifespan » de Starlette](https://www.starlette.dev/lifespan/).
 

@@ -1,4 +1,4 @@
-# Générer des SDK { #generating-sdks }
+# Générer des SDKs { #generating-sdks }
 
 Parce que **FastAPI** est basé sur la spécification **OpenAPI**, ses API peuvent être décrites dans un format standard compris par de nombreux outils.
 
@@ -31,7 +31,6 @@ Leur sponsoring démontre également un fort engagement envers la **communauté*
 Par exemple, vous pourriez essayer :
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Certaines de ces solutions peuvent aussi être open source ou proposer des niveaux gratuits, afin que vous puissiez les essayer sans engagement financier. D’autres générateurs de SDK commerciaux existent et peuvent être trouvés en ligne. 🤓
 

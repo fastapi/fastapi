@@ -4,7 +4,7 @@ Vous pouvez diffuser des données vers le client en utilisant les **Server-Sent 
 
 C'est similaire à [Diffuser des JSON Lines](stream-json-lines.md), mais cela utilise le format `text/event-stream`, pris en charge nativement par les navigateurs via l’API [`EventSource`](https://developer.mozilla.org/en-US/docs/Web/API/EventSource).
 
-/// info | Info
+/// note | Remarque
 
 Ajouté dans FastAPI 0.135.0.
 
