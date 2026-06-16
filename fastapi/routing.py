@@ -1192,9 +1192,8 @@ class APIRoute(routing.Route):
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
             methods = effective_context.methods
-            if (
-                methods
-                and scope["method"] not in methods
+            if methods and (
+                scope["method"] not in methods
                 and not self._is_head_for_get(scope, methods)
             ):
                 headers = {"Allow": ", ".join(self._allow_methods(methods))}

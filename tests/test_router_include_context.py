@@ -1,3 +1,5 @@
+import asyncio
+from contextlib import AsyncExitStack
 from typing import Annotated, cast
 
 import pytest
@@ -686,6 +688,57 @@ async def test_included_api_route_without_app_scope_returns_405_response():
         "GET",
         "HEAD",
     }
+
+
+def test_included_api_route_effective_context_without_methods_reaches_handler():
+    router = APIRouter()
+
+    @router.get("/items")
+    def read_items():
+        return {"items": []}
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+    included_router = cast(_IncludedRouter, app.router.routes[-1])
+    effective_context = next(included_router.effective_route_contexts())
+    route = effective_context.original_route
+    effective_context.methods = set()
+    messages = []
+
+    async def receive():  # pragma: no cover
+        return {"type": "http.request", "body": b"", "more_body": False}
+
+    async def send(message):
+        messages.append(message)
+
+    async def call_route():
+        async with (
+            AsyncExitStack() as middleware_stack,
+            AsyncExitStack() as inner_stack,
+            AsyncExitStack() as function_stack,
+        ):
+            scope = {
+                "type": "http",
+                "method": "POST",
+                "path": "/api/items",
+                "raw_path": b"/api/items",
+                "root_path": "",
+                "scheme": "http",
+                "query_string": b"",
+                "headers": [],
+                "app": app,
+                "fastapi": {"effective_route_context": effective_context},
+                "fastapi_middleware_astack": middleware_stack,
+                "fastapi_inner_astack": inner_stack,
+                "fastapi_function_astack": function_stack,
+            }
+
+            await route.handle(scope, receive, send)
+
+    asyncio.run(call_route())
+
+    assert messages[0]["type"] == "http.response.start"
+    assert messages[0]["status"] == 200
 
 
 def test_effective_api_route_context_does_not_match_websocket_scope():
