@@ -24,6 +24,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the python-packages group across 1 directory with 7 updates. PR [#15777](https://github.com/fastapi/fastapi/pull/15777) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cryptography from 46.0.7 to 48.0.1. PR [#15779](https://github.com/fastapi/fastapi/pull/15779) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump aiohttp from 3.14.0 to 3.14.1. PR [#15781](https://github.com/fastapi/fastapi/pull/15781) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.2.1 to 1.3.1. PR [#15780](https://github.com/fastapi/fastapi/pull/15780) by [@dependabot[bot]](https://github.com/apps/dependabot).
