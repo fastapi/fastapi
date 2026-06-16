@@ -1194,7 +1194,9 @@ class APIRoute(routing.Route):
             methods = effective_context.methods
             if methods:
                 method = scope["method"]
-                method_is_allowed = method in methods or self._is_head_for_get(scope, methods)
+                method_is_allowed = method in methods or self._is_head_for_get(
+                    scope, methods
+                )
                 if not method_is_allowed:
                     headers = {"Allow": ", ".join(self._allow_methods(methods))}
                     if "app" in scope:
