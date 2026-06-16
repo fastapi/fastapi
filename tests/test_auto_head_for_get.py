@@ -6,8 +6,10 @@ a GET.  FastAPI now automatically handles HEAD requests for all GET routes
 without adding HEAD to the OpenAPI schema.
 """
 
+import pytest
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -70,10 +72,53 @@ def test_allow_header_includes_implicit_head_for_get_route():
         return []
 
     client = TestClient(app)
+    assert client.get("/items").json() == []
     response = client.post("/items")
 
     assert response.status_code == 405
     assert set(response.headers["allow"].split(", ")) == {"GET", "HEAD"}
+
+
+@pytest.mark.anyio
+async def test_allow_header_response_without_app_scope_includes_implicit_head():
+    app = FastAPI()
+
+    @app.get("/items")
+    def read_items():  # pragma: no cover
+        return []
+
+    route = next(
+        route
+        for route in app.routes
+        if isinstance(route, APIRoute) and route.path == "/items"
+    )
+    messages = []
+
+    async def receive():  # pragma: no cover
+        return {"type": "http.request", "body": b"", "more_body": False}
+
+    async def send(message):
+        messages.append(message)
+
+    scope = {
+        "type": "http",
+        "method": "POST",
+        "path": "/items",
+        "raw_path": b"/items",
+        "root_path": "",
+        "scheme": "http",
+        "query_string": b"",
+        "headers": [],
+    }
+
+    await route.handle(scope, receive, send)
+
+    assert messages[0]["type"] == "http.response.start"
+    assert messages[0]["status"] == 405
+    assert set(dict(messages[0]["headers"])[b"allow"].decode().split(", ")) == {
+        "GET",
+        "HEAD",
+    }
 
 
 def test_head_not_added_to_non_get_routes():
