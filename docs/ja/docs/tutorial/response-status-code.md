@@ -18,7 +18,7 @@
 
 `status_code`パラメータはHTTPステータスコードを含む数値を受け取ります。
 
-/// info | 情報
+/// note | 備考
 
 `status_code`は代わりに、Pythonの[`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)のように、`IntEnum`を受け取ることもできます。
 

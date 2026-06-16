@@ -18,7 +18,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Şifrelenmiş değildir; yani herkes içeriğindeki bilgiyi geri çıkarabilir.
 
-Ancak imzalanmıştır. Bu yüzden, sizin ürettiğiniz bir token'ı aldığınızda, gerçekten onu sizin ürettiğinizi doğrulayabilirsiniz.
+Namun imzalanmıştır. Bu yüzden, sizin ürettiğiniz bir token'ı aldığınızda, gerçekten onu sizin ürettiğinizi doğrulayabilirsiniz.
 
 Bu şekilde, örneğin 1 haftalık süre sonu (expiration) olan bir token oluşturabilirsiniz. Sonra kullanıcı ertesi gün token ile geri geldiğinde, kullanıcının hâlâ sisteminizde oturum açmış olduğunu bilirsiniz.
 
@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 RSA veya ECDSA gibi dijital imza algoritmaları kullanmayı planlıyorsanız, `pyjwt[crypto]` bağımlılığı olan `cryptography` kütüphanesini kurmalısınız.
 
@@ -213,7 +213,7 @@ Uygulamayı, öncekiyle aynı şekilde authorize edin.
 Username: `johndoe`
 Password: `secret`
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Kodun hiçbir yerinde düz metin password "`secret`" yok; sadece hash'lenmiş hâli var.
 

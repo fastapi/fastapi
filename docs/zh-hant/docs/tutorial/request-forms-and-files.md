@@ -2,7 +2,7 @@
 
 你可以使用 `File` 與 `Form` 同時定義檔案與表單欄位。
 
-/// info
+/// note
 
 要接收上傳的檔案與/或表單資料，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 

@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a **tek bir komutla** deploy edebilirsiniz. Henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
-
-## Giriş Yapma { #login }
-
-Önceden bir **FastAPI Cloud** hesabınız olduğundan emin olun (sizi bekleme listesinden davet ettik 😉).
-
-Ardından giriş yapın:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Deploy { #deploy }
-
-Şimdi uygulamanızı **tek bir komutla** deploy edin:
+FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a yalnızca **tek bir komutla** deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
@@ -36,20 +16,22 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve buluta deploy eder. Giriş yapmadıysanız, kimlik doğrulamasını tamamlamak için tarayıcınız açılır.
+
 Hepsi bu! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 ## FastAPI Cloud Hakkında { #about-fastapi-cloud }
 
 **[FastAPI Cloud](https://fastapicloud.com)**, **FastAPI**'nin arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
 
-Bir API'yi minimum eforla **geliştirme**, **deploy etme** ve **erişilebilir kılma** sürecini sadeleştirir.
+Bir API'yi minimum eforla **geliştirme**, **deploy etme** ve **erişim** süreçlerini sadeleştirir.
 
 FastAPI ile uygulama geliştirirken elde ettiğiniz aynı **developer experience**'ı, onları buluta **deploy etmeye** de taşır. 🎉
 
 Ayrıca bir uygulamayı deploy ederken ihtiyaç duyacağınız pek çok şeyi de sizin için halleder; örneğin:
 
 * HTTPS
-* Replication (çoğaltma), request'lere göre autoscaling ile
+* Replication, request'lere göre autoscaling ile
 * vb.
 
 FastAPI Cloud, *FastAPI and friends* açık kaynak projelerinin birincil sponsoru ve finansman sağlayıcısıdır. ✨
@@ -62,4 +44,4 @@ FastAPI uygulamalarını deploy etmek için cloud sağlayıcınızın kendi kıl
 
 ## Kendi server'ınıza deploy etme { #deploy-your-own-server }
 
-Bu **Deployment** kılavuzunun ilerleyen bölümlerinde tüm detayları da ele alacağız; böylece neler olduğunu, nelerin gerçekleşmesi gerektiğini ve FastAPI uygulamalarını kendi başınıza (kendi server'larınızla da) nasıl deploy edebileceğinizi anlayacaksınız. 🤓
+Bu **Deployment** kılavuzunun ilerleyen bölümlerinde size tüm detayları da öğreteceğim; böylece neler olduğunu, nelerin gerçekleşmesi gerektiğini ve FastAPI uygulamalarını kendi başınıza, kendi server'larınızla da nasıl deploy edebileceğinizi anlayacaksınız. 🤓

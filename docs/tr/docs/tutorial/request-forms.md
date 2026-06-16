@@ -2,7 +2,7 @@
 
 JSON yerine form alanlarını almanız gerektiğinde `Form` kullanabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 Formları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
@@ -28,11 +28,11 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
 Örneğin OAuth2 spesifikasyonunun kullanılabileceği ("password flow" olarak adlandırılan) yollardan birinde, form alanları olarak bir `username` ve `password` göndermek zorunludur.
 
-<dfn title="spesifikasyon">Spesifikasyon</dfn>, alanların adının tam olarak `username` ve `password` olmasını ve JSON değil form alanları olarak gönderilmesini gerektirir.
+<dfn title="spesifikasyon">spesifikasyon</dfn>, alanların adının tam olarak `username` ve `password` olmasını ve JSON değil form alanları olarak gönderilmesini gerektirir.
 
 `Form` ile `Body` (ve `Query`, `Path`, `Cookie`) ile yaptığınız aynı konfigürasyonları tanımlayabilirsiniz; validasyon, örnekler, alias (örn. `username` yerine `user-name`) vb. dahil.
 
-/// info | Bilgi
+/// note | Not
 
 `Form`, doğrudan `Body`'den miras alan bir sınıftır.
 
@@ -62,7 +62,7 @@ Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, [<abbr
 
 /// warning | Uyarı
 
-Bir *path operation* içinde birden fazla `Form` parametresi tanımlayabilirsiniz, ancak JSON olarak almayı beklediğiniz `Body` alanlarını da ayrıca tanımlayamazsınız; çünkü bu durumda request'in body'si `application/x-www-form-urlencoded` ile encode edilmiş olur.
+Bir *path operation* içinde birden fazla `Form` parametresi tanımlayabilirsiniz, ancak JSON olarak almayı beklediğiniz `Body` alanlarını da ayrıca tanımlayamazsınız; çünkü bu durumda request'in body'si `application/json` yerine `application/x-www-form-urlencoded` ile encode edilmiş olur.
 
 Bu **FastAPI**'ın bir kısıtlaması değildir, HTTP protokolünün bir parçasıdır.
 

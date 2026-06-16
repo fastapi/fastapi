@@ -98,7 +98,7 @@ Por exemplo, se você tivesse uma sessão de banco de dados em uma dependência 
 
 Esse comportamento foi revertido na versão 0.118.0, para que o código de saída após o `yield` seja executado depois que a resposta for enviada.
 
-/// info | Informação
+/// note | Nota
 
 Como você verá abaixo, isso é muito semelhante ao comportamento antes da versão 0.106.0, mas com várias melhorias e correções de bugs para casos extremos.
 
@@ -108,7 +108,7 @@ Como você verá abaixo, isso é muito semelhante ao comportamento antes da vers
 
 Há alguns casos de uso, com condições específicas, que poderiam se beneficiar do comportamento antigo de executar o código de saída das dependências com `yield` antes de enviar a resposta.
 
-Por exemplo, imagine que você tem código que usa uma sessão de banco de dados em uma dependência com `yield` apenas para verificar um usuário, mas a sessão de banco de dados nunca é usada novamente na *função de operação de rota*, somente na dependência, e a resposta demora a ser enviada, como um `StreamingResponse` que envia dados lentamente, mas por algum motivo não usa o banco de dados.
+Por exemplo, imagine que você tem código que usa uma sessão de banco de dados em uma dependência com `yield` apenas para verificar um usuário, mas a sessão de banco de dados nunca é usada novamente na *função de operação de rota*, somente na dependência, e a response demora a ser enviada, como um `StreamingResponse` que envia dados lentamente, mas por algum motivo não usa o banco de dados.
 
 Nesse caso, a sessão de banco de dados seria mantida até que a resposta termine de ser enviada, mas se você não a usa, então não seria necessário mantê-la.
 

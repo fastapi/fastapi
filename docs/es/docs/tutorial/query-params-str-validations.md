@@ -29,7 +29,7 @@ Para lograr eso, primero importa:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Información
+/// note | Nota
 
 FastAPI añadió soporte para `Annotated` (y empezó a recomendarlo) en la versión 0.95.0.
 
@@ -298,7 +298,7 @@ También puedes usar `list` directamente en lugar de `list[str]`:
 
 Ten en cuenta que en este caso, FastAPI no comprobará el contenido de la list.
 
-Por ejemplo, `list[int]` comprobaría (y documentaría) que el contenido de la list son enteros. Pero `list` sola no lo haría.
+Por ejemplo, `list[int]` comprobaría (and documentaría) que el contenido de la list son enteros. Pero `list` sola no lo haría.
 
 ///
 
@@ -382,7 +382,7 @@ Por ejemplo, este validador personalizado comprueba que el ID del ítem empiece 
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Información
+/// note | Nota
 
 Esto está disponible con Pydantic versión 2 o superior. 😎
 

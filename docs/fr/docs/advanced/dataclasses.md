@@ -18,7 +18,7 @@ Et bien sûr, cela prend en charge la même chose :
 
 Cela fonctionne de la même manière qu'avec les modèles Pydantic. Et, en réalité, c'est mis en œuvre de la même façon en interne, en utilisant Pydantic.
 
-/// info
+/// note | Remarque
 
 Gardez à l'esprit que les dataclasses ne peuvent pas tout ce que peuvent faire les modèles Pydantic.
 

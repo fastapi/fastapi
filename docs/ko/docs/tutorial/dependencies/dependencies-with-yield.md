@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info
+/// note
 
 클라이언트에는 **하나의 응답**만 전송됩니다. 이는 오류 응답 중 하나일 수도 있고, *경로 처리*에서 생성된 응답일 수도 있습니다.
 

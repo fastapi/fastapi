@@ -74,7 +74,7 @@
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 信息
+/// note | 注意
 
 阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags)。
 

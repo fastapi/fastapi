@@ -31,7 +31,6 @@ Ihr Sponsoring zeigt auch ein starkes Engagement für die FastAPI-**Community** 
 Zum Beispiel könnten Sie ausprobieren:
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Einige dieser Lösungen sind möglicherweise auch Open Source oder bieten kostenlose Tarife an, sodass Sie diese ohne finanzielle Verpflichtung ausprobieren können. Andere kommerzielle SDK-Generatoren sind online verfügbar und können dort gefunden werden. 🤓
 

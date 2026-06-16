@@ -20,7 +20,7 @@
 
 在這個例子裡，`item_id` 被宣告為 `int`。
 
-/// check
+/// tip
 
 這會在你的函式中提供編輯器支援，包括錯誤檢查、自動完成等。
 
@@ -34,7 +34,7 @@
 {"item_id":3}
 ```
 
-/// check
+/// tip
 
 注意你的函式接收（並回傳）的值是 `3`，也就是 Python 的 `int`，而不是字串 `"3"`。
 
@@ -66,7 +66,7 @@
 
 同樣的錯誤也會在你提供 `float` 而不是 `int` 時出現，例如：[http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check
+/// tip
 
 因此，搭配相同的 Python 型別宣告，**FastAPI** 會為你進行資料驗證。
 
@@ -82,7 +82,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check
+/// tip
 
 同樣地，只要使用那個 Python 型別宣告，**FastAPI** 就會提供自動、互動式的文件（整合 Swagger UI）。
 

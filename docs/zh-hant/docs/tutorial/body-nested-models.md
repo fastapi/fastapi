@@ -134,8 +134,7 @@ my_list: list[str]
     ]
 }
 ```
-
-/// info
+/// note
 
 注意 `images` 鍵現在是一個由 image 物件組成的列表。
 
@@ -147,7 +146,7 @@ my_list: list[str]
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info
+/// note
 
 請注意，`Offer` 具有一個 `Item` 的列表，而每個 `Item` 又有一個可選的 `Image` 列表。
 

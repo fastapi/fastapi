@@ -136,7 +136,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 }
 ```
 
-/// info | 정보
+/// note | 참고
 
 `images` 키가 이제 이미지 객체 리스트를 갖는지 주목하세요.
 
@@ -148,7 +148,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | 정보
+/// note | 참고
 
 `Offer`가 `Item`의 리스트를 가지고, 그 `Item`이 다시 선택 사항인 `Image` 리스트를 갖는지 주목하세요
 

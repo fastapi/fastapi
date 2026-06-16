@@ -4,7 +4,7 @@ Da wir nun über den gesamten Sicherheitsablauf verfügen, machen wir die Anwend
 
 Diesen Code können Sie tatsächlich in Ihrer Anwendung verwenden, die Passwort-Hashes in Ihrer Datenbank speichern, usw.
 
-Wir bauen auf dem vorherigen Kapitel auf.
+Wir bauen auf dem vorherigen Kapitel auf und erweitern es.
 
 ## Über JWT { #about-jwt }
 
@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
 
@@ -213,7 +213,7 @@ Verwenden Sie die Anmeldeinformationen:
 Benutzername: `johndoe`
 Passwort: `secret`
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass im Code nirgendwo das Klartext-Passwort „`secret`“ steht, wir haben nur die gehashte Version.
 

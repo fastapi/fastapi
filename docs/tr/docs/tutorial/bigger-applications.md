@@ -44,7 +44,7 @@ from app.routers import items
 ///
 
 * `app` dizini her şeyi içerir. Ayrıca boş bir `app/__init__.py` dosyası olduğu için bir "Python package" (bir "Python module" koleksiyonu) olur: `app`.
-* İçinde bir `app/main.py` dosyası vardır. Bir Python package'in (içinde `__init__.py` dosyası olan bir dizinin) içinde olduğundan, o package'in bir "module"’üdür: `app.main`.
+* İçinde bir `app/main.py` dosyası vardır. Bir Python package’in (içinde `__init__.py` dosyası olan bir dizinin) içinde olduğundan, o package’in bir "module"’üdür: `app.main`.
 * Benzer şekilde `app/dependencies.py` dosyası da bir "module"’dür: `app.dependencies`.
 * `app/routers/` adında bir alt dizin vardır ve içinde başka bir `__init__.py` dosyası bulunur; dolayısıyla bu bir "Python subpackage"’dir: `app.routers`.
 * `app/routers/items.py` dosyası `app/routers/` package’i içinde olduğundan bir submodule’dür: `app.routers.items`.
@@ -77,7 +77,7 @@ Diyelim ki sadece kullanıcıları yönetmeye ayrılmış dosyanız `/app/router
 
 Kullanıcılarla ilgili *path operation*’ları, kodun geri kalanından ayrı tutmak istiyorsunuz; böylece düzenli kalır.
 
-Ancak bu hâlâ aynı **FastAPI** uygulaması/web API’sinin bir parçasıdır (aynı "Python Package" içinde).
+Namun bu hâlâ aynı **FastAPI** uygulaması/web API’sinin bir parçasıdır (aynı "Python Package" içinde).
 
 Bu module için *path operation*’ları `APIRouter` kullanarak oluşturabilirsiniz.
 
@@ -123,7 +123,7 @@ Bu yüzden onları ayrı bir `dependencies` module’üne koyuyoruz (`app/depend
 
 Örneği basit tutmak için uydurma bir header kullanıyoruz.
 
-Ancak gerçek senaryolarda, entegre [Security yardımcı araçlarını](security/index.md) kullanarak daha iyi sonuç alırsınız.
+Namun gerçek senaryolarda, entegre [Security yardımcı araçlarını](security/index.md) kullanarak daha iyi sonuç alırsınız.
 
 ///
 
@@ -230,7 +230,7 @@ from .dependencies import get_token_header
 * `dependencies` module’ünü bul (`app/routers/dependencies.py` gibi hayali bir dosya)...
 * ve oradan `get_token_header` function’ını import et.
 
-Ama o dosya yok; bizim dependency’lerimiz `app/dependencies.py` dosyasında.
+Namun o dosya yok; bizim dependency’lerimiz `app/dependencies.py` dosyasında.
 
 Uygulama/dosya yapımızın nasıl göründüğünü hatırlayın:
 
@@ -396,17 +396,17 @@ Böylece o router içindeki tüm route’lar uygulamanın bir parçası olarak d
 
 /// note | Teknik Detaylar
 
-Aslında içeride, `APIRouter` içinde tanımlanan her *path operation* için bir *path operation* oluşturur.
+Router ana uygulamaya dahil edildiğinde FastAPI, orijinal `APIRouter`’ı ve içindeki `APIRoute`’ları etkin tutar.
 
-Yani perde arkasında, her şey tek bir uygulamaymış gibi çalışır.
+Bu da, özel (custom) `APIRouter` ve `APIRoute` alt sınıflarının, router dahil edildikten sonra da işleyişe katılabileceği anlamına gelir.
 
 ///
 
 /// tip | İpucu
 
-Router’ları dahil ederken performans konusunda endişelenmeniz gerekmez.
+Router’ları dahil ederken performans konusunda endişelenmeyin.
 
-Bu işlem mikrosaniyeler sürer ve sadece startup sırasında olur.
+Bu mekanizma hafif olacak ve her request'e ek yük bindirmeyecek şekilde tasarlanmıştır.
 
 Dolayısıyla performansı etkilemez. ⚡
 
@@ -437,7 +437,7 @@ Sonuç olarak, uygulamamızda `admin` module’ündeki her bir *path operation* 
 * `get_token_header` dependency’si.
 * `418` response’u. 🍵
 
-Ancak bu sadece bizim uygulamamızdaki o `APIRouter` için geçerlidir; onu kullanan diğer kodlar için değil.
+Namun bu sadece bizim uygulamamızdaki o `APIRouter` için geçerlidir; onu kullanan diğer kodlar için değil.
 
 Dolayısıyla örneğin diğer projeler aynı `APIRouter`’ı farklı bir authentication yöntemiyle kullanabilir.
 
@@ -453,15 +453,15 @@ ve `app.include_router()` ile eklenen diğer tüm *path operation*’larla birli
 
 /// note | Çok Teknik Detaylar
 
-**Not**: Bu oldukça teknik bir detay; büyük ihtimalle **direkt geçebilirsiniz**.
+Not: Bu, muhtemelen doğrudan atlayabileceğiniz oldukça teknik bir detaydır.
 
 ---
 
 `APIRouter`’lar "mount" edilmez; uygulamanın geri kalanından izole değildir.
 
-Çünkü *path operation*’larını OpenAPI şemasına ve kullanıcı arayüzlerine dahil etmek istiyoruz.
+Bunun nedeni, onların *path operation*’larını OpenAPI şemasına ve kullanıcı arayüzlerine dahil etmek istememizdir.
 
-Onları tamamen izole edip bağımsız şekilde "mount" edemediğimiz için, *path operation*’lar doğrudan eklenmek yerine "klonlanır" (yeniden oluşturulur).
+FastAPI, orijinal router’ları ve *path operation*’ları etkin tutar; istekleri işlerken ve OpenAPI üretirken router prefix’lerini, dependency’leri, tag’leri, responses’ları ve diğer metaverileri birleştirir.
 
 ///
 
@@ -490,7 +490,7 @@ Komuta dosya yolunu da verebilirsiniz, örneğin:
 $ fastapi dev app/main.py
 ```
 
-Ama o zaman her `fastapi` komutunu çalıştırdığınızda doğru yolu hatırlayıp geçirmeniz gerekir.
+Namun o zaman her `fastapi` komutunu çalıştırdığınızda doğru yolu hatırlayıp geçirmeniz gerekir.
 
 Ayrıca, diğer araçlar uygulamayı bulamayabilir; örneğin [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com). Bu yüzden `pyproject.toml` içinde `entrypoint` kullanmanız önerilir.
 
@@ -532,4 +532,16 @@ Bir `APIRouter`’ı `FastAPI` uygulamasına dahil ettiğiniz gibi, bir `APIRout
 router.include_router(other_router)
 ```
 
-`router`’ı `FastAPI` uygulamasına dahil etmeden önce bunu yaptığınızdan emin olun; böylece `other_router` içindeki *path operation*’lar da dahil edilmiş olur.
+Bunu, `router`’ı `FastAPI` uygulamasına dahil etmeden önce de sonra da yapabilirsiniz. FastAPI, `other_router` içindeki *path operation*’ları yönlendirmeye (routing) ve OpenAPI’ye yine dahil eder.
+
+Aynı şey, router’lara daha sonra eklenen *path operation*’lar için de geçerlidir. Önceden yapılmış dahil etme üzerinden de görünür olurlar.
+
+/// warning | Teknik Detaylar
+
+Bir router’ı dahil ettikten sonra `router.routes`’i doğrudan değiştirmekten kaçının. FastAPI, router dahilini canlı (live) kabul eder; bu nedenle orijinal router ve içindeki route’lar, yönlendirme ve OpenAPI üretiminin bir parçası olarak kalır.
+
+Route ve router eklemek için path operation decorator’ları ve `.include_router()` gibi belgelenmiş API’leri kullanın.
+
+`router.routes`’i, route tanımlarını ve dahil edilmiş router’ları barındırabilen daha alt seviye bir route ağacı olarak düşünün; bunu nihai *path operation*’ların düz bir listesiymiş gibi kullanmaktan kaçının.
+
+///

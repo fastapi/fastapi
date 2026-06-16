@@ -6,7 +6,7 @@ Dazu können Sie die `WSGIMiddleware` verwenden und damit Ihre WSGI-Anwendung wr
 
 ## `WSGIMiddleware` verwenden { #using-wsgimiddleware }
 
-/// info | Info
+/// note | Hinweis
 
 Dafür muss `a2wsgi` installiert sein, z. B. mit `pip install a2wsgi`.
 

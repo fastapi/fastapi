@@ -52,7 +52,7 @@ Burada `Depends` kullandığınız için **FastAPI** karışıklık yaşamaz.
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Bu dependency sisteminin tasarımı, hepsi `User` modeli döndüren farklı dependency'lere (farklı "dependable"lara) sahip olmamıza izin verir.
 

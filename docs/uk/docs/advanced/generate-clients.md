@@ -31,7 +31,6 @@ FastAPI автоматично генерує специфікації **OpenAPI
 Наприклад, ви можете спробувати:
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Деякі з цих рішень також можуть бути з відкритим кодом або мати безкоштовні тарифи, тож ви можете спробувати їх без фінансових зобов'язань. Інші комерційні генератори SDK також доступні й їх можна знайти онлайн. 🤓
 

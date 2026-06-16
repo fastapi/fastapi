@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 情報
+/// note | 備考
 
 **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 

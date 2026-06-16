@@ -18,7 +18,7 @@ Bir response model tanımlayabildiğiniz gibi, herhangi bir *path operation* iç
 
 `status_code` parametresi, HTTP status code'u içeren bir sayı alır.
 
-/// info | Bilgi
+/// note | Bilgi
 
 Alternatif olarak `status_code`, Python'un [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)'ı gibi bir `IntEnum` da alabilir.
 

@@ -143,7 +143,7 @@ Les principales fonctionnalités sont :
 
 ---
 
-« _Si quelqu’un cherche à construire une API Python de production, je recommande vivement **FastAPI**. Il est **magnifiquement conçu**, **simple à utiliser** et **hautement scalable** — il est devenu un **composant clé** de notre stratégie de développement API-first._ »
+« _Si quelqu’un cherche à construire une API Python de production, je recommande vivement **FastAPI**. Il est **magnifiquement conçu**, **simple à utiliser** et **hautement scalable**, il est devenu un **composant clé** de notre stratégie de développement API-first et alimente de nombreuses automatisations et services tels que notre Virtual TAC Engineer._ »
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
@@ -492,9 +492,7 @@ Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a hre
 
 ### Déployer votre application (optionnel) { #deploy-your-app-optional }
 
-Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com), allez vous inscrire sur la liste d'attente si ce n'est pas déjà fait. 🚀
-
-Si vous avez déjà un compte **FastAPI Cloud** (nous vous avons invité depuis la liste d'attente 😉), vous pouvez déployer votre application avec une seule commande.
+Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com) avec une seule commande. 🚀
 
 <div class="termy">
 
@@ -509,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+La CLI détectera automatiquement votre application FastAPI et la déploiera dans le cloud. Si vous n'êtes pas connecté, votre navigateur s'ouvrira pour terminer le processus d'authentification.
 
 C'est tout ! Vous pouvez maintenant accéder à votre application à cette URL. ✨
 

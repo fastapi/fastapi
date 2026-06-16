@@ -32,7 +32,7 @@ Ils sont normalement utilisés pour déclarer des permissions de sécurité spé
 * `instagram_basic` est utilisé par Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` est utilisé par Google.
 
-/// info
+/// note | Remarque
 
 En OAuth2, un « scope » est simplement une chaîne qui déclare une permission spécifique requise.
 
@@ -72,7 +72,7 @@ Si vous avez besoin de l'imposer, utilisez `OAuth2PasswordRequestFormStrict` au 
 * Un `client_id` optionnel (nous n'en avons pas besoin pour notre exemple).
 * Un `client_secret` optionnel (nous n'en avons pas besoin pour notre exemple).
 
-/// info
+/// note | Remarque
 
 La classe `OAuth2PasswordRequestForm` n'est pas une classe spéciale pour **FastAPI** comme l'est `OAuth2PasswordBearer`.
 
@@ -144,7 +144,7 @@ UserInDB(
 )
 ```
 
-/// info
+/// note | Remarque
 
 Pour une explication plus complète de `**user_dict`, consultez [la documentation pour **Modèles supplémentaires**](../extra-models.md#about-user-in-dict).
 
@@ -196,7 +196,7 @@ Ainsi, dans notre endpoint, nous n'obtiendrons un utilisateur que si l'utilisate
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info
+/// note | Remarque
 
 L'en‑tête supplémentaire `WWW-Authenticate` avec la valeur `Bearer` que nous renvoyons ici fait également partie de la spécification.
 

@@ -2,7 +2,7 @@
 
 你可以使用 **Pydantic 模型** 在 FastAPI 中宣告 **表單欄位**。
 
-/// info | 說明
+/// note | 注意
 
 要使用表單，首先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 

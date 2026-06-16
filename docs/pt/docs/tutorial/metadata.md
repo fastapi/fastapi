@@ -74,7 +74,7 @@ Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atr
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Informação
+/// note | Nota
 
 Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags).
 

@@ -35,7 +35,7 @@ Entonces podemos usar la dependencia con:
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | Información
+/// note | Nota
 
 Fíjate que solo estamos declarando una dependencia en la *path operation function*, `query_or_cookie_extractor`.
 

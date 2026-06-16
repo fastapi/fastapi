@@ -2,7 +2,7 @@
 
 `File`을 사용하여 클라이언트가 업로드할 파일들을 정의할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
 업로드된 파일을 전달받기 위해 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치해야합니다.
 
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | 정보
+/// note | 참고
 
 `File` 은 `Form` 으로부터 직접 상속된 클래스입니다.
 

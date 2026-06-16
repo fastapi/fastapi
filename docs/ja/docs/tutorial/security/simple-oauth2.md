@@ -32,7 +32,7 @@ OAuth2 では、「password flow」（ここで使用するフロー）を使う
 - `instagram_basic` は Facebook / Instagram で使われます。
 - `https://www.googleapis.com/auth/drive` は Google で使われます。
 
-/// info | 情報
+/// note | 備考
 
 OAuth2 における「スコープ」は、要求される特定の権限を表す単なる文字列です。
 
@@ -72,7 +72,7 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 - オプションの `client_id`（この例では不要）
 - オプションの `client_secret`（この例では不要）
 
-/// info | 情報
+/// note | 備考
 
 `OAuth2PasswordRequestForm` は、`OAuth2PasswordBearer` のように **FastAPI** にとって特別なクラスではありません。
 
@@ -144,7 +144,7 @@ UserInDB(
 )
 ```
 
-/// info | 情報
+/// note | 備考
 
 `**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict)を参照してください。
 
@@ -196,7 +196,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | 情報
+/// note | 備考
 
 ここで返している値が `Bearer` の追加ヘッダー `WWW-Authenticate` も仕様の一部です。
 

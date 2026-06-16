@@ -28,7 +28,7 @@ Ayrıca kodunuzda kullanılmayan bir parametreyi gören yeni geliştiricilerin b
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Bu örnekte uydurma özel header'lar olan `X-Key` ve `X-Token` kullanıyoruz.
 

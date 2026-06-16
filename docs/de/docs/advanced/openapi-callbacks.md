@@ -173,7 +173,7 @@ Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer AP
 
 /// tip | Tipp
 
-Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `callback=` übergeben, sondern das Attribut `.routes`, wie in `invoices_callback_router.routes`.
+Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `callback=` übergeben, sondern das Attribut `.routes`, wie in `invoices_callback_router.routes`. FastAPI wird diese Routen verwenden, um die Callback-OpenAPI-Dokumentation zu generieren.
 
 ///
 

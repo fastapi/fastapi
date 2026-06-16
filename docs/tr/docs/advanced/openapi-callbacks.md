@@ -173,7 +173,7 @@ Bu noktada, yukarıda oluşturduğunuz callback router'ında gerekli callback *p
 
 /// tip | İpucu
 
-`callback=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin.
+`callback=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin. FastAPI bu route'ları callback OpenAPI dokümantasyonunu üretmek için kullanacaktır.
 
 ///
 
