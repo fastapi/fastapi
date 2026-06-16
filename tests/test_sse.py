@@ -132,6 +132,24 @@ async def sse_items_event_model_data_exclude_defaults():
     yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
 
 
+@app.get(
+    "/items/stream-sse-event-dict-data-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_dict_data_include():
+    yield ServerSentEvent(data={"name": "Portal Gun", "hidden": "secret"})
+
+
+@app.get(
+    "/items/stream-sse-event-list-model-data-no-alias",
+    response_class=EventSourceResponse,
+    response_model_by_alias=False,
+)
+async def sse_items_event_list_model_data_no_alias():
+    yield ServerSentEvent(data=[AliasedItem(name="Portal Gun")])
+
+
 @app.get("/items/stream-mixed", response_class=EventSourceResponse)
 async def sse_items_mixed() -> AsyncIterable[Item]:
     yield items[0]
@@ -311,6 +329,27 @@ def test_sse_event_model_data_respects_response_model_by_alias_false(
     ],
 )
 def test_sse_event_model_data_respects_response_model_serialization_options(
+    client: TestClient, path: str, expected_data: str
+):
+    response = client.get(path)
+    assert response.status_code == 200
+    assert response.text == f"data: {expected_data}\n\n"
+
+
+@pytest.mark.parametrize(
+    ("path", "expected_data"),
+    [
+        (
+            "/items/stream-sse-event-dict-data-include",
+            '{"name": "Portal Gun"}',
+        ),
+        (
+            "/items/stream-sse-event-list-model-data-no-alias",
+            '[{"name": "Portal Gun"}]',
+        ),
+    ],
+)
+def test_sse_event_jsonable_encoder_data_respects_response_model_serialization_options(
     client: TestClient, path: str, expected_data: str
 ):
     response = client.get(path)
