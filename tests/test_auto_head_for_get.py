@@ -139,6 +139,16 @@ def test_head_not_added_to_non_get_routes():
     assert client.head("/items/1").status_code == 405
 
 
+def test_head_not_added_when_route_has_no_methods():
+    def read_items():
+        return []
+
+    route = APIRoute("/items", read_items)
+    route.methods = set()
+
+    assert route._is_head_for_get({"type": "http", "method": "HEAD"}) is False
+
+
 def test_explicit_head_route_in_schema():
     """When HEAD is explicitly declared, it SHOULD appear in OpenAPI."""
     app = FastAPI()
