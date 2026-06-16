@@ -532,7 +532,7 @@ def test_included_partial_match_returns_405_when_no_later_full_match_exists():
     response = TestClient(app).post("/api/items")
 
     assert response.status_code == 405
-    assert response.headers["allow"] == "GET"
+    assert set(response.headers["allow"].split(", ")) == {"GET", "HEAD"}
 
 
 def test_included_slash_redirect_does_not_block_later_exact_match():
@@ -682,7 +682,10 @@ async def test_included_api_route_without_app_scope_returns_405_response():
 
     assert messages[0]["type"] == "http.response.start"
     assert messages[0]["status"] == 405
-    assert dict(messages[0]["headers"])[b"allow"] == b"GET"
+    assert set(dict(messages[0]["headers"])[b"allow"].decode().split(", ")) == {
+        "GET",
+        "HEAD",
+    }
 
 
 def test_effective_api_route_context_does_not_match_websocket_scope():

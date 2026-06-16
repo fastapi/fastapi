@@ -62,6 +62,20 @@ def test_head_not_in_openapi_schema():
     assert list(schema["paths"]["/items/{item_id}"].keys()) == ["get"]
 
 
+def test_allow_header_includes_implicit_head_for_get_route():
+    app = FastAPI()
+
+    @app.get("/items")
+    def read_items():
+        return []
+
+    client = TestClient(app)
+    response = client.post("/items")
+
+    assert response.status_code == 405
+    assert set(response.headers["allow"].split(", ")) == {"GET", "HEAD"}
+
+
 def test_head_not_added_to_non_get_routes():
     app = FastAPI()
 

@@ -1166,6 +1166,12 @@ class APIRoute(routing.Route):
             and "HEAD" not in route_methods
         )
 
+    def _allow_methods(self, methods: Collection[str]) -> set[str]:
+        allow_methods = set(methods)
+        if "GET" in allow_methods and "HEAD" not in allow_methods:
+            allow_methods.add("HEAD")
+        return allow_methods
+
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
@@ -1191,7 +1197,7 @@ class APIRoute(routing.Route):
                 and scope["method"] not in methods
                 and not self._is_head_for_get(scope, methods)
             ):
-                headers = {"Allow": ", ".join(methods)}
+                headers = {"Allow": ", ".join(self._allow_methods(methods))}
                 if "app" in scope:
                     raise HTTPException(status_code=405, headers=headers)
                 response = PlainTextResponse(
@@ -1205,6 +1211,19 @@ class APIRoute(routing.Route):
             finally:
                 _effective_route_context_var.reset(token)
             await app(scope, receive, send)
+            return
+        if (
+            self.methods
+            and scope["method"] not in self.methods
+            and not self._is_head_for_get(scope)
+        ):
+            headers = {"Allow": ", ".join(self._allow_methods(self.methods))}
+            if "app" in scope:
+                raise HTTPException(status_code=405, headers=headers)
+            response = PlainTextResponse(
+                "Method Not Allowed", status_code=405, headers=headers
+            )
+            await response(scope, receive, send)
             return
         # Allow HEAD requests through to the GET handler.
         if self._is_head_for_get(scope):
