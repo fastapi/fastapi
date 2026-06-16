@@ -24,6 +24,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump astral-sh/setup-uv from 8.1.0 to 8.2.0 in the github-actions group. PR [#15776](https://github.com/fastapi/fastapi/pull/15776) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump https://github.com/crate-ci/typos from v1.47.1 to v1.47.2 in the pre-commit group. PR [#15775](https://github.com/fastapi/fastapi/pull/15775) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump python-multipart from 0.0.30 to 0.0.32. PR [#15778](https://github.com/fastapi/fastapi/pull/15778) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⏪️ Revert removing scripts, only remove `coverage.sh`. PR [#15772](https://github.com/fastapi/fastapi/pull/15772) by [@tiangolo](https://github.com/tiangolo).
