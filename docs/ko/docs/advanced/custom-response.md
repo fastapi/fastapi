@@ -173,7 +173,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 ### `StreamingResponse` { #streamingresponse }
 
-비동기 제너레이터 또는 일반 제너레이터/이터레이터(`yield`가 있는 함수`)를 받아 응답 본문을 스트리밍합니다.
+비동기 제너레이터 또는 일반 제너레이터/이터레이터(`yield`가 있는 함수)를 받아 응답 본문을 스트리밍합니다.
 
 {* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
 
