@@ -81,7 +81,7 @@ Still, for now, consider this very experimental and potentially changing and bre
 
 #### Future Features Enabled
 
-* Custom `APIRoute` subclasses (undocumented, but alraedy works as described above)
+* Custom `APIRoute` subclasses (undocumented, but already works as described above)
 * Custom `APIRouter` subclasses (undocumented, but already works as described above)
 * Dependencies per router
 * Exception handlers per router
