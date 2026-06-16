@@ -140,7 +140,7 @@ def test_head_not_added_to_non_get_routes():
 
 
 def test_head_not_added_when_route_has_no_methods():
-    def read_items():
+    def read_items():  # pragma: no cover
         return []
 
     route = APIRoute("/items", read_items)
