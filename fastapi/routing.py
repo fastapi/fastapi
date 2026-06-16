@@ -1192,18 +1192,18 @@ class APIRoute(routing.Route):
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
             methods = effective_context.methods
-            if methods and (
-                scope["method"] not in methods
-                and not self._is_head_for_get(scope, methods)
-            ):
-                headers = {"Allow": ", ".join(self._allow_methods(methods))}
-                if "app" in scope:
-                    raise HTTPException(status_code=405, headers=headers)
-                response = PlainTextResponse(
-                    "Method Not Allowed", status_code=405, headers=headers
-                )
-                await response(scope, receive, send)
-                return
+            if methods:
+                method = scope["method"]
+                method_is_allowed = method in methods or self._is_head_for_get(scope, methods)
+                if not method_is_allowed:
+                    headers = {"Allow": ", ".join(self._allow_methods(methods))}
+                    if "app" in scope:
+                        raise HTTPException(status_code=405, headers=headers)
+                    response = PlainTextResponse(
+                        "Method Not Allowed", status_code=405, headers=headers
+                    )
+                    await response(scope, receive, send)
+                    return
             token = _effective_route_context_var.set(effective_context)
             try:
                 app = request_response(self.get_route_handler())
