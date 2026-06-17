@@ -201,6 +201,7 @@ class ModelField:
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
+        context: Any | None = None,
     ) -> Any:
         # What calls this code passes a value that already called
         # self._type_adapter.validate_python(value)
@@ -213,6 +214,7 @@ class ModelField:
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            context=context,
         )
 
     def serialize_json(
@@ -225,6 +227,7 @@ class ModelField:
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
+        context: Any | None = None,
     ) -> bytes:
         # What calls this code passes a value that already called
         # self._type_adapter.validate_python(value)
@@ -239,6 +242,7 @@ class ModelField:
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            context=context,
         )
 
     def __hash__(self) -> int:

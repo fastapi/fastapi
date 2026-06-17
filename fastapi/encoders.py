@@ -215,6 +215,15 @@ def jsonable_encoder(
             """
         ),
     ] = True,
+    context: Annotated[
+        Any | None,
+        Doc(
+            """
+            Pydantic's `context` parameter, passed to Pydantic models to define
+            a context that will be passed to custom encoders and validators.
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Convert any object to something that can be encoded in JSON.
@@ -249,12 +258,14 @@ def jsonable_encoder(
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
+            context=context,
         )
         return jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             sqlalchemy_safe=sqlalchemy_safe,
+            context=context,
         )
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)
@@ -269,6 +280,7 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
+            context=context,
         )
     if isinstance(obj, Enum):
         return obj.value
@@ -302,6 +314,7 @@ def jsonable_encoder(
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    context=context,
                 )
                 encoded_value = jsonable_encoder(
                     value,
@@ -310,6 +323,7 @@ def jsonable_encoder(
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    context=context,
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
@@ -327,6 +341,7 @@ def jsonable_encoder(
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    context=context,
                 )
             )
         return encoded_list
@@ -361,4 +376,5 @@ def jsonable_encoder(
         exclude_none=exclude_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
+        context=context,
     )

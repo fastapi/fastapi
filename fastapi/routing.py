@@ -296,7 +296,7 @@ async def serialize_response(
             )
         else:
             value, errors = await run_in_threadpool(
-                field.validate, response_content, {}, loc=("response",)
+                field.validate, response_content, {}, loc=("response",), context=context
             )
         if errors:
             ctx = endpoint_ctx or EndpointContext()
@@ -314,10 +314,11 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            context=context,
         )
 
     else:
-        return jsonable_encoder(response_content)
+        return jsonable_encoder(response_content, context=context)
 
 
 async def run_endpoint_function(
@@ -474,7 +475,7 @@ def get_request_handler(
             def _serialize_data(data: Any) -> bytes:
                 if stream_item_field:
                     value, errors_ = stream_item_field.validate(
-                        data, {}, loc=("response",)
+                        data, {}, loc=("response",), context=request
                     )
                     if errors_:
                         ctx = endpoint_ctx or EndpointContext()
@@ -491,6 +492,7 @@ def get_request_handler(
                         exclude_unset=response_model_exclude_unset,
                         exclude_defaults=response_model_exclude_defaults,
                         exclude_none=response_model_exclude_none,
+                        context=request,
                     )
                 else:
                     data = jsonable_encoder(data)
