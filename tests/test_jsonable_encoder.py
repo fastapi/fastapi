@@ -299,6 +299,14 @@ def test_decimal_encoder_infinity():
     assert isinf(jsonable_encoder(data)["value"])
 
 
+def test_decimal_encoder_signaling_nan():
+    # Decimal("sNaN") (signaling NaN) previously raised ValueError when
+    # decimal_encoder called float() on it. It should now return float("nan")
+    # consistently with Decimal("NaN") behaviour.
+    data = {"value": Decimal("sNaN")}
+    assert isnan(jsonable_encoder(data)["value"])
+
+
 def test_encode_deque_encodes_child_models():
     class Model(BaseModel):
         test: str

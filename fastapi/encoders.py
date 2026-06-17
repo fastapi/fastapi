@@ -73,12 +73,20 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
 
     >>> decimal_encoder(Decimal("NaN"))
     nan
+
+    >>> decimal_encoder(Decimal("sNaN"))
+    nan
     """
     exponent = dec_value.as_tuple().exponent
     if isinstance(exponent, int) and exponent >= 0:
         return int(dec_value)
     else:
-        return float(dec_value)
+        try:
+            return float(dec_value)
+        except ValueError:
+            # Signaling NaN (sNaN) cannot be converted to float directly.
+            # Treat it as a quiet NaN, consistent with Decimal("NaN") behaviour.
+            return float("nan")
 
 
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
