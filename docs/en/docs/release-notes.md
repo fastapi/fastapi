@@ -55,7 +55,7 @@ Before this, `router.include_router(other_router)` would take each path operatio
 
 This would mean that in the end there was only one top level router, part of the app.
 
-The way it is structured here is that there are a few additional classes to handle intermediate metadata for router and route inclusion. That way the information of "router X includes Y and Y includes Z" is stored somewhere, without affecting (recreating / clonning) the final route.
+The way it is structured here is that there are a few additional classes to handle intermediate metadata for router and route inclusion. That way the information of "router X includes Y and Y includes Z" is stored somewhere, without affecting (recreating / cloning) the final route.
 
 #### Non Objectives
 
@@ -74,7 +74,7 @@ Additionally, any logic that iterated on `router.routes` to modify them would no
 #### Features
 
 * Adding routes (path operations) after a router is included now works, they are reflected as they are not copied.
-* Including `subrouter` in `mainrouter` can be done before adding routes (path operations) to `subrouter`, because now the the entire object is stored instead of copying the routes.
+* Including `subrouter` in `mainrouter` can be done before adding routes (path operations) to `subrouter`, because now the entire object is stored instead of copying the routes.
 * As routes are not copied, in some cases that might save some memory.
 
 #### Alpha Features
@@ -89,7 +89,7 @@ Still, for now, consider this very experimental and potentially changing and bre
 
 #### Future Features Enabled
 
-* Custom `APIRoute` subclasses (undocumented, but alraedy works as desccribed above)
+* Custom `APIRoute` subclasses (undocumented, but already works as described above)
 * Custom `APIRouter` subclasses (undocumented, but already works as described above)
 * Dependencies per router
 * Exception handlers per router
