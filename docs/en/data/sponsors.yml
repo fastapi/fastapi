@@ -46,7 +46,10 @@ silver:
   - url: https://www.rapidproxy.io/?ref=fastapi
     title: Try RapidProxy for free - Residential Proxies with 90M+ Global IPs. Starting from $0.65/GB for web scraping, automation, and data collection.
     img: /img/sponsors/rapidproxy.png
+  - url: https://www.bairesdev.com/
+    title: "BairesDev | Nearshore Software Development & Staff Augmentation Company"
+    img: /img/sponsors/bairesdev.svg
 bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
-  #   img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  #   img: /img/sponsors/testdriven.svg
