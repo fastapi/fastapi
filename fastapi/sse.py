@@ -213,7 +213,9 @@ def format_sse_event(
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        # An empty data payload must still emit a single `data:` field;
+        # `"".splitlines()` returns `[]`, which would drop the field entirely.
+        for line in data_str.splitlines() or [""]:
             lines.append(f"data: {line}")
 
     if id is not None:

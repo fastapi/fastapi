@@ -264,6 +264,14 @@ def test_data_and_raw_data_mutually_exclusive():
         ServerSentEvent(data="json", raw_data="raw")
 
 
+def test_format_sse_event_empty_data_str():
+    """An empty data payload must still emit a single `data:` field and the
+    `\\n\\n` event terminator (`"".splitlines()` would otherwise drop it)."""
+    from fastapi.sse import format_sse_event
+
+    assert format_sse_event(data_str="") == b"data: \n\n"
+
+
 def test_sse_on_router_included_in_app(client: TestClient):
     response = client.get("/api/events")
     assert response.status_code == 200
