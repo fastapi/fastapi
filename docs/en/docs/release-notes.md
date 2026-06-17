@@ -24,6 +24,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add BairesDev. PR [#15787](https://github.com/fastapi/fastapi/pull/15787) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update sponsors script to simplify previews. PR [#15786](https://github.com/fastapi/fastapi/pull/15786) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump the python-packages group across 1 directory with 7 updates. PR [#15777](https://github.com/fastapi/fastapi/pull/15777) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cryptography from 46.0.7 to 48.0.1. PR [#15779](https://github.com/fastapi/fastapi/pull/15779) by [@dependabot[bot]](https://github.com/apps/dependabot).
