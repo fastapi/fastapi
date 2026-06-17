@@ -35,7 +35,7 @@ Então podemos utilizar a dependência com:
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | Informação
+/// note | Nota
 
 Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
 

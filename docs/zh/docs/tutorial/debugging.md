@@ -42,11 +42,13 @@ $ python myapp.py
 
 那么文件中由 Python 自动创建的内部变量 `__name__`，会将字符串 `"__main__"` 作为值。
 
-所以，下面这部分代码才会运行：
+所以，这一段：
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
+
+会运行。
 
 ---
 
@@ -62,13 +64,15 @@ from myapp import app
 
 在这种情况下，`myapp.py` 内部的自动变量不会有值为 `"__main__"` 的变量 `__name__`。
 
-所以，下面这一行不会被执行：
+所以，这一行：
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-/// info | 信息
+不会被执行。
+
+/// note | 注意
 
 更多信息请检查 [Python 官方文档](https://docs.python.org/3/library/__main__.html).
 

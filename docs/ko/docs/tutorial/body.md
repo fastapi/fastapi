@@ -8,7 +8,7 @@
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 [Pydantic](https://docs.pydantic.dev/) 모델을 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
 

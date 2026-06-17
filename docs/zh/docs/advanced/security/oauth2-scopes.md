@@ -46,7 +46,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 * Facebook / Instagram 使用 `instagram_basic`
 * Google 使用 `https://www.googleapis.com/auth/drive`
 
-/// info | 信息
+/// note | 注意
 
 在 OAuth2 中，“作用域”只是一个声明所需特定权限的字符串。
 
@@ -126,7 +126,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | 技术细节
+/// note | 技术细节
 
 `Security` 实际上是 `Depends` 的子类，它只多了一个我们稍后会看到的参数。
 

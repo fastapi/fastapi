@@ -50,7 +50,7 @@ Aquí **FastAPI** no se confundirá porque estás usando `Depends`.
 
 ///
 
-/// check | Revisa
+/// tip | Consejo
 
 El modo en que este sistema de dependencias está diseñado nos permite tener diferentes dependencias (diferentes "dependables") que todas devuelven un modelo `User`.
 

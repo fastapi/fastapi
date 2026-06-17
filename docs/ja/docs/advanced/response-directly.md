@@ -18,7 +18,7 @@
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
-/// info
+/// note
 
 `JSONResponse` それ自体は、`Response` のサブクラスです。
 

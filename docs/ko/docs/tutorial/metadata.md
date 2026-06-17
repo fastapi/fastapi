@@ -74,7 +74,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 정보
+/// note | 참고
 
 태그에 대한 자세한 내용은 [경로 처리 구성](path-operation-configuration.md#tags)에서 읽어보세요.
 

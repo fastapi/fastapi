@@ -56,7 +56,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 ## 从 docstring 获取描述 { #description-from-docstring }
 
-描述内容比较长且占用多行时，可以在函数的 <dfn title="作为函数内部的第一个表达式（不赋给任何变量）的多行字符串，用于文档用途">docstring</dfn> 中声明*路径操作*的描述，**FastAPI** 会从中读取。
+描述内容比较长且占用多行时，可以在函数的 <dfn title="作为函数内部的第一个表达式（不赋给任何变量）的多行字符串，用于文档用途">文档字符串</dfn> 中声明*路径操作*的描述，**FastAPI** 会从中读取。
 
 文档字符串支持 [Markdown](https://en.wikipedia.org/wiki/Markdown)，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
 
@@ -72,13 +72,13 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 信息
+/// note | 注意
 
 注意，`response_description` 只用于描述响应，`description` 一般则用于描述*路径操作*。
 
 ///
 
-/// check | 检查
+/// tip | 提示
 
 OpenAPI 规定每个*路径操作*都要有响应描述。
 

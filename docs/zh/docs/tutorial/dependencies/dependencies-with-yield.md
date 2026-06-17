@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 信息
+/// note | 注意
 
 只会向客户端发送**一次响应**。它可能是某个错误响应，或者是来自 *路径操作* 的响应。
 

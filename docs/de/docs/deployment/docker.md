@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
 
@@ -334,7 +334,7 @@ $ docker build -t myimage .
 
 Beachten Sie das `.` am Ende, es entspricht `./` und teilt Docker mit, welches Verzeichnis zum Erstellen des Containerimages verwendet werden soll.
 
-In diesem Fall handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
+In diesem Case handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
 
 ///
 
@@ -556,7 +556,7 @@ Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächl
 
 Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein [Init-Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

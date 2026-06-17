@@ -135,7 +135,7 @@ Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, doküman
 }
 ```
 
-/// info | Bilgi
+/// note | Not
 
 `images` key’inin artık image object’lerinden oluşan bir list içerdiğine dikkat edin.
 
@@ -147,7 +147,7 @@ Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, doküman
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Bilgi
+/// note | Not
 
 `Offer`’ın bir `Item` list’i olduğuna, `Item`’ların da opsiyonel bir `Image` list’ine sahip olduğuna dikkat edin.
 

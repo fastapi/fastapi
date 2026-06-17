@@ -8,7 +8,7 @@
 
 要宣告**請求**本文，你會使用 [Pydantic](https://docs.pydantic.dev/) 模型，享受其完整的功能與優點。
 
-/// info
+/// note
 
 要傳送資料，應使用下列其中一種方法：`POST`（最常見）、`PUT`、`DELETE` 或 `PATCH`。
 

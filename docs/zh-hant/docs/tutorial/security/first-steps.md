@@ -24,7 +24,7 @@
 
 ## 執行 { #run-it }
 
-/// info
+/// note
 
 當你使用 `pip install "fastapi[standard]"` 指令安裝時，[`python-multipart`](https://github.com/Kludex/python-multipart) 套件會隨 FastAPI 自動安裝。
 
@@ -60,7 +60,7 @@ $ fastapi dev
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 按鈕！
+/// tip | Authorize 按鈕！
 
 你會看到一個新的「Authorize」按鈕。
 
@@ -118,7 +118,7 @@ FastAPI 提供多層抽象的工具來實作這些安全機制。
 
 本例將使用 OAuth2 的 Password 流程，並以 Bearer token 進行驗證；我們會用 `OAuth2PasswordBearer` 類別來完成。
 
-/// info
+/// note
 
 「Bearer」token 不是唯一選項。
 
@@ -148,7 +148,7 @@ FastAPI 提供多層抽象的工具來實作這些安全機制。
 
 我們很快也會建立實際的路徑操作。
 
-/// info
+/// note
 
 如果你是非常嚴格的「Pythonista」，可能不喜歡參數名稱用 `tokenUrl` 而不是 `token_url`。
 
@@ -176,7 +176,7 @@ oauth2_scheme(some, parameters)
 
 FastAPI 會知道可以使用這個相依性，在 OpenAPI（以及自動產生的 API 文件）中定義一個「安全性方案」。
 
-/// info | 技術細節
+/// note | 技術細節
 
 FastAPI 之所以知道可以用（相依性中宣告的）`OAuth2PasswordBearer` 類別，在 OpenAPI 中定義安全性方案，是因為它繼承自 `fastapi.security.oauth2.OAuth2`，而後者又繼承自 `fastapi.security.base.SecurityBase`。
 

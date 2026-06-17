@@ -120,7 +120,7 @@ async with lifespan(app):
 
 在這裡，`shutdown` 事件處理器函式會把一行文字 `"Application shutdown"` 寫入檔案 `log.txt`。
 
-/// info
+/// note
 
 在 `open()` 函式中，`mode="a"` 表示「append（附加）」；也就是說，這行文字會加在檔案現有內容之後，而不會覆寫先前的內容。
 
@@ -152,7 +152,7 @@ async with lifespan(app):
 
 在底層的 ASGI 技術規範中，這屬於 [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) 的一部分，並定義了 `startup` 與 `shutdown` 兩種事件。
 
-/// info
+/// note
 
 你可以在 [Starlette 的 Lifespan 文件](https://www.starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
 

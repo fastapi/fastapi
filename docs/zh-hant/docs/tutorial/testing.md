@@ -8,7 +8,7 @@
 
 ## 使用 `TestClient` { #using-testclient }
 
-/// info
+/// note
 
 要使用 `TestClient`，請先安裝 [`httpx`](https://www.python-httpx.org)。
 
@@ -144,7 +144,7 @@ $ pip install httpx
 
 關於如何把資料傳給後端（使用 `httpx` 或 `TestClient`），更多資訊請參考 [HTTPX 文件](https://www.python-httpx.org)。
 
-/// info
+/// note
 
 請注意，`TestClient` 接收的是可轉為 JSON 的資料，而不是 Pydantic models。
 

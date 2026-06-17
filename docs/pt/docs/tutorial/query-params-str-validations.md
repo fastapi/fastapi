@@ -29,7 +29,7 @@ Para isso, primeiro importe:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Informação
+/// note | Nota
 
 O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 0.95.0.
 
@@ -298,7 +298,7 @@ Você também pode usar `list` diretamente em vez de `list[str]`:
 
 Tenha em mente que, neste caso, o FastAPI não verificará o conteúdo da lista.
 
-Por exemplo, `list[int]` verificaria (and documentaria) que os conteúdos da lista são inteiros. Mas `list` sozinho não.
+Por exemplo, `list[int]` verificaria (e documentaria) que os conteúdos da lista são inteiros. Mas `list` sozinho não.
 
 ///
 
@@ -382,7 +382,7 @@ Por exemplo, este validador personalizado verifica se o ID do item começa com `
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Informação
+/// note | Nota
 
 Isso está disponível com a versão 2 do Pydantic ou superior. 😎
 
@@ -414,7 +414,7 @@ Percebeu? Uma string usando `value.startswith()` pode receber uma tupla, e verif
 
 Com `data.items()` obtemos um <dfn title="Algo que podemos iterar com um laço for, como uma list, set, etc.">objeto iterável</dfn> com tuplas contendo a chave e o valor de cada item do dicionário.
 
-Convertimos esse objeto iterável em uma `list` adequada com `list(data.items())`.
+Convertemos esse objeto iterável em uma `list` adequada com `list(data.items())`.
 
 Em seguida, com `random.choice()` podemos obter um valor aleatório da lista, então obtemos uma tupla com `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 

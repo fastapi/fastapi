@@ -65,7 +65,7 @@ Aynı şekilde, varsayılan değerlerini `None` yaparak isteğe bağlı query pa
 
 Bu durumda, fonksiyon parametresi `q` isteğe bağlı olur ve varsayılan olarak `None` olur.
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Ayrıca, **FastAPI** path parametresi olan `item_id`'nin bir path parametresi olduğunu ve `q`'nun path olmadığını fark edecek kadar akıllıdır; dolayısıyla bu bir query parametresidir.
 

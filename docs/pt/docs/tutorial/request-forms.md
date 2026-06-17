@@ -2,7 +2,7 @@
 
 Quando você precisar receber campos de formulário em vez de JSON, você pode usar `Form`.
 
-/// info | Informação
+/// note | Nota
 
 Para usar formulários, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -32,7 +32,7 @@ A <dfn title="especificação">especificação</dfn> exige que os campos sejam e
 
 Com `Form` você pode declarar as mesmas configurações que com `Body` (e `Query`, `Path`, `Cookie`), incluindo validação, exemplos, um alias (por exemplo, `user-name` em vez de `username`), etc.
 
-/// info | Informação
+/// note | Nota
 
 `Form` é uma classe que herda diretamente de `Body`.
 

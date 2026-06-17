@@ -180,7 +180,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev` із шляхом { #fastapi-dev-with-path }
+### `fastapi dev` із шляхом або з параметром CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Ви також можете передати шлях до файлу в команду `fastapi dev`, і вона вгадає обʼєкт FastAPI app, який слід використовувати:
 
@@ -188,29 +188,19 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-Але вам доведеться щоразу памʼятати передавати правильний шлях під час виклику команди `fastapi`.
+Або ви також можете передати параметр `--entrypoint` команді `fastapi dev`:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Але вам доведеться щоразу памʼятати передавати правильний шлях\entrypoint під час виклику команди `fastapi`.
 
 Крім того, інші інструменти можуть не знайти його, наприклад [Розширення VS Code](../editor-support.md) або [FastAPI Cloud](https://fastapicloud.com), тому рекомендується використовувати `entrypoint` у `pyproject.toml`.
 
 ### Розгорніть ваш застосунок (необовʼязково) { #deploy-your-app-optional }
 
-За бажанням ви можете розгорнути ваш FastAPI-застосунок у [FastAPI Cloud](https://fastapicloud.com), перейдіть і приєднайтеся до списку очікування, якщо ви цього ще не зробили. 🚀
-
-Якщо у вас вже є обліковий запис **FastAPI Cloud** (ми запросили вас зі списку очікування 😉), ви можете розгорнути ваш застосунок однією командою.
-
-Перед розгортанням переконайтеся, що ви увійшли:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Потім розгорніть ваш застосунок:
+За бажанням ви можете розгорнути ваш FastAPI-застосунок у [FastAPI Cloud](https://fastapicloud.com) однією командою. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI автоматично визначить ваш застосунок FastAPI і розгорне його в хмарі. Якщо ви не ввійшли, ваш браузер відкриється для завершення процесу автентифікації.
 
 Ось і все! Тепер ви можете отримати доступ до вашого застосунку за цим URL. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note | Примітка
 
 «Шлях» також зазвичай називають «ендпоінтом» або «маршрутом».
 
@@ -322,7 +314,7 @@ https://example.com/items/foo
 * шляху `/`
 * використовуючи <dfn title="HTTP метод GET"><code>get</code> операція</dfn>
 
-/// info | `@decorator` Інформація
+/// note | `@decorator` Інформація
 
 Синтаксис `@something` у Python називається «декоратором».
 
@@ -349,7 +341,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip
+/// tip | Порада
 
 Ви можете використовувати кожну операцію (HTTP-метод) як забажаєте.
 
@@ -383,7 +375,7 @@ https://example.com/items/foo
 
 {* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note
+/// note | Примітка
 
 Якщо ви не знаєте різницю, подивіться [Асинхронність: *«Поспішаєте?»*](../async.md#in-a-hurry).
 

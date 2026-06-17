@@ -18,7 +18,7 @@ Ve elbette aynı özellikleri destekler:
 
 Bu, Pydantic model'lerinde olduğu gibi çalışır. Aslında arka planda da aynı şekilde, Pydantic kullanılarak yapılır.
 
-/// info | Bilgi
+/// note | Not
 
 Dataclass'ların, Pydantic model'lerinin yapabildiği her şeyi yapamadığını unutmayın.
 

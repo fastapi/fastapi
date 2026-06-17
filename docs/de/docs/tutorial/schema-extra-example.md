@@ -24,7 +24,7 @@ Sie könnten das beispielsweise verwenden, um Metadaten für eine Frontend-Benut
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 OpenAPI 3.1.0 (verwendet seit FastAPI 0.99.0) hat Unterstützung für `examples` hinzugefügt, was Teil des **JSON Schema** Standards ist.
 
@@ -155,7 +155,7 @@ OpenAPI fügte auch die Felder `example` und `examples` zu anderen Teilen der Sp
     * `File()`
     * `Form()`
 
-/// info | Info
+/// note | Hinweis
 
 Dieser alte, OpenAPI-spezifische `examples`-Parameter heißt seit FastAPI `0.103.0` jetzt `openapi_examples`.
 
@@ -171,7 +171,7 @@ Und jetzt hat dieses neue `examples`-Feld Vorrang vor dem alten (und benutzerdef
 
 Dieses neue `examples`-Feld in JSON Schema ist **nur eine `list`** von Beispielen, kein Dict mit zusätzlichen Metadaten wie an den anderen Stellen in OpenAPI (oben beschrieben).
 
-/// info | Info
+/// note | Hinweis
 
 Selbst, nachdem OpenAPI 3.1.0 veröffentlicht wurde, mit dieser neuen, einfacheren Integration mit JSON Schema, unterstützte Swagger UI, das Tool, das die automatische Dokumentation bereitstellt, eine Zeit lang OpenAPI 3.1.0 nicht (das tut es seit Version 5.0.0 🎉).
 

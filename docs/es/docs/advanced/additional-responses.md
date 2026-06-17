@@ -34,7 +34,7 @@ Ten en cuenta que debes devolver el `JSONResponse` directamente.
 
 ///
 
-/// info | Información
+/// note | Nota
 
 La clave `model` no es parte de OpenAPI.
 
@@ -183,7 +183,7 @@ Nota que debes devolver la imagen usando un `FileResponse` directamente.
 
 ///
 
-/// info | Información
+/// note | Nota
 
 A menos que especifiques un media type diferente explícitamente en tu parámetro `responses`, FastAPI asumirá que el response tiene el mismo media type que la clase de response principal (por defecto `application/json`).
 

@@ -2,7 +2,7 @@
 
 当你需要接收表单字段而不是 JSON 时，可以使用 `Form`。
 
-/// info
+/// note
 
 要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
@@ -32,7 +32,7 @@ $ pip install python-multipart
 
 使用 `Form` 可以像使用 `Body`（以及 `Query`、`Path`、`Cookie`）一样声明相同的配置，包括校验、示例、别名（例如将 `username` 写成 `user-name`）等。
 
-/// info
+/// note
 
 `Form` 是直接继承自 `Body` 的类。
 

@@ -17,7 +17,7 @@
 
 在本章节中，我将向您展示如何使用 `fastapi` 命令或直接使用 `uvicorn` 命令以**多工作进程模式**运行 **Uvicorn**。
 
-/// info | 信息
+/// note | 注意
 
 如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md)。
 

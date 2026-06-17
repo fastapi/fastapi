@@ -2,7 +2,7 @@
 
 Vous pouvez définir des fichiers et des champs de formulaire en même temps à l'aide de `File` et `Form`.
 
-/// info
+/// note | Remarque
 
 Pour recevoir des fichiers téléversés et/ou des données de formulaire, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 

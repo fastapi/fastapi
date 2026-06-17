@@ -155,7 +155,7 @@ def build_lang(
     """
     build_zensical_lang_to_stage(lang)
     copy_zensical_stage_to_site(lang)
-    typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
+    typer.secho(f"Successfully built docs for: {lang}", fg=typer.colors.GREEN)
 
 
 def split_markdown_header(markdown: str) -> tuple[str, str]:
@@ -408,7 +408,7 @@ def build_all() -> None:
     for lang in langs:
         if lang != "en":
             copy_zensical_stage_to_site(lang)
-    typer.secho("Successfully built all docs", color=typer.colors.GREEN)
+    typer.secho("Successfully built all docs", fg=typer.colors.GREEN)
 
 
 @app.command()

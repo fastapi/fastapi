@@ -24,7 +24,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持，它是 JSON Schema 标准的一部分。
 
@@ -155,7 +155,7 @@ OpenAPI 还在规范的其他部分添加了 `example` 和 `examples` 字段：
     - `File()`
     - `Form()`
 
-/// info | 信息
+/// note | 注意
 
 这个旧的、OpenAPI 特定的 `examples` 参数，自 FastAPI `0.103.0` 起改名为 `openapi_examples`。
 
@@ -171,7 +171,7 @@ OpenAPI 还在规范的其他部分添加了 `example` 和 `examples` 字段：
 
 JSON Schema 中这个新的 `examples` 字段只是一个由示例组成的 `list`，而不是像上面提到的 OpenAPI 其他位置那样带有额外元数据的 `dict`。
 
-/// info | 信息
+/// note | 注意
 
 即使在 OpenAPI 3.1.0 发布、并与 JSON Schema 有了这种更简单的集成之后，有一段时间里，提供自动文档的 Swagger UI 并不支持 OpenAPI 3.1.0（它自 5.0.0 版本起已支持 🎉）。
 

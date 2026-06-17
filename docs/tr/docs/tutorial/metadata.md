@@ -74,9 +74,9 @@ Kullandığınız tüm tag'ler için metadata eklemek zorunda değilsiniz.
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Bilgi
+/// note | Not
 
-Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags).
+Tag'ler hakkında daha fazlası için: [Path Operation Yapılandırması](path-operation-configuration.md#tags).
 
 ///
 

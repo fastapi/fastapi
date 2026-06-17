@@ -1,6 +1,6 @@
 # Dependencias { #dependencies }
 
-**FastAPI** tiene un sistema de **<dfn title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
+**FastAPI** tiene un sistema de **<dfn title="también conocido como: componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
 
 Está diseñado para ser muy simple de usar, y para hacer que cualquier desarrollador integre otros componentes con **FastAPI** de forma muy sencilla.
 
@@ -51,7 +51,7 @@ En este caso, esta dependencia espera:
 
 Y luego solo devuelve un `dict` que contiene esos valores.
 
-/// info | Información
+/// note | Nota
 
 FastAPI agregó soporte para `Annotated` (y comenzó a recomendarlo) en la versión 0.95.0.
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 De esta manera escribes código compartido una vez y **FastAPI** se encarga de llamarlo para tus *path operations*.
 
-/// check | Revisa
+/// tip | Consejo
 
 Nota que no tienes que crear una clase especial y pasarla en algún lugar a **FastAPI** para "registrarla" o algo similar.
 

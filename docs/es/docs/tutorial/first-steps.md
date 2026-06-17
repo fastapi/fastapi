@@ -180,7 +180,7 @@ lo cual sería equivalente a:
 from backend.main import app
 ```
 
-### `fastapi dev` con path { #fastapi-dev-with-path }
+### `fastapi dev` con path o con la opción de CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará el objeto app de FastAPI que debe usar:
 
@@ -188,29 +188,19 @@ También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará
 $ fastapi dev main.py
 ```
 
-Pero tendrías que recordar pasar el path correcto cada vez que llames al comando `fastapi`.
+O, también puedes pasar la opción `--entrypoint` al comando `fastapi dev`:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Pero tendrías que recordar pasar el path o entrypoint correctos cada vez que llames al comando `fastapi`.
 
 Además, otras herramientas podrían no ser capaces de encontrarlo, por ejemplo la [Extensión de VS Code](../editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
 
 ### Despliega tu app (opcional) { #deploy-your-app-optional }
 
-Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fastapicloud.com), ve y únete a la lista de espera si aún no lo has hecho. 🚀
-
-Si ya tienes una cuenta de **FastAPI Cloud** (te invitamos desde la lista de espera 😉), puedes desplegar tu aplicación con un solo comando.
-
-Antes de desplegar, asegúrate de haber iniciado sesión:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Luego despliega tu app:
+Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fastapicloud.com) con un solo comando. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+La CLI detectará automáticamente tu aplicación de FastAPI y la desplegará en la nube. Si no has iniciado sesión, se abrirá tu navegador para completar el proceso de autenticación.
 
 ¡Eso es todo! Ahora puedes acceder a tu app en esa URL. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Información
+/// note | Nota
 
 Un "path" también es comúnmente llamado "endpoint" o "ruta".
 
@@ -322,7 +314,7 @@ El `@app.get("/")` le dice a **FastAPI** que la función justo debajo se encarga
 * el path `/`
 * usando una <dfn title="un método HTTP GET"><code>get</code> operación</dfn>
 
-/// info | Información sobre `@decorator`
+/// note | Información sobre `@decorator`
 
 Esa sintaxis `@algo` en Python se llama un "decorador".
 

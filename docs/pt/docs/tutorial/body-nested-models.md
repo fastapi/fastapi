@@ -136,7 +136,7 @@ Isso vai esperar (converter, validar, documentar, etc) um corpo JSON tal qual:
 }
 ```
 
-/// info | Informação
+/// note | Nota
 
 Observe como a chave `images` agora tem uma lista de objetos de imagem.
 
@@ -148,7 +148,7 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Informação
+/// note | Nota
 
 Observe como `Offer` tem uma lista de `Item`s, que por sua vez têm uma lista opcional de `Image`s
 

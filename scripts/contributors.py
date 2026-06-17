@@ -237,7 +237,7 @@ def update_content(*, content_path: Path, new_content: Any) -> bool:
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
-    settings = Settings()
+    settings = Settings()  # ty: ignore[missing-argument]
     logging.info(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)

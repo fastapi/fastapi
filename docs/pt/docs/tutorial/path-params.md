@@ -20,7 +20,7 @@ Você pode declarar o tipo de um parâmetro de path na função, usando as anota
 
 Neste caso, `item_id` é declarado como um `int`.
 
-/// check | Verifique
+/// tip | Dica
 Isso fornecerá suporte do editor dentro da sua função, com verificações de erros, preenchimento automático, etc.
 ///
 
@@ -32,7 +32,7 @@ Se você executar este exemplo e abrir seu navegador em [http://127.0.0.1:8000/i
 {"item_id":3}
 ```
 
-/// check | Verifique
+/// tip | Dica
 Perceba que o valor que sua função recebeu (e retornou) é `3`, como um `int` do Python, não uma string `"3"`.
 
 Então, com essa declaração de tipo, o **FastAPI** fornece <dfn title="convertendo a string que vem de um request HTTP em dados Python">"parsing"</dfn> automático do request.
@@ -62,7 +62,7 @@ porque o parâmetro de path `item_id` tinha o valor `"foo"`, que não é um `int
 
 O mesmo erro apareceria se você fornecesse um `float` em vez de um `int`, como em: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Verifique
+/// tip | Dica
 Então, com a mesma declaração de tipo do Python, o **FastAPI** fornece validação de dados.
 
 Observe que o erro também declara claramente exatamente o ponto onde a validação não passou.
@@ -76,7 +76,7 @@ E quando você abrir seu navegador em [http://127.0.0.1:8000/docs](http://127.0.
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Verifique
+/// tip | Dica
 Novamente, apenas com a mesma declaração de tipo do Python, o **FastAPI** fornece documentação automática e interativa (integrando o Swagger UI).
 
 Observe que o parâmetro de path está declarado como um inteiro.
