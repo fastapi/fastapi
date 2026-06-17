@@ -11,7 +11,7 @@ from pydantic import BaseModel
 mutex = threading.Lock()
 
 
-# Simulate releaasing a pooled resource in the teardown of a Depends,
+# Simulate releasing a pooled resource in the teardown of a Depends,
 # which in reality is usually a database connection or similar.
 def release_resource() -> Iterator[None]:
     try:
@@ -53,4 +53,4 @@ def test_depends_deadlock() -> None:
             tasks = [make_request(aclient) for _ in range(100)]
             await asyncio.gather(*tasks)
 
-    asyncio.run(run_requests())
+    asyncio.run(asyncio.wait_for(run_requests(), timeout=10))

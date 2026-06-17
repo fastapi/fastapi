@@ -1,3 +1,4 @@
+import asyncio
 import contextlib
 import time
 from collections.abc import Iterator
@@ -40,7 +41,7 @@ async def test_contextmanager_in_threadpool() -> None:
 @pytest.mark.usefixtures("reset_teardown_limiter")
 async def test_competing_acquire_release() -> None:
     """Check that the main threadpool does not block the teardown threadpool."""
-    pool_size = anyio.to_thread.current_default_thread_limiter().total_tokens
+    pool_size = int(anyio.to_thread.current_default_thread_limiter().total_tokens)
     acquirable = False
     acquired = []
 
@@ -63,6 +64,8 @@ async def test_competing_acquire_release() -> None:
 
         # The threadpool should now be full of threads waiting to acquire
         # The release function should be able to run without being blocked by acquires
-        await concurrency.run_in_teardown_threadpool(release)
+        await asyncio.wait_for(
+            concurrency.run_in_teardown_threadpool(release), timeout=10
+        )
 
     assert len(acquired) == pool_size
