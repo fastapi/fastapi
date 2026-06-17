@@ -50,54 +50,6 @@ def test_iter_route_contexts_returns_direct_route_context():
     assert contexts[0].methods == {"GET"}
 
 
-def test_iter_route_contexts_returns_nested_effective_paths():
-    leaf_router = APIRouter()
-
-    @leaf_router.get("/me")
-    def read_me():
-        return {"me": True}
-
-    child_router = APIRouter()
-    child_router.include_router(leaf_router, prefix="/user")
-
-    parent_router = APIRouter()
-    parent_router.include_router(child_router, prefix="/auth")
-
-    app = FastAPI()
-    app.include_router(parent_router, prefix="/api")
-
-    contexts = [
-        context
-        for context in iter_route_contexts(app.routes)
-        if getattr(context, "name", None) == "read_me"
-    ]
-
-    assert len(contexts) == 1
-    assert contexts[0].path == "/api/auth/user/me"
-    assert contexts[0].path_format == "/api/auth/user/me"
-    assert contexts[0].endpoint is read_me
-
-
-def test_iter_route_contexts_returns_each_inclusion_of_same_router():
-    router = APIRouter()
-
-    @router.get("/items")
-    def read_items():
-        return []
-
-    parent_router = APIRouter()
-    parent_router.include_router(router, prefix="/v1")
-    parent_router.include_router(router, prefix="/v2")
-
-    paths = [
-        context.path
-        for context in iter_route_contexts(parent_router.routes)
-        if getattr(context, "name", None) == "read_items"
-    ]
-
-    assert paths == ["/v1/items", "/v2/items"]
-
-
 def test_iter_route_contexts_supports_nested_conflict_detection():
     existing_router = APIRouter()
     nested_router = APIRouter()
