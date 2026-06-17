@@ -3,12 +3,15 @@ from typing import Annotated, cast
 import pytest
 from fastapi import APIRouter, Body, Depends, FastAPI, Request
 from fastapi.exceptions import FastAPIError
+from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.routing import (
     APIRoute,
+    RouteContext,
     _IncludedRouter,
     _iter_included_route_candidates,
     _restore_fastapi_scope_key,
+    iter_route_contexts,
 )
 from fastapi.testclient import TestClient
 from starlette.routing import BaseRoute, Host, Match, Mount, NoMatchFound, Route, Router
@@ -28,6 +31,123 @@ def dependency_c():
 
 def unique_id_b(route: APIRoute) -> str:
     return f"b_{route.name}"
+
+
+def test_iter_route_contexts_returns_direct_route_context():
+    router = APIRouter()
+
+    @router.get("/items/{item_id}")
+    def read_item(item_id: str):
+        return {"item_id": item_id}
+
+    contexts = list(iter_route_contexts(router.routes))
+
+    assert len(contexts) == 1
+    assert isinstance(contexts[0], RouteContext)
+    assert contexts[0].original_route is router.routes[0]
+    assert contexts[0].path == "/items/{item_id}"
+    assert contexts[0].path_format == "/items/{item_id}"
+    assert contexts[0].methods == {"GET"}
+
+
+def test_iter_route_contexts_returns_nested_effective_paths():
+    leaf_router = APIRouter()
+
+    @leaf_router.get("/me")
+    def read_me():
+        return {"me": True}
+
+    child_router = APIRouter()
+    child_router.include_router(leaf_router, prefix="/user")
+
+    parent_router = APIRouter()
+    parent_router.include_router(child_router, prefix="/auth")
+
+    app = FastAPI()
+    app.include_router(parent_router, prefix="/api")
+
+    contexts = [
+        context
+        for context in iter_route_contexts(app.routes)
+        if getattr(context, "name", None) == "read_me"
+    ]
+
+    assert len(contexts) == 1
+    assert contexts[0].path == "/api/auth/user/me"
+    assert contexts[0].path_format == "/api/auth/user/me"
+    assert contexts[0].endpoint is read_me
+
+
+def test_iter_route_contexts_returns_each_inclusion_of_same_router():
+    router = APIRouter()
+
+    @router.get("/items")
+    def read_items():
+        return []
+
+    parent_router = APIRouter()
+    parent_router.include_router(router, prefix="/v1")
+    parent_router.include_router(router, prefix="/v2")
+
+    paths = [
+        context.path
+        for context in iter_route_contexts(parent_router.routes)
+        if getattr(context, "name", None) == "read_items"
+    ]
+
+    assert paths == ["/v1/items", "/v2/items"]
+
+
+def test_iter_route_contexts_supports_nested_conflict_detection():
+    existing_router = APIRouter()
+    nested_router = APIRouter()
+
+    @nested_router.get("/me")
+    def read_me():
+        return {"me": True}
+
+    existing_router.include_router(nested_router, prefix="/auth/user")
+
+    new_router = APIRouter()
+
+    @new_router.get("/auth/user/me")
+    def read_me_again():
+        return {"me": False}
+
+    existing_paths = {
+        context.path for context in iter_route_contexts(existing_router.routes)
+    }
+    new_paths = {context.path for context in iter_route_contexts(new_router.routes)}
+
+    assert existing_paths & new_paths == {"/auth/user/me"}
+
+
+def test_get_openapi_accepts_filtered_route_contexts_with_effective_paths():
+    router = APIRouter()
+
+    @router.get("/public", tags=["public"])
+    def read_public():
+        return {"public": True}
+
+    @router.get("/private", tags=["private"])
+    def read_private():
+        return {"private": True}
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    public_routes = [
+        context
+        for context in iter_route_contexts(app.routes)
+        if "public" in getattr(context, "tags", [])
+    ]
+    schema = get_openapi(
+        title="Public API",
+        version="1.0.0",
+        routes=public_routes,
+    )
+
+    assert set(schema["paths"]) == {"/api/public"}
 
 
 def test_router_include_context_matches_flattened_include_metadata():
