@@ -28,7 +28,7 @@ Damit wird auch vermieden, neue Entwickler möglicherweise zu verwirren, die ein
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 In diesem Beispiel verwenden wir zwei erfundene benutzerdefinierte Header `X-Key` und `X-Token`.
 

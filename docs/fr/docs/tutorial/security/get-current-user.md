@@ -52,7 +52,7 @@ Ici, **FastAPI** ne s'y trompera pas car vous utilisez `Depends`.
 
 ///
 
-/// check | Vérifications
+/// tip | Astuce
 
 La manière dont ce système de dépendances est conçu nous permet d'avoir différentes dépendances (différents « dependables ») qui retournent toutes un modèle `User`.
 

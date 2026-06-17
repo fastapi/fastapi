@@ -65,7 +65,7 @@ Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem S
 
 In diesem Fall wird der Funktionsparameter `q` optional und standardmäßig `None` sein.
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
 

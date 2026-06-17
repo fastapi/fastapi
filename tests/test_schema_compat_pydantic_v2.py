@@ -26,7 +26,7 @@ def get_client():
 
     @app.get("/users")
     async def get_user() -> User:
-        return {"username": "alice", "role": "admin"}
+        return {"username": "alice", "role": "admin"}  # ty: ignore[invalid-return-type]
 
     client = TestClient(app)
     return client

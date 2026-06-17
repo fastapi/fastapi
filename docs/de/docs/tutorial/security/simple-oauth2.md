@@ -32,7 +32,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info | Info
+/// note | Hinweis
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -72,7 +72,7 @@ Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` a
 * Eine optionale `client_id` (benötigen wir für unser Beispiel nicht).
 * Ein optionales `client_secret` (benötigen wir für unser Beispiel nicht).
 
-/// info | Info
+/// note | Hinweis
 
 `OAuth2PasswordRequestForm` ist keine spezielle Klasse für **FastAPI**, so wie `OAuth2PasswordBearer`.
 
@@ -144,7 +144,7 @@ UserInDB(
 )
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-dict).
 
@@ -196,7 +196,7 @@ In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | Info
+/// note | Hinweis
 
 Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
 

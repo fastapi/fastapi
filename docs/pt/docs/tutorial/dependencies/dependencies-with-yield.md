@@ -121,7 +121,7 @@ Se você capturar uma exceção com `except` em uma dependência que utilize `yi
 
 Neste caso, o cliente irá ver uma resposta *HTTP 500 Internal Server Error* como deveria acontecer, já que não estamos levantando nenhuma `HTTPException` ou coisa parecida, mas o servidor **não terá nenhum log** ou qualquer outra indicação de qual foi o erro. 😱
 
-### Sempre levante (`raise`) em Dependências com `yield` e `except` { #always-raise-in-dependencies-with-yield-and-except }
+### Sempre `raise` em Dependências com `yield` e `except` { #always-raise-in-dependencies-with-yield-and-except }
 
 Se você capturar uma exceção em uma dependência com `yield`, a menos que você esteja levantando outra `HTTPException` ou coisa parecida, **você deve relançar a exceção original**.
 
@@ -170,7 +170,7 @@ participant tasks as Tarefas de Background
     end
 ```
 
-/// info | Informação
+/// note | Nota
 
 Apenas **uma resposta** será enviada para o cliente. Ela pode ser uma das respostas de erro, ou então a resposta da *operação de rota*.
 

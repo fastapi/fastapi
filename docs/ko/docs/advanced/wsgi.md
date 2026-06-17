@@ -6,7 +6,7 @@
 
 ## `WSGIMiddleware` 사용하기 { #using-wsgimiddleware }
 
-/// info | 정보
+/// note | 참고
 
 이를 사용하려면 `a2wsgi`를 설치해야 합니다. 예: `pip install a2wsgi`
 

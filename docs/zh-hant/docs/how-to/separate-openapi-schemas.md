@@ -85,7 +85,7 @@
 
 在這種情況下，你可以在 FastAPI 中透過參數 `separate_input_output_schemas=False` 停用這個功能。
 
-/// info
+/// note
 
 自 FastAPI `0.102.0` 起新增 `separate_input_output_schemas` 的支援。🤓
 

@@ -7,6 +7,42 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Fix broken Markdown in Korean custom response docs. PR [#15774](https://github.com/fastapi/fastapi/pull/15774) by [@kooqooo](https://github.com/kooqooo).
+* 🌐 Update translations for fr (update-outdated). PR [#15761](https://github.com/fastapi/fastapi/pull/15761) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15760](https://github.com/fastapi/fastapi/pull/15760) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15759](https://github.com/fastapi/fastapi/pull/15759) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15757](https://github.com/fastapi/fastapi/pull/15757) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15756](https://github.com/fastapi/fastapi/pull/15756) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (update-outdated). PR [#15755](https://github.com/fastapi/fastapi/pull/15755) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15754](https://github.com/fastapi/fastapi/pull/15754) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15753](https://github.com/fastapi/fastapi/pull/15753) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15752](https://github.com/fastapi/fastapi/pull/15752) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15751](https://github.com/fastapi/fastapi/pull/15751) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-outdated). PR [#15758](https://github.com/fastapi/fastapi/pull/15758) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump the python-packages group across 1 directory with 7 updates. PR [#15777](https://github.com/fastapi/fastapi/pull/15777) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cryptography from 46.0.7 to 48.0.1. PR [#15779](https://github.com/fastapi/fastapi/pull/15779) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump aiohttp from 3.14.0 to 3.14.1. PR [#15781](https://github.com/fastapi/fastapi/pull/15781) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.2.1 to 1.3.1. PR [#15780](https://github.com/fastapi/fastapi/pull/15780) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump astral-sh/setup-uv from 8.1.0 to 8.2.0 in the github-actions group. PR [#15776](https://github.com/fastapi/fastapi/pull/15776) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump https://github.com/crate-ci/typos from v1.47.1 to v1.47.2 in the pre-commit group. PR [#15775](https://github.com/fastapi/fastapi/pull/15775) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-multipart from 0.0.30 to 0.0.32. PR [#15778](https://github.com/fastapi/fastapi/pull/15778) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⏪️ Revert removing scripts, only remove `coverage.sh`. PR [#15772](https://github.com/fastapi/fastapi/pull/15772) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove unused scripts. PR [#15771](https://github.com/fastapi/fastapi/pull/15771) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add ty configs to check docs sources. PR [#15770](https://github.com/fastapi/fastapi/pull/15770) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add ty configs to check docs sources. PR [#15769](https://github.com/fastapi/fastapi/pull/15769) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.137.1 (2026-06-15)
+
+### Fixes
+
+* 🚨 Fix typing checks for APIRoute. PR [#15765](https://github.com/fastapi/fastapi/pull/15765) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix bug, allow empty path in path operation in prefixless router. PR [#15763](https://github.com/fastapi/fastapi/pull/15763) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.137.0 (2026-06-14)
 
 ### Breaking Changes

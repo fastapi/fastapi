@@ -8,7 +8,7 @@ Bununla birlikte **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan 
 
 ## `TestClient` Kullanımı { #using-testclient }
 
-/// info | Bilgi
+/// note | Not
 
 `TestClient` kullanmak için önce [`httpx`](https://www.python-httpx.org)'i kurun.
 
@@ -141,7 +141,7 @@ Sonra testlerinizde aynısını uygularsınız.
 
 Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient` kullanarak) [HTTPX dokümantasyonu](https://www.python-httpx.org)'na bakın.
 
-/// info | Bilgi
+/// note | Not
 
 `TestClient`'ın Pydantic model'lerini değil, JSON'a dönüştürülebilen verileri aldığını unutmayın.
 

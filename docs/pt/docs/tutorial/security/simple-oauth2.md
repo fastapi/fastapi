@@ -4,7 +4,7 @@ Agora vamos construir a partir do capítulo anterior e adicionar as partes que f
 
 ## Obtenha o `username` e a `password` { #get-the-username-and-password }
 
-É utilizado o utils de segurança da **FastAPI** para obter o `username` e a `password`.
+Vamos usar os utilitários de segurança da **FastAPI** para obter o `username` e a `password`.
 
 OAuth2 especifica que ao usar o "password flow" (fluxo de senha), que estamos usando, o cliente/usuário deve enviar os campos `username` e `password` como dados do formulário.
 
@@ -32,7 +32,7 @@ Normalmente são usados para declarar permissões de segurança específicas, po
 * `instagram_basic` é usado pelo Facebook e Instagram.
 * `https://www.googleapis.com/auth/drive` é usado pelo Google.
 
-/// info | Informação
+/// note | Nota
 
 No OAuth2, um "scope" é apenas uma string que declara uma permissão específica necessária.
 
@@ -72,7 +72,7 @@ Se você precisar aplicá-lo, use `OAuth2PasswordRequestFormStrict` em vez de `O
 * Um `client_id` opcional (não precisamos dele em nosso exemplo).
 * Um `client_secret` opcional (não precisamos dele em nosso exemplo).
 
-/// info | Informação
+/// note | Nota
 
 O `OAuth2PasswordRequestForm` não é uma classe especial para **FastAPI** como é `OAuth2PasswordBearer`.
 
@@ -144,8 +144,7 @@ UserInDB(
 )
 ```
 
-
-/// info | Informação
+/// note | Nota
 
 Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict).
 
@@ -173,7 +172,7 @@ Mas, por enquanto, vamos nos concentrar nos detalhes específicos de que precisa
 
 /// tip | Dica
 
-Pela especificação, você deve retornar um JSON com um `access_token` e um `token_type`, o mesmo que neste exemplo.
+Pela especificação, você deveria retornar um JSON com um `access_token` e um `token_type`, o mesmo que neste exemplo.
 
 Isso é algo que você mesmo deve fazer em seu código e certifique-se de usar essas chaves JSON.
 
@@ -197,7 +196,7 @@ Portanto, em nosso endpoint, só obteremos um usuário se o usuário existir, ti
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | Informação
+/// note | Nota
 
 O cabeçalho adicional `WWW-Authenticate` com valor `Bearer` que estamos retornando aqui também faz parte da especificação.
 
@@ -217,7 +216,7 @@ Esse é o benefício dos padrões...
 
 ## Veja em ação { #see-it-in-action }
 
-Abra o docs interativo: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Abra a documentação interativa: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Autentique-se { #authenticate }
 

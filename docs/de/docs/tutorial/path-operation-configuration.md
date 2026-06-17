@@ -72,13 +72,13 @@ Sie können die Response mit dem Parameter `response_description` beschreiben:
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, dass sich `response_description` speziell auf die Response bezieht, während `description` sich generell auf die *Pfadoperation* bezieht.
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 OpenAPI verlangt, dass jede *Pfadoperation* über eine Beschreibung der Response verfügt.
 

@@ -24,7 +24,7 @@ Copie o exemplo em um arquivo `main.py`:
 
 ## Execute-o { #run-it }
 
-/// info | Informação
+/// note | Nota
 
 O pacote [`python-multipart`](https://github.com/Kludex/python-multipart) é instalado automaticamente com o **FastAPI** quando você executa o comando `pip install "fastapi[standard]"`.
 
@@ -60,7 +60,7 @@ Você verá algo deste tipo:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Botão Autorizar!
+/// tip | Botão Autorizar!
 
 Você já tem um novo botão 'Authorize'.
 
@@ -118,7 +118,7 @@ O **FastAPI** fornece várias ferramentas, em diferentes níveis de abstração,
 
 Neste exemplo, vamos usar **OAuth2**, com o fluxo **Password**, usando um token **Bearer**. Fazemos isso usando a classe `OAuth2PasswordBearer`.
 
-/// info | Informação
+/// note | Nota
 
 Um token "bearer" não é a única opção.
 
@@ -148,7 +148,7 @@ Esse parâmetro não cria aquele endpoint/operação de rota, mas declara que a 
 
 Em breve também criaremos a operação de rota real.
 
-/// info | Informação
+/// note | Nota
 
 Se você é um "Pythonista" muito rigoroso, pode não gostar do estilo do nome do parâmetro `tokenUrl` em vez de `token_url`.
 
@@ -176,7 +176,7 @@ Essa dependência fornecerá uma `str` que é atribuída ao parâmetro `token` d
 
 O **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema OpenAPI (e na documentação automática da API).
 
-/// info | Detalhes Técnicos
+/// note | Detalhes Técnicos
 
 O **FastAPI** saberá que pode usar a classe `OAuth2PasswordBearer` (declarada em uma dependência) para definir o esquema de segurança no OpenAPI porque ela herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda de `fastapi.security.base.SecurityBase`.
 

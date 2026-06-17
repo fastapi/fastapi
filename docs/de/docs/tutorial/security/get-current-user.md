@@ -52,7 +52,7 @@ Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Die Art und Weise, wie dieses System von Abhängigkeiten konzipiert ist, ermöglicht es uns, verschiedene Abhängigkeiten (verschiedene „Dependables“) zu haben, die alle ein `User`-Modell zurückgeben.
 

@@ -65,7 +65,7 @@ Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
 
-/// check | Verifique
+/// tip | Dica
 
 Você também pode notar que o **FastAPI** é esperto o suficiente para perceber que o parâmetro da rota `item_id` é um parâmetro da rota, e `q` não é, portanto, `q` é o parâmetro de consulta.
 

@@ -78,7 +78,7 @@ Les dépendances avec `yield` ont évolué au fil du temps pour couvrir différe
 
 ### Dépendances avec `yield` et `scope` { #dependencies-with-yield-and-scope }
 
-Dans la version 0.121.0, **FastAPI** a ajouté la prise en charge de `Depends(scope="function")` pour les dépendances avec `yield`.
+Dans la version 0.121.0, FastAPI a ajouté la prise en charge de `Depends(scope="function")` pour les dépendances avec `yield`.
 
 Avec `Depends(scope="function")`, le code d’arrêt après `yield` s’exécute immédiatement après la fin de la *fonction de chemin d'accès*, avant que la réponse ne soit renvoyée au client.
 
@@ -98,7 +98,7 @@ Par exemple, si vous aviez une session de base de données dans une dépendance 
 
 Ce comportement a été annulé en 0.118.0, afin que le code d’arrêt après `yield` s’exécute après l’envoi de la réponse.
 
-/// info
+/// note | Remarque
 
 Comme vous le verrez ci‑dessous, c’est très similaire au comportement avant la version 0.106.0, mais avec plusieurs améliorations et corrections de bogues pour des cas limites.
 

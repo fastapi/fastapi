@@ -6,7 +6,7 @@
 
 ## Использование `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info | Информация
+/// note | Примечание
 
 Для этого требуется установить `a2wsgi`, например с помощью `pip install a2wsgi`.
 

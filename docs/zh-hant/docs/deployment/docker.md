@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 資訊
+/// note | 注意
 
 還有其他格式與工具可以用來定義與安裝套件相依。
 
@@ -556,7 +556,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有「多個容器」，且每個容器大概都只執行「單一行程」（例如在一個 Kubernetes 叢集中），那你可能會想要一個「獨立的容器」來完成「前置步驟」的工作，並只在單一容器、單一行程中執行，接著才啟動多個複本的工作容器。
 
-/// info | 資訊
+/// note | 注意
 
 如果你使用 Kubernetes，這大概會是一個 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 

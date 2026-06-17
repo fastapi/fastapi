@@ -65,7 +65,7 @@ De la même façon, vous pouvez déclarer des paramètres de requête optionnels
 
 Dans ce cas, le paramètre de fonction `q` sera optionnel et vaudra `None` par défaut.
 
-/// check | Vérifications
+/// tip | Astuce
 
 Notez également que **FastAPI** est suffisamment intelligent pour remarquer que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` ne l'est pas, c'est donc un paramètre de requête.
 

@@ -180,7 +180,7 @@ ce qui équivaudrait à :
 from backend.main import app
 ```
 
-### `fastapi dev` avec un chemin { #fastapi-dev-with-path }
+### `fastapi dev` avec un chemin ou avec l’option CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
 
@@ -188,29 +188,19 @@ Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`,
 $ fastapi dev main.py
 ```
 
-Mais vous devrez vous souvenir de passer le chemin correct à chaque exécution de la commande `fastapi`.
+Ou bien, vous pouvez aussi passer l’option `--entrypoint` à la commande `fastapi dev` :
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Mais vous devrez vous souvenir de passer le chemin\entrypoint correct à chaque exécution de la commande `fastapi`.
 
 De plus, d’autres outils pourraient ne pas être capables de le trouver, par exemple l’[Extension VS Code](../editor-support.md) ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d’utiliser le `entrypoint` dans `pyproject.toml`.
 
 ### Déployer votre application (optionnel) { #deploy-your-app-optional }
 
-Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com), allez rejoindre la liste d’attente si ce n’est pas déjà fait. 🚀
-
-Si vous avez déjà un compte **FastAPI Cloud** (nous vous avons invité depuis la liste d’attente 😉), vous pouvez déployer votre application avec une seule commande.
-
-Avant de déployer, vous devez vous assurer que vous êtes connecté :
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Puis déployez votre application :
+Vous pouvez éventuellement déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com) avec une seule commande. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+Le CLI détectera automatiquement votre application FastAPI et la déploiera dans le cloud. Si vous n’êtes pas connecté, votre navigateur s’ouvrira pour terminer le processus d’authentification.
 
 C’est tout ! Vous pouvez maintenant accéder à votre application à cette URL. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note | Remarque
 
 Un « chemin » est aussi couramment appelé « endpoint » ou « route ».
 
@@ -322,7 +314,7 @@ Le `@app.get("/")` indique à **FastAPI** que la fonction juste en dessous est c
 * le chemin `/`
 * en utilisant une <dfn title="une méthode HTTP GET"><code>get</code> opération</dfn>
 
-/// info | `@decorator` Info
+/// note | Informations sur `@decorator`
 
 Cette syntaxe `@something` en Python est appelée un « décorateur ».
 

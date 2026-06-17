@@ -2,7 +2,7 @@
 
 你可以使用 `File` 定义由客户端上传的文件。
 
-/// info | 信息
+/// note | 注意
 
 要接收上传的文件，请先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | 信息
+/// note | 注意
 
 `File` 是直接继承自 `Form` 的类。
 

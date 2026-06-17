@@ -8,7 +8,7 @@
 
 ## Использование класса `TestClient` { #using-testclient }
 
-/// info | Информация
+/// note | Примечание
 
 Для использования класса `TestClient` сначала установите [`httpx`](https://www.python-httpx.org).
 
@@ -144,7 +144,7 @@ $ pip install httpx
 
 Для получения дополнительной информации о передаче данных на бэкенд с помощью `httpx` или `TestClient` ознакомьтесь с [документацией HTTPX](https://www.python-httpx.org).
 
-/// info | Информация
+/// note | Примечание
 
 Обратите внимание, что `TestClient` принимает данные, которые можно конвертировать в JSON, но не модели Pydantic.
 

@@ -18,7 +18,7 @@
 
 `status_code` 参数接收表示 HTTP 状态码的数字。
 
-/// info | 信息
+/// note | 注意
 
 `status_code` 还能接收 `IntEnum` 类型，比如 Python 的 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)。
 

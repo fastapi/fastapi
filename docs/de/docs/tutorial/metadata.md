@@ -74,7 +74,7 @@ Verwenden Sie den Parameter `tags` mit Ihren *Pfadoperationen* (und `APIRouter`n
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Info
+/// note | Hinweis
 
 Lesen Sie mehr zu Tags unter [Pfadoperation-Konfiguration](path-operation-configuration.md#tags).
 

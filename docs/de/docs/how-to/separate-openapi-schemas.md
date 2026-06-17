@@ -85,7 +85,7 @@ Der Hauptanwendungsfall hierfür besteht wahrscheinlich darin, dass Sie das mal 
 
 In diesem Fall können Sie diese Funktion in **FastAPI** mit dem Parameter `separate_input_output_schemas=False` deaktivieren.
 
-/// info | Info
+/// note | Hinweis
 
 Unterstützung für `separate_input_output_schemas` wurde in FastAPI `0.102.0` hinzugefügt. 🤓
 

@@ -18,7 +18,7 @@ Und natürlich wird das gleiche unterstützt:
 
 Das funktioniert genauso wie mit Pydantic-Modellen. Und tatsächlich wird es unter der Haube mittels Pydantic auf die gleiche Weise bewerkstelligt.
 
-/// info | Info
+/// note | Hinweis
 
 Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
 

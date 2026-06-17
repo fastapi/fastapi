@@ -65,7 +65,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 이 경우 함수 매개변수 `q`는 선택적이며 기본값으로 `None` 값이 됩니다.
 
-/// check
+/// tip | 팁
 
 또한 **FastAPI**는 `item_id`가 경로 매개변수이고 `q`는 경로 매개변수가 아니라서 쿼리 매개변수라는 것을 알 정도로 충분히 똑똑하다는 점도 확인하세요.
 
@@ -181,7 +181,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`, 기본값이 `0`인 `int`.
 * `limit`, 선택적인 `int`.
 
-/// tip
+/// tip | 팁
 
 [경로 매개변수](path-params.md#predefined-values)와 마찬가지로 `Enum`을 사용할 수 있습니다.
 

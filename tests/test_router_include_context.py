@@ -4,6 +4,7 @@ from typing import Annotated, cast
 
 import pytest
 from fastapi import APIRouter, Body, Depends, FastAPI, Request
+from fastapi.exceptions import FastAPIError
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.routing import (
     APIRoute,
@@ -861,6 +862,60 @@ def test_no_prefix_include_validation_sees_effective_starlette_route_candidates(
     candidates = list(_iter_included_route_candidates(parent_router.routes))
 
     assert cast(Route, candidates[0]).path == "/child/items"
+
+
+def test_no_prefix_include_validation_sees_effective_api_route_path():
+    leaf_router = APIRouter()
+
+    @leaf_router.get("")
+    def read_items():
+        return []
+
+    parent_router = APIRouter()
+    parent_router.include_router(leaf_router, prefix="/items")
+
+    # for coverage
+    candidates = list(_iter_included_route_candidates(parent_router.routes))
+    assert cast(APIRoute, candidates[0]).path == ""
+
+    app = FastAPI()
+    app.include_router(parent_router)
+    client = TestClient(app)
+
+    response = client.get("/items")
+
+    assert response.status_code == 200, response.text
+    assert response.json() == []
+
+
+def test_no_prefix_include_validation_sees_effective_starlette_route_path():
+    def endpoint(request):
+        return PlainTextResponse("ok")
+
+    child_router = APIRouter(routes=[Route("/items", endpoint, name="read_items")])
+    parent_router = APIRouter()
+    parent_router.include_router(child_router, prefix="/child")
+
+    app = FastAPI()
+    app.include_router(parent_router)
+    client = TestClient(app)
+
+    response = client.get("/child/items")
+
+    assert response.status_code == 200, response.text
+    assert response.text == "ok"
+
+
+def test_no_prefix_include_validation_rejects_empty_effective_api_route_path():
+    router = APIRouter()
+
+    @router.get("")
+    def read_items():  # pragma: no cover
+        return []
+
+    app = FastAPI()
+    with pytest.raises(FastAPIError):
+        app.include_router(router)
 
 
 def test_apirouter_matches_fallback_without_include_context():

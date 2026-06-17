@@ -31,7 +31,6 @@ O patrocínio também demonstra um forte compromisso com a **comunidade** FastAP
 Por exemplo, você pode querer experimentar:
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 Algumas dessas soluções também podem ser open source ou oferecer planos gratuitos, para que você possa testá-las sem compromisso financeiro. Outros geradores comerciais de SDK estão disponíveis e podem ser encontrados online. 🤓
 

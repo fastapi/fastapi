@@ -135,7 +135,7 @@ Das wird einen JSON-Body erwarten (konvertieren, validieren, dokumentieren, usw.
 }
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten hat.
 
@@ -147,7 +147,7 @@ Sie können beliebig tief verschachtelte Modelle definieren:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, wie `Offer` eine Liste von `Item`s hat, die ihrerseits eine optionale Liste von `Image`s haben.
 
