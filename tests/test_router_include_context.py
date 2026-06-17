@@ -39,7 +39,7 @@ def test_iter_route_contexts_returns_direct_route_context():
     router = APIRouter()
 
     @router.get("/items/{item_id}")
-    def read_item(item_id: str):
+    def read_item(item_id: str):  # pragma: no cover
         return {"item_id": item_id}
 
     contexts = list(iter_route_contexts(router.routes))
@@ -58,7 +58,7 @@ def test_iter_route_contexts_supports_nested_conflict_detection():
     nested_router = APIRouter()
 
     @nested_router.get("/{username}")
-    def read_user(username: str):
+    def read_user(username: str):  # pragma: no cover
         return {"username": username}
 
     existing_router.include_router(nested_router, prefix="/auth/user")
@@ -66,7 +66,7 @@ def test_iter_route_contexts_supports_nested_conflict_detection():
     new_router = APIRouter()
 
     @new_router.get("/auth/user/{username}")
-    def read_user_again(username: str):
+    def read_user_again(username: str):  # pragma: no cover
         return {"username": username}
 
     existing_paths = {
@@ -82,11 +82,11 @@ def test_get_openapi_accepts_filtered_route_contexts_with_effective_paths():
     bearer_scheme = HTTPBearer()
 
     @router.get("/public", tags=["public"])
-    def read_public(token: Annotated[str, Security(bearer_scheme)]):
+    def read_public(token: Annotated[str, Security(bearer_scheme)]):  # pragma: no cover
         return {"public": True}
 
     @router.get("/private", tags=["private"])
-    def read_private():
+    def read_private():  # pragma: no cover
         return {"private": True}
 
     app = FastAPI()
@@ -117,7 +117,7 @@ def test_get_openapi_accepts_webhook_route_contexts():
     @app.webhooks.post("new-subscription")
     def new_subscription(
         body: Subscription, token: Annotated[str, Security(bearer_scheme)]
-    ):
+    ):  # pragma: no cover
         return None
 
     webhook_contexts = list(iter_route_contexts(app.webhooks.routes))
