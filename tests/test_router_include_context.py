@@ -48,30 +48,31 @@ def test_iter_route_contexts_returns_direct_route_context():
     assert contexts[0].path == "/items/{item_id}"
     assert contexts[0].path_format == "/items/{item_id}"
     assert contexts[0].methods == {"GET"}
+    assert contexts[0].endpoint is read_item
 
 
 def test_iter_route_contexts_supports_nested_conflict_detection():
     existing_router = APIRouter()
     nested_router = APIRouter()
 
-    @nested_router.get("/me")
-    def read_me():
-        return {"me": True}
+    @nested_router.get("/{username}")
+    def read_user(username: str):
+        return {"username": username}
 
     existing_router.include_router(nested_router, prefix="/auth/user")
 
     new_router = APIRouter()
 
-    @new_router.get("/auth/user/me")
-    def read_me_again():
-        return {"me": False}
+    @new_router.get("/auth/user/{username}")
+    def read_user_again(username: str):
+        return {"username": username}
 
     existing_paths = {
         context.path for context in iter_route_contexts(existing_router.routes)
     }
     new_paths = {context.path for context in iter_route_contexts(new_router.routes)}
 
-    assert existing_paths & new_paths == {"/auth/user/me"}
+    assert existing_paths & new_paths == {"/auth/user/{username}"}
 
 
 def test_get_openapi_accepts_filtered_route_contexts_with_effective_paths():
