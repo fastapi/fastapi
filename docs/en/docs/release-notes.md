@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 📝 Tweak wording about deploying to FastAPI Cloud. PR [#15793](https://github.com/fastapi/fastapi/pull/15793) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Use `gpt-5.5` model in `translate.py`, specify `-chat` to avoid warnings. PR [#15792](https://github.com/fastapi/fastapi/pull/15792) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.137.2 (2026-06-18)
