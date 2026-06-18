@@ -1454,6 +1454,47 @@ class _EffectiveRouteContext:
         return URLPath(path=path, protocol="http")
 
 
+@dataclass(frozen=True)
+class RouteContext:
+    route: BaseRoute
+    _route_context: _EffectiveRouteContext | None = field(default=None, repr=False)
+
+    @property
+    def original_route(self) -> BaseRoute:
+        if self._route_context is not None:
+            return self._route_context.original_route
+        return self.route
+
+    @property
+    def _effective_route(self) -> BaseRoute | _EffectiveRouteContext:
+        if self._route_context is not None:
+            return self._route_context
+        return self.route
+
+    @property
+    def path(self) -> str | None:
+        return getattr(self._effective_route, "path", None)
+
+    @property
+    def path_format(self) -> str | None:
+        return getattr(self._effective_route, "path_format", None)
+
+    @property
+    def name(self) -> str | None:
+        return getattr(self._effective_route, "name", None)
+
+    @property
+    def methods(self) -> set[str] | None:
+        return getattr(self._effective_route, "methods", None)
+
+    @property
+    def endpoint(self) -> Callable[..., Any] | None:
+        return getattr(self._effective_route, "endpoint", None)
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._effective_route, name)
+
+
 @dataclass
 class _IncludedRouter(BaseRoute):
     original_router: "APIRouter"
@@ -1652,6 +1693,20 @@ def _iter_included_route_candidates(routes: Sequence[BaseRoute]) -> Iterator[Bas
             yield route_context.starlette_route
         else:
             yield route
+
+
+def iter_route_contexts(
+    routes: Sequence[BaseRoute | RouteContext],
+) -> Iterator[RouteContext]:
+    for route in routes:
+        if isinstance(route, RouteContext):
+            yield route
+            continue
+        for original_route, route_context in _iter_routes_with_context([route]):
+            if route_context is None:
+                yield RouteContext(original_route)
+            else:
+                yield RouteContext(original_route, route_context)
 
 
 def _iter_routes_with_context(

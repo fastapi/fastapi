@@ -1,16 +1,21 @@
 from typing import Annotated, cast
 
 import pytest
-from fastapi import APIRouter, Body, Depends, FastAPI, Request
+from fastapi import APIRouter, Body, Depends, FastAPI, Request, Security
 from fastapi.exceptions import FastAPIError
+from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.routing import (
     APIRoute,
+    RouteContext,
     _IncludedRouter,
     _iter_included_route_candidates,
     _restore_fastapi_scope_key,
+    iter_route_contexts,
 )
+from fastapi.security import HTTPBearer
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 from starlette.routing import BaseRoute, Host, Match, Mount, NoMatchFound, Route, Router
 
 
@@ -28,6 +33,104 @@ def dependency_c():
 
 def unique_id_b(route: APIRoute) -> str:
     return f"b_{route.name}"
+
+
+def test_iter_route_contexts_returns_direct_route_context():
+    router = APIRouter()
+
+    @router.get("/items/{item_id}")
+    def read_item(item_id: str):  # pragma: no cover
+        return {"item_id": item_id}
+
+    contexts = list(iter_route_contexts(router.routes))
+
+    assert len(contexts) == 1
+    assert isinstance(contexts[0], RouteContext)
+    assert contexts[0].original_route is router.routes[0]
+    assert contexts[0].path == "/items/{item_id}"
+    assert contexts[0].path_format == "/items/{item_id}"
+    assert contexts[0].methods == {"GET"}
+    assert contexts[0].endpoint is read_item
+
+
+def test_iter_route_contexts_supports_nested_conflict_detection():
+    existing_router = APIRouter()
+    nested_router = APIRouter()
+
+    @nested_router.get("/{username}")
+    def read_user(username: str):  # pragma: no cover
+        return {"username": username}
+
+    existing_router.include_router(nested_router, prefix="/auth/user")
+
+    new_router = APIRouter()
+
+    @new_router.get("/auth/user/{username}")
+    def read_user_again(username: str):  # pragma: no cover
+        return {"username": username}
+
+    existing_paths = {
+        context.path for context in iter_route_contexts(existing_router.routes)
+    }
+    new_paths = {context.path for context in iter_route_contexts(new_router.routes)}
+
+    assert existing_paths & new_paths == {"/auth/user/{username}"}
+
+
+def test_get_openapi_accepts_filtered_route_contexts_with_effective_paths():
+    router = APIRouter()
+    bearer_scheme = HTTPBearer()
+
+    @router.get("/public", tags=["public"])
+    def read_public(token: Annotated[str, Security(bearer_scheme)]):  # pragma: no cover
+        return {"public": True}
+
+    @router.get("/private", tags=["private"])
+    def read_private():  # pragma: no cover
+        return {"private": True}
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    public_routes = [
+        context
+        for context in iter_route_contexts(app.routes)
+        if "public" in getattr(context, "tags", [])
+    ]
+    schema = get_openapi(
+        title="Public API",
+        version="1.0.0",
+        routes=public_routes,
+    )
+
+    assert set(schema["paths"]) == {"/api/public"}
+    assert "HTTPBearer" in schema["components"]["securitySchemes"]
+
+
+def test_get_openapi_accepts_webhook_route_contexts():
+    app = FastAPI()
+    bearer_scheme = HTTPBearer()
+
+    class Subscription(BaseModel):
+        username: str
+
+    @app.webhooks.post("new-subscription")
+    def new_subscription(
+        body: Subscription, token: Annotated[str, Security(bearer_scheme)]
+    ):  # pragma: no cover
+        return None
+
+    webhook_contexts = list(iter_route_contexts(app.webhooks.routes))
+    schema = get_openapi(
+        title="Webhook API",
+        version="1.0.0",
+        routes=[],
+        webhooks=webhook_contexts,
+    )
+
+    assert set(schema["webhooks"]) == {"new-subscription"}
+    assert "HTTPBearer" in schema["components"]["securitySchemes"]
+    assert "Subscription" in schema["components"]["schemas"]
 
 
 def test_router_include_context_matches_flattened_include_metadata():
