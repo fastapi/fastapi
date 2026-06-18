@@ -206,3 +206,129 @@ def get_query_list(device_ids: list[int] = Query()) -> list[int]:
 @app.get("/query/list-default")
 def get_query_list_default(device_ids: list[int] = Query(default=[])) -> list[int]:
     return device_ids
+class TipoUsuario(str, Enum):
+    ALUNO = "aluno"
+    PROFESSOR = "professor"
+
+class Materia(str, Enum):
+    MATEMATICA = "matematica"
+    FISICA = "fisica"
+    ADMINISTRACAO = "administracao"
+    ROBOTICA = "robotica"
+    PORTUGUES = "portugues"
+    INGLES = "ingles"
+    ESPANHOL = "espanhol"
+    HISTORIA = "historia"
+    REDACAO = "redacao"
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    tipo: TipoUsuario
+    nivel: int = 1 # Relevante para o aluno
+
+class AtividadeDiagnostica(BaseModel):
+    id: int
+    materia: Materia
+    pergunta: str
+    opcoes: List[str]
+    resposta_correta: str
+    criado_por_professor_id: int
+
+
+import random
+
+class SlimeIA:
+    def __init__(self, nome_mascote: str = "Gloop"):
+        self.nome = nome_mascote
+
+    def gerar_resposta_adaptativa(self, aluno: Usuario, materia: Materia, duvida: str) -> dict:
+        """
+        Simula a engine de IA que adapta o conhecimento ao nível do aluno.
+        Em produção, aqui haveria uma chamada para a API da OpenAI/Anthropic com um prompt de sistema.
+        """
+        # Adaptação de tom baseada no nível/idade simulada
+        if aluno.nivel < 5:
+            tom = "super simples, lúdico e com metáforas visuais"
+            expressao_slime = "✨ Slime Brilhante e Feliz! ✨"
+        else:
+            tom = "focado, dinâmico e contextualizado para jovens"
+            expressao_slime = "🧠 Slime Cientista! 🧠"
+
+        # Resposta simulada da IA
+        resposta_base = f"Olá {aluno.nome}! Eu sou o {self.nome}. Vi que sua dúvida em {materia.value} é: '{duvida}'."
+       
+        return {
+            "mascote_expressao": expressao_slime,
+            "resposta_ia": f"{resposta_base} Explicando de forma {tom}: Vamos resolver isso juntos passo a passo!",
+            "sugestao_proximo_passo": f"Que tal fazermos uma atividade de {materia.value} agora?"
+        }
+
+
+import random
+
+class SlimeIA:
+    def __init__(self, nome_mascote: str = "Gloop"):
+        self.nome = nome_mascote
+
+    def gerar_resposta_adaptativa(self, aluno: Usuario, materia: Materia, duvida: str) -> dict:
+        """
+        Simula a engine de IA que adapta o conhecimento ao nível do aluno.
+        Em produção, aqui haveria uma chamada para a API da OpenAI/Anthropic com um prompt de sistema.
+        """
+        # Adaptação de tom baseada no nível/idade simulada
+        if aluno.nivel < 5:
+            tom = "super simples, lúdico e com metáforas visuais"
+            expressao_slime = "✨ Slime Brilhante e Feliz! ✨"
+        else:
+            tom = "focado, dinâmico e contextualizado para jovens"
+            expressao_slime = "🧠 Slime Cientista! 🧠"
+
+        # Resposta simulada da IA
+        resposta_base = f"Olá {aluno.nome}! Eu sou o {self.nome}. Vi que sua dúvida em {materia.value} é: '{duvida}'."
+       
+        return {
+            "mascote_expressao": expressao_slime,
+            "resposta_ia": f"{resposta_base} Explicando de forma {tom}: Vamos resolver isso juntos passo a passo!",
+            "sugestao_proximo_passo": f"Que tal fazermos uma atividade de {materia.value} agora?"
+        }
+
+
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI(title="SlimyEdu API", version="1.0")
+slime_brain = SlimeIA()
+
+# Banco de dados temporário (em memória)
+banco_atividades = []
+banco_usuarios = [
+    Usuario(id=1, nome= "Lucas", tipo=TipoUsuario.ALUNO, nivel=3),
+    Usuario(id=2, nome="Profª Marina", tipo=TipoUsuario.PROFESSOR)
+]
+
+@app.post("/atividades/inserir", tags=["Professor"])
+def professor_insere_atividade(atividade: AtividadeDiagnostica):
+    # Verifica se quem está inserindo é realmente um professor
+    professor = next((u for u in banco_usuarios if u.id == atividade.criado_por_professor_id), None)
+    if not professor or professor.tipo != TipoUsuario.PROFESSOR:
+        raise HTTPException(status_code=403, detail="Apenas professores podem inserir conteúdos.")
+   
+    banco_atividades.append(atividade)
+    return {"status": "Sucesso", "mensagem": f"Atividade de {atividade.materia} inserida com sucesso!"}
+
+@app.get("/slime/perguntar", tags=["Aluno / IA"])
+def perguntar_para_slime(aluno_id: int, materia: Materia, duvida: str):
+    # Busca o aluno
+    aluno = next((u for u in banco_usuarios if u.id == aluno_id), None)
+    if not aluno or aluno.tipo != TipoUsuario.ALUNO:
+        raise HTTPException(status_code=404, detail="Aluno não encontrado.")
+   
+    # Gera a resposta personalizada da IA da Slime
+    resposta_slime = slime_brain.gerar_resposta_adaptativa(aluno, materia, duvida)
+    return resposta_slime
+
+@app.get("/atividades/diagnostica/{materia}", tags=["Aluno / IA"])
+def obter_atividades_por_materia(materia: Materia):
+    # Filtra as atividades que os professores cadastraram para o aluno responder
+    atividades_filtradas = [a for a in banco_atividades if a.materia == materia]
+    return {"atividades": atividades_filtradas}
