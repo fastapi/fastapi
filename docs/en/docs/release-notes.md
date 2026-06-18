@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.137.2 (2026-06-18)
+
 ### Features
 
 * ✨ Add `iter_route_contexts()` for advanced use cases that used to use `router.routes` (e.g. Jupyverse). PR [#15785](https://github.com/fastapi/fastapi/pull/15785) by [@tiangolo](https://github.com/tiangolo).
