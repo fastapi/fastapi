@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔨 Use `gpt-5.5` model in `translate.py`, specify `-chat` to avoid warnings. PR [#15792](https://github.com/fastapi/fastapi/pull/15792) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.137.2 (2026-06-18)
 
 ### Features
