@@ -514,7 +514,7 @@ def get_request_handler(
                         # validation (the user may mix types intentionally).
                         if item.raw_data is not None:
                             data_str: str | None = item.raw_data
-                        elif item.data is not None:
+                        elif item.data is not None or "data" in item.model_fields_set:
                             if hasattr(item.data, "model_dump_json"):
                                 data_str = item.data.model_dump_json()
                             else:

@@ -74,6 +74,11 @@ async def sse_items_string():
     yield ServerSentEvent(data="plain text data")
 
 
+@app.get("/items/stream-null", response_class=EventSourceResponse)
+async def sse_items_null():
+    yield ServerSentEvent(data=None)
+
+
 @app.post("/items/stream-post", response_class=EventSourceResponse)
 async def sse_items_post() -> AsyncIterable[Item]:
     for item in items:
@@ -216,6 +221,12 @@ def test_string_data_json_encoded(client: TestClient):
     assert 'data: "plain text data"\n' in response.text
 
 
+def test_null_data_json_encoded(client: TestClient):
+    response = client.get("/items/stream-null")
+    assert response.status_code == 200
+    assert response.text == "data: null\n\n"
+
+
 def test_server_sent_event_null_id_rejected():
     with pytest.raises(ValueError, match="null"):
         ServerSentEvent(data="test", id="has\0null")
@@ -262,6 +273,9 @@ def test_data_and_raw_data_mutually_exclusive():
     """Cannot set both data and raw_data."""
     with pytest.raises(ValueError, match="Cannot set both"):
         ServerSentEvent(data="json", raw_data="raw")
+
+    with pytest.raises(ValueError, match="Cannot set both"):
+        ServerSentEvent(data=None, raw_data="raw")
 
 
 def test_sse_on_router_included_in_app(client: TestClient):
