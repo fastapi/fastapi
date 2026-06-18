@@ -677,6 +677,9 @@ def get_request_handler(
                     media_type="application/jsonl",
                     **response_args,
                 )
+                response.headers["Cache-Control"] = "no-cache"
+                # For Nginx proxies to not buffer the streamed response
+                response.headers["X-Accel-Buffering"] = "no"
                 response.headers.raw.extend(solved_result.response.headers.raw)
             elif _is_async_gen_callable(dependant.call) or _is_gen_callable(
                 dependant.call
