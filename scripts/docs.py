@@ -31,6 +31,7 @@ SUPPORTED_LANGS = {
     "uk",
     "zh",
     "zh-hant",
+    "hi",
 }
 
 
