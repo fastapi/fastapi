@@ -1,3 +1,4 @@
+import errno
 import os
 import runpy
 from pathlib import Path
@@ -89,7 +90,7 @@ def test_frontend_static_files_lookup_errors(monkeypatch, tmp_path: Path):
     assert response.status_code == 404
 
     def raise_name_too_long(path: str):
-        raise OSError(36, "name too long")
+        raise OSError(errno.ENAMETOOLONG, "name too long")
 
     monkeypatch.setattr(static_files, "lookup_path", raise_name_too_long)
     response = TestClient(app).get("/asset.txt")
@@ -651,7 +652,13 @@ def test_unsupported_methods_return_405(tmp_path: Path):
 
 @pytest.mark.parametrize(
     "path",
-    ["/../secret.txt", "/%2e%2e/secret.txt", "/..%2fsecret.txt"],
+    [
+        "/../secret.txt",
+        "/%2e%2e/secret.txt",
+        "/..%2fsecret.txt",
+        "/%5c..%5csecret.txt",
+        "/..%5csecret.txt",
+    ],
 )
 def test_path_traversal_cannot_escape_directory(tmp_path: Path, path: str):
     dist = tmp_path / "dist"
