@@ -24,13 +24,13 @@ Ancak `fastapi`'dan `Query`, `Path`, `Cookie` ve diğerlerini import ettiğinizd
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Cookie'leri tanımlamak için `Cookie` kullanmanız gerekir, aksi halde parametreler query parametreleri olarak yorumlanır.
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 **Tarayıcılar cookie'leri** özel şekillerde ve arka planda işlediği için, **JavaScript**'in onlara dokunmasına kolayca izin **vermezler**.
 

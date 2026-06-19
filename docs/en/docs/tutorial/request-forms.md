@@ -46,7 +46,7 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ## About "Form Fields" { #about-form-fields }
 
-The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
+The way HTML forms (`<form></form>`) send the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 

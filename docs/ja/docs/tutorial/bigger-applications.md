@@ -4,7 +4,7 @@
 
 **FastAPI** は、柔軟性を保ったままアプリケーションを構造化できる便利なツールを提供します。
 
-/// info | 情報
+/// note | 備考
 
 Flask 出身であれば、Flask の Blueprint に相当します。
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 `prefix`、`tags`、`responses`、`dependencies` の各パラメータは（ほかの多くのケースと同様に）コード重複を避けるための **FastAPI** の機能です。
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 情報
+/// note | 備考
 
 最初のバージョンは「相対インポート」です:
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 情報
+/// note | 備考
 
 `users.router` は、ファイル `app/routers/users.py` 内の `APIRouter` を含みます。
 
@@ -396,17 +396,17 @@ from .routers.users import router
 
 /// note | 技術詳細
 
-実際には、`APIRouter` で宣言された各 *path operation* ごとに内部的に *path operation* が作成されます。
+FastAPI は、ルーターをメインアプリに取り込んだ後も、元の `APIRouter` とその `APIRoute` を有効なまま保持します。
 
-つまり裏側では、すべてが同じ単一のアプリであるかのように動作します。
+そのため、カスタムの `APIRouter` や `APIRoute` のサブクラスも、取り込み後に引き続き機能します。
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 ルーターを取り込んでもパフォーマンスを心配する必要はありません。
 
-これは起動時にマイクロ秒で行われます。
+これは軽量に設計され、各リクエストにオーバーヘッドを追加しないようになっています。
 
 したがってパフォーマンスには影響しません。⚡
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 そして、`app.include_router()` で追加したほかの *path operations* と一緒に正しく動作します。
 
-/// info | 非常に技術的な詳細
+/// note | 技術詳細
 
 注記: これは非常に技術的な詳細で、**読み飛ばして構いません**。
 
@@ -461,7 +461,7 @@ from .routers.users import router
 
 これは、それらの *path operations* を OpenAPI スキーマやユーザーインターフェースに含めたいからです。
 
-完全に分離して独立に「マウント」できないため、*path operations* は直接取り込まれるのではなく「クローン（再作成）」されます。
+FastAPI は元のルーターと *path operations* を有効なまま保持し、リクエスト処理や OpenAPI 生成の際に、ルーターの prefix、dependencies、tags、responses、その他のメタデータを組み合わせます。
 
 ///
 
@@ -532,4 +532,16 @@ $ fastapi dev
 router.include_router(other_router)
 ```
 
-`router` を `FastAPI` アプリに取り込む前にこれを実行して、`other_router` の *path operations* も含まれるようにしてください。
+これは、`router` を `FastAPI` アプリに取り込む前でも後でも実行できます。FastAPI は `other_router` の *path operations* をルーティングと OpenAPI に含めます。
+
+同様に、後からルーターに追加された *path operations* も、以前の取り込みを通して見えるようになります。
+
+/// warning | 注意
+
+`router` を取り込んだ後に、`router.routes` を直接ミューテートするのは避けてください。FastAPI はルーターの取り込みをライブとして扱うため、元のルーターとそのルートはルーティングと OpenAPI 生成の一部のままです。
+
+ルートやルーターを追加するには、path operation デコレータや `.include_router()` などのドキュメント化された API を使用してください。
+
+`router.routes` は、ルート定義や取り込まれたルーターを含みうる低レベルのルートツリーとして扱い、最終的な *path operations* のフラットな一覧として当てにしないでください。
+
+///

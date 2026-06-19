@@ -8,7 +8,7 @@
 
 使用 [Pydantic](https://docs.pydantic.dev/) 模型来声明**请求体**，能充分利用它的功能和优点。
 
-/// info | 信息
+/// note | 注意
 
 发送数据应使用以下之一：`POST`（最常见）、`PUT`、`DELETE` 或 `PATCH`。
 

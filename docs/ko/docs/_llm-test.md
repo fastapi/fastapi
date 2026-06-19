@@ -124,19 +124,11 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 //// tab | 테스트
 
-/// info | 정보
-일부 텍스트
-///
-
 /// note | 참고
 일부 텍스트
 ///
 
 /// note | 기술 세부사항
-일부 텍스트
-///
-
-/// check | 확인
 일부 텍스트
 ///
 
@@ -158,7 +150,7 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 탭과 `Info`/`Note`/`Warning`/등의 블록은 제목 번역을 수직 막대(`|`) 뒤에 추가해야 합니다.
 
-`scripts/translate.py`의 일반 프롬프트에서 `### Special blocks`와 `### Tab blocks` 섹션을 참고하세요.
+`scripts/translate.py`의 일반 프롬프트에서 `### Special blocks`와 `### Tab blocks` 석션을 참고하세요.
 
 ////
 
@@ -248,7 +240,7 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 `scripts/translate.py`의 일반 프롬프트에서 `### Headings` 섹션을 참고하세요.
 
-언어별 지침은 예를 들어 `docs/de/llm-prompt.md`의 `### Headings` 섹션을 참고하세요.
+언어별 지침은 예를 들어 `docs/de/llm-prompt.md`의 `### Headings` 석션을 참고하세요.
 
 ////
 
@@ -498,6 +490,6 @@ works(foo="bar")  # 이건 동작합니다 🎉
 
 이것은 문서에서 보이는 (대부분) 기술 용어의 불완전하고 비규범적인 목록입니다. 프롬프트 설계자가 어떤 용어에 대해 LLM에 추가적인 도움이 필요한지 파악하는 데 유용할 수 있습니다. 예를 들어, 좋은 번역을 계속 덜 좋은 번역으로 되돌릴 때, 또는 언어에서 용어의 활용/변화를 처리하는 데 문제가 있을 때 도움이 됩니다.
 
-예를 들어 `docs/de/llm-prompt.md`의 `### List of English terms and their preferred German translations` 섹션을 참고하세요.
+예를 들어 `docs/de/llm-prompt.md`의 `### List of English terms and their preferred German translations` 석션을 참고하세요.
 
 ////

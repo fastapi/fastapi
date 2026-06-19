@@ -1,8 +1,8 @@
-# Datos de formulario { #form-data }
+# Form Data { #form-data }
 
 Cuando necesitas recibir campos de formulario en lugar de JSON, puedes usar `Form`.
 
-/// info | Información
+/// note | Nota
 
 Para usar formularios, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -32,7 +32,7 @@ La <dfn title="especificación">especificación</dfn> requiere que los campos se
 
 Con `Form` puedes declarar las mismas configuraciones que con `Body` (y `Query`, `Path`, `Cookie`), incluyendo validación, ejemplos, un alias (por ejemplo, `user-name` en lugar de `username`), etc.
 
-/// info | Información
+/// note | Nota
 
 `Form` es una clase que hereda directamente de `Body`.
 
@@ -70,4 +70,4 @@ Esto no es una limitación de **FastAPI**, es parte del protocolo HTTP.
 
 ## Recapitulación { #recap }
 
-Usa `Form` para declarar parámetros de entrada de datos de formulario.
+Usa `Form` para declarar parámetros de entrada de form data.

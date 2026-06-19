@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx나 Traefik 같은 프록시 뒤에서 실행한다면 --proxy-headers를 추가하세요
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 정보
+/// note | 참고
 
 패키지 의존성을 정의하고 설치하는 다른 형식과 도구도 있습니다.
 
@@ -556,7 +556,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 **여러 컨테이너**가 있고 각 컨테이너가 보통 **단일 프로세스**를 실행한다면(예: **Kubernetes** 클러스터), 복제된 워커 컨테이너를 실행하기 **전에**, 단일 컨테이너에서 단일 프로세스로 **시작 전 사전 단계**를 수행하는 **별도의 컨테이너**를 두고 싶을 가능성이 큽니다.
 
-/// info | 정보
+/// note | 참고
 
 Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)일 것입니다.
 

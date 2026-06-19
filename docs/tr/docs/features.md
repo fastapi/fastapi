@@ -63,8 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-
-/// info
+/// note | Not
 
 `**second_user_data` şu anlama gelir:
 

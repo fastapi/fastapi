@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note
 
 `**second_user_data` 意思是:
 
@@ -97,7 +97,7 @@ my_second_user: User = User(**second_user_data)
 
 ### 簡潔 { #short }
 
-FastAPI 為你提供了**預設值**，讓你不必在初期進行繁瑣的配置，一切都可以自動運作。如果你有更具體的需求，則可以進行調整和自定義，
+FastAPI 為你提供了**預設值**，讓你不必在初期進行繁瑣的配置，一切都可以自動運作。如果你有更具體的需求，則可以進行調整和自定義。
 
 但預設情況下，一切都「直接可用」。
 

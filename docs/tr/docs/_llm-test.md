@@ -1,6 +1,6 @@
 # LLM test dosyası { #llm-test-file }
 
-Bu doküman, dokümantasyonu çeviren <abbr title="Large Language Model">LLM</abbr>'nin `scripts/translate.py` içindeki `general_prompt`'u ve `docs/{language code}/llm-prompt.md` içindeki dile özel prompt'u anlayıp anlamadığını test eder. Dile özel prompt, `general_prompt`'a eklenir.
+Bu doküman, dokümantasyonu çeviren <abbr title="Large Language Model - Büyük Dil Modeli">LLM</abbr>'nin `scripts/translate.py` içindeki `general_prompt`'u ve `docs/{language code}/llm-prompt.md` içindeki dile özel prompt'u anlayıp anlamadığını test eder. Dile özel prompt, `general_prompt`'a eklenir.
 
 Buraya eklenen testler, dile özel prompt'ları tasarlayan herkes tarafından görülecektir.
 
@@ -37,7 +37,7 @@ Code snippet'lerin içeriği olduğu gibi bırakılmalıdır.
 
 Dün bir arkadaşım şunu yazdı: "If you spell incorrectly correctly, you have spelled it incorrectly". Ben de şunu yanıtladım: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
-/// note | Not
+/// note
 
 LLM muhtemelen bunu yanlış çevirecektir. Yeniden çeviri yapıldığında düzeltilmiş çeviriyi koruyup korumadığı önemlidir.
 
@@ -124,11 +124,7 @@ Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır
 
 //// tab | Test
 
-/// info | Bilgi
-Bazı metin
-///
-
-/// note | Not
+/// note
 Bazı metin
 ///
 
@@ -136,19 +132,15 @@ Bazı metin
 Bazı metin
 ///
 
-/// check | Ek bilgi
+/// tip
 Bazı metin
 ///
 
-/// tip | İpucu
+/// warning
 Bazı metin
 ///
 
-/// warning | Uyarı
-Bazı metin
-///
-
-/// danger | Tehlike
+/// danger
 Bazı metin
 ///
 

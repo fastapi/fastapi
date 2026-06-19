@@ -173,7 +173,7 @@ JSON 请求体包含如下内容：
 
 /// tip | 提示
 
-注意，不能把路由本身（`invoices_callback_router`）传递给 `callbacks=`，要传递 `invoices_callback_router.routes` 中的 `.routes` 属性。
+注意，不能把路由本身（`invoices_callback_router`）传递给 `callbacks=`，要传递 `invoices_callback_router.routes` 中的 `.routes` 属性。FastAPI 会使用这些路由来生成回调的 OpenAPI 文档。
 
 ///
 

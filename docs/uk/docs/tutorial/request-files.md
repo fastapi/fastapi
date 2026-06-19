@@ -2,7 +2,7 @@
 
 Ви можете визначити файли, які будуть завантажуватися клієнтом, використовуючи `File`.
 
-/// info | Інформація
+/// note | Примітка
 
 Щоб отримувати завантажені файли, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Інформація
+/// note | Примітка
 
 `File` — це клас, який безпосередньо успадковує `Form`.
 

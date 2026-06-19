@@ -135,7 +135,7 @@ Pydantic 模型的每个属性都具有类型。
 }
 ```
 
-/// info | 信息
+/// note | 注意
 
 请注意 `images` 键现在具有一组 image 对象是如何发生的。
 
@@ -147,9 +147,9 @@ Pydantic 模型的每个属性都具有类型。
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | 信息
+/// note | 注意
 
-请注意 `Offer` 拥有一组 `Item` 而反过来 `Item` 又是一个可选的 `Image` 列表是如何发生的。
+请注意 `Offer` 拥有一组 `Item` 而反过来 `Item` 又有一个可选的 `Image` 列表是如何发生的。
 
 ///
 

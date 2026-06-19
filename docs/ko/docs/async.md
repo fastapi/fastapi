@@ -139,7 +139,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | 정보
+/// note | 참고
 
 아름다운 일러스트: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ def results():
 
 대부분의 시간을 카운터 앞에서 기다리는 데 🕙 썼기 때문에, 대화하거나 작업을 걸 시간은 많지 않았습니다. 😞
 
-/// info | 정보
+/// note | 참고
 
 아름다운 일러스트: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -487,9 +492,7 @@ item: Item
 
 ### アプリをデプロイ（任意） { #deploy-your-app-optional }
 
-必要に応じて FastAPI アプリを [FastAPI Cloud](https://fastapicloud.com) にデプロイできます。まだの場合はウェイティングリストに参加してください。 🚀
-
-すでに **FastAPI Cloud** アカウント（ウェイティングリストから招待されました 😉）がある場合は、1 コマンドでアプリケーションをデプロイできます。
+1 コマンドで FastAPI アプリを [FastAPI Cloud](https://fastapicloud.com) にデプロイできます。 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI は自動的に FastAPI アプリケーションを検出し、クラウドへデプロイします。ログインしていない場合は、認証を完了するためにブラウザが開きます。
 
 これで完了です！その URL でアプリにアクセスできます。 ✨
 

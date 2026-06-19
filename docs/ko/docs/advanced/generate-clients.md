@@ -2,7 +2,7 @@
 
 **FastAPI**는 **OpenAPI** 사양을 기반으로 하므로, FastAPI의 API는 많은 도구가 이해할 수 있는 표준 형식으로 설명할 수 있습니다.
 
-덕분에 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 최신 **문서**, 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
+덕분에 최신 **문서**, 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
 
 이 가이드에서는 FastAPI 백엔드용 **TypeScript SDK**를 생성하는 방법을 배웁니다.
 
@@ -31,7 +31,6 @@ FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 
 예를 들어 다음을 사용해 볼 수 있습니다:
 
 * [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
 
 이 중 일부는 오픈 소스이거나 무료 티어를 제공하므로, 비용 부담 없이 사용해 볼 수 있습니다. 다른 상용 SDK 생성기도 있으며 온라인에서 찾을 수 있습니다. 🤓
 

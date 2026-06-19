@@ -16,17 +16,11 @@
 
 ### 使用 *路径操作函数* 的函数名作为 operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-如果你想用 API 的函数名作为 `operationId`，你可以遍历所有路径操作，并使用它们的 `APIRoute.name` 重写每个 *路径操作* 的 `operation_id`。
+如果你想用 API 的函数名作为 `operationId`，你可以向 `FastAPI` 传入自定义的 `generate_unique_id_function`。
 
-你应该在添加了所有 *路径操作* 之后执行此操作。
+该函数会接收每个 `APIRoute`，并返回用于该路径操作的 `operationId`。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip
-
-如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning
 

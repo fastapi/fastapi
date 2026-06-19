@@ -52,9 +52,7 @@ The key features are:
 ### Gold Sponsors
 
 <a href="https://blockbee.io?ref=fastapi" target="_blank" title="BlockBee Cryptocurrency Payment Gateway"><img src="https://fastapi.tiangolo.com/img/sponsors/blockbee.png"></a>
-<a href="https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge" target="_blank" title="Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"><img src="https://fastapi.tiangolo.com/img/sponsors/scalar.svg"></a>
 <a href="https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge" target="_blank" title="Auth, user management and more for your B2B product"><img src="https://fastapi.tiangolo.com/img/sponsors/propelauth.png"></a>
-<a href="https://liblab.com?utm_source=fastapi" target="_blank" title="liblab - Generate SDKs from FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/liblab.png"></a>
 <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Deploy & scale any full-stack web app on Render. Focus on building apps, not infra."><img src="https://fastapi.tiangolo.com/img/sponsors/render.svg"></a>
 <a href="https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi" target="_blank" title="Cut Code Review Time & Bugs in Half with CodeRabbit"><img src="https://fastapi.tiangolo.com/img/sponsors/coderabbit.png"></a>
 <a href="https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source" target="_blank" title="The Gold Standard in Retail Account Linking"><img src="https://fastapi.tiangolo.com/img/sponsors/subtotal.svg"></a>
@@ -68,9 +66,9 @@ The key features are:
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
 <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" target="_blank" title="Stainless | Generate best-in-class SDKs"><img src="https://fastapi.tiangolo.com/img/sponsors/stainless.png"></a>
 <a href="https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Fine-Grained Authorization for FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/permit.png"></a>
-<a href="https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring" target="_blank" title="InterviewPal - AI Interview Coach for Engineers and Devs"><img src="https://fastapi.tiangolo.com/img/sponsors/interviewpal.png"></a>
 <a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a>
-<a href="https://talordata.com/?campaignid=oh5dVZ3Zc3YGiAI2&utm_source=fastapi&utm_term=fastapi" target="_blank" title="TalorData SERP API - Multi-Engine Search Results Data"><img src="https://fastapi.tiangolo.com/img/sponsors/talordata.png"></a>
+<a href="https://www.rapidproxy.io/?ref=fastapi" target="_blank" title="Try RapidProxy for free - Residential Proxies with 90M+ Global IPs. Starting from $0.65/GB for web scraping, automation, and data collection."><img src="https://fastapi.tiangolo.com/img/sponsors/rapidproxy.png"></a>
+<a href="https://www.bairesdev.com/" target="_blank" title="BairesDev | Nearshore Software Development & Staff Augmentation Company"><img src="https://fastapi.tiangolo.com/img/sponsors/bairesdev.svg"></a>
 
 <!-- /sponsors -->
 
@@ -434,13 +432,13 @@ For a more complete example including more features, see the <a href="https://fa
 
 **Spoiler alert**: the tutorial - user guide includes:
 
-* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
+* Declaration of **parameters** from other different places such as: **headers**, **cookies**, **form fields** and **files**.
+* How to set **validation constraints** such as `maximum_length` or `regex`.
 * A very powerful and easy to use **<dfn title="also known as components, resources, providers, services, injectables">Dependency Injection</dfn>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
 * **GraphQL** integration with [Strawberry](https://strawberry.rocks) and other libraries.
-* Many extra features (thanks to Starlette) as:
+* Many extra features (thanks to Starlette) such as:
     * **WebSockets**
     * extremely easy tests based on HTTPX and `pytest`
     * **CORS**
@@ -449,9 +447,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ### Deploy your app (optional)
 
-You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
-
-If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀
 
 <div class="termy">
 
@@ -466,6 +462,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+The CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.
 
 That's it! Now you can access your app at that URL. ✨
 

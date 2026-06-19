@@ -74,7 +74,7 @@ Usa el parámetro `tags` con tus *path operations* (y `APIRouter`s) para asignar
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Información
+/// note | Nota
 
 Lee más sobre etiquetas en [Configuración de Path Operation](path-operation-configuration.md#tags).
 

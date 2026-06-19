@@ -6,7 +6,7 @@ Pour cela, vous pouvez utiliser `WSGIMiddleware` et l'utiliser pour envelopper v
 
 ## Utiliser `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info
+/// note | Remarque
 
 Cela nécessite l'installation de `a2wsgi`, par exemple avec `pip install a2wsgi`.
 

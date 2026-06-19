@@ -24,7 +24,7 @@
 
 ## 실행하기 { #run-it }
 
-/// info | 정보
+/// note | 참고
 
 [`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
 
@@ -60,7 +60,7 @@ $ fastapi dev
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 버튼!
+/// tip | Authorize 버튼!
 
 반짝이는 새 "Authorize" 버튼이 이미 있습니다.
 
@@ -118,7 +118,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 이 예제에서는 **OAuth2**의 **Password** 플로우와 **Bearer** token을 사용합니다. 이를 위해 `OAuth2PasswordBearer` 클래스를 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 "bearer" token만이 유일한 선택지는 아닙니다.
 
@@ -148,7 +148,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 곧 실제 경로 처리를 만들 것입니다.
 
-/// info | 정보
+/// note | 참고
 
 엄격한 "Pythonista"라면 `token_url` 대신 `tokenUrl` 같은 파라미터 이름 스타일이 마음에 들지 않을 수도 있습니다.
 
@@ -176,7 +176,7 @@ oauth2_scheme(some, parameters)
 
 **FastAPI**는 이 의존성을 사용해 OpenAPI 스키마(및 자동 API 문서)에 "security scheme"를 정의할 수 있다는 것을 알게 됩니다.
 
-/// info | 기술 세부사항
+/// note | 기술 세부사항
 
 **FastAPI**는 (의존성에 선언된) `OAuth2PasswordBearer` 클래스를 사용해 OpenAPI에서 보안 스킴을 정의할 수 있다는 것을 알고 있습니다. 이는 `OAuth2PasswordBearer`가 `fastapi.security.oauth2.OAuth2`를 상속하고, 이것이 다시 `fastapi.security.base.SecurityBase`를 상속하기 때문입니다.
 

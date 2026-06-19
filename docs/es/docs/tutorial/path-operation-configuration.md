@@ -72,13 +72,13 @@ Puedes especificar la descripción del response con el parámetro `response_desc
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que `response_description` se refiere específicamente al response, mientras que `description` se refiere a la *path operation* en general.
 
 ///
 
-/// check | Revisa
+/// tip | Consejo
 
 OpenAPI especifica que cada *path operation* requiere una descripción de response.
 

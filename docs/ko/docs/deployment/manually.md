@@ -56,7 +56,6 @@ FastAPI는 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버
 * [Hypercorn](https://hypercorn.readthedocs.io/): HTTP/2 및 Trio 등 여러 기능과 호환되는 ASGI 서버.
 * [Daphne](https://github.com/django/daphne): Django Channels를 위해 만들어진 ASGI 서버.
 * [Granian](https://github.com/emmett-framework/granian): Python 애플리케이션을 위한 Rust HTTP 서버.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit은 가볍고 다용도로 사용할 수 있는 웹 애플리케이션 런타임입니다.
 
 ## 서버 머신과 서버 프로그램 { #server-machine-and-server-program }
 

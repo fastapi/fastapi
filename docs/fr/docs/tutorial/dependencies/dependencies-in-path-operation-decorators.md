@@ -28,7 +28,7 @@ Cela peut également éviter toute confusion pour les nouveaux développeurs qui
 
 ///
 
-/// info | Info
+/// note | Remarque
 
 Dans cet exemple, nous utilisons des en-têtes personnalisés fictifs `X-Key` et `X-Token`.
 

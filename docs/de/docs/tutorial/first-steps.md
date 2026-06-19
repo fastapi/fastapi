@@ -180,7 +180,7 @@ was äquivalent wäre zu:
 from backend.main import app
 ```
 
-### `fastapi dev` mit Pfad { #fastapi-dev-with-path }
+### `fastapi dev` mit Pfad oder mit der CLI-Option `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, und er wird das zu verwendende FastAPI-App-Objekt erraten:
 
@@ -188,29 +188,19 @@ Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, und er wi
 $ fastapi dev main.py
 ```
 
-Aber Sie müssten sich daran erinnern, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad zu übergeben.
+Oder Sie können die Option `--entrypoint` an den Befehl `fastapi dev` übergeben:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Aber Sie müssten sich daran erinnern, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad\entrypoint zu übergeben.
 
 Zusätzlich könnten andere Tools es nicht finden, z. B. die [VS Code-Erweiterung](../editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com). Daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
 
 ### Ihre App deployen (optional) { #deploy-your-app-optional }
 
-Sie können optional Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) deployen, treten Sie der Warteliste bei, falls Sie es noch nicht getan haben. 🚀
-
-Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem Befehl deployen.
-
-Vor dem Deployen, stellen Sie sicher, dass Sie eingeloggt sind:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Dann stellen Sie Ihre App bereit:
+Sie können optional Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) mit einem einzigen Befehl deployen. 🚀
 
 <div class="termy">
 
@@ -225,6 +215,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+Das CLI erkennt Ihre FastAPI-Anwendung automatisch und deployt sie in die Cloud. Wenn Sie nicht eingeloggt sind, wird Ihr Browser geöffnet, um die Authentifizierung abzuschließen.
 
 Das war's! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
 
@@ -270,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Ein „Pfad“ wird häufig auch als „Endpunkt“ oder „Route“ bezeichnet.
 
@@ -322,7 +314,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
 * den Pfad `/`
 * unter der Verwendung der <dfn title="eine HTTP-GET-Methode"><code>get</code>-Operation</dfn> gehen
 
-/// info | `@decorator` Info
+/// note | `@decorator` Info
 
 Diese `@something`-Syntax wird in Python „Dekorator“ genannt.
 

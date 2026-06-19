@@ -4,7 +4,7 @@ Wenn Sie Daten streamen möchten, die als JSON strukturiert werden können, soll
 
 Wenn Sie jedoch **reine Binärdaten** oder Strings streamen möchten, so können Sie es machen.
 
-/// info | Info
+/// note | Hinweis
 
 Hinzugefügt in FastAPI 0.134.0.
 
@@ -90,7 +90,7 @@ Beispielsweise haben sie kein `await file.read()` oder `async for chunk in file`
 
 Und in vielen Fällen wäre das Lesen eine blockierende Operation (die die Event-Loop blockieren könnte), weil von der Festplatte oder aus dem Netzwerk gelesen wird.
 
-/// info | Info
+/// note | Hinweis
 
 Das obige Beispiel ist tatsächlich eine Ausnahme, weil sich das `io.BytesIO`-Objekt bereits im Speicher befindet, daher blockiert sein Lesen nichts.
 

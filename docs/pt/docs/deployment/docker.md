@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Informação
+/// note | Nota
 
 Há outros formatos e ferramentas para definir e instalar dependências de pacotes.
 
@@ -556,7 +556,7 @@ Se você estiver usando contêineres (por exemplo, Docker, Kubernetes), existem 
 
 Se você tiver **múltiplos contêineres**, provavelmente cada um executando um **único processo** (por exemplo, em um cluster do **Kubernetes**), então provavelmente você gostaria de ter um **contêiner separado** fazendo o trabalho dos **passos anteriores** em um único contêiner, executando um único processo, **antes** de executar os contêineres workers replicados.
 
-/// info | Informação
+/// note | Nota
 
 Se você estiver usando o Kubernetes, provavelmente será um [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

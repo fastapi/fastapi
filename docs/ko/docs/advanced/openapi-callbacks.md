@@ -167,13 +167,13 @@ https://www.external.org/events/invoices/2expen51ve
 
 이 시점에서, 위에서 만든 콜백 라우터 안에 *콜백 경로 처리(들)*(즉 *external developer*가 *external API*에 구현해야 하는 것들)을 준비했습니다.
 
-이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성(실제로는 routes/*경로 처리*의 `list`)을 전달합니다:
+이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성을 전달합니다:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | 팁
 
-`callback=`에 라우터 자체(`invoices_callback_router`)를 넘기는 것이 아니라, `invoices_callback_router.routes`처럼 `.routes` 속성을 넘긴다는 점에 주목하세요.
+`callbacks=`에 라우터 자체(`invoices_callback_router`)를 넘기는 것이 아니라, `invoices_callback_router.routes`처럼 `.routes` 속성을 넘긴다는 점에 주목하세요. FastAPI는 이 라우트들을 사용하여 콜백 OpenAPI 문서를 생성합니다.
 
 ///
 

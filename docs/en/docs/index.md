@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -472,13 +477,13 @@ For a more complete example including more features, see the <a href="https://fa
 
 **Spoiler alert**: the tutorial - user guide includes:
 
-* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
+* Declaration of **parameters** from other different places such as: **headers**, **cookies**, **form fields** and **files**.
+* How to set **validation constraints** such as `maximum_length` or `regex`.
 * A very powerful and easy to use **<dfn title="also known as components, resources, providers, services, injectables">Dependency Injection</dfn>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
 * **GraphQL** integration with [Strawberry](https://strawberry.rocks) and other libraries.
-* Many extra features (thanks to Starlette) as:
+* Many extra features (thanks to Starlette) such as:
     * **WebSockets**
     * extremely easy tests based on HTTPX and `pytest`
     * **CORS**
@@ -487,9 +492,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 
-You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
-
-If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+The CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.
 
 That's it! Now you can access your app at that URL. ✨
 

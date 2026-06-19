@@ -2,7 +2,7 @@
 
 Lorsque vous travaillez sur des projets Python, vous devriez probablement utiliser un environnement virtuel (ou un mécanisme similaire) pour isoler les packages que vous installez pour chaque projet.
 
-/// info
+/// note | Remarque
 
 Si vous connaissez déjà les environnements virtuels, comment les créer et les utiliser, vous pouvez passer cette section. 🤓
 
@@ -18,7 +18,7 @@ Un environnement virtuel est un répertoire contenant certains fichiers.
 
 ///
 
-/// info
+/// note | Remarque
 
 Cette page vous apprendra à utiliser les environnements virtuels et à comprendre leur fonctionnement.
 

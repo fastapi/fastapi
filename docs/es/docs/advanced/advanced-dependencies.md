@@ -98,7 +98,7 @@ Por ejemplo, si tenías una sesión de base de datos en una dependencia con `yie
 
 Este comportamiento se revirtió en la 0.118.0, para hacer que el código de salida después de `yield` se ejecute después de que la response sea enviada.
 
-/// info | Información
+/// note | Nota
 
 Como verás abajo, esto es muy similar al comportamiento anterior a la versión 0.106.0, pero con varias mejoras y arreglos de bugs para casos límite.
 

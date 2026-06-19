@@ -1,9 +1,10 @@
 import io
 from pathlib import Path
+from typing import cast
 
 import pytest
 from fastapi import FastAPI, UploadFile
-from fastapi.datastructures import Default
+from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.testclient import TestClient
 
 
@@ -13,8 +14,8 @@ def test_upload_file_invalid_pydantic_v2():
 
 
 def test_default_placeholder_equals():
-    placeholder_1 = Default("a")
-    placeholder_2 = Default("a")
+    placeholder_1 = cast(DefaultPlaceholder, Default("a"))
+    placeholder_2 = cast(DefaultPlaceholder, Default("a"))
     assert placeholder_1 == placeholder_2
     assert placeholder_1.value == placeholder_2.value
 

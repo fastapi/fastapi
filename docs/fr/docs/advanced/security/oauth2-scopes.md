@@ -46,7 +46,7 @@ Ils sont généralement utilisés pour déclarer des permissions de sécurité s
 * `instagram_basic` est utilisé par Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` est utilisé par Google.
 
-/// info
+/// note | Remarque
 
 Dans OAuth2, un « scope » est simplement une chaîne qui déclare une permission spécifique requise.
 
@@ -126,7 +126,7 @@ Nous le faisons ici pour montrer comment **FastAPI** gère des scopes déclarés
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Détails techniques
+/// note | Détails techniques
 
 `Security` est en réalité une sous-classe de `Depends`, et elle n’a qu’un paramètre supplémentaire que nous verrons plus tard.
 

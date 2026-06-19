@@ -95,7 +95,7 @@ Bu da şu koda eşdeğerdir:
 from backend.main import app
 ```
 
-### path ile `fastapi dev` { #fastapi-dev-with-path }
+### path veya `--entrypoint` CLI seçeneği ile `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Ayrıca `fastapi dev` komutuna dosya path'ini de verebilirsiniz; hangi FastAPI app nesnesinin kullanılacağını tahmin eder:
 
@@ -103,7 +103,13 @@ Ayrıca `fastapi dev` komutuna dosya path'ini de verebilirsiniz; hangi FastAPI a
 $ fastapi dev main.py
 ```
 
-Ancak `fastapi` komutunu her çağırdığınızda doğru path'i geçmeyi hatırlamanız gerekir.
+Ya da `fastapi dev` komutuna `--entrypoint` seçeneğini de verebilirsiniz:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i veya entrypoint'i geçmeyi hatırlamanız gerekir.
 
 Ayrıca, [VS Code Extension](editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi diğer araçlar da bunu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 

@@ -139,7 +139,7 @@ Você e seu _crush_ comem os hambúrgueres e aproveitam o tempo. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Informação
+/// note | Nota
 
 Belas ilustrações de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Vocês comem os hambúrgueres, e o trabalho está terminado. ⏹
 
 Não houve muita conversa ou flerte já que a maior parte do tempo foi gasto esperando 🕙 na frente do balcão. 😞
 
-/// info | Informação
+/// note | Nota
 
 Belas ilustrações de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 

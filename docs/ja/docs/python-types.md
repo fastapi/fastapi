@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 情報
+/// note | 備考
 
 角括弧内の内部の型は「型パラメータ」と呼ばれています。
 
@@ -265,7 +265,7 @@ def some_function(data: Any):
 
 これは「`one_person` はクラス `Person` の **インスタンス** である」ことを意味します。
 
-「`one_person` は `Person` という名前の **クラス** である」という意味ではありません。
+「`one_person` は `Person` という名前の **クラ ス** である」という意味ではありません。
 
 ## Pydantic のモデル { #pydantic-models }
 
@@ -283,9 +283,9 @@ Pydantic の公式ドキュメントからの例:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 情報
+/// note | 備考
 
-[ Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
+[Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
 
 ///
 
@@ -341,7 +341,7 @@ Python 自体は、この `Annotated` で何かをするわけではありませ
 
 重要なのは、Python の標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）1 つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
 
-/// info | 情報
+/// note | 備考
 
 すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして [`mypy` の「チートシート`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html) があります。
 

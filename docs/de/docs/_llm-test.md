@@ -1,6 +1,6 @@
 # LLM-Testdatei { #llm-test-file }
 
-Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachsspezifische Prompt wird an `general_prompt` angehängt.
+Dieses Dokument testet, ob das <abbr title="Large Language Model - Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt - Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachsspezifische Prompt wird an `general_prompt` angehängt.
 
 Hier hinzugefügte Tests werden von allen Erstellern sprachsspezifischer Prompts gesehen.
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ... und noch ein Konsolen-Codebeispiel ...
 
 ```console
-// Create a directory "Code"
+// Ein Verzeichnis "Code" erstellen
 $ mkdir code
 // In dieses Verzeichnis wechseln
 $ cd code
@@ -124,19 +124,11 @@ Siehe Abschnitt `### Content of code blocks` im allgemeinen Prompt in `scripts/t
 
 //// tab | Test
 
-/// info | Info
-Etwas Text
-///
-
 /// note | Hinweis
 Etwas Text
 ///
 
 /// note | Technische Details
-Etwas Text
-///
-
-/// check | Testen
 Etwas Text
 ///
 
@@ -197,15 +189,15 @@ Hier einige Dinge, die in HTML-„abbr“-Elemente gepackt sind (einige sind erf
 
 ### Das abbr gibt eine vollständige Phrase { #the-abbr-gives-a-full-phrase }
 
-* <abbr title="Getting Things Done – Dinge erledigt bekommen">GTD</abbr>
-* <abbr title="less than – kleiner als"><code>lt</code></abbr>
+* <abbr title="Getting Things Done - Dinge erledigt bekommen">GTD</abbr>
+* <abbr title="less than - kleiner als"><code>lt</code></abbr>
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>
 
 ### Das abbr gibt eine vollständige Phrase und eine Erklärung { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
-* <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network - Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
+* <abbr title="Input/Output - Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>.
 
 ////
 

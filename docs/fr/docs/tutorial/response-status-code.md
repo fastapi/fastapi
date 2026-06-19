@@ -18,7 +18,7 @@ Remarquez que `status_code` est un paramètre de la méthode « decorator » (`g
 
 Le paramètre `status_code` reçoit un nombre correspondant au code d'état HTTP.
 
-/// info
+/// note | Remarque
 
 `status_code` peut aussi recevoir un `IntEnum`, comme le [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) de Python.
 

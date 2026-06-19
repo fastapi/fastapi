@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | Información
+/// note | Nota
 
 Solo **un response** será enviado al cliente. Podría ser uno de los responses de error o será el response de la *path operation*.
 

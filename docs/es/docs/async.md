@@ -139,7 +139,7 @@ Tú y tu crush comen las hamburguesas y pasan un buen rato. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Información
+/// note | Nota
 
 Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Simplemente las comes, y has terminado. ⏹
 
 No hubo mucho hablar o coquetear ya que la mayor parte del tiempo se dedicó a esperar 🕙 frente al mostrador. 😞
 
-/// info | Información
+/// note | Nota
 
 Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -413,7 +413,7 @@ Si tienes bastante conocimiento técnico (coroutines, hilos, bloqueo, etc.) y ti
 
 ///
 
-### Funciones de *path operation* { #path-operation-functions }
+### Path operation functions { #path-operation-functions }
 
 Cuando declaras una *path operation function* con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego es esperado, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 

@@ -167,13 +167,13 @@ Remarquez que l’URL de callback utilisée contient l’URL reçue en paramètr
 
 À ce stade, vous avez le(s) *chemin(s) d'accès de callback* nécessaire(s) (celui/ceux que la *personne développeuse externe* doit implémenter dans l’*API externe*) dans le routeur de callback que vous avez créé ci-dessus.
 
-Utilisez maintenant le paramètre `callbacks` dans *le décorateur de chemin d'accès de votre API* pour passer l’attribut `.routes` (qui est en fait juste une `list` de routes/*chemins d'accès*) depuis ce routeur de callback :
+Utilisez maintenant le paramètre `callbacks` dans *le décorateur de chemin d'accès de votre API* pour passer l’attribut `.routes` depuis ce routeur de callback :
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Astuce
 
-Remarquez que vous ne passez pas le routeur lui-même (`invoices_callback_router`) à `callback=`, mais l’attribut `.routes`, comme dans `invoices_callback_router.routes`.
+Remarquez que vous ne passez pas le routeur lui-même (`invoices_callback_router`) à `callbacks=`, mais son attribut `.routes`, comme dans `invoices_callback_router.routes`. FastAPI utilisera ces routes pour générer la documentation OpenAPI du callback.
 
 ///
 

@@ -139,7 +139,7 @@ Aşkınla burgerleri yiyip güzel vakit geçiriyorsunuz. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Bilgi
+/// note | Bilgi
 
 Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Sadece yiyorsunuz ve iş bitiyor. ⏹
 
 Vaktin çoğu tezgâhın önünde 🕙 beklemekle geçtiğinden, pek konuşma ya da flört olmadı. 😞
 
-/// info | Bilgi
+/// note | Bilgi
 
 Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -464,7 +469,7 @@ Experimente mudar a seguinte linha:
         ... "item_price": item.price ...
 ```
 
-...e veja como seu editor irá auto-completar os atributos e saberá os tipos:
+...e veja como seu editor irá autocompletar os atributos e saberá os tipos:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -487,9 +492,7 @@ Para um exemplo mais completo incluindo mais recursos, veja o <a href="https://f
 
 ### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
 
-Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com), vá e entre na lista de espera se ainda não o fez. 🚀
-
-Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode implantar sua aplicação com um único comando.
+Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com) com um único comando. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+A CLI detectará automaticamente sua aplicação FastAPI e a implantará na nuvem. Se você não estiver autenticado, o navegador será aberto para concluir o processo de autenticação.
 
 É isso! Agora você pode acessar sua aplicação nesse URL. ✨
 

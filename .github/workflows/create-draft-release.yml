@@ -1,0 +1,56 @@
+name: Create Draft Release
+
+on:
+  pull_request:
+    types:
+      - closed
+
+permissions: {}
+
+jobs:
+  create-draft-release:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      PREPARE_RELEASE_VERSION_FILE: fastapi/__init__.py
+      PREPARE_RELEASE_RELEASE_NOTES_FILE: docs/en/docs/release-notes.md
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version-file: ".python-version"
+      - name: Install uv
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
+      - name: Extract release details
+        id: release-details
+        run: |
+          set -euo pipefail
+          version="$(uv run python scripts/prepare_release.py current-version)"
+          uv run python scripts/prepare_release.py release-notes > draft-release-notes.md
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release-details.outputs.version }}
+        run: |
+          set -euo pipefail
+          gh release create "$VERSION" \
+            --draft \
+            --title "$VERSION" \
+            --notes-file draft-release-notes.md \
+            --target "$(git rev-parse HEAD)"

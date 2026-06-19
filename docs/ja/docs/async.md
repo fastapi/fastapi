@@ -139,7 +139,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | 情報
+/// note | 備考
 
 美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 
@@ -205,7 +205,7 @@ def results():
 
 ほとんどの時間をカウンター前で待つ 🕙 のに費やしたため、あまり話したり、いちゃついたりできませんでした。😞
 
-/// info | 情報
+/// note | 備考
 
 美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 

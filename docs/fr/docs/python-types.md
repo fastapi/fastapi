@@ -172,7 +172,7 @@ Comme la liste est un type qui contient des types internes, mettez-les entre cro
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info
+/// note | Remarque
 
 Ces types internes entre crochets sont appelés « paramètres de type ».
 
@@ -283,7 +283,7 @@ Un exemple tiré de la documentation officielle de Pydantic :
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info
+/// note | Remarque
 
 Pour en savoir plus à propos de [Pydantic, consultez sa documentation](https://docs.pydantic.dev/).
 
@@ -341,7 +341,7 @@ Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela e
 
 L'important est qu'en utilisant les types standards de Python, en un seul endroit (au lieu d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
-/// info
+/// note | Remarque
 
 Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est [l'« aide-mémoire » de `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 

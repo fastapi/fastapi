@@ -70,7 +70,7 @@ Asynchronous code just means that the language 💬 has a way to tell the comput
 
 So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
 
-Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finished all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
+Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finishes all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
 
 Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) and continues whatever it had to do with it.
 
@@ -78,7 +78,7 @@ That "wait for something else" normally refers to <abbr title="Input and Output"
 
 * the data from the client to be sent through the network
 * the data sent by your program to be received by the client through the network
-* the contents of a file in the disk to be read by the system and given to your program
+* the contents of a file on the disk to be read by the system and given to your program
 * the contents your program gave to the system to be written to disk
 * a remote API operation
 * a database operation to finish
@@ -257,7 +257,7 @@ And as you can have parallelism and asynchronicity at the same time, you get hig
 
 Nope! That's not the moral of the story.
 
-Concurrency is different than parallelism. And it is better on **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
+Concurrency is different than parallelism. And it is better in **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
 
 So, to balance that out, imagine the following short story:
 
@@ -267,7 +267,7 @@ So, to balance that out, imagine the following short story:
 
 ---
 
-There's no waiting 🕙 anywhere, just a lot of work to be done, on multiple places of the house.
+There's no waiting 🕙 anywhere, just a lot of work to be done, in multiple places of the house.
 
 You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything.
 
@@ -296,7 +296,7 @@ With **FastAPI** you can take advantage of concurrency that is very common for w
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
-That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
+That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, makes FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 
 To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md).
 
@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`, like in:
+So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that use it with `async def`, like in:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -435,7 +435,7 @@ Any other utility function that you call directly can be created with normal `de
 
 This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
 
-If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
+If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` that function when you call it in your code.
 
 ---
 

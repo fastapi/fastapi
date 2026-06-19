@@ -8,6 +8,8 @@ FastAPI version 0.119.0 introduced partial support for Pydantic v1 from inside o
 
 FastAPI 0.126.0 dropped support for Pydantic v1, while still supporting `pydantic.v1` for a little while.
 
+FastAPI 0.128.0 dropped support for `pydantic.v1` as well, so the latest versions of FastAPI require Pydantic v2.
+
 /// warning
 
 The Pydantic team stopped support for Pydantic v1 for the latest versions of Python, starting with **Python 3.14**.
@@ -54,6 +56,16 @@ This means that you can install the latest version of Pydantic v2 and import and
 
 ### FastAPI support for Pydantic v1 in v2 { #fastapi-support-for-pydantic-v1-in-v2 }
 
+/// warning
+
+This FastAPI support for `pydantic.v1` models was added in **FastAPI 0.119.0** and removed in **FastAPI 0.128.0**. It was meant to be a temporary aid for the migration to Pydantic v2.
+
+In current versions of FastAPI, using a `pydantic.v1` model in your app will raise an error.
+
+The rest of this section describes the temporary support available only in those older versions.
+
+///
+
 Since FastAPI 0.119.0, there's also partial support for Pydantic v1 from inside of Pydantic v2, to facilitate the migration to v2.
 
 So, you could upgrade Pydantic to the latest version 2, and change the imports to use the `pydantic.v1` submodule, and in many cases it would just work.
@@ -88,7 +100,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-...but, you can have separated models using Pydantic v1 and v2 in the same app.
+...but you can have separate models, some using Pydantic v1 and others using Pydantic v2, in the same app.
 
 ```mermaid
 graph TB
@@ -122,6 +134,12 @@ If you need to use some of the FastAPI-specific tools for parameters like `Body`
 
 ### Migrate in steps { #migrate-in-steps }
 
+/// warning
+
+The gradual migration using both Pydantic v1 and v2 models in the same app described below only works in **FastAPI 0.119.0 to 0.127.x**. It was removed in **FastAPI 0.128.0**, the latest versions require **Pydantic v2** models.
+
+///
+
 /// tip
 
 First try with `bump-pydantic`, if your tests pass and that works, then you're done in one command. ✨
@@ -130,6 +148,6 @@ First try with `bump-pydantic`, if your tests pass and that works, then you're d
 
 If `bump-pydantic` doesn't work for your use case, you can use the support for both Pydantic v1 and v2 models in the same app to do the migration to Pydantic v2 gradually.
 
-You could fist upgrade Pydantic to use the latest version 2, and change the imports to use `pydantic.v1` for all your models.
+You could first upgrade Pydantic to use the latest version 2, and change the imports to use `pydantic.v1` for all your models.
 
 Then, you can start migrating your models from Pydantic v1 to v2 in groups, in gradual steps. 🚶

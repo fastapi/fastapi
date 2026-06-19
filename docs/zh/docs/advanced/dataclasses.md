@@ -18,7 +18,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 这与使用 Pydantic 模型时的工作方式相同。而且底层实际上也是借助 Pydantic 实现的。
 
-/// info | 信息
+/// note | 注意
 
 请注意，数据类不能完成 Pydantic 模型能做的所有事情。
 

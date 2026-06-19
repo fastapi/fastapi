@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -487,9 +492,7 @@ item: Item
 
 ### 部署你的应用（可选） { #deploy-your-app-optional }
 
-你可以选择把 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果还没有的话去加入候补名单吧。🚀
-
-如果你已经有 **FastAPI Cloud** 账号（我们从候补名单邀请了你 😉），你可以用一个命令部署你的应用。
+你可以选择用一条命令将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚未登录，浏览器会打开以完成认证流程。
 
 就这样！现在你可以通过该 URL 访问你的应用了。✨
 

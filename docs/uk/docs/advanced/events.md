@@ -120,7 +120,7 @@ async with lifespan(app):
 
 Тут функція-обробник події `shutdown` запише текстовий рядок `"Application shutdown"` у файл `log.txt`.
 
-/// info | Інформація
+/// note | Примітка
 
 У функції `open()` параметр `mode="a"` означає «append», тож рядок буде додано після всього, що є у файлі, без перезапису попереднього вмісту.
 
@@ -152,7 +152,7 @@ async with lifespan(app):
 
 Під капотом, у технічній специфікації ASGI, це частина [Протоколу тривалості життя](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), і там визначені події `startup` і `shutdown`.
 
-/// info | Інформація
+/// note | Примітка
 
 Ви можете прочитати більше про обробники `lifespan` у [документації Starlette про Lifespan](https://www.starlette.dev/lifespan/).
 

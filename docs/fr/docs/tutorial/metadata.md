@@ -74,7 +74,7 @@ Utilisez le paramètre `tags` avec vos *chemins d'accès* (et `APIRouter`s) pour
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info
+/// note | Remarque
 
 En savoir plus sur les tags dans [Configuration de chemins d'accès](path-operation-configuration.md#tags).
 

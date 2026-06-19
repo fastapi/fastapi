@@ -8,7 +8,7 @@ Com ele, você pode usar o [pytest](https://docs.pytest.org/) diretamente com **
 
 ## Usando `TestClient` { #using-testclient }
 
-/// info | Informação
+/// note | Nota
 
 Para usar o `TestClient`, primeiro instale [`httpx`](https://www.python-httpx.org).
 
@@ -142,7 +142,7 @@ Por exemplo:
 
 Para mais informações sobre como passar dados para o backend (usando `httpx` ou `TestClient`), consulte a [documentação do HTTPX](https://www.python-httpx.org).
 
-/// info | Informação
+/// note | Nota
 
 Observe que o `TestClient` recebe dados que podem ser convertidos para JSON, não para modelos Pydantic.
 

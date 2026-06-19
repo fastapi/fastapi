@@ -124,19 +124,11 @@ Consulta la sección `### Content of code blocks` en el prompt general en `scrip
 
 //// tab | Prueba
 
-/// info | Información
-Algo de texto
-///
-
 /// note | Nota
 Algo de texto
 ///
 
 /// note | Detalles técnicos
-Algo de texto
-///
-
-/// check | Revisa
 Algo de texto
 ///
 
@@ -472,7 +464,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * el middleware
 * la aplicación móvil
 * el módulo
-* el montaje
+* el mount
 * la red
 * el origen
 * el override

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -474,7 +479,7 @@ item: Item
 
 * 來自不同來源的**參數**宣告：例如 **headers**、**cookies**、**form fields** 和 **files**。
 * 如何設定**驗證限制**，如 `maximum_length` 或 `regex`。
-* 一個非常強大且易用的 **<dfn title="也稱為：components、resources、providers、services、injectables">依賴注入</dfn>** 系統。
+* 一個非常強大且易用的 **<dfn title="也稱為：元件、資源、提供者、服務、可注入物">依賴注入</dfn>** 系統。
 * 安全與驗證，包含支援 **OAuth2** 搭配 **JWT tokens** 與 **HTTP Basic** 驗證。
 * 宣告**深度巢狀 JSON 模型**的進階（但同樣簡單）技巧（感謝 Pydantic）。
 * 與 [Strawberry](https://strawberry.rocks) 及其他函式庫的 **GraphQL** 整合。
@@ -487,9 +492,7 @@ item: Item
 
 ### 部署你的應用（可選） { #deploy-your-app-optional }
 
-你也可以選擇將 FastAPI 應用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果你還沒加入，去登記等候名單吧。🚀
-
-如果你已經有 **FastAPI Cloud** 帳號（我們已從等候名單邀請你 😉），你可以用一個指令部署你的應用。
+你可以選擇只用一個指令，將 FastAPI 應用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 會自動偵測你的 FastAPI 應用並將其部署到雲端。若你尚未登入，系統會開啟瀏覽器以完成驗證流程。
 
 就這樣！現在你可以在該 URL 造訪你的應用。✨
 

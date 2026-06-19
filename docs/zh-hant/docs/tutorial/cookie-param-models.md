@@ -32,7 +32,7 @@
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info
+/// note
 
 請注意，由於**瀏覽器會以特殊且在背景進行的方式處理 Cookie**，因此**不會**輕易允許 **JavaScript** 存取它們。
 

@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note | Remarque
 
 `**second_user_data` signifie :
 

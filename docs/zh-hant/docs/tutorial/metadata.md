@@ -74,9 +74,9 @@
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 資訊
+/// note | 注意
 
-在 [Path Operation Configuration](path-operation-configuration.md#tags) 中閱讀更多關於標籤的內容。
+在 [路徑操作設定](path-operation-configuration.md#tags) 中閱讀更多關於標籤的內容。
 
 ///
 

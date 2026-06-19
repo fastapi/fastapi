@@ -8,7 +8,7 @@
 
 ## `TestClient` 사용하기 { #using-testclient }
 
-/// info | 정보
+/// note | 참고
 
 `TestClient` 사용하려면, 우선 [`httpx`](https://www.python-httpx.org)를 설치해야 합니다.
 
@@ -144,7 +144,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient`를 이용해서) [HTTPX 문서](https://www.python-httpx.org)를 확인하세요.
 
-/// info | 정보
+/// note | 참고
 
 `TestClient`는 Pydantic 모델이 아니라 JSON으로 변환될 수 있는 데이터를 받습니다.
 

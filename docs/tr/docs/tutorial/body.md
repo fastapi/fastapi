@@ -8,7 +8,7 @@ API'niz neredeyse her zaman bir **response** body göndermek zorundadır. Ancak 
 
 Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://docs.pydantic.dev/) modellerini kullanırsınız.
 
-/// info | Bilgi
+/// note | Not
 
 Veri göndermek için şunlardan birini kullanmalısınız: `POST` (en yaygını), `PUT`, `DELETE` veya `PATCH`.
 

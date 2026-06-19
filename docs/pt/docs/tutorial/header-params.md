@@ -1,6 +1,6 @@
 # Parâmetros de Cabeçalho { #header-parameters }
 
-Você pode definir parâmetros de Cabeçalho da mesma maneira que define paramêtros com `Query`, `Path` e `Cookie`.
+Você pode definir parâmetros de Cabeçalho da mesma maneira que define parâmetros com `Query`, `Path` e `Cookie`.
 
 ## Importe `Header` { #import-header }
 
@@ -10,7 +10,7 @@ Primeiro importe `Header`:
 
 ## Declare parâmetros de `Header` { #declare-header-parameters }
 
-Então declare os paramêtros de cabeçalho usando a mesma estrutura que em `Path`, `Query` e `Cookie`.
+Então declare os parâmetros de cabeçalho usando a mesma estrutura que em `Path`, `Query` e `Cookie`.
 
 Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
@@ -24,7 +24,7 @@ Mas lembre-se que quando você importa `Query`, `Path`, `Header`, e outras de `f
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Para declarar headers, você precisa usar `Header`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
 

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -487,9 +492,7 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 
 ### Uygulamanızı deploy edin (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; eğer henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
-
-Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek bir komutla deploy edebilirsiniz.
+FastAPI uygulamanızı tek bir komutla [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve cloud'a deploy eder. Giriş yapmadıysanız, kimlik doğrulama sürecini tamamlamak için tarayıcınız açılır.
 
 Hepsi bu! Artık uygulamanıza bu URL'den erişebilirsiniz. ✨
 
