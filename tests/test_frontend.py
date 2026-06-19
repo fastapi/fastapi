@@ -2,16 +2,232 @@ import os
 import runpy
 from pathlib import Path
 
+import anyio
 import pytest
-from fastapi import APIRouter, FastAPI, HTTPException, WebSocket
+from fastapi import APIRouter, FastAPI, HTTPException, Request, WebSocket
 from fastapi.testclient import TestClient
-from starlette.responses import PlainTextResponse
-from starlette.routing import Route
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.responses import PlainTextResponse, Response
+from starlette.routing import BaseRoute, Match, NoMatchFound, Route
 
 
 def write_file(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content)
+
+
+def test_frontend_exact_prefix_path_serves_index(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI()
+    app.frontend("/app", directory=dist)
+
+    response = TestClient(app).get("/app")
+
+    assert response.status_code == 200
+    assert response.text == "app"
+
+
+def test_apirouter_frontend_with_router_prefix_and_frontend_subpath(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "asset.txt", "asset")
+    router = APIRouter(prefix="/internal")
+    router.frontend("/ui", directory=dist)
+    app = FastAPI()
+    app.include_router(router, prefix="/prefix")
+
+    response = TestClient(app).get("/prefix/internal/ui/asset.txt")
+
+    assert response.status_code == 200
+    assert response.text == "asset"
+
+
+def test_frontend_fallback_rejects_invalid_fallback(tmp_path: Path):
+    dist = tmp_path / "dist"
+    dist.mkdir()
+    app = FastAPI()
+
+    with pytest.raises(AssertionError, match="fallback"):
+        app.frontend("/", directory=dist, fallback="invalid")  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+
+
+def test_index_fallback_ignores_invalid_q_value(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).get(
+        "/dashboard/settings", headers={"accept": "text/html; q=wat"}
+    )
+
+    assert response.status_code == 200
+    assert response.text == "app shell"
+
+
+def test_frontend_static_files_lookup_errors(monkeypatch, tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+    frontend_routes = app.router._frontend_routes
+    assert frontend_routes is not None
+    static_files = frontend_routes.routes[0].app
+
+    def raise_permission_error(path: str):
+        raise PermissionError
+
+    monkeypatch.setattr(static_files, "lookup_path", raise_permission_error)
+    response = TestClient(app).get("/asset.txt")
+    assert response.status_code == 401
+
+    def raise_value_error(path: str):
+        raise ValueError
+
+    monkeypatch.setattr(static_files, "lookup_path", raise_value_error)
+    response = TestClient(app).get("/asset.txt")
+    assert response.status_code == 404
+
+    def raise_name_too_long(path: str):
+        raise OSError(36, "name too long")
+
+    monkeypatch.setattr(static_files, "lookup_path", raise_name_too_long)
+    response = TestClient(app).get("/asset.txt")
+    assert response.status_code == 404
+
+    def raise_os_error(path: str):
+        raise OSError(5, "other")
+
+    monkeypatch.setattr(static_files, "lookup_path", raise_os_error)
+    with pytest.raises(OSError):
+        TestClient(app).get("/asset.txt")
+
+
+def test_frontend_route_group_helpers(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+    route_group = app.router._frontend_routes
+    assert route_group is not None
+
+    match, child_scope = route_group.matches({"type": "websocket", "path": "/"})
+    assert match == Match.NONE
+    assert child_scope == {}
+
+    with pytest.raises(StarletteHTTPException) as exc_info:
+        anyio.run(
+            route_group.with_prefix("/app").handle,
+            {"type": "http", "path": "/missing", "method": "GET"},
+            None,
+            None,
+        )
+    assert exc_info.value.status_code == 404
+
+    with pytest.raises(NoMatchFound):
+        route_group.url_path_for("frontend")
+    with pytest.raises(NoMatchFound):
+        route_group.routes[0].url_path_for("frontend")
+
+
+def test_included_low_priority_routes_cache_is_reused():
+    async def low_priority_endpoint(request: Request):
+        return PlainTextResponse("low")
+
+    router = APIRouter()
+    router._low_priority_routes.append(Route("/low", low_priority_endpoint))
+    router._mark_routes_changed()
+    app = FastAPI()
+    app.include_router(router, prefix="/prefix")
+    included_router = next(
+        route
+        for route in app.router.routes
+        if hasattr(route, "effective_low_priority_routes")
+    )
+
+    first = included_router.effective_low_priority_routes()  # ty: ignore[call-non-callable]
+    second = included_router.effective_low_priority_routes()  # ty: ignore[call-non-callable]
+    response = TestClient(app).get("/prefix/low")
+
+    assert first is second
+    assert response.status_code == 200
+    assert response.text == "low"
+
+
+def test_low_priority_api_route_handles_with_context():
+    app = FastAPI()
+
+    async def endpoint(request: Request) -> Response:
+        return PlainTextResponse(request.scope["path_params"]["item_id"])
+
+    route = app.router.route_class("/low/{item_id}", endpoint=endpoint, methods=["GET"])
+    app.router._low_priority_routes.append(route)
+    app.router._mark_routes_changed()
+
+    response = TestClient(app).get("/low/abc")
+
+    assert response.status_code == 200
+    assert response.text == "abc"
+
+
+def test_included_low_priority_api_route_handles_with_context():
+    router = APIRouter()
+
+    async def endpoint(request: Request) -> Response:
+        return PlainTextResponse(request.scope["path_params"]["item_id"])
+
+    route = router.route_class("/low/{item_id}", endpoint=endpoint, methods=["GET"])
+    router._low_priority_routes.append(route)
+    router._mark_routes_changed()
+    app = FastAPI()
+    app.include_router(router, prefix="/prefix")
+
+    response = TestClient(app).get("/prefix/low/abc")
+
+    assert response.status_code == 200
+    assert response.text == "abc"
+
+
+def test_normal_route_partial_match_returns_before_frontend(tmp_path: Path):
+    class PartialRoute(BaseRoute):
+        def matches(self, scope):
+            return Match.PARTIAL, {}
+
+        async def handle(self, scope, receive, send):
+            response = PlainTextResponse("partial", status_code=405)
+            await response(scope, receive, send)
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "frontend")
+    app = FastAPI()
+    app.router.routes.append(PartialRoute())
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/anything")
+
+    assert response.status_code == 405
+    assert response.text == "partial"
+
+
+def test_normal_route_partial_match_wins_before_frontend(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "api", "frontend")
+    app = FastAPI()
+
+    @app.get("/api")
+    def read_api():
+        return {"source": "api"}
+
+    app.frontend("/", directory=dist)
+
+    client = TestClient(app)
+
+    response = client.get("/api")
+    assert response.status_code == 200
+    assert response.json() == {"source": "api"}
+
+    response = client.post("/api")
+    assert response.status_code == 405
 
 
 def test_basic_file_serving(tmp_path: Path):
@@ -373,6 +589,10 @@ def test_normal_route_slash_redirect_wins_before_frontend_redirect(tmp_path: Pat
     assert response.status_code == 307
     assert response.headers["location"] == "http://testserver/api/"
 
+    followed = TestClient(app).get("/api/")
+    assert followed.status_code == 200
+    assert followed.json() == {"source": "api"}
+
 
 def test_frontend_respects_root_path(tmp_path: Path):
     dist = tmp_path / "dist"
@@ -509,6 +729,10 @@ def test_frontend_routes_are_not_in_openapi(tmp_path: Path):
     schema = TestClient(app).get("/openapi.json").json()
 
     assert set(schema["paths"]) == {"/api"}
+
+    response = TestClient(app).get("/api")
+    assert response.status_code == 200
+    assert response.json() == {"ok": True}
 
 
 @pytest.mark.parametrize(
