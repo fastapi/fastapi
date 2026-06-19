@@ -340,7 +340,7 @@ extend-exclude = [
 
 [tool.typos.default]
 extend-ignore-re = [
-    # GitHub usernames in @mentions, e.g. @OCE1960
+    # GitHub usernames in @mentions
     "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
     # Quoted typo documented in a release note
     "'wll' to 'will'",
