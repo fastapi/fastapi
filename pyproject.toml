@@ -338,6 +338,12 @@ extend-exclude = [
     "uv.lock",
 ]
 
+[tool.typos.default]
+extend-ignore-re = [
+    # GitHub usernames in @mentions, e.g. @OCE1960
+    "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
+]
+
 [tool.typos.default.extend-identifiers]
 alls = "alls"
 
