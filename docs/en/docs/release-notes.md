@@ -11,6 +11,10 @@ hide:
 
 * ✏️ Fix grammar, typos, and broken links in docs. PR [#15694](https://github.com/fastapi/fastapi/pull/15694) by [@YuriiMotov](https://github.com/YuriiMotov).
 
+### Translations
+
+* 🌐 Enable Hindi docs translations. PR [#15554](https://github.com/fastapi/fastapi/pull/15554) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
 * 📝 Tweak wording about deploying to FastAPI Cloud. PR [#15793](https://github.com/fastapi/fastapi/pull/15793) by [@tiangolo](https://github.com/tiangolo).
