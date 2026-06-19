@@ -773,6 +773,13 @@ def test_frontend_routes_are_not_in_openapi(tmp_path: Path):
             404,
             '{"detail":"Not Found"}',
         ),
+        (
+            "tutorial006_py310.py",
+            {"asset.txt": "asset"},
+            "/asset.txt",
+            200,
+            "asset",
+        ),
     ],
 )
 def test_docs_frontend_examples(

@@ -102,6 +102,18 @@ If you don't want to serve a fallback file for missing frontend paths, use `fall
 
 Then missing frontend paths return the normal `404`.
 
+## Check Directory { #check-directory }
+
+By default, `app.frontend()` checks that the directory exists when the app is created.
+
+This helps catch configuration errors early. For example, if the frontend build output directory is missing, **FastAPI** will raise an error on startup.
+
+If your frontend files are created later, for example by a separate build step after the app object is created, set `check_dir=False`:
+
+{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+
+With `check_dir=False`, **FastAPI** will not check the directory when the app is created. If the configured directory is still missing when a request is handled, **FastAPI** will raise an error then.
+
 ## Use it with `APIRouter` { #use-it-with-apirouter }
 
 You can also add frontend files to an `APIRouter` and include it with a prefix:
