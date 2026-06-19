@@ -42,8 +42,7 @@ I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - 
 These are the people that:
 
 * [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github).
-* Create Pull Requests.
-* Review Pull Requests, especially important for translations.
+* Create or review Pull Requests.
 * Help [manage the repository](https://tiangolo.com/open-source/management-tasks/) (team members).
 
 All these tasks help maintain the repository.
