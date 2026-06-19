@@ -319,7 +319,6 @@ extend-exclude = [
     "docs/de/",
     "docs/en/data/",
     "docs/en/docs/img/",
-    "docs/en/docs/release-notes.md",
     "docs/es/",
     "docs/fr/",
     "docs/ja/",
