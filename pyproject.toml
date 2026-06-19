@@ -345,7 +345,7 @@ extend-ignore-re = [
     # Quoted typo documented in a release note
     "'wll' to 'will'",
     # German article title in a release note
-    "FastAPI Modul",
+    "FastAPI Modul.",
 ]
 
 [tool.typos.default.extend-identifiers]
