@@ -108,7 +108,7 @@ OpenAPI defines an API schema for your API. And that schema includes definitions
 
 #### Check the `openapi.json` { #check-the-openapi-json }
 
-If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
+If you are curious about what the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
 You can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 

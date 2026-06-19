@@ -24,7 +24,7 @@ It was created to generate the HTML in the backend, not to create APIs used by a
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
+Django REST Framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
 
 It is used by many companies including Mozilla, Red Hat and Eventbrite.
 
@@ -345,7 +345,7 @@ Hug was created by Timothy Crosley, the same creator of [`isort`](https://github
 
 Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
-Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
+Hug helped inspire **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
 
 Hug inspired **FastAPI** to declare a `response` parameter in functions to set headers and cookies.
 
@@ -380,7 +380,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
 APIStar was created by Tom Christie. The same guy that created:
 
 * Django REST Framework
-* Starlette (in which **FastAPI** is based)
+* Starlette (on which **FastAPI** is based)
 * Uvicorn (used by Starlette and **FastAPI**)
 
 ///
@@ -393,7 +393,7 @@ The idea of declaring multiple things (data validation, serialization and docume
 
 And after searching for a long time for a similar framework and testing many different alternatives, APIStar was the best option available.
 
-Then APIStar stopped to exist as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
+Then APIStar stopped existing as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
 
 I consider **FastAPI** a "spiritual successor" to APIStar, while improving and increasing the features, typing system, and other parts, based on the learnings from all these previous tools.
 

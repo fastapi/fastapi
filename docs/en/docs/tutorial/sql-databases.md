@@ -201,7 +201,7 @@ Then let's create `Hero`, the actual *table model*, with the **extra fields** th
 * `id`
 * `secret_name`
 
-Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
+Because `Hero` inherits from `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
 
 * `id`
 * `name`

@@ -88,7 +88,7 @@ And it can also be used by yourself, to debug, check and test the same applicati
 
 ## The `password` flow { #the-password-flow }
 
-Now let's go back a bit and understand what is all that.
+Now let's go back a bit and understand what all that is.
 
 The `password` "flow" is one of the ways ("flows") defined in OAuth2, to handle security and authentication.
 
