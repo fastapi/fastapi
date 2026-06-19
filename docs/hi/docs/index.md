@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -27,9 +32,9 @@
 
 ---
 
-दस्तावेज़: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com/hi)
+**दस्तावेज़**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com/hi)
 
-स्रोत कोड: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)
+**स्रोत कोड**: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)
 
 ---
 
@@ -37,14 +42,14 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
 
 मुख्य विशेषताएँ:
 
-* तेज़: बहुत उच्च प्रदर्शन, **NodeJS** और **Go** के समकक्ष (Starlette और Pydantic की बदौलत)। [उपलब्ध सबसे तेज़ Python फ़्रेमवर्क्स में से एक](#performance)।
-* कोड लिखने में तेज़: फ़ीचर्स विकसित करने की गति लगभग 200% से 300% तक बढ़ाएँ। *
-* कम बग्स: मानवीय (डेवलपर) त्रुटियों में लगभग 40% की कमी। *
-* सहज: बेहतरीन एडिटर सपोर्ट। हर जगह <dfn title="उर्फ़: ऑटो-कम्प्लीट, ऑटोकम्प्लीशन, IntelliSense">ऑटो-कम्प्लीट</dfn>। डिबगिंग में कम समय।
-* आसान: इस्तेमाल और सीखने में आसान। दस्तावेज़ पढ़ने में कम समय।
-* संक्षिप्त: कोड डुप्लीकेशन को न्यूनतम करें। प्रत्येक parameter declaration से कई फ़ीचर्स। कम बग्स।
-* मजबूत: प्रोडक्शन-रेडी कोड प्राप्त करें। स्वतः इंटरैक्टिव दस्तावेज़ीकरण के साथ।
-* मानकों पर आधारित: APIs के खुले मानकों पर आधारित (और पूर्णतः अनुकूल): [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (जिसे पहले Swagger कहा जाता था) और [JSON Schema](https://json-schema.org/)।
+* **तेज़**: बहुत उच्च प्रदर्शन, **NodeJS** और **Go** के समकक्ष (Starlette और Pydantic की बदौलत)। [उपलब्ध सबसे तेज़ Python फ़्रेमवर्क्स में से एक](#performance)।
+* **कोड लिखने में तेज़**: फ़ीचर्स विकसित करने की गति लगभग 200% से 300% तक बढ़ाएँ। *
+* **कम बग्स**: मानवीय (डेवलपर) त्रुटियों में लगभग 40% की कमी। *
+* **सहज**: बेहतरीन एडिटर सपोर्ट। हर जगह <dfn title="उर्फ़: ऑटो-कम्प्लीट, ऑटोकम्प्लीशन, IntelliSense">ऑटो-कम्प्लीट</dfn>। डिबगिंग में कम समय।
+* **आसान**: इस्तेमाल और सीखने में आसान। दस्तावेज़ पढ़ने में कम समय।
+* **संक्षिप्त**: कोड डुप्लीकेशन को न्यूनतम करें। प्रत्येक parameter declaration से कई फ़ीचर्स। कम बग्स।
+* **मजबूत**: प्रोडक्शन-रेडी कोड प्राप्त करें। स्वतः इंटरैक्टिव दस्तावेज़ीकरण के साथ।
+* **मानकों पर आधारित**: APIs के खुले मानकों पर आधारित (और पूर्णतः अनुकूल): [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (जिसे पहले Swagger कहा जाता था) और [JSON Schema](https://json-schema.org/)।
 
 <small>* आंतरिक डेवलपमेंट टीम द्वारा प्रोडक्शन ऐप्स बनाते समय किए गए परीक्षणों के आधार पर अनुमान।</small>
 
@@ -158,7 +163,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
 
 <a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI मिनी डॉक्यूमेंट्री"></a>
 
-## Typer, CLIs का FastAPI { #typer-the-fastapi-of-clis }
+## **Typer**, CLIs का FastAPI { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
@@ -187,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-नोट: सुनिश्चित करें कि आप सभी टर्मिनलों में काम करने के लिए `"fastapi[standard]"` को उद्धरण-चिह्नों में रखें।
+**नोट**: सुनिश्चित करें कि आप सभी टर्मिनलों में काम करने के लिए `"fastapi[standard]"` को उद्धरण-चिह्नों में रखें।
 
 ## उदाहरण { #example }
 
@@ -232,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-नोट:
+**नोट**:
 
 यदि आप नहीं जानते, तो _"जल्दी में?"_ सेक्शन देखें: दस्तावेज़ में [`async` और `await`](https://fastapi.tiangolo.com/hi/async/#in-a-hurry) के बारे में।
 
@@ -470,7 +475,7 @@ item: Item
 
 अधिक फ़ीचर्स सहित एक अधिक सम्पूर्ण उदाहरण के लिए, <a href="https://fastapi.tiangolo.com/hi/tutorial/">ट्यूटोरियल - यूज़र गाइड</a> देखें।
 
-चेतावनी: ट्यूटोरियल - यूज़र गाइड में शामिल है:
+**स्पॉइलर अलर्ट**: ट्यूटोरियल - यूज़र गाइड में शामिल है:
 
 * विभिन्न स्थानों से **parameters** की घोषणा: **headers**, **cookies**, **form fields** और **files**।
 * `maximum_length` या `regex` जैसी **validation constraints** कैसे सेट करें।
@@ -487,9 +492,7 @@ item: Item
 
 ### अपनी ऐप परिनियोजित करें (वैकल्पिक) { #deploy-your-app-optional }
 
-आप वैकल्पिक रूप से अपनी FastAPI ऐप को [FastAPI Cloud](https://fastapicloud.com) पर डिप्लॉय कर सकते हैं, यदि अभी तक नहीं किया है तो वेटिंग लिस्ट में जुड़ें। 🚀
-
-यदि आपके पास पहले से **FastAPI Cloud** अकाउंट है (हमने आपको वेटिंग लिस्ट से आमंत्रित किया 😉), तो आप एक कमांड से अपनी एप्लिकेशन डिप्लॉय कर सकते हैं।
+आप वैकल्पिक रूप से अपनी FastAPI ऐप को [FastAPI Cloud](https://fastapicloud.com) पर एक ही कमांड से डिप्लॉय कर सकते हैं। 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI आपकी FastAPI एप्लिकेशन को स्वतः पहचान लेगा और उसे क्लाउड पर डिप्लॉय करेगा। यदि आप logged in नहीं हैं, तो प्रमाणीकरण प्रक्रिया पूरी करने के लिए आपका ब्राउज़र खुलेगा।
 
 बस इतना ही! अब आप उस URL पर अपनी ऐप एक्सेस कर सकते हैं। ✨
 
