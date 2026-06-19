@@ -342,6 +342,10 @@ extend-exclude = [
 extend-ignore-re = [
     # GitHub usernames in @mentions, e.g. @OCE1960
     "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
+    # Quoted typo documented in a release note
+    "'wll' to 'will'",
+    # German article title in a release note
+    "FastAPI Modul",
 ]
 
 [tool.typos.default.extend-identifiers]
