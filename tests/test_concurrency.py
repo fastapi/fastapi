@@ -37,7 +37,6 @@ async def test_contextmanager_in_threadpool() -> None:
 
 
 @pytest.mark.anyio
-@pytest.mark.timeout(10, func_only=True)
 @pytest.mark.usefixtures("reset_teardown_limiter")
 async def test_competing_acquire_release() -> None:
     """Check that the main threadpool does not block the teardown threadpool."""
@@ -46,15 +45,19 @@ async def test_competing_acquire_release() -> None:
     acquired = []
 
     def acquire() -> None:
-        while not acquirable:
+        # We wait a max of 5s to acquire, which should be more than enough
+        for _ in range(5000):
+            if acquirable:
+                break
             time.sleep(0.001)
+
+        assert acquirable, "Failed to acquire resource within timeout"
         acquired.append(True)
 
-    def release() -> bool:
+    def release() -> None:
         nonlocal acquirable
         time.sleep(0.001)
         acquirable = True
-        return acquirable
 
     async with anyio.create_task_group() as tg:
         for _ in range(pool_size):
