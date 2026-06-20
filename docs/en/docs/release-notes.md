@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.138.0 (2026-06-20)
+
 ### Features
 
 * ✨ Add support for `app.frontend("/", directory="dist")` and `router.frontend("/", directory="dist")`. PR [#15800](https://github.com/fastapi/fastapi/pull/15800) by [@tiangolo](https://github.com/tiangolo).
