@@ -36,7 +36,7 @@ If you use the `fastapi` command:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration-style:solid">main.py</u>
+$ fastapi run --workers 4 main.py
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
 

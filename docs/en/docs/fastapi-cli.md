@@ -9,7 +9,7 @@ To run your FastAPI app for development, you can use the `fastapi dev` command:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ fastapi dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
