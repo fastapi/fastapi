@@ -110,7 +110,7 @@ Les principales fonctionnalités sont :
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">« Nous avons adopté la bibliothèque <strong>FastAPI</strong> pour lancer un serveur <strong>REST</strong> qui peut être interrogé pour obtenir des <strong>prédictions</strong>. » <em>[pour Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">« <strong>Netflix</strong> est heureux d’annoncer la publication en open source de notre framework d’orchestration de <strong>gestion de crise</strong> : <strong>Dispatch</strong> ! » <em>[construit avec FastAPI]</em></blockquote>
@@ -133,7 +133,7 @@ Les principales fonctionnalités sont :
 
 « _Nous avons adopté la bibliothèque **FastAPI** pour lancer un serveur **REST** qui peut être interrogé pour obtenir des **prédictions**. [pour Ludwig]_ »
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, et Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, et Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(ref)</small></a></div>
 
 ---
 

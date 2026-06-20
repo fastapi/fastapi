@@ -110,7 +110,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">「**FastAPI** ライブラリを採用し、クエリで **予測値** を取得できる **REST** サーバを構築しました。」<em>[for Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">「<strong>Netflix</strong> は、私たちの <strong>危機管理</strong> オーケストレーションフレームワーク、<strong>Dispatch</strong> のオープンソースリリースを発表できることをうれしく思います！」<em>[built with FastAPI]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 "_FastAPIライブラリを採用し、クエリで **予測値** を取得できる **REST** サーバを構築しました。 [for Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(ref)</small></a></div>
 
 ---
 

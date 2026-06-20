@@ -110,7 +110,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"우리는 <strong>FastAPI</strong> 라이브러리를 채택해 <strong>예측</strong>을 얻기 위해 쿼리할 수 있는 <strong>REST</strong> 서버를 생성했습니다." <em>[Ludwig을 위해]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong>는 우리의 <strong>위기 관리</strong> 오케스트레이션 프레임워크인 <strong>Dispatch</strong>의 오픈 소스 공개를 발표하게 되어 기쁩니다!" <em>[FastAPI로 빌드]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_**FastAPI** 라이브러리를 채택하여 **예측**을 얻기 위해 쿼리를 실행할 수 있는 **REST** 서버를 생성했습니다. [Ludwig을 위해]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(ref)</small></a></div>
 
 ---
 

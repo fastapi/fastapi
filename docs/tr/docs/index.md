@@ -110,7 +110,7 @@ Temel özellikleri şunlardır:
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>FastAPI</strong> kütüphanesini, sorgulanarak <strong>tahminler</strong> alınabilecek bir <strong>REST</strong> server başlatmak için benimsedik." <em>[Ludwig için]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> olarak <strong>kriz yönetimi</strong> orkestrasyon framework'ümüzün açık kaynak sürümünü duyurmaktan memnuniyet duyuyoruz: <strong>Dispatch</strong>!" <em>[FastAPI ile geliştirildi]</em></blockquote>
@@ -133,7 +133,7 @@ Temel özellikleri şunlardır:
 
 "_**FastAPI** kütüphanesini, **predictions** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla benimsedik. [Ludwig için]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(ref)</small></a></div>
 
 ---
 

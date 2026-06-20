@@ -110,7 +110,7 @@ Seine Schlüssel-Merkmale sind:
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">„Wir haben die <strong>FastAPI</strong>-Bibliothek übernommen, um einen <strong>REST</strong>-Server zu erstellen, der für <strong>Vorhersagen</strong> abgefragt werden kann.“ <em>[für Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(Ref.)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(Ref.)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">„<strong>Netflix</strong> freut sich, die Open-Source-Veröffentlichung unseres <strong>Krisenmanagement</strong>-Orchestrierungsframeworks bekannt zu geben: <strong>Dispatch</strong>!“ <em>[erstellt mit FastAPI]</em></blockquote>
@@ -133,7 +133,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Wir haben die **FastAPI**-Bibliothek übernommen, um einen **REST**-Server zu erstellen, der für **Vorhersagen** abgefragt werden kann. [für Ludwig]_“
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(Ref.)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(Ref.)</small></a></div>
 
 ---
 

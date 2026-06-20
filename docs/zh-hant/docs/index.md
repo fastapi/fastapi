@@ -110,7 +110,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[for Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">「<strong>Netflix</strong> 很高興宣布我們的 <strong>危機管理</strong> 協調框架 <strong>Dispatch</strong> 開源！」 <em>[使用 FastAPI 建構]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 "_我們採用了 **FastAPI** 函式庫來啟動一個 **REST** 伺服器，供查詢以取得**預測**。[for Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(ref)</small></a></div>
 
 ---
 

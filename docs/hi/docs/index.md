@@ -110,7 +110,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"हमने <strong>FastAPI</strong> लाइब्रेरी अपनाई ताकि एक <strong>REST</strong> सर्वर स्पॉन किया जा सके जिसे <strong>अन्दाज़ों/अनुमानों</strong> को प्राप्त करने के लिए क्वेरी किया जा सके।" <em>[Ludwig के लिए]</em></blockquote>
-    <div class="fastapi-opinions__attr">— पिएरो मोलिनो, यारोस्लाव डुडिन, साई सुमंत मिर्याला, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(संदर्भ)</a></div>
+    <div class="fastapi-opinions__attr">— पिएरो मोलिनो, यारोस्लाव डुडिन, साई सुमंत मिर्याला, <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig">(संदर्भ)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> हमारे <strong>संकट प्रबंधन</strong> ऑर्केस्ट्रेशन फ़्रेमवर्क: <strong>Dispatch</strong> के ओपन-सोर्स रिलीज़ की घोषणा करते हुए प्रसन्न है!" <em>[FastAPI के साथ बनाया गया]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
 
 "_हमने **FastAPI** लाइब्रेरी अपनाई ताकि एक **REST** सर्वर स्पॉन किया जा सके जिसे **अनुमानों** को प्राप्त करने के लिए क्वेरी किया जा सके। [Ludwig के लिए]_"
 
-<div style="text-align: right; margin-right: 10%;">पिएरो मोलिनो, यारोस्लाव डुडिन, और साई सुमंत मिर्याला - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(संदर्भ)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">पिएरो मोलिनो, यारोस्लाव डुडिन, और साई सुमंत मिर्याला - <strong>Uber</strong> <a href="https://github.com/ludwig-ai/ludwig"><small>(संदर्भ)</small></a></div>
 
 ---
 
