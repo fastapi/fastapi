@@ -337,7 +337,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 
 /// note
 
-Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/timothycrosley/isort), a great tool to automatically sort imports in Python files.
+Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/PyCQA/isort), a great tool to automatically sort imports in Python files.
 
 ///
 
