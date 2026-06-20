@@ -10,6 +10,7 @@ hide:
 ### Features
 
 * ✨ Add support for `app.frontend("/", directory="dist")` and `router.frontend("/", directory="dist")`. PR [#15800](https://github.com/fastapi/fastapi/pull/15800) by [@tiangolo](https://github.com/tiangolo).
+    * Read the docs: [Frontend](https://fastapi.tiangolo.com/tutorial/frontend/).
 
 ### Docs
 
