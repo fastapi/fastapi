@@ -319,7 +319,6 @@ extend-exclude = [
     "docs/de/",
     "docs/en/data/",
     "docs/en/docs/img/",
-    "docs/en/docs/release-notes.md",
     "docs/es/",
     "docs/fr/",
     "docs/ja/",
@@ -331,12 +330,23 @@ extend-exclude = [
     "docs/uk/",
     "docs/zh/",
     "docs/zh-hant/",
+    "docs/hi/",
     "htmlcov/",
     "scripts/general-llm-prompt.md",
     "scripts/tests/test_translation_fixer/test_complex_doc/",
     "site/",
     "site_build/",
     "uv.lock",
+]
+
+[tool.typos.default]
+extend-ignore-re = [
+    # GitHub usernames in @mentions
+    "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
+    # Quoted typo documented in a release note
+    "'wll' to 'will'",
+    # German article title in a release note
+    "FastAPI Modul.",
 ]
 
 [tool.typos.default.extend-identifiers]
