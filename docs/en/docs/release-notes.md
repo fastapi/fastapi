@@ -24,6 +24,8 @@ hide:
 
 ### Internal
 
+* 🐛 Fix failing test, update format for raised errors. PR [#15804](https://github.com/fastapi/fastapi/pull/15804) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix test-alls-green. PR [#15803](https://github.com/fastapi/fastapi/pull/15803) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Enable checking `release-notes.md` for typos. PR [#15796](https://github.com/fastapi/fastapi/pull/15796) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Tweak wording about deploying to FastAPI Cloud. PR [#15793](https://github.com/fastapi/fastapi/pull/15793) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Use `gpt-5.5` model in `translate.py`, specify `-chat` to avoid warnings. PR [#15792](https://github.com/fastapi/fastapi/pull/15792) by [@YuriiMotov](https://github.com/YuriiMotov).
