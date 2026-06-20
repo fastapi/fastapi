@@ -533,7 +533,7 @@ Additional optional Pydantic dependencies:
 Additional optional FastAPI dependencies:
 
 * [`orjson`](https://github.com/ijl/orjson) - Required if you want to use `ORJSONResponse`.
-* [`ujson`](https://github.com/esnme/ultrajson) - Required if you want to use `UJSONResponse`.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - Required if you want to use `UJSONResponse`.
 
 ## License
 
