@@ -14,6 +14,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix typo in release notes. PR [#15807](https://github.com/fastapi/fastapi/pull/15807) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add `app.frontend()` instructions to Agent Library Skill. PR [#15805](https://github.com/fastapi/fastapi/pull/15805) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update release notes link. PR [#15802](https://github.com/fastapi/fastapi/pull/15802) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Update white space characters in bigger apps. PR [#15801](https://github.com/fastapi/fastapi/pull/15801) by [@tiangolo](https://github.com/tiangolo).
