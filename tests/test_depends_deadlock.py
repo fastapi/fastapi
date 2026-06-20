@@ -4,7 +4,6 @@ import threading
 import time
 from collections.abc import Iterator
 
-import pytest
 from fastapi import Depends, FastAPI
 from httpx import ASGITransport, AsyncClient
 from pydantic import BaseModel
@@ -54,7 +53,9 @@ def test_depends_deadlock() -> None:
     proc.join(timeout=10)
 
     try:
-        assert not proc.is_alive(), "Process is still alive after timeout, likely due to a deadlock"
+        assert not proc.is_alive(), (
+            "Process is still alive after timeout, likely due to a deadlock"
+        )
     finally:
         proc.kill()  # Ensure the process is terminated if it's still alive
 
