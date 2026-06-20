@@ -1809,8 +1809,8 @@ class _FrontendStaticFiles(StaticFiles):
         self.fallback = fallback
         if check_dir and not os.path.isdir(directory):
             raise RuntimeError(
-                f"Frontend directory {directory!r} does not exist. "
-                f"Resolved absolute path: {_get_resolved_absolute_path(directory)!r}"
+                f"Frontend directory '{directory}' does not exist. "
+                f"Resolved absolute path: '{_get_resolved_absolute_path(directory)}'"
             )
         super().__init__(
             directory=directory,
