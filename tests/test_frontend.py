@@ -692,11 +692,16 @@ def test_symlink_outside_directory_is_not_served(tmp_path: Path):
     assert response.text != "secret"
 
 
-def test_check_dir_true_fails_early_for_missing_directory(tmp_path: Path):
+def test_check_dir_true_fails_early_for_missing_directory(monkeypatch, tmp_path: Path):
     app = FastAPI()
+    monkeypatch.chdir(tmp_path)
 
-    with pytest.raises(RuntimeError, match="does not exist"):
-        app.frontend("/", directory=tmp_path / "missing")
+    with pytest.raises(RuntimeError, match="does not exist") as exc_info:
+        app.frontend("/", directory="missing")
+
+    message = str(exc_info.value)
+    assert "'missing'" in message
+    assert str(tmp_path / "missing") in message
 
 
 def test_check_dir_false_allows_missing_directory_and_fails_on_request(tmp_path: Path):
@@ -707,19 +712,28 @@ def test_check_dir_false_allows_missing_directory_and_fails_on_request(tmp_path:
         TestClient(app).get("/asset.txt")
 
 
-def test_explicit_fallback_files_fail_clearly_when_missing(tmp_path: Path):
+def test_explicit_fallback_files_fail_clearly_when_missing(monkeypatch, tmp_path: Path):
     dist = tmp_path / "dist"
     dist.mkdir()
+    monkeypatch.chdir(tmp_path)
     app = FastAPI()
 
-    with pytest.raises(RuntimeError, match="index.html"):
-        app.frontend("/", directory=dist, fallback="index.html")
+    with pytest.raises(RuntimeError, match="index.html") as exc_info:
+        app.frontend("/", directory="dist", fallback="index.html")
+
+    message = str(exc_info.value)
+    assert "directory 'dist'" in message
+    assert str(dist) in message
 
     app = FastAPI()
-    app.frontend("/", directory=dist, fallback="404.html", check_dir=False)
+    app.frontend("/", directory="dist", fallback="404.html", check_dir=False)
 
-    with pytest.raises(RuntimeError, match="404.html"):
+    with pytest.raises(RuntimeError, match="404.html") as exc_info:
         TestClient(app).get("/missing.js")
+
+    message = str(exc_info.value)
+    assert "directory 'dist'" in message
+    assert str(dist) in message
 
 
 def test_frontend_routes_are_not_in_openapi(tmp_path: Path):

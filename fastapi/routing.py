@@ -1794,6 +1794,10 @@ def _frontend_path_specificity(path: str) -> int:
     return len(path)
 
 
+def _get_resolved_absolute_path(path: str | os.PathLike[str]) -> str:
+    return os.path.realpath(os.fspath(path))
+
+
 class _FrontendStaticFiles(StaticFiles):
     def __init__(
         self,
@@ -1803,6 +1807,11 @@ class _FrontendStaticFiles(StaticFiles):
         check_dir: bool = True,
     ) -> None:
         self.fallback = fallback
+        if check_dir and not os.path.isdir(directory):
+            raise RuntimeError(
+                f"Frontend directory {directory!r} does not exist. "
+                f"Resolved absolute path: {_get_resolved_absolute_path(directory)!r}"
+            )
         super().__init__(
             directory=directory,
             html=True,
@@ -1817,8 +1826,13 @@ class _FrontendStaticFiles(StaticFiles):
         if stat_result is None or not stat.S_ISREG(stat_result.st_mode):
             raise RuntimeError(
                 f"Frontend fallback file '{fallback}' does not exist in "
-                f"directory '{self.directory}'"
+                f"directory '{self.directory}'. Resolved absolute directory: "
+                f"'{self._get_resolved_directory()}'"
             )
+
+    def _get_resolved_directory(self) -> str:
+        assert self.directory is not None
+        return _get_resolved_absolute_path(self.directory)
 
     def get_path(self, scope: Scope) -> str:
         path = _get_fastapi_scope(scope).get(_FASTAPI_FRONTEND_PATH_KEY, "")
@@ -1879,7 +1893,8 @@ class _FrontendStaticFiles(StaticFiles):
         if stat_result is None or not stat.S_ISREG(stat_result.st_mode):
             raise RuntimeError(
                 f"Frontend fallback file '{fallback}' does not exist in "
-                f"directory '{self.directory}'"
+                f"directory '{self.directory}'. Resolved absolute directory: "
+                f"'{self._get_resolved_directory()}'"
             )
         return self.file_response(
             full_path, stat_result, scope, status_code=status_code
