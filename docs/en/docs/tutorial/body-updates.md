@@ -6,7 +6,7 @@ To update an item you can use the [HTTP `PUT`](https://developer.mozilla.org/en-
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:32] *}
 
 `PUT` is used to receive data that should replace the existing data.
 
