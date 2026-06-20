@@ -1,26 +1,26 @@
 # इतिहास, डिज़ाइन और भविष्य { #history-design-and-future }
 
-कुछ समय पहले, [एक **FastAPI** उपयोगकर्ता ने पूछा](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
+कुछ समय पहले, [एक **FastAPI** user ने पूछा](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
-> इस प्रोजेक्ट का इतिहास क्या है? ऐसा लगता है कि यह कुछ ही हफ्तों में कहीं से भी सीधे शानदार बन गया [...]
+> इस project का इतिहास क्या है? ऐसा लगता है कि यह कुछ ही हफ्तों में कहीं से भी सीधे शानदार बन गया [...]
 
 यहाँ उस इतिहास का एक छोटा सा हिस्सा है।
 
 ## विकल्प { #alternatives }
 
-मैं कई वर्षों से जटिल आवश्यकताओं वाली APIs बना रहा हूँ (Machine Learning, distributed systems, asynchronous jobs, NoSQL databases, आदि), और डेवलपर्स की कई टीमों का नेतृत्व कर चुका हूँ।
+मैं कई वर्षों से जटिल requirements वाली APIs बना रहा हूँ (Machine Learning, distributed systems, asynchronous jobs, NoSQL databases, आदि), और developers की कई teams का नेतृत्व कर चुका हूँ।
 
 इसके हिस्से के रूप में, मुझे कई विकल्पों की जाँच, परीक्षण और उपयोग करना पड़ा।
 
 **FastAPI** का इतिहास काफी हद तक इसके पूर्ववर्तियों का इतिहास है।
 
-जैसा कि [विकल्प](alternatives.md) सेक्शन में कहा गया है:
+जैसा कि [विकल्प](alternatives.md) section में कहा गया है:
 
 <blockquote markdown="1">
 
 दूसरों के पिछले काम के बिना **FastAPI** मौजूद नहीं होता।
 
-इससे पहले कई टूल बनाए गए हैं जिन्होंने इसके निर्माण को प्रेरित करने में मदद की है।
+इससे पहले कई tools बनाए गए हैं जिन्होंने इसके निर्माण को प्रेरित करने में मदद की है।
 
 मैं कई वर्षों से एक नया framework बनाने से बचता रहा। पहले मैंने **FastAPI** द्वारा कवर किए गए सभी features को कई अलग-अलग frameworks, plug-ins और tools का उपयोग करके हल करने की कोशिश की।
 
@@ -30,7 +30,7 @@
 
 ## जाँच-पड़ताल { #investigation }
 
-सभी पिछले विकल्पों का उपयोग करके मुझे उन सभी से सीखने, ideas लेने, और उन्हें अपने तथा जिन डेवलपर टीमों के साथ मैंने काम किया है उनके लिए सबसे अच्छे तरीके से मिलाने का अवसर मिला।
+सभी पिछले विकल्पों का उपयोग करके मुझे उन सभी से सीखने, ideas लेने, और उन्हें अपने तथा जिन developer teams के साथ मैंने काम किया है उनके लिए सबसे अच्छे तरीके से मिलाने का अवसर मिला।
 
 उदाहरण के लिए, यह स्पष्ट था कि आदर्श रूप से इसे standard Python type hints पर आधारित होना चाहिए।
 
@@ -52,13 +52,13 @@
 
 सब कुछ इस तरह से किया गया कि सभी developers को सर्वोत्तम development experience मिल सके।
 
-## आवश्यकताएँ { #requirements }
+## Requirements { #requirements }
 
 कई विकल्पों का परीक्षण करने के बाद, मैंने तय किया कि मैं इसके लाभों के लिए [**Pydantic**](https://docs.pydantic.dev/) का उपयोग करूँगा।
 
 फिर मैंने इसमें योगदान दिया, ताकि इसे JSON Schema के साथ पूरी तरह compliant बनाया जा सके, constraint declarations को define करने के अलग-अलग तरीकों का समर्थन किया जा सके, और कई editors में tests के आधार पर editor support (type checks, autocompletion) को बेहतर बनाया जा सके।
 
-Development के दौरान, मैंने [**Starlette**](https://www.starlette.dev/) में भी योगदान दिया, जो दूसरी मुख्य आवश्यकता थी।
+Development के दौरान, मैंने [**Starlette**](https://www.starlette.dev/) में भी योगदान दिया, जो दूसरी मुख्य requirement थी।
 
 ## Development { #development }
 

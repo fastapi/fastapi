@@ -6,7 +6,7 @@
 
 ### खुले मानकों पर आधारित { #based-on-open-standards }
 
-* API बनाने के लिए [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification), जिसमें <dfn title="इन्हें भी कहा जाता है: endpoints, routes">पाथ</dfn> <dfn title="इन्हें HTTP methods भी कहा जाता है, जैसे POST, GET, PUT, DELETE">ऑपरेशन्स</dfn>, parameters, request bodies, security, आदि की घोषणाएँ शामिल हैं।
+* API बनाने के लिए [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification), जिसमें <dfn title="इन्हें भी कहा जाता है: endpoints, routes">path</dfn> <dfn title="इन्हें HTTP methods भी कहा जाता है, जैसे POST, GET, PUT, DELETE">operations</dfn>, parameters, request bodies, security, आदि की घोषणाएँ शामिल हैं।
 * [**JSON Schema**](https://json-schema.org/) के साथ automatic data model documentation (क्योंकि OpenAPI स्वयं JSON Schema पर आधारित है)।
 * इन मानकों के इर्द-गिर्द डिज़ाइन किया गया, एक बहुत सावधानीपूर्वक अध्ययन के बाद। ऊपर से बाद में जोड़ी गई परत की तरह नहीं।
 * यह कई भाषाओं में automatic **client code generation** का उपयोग करने की भी अनुमति देता है।
@@ -36,13 +36,13 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# किसी वेरिएबल को str के रूप में घोषित करें
-# और फ़ंक्शन के अंदर एडिटर सपोर्ट पाएँ
+# किसी variable को str के रूप में घोषित करें
+# और function के अंदर editor support पाएँ
 def main(user_id: str):
     return user_id
 
 
-# एक Pydantic मॉडल
+# एक Pydantic model
 class User(BaseModel):
     id: int
     name: str
@@ -71,9 +71,9 @@ my_second_user: User = User(**second_user_data)
 
 ///
 
-### एडिटर सपोर्ट { #editor-support }
+### Editor support { #editor-support }
 
-पूरे framework को उपयोग में आसान और सहज बनाने के लिए डिज़ाइन किया गया था, विकास शुरू करने से पहले ही सभी निर्णयों को कई editors पर test किया गया, ताकि सबसे अच्छा development experience सुनिश्चित किया जा सके।
+पूरे framework को उपयोग में आसान और सहज बनाने के लिए डिज़ाइन किया गया था, development शुरू करने से पहले ही सभी निर्णयों को कई editors पर test किया गया, ताकि सबसे अच्छा development experience सुनिश्चित किया जा सके।
 
 Python developer surveys में, यह स्पष्ट है [कि सबसे अधिक उपयोग की जाने वाली सुविधाओं में से एक "autocompletion" है](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)।
 
@@ -85,11 +85,11 @@ Python developer surveys में, यह स्पष्ट है [कि स
 
 * [Visual Studio Code](https://code.visualstudio.com/) में:
 
-![एडिटर सपोर्ट](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) में:
 
-![एडिटर सपोर्ट](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 आपको ऐसे code में completion मिलेगा जिसे आप पहले असंभव भी मान सकते थे। जैसे, किसी request से आने वाले JSON body (जो nested भी हो सकता था) के अंदर `price` key।
 
@@ -190,7 +190,7 @@ FastAPI में एक बेहद आसान, लेकिन बेहद
 * **कोई brainfuck नहीं**:
     * सीखने के लिए कोई नई schema definition micro-language नहीं।
     * अगर आप Python types जानते हैं, तो आप जानते हैं कि Pydantic का उपयोग कैसे करना है।
-* आपके **<abbr title="Integrated Development Environment - इंटीग्रेटेड डेवलपमेंट एनवायरनमेंट: code editor जैसा">IDE</abbr>/<dfn title="एक program जो code errors की जाँच करता है">लिंटर</dfn>/brain** के साथ अच्छी तरह काम करता है:
+* आपके **<abbr title="Integrated Development Environment - एकीकृत development environment: code editor जैसा">IDE</abbr>/<dfn title="एक program जो code errors की जाँच करता है">linter</dfn>/brain** के साथ अच्छी तरह काम करता है:
     * क्योंकि pydantic data structures केवल उन classes के instances होते हैं जिन्हें आप define करते हैं; auto-completion, linting, mypy और आपकी intuition, सभी आपके validated data के साथ सही ढंग से काम करने चाहिए।
 * **Complex structures** validate करें:
     * Hierarchical Pydantic models, Python `typing` के `List` और `Dict`, आदि का उपयोग।

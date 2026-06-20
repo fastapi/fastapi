@@ -285,7 +285,7 @@ Official Pydantic docs से एक उदाहरण:
 
 /// note | नोट
 
-[Pydantic के बारे में अधिक जानने के लिए, इसके docs देखें](https://docs.pydantic.dev/)।
+अधिक जानने के लिए [Pydantic, इसके docs देखें](https://docs.pydantic.dev/)।
 
 ///
 

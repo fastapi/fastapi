@@ -417,7 +417,7 @@ NodeJS / Browser JavaScript के previous versions में, आप "callback
 
 जब आप किसी *path operation function* को `async def` के बजाय normal `def` के साथ declare करते हैं, तो इसे directly call करने के बजाय (क्योंकि यह server को block करेगा), एक external threadpool में run किया जाता है जिसे फिर awaited किया जाता है।
 
-अगर आप किसी दूसरे async framework से आ रहे हैं जो ऊपर described तरीके से काम नहीं करता और आप tiny performance gain (लगभग 100 nanoseconds) के लिए trivial compute-only *path operation functions* को plain `def` के साथ define करने के आदी हैं, तो कृपया ध्यान दें कि **FastAPI** में effect बिल्कुल उल्टा होगा। इन cases में, `async def` use करना बेहतर है, जब तक कि आपके *path operation functions* ऐसा code use न करें जो blocking <abbr title="Input/Output - इनपुट/आउटपुट: डिस्क पढ़ना या लिखना, network communications.">I/O</abbr> perform करता हो।
+अगर आप किसी दूसरे async framework से आ रहे हैं जो ऊपर described तरीके से काम नहीं करता और आप tiny performance gain (लगभग 100 nanoseconds) के लिए trivial compute-only *path operation functions* को plain `def` के साथ define करने के आदी हैं, तो कृपया ध्यान दें कि **FastAPI** में effect बिल्कुल उल्टा होगा। इन cases में, `async def` use करना बेहतर है, जब तक कि आपके *path operation functions* ऐसा code use न करें जो blocking <abbr title="Input/Output - इनपुट/आउटपुट: disk पढ़ना या लिखना, network संचार.">I/O</abbr> perform करता हो।
 
 फिर भी, दोनों situations में, संभावना है कि **FastAPI** आपके previous framework से [फिर भी तेज़ होगा](index.md#performance) (या कम से कम comparable होगा)।
 

@@ -1,10 +1,10 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI <abbr title="command line interface - कमांड लाइन इंटरफ़ेस">CLI</abbr>** एक command line प्रोग्राम है जिसका उपयोग आप अपने FastAPI ऐप को serve करने, अपने FastAPI प्रोजेक्ट को manage करने, और भी बहुत कुछ करने के लिए कर सकते हैं।
+**FastAPI <abbr title="command line interface - कमांड लाइन इंटरफ़ेस">CLI</abbr>** एक command line प्रोग्राम है जिसका उपयोग आप अपने FastAPI ऐप को serve करने, अपने FastAPI project को manage करने, और भी बहुत कुछ करने के लिए कर सकते हैं।
 
-जब आप FastAPI इंस्टॉल करते हैं (जैसे `pip install "fastapi[standard]"` के साथ), तो इसके साथ एक command line प्रोग्राम आता है जिसे आप terminal में चला सकते हैं।
+जब आप FastAPI install करते हैं (जैसे `pip install "fastapi[standard]"` के साथ), तो इसके साथ एक command line प्रोग्राम आता है जिसे आप terminal में चला सकते हैं।
 
-डेवलपमेंट के लिए अपना FastAPI ऐप चलाने के लिए, आप `fastapi dev` command का उपयोग कर सकते हैं:
+development के लिए अपना FastAPI ऐप चलाने के लिए, आप `fastapi dev` command का उपयोग कर सकते हैं:
 
 <div class="termy">
 
@@ -48,19 +48,19 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 /// tip | सुझाव
 
-प्रोडक्शन के लिए आप `fastapi dev` की जगह `fastapi run` का उपयोग करेंगे। 🚀
+production के लिए आप `fastapi dev` की जगह `fastapi run` का उपयोग करेंगे। 🚀
 
 ///
 
 आंतरिक रूप से, **FastAPI CLI** [Uvicorn](https://www.uvicorn.dev) का उपयोग करता है, जो एक high-performance, production-ready, ASGI server है। 😎
 
-`fastapi` CLI चलाने के लिए FastAPI ऐप को अपने-आप detect करने की कोशिश करेगा, यह मानते हुए कि यह `main.py` फ़ाइल में `app` नाम का object है (या कुछ अन्य variants में से कोई एक)।
+`fastapi` CLI चलाने के लिए FastAPI ऐप को अपने-आप detect करने की कोशिश करेगा, यह मानते हुए कि यह `main.py` file में `app` नाम का object है (या कुछ अन्य variants में से कोई एक)।
 
 लेकिन आप उपयोग किए जाने वाले ऐप को स्पष्ट रूप से configure कर सकते हैं।
 
 ## ऐप `entrypoint` को `pyproject.toml` में configure करें { #configure-the-app-entrypoint-in-pyproject-toml }
 
-आप `pyproject.toml` फ़ाइल में यह configure कर सकते हैं कि आपका ऐप कहाँ स्थित है, जैसे:
+आप `pyproject.toml` file में यह configure कर सकते हैं कि आपका ऐप कहाँ स्थित है, जैसे:
 
 ```toml
 [tool.fastapi]
