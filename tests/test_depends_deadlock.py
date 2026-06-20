@@ -3,6 +3,7 @@ import threading
 import time
 from collections.abc import Iterator
 
+import pytest
 from fastapi import Depends, FastAPI
 from httpx import ASGITransport, AsyncClient
 from pydantic import BaseModel
@@ -42,6 +43,7 @@ def get_deadlock(dep: None = Depends(release_resource)) -> Item:
 # Fire off 100 requests in parallel(ish) in order to create contention
 # over the shared resource (simulating a fastapi server that interacts with
 # a database connection pool).
+@pytest.mark.timeout(10, func_only=True)
 def test_depends_deadlock() -> None:
     async def make_request(client: AsyncClient):
         await client.get("/deadlock")
@@ -53,4 +55,4 @@ def test_depends_deadlock() -> None:
             tasks = [make_request(aclient) for _ in range(100)]
             await asyncio.gather(*tasks)
 
-    asyncio.run(asyncio.wait_for(run_requests(), timeout=10))
+    asyncio.run(run_requests())
