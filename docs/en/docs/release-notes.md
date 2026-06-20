@@ -7,8 +7,19 @@ hide:
 
 ## Latest Changes
 
+## 0.138.0 (2026-06-20)
+
+### Features
+
+* ✨ Add support for `app.frontend("/", directory="dist")` and `router.frontend("/", directory="dist")`. PR [#15800](https://github.com/fastapi/fastapi/pull/15800) by [@tiangolo](https://github.com/tiangolo).
+    * Read the docs: [Frontend](https://fastapi.tiangolo.com/tutorial/frontend/).
+
 ### Docs
 
+* 📝 Fix typo in release notes. PR [#15807](https://github.com/fastapi/fastapi/pull/15807) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add `app.frontend()` instructions to Agent Library Skill. PR [#15805](https://github.com/fastapi/fastapi/pull/15805) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update release notes link. PR [#15802](https://github.com/fastapi/fastapi/pull/15802) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ Update white space characters in bigger apps. PR [#15801](https://github.com/fastapi/fastapi/pull/15801) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix grammar, typos, and broken links in docs. PR [#15694](https://github.com/fastapi/fastapi/pull/15694) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ### Translations
@@ -17,6 +28,8 @@ hide:
 
 ### Internal
 
+* 🐛 Fix failing test, update format for raised errors. PR [#15804](https://github.com/fastapi/fastapi/pull/15804) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix test-alls-green. PR [#15803](https://github.com/fastapi/fastapi/pull/15803) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Enable checking `release-notes.md` for typos. PR [#15796](https://github.com/fastapi/fastapi/pull/15796) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Tweak wording about deploying to FastAPI Cloud. PR [#15793](https://github.com/fastapi/fastapi/pull/15793) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Use `gpt-5.5` model in `translate.py`, specify `-chat` to avoid warnings. PR [#15792](https://github.com/fastapi/fastapi/pull/15792) by [@YuriiMotov](https://github.com/YuriiMotov).
