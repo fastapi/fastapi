@@ -245,9 +245,10 @@ jobs:
       - run: uv run coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
-  check:  # This job does nothing and is only used for the branch protection
+  test-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
+      - test
       - coverage-combine
       - benchmark
     runs-on: ubuntu-latest
