@@ -14,6 +14,7 @@ hide:
 
 ### Docs
 
+* 📝 Udpate release notes link. PR [#15802](https://github.com/fastapi/fastapi/pull/15802) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Update white space characters in bigger apps. PR [#15801](https://github.com/fastapi/fastapi/pull/15801) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix grammar, typos, and broken links in docs. PR [#15694](https://github.com/fastapi/fastapi/pull/15694) by [@YuriiMotov](https://github.com/YuriiMotov).
 
