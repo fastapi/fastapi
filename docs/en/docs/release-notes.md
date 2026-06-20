@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump pydantic-settings from 2.14.1 to 2.14.2. PR [#15799](https://github.com/fastapi/fastapi/pull/15799) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.138.0 (2026-06-20)
 
 ### Features
