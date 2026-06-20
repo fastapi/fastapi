@@ -1,0 +1,131 @@
+# Frontend { #frontend }
+
+You can serve static frontend apps with `app.frontend()` (or `router.frontend()`).
+
+This is useful for frontend tools that generate static files, like React with Vite, TanStack Router, Astro, Vue, Svelte, Angular, Solid, and others.
+
+With these tools, you normally have a step that builds the frontend, with a command like:
+
+```bash
+npm run build
+```
+
+That would generate a directory like `./dist/` with your frontend files.
+
+You can use `app.frontend()` to serve that directory following the conventions needed by these frontend frameworks.
+
+**FastAPI** checks *path operations* first. The frontend files are checked only if no normal route matched, so your API won't be affected.
+
+## Serve a Frontend { #serve-a-frontend }
+
+After building your frontend, for example with `npm run build`, put the generated files in a directory, for example, `dist`.
+
+Your project structure could look like this:
+
+```text
+.
+├── pyproject.toml
+├── app
+│   ├── __init__.py
+│   └── main.py
+└── dist
+    ├── index.html
+    └── assets
+        └── app.js
+```
+
+Then serve it with `app.frontend()`:
+
+{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+
+With this, a request for `/assets/app.js` can serve `dist/assets/app.js`.
+
+If you also have a **FastAPI** *path operation*, the *path operation* wins.
+
+## Client-Side Routing { #client-side-routing }
+
+Many frontend apps, including **single-page apps** (SPAs), use client-side routing. A path like `/dashboard/settings` might not be a real file but the framework would take care of handling it.
+
+So, if accessing that URL directly (instead of navigating through the app), the backend should serve the frontend app from `index.html`, so that the frontend framework can then handle the client-side routing.
+
+For that, use `fallback="index.html"`:
+
+{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+
+**FastAPI** uses this fallback only for requests that look like browser navigation. Missing files like JavaScript, CSS, and images still return `404`.
+
+/// tip
+
+By default, `fallback` has a value of `fallback="auto"`. In most cases you won't need to specify `fallback`. Read below for details.
+
+///
+
+This is what you would want with many frontend apps that use client-side routing, for example, React with TanStack Router, Vue, Angular, SvelteKit, or Solid.
+
+## Custom 404 Page { #custom-404-page }
+
+You can also serve a static `404.html` page for missing frontend paths:
+
+{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+
+That response keeps a status code of `404`.
+
+In this case, **FastAPI** won't serve `index.html` for missing frontend paths. It will return the `404.html` file instead.
+
+/// tip
+
+By default, `fallback` has a value of `fallback="auto"`. With this, if a `404.html` file is found, it will be used as the fallback automatically.
+
+So, you can normally omit the `fallback` argument.
+
+///
+
+This is useful with frontend tools that generate static HTML files for each page, like Astro.
+
+## Fallback Auto { #fallback-auto }
+
+By default, `app.frontend()` uses `fallback="auto"`.
+
+If there is a `404.html` file in the frontend directory, missing frontend paths serve that file with status code `404`.
+
+Otherwise, if there is an `index.html` file, missing browser navigation paths serve `index.html`, which is what many frontend apps with client-side routing expect.
+
+So, in most cases you can use `app.frontend("/", directory="dist")` without specifying the `fallback` argument.
+
+{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+
+## Disable Fallback { #disable-fallback }
+
+If you don't want to serve a fallback file for missing frontend paths, use `fallback=None`:
+
+{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+
+Then missing frontend paths return the normal `404`.
+
+## Check Directory { #check-directory }
+
+By default, `app.frontend()` checks that the directory exists when the app is created.
+
+This helps catch configuration errors early. For example, if the frontend build output directory is missing, **FastAPI** will raise an error on startup.
+
+If your frontend files are created later, for example by a separate build step after the app object is created, set `check_dir=False`:
+
+{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+
+With `check_dir=False`, **FastAPI** will not check the directory when the app is created. If the configured directory is still missing when a request is handled, **FastAPI** will raise an error then.
+
+## Use it with `APIRouter` { #use-it-with-apirouter }
+
+You can also add frontend files to an `APIRouter` and include it with a prefix:
+
+{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+
+In this example, frontend paths are served under `/app`.
+
+Any regular *path operations* in the app will still take precedence, including in other routers.
+
+## Static Build Output Only { #static-build-output-only }
+
+`app.frontend()` serves files already generated by your frontend build.
+
+It does not run server-side rendering. It is for frontend frameworks that generate static files, not for frameworks that need dynamic rendering on the server for each request.

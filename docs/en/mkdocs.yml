@@ -133,6 +133,7 @@ nav:
     - tutorial/server-sent-events.md
     - tutorial/background-tasks.md
     - tutorial/metadata.md
+    - tutorial/frontend.md
     - tutorial/static-files.md
     - tutorial/testing.md
     - tutorial/debugging.md

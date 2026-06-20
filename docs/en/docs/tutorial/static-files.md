@@ -2,6 +2,14 @@
 
 You can serve static files automatically from a directory using `StaticFiles`.
 
+/// tip
+
+If you need to host a frontend, use `app.frontend()` instead, read about it in [Frontend](frontend.md).
+
+`app.frontend()` uses `StaticFiles` underneath, with several additional advantages for frontends, like handling client-side routing.
+
+///
+
 ## Use `StaticFiles` { #use-staticfiles }
 
 * Import `StaticFiles`.
