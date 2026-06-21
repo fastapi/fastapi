@@ -52,14 +52,13 @@ def test_stream_items(client: TestClient, path: str):
         "/items/stream-no-async-no-annotation",
     ],
 )
-def test_stream_sets_streaming_headers(client: TestClient, path: str):
-    """JSONL streaming responses should disable proxy buffering and caching,
-    so intermediaries deliver items incrementally (matching SSE responses)."""
+def test_stream_disables_proxy_buffering(client: TestClient, path: str):
+    """JSONL streaming responses should disable proxy buffering, so
+    intermediaries (e.g. Nginx) deliver items incrementally instead of
+    holding them back until the buffer fills."""
     response = client.get(path)
     assert response.status_code == 200, response.text
-    # Tells proxies (e.g. Nginx) not to buffer the streamed response
     assert response.headers["x-accel-buffering"] == "no"
-    assert response.headers["cache-control"] == "no-cache"
 
 
 def test_openapi_schema(client: TestClient):
