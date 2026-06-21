@@ -528,7 +528,7 @@ There are some additional dependencies you might want to install.
 Additional optional Pydantic dependencies:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - for settings management.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - for extra types to be used with Pydantic.
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - for extra types to be used with Pydantic.
 
 Additional optional FastAPI dependencies:
 

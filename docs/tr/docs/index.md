@@ -573,7 +573,7 @@ Yüklemek isteyebileceğiniz bazı ek bağımlılıklar da vardır.
 Ek opsiyonel Pydantic bağımlılıkları:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - ayar yönetimi için.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic ile kullanılacak ek type'lar için.
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - Pydantic ile kullanılacak ek type'lar için.
 
 Ek opsiyonel FastAPI bağımlılıkları:
 

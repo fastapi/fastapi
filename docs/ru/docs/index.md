@@ -573,7 +573,7 @@ FastAPI зависит от Pydantic и Starlette.
 Дополнительные опциональные зависимости Pydantic:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) — для управления настройками.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) — дополнительные типы для использования с Pydantic.
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) — дополнительные типы для использования с Pydantic.
 
 Дополнительные опциональные зависимости FastAPI:
 

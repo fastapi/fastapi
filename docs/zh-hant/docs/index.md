@@ -573,7 +573,7 @@ FastAPI 會使用：
 Pydantic 的額外可選依賴：
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 設定管理。
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - 與 Pydantic 一起使用的額外型別。
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - 與 Pydantic 一起使用的額外型別。
 
 FastAPI 的額外可選依賴：
 

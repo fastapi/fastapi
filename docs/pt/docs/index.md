@@ -573,7 +573,7 @@ Existem algumas dependências adicionais que você pode querer instalar.
 Dependências opcionais adicionais do Pydantic:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - para gerenciamento de configurações.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - para tipos extras a serem utilizados com o Pydantic.
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - para tipos extras a serem utilizados com o Pydantic.
 
 Dependências opcionais adicionais do FastAPI:
 

@@ -573,7 +573,7 @@ FastAPI द्वारा उपयोग किया गया:
 अतिरिक्त वैकल्पिक Pydantic निर्भरताएँ:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - सेटिंग्स प्रबंधन के लिए।
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic के साथ उपयोग करने के लिए अतिरिक्त प्रकारों हेतु।
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - Pydantic के साथ उपयोग करने के लिए अतिरिक्त प्रकारों हेतु।
 
 अतिरिक्त वैकल्पिक FastAPI निर्भरताएँ:
 

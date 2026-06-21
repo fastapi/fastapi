@@ -573,7 +573,7 @@ FastAPI가 사용하는:
 추가 선택적 Pydantic 의존성:
 
 * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 설정 관리를 위한 것입니다.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic에서 사용할 추가 타입을 위한 것입니다.
+* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/concepts/types/#extra-types) - Pydantic에서 사용할 추가 타입을 위한 것입니다.
 
 추가 선택적 FastAPI 의존성:
 
