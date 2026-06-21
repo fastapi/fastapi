@@ -49,7 +49,7 @@ Here are some of the additional data types you can use:
 * `Decimal`:
     * Standard Python `Decimal`.
     * In requests and responses, handled the same as a `float`.
-* You can check all the valid Pydantic data types here: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/).
+* You can check all the valid Pydantic data types here: [Pydantic data types](https://docs.pydantic.dev/latest/concepts/types/).
 
 ## Example { #example }
 
