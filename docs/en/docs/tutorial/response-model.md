@@ -258,7 +258,7 @@ You can also use:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-as described in [the Pydantic docs](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) for `exclude_defaults` and `exclude_none`.
+as described in [the Pydantic docs](https://docs.pydantic.dev/latest/concepts/serialization/#model-dict) for `exclude_defaults` and `exclude_none`.
 
 ///
 
