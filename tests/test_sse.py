@@ -2,6 +2,7 @@ import asyncio
 import time
 from collections.abc import AsyncIterable, Iterable
 
+import anyio
 import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
@@ -9,6 +10,7 @@ from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from starlette.types import Message, Scope
 
 
 class Item(BaseModel):
@@ -325,3 +327,54 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+disconnect_app = FastAPI()
+
+
+@disconnect_app.get("/slow-stream", response_class=EventSourceResponse)
+async def slow_stream() -> AsyncIterable[dict]:
+    yield {"message": "first"}
+    while True:
+        await anyio.sleep(5)
+        yield {"message": "ping"}
+
+
+@pytest.mark.anyio
+@pytest.mark.filterwarnings("ignore::pytest.PytestUnraisableExceptionWarning")
+async def test_keepalive_no_error_on_client_disconnect(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Client disconnect during keepalive must not raise BrokenResourceError.
+
+    Regression test for https://github.com/fastapi/fastapi/discussions/15725.
+    """
+    monkeypatch.setattr(fastapi.routing, "_PING_INTERVAL", 0.02)
+
+    receive_called = anyio.Event()
+
+    async def receive() -> Message:
+        if not receive_called.is_set():
+            receive_called.set()
+            await anyio.sleep(0.15)
+            return {"type": "http.disconnect"}
+        await anyio.sleep(float("inf"))
+        return {"type": "http.disconnect"}  # pragma: no cover
+
+    async def send(message: Message) -> None:
+        await anyio.sleep(0.05)
+
+    scope: Scope = {
+        "type": "http",
+        "asgi": {"version": "3.0", "spec_version": "2.0"},
+        "http_version": "1.1",
+        "method": "GET",
+        "path": "/slow-stream",
+        "query_string": b"",
+        "root_path": "",
+        "headers": [],
+        "server": ("test", 80),
+    }
+
+    with anyio.fail_after(3.0):
+        await disconnect_app(scope, receive, send)

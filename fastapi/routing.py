@@ -590,7 +590,11 @@ def get_request_handler(
                                         await send_keepalive.send(data)
                                     except TimeoutError:
                                         await send_keepalive.send(KEEPALIVE_COMMENT)
-                            except anyio.EndOfStream:
+                            except (
+                                anyio.EndOfStream,
+                                anyio.BrokenResourceError,
+                                anyio.ClosedResourceError,
+                            ):
                                 pass
 
                     async with anyio.create_task_group() as tg:
