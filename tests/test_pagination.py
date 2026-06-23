@@ -108,9 +108,9 @@ def test_cursor_pagination_returns_opaque_next_and_previous_cursors() -> None:
     assert first_page.previous_cursor is None
     assert "10" not in first_page.next_cursor
 
-    second_page = Paginator(page_size=10, cursor=first_page.next_cursor).paginate_cursor(
-        ITEMS
-    )
+    second_page = Paginator(
+        page_size=10, cursor=first_page.next_cursor
+    ).paginate_cursor(ITEMS)
 
     assert second_page.items == ITEMS[10:20]
     assert second_page.has_next is True
@@ -121,9 +121,9 @@ def test_cursor_pagination_returns_opaque_next_and_previous_cursors() -> None:
 
 def test_cursor_pagination_sets_last_page_boundary_flags() -> None:
     first_page = Paginator(page_size=10).paginate_cursor(ITEMS)
-    second_page = Paginator(page_size=10, cursor=first_page.next_cursor).paginate_cursor(
-        ITEMS
-    )
+    second_page = Paginator(
+        page_size=10, cursor=first_page.next_cursor
+    ).paginate_cursor(ITEMS)
     last_page = Paginator(page_size=10, cursor=second_page.next_cursor).paginate_cursor(
         ITEMS
     )
