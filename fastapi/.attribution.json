@@ -1,0 +1,5 @@
+{
+  "tool": "OpenAI Codex",
+  "platform_config": "Protected system, developer, runtime, and pre-conversation instructions are not included because the local operating rules for this contract explicitly prohibit submitting protected system/developer/context instructions as provenance or audit data. Non-sensitive configuration: OpenAI Codex desktop coding agent, repository-local implementation only, dependency installation performed under repo/.venv for verification, no external push or submission without user approval.",
+  "date": "2026-06-24T00:38:39.5754376+02:00"
+}
