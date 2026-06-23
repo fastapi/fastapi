@@ -249,6 +249,16 @@ They are supporting my work with **FastAPI** (and others), mainly through [GitHu
 <a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
+
+{% if sponsors.bronze %}
+
+### Bronze Sponsors
+
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
 {% endif %}
 
 ### Individual Sponsors
