@@ -50,7 +50,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
     ...
 ```
 
-But by using the `secrets.compare_digest()` it will be secure against a type of attacks called "timing attacks".
+But by using the `secrets.compare_digest()` it will be secure against a type of attack called "timing attacks".
 
 ### Timing Attacks { #timing-attacks }
 
