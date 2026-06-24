@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👷 Simplify pull request workflow triggers. PR [#15836](https://github.com/fastapi/fastapi/pull/15836) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update issue-manager to 0.7.1. PR [#15833](https://github.com/fastapi/fastapi/pull/15833) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Update issue-manager to 0.7.0. PR [#15831](https://github.com/fastapi/fastapi/pull/15831) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: Add TestMu again. PR [#15830](https://github.com/fastapi/fastapi/pull/15830) by [@tiangolo](https://github.com/tiangolo).
