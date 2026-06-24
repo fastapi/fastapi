@@ -2,10 +2,6 @@ name: pre-commit
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-
 permissions: {}
 
 env:
