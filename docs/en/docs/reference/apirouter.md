@@ -22,4 +22,5 @@ from fastapi import APIRouter
             - head
             - patch
             - trace
+            - query
             - on_event

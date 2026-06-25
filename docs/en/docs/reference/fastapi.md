@@ -27,6 +27,7 @@ from fastapi import FastAPI
             - head
             - patch
             - trace
+            - query
             - on_event
             - middleware
             - exception_handler
