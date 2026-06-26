@@ -288,7 +288,7 @@ This new *table model* `Hero` will have the fields sent by the client, and will 
 
 Then we return the same *table model* `Hero` as is from the function. But as we declare the `response_model` with the `HeroPublic` *data model*, **FastAPI** will use `HeroPublic` to validate and serialize the data.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[57:63] hl[57:59] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[58:64] hl[58:60] *}
 
 /// tip
 
@@ -304,13 +304,13 @@ By declaring it in `response_model` we are telling **FastAPI** to do its thing, 
 
 We can do the same as before to **read** `Hero`s, again, we use `response_model=list[HeroPublic]` to ensure that the data is validated and serialized correctly.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[66:73] hl[66] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[67:74] hl[67] *}
 
 ### Read One Hero with `HeroPublic` { #read-one-hero-with-heropublic }
 
 We can **read** a single hero:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[76:81] hl[78] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[77:82] hl[79] *}
 
 ### Update a Hero with `HeroUpdate` { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ And in the code, we get a `dict` with all the data sent by the client, **only th
 
 Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with the data from `hero_data`.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[84:94] hl[84:85,89:90] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[85:95] hl[85:86,90:91] *}
 
 ### Delete a Hero Again { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with th
 
 We won't satisfy the desire to refactor everything in this one. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[97:104] hl[102] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[98:105] hl[103] *}
 
 ### Run the App Again { #run-the-app-again }
 
