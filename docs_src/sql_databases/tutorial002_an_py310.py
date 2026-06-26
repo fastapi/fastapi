@@ -46,6 +46,8 @@ def get_session():
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_db_and_tables()
