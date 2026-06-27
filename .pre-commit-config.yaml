@@ -65,6 +65,13 @@ repos:
         files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
         pass_filenames: false
 
+      - id: render-banner-sponsors
+        language: unsupported
+        name: render sponsor banner partial
+        entry: uv run ./scripts/docs.py render-banner-sponsors
+        files: ^docs/en/data/sponsors\.yml|^docs/en/overrides/partials/banner-sponsors\.html|^scripts/docs\.py$
+        pass_filenames: false
+
       - id: update-languages
         language: unsupported
         name: update languages
