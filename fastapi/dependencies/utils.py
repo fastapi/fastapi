@@ -401,8 +401,11 @@ def analyze_param(
     depends = None
     type_annotation: Any = Any
     use_annotation: Any = Any
+    type_alias_annotation = None
     if is_typealiastype(annotation):
-        # unpack in case PEP 695 type syntax is used
+        # Unpack PEP 695 type aliases for the analysis below, but keep the original
+        # alias so an inferred body can still produce a named OpenAPI component.
+        type_alias_annotation = annotation
         annotation = annotation.__value__
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
@@ -512,6 +515,10 @@ def analyze_param(
         ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
+            if type_alias_annotation is not None:
+                # Use the original PEP 695 alias as the body annotation so it yields a
+                # named OpenAPI component ($ref), like `Annotated[Alias, Body()]` (#15855).
+                use_annotation = type_alias_annotation
             field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
