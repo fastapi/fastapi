@@ -8,12 +8,16 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Item(BaseModel):
     name: str
     description: str | None = None
+
+
+class AliasedItem(BaseModel):
+    name: str = Field(serialization_alias="itemName")
 
 
 items = [
@@ -85,6 +89,20 @@ async def sse_items_raw():
     yield ServerSentEvent(raw_data="plain text without quotes")
     yield ServerSentEvent(raw_data="<div>html fragment</div>", event="html")
     yield ServerSentEvent(raw_data="cpu,87.3,1709145600", event="csv")
+
+
+@app.get("/items/stream-sse-event-alias", response_class=EventSourceResponse)
+async def sse_items_event_alias():
+    yield ServerSentEvent(data=AliasedItem(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-alias-disabled",
+    response_class=EventSourceResponse,
+    response_model_by_alias=False,
+)
+async def sse_items_event_alias_disabled():
+    yield ServerSentEvent(data=AliasedItem(name="Portal Gun"))
 
 
 router = APIRouter()
@@ -214,6 +232,27 @@ def test_string_data_json_encoded(client: TestClient):
     response = client.get("/items/stream-string")
     assert response.status_code == 200
     assert 'data: "plain text data"\n' in response.text
+
+
+def test_sse_event_data_uses_serialization_alias(client: TestClient):
+    """`ServerSentEvent(data=model)` must honor Pydantic `serialization_alias`.
+
+    Regression test for
+    https://github.com/fastapi/fastapi/discussions/15703
+    """
+    response = client.get("/items/stream-sse-event-alias")
+    assert response.status_code == 200
+    assert 'data: {"itemName":"Portal Gun"}\n' in response.text
+    assert '"name"' not in response.text
+
+
+def test_sse_event_data_respects_response_model_by_alias(client: TestClient):
+    """`response_model_by_alias=False` disables aliasing for SSE event data too,
+    consistent with plainly-yielded items."""
+    response = client.get("/items/stream-sse-event-alias-disabled")
+    assert response.status_code == 200
+    assert 'data: {"name":"Portal Gun"}\n' in response.text
+    assert "itemName" not in response.text
 
 
 def test_server_sent_event_null_id_rejected():
