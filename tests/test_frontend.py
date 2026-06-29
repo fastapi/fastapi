@@ -2,6 +2,7 @@ import errno
 import os
 import runpy
 from pathlib import Path
+from typing import Literal
 
 import anyio
 import pytest
@@ -639,6 +640,21 @@ def test_head_requests_work(tmp_path: Path):
     assert response.headers["content-length"] == "2"
 
 
+def test_head_fallback_request_works(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).head(
+        "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 200
+    assert response.text == ""
+    assert response.headers["content-length"] == "9"
+
+
 def test_unsupported_methods_return_405(tmp_path: Path):
     dist = tmp_path / "dist"
     write_file(dist / "asset.txt", "ok")
@@ -648,6 +664,125 @@ def test_unsupported_methods_return_405(tmp_path: Path):
     response = TestClient(app).post("/asset.txt")
 
     assert response.status_code == 405
+
+
+@pytest.mark.parametrize("method", ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+def test_unsupported_methods_to_fallback_only_routes_return_404(
+    tmp_path: Path, method: str
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).request(
+        method, "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_unsupported_methods_to_frontend_root_and_directory_index_return_405(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    write_file(dist / "about" / "index.html", "about")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+    client = TestClient(app)
+
+    root_response = client.post("/")
+    directory_response = client.post("/about/")
+
+    assert root_response.status_code == 405
+    assert directory_response.status_code == 405
+
+
+def test_unsupported_method_to_directory_without_index_returns_404(tmp_path: Path):
+    dist = tmp_path / "dist"
+    (dist / "empty").mkdir(parents=True)
+    write_file(dist / "index.html", "app")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).post("/empty/")
+
+    assert response.status_code == 404
+
+
+def test_unsupported_methods_to_fallback_only_routes_ignore_accept(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).post(
+        "/dashboard/settings", headers={"accept": "application/json"}
+    )
+
+    assert response.status_code == 404
+
+
+@pytest.mark.parametrize(
+    ("fallback", "files"),
+    [
+        ("404.html", {"404.html": "missing"}),
+        ("auto", {"index.html": "app shell"}),
+        (None, {"index.html": "app shell"}),
+    ],
+)
+def test_unsupported_methods_to_fallback_only_routes_return_404_for_fallback_modes(
+    tmp_path: Path,
+    fallback: Literal["auto", "index.html", "404.html"] | None,
+    files: dict[str, str],
+):
+    dist = tmp_path / "dist"
+    for file, content in files.items():
+        write_file(dist / file, content)
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback=fallback)
+
+    response = TestClient(app).post(
+        "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_apirouter_frontend_unsupported_method_to_fallback_only_route_returns_404(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "admin")
+    router = APIRouter()
+    router.frontend("/", directory=dist, fallback="index.html")
+    app = FastAPI()
+    app.include_router(router, prefix="/admin")
+
+    response = TestClient(app).post(
+        "/admin/client-route", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_unsupported_method_uses_longest_matching_frontend_prefix(tmp_path: Path):
+    site = tmp_path / "site"
+    admin = tmp_path / "admin"
+    write_file(site / "admin" / "client-route", "site asset")
+    write_file(admin / "index.html", "admin")
+    app = FastAPI()
+    app.frontend("/", directory=site)
+    app.frontend("/admin", directory=admin, fallback="index.html")
+
+    response = TestClient(app).post(
+        "/admin/client-route", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
 
 
 @pytest.mark.parametrize(

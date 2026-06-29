@@ -1841,33 +1841,18 @@ class _FrontendStaticFiles(StaticFiles):
 
     async def get_response(self, path: str, scope: Scope) -> Response:
         if scope["method"] not in ("GET", "HEAD"):
-            raise HTTPException(status_code=405)
+            if await self._lookup_static_resource(path) is not None:
+                raise HTTPException(status_code=405)
+            raise HTTPException(status_code=404)
 
-        try:
-            full_path, stat_result = await run_in_threadpool(self.lookup_path, path)
-        except PermissionError:
-            raise HTTPException(status_code=401) from None
-        except OSError as exc:
-            if exc.errno == errno.ENAMETOOLONG:
-                raise HTTPException(status_code=404) from None
-            raise exc
-        except ValueError:
-            raise HTTPException(status_code=404) from None
-
-        if stat_result and stat.S_ISREG(stat_result.st_mode):
+        static_resource = await self._lookup_static_resource(path)
+        if static_resource is not None:
+            full_path, stat_result, is_directory_index = static_resource
+            if is_directory_index and not scope["path"].endswith("/"):
+                url = URL(scope=scope)
+                url = url.replace(path=url.path + "/")
+                return RedirectResponse(url=url)
             return self.file_response(full_path, stat_result, scope)
-
-        if stat_result and stat.S_ISDIR(stat_result.st_mode):
-            index_path = os.path.join(path, "index.html")
-            full_path, stat_result = await run_in_threadpool(
-                self.lookup_path, index_path
-            )
-            if stat_result is not None and stat.S_ISREG(stat_result.st_mode):
-                if not scope["path"].endswith("/"):
-                    url = URL(scope=scope)
-                    url = url.replace(path=url.path + "/")
-                    return RedirectResponse(url=url)
-                return self.file_response(full_path, stat_result, scope)
 
         if self.fallback == "404.html" or (
             self.fallback == "auto" and self._fallback_file_exists("404.html")
@@ -1881,6 +1866,33 @@ class _FrontendStaticFiles(StaticFiles):
             return await self._fallback_response("index.html", scope, status_code=200)
 
         raise HTTPException(status_code=404)
+
+    async def _lookup_path(self, path: str) -> tuple[str, os.stat_result | None]:
+        try:
+            return await run_in_threadpool(self.lookup_path, path)
+        except PermissionError:
+            raise HTTPException(status_code=401) from None
+        except OSError as exc:
+            if exc.errno == errno.ENAMETOOLONG:
+                raise HTTPException(status_code=404) from None
+            raise exc
+        except ValueError:
+            raise HTTPException(status_code=404) from None
+
+    async def _lookup_static_resource(
+        self, path: str
+    ) -> tuple[str, os.stat_result, bool] | None:
+        full_path, stat_result = await self._lookup_path(path)
+        if stat_result is None:
+            return None
+        if stat.S_ISREG(stat_result.st_mode):
+            return full_path, stat_result, False
+        if stat.S_ISDIR(stat_result.st_mode):
+            index_path = os.path.join(path, "index.html")
+            full_path, stat_result = await self._lookup_path(index_path)
+            if stat_result is not None and stat.S_ISREG(stat_result.st_mode):
+                return full_path, stat_result, True
+        return None
 
     def _fallback_file_exists(self, fallback: str) -> bool:
         _, stat_result = self.lookup_path(fallback)
