@@ -191,9 +191,7 @@ def test_cache_control():
         return {"message": "hi"}
 
     response = client2.get("/")
-    assert (
-        response.headers["cache-control"] == "no-store, no-cache, must-revalidate"
-    )
+    assert response.headers["cache-control"] == "no-store, no-cache, must-revalidate"
 
 
 def test_custom_x_frame_options():
@@ -235,9 +233,7 @@ def test_custom_cross_origin_opener_policy():
         return {"message": "hi"}
 
     response = client2.get("/")
-    assert (
-        response.headers["cross-origin-opener-policy"] == "same-origin-allow-popups"
-    )
+    assert response.headers["cross-origin-opener-policy"] == "same-origin-allow-popups"
 
 
 def test_websocket_not_affected():

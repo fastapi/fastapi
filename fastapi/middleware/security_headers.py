@@ -40,8 +40,8 @@ class SecurityHeadersMiddleware:
                 cross_origin_opener_policy.encode("latin-1")
             )
         if content_security_policy is not None:
-            self._headers[b"content-security-policy"] = (
-                content_security_policy.encode("latin-1")
+            self._headers[b"content-security-policy"] = content_security_policy.encode(
+                "latin-1"
             )
         if permissions_policy is not None:
             self._headers[b"permissions-policy"] = permissions_policy.encode("latin-1")
