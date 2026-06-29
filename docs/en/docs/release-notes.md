@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.138.2 (2026-06-29)
+
 ### Refactors
 
 * ♻️ Make `app.frontend()` return 404 for methods other than `GET` or `HEAD` with no static file matches. PR [#15863](https://github.com/fastapi/fastapi/pull/15863) by [@tiangolo](https://github.com/tiangolo).
