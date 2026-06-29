@@ -203,6 +203,9 @@ def format_sse_event(
 
     The result always ends with `\n\n` (the event terminator).
     """
+    _check_event_single_line(event)
+    _check_id_valid(id)
+
     lines: list[str] = []
 
     if comment is not None:

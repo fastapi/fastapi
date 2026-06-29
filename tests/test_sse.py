@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -228,6 +228,35 @@ def test_server_sent_event_single_line_fields_reject_newlines(
 ):
     with pytest.raises(ValueError, match=f"SSE '{field_name}' must be a single line"):
         ServerSentEvent(data="test", **{field_name: value})  # ty: ignore[invalid-argument-type]
+
+
+@pytest.mark.parametrize("value", ["first\nsecond", "first\rsecond", "first\r\nsecond"])
+def test_format_sse_event_rejects_multiline_event(value: str):
+    with pytest.raises(ValueError, match="SSE 'event' must be a single line"):
+        format_sse_event(data_str="safe", event=value)
+
+
+@pytest.mark.parametrize("value", ["first\nsecond", "first\rsecond", "first\r\nsecond"])
+def test_format_sse_event_rejects_multiline_id(value: str):
+    with pytest.raises(ValueError, match="SSE 'id' must be a single line"):
+        format_sse_event(data_str="safe", id=value)
+
+
+def test_format_sse_event_rejects_null_id():
+    with pytest.raises(ValueError, match="null"):
+        format_sse_event(data_str="safe", id="has\0null")
+
+
+def test_format_sse_event_validates_before_rendering_injected_event():
+    with pytest.raises(ValueError, match="SSE 'event' must be a single line"):
+        format_sse_event(data_str="safe", event="message\ndata: injected")
+
+
+def test_format_sse_event_accepts_valid_event_and_id():
+    assert (
+        format_sse_event(data_str="safe", event="message", id="event-1")
+        == b"event: message\ndata: safe\nid: event-1\n\n"
+    )
 
 
 def test_server_sent_event_negative_retry_rejected():
