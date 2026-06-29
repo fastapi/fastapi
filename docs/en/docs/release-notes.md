@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Make `app.frontend()` return 404 for methods other than `GET` or `HEAD` with no static file matches. PR [#15863](https://github.com/fastapi/fastapi/pull/15863) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 🔧 Update sponsors: remove Stainless. PR [#15862](https://github.com/fastapi/fastapi/pull/15862) by [@tiangolo](https://github.com/tiangolo).
