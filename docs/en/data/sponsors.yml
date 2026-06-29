@@ -45,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: /img/sponsors/svix.svg
-  - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
-    title: Stainless | Generate best-in-class SDKs
-    img: /img/sponsors/stainless.png
   - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
     title: Fine-Grained Authorization for FastAPI
     img: /img/sponsors/permit.png
