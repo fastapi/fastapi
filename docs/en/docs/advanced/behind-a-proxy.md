@@ -251,9 +251,9 @@ In a case like that (without a stripped path prefix), the proxy would listen on 
 
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
-You can easily run the experiment locally with a stripped path prefix using [Traefik](https://docs.traefik.io/).
+You can easily run the experiment locally with a stripped path prefix using [Traefik](https://doc.traefik.io/traefik/).
 
-[Download Traefik](https://github.com/containous/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
+[Download Traefik](https://github.com/traefik/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
 Then create a file `traefik.toml` with:
 
