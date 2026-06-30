@@ -33,6 +33,7 @@ jobs:
           # To allow latest-changes to commit to the main branch
           token: ${{ secrets.FASTAPI_LATEST_CHANGES }}  # zizmor: ignore[secrets-outside-env]
           persist-credentials: true # required by tiangolo/latest-changes
+          allow-unsafe-pr-checkout: true
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
