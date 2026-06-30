@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the python-packages group across 1 directory with 10 updates. PR [#15870](https://github.com/fastapi/fastapi/pull/15870) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump CodSpeedHQ/action from 4.17.0 to 4.17.5 in the github-actions group. PR [#15826](https://github.com/fastapi/fastapi/pull/15826) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.138.2 (2026-06-29)
