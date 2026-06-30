@@ -777,6 +777,8 @@ def _get_multidict_value(
         if field.field_info.is_required():
             return
         else:
+            if isinstance(values, FormData):
+                return
             return deepcopy(field.default)
     return value
 
