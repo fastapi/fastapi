@@ -36,7 +36,7 @@ Nous pouvons créer une instance de cette classe avec :
 
 {* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
-Et de cette façon, nous pouvons « paramétrer » notre dépendance, qui contient maintenant « bar », en tant qu’attribut `checker.fixed_content`.
+Et de cette façon, nous pouvons « paramétrer » notre dépendance, qui contient maintenant `"bar"`, en tant qu’attribut `checker.fixed_content`.
 
 ## Utiliser l'instance comme dépendance { #use-the-instance-as-a-dependency }
 

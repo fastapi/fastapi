@@ -45,7 +45,7 @@ Les principales fonctionnalités sont :
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
 * **Rapide à coder** : augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
 * **Moins de bugs** : réduit d'environ 40 % les erreurs induites par le développeur. *
-* **Intuitif** : excellente compatibilité avec les éditeurs. <dfn title="également connu sous le nom de : auto-complétion, autocomplétion, IntelliSense">Autocomplétion</dfn> partout. Moins de temps passé à déboguer.
+* **Intuitif** : excellente compatibilité avec les éditeurs. <dfn title="également connu sous le nom de : autocomplétion, autocomplétion, IntelliSense">Autocomplétion</dfn> partout. Moins de temps passé à déboguer.
 * **Facile** : conçu pour être facile à utiliser et à apprendre. Moins de temps passé à lire les documents.
 * **Concis** : diminue la duplication de code. Plusieurs fonctionnalités à partir de chaque déclaration de paramètre. Moins de bugs.
 * **Robuste** : obtenez un code prêt pour la production. Avec une documentation interactive automatique.
@@ -192,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Remarque** : Vous devez vous assurer de mettre « fastapi[standard] » entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
+**Remarque** : Vous devez vous assurer de mettre `"fastapi[standard]"` entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
 
 ## Exemple { #example }
 
@@ -239,7 +239,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Remarque** :
 
-Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans la documentation](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
+Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
 
 </details>
 
