@@ -185,6 +185,7 @@ nav:
     - deployment/cloud.md
     - deployment/server-workers.md
     - deployment/docker.md
+    - deployment/kubernetes.md
   - "":
     - how-to/index.md
     - how-to/general.md
