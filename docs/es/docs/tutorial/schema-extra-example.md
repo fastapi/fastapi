@@ -1,4 +1,4 @@
-# Declarar Datos de Ejemplo de Request { #declare-request-example-data }
+# Declara Datos de Ejemplo de Request { #declare-request-example-data }
 
 Puedes declarar ejemplos de los datos que tu aplicación puede recibir.
 

@@ -56,7 +56,7 @@ Puedes añadir un `summary` y `description`:
 
 ## Descripción desde docstring { #description-from-docstring }
 
-Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <dfn title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usada para documentación">docstring</dfn> de la función y **FastAPI** la leerá desde allí.
+Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <dfn title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usado para documentación">docstring</dfn> de la función y **FastAPI** la leerá desde allí.
 
 Puedes escribir [Markdown](https://en.wikipedia.org/wiki/Markdown) en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
 
@@ -90,11 +90,11 @@ Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de 
 
 ## Deprecar una *path operation* { #deprecate-a-path-operation }
 
-Si necesitas marcar una *path operation* como <dfn title="obsoleta, se recomienda no usarla">deprecated</dfn>, pero sin eliminarla, pasa el parámetro `deprecated`:
+Si necesitas marcar una *path operation* como <dfn title="obsoleta, se recomienda no usarla">obsoleta</dfn>, pero sin eliminarla, pasa el parámetro `deprecated`:
 
 {* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
-Se marcará claramente como deprecado en la documentación interactiva:
+Se marcará claramente como deprecated en la documentación interactiva:
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 

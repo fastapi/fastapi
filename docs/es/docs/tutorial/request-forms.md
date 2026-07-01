@@ -14,13 +14,13 @@ $ pip install python-multipart
 
 ///
 
-## Importar `Form` { #import-form }
+## Importa `Form` { #import-form }
 
-Importar `Form` desde `fastapi`:
+Importa `Form` desde `fastapi`:
 
 {* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
-## Definir parámetros de `Form` { #define-form-parameters }
+## Define parámetros de `Form` { #define-form-parameters }
 
 Crea parámetros de formulario de la misma manera que lo harías para `Body` o `Query`:
 
