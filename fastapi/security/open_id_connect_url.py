@@ -35,8 +35,9 @@ DOCS = {
                 It is also useful when you want to have authentication that can be
                 provided in one of multiple optional ways (for example, with OpenID
                 Connect or in a cookie).
-                """)
+                """),
 }
+
 
 class OpenIdConnect(SecurityBase):
     """
@@ -57,11 +58,15 @@ class OpenIdConnect(SecurityBase):
         description: Annotated[str | None, DOCS["desc"]] = None,
         auto_error: Annotated[bool, DOCS["auto"]] = True,
     ):
-        self.model = OpenIdConnectModel(openIdConnectUrl=openIdConnectUrl, description=description)
+        self.model = OpenIdConnectModel(
+            openIdConnectUrl=openIdConnectUrl, description=description
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    def make_not_authenticated_error(self, detail: str = "Not authenticated") -> HTTPException:
+    def make_not_authenticated_error(
+        self, detail: str = "Not authenticated"
+    ) -> HTTPException:
         return HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail=detail,
@@ -70,11 +75,13 @@ class OpenIdConnect(SecurityBase):
 
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
-        
+
         # Case 1: Header is entirely missing
         if not authorization:
             if self.auto_error:
-                raise self.make_not_authenticated_error("Missing 'Authorization' header in request.")
+                raise self.make_not_authenticated_error(
+                    "Missing 'Authorization' header in request."
+                )
             return None
 
         # Case 2: Header exists but uses the wrong protocol/scheme (e.g., Basic, APIKey, or raw token)
