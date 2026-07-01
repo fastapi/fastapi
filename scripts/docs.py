@@ -249,6 +249,7 @@ def stage_zensical_docs(lang: str) -> Path:
                     encoding="utf-8",
                 )
 
+    render_banner_sponsors()
     shutil.copytree(en_docs_path / "data", lang_stage_path / "data")
     shutil.copytree(en_docs_path / "overrides", lang_stage_path / "overrides")
 
@@ -461,6 +462,7 @@ def live() -> None:
     """
     Serve the English docs with livereload from the source files.
     """
+    render_banner_sponsors()
     subprocess.run(
         [
             "zensical",
@@ -506,6 +508,56 @@ def get_updated_config_content() -> dict[str, Any]:
         new_alternate.append({"link": url, "name": use_name})
     config["extra"]["alternate"] = new_alternate
     return config
+
+
+banner_sponsors_template = """{% for sponsor in banner_sponsors -%}
+<div class="item">
+  <a title="{{ sponsor.title }}" style="display: block; position: relative;" href="{{ sponsor.url }}" target="_blank">
+    <span class="sponsor-badge">sponsor</span>
+    <img class="sponsor-image" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" />
+  </a>
+</div>
+{% endfor %}
+"""
+
+
+def get_banner_sponsors(sponsors: dict[str, Any]) -> list[dict[str, str]]:
+    banner_sponsors: list[dict[str, str]] = []
+    for sponsor in sponsors.get("gold", []):
+        banner_img = sponsor.get("banner_img")
+        if not banner_img:
+            continue
+        banner_sponsors.append(
+            {
+                "url": sponsor.get("banner_url", sponsor["url"]),
+                "title": sponsor.get("banner_title", sponsor["title"]),
+                "img": banner_img,
+            }
+        )
+    return banner_sponsors
+
+
+def render_banner_sponsors_partial() -> str:
+    sponsors_path = en_docs_path / "data" / "sponsors.yml"
+    sponsors = yaml.safe_load(sponsors_path.read_text(encoding="utf-8"))
+    template = Template(banner_sponsors_template)
+    return template.render(banner_sponsors=get_banner_sponsors(sponsors))
+
+
+@app.command()
+def render_banner_sponsors() -> None:
+    """
+    Render the sponsor banner partial from sponsors.yml.
+    """
+    partial_path = en_docs_path / "overrides" / "partials" / "banner-sponsors.html"
+    old_content = partial_path.read_text("utf-8") if partial_path.is_file() else ""
+    new_content = render_banner_sponsors_partial()
+    if new_content != old_content:
+        print(f"{partial_path} outdated from the latest sponsors.yml")
+        print(f"Updating {partial_path}")
+        partial_path.write_text(new_content, encoding="utf-8")
+        raise typer.Exit(1)
+    print(f"{partial_path} is up to date ✅")
 
 
 @app.command()

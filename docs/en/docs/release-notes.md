@@ -9,6 +9,30 @@ hide:
 
 ### Internal
 
+* 👷 Remove not needed `allow-unsafe-pr-checkout: true`. PR [#15876](https://github.com/fastapi/fastapi/pull/15876) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump the github-actions group with 5 updates. PR [#15872](https://github.com/fastapi/fastapi/pull/15872) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the python-packages group across 1 directory with 10 updates. PR [#15870](https://github.com/fastapi/fastapi/pull/15870) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump CodSpeedHQ/action from 4.17.0 to 4.17.5 in the github-actions group. PR [#15826](https://github.com/fastapi/fastapi/pull/15826) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.138.2 (2026-06-29)
+
+### Refactors
+
+* ♻️ Make `app.frontend()` return 404 for methods other than `GET` or `HEAD` with no static file matches. PR [#15863](https://github.com/fastapi/fastapi/pull/15863) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Update sponsors: remove Stainless. PR [#15862](https://github.com/fastapi/fastapi/pull/15862) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor how sponsors data is handled for banners. PR [#15852](https://github.com/fastapi/fastapi/pull/15852) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.138.1 (2026-06-25)
+
+### Refactors
+
+* ♻️ Refactor Library Skills, make info easier to find for agents. PR [#15841](https://github.com/fastapi/fastapi/pull/15841) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
 * 👷 Simplify pull request workflow triggers. PR [#15836](https://github.com/fastapi/fastapi/pull/15836) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update issue-manager to 0.7.1. PR [#15833](https://github.com/fastapi/fastapi/pull/15833) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Update issue-manager to 0.7.0. PR [#15831](https://github.com/fastapi/fastapi/pull/15831) by [@tiangolo](https://github.com/tiangolo).
