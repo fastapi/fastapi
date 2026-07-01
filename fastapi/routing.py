@@ -8,6 +8,7 @@ import json
 import os
 import stat
 import types
+import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -695,6 +696,21 @@ def get_request_handler(
                 if isinstance(raw_response, Response):
                     if raw_response.background is None:
                         raw_response.background = solved_result.background_tasks
+                    elif solved_result.background_tasks is not None:
+                        warnings.warn(
+                            "FastAPI has injected BackgroundTasks via "
+                            "dependency injection, but the endpoint returned "
+                            "a Response that already has a `background` set. "
+                            "The dependency-injected background tasks will be "
+                            "discarded in favor of the response's own "
+                            "`background`. To avoid this warning, either add "
+                            "your tasks to the injected `BackgroundTasks` "
+                            "instance instead of setting `background` on the "
+                            "response, or do not inject `BackgroundTasks` at "
+                            "all.",
+                            UserWarning,
+                            stacklevel=1,
+                        )
                     response = raw_response
                 else:
                     response_args = _build_response_args(
