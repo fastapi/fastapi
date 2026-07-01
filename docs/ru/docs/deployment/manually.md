@@ -2,7 +2,7 @@
 
 ## Используйте команду `fastapi run` { #use-the-fastapi-run-command }
 
-Коротко: используйте `fastapi run`, чтобы запустить ваше приложение FastAPI:
+Коротко: используйте `fastapi run`, чтобы предоставлять доступ к вашему приложению FastAPI:
 
 <div class="termy">
 
