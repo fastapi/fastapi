@@ -2,6 +2,14 @@
 
 You can serve static files automatically from a directory using `StaticFiles`.
 
+/// tip
+
+If you need to host a frontend, use `app.frontend()` instead, read about it in [Frontend](frontend.md).
+
+`app.frontend()` uses `StaticFiles` underneath, with several additional advantages for frontends, like handling client-side routing.
+
+///
+
 ## Use `StaticFiles` { #use-staticfiles }
 
 * Import `StaticFiles`.
@@ -33,7 +41,7 @@ The `directory="static"` refers to the name of the directory that contains your 
 
 The `name="static"` gives it a name that can be used internally by **FastAPI**.
 
-All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
+All these parameters can be different than "`static`", adjust them to the needs and specific details of your own application.
 
 ## More info { #more-info }
 

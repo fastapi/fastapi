@@ -34,7 +34,7 @@ Mais si vous utilisez le même modèle en sortie, comme ici :
 
 {* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
 
-... alors, comme `description` a une valeur par défaut, si vous ne retournez rien pour ce champ, il aura tout de même cette **valeur par défaut**.
+... alors, comme `description` a une valeur par défaut, si vous **ne retournez rien** pour ce champ, il aura tout de même cette **valeur par défaut**.
 
 ### Modèle pour les données de réponse en sortie { #model-for-output-response-data }
 
@@ -52,8 +52,8 @@ La manière de décrire cela dans OpenAPI est de marquer ce champ comme **requis
 
 Pour cette raison, le schéma JSON d'un modèle peut être différent selon qu'il est utilisé pour **l'entrée ou la sortie** :
 
-- pour **l'entrée**, `description` ne sera **pas requis**
-- pour **la sortie**, il sera **requis** (et éventuellement `None`, ou en termes JSON, `null`)
+* pour **l'entrée**, `description` ne sera **pas requis**
+* pour **la sortie**, il sera **requis** (et éventuellement `None`, ou en termes JSON, `null`)
 
 ### Modèle de sortie dans les documents { #model-for-output-in-docs }
 
@@ -79,13 +79,13 @@ Avec cette fonctionnalité de **Pydantic v2**, la documentation de votre API est
 
 ## Ne pas séparer les schémas { #do-not-separate-schemas }
 
-Il existe des cas où vous pourriez vouloir avoir le **même schéma pour l'entrée et la sortie**.
+Maintenant, il existe des cas où vous pourriez vouloir avoir le **même schéma pour l'entrée et la sortie**.
 
 Le cas d'usage principal est probablement que vous avez déjà du code client/SDKs générés automatiquement et que vous ne souhaitez pas encore mettre à jour tout ce code client/ces SDKs générés automatiquement ; vous le ferez sans doute à un moment donné, mais peut‑être pas tout de suite.
 
 Dans ce cas, vous pouvez désactiver cette fonctionnalité dans **FastAPI**, avec le paramètre `separate_input_output_schemas=False`.
 
-/// info | info
+/// note | Remarque
 
 La prise en charge de `separate_input_output_schemas` a été ajoutée dans FastAPI `0.102.0`. 🤓
 
@@ -95,7 +95,7 @@ La prise en charge de `separate_input_output_schemas` a été ajoutée dans Fast
 
 ### Utiliser le même schéma pour les modèles d'entrée et de sortie dans les documents { #same-schema-for-input-and-output-models-in-docs }
 
-Désormais, il n'y aura qu'un seul schéma pour l'entrée et la sortie du modèle, uniquement `Item`, et `description` ne sera pas requis :
+Désormais, il n'y aura qu'un seul schéma pour l'entrée et la sortie du modèle, uniquement `Item`, et `description` sera **non requis** :
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">

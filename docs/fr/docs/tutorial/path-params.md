@@ -20,7 +20,7 @@ Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en uti
 
 Ici, `item_id` est déclaré comme `int`.
 
-/// check | Vérifications
+/// tip | Astuce
 
 Cela vous apporte la prise en charge par l'éditeur dans votre fonction, avec vérifications d'erreurs, autocomplétion, etc.
 
@@ -34,7 +34,7 @@ Si vous exécutez cet exemple et ouvrez votre navigateur sur [http://127.0.0.1:8
 {"item_id":3}
 ```
 
-/// check | Vérifications
+/// tip | Astuce
 
 Remarquez que la valeur reçue par votre fonction (et renvoyée) est `3`, en tant qu'entier (`int`) Python, pas la chaîne de caractères « 3 ».
 
@@ -66,7 +66,7 @@ car le paramètre de chemin `item_id` a pour valeur « foo », qui n'est pas un 
 
 La même erreur apparaîtrait si vous fournissiez un `float` au lieu d'un `int`, comme ici : [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Vérifications
+/// tip | Astuce
 
 Ainsi, avec la même déclaration de type Python, **FastAPI** vous fournit la validation de données.
 
@@ -82,7 +82,7 @@ Et lorsque vous ouvrez votre navigateur sur [http://127.0.0.1:8000/docs](http://
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Vérifications
+/// tip | Astuce
 
 À nouveau, simplement avec cette même déclaration de type Python, **FastAPI** vous fournit une documentation interactive automatique (intégrant Swagger UI).
 

@@ -20,7 +20,7 @@
 
 Он относительно тесно связан с реляционными базами данных (например, MySQL или PostgreSQL), поэтому использовать NoSQL-базу данных (например, Couchbase, MongoDB, Cassandra и т. п.) в качестве основного хранилища не очень просто.
 
-Он был создан для генерации HTML на бэкенде, а не для создания API, используемых современным фронтендом (например, React, Vue.js и Angular) или другими системами (например, устройствами <abbr title="Internet of Things – Интернет вещей">IoT</abbr>), которые с ним общаются.
+Он был создан для генерации HTML на бэкенде, а не для создания API, используемых современным фронтендом (например, React, Vue.js и Angular) или другими системами (например, устройствами <abbr title="Internet of Things - Интернет вещей">IoT</abbr>), которые с ним общаются.
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
@@ -88,7 +88,7 @@ Requests имеет очень простой и понятный дизайн, 
 response = requests.get("http://example.com/some/url")
 ```
 
-Соответствующая в FastAPI API-операция пути могла бы выглядеть так:
+Соответствующая в FastAPI API-*операция пути* могла бы выглядеть так:
 
 ```Python hl_lines="1"
 @app.get("/some/url")

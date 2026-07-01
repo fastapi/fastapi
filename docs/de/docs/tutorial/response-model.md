@@ -72,7 +72,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Info
+/// note | Hinweis
 
 Um `EmailStr` zu verwenden, installieren Sie zuerst [`email-validator`](https://github.com/JoshData/python-email-validator).
 
@@ -251,7 +251,7 @@ Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wir
 }
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Sie können auch:
 

@@ -18,7 +18,7 @@ FastAPI는 **Pydantic** 위에 구축되어 있으며, 지금까지는 Pydantic 
 
 이는 Pydantic 모델을 사용할 때와 같은 방식으로 동작합니다. 그리고 실제로도 내부적으로는 Pydantic을 사용해 같은 방식으로 구현됩니다.
 
-/// info
+/// note | 참고
 
 dataclasses는 Pydantic 모델이 할 수 있는 모든 것을 할 수는 없다는 점을 기억하세요.
 

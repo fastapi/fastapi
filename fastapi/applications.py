@@ -1,6 +1,7 @@
+import os
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import Annotated, Any, TypeVar
+from typing import Annotated, Any, Literal, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -921,6 +922,7 @@ class FastAPI(Starlette):
             ),
         ] = "3.1.0"
         self.openapi_schema: dict[str, Any] | None = None
+        self._openapi_routes_version: int | None = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -1079,7 +1081,8 @@ class FastAPI(Starlette):
         Read more in the
         [FastAPI docs for OpenAPI](https://fastapi.tiangolo.com/how-to/extending-openapi/).
         """
-        if not self.openapi_schema:
+        routes_version = self.router._get_routes_version()
+        if not self.openapi_schema or self._openapi_routes_version != routes_version:
             self.openapi_schema = get_openapi(
                 title=self.title,
                 version=self.version,
@@ -1096,6 +1099,7 @@ class FastAPI(Starlette):
                 separate_input_output_schemas=self.separate_input_output_schemas,
                 external_docs=self.openapi_external_docs,
             )
+            self._openapi_routes_version = routes_version
         return self.openapi_schema
 
     def setup(self) -> None:
@@ -1213,6 +1217,79 @@ class FastAPI(Starlette):
             name=name,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+        )
+
+    def frontend(
+        self,
+        path: Annotated[
+            str,
+            Doc(
+                """
+                The URL path prefix where the frontend build should be served.
+                """
+            ),
+        ],
+        *,
+        directory: Annotated[
+            str | os.PathLike[str],
+            Doc(
+                """
+                The directory containing the static frontend build output.
+                """
+            ),
+        ],
+        fallback: Annotated[
+            Literal["auto", "index.html", "404.html"] | None,
+            Doc(
+                """
+                The fallback file behavior for missing frontend paths.
+                """
+            ),
+        ] = "auto",
+        check_dir: Annotated[
+            bool,
+            Doc(
+                """
+                Check that the frontend directory exists when the app is created.
+                """
+            ),
+        ] = True,
+    ) -> None:
+        """
+        Serve a static frontend build as low-priority routes.
+
+        Use this for frontend tools that build static files into a directory,
+        such as `dist`. **FastAPI** path operations are checked first, and
+        the frontend files are checked only if no normal route matched.
+
+        A typical project could look like this:
+
+        ```text
+        .
+        ├── pyproject.toml
+        ├── app
+        │   ├── __init__.py
+        │   └── main.py
+        └── dist
+            ├── index.html
+            └── assets
+                └── app.js
+        ```
+
+        Then in `app/main.py`:
+
+        ```python
+        from fastapi import FastAPI
+
+        app = FastAPI()
+        app.frontend("/", directory="dist")
+        ```
+        """
+        self.router.frontend(
+            path,
+            directory=directory,
+            fallback=fallback,
+            check_dir=check_dir,
         )
 
     def api_route(

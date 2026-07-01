@@ -197,7 +197,7 @@ Aquí algunas cosas envueltas en elementos HTML "abbr" (algunas son inventadas):
 ### El abbr da una frase completa y una explicación { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla: documentación para desarrolladores, escrita por la gente de Firefox">MDN</abbr>
-* <abbr title="Input/Output - Entrada/Salida: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
+* <abbr title="Input/Output - I/O: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
 
 ////
 
@@ -464,7 +464,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * el middleware
 * la aplicación móvil
 * el módulo
-* el mount
+* el mounting
 * la red
 * el origen
 * el override

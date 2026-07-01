@@ -5,7 +5,7 @@ Use dependencies when:
 * They can't be declared in Pydantic validation and require additional logic
 * The logic depends on external resources or could block in any other way
 * Other dependencies need their results (it's a sub-dependency)
-* The logic can be shared by multiple endpoints to do things like error early, authentication, etc.
+* The logic can be shared by multiple endpoints to do things like error early, handle authentication, etc.
 * They need to handle cleanup (e.g., DB sessions, file handles), using dependencies with `yield`
 * Their logic needs input data from the request, like headers, query parameters, etc.
 
@@ -53,7 +53,7 @@ def get_username():
     try:
         yield "Rick"
     finally:
-        print("Cleanup up before response is sent")
+        print("Clean up before response is sent")
 
 UserNameDep = Annotated[str, Depends(get_username, scope="function")]
 

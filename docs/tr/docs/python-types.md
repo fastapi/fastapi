@@ -1,5 +1,6 @@
 # Python Tiplerine Giriş { #python-types-intro }
 
+
 Python, isteğe bağlı "type hints" (diğer adıyla "type annotations") desteğine sahiptir.
 
 Bu **"type hints"** veya annotations, bir değişkenin <dfn title="örneğin: str, int, float, bool">tip</dfn>'ini bildirmeye yarayan özel bir sözdizimidir.

@@ -1,8 +1,9 @@
 # 請求中的檔案 { #request-files }
 
+
 你可以使用 `File` 定義由用戶端上傳的檔案。
 
-/// info
+/// note
 
 若要接收上傳的檔案，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
@@ -28,7 +29,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info
+/// note
 
 `File` 是直接繼承自 `Form` 的類別。
 

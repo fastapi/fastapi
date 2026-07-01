@@ -94,7 +94,7 @@ All we need to do is handle the request inside a `try`/`except` block:
 
 {* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
 
-If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
+If an exception occurs, the `Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
 
 {* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
 

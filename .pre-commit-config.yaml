@@ -15,7 +15,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/crate-ci/typos
-    rev: bbaefadf97b0ec5fdc942684b647f1a6ab250274 # v1.46.0
+    rev: 37bb98842b0d8c4ffebdb75301a13db0267cef89 # v1.47.2
     hooks:
       - id: typos
         args: [--force-exclude]
@@ -45,7 +45,7 @@ repos:
 
       - id: local-ty
         name: ty check
-        entry: uv run ty check fastapi
+        entry: uv run ty check
         require_serial: true
         language: unsupported
         pass_filenames: false
@@ -63,6 +63,13 @@ repos:
         name: generate README.md from index.md
         entry: uv run ./scripts/docs.py generate-readme
         files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
+        pass_filenames: false
+
+      - id: render-banner-sponsors
+        language: unsupported
+        name: render sponsor banner partial
+        entry: uv run ./scripts/docs.py render-banner-sponsors
+        files: ^docs/en/data/sponsors\.yml|^docs/en/overrides/partials/banner-sponsors\.html|^scripts/docs\.py$
         pass_filenames: false
 
       - id: update-languages

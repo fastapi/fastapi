@@ -2,7 +2,7 @@
 
 Templates, while they typically come with a specific setup, are designed to be flexible and customizable. This allows you to modify and adapt them to your project's requirements, making them an excellent starting point. 🏁
 
-You can use this template to get started, as it includes a lot of the initial set up, security, database and some API endpoints already done for you.
+You can use this template to get started, as it includes a lot of the initial setup, security, database and some API endpoints already done for you.
 
 GitHub Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 

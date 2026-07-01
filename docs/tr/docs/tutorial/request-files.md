@@ -2,11 +2,11 @@
 
 İstemcinin upload edeceği dosyaları `File` kullanarak tanımlayabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 Upload edilen dosyaları alabilmek için önce [`python-multipart`](https://github.com/Kludex/python-multipart) yükleyin.
 
-Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden ve ardından paketi yüklediğinizden emin olun. Örneğin:
+Bir [Sanal ortam](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden ve ardından paketi yüklediğinizden emin olun. Örneğin:
 
 ```console
 $ pip install python-multipart
@@ -28,7 +28,7 @@ Bunun nedeni, upload edilen dosyaların "form data" olarak gönderilmesidir.
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Bilgi
+/// note | Not
 
 `File`, doğrudan `Form`’dan türeyen bir sınıftır.
 
@@ -64,7 +64,7 @@ Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 * Bu sayede görüntüler, videolar, büyük binary’ler vb. gibi büyük dosyalarda tüm belleği tüketmeden iyi çalışır.
 * Upload edilen dosyadan metadata alabilirsiniz.
 * [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) bir `async` arayüze sahiptir.
-* [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
+* Gerçek bir Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
 
 ### `UploadFile` { #uploadfile }
 

@@ -2,7 +2,7 @@
 
 Resmi [FastAPI Extension](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode), FastAPI geliştirme akışınızı iyileştirir: *path operation* keşfi, gezinme, FastAPI Cloud’a deploy ve canlı log akışı.
 
-Daha fazla ayrıntı için, GitHub deposundaki README’ye bakın: [GitHub repository](https://github.com/fastapi/fastapi-vscode).
+Daha fazla ayrıntı için, GitHub deposundaki README’ye bakın: [GitHub deposu](https://github.com/fastapi/fastapi-vscode).
 
 ## Kurulum ve Yükleme { #setup-and-installation }
 

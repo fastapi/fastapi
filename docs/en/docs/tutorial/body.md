@@ -10,7 +10,7 @@ To declare a **request** body, you use [Pydantic](https://docs.pydantic.dev/) mo
 
 /// note
 
-To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+To send data, you should use one of: `POST` (the most common), `PUT`, `DELETE` or `PATCH`.
 
 Sending a body with a `GET` request has undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
 

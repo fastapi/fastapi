@@ -18,7 +18,7 @@ Y por supuesto, soporta lo mismo:
 
 Esto funciona de la misma manera que con los modelos de Pydantic. Y en realidad se logra de la misma manera internamente, utilizando Pydantic.
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que los dataclasses no pueden hacer todo lo que los modelos de Pydantic pueden hacer.
 
@@ -82,7 +82,7 @@ En ese caso, simplemente puedes intercambiar los `dataclasses` estándar con `py
 
 Puedes combinar `dataclasses` con otras anotaciones de tipos en muchas combinaciones diferentes para formar estructuras de datos complejas.
 
-Revisa las anotaciones en el código arriba para ver más detalles específicos.
+Revisa los consejos de anotación en el código arriba para ver más detalles específicos.
 
 ## Aprende Más { #learn-more }
 

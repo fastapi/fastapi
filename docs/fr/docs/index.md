@@ -45,7 +45,7 @@ Les principales fonctionnalités sont :
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
 * **Rapide à coder** : augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
 * **Moins de bugs** : réduit d'environ 40 % les erreurs induites par le développeur. *
-* **Intuitif** : excellente compatibilité avec les éditeurs. <dfn title="également connu sous le nom de : auto-complétion, autocomplétion, IntelliSense">Autocomplétion</dfn> partout. Moins de temps passé à déboguer.
+* **Intuitif** : excellente compatibilité avec les éditeurs. <dfn title="également connu sous le nom de : autocomplétion, autocomplétion, IntelliSense">Autocomplétion</dfn> partout. Moins de temps passé à déboguer.
 * **Facile** : conçu pour être facile à utiliser et à apprendre. Moins de temps passé à lire les documents.
 * **Concis** : diminue la duplication de code. Plusieurs fonctionnalités à partir de chaque déclaration de paramètre. Moins de bugs.
 * **Robuste** : obtenez un code prêt pour la production. Avec une documentation interactive automatique.
@@ -143,7 +143,7 @@ Les principales fonctionnalités sont :
 
 ---
 
-« _Si quelqu’un cherche à construire une API Python de production, je recommande vivement **FastAPI**. Il est **magnifiquement conçu**, **simple à utiliser** et **hautement scalable** — il est devenu un **composant clé** de notre stratégie de développement API-first._ »
+« _Si quelqu’un cherche à construire une API Python de production, je recommande vivement **FastAPI**. Il est **magnifiquement conçu**, **simple à utiliser** et **hautement scalable**, il est devenu un **composant clé** de notre stratégie de développement API-first et alimente de nombreuses automatisations et services tels que notre Virtual TAC Engineer._ »
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
@@ -192,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Remarque** : Vous devez vous assurer de mettre « fastapi[standard] » entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
+**Remarque** : Vous devez vous assurer de mettre `"fastapi[standard]"` entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
 
 ## Exemple { #example }
 
@@ -239,7 +239,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Remarque** :
 
-Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans la documentation](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
+Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
 
 </details>
 
@@ -492,9 +492,7 @@ Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a hre
 
 ### Déployer votre application (optionnel) { #deploy-your-app-optional }
 
-Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com), allez vous inscrire sur la liste d'attente si ce n'est pas déjà fait. 🚀
-
-Si vous avez déjà un compte **FastAPI Cloud** (nous vous avons invité depuis la liste d'attente 😉), vous pouvez déployer votre application avec une seule commande.
+Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com) avec une seule commande. 🚀
 
 <div class="termy">
 
@@ -509,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+La CLI détectera automatiquement votre application FastAPI et la déploiera dans le cloud. Si vous n'êtes pas connecté, votre navigateur s'ouvrira pour terminer le processus d'authentification.
 
 C'est tout ! Vous pouvez maintenant accéder à votre application à cette URL. ✨
 

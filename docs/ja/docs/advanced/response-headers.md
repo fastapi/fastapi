@@ -1,5 +1,6 @@
 # レスポンスヘッダー { #response-headers }
 
+
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 （Cookie と同様に）*path operation 関数*で `Response` 型のパラメータを宣言できます。

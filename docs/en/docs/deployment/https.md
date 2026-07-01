@@ -59,7 +59,7 @@ The idea is to automate the acquisition and renewal of these certificates so tha
 
 ## HTTPS for Developers { #https-for-developers }
 
-Here's an example of how an HTTPS API could look like, step by step, paying attention mainly to the ideas important for developers.
+Here's an example of how an HTTPS API could look, step by step, paying attention mainly to the ideas important for developers.
 
 ### Domain Name { #domain-name }
 

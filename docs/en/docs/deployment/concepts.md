@@ -36,9 +36,9 @@ And there has to be something in charge of **renewing the HTTPS certificates**, 
 Some of the tools you could use as a TLS Termination Proxy are:
 
 * Traefik
-    * Automatically handles certificates renewals ✨
+    * Automatically handles certificate renewals ✨
 * Caddy
-    * Automatically handles certificates renewals ✨
+    * Automatically handles certificate renewals ✨
 * Nginx
     * With an external component like Certbot for certificate renewals
 * HAProxy

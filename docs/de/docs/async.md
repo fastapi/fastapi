@@ -44,7 +44,7 @@ Wenn Ihre Anwendung (irgendwie) nicht mit etwas anderem kommunizieren und auf de
 
 ---
 
-Wenn Sie sich unsicher sind, verwenden Sie einfach `def`.
+Wenn Sie sich unsicher sind, verwenden Sie normales `def`.
 
 ---
 
@@ -70,7 +70,7 @@ Asynchroner Code bedeutet lediglich, dass die Sprache 💬 eine Möglichkeit hat
 
 Während der Zeit, die „Langsam-Datei“ 📝 benötigt, kann das System also andere Aufgaben erledigen.
 
-Dann kommt der Computer / das Programm 🤖 bei jeder Gelegenheit zurück, weil es entweder wieder wartet oder wann immer es 🤖 die ganze Arbeit erledigt hat, die zu diesem Zeitpunkt zu tun war. Und es 🤖 wird nachschauen, ob eine der Aufgaben, auf die es gewartet hat, fertig ist.
+Dann kommt der Computer / das Programm 🤖 bei jeder Gelegenheit zurück, weil es entweder wieder wartet oder wann immer es 🤖 die ganze Arbeit erledigt hat, die zu diesem Zeitpunkt zu tun war. Und es 🤖 wird nachschauen, ob eine der Aufgaben, auf die es gewartet hat, bereits fertig ist, und tun, was es zu tun hatte.
 
 Dann nimmt es 🤖 die erste erledigte Aufgabe (sagen wir, unsere „Langsam-Datei“ 📝) und bearbeitet sie weiter.
 
@@ -361,7 +361,7 @@ Wenn Sie mit **FastAPI** arbeiten, müssen Sie sich darüber keine Sorgen machen
 
 Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie dies auch tun.
 
-### Schreiben Sie Ihren eigenen asynchronen Code { #write-your-own-async-code }
+### Ihren eigenen asynchronen Code schreiben { #write-your-own-async-code }
 
 Starlette (und **FastAPI**) basieren auf [AnyIO](https://anyio.readthedocs.io/en/stable/), was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek [asyncio](https://docs.python.org/3/library/asyncio-task.html) als auch mit [Trio](https://trio.readthedocs.io/en/stable/) ist.
 

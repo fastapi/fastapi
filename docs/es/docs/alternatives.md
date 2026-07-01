@@ -24,7 +24,7 @@ Fue creado para generar el HTML en el backend, no para crear APIs utilizadas por
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-El framework Django REST fue creado para ser un kit de herramientas flexible para construir APIs Web utilizando Django, mejorando sus capacidades API.
+Django REST Framework fue creado para ser un toolkit flexible para construir APIs Web usando Django por debajo, para mejorar sus capacidades de API.
 
 Es utilizado por muchas empresas, incluidas Mozilla, Red Hat y Eventbrite.
 
@@ -88,7 +88,7 @@ La forma en que lo usas es muy sencilla. Por ejemplo, para hacer un `GET` reques
 response = requests.get("http://example.com/some/url")
 ```
 
-La operación de path equivalente en FastAPI podría verse como:
+La *path operation* API equivalente de FastAPI podría verse como:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -183,7 +183,7 @@ Pero la documentación todavía falta. Entonces APISpec fue creado.
 
 Es un plug-in para muchos frameworks (y hay un plug-in para Starlette también).
 
-La manera en que funciona es que escribes la definición del esquema usando el formato YAML dentro del docstring de cada función que maneja un path.
+La manera en que funciona es que escribes la definición del esquema usando el formato YAML dentro del docstring de cada función que maneja una ruta.
 
 Y genera esquemas OpenAPI.
 
@@ -245,11 +245,11 @@ Logra algo algo similar a lo que se puede hacer con Flask-apispec.
 
 Tiene un sistema de inyección de dependencias integrado, inspirado por Angular 2. Requiere pre-registrar los "inyectables" (como todos los otros sistemas de inyección de dependencias que conozco), por lo que añade a la verbosidad y repetición de código.
 
-Como los parámetros se describen con tipos de TypeScript (similar a las anotaciones de tipos en Python), el soporte editorial es bastante bueno.
+Como los parámetros se describen con tipos de TypeScript (similar a las anotaciones de tipos en Python), el soporte del editor es bastante bueno.
 
 Pero como los datos de TypeScript no se preservan después de la compilación a JavaScript, no puede depender de los tipos para definir validación, serialización y documentación al mismo tiempo. Debido a esto y algunas decisiones de diseño, para obtener validación, serialización y generación automática del esquema, es necesario agregar decoradores en muchos lugares. Por lo tanto, se vuelve bastante verboso.
 
-No puede manejar muy bien modelos anidados. Entonces, si el cuerpo JSON en la request es un objeto JSON que tiene campos internos que a su vez son objetos JSON anidados, no puede ser documentado y validado apropiadamente.
+No puede manejar muy bien modelos anidados. Entonces, si el body JSON en la request es un objeto JSON que tiene campos internos que a su vez son objetos JSON anidados, no puede ser documentado y validado apropiadamente.
 
 /// tip | Inspiró a **FastAPI** a
 
@@ -311,11 +311,11 @@ Requiere configuraciones un poquito más verbosas. Y dado que se basa en WSGI (e
 
 El sistema de inyección de dependencias requiere pre-registrar las dependencias y las dependencias se resuelven en base a los tipos declarados. Por lo tanto, no es posible declarar más de un "componente" que proporcione cierto tipo.
 
-Los paths se declaran en un solo lugar, usando funciones declaradas en otros lugares (en lugar de usar decoradores que pueden colocarse justo encima de la función que maneja el endpoint). Esto se acerca más a cómo lo hace Django que a cómo lo hace Flask (y Starlette). Separa en el código cosas que están relativamente acopladas.
+Las rutas se declaran en un solo lugar, usando funciones declaradas en otros lugares (en lugar de usar decoradores que pueden colocarse justo encima de la función que maneja el endpoint). Esto se acerca más a cómo lo hace Django que a cómo lo hace Flask (y Starlette). Separa en el código cosas que están relativamente acopladas.
 
 /// tip | Inspiró a **FastAPI** a
 
-Definir validaciones extra para tipos de datos usando el valor "default" de los atributos del modelo. Esto mejora el soporte del editor y no estaba disponible en Pydantic antes.
+Definir validaciones extra para tipos de datos usando el valor "por defecto" de los atributos del modelo. Esto mejora el soporte del editor y no estaba disponible en Pydantic antes.
 
 Esto en realidad inspiró la actualización de partes de Pydantic, para soportar el mismo estilo de declaración de validación (toda esta funcionalidad ya está disponible en Pydantic).
 
@@ -433,7 +433,7 @@ Tiene:
 * CORS, GZip, Archivos estáticos, Responses en streaming.
 * Soporte para sesiones y cookies.
 * Cobertura de tests del 100%.
-* code base 100% tipada.
+* codebase 100% con anotaciones de tipos.
 * Pocas dependencias obligatorias.
 
 Starlette es actualmente el framework de Python más rápido probado. Solo superado por Uvicorn, que no es un framework, sino un servidor.

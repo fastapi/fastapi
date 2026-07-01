@@ -17,16 +17,16 @@ Let's say you have a file structure like this:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip
@@ -232,7 +232,7 @@ would mean:
 
 But that file doesn't exist, our dependencies are in a file at `app/dependencies.py`.
 
-Remember how our app/file structure looks like:
+Remember what our app/file structure looks like:
 
 <img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
@@ -396,9 +396,9 @@ It will include all the routes from that router as part of it.
 
 /// note | Technical Details
 
-It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
+FastAPI keeps the original `APIRouter` and its `APIRoute`s active when the router is included in the main application.
 
-So, behind the scenes, it will actually work as if everything was the same single app.
+That means custom `APIRouter` and `APIRoute` subclasses can still participate after the router is included.
 
 ///
 
@@ -406,7 +406,7 @@ So, behind the scenes, it will actually work as if everything was the same singl
 
 You don't have to worry about performance when including routers.
 
-This will take microseconds and will only happen at startup.
+This is designed to be lightweight and to avoid adding overhead to each request.
 
 So it won't affect performance. ⚡
 
@@ -461,7 +461,7 @@ The `APIRouter`s are not "mounted", they are not isolated from the rest of the a
 
 This is because we want to include their *path operations* in the OpenAPI schema and the user interfaces.
 
-As we cannot just isolate them and "mount" them independently of the rest, the *path operations* are "cloned" (re-created), not included directly.
+FastAPI keeps the original routers and path operations active, and combines the router prefixes, dependencies, tags, responses, and other metadata when handling requests and generating OpenAPI.
 
 ///
 
@@ -532,4 +532,16 @@ The same way you can include an `APIRouter` in a `FastAPI` application, you can 
 router.include_router(other_router)
 ```
 
-Make sure you do it before including `router` in the `FastAPI` app, so that the *path operations* from `other_router` are also included.
+You can do this before or after including `router` in the `FastAPI` app. FastAPI will still include the *path operations* from `other_router` in routing and OpenAPI.
+
+The same applies to *path operations* added later to the routers. They will be visible through the earlier inclusion too.
+
+/// warning | Technical Details
+
+Avoid directly mutating `router.routes` after including a router. FastAPI treats router inclusion as live, so the original router and its routes remain part of routing and OpenAPI generation.
+
+Use documented APIs such as path operation decorators and `.include_router()` to add routes and routers.
+
+Treat `router.routes` as a lower-level route tree that can contain route definitions and included routers, and avoid relying on it as a flat list of final path operations.
+
+///

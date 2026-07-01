@@ -1,5 +1,6 @@
 # Datenklassen verwenden { #using-dataclasses }
 
+
 FastAPI basiert auf **Pydantic**, und ich habe Ihnen gezeigt, wie Sie Pydantic-Modelle verwenden können, um <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> zu deklarieren.
 
 Aber FastAPI unterstützt auf die gleiche Weise auch die Verwendung von [`dataclasses`](https://docs.python.org/3/library/dataclasses.html):
@@ -18,7 +19,7 @@ Und natürlich wird das gleiche unterstützt:
 
 Das funktioniert genauso wie mit Pydantic-Modellen. Und tatsächlich wird es unter der Haube mittels Pydantic auf die gleiche Weise bewerkstelligt.
 
-/// info | Info
+/// note | Hinweis
 
 Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
 

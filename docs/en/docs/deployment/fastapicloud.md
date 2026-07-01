@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-You can deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with **one command**, go and join the waiting list if you haven't. 🚀
-
-## Login { #login }
-
-Make sure you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉).
-
-Then log in:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Deploy { #deploy }
-
-Now deploy your app, with **one command**:
+You can deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with just **one command**. 🚀
 
 <div class="termy">
 
@@ -35,6 +15,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+The CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.
 
 That's it! Now you can access your app at that URL. ✨
 

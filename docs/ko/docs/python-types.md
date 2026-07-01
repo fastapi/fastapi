@@ -124,7 +124,7 @@ John Doe
 
 이것은 **FastAPI**와 함께 사용할 때도 주요 위치입니다.
 
-### Simple 타입 { #simple-types }
+### 간단한 타입 { #simple-types }
 
 `str`뿐 아니라 모든 파이썬 표준 타입을 선언할 수 있습니다.
 
@@ -287,7 +287,7 @@ Pydantic 공식 문서의 예시:
 
 /// note | 참고
 
-Pydantic에 대해 더 알아보려면 [문서를 확인하세요](https://docs.pydantic.dev/).
+더 알아보려면 [Pydantic 문서를 확인하세요](https://docs.pydantic.dev/).
 
 ///
 

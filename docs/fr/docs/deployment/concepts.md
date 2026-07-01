@@ -1,5 +1,6 @@
 # Concepts de déploiement { #deployments-concepts }
 
+
 Lorsque vous déployez une application **FastAPI**, ou en fait n'importe quel type de web API, il existe plusieurs concepts qui vous importent probablement, et en les utilisant vous pouvez trouver la manière la **plus appropriée** de **déployer votre application**.
 
 Parmi les concepts importants, on trouve :

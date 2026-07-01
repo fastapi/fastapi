@@ -1,5 +1,6 @@
 # 是否为输入和输出分别生成 OpenAPI JSON Schema { #separate-openapi-schemas-for-input-and-output-or-not }
 
+
 自从发布了 **Pydantic v2**，生成的 OpenAPI 比之前更精确、更**正确**了。😎
 
 事实上，在某些情况下，对于同一个 Pydantic 模型，OpenAPI 中会根据是否带有**默认值**，为输入和输出分别生成**两个 JSON Schema**。
@@ -85,7 +86,7 @@
 
 这种情况下，你可以在 **FastAPI** 中通过参数 `separate_input_output_schemas=False` 禁用该特性。
 
-/// info | 信息
+/// note | 注意
 
 对 `separate_input_output_schemas` 的支持是在 FastAPI `0.102.0` 中添加的。🤓
 

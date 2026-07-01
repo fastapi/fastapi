@@ -25,9 +25,17 @@ Ve `get_openapi()` fonksiyonu şu parametreleri alır:
 * `openapi_version`: Kullanılan OpenAPI specification sürümü. Varsayılan olarak en günceli: `3.1.0`.
 * `summary`: API'nin kısa özeti.
 * `description`: API'nizin açıklaması; markdown içerebilir ve dokümanlarda gösterilir.
-* `routes`: route'ların listesi; bunların her biri kayıtlı *path operations*'lardır. `app.routes` içinden alınırlar.
+* `routes`: Uygulamadan gelen route'lar; `app.routes` içinden alınır. FastAPI, kayıtlı *path operations*'ları toplamak için bunları kullanır; eklenen router'lardan gelenler de dahildir.
 
-/// info | Bilgi
+/// tip | Teknik Detaylar
+
+`app.routes` daha alt seviyede bir route ağacıdır. Yalnızca son `APIRoute` objelerini değil, FastAPI'nin dahili olarak eklenen router'lar için kullandığı aday route'ları da içerebilir.
+
+Yine de `app.routes`'i `get_openapi()`'ye geçebilirsiniz. FastAPI, etkili path operation'ları toplamak için bu route ağacını gezecektir.
+
+///
+
+/// note | Bilgi
 
 `summary` parametresi OpenAPI 3.1.0 ve üzeri sürümlerde vardır; FastAPI 0.99.0 ve üzeri tarafından desteklenmektedir.
 

@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info
+/// note | Remarque
 
 Il existe d'autres formats et outils pour définir et installer des dépendances de paquets.
 
@@ -232,7 +232,7 @@ Passez en revue ce que fait chaque ligne en cliquant sur chaque bulle numéroté
 
 /// warning | Alertes
 
-Vous devez vous assurer d'utiliser **toujours** la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
+Vous devez **toujours** utiliser la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
 
 ///
 
@@ -254,7 +254,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Assurez-vous d'utiliser toujours la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
+Vous devez toujours utiliser la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
 
 Vous pouvez en lire davantage dans la [documentation Docker sur les formes shell et exec](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
@@ -556,7 +556,7 @@ Si vous utilisez des conteneurs (par ex. Docker, Kubernetes), alors il existe de
 
 Si vous avez **plusieurs conteneurs**, probablement chacun exécutant un **seul processus** (par exemple, dans un cluster **Kubernetes**), alors vous voudrez probablement avoir un **conteneur séparé** effectuant le travail des **étapes préalables** dans un seul conteneur, exécutant un seul processus, **avant** d'exécuter les conteneurs worker répliqués.
 
-/// info
+/// note | Remarque
 
 Si vous utilisez Kubernetes, ce sera probablement un [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

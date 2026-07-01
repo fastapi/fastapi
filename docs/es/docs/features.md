@@ -130,7 +130,7 @@ Todos los esquemas de seguridad definidos en OpenAPI, incluyendo:
     * Parámetros de query.
     * Cookies, etc.
 
-Además de todas las características de seguridad de Starlette (incluyendo **cookies de sesión**).
+Además de todas las funcionalidades de seguridad de Starlette (incluyendo **cookies de sesión**).
 
 Todo construido como herramientas y componentes reutilizables que son fáciles de integrar con tus sistemas, almacenes de datos, bases de datos relacionales y NoSQL, etc.
 
@@ -179,7 +179,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 
 **FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
-Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s, <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
+Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s y <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
 Esto también significa que, en muchos casos, puedes pasar el mismo objeto que obtienes de un request **directamente a la base de datos**, ya que todo se valida automáticamente.
 

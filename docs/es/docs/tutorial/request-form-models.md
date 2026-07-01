@@ -2,7 +2,7 @@
 
 Puedes usar **modelos de Pydantic** para declarar **campos de formulario** en FastAPI.
 
-/// info | Información
+/// note | Nota
 
 Para usar formularios, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 

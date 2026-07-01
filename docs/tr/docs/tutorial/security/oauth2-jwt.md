@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 RSA veya ECDSA gibi dijital imza algoritmaları kullanmayı planlıyorsanız, `pyjwt[crypto]` bağımlılığı olan `cryptography` kütüphanesini kurmalısınız.
 
@@ -120,7 +120,7 @@ Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonk
 
 `authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
 
-Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek zamanlama saldırılarını (timing attacks) engeller.
+Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek **timing attacks** saldırılarını engeller.
 
 /// note | Not
 
@@ -213,7 +213,7 @@ Uygulamayı, öncekiyle aynı şekilde authorize edin.
 Username: `johndoe`
 Password: `secret`
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Kodun hiçbir yerinde düz metin password "`secret`" yok; sadece hash'lenmiş hâli var.
 

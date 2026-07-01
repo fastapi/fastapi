@@ -1,5 +1,6 @@
 # Response-Statuscode { #response-status-code }
 
+
 Genauso wie Sie ein Responsemodell angeben können, können Sie auch den HTTP-Statuscode für die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> mit dem Parameter `status_code` in jeder der *Pfadoperationen* deklarieren:
 
 * `@app.get()`
@@ -18,7 +19,7 @@ Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (
 
 Dem `status_code`-Parameter wird eine Zahl mit dem HTTP-Statuscode übergeben.
 
-/// info | Info
+/// note | Hinweis
 
 Alternativ kann `status_code` auch ein `IntEnum` erhalten, wie etwa Pythons [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus).
 

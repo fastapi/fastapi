@@ -49,15 +49,15 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 * **簡単**: 簡単に利用・習得できるようにデザインされています。ドキュメントを読む時間を削減します。
 * **短い**: コードの重複を最小限にします。各パラメータ宣言から複数の機能を得られます。バグも減ります。
 * **堅牢性**: 自動対話型ドキュメントにより、本番環境向けのコードが得られます。
-* **Standards-based**: API のオープンスタンダードに基づいており（そして完全に互換性があります）、[OpenAPI](https://github.com/OAI/OpenAPI-Specification)（以前は Swagger として知られていました）や [JSON Schema](https://json-schema.org/) をサポートします。
+* **標準準拠**: API のオープンスタンダードに基づいており（そして完全に互換性があります）、[OpenAPI](https://github.com/OAI/OpenAPI-Specification)（以前は Swagger として知られていました）や [JSON Schema](https://json-schema.org/) をサポートします。
 
 <small>* 本番アプリケーションを構築している社内開発チームのテストに基づく見積もりです。</small>
 
-## Sponsors { #sponsors }
+## スポンサー { #sponsors }
 
 <!-- sponsors -->
 
-### Keystone Sponsor { #keystone-sponsor }
+### Keystone スポンサー { #keystone-sponsor }
 
 <div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
@@ -65,7 +65,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 {% endfor -%}
 </div>
 
-### Gold Sponsors { #gold-sponsors }
+### Gold スポンサー { #gold-sponsors }
 
 <div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
@@ -73,7 +73,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 {% endfor -%}
 </div>
 
-### Silver Sponsors { #silver-sponsors }
+### Silver スポンサー { #silver-sponsors }
 
 <div class="fastapi-sponsors fastapi-sponsors--silver">
 {% for sponsor in sponsors.silver -%}
@@ -125,7 +125,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 <div class="only-github" markdown="1">
 
-"_[...] 最近 **FastAPI** を使っています。 [...] 実際に私のチームの全ての **Microsoft の機械学習サービス** で使用する予定です。 そのうちのいくつかのコアな **Windows** 製品と **Office** 製品に統合されつつあります。_"
+"_[...] 最近 **FastAPI** をたくさん使っています。 [...] 実際に私のチームの全ての **Microsoft の機械学習サービス** で使用する予定です。 そのうちのいくつかのコアな **Windows** 製品と **Office** 製品に統合されつつあります。_"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
@@ -275,7 +275,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary><code>fastapi dev</code> コマンドについて</summary>
+<summary><code>fastapi dev</code> コマンドについて...</summary>
 
 `fastapi dev` コマンドは `main.py` ファイルを自動的に読み取り、その中の **FastAPI** アプリを検出し、[Uvicorn](https://www.uvicorn.dev) を使用してサーバーを起動します。
 
@@ -471,11 +471,11 @@ item: Item
 
 ...に変更し、エディタが属性を自動補完し、その型を知ることを確認してください。
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![エディタサポート](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/ja/tutorial/">Tutorial - User Guide</a> を参照してください。
+より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/ja/tutorial/">チュートリアル - ユーザーガイド</a> を参照してください。
 
-**ネタバレ注意**: tutorial - user guide には以下が含まれます。
+**ネタバレ注意**: チュートリアル - ユーザーガイドには以下が含まれます。
 
 * **ヘッダー**、**Cookie**、**フォームフィールド**、**ファイル**など、他のさまざまな場所からの **パラメータ** 宣言。
 * `maximum_length` や `regex` のような **検証制約** を設定する方法。
@@ -492,9 +492,7 @@ item: Item
 
 ### アプリをデプロイ（任意） { #deploy-your-app-optional }
 
-必要に応じて FastAPI アプリを [FastAPI Cloud](https://fastapicloud.com) にデプロイできます。まだの場合はウェイティングリストに参加してください。 🚀
-
-すでに **FastAPI Cloud** アカウント（ウェイティングリストから招待されました 😉）がある場合は、1 コマンドでアプリケーションをデプロイできます。
+1 コマンドで FastAPI アプリを [FastAPI Cloud](https://fastapicloud.com) にデプロイできます。 🚀
 
 <div class="termy">
 
@@ -509,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI は自動的に FastAPI アプリケーションを検出し、クラウドへデプロイします。ログインしていない場合は、認証を完了するためにブラウザが開きます。
 
 これで完了です！その URL でアプリにアクセスできます。 ✨
 

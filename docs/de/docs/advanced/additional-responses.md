@@ -34,7 +34,7 @@ Beachten Sie, dass Sie die `JSONResponse` direkt zurückgeben müssen.
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Der `model`-Schlüssel ist nicht Teil von OpenAPI.
 
@@ -183,7 +183,7 @@ Beachten Sie, dass Sie das Bild direkt mit einer `FileResponse` zurückgeben mü
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (Standardmäßig `application/json`).
 

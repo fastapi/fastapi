@@ -1,5 +1,6 @@
 # 容器中的 FastAPI - Docker { #fastapi-in-containers-docker }
 
+
 部署 FastAPI 应用时，常见做法是构建一个**Linux 容器镜像**。通常使用 [**Docker**](https://www.docker.com/) 实现。然后你可以用几种方式之一部署该镜像。
 
 使用 Linux 容器有多种优势，包括**安全性**、**可复制性**、**简单性**等。
@@ -132,7 +133,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 信息
+/// note | 注意
 
 还有其他格式和工具可以定义并安装包依赖。
 
@@ -556,7 +557,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有**多个容器**，可能每个容器运行一个**单独进程**（例如在 **Kubernetes** 集群中），那么你可能希望使用一个**单独的容器**来执行**前置步骤**，在一个容器中运行一个进程，**在**启动那些复制的 worker 容器**之前**完成。
 
-/// info | 信息
+/// note | 注意
 
 如果你使用 Kubernetes，这通常会是一个 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 
