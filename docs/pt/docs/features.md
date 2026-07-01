@@ -1,15 +1,15 @@
-# Recursos { #features }
+# Funcionalidades { #features }
 
-## Recursos do FastAPI { #fastapi-features }
+## Funcionalidades do FastAPI { #fastapi-features }
 
 **FastAPI** te oferece o seguinte:
 
 ### Baseado em padrões abertos { #based-on-open-standards }
 
-* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">caminho</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, requisições de corpo, segurança etc.
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para criação de APIs, incluindo declarações de <dfn title="também conhecido como: endpoints, rotas">path</dfn> <dfn title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</dfn>, parâmetros, corpos de requisição, segurança etc.
 * Documentação automática de modelos de dados com [**JSON Schema**](https://json-schema.org/) (já que o OpenAPI em si é baseado no JSON Schema).
 * Projetado em torno desses padrões, após um estudo meticuloso. Em vez de uma camada improvisada por cima.
-* Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
+* Isso também permite o uso de **geração de código de cliente** automaticamente em muitas linguagens.
 
 ### Documentação automática { #automatic-docs }
 
@@ -75,7 +75,7 @@ Passe as chaves e valores do dicionário `second_user_data` diretamente como arg
 
 Todo o framework foi projetado para ser fácil e intuitivo de usar, todas as decisões foram testadas em vários editores antes do início do desenvolvimento, para garantir a melhor experiência de desenvolvimento.
 
-Na pesquisa de desenvolvedores Python, ficou claro [que um dos recursos mais utilizados é o "preenchimento automático"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
+Nas pesquisas de desenvolvedores Python, ficou claro [que uma das funcionalidades mais utilizadas é o "preenchimento automático"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
 Todo o framework **FastAPI** é feito para satisfazer isso. O preenchimento automático funciona em todos os lugares.
 
@@ -97,9 +97,9 @@ Sem a necessidade de digitar nomes de chaves erroneamente, ir e voltar entre doc
 
 ### Breve { #short }
 
-Há **padrões** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
+Há **valores padrão** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
 
-Por padrão, tudo **"simplesmente funciona"**.
+Mas, por padrão, tudo **"simplesmente funciona"**.
 
 ### Validação { #validation }
 
@@ -121,7 +121,7 @@ Toda a validação é controlada pelo robusto e bem estabelecido **Pydantic**.
 
 Segurança e autenticação integradas. Sem nenhum compromisso com bancos de dados ou modelos de dados.
 
-Todos os esquemas de seguranças definidos no OpenAPI, incluindo:
+Todos os esquemas de segurança definidos no OpenAPI, incluindo:
 
 * HTTP Basic.
 * **OAuth2** (também com **tokens JWT**). Confira o tutorial em [OAuth2 com JWT](tutorial/security/oauth2-jwt.md).
@@ -130,9 +130,9 @@ Todos os esquemas de seguranças definidos no OpenAPI, incluindo:
     * parâmetros da Query.
     * Cookies etc.
 
-Além disso, todos os recursos de segurança do Starlette (incluindo **cookies de sessão**).
+Além disso, todas as funcionalidades de segurança do Starlette (incluindo **cookies de sessão**).
 
-Tudo construído como ferramentas e componentes reutilizáveis que são fáceis de integrar com seus sistemas, armazenamento de dados, banco de dados relacionais e não-relacionais etc.
+Tudo construído como ferramentas e componentes reutilizáveis que são fáceis de integrar com seus sistemas, armazenamentos de dados, bancos de dados relacionais e NoSQL etc.
 
 ### Injeção de dependência { #dependency-injection }
 
@@ -142,40 +142,40 @@ FastAPI inclui um sistema de <dfn title='também conhecido como "componentes", "
 * Tudo **automaticamente controlado** pelo framework.
 * Todas as dependências podem pedir dados das requisições e **ampliar** as restrições e documentação automática da **operação de rota**.
 * **Validação automática** mesmo para parâmetros da *operação de rota* definidos em dependências.
-* Suporte para sistemas de autenticação complexos, **conexões com banco de dados** etc.
+* Suporte para sistemas complexos de autenticação de usuários, **conexões com banco de dados** etc.
 * **Sem comprometer** os bancos de dados, frontends etc. Mas fácil integração com todos eles.
 
 ### "Plug-ins" ilimitados { #unlimited-plug-ins }
 
 Ou, de outra forma, sem a necessidade deles, importe e use o código que precisar.
 
-Qualquer integração é projetada para ser tão simples de usar (com dependências) que você pode criar um "plug-in" para suas aplicações com 2 linhas de código usando a mesma estrutura e sintaxe para as suas *operações de rota*.
+Qualquer integração é projetada para ser tão simples de usar (com dependências) que você pode criar um "plug-in" para sua aplicação com 2 linhas de código usando a mesma estrutura e sintaxe usadas para as suas *operações de rota*.
 
 ### Testado { #tested }
 
 * 100% <dfn title="A quantidade de código que é testada automaticamente">de cobertura de testes</dfn>.
-* 100% do código com <dfn title="Anotações de tipo do Python, com isso seu editor e ferramentas externas podem te dar um suporte melhor">anotações de tipo</dfn>.
+* Base de código 100% <dfn title="Anotações de tipo do Python, com isso seu editor e ferramentas externas podem te dar um suporte melhor">anotada com tipos</dfn>.
 * Usado para aplicações em produção.
 
-## Recursos do Starlette { #starlette-features }
+## Funcionalidades do Starlette { #starlette-features }
 
 **FastAPI** é totalmente compatível com (e baseado no) [**Starlette**](https://www.starlette.dev/). Então, qualquer código adicional Starlette que você tiver, também funcionará.
 
 `FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades se comportará da mesma forma.
 
-Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI é apenas um Starlette com esteróides):
+Com **FastAPI**, você terá todas as funcionalidades do **Starlette** (já que FastAPI é apenas um Starlette com esteroides):
 
 * Desempenho realmente impressionante. É [um dos frameworks Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**](https://github.com/encode/starlette#performance).
 * Suporte a **WebSocket**.
 * Tarefas em processo background.
-* Eventos na inicialização e encerramento.
+* Eventos de inicialização e encerramento.
 * Cliente de testes construído sobre HTTPX.
-* Respostas em **CORS**, GZip, Static Files, Streaming.
+* Respostas **CORS**, GZip, Static Files, Streaming.
 * Suporte a **Session e Cookie**.
 * 100% de cobertura de testes.
-* 100% do código utilizando anotações de tipo.
+* Base de código 100% com anotações de tipo.
 
-## Recursos do Pydantic { #pydantic-features }
+## Funcionalidades do Pydantic { #pydantic-features }
 
 **FastAPI** é totalmente compatível com (e baseado no) [**Pydantic**](https://docs.pydantic.dev/). Então, qualquer código Pydantic adicional que você tiver, também funcionará.
 
@@ -185,7 +185,7 @@ Isso também significa que em muitos casos você poderá passar o mesmo objeto q
 
 O mesmo se aplica no sentido inverso, em muitos casos você poderá simplesmente passar o objeto que você recebeu do banco de dados **diretamente para o cliente**.
 
-Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI utiliza o Pydantic para todo o controle dos dados):
+Com **FastAPI** você terá todas as funcionalidades do **Pydantic** (já que FastAPI utiliza o Pydantic para todo o controle dos dados):
 
 * **Sem pegadinhas**:
     * Sem novas definições de esquema de micro-linguagem para aprender.
