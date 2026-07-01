@@ -8,12 +8,23 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Item(BaseModel):
     name: str
     description: str | None = None
+
+
+class AliasedItem(BaseModel):
+    name: str = Field(serialization_alias="itemName")
+
+
+class AliasedItemWithDefaults(BaseModel):
+    name: str = Field(serialization_alias="itemName")
+    description: str | None = None
+    hidden: str = "secret"
+    status: str = "new"
 
 
 items = [
@@ -60,6 +71,83 @@ async def sse_items_event():
     yield ServerSentEvent(data={"key": "value"}, event="json-data", id="2")
     yield ServerSentEvent(comment="just a comment")
     yield ServerSentEvent(data="retry-test", retry=5000)
+
+
+@app.get("/items/stream-sse-event-model-data", response_class=EventSourceResponse)
+async def sse_items_event_model_data():
+    yield ServerSentEvent(data=AliasedItem(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-no-alias",
+    response_class=EventSourceResponse,
+    response_model_by_alias=False,
+)
+async def sse_items_event_model_data_no_alias():
+    yield ServerSentEvent(data=AliasedItem(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_model_data_include():
+    yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-exclude",
+    response_class=EventSourceResponse,
+    response_model_exclude={"hidden"},
+)
+async def sse_items_event_model_data_exclude():
+    yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-exclude-none",
+    response_class=EventSourceResponse,
+    response_model_exclude_none=True,
+)
+async def sse_items_event_model_data_exclude_none():
+    yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-exclude-unset",
+    response_class=EventSourceResponse,
+    response_model_exclude_unset=True,
+)
+async def sse_items_event_model_data_exclude_unset():
+    yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-model-data-exclude-defaults",
+    response_class=EventSourceResponse,
+    response_model_exclude_defaults=True,
+)
+async def sse_items_event_model_data_exclude_defaults():
+    yield ServerSentEvent(data=AliasedItemWithDefaults(name="Portal Gun"))
+
+
+@app.get(
+    "/items/stream-sse-event-dict-data-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_dict_data_include():
+    yield ServerSentEvent(data={"name": "Portal Gun", "hidden": "secret"})
+
+
+@app.get(
+    "/items/stream-sse-event-list-model-data-no-alias",
+    response_class=EventSourceResponse,
+    response_model_by_alias=False,
+)
+async def sse_items_event_list_model_data_no_alias():
+    yield ServerSentEvent(data=[AliasedItem(name="Portal Gun")])
 
 
 @app.get("/items/stream-mixed", response_class=EventSourceResponse)
@@ -197,6 +285,76 @@ def test_sse_events_with_fields(client: TestClient):
 
     assert "retry: 5000\n" in text
     assert 'data: "retry-test"\n' in text
+
+
+def test_sse_event_model_data_uses_serialization_alias(client: TestClient):
+    response = client.get("/items/stream-sse-event-model-data")
+    assert response.status_code == 200
+    assert 'data: {"itemName":"Portal Gun"}\n' in response.text
+    assert '"name"' not in response.text
+
+
+def test_sse_event_model_data_respects_response_model_by_alias_false(
+    client: TestClient,
+):
+    response = client.get("/items/stream-sse-event-model-data-no-alias")
+    assert response.status_code == 200
+    assert 'data: {"name":"Portal Gun"}\n' in response.text
+    assert '"itemName"' not in response.text
+
+
+@pytest.mark.parametrize(
+    ("path", "expected_data"),
+    [
+        (
+            "/items/stream-sse-event-model-data-include",
+            '{"itemName":"Portal Gun"}',
+        ),
+        (
+            "/items/stream-sse-event-model-data-exclude",
+            '{"itemName":"Portal Gun","description":null,"status":"new"}',
+        ),
+        (
+            "/items/stream-sse-event-model-data-exclude-none",
+            '{"itemName":"Portal Gun","hidden":"secret","status":"new"}',
+        ),
+        (
+            "/items/stream-sse-event-model-data-exclude-unset",
+            '{"itemName":"Portal Gun"}',
+        ),
+        (
+            "/items/stream-sse-event-model-data-exclude-defaults",
+            '{"itemName":"Portal Gun"}',
+        ),
+    ],
+)
+def test_sse_event_model_data_respects_response_model_serialization_options(
+    client: TestClient, path: str, expected_data: str
+):
+    response = client.get(path)
+    assert response.status_code == 200
+    assert response.text == f"data: {expected_data}\n\n"
+
+
+@pytest.mark.parametrize(
+    ("path", "expected_data"),
+    [
+        (
+            "/items/stream-sse-event-dict-data-include",
+            '{"name": "Portal Gun"}',
+        ),
+        (
+            "/items/stream-sse-event-list-model-data-no-alias",
+            '[{"name": "Portal Gun"}]',
+        ),
+    ],
+)
+def test_sse_event_jsonable_encoder_data_respects_response_model_serialization_options(
+    client: TestClient, path: str, expected_data: str
+):
+    response = client.get(path)
+    assert response.status_code == 200
+    assert response.text == f"data: {expected_data}\n\n"
 
 
 def test_mixed_plain_and_sse_events(client: TestClient):
