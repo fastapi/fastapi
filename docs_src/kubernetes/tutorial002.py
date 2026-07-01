@@ -7,7 +7,7 @@ from fastapi import FastAPI
 # Custom filter to remove healthcheck endpoints from logs
 class EndpointFilter(logging.Filter):
     def filter(self, record: logging.LogRecord) -> bool:
-        if record.args and len(record.args) >= 3:
+        if isinstance(record.args, tuple) and len(record.args) >= 3:
             path = record.args[2]
             if path in ("/healthz", "/readyz", "/livez"):
                 return False
