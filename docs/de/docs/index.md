@@ -167,7 +167,7 @@ Es gibt einen [FastAPI-Mini-Dokumentarfilm](https://www.youtube.com/watch?v=mpR8
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Wenn Sie eine <abbr title="Command Line Interface - Kommandozeilen-Schnittstelle">CLI</abbr>-Anwendung für das Terminal erstellen, anstelle einer Web-API, schauen Sie sich [**Typer**](https://typer.tiangolo.com/) an.
+Wenn Sie eine <abbr title="Command Line Interface - Kommandozeileninterface">CLI</abbr>-Anwendung für das Terminal erstellen, anstelle einer Web-API, schauen Sie sich [**Typer**](https://typer.tiangolo.com/) an.
 
 **Typer** ist die kleine Schwester von FastAPI. Und es soll das **FastAPI der CLIs** sein. ⌨️ 🚀
 
