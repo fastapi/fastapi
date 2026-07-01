@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh-hant (add-missing). PR [#15889](https://github.com/fastapi/fastapi/pull/15889) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for pt (add-missing). PR [#15883](https://github.com/fastapi/fastapi/pull/15883) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh (add-missing). PR [#15885](https://github.com/fastapi/fastapi/pull/15885) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ja (add-missing). PR [#15882](https://github.com/fastapi/fastapi/pull/15882) by [@tiangolo](https://github.com/tiangolo).
