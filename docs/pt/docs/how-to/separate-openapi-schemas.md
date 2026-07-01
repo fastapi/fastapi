@@ -1,5 +1,6 @@
 # Esquemas OpenAPI Separados para Entrada e Saída ou Não { #separate-openapi-schemas-for-input-and-output-or-not }
 
+
 Desde que o **Pydantic v2** foi lançado, o OpenAPI gerado é um pouco mais exato e **correto** do que antes. 😎
 
 De fato, em alguns casos, ele terá até **dois JSON Schemas** no OpenAPI para o mesmo modelo Pydantic, para entrada e saída, dependendo se eles possuem **valores padrão**.

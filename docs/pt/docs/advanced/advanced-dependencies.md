@@ -1,5 +1,6 @@
 # Dependências avançadas { #advanced-dependencies }
 
+
 ## Dependências parametrizadas { #parameterized-dependencies }
 
 Todas as dependências que vimos até agora são funções ou classes fixas.
