@@ -763,8 +763,7 @@ def _get_multidict_value(
     else:
         value = values.get(alias, None)
     if value is None or (
-        field_annotation_is_sequence(field.field_info.annotation)
-        and len(value) == 0
+        field_annotation_is_sequence(field.field_info.annotation) and len(value) == 0
     ):
         if field.field_info.is_required():
             return
