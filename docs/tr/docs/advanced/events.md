@@ -2,7 +2,7 @@
 
 Uygulama **başlamadan** önce çalıştırılması gereken mantığı (kodu) tanımlayabilirsiniz. Bu, bu kodun **bir kez**, uygulama **request almaya başlamadan önce** çalıştırılacağı anlamına gelir.
 
-Benzer şekilde, uygulama **kapanırken** çalıştırılması gereken mantığı (kodu) da tanımlayabilirsiniz. Bu durumda bu kod, muhtemelen **çok sayıda request** işlendi **sonra**, **bir kez** çalıştırılır.
+Benzer şekilde, uygulama **kapanırken** çalıştırılması gereken mantığı (kodu) da tanımlayabilirsiniz. Bu durumda bu kod, muhtemelen **çok sayıda request** işlendikten **sonra**, **bir kez** çalıştırılır.
 
 Bu kod, uygulama request almaya **başlamadan** önce ve request’leri işlemeyi **bitirdikten** hemen sonra çalıştığı için, uygulamanın tüm **lifespan**’ını (birazdan "lifespan" kelimesi önemli olacak 😉) kapsar.
 

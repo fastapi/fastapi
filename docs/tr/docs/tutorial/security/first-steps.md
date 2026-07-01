@@ -26,7 +26,7 @@ Güvenliği yönetmek için **FastAPI**’nin sunduğu araçları kullanalım.
 
 /// note | Not
 
-The [`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
+[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
 
 Ancak `pip install fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
 

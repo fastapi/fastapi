@@ -64,7 +64,7 @@ Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 * Bu sayede görüntüler, videolar, büyük binary’ler vb. gibi büyük dosyalarda tüm belleği tüketmeden iyi çalışır.
 * Upload edilen dosyadan metadata alabilirsiniz.
 * [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) bir `async` arayüze sahiptir.
-* [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
+* Gerçek bir Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) nesnesini dışa açar; bunu, file-like nesne bekleyen diğer library’lere doğrudan geçebilirsiniz.
 
 ### `UploadFile` { #uploadfile }
 
