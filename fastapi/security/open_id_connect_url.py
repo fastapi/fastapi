@@ -7,6 +7,36 @@ from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
 
+DOCS = {
+    "url": Doc("""
+            The OpenID Connect URL.
+            """),
+    "scheme": Doc("""
+                Security scheme name.
+
+                It will be included in the generated OpenAPI (e.g. visible at `/docs`).
+                """),
+    "desc": Doc("""
+                Security scheme description.
+
+                It will be included in the generated OpenAPI (e.g. visible at `/docs`).
+                """),
+    "auto": Doc("""
+                By default, if no HTTP Authorization header is provided, required for
+                OpenID Connect authentication, it will automatically cancel the request
+                and send the client an error.
+
+                If `auto_error` is set to `False`, when the HTTP Authorization header
+                is not available, instead of erroring out, the dependency result will
+                be `None`.
+
+                This is useful when you want to have optional authentication.
+
+                It is also useful when you want to have authentication that can be
+                provided in one of multiple optional ways (for example, with OpenID
+                Connect or in a cookie).
+                """)
+}
 
 class OpenIdConnect(SecurityBase):
     """
@@ -22,73 +52,46 @@ class OpenIdConnect(SecurityBase):
     def __init__(
         self,
         *,
-        openIdConnectUrl: Annotated[
-            str,
-            Doc(
-                """
-            The OpenID Connect URL.
-            """
-            ),
-        ],
-        scheme_name: Annotated[
-            str | None,
-            Doc(
-                """
-                Security scheme name.
-
-                It will be included in the generated OpenAPI (e.g. visible at `/docs`).
-                """
-            ),
-        ] = None,
-        description: Annotated[
-            str | None,
-            Doc(
-                """
-                Security scheme description.
-
-                It will be included in the generated OpenAPI (e.g. visible at `/docs`).
-                """
-            ),
-        ] = None,
-        auto_error: Annotated[
-            bool,
-            Doc(
-                """
-                By default, if no HTTP Authorization header is provided, required for
-                OpenID Connect authentication, it will automatically cancel the request
-                and send the client an error.
-
-                If `auto_error` is set to `False`, when the HTTP Authorization header
-                is not available, instead of erroring out, the dependency result will
-                be `None`.
-
-                This is useful when you want to have optional authentication.
-
-                It is also useful when you want to have authentication that can be
-                provided in one of multiple optional ways (for example, with OpenID
-                Connect or in a cookie).
-                """
-            ),
-        ] = True,
+        openIdConnectUrl: Annotated[str, DOCS["url"]],
+        scheme_name: Annotated[str | None, DOCS["scheme"]] = None,
+        description: Annotated[str | None, DOCS["desc"]] = None,
+        auto_error: Annotated[bool, DOCS["auto"]] = True,
     ):
-        self.model = OpenIdConnectModel(
-            openIdConnectUrl=openIdConnectUrl, description=description
-        )
+        self.model = OpenIdConnectModel(openIdConnectUrl=openIdConnectUrl, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    def make_not_authenticated_error(self) -> HTTPException:
+    def make_not_authenticated_error(self, detail: str = "Not authenticated") -> HTTPException:
         return HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
+            detail=detail,
             headers={"WWW-Authenticate": "Bearer"},
         )
 
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
+        
+        # Case 1: Header is entirely missing
         if not authorization:
             if self.auto_error:
-                raise self.make_not_authenticated_error()
-            else:
-                return None
+                raise self.make_not_authenticated_error("Missing 'Authorization' header in request.")
+            return None
+
+        # Case 2: Header exists but uses the wrong protocol/scheme (e.g., Basic, APIKey, or raw token)
+        if not authorization.lower().startswith("bearer "):
+            if self.auto_error:
+                raise self.make_not_authenticated_error(
+                    "Invalid authentication credentials. Expected a 'Bearer <token>' prefix."
+                )
+            return None
+
+        # Case 3: 'Bearer ' prefix is there, but no actual token follows it
+        token = authorization[7:].strip()
+        if not token:
+            if self.auto_error:
+                raise self.make_not_authenticated_error(
+                    "Authentication token value is empty or missing after 'Bearer' prefix."
+                )
+            return None
+
         return authorization
