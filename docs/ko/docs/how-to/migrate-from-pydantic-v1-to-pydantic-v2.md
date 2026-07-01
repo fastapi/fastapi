@@ -8,6 +8,8 @@ FastAPI 0.119.0 버전에서는 v2로의 마이그레이션을 쉽게 하기 위
 
 FastAPI 0.126.0 버전에서는 Pydantic v1 지원을 중단했지만, `pydantic.v1`은 잠시 동안 계속 지원했습니다.
 
+FastAPI 0.128.0 버전에서는 `pydantic.v1` 지원도 중단했으므로, FastAPI의 최신 버전은 Pydantic v2를 필요로 합니다.
+
 /// warning | 경고
 
 Pydantic 팀은 최신 Python 버전에서 Pydantic v1 지원을 중단했으며, 시작 버전은 **Python 3.14**입니다.
@@ -53,6 +55,16 @@ Pydantic v2는 Pydantic v1의 모든 것을 서브모듈 `pydantic.v1`로 포함
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### v2 안의 Pydantic v1에 대한 FastAPI 지원 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | 경고
+
+`pydantic.v1` 모델에 대한 이 FastAPI 지원은 **FastAPI 0.119.0**에서 추가되었고 **FastAPI 0.128.0**에서 제거되었습니다. 이는 Pydantic v2로의 마이그레이션을 위한 임시 도움 기능이었습니다.
+
+현재 버전의 FastAPI에서는 앱에서 `pydantic.v1` 모델을 사용하면 오류가 발생합니다.
+
+이 섹션의 나머지 부분은 해당 오래된 버전에서만 사용할 수 있는 임시 지원을 설명합니다.
+
+///
 
 FastAPI 0.119.0부터는 v2로의 마이그레이션을 쉽게 하기 위해, Pydantic v2 내부의 Pydantic v1에 대해서도 부분적인 지원이 있습니다.
 
@@ -121,6 +133,12 @@ Pydantic v1 모델과 함께 `Body`, `Query`, `Form` 등 파라미터용 FastAPI
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### 단계적으로 마이그레이션하기 { #migrate-in-steps }
+
+/// warning | 경고
+
+아래에 설명된 같은 앱에서 Pydantic v1과 v2 모델을 모두 사용하는 점진적 마이그레이션은 **FastAPI 0.119.0부터 0.127.x까지**에서만 동작합니다. 이는 **FastAPI 0.128.0**에서 제거되었으며, 최신 버전은 **Pydantic v2** 모델을 필요로 합니다.
+
+///
 
 /// tip | 팁
 

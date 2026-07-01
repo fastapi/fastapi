@@ -165,7 +165,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 ### 콜백 라우터 추가하기 { #add-the-callback-router }
 
-이 시점에서, 위에서 만든 콜백 라우터 안에 *콜백 경로 처리(들)*(즉 *external developer*가 *external API*에 구현해야 하는 것들)을 준비했습니다.
+이 시점에서, 위에서 만든 콜백 라우터 안에 *콜백 경로 처리(들)*(즉 *외부 개발자*가 *external API*에 구현해야 하는 것들)을 준비했습니다.
 
 이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성을 전달합니다:
 

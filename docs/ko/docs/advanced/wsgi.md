@@ -42,7 +42,7 @@
 Hello, World from Flask!
 ```
 
-그리고 [http://localhost:8000/v2](http://localhost:8000/v2)로 이동하면 **FastAPI**의 응답을 볼 수 있습니다:
+그리고 [http://localhost:8000/v2](http://localhost:8000/v2)로 이동하면 FastAPI의 응답을 볼 수 있습니다:
 
 ```JSON
 {

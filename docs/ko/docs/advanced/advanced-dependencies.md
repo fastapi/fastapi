@@ -79,7 +79,7 @@ checker(q="somequery")
 
 ### `yield`와 `scope`가 있는 의존성 { #dependencies-with-yield-and-scope }
 
-0.121.0 버전에서 FastAPI는 `Depends(scope="function")` 지원을 추가했습니다.
+0.121.0 버전에서 FastAPI는 `yield`가 있는 의존성을 위한 `Depends(scope="function")` 지원을 추가했습니다.
 
 `Depends(scope="function")`를 사용하면, `yield` 이후의 종료 코드는 *경로 처리 함수*가 끝난 직후(클라이언트에 응답이 반환되기 전)에 실행됩니다.
 
