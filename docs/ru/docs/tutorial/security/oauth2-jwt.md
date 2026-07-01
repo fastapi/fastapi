@@ -176,7 +176,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
-### Технические подробности о JWT "subject" `sub` { #technical-details-about-the-jwt-subject-sub }
+### Технические подробности о JWT ключе `sub` { #technical-details-about-the-jwt-subject-sub }
 
 В спецификации JWT говорится, что существует ключ `sub`, содержащий субъект токена.
 
