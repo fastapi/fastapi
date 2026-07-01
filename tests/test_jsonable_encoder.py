@@ -202,6 +202,19 @@ def test_encode_model_with_default():
     }
 
 
+def test_encode_model_with_default_in_container():
+    # exclude_defaults must be forwarded when recursing into dict values, just
+    # like it already is for list/tuple/set items.
+    model = ModelWithDefault(foo="foo", bar="bar")
+    assert jsonable_encoder([model], exclude_defaults=True) == [{"foo": "foo"}]
+    assert jsonable_encoder({"m": model}, exclude_defaults=True) == {
+        "m": {"foo": "foo"}
+    }
+    assert jsonable_encoder({"m": model}, exclude_unset=True) == {
+        "m": {"foo": "foo", "bar": "bar"}
+    }
+
+
 def test_custom_encoders():
     class safe_datetime(datetime):
         pass
