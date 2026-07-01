@@ -297,6 +297,6 @@ participant execute as Execute function
 
 你可以使用 Pydantic Settings 来处理应用的设置或配置，享受 Pydantic 模型的全部能力。
 
-- 通过使用依赖项，你可以简化测试。
-- 你可以与它一起使用 `.env` 文件。
-- 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。
+* 通过使用依赖项，你可以简化测试。
+* 你可以与它一起使用 `.env` 文件。
+* 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。

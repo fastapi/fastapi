@@ -6,7 +6,7 @@
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
-* 等...
+* 等。
 
 {* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
@@ -27,13 +27,13 @@
 它可以：
 
 * 在响应中返回状态码
-* 在 OpenAPI 概图（及用户界面）中存档：
+* 在 OpenAPI schema（以及用户界面）中将其记录为该状态码：
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
 /// note | 注意
 
-某些响应状态码表示响应没有响应体（参阅下一章）。
+某些响应状态码表示响应没有响应体（参阅下一节）。
 
 FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
@@ -43,7 +43,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 /// note | 注意
 
-如果已经了解 HTTP 状态码，请跳到下一章。
+如果已经了解 HTTP 状态码，请跳到下一节。
 
 ///
 
