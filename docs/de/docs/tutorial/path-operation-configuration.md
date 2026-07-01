@@ -38,11 +38,11 @@ Diese werden zum OpenAPI-Schema hinzugefügt und von den automatischen Dokumenta
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
-### Tags mittels Enumeration { #tags-with-enums }
+### Tags mit Enums { #tags-with-enums }
 
-Wenn Sie eine große Anwendung haben, können sich am Ende **viele Tags** anhäufen, und Sie möchten sicherstellen, dass Sie für verwandte *Pfadoperationen* immer den **gleichen Tag** verwenden.
+Wenn Sie eine große Anwendung haben, können sich am Ende **mehrere Tags** anhäufen, und Sie möchten sicherstellen, dass Sie für verwandte *Pfadoperationen* immer den **gleichen Tag** verwenden.
 
-In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
+In diesen Fällen kann es sinnvoll sein, die Tags in einem `Enum` zu speichern.
 
 **FastAPI** unterstützt das auf die gleiche Weise wie einfache Strings:
 
@@ -104,4 +104,4 @@ Vergleichen Sie, wie deprecatete und nicht-deprecatete *Pfadoperationen* aussehe
 
 ## Zusammenfassung { #recap }
 
-Sie können auf einfache Weise Metadaten für Ihre *Pfadoperationen* definieren, indem Sie den *Pfadoperation-Dekoratoren* Parameter hinzufügen.
+Sie können Ihre *Pfadoperationen* einfach konfigurieren und Metadaten hinzufügen, indem Sie den *Pfadoperation-Dekoratoren* Parameter übergeben.

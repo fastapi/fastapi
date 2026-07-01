@@ -20,13 +20,13 @@ Sie könnten auf diese Weise auch **Video** oder **Audio** streamen, es könnte 
 
 ## Eine `StreamingResponse` mit `yield` { #a-streamingresponse-with-yield }
 
-Wenn Sie in Ihrer Pfadoperation-Funktion ein `response_class=StreamingResponse` deklarieren, können Sie `yield` verwenden, um nacheinander jeden Datenchunk zu senden.
+Wenn Sie in Ihrer *Pfadoperation-Funktion* ein `response_class=StreamingResponse` deklarieren, können Sie `yield` verwenden, um nacheinander jeden Datenchunk zu senden.
 
 {* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
 
 FastAPI übergibt jeden Datenchunk unverändert an die `StreamingResponse`, es wird nicht versucht, ihn in JSON oder etwas Ähnliches zu konvertieren.
 
-### Nicht-async-Pfadoperation-Funktionen { #non-async-path-operation-functions }
+### Nicht-async-*Pfadoperation-Funktionen* { #non-async-path-operation-functions }
 
 Sie können auch reguläre `def`-Funktionen (ohne `async`) verwenden und `yield` auf die gleiche Weise einsetzen.
 
@@ -58,7 +58,7 @@ Zum Beispiel können Sie eine `PNGStreamingResponse` erstellen, die den `Content
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
 
-Dann können Sie diese neue Klasse mit `response_class=PNGStreamingResponse` in Ihrer Pfadoperation-Funktion verwenden:
+Dann können Sie diese neue Klasse mit `response_class=PNGStreamingResponse` in Ihrer *Pfadoperation-Funktion* verwenden:
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
 
@@ -98,7 +98,7 @@ Aber in vielen Fällen würde das Lesen einer Datei oder eines dateiähnlichen O
 
 ///
 
-Um die Event-Loop nicht zu blockieren, können Sie die Pfadoperation-Funktion einfach mit normalem `def` statt `async def` deklarieren, dadurch führt FastAPI sie in einem Threadpool-Worker aus, um die Haupt-Event-Loop nicht zu blockieren.
+Um die Event-Loop nicht zu blockieren, können Sie die *Pfadoperation-Funktion* einfach mit normalem `def` statt `async def` deklarieren, dadurch führt FastAPI sie in einem Threadpool-Worker aus, um die Haupt-Event-Loop nicht zu blockieren.
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
 
