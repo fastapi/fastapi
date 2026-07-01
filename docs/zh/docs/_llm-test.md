@@ -37,7 +37,7 @@
 
 昨天，我的朋友写道："如果你把 incorrectly 拼对了，你就把它拼错了"。我回答："没错，但 'incorrectly' 错的不是 '"incorrectly"'"。
 
-/// note
+/// note | 注意
 
 LLM 很可能会把这段翻错。我们只关心在重新翻译时它是否能保持修正后的译文。
 
@@ -124,24 +124,24 @@ works(foo="bar")  # 这可行 🎉
 
 //// tab | 测试
 
-/// note
-Some text
+/// note | 注意
+一些文本
 ///
 
 /// note | 技术细节
-Some text
+一些文本
 ///
 
-/// tip
-Some text
+/// tip | 提示
+一些文本
 ///
 
-/// warning
-Some text
+/// warning | 警告
+一些文本
 ///
 
-/// danger
-Some text
+/// danger | 危险
+一些文本
 ///
 
 ////
@@ -213,7 +213,7 @@ Some text
 
 ## HTML "dfn" 元素 { #html-dfn-elements }
 
-* <dfn title="配置为以某种方式连接并协同工作的机器组">集群</dfn>
+* <dfn title="配置为以某种方式连接并协同工作的一组机器。">集群</dfn>
 * <dfn title="一种使用具有多个隐藏层的人工神经网络的机器学习方法，从输入层到输出层构建了完整的内部结构">深度学习</dfn>
 
 ## 标题 { #headings }
@@ -222,15 +222,15 @@ Some text
 
 ### 开发 Web 应用——教程 { #develop-a-webapp-a-tutorial }
 
-Hello.
+你好。
 
 ### 类型提示与注解 { #type-hints-and-annotations }
 
-Hello again.
+再次你好。
 
 ### 超类与子类 { #super-and-subclasses }
 
-Hello again.
+再次你好。
 
 ////
 
@@ -248,241 +248,241 @@ Hello again.
 
 //// tab | 测试
 
-* you
-* your
+* 你
+* 你的
 
-* e.g.
-* etc.
+* 例如
+* 等
 
-* `foo` as an `int`
-* `bar` as a `str`
-* `baz` as a `list`
+* 作为 `int` 的 `foo`
+* 作为 `str` 的 `bar`
+* 作为 `list` 的 `baz`
 
-* the Tutorial - User guide
-* the Advanced User Guide
-* the SQLModel docs
-* the API docs
-* the automatic docs
+* 教程 - 用户指南
+* 高级用户指南
+* SQLModel 文档
+* API 文档
+* 自动文档
 
-* Data Science
-* Deep Learning
-* Machine Learning
-* Dependency Injection
-* HTTP Basic authentication
+* 数据科学
+* 深度学习
+* 机器学习
+* 依赖注入
+* HTTP Basic 认证
 * HTTP Digest
-* ISO format
-* the JSON Schema standard
-* the JSON schema
-* the schema definition
-* Password Flow
-* Mobile
+* ISO 格式
+* JSON Schema 标准
+* JSON schema
+* schema 定义
+* 密码流
+* 移动端
 
-* deprecated
-* designed
-* invalid
-* on the fly
-* standard
-* default
-* case-sensitive
-* case-insensitive
+* 已弃用
+* 设计的
+* 无效
+* 动态地
+* 标准
+* 默认
+* 区分大小写
+* 不区分大小写
 
-* to serve the application
-* to serve the page
+* 为应用提供服务
+* 为页面提供服务
 
-* the app
-* the application
+* 应用
+* 应用程序
 
-* the request
-* the response
-* the error response
+* 请求
+* 响应
+* 错误响应
 
-* the path operation
-* the path operation decorator
-* the path operation function
+* 路径操作
+* 路径操作装饰器
+* 路径操作函数
 
-* the body
-* the request body
-* the response body
-* the JSON body
-* the form body
-* the file body
-* the function body
+* 请求体
+* 请求体
+* 响应体
+* JSON 请求体
+* 表单体
+* 文件体
+* 函数体
 
-* the parameter
-* the body parameter
-* the path parameter
-* the query parameter
-* the cookie parameter
-* the header parameter
-* the form parameter
-* the function parameter
+* 参数
+* 请求体参数
+* 路径参数
+* 查询参数
+* Cookie 参数
+* Header 参数
+* 表单参数
+* 函数参数
 
-* the event
-* the startup event
-* the startup of the server
-* the shutdown event
-* the lifespan event
+* 事件
+* 启动事件
+* 服务器启动
+* 关闭事件
+* lifespan 事件
 
-* the handler
-* the event handler
-* the exception handler
-* to handle
+* 处理器
+* 事件处理器
+* 异常处理器
+* 处理
 
-* the model
-* the Pydantic model
-* the data model
-* the database model
-* the form model
-* the model object
+* 模型
+* Pydantic 模型
+* 数据模型
+* 数据库模型
+* 表单模型
+* 模型对象
 
-* the class
-* the base class
-* the parent class
-* the subclass
-* the child class
-* the sibling class
-* the class method
+* 类
+* 基类
+* 父类
+* 子类
+* 子类
+* 兄弟类
+* 类方法
 
-* the header
-* the headers
-* the authorization header
-* the `Authorization` header
-* the forwarded header
+* Header
+* Headers
+* 授权 Header
+* `Authorization` header
+* 转发 Header
 
-* the dependency injection system
-* the dependency
-* the dependable
-* the dependant
+* 依赖注入系统
+* 依赖项
+* 可依赖项
+* 依赖方
 
-* I/O bound
-* CPU bound
-* concurrency
-* parallelism
-* multiprocessing
+* I/O 密集型
+* CPU 密集型
+* 并发
+* 并行
+* 多进程
 
-* the env var
-* the environment variable
-* the `PATH`
-* the `PATH` variable
+* 环境变量
+* 环境变量
+* `PATH`
+* `PATH` 变量
 
-* the authentication
-* the authentication provider
-* the authorization
-* the authorization form
-* the authorization provider
-* the user authenticates
-* the system authenticates the user
+* 认证
+* 认证提供方
+* 授权
+* 授权表单
+* 授权提供方
+* 用户进行认证
+* 系统对用户进行认证
 
-* the CLI
-* the command line interface
+* CLI
+* 命令行界面
 
-* the server
-* the client
+* 服务器
+* 客户端
 
-* the cloud provider
-* the cloud service
+* 云服务提供商
+* 云服务
 
-* the development
-* the development stages
+* 开发
+* 开发阶段
 
-* the dict
-* the dictionary
-* the enumeration
-* the enum
-* the enum member
+* dict
+* 字典
+* 枚举
+* 枚举
+* 枚举成员
 
-* the encoder
-* the decoder
-* to encode
-* to decode
+* 编码器
+* 解码器
+* 编码
+* 解码
 
-* the exception
-* to raise
+* 异常
+* 抛出
 
-* the expression
-* the statement
+* 表达式
+* 语句
 
-* the frontend
-* the backend
+* 前端
+* 后端
 
-* the GitHub discussion
-* the GitHub issue
+* GitHub 讨论
+* GitHub issue
 
-* the performance
-* the performance optimization
+* 性能
+* 性能优化
 
-* the return type
-* the return value
+* 返回类型
+* 返回值
 
-* the security
-* the security scheme
+* 安全
+* 安全方案
 
-* the task
-* the background task
-* the task function
+* 任务
+* 后台任务
+* 任务函数
 
-* the template
-* the template engine
+* 模板
+* 模板引擎
 
-* the type annotation
-* the type hint
+* 类型注解
+* 类型提示
 
-* the server worker
-* the Uvicorn worker
-* the Gunicorn Worker
-* the worker process
-* the worker class
-* the workload
+* 服务器 worker
+* Uvicorn worker
+* Gunicorn Worker
+* worker 进程
+* worker 类
+* 工作负载
 
-* the deployment
-* to deploy
+* 部署
+* 部署
 
-* the SDK
-* the software development kit
+* SDK
+* 软件开发工具包
 
-* the `APIRouter`
-* the `requirements.txt`
-* the Bearer Token
-* the breaking change
-* the bug
-* the button
-* the callable
-* the code
-* the commit
-* the context manager
-* the coroutine
-* the database session
-* the disk
-* the domain
-* the engine
-* the fake X
-* the HTTP GET method
-* the item
-* the library
-* the lifespan
-* the lock
-* the middleware
-* the mobile application
-* the module
-* the mounting
-* the network
-* the origin
-* the override
-* the payload
-* the processor
-* the property
-* the proxy
-* the pull request
-* the query
-* the RAM
-* the remote machine
-* the status code
-* the string
-* the tag
-* the web framework
-* the wildcard
-* to return
-* to validate
+* `APIRouter`
+* `requirements.txt`
+* Bearer Token
+* 破坏性变更
+* bug
+* 按钮
+* 可调用对象
+* 代码
+* 提交
+* 上下文管理器
+* 协程
+* 数据库会话
+* 磁盘
+* 域名
+* 引擎
+* 虚假 X
+* HTTP GET 方法
+* 项
+* 库
+* 生命周期
+* 锁
+* 中间件
+* 移动应用
+* 模块
+* 挂载
+* 网络
+* 源
+* 覆盖
+* 载荷
+* 处理器
+* 属性
+* 代理
+* Pull Request
+* 查询
+* RAM
+* 远程机器
+* 状态码
+* 字符串
+* 标签
+* Web 框架
+* 通配符
+* 返回
+* 校验
 
 ////
 
