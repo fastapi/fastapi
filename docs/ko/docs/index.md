@@ -125,7 +125,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <div class="only-github" markdown="1">
 
-"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부를 바꿀 계획입니다. 그중 일부는 핵심 **Windows**와 몇몇의 **Office** 제품들이 통합되고 있습니다._"
+"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부에 사용할 계획입니다. 그중 일부는 핵심 **Windows** 제품과 일부 **Office** 제품에 통합되고 있습니다._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
@@ -137,7 +137,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
-"_**Netflix**는 우리의 오픈 소스 배포판인 **위기 관리** 오케스트레이션 프레임워크를 발표할 수 있어 기쁩니다: 바로 **Dispatch**입니다! [**FastAPI**로 빌드]_"
+"_**Netflix**는 우리의 **위기 관리** 오케스트레이션 프레임워크인 **Dispatch**의 오픈 소스 공개를 발표하게 되어 기쁩니다! [**FastAPI**로 빌드]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
 
@@ -192,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Note**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
+**참고**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
 
 ## 예제 { #example }
 
@@ -237,9 +237,9 @@ async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**참고**:
 
-잘 모르겠다면, ["급하세요?"](https://fastapi.tiangolo.com/ko/async/#in-a-hurry) 섹션을 확인해 보십시오.
+잘 모르겠다면, 문서의 [`async`와 `await`](https://fastapi.tiangolo.com/ko/async/#in-a-hurry)에 관한 _"급하세요?"_ 섹션을 확인해 보십시오.
 
 </details>
 
