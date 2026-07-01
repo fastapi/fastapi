@@ -34,6 +34,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#15909](https://github.com/fastapi/fastapi/pull/15909) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#15906](https://github.com/fastapi/fastapi/pull/15906) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15878](https://github.com/fastapi/fastapi/pull/15878) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Remove not needed `allow-unsafe-pr-checkout: true`. PR [#15876](https://github.com/fastapi/fastapi/pull/15876) by [@YuriiMotov](https://github.com/YuriiMotov).
