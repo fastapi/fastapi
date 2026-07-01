@@ -89,7 +89,7 @@ spec:
         image: my-fastapi-app-image:latest
         ports:
         - containerPort: 8000
-        
+
         # 1. Startup Probe: Wait for database migration or model loading
         startupProbe:
           httpGet:
@@ -98,14 +98,14 @@ spec:
           # Allow up to 30 seconds for startup (6 * 5s)
           failureThreshold: 6
           periodSeconds: 5
-          
+
         # 2. Liveness Probe: Check if the application is still responding
         livenessProbe:
           httpGet:
             path: /healthz
             port: 8000
           periodSeconds: 10
-          
+
         # 3. Readiness Probe: Check if ready to receive customer traffic
         readinessProbe:
           httpGet:
