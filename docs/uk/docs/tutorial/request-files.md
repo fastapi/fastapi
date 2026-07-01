@@ -12,7 +12,7 @@
 $ pip install python-multipart
 ```
 
-Це необхідно, оскільки завантажені файли передаються у вигляді «form data».
+Це необхідно, оскільки завантажені файли передаються як «дані форми».
 
 ///
 
@@ -30,7 +30,7 @@ $ pip install python-multipart
 
 /// note | Примітка
 
-`File` — це клас, який безпосередньо успадковує `Form`.
+`File` - це клас, який безпосередньо успадковує `Form`.
 
 Але пам’ятайте, що коли ви імпортуєте `Query`, `Path`, `File` та інші з `fastapi`, це насправді функції, які повертають спеціальні класи.
 
@@ -42,7 +42,7 @@ $ pip install python-multipart
 
 ///
 
-Файли будуть завантажені у вигляді «form data».
+Файли будуть завантажені як «дані форми».
 
 Якщо ви оголосите тип параметра *функції операції шляху* як `bytes`, **FastAPI** прочитає файл за вас, і ви отримаєте його вміст у вигляді `bytes`.
 
@@ -70,8 +70,8 @@ $ pip install python-multipart
 
 `UploadFile` має такі атрибути:
 
-* `filename`: Рядок `str` з оригінальною назвою файлу, який був завантажений (наприклад, `myimage.jpg`).
-* `content_type`: Рядок `str` з типом вмісту (MIME type / media type) (наприклад, `image/jpeg`).
+* `filename`: Строка `str` з оригінальною назвою файлу, який був завантажений (наприклад, `myimage.jpg`).
+* `content_type`: Строка `str` з типом вмісту (MIME type / media type) (наприклад, `image/jpeg`).
 * `file`: [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) ([file-like](https://docs.python.org/3/glossary.html#term-file-like-object) об'єкт). Це фактичний файловий об'єкт Python, який ви можете передавати безпосередньо іншим функціям або бібліотекам, що очікують «file-like» об'єкт.
 
 `UploadFile` має такі асинхронні `async` методи. Вони всі викликають відповідні методи файлу під капотом (використовуючи внутрішній `SpooledTemporaryFile`).
@@ -109,7 +109,7 @@ contents = myfile.file.read()
 
 ///
 
-## Що таке «Form Data» { #what-is-form-data }
+## Що таке «дані форми» { #what-is-form-data }
 
 Спосіб, у який HTML-форми (`<form></form>`) надсилають дані на сервер, зазвичай використовує «спеціальне» кодування для цих даних, відмінне від JSON.
 
@@ -121,7 +121,7 @@ contents = myfile.file.read()
 
 Але якщо форма містить файли, вона кодується як `multipart/form-data`. Якщо ви використовуєте `File`, **FastAPI** знатиме, що потрібно отримати файли з правильної частини тіла.
 
-Якщо ви хочете дізнатися більше про ці типи кодування та формові поля, ознайомтеся з [<abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> web docs для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Якщо ви хочете дізнатися більше про ці типи кодування та поля форми, ознайомтеся з [<abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> web docs для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
@@ -149,7 +149,7 @@ contents = myfile.file.read()
 
 Можна завантажувати кілька файлів одночасно.
 
-Вони будуть пов’язані з одним і тим самим «form field», який передається у вигляді «form data».
+Вони будуть пов’язані з одним і тим самим «полем форми», яке передається як «дані форми».
 
 Щоб це реалізувати, потрібно оголосити список `bytes` або `UploadFile`:
 
@@ -173,4 +173,4 @@ contents = myfile.file.read()
 
 ## Підсумок { #recap }
 
-Використовуйте `File`, `bytes` та `UploadFile`, щоб оголошувати файли для завантаження в запиті, надіслані у вигляді form data.
+Використовуйте `File`, `bytes` та `UploadFile`, щоб оголошувати файли для завантаження в запиті, надіслані як дані форми.

@@ -6,7 +6,7 @@
 
 ## Підпишіться на розсилку { #subscribe-to-the-newsletter }
 
-Ви можете підписатися на (нечасту) розсилку [**FastAPI and friends**](newsletter.md), щоб бути в курсі:
+Ви можете підписатися на (нечасту) [розсилку **FastAPI and friends**](newsletter.md), щоб бути в курсі:
 
 * Новин про FastAPI та друзів 🚀
 * Посібників 📝
