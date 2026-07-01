@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -420,3 +422,96 @@ def test_openapi_schema():
             },
         }
     )
+
+
+# Tests for the "null values discarded from OpenAPI examples" bug
+# (see github discussions #8401, #12048 and issue #5559). The historical
+# `exclude_none=True` pass at the end of `get_openapi` was stripping `null`
+# values from inside user-provided `example` / `examples`, where `null` may
+# be a legitimate documented value.
+
+_null_app = FastAPI()
+
+
+@_null_app.get(
+    "/r1",
+    responses={
+        200: {
+            "content": {
+                "application/json": {"example": {"absent": None, "present": "value"}}
+            }
+        }
+    },
+)
+def _r1() -> dict:
+    return {}
+
+
+@_null_app.get(
+    "/r2",
+    responses={
+        200: {
+            "content": {
+                "application/json": {
+                    "examples": {
+                        "with_null": {
+                            "summary": "has null",
+                            "value": {"a": None, "b": 1},
+                        },
+                    }
+                }
+            }
+        }
+    },
+)
+def _r2() -> dict:
+    return {}
+
+
+@_null_app.get("/r3")
+def _r3(
+    q: Annotated[
+        str | None,
+        Query(examples={"nil": {"value": None}, "val": {"value": "x"}}),
+    ] = None,
+) -> dict:
+    return {}
+
+
+def test_null_preserved_in_response_example():
+    schema = _null_app.openapi()
+    example = schema["paths"]["/r1"]["get"]["responses"]["200"]["content"][
+        "application/json"
+    ]["example"]
+    assert example == {"absent": None, "present": "value"}
+
+
+def test_null_preserved_in_response_examples_plural():
+    schema = _null_app.openapi()
+    examples = schema["paths"]["/r2"]["get"]["responses"]["200"]["content"][
+        "application/json"
+    ]["examples"]
+    assert examples["with_null"]["value"] == {"a": None, "b": 1}
+
+
+def test_null_preserved_in_parameter_examples():
+    schema = _null_app.openapi()
+    param = schema["paths"]["/r3"]["get"]["parameters"][0]
+    examples = param["schema"]["examples"]
+    assert examples["nil"]["value"] is None
+    assert examples["val"]["value"] == "x"
+
+
+def test_unrelated_none_fields_still_stripped():
+    """Regression: only `null`s inside `example` / `examples` are preserved.
+    Other internal `None` defaults (e.g. unset `summary`, `description`,
+    Pydantic-default `example: None` on parameter dicts) must still be
+    stripped, as the historical behavior."""
+    schema = _null_app.openapi()
+    # No parameter should carry a stray `example: null` from internal defaults.
+    for path_item in schema["paths"].values():
+        for op in path_item.values():
+            if not isinstance(op, dict):
+                continue
+            for parameter in op.get("parameters", []):
+                assert "example" not in parameter or parameter["example"] is not None
