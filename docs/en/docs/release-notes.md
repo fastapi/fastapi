@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.139.0 (2026-07-01)
+
 ### Features
 
 * ✨ Support dependencies in `app.frontend()`, e.g. for automatic cookie authentication for the frontend. PR [#15908](https://github.com/fastapi/fastapi/pull/15908) by [@tiangolo](https://github.com/tiangolo).
