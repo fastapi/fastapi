@@ -19,6 +19,11 @@ async def post_multi_part(
     return {"file": file, "age": age}
 
 
+@app.post("/urlencoded-required")
+async def post_url_encoded_required(name: Annotated[str, Form()]):
+    return name
+
+
 client = TestClient(app)
 
 
@@ -32,3 +37,9 @@ def test_form_default_multi_part():
     response = client.post("/multipart", data={"age": ""})
     assert response.status_code == 200
     assert response.json() == {"file": None, "age": None}
+
+
+def test_required_form_field_with_empty_string():
+    response = client.post("/urlencoded-required", data={"name": ""})
+    assert response.status_code == 200
+    assert response.text == ""

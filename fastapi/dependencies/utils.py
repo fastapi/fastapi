@@ -762,20 +762,22 @@ def _get_multidict_value(
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
-    if (
-        value is None
-        or (
-            isinstance(field.field_info, params.Form)
-            and isinstance(value, str)  # For type checks
-            and value == ""
-        )
-        or (
-            field_annotation_is_sequence(field.field_info.annotation)
-            and len(value) == 0
-        )
+    if value is None or (
+        field_annotation_is_sequence(field.field_info.annotation)
+        and len(value) == 0
     ):
         if field.field_info.is_required():
             return
+        else:
+            return deepcopy(field.default)
+
+    if (
+        isinstance(field.field_info, params.Form)
+        and isinstance(value, str)  # For type checks
+        and value == ""
+    ):
+        if field.field_info.is_required():
+            return value
         else:
             return deepcopy(field.default)
     return value
