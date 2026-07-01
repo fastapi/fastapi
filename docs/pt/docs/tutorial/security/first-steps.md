@@ -62,9 +62,9 @@ Você verá algo deste tipo:
 
 /// tip | Botão Autorizar!
 
-Você já tem um novo botão 'Authorize'.
+Você já tem um novo e brilhante botão "Authorize".
 
-E sua operação de rota tem um pequeno cadeado no canto superior direito em que você pode clicar.
+E sua *operação de rota* tem um pequeno cadeado no canto superior direito em que você pode clicar.
 
 ///
 
@@ -80,7 +80,7 @@ Não importa o que você digite no formulário, ainda não vai funcionar. Mas n�
 
 Claro que este não é o frontend para os usuários finais, mas é uma ótima ferramenta automática para documentar interativamente toda a sua API.
 
-Pode ser usada pelo time de frontend (que pode ser você mesmo).
+Pode ser usada pela equipe de frontend (que pode ser você mesmo).
 
 Pode ser usada por aplicações e sistemas de terceiros.
 
@@ -106,7 +106,7 @@ Então, vamos rever de um ponto de vista simplificado:
         * Então, o usuário terá que fazer login novamente em algum momento.
         * E se o token for roubado, o risco é menor. Não é como uma chave permanente que funcionará para sempre (na maioria dos casos).
 * O frontend armazena esse token temporariamente em algum lugar.
-* O usuário clica no frontend para ir para outra seção do aplicativo web.
+* O usuário clica no frontend para ir para outra seção da aplicação web do frontend.
 * O frontend precisa buscar mais dados da API.
     * Mas precisa de autenticação para aquele endpoint específico.
     * Então, para autenticar com nossa API, ele envia um header `Authorization` com o valor `Bearer ` mais o token.
@@ -144,7 +144,7 @@ Usar uma URL relativa é importante para garantir que sua aplicação continue f
 
 ///
 
-Esse parâmetro não cria aquele endpoint/operação de rota, mas declara que a URL `/token` será aquela que o client deve usar para obter o token. Essa informação é usada no OpenAPI e depois nos sistemas de documentação interativa da API.
+Esse parâmetro não cria aquele endpoint / *operação de rota*, mas declara que a URL `/token` será aquela que o client deve usar para obter o token. Essa informação é usada no OpenAPI e depois nos sistemas de documentação interativa da API.
 
 Em breve também criaremos a operação de rota real.
 

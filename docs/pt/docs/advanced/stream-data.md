@@ -2,7 +2,7 @@
 
 Se você quer transmitir dados que podem ser estruturados como JSON, você deveria [Transmitir JSON Lines](../tutorial/stream-json-lines.md).
 
-Mas se você quer transmitir dados binários puros ou strings, veja como fazer.
+Mas se você quer **transmitir dados binários puros** ou strings, veja como fazer.
 
 /// note | Nota
 
@@ -12,15 +12,15 @@ Adicionado no FastAPI 0.134.0.
 
 ## Casos de uso { #use-cases }
 
-Você pode usar isto para transmitir strings puras, por exemplo diretamente da saída de um serviço de AI LLM.
+Você pode usar isto para transmitir strings puras, por exemplo diretamente da saída de um serviço de **AI LLM**.
 
-Você também pode usá-lo para transmitir arquivos binários grandes, enviando cada bloco de dados à medida que o lê, sem precisar carregar tudo na memória de uma vez.
+Você também pode usá-lo para transmitir **arquivos binários grandes**, enviando cada bloco de dados à medida que o lê, sem precisar carregar tudo na memória de uma vez.
 
-Você também pode transmitir vídeo ou áudio desta forma; pode até ser gerado enquanto você processa e envia.
+Você também pode transmitir **vídeo** ou **áudio** desta forma; pode até ser gerado enquanto você processa e envia.
 
 ## Um `StreamingResponse` com `yield` { #a-streamingresponse-with-yield }
 
-Se você declarar `response_class=StreamingResponse` na sua função de operação de rota, você pode usar `yield` para enviar cada bloco de dados em sequência.
+Se você declarar `response_class=StreamingResponse` na sua *função de operação de rota*, você pode usar `yield` para enviar cada bloco de dados em sequência.
 
 {* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
 
@@ -40,7 +40,7 @@ Como o FastAPI não tentará converter os dados para JSON com Pydantic nem seria
 
 {* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
 
-Isso também significa que, com `StreamingResponse`, você tem a liberdade e a responsabilidade de produzir e codificar os bytes exatamente como precisam ser enviados, independentemente das anotações de tipo. 🤓
+Isso também significa que, com `StreamingResponse`, você tem a **liberdade** e a **responsabilidade** de produzir e codificar os bytes exatamente como precisam ser enviados, independentemente das anotações de tipo. 🤓
 
 ### Transmitir bytes { #stream-bytes }
 
@@ -50,7 +50,7 @@ Um dos principais casos de uso é transmitir `bytes` em vez de strings; você po
 
 ## Um `PNGStreamingResponse` personalizado { #a-custom-pngstreamingresponse }
 
-Nos exemplos acima, os bytes eram transmitidos, mas a resposta não tinha um cabeçalho `Content-Type`, então o cliente não sabia que tipo de dado estava recebendo.
+Nos exemplos acima, os bytes eram transmitidos, mas a response não tinha um cabeçalho `Content-Type`, então o cliente não sabia que tipo de dado estava recebendo.
 
 Você pode criar uma subclasse personalizada de `StreamingResponse` que define o cabeçalho `Content-Type` para o tipo de dado que você está transmitindo.
 
@@ -58,7 +58,7 @@ Por exemplo, você pode criar um `PNGStreamingResponse` que define o cabeçalho 
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
 
-Em seguida, você pode usar essa nova classe em `response_class=PNGStreamingResponse` na sua função de operação de rota:
+Em seguida, você pode usar essa nova classe em `response_class=PNGStreamingResponse` na sua *função de operação de rota*:
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
 
@@ -78,7 +78,7 @@ Apenas para que possa viver no mesmo arquivo deste exemplo e você possa copiar 
 
 ///
 
-Ao usar um bloco `with`, garantimos que o objeto semelhante a arquivo seja fechado após a função geradora (a função com `yield`) terminar. Ou seja, após terminar de enviar a resposta.
+Ao usar um bloco `with`, garantimos que o objeto semelhante a arquivo seja fechado após a função geradora (a função com `yield`) terminar. Ou seja, após terminar de enviar a response.
 
 Isso não seria tão importante neste exemplo específico porque é um arquivo falso em memória (com `io.BytesIO`), mas com um arquivo real, seria importante garantir que o arquivo fosse fechado ao final do trabalho.
 
@@ -98,7 +98,7 @@ Mas, em muitos casos, ler um arquivo ou um objeto semelhante a arquivo bloqueari
 
 ///
 
-Para evitar bloquear o loop de eventos, você pode simplesmente declarar a função de operação de rota com `def` normal em vez de `async def`. Assim, o FastAPI a executará em um worker de threadpool, evitando bloquear o loop principal.
+Para evitar bloquear o loop de eventos, você pode simplesmente declarar a *função de operação de rota* com `def` normal em vez de `async def`. Assim, o FastAPI a executará em um worker de threadpool, evitando bloquear o loop principal.
 
 {* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
 
