@@ -7,7 +7,7 @@ In short, use `fastapi run` to serve your FastAPI application:
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+$ fastapi run main.py
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
 
