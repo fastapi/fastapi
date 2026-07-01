@@ -9,18 +9,18 @@ Repositorio de GitHub: [Plantilla Full Stack FastAPI](https://github.com/tiangol
 ## Plantilla Full Stack FastAPI - Stack de tecnología y funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/es) para la API del backend en Python.
-    - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
-    - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
-    - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
+  - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
+  - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
+  - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
-    - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.
-    - 🎨 [Tailwind CSS](https://tailwindcss.com) y [shadcn/ui](https://ui.shadcn.com) para los componentes del frontend.
-    - 🤖 Un cliente de frontend generado automáticamente.
-    - 🧪 [Playwright](https://playwright.dev) para escribir pruebas End-to-End.
-    - 🦇 Soporte para modo oscuro.
+  - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.
+  - 🎨 [Tailwind CSS](https://tailwindcss.com) y [shadcn/ui](https://ui.shadcn.com) para los componentes del frontend.
+  - 🤖 Un cliente de frontend generado automáticamente.
+  - 🧪 [Playwright](https://playwright.dev) para escribir pruebas End-to-End.
+  - 🦇 Soporte para modo oscuro.
 - 🐋 [Docker Compose](https://www.docker.com) para desarrollo y producción.
 - 🔒 Hashing seguro de contraseñas por defecto.
-- 🔑 Autenticación con tokens JWT.
+- 🔑 Autenticación con JWT (JSON Web Token).
 - 📫 Recuperación de contraseñas basada en email.
 - ✅ Pruebas con [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) como proxy inverso / load balancer.

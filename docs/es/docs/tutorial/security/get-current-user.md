@@ -4,7 +4,9 @@ En el capítulo anterior, el sistema de seguridad (que se basa en el sistema de 
 
 {* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
-Pero eso aún no es tan útil. Vamos a hacer que nos dé el usuario actual.
+Pero eso aún no es tan útil.
+
+Vamos a hacer que nos dé el usuario actual.
 
 ## Crear un modelo de usuario { #create-a-user-model }
 
@@ -12,7 +14,7 @@ Primero, vamos a crear un modelo de usuario con Pydantic.
 
 De la misma manera que usamos Pydantic para declarar cuerpos, podemos usarlo en cualquier otra parte:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## Crear una dependencia `get_current_user` { #create-a-get-current-user-dependency }
 
@@ -66,7 +68,7 @@ Y puedes usar cualquier modelo o datos para los requisitos de seguridad (en este
 
 Pero no estás limitado a usar algún modelo de datos, clase o tipo específico.
 
-¿Quieres tener un `id` y `email` y no tener un `username` en tu modelo? Claro. Puedes usar estas mismas herramientas.
+¿Quieres tener un `id` y `email` y no tener ningún `username` en tu modelo? Claro. Puedes usar estas mismas herramientas.
 
 ¿Quieres solo tener un `str`? ¿O solo un `dict`? ¿O un instance de clase modelo de base de datos directamente? Todo funciona de la misma manera.
 

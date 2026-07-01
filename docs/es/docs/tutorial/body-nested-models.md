@@ -23,7 +23,7 @@ pasa el/los tipo(s) interno(s) como "parámetros de tipo" usando corchetes: `[` 
 my_list: list[str]
 ```
 
-Eso es toda la sintaxis estándar de Python para declaraciones de tipo.
+Esa es toda la sintaxis estándar de Python para declaraciones de tipo.
 
 Usa esa misma sintaxis estándar para atributos de modelos con tipos internos.
 

@@ -6,13 +6,13 @@ De la misma manera, puedes definir lógica (código) que debería ser ejecutada 
 
 Debido a que este código se ejecuta antes de que la aplicación **comience** a tomar requests, y justo después de que **termine** de manejarlos, cubre todo el **lifespan** de la aplicación (la palabra "lifespan" será importante en un momento 😉).
 
-Esto puede ser muy útil para configurar **recursos** que necesitas usar para toda la app, y que son **compartidos** entre requests, y/o que necesitas **limpiar** después. Por ejemplo, un pool de conexiones a una base de datos, o cargando un modelo de machine learning compartido.
+Esto puede ser muy útil para configurar **recursos** que necesitas usar para toda la app, y que son **compartidos** entre requests, y/o que necesitas **limpiar** después. Por ejemplo, un pool de conexiones a una base de datos, o cargando un modelo de Machine Learning compartido.
 
 ## Caso de Uso { #use-case }
 
 Empecemos con un ejemplo de **caso de uso** y luego veamos cómo resolverlo con esto.
 
-Imaginemos que tienes algunos **modelos de machine learning** que quieres usar para manejar requests. 🤖
+Imaginemos que tienes algunos **modelos de Machine Learning** que quieres usar para manejar requests. 🤖
 
 Los mismos modelos son compartidos entre requests, por lo que no es un modelo por request, o uno por usuario o algo similar.
 
@@ -32,7 +32,7 @@ Creamos una función asíncrona `lifespan()` con `yield` así:
 
 {* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
-Aquí estamos simulando la operación costosa de *startup* de cargar el modelo poniendo la función del (falso) modelo en el diccionario con modelos de machine learning antes del `yield`. Este código será ejecutado **antes** de que la aplicación **comience a tomar requests**, durante el *startup*.
+Aquí estamos simulando la operación costosa de *startup* de cargar el modelo poniendo la función del (falso) modelo en el diccionario con modelos de Machine Learning antes del `yield`. Este código será ejecutado **antes** de que la aplicación **comience a tomar requests**, durante el *startup*.
 
 Y luego, justo después del `yield`, quitaremos el modelo de memoria. Este código será ejecutado **después** de que la aplicación **termine de manejar requests**, justo antes del *shutdown*. Esto podría, por ejemplo, liberar recursos como la memoria o una GPU.
 

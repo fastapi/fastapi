@@ -109,6 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.), tu función verá el parámetro `short` con un valor `bool` de `True`. De lo contrario, será `False`.
 
+
 ## Múltiples parámetros de path y de query { #multiple-path-and-query-parameters }
 
 Puedes declarar múltiples parámetros de path y de query al mismo tiempo, **FastAPI** sabe cuál es cuál.

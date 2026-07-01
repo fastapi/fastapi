@@ -10,7 +10,7 @@ Imaginemos que queremos tener una dependencia que revise si el parámetro de que
 
 Pero queremos poder parametrizar ese contenido fijo.
 
-## Una *instance* "callable" { #a-callable-instance }
+## Una instance "callable" { #a-callable-instance }
 
 En Python hay una forma de hacer que una instance de una clase sea un "callable".
 
@@ -108,7 +108,7 @@ Como verás abajo, esto es muy similar al comportamiento anterior a la versión 
 
 Hay algunos casos de uso con condiciones específicas que podrían beneficiarse del comportamiento antiguo de ejecutar el código de salida de dependencias con `yield` antes de enviar la response.
 
-Por ejemplo, imagina que tienes código que usa una sesión de base de datos en una dependencia con `yield` solo para verificar un usuario, pero la sesión de base de datos no se vuelve a usar en la *path operation function*, solo en la dependencia, y la response tarda mucho en enviarse, como un `StreamingResponse` que envía datos lentamente, pero que por alguna razón no usa la base de datos.
+Por ejemplo, imagina que tienes código que usa una sesión de base de datos en una dependencia con `yield` solo para verificar un usuario, pero la sesión de base de datos no se vuelve a usar en la *path operation function*, solo en la dependencia, **y** la response tarda mucho en enviarse, como un `StreamingResponse` que envía datos lentamente, pero que por alguna razón no usa la base de datos.
 
 En este caso, la sesión de base de datos se mantendría hasta que la response termine de enviarse, pero si no la usas, entonces no sería necesario mantenerla.
 

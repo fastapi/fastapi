@@ -16,13 +16,13 @@ Esto es porque los archivos subidos se envían como "form data".
 
 ///
 
-## Importar `File` { #import-file }
+## Importa `File` { #import-file }
 
 Importa `File` y `UploadFile` desde `fastapi`:
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
 
-## Definir Parámetros `File` { #define-file-parameters }
+## Define Parámetros `File` { #define-file-parameters }
 
 Crea parámetros de archivo de la misma manera que lo harías para `Body` o `Form`:
 
@@ -117,7 +117,7 @@ La manera en que los formularios de HTML (`<form></form>`) envían los datos al 
 
 /// note | Detalles Técnicos
 
-Los datos de los forms normalmente se codifican usando el "media type" `application/x-www-form-urlencoded` cuando no incluyen archivos.
+Los datos de los formularios normalmente se codifican usando el "media type" `application/x-www-form-urlencoded` cuando no incluyen archivos.
 
 Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Si usas `File`, **FastAPI** sabrá que tiene que obtener los archivos de la parte correcta del cuerpo.
 
