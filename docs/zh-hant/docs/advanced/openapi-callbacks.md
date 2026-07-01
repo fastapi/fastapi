@@ -4,7 +4,7 @@
 
 當你的 API 應用呼叫「外部 API」時發生的過程稱為「回呼（callback）」。因為外部開發者撰寫的軟體會先向你的 API 發出請求，接著你的 API 再「回呼」，也就是向（可能同一位開發者建立的）外部 API 發送請求。
 
-在這種情況下，你可能想要文件化說明該外部 API 應該長什麼樣子。它應該有哪些「路徑操作」、應該接受什麼 body、應該回傳什麼 response，等等。
+在這種情況下，你可能想要文件化說明該外部 API 應該長什麼樣子。它應該有哪些「路徑操作」、應該接受什麼 body、應該回傳什麼回應，等等。
 
 ## 帶有回呼的應用 { #an-app-with-callbacks }
 
@@ -82,7 +82,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 在撰寫回呼的文件化程式碼時，把自己想像成那位「外部開發者」會很有幫助。而且你現在是在實作「外部 API」，不是「你的 API」。
 
-暫時採用這個（外部開發者）的視角，有助於讓你更直覺地決定該把參數、body 的 Pydantic 模型、response 的模型等放在哪裡，對於那個「外部 API」會更清楚。
+暫時採用這個（外部開發者）的視角，有助於讓你更直覺地決定該把參數、body 的 Pydantic 模型、回應模型等放在哪裡，對於那個「外部 API」會更清楚。
 
 ///
 
@@ -99,7 +99,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 它看起來就像一般的 FastAPI「路徑操作」：
 
 * 可能需要宣告它應該接收的 body，例如 `body: InvoiceEvent`。
-* 也可以宣告它應該回傳的 response，例如 `response_model=InvoiceEventReceived`。
+* 也可以宣告它應該回傳的回應，例如 `response_model=InvoiceEventReceived`。
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
