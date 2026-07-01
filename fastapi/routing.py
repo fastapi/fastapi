@@ -665,6 +665,10 @@ def get_request_handler(
                     media_type="application/jsonl",
                     background=solved_result.background_tasks,
                 )
+                # For Nginx proxies to not buffer the streamed response.
+                # Caching headers are intentionally left to the user, as JSONL
+                # is also used for bulk exports where caching can be legitimate.
+                response.headers["X-Accel-Buffering"] = "no"
                 response.headers.raw.extend(solved_result.response.headers.raw)
             elif dependant.is_async_gen_callable or dependant.is_gen_callable:
                 # Raw streaming with explicit response_class (e.g. StreamingResponse)
