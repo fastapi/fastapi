@@ -24,7 +24,7 @@ Mais rappelez-vous que lorsque vous importez `Query`, `Path`, `Header` et d'autr
 
 ///
 
-/// info
+/// note | Remarque
 
 Pour déclarer des en-têtes, vous devez utiliser `Header`, sinon les paramètres seraient interprétés comme des paramètres de requête.
 

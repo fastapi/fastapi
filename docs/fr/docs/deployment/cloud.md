@@ -1,6 +1,6 @@
 # Déployer FastAPI sur des fournisseurs cloud { #deploy-fastapi-on-cloud-providers }
 
-Vous pouvez utiliser pratiquement n'importe quel fournisseur cloud pour déployer votre application FastAPI.
+Vous pouvez utiliser pratiquement **n'importe quel fournisseur cloud** pour déployer votre application FastAPI.
 
 Dans la plupart des cas, les principaux fournisseurs cloud proposent des guides pour déployer FastAPI avec leurs services.
 
@@ -16,7 +16,7 @@ FastAPI Cloud est le sponsor principal et le financeur des projets open source *
 
 ## Fournisseurs cloud - Sponsors { #cloud-providers-sponsors }
 
-D'autres fournisseurs cloud ✨ [**parrainent FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ également. 🙇
+Certains autres fournisseurs cloud ✨ [**parrainent FastAPI**](https://github.com/sponsors/tiangolo) ✨ également. 🙇
 
 Vous pouvez également envisager ces fournisseurs pour suivre leurs guides et essayer leurs services :
 

@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | Información
+/// note | Nota
 
 `**second_user_data` significa:
 
@@ -130,7 +130,7 @@ Todos los esquemas de seguridad definidos en OpenAPI, incluyendo:
     * Parámetros de query.
     * Cookies, etc.
 
-Además de todas las características de seguridad de Starlette (incluyendo **cookies de sesión**).
+Además de todas las funcionalidades de seguridad de Starlette (incluyendo **cookies de sesión**).
 
 Todo construido como herramientas y componentes reutilizables que son fáciles de integrar con tus sistemas, almacenes de datos, bases de datos relacionales y NoSQL, etc.
 
@@ -179,7 +179,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 
 **FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
-Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper – Mapeador Objeto-Relacional">ORM</abbr>s, <abbr title="Object-Document Mapper – Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
+Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s y <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
 Esto también significa que, en muchos casos, puedes pasar el mismo objeto que obtienes de un request **directamente a la base de datos**, ya que todo se valida automáticamente.
 
@@ -190,7 +190,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.

@@ -2,7 +2,7 @@
 
 Você pode definir arquivos para serem enviados pelo cliente usando `File`.
 
-/// info | Informação
+/// note | Nota
 
 Para receber arquivos enviados, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Crie parâmetros de arquivo da mesma forma que você faria para `Body` ou `Form`
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | Informação
+/// note | Nota
 
 `File` é uma classe que herda diretamente de `Form`.
 
@@ -44,7 +44,7 @@ Para declarar corpos de arquivos, você precisa usar `File`, caso contrário, os
 
 Os arquivos serão enviados como "dados de formulário".
 
-Se você declarar o tipo do parâmetro da função da sua *operação de rota* como `bytes`, o **FastAPI** lerá o arquivo para você e você receberá o conteúdo como `bytes`.
+Se você declarar o tipo do parâmetro da sua *função de operação de rota* como `bytes`, o **FastAPI** lerá o arquivo para você e você receberá o conteúdo como `bytes`.
 
 Mantenha em mente que isso significa que todo o conteúdo será armazenado na memória. Isso funcionará bem para arquivos pequenos.
 
@@ -63,8 +63,8 @@ Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
     * Um arquivo armazenado na memória até um limite máximo de tamanho, e após passar esse limite, ele será armazenado no disco.
 * Isso significa que funcionará bem para arquivos grandes como imagens, vídeos, binários grandes, etc., sem consumir toda a memória.
 * Você pode receber metadados do arquivo enviado.
-* Ele tem uma [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) interface `assíncrona`.
-* Ele expõe um objeto python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) que você pode passar diretamente para outras bibliotecas que esperam um objeto semelhante a um arquivo.
+* Ele tem uma interface [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async`.
+* Ele expõe um objeto Python [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) real que você pode passar diretamente para outras bibliotecas que esperam um objeto semelhante a um arquivo.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,9 +72,9 @@ Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 
 * `filename`: Uma `str` com o nome do arquivo original que foi enviado (por exemplo, `myimage.jpg`).
 * `content_type`: Uma `str` com o tipo de conteúdo (MIME type / media type) (por exemplo, `image/jpeg`).
-* `file`: Um [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (um [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objeto). Este é o objeto de arquivo Python que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto semelhante a um arquivo.
+* `file`: Um [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (um objeto [file-like](https://docs.python.org/3/glossary.html#term-file-like-object)). Este é o objeto de arquivo Python que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto semelhante a um arquivo.
 
-`UploadFile` tem os seguintes métodos `assíncronos`. Todos eles chamam os métodos de arquivo correspondentes por baixo dos panos (usando o `SpooledTemporaryFile` interno).
+`UploadFile` tem os seguintes métodos `async`. Todos eles chamam os métodos de arquivo correspondentes por baixo dos panos (usando o `SpooledTemporaryFile` interno).
 
 * `write(data)`: Escreve `data` (`str` ou `bytes`) no arquivo.
 * `read(size)`: Lê `size` (`int`) bytes/caracteres do arquivo.
@@ -83,15 +83,15 @@ Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
     * Isso é especialmente útil se você executar `await myfile.read()` uma vez e precisar ler o conteúdo novamente.
 * `close()`: Fecha o arquivo.
 
-Como todos esses métodos são métodos `assíncronos`, você precisa "aguardar" por eles.
+Como todos esses métodos são métodos `async`, você precisa "aguardar" por eles.
 
-Por exemplo, dentro de uma função de *operação de rota* `assíncrona`, você pode obter o conteúdo com:
+Por exemplo, dentro de uma *função de operação de rota* `async`, você pode obter o conteúdo com:
 
 ```Python
 contents = await myfile.read()
 ```
 
-Se você estiver dentro de uma função de *operação de rota* normal `def`, você pode acessar o `UploadFile.file` diretamente, por exemplo:
+Se você estiver dentro de uma *função de operação de rota* normal `def`, você pode acessar o `UploadFile.file` diretamente, por exemplo:
 
 ```Python
 contents = myfile.file.read()
@@ -109,7 +109,7 @@ O `UploadFile` do **FastAPI** herda diretamente do `UploadFile` do **Starlette**
 
 ///
 
-## O que é "Form Data" { #what-is-form-data }
+## O que são "Dados de Formulário" { #what-is-form-data }
 
 O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, a qual é diferente do JSON.
 
@@ -119,9 +119,9 @@ O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servid
 
 Dados de formulários normalmente são codificados usando o "media type" `application/x-www-form-urlencoded` quando não incluem arquivos.
 
-Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo da requisição.
+Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [<abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [documentação web da <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

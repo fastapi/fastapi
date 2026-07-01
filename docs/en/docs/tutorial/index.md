@@ -92,7 +92,7 @@ FastAPI has an [official extension for VS Code](https://marketplace.visualstudio
 
 ## Advanced User Guide { #advanced-user-guide }
 
-There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+There is also an **Advanced User Guide** that you can read later after this **Tutorial - User Guide**.
 
 The **Advanced User Guide** builds on this one, uses the same concepts, and teaches you some extra features.
 

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -21,7 +26,7 @@
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pyp/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -40,11 +45,11 @@ Temel özellikleri şunlardır:
 * **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [Mevcut en hızlı Python framework'lerinden biri](#performance).
 * **Kodlaması Hızlı**: Özellik geliştirme hızını yaklaşık %200 ile %300 aralığında artırır. *
 * **Daha az hata**: İnsan (geliştirici) kaynaklı hataları yaklaşık %40 azaltır. *
-* **Sezgisel**: Harika bir editör desteği. Her yerde <dfn title="oto-tamamlama, autocompletion, IntelliSense olarak da bilinir">Tamamlama</dfn>. Hata ayıklamaya daha az zaman.
+* **Sezgisel**: Harika bir editör desteği. Her yerde <dfn title="otomatik tamamlama, oto-tamamlama, IntelliSense olarak da bilinir">Tamamlama</dfn>. Hata ayıklamaya daha az zaman.
 * **Kolay**: Kullanımı ve öğrenmesi kolay olacak şekilde tasarlandı. Doküman okumaya daha az zaman.
 * **Kısa**: Kod tekrarını minimize eder. Her parametre tanımından birden fazla özellik. Daha az hata.
 * **Sağlam**: Production'a hazır kod elde edersiniz. Otomatik etkileşimli dokümantasyon ile birlikte.
-* **Standardlara dayalı**: API'lar için açık standartlara dayalıdır (ve tamamen uyumludur); [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (önceden Swagger olarak biliniyordu) ve [JSON Schema](https://json-schema.org/).
+* **Standartlara dayalı**: API'lar için açık standartlara dayalıdır (ve tamamen uyumludur); [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (önceden Swagger olarak biliniyordu) ve [JSON Schema](https://json-schema.org/).
 
 <small>* tahmin, production uygulamalar geliştiren dahili bir geliştirme ekibinin yaptığı testlere dayanmaktadır.</small>
 
@@ -487,9 +492,7 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 
 ### Uygulamanızı deploy edin (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; eğer henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
-
-Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek bir komutla deploy edebilirsiniz.
+FastAPI uygulamanızı tek bir komutla [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve cloud'a deploy eder. Giriş yapmadıysanız, kimlik doğrulama sürecini tamamlamak için tarayıcınız açılır.
 
 Hepsi bu! Artık uygulamanıza bu URL'den erişebilirsiniz. ✨
 

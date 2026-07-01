@@ -208,4 +208,4 @@ En este caso, puedes usar `dict`:
 
 Usa múltiples modelos Pydantic y hereda libremente para cada caso.
 
-No necesitas tener un solo modelo de datos por entidad si esa entidad debe poder tener diferentes "estados". Como el caso con la "entidad" usuario con un estado que incluye `password`, `password_hash` y sin contraseña.
+No necesitas tener un solo modelo de datos por entidad si esa entidad debe poder tener diferentes "estados". La "entidad" **usuario** es un ejemplo, con estados que incluyen `password`, `password_hash` o ninguna contraseña.

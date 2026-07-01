@@ -1,5 +1,6 @@
 # レスポンスの Cookie { #response-cookies }
 
+
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 *path operation 関数*で `Response` 型のパラメータを宣言できます。

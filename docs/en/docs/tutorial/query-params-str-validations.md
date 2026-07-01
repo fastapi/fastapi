@@ -406,7 +406,7 @@ But if you're curious about this specific code example and you're still entertai
 
 #### String with `value.startswith()` { #string-with-value-startswith }
 
-Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+Did you notice? A string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 

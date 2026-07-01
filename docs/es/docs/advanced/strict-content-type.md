@@ -40,7 +40,7 @@ Ten en cuenta que ambos tienen el mismo host.
 
 Luego, usando el frontend, puedes hacer que el agente de IA haga cosas en tu nombre.
 
-Como está corriendo localmente y no en Internet abierta, decides no tener ninguna autenticación configurada, confiando simplemente en el acceso a la red local.
+Como está corriendo **localmente** y no en Internet abierta, decides **no tener ninguna autenticación** configurada, confiando simplemente en el acceso a la red local.
 
 Entonces, uno de tus usuarios podría instalarlo y ejecutarlo localmente.
 
@@ -69,9 +69,9 @@ Si tu app está en Internet abierta, no “confiarías en la red” ni permitir�
 
 Los atacantes podrían simplemente ejecutar un script para enviar requests a tu API, sin necesidad de interacción del navegador, así que probablemente ya estás asegurando cualquier endpoint privilegiado.
 
-En ese caso, este ataque/riesgo no aplica a ti.
+En ese caso, **este ataque/riesgo no aplica a ti**.
 
-Este riesgo y ataque es relevante principalmente cuando la app corre en la red local y esa es la única protección asumida.
+Este riesgo y ataque es relevante principalmente cuando la app corre en la **red local** y esa es la **única protección asumida**.
 
 ## Permitir requests sin Content-Type { #allowing-requests-without-content-type }
 
@@ -81,7 +81,7 @@ Si necesitas soportar clientes que no envían un header `Content-Type`, puedes d
 
 Con esta configuración, las requests sin un header `Content-Type` tendrán su body parseado como JSON, que es el mismo comportamiento de versiones anteriores de FastAPI.
 
-/// info | Información
+/// note | Nota
 
 Este comportamiento y configuración se añadieron en FastAPI 0.132.0.
 

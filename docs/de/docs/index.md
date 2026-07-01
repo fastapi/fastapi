@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -162,7 +167,7 @@ Es gibt einen [FastAPI-Mini-Dokumentarfilm](https://www.youtube.com/watch?v=mpR8
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Wenn Sie eine <abbr title="Command Line Interface - Kommandozeilen-Schnittstelle">CLI</abbr>-Anwendung für das Terminal erstellen, anstelle einer Web-API, schauen Sie sich [**Typer**](https://typer.tiangolo.com/) an.
+Wenn Sie eine <abbr title="Command Line Interface - Kommandozeileninterface">CLI</abbr>-Anwendung für das Terminal erstellen, anstelle einer Web-API, schauen Sie sich [**Typer**](https://typer.tiangolo.com/) an.
 
 **Typer** ist die kleine Schwester von FastAPI. Und es soll das **FastAPI der CLIs** sein. ⌨️ 🚀
 
@@ -187,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Hinweis**: Stellen Sie sicher, dass Sie `"fastapi[standard]"` in Anführungszeichen setzen, damit es in allen Terminals funktioniert.
+**Hinweis**: Stellen Sie sicher, dass Sie „fastapi[standard]“ in Anführungszeichen setzen, damit es in allen Terminals funktioniert.
 
 ## Beispiel { #example }
 
@@ -487,9 +492,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 
 ### Ihre App deployen (optional) { #deploy-your-app-optional }
 
-Optional können Sie Ihre FastAPI-App in die [FastAPI Cloud](https://fastapicloud.com) deployen, gehen Sie und treten Sie der Warteliste bei, falls noch nicht geschehen. 🚀
-
-Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem einzigen Befehl deployen.
+Optional können Sie Ihre FastAPI-App mit einem einzigen Befehl in die [FastAPI Cloud](https://fastapicloud.com) deployen. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+Das CLI erkennt Ihre FastAPI-Anwendung automatisch und deployt sie in die Cloud. Wenn Sie nicht eingeloggt sind, wird Ihr Browser geöffnet, um den Authentifizierungsprozess abzuschließen.
 
 Das war’s! Jetzt können Sie unter dieser URL auf Ihre App zugreifen. ✨
 

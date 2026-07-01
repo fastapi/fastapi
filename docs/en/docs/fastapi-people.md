@@ -1,6 +1,16 @@
 ---
 hide:
   - navigation
+
+include_yaml:
+  github_sponsors: data/github_sponsors.yml
+  people: data/people.yml
+  contributors: data/contributors.yml
+  translation_reviewers: data/translation_reviewers.yml
+  skip_users: data/skip_users.yml
+  members: data/members.yml
+  sponsors_badge: data/sponsors_badge.yml
+  sponsors: data/sponsors.yml
 ---
 
 # FastAPI People
@@ -21,7 +31,7 @@ This is me:
 
 </div>
 
-I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author).
+I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Follow the author](help-fastapi.md#follow-the-author).
 
 ...But here I want to show you the community.
 
@@ -32,9 +42,8 @@ I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - 
 These are the people that:
 
 * [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github).
-* [Create Pull Requests](help-fastapi.md#create-a-pull-request).
-* Review Pull Requests, [especially important for translations](contributing.md#translations).
-* Help [manage the repository](management-tasks.md) (team members).
+* Create or review Pull Requests.
+* Help [manage the repository](https://tiangolo.com/open-source/management-tasks/) (team members).
 
 All these tasks help maintain the repository.
 
@@ -44,7 +53,7 @@ A round of applause to them. 👏 🙇
 
 This is the current list of team members. 😎
 
-They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md) and together we  [manage the FastAPI repository](./management.md).
+They have different levels of involvement and permissions, they can perform [repository management tasks](https://tiangolo.com/open-source/management-tasks/) and together we [manage the FastAPI repository](./management.md).
 
 <div class="user-list user-list-center">
 
@@ -56,7 +65,7 @@ They have different levels of involvement and permissions, they can perform [rep
 
 </div>
 
-Although the team members have the permissions to perform privileged tasks, all the [help from others maintaining FastAPI](./help-fastapi.md#help-maintain-fastapi) is very much appreciated! 🙇‍♂️
+Although the team members have the permissions to perform privileged tasks, all the help from others maintaining FastAPI is very much appreciated! 🙇‍♂️
 
 ## FastAPI Experts
 
@@ -176,7 +185,7 @@ These are the users that have [helped others the most with questions in GitHub](
 
 Here are the **Top Contributors**. 👷
 
-These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request) that have been *merged*.
+These users have created the most Pull Requests that have been *merged*.
 
 They have contributed source code, documentation, etc. 📦
 
@@ -200,7 +209,7 @@ There are hundreds of other contributors, you can see them all in the [FastAPI G
 
 These users are the **Top Translation Reviewers**. 🕵️
 
-Translation reviewers have the [**power to approve translations**](contributing.md#translations) of the documentation. Without them, there wouldn't be documentation in several other languages.
+Translation reviewers have the **power to approve translations** of the documentation. Without them, there wouldn't be documentation in several other languages.
 
 <div class="user-list user-list-center">
 {% for user in (translation_reviewers.values() | list)[:50] %}

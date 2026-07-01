@@ -2,7 +2,7 @@
 
 当你需要接收表单字段而不是 JSON 时，可以使用 `Form`。
 
-/// info
+/// note | 注意
 
 要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
@@ -32,13 +32,13 @@ $ pip install python-multipart
 
 使用 `Form` 可以像使用 `Body`（以及 `Query`、`Path`、`Cookie`）一样声明相同的配置，包括校验、示例、别名（例如将 `username` 写成 `user-name`）等。
 
-/// info
+/// note | 注意
 
 `Form` 是直接继承自 `Body` 的类。
 
 ///
 
-/// tip
+/// tip | 提示
 
 要声明表单请求体，必须显式使用 `Form`，否则这些参数会被当作查询参数或请求体（JSON）参数。
 
@@ -60,9 +60,9 @@ HTML 表单（`<form></form>`）向服务器发送数据时通常会对数据使
 
 ///
 
-/// warning
+/// warning | 警告
 
-你可以在一个路径操作中声明多个 `Form` 参数，但不能同时再声明要接收为 JSON 的 `Body` 字段，因为此时请求体会使用 `application/x-www-form-urlencoded` 而不是 `application/json` 进行编码。
+你可以在一个*路径操作*中声明多个 `Form` 参数，但不能同时再声明要接收为 JSON 的 `Body` 字段，因为此时请求体会使用 `application/x-www-form-urlencoded` 而不是 `application/json` 进行编码。
 
 这不是 **FastAPI** 的限制，而是 HTTP 协议的一部分。
 

@@ -23,7 +23,7 @@ pasa el/los tipo(s) interno(s) como "parámetros de tipo" usando corchetes: `[` 
 my_list: list[str]
 ```
 
-Eso es toda la sintaxis estándar de Python para declaraciones de tipo.
+Esa es toda la sintaxis estándar de Python para declaraciones de tipo.
 
 Usa esa misma sintaxis estándar para atributos de modelos con tipos internos.
 
@@ -136,7 +136,7 @@ Esto esperará (convertirá, validará, documentará, etc.) un cuerpo JSON como:
 }
 ```
 
-/// info | Información
+/// note | Nota
 
 Nota cómo la clave `images` ahora tiene una lista de objetos de imagen.
 
@@ -148,7 +148,7 @@ Puedes definir modelos anidados tan profundamente como desees:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Información
+/// note | Nota
 
 Observa cómo `Offer` tiene una lista de `Item`s, que a su vez tienen una lista opcional de `Image`s
 

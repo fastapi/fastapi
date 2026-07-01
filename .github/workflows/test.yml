@@ -5,9 +5,6 @@ on:
     branches:
       - master
   pull_request:
-    types:
-      - opened
-      - synchronize
   schedule:
     # cron every week on monday
     - cron: "0 0 * * 1"
@@ -25,10 +22,11 @@ jobs:
     permissions:
       pull-requests: read
     # Set job outputs to values from filter step
+    timeout-minutes: 5
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         persist-credentials: false
     # For pull requests it's not necessary to checkout the code but for the main branch it is
@@ -50,6 +48,7 @@ jobs:
     needs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
@@ -82,6 +81,11 @@ jobs:
             codspeed: codspeed
             deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
+            python-version: "3.13"
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+            without-httpx2: true
+          - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
@@ -103,17 +107,19 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Setup uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
-          version: "0.11.4"
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -129,15 +135,19 @@ jobs:
       - name: Install deprecated libraries just for testing
         if: matrix.deprecated-tests == 'test-deprecation'
         run: uv pip install orjson ujson
+      - name: Uninstall httpx2 to run tests with httpx
+        if: matrix.without-httpx2 == 'true'
+        run: uv pip uninstall httpx2
       - name: Reinstall SQLAlchemy without Cython extensions
         if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
         run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
-        run: uv run --no-sync bash scripts/test-cov.sh
+        run: uv run --no-sync bash scripts/test-cov.sh $PYTEST_OPTIONS
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          PYTEST_OPTIONS: ${{ (matrix.without-httpx2 == 'true') && '-W ignore::UserWarning' || '' }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
@@ -152,6 +162,7 @@ jobs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       UV_PYTHON: "3.13"
       UV_RESOLUTION: highest
@@ -160,17 +171,19 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.13"
       - name: Setup uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
-          version: "0.11.4"
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -178,7 +191,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
       - name: CodSpeed benchmarks
-        uses: CodSpeedHQ/action@658a901452bb54c799643e060733b7afe9121b8d # v4.14.0
+        uses: CodSpeedHQ/action@63f3e98b61959fe67f146a3ff022e4136fe9bb9c # v4.17.6
         with:
           mode: simulation
           run: uv run --no-sync pytest tests/benchmarks --codspeed
@@ -187,21 +200,24 @@ jobs:
     needs:
       - test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
-          version: "0.11.4"
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -226,12 +242,14 @@ jobs:
       - run: uv run coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
-  check:  # This job does nothing and is only used for the branch protection
+  test-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
+      - test
       - coverage-combine
       - benchmark
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:

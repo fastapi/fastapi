@@ -19,11 +19,11 @@
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 另外的 API 文档：[**ReDoc**](https://github.com/Rebilly/ReDoc)
+* 另外的 API 文档：[**ReDoc**](https://github.com/Rebilly/ReDoc)。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 更主流的 Python { #just-modern-python }
+### 就是现代 Python { #just-modern-python }
 
 全部都基于标准的 **Python 类型** 声明（感谢 Pydantic）。没有新的语法需要学习。只需要标准的现代 Python。
 
@@ -64,7 +64,7 @@ my_second_user: User = User(**second_user_data)
 ```
 
 
-/// info | 信息
+/// note | 注意
 
 `**second_user_data` 意思是：
 
@@ -98,7 +98,7 @@ my_second_user: User = User(**second_user_data)
 
 ### 简洁 { #short }
 
-任何类型都有合理的**默认值**，任何和地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的 API。
+任何类型都有合理的**默认值**，任何地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的 API。
 
 但是默认情况下，一切都能**“顺利工作”**。
 
@@ -110,7 +110,7 @@ my_second_user: User = User(**second_user_data)
     * 字符串 (`str`) 字段，定义最小或最大长度。
     * 数字 (`int`, `float`) 有最大值和最小值，等等。
 
-* 校验外来类型，比如：
+* 校验更特殊的类型，比如：
     * URL。
     * Email。
     * UUID。
@@ -120,9 +120,9 @@ my_second_user: User = User(**second_user_data)
 
 ### 安全性及身份验证 { #security-and-authentication }
 
-集成了安全性和身份认证。杜绝数据库或者数据模型的渗透风险。
+集成了安全性和身份验证。不需要在数据库或数据模型上作出任何妥协。
 
-OpenAPI 中定义的安全模式，包括：
+OpenAPI 中定义的所有安全模式，包括：
 
 * HTTP 基本认证。
 * **OAuth2**（也使用 **JWT tokens**）。在 [使用 JWT 的 OAuth2](tutorial/security/oauth2-jwt.md) 查看教程。
@@ -131,7 +131,7 @@ OpenAPI 中定义的安全模式，包括：
     * 查询参数。
     * Cookies，等等。
 
-加上来自 Starlette（包括 **session cookie**）的所有安全特性。
+加上来自 Starlette（包括 **session cookies**）的所有安全特性。
 
 所有的这些都是可复用的工具和组件，可以轻松与你的系统，数据仓库，关系型以及 NoSQL 数据库等等集成。
 
@@ -142,7 +142,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 * 甚至依赖也可以有依赖，创建一个层级或者**“图”依赖**。
 * 所有**自动化处理**都由框架完成。
 * 所有的依赖关系都可以从请求中获取数据，并且**增加了路径操作**约束和自动文档生成。
-* 即使是在依赖项中定义的路径操作参数也会**自动验证**。
+* 即使是在依赖项中定义的*路径操作*参数也会**自动验证**。
 * 支持复杂的用户身份认证系统，**数据库连接**等等。
 * **不依赖**数据库，前端等。但是和它们集成很简单。
 
@@ -155,12 +155,14 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 ### 测试 { #tested }
 
 * 100% <dfn title="自动测试的代码量">测试覆盖</dfn>。
-* 代码库100% <dfn title="Python 类型注解，有了这个你的编辑器和外部工具可以给你更好的支持">类型注释</dfn>。
+* 代码库100% <dfn title="Python 类型注解，有了这个你的编辑器和外部工具可以给你更好的支持">类型标注</dfn>。
 * 用于生产应用。
 
 ## Starlette 特性 { #starlette-features }
 
-**FastAPI** 和 [**Starlette**](https://www.starlette.dev/) 完全兼容（并基于）。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette` 的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
+**FastAPI** 与 [**Starlette**](https://www.starlette.dev/) 完全兼容（并基于它构建）。所以，你有的其他的 Starlette 代码也能正常工作。
+
+`FastAPI` 实际上是 `Starlette` 的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
 
 通过 **FastAPI** 你可以获得所有 **Starlette** 的特性（FastAPI 就像加强版的 Starlette）：
 
@@ -172,11 +174,11 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 * **CORS**、GZip、静态文件、流响应。
 * 支持 **Session 和 Cookie**。
 * 100% 测试覆盖率。
-* 代码库 100% 类型注释。
+* 代码库 100% 类型标注。
 
 ## Pydantic 特性 { #pydantic-features }
 
-**FastAPI** 和 [**Pydantic**](https://docs.pydantic.dev/) 完全兼容（并基于）。所以，你有的其他的 Pydantic 代码也能正常工作。
+**FastAPI** 与 [**Pydantic**](https://docs.pydantic.dev/) 完全兼容（并基于它构建）。所以，你有的其他的 Pydantic 代码也能正常工作。
 
 兼容包括基于 Pydantic 的外部库，例如用于数据库的 <abbr title="Object-Relational Mapper - 对象关系映射">ORM</abbr>s、<abbr title="Object-Document Mapper - 对象文档映射">ODM</abbr>s。
 
@@ -188,7 +190,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 * **不烧脑**：
     * 没有新的模式定义 micro-language 需要学习。
-    * 如果你知道 Python types，你就知道如何使用 Pydantic。
+    * 如果你知道 Python 类型，你就知道如何使用 Pydantic。
 * 和你 **<abbr title="Integrated Development Environment - 集成开发环境: 类似于代码编辑器">IDE</abbr>/<dfn title="一个检查代码错误的程序">linter</dfn>/brain** 适配:
     * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。
 * 验证**复杂结构**:

@@ -14,7 +14,7 @@ OAuth2 では、「password flow」（ここで使用するフロー）を使う
 
 また、データベースのモデルでは任意の別名を使って構いません。
 
-しかし、ログイン用の path operation では、仕様との互換性を保つ（たとえば組み込みのAPIドキュメントシステムを使えるようにする）ために、これらの名前を使う必要があります。
+しかし、ログイン用の *path operation* では、仕様との互換性を保つ（たとえば組み込みのAPIドキュメントシステムを使えるようにする）ために、これらの名前を使う必要があります。
 
 また、仕様では `username` と `password` はフォームデータとして送らなければならない（つまり、ここではJSONは使わない）ことも定められています。
 
@@ -32,7 +32,7 @@ OAuth2 では、「password flow」（ここで使用するフロー）を使う
 - `instagram_basic` は Facebook / Instagram で使われます。
 - `https://www.googleapis.com/auth/drive` は Google で使われます。
 
-/// info | 情報
+/// note | 備考
 
 OAuth2 における「スコープ」は、要求される特定の権限を表す単なる文字列です。
 
@@ -50,7 +50,7 @@ OAuth2 にとっては単なる文字列です。
 
 ### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
-まず、`OAuth2PasswordRequestForm` をインポートし、`/token` の path operation に `Depends` で依存関係として使います:
+まず、`OAuth2PasswordRequestForm` をインポートし、`/token` の *path operation* に `Depends` で依存関係として使います:
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
@@ -72,7 +72,7 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 - オプションの `client_id`（この例では不要）
 - オプションの `client_secret`（この例では不要）
 
-/// info | 情報
+/// note | 備考
 
 `OAuth2PasswordRequestForm` は、`OAuth2PasswordBearer` のように **FastAPI** にとって特別なクラスではありません。
 
@@ -132,7 +132,7 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 
 `UserInDB(**user_dict)` は次を意味します:
 
-`user_dict` のキーと値を、そのままキーワード引数として渡します。つまり次と同等です:
+*`user_dict` のキーと値を、そのままキーワード引数として渡します。つまり次と同等です:*
 
 ```Python
 UserInDB(
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info | 情報
+/// note | 備考
 
-`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-dict)を参照してください。
+`**user_dict` のより完全な解説は、[**追加モデル**のドキュメント](../extra-models.md#about-user-in-model-dump)を参照してください。
 
 ///
 
@@ -188,7 +188,7 @@ UserInDB(
 
 アクティブなユーザーの場合にのみ `current_user` を取得したいとします。
 
-そこで、`get_current_active_user` を依存関係として利用する追加の依存関係 `get_current_active_user` を作成します。
+そこで、今度は `get_current_user` を依存関係として利用する追加の依存関係 `get_current_active_user` を作成します。
 
 これら2つの依存関係は、ユーザーが存在しない、または非アクティブである場合に、HTTPエラーを返すだけです。
 
@@ -196,7 +196,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | 情報
+/// note | 備考
 
 ここで返している値が `Bearer` の追加ヘッダー `WWW-Authenticate` も仕様の一部です。
 
@@ -236,7 +236,7 @@ Password: `secret`
 
 ### 自分のユーザーデータを取得 { #get-your-own-user-data }
 
-`GET` の path `/users/me` を使います。
+今度は path `/users/me` で operation `GET` を使います。
 
 次のようなユーザーデータが取得できます:
 
@@ -268,7 +268,7 @@ User: `alice`
 
 Password: `secret2`
 
-そして `GET` の path `/users/me` を使います。
+そして path `/users/me` で operation `GET` を使ってみます。
 
 次のような「Inactive user」エラーになります:
 
@@ -284,6 +284,6 @@ Password: `secret2`
 
 これらの道具を使えば、任意のデータベース、任意のユーザー/データモデルと互換性のあるセキュリティシステムを構築できます。
 
-ただし、実際にはまだ「安全」ではありません。
+唯一欠けている点は、実際にはまだ「安全」ではないことです。
 
 次の章では、安全なパスワードハッシュライブラリと <abbr title="JSON Web Tokens - JSON Web Token">JWT</abbr> トークンの使い方を見ていきます。

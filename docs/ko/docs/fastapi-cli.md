@@ -95,7 +95,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### 경로와 함께 `fastapi dev` { #fastapi-dev-with-path }
+### 경로 또는 `--entrypoint` CLI 옵션과 함께 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 `fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 앱 객체를 추정합니다:
 
@@ -103,7 +103,13 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-하지만 매번 `fastapi` 명령어를 호출할 때 올바른 경로를 전달하는 것을 기억해야 합니다.
+또는, `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+하지만 매번 `fastapi` 명령어를 호출할 때 올바른 경로\entrypoint를 전달하는 것을 기억해야 합니다.
 
 또한 [VS Code 확장](editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com) 같은 다른 도구에서는 이를 찾지 못할 수도 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
 

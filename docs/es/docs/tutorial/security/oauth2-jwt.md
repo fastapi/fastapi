@@ -1,5 +1,6 @@
 # OAuth2 con Password (y hashing), Bearer con tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
+
 Ahora que tenemos todo el flujo de seguridad, hagamos que la aplicación sea realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> y hashing de contraseñas seguras.
 
 Este código es algo que puedes usar realmente en tu aplicación, guardar los hashes de las contraseñas en tu base de datos, etc.
@@ -42,7 +43,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Información
+/// note | Nota
 
 Si planeas usar algoritmos de firma digital como RSA o ECDSA, deberías instalar la dependencia del paquete de criptografía `pyjwt[crypto]`.
 
@@ -213,7 +214,7 @@ Usando las credenciales:
 Usuario: `johndoe`
 Contraseña: `secret`
 
-/// check | Revisa
+/// tip | Consejo
 
 Observa que en ninguna parte del código está la contraseña en texto claro "`secret`", solo tenemos la versión con hash.
 

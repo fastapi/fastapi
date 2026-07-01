@@ -1,6 +1,6 @@
 # LLM test dosyası { #llm-test-file }
 
-Bu doküman, dokümantasyonu çeviren <abbr title="Large Language Model">LLM</abbr>'nin `scripts/translate.py` içindeki `general_prompt`'u ve `docs/{language code}/llm-prompt.md` içindeki dile özel prompt'u anlayıp anlamadığını test eder. Dile özel prompt, `general_prompt`'a eklenir.
+Bu doküman, dokümantasyonu çeviren <abbr title="Large Language Model - Büyük Dil Modeli">LLM</abbr>'nin `scripts/translate.py` içindeki `general_prompt`'u ve `docs/{language code}/llm-prompt.md` içindeki dile özel prompt'u anlayıp anlamadığını test eder. Dile özel prompt, `general_prompt`'a eklenir.
 
 Buraya eklenen testler, dile özel prompt'ları tasarlayan herkes tarafından görülecektir.
 
@@ -124,19 +124,11 @@ Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır
 
 //// tab | Test
 
-/// info | Bilgi
-Bazı metin
-///
-
 /// note | Not
 Bazı metin
 ///
 
 /// note | Teknik Detaylar
-Bazı metin
-///
-
-/// check | Ek bilgi
 Bazı metin
 ///
 

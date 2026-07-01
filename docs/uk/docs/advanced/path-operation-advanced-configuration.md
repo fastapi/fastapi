@@ -16,17 +16,11 @@
 
 ### Використання назви *функції операції шляху* як operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Якщо ви хочете використовувати назви функцій ваших API як `operationId`, ви можете пройтися по всіх них і переписати `operation_id` кожної *операції шляху*, використовуючи їхній `APIRoute.name`.
+Якщо ви хочете використовувати назви функцій ваших API як `operationId`, ви можете передати власну `generate_unique_id_function` до `FastAPI`.
 
-Зробіть це після додавання всіх *операцій шляху*.
+Функція отримує кожен `APIRoute` і повертає `operationId`, який слід використовувати для цієї операції шляху.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | Порада
-
-Якщо ви вручну викликаєте `app.openapi()`, оновіть усі `operationId` до цього.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Попередження
 

@@ -11,7 +11,7 @@ Sie können die folgenden Felder festlegen, die in der OpenAPI-Spezifikation und
 | `title` | `str` | Der Titel der API. |
 | `summary` | `str` | Eine kurze Zusammenfassung der API. <small>Verfügbar seit OpenAPI 3.1.0, FastAPI 0.99.0.</small> |
 | `description` | `str` | Eine kurze Beschreibung der API. Kann Markdown verwenden. |
-| `version` | `string` | Die Version der API. Das ist die Version Ihrer eigenen Anwendung, nicht die von OpenAPI. Zum Beispiel `2.5.0`. |
+| `version` | `str` | Die Version der API. Das ist die Version Ihrer eigenen Anwendung, nicht die von OpenAPI. Zum Beispiel `2.5.0`. |
 | `terms_of_service` | `str` | Eine URL zu den Nutzungsbedingungen für die API. Falls angegeben, muss es sich um eine URL handeln. |
 | `contact` | `dict` | Die Kontaktinformationen für die freigegebene API. Kann mehrere Felder enthalten. <details><summary><code>contact</code>-Felder</summary><table><thead><tr><th>Parameter</th><th>Typ</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>Der identifizierende Name der Kontaktperson/Organisation.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Die URL, die auf die Kontaktinformationen verweist. MUSS im Format einer URL vorliegen.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>Die E-Mail-Adresse der Kontaktperson/Organisation. MUSS im Format einer E-Mail-Adresse vorliegen.</td></tr></tbody></table></details> |
 | `license_info` | `dict` | Die Lizenzinformationen für die freigegebene API. Kann mehrere Felder enthalten. <details><summary><code>license_info</code>-Felder</summary><table><thead><tr><th>Parameter</th><th>Typ</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ERFORDERLICH</strong> (wenn eine <code>license_info</code> festgelegt ist). Der für die API verwendete Lizenzname.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>Ein [SPDX](https://spdx.org/licenses/)-Lizenzausdruck für die API. Das Feld <code>identifier</code> und das Feld <code>url</code> schließen sich gegenseitig aus. <small>Verfügbar seit OpenAPI 3.1.0, FastAPI 0.99.0.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>Eine URL zur Lizenz, die für die API verwendet wird. MUSS im Format einer URL vorliegen.</td></tr></tbody></table></details> |
@@ -74,7 +74,7 @@ Verwenden Sie den Parameter `tags` mit Ihren *Pfadoperationen* (und `APIRouter`n
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Info
+/// note | Hinweis
 
 Lesen Sie mehr zu Tags unter [Pfadoperation-Konfiguration](path-operation-configuration.md#tags).
 

@@ -1,20 +1,20 @@
 # Introdução aos tipos Python { #python-types-intro }
 
-O Python possui suporte para "type hints" opcionais (também chamados de "type annotations").
+O Python possui suporte para "anotações de tipo" opcionais (também chamadas de "type annotations").
 
-Esses **"type hints"** ou anotações são uma sintaxe especial que permite declarar o <dfn title="por exemplo: str, int, float, bool">tipo</dfn> de uma variável.
+Essas **"anotações de tipo"** ou anotações são uma sintaxe especial que permite declarar o <dfn title="por exemplo: str, int, float, bool">tipo</dfn> de uma variável.
 
 Ao declarar tipos para suas variáveis, editores e ferramentas podem oferecer um melhor suporte.
 
-Este é apenas um **tutorial rápido / atualização** sobre type hints do Python. Ele cobre apenas o mínimo necessário para usá-los com o **FastAPI**... que é realmente muito pouco.
+Este é apenas um **tutorial rápido / atualização** sobre anotações de tipo do Python. Ele cobre apenas o mínimo necessário para usá-las com o **FastAPI**... que é realmente muito pouco.
 
-O **FastAPI** é todo baseado nesses type hints, eles oferecem muitas vantagens e benefícios.
+O **FastAPI** é todo baseado nessas anotações de tipo, elas oferecem muitas vantagens e benefícios.
 
-Mas mesmo que você nunca use o **FastAPI**, você se beneficiaria de aprender um pouco sobre eles.
+Mas mesmo que você nunca use o **FastAPI**, você se beneficiaria de aprender um pouco sobre elas.
 
 /// note | Nota
 
-Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
+Se você é um especialista em Python e já sabe tudo sobre anotações de tipo, pule para o próximo capítulo.
 
 ///
 
@@ -34,7 +34,7 @@ A função faz o seguinte:
 
 * Pega um `first_name` e `last_name`.
 * Converte a primeira letra de cada uma em maiúsculas com `title()`.
-* <dfn title="Coloca-os juntos, como um só. Com o conteúdo de um após o outro.">Concatena</dfn> com um espaço no meio.
+* <dfn title="Coloca-os juntos, como um só. Com o conteúdo de um após o outro.">Concatena</dfn>-os com um espaço no meio.
 
 {* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
 
@@ -44,15 +44,15 @@ A função faz o seguinte:
 
 Mas agora imagine que você estava escrevendo do zero.
 
-Em algum momento você teria iniciado a definição da função, já tinha os parâmetros prontos...
+Em algum momento você começa a definir a função, e já tem os parâmetros prontos...
 
-Mas então você deve chamar "esse método que converte a primeira letra em maiúscula".
+Mas então você tem que chamar "esse método que converte a primeira letra em maiúscula".
 
 Era `upper`? Era `uppercase`? `first_uppercase`? `capitalize`?
 
-Em seguida, tente com o velho amigo do programador, o preenchimento automático do editor.
+Então, você tenta com o velho amigo do programador, o preenchimento automático do editor.
 
-Você digita o primeiro parâmetro da função, `first_name`, depois um ponto (`.`) e, em seguida, pressiona `Ctrl+Space` para acionar o preenchimento automático.
+Você digita o primeiro parâmetro da função, `first_name`, depois um ponto (`.`) e, em seguida, pressiona `Ctrl+Space` para acionar o preenchimento.
 
 Mas, infelizmente, você não obtém nada útil:
 
@@ -76,7 +76,7 @@ para:
 
 É isso aí.
 
-Esses são os "type hints":
+Essas são as "anotações de tipo":
 
 {* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
@@ -90,11 +90,11 @@ Isso não é o mesmo que declarar valores padrão como seria com:
 
 Estamos usando dois pontos (`:`), não sinal de igual (`=`).
 
-E adicionar type hints normalmente não muda o que acontece do que aconteceria sem eles.
+E adicionar anotações de tipo normalmente não muda o que acontece do que aconteceria sem elas.
 
-Mas agora, imagine que você está novamente no meio da criação dessa função, mas com type hints.
+Mas agora, imagine que você está novamente no meio da criação dessa função, mas com anotações de tipo.
 
-No mesmo ponto, você tenta acionar o preenchimento automático com o `Ctrl+Space` e vê:
+No mesmo ponto, você tenta acionar o autocompletar com `Ctrl+Space` e vê:
 
 <img src="/img/python-types/image02.png">
 
@@ -104,11 +104,11 @@ Com isso, você pode rolar, vendo as opções, até encontrar o que "soa familia
 
 ## Mais motivação { #more-motivation }
 
-Verifique esta função, ela já possui type hints:
+Verifique esta função, ela já possui anotações de tipo:
 
 {* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
 
-Como o editor conhece os tipos das variáveis, você não obtém apenas o preenchimento automático, mas também as verificações de erro:
+Como o editor conhece os tipos das variáveis, você não obtém apenas o preenchimento, mas também as verificações de erro:
 
 <img src="/img/python-types/image04.png">
 
@@ -118,9 +118,9 @@ Agora você sabe que precisa corrigi-la, convertendo `age` em uma string com `st
 
 ## Declarando tipos { #declaring-types }
 
-Você acabou de ver o local principal para declarar type hints. Como parâmetros de função.
+Você acabou de ver o local principal para declarar anotações de tipo. Como parâmetros de função.
 
-Este também é o principal local em que você os usaria com o **FastAPI**.
+Este também é o principal local em que você as usaria com o **FastAPI**.
 
 ### Tipos simples { #simple-types }
 
@@ -137,7 +137,7 @@ Você pode usar, por exemplo:
 
 ### Módulo `typing` { #typing-module }
 
-Para alguns casos adicionais, você pode precisar importar alguns itens do módulo padrão `typing`, por exemplo, quando quiser declarar que algo pode ter "qualquer tipo", você pode usar `Any` de `typing`:
+Para alguns casos de uso adicionais, você pode precisar importar alguns itens do módulo padrão `typing`, por exemplo, quando quiser declarar que algo pode ter "qualquer tipo", você pode usar `Any` de `typing`:
 
 ```python
 from typing import Any
@@ -149,11 +149,11 @@ def some_function(data: Any):
 
 ### Tipos genéricos { #generic-types }
 
-Alguns tipos podem receber "parâmetros de tipo" entre colchetes, para definir seus tipos internos, por exemplo, uma "lista de strings" seria declarada como `list[str]`.
+Alguns tipos podem receber "parâmetros de tipo" entre colchetes, para definir seus tipos internos, por exemplo, uma "list de strings" seria declarada como `list[str]`.
 
 Esses tipos que podem receber parâmetros de tipo são chamados **tipos genéricos** ou **genéricos**.
 
-Você pode usar os mesmos tipos internos como genéricos (com colchetes e tipos dentro):
+Você pode usar os mesmos tipos embutidos como genéricos (com colchetes e tipos dentro):
 
 * `list`
 * `tuple`
@@ -168,11 +168,11 @@ Declare a variável, com a mesma sintaxe com dois pontos (`:`).
 
 Como o tipo, coloque `list`.
 
-Como a lista é um tipo que contém tipos internos, você os coloca entre colchetes:
+Como a list é um tipo que contém alguns tipos internos, você os coloca entre colchetes:
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Informação
+/// note | Nota
 
 Esses tipos internos dentro dos colchetes são chamados de "parâmetros de tipo".
 
@@ -180,15 +180,15 @@ Neste caso, `str` é o parâmetro de tipo passado para `list`.
 
 ///
 
-Isso significa: "a variável `items` é uma `list`, e cada um dos itens desta lista é uma `str`".
+Isso significa: "a variável `items` é uma `list`, e cada um dos itens desta list é uma `str`".
 
-Ao fazer isso, seu editor pode fornecer suporte mesmo durante o processamento de itens da lista:
+Ao fazer isso, seu editor pode fornecer suporte mesmo durante o processamento de itens da list:
 
 <img src="/img/python-types/image05.png">
 
 Sem tipos, isso é quase impossível de alcançar.
 
-Observe que a variável `item` é um dos elementos da lista `items`.
+Observe que a variável `item` é um dos elementos da list `items`.
 
 E, ainda assim, o editor sabe que é um `str` e fornece suporte para isso.
 
@@ -213,7 +213,7 @@ O segundo parâmetro de tipo é para os valores do `dict`:
 
 {* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
 
-Isso significa que:
+Isso significa:
 
 * A variável `prices` é um `dict`:
     * As chaves deste `dict` são do tipo `str` (digamos, o nome de cada item).
@@ -275,7 +275,7 @@ Você declara a "forma" dos dados como classes com atributos.
 
 E cada atributo tem um tipo.
 
-Em seguida, você cria uma instância dessa classe com alguns valores e ela os validará, os converterá para o tipo apropriado (se for esse o caso) e fornecerá um objeto com todos os dados.
+Em seguida, você cria uma instância dessa classe com alguns valores e ela validará os valores, os converterá para o tipo apropriado (se for esse o caso) e fornecerá um objeto com todos os dados.
 
 E você recebe todo o suporte do editor com esse objeto resultante.
 
@@ -283,9 +283,9 @@ Um exemplo da documentação oficial do Pydantic:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Informação
+/// note | Nota
 
-Para saber mais sobre o [Pydantic, verifique a documentação](https://docs.pydantic.dev/).
+Para saber mais sobre [Pydantic, verifique a documentação](https://docs.pydantic.dev/).
 
 ///
 
@@ -293,9 +293,9 @@ O **FastAPI** é todo baseado em Pydantic.
 
 Você verá muito mais disso na prática no [Tutorial - Guia do usuário](tutorial/index.md).
 
-## Type Hints com Metadados de Anotações { #type-hints-with-metadata-annotations }
+## Anotações de Tipo com Anotações de Metadados { #type-hints-with-metadata-annotations }
 
-O Python também possui uma funcionalidade que permite incluir **<dfn title="Informações sobre os dados, neste caso, informações sobre o tipo, por exemplo, uma descrição.">metadados</dfn> adicionais** nesses type hints utilizando `Annotated`.
+O Python também possui uma funcionalidade que permite incluir **<dfn title="Dados sobre os dados, neste caso, informações sobre o tipo, por exemplo, uma descrição.">metadados</dfn> adicionais** nessas anotações de tipo utilizando `Annotated`.
 
 Você pode importar `Annotated` de `typing`.
 
@@ -305,7 +305,7 @@ O Python em si não faz nada com este `Annotated`. E para editores e outras ferr
 
 Mas você pode utilizar este espaço dentro do `Annotated` para fornecer ao **FastAPI** metadados adicionais sobre como você deseja que a sua aplicação se comporte.
 
-O importante aqui de se lembrar é que **o primeiro *type parameter*** que você informar ao `Annotated` é o **tipo de fato**. O resto é apenas metadado para outras ferramentas.
+O importante aqui de se lembrar é que **o primeiro *parâmetro de tipo*** que você informar ao `Annotated` é o **tipo de fato**. O resto é apenas metadados para outras ferramentas.
 
 Por hora, você precisa apenas saber que o `Annotated` existe, e que ele é Python padrão. 😎
 
@@ -319,11 +319,11 @@ E também que o seu código será muito compatível com diversas outras ferramen
 
 ///
 
-## Type hints no **FastAPI** { #type-hints-in-fastapi }
+## Anotações de tipo no **FastAPI** { #type-hints-in-fastapi }
 
-O **FastAPI** aproveita esses type hints para fazer várias coisas.
+O **FastAPI** aproveita essas anotações de tipo para fazer várias coisas.
 
-Com o **FastAPI**, você declara parâmetros com type hints e obtém:
+Com o **FastAPI**, você declara parâmetros com anotações de tipo e obtém:
 
 * **Suporte ao editor**.
 * **Verificações de tipo**.
@@ -341,7 +341,7 @@ Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em aç�
 
 O importante é que, usando tipos padrão de Python, em um único local (em vez de adicionar mais classes, decoradores, etc.), o **FastAPI** fará muito trabalho para você.
 
-/// info | Informação
+/// note | Nota
 
 Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é [a "cheat sheet" do `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 

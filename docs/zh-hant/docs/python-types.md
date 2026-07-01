@@ -2,11 +2,11 @@
 
 Python 支援可選用的「型別提示」（也稱為「型別註記」）。
 
-這些「型別提示」或註記是一種特殊語法，用來宣告變數的<dfn title="例如：str、int、float、bool">型別</dfn>。
+這些 **「型別提示」** 或註記是一種特殊語法，用來宣告變數的<dfn title="例如：str、int、float、bool">型別</dfn>。
 
 為你的變數宣告型別後，編輯器與工具就能提供更好的支援。
 
-這裡只是關於 Python 型別提示的快速教學／複習。它只涵蓋使用在 **FastAPI** 時所需的最低限度...其實非常少。
+這裡只是關於 Python 型別提示的**快速教學／複習**。它只涵蓋使用在 **FastAPI** 時所需的最低限度...其實非常少。
 
 **FastAPI** 完全是以這些型別提示為基礎，並因此帶來許多優勢與好處。
 
@@ -137,7 +137,7 @@ John Doe
 
 ### `typing` 模組 { #typing-module }
 
-在一些其他情境中，你可能需要從標準程式庫的 `typing` 模組匯入一些東西，比如當你想宣告某個東西可以是「任何型別」時，可以用 `typing` 裡的 `Any`：
+在一些其他情境中，你可能需要從標準程式庫的 `typing` 模組匯入一些東西，比如當你想宣告某個東西可以是「任何型別」時，可以用 `Any`：
 
 ```python
 from typing import Any
@@ -151,7 +151,7 @@ def some_function(data: Any):
 
 有些型別可以在方括號中接收「型別參數」，以定義其內部元素的型別，例如「字串的 list」可以宣告為 `list[str]`。
 
-這些能接收型別參數的型別稱為「泛型（Generic types）」或「Generics」。
+這些能接收型別參數的型別稱為 **泛型（Generic types）** 或 **Generics**。
 
 你可以將相同的內建型別用作泛型（使用方括號並在裡面放型別）：
 
@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 資訊
+/// note | 注意
 
 方括號裡的那些內部型別稱為「型別參數」。
 
@@ -221,7 +221,7 @@ def some_function(data: Any):
 
 #### Union { #union }
 
-你可以宣告一個變數可以是「多種型別」中的任一種，例如 `int` 或 `str`。
+你可以宣告一個變數可以是**多種型別**中的任一種，例如 `int` 或 `str`。
 
 要這麼定義，你使用<dfn title='也稱為「位元或運算子」，但在這裡與該含義無關'>豎線（`|`）</dfn>來分隔兩種型別。
 
@@ -263,9 +263,9 @@ def some_function(data: Any):
 
 <img src="/img/python-types/image06.png">
 
-請注意，這表示「`one_person` 是類別 `Person` 的『實例（instance）』」。
+請注意，這表示「`one_person` 是類別 `Person` 的**實例（instance）**」。
 
-並不是「`one_person` 就是名為 `Person` 的『類別（class）』」。
+並不是「`one_person` 就是名為 `Person` 的**類別（class）**」。
 
 ## Pydantic 模型 { #pydantic-models }
 
@@ -283,7 +283,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 資訊
+/// note | 注意
 
 想了解更多 [Pydantic，請查看它的文件](https://docs.pydantic.dev/)。
 
@@ -295,7 +295,7 @@ def some_function(data: Any):
 
 ## 含中繼資料的型別提示 { #type-hints-with-metadata-annotations }
 
-Python 也有一個功能，允許使用 `Annotated` 在這些型別提示中放入額外的<dfn title="關於資料的資料；在此情境下，是關於型別的資訊，例如描述。">中繼資料</dfn>。
+Python 也有一個功能，允許使用 `Annotated` 在這些型別提示中放入**額外的<dfn title="關於資料的資料；在此情境下，是關於型別的資訊，例如描述。">中繼資料</dfn>**。
 
 你可以從 `typing` 匯入 `Annotated`。
 
@@ -305,15 +305,15 @@ Python 本身不會對這個 `Annotated` 做任何事。對編輯器與其他工
 
 但你可以利用 `Annotated` 這個空間，來提供 **FastAPI** 額外的中繼資料，告訴它你希望應用程式如何運作。
 
-重要的是要記住，傳給 `Annotated` 的「第一個型別參數」才是「真正的型別」。其餘的，都是給其他工具用的中繼資料。
+重要的是要記住，傳給 `Annotated` 的**第一個*型別參數***才是**實際型別**。其餘的，都是給其他工具用的中繼資料。
 
 目前你只需要知道 `Annotated` 的存在，而且它是標準的 Python。😎
 
-之後你會看到它有多「強大」。
+之後你會看到它有多**強大**。
 
 /// tip | 提示
 
-因為這是「標準 Python」，所以你在編輯器、分析與重構程式碼的工具等方面，仍然能獲得「最佳的開發體驗」。✨
+因為這是**標準 Python**，所以你在編輯器、分析與重構程式碼的工具等方面，仍然能獲得**最佳的開發體驗**。✨
 
 而且你的程式碼也會與許多其他 Python 工具與程式庫非常相容。🚀
 
@@ -325,23 +325,23 @@ Python 本身不會對這個 `Annotated` 做任何事。對編輯器與其他工
 
 在 **FastAPI** 中，你用型別提示來宣告參數，然後你會得到：
 
-* 編輯器支援
-* 型別檢查
+* **編輯器支援**。
+* **型別檢查**。
 
 ...而 **FastAPI** 也會用同樣的宣告來：
 
-* 定義需求：來自請求的路徑參數、查詢參數、標頭、主體（body）、相依性等
-* 轉換資料：把請求中的資料轉成所需型別
-* 驗證資料：來自每個請求的資料：
-    * 當資料無效時，自動產生錯誤並回傳給用戶端
-* 使用 OpenAPI 書寫 API 文件：
-    * 之後會由自動的互動式文件介面所使用
+* **定義需求**：來自請求的路徑參數、查詢參數、標頭、主體（body）、相依性等。
+* **轉換資料**：把請求中的資料轉成所需型別。
+* **驗證資料**：來自每個請求的資料：
+    * 當資料無效時，產生回傳給用戶端的**自動錯誤**。
+* 使用 OpenAPI **記錄** API：
+    * 之後會由自動的互動式文件介面所使用。
 
 這些現在聽起來可能有點抽象。別擔心。你會在[教學 - 使用者指南](tutorial/index.md)中看到它們的實際運作。
 
 重點是，透過在單一位置使用標準的 Python 型別（而不是新增更多類別、裝飾器等），**FastAPI** 會幫你完成很多工作。
 
-/// info | 資訊
+/// note | 注意
 
 如果你已經完整讀完整個教學，並回來想多看一些關於型別的內容，一個不錯的資源是 [`mypy` 的「小抄」](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)。
 

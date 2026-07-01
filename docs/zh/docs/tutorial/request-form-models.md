@@ -2,7 +2,7 @@
 
 你可以在 FastAPI 中使用 **Pydantic 模型**声明**表单字段**。
 
-/// info | 信息
+/// note | 注意
 
 要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 

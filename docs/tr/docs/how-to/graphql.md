@@ -1,5 +1,6 @@
 # GraphQL { #graphql }
 
+
 **FastAPI**, **ASGI** standardını temel aldığı için ASGI ile uyumlu herhangi bir **GraphQL** kütüphanesini entegre etmek oldukça kolaydır.
 
 Aynı uygulama içinde normal FastAPI *path operation*'larını GraphQL ile birlikte kullanabilirsiniz.

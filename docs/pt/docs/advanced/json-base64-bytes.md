@@ -4,7 +4,7 @@ Se sua aplicação precisa receber e enviar dados JSON, mas você precisa inclui
 
 ## Base64 vs Arquivos { #base64-vs-files }
 
-Primeiro, considere se você pode usar [Arquivos na request](../tutorial/request-files.md) para fazer upload de dados binários e [Response personalizada - FileResponse](./custom-response.md#fileresponse--fileresponse-) para enviar dados binários, em vez de codificá-los em JSON.
+Primeiro, considere se você pode usar [Arquivos na request](../tutorial/request-files.md) para fazer upload de dados binários e [Response personalizada - FileResponse](./custom-response.md#fileresponse) para enviar dados binários, em vez de codificá-los em JSON.
 
 JSON só pode conter strings codificadas em UTF-8, portanto não pode conter bytes puros.
 

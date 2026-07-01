@@ -8,7 +8,7 @@ Hier werden wir ein Beispiel mit [SQLModel](https://sqlmodel.tiangolo.com/) sehe
 
 /// tip | Tipp
 
-Sie könnten jede andere SQL- oder NoSQL-Datenbankbibliothek verwenden, die Sie möchten (in einigen Fällen als <abbr title="Object Relational Mapper – Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">„ORMs“</abbr> bezeichnet), FastAPI zwingt Sie nicht, irgendetwas zu verwenden. 😎
+Sie könnten jede andere SQL- oder NoSQL-Datenbankbibliothek verwenden, die Sie möchten (in einigen Fällen als <abbr title="Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">„ORMs“</abbr> bezeichnet), FastAPI zwingt Sie nicht, irgendetwas zu verwenden. 😎
 
 ///
 
@@ -121,7 +121,7 @@ Da jedes SQLModel-Modell auch ein Pydantic-Modell ist, können Sie es in denselb
 
 Wenn Sie beispielsweise einen Parameter vom Typ `Hero` deklarieren, wird er aus dem **JSON-Body** gelesen.
 
-Auf die gleiche Weise können Sie es als **Rückgabetyp** der Funktion deklarieren, und dann wird die Form der Daten in der automatischen API-Dokumentation angezeigt.
+Auf die gleiche Weise können Sie es als **Rückgabetyp** der Funktion deklarieren, und dann wird die Form der Daten in der automatischen API-Dokumentations-UI angezeigt.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
@@ -266,7 +266,7 @@ In der vorherigen Version der App hatten wir keine Möglichkeit, einen Helden **
 
 Das `HeroUpdate`-*Datenmodell* ist etwas Besonderes, es hat **die selben Felder**, die benötigt werden, um einen neuen Helden zu erstellen, aber alle Felder sind **optional** (sie haben alle einen Defaultwert). Auf diese Weise, wenn Sie einen Helden aktualisieren, können Sie nur die Felder senden, die Sie aktualisieren möchten.
 
-Da sich tatsächlich **alle Felder ändern** (der Typ enthält jetzt `None` und sie haben jetzt einen Standardwert von `None`), müssen wir sie erneut **deklarieren**.
+Da sich tatsächlich **alle Felder ändern** (der Typ enthält jetzt `None` und sie haben jetzt einen Defaultwert von `None`), müssen wir sie erneut **deklarieren**.
 
 Wir müssen wirklich nicht von `HeroBase` erben, weil wir alle Felder neu deklarieren. Ich lasse es aus Konsistenzgründen erben, aber das ist nicht notwendig. Es ist mehr eine Frage des persönlichen Geschmacks. 🤷
 

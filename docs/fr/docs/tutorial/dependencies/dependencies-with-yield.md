@@ -1,6 +1,6 @@
 # Utiliser des dépendances avec `yield` { #dependencies-with-yield }
 
-FastAPI prend en charge des dépendances qui effectuent des <dfn title='parfois aussi appelées « exit code », « cleanup code », « teardown code », « closing code », « context manager exit code », etc.'>étapes supplémentaires après l'exécution</dfn>.
+FastAPI prend en charge des dépendances qui effectuent des <dfn title='parfois également appelées « code de sortie », « code de nettoyage », « code de démontage », « code de fermeture », « code de sortie de gestionnaire de contexte », etc.'>étapes supplémentaires après l'exécution</dfn>.
 
 Pour cela, utilisez `yield` au lieu de `return`, et écrivez les étapes supplémentaires (code) après.
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info
+/// note | Remarque
 
 Une **seule réponse** sera envoyée au client. Il peut s'agir d'une des réponses d'erreur ou de la réponse provenant du *chemin d'accès*.
 
@@ -194,16 +194,16 @@ Mais si vous savez que vous n'aurez pas besoin d'utiliser la dépendance après 
 
 `Depends()` reçoit un paramètre `scope` qui peut être :
 
-* « function » : démarrer la dépendance avant la *fonction de chemin d'accès* qui gère la requête, terminer la dépendance après la fin de la *fonction de chemin d'accès*, mais **avant** que la réponse ne soit renvoyée au client. Ainsi, la fonction de dépendance sera exécutée **autour** de la *fonction de chemin d'accès*.
-* « request » : démarrer la dépendance avant la *fonction de chemin d'accès* qui gère la requête (similaire à l'utilisation de « function »), mais terminer **après** que la réponse a été renvoyée au client. Ainsi, la fonction de dépendance sera exécutée **autour** du cycle **requête** et réponse.
+* `"function"` : démarrer la dépendance avant la *fonction de chemin d'accès* qui gère la requête, terminer la dépendance après la fin de la *fonction de chemin d'accès*, mais **avant** que la réponse ne soit renvoyée au client. Ainsi, la fonction de dépendance sera exécutée **autour** de la *fonction de chemin d'accès*.
+* `"request"` : démarrer la dépendance avant la *fonction de chemin d'accès* qui gère la requête (similaire à l'utilisation de `"function"`), mais terminer **après** que la réponse a été renvoyée au client. Ainsi, la fonction de dépendance sera exécutée **autour** du cycle **requête** et réponse.
 
-S'il n'est pas spécifié et que la dépendance utilise `yield`, le `scope` sera par défaut « request ».
+S'il n'est pas spécifié et que la dépendance utilise `yield`, le `scope` sera par défaut `"request"`.
 
 ### Définir `scope` pour les sous-dépendances { #scope-for-sub-dependencies }
 
-Lorsque vous déclarez une dépendance avec un `scope="request"` (par défaut), toute sous-dépendance doit également avoir un `scope` de « request ».
+Lorsque vous déclarez une dépendance avec un `scope="request"` (par défaut), toute sous-dépendance doit également avoir un `scope` de `"request"`.
 
-Mais une dépendance avec un `scope` de « function » peut avoir des dépendances avec un `scope` de « function » et un `scope` de « request ».
+Mais une dépendance avec un `scope` de `"function"` peut avoir des dépendances avec un `scope` de `"function"` et un `scope` de `"request"`.
 
 Cela vient du fait que toute dépendance doit pouvoir exécuter son code de sortie avant ses sous-dépendances, car elle pourrait encore avoir besoin de les utiliser pendant son code de sortie.
 
@@ -234,6 +234,7 @@ participant operation as Path Operation
 Les dépendances avec `yield` ont évolué au fil du temps pour couvrir différents cas d'utilisation et corriger certains problèmes.
 
 Si vous souhaitez voir ce qui a changé dans différentes versions de FastAPI, vous pouvez en savoir plus dans le guide avancé, dans [Dépendances avancées - Dépendances avec `yield`, `HTTPException`, `except` et Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+
 ## Gestionnaires de contexte { #context-managers }
 
 ### Que sont les « Context Managers » { #what-are-context-managers }

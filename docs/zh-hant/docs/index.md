@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -272,7 +277,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>關於指令 <code>fastapi dev</code>...</summary>
 
-指令 `fastapi dev` 會讀取你的 `main.py`，偵測其中的 **FastAPI** 應用，並使用 [Uvicorn](https://www.uvicorn.dev) 啟動伺服器。
+指令 `fastapi dev` 會自動讀取你的 `main.py`，偵測其中的 **FastAPI** 應用，並使用 [Uvicorn](https://www.uvicorn.dev) 啟動伺服器。
 
 預設情況下，`fastapi dev` 會在本機開發時啟用自動重新載入。
 
@@ -468,13 +473,13 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-若想看包含更多功能的完整範例，請參考 <a href="https://fastapi.tiangolo.com/zh-hant/tutorial/">Tutorial - User Guide</a>。
+若想看包含更多功能的完整範例，請參考 <a href="https://fastapi.tiangolo.com/zh-hant/tutorial/">教學 - 使用者指南</a>。
 
 **劇透警告**：教學 - 使用者指南包含：
 
 * 來自不同來源的**參數**宣告：例如 **headers**、**cookies**、**form fields** 和 **files**。
 * 如何設定**驗證限制**，如 `maximum_length` 或 `regex`。
-* 一個非常強大且易用的 **<dfn title="也稱為：components、resources、providers、services、injectables">依賴注入</dfn>** 系統。
+* 一個非常強大且易用的 **<dfn title="也稱為：元件、資源、提供者、服務、可注入物">依賴注入</dfn>** 系統。
 * 安全與驗證，包含支援 **OAuth2** 搭配 **JWT tokens** 與 **HTTP Basic** 驗證。
 * 宣告**深度巢狀 JSON 模型**的進階（但同樣簡單）技巧（感謝 Pydantic）。
 * 與 [Strawberry](https://strawberry.rocks) 及其他函式庫的 **GraphQL** 整合。
@@ -487,9 +492,7 @@ item: Item
 
 ### 部署你的應用（可選） { #deploy-your-app-optional }
 
-你也可以選擇將 FastAPI 應用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果你還沒加入，去登記等候名單吧。🚀
-
-如果你已經有 **FastAPI Cloud** 帳號（我們已從等候名單邀請你 😉），你可以用一個指令部署你的應用。
+你可以選擇只用一個指令，將 FastAPI 應用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -505,6 +508,8 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI 會自動偵測你的 FastAPI 應用並將其部署到雲端。若你尚未登入，系統會開啟瀏覽器以完成驗證流程。
+
 就這樣！現在你可以在該 URL 造訪你的應用。✨
 
 #### 關於 FastAPI Cloud { #about-fastapi-cloud }
@@ -515,7 +520,7 @@ Deploying to FastAPI Cloud...
 
 它把用 FastAPI 開發應用的**開發者體驗**帶到**部署**到雲端的流程中。🎉
 
-FastAPI Cloud 是「FastAPI 與好朋友們」這些開源專案的主要贊助與資金來源。✨
+FastAPI Cloud 是 *FastAPI 與好朋友們* 這些開源專案的主要贊助與資金來源。✨
 
 #### 部署到其他雲端供應商 { #deploy-to-other-cloud-providers }
 

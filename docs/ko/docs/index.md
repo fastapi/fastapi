@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -120,7 +125,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <div class="only-github" markdown="1">
 
-"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부를 바꿀 계획입니다. 그중 일부는 핵심 **Windows**와 몇몇의 **Office** 제품들이 통합되고 있습니다._"
+"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부에 사용할 계획입니다. 그중 일부는 핵심 **Windows** 제품과 일부 **Office** 제품에 통합되고 있습니다._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
@@ -132,13 +137,13 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
-"_**Netflix**는 우리의 오픈 소스 배포판인 **위기 관리** 오케스트레이션 프레임워크를 발표할 수 있어 기쁩니다: 바로 **Dispatch**입니다! [**FastAPI**로 빌드]_"
+"_**Netflix**는 우리의 **위기 관리** 오케스트레이션 프레임워크인 **Dispatch**의 오픈 소스 공개를 발표하게 되어 기쁩니다! [**FastAPI**로 빌드]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
 
 ---
 
-"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나** 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었습니다._"
+"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나** 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었고, 우리의 Virtual TAC Engineer와 같은 여러 자동화와 서비스들을 추진하고 있습니다._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
@@ -187,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Note**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
+**참고**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
 
 ## 예제 { #example }
 
@@ -232,9 +237,9 @@ async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**참고**:
 
-잘 모르겠다면, ["급하세요?"](https://fastapi.tiangolo.com/ko/async/#in-a-hurry) 섹션을 확인해 보십시오.
+잘 모르겠다면, 문서의 [`async`와 `await`](https://fastapi.tiangolo.com/ko/async/#in-a-hurry)에 관한 _"급하세요?"_ 섹션을 확인해 보십시오.
 
 </details>
 
@@ -487,9 +492,7 @@ item: Item
 
 ### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
-
-이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
+선택적으로 FastAPI 앱을 한 번의 명령어로 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -504,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하여 클라우드에 배포합니다. 로그인되어 있지 않다면, 인증을 완료하기 위해 브라우저가 열립니다.
 
 이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
 
