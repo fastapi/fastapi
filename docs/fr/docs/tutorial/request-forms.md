@@ -56,7 +56,7 @@ Les données issues des formulaires sont normalement encodées avec le « type d
 
 Mais lorsque le formulaire inclut des fichiers, il est encodé en `multipart/form-data`. Vous lirez la gestion des fichiers dans le chapitre suivant.
 
-Si vous voulez en savoir plus sur ces encodages et les champs de formulaire, consultez la [<abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> web docs pour `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Si vous voulez en savoir plus sur ces encodages et les champs de formulaire, consultez les [documents web de la <abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> pour `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

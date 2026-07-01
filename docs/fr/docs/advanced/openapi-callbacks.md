@@ -1,10 +1,10 @@
 # Callbacks OpenAPI { #openapi-callbacks }
 
-Vous pourriez créer une API avec un *chemin d'accès* qui déclenche une requête vers une *API externe* créée par quelqu'un d'autre (probablement la même personne développeuse qui utiliserait votre API).
+Vous pourriez créer une API avec un *chemin d'accès* qui déclenche une requête vers une *API externe* créée par quelqu'un d'autre (probablement la même personne développeuse qui *utiliserait* votre API).
 
-Le processus qui se produit lorsque votre application API appelle l’*API externe* s’appelle un « callback ». Parce que le logiciel écrit par la personne développeuse externe envoie une requête à votre API puis votre API « rappelle », en envoyant une requête à une *API externe* (probablement créée par la même personne développeuse).
+Le processus qui se produit lorsque votre application API appelle l’*API externe* s’appelle un « callback ». Parce que le logiciel écrit par la personne développeuse externe envoie une requête à votre API puis votre API *rappelle*, en envoyant une requête à une *API externe* (probablement créée par la même personne développeuse).
 
-Dans ce cas, vous pourriez vouloir documenter à quoi cette API externe devrait ressembler. Quel *chemin d'accès* elle devrait avoir, quel corps elle devrait attendre, quelle réponse elle devrait renvoyer, etc.
+Dans ce cas, vous pourriez vouloir documenter à quoi cette API externe *devrait* ressembler. Quel *chemin d'accès* elle devrait avoir, quel corps elle devrait attendre, quelle réponse elle devrait renvoyer, etc.
 
 ## Une application avec des callbacks { #an-app-with-callbacks }
 
@@ -47,7 +47,7 @@ Le code réel du callback dépendra fortement de votre application API.
 
 Et il variera probablement beaucoup d’une application à l’autre.
 
-Cela pourrait être seulement une ou deux lignes de code, comme :
+Cela pourrait être seulement une ou deux lignes de code, comme :
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
@@ -96,35 +96,35 @@ Commencez par créer un nouveau `APIRouter` qui contiendra un ou plusieurs callb
 
 Pour créer le *chemin d'accès* du callback, utilisez le même `APIRouter` que vous avez créé ci-dessus.
 
-Il devrait ressembler exactement à un *chemin d'accès* FastAPI normal :
+Il devrait ressembler exactement à un *chemin d'accès* FastAPI normal :
 
 * Il devrait probablement déclarer le corps qu’il doit recevoir, par exemple `body: InvoiceEvent`.
 * Et il pourrait aussi déclarer la réponse qu’il doit renvoyer, par exemple `response_model=InvoiceEventReceived`.
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
-Il y a 2 principales différences par rapport à un *chemin d'accès* normal :
+Il y a 2 principales différences par rapport à un *chemin d'accès* normal :
 
 * Il n’a pas besoin d’avoir de code réel, car votre application n’appellera jamais ce code. Il sert uniquement à documenter l’*API externe*. La fonction peut donc simplement contenir `pass`.
-* Le *chemin* peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (voir plus bas) où il peut utiliser des variables avec des paramètres et des parties de la requête originale envoyée à *votre API*.
+* Le *chemin* peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (voir plus bas) où il peut utiliser des variables avec des paramètres et des parties de la requête originale envoyée à *votre API*.
 
 ### L’expression du chemin de callback { #the-callback-path-expression }
 
-Le *chemin* du callback peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) qui peut inclure des parties de la requête originale envoyée à *votre API*.
+Le *chemin* du callback peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) qui peut inclure des parties de la requête originale envoyée à *votre API*.
 
-Dans ce cas, c’est la `str` :
+Dans ce cas, c’est la `str` :
 
 ```Python
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-Ainsi, si l’utilisateur de votre API (la personne développeuse externe) envoie une requête à *votre API* vers :
+Ainsi, si l’utilisateur de votre API (la personne développeuse externe) envoie une requête à *votre API* vers :
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
 ```
 
-avec un corps JSON :
+avec un corps JSON :
 
 ```JSON
 {
@@ -134,13 +134,13 @@ avec un corps JSON :
 }
 ```
 
-alors *votre API* traitera la facture et, à un moment ultérieur, enverra une requête de callback à `callback_url` (l’*API externe*) :
+alors *votre API* traitera la facture et, à un moment ultérieur, enverra une requête de callback à `callback_url` (l’*API externe*) :
 
 ```
 https://www.external.org/events/invoices/2expen51ve
 ```
 
-avec un corps JSON contenant quelque chose comme :
+avec un corps JSON contenant quelque chose comme :
 
 ```JSON
 {
@@ -149,7 +149,7 @@ avec un corps JSON contenant quelque chose comme :
 }
 ```
 
-et elle s’attendra à une réponse de cette *API externe* avec un corps JSON comme :
+et elle s’attendrait à une réponse de cette *API externe* avec un corps JSON comme :
 
 ```JSON
 {
@@ -167,7 +167,7 @@ Remarquez que l’URL de callback utilisée contient l’URL reçue en paramètr
 
 À ce stade, vous avez le(s) *chemin(s) d'accès de callback* nécessaire(s) (celui/ceux que la *personne développeuse externe* doit implémenter dans l’*API externe*) dans le routeur de callback que vous avez créé ci-dessus.
 
-Utilisez maintenant le paramètre `callbacks` dans *le décorateur de chemin d'accès de votre API* pour passer l’attribut `.routes` depuis ce routeur de callback :
+Utilisez maintenant le paramètre `callbacks` dans *le décorateur de chemin d'accès de votre API* pour passer l’attribut `.routes` depuis ce routeur de callback :
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
@@ -181,6 +181,6 @@ Remarquez que vous ne passez pas le routeur lui-même (`invoices_callback_router
 
 Vous pouvez maintenant démarrer votre application et aller sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Vous verrez votre documentation incluant une section « Callbacks » pour votre *chemin d'accès* qui montre à quoi l’*API externe* devrait ressembler :
+Vous verrez votre documentation incluant une section « Callbacks » pour votre *chemin d'accès* qui montre à quoi l’*API externe* devrait ressembler :
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

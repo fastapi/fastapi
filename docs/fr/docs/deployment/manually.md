@@ -40,7 +40,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 Cela fonctionnerait pour la plupart des cas. 😎
 
-Vous pourriez utiliser cette commande par exemple pour démarrer votre application **FastAPI** dans un conteneur, sur un serveur, etc.
+Vous pourriez utiliser cette commande par exemple pour démarrer votre **FastAPI** app dans un conteneur, sur un serveur, etc.
 
 ## Serveurs ASGI { #asgi-servers }
 
@@ -48,7 +48,7 @@ Allons un peu plus en détail.
 
 FastAPI utilise un standard pour construire des frameworks web Python et des serveurs appelé <abbr title="Asynchronous Server Gateway Interface - Interface passerelle serveur asynchrone">ASGI</abbr>. FastAPI est un framework web ASGI.
 
-La principale chose dont vous avez besoin pour exécuter une application **FastAPI** (ou toute autre application ASGI) sur une machine serveur distante est un programme serveur ASGI comme **Uvicorn**, c'est celui utilisé par défaut par la commande `fastapi`.
+La principale chose dont vous avez besoin pour exécuter une application **FastAPI** (ou toute autre application ASGI) sur une machine serveur distante est un programme serveur ASGI comme **Uvicorn**, c'est celui fourni par défaut avec la commande `fastapi`.
 
 Il existe plusieurs alternatives, notamment :
 
@@ -61,9 +61,9 @@ Il existe plusieurs alternatives, notamment :
 
 Il y a un petit détail sur les noms à garder à l'esprit. 💡
 
-Le mot « serveur » est couramment utilisé pour désigner à la fois l'ordinateur distant/cloud (la machine physique ou virtuelle) et également le programme qui s'exécute sur cette machine (par exemple, Uvicorn).
+Le mot « **serveur** » est couramment utilisé pour désigner à la fois l'ordinateur distant/cloud (la machine physique ou virtuelle) et également le programme qui s'exécute sur cette machine (par exemple, Uvicorn).
 
-Gardez cela à l'esprit lorsque vous lisez « serveur » en général, cela pourrait faire référence à l'une de ces deux choses.
+Gardez simplement à l'esprit que lorsque vous lisez « serveur » en général, cela pourrait faire référence à l'une de ces deux choses.
 
 Lorsqu'on se réfère à la machine distante, il est courant de l'appeler **serveur**, mais aussi **machine**, **VM** (machine virtuelle), **nœud**. Tout cela fait référence à un type de machine distante, exécutant normalement Linux, sur laquelle vous exécutez des programmes.
 
@@ -117,7 +117,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 La commande `uvicorn main:app` fait référence à :
 
-* `main` : le fichier `main.py` (le « module » Python).
+* `main` : le fichier `main.py` (le « module » Python).
 * `app` : l'objet créé dans `main.py` avec la ligne `app = FastAPI()`.
 
 C'est équivalent à :

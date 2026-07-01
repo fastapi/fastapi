@@ -20,20 +20,6 @@ FastAPI génère automatiquement des spécifications **OpenAPI 3.1**, donc tout 
 
 ///
 
-## Générateurs de SDK par les sponsors de FastAPI { #sdk-generators-from-fastapi-sponsors }
-
-Cette section met en avant des solutions **soutenues par des fonds** et **par des entreprises** qui sponsorisent FastAPI. Ces produits offrent **des fonctionnalités supplémentaires** et **des intégrations** en plus de SDK de haute qualité générés.
-
-En ✨ [**sponsorisant FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, ces entreprises contribuent à garantir que le framework et son **écosystème** restent sains et **durables**.
-
-Leur sponsoring démontre également un fort engagement envers la **communauté** FastAPI (vous), montrant qu’elles se soucient non seulement d’offrir un **excellent service**, mais aussi de soutenir un **framework robuste et florissant**, FastAPI. 🙇
-
-Par exemple, vous pourriez essayer :
-
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-
-Certaines de ces solutions peuvent aussi être open source ou proposer des niveaux gratuits, afin que vous puissiez les essayer sans engagement financier. D’autres générateurs de SDK commerciaux existent et peuvent être trouvés en ligne. 🤓
-
 ## Créer un SDK TypeScript { #create-a-typescript-sdk }
 
 Commençons par une application FastAPI simple :
@@ -56,7 +42,7 @@ Ces mêmes informations issues des modèles, incluses dans OpenAPI, peuvent êtr
 
 ### Hey API { #hey-api }
 
-Une fois que vous avez une application FastAPI avec les modèles, vous pouvez utiliser Hey API pour générer un client TypeScript. Le moyen le plus rapide de le faire est via npx.
+Une fois que nous avons une application FastAPI avec les modèles, nous pouvons utiliser Hey API pour générer un client TypeScript. Le moyen le plus rapide de le faire est via npx.
 
 ```sh
 npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client

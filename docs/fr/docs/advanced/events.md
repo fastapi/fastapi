@@ -102,7 +102,7 @@ Ces fonctions peuvent être déclarées avec `async def` ou un `def` normal.
 
 ### Événement `startup` { #startup-event }
 
-Pour ajouter une fonction qui doit être exécutée avant le démarrage de l'application, déclarez-la avec l'événement « startup » :
+Pour ajouter une fonction qui doit être exécutée avant le démarrage de l'application, déclarez-la avec l'événement `"startup"` :
 
 {* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
@@ -114,11 +114,11 @@ Et votre application ne commencera pas à recevoir des requêtes avant que tous 
 
 ### Événement `shutdown` { #shutdown-event }
 
-Pour ajouter une fonction qui doit être exécutée lorsque l'application s'arrête, déclarez-la avec l'événement « shutdown » :
+Pour ajouter une fonction qui doit être exécutée lorsque l'application s'arrête, déclarez-la avec l'événement `"shutdown"` :
 
 {* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
-Ici, la fonction gestionnaire de l'événement `shutdown` écrira une ligne de texte « Application shutdown » dans un fichier `log.txt`.
+Ici, la fonction gestionnaire de l'événement `shutdown` écrira une ligne de texte `"Application shutdown"` dans un fichier `log.txt`.
 
 /// note | Remarque
 

@@ -12,7 +12,7 @@ Avec cela, vous pouvez utiliser [pytest](https://docs.pytest.org/) directement a
 
 Pour utiliser `TestClient`, installez d’abord [`httpx`](https://www.python-httpx.org).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
 
 ```console
 $ pip install httpx
@@ -156,7 +156,7 @@ Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer s
 
 Après cela, vous avez simplement besoin d’installer `pytest`.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
 
 <div class="termy">
 
