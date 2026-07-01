@@ -1511,8 +1511,6 @@ class _EffectiveRouteContext:
         return Match.FULL, child_scope
 
     def url_path_for(self, name: str, /, **path_params: Any) -> Any:
-        if isinstance(self.original_route, _FrontendRouteGroup):
-            raise routing.NoMatchFound(name, path_params)
         if not isinstance(self.original_route, APIRoute):
             assert self.starlette_route is not None
             return self.starlette_route.url_path_for(name, **path_params)
@@ -2024,11 +2022,6 @@ class _FrontendRoute(BaseRoute):
         self.app = _FrontendStaticFiles(
             directory=directory, fallback=fallback, check_dir=check_dir
         )
-
-    def with_path(self, path: str) -> "_FrontendRoute":
-        route = copy.copy(self)
-        route.path = _normalize_frontend_path(path)
-        return route
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
         return self.matches_with_path(scope, self.path)

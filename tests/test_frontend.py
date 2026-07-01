@@ -132,6 +132,12 @@ def test_frontend_route_group_helpers(tmp_path: Path):
     assert match == Match.FULL
     assert child_scope["fastapi"]["frontend_path"] == ""
 
+    match, child_scope = route_group.routes[0].matches(
+        {"type": "http", "path": "/app", "method": "GET"}
+    )
+    assert match == Match.FULL
+    assert child_scope["fastapi"]["frontend_path"] == ""
+
     with pytest.raises(StarletteHTTPException) as exc_info:
         anyio.run(
             route_group.handle,
@@ -343,8 +349,18 @@ def test_included_frontend_does_not_block_url_path_for(tmp_path: Path):
     app = FastAPI()
     app.include_router(frontend_router, prefix="/app")
     app.include_router(api_router)
+    included_frontend = next(
+        route
+        for route in app.router.routes
+        if hasattr(route, "effective_low_priority_routes")
+    )
 
+    with pytest.raises(NoMatchFound):
+        included_frontend.url_path_for("missing")
     assert app.url_path_for("read_api") == "/api"
+    response = TestClient(app).get("/api")
+    assert response.status_code == 200
+    assert response.json() == {"ok": True}
 
 
 def test_include_router_frontend_dependencies_apply_in_nested_order(tmp_path: Path):
