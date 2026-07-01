@@ -2,7 +2,7 @@
 
 FastAPI unterstützt Abhängigkeiten, die einige <dfn title="manchmal auch genannt: „Exit Code“, „Cleanup Code“, „Teardown Code“, „Closing Code“, „Kontextmanager Exit Code“, usw.">zusätzliche Schritte nach Abschluss</dfn> ausführen.
 
-Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte / den zusätzlichen Code danach.
+Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte (Code) danach.
 
 /// tip | Tipp
 
@@ -77,7 +77,7 @@ Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` 
 
 {* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
-Auf die gleiche Weise könnten Sie einige Abhängigkeiten mit `yield` und einige andere Abhängigkeiten mit `return` haben, und alle können beliebig voneinander abhängen.
+Auf die gleiche Weise könnten Sie einige Abhängigkeiten mit `yield` und einige andere Abhängigkeiten mit `return` haben, und einige davon von einigen der anderen abhängen lassen.
 
 Und Sie könnten eine einzelne Abhängigkeit haben, die auf mehreren ge`yield`eten Abhängigkeiten basiert, usw.
 
@@ -234,6 +234,7 @@ participant operation as Pfadoperation
 Abhängigkeiten mit `yield` haben sich im Laufe der Zeit weiterentwickelt, um verschiedene Anwendungsfälle abzudecken und einige Probleme zu beheben.
 
 Wenn Sie sehen möchten, was sich in verschiedenen Versionen von FastAPI geändert hat, lesen Sie mehr dazu im fortgeschrittenen Teil, unter [Fortgeschrittene Abhängigkeiten – Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+
 ## Kontextmanager { #context-managers }
 
 ### Was sind „Kontextmanager“ { #what-are-context-managers }
@@ -266,18 +267,19 @@ Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie das vielleicht vorer
 
 In Python können Sie Kontextmanager erstellen, indem Sie [eine Klasse mit zwei Methoden erzeugen: `__enter__()` und `__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers).
 
-Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie `with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
+Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie
+`with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
 
 {* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | Tipp
 
-Andere Möglichkeiten, einen Kontextmanager zu erstellen, sind:
+Eine weitere Möglichkeit, einen Kontextmanager zu erstellen, ist:
 
 * [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) oder
 * [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
-Verwenden Sie diese, um eine Funktion zu dekorieren, die ein einziges `yield` hat.
+indem Sie damit eine Funktion dekorieren, die ein einziges `yield` hat.
 
 Das ist es auch, was **FastAPI** intern für Abhängigkeiten mit `yield` verwendet.
 

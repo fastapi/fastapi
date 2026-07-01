@@ -120,7 +120,7 @@ Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
 Wenn `authenticate_user` mit einem Benutzernamen aufgerufen wird, der in der Datenbank nicht existiert, führen wir dennoch `verify_password` gegen einen Dummy-Hash aus.
 
-So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden Timing-Angriffe verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
+So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden **Timing-Angriffe** verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
 
 /// note | Hinweis
 
@@ -168,7 +168,7 @@ Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## Die *Pfadoperation* `/token` aktualisieren { #update-the-token-path-operation }
+## Die `/token`-*Pfadoperation* aktualisieren { #update-the-token-path-operation }
 
 Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufzeit des Tokens.
 
