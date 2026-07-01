@@ -542,17 +542,17 @@ FastAPI зависит от Pydantic и Starlette.
 
 Когда вы устанавливаете FastAPI с помощью `pip install "fastapi[standard]"`, он идёт с группой опциональных зависимостей `standard`:
 
-Используется в Pydantic:
+Используется Pydantic:
 
 * [`email-validator`](https://github.com/JoshData/python-email-validator) — для валидации адресов электронной почты.
 
-Используется в Starlette:
+Используется Starlette:
 
 * [`httpx`](https://www.python-httpx.org) — обязателен, если вы хотите использовать `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) — обязателен, если вы хотите использовать конфигурацию шаблонов по умолчанию.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - обязателен, если вы хотите поддерживать <dfn title="преобразование строки, полученной из HTTP-запроса, в данные Python">«парсинг»</dfn> форм через `request.form()`.
 
-Используется в FastAPI:
+Используется FastAPI:
 
 * [`uvicorn`](https://www.uvicorn.dev) — сервер, который загружает и «отдаёт» ваше приложение. Включает `uvicorn[standard]`, содержащий некоторые зависимости (например, `uvloop`), нужные для высокой производительности.
 * `fastapi-cli[standard]` — чтобы предоставить команду `fastapi`.
