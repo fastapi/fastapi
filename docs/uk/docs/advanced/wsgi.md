@@ -1,5 +1,6 @@
 # Підключення WSGI - Flask, Django та інші { #including-wsgi-flask-django-others }
 
+
 Ви можете монтувати застосунки WSGI, як ви бачили в [Підзастосунки - монтування](sub-applications.md), [За представником](behind-a-proxy.md).
 
 Для цього ви можете використати `WSGIMiddleware` і обгорнути ним ваш застосунок WSGI, наприклад Flask, Django тощо.

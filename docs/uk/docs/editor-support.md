@@ -1,5 +1,6 @@
 # Підтримка редакторів { #editor-support }
 
+
 Офіційне [FastAPI Extension](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) покращує ваш робочий процес розробки FastAPI завдяки виявленню й навігації по *операціях шляху*, а також розгортанню у FastAPI Cloud і потоковому передаванню журналів у реальному часі.
 
 Докладніше про розширення дивіться у README в [репозиторії GitHub](https://github.com/fastapi/fastapi-vscode).
