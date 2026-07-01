@@ -234,6 +234,7 @@ participant operation as Path Operation
 含 `yield` 的相依隨時間演進，以涵蓋不同的使用情境並修正一些問題。
 
 如果你想了解在不同 FastAPI 版本中改了哪些內容，可以在進階指南中閱讀：[進階相依 — 含 `yield`、`HTTPException`、`except` 與背景任務的相依](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)。
+
 ## 情境管理器 { #context-managers }
 
 ### 什麼是「情境管理器」 { #what-are-context-managers }

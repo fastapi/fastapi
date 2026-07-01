@@ -1,6 +1,6 @@
 # 查詢參數與字串驗證 { #query-parameters-and-string-validations }
 
-FastAPI 允許你為參數宣告額外的資訊與驗證。
+**FastAPI** 允許你為參數宣告額外的資訊與驗證。
 
 以下面這個應用為例：
 
@@ -18,14 +18,14 @@ FastAPI 會因為預設值是 `= None` 而知道 `q` 不是必填。
 
 ## 額外驗證 { #additional-validation }
 
-我們要強制：即使 `q` 是可選，只要提供了，長度就不能超過 50 個字元。
+我們要強制：即使 `q` 是可選，只要提供了，**長度就不能超過 50 個字元**。
 
 ### 匯入 `Query` 與 `Annotated` { #import-query-and-annotated }
 
 要達成這點，先匯入：
 
-- 從 `fastapi` 匯入 `Query`
-- 從 `typing` 匯入 `Annotated`
+* 從 `fastapi` 匯入 `Query`
+* 從 `typing` 匯入 `Annotated`
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
@@ -69,19 +69,19 @@ q: Annotated[str | None] = None
 
 注意預設值仍然是 `None`，所以這個參數仍是可選。
 
-不過，現在在 `Annotated` 裡有 `Query(max_length=50)`，我們就告訴 FastAPI 要對這個值做「額外驗證」，最多 50 個字元即可。😎
+不過，現在在 `Annotated` 裡有 `Query(max_length=50)`，我們就告訴 FastAPI 要對這個值做**額外驗證**，最多 50 個字元即可。😎
 
 /// tip | 提示
 
-這裡用的是 `Query()`，因為這是「查詢參數」。稍後你會看到 `Path()`、`Body()`、`Header()`、`Cookie()` 等，它們也接受與 `Query()` 相同的參數。
+這裡用的是 `Query()`，因為這是**查詢參數**。稍後你會看到 `Path()`、`Body()`、`Header()`、`Cookie()` 等，它們也接受與 `Query()` 相同的參數。
 
 ///
 
 FastAPI 現在會：
 
-- 驗證資料，確保長度最多 50 個字元
-- 當資料不合法時，回給用戶端清楚的錯誤
-- 在 OpenAPI 的路徑操作中文件化該參數（因此會出現在自動文件 UI）
+* **驗證**資料，確保長度最多 50 個字元
+* 當資料不合法時，回給用戶端**清楚的錯誤**
+* 在 OpenAPI schema *路徑操作*中**文件化**該參數（因此會出現在**自動文件 UI**）
 
 ## 替代方式（舊）：將 `Query` 作為預設值 { #alternative-old-query-as-the-default-value }
 
@@ -105,7 +105,8 @@ FastAPI 現在會：
 q: str | None = Query(default=None)
 ```
 
-…會讓參數變為可選、預設值是 `None`，等同於：
+...會讓參數變為可選、預設值是 `None`，等同於：
+
 
 ```Python
 q: str | None = None
@@ -119,7 +120,7 @@ q: str | None = None
 q: str | None = Query(default=None, max_length=50)
 ```
 
-這一樣會驗證資料、在資料不合法時顯示清楚錯誤，並在 OpenAPI 的路徑操作中文件化該參數。
+這一樣會驗證資料、在資料不合法時顯示清楚錯誤，並在 OpenAPI schema *路徑操作*中文件化該參數。
 
 ### 將 `Query` 作為預設值或放在 `Annotated` 中 { #query-as-the-default-value-or-in-annotated }
 
@@ -133,7 +134,7 @@ q: str | None = Query(default=None, max_length=50)
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-…因為不清楚預設值到底該是 `"rick"` 還是 `"morty"`。
+...因為不清楚預設值到底該是 `"rick"` 還是 `"morty"`。
 
 因此，你可以（且更推薦）這樣寫：
 
@@ -141,7 +142,7 @@ q: Annotated[str, Query(default="rick")] = "morty"
 q: Annotated[str, Query()] = "rick"
 ```
 
-…或在較舊的程式碼中你會看到：
+...或在較舊的程式碼中你會看到：
 
 ```Python
 q: str = Query(default="rick")
@@ -149,13 +150,13 @@ q: str = Query(default="rick")
 
 ### `Annotated` 的優點 { #advantages-of-annotated }
 
-建議使用 `Annotated`，而不是在函式參數上使用（舊式的）預設值寫法，理由很多，且更好。🤓
+建議**使用 `Annotated`**，而不是在函式參數上使用預設值寫法，理由很多，且**更好**。🤓
 
-函式參數的「預設值」就是「實際的預設值」，這在 Python 的直覺上更一致。😌
+函式參數的**預設值**就是**實際的預設值**，這在 Python 的直覺上更一致。😌
 
-你也可以在沒有 FastAPI 的其他地方「直接呼叫」同一個函式，而且能「如預期」運作。若有「必填」參數（沒有預設值），你的「編輯器」會提示錯誤，「Python」在執行時也會抱怨你未傳遞必填參數。
+你也可以在沒有 FastAPI 的**其他地方**「**呼叫**」同一個函式，而且能「**如預期**」運作。若有**必填**參數（沒有預設值），你的**編輯器**會提示錯誤，**Python** 在執行時也會抱怨你未傳遞必填參數。
 
-若不使用 `Annotated`、改用「（舊式）預設值」寫法，你在沒有 FastAPI 的「其他地方」呼叫該函式時，就得「記得」傳入正確參數，否則值會和預期不同（例如會得到 `QueryInfo` 或類似的東西，而不是 `str`）。你的編輯器不會提示，Python 執行該函式時也不會抱怨，只有在內部操作失敗時才會出錯。
+若不使用 `Annotated`、改用**（舊式）預設值**寫法，你在沒有 FastAPI 的**其他地方**呼叫該函式時，就得**記得**傳入正確參數，否則值會和預期不同（例如會得到 `QueryInfo` 或類似的東西，而不是 `str`）。你的編輯器不會提示，Python 執行該函式時也不會抱怨，只有在內部操作失敗時才會出錯。
 
 因為 `Annotated` 可以有多個中繼資料註解，你甚至可以用同一個函式配合其他工具，例如 [Typer](https://typer.tiangolo.com/)。🚀
 
@@ -167,19 +168,19 @@ q: str = Query(default="rick")
 
 ## 加入正規表示式 { #add-regular-expressions }
 
-你可以定義參數必須符合的 <dfn title="正規表示式（regex、regexp）是一組用於定義字串搜尋樣式的字元序列。">正規表示式</dfn> `pattern`：
+你可以定義參數必須符合的 <dfn title="正規表示式、regex 或 regexp 是一組用於定義字串搜尋樣式的字元序列。">正規表示式</dfn> `pattern`：
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
 這個特定的正規表示式樣式會檢查收到的參數值是否：
 
-- `^`：以後續的字元開頭，前面不能有其他字元。
-- `fixedquery`：必須正好等於 `fixedquery`。
-- `$`：在此結束，`fixedquery` 後面不能再有其他字元。
+* `^`：以後續的字元開頭，前面不能有其他字元。
+* `fixedquery`：必須正好等於 `fixedquery`。
+* `$`：在此結束，`fixedquery` 後面不能再有其他字元。
 
-如果你對「正規表示式」感到困惑，別擔心。這對很多人來說都不容易。你仍然可以先不使用正規表示式就完成很多事情。
+如果你對所有這些**「正規表示式」**概念感到困惑，別擔心。這對很多人來說都不容易。你仍然可以先不使用正規表示式就完成很多事情。
 
-現在你知道，當你需要它們時，可以在 FastAPI 中使用它們。
+現在你知道，當你需要它們時，可以在 **FastAPI** 中使用它們。
 
 ## 預設值 { #default-values }
 
@@ -235,13 +236,13 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 {* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
 
-若使用這樣的 URL：
+接著，若使用這樣的 URL：
 
 ```
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-你會在路徑操作函式的參數 `q` 中，收到多個 `q` 查詢參數的值（`foo` 與 `bar`），以 Python 的 `list` 形式。
+你會在*路徑操作函式*的*函式參數* `q` 中，收到多個 `q` *查詢參數*的值（`foo` 與 `bar`），以 Python 的 `list` 形式。
 
 因此，對該 URL 的回應會是：
 
@@ -276,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 http://localhost:8000/items/
 ```
 
-`q` 的預設值會是：`["foo", "bar"]`，而回應會是：
+`q` 的預設值會是：`["foo", "bar"]`，而你的回應會是：
 
 ```JSON
 {
@@ -359,15 +360,15 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 ## 從 OpenAPI 排除參數 { #exclude-parameters-from-openapi }
 
-若要把某個查詢參數從產生的 OpenAPI（以及自動文件系統）中排除，將 `Query` 的 `include_in_schema` 設為 `False`：
+若要把某個查詢參數從產生的 OpenAPI schema（以及自動文件系統）中排除，將 `Query` 的 `include_in_schema` 設為 `False`：
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
 ## 自訂驗證 { #custom-validation }
 
-有時你需要做一些上述參數無法處理的「自訂驗證」。
+有時你需要做一些上述參數無法處理的**自訂驗證**。
 
-這種情況下，你可以使用「自訂驗證函式」，它會在一般驗證之後套用（例如先確認值是 `str` 之後）。
+這種情況下，你可以使用**自訂驗證函式**，它會在一般驗證之後套用（例如先確認值是 `str` 之後）。
 
 你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 來達成。
 
@@ -389,15 +390,15 @@ Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 /// tip | 提示
 
-如果你需要做任何需要與「外部元件」溝通的驗證（例如資料庫或其他 API），應該改用「FastAPI 依賴」（FastAPI Dependencies），你稍後會學到。
+如果你需要做任何需要與**外部元件**溝通的驗證（例如資料庫或其他 API），應該改用 **FastAPI Dependencies**，你稍後會學到。
 
-這些自訂驗證器適用於只需使用請求中「同一份資料」即可完成的檢查。
+這些自訂驗證器適用於只需使用請求中**同一份資料**即可完成的檢查。
 
 ///
 
 ### 理解這段程式碼 { #understand-that-code }
 
-重點就是在 `Annotated` 中使用「`AfterValidator` 搭配函式」。如果你願意，可以略過這一節。🤸
+重點就是在 `Annotated` 中使用 **`AfterValidator` 搭配函式**。如果你願意，可以略過這一節。🤸
 
 ---
 
@@ -415,13 +416,13 @@ Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 我們用 `list(data.items())` 把這個可疊代物件轉成正式的 `list`。
 
-接著用 `random.choice()` 從清單中取得一個「隨機值」，也就是一個 `(id, name)` 的 tuple。可能像是 `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`。
+接著用 `random.choice()` 從清單中取得一個**隨機值**，也就是一個 `(id, name)` 的 tuple。可能像是 `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`。
 
-然後把這個 tuple 的兩個值分別指定給變數 `id` 和 `name`。
+然後把這個 tuple 的**兩個值分別指定**給變數 `id` 和 `name`。
 
 因此，即使使用者沒有提供 item ID，仍然會收到一個隨機建議。
 
-……而這全部只用一行簡單的程式碼完成。🤯 你不愛 Python 嗎？🐍
+...而這全部只用**一行簡單的程式碼**完成。🤯 你不愛 Python 嗎？🐍
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 
@@ -431,16 +432,16 @@ Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 通用的驗證與中繼資料：
 
-- `alias`
-- `title`
-- `description`
-- `deprecated`
+* `alias`
+* `title`
+* `description`
+* `deprecated`
 
 字串專用的驗證：
 
-- `min_length`
-- `max_length`
-- `pattern`
+* `min_length`
+* `max_length`
+* `pattern`
 
 使用 `AfterValidator` 的自訂驗證。
 

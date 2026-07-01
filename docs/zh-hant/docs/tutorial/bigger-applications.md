@@ -542,6 +542,6 @@ router.include_router(other_router)
 
 請使用有文件記載的 API，例如路徑操作的裝飾器與 `.include_router()` 來新增路由與 routers。
 
-把 `router.routes` 視為較低階的路由樹結構，它可能同時包含路由定義與被納入的 routers，避免將它當成最終路徑操作的平lat清單來依賴。
+把 `router.routes` 視為較低階的路由樹結構，它可能同時包含路由定義與被納入的 routers，避免將它當成最終路徑操作的扁平清單來依賴。
 
 ///
