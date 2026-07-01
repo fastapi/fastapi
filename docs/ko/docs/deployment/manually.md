@@ -1,6 +1,6 @@
 # 서버를 수동으로 실행하기 { #run-a-server-manually }
 
-## `fastapi run` 명령 사용하기 { #use-the-fastapi-run-command }
+## `fastapi run` 명령어 사용하기 { #use-the-fastapi-run-command }
 
 요약하면, `fastapi run`을 사용해 FastAPI 애플리케이션을 서비스하세요:
 
@@ -40,7 +40,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 대부분의 경우에는 이것으로 동작합니다. 😎
 
-예를 들어 이 명령은 컨테이너나 서버 등에서 **FastAPI** 앱을 시작할 때 사용할 수 있습니다.
+예를 들어 이 명령어는 컨테이너나 서버 등에서 **FastAPI** 애플리케이션을 시작할 때 사용할 수 있습니다.
 
 ## ASGI 서버 { #asgi-servers }
 
@@ -48,7 +48,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 FastAPI는 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버 게이트웨이 인터페이스">ASGI</abbr>라고 불리는, Python 웹 프레임워크와 서버를 만들기 위한 표준을 사용합니다. FastAPI는 ASGI 웹 프레임워크입니다.
 
-원격 서버 머신에서 **FastAPI** 애플리케이션(또는 다른 ASGI 애플리케이션)을 실행하기 위해 필요한 핵심 요소는 **Uvicorn** 같은 ASGI 서버 프로그램입니다. `fastapi` 명령에는 기본으로 이것이 포함되어 있습니다.
+원격 서버 머신에서 **FastAPI** 애플리케이션(또는 다른 ASGI 애플리케이션)을 실행하기 위해 필요한 핵심 요소는 **Uvicorn** 같은 ASGI 서버 프로그램입니다. `fastapi` 명령어에는 기본으로 이것이 포함되어 있습니다.
 
 다음을 포함해 여러 대안이 있습니다:
 
@@ -69,7 +69,7 @@ FastAPI는 <abbr title="Asynchronous Server Gateway Interface - 비동기 서버
 
 ## 서버 프로그램 설치하기 { #install-the-server-program }
 
-FastAPI를 설치하면 프로덕션 서버인 Uvicorn이 함께 설치되며, `fastapi run` 명령으로 시작할 수 있습니다.
+FastAPI를 설치하면 프로덕션 서버인 Uvicorn이 함께 설치되며, `fastapi run` 명령어로 시작할 수 있습니다.
 
 하지만 ASGI 서버를 수동으로 설치할 수도 있습니다.
 
@@ -115,7 +115,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 /// note | 참고
 
-`uvicorn main:app` 명령은 다음을 가리킵니다:
+`uvicorn main:app` 명령어는 다음을 가리킵니다:
 
 * `main`: 파일 `main.py`(Python "module").
 * `app`: `main.py` 안에서 `app = FastAPI()` 라인으로 생성된 객체.
@@ -128,7 +128,7 @@ from main import app
 
 ///
 
-각 ASGI 서버 프로그램의 대안도 비슷한 명령을 갖고 있으며, 자세한 내용은 각자의 문서를 참고하세요.
+각 ASGI 서버 프로그램의 대안도 비슷한 명령어를 갖고 있으며, 자세한 내용은 각자의 문서를 참고하세요.
 
 /// warning | 경고
 

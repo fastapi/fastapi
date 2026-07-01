@@ -2,6 +2,14 @@
 
 `StaticFiles`를 사용하면 디렉터리에서 정적 파일을 자동으로 제공할 수 있습니다.
 
+/// tip | 팁
+
+프론트엔드를 호스팅해야 한다면 대신 `app.frontend()`를 사용하세요. 자세한 내용은 [프론트엔드](frontend.md)에서 확인하세요.
+
+`app.frontend()`는 내부적으로 `StaticFiles`를 사용하며, 클라이언트 사이드 라우팅 처리와 같은 프론트엔드를 위한 여러 추가 이점이 있습니다.
+
+///
+
 ## `StaticFiles` 사용 { #use-staticfiles }
 
 * `StaticFiles`를 임포트합니다.

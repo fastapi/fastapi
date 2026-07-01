@@ -151,11 +151,11 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 그들은 "폼 데이터"를 사용하여 전송된 동일한 "폼 필드"에 연결됩니다.
 
-이 기능을 사용하기 위해 , `bytes` 의 `List` 또는 `UploadFile` 를 선언하기 바랍니다:
+이 기능을 사용하려면 `bytes` 또는 `UploadFile`의 `list`를 선언하기 바랍니다:
 
 {* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
-선언한대로, `bytes` 의 `list` 또는 `UploadFile` 들을 전송받을 것입니다.
+선언한 대로, `bytes` 또는 `UploadFile`의 `list`를 받게 됩니다.
 
 /// note | 기술 세부사항
 

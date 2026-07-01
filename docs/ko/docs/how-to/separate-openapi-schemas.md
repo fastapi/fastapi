@@ -1,4 +1,4 @@
-# 입력과 출력에 대해 OpenAPI 스키ма를 분리할지 여부 { #separate-openapi-schemas-for-input-and-output-or-not }
+# 입력과 출력에 대해 OpenAPI 스키마를 분리할지 여부 { #separate-openapi-schemas-for-input-and-output-or-not }
 
 **Pydantic v2**가 릴리스된 이후, 생성되는 OpenAPI는 이전보다 조금 더 정확하고 **올바르게** 만들어집니다. 😎
 
