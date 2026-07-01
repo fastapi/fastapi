@@ -1,5 +1,6 @@
 # Código de Estado del Response { #response-status-code }
 
+
 De la misma manera que puedes especificar un modelo de response, también puedes declarar el código de estado HTTP usado para el response con el parámetro `status_code` en cualquiera de las *path operations*:
 
 * `@app.get()`

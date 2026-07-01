@@ -1,5 +1,6 @@
 # OAuth2 con Password (y hashing), Bearer con tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
+
 Ahora que tenemos todo el flujo de seguridad, hagamos que la aplicación sea realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> y hashing de contraseñas seguras.
 
 Este código es algo que puedes usar realmente en tu aplicación, guardar los hashes de las contraseñas en tu base de datos, etc.
