@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for tr (add-missing). PR [#15887](https://github.com/fastapi/fastapi/pull/15887) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (add-missing). PR [#15886](https://github.com/fastapi/fastapi/pull/15886) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (add-missing). PR [#15881](https://github.com/fastapi/fastapi/pull/15881) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for de (add-missing). PR [#15884](https://github.com/fastapi/fastapi/pull/15884) by [@tiangolo](https://github.com/tiangolo).
