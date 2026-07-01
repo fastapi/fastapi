@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for ru (add-missing). PR [#15879](https://github.com/fastapi/fastapi/pull/15879) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👥 Update FastAPI People - Contributors and Translators. PR [#15878](https://github.com/fastapi/fastapi/pull/15878) by [@tiangolo](https://github.com/tiangolo).
