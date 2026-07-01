@@ -1,5 +1,6 @@
 # 回應狀態碼 { #response-status-code }
 
+
 就像你可以指定回應模型一樣，你也可以在任一個「路徑操作（path operation）」的參數 `status_code` 中宣告回應所使用的 HTTP 狀態碼：
 
 * `@app.get()`
