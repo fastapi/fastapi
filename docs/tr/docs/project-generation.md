@@ -1,5 +1,6 @@
 # Full Stack FastAPI Şablonu { #full-stack-fastapi-template }
 
+
 Şablonlar genellikle belirli bir kurulumla gelir, ancak esnek ve özelleştirilebilir olacak şekilde tasarlanırlar. Bu sayede şablonu projenizin gereksinimlerine göre değiştirip uyarlayabilir, çok iyi bir başlangıç noktası olarak kullanabilirsiniz. 🏁
 
 Bu şablonu başlangıç için kullanabilirsiniz; çünkü ilk kurulumun, güvenliğin, veritabanının ve bazı API endpoint'lerinin önemli bir kısmı sizin için zaten hazırlanmıştır.

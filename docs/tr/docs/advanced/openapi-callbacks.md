@@ -167,13 +167,13 @@ Callback URL'sinin, `callback_url` içindeki query parametresi olarak alınan UR
 
 Bu noktada, yukarıda oluşturduğunuz callback router'ında gerekli callback *path operation*'ları (external geliştiricinin *external API*'de implemente etmesi gerekenler) hazır.
 
-Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu (bu aslında route/*path operation*'lardan oluşan bir `list`) geçin:
+Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu geçin:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | İpucu
 
-`callback=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin. FastAPI bu route'ları callback OpenAPI dokümantasyonunu üretmek için kullanacaktır.
+`callbacks=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin. FastAPI bu route'ları callback OpenAPI dokümantasyonunu üretmek için kullanacaktır.
 
 ///
 

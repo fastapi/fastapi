@@ -1,4 +1,4 @@
-# Sorgu Parametreleri { #query-parameters }
+# Query Parametreleri { #query-parameters }
 
 Fonksiyonda path parametrelerinin parçası olmayan diğer parametreleri tanımladığınızda, bunlar otomatik olarak "query" parametreleri olarak yorumlanır.
 
@@ -71,7 +71,7 @@ Ayrıca, **FastAPI** path parametresi olan `item_id`'nin bir path parametresi ol
 
 ///
 
-## Sorgu parametresi tip dönüşümü { #query-parameter-type-conversion }
+## Query parametresi tip dönüşümü { #query-parameter-type-conversion }
 
 `bool` tipleri de tanımlayabilirsiniz, ve bunlar dönüştürülür:
 

@@ -18,7 +18,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Şifrelenmiş değildir; yani herkes içeriğindeki bilgiyi geri çıkarabilir.
 
-Namun imzalanmıştır. Bu yüzden, sizin ürettiğiniz bir token'ı aldığınızda, gerçekten onu sizin ürettiğinizi doğrulayabilirsiniz.
+Ancak imzalanmıştır. Bu yüzden, sizin ürettiğiniz bir token'ı aldığınızda, gerçekten onu sizin ürettiğinizi doğrulayabilirsiniz.
 
 Bu şekilde, örneğin 1 haftalık süre sonu (expiration) olan bir token oluşturabilirsiniz. Sonra kullanıcı ertesi gün token ile geri geldiğinde, kullanıcının hâlâ sisteminizde oturum açmış olduğunu bilirsiniz.
 
@@ -120,7 +120,7 @@ Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonk
 
 `authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
 
-Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek zamanlama saldırılarını (timing attacks) engeller.
+Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek **timing attacks** saldırılarını engeller.
 
 /// note | Not
 

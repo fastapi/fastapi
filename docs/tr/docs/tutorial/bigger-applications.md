@@ -17,16 +17,16 @@ Diyelim ki şöyle bir dosya yapınız var:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | İpucu
@@ -77,7 +77,7 @@ Diyelim ki sadece kullanıcıları yönetmeye ayrılmış dosyanız `/app/router
 
 Kullanıcılarla ilgili *path operation*’ları, kodun geri kalanından ayrı tutmak istiyorsunuz; böylece düzenli kalır.
 
-Namun bu hâlâ aynı **FastAPI** uygulaması/web API’sinin bir parçasıdır (aynı "Python Package" içinde).
+Ancak bu hâlâ aynı **FastAPI** uygulaması/web API’sinin bir parçasıdır (aynı "Python Package" içinde).
 
 Bu module için *path operation*’ları `APIRouter` kullanarak oluşturabilirsiniz.
 
@@ -123,7 +123,7 @@ Bu yüzden onları ayrı bir `dependencies` module’üne koyuyoruz (`app/depend
 
 Örneği basit tutmak için uydurma bir header kullanıyoruz.
 
-Namun gerçek senaryolarda, entegre [Security yardımcı araçlarını](security/index.md) kullanarak daha iyi sonuç alırsınız.
+Ancak gerçek senaryolarda, entegre [Security yardımcı araçlarını](security/index.md) kullanarak daha iyi sonuç alırsınız.
 
 ///
 
@@ -138,7 +138,7 @@ Diyelim ki uygulamanızdaki "items" ile ilgili endpoint'ler de `app/routers/item
 
 Bu, `app/routers/users.py` ile aynı yapıdadır.
 
-Namun biraz daha akıllı davranıp kodu sadeleştirmek istiyoruz.
+Ancak biraz daha akıllı davranıp kodu sadeleştirmek istiyoruz.
 
 Bu module’deki tüm *path operation*’ların şu ortak özelliklere sahip olduğunu biliyoruz:
 
@@ -230,7 +230,7 @@ from .dependencies import get_token_header
 * `dependencies` module’ünü bul (`app/routers/dependencies.py` gibi hayali bir dosya)...
 * ve oradan `get_token_header` function’ını import et.
 
-Namun o dosya yok; bizim dependency’lerimiz `app/dependencies.py` dosyasında.
+Ancak o dosya yok; bizim dependency’lerimiz `app/dependencies.py` dosyasında.
 
 Uygulama/dosya yapımızın nasıl göründüğünü hatırlayın:
 
@@ -437,7 +437,7 @@ Sonuç olarak, uygulamamızda `admin` module’ündeki her bir *path operation* 
 * `get_token_header` dependency’si.
 * `418` response’u. 🍵
 
-Namun bu sadece bizim uygulamamızdaki o `APIRouter` için geçerlidir; onu kullanan diğer kodlar için değil.
+Ancak bu sadece bizim uygulamamızdaki o `APIRouter` için geçerlidir; onu kullanan diğer kodlar için değil.
 
 Dolayısıyla örneğin diğer projeler aynı `APIRouter`’ı farklı bir authentication yöntemiyle kullanabilir.
 
@@ -490,7 +490,7 @@ Komuta dosya yolunu da verebilirsiniz, örneğin:
 $ fastapi dev app/main.py
 ```
 
-Namun o zaman her `fastapi` komutunu çalıştırdığınızda doğru yolu hatırlayıp geçirmeniz gerekir.
+Ancak o zaman her `fastapi` komutunu çalıştırdığınızda doğru yolu hatırlayıp geçirmeniz gerekir.
 
 Ayrıca, diğer araçlar uygulamayı bulamayabilir; örneğin [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com). Bu yüzden `pyproject.toml` içinde `entrypoint` kullanmanız önerilir.
 
