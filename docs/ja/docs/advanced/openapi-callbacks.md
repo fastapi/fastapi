@@ -23,7 +23,7 @@
 * API 利用者（外部開発者）に通知を送り返します。
     * これは（あなたの API から）外部開発者が提供する *外部 API* に POST リクエストを送ることで行われます（これが「コールバック」です）。
 
-## 通常の FastAPI アプリ { #the-normal-fastapi-app }
+## 通常の **FastAPI** アプリ { #the-normal-fastapi-app }
 
 まず、コールバックを追加する前の通常の API アプリがどうなるか見てみましょう。
 
@@ -76,7 +76,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 しかし、あなたはすでに **FastAPI** で API の自動ドキュメントを簡単に作る方法を知っています。
 
-その知識を使って、*外部 API* がどうあるべきかをドキュメント化します……つまり、外部 API が実装すべき *path operation(s)*（あなたの API が呼び出すもの）を作成します。
+その知識を使って、*外部 API* がどうあるべきかをドキュメント化します... つまり、外部 API が実装すべき *path operation(s)*（あなたの API が呼び出すもの）を作成します。
 
 /// tip | 豆知識
 
@@ -86,13 +86,13 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 ///
 
-### コールバック用 APIRouter を作成 { #create-a-callback-apirouter }
+### コールバック用 `APIRouter` を作成 { #create-a-callback-apirouter }
 
 まず、1 つ以上のコールバックを含む新しい `APIRouter` を作成します。
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
-### コールバックの path operation を作成 { #create-the-callback-path-operation }
+### コールバックの *path operation* を作成 { #create-the-callback-path-operation }
 
 上で作成したのと同じ `APIRouter` を使って、コールバックの *path operation* を作成します。
 

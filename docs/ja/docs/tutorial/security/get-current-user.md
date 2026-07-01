@@ -14,7 +14,7 @@
 
 ボディを宣言するのにPydanticを使用するのと同じやり方で、Pydanticを別のどんなところでも使うことができます:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## 依存関係 `get_current_user` を作成 { #create-a-get-current-user-dependency }
 

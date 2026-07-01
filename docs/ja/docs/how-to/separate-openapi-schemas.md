@@ -41,7 +41,7 @@
 ドキュメントから試してレスポンスを確認すると、コードでは一方の `description` フィールドに何も追加していないにもかかわらず、JSON レスポンスにはデフォルト値（`null`）が含まれています:
 
 <div class="screenshot">
-<img src="/img/tutorial/separate-openapi_schemas/image02.png">
+<img src="/img/tutorial/separate-openapi-schemas/image02.png">
 </div>
 
 つまりそのフィールドには **常に値があります**。値が `None`（JSON では `null`）になることがあるだけです。
@@ -72,7 +72,7 @@
 一方、`Item-Output` では、`description` は **必須**（赤いアスタリスクあり）です。
 
 <div class="screenshot">
-<img src="/img/tutorial/separate-openapi_schemas/image04.png">
+<img src="/img/tutorial/separate-openapi-schemas/image04.png">
 </div>
 
 この **Pydantic v2** の機能により、API ドキュメントはより **正確** になり、自動生成されたクライアントや SDK もより正確になります。これにより、より良い **開発者エクスペリエンス** と一貫性が得られます。🎉

@@ -1,6 +1,6 @@
 # サーバーを手動で実行する { #run-a-server-manually }
 
-## fastapi run コマンドを使う { #use-the-fastapi-run-command }
+## `fastapi run` コマンドを使う { #use-the-fastapi-run-command }
 
 結論として、FastAPI アプリケーションを提供するには `fastapi run` を使います:
 
