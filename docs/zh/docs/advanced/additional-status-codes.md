@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning
+/// warning | 警告
 
 当你直接返回一个像上面例子中的 `Response` 对象时，它会直接返回。
 
@@ -38,4 +38,4 @@
 
 如果你直接返回额外的状态码和响应，它们不会包含在 OpenAPI 方案（API 文档）中，因为 FastAPI 没办法预先知道你要返回什么。
 
-但是你可以使用 [额外的响应](additional-responses.md) 在代码中记录这些内容。
+但是你可以使用：[额外的响应](additional-responses.md)，在代码中记录这些内容。

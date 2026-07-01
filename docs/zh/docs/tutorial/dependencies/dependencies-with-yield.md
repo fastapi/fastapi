@@ -267,7 +267,8 @@ with open("./somefile.txt") as f:
 
 在 Python 中，你可以通过[创建一个带有 `__enter__()` 和 `__exit__()` 方法的类](https://docs.python.org/3/reference/datamodel.html#context-managers)来创建上下文管理器。
 
-你也可以在 **FastAPI** 的带有 `yield` 的依赖中，使用依赖函数内部的 `with` 或 `async with` 语句来使用它们：
+你也可以在 **FastAPI** 的带有 `yield` 的依赖中通过在依赖函数内部使用
+`with` 或 `async with` 语句来使用它们：
 
 {* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 

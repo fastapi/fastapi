@@ -1,5 +1,6 @@
 # 高级依赖项 { #advanced-dependencies }
 
+
 ## 参数化的依赖项 { #parameterized-dependencies }
 
 目前我们看到的依赖项都是固定的函数或类。
