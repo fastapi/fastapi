@@ -951,28 +951,6 @@ def _populate_api_route_state(
     route.path = path
     route.endpoint = endpoint
     route.stream_item_type = None
-    if isinstance(response_model, DefaultPlaceholder):
-        return_annotation = get_typed_return_annotation(endpoint)
-        if lenient_issubclass(return_annotation, Response):
-            response_model = None
-        else:
-            stream_item = get_stream_item_type(return_annotation)
-            if stream_item is not None:
-                # Extract item type for JSONL or SSE streaming when
-                # response_class is DefaultPlaceholder (JSONL) or
-                # EventSourceResponse (SSE).
-                # ServerSentEvent is excluded: it's a transport
-                # wrapper, not a data model, so it shouldn't feed
-                # into validation or OpenAPI schema generation.
-                if (
-                    isinstance(response_class, DefaultPlaceholder)
-                    or lenient_issubclass(response_class, EventSourceResponse)
-                ) and not lenient_issubclass(stream_item, ServerSentEvent):
-                    route.stream_item_type = stream_item
-                response_model = None
-            else:
-                response_model = return_annotation
-    route.response_model = response_model
     route.summary = summary
     route.response_description = response_description
     route.deprecated = deprecated
@@ -1008,27 +986,6 @@ def _populate_api_route_state(
     if isinstance(status_code, IntEnum):
         status_code = int(status_code)
     route.status_code = status_code
-    if route.response_model:
-        assert is_body_allowed_for_status_code(status_code), (
-            f"Status code {status_code} must not have a response body"
-        )
-        response_name = "Response_" + route.unique_id
-        route.response_field = create_model_field(
-            name=response_name,
-            type_=route.response_model,
-            mode="serialization",
-        )
-    else:
-        route.response_field = None
-    if route.stream_item_type:
-        stream_item_name = "StreamItem_" + route.unique_id
-        route.stream_item_field = create_model_field(
-            name=stream_item_name,
-            type_=route.stream_item_type,
-            mode="serialization",
-        )
-    else:
-        route.stream_item_field = None
     route.dependencies = list(dependencies or [])
     route.description = description or inspect.cleandoc(route.endpoint.__doc__ or "")
     # if a "form feed" character (page break) is found in the description text,
@@ -1080,6 +1037,50 @@ def _populate_api_route_state(
     route.is_json_stream = is_generator and isinstance(
         response_class, DefaultPlaceholder
     )
+    if isinstance(response_model, DefaultPlaceholder):
+        return_annotation = get_typed_return_annotation(endpoint)
+        if lenient_issubclass(return_annotation, Response):
+            response_model = None
+        else:
+            stream_item = get_stream_item_type(return_annotation)
+            if stream_item is not None and is_generator:
+                # Extract item type for JSONL or SSE streaming for
+                # generator endpoints when response_class is
+                # DefaultPlaceholder (JSONL) or EventSourceResponse
+                # (SSE).
+                # ServerSentEvent is excluded: it's a transport
+                # wrapper, not a data model, so it shouldn't feed
+                # into validation or OpenAPI schema generation.
+                if (
+                    isinstance(response_class, DefaultPlaceholder)
+                    or lenient_issubclass(response_class, EventSourceResponse)
+                ) and not lenient_issubclass(stream_item, ServerSentEvent):
+                    route.stream_item_type = stream_item
+                response_model = None
+            else:
+                response_model = return_annotation
+    route.response_model = response_model
+    if route.response_model:
+        assert is_body_allowed_for_status_code(status_code), (
+            f"Status code {status_code} must not have a response body"
+        )
+        response_name = "Response_" + route.unique_id
+        route.response_field = create_model_field(
+            name=response_name,
+            type_=route.response_model,
+            mode="serialization",
+        )
+    else:
+        route.response_field = None
+    if route.stream_item_type:
+        stream_item_name = "StreamItem_" + route.unique_id
+        route.stream_item_field = create_model_field(
+            name=stream_item_name,
+            type_=route.stream_item_type,
+            mode="serialization",
+        )
+    else:
+        route.stream_item_field = None
 
 
 class APIRoute(routing.Route):
