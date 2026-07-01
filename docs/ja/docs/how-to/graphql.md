@@ -1,5 +1,6 @@
 # GraphQL { #graphql }
 
+
 **FastAPI** は **ASGI** 標準に基づいているため、ASGI に対応した任意の **GraphQL** ライブラリを簡単に統合できます。
 
 同じアプリケーション内で通常の FastAPI の *path operation* と GraphQL を組み合わせて使えます。
