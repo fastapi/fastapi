@@ -797,17 +797,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(
-            path=self.path_format, call=self.endpoint, scope="function"
-        )
-        for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
-            )
-        self._flat_dependant = get_flat_dependant(self.dependant)
-        self._embed_body_fields = _should_embed_body_fields(
-            self._flat_dependant.body_params
+        (
+            self.dependant,
+            self._flat_dependant,
+            self._embed_body_fields,
+        ) = _build_dependant_with_parameterless_dependencies(
+            path=self.path_format,
+            call=self.endpoint,
+            dependencies=self.dependencies,
         )
         self.app = websocket_session(
             get_websocket_app(
@@ -827,11 +824,33 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 _FASTAPI_SCOPE_KEY = "fastapi"
 _FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY = "effective_route_context"
 _FASTAPI_FRONTEND_PATH_KEY = "frontend_path"
+_FASTAPI_FRONTEND_SPECIFICITY_KEY = "frontend_specificity"
 _FASTAPI_INCLUDED_ROUTER_KEY = "included_router"
 _effective_route_context_var: ContextVar[Any | None] = ContextVar(
     "fastapi_effective_route_context", default=None
 )
 _SCOPE_MISSING = object()
+
+
+def _frontend_dependency_endpoint() -> None:
+    pass  # pragma: no cover
+
+
+def _build_dependant_with_parameterless_dependencies(
+    *,
+    path: str,
+    call: Callable[..., Any],
+    dependencies: Sequence[params.Depends],
+) -> tuple[Dependant, Dependant, bool]:
+    dependant = get_dependant(path=path, call=call, scope="function")
+    for depends in dependencies[::-1]:
+        dependant.dependencies.insert(
+            0,
+            get_parameterless_sub_dependant(depends=depends, path=path),
+        )
+    flat_dependant = get_flat_dependant(dependant)
+    embed_body_fields = _should_embed_body_fields(flat_dependant.body_params)
+    return dependant, flat_dependant, embed_body_fields
 
 
 class _RouteWithPath(Protocol):
@@ -859,6 +878,15 @@ def _get_scope_effective_route_context(scope: Scope) -> Any | None:
 
 def _get_scope_included_router(scope: Scope) -> Any | None:
     return scope.get(_FASTAPI_SCOPE_KEY, {}).get(_FASTAPI_INCLUDED_ROUTER_KEY)
+
+
+def _frontend_scope_specificity(scope: Scope) -> int | None:
+    specificity = scope.get(_FASTAPI_SCOPE_KEY, {}).get(
+        _FASTAPI_FRONTEND_SPECIFICITY_KEY
+    )
+    if isinstance(specificity, int):
+        return specificity
+    return None
 
 
 def _restore_fastapi_scope_key(scope: Scope, key: str, previous: Any) -> None:
@@ -1053,17 +1081,14 @@ def _populate_api_route_state(
         route.response_fields = {}
 
     assert callable(endpoint), "An endpoint must be a callable"
-    route.dependant = get_dependant(
-        path=route.path_format, call=route.endpoint, scope="function"
-    )
-    for depends in route.dependencies[::-1]:
-        route.dependant.dependencies.insert(
-            0,
-            get_parameterless_sub_dependant(depends=depends, path=route.path_format),
-        )
-    route._flat_dependant = get_flat_dependant(route.dependant)
-    route._embed_body_fields = _should_embed_body_fields(
-        route._flat_dependant.body_params
+    (
+        route.dependant,
+        route._flat_dependant,
+        route._embed_body_fields,
+    ) = _build_dependant_with_parameterless_dependencies(
+        path=route.path_format,
+        call=route.endpoint,
+        dependencies=route.dependencies,
     )
     route.body_field = get_body_field(
         flat_dependant=route._flat_dependant,
@@ -1334,6 +1359,7 @@ class _RouterIncludeContext:
 class _EffectiveRouteContext:
     original_route: BaseRoute
     starlette_route: BaseRoute | None = None
+    frontend_prefix: str = ""
     path: str = ""
     endpoint: Callable[..., Any] | None = None
     stream_item_type: Any | None = None
@@ -1436,7 +1462,34 @@ class _EffectiveRouteContext:
         )
         return context
 
+    @classmethod
+    def from_frontend_route_group(
+        cls,
+        *,
+        original_route: "_FrontendRouteGroup",
+        include_context: _RouterIncludeContext,
+    ) -> "_EffectiveRouteContext":
+        dependencies = [*include_context.dependencies, *original_route.dependencies]
+        context = cls(
+            original_route=original_route,
+            frontend_prefix=include_context.prefix,
+            dependencies=dependencies,
+            dependency_overrides_provider=include_context.dependency_overrides_provider,
+        )
+        (
+            context.dependant,
+            context._flat_dependant,
+            context._embed_body_fields,
+        ) = _build_dependant_with_parameterless_dependencies(
+            path="",
+            call=_frontend_dependency_endpoint,
+            dependencies=dependencies,
+        )
+        return context
+
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
+        if isinstance(self.original_route, _FrontendRouteGroup):
+            return self.original_route.matches_with_prefix(scope, self.frontend_prefix)
         if not isinstance(self.original_route, APIRoute):
             assert self.starlette_route is not None
             return self.starlette_route.matches(scope)
@@ -1579,9 +1632,9 @@ class _IncludedRouter(BaseRoute):
                 include_context=self.include_context,
             )
         if isinstance(route, _FrontendRouteGroup):
-            return _EffectiveRouteContext(
+            return _EffectiveRouteContext.from_frontend_route_group(
                 original_route=route,
-                starlette_route=route.with_prefix(self.include_context.prefix),
+                include_context=self.include_context,
             )
         if isinstance(route, routing.Route):
             starlette_route: BaseRoute = routing.Route(
@@ -1970,28 +2023,31 @@ class _FrontendRoute(BaseRoute):
             directory=directory, fallback=fallback, check_dir=check_dir
         )
 
-    def with_path(self, path: str) -> "_FrontendRoute":
-        route = copy.copy(self)
-        route.path = _normalize_frontend_path(path)
-        return route
-
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
+        return self.matches_with_path(scope, self.path)
+
+    def matches_with_path(self, scope: Scope, path: str) -> tuple[Match, Scope]:
         if scope["type"] != "http":
             return Match.NONE, {}
-        frontend_path = self._get_frontend_path(get_route_path(scope))
+        frontend_path = self._get_frontend_path(path, get_route_path(scope))
         if frontend_path is None:
             return Match.NONE, {}
-        child_scope = {_FASTAPI_SCOPE_KEY: {_FASTAPI_FRONTEND_PATH_KEY: frontend_path}}
+        child_scope = {
+            _FASTAPI_SCOPE_KEY: {
+                _FASTAPI_FRONTEND_PATH_KEY: frontend_path,
+                _FASTAPI_FRONTEND_SPECIFICITY_KEY: _frontend_path_specificity(path),
+            }
+        }
         if scope["method"] not in self.methods:
             return Match.PARTIAL, child_scope
         return Match.FULL, child_scope
 
-    def _get_frontend_path(self, route_path: str) -> str | None:
-        if self.path == "/":
+    def _get_frontend_path(self, path: str, route_path: str) -> str | None:
+        if path == "/":
             return route_path.lstrip("/")
-        if route_path == self.path:
+        if route_path == path:
             return ""
-        prefix = self.path + "/"
+        prefix = path + "/"
         if route_path.startswith(prefix):
             return route_path[len(prefix) :]
         return None
@@ -2004,8 +2060,24 @@ class _FrontendRoute(BaseRoute):
 
 
 class _FrontendRouteGroup(BaseRoute):
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        *,
+        dependencies: Sequence[params.Depends] | None = None,
+        dependency_overrides_provider: Any | None = None,
+    ) -> None:
         self.routes: list[_FrontendRoute] = []
+        self.dependencies = list(dependencies or [])
+        self.dependency_overrides_provider = dependency_overrides_provider
+        (
+            self.dependant,
+            self._flat_dependant,
+            self._embed_body_fields,
+        ) = _build_dependant_with_parameterless_dependencies(
+            path="",
+            call=_frontend_dependency_endpoint,
+            dependencies=self.dependencies,
+        )
 
     def add_frontend_route(
         self,
@@ -2024,50 +2096,115 @@ class _FrontendRouteGroup(BaseRoute):
             )
         )
 
-    def with_prefix(self, prefix: str) -> "_FrontendRouteGroup":
-        route_group = copy.copy(self)
-        route_group.routes = [
-            route.with_path(_join_frontend_paths(prefix, route.path))
-            for route in self.routes
-        ]
-        return route_group
-
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
-        match, child_scope, _ = self._match(scope)
+        match, child_scope, _ = self._match(scope, prefix="")
         return match, child_scope
 
-    def _match(self, scope: Scope) -> tuple[Match, Scope, _FrontendRoute | None]:
-        full: tuple[Scope, _FrontendRoute] | None = None
-        partial: tuple[Scope, _FrontendRoute] | None = None
+    def matches_with_prefix(self, scope: Scope, prefix: str) -> tuple[Match, Scope]:
+        match, child_scope, _ = self._match(scope, prefix=prefix)
+        return match, child_scope
+
+    def _match(
+        self, scope: Scope, *, prefix: str
+    ) -> tuple[Match, Scope, _FrontendRoute | None]:
+        full: tuple[Scope, _FrontendRoute, int] | None = None
+        partial: tuple[Scope, _FrontendRoute, int] | None = None
         for route in self.routes:
-            match, child_scope = route.matches(scope)
+            path = _join_frontend_paths(prefix, route.path)
+            match, child_scope = route.matches_with_path(scope, path)
+            specificity = _frontend_path_specificity(path)
             if match == Match.FULL:
-                if full is None or _frontend_path_specificity(
-                    route.path
-                ) > _frontend_path_specificity(full[1].path):
-                    full = (child_scope, route)
+                if full is None or specificity > full[2]:
+                    full = (child_scope, route, specificity)
             elif match == Match.PARTIAL:
-                if partial is None or _frontend_path_specificity(
-                    route.path
-                ) > _frontend_path_specificity(partial[1].path):
-                    partial = (child_scope, route)
+                if partial is None or specificity > partial[2]:
+                    partial = (child_scope, route, specificity)
         if full is not None:
-            child_scope, route = full
+            child_scope, route, _ = full
             return Match.FULL, child_scope, route
         if partial is not None:
-            child_scope, route = partial
+            child_scope, route, _ = partial
             return Match.PARTIAL, child_scope, route
         return Match.NONE, {}, None
 
     async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
-        match, child_scope, route = self._match(scope)
+        effective_context = _get_scope_effective_route_context(scope)
+        if (
+            isinstance(effective_context, _EffectiveRouteContext)
+            and effective_context.original_route is self
+        ):
+            prefix = effective_context.frontend_prefix
+            dependant = effective_context.dependant
+            dependency_overrides_provider = (
+                effective_context.dependency_overrides_provider
+            )
+            embed_body_fields = effective_context._embed_body_fields
+        else:
+            prefix = ""
+            dependant = self.dependant
+            dependency_overrides_provider = self.dependency_overrides_provider
+            embed_body_fields = self._embed_body_fields
+        match, child_scope, route = self._match(scope, prefix=prefix)
         if match == Match.NONE or route is None:
             raise HTTPException(status_code=404)
         _update_scope(scope, child_scope)
+        if match == Match.FULL and dependant and dependant.dependencies:
+            async with self._solve_dependencies(
+                scope,
+                receive,
+                send,
+                dependant=dependant,
+                dependency_overrides_provider=dependency_overrides_provider,
+                embed_body_fields=embed_body_fields,
+            ):
+                await route.handle(scope, receive, send)
+            return
         await route.handle(scope, receive, send)
 
     def url_path_for(self, name: str, /, **path_params: Any) -> URLPath:
         raise NoMatchFound(name, path_params)
+
+    # TODO: probably move this out of the Route / Route Group, same in APIRoute
+    # this should probably be top level FastAPI logic, not part of APIRoute and
+    # duplicated here
+    @asynccontextmanager
+    async def _solve_dependencies(
+        self,
+        scope: Scope,
+        receive: Receive,
+        send: Send,
+        *,
+        dependant: Dependant,
+        dependency_overrides_provider: Any | None,
+        embed_body_fields: bool,
+    ) -> AsyncIterator[None]:
+        request = Request(scope, receive, send)
+        previous_inner_astack = scope.get("fastapi_inner_astack", _SCOPE_MISSING)
+        previous_function_astack = scope.get("fastapi_function_astack", _SCOPE_MISSING)
+        try:
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    solved_result = await solve_dependencies(
+                        request=request,
+                        dependant=dependant,
+                        dependency_overrides_provider=dependency_overrides_provider,
+                        async_exit_stack=request_stack,
+                        embed_body_fields=embed_body_fields,
+                    )
+                    if solved_result.errors:
+                        raise RequestValidationError(solved_result.errors)
+                    yield
+        finally:
+            if previous_inner_astack is _SCOPE_MISSING:
+                scope.pop("fastapi_inner_astack", None)
+            else:
+                scope["fastapi_inner_astack"] = previous_inner_astack
+            if previous_function_astack is _SCOPE_MISSING:
+                scope.pop("fastapi_function_astack", None)
+            else:
+                scope["fastapi_function_astack"] = previous_function_astack
 
 
 class APIRouter(routing.Router):
@@ -2515,7 +2652,10 @@ class APIRouter(routing.Router):
         """
         normalized_path = _normalize_frontend_path(path)
         if self._frontend_routes is None:
-            self._frontend_routes = _FrontendRouteGroup()
+            self._frontend_routes = _FrontendRouteGroup(
+                dependencies=self.dependencies,
+                dependency_overrides_provider=self.dependency_overrides_provider,
+            )
             self._low_priority_routes.append(self._frontend_routes)
         self._frontend_routes.add_frontend_route(
             _join_frontend_paths(self.prefix, normalized_path),
@@ -2650,10 +2790,14 @@ class APIRouter(routing.Router):
                 match, child_scope = candidate.matches(scope)
                 route = candidate
             if match == Match.FULL:
-                if full is None:
+                if full is None or self._frontend_match_is_more_specific(
+                    child_scope, full[0]
+                ):
                     full = (child_scope, route, route_context)
             elif match == Match.PARTIAL:
-                if partial is None:
+                if partial is None or self._frontend_match_is_more_specific(
+                    child_scope, partial[0]
+                ):
                     partial = (child_scope, route, route_context)
         if full is not None:
             child_scope, route, route_context = full
@@ -2662,6 +2806,15 @@ class APIRouter(routing.Router):
             child_scope, route, route_context = partial
             return Match.PARTIAL, child_scope, route, route_context
         return Match.NONE, {}, None, None
+
+    def _frontend_match_is_more_specific(
+        self, child_scope: Scope, previous_child_scope: Scope
+    ) -> bool:
+        specificity = _frontend_scope_specificity(child_scope)
+        previous_specificity = _frontend_scope_specificity(previous_child_scope)
+        if specificity is None or previous_specificity is None:
+            return False
+        return specificity > previous_specificity
 
     def route(
         self,
