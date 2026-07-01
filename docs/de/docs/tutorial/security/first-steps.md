@@ -1,5 +1,6 @@
 # Sicherheit – Erste Schritte { #security-first-steps }
 
+
 Stellen wir uns vor, dass Sie Ihre **Backend**-API auf einer Domain haben.
 
 Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer Mobile-Anwendung).

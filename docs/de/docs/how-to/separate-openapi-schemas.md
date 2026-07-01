@@ -1,5 +1,6 @@
 # Separate OpenAPI-Schemas für Eingabe und Ausgabe oder nicht { #separate-openapi-schemas-for-input-and-output-or-not }
 
+
 Seit der Veröffentlichung von **Pydantic v2** ist die generierte OpenAPI etwas genauer und **korrekter** als zuvor. 😎
 
 Tatsächlich gibt es in einigen Fällen sogar **zwei JSON-Schemas** in OpenAPI für dasselbe Pydantic-Modell, für Eingabe und Ausgabe, je nachdem, ob sie **Defaultwerte** haben.
