@@ -1,5 +1,6 @@
 # Configurer les chemins d'accès { #path-operation-configuration }
 
+
 Vous pouvez passer plusieurs paramètres à votre *décorateur de chemin d'accès* pour le configurer.
 
 /// warning | Alertes
