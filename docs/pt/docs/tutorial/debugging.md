@@ -99,7 +99,7 @@ Veja como pode parecer:
 
 ---
 
-Se você usar o Pycharm, você pode:
+Se você usar o PyCharm, você pode:
 
 * Abrir o menu "Executar".
 * Selecionar a opção "Depurar...".

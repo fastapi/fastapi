@@ -40,7 +40,7 @@ Eles serão adicionados ao esquema OpenAPI e usados pelas interfaces de document
 
 ### Tags com Enums { #tags-with-enums }
 
-Se você tem uma grande aplicação, você pode acabar acumulando **várias tags**, e você gostaria de ter certeza de que você sempre usa a ** mesma tag** para *operações de rota* relacionadas.
+Se você tem uma grande aplicação, você pode acabar acumulando **várias tags**, e você gostaria de ter certeza de que você sempre usa a **mesma tag** para *operações de rota* relacionadas.
 
 Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 

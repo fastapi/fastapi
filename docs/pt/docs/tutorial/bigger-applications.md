@@ -382,6 +382,18 @@ Agora, vamos incluir os `router`s dos submódulos `users` e `items`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
+/// note | Nota
+
+`users.router` contém o `APIRouter` dentro do arquivo `app/routers/users.py`.
+
+E `items.router` contém o `APIRouter` dentro do arquivo `app/routers/items.py`.
+
+///
+
+Com `app.include_router()` podemos adicionar cada `APIRouter` ao aplicativo principal `FastAPI`.
+
+Ele incluirá todas as rotas daquele router como parte dele.
+
 /// note | Detalhes Técnicos
 
 O FastAPI mantém o `APIRouter` original e seus `APIRoute`s ativos quando o router é incluído na aplicação principal.
@@ -389,10 +401,6 @@ O FastAPI mantém o `APIRouter` original e seus `APIRoute`s ativos quando o rout
 Isso significa que subclasses personalizadas de `APIRouter` e `APIRoute` ainda podem participar depois que o router é incluído.
 
 ///
-
-Com `app.include_router()` podemos adicionar cada `APIRouter` ao aplicativo principal `FastAPI`.
-
-Ele incluirá todas as rotas daquele router como parte dele.
 
 /// tip | Dica
 

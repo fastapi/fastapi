@@ -56,7 +56,7 @@ Os dados dos formulários são normalmente codificados usando o "media type" `ap
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o [<abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [documentação web da <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
