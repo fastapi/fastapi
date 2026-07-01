@@ -270,6 +270,8 @@ If you are using **Git** (you should), add a `.gitignore` file to exclude everyt
 
 If you used [`uv`](https://github.com/astral-sh/uv) to create the virtual environment, it already did this for you, you can skip this step. 😎
 
+Starting with Python 3.13, `python -m venv` also creates a `.gitignore` file by default.
+
 ///
 
 /// tip
