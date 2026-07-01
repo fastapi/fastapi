@@ -1,5 +1,6 @@
 # 使用数据类 { #using-dataclasses }
 
+
 FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydantic 模型声明请求与响应。
 
 但 FastAPI 也支持以相同方式使用 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)：
