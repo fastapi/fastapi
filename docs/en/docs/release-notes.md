@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for pt (update-outdated). PR [#15893](https://github.com/fastapi/fastapi/pull/15893) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh (update-outdated). PR [#15898](https://github.com/fastapi/fastapi/pull/15898) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (update-outdated). PR [#15900](https://github.com/fastapi/fastapi/pull/15900) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ko (update-outdated). PR [#15890](https://github.com/fastapi/fastapi/pull/15890) by [@tiangolo](https://github.com/tiangolo).
