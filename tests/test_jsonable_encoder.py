@@ -82,6 +82,9 @@ def test_encode_dict():
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
+    assert jsonable_encoder(pet, include={"name", "owner"}, exclude={"owner"}) == {
+        "name": "Firulais"
+    }
 
 
 def test_encode_dict_include_exclude_list():
