@@ -74,6 +74,68 @@ app.include_router(subrouter, callbacks=events_callback_router.routes)
 client = TestClient(app)
 
 
+def test_app_api_route_supports_callbacks():
+    callback_router = APIRouter()
+
+    @callback_router.post("{$callback_url}/app-api-route-callback")
+    def app_api_route_callback(body: InvoiceEvent):
+        pass  # pragma: nocover
+
+    app = FastAPI()
+
+    @app.api_route(
+        "/app-api-route/",
+        methods=["POST"],
+        callbacks=callback_router.routes,
+    )
+    def app_api_route(callback_url: HttpUrl | None = None):
+        return {"msg": "App API route received"}
+
+    client = TestClient(app)
+    response = client.post("/app-api-route/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "App API route received"}
+
+    schema = client.get("/openapi.json").json()
+    callbacks = schema["paths"]["/app-api-route/"]["post"]["callbacks"]
+    assert list(callbacks) == ["app_api_route_callback"]
+    assert "{$callback_url}/app-api-route-callback" in callbacks[
+        "app_api_route_callback"
+    ]
+
+
+def test_app_add_api_route_supports_callbacks():
+    callback_router = APIRouter()
+
+    @callback_router.post("{$callback_url}/app-add-api-route-callback")
+    def app_add_api_route_callback(body: InvoiceEvent):
+        pass  # pragma: nocover
+
+    app = FastAPI()
+
+    def app_add_api_route(callback_url: HttpUrl | None = None):
+        return {"msg": "App add API route received"}
+
+    app.add_api_route(
+        "/app-add-api-route/",
+        app_add_api_route,
+        methods=["POST"],
+        callbacks=callback_router.routes,
+    )
+
+    client = TestClient(app)
+    response = client.post("/app-add-api-route/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "App add API route received"}
+
+    schema = client.get("/openapi.json").json()
+    callbacks = schema["paths"]["/app-add-api-route/"]["post"]["callbacks"]
+    assert list(callbacks) == ["app_add_api_route_callback"]
+    assert "{$callback_url}/app-add-api-route-callback" in callbacks[
+        "app_add_api_route_callback"
+    ]
+
+
 def test_get():
     response = client.post(
         "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
