@@ -45,6 +45,7 @@ from fastapi._compat import (
     ModelField,
     Undefined,
     lenient_issubclass,
+    value_is_sequence,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -290,6 +291,16 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     return ctx
 
 
+def _wrap_incex_for_sequence(incex: IncEx | None) -> IncEx | None:
+    # Pydantic interprets top-level include/exclude keys on a sequence type as
+    # item indices, so field names would be silently ignored. Wrap them in
+    # "__all__" to apply them to every item, unless indices or "__all__" are
+    # already used explicitly.
+    if incex and all(isinstance(key, str) and key != "__all__" for key in incex):
+        return {"__all__": incex}
+    return incex
+
+
 async def serialize_response(
     *,
     field: ModelField | None = None,
@@ -318,6 +329,9 @@ async def serialize_response(
                 body=response_content,
                 endpoint_ctx=ctx,
             )
+        if (include or exclude) and value_is_sequence(value):
+            include = _wrap_incex_for_sequence(include)
+            exclude = _wrap_incex_for_sequence(exclude)
         serializer = field.serialize_json if dump_json else field.serialize
         return serializer(
             value,
