@@ -49,6 +49,7 @@ from fastapi._compat import (
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    SolvedDependency,
     _should_embed_body_fields,
     get_body_field,
     get_dependant,
@@ -103,7 +104,7 @@ from starlette.routing import (
 )
 from starlette.routing import Mount as Mount  # noqa
 from starlette.staticfiles import StaticFiles
-from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
+from starlette.types import AppType, ASGIApp, Lifespan, Message, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
 
@@ -2156,8 +2157,35 @@ class _FrontendRouteGroup(BaseRoute):
                 dependant=dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 embed_body_fields=embed_body_fields,
-            ):
-                await route.handle(scope, receive, send)
+            ) as solved_result:
+                dependency_response = solved_result.response
+                body_allowed = True
+
+                async def send_with_dependency_response(message: Message) -> None:
+                    nonlocal body_allowed
+                    if message["type"] == "http.response.start":
+                        # Only override a plain 200, semantic statuses from the
+                        # file response (e.g. 304 Not Modified, 206 Partial
+                        # Content) are preserved.
+                        if dependency_response.status_code and message["status"] == 200:
+                            message["status"] = dependency_response.status_code
+                        headers = list(message.get("headers", []))
+                        headers.extend(dependency_response.headers.raw)
+                        if not is_body_allowed_for_status_code(message["status"]):
+                            body_allowed = False
+                            headers = [
+                                (name, value)
+                                for name, value in headers
+                                if name.lower() != b"content-length"
+                            ]
+                        message["headers"] = headers
+                    elif message["type"] == "http.response.body" and not body_allowed:
+                        message["body"] = b""
+                    await send(message)
+
+                await route.handle(scope, receive, send_with_dependency_response)
+                if solved_result.background_tasks:
+                    await solved_result.background_tasks()
             return
         await route.handle(scope, receive, send)
 
@@ -2177,7 +2205,7 @@ class _FrontendRouteGroup(BaseRoute):
         dependant: Dependant,
         dependency_overrides_provider: Any | None,
         embed_body_fields: bool,
-    ) -> AsyncIterator[None]:
+    ) -> AsyncIterator[SolvedDependency]:
         request = Request(scope, receive, send)
         previous_inner_astack = scope.get("fastapi_inner_astack", _SCOPE_MISSING)
         previous_function_astack = scope.get("fastapi_function_astack", _SCOPE_MISSING)
@@ -2195,7 +2223,10 @@ class _FrontendRouteGroup(BaseRoute):
                     )
                     if solved_result.errors:
                         raise RequestValidationError(solved_result.errors)
-                    yield
+                # Function-scoped dependencies exit before the response is
+                # sent and before background tasks run, as in request_response()
+                # above for regular routes.
+                yield solved_result
         finally:
             if previous_inner_astack is _SCOPE_MISSING:
                 scope.pop("fastapi_inner_astack", None)

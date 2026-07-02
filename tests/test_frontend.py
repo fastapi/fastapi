@@ -1,13 +1,22 @@
 import errno
 import os
 import runpy
+from collections.abc import Iterator
 from contextlib import AsyncExitStack
 from pathlib import Path
 from typing import Literal
 
 import anyio
 import pytest
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Request, WebSocket
+from fastapi import (
+    APIRouter,
+    BackgroundTasks,
+    Depends,
+    FastAPI,
+    HTTPException,
+    Request,
+    WebSocket,
+)
 from fastapi.testclient import TestClient
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import PlainTextResponse, Response
@@ -513,6 +522,145 @@ def test_frontend_dependency_validation_errors_return_422(tmp_path: Path):
             }
         ]
     }
+
+
+def test_frontend_dependency_response_headers_and_cookies(tmp_path: Path):
+    def refresh_session(response: Response) -> None:
+        response.set_cookie("session", "refreshed")
+        response.headers["X-Dep"] = "ran"
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    write_file(dist / "assets" / "app.js", "console.log('ok')")
+    app = FastAPI(dependencies=[Depends(refresh_session)])
+    app.frontend("/", directory=dist, fallback="index.html")
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert response.cookies["session"] == "refreshed"
+    assert response.headers["x-dep"] == "ran"
+
+    response = client.get("/assets/app.js")
+    assert response.status_code == 200
+    assert response.cookies["session"] == "refreshed"
+    assert response.headers["x-dep"] == "ran"
+
+    response = client.get("/dashboard", headers={"accept": "text/html"})
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert response.cookies["session"] == "refreshed"
+    assert response.headers["x-dep"] == "ran"
+
+
+def test_frontend_dependency_response_status_code(tmp_path: Path):
+    def set_status(response: Response) -> None:
+        response.status_code = 203
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(set_status)])
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/")
+
+    assert response.status_code == 203
+    assert response.text == "app"
+
+
+def test_frontend_dependency_does_not_override_304_not_modified(tmp_path: Path):
+    def set_status_and_header(response: Response) -> None:
+        response.status_code = 203
+        response.headers["X-Dep"] = "ran"
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(set_status_and_header)])
+    app.frontend("/", directory=dist)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 203
+    etag = response.headers["etag"]
+
+    response = client.get("/", headers={"If-None-Match": etag})
+    assert response.status_code == 304
+    assert response.text == ""
+    assert response.headers["x-dep"] == "ran"
+
+
+def test_frontend_dependency_does_not_override_206_partial_content(tmp_path: Path):
+    def set_status_and_header(response: Response) -> None:
+        response.status_code = 203
+        response.headers["X-Dep"] = "ran"
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(set_status_and_header)])
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/", headers={"Range": "bytes=0-1"})
+
+    assert response.status_code == 206
+    assert response.text == "ap"
+    assert response.headers["x-dep"] == "ran"
+
+
+def test_frontend_dependency_bodyless_status_code_strips_body(tmp_path: Path):
+    def set_status(response: Response) -> None:
+        response.status_code = 304
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(set_status)])
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/")
+
+    assert response.status_code == 304
+    assert response.text == ""
+    assert "content-length" not in response.headers
+
+
+def test_frontend_dependency_background_tasks_run(tmp_path: Path):
+    tasks_run: list[str] = []
+
+    def add_task(background_tasks: BackgroundTasks) -> None:
+        background_tasks.add_task(tasks_run.append, "ran")
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(add_task)])
+    app.frontend("/", directory=dist)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert tasks_run == ["ran"]
+
+
+def test_frontend_function_scoped_yield_dependency_exits_before_background_tasks(
+    tmp_path: Path,
+):
+    events: list[str] = []
+
+    def dep(background_tasks: BackgroundTasks) -> Iterator[None]:
+        background_tasks.add_task(events.append, "background")
+        yield
+        events.append("teardown")
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(dep, scope="function")])
+    app.frontend("/", directory=dist)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert events == ["teardown", "background"]
 
 
 @pytest.mark.anyio
