@@ -99,9 +99,9 @@ def test_app_api_route_supports_callbacks():
     schema = client.get("/openapi.json").json()
     callbacks = schema["paths"]["/app-api-route/"]["post"]["callbacks"]
     assert list(callbacks) == ["app_api_route_callback"]
-    assert "{$callback_url}/app-api-route-callback" in callbacks[
-        "app_api_route_callback"
-    ]
+    assert (
+        "{$callback_url}/app-api-route-callback" in callbacks["app_api_route_callback"]
+    )
 
 
 def test_app_add_api_route_supports_callbacks():
@@ -131,9 +131,10 @@ def test_app_add_api_route_supports_callbacks():
     schema = client.get("/openapi.json").json()
     callbacks = schema["paths"]["/app-add-api-route/"]["post"]["callbacks"]
     assert list(callbacks) == ["app_add_api_route_callback"]
-    assert "{$callback_url}/app-add-api-route-callback" in callbacks[
-        "app_add_api_route_callback"
-    ]
+    assert (
+        "{$callback_url}/app-add-api-route-callback"
+        in callbacks["app_add_api_route_callback"]
+    )
 
 
 def test_get():
