@@ -271,7 +271,11 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if isinstance(obj, Enum):
-        return obj.value
+        return jsonable_encoder(
+            obj.value,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
     if isinstance(obj, PurePath):
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):

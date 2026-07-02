@@ -1,7 +1,7 @@
 import warnings
 from collections import deque
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
@@ -238,6 +238,31 @@ def test_custom_enum_encoders():
         instance, custom_encoder={MyEnum: custom_enum_encoder}
     )
     assert encoded_instance == custom_enum_encoder(instance)
+
+
+def test_encode_enum_with_non_primitive_values():
+    class DateEnum(Enum):
+        release = date(2024, 1, 1)
+
+    class DecimalEnum(Enum):
+        half = Decimal("0.5")
+
+    class BytesEnum(Enum):
+        data = b"data"
+
+    assert jsonable_encoder(DateEnum.release) == "2024-01-01"
+    assert jsonable_encoder(DecimalEnum.half) == 0.5
+    assert jsonable_encoder(BytesEnum.data) == "data"
+
+
+def test_encode_enum_value_with_custom_encoder():
+    class DateEnum(Enum):
+        release = date(2024, 1, 1)
+
+    encoded_instance = jsonable_encoder(
+        DateEnum.release, custom_encoder={date: lambda o: o.strftime("%d/%m/%Y")}
+    )
+    assert encoded_instance == "01/01/2024"
 
 
 def test_encode_model_with_pure_path():
