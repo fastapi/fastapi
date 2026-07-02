@@ -1,3 +1,6 @@
+import inspect
+import sys
+import threading
 from typing import Annotated, cast
 
 import pytest
@@ -1011,3 +1014,137 @@ async def test_apirouter_handle_fallback_without_include_context():
     assert messages[0]["type"] == "http.response.start"
     assert messages[0]["status"] == 200
     assert messages[1]["body"] == b"items"
+
+
+def _hammer_rebuild_from_threads(rebuild, *, n_threads: int = 8) -> list[int]:
+    barrier = threading.Barrier(n_threads)
+    sizes: list[int] = []
+    lock = threading.Lock()
+
+    def worker() -> None:
+        barrier.wait()
+        size = len(rebuild())
+        with lock:
+            sizes.append(size)
+
+    threads = [threading.Thread(target=worker) for _ in range(n_threads)]
+    old_interval = sys.getswitchinterval()
+    # Shrink the GIL switch interval so the threads interleave inside the
+    # sub-millisecond cache rebuild window.
+    sys.setswitchinterval(1e-6)
+    try:
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
+    finally:
+        sys.setswitchinterval(old_interval)
+    return sizes
+
+
+def test_effective_candidates_concurrent_rebuild_is_thread_safe():
+    n_routes = 200
+
+    def make_endpoint(i: int):
+        def endpoint():  # pragma: no cover
+            return {"i": i}
+
+        return endpoint
+
+    app = FastAPI()
+    router = APIRouter()
+    for i in range(n_routes):
+        router.add_api_route(f"/route-{i}", make_endpoint(i), methods=["GET"])
+    app.include_router(router)
+    included = next(r for r in app.router.routes if isinstance(r, _IncludedRouter))
+
+    for _ in range(5):
+        included._effective_candidates_cache = None  # force a rebuild
+        sizes = _hammer_rebuild_from_threads(included.effective_candidates)
+        assert sizes == [n_routes] * len(sizes)
+        assert len(included.effective_candidates()) == n_routes
+
+
+def test_effective_low_priority_routes_concurrent_rebuild_is_thread_safe():
+    n_frontends = 50
+
+    app = FastAPI()
+    router = APIRouter()
+    for i in range(n_frontends):
+        child = APIRouter()
+        child.frontend(f"/front-{i}", directory=f"front-{i}", check_dir=False)
+        router.include_router(child)
+    app.include_router(router)
+    included = next(r for r in app.router.routes if isinstance(r, _IncludedRouter))
+
+    for _ in range(5):
+        included._effective_low_priority_routes_cache = None  # force a rebuild
+        sizes = _hammer_rebuild_from_threads(included.effective_low_priority_routes)
+        assert sizes == [n_frontends] * len(sizes)
+        assert len(included.effective_low_priority_routes()) == n_frontends
+
+
+def test_route_added_during_in_flight_rebuild_is_not_lost():
+    # Cross-version race: a rebuild that read the old routes version and then
+    # publishes its list *after* a rebuild for the new version has already
+    # published must not hide the new route until the next route mutation.
+    # Because the cache is published atomically as a (version, list) tuple, the
+    # stale publication at worst costs one extra rebuild.
+    def make_endpoint(i: int):
+        def endpoint():  # pragma: no cover
+            return {"i": i}
+
+        return endpoint
+
+    app = FastAPI()
+    router = APIRouter()
+    for i in range(3):
+        router.add_api_route(f"/old-{i}", make_endpoint(i), methods=["GET"])
+    app.include_router(router)
+    included = next(r for r in app.router.routes if isinstance(r, _IncludedRouter))
+
+    rebuild_code = _IncludedRouter.effective_candidates.__code__
+    source_lines, first_lineno = inspect.getsourcelines(
+        _IncludedRouter.effective_candidates
+    )
+    publish_lineno = first_lineno + next(
+        index
+        for index, line in enumerate(source_lines)
+        if "self._effective_candidates_cache = (" in line
+    )
+
+    ready = threading.Event()
+    resume = threading.Event()
+
+    def pause_before_publish(frame, event, arg):  # pragma: no cover
+        if (
+            event == "line"
+            and frame.f_code is rebuild_code
+            and frame.f_lineno == publish_lineno
+        ):
+            sys.settrace(None)  # pause only once
+            ready.set()
+            resume.wait(timeout=5)
+        return pause_before_publish
+
+    def stale_rebuild() -> None:  # pragma: no cover
+        sys.settrace(pause_before_publish)
+        try:
+            included.effective_candidates()
+        finally:
+            sys.settrace(None)
+
+    thread = threading.Thread(target=stale_rebuild)
+    thread.start()
+    assert ready.wait(timeout=5), "the rebuild never reached the publish point"
+    # The in-flight rebuild built its list for the old routes version and is
+    # paused just before publishing it. Add a route, bumping the version.
+    router.add_api_route("/new-route", make_endpoint(3), methods=["GET"])
+    # A rebuild for the new version completes and publishes the new route.
+    assert len(included.effective_candidates()) == 4
+    # The paused rebuild resumes and publishes its outdated list last.
+    resume.set()
+    thread.join()
+    # The new route must still be served: the stale cache entry carries the old
+    # version, so the next call rebuilds instead of serving it as current.
+    assert len(included.effective_candidates()) == 4
