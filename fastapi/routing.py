@@ -38,6 +38,7 @@ from typing import (
 )
 
 import anyio
+import anyio.to_thread
 from annotated_doc import Doc
 from anyio.abc import ObjectReceiveStream
 from fastapi import params
@@ -364,6 +365,18 @@ def _build_response_args(
     return response_args
 
 
+class _ClientDisconnectResponse(Response):
+    # Returned when the client disconnects before the response has
+    # started (e.g. while waiting for the first SSE item). Nothing has
+    # been sent yet and there's no one left to send a response to, so
+    # send nothing, the same way Starlette's StreamingResponse handles
+    # a disconnect before the response starts. Background tasks still
+    # run, as they would after a disconnect during a streaming response.
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if self.background is not None:
+            await self.background()
+
+
 def get_request_handler(
     dependant: Dependant,
     body_field: ModelField | None = None,
@@ -547,6 +560,83 @@ def get_request_handler(
                 else:
                     sse_aiter = iterate_in_threadpool(gen)
 
+                async def _sse_first_item() -> Any:
+                    if dependant.is_async_gen_callable:
+                        return await sse_aiter.__anext__()
+
+                    def _next_or_stop() -> Any:
+                        try:
+                            return next(gen)  # ty: ignore[invalid-argument-type]
+                        except StopIteration:
+                            raise StopAsyncIteration() from None
+
+                    # A worker thread blocked inside a sync generator
+                    # can't be cancelled, so abandon it on cancellation
+                    # (client disconnect) instead of blocking the
+                    # request task until the generator produces its
+                    # first item.
+                    return await anyio.to_thread.run_sync(
+                        _next_or_stop, abandon_on_cancel=True
+                    )
+
+                # Pull the first item before starting the streaming
+                # response, so that exceptions raised before the first
+                # yield (e.g. an HTTPException from auth checks)
+                # propagate to the regular exception handlers instead
+                # of aborting an already started 200 response.
+                #
+                # While waiting, also listen for client disconnect (the
+                # streaming response is not running yet, so Starlette's
+                # own disconnect listener isn't active): otherwise a
+                # disconnected client would leave the generator and its
+                # dependencies alive until the first yield.
+                first_item: Any = None
+                first_item_received = False
+                first_item_exc: Exception | None = None
+                client_disconnected = False
+
+                async with anyio.create_task_group() as first_item_tg:
+
+                    async def _cancel_on_disconnect() -> None:
+                        nonlocal client_disconnected
+                        while True:
+                            message = await request.receive()
+                            if message["type"] == "http.disconnect":
+                                client_disconnected = True
+                                first_item_tg.cancel_scope.cancel()
+                                return
+
+                    first_item_tg.start_soon(_cancel_on_disconnect)
+                    try:
+                        first_item = await _sse_first_item()
+                        first_item_received = True
+                    except StopAsyncIteration:
+                        pass
+                    except Exception as exc:
+                        first_item_exc = exc
+                    finally:
+                        first_item_tg.cancel_scope.cancel()
+
+                if first_item_exc is not None:
+                    raise first_item_exc
+                if client_disconnected:
+                    # Close the generator so its cleanup runs promptly
+                    # (cancelling `__anext__` normally already unwound
+                    # an async generator, making this a no-op).
+                    if dependant.is_async_gen_callable:
+                        await gen.aclose()
+                    elif first_item_received:  # pragma: no cover
+                        # The first item arrived in the same moment as
+                        # the disconnect; the worker thread is done, so
+                        # the sync generator can be closed. Otherwise
+                        # it's still running in the abandoned thread and
+                        # is finalized when that thread finishes (best
+                        # effort, a blocked thread can't be cancelled).
+                        await anyio.to_thread.run_sync(gen.close)
+                    return _ClientDisconnectResponse(
+                        background=solved_result.background_tasks
+                    )
+
                 @asynccontextmanager
                 async def _sse_producer_cm() -> AsyncIterator[
                     ObjectReceiveStream[bytes]
@@ -571,6 +661,8 @@ def get_request_handler(
 
                     async def _producer() -> None:
                         async with send_stream:
+                            if first_item_received:
+                                await send_stream.send(_serialize_sse_item(first_item))
                             async for raw_item in sse_aiter:
                                 await send_stream.send(_serialize_sse_item(raw_item))
 

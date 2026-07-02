@@ -1,14 +1,18 @@
 import asyncio
+import threading
 import time
 from collections.abc import AsyncIterable, Iterable
 
+import anyio
+import anyio.to_thread
 import fastapi.routing
 import pytest
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, BackgroundTasks, Depends, FastAPI, HTTPException
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from starlette.types import Message, Scope
 
 
 class Item(BaseModel):
@@ -85,6 +89,30 @@ async def sse_items_raw():
     yield ServerSentEvent(raw_data="plain text without quotes")
     yield ServerSentEvent(raw_data="<div>html fragment</div>", event="html")
     yield ServerSentEvent(raw_data="cpu,87.3,1709145600", event="csv")
+
+
+@app.get("/items/stream-early-error", response_class=EventSourceResponse)
+async def sse_items_early_error() -> AsyncIterable[Item]:
+    raise HTTPException(status_code=403, detail="Not authorized")
+    yield items[0]  # pragma: no cover
+
+
+@app.get("/items/stream-early-error-sync", response_class=EventSourceResponse)
+def sse_items_early_error_sync() -> Iterable[Item]:
+    raise HTTPException(status_code=403, detail="Not authorized")
+    yield items[0]  # pragma: no cover
+
+
+@app.get("/items/stream-empty", response_class=EventSourceResponse)
+async def sse_items_empty() -> AsyncIterable[Item]:
+    return
+    yield items[0]  # pragma: no cover
+
+
+@app.get("/items/stream-empty-sync", response_class=EventSourceResponse)
+def sse_items_empty_sync() -> Iterable[Item]:
+    return
+    yield items[0]  # pragma: no cover
 
 
 router = APIRouter()
@@ -264,6 +292,37 @@ def test_data_and_raw_data_mutually_exclusive():
         ServerSentEvent(data="json", raw_data="raw")
 
 
+def test_http_exception_before_first_yield_async(client: TestClient):
+    """An HTTPException raised before the first yield is handled by the
+    regular exception handlers instead of aborting a 200 stream."""
+    response = client.get("/items/stream-early-error")
+    assert response.status_code == 403, response.text
+    assert response.headers["content-type"] == "application/json"
+    assert response.json() == {"detail": "Not authorized"}
+
+
+def test_http_exception_before_first_yield_sync(client: TestClient):
+    response = client.get("/items/stream-early-error-sync")
+    assert response.status_code == 403, response.text
+    assert response.headers["content-type"] == "application/json"
+    assert response.json() == {"detail": "Not authorized"}
+
+
+def test_empty_stream(client: TestClient):
+    """A generator that finishes without yielding sends an empty stream."""
+    response = client.get("/items/stream-empty")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    assert response.text == ""
+
+
+def test_empty_stream_sync(client: TestClient):
+    response = client.get("/items/stream-empty-sync")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    assert response.text == ""
+
+
 def test_sse_on_router_included_in_app(client: TestClient):
     response = client.get("/api/events")
     assert response.status_code == 200
@@ -325,3 +384,126 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+# Client disconnect before the first item
+
+
+def _http_scope(path: str) -> Scope:
+    return {
+        "type": "http",
+        "asgi": {"version": "3.0", "spec_version": "2.0"},
+        "http_version": "1.1",
+        "method": "GET",
+        "path": path,
+        "query_string": b"",
+        "root_path": "",
+        "headers": [],
+        "server": ("test", 80),
+    }
+
+
+@pytest.mark.anyio
+async def test_disconnect_before_first_yield_async() -> None:
+    """A client disconnect while an async generator is still waiting to
+    produce its first item cancels the wait, runs cleanup (the generator's
+    finally, dependencies with yield, background tasks) within a bounded
+    time, and sends no response."""
+    disconnect_app = FastAPI()
+    generator_started = anyio.Event()
+    generator_cleaned_up = anyio.Event()
+    dependency_cleaned_up = anyio.Event()
+    background_ran = anyio.Event()
+
+    async def dep() -> AsyncIterable[str]:
+        try:
+            yield "resource"
+        finally:
+            dependency_cleaned_up.set()
+
+    @disconnect_app.get("/stream", response_class=EventSourceResponse)
+    async def stream(
+        background_tasks: BackgroundTasks, res: str = Depends(dep)
+    ) -> AsyncIterable[Item]:
+        background_tasks.add_task(background_ran.set)
+        try:
+            generator_started.set()
+            await anyio.sleep(3600)
+        finally:
+            generator_cleaned_up.set()
+        yield items[0]  # pragma: no cover
+
+    request_sent = False
+
+    async def receive() -> Message:
+        nonlocal request_sent
+        if not request_sent:
+            request_sent = True
+            return {"type": "http.request", "body": b"", "more_body": False}
+        # Disconnect once the generator is waiting for its first item.
+        await generator_started.wait()
+        return {"type": "http.disconnect"}
+
+    sent_messages: list[Message] = []
+
+    async def send(message: Message) -> None:
+        sent_messages.append(message)  # pragma: no cover
+
+    with anyio.fail_after(5):
+        await disconnect_app(_http_scope("/stream"), receive, send)
+
+    assert generator_cleaned_up.is_set()
+    assert dependency_cleaned_up.is_set()
+    assert background_ran.is_set()
+    # Nothing was sent: the client was already gone.
+    assert sent_messages == []
+
+
+@pytest.mark.anyio
+async def test_disconnect_before_first_yield_sync() -> None:
+    """A worker thread blocked inside a sync generator can't be cancelled,
+    but a client disconnect must still complete the request task within a
+    bounded time (abandoning the thread) and run dependency cleanup."""
+    disconnect_app = FastAPI()
+    generator_started = threading.Event()
+    release_generator = threading.Event()
+    generator_resumed = threading.Event()
+    dependency_cleaned_up = anyio.Event()
+
+    async def dep() -> AsyncIterable[str]:
+        try:
+            yield "resource"
+        finally:
+            dependency_cleaned_up.set()
+
+    @disconnect_app.get("/stream", response_class=EventSourceResponse)
+    def stream(res: str = Depends(dep)) -> Iterable[Item]:
+        generator_started.set()
+        release_generator.wait()
+        generator_resumed.set()
+        yield items[0]
+
+    request_sent = False
+
+    async def receive() -> Message:
+        nonlocal request_sent
+        if not request_sent:
+            request_sent = True
+            return {"type": "http.request", "body": b"", "more_body": False}
+        # Disconnect once the generator is blocked in the worker thread.
+        await anyio.to_thread.run_sync(generator_started.wait)
+        return {"type": "http.disconnect"}
+
+    sent_messages: list[Message] = []
+
+    async def send(message: Message) -> None:
+        sent_messages.append(message)  # pragma: no cover
+
+    with anyio.fail_after(5):
+        await disconnect_app(_http_scope("/stream"), receive, send)
+
+    assert dependency_cleaned_up.is_set()
+    assert sent_messages == []
+    # Let the abandoned worker thread finish.
+    release_generator.set()
+    await anyio.to_thread.run_sync(generator_resumed.wait)

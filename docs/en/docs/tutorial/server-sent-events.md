@@ -113,8 +113,18 @@ This is useful for protocols like [MCP](https://modelcontextprotocol.io) that st
 
 FastAPI implements some SSE best practices out of the box.
 
-* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the [HTML specification: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes).
+* Send a **"keep alive" `ping` comment** every 15 seconds when there hasn't been any message, to prevent some proxies from closing the connection, as suggested in the [HTML specification: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes). The pings start with the response, once the **first event** has been produced (see the note below).
 * Set the `Cache-Control: no-cache` header to **prevent caching** of the stream.
 * Set a special header `X-Accel-Buffering: no` to **prevent buffering** in some proxies like Nginx.
+* Handle exceptions raised **before the first event**, for example an `HTTPException` from an authorization check, with the regular exception handlers, sending a proper error response instead of an empty `200` stream.
+* Stop waiting for the first event if the **client disconnects**, closing the generator and releasing its resources (e.g. dependencies with `yield`).
 
 You don't have to do anything about it, it works out of the box. 🤓
+
+/// note
+
+The response starts once your *path operation function* yields its **first event**, this also applies to the keep alive pings.
+
+If your code could take a long time before producing the first event, you can yield an early `ServerSentEvent(comment="connected")` to start the response (and the pings) right away.
+
+///
