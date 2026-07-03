@@ -14,13 +14,13 @@ Mais ne vous inquiétez pas, vous pouvez l'afficher comme vous le souhaitez à v
 
 Et vos modèles de base de données peuvent utiliser les noms que vous voulez.
 
-Mais pour le chemin d'accès de connexion, nous devons utiliser ces noms pour être compatibles avec la spécification (et pouvoir, par exemple, utiliser le système de documentation API intégré).
+Mais pour le *chemin d'accès* de connexion, nous devons utiliser ces noms pour être compatibles avec la spécification (et pouvoir, par exemple, utiliser le système de documentation API intégré).
 
 La spécification précise également que `username` et `password` doivent être envoyés en données de formulaire (donc pas de JSON ici).
 
 ### `scope` { #scope }
 
-La spécification indique aussi que le client peut envoyer un autre champ de formulaire « scope ».
+La spécification indique aussi que le client peut envoyer un autre champ de formulaire « `scope` ».
 
 Le nom du champ de formulaire est `scope` (au singulier), mais il s'agit en fait d'une longue chaîne contenant des « scopes » séparés par des espaces.
 
@@ -50,7 +50,7 @@ Utilisons maintenant les utilités fournies par **FastAPI** pour gérer cela.
 
 ### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
-Tout d'abord, importez `OAuth2PasswordRequestForm`, et utilisez-la en tant que dépendance avec `Depends` dans le chemin d'accès pour `/token` :
+Tout d'abord, importez `OAuth2PasswordRequestForm`, et utilisez-la en tant que dépendance avec `Depends` dans le *chemin d'accès* pour `/token` :
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
@@ -63,7 +63,7 @@ Tout d'abord, importez `OAuth2PasswordRequestForm`, et utilisez-la en tant que d
 
 /// tip | Astuce
 
-La spécification OAuth2 exige en réalité un champ `grant_type` avec la valeur fixe `password`, mais `OAuth2PasswordRequestForm` ne l'impose pas.
+La spécification OAuth2 *exige* en réalité un champ `grant_type` avec la valeur fixe `password`, mais `OAuth2PasswordRequestForm` ne l'impose pas.
 
 Si vous avez besoin de l'imposer, utilisez `OAuth2PasswordRequestFormStrict` au lieu de `OAuth2PasswordRequestForm`.
 
@@ -132,7 +132,7 @@ Ainsi, il ne pourra pas essayer d'utiliser ces mêmes mots de passe dans un autr
 
 `UserInDB(**user_dict)` signifie :
 
-Passez les clés et valeurs de `user_dict` directement comme arguments clé‑valeur, équivalent à :
+*Passez les clés et valeurs de `user_dict` directement comme arguments clé‑valeur, équivalent à :*
 
 ```Python
 UserInDB(
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note | Remarque
 
-Pour une explication plus complète de `**user_dict`, consultez [la documentation pour **Modèles supplémentaires**](../extra-models.md#about-user-in-dict).
+Pour une explication plus complète de `**user_dict`, consultez [la documentation pour **Modèles supplémentaires**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -154,7 +154,7 @@ Pour une explication plus complète de `**user_dict`, consultez [la documentatio
 
 La réponse de l'endpoint `token` doit être un objet JSON.
 
-Il doit contenir un `token_type`. Dans notre cas, comme nous utilisons des jetons « Bearer », le type de jeton doit être « bearer ».
+Il doit contenir un `token_type`. Dans notre cas, comme nous utilisons des jetons « Bearer », le type de jeton doit être « `bearer` ».
 
 Et il doit contenir un `access_token`, avec une chaîne contenant notre jeton d'accès.
 
@@ -186,7 +186,7 @@ Pour le reste, **FastAPI** s'en charge pour vous.
 
 Nous allons maintenant mettre à jour nos dépendances.
 
-Nous voulons obtenir `current_user` uniquement si cet utilisateur est actif.
+Nous voulons obtenir `current_user` *uniquement* si cet utilisateur est actif.
 
 Nous créons donc une dépendance supplémentaire `get_current_active_user` qui utilise à son tour `get_current_user` comme dépendance.
 
@@ -216,7 +216,7 @@ C'est l'avantage des standards ...
 
 ## Voir en action { #see-it-in-action }
 
-Ouvrez la documentation interactive : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Ouvrez les documents interactifs : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### S'authentifier { #authenticate }
 

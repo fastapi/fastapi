@@ -1,5 +1,6 @@
 # 패스워드(해싱 포함)를 사용하는 OAuth2, JWT 토큰을 사용하는 Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
+
 모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
 
 이 코드는 실제로 애플리케이션에서 사용할 수 있으며, 패스워드 해시를 데이터베이스에 저장하는 등의 작업에 활용할 수 있습니다.

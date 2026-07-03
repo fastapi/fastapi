@@ -1,5 +1,6 @@
 # Corpo da requisição { #request-body }
 
+
 Quando você precisa enviar dados de um cliente (como de um navegador) para sua API, você os envia como um **corpo da requisição**.
 
 O corpo da **requisição** é a informação enviada pelo cliente para sua API. O corpo da **resposta** é a informação que sua API envia para o cliente.

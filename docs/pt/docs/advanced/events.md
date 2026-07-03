@@ -1,5 +1,6 @@
 # Eventos de lifespan { #lifespan-events }
 
+
 Você pode definir a lógica (código) que deve ser executada antes da aplicação **inicializar**. Isso significa que esse código será executado **uma vez**, **antes** de a aplicação **começar a receber requisições**.
 
 Da mesma forma, você pode definir a lógica (código) que deve ser executada quando a aplicação estiver **encerrando**. Nesse caso, esse código será executado **uma vez**, **depois** de possivelmente ter tratado **várias requisições**.

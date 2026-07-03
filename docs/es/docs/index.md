@@ -45,7 +45,7 @@ Las funcionalidades clave son:
 * **Rápido**: Muy alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks Python más rápidos disponibles](#performance).
 * **Rápido de programar**: Aumenta la velocidad para desarrollar funcionalidades en aproximadamente un 200% a 300%. *
 * **Menos bugs**: Reduce en aproximadamente un 40% los errores inducidos por humanos (desarrolladores). *
-* **Intuitivo**: Gran soporte para editores. <dfn title="también conocido como: autocompletado, IntelliSense">Autocompletado</dfn> en todas partes. Menos tiempo depurando.
+* **Intuitivo**: Gran soporte para editores. <dfn title="también conocido como autocompletado, autocompletado, IntelliSense">Autocompletado</dfn> en todas partes. Menos tiempo depurando.
 * **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades desde cada declaración de parámetro. Menos bugs.
 * **Robusto**: Obtén código listo para producción. Con documentación interactiva automática.
@@ -479,7 +479,7 @@ Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="ht
 
 * Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de formulario** y **archivos**.
 * Cómo establecer **restricciones de validación** como `maximum_length` o `regex`.
-* Un sistema de **<dfn title="también conocido como: componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso y fácil de usar.
+* Un sistema de **<dfn title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso y fácil de usar.
 * Seguridad y autenticación, incluyendo soporte para **OAuth2** con **tokens JWT** y autenticación **HTTP Basic**.
 * Técnicas más avanzadas (pero igualmente fáciles) para declarar **modelos JSON profundamente anidados** (gracias a Pydantic).
 * Integración con **GraphQL** usando [Strawberry](https://strawberry.rocks) y otros paquetes.

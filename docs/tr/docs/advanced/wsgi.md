@@ -1,5 +1,6 @@
 # WSGI'yi Dahil Etme - Flask, Django ve Diğerleri { #including-wsgi-flask-django-others }
 
+
 WSGI uygulamalarını [Alt Uygulamalar - Mount Etme](sub-applications.md), [Bir Proxy Arkasında](behind-a-proxy.md) bölümlerinde gördüğünüz gibi mount edebilirsiniz.
 
 Bunun için `WSGIMiddleware`'ı kullanabilir ve bunu WSGI uygulamanızı (örneğin Flask, Django vb.) sarmalamak için kullanabilirsiniz.

@@ -173,7 +173,7 @@ Ahora usa el parámetro `callbacks` en el *decorador de path operation de tu API
 
 /// tip | Consejo
 
-Observa que no estás pasando el router en sí (`invoices_callback_router`) a `callbacks=`, sino su `.routes`, como en `invoices_callback_router.routes`. **FastAPI** usará esas rutas para generar la documentación OpenAPI del callback.
+Observa que no estás pasando el router en sí (`invoices_callback_router`) a `callbacks=`, sino su `.routes`, como en `invoices_callback_router.routes`. FastAPI usará esas rutas para generar la documentación OpenAPI del callback.
 
 ///
 

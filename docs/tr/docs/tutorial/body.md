@@ -1,5 +1,6 @@
 # Request Body { #request-body }
 
+
 Bir client'ten (örneğin bir tarayıcıdan) API'nize veri göndermeniz gerektiğinde, bunu **request body** olarak gönderirsiniz.
 
 Bir **request** body, client'in API'nize gönderdiği veridir. Bir **response** body ise API'nizin client'e gönderdiği veridir.

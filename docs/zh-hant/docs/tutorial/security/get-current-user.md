@@ -14,7 +14,7 @@
 
 就像用 Pydantic 宣告請求體一樣，我們也可以在其他地方使用它：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## 建立 `get_current_user` 依賴 { #create-a-get-current-user-dependency }
 

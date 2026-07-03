@@ -58,7 +58,7 @@ Chaque fois que vous fournissez exactement le même contenu (exactement le même
 
 Mais vous ne pouvez pas convertir le charabia en sens inverse vers le mot de passe.
 
-### Pourquoi utiliser le hachage de mot passe { #why-use-password-hashing }
+### Pourquoi utiliser le hachage de mot de passe { #why-use-password-hashing }
 
 Si votre base de données est volée, le voleur n'aura pas les mots de passe en clair de vos utilisateurs, seulement les hachages.
 
@@ -120,7 +120,7 @@ Et une autre pour authentifier et renvoyer un utilisateur.
 
 Lorsque `authenticate_user` est appelée avec un nom d'utilisateur qui n'existe pas dans la base de données, nous exécutons tout de même `verify_password` contre un hachage factice.
 
-Cela garantit que le point de terminaison met approximativement le même temps à répondre que le nom d'utilisateur soit valide ou non, empêchant des **attaques temporelles** qui pourraient être utilisées pour énumérer les noms d'utilisateur existants.
+Cela garantit que l'endpoint met approximativement le même temps à répondre que le nom d'utilisateur soit valide ou non, empêchant des **attaques temporelles** qui pourraient être utilisées pour énumérer les noms d'utilisateur existants.
 
 /// note | Remarque
 
@@ -152,7 +152,7 @@ Créez une variable `ALGORITHM` avec l'algorithme utilisé pour signer le jeton 
 
 Créez une variable pour l'expiration du jeton.
 
-Définissez un modèle Pydantic qui sera utilisé dans le point de terminaison du jeton pour la réponse.
+Définissez un modèle Pydantic qui sera utilisé dans l'endpoint du jeton pour la réponse.
 
 Créez une fonction utilitaire pour générer un nouveau jeton d'accès.
 
@@ -200,7 +200,7 @@ L'important à garder à l'esprit est que la clé `sub` doit contenir un identif
 
 ## Vérifier { #check-it }
 
-Lancez le serveur et allez à la documentation : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Lancez le serveur et accédez aux documents : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez l'interface utilisateur suivante :
 
@@ -215,13 +215,13 @@ Mot de passe : `secret`
 
 /// tip | Astuce
 
-Remarquez qu'à aucun endroit du code le mot de passe en clair « secret » n'apparaît, nous n'avons que la version hachée.
+Remarquez qu'à aucun endroit du code le mot de passe en clair « `secret` » n'apparaît, nous n'avons que la version hachée.
 
 ///
 
 <img src="/img/tutorial/security/image08.png">
 
-Appelez le point de terminaison `/users/me/`, vous obtiendrez la réponse suivante :
+Appelez l'endpoint `/users/me/`, vous obtiendrez la réponse suivante :
 
 ```JSON
 {

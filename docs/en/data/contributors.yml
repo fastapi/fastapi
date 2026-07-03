@@ -1,21 +1,21 @@
 tiangolo:
   login: tiangolo
-  count: 961
+  count: 1005
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 201
+  count: 221
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 YuriiMotov:
   login: YuriiMotov
-  count: 78
+  count: 82
   avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=bc48be95c429989224786106b027f3c5e40cc354&v=4
   url: https://github.com/YuriiMotov
 alejsdev:
   login: alejsdev
-  count: 56
+  count: 57
   avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=0facffe3abf87f57a1f05fa773d1119cc5c2f6a5&v=4
   url: https://github.com/alejsdev
 pre-commit-ci:

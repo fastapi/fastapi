@@ -1,6 +1,6 @@
 # Suporte a Editores { #editor-support }
 
-A [FastAPI Extension](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) oficial melhora seu fluxo de trabalho de desenvolvimento com descoberta e navegação de *operação de rota*, além de implantação no FastAPI Cloud e transmissão ao vivo de logs.
+A [FastAPI Extension](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) oficial melhora seu fluxo de trabalho de desenvolvimento FastAPI com descoberta e navegação de *operação de rota*, além de implantação no FastAPI Cloud e transmissão ao vivo de logs.
 
 Para mais detalhes sobre a extensão, consulte o README no [repositório do GitHub](https://github.com/fastapi/fastapi-vscode).
 

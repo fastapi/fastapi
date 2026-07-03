@@ -232,7 +232,7 @@ Passez en revue ce que fait chaque ligne en cliquant sur chaque bulle numéroté
 
 /// warning | Alertes
 
-Vous devez vous assurer d'utiliser **toujours** la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
+Vous devez **toujours** utiliser la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
 
 ///
 
@@ -254,7 +254,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Assurez-vous d'utiliser toujours la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
+Vous devez toujours utiliser la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
 
 Vous pouvez en lire davantage dans la [documentation Docker sur les formes shell et exec](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 

@@ -1,5 +1,6 @@
 # Code d'état de la réponse { #response-status-code }
 
+
 De la même manière que vous pouvez spécifier un modèle de réponse, vous pouvez également déclarer le code d'état HTTP utilisé pour la réponse avec le paramètre `status_code` dans n'importe lequel des chemins d'accès :
 
 * `@app.get()`

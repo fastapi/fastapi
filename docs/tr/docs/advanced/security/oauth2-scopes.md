@@ -1,5 +1,6 @@
 # OAuth2 scope'ları { #oauth2-scopes }
 
+
 OAuth2 scope'larını **FastAPI** ile doğrudan kullanabilirsiniz; sorunsuz çalışacak şekilde entegre edilmiştir.
 
 Bu sayede OAuth2 standardını takip eden, daha ince taneli bir izin sistemini OpenAPI uygulamanıza (ve API dokümanlarınıza) entegre edebilirsiniz.

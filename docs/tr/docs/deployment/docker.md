@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx veya Traefik gibi bir proxy arkasında çalıştırıyorsanız --proxy-headers ekleyin
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -243,14 +243,14 @@ Aşağıda açıklandığı gibi `CMD` talimatının **her zaman** **exec form**
 ✅ **Exec** form:
 
 ```Dockerfile
-# ✅ Do this
+# ✅ Bunu yapın
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 ⛔️ **Shell** form:
 
 ```Dockerfile
-# ⛔️ Don't do this
+# ⛔️ Bunu yapmayın
 CMD fastapi run app/main.py --port 80
 ```
 

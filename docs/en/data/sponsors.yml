@@ -6,27 +6,38 @@ gold:
   - url: https://blockbee.io?ref=fastapi
     title: BlockBee Cryptocurrency Payment Gateway
     img: /img/sponsors/blockbee.png
+    banner_img: /img/sponsors/blockbee-banner.png
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: /img/sponsors/propelauth.png
+    banner_url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=topbanner
+    banner_img: /img/sponsors/propelauth-banner.png
   - url: https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi
     title: Deploy & scale any full-stack web app on Render. Focus on building apps, not infra.
     img: /img/sponsors/render.svg
+    banner_img: /img/sponsors/render-banner.svg
   - url: https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi
     title: Cut Code Review Time & Bugs in Half with CodeRabbit
     img: /img/sponsors/coderabbit.png
+    banner_url: https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=banner&utm_campaign=fastapi
+    banner_img: /img/sponsors/coderabbit-banner.png
   - url: https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source
     title: The Gold Standard in Retail Account Linking
     img: /img/sponsors/subtotal.svg
+    banner_title: Making Retail Purchases Actionable for Brands and Developers
+    banner_img: /img/sponsors/subtotal-banner.svg
   - url: https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi
     title: Deploy enterprise applications at startup speed
     img: /img/sponsors/railway.png
+    banner_img: /img/sponsors/railway-banner.png
   - url: https://serpapi.com/?utm_source=fastapi_website
     title: "SerpApi: Web Search API"
     img: /img/sponsors/serpapi.png
+    banner_img: /img/sponsors/serpapi-banner.png
   - url: https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page
     title: "Greptile: The AI Code Reviewer"
     img: /img/sponsors/greptile.png
+    banner_img: /img/sponsors/greptile-banner.png
 silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
@@ -34,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: /img/sponsors/svix.svg
-  - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
-    title: Stainless | Generate best-in-class SDKs
-    img: /img/sponsors/stainless.png
   - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
     title: Fine-Grained Authorization for FastAPI
     img: /img/sponsors/permit.png
@@ -53,3 +61,6 @@ bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
   #   img: /img/sponsors/testdriven.svg
+  - url: https://www.testmu.ai/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
+    title: TestMu AI. The Native AI-Agentic Cloud Platform to Supercharge Quality Engineering.
+    img: /img/sponsors/testmu.png

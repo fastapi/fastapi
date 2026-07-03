@@ -1,5 +1,6 @@
 # Declare dados de exemplo da requisição { #declare-request-example-data }
 
+
 Você pode declarar exemplos dos dados que sua aplicação pode receber.
 
 Aqui estão várias maneiras de fazer isso.

@@ -38,7 +38,7 @@ Böylece **FastAPI**'nin bug fix'ler ve yeni özelliklerle gelen her yeni releas
 
 ## Yazarı Takip Edin { #follow-the-author }
 
-FastAPI ve friends hakkında paylaşacak haberlerim olduğunda duymak için, [beni (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com) birkaç yerde takip edebilirsiniz:
+FastAPI ve friends hakkında paylaşacak haberlerim olduğunda duymak için, yazar [beni (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com) birkaç yerde takip edebilirsiniz:
 
 * [**GitHub**'da @tiangolo](https://github.com/tiangolo).
 * [**X (Twitter)**'da @tiangolo](https://x.com/tiangolo)
@@ -68,7 +68,7 @@ GitHub repository'sinde örneğin şunlar için [yeni bir soru oluşturabilirsin
 
 ## Sohbete Katılın { #join-the-chat }
 
-FastAPI topluluğundan diğer kişilerle takılmak için 👥 [Discord chat server](https://discord.gg/VQjSZaeJmf) 👥 sohbetine katılın.
+👥 [Discord sohbet sunucusuna](https://discord.gg/VQjSZaeJmf) 👥 katılın ve FastAPI topluluğundaki diğer kişilerle takılın.
 
 /// tip | İpucu
 

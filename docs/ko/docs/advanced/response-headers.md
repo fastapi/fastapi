@@ -1,5 +1,6 @@
 # 응답 헤더 { #response-headers }
 
+
 ## `Response` 매개변수 사용하기 { #use-a-response-parameter }
 
 여러분은 *경로 처리 함수*에서 `Response` 타입의 매개변수를 선언할 수 있습니다 (쿠키와 같이 사용할 수 있습니다).

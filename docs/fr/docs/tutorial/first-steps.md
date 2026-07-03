@@ -145,20 +145,20 @@ Vous pourriez également l’utiliser pour générer du code automatiquement, po
 
 ### Configurer le `entrypoint` de l’application dans `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
-Vous pouvez configurer l’emplacement de votre application dans un fichier `pyproject.toml` comme :
+Vous pouvez configurer l’emplacement de votre application dans un fichier `pyproject.toml` comme :
 
 ```toml
 [tool.fastapi]
 entrypoint = "main:app"
 ```
 
-Ce `entrypoint` indiquera à la commande `fastapi` qu’elle doit importer l’application comme :
+Ce `entrypoint` indiquera à la commande `fastapi` qu’elle doit importer l’application comme :
 
 ```python
 from main import app
 ```
 
-Si votre code est structuré comme :
+Si votre code est structuré comme :
 
 ```
 .
@@ -167,14 +167,14 @@ Si votre code est structuré comme :
 │   ├── __init__.py
 ```
 
-Alors vous définiriez le `entrypoint` comme :
+Alors vous définiriez le `entrypoint` comme :
 
 ```toml
 [tool.fastapi]
 entrypoint = "backend.main:app"
 ```
 
-ce qui équivaudrait à :
+ce qui équivaudrait à :
 
 ```python
 from backend.main import app
@@ -182,19 +182,19 @@ from backend.main import app
 
 ### `fastapi dev` avec un chemin ou avec l’option CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
-Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
+Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
 
 ```console
 $ fastapi dev main.py
 ```
 
-Ou bien, vous pouvez aussi passer l’option `--entrypoint` à la commande `fastapi dev` :
+Ou bien, vous pouvez aussi passer l’option `--entrypoint` à la commande `fastapi dev` :
 
 ```console
 $ fastapi dev --entrypoint main:app
 ```
 
-Mais vous devrez vous souvenir de passer le chemin\entrypoint correct à chaque exécution de la commande `fastapi`.
+Mais vous devez vous souvenir de passer le chemin\entrypoint correct à chaque exécution de la commande `fastapi`.
 
 De plus, d’autres outils pourraient ne pas être capables de le trouver, par exemple l’[Extension VS Code](../editor-support.md) ou [FastAPI Cloud](https://fastapicloud.com), il est donc recommandé d’utiliser le `entrypoint` dans `pyproject.toml`.
 
@@ -244,7 +244,7 @@ Ici, la variable `app` sera une « instance » de la classe `FastAPI`.
 
 Ce sera le point principal d’interaction pour créer toute votre API.
 
-### Étape 3 : créer un « chemin d’accès » { #step-3-create-a-path-operation }
+### Étape 3 : créer un *chemin d’accès* { #step-3-create-a-path-operation }
 
 #### Chemin { #path }
 
@@ -305,11 +305,11 @@ Donc, dans OpenAPI, chacune des méthodes HTTP est appelée une « opération »
 
 Nous allons donc aussi les appeler « opérations ».
 
-#### Définir un « décorateur de chemin d’accès » { #define-a-path-operation-decorator }
+#### Définir un *décorateur de chemin d’accès* { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
-Le `@app.get("/")` indique à **FastAPI** que la fonction juste en dessous est chargée de gérer les requêtes qui vont vers :
+Le `@app.get("/")` indique à **FastAPI** que la fonction juste en dessous est chargée de gérer les requêtes qui vont vers :
 
 * le chemin `/`
 * en utilisant une <dfn title="une méthode HTTP GET"><code>get</code> opération</dfn>
@@ -318,13 +318,13 @@ Le `@app.get("/")` indique à **FastAPI** que la fonction juste en dessous est c
 
 Cette syntaxe `@something` en Python est appelée un « décorateur ».
 
-Vous la mettez au-dessus d’une fonction. Comme un joli chapeau décoratif (j’imagine que c’est de là que vient le terme 🤷🏻‍♂).
+Vous la mettez au-dessus d’une fonction. Comme un joli chapeau décoratif (j’imagine que c’est de là que vient le terme).
 
 Un « décorateur » prend la fonction en dessous et fait quelque chose avec.
 
 Dans notre cas, ce décorateur indique à **FastAPI** que la fonction en dessous correspond au **chemin** `/` avec une **opération** `get`.
 
-C’est le « décorateur de chemin d’accès ».
+C’est le **« décorateur de chemin d’accès »**.
 
 ///
 
@@ -355,7 +355,7 @@ Par exemple, lorsque vous utilisez GraphQL, vous effectuez normalement toutes le
 
 ### Étape 4 : définir la **fonction de chemin d’accès** { #step-4-define-the-path-operation-function }
 
-Voici notre « fonction de chemin d’accès » :
+Voici notre **« fonction de chemin d’accès »** :
 
 * **chemin** : `/`.
 * **opération** : `get`.
@@ -365,7 +365,7 @@ Voici notre « fonction de chemin d’accès » :
 
 C’est une fonction Python.
 
-Elle sera appelée par **FastAPI** chaque fois qu’il recevra une requête vers l’URL « / » en utilisant une opération `GET`.
+Elle sera appelée par **FastAPI** chaque fois qu’il recevra une requête vers l’URL « `/` » en utilisant une opération `GET`.
 
 Dans ce cas, c’est une fonction `async`.
 
@@ -377,7 +377,7 @@ Vous pouvez aussi la définir comme une fonction normale au lieu de `async def` 
 
 /// note | Remarque
 
-Si vous ne connaissez pas la différence, consultez [Asynchrone : « Pressé ? »](../async.md#in-a-hurry).
+Si vous ne connaissez pas la différence, consultez [Asynchrone : *« Pressé ? »*](../async.md#in-a-hurry).
 
 ///
 

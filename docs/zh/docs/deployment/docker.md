@@ -1,5 +1,6 @@
 # 容器中的 FastAPI - Docker { #fastapi-in-containers-docker }
 
+
 部署 FastAPI 应用时，常见做法是构建一个**Linux 容器镜像**。通常使用 [**Docker**](https://www.docker.com/) 实现。然后你可以用几种方式之一部署该镜像。
 
 使用 Linux 容器有多种优势，包括**安全性**、**可复制性**、**简单性**等。

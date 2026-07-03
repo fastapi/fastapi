@@ -1,5 +1,6 @@
 # Fortgeschrittene Abhängigkeiten { #advanced-dependencies }
 
+
 ## Parametrisierte Abhängigkeiten { #parameterized-dependencies }
 
 Alle Abhängigkeiten, die wir bisher gesehen haben, waren festgelegte Funktionen oder Klassen.

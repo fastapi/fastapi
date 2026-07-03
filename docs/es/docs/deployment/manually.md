@@ -93,7 +93,7 @@ Un proceso similar se aplicaría a cualquier otro programa de servidor ASGI.
 
 Al añadir `standard`, Uvicorn instalará y usará algunas dependencias adicionales recomendadas.
 
-Eso incluye `uvloop`, el reemplazo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
+Eso incluye `uvloop`, el reemplazo directo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
 
 Cuando instalas FastAPI con algo como `pip install "fastapi[standard]"` ya obtienes `uvicorn[standard]` también.
 

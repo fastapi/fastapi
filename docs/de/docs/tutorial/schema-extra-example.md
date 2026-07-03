@@ -14,7 +14,7 @@ Diese zusätzlichen Informationen werden unverändert zum für dieses Modell aus
 
 Sie können das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in [Pydantic-Dokumentation: Configuration](https://docs.pydantic.dev/latest/api/config/).
 
-Sie können `json_schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
+Sie können `"json_schema_extra"` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
 
 /// tip | Tipp
 
@@ -88,7 +88,7 @@ Das Format dieses OpenAPI-spezifischen Felds `examples` ist ein `dict` mit **meh
 
 Dies erfolgt nicht innerhalb jedes in OpenAPI enthaltenen JSON-Schemas, sondern außerhalb, in der *Pfadoperation*.
 
-### Verwendung des Parameters `openapi_examples` { #using-the-openapi-examples-parameter }
+### Den Parameter `openapi_examples` verwenden { #using-the-openapi-examples-parameter }
 
 Sie können die OpenAPI-spezifischen `examples` in FastAPI mit dem Parameter `openapi_examples` deklarieren, für:
 
@@ -189,9 +189,9 @@ In Versionen von FastAPI vor 0.99.0 (0.99.0 und höher verwenden das neuere Open
 
 Aber jetzt, da FastAPI 0.99.0 und höher, OpenAPI 3.1.0 verwendet, das JSON Schema 2020-12 verwendet, und Swagger UI 5.0.0 und höher, ist alles konsistenter und die Beispiele sind in JSON Schema enthalten.
 
-### Swagger-Benutzeroberfläche und OpenAPI-spezifische `examples` { #swagger-ui-and-openapi-specific-examples }
+### Swagger UI und OpenAPI-spezifische `examples` { #swagger-ui-and-openapi-specific-examples }
 
-Da die Swagger-Benutzeroberfläche derzeit nicht mehrere JSON Schema Beispiele unterstützt (Stand: 26.08.2023), hatten Benutzer keine Möglichkeit, mehrere Beispiele in der Dokumentation anzuzeigen.
+Da Swagger UI derzeit nicht mehrere JSON Schema Beispiele unterstützt (Stand: 26.08.2023), hatten Benutzer keine Möglichkeit, mehrere Beispiele in der Dokumentation anzuzeigen.
 
 Um dieses Problem zu lösen, hat FastAPI `0.103.0` **Unterstützung** für die Deklaration desselben alten **OpenAPI-spezifischen** `examples`-Felds mit dem neuen Parameter `openapi_examples` hinzugefügt. 🤓
 

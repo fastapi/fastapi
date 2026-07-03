@@ -1,5 +1,6 @@
 # 쿼리 매개변수 { #query-parameters }
 
+
 경로 매개변수의 일부가 아닌 다른 함수 매개변수를 선언하면 "쿼리" 매개변수로 자동 해석합니다.
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}

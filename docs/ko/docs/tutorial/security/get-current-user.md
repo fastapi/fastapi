@@ -14,7 +14,7 @@
 
 Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 곳에서도 어디서든 사용할 수 있습니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## `get_current_user` 의존성 생성하기 { #create-a-get-current-user-dependency }
 

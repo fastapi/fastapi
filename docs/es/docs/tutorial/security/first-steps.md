@@ -146,7 +146,7 @@ Usar una URL relativa es importante para asegurarse de que tu aplicación siga f
 
 Este parámetro no crea ese endpoint / *path operation*, pero declara que la URL `/token` será la que el cliente deberá usar para obtener el token. Esa información se usa en OpenAPI, y luego en los sistemas de documentación interactiva del API.
 
-Pronto también crearemos la verdadera *path operation*.
+Pronto también crearemos la path operation real.
 
 /// note | Nota
 
@@ -174,13 +174,13 @@ Ahora puedes pasar ese `oauth2_scheme` en una dependencia con `Depends`.
 
 Esta dependencia proporcionará un `str` que se asigna al parámetro `token` de la *path operation function*.
 
-**FastAPI** sabrá que puede usar esta dependencia para definir un "security scheme" en el esquema OpenAPI (y en los docs automáticos del API).
+**FastAPI** sabrá que puede usar esta dependencia para definir un "security scheme" en el esquema OpenAPI (y en la documentación automática de la API).
 
 /// note | Detalles técnicos
 
 **FastAPI** sabrá que puede usar la clase `OAuth2PasswordBearer` (declarada en una dependencia) para definir el esquema de seguridad en OpenAPI porque hereda de `fastapi.security.oauth2.OAuth2`, que a su vez hereda de `fastapi.security.base.SecurityBase`.
 
-Todas las utilidades de seguridad que se integran con OpenAPI (y los docs automáticos del API) heredan de `SecurityBase`, así es como **FastAPI** puede saber cómo integrarlas en OpenAPI.
+Todas las utilidades de seguridad que se integran con OpenAPI (y la documentación automática de la API) heredan de `SecurityBase`, así es como **FastAPI** puede saber cómo integrarlas en OpenAPI.
 
 ///
 

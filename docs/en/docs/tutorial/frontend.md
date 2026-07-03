@@ -52,7 +52,9 @@ For that, use `fallback="index.html"`:
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI** uses this fallback only for requests that look like browser navigation. Missing files like JavaScript, CSS, and images still return `404`.
+**FastAPI** uses this fallback only for `GET` and `HEAD` requests that look like browser navigation. Missing files like JavaScript, CSS, and images still return `404`.
+
+Requests with other methods, like `POST` or `PUT`, to paths that only match the frontend fallback also return `404`. Regular **FastAPI** *path operations* still have higher priority than frontend routes.
 
 /// tip
 
@@ -123,6 +125,12 @@ You can also add frontend files to an `APIRouter` and include it with a prefix:
 In this example, frontend paths are served under `/app`.
 
 Any regular *path operations* in the app will still take precedence, including in other routers.
+
+## Dependencies and Middleware { #dependencies-and-middleware }
+
+Frontend responses run inside the normal **FastAPI** application, so HTTP middleware applies to them.
+
+Dependencies from the app, from an `APIRouter`, and from `include_router()` also apply to frontend responses. This can be useful for protecting a frontend with cookie authentication or similar.
 
 ## Static Build Output Only { #static-build-output-only }
 

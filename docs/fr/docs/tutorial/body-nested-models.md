@@ -1,6 +1,6 @@
 # Corps - Modèles imbriqués { #body-nested-models }
 
-Avec FastAPI, vous pouvez définir, valider, documenter et utiliser des modèles imbriqués à n'importe quelle profondeur (grâce à Pydantic).
+Avec **FastAPI**, vous pouvez définir, valider, documenter et utiliser des modèles imbriqués à n'importe quelle profondeur (grâce à Pydantic).
 
 ## Déclarer des champs de liste { #list-fields }
 
@@ -69,7 +69,7 @@ Nous pouvons ensuite l'utiliser comme type d'un attribut :
 
 {* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
 
-Cela signifie que FastAPI attendrait un corps similaire à :
+Cela signifie que **FastAPI** attendrait un corps similaire à :
 
 ```JSON
 {
@@ -85,7 +85,7 @@ Cela signifie que FastAPI attendrait un corps similaire à :
 }
 ```
 
-Là encore, avec cette simple déclaration, avec FastAPI vous obtenez :
+Là encore, avec cette simple déclaration, avec **FastAPI** vous obtenez :
 
 - Prise en charge par l'éditeur (autocomplétion, etc.), même pour les modèles imbriqués
 - Conversion des données
@@ -209,7 +209,7 @@ Et le `dict` que vous recevez dans `weights` aura en réalité des clés `int` e
 
 ## Récapitulatif { #recap }
 
-Avec FastAPI, vous bénéficiez de la flexibilité maximale fournie par les modèles Pydantic, tout en gardant votre code simple, concis et élégant.
+Avec **FastAPI**, vous bénéficiez de la flexibilité maximale fournie par les modèles Pydantic, tout en gardant votre code simple, concis et élégant.
 
 Mais avec tous les avantages :
 

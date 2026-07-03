@@ -1,5 +1,6 @@
 # Query Parametreleri ve String Doğrulamaları { #query-parameters-and-string-validations }
 
+
 **FastAPI**, parametreleriniz için ek bilgi ve doğrulamalar (validation) tanımlamanıza izin verir.
 
 Örnek olarak şu uygulamayı ele alalım:

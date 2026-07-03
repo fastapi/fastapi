@@ -10,7 +10,7 @@
 
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
-這些額外資訊會原封不動加入該模型輸出的 JSON Schema，並且會用在 API 文件裡。
+這些額外資訊會原封不動加入該模型輸出的 **JSON Schema**，並且會用在 API 文件裡。
 
 你可以使用屬性 `model_config`（接收一個 `dict`），詳見 [Pydantic 文件：Configuration](https://docs.pydantic.dev/latest/api/config/)。
 
@@ -135,7 +135,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 以下是關於 **JSON Schema** 與 **OpenAPI** 標準的技術細節。
 
-如果上面的做法對你已經足夠可用，就不需要這些細節，儘管直接跳過。
+如果上面的做法對你已經足夠可用，就不需要這些細節，可以直接跳過。
 
 ///
 

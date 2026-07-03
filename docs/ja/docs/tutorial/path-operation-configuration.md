@@ -1,5 +1,6 @@
 # Path Operationの設定 { #path-operation-configuration }
 
+
 *path operationデコレータ*を設定するためのパラメータがいくつかあります。
 
 /// warning | 注意

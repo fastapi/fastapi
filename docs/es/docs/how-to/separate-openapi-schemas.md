@@ -77,7 +77,7 @@ Pero para `Item-Output`, `description` **es requerido**, tiene un asterisco rojo
 
 Con esta funcionalidad de **Pydantic v2**, la documentación de tu API es más **precisa**, y si tienes clientes y SDKs autogenerados, también serán más precisos, con una mejor **experiencia para desarrolladores** y consistencia. 🎉
 
-## No Separar Esquemas { #do-not-separate-schemas }
+## No separes esquemas { #do-not-separate-schemas }
 
 Ahora, hay algunos casos donde podrías querer tener el **mismo esquema para entrada y salida**.
 

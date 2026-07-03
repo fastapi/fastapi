@@ -6,7 +6,7 @@
 
 首先，使用 **FastAPI** 安全工具获取 `username` 和 `password`。
 
-OAuth2 规范要求使用“密码流”时，客户端或用户必须以表单数据形式发送 `username` 和 `password` 字段。
+OAuth2 规范要求使用“密码流”（也就是我们正在使用的流程）时，客户端或用户必须以表单数据形式发送 `username` 和 `password` 字段。
 
 并且，这两个字段必须命名为 `username` 和 `password`，不能使用 `user-name` 或 `email` 等其它名称。
 
@@ -80,7 +80,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 但 `OAuth2PasswordRequestForm` 只是可以自行编写的类依赖项，也可以直接声明 `Form` 参数。
 
-但由于这种用例很常见，FastAPI 为了简便，就直接提供了对它的支持。
+但由于这种用例很常见，**FastAPI** 为了简便，就直接提供了对它的支持。
 
 ///
 
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note | 注意
 
-`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user-in-dict)。
+关于 `**user_dict` 的更完整说明，详见[**更多模型**文档](../extra-models.md#about-user-in-model-dump)。
 
 ///
 
@@ -208,7 +208,7 @@ UserInDB(
 
 之所以在此提供这个附加响应头，是为了符合规范的要求。
 
-说不定什么时候，就有工具用得上它，而且，开发者或用户也可能用得上。
+此外，现在或将来，可能会有工具期望并使用它，而且现在或将来这也可能对你或你的用户有用。
 
 这就是遵循标准的好处...
 

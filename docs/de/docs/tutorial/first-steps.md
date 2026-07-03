@@ -236,7 +236,7 @@ Sie können alle [Starlette](https://www.starlette.dev/)-Funktionalitäten auch 
 
 ///
 
-### Schritt 2: Erzeugen einer `FastAPI`-„Instanz“ { #step-2-create-a-fastapi-instance }
+### Schritt 2: Eine `FastAPI`-„Instanz“ erstellen { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
@@ -244,7 +244,7 @@ In diesem Beispiel ist die Variable `app` eine „Instanz“ der Klasse `FastAPI
 
 Dies wird der Hauptinteraktionspunkt für die Erstellung all Ihrer APIs sein.
 
-### Schritt 3: Erstellen einer *Pfadoperation* { #step-3-create-a-path-operation }
+### Schritt 3: Eine *Pfadoperation* erstellen { #step-3-create-a-path-operation }
 
 #### Pfad { #path }
 
@@ -305,7 +305,7 @@ In OpenAPI wird folglich jede dieser HTTP-Methoden als „Operation“ bezeichne
 
 Wir werden sie auch „**Operationen**“ nennen.
 
-#### Definieren eines *Pfadoperation-Dekorators* { #define-a-path-operation-decorator }
+#### Einen *Pfadoperation-Dekorator* definieren { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
@@ -353,7 +353,7 @@ Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktion
 
 ///
 
-### Schritt 4: Definieren der **Pfadoperation-Funktion** { #step-4-define-the-path-operation-function }
+### Schritt 4: Die **Pfadoperation-Funktion** definieren { #step-4-define-the-path-operation-function }
 
 Das ist unsere „**Pfadoperation-Funktion**“:
 
@@ -399,11 +399,11 @@ Stellen Sie Ihre App in der **[FastAPI Cloud](https://fastapicloud.com)** mit ei
 
 **[FastAPI Cloud](https://fastapicloud.com)** wird vom selben Autor und Team hinter **FastAPI** entwickelt.
 
-Es vereinfacht den Prozess des Erstellens, Deployens und des Zugriffs auf eine API mit minimalem Aufwand.
+Es vereinfacht den Prozess des **Erstellens**, **Deployens** und des **Zugriffs** auf eine API mit minimalem Aufwand.
 
 Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
 
-FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der *FastAPI and friends*-Open-Source-Projekte. ✨
 
 #### Zu anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
 
@@ -414,7 +414,7 @@ Folgen Sie den Anleitungen Ihres Cloudanbieters, um dort FastAPI-Apps bereitzust
 ## Zusammenfassung { #recap }
 
 * Importieren Sie `FastAPI`.
-* Erstellen Sie eine `app` Instanz.
+* Erstellen Sie eine `app`-Instanz.
 * Schreiben Sie einen **Pfadoperation-Dekorator** unter Verwendung von Dekoratoren wie `@app.get("/")`.
 * Definieren Sie eine **Pfadoperation-Funktion**, zum Beispiel `def root(): ...`.
 * Starten Sie den Entwicklungsserver mit dem Befehl `fastapi dev`.

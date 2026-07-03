@@ -29,7 +29,7 @@ Aquí algunos de los paquetes de **GraphQL** que tienen soporte **ASGI**. Podrí
 
 ## GraphQL con Strawberry { #graphql-with-strawberry }
 
-Si necesitas o quieres trabajar con **GraphQL**, [**Strawberry**](https://strawberry.rocks/) es el paquete **recomendado** ya que tiene un diseño muy similar al diseño de **FastAPI**, todo basado en **anotaciones de tipos**.
+Si necesitas o quieres trabajar con **GraphQL**, [**Strawberry**](https://strawberry.rocks/) es el paquete **recomendado** ya que tiene el diseño más cercano al diseño de **FastAPI**, todo basado en **anotaciones de tipos**.
 
 Dependiendo de tu caso de uso, podrías preferir usar un paquete diferente, pero si me preguntas, probablemente te sugeriría probar **Strawberry**.
 

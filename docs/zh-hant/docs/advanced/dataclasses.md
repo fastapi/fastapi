@@ -63,12 +63,12 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 7. 這裡 `response_model` 使用的是「`Author` dataclass 的清單」這種型別註記。
 
    同樣地，你可以把 `dataclasses` 與標準型別註記組合使用。
-8. 注意這個「路徑操作函式」使用的是一般的 `def` 而非 `async def`。
+8. 注意這個*路徑操作函式*使用的是一般的 `def` 而非 `async def`。
 
    一如往常，在 FastAPI 中你可以視需要混用 `def` 與 `async def`。
 
-   如果需要複習何時用哪個，請參考文件中關於 [`async` 與 `await`](../async.md#in-a-hurry) 的章節「In a hurry?」。
-9. 這個「路徑操作函式」回傳的不是 dataclass（雖然也可以），而是一個包含內部資料的字典清單。
+   如果需要複習何時用哪個，請參考文件中關於 [`async` 與 `await`](../async.md#in-a-hurry) 的章節 _「趕時間？」_。
+9. 這個*路徑操作函式*回傳的不是 dataclass（雖然也可以），而是一個包含內部資料的字典清單。
 
    FastAPI 會使用 `response_model` 參數（其中包含 dataclass）來轉換回應。
 

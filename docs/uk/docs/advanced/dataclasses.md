@@ -1,5 +1,6 @@
 # Використання dataclasses { #using-dataclasses }
 
+
 FastAPI побудовано поверх **Pydantic**, і я показував вам, як використовувати моделі Pydantic для оголошення запитів і відповідей.
 
 Але FastAPI також підтримує використання [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) таким самим чином:

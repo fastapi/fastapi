@@ -17,16 +17,16 @@ Digamos que tienes una estructura de archivos como esta:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | Consejo
@@ -181,12 +181,12 @@ El resultado final es que los paths de item son ahora:
 ...como pretendíamos.
 
 * Serán marcados con una lista de tags que contiene un solo string `"items"`.
-  * Estos "tags" son especialmente útiles para los sistemas de documentación interactiva automática (usando OpenAPI).
+    * Estos "tags" son especialmente útiles para los sistemas de documentación interactiva automática (usando OpenAPI).
 * Todos incluirán las `responses` predefinidas.
 * Todas estas *path operations* tendrán la lista de `dependencies` evaluadas/ejecutadas antes de ellas.
-  * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
-  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md), y luego las dependencias de parámetros normales.
-  * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md).
+    * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
+    * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md), y luego las dependencias de parámetros normales.
+    * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Consejo
 
@@ -461,7 +461,7 @@ Los `APIRouter`s no están "montados", no están aislados del resto de la aplica
 
 Esto se debe a que queremos incluir sus *path operations* en el esquema de OpenAPI y las interfaces de usuario.
 
-FastAPI mantiene los routers y *path operations* originales activos, y combina los prefijos del router, dependencias, tags, responses y otros metadatos al manejar requests y generar OpenAPI.
+FastAPI mantiene los routers y path operations originales activos, y combina los prefijos del router, dependencias, tags, responses y otros metadatos al manejar requests y generar OpenAPI.
 
 ///
 

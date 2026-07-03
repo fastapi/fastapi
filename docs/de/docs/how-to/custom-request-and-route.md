@@ -1,5 +1,6 @@
 # Benutzerdefinierte Request- und APIRoute-Klasse { #custom-request-and-apiroute-class }
 
+
 In einigen Fällen möchten Sie möglicherweise die von den Klassen `Request` und `APIRoute` verwendete Logik überschreiben.
 
 Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.

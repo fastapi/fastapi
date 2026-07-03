@@ -1,5 +1,6 @@
 # Ek Modeller { #extra-models }
 
+
 Önceki örnekten devam edersek, birbiriyle ilişkili birden fazla modelin olması oldukça yaygındır.
 
 Bu durum özellikle kullanıcı modellerinde sık görülür, çünkü:
