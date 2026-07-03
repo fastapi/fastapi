@@ -17,10 +17,10 @@ _T = TypeVar("_T")
 @asynccontextmanager
 async def contextmanager_in_threadpool(
     """Run a context manager in a thread pool.
-    
+
         Args:
             cm: The context manager to run.
-    
+
         Returns:
             The result of the context manager.
         """
