@@ -1,6 +1,6 @@
 # Paramètres de requête { #query-parameters }
 
-Quand vous déclarez d'autres paramètres de fonction qui ne font pas partie des paramètres de chemin, ils sont automatiquement interprétés comme des paramètres de « query ».
+Quand vous déclarez d'autres paramètres de fonction qui ne font pas partie des paramètres de chemin, ils sont automatiquement interprétés comme des paramètres de requête.
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
@@ -108,6 +108,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 ```
 
 ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction verra le paramètre `short` avec une valeur `bool` à `True`. Sinon la valeur sera à `False`.
+
 
 ## Multiples paramètres de chemin et de requête { #multiple-path-and-query-parameters }
 

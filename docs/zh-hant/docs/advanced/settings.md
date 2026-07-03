@@ -297,6 +297,6 @@ participant execute as Execute function
 
 你可以使用 Pydantic Settings 來處理應用程式的設定或組態，並享有 Pydantic model 的全部能力。
 
-- 透過相依可以讓測試更容易。
-- 你可以搭配 `.env` 檔使用。
-- 使用 `@lru_cache` 可以避免每個請求都重複讀取 dotenv 檔，同時仍可在測試時覆寫設定。
+* 透過相依可以讓測試更容易。
+* 你可以搭配 `.env` 檔使用。
+* 使用 `@lru_cache` 可以避免每個請求都重複讀取 dotenv 檔，同時仍可在測試時覆寫設定。

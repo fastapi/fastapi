@@ -1,5 +1,6 @@
 # Scopes de OAuth2 { #oauth2-scopes }
 
+
 Puedes usar scopes de OAuth2 directamente con **FastAPI**, están integrados para funcionar de manera fluida.
 
 Esto te permitiría tener un sistema de permisos más detallado, siguiendo el estándar de OAuth2, integrado en tu aplicación OpenAPI (y la documentación de la API).

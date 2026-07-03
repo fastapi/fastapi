@@ -1,5 +1,6 @@
 # 進階相依 { #advanced-dependencies }
 
+
 ## 參數化的相依 { #parameterized-dependencies }
 
 到目前為止看到的相依都是固定的函式或類別。

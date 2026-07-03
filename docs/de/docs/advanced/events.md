@@ -102,7 +102,7 @@ Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
 ### `startup`-Event { #startup-event }
 
-Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `startup`:
+Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `"startup"`:
 
 {* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
@@ -114,7 +114,7 @@ Und Ihre Anwendung empfängt erst dann Requests, wenn alle `startup`-Eventhandle
 
 ### `shutdown`-Event { #shutdown-event }
 
-Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
+Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `"shutdown"`:
 
 {* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
@@ -150,7 +150,7 @@ Aus diesem Grund wird jetzt empfohlen, stattdessen `lifespan` wie oben erläuter
 
 Nur ein technisches Detail für die neugierigen Nerds. 🤓
 
-In der technischen ASGI-Spezifikation ist dies Teil des [Lifespan Protokolls](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) und definiert Events namens `startup` und `shutdown`.
+In der technischen ASGI-Spezifikation ist dies Teil des [Lifespan-Protokolls](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) und definiert Events namens `startup` und `shutdown`.
 
 /// note | Hinweis
 

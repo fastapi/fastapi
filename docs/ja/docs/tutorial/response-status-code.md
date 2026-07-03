@@ -1,5 +1,6 @@
 # レスポンスステータスコード { #response-status-code }
 
+
 レスポンスモデルを指定するのと同じ方法で、レスポンスに使用されるHTTPステータスコードを以下の*path operations*のいずれかの`status_code`パラメータで宣言することもできます。
 
 * `@app.get()`

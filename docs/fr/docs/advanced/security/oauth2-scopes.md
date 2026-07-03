@@ -2,11 +2,11 @@
 
 Vous pouvez utiliser des scopes OAuth2 directement avec **FastAPI**, ils sont intégrés pour fonctionner de manière transparente.
 
-Cela vous permettrait d’avoir un système d’autorisations plus fin, conforme au standard OAuth2, intégré à votre application OpenAPI (et à la documentation de l’API).
+Cela vous permettrait d’avoir un système d’autorisations plus fin, conforme au standard OAuth2, intégré à votre application OpenAPI (et aux documents de l’API).
 
 OAuth2 avec scopes est le mécanisme utilisé par de nombreux grands fournisseurs d’authentification, comme Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Ils l’utilisent pour fournir des permissions spécifiques aux utilisateurs et aux applications.
 
-Chaque fois que vous « log in with » Facebook, Google, GitHub, Microsoft, X (Twitter), cette application utilise OAuth2 avec scopes.
+Chaque fois que vous utilisez « se connecter avec » Facebook, Google, GitHub, Microsoft, X (Twitter), cette application utilise OAuth2 avec scopes.
 
 Dans cette section, vous verrez comment gérer l’authentification et l’autorisation avec le même OAuth2 avec scopes dans votre application **FastAPI**.
 
@@ -16,7 +16,7 @@ C’est une section plus ou moins avancée. Si vous débutez, vous pouvez la pas
 
 Vous n’avez pas nécessairement besoin des scopes OAuth2, et vous pouvez gérer l’authentification et l’autorisation comme vous le souhaitez.
 
-Mais OAuth2 avec scopes peut s’intégrer élégamment à votre API (avec OpenAPI) et à votre documentation d’API.
+Mais OAuth2 avec scopes peut s’intégrer élégamment à votre API (avec OpenAPI) et à vos documents d’API.
 
 Néanmoins, c’est toujours à vous de faire appliquer ces scopes, ou toute autre exigence de sécurité/autorisation, selon vos besoins, dans votre code.
 
@@ -34,7 +34,7 @@ Le contenu de chacune de ces chaînes peut avoir n’importe quel format, mais n
 
 Ces scopes représentent des « permissions ».
 
-Dans OpenAPI (par ex. la documentation de l’API), vous pouvez définir des « schémas de sécurité ».
+Dans OpenAPI (par ex. les documents de l’API), vous pouvez définir des « schémas de sécurité ».
 
 Lorsqu’un de ces schémas de sécurité utilise OAuth2, vous pouvez aussi déclarer et utiliser des scopes.
 
@@ -74,7 +74,7 @@ Le paramètre `scopes` reçoit un `dict` avec chaque scope en clé et la descrip
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 
-Comme nous déclarons maintenant ces scopes, ils apparaîtront dans la documentation de l’API lorsque vous vous authentifiez/autorisez.
+Comme nous déclarons maintenant ces scopes, ils apparaîtront dans les documents de l’API lorsque vous vous authentifiez/autorisez.
 
 Et vous pourrez sélectionner à quels scopes vous souhaitez accorder l’accès : `me` et `items`.
 
@@ -235,11 +235,11 @@ Elles seront vérifiées indépendamment pour chaque *chemin d’accès*.
 
 ## Tester { #check-it }
 
-Si vous ouvrez la documentation de l’API, vous pouvez vous authentifier et spécifier quels scopes vous voulez autoriser.
+Si vous ouvrez les documents de l’API, vous pouvez vous authentifier et spécifier quels scopes vous voulez autoriser.
 
 <img src="/img/tutorial/security/image11.png">
 
-Si vous ne sélectionnez aucun scope, vous serez « authenticated », mais lorsque vous essayerez d’accéder à `/users/me/` ou `/users/me/items/`, vous obtiendrez une erreur indiquant que vous n’avez pas suffisamment de permissions. Vous pourrez toujours accéder à `/status/`.
+Si vous ne sélectionnez aucun scope, vous serez « authentifié », mais lorsque vous essayerez d’accéder à `/users/me/` ou `/users/me/items/`, vous obtiendrez une erreur indiquant que vous n’avez pas suffisamment de permissions. Vous pourrez toujours accéder à `/status/`.
 
 Et si vous sélectionnez le scope `me` mais pas le scope `items`, vous pourrez accéder à `/users/me/` mais pas à `/users/me/items/`.
 

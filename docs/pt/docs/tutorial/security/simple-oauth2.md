@@ -6,7 +6,7 @@ Agora vamos construir a partir do capítulo anterior e adicionar as partes que f
 
 Vamos usar os utilitários de segurança da **FastAPI** para obter o `username` e a `password`.
 
-OAuth2 especifica que ao usar o "password flow" (fluxo de senha), que estamos usando, o cliente/usuário deve enviar os campos `username` e `password` como dados do formulário.
+OAuth2 especifica que, ao usar o "fluxo de senha" (que estamos usando), o cliente/usuário deve enviar os campos `username` e `password` como dados do formulário.
 
 E a especificação diz que os campos devem ser nomeados assim. Portanto, `user-name` ou `email` não funcionariam.
 
@@ -29,7 +29,7 @@ Cada “scope” é apenas uma string (sem espaços).
 Normalmente são usados para declarar permissões de segurança específicas, por exemplo:
 
 * `users:read` ou `users:write` são exemplos comuns.
-* `instagram_basic` é usado pelo Facebook e Instagram.
+* `instagram_basic` é usado pelo Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` é usado pelo Google.
 
 /// note | Nota
@@ -78,7 +78,7 @@ O `OAuth2PasswordRequestForm` não é uma classe especial para **FastAPI** como 
 
 `OAuth2PasswordBearer` faz com que **FastAPI** saiba que é um esquema de segurança. Portanto, é adicionado dessa forma ao OpenAPI.
 
-Mas `OAuth2PasswordRequestForm` é apenas uma dependência de classe que você mesmo poderia ter escrito ou poderia ter declarado os parâmetros do `Form` (formulário) diretamente.
+Mas `OAuth2PasswordRequestForm` é apenas uma dependência de classe que você mesmo poderia ter escrito ou poderia ter declarado os parâmetros de `Form` diretamente.
 
 Mas como é um caso de uso comum, ele é fornecido diretamente pelo **FastAPI**, apenas para facilitar.
 
@@ -108,7 +108,7 @@ Neste ponto temos os dados do usuário do nosso banco de dados, mas não verific
 
 Vamos colocar esses dados primeiro no modelo `UserInDB` do Pydantic.
 
-Você nunca deve salvar senhas em texto simples, portanto, usaremos o sistema de hashing de senhas (falsas).
+Você nunca deveria salvar senhas em texto simples, portanto, usaremos o sistema (falso) de hashing de senhas.
 
 Se as senhas não corresponderem, retornaremos o mesmo erro.
 
@@ -120,7 +120,7 @@ Sempre que você passa exatamente o mesmo conteúdo (exatamente a mesma senha), 
 
 Mas você não pode converter a sequência aleatória de caracteres de volta para a senha.
 
-##### Porque usar hashing de senha { #why-use-password-hashing }
+##### Por que usar hashing de senha { #why-use-password-hashing }
 
 Se o seu banco de dados for roubado, o ladrão não terá as senhas em texto simples dos seus usuários, apenas os hashes.
 
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note | Nota
 
-Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict).
+Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-model-dump).
 
 ///
 

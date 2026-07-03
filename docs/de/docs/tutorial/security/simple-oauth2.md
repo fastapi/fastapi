@@ -20,7 +20,7 @@ Die Spezifikation besagt auch, dass `username` und `password` als Formulardaten 
 
 ### `scope` { #scope }
 
-Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" („Geltungsbereich“) senden kann.
+Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld „`scope`“ senden kann.
 
 Der Name des Formularfelds lautet `scope` (im Singular), tatsächlich handelt es sich jedoch um einen langen String mit durch Leerzeichen getrennten „Scopes“.
 
@@ -120,7 +120,7 @@ Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
-##### Warum Passwort-Hashing verwenden? { #why-use-password-hashing }
+##### Warum Passwort-Hashing verwenden { #why-use-password-hashing }
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note | Hinweis
 
-Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-dict).
+Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -226,7 +226,7 @@ Verwenden Sie die Anmeldedaten:
 
 Benutzer: `johndoe`
 
-Passwort: `secret`.
+Passwort: `secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Wenn Sie auf das Schlosssymbol klicken und sich abmelden und dann den gleichen V
 
 Versuchen Sie es nun mit einem inaktiven Benutzer und authentisieren Sie sich mit:
 
-Benutzer: `alice`.
+Benutzer: `alice`
 
-Passwort: `secret2`.
+Passwort: `secret2`
 
 Und versuchen Sie, die Operation `GET` mit dem Pfad `/users/me` zu verwenden.
 

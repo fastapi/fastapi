@@ -17,16 +17,16 @@ Flask 出身であれば、Flask の Blueprint に相当します。
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | 豆知識

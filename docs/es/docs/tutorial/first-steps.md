@@ -90,13 +90,13 @@ Verás la documentación alternativa automática (proporcionada por [ReDoc](http
 
 Un "esquema" es una definición o descripción de algo. No el código que lo implementa, sino solo una descripción abstracta.
 
-#### Esquema de la API { #api-schema }
+#### "Esquema" de la API { #api-schema }
 
 En este caso, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) es una especificación que dicta cómo definir un esquema de tu API.
 
 Esta definición de esquema incluye los paths de tu API, los posibles parámetros que toman, etc.
 
-#### Esquema de Datos { #data-schema }
+#### "Esquema" de datos { #data-schema }
 
 El término "esquema" también podría referirse a la forma de algunos datos, como el contenido JSON.
 
@@ -194,7 +194,7 @@ O, también puedes pasar la opción `--entrypoint` al comando `fastapi dev`:
 $ fastapi dev --entrypoint main:app
 ```
 
-Pero tendrías que recordar pasar el path o entrypoint correctos cada vez que llames al comando `fastapi`.
+Pero tendrías que recordar pasar el path\entrypoint correcto cada vez que llames al comando `fastapi`.
 
 Además, otras herramientas podrían no ser capaces de encontrarlo, por ejemplo la [Extensión de VS Code](../editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
 
@@ -301,7 +301,7 @@ Normalmente usas:
 * `PUT`: para actualizar datos.
 * `DELETE`: para eliminar datos.
 
-Así que, en OpenAPI, cada uno de los métodos HTTP se llama una "operation".
+Así que, en OpenAPI, cada uno de los métodos HTTP se llama una "operación".
 
 Vamos a llamarlas "**operaciones**" también.
 

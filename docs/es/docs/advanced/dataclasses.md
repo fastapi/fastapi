@@ -82,7 +82,7 @@ En ese caso, simplemente puedes intercambiar los `dataclasses` estándar con `py
 
 Puedes combinar `dataclasses` con otras anotaciones de tipos en muchas combinaciones diferentes para formar estructuras de datos complejas.
 
-Revisa las anotaciones en el código arriba para ver más detalles específicos.
+Revisa los consejos de anotación en el código arriba para ver más detalles específicos.
 
 ## Aprende Más { #learn-more }
 

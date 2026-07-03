@@ -1,5 +1,6 @@
 # FastAPI en Contenedores - Docker { #fastapi-in-containers-docker }
 
+
 Al desplegar aplicaciones de FastAPI, un enfoque común es construir una **imagen de contenedor de Linux**. Normalmente se realiza usando [**Docker**](https://www.docker.com/). Luego puedes desplegar esa imagen de contenedor de varias formas.
 
 Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **replicabilidad**, **simplicidad**, y otras.

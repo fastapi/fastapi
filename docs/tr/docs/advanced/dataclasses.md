@@ -1,5 +1,6 @@
 # Dataclass Kullanımı { #using-dataclasses }
 
+
 FastAPI, **Pydantic** üzerine inşa edilmiştir ve request/response tanımlamak için Pydantic model'lerini nasıl kullanacağınızı gösteriyordum.
 
 Ancak FastAPI, [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) kullanmayı da aynı şekilde destekler:

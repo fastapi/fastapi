@@ -24,7 +24,7 @@ Aynı tekniği JSON Schema’yı genişletmek ve kendi özel ek bilgilerinizi ek
 
 ///
 
-/// note | Bilgi
+/// note | Not
 
 OpenAPI 3.1.0 (FastAPI 0.99.0’dan beri kullanılıyor), **JSON Schema** standardının bir parçası olan `examples` için destek ekledi.
 
@@ -123,7 +123,7 @@ FastAPI’de OpenAPI’ye özel `examples`’ı, şu araçlar için `openapi_exa
 
 /// tip | İpucu
 
-Zaten **FastAPI** sürümü **0.99.0 veya üzerini** kullanıyorsanız, büyük olasılıkla bu detayları **atlanabilirsiniz**.
+Zaten **FastAPI** sürümü **0.99.0 veya üzerini** kullanıyorsanız, büyük olasılıkla bu detayları **atlayabilirsiniz**.
 
 Bunlar daha çok OpenAPI 3.1.0’ın henüz mevcut olmadığı eski sürümler için geçerlidir.
 
@@ -155,7 +155,7 @@ OpenAPI ayrıca spesifikasyonun diğer bölümlerine de `example` ve `examples` 
     * `File()`
     * `Form()`
 
-/// note | Bilgi
+/// note | Not
 
 Bu eski OpenAPI’ye özel `examples` parametresi, FastAPI `0.103.0` sürümünden beri `openapi_examples` olarak kullanılıyor.
 
@@ -171,7 +171,7 @@ Ve artık, deprecated olan eski tekil (ve özel) `example` alanına kıyasla bu 
 
 JSON Schema’daki bu yeni `examples` alanı, OpenAPI’de başka yerlerde kullanılan (yukarıda anlatılan) metadata’lı `dict` yapısından farklı olarak **sadece örneklerden oluşan bir `list`**’tir.
 
-/// note | Bilgi
+/// note | Not
 
 OpenAPI 3.1.0, JSON Schema ile bu yeni ve daha basit entegrasyonla yayımlandıktan sonra bile bir süre, otomatik dokümantasyonu sağlayan araç Swagger UI OpenAPI 3.1.0’ı desteklemiyordu (5.0.0 sürümünden beri destekliyor 🎉).
 

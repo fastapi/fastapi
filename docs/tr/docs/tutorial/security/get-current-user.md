@@ -14,7 +14,7 @@ Bize mevcut kullanıcıyı verecek şekilde düzenleyelim.
 
 Body'leri bildirmek için Pydantic'i nasıl kullanıyorsak, aynı şekilde onu başka her yerde de kullanabiliriz:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## `get_current_user` dependency'si oluşturun { #create-a-get-current-user-dependency }
 

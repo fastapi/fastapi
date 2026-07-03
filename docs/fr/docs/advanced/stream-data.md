@@ -2,7 +2,7 @@
 
 Si vous voulez diffuser des données pouvant être structurées en JSON, vous devez [Diffuser des JSON Lines](../tutorial/stream-json-lines.md).
 
-Mais si vous voulez diffuser des données binaires pures ou des chaînes, voici comment procéder.
+Mais si vous voulez **diffuser des données binaires pures** ou des chaînes, voici comment procéder.
 
 /// note | Remarque
 
@@ -14,7 +14,7 @@ Ajouté dans FastAPI 0.134.0.
 
 Vous pouvez l'utiliser si vous souhaitez diffuser des chaînes pures, par exemple directement depuis la sortie d'un service d'**IA LLM**.
 
-Vous pouvez également l'utiliser pour diffuser de gros fichiers binaires, en envoyant chaque bloc de données au fur et à mesure de la lecture, sans tout charger en mémoire d'un coup.
+Vous pouvez également l'utiliser pour diffuser de **gros fichiers binaires**, en envoyant chaque bloc de données au fur et à mesure de la lecture, sans tout charger en mémoire d'un coup.
 
 Vous pouvez aussi diffuser de la **vidéo** ou de l'**audio** de cette manière ; cela peut même être généré au fil du traitement et de l'envoi.
 
@@ -26,7 +26,7 @@ Si vous déclarez un `response_class=StreamingResponse` dans votre *fonction de 
 
 FastAPI transmettra chaque bloc de données à la `StreamingResponse` tel quel ; il n'essaiera pas de le convertir en JSON ni autre chose similaire.
 
-### Fonctions de chemin d'accès non async { #non-async-path-operation-functions }
+### *Fonctions de chemin d'accès* non async { #non-async-path-operation-functions }
 
 Vous pouvez également utiliser des fonctions `def` classiques (sans `async`), et utiliser `yield` de la même manière.
 
@@ -40,7 +40,7 @@ Comme FastAPI n'essaiera pas de convertir les données en JSON avec Pydantic ni 
 
 {* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
 
-Cela signifie aussi qu'avec `StreamingResponse` vous avez la liberté — et la responsabilité — de produire et d'encoder les octets de données exactement comme vous avez besoin de les envoyer, indépendamment des annotations de type. 🤓
+Cela signifie aussi qu'avec `StreamingResponse` vous avez la **liberté** et la **responsabilité** de produire et d'encoder les octets de données exactement comme vous avez besoin de les envoyer, indépendamment des annotations de type. 🤓
 
 ### Diffuser des bytes { #stream-bytes }
 

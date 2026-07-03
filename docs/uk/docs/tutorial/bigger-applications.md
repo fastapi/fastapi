@@ -17,16 +17,16 @@
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | Порада
@@ -382,6 +382,18 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
+/// note | Примітка
+
+`users.router` містить `APIRouter` всередині файлу `app/routers/users.py`.
+
+А `items.router` містить `APIRouter` всередині файлу `app/routers/items.py`.
+
+///
+
+За допомогою `app.include_router()` ми можемо додати кожен `APIRouter` до основного застосунку `FastAPI`.
+
+Це включить усі маршрути з цього router'а як частину застосунку.
+
 /// note | Технічні деталі
 
 FastAPI зберігає оригінальний `APIRouter` і його `APIRoute` активними після включення router'а до основного застосунку.
@@ -389,10 +401,6 @@ FastAPI зберігає оригінальний `APIRouter` і його `APIRo
 Це означає, що користувацькі підкласи `APIRouter` і `APIRoute` і надалі братимуть участь після включення router'а.
 
 ///
-
-За допомогою `app.include_router()` ми можемо додати кожен `APIRouter` до основного застосунку `FastAPI`.
-
-Це включить усі маршрути з цього router'а як частину застосунку.
 
 /// tip | Порада
 
@@ -445,7 +453,7 @@ FastAPI зберігає оригінальний `APIRouter` і його `APIRo
 
 /// note | Дуже технічні деталі
 
-Примітка: це дуже технічна деталь, яку ви, ймовірно, можете просто пропустити.
+**Примітка**: це дуже технічна деталь, яку ви, ймовірно, можете **просто пропустити**.
 
 ---
 
@@ -510,7 +518,7 @@ $ fastapi dev
 
 ## Включайте той самий router кілька разів з різними `prefix` { #include-the-same-router-multiple-times-with-different-prefix }
 
-Ви також можете використовувати `.include_router()` кілька разів з одним і тим самим router'ом, але з різними префіксами.
+Ви також можете використовувати `.include_router()` кілька разів з *тим самим* router'ом, але з різними префіксами.
 
 Це може бути корисно, наприклад, щоб публікувати той самий API під різними префіксами, наприклад `/api/v1` і `/api/latest`.
 

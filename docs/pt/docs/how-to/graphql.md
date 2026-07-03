@@ -1,5 +1,6 @@
 # GraphQL { #graphql }
 
+
 Como o **FastAPI** é baseado no padrão **ASGI**, é muito fácil integrar qualquer biblioteca **GraphQL** também compatível com ASGI.
 
 Você pode combinar *operações de rota* normais do FastAPI com GraphQL na mesma aplicação.

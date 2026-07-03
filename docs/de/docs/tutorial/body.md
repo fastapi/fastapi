@@ -14,7 +14,7 @@ Um Daten zu senden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELE
 
 Das Senden eines Bodys mit einem `GET`-Request hat ein undefiniertes Verhalten in den Spezifikationen, wird aber dennoch von FastAPI unterstützt, nur für sehr komplexe/extreme Anwendungsfälle.
 
-Da davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutzeroberfläche die Dokumentation für den Body nicht an, wenn `GET` verwendet wird, und zwischengeschaltete Proxys unterstützen es möglicherweise nicht.
+Da davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger UI die Dokumentation für den Body nicht an, wenn `GET` verwendet wird, und zwischengeschaltete Proxys unterstützen es möglicherweise nicht.
 
 ///
 
@@ -32,6 +32,7 @@ Verwenden Sie Standard-Python-Typen für alle Attribute:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
+
 Wie auch bei der Deklaration von Query-Parametern gilt: Wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Andernfalls ist es erforderlich. Verwenden Sie `None`, um es einfach optional zu machen.
 
 Zum Beispiel deklariert das obige Modell ein JSON „`object`“ (oder Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>) wie dieses:
@@ -45,7 +46,7 @@ Zum Beispiel deklariert das obige Modell ein JSON „`object`“ (oder Python-<a
 }
 ```
 
-Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre folgendes JSON „`object`“ auch gültig:
+... da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre dieses JSON „`object`“ ebenfalls gültig:
 
 ```JSON
 {
@@ -109,7 +110,7 @@ Aber Sie würden die gleiche Editor-Unterstützung in [PyCharm](https://www.jetb
 
 /// tip | Tipp
 
-Wenn Sie [PyCharm](https://www.jetbrains.com/pycharm/) als Ihren Editor verwenden, können Sie das [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/) ausprobieren.
+Wenn Sie [PyCharm](https://www.jetbrains.com/pycharm/) als Ihren Editor verwenden, können Sie das [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/) verwenden.
 
 Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
 
@@ -127,7 +128,7 @@ Innerhalb der Funktion können Sie alle Attribute des Modellobjekts direkt verwe
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-## Requestbody- + Pfad-Parameter { #request-body-path-parameters }
+## Requestbody + Pfad-Parameter { #request-body-path-parameters }
 
 Sie können Pfad-Parameter und den Requestbody gleichzeitig deklarieren.
 
@@ -136,7 +137,7 @@ Sie können Pfad-Parameter und den Requestbody gleichzeitig deklarieren.
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
 
-## Requestbody- + Pfad- + Query-Parameter { #request-body-path-query-parameters }
+## Requestbody + Pfad- + Query-Parameter { #request-body-path-query-parameters }
 
 Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** deklarieren.
 
@@ -152,7 +153,7 @@ Die Funktionsparameter werden wie folgt erkannt:
 
 /// note | Hinweis
 
-FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, aufgrund des definierten Defaultwertes `= None`.
+FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, aufgrund des Defaultwertes `= None`.
 
 Das `str | None` wird von FastAPI nicht verwendet, um zu bestimmen, dass der Wert nicht erforderlich ist. FastAPI weiß, dass er nicht erforderlich ist, weil er einen Defaultwert von `= None` hat.
 

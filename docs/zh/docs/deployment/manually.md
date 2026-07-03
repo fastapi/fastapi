@@ -2,7 +2,7 @@
 
 ## 使用 `fastapi run` 命令 { #use-the-fastapi-run-command }
 
-简而言之，使用 `fastapi run` 来运行您的 FastAPI 应用程序：
+简而言之，使用 `fastapi run` 来运行你的 FastAPI 应用程序：
 
 <div class="termy">
 
@@ -40,7 +40,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 这在大多数情况下都能正常运行。😎
 
-例如，您可以使用该命令在容器、服务器等环境中启动您的 **FastAPI** 应用。
+例如，你可以使用该命令在容器、服务器等环境中启动你的 **FastAPI** 应用。
 
 ## ASGI 服务器 { #asgi-servers }
 
@@ -48,7 +48,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称为 <abbr title="Asynchronous Server Gateway Interface - 异步服务器网关接口">ASGI</abbr>。FastAPI 本质上是一个 ASGI Web 框架。
 
-要在远程服务器上运行 **FastAPI** 应用（或任何其他 ASGI 应用），您需要一个 ASGI 服务器程序，例如 **Uvicorn**。它是 `fastapi` 命令默认使用的 ASGI 服务器。
+要在远程服务器上运行 **FastAPI** 应用（或任何其他 ASGI 应用），你需要一个 ASGI 服务器程序，例如 **Uvicorn**。它是 `fastapi` 命令默认使用的 ASGI 服务器。
 
 除此之外，还有其他一些可选的 ASGI 服务器，例如：
 
@@ -63,17 +63,17 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 “**服务器**”一词通常用于指远程/云计算机（物理机或虚拟机）以及在该计算机上运行的程序（例如 Uvicorn）。
 
-请记住，当您一般读到“服务器”这个名词时，它可能指的是这两者之一。
+请记住，当你一般读到“服务器”这个名词时，它可能指的是这两者之一。
 
-当提到远程主机时，通常将其称为**服务器**，但也称为**机器**(machine)、**VM**（虚拟机）、**节点**。 这些都是指某种类型的远程计算机，通常运行 Linux，您可以在其中运行程序。
+当提到远程主机时，通常将其称为**服务器**，但也称为**机器**(machine)、**VM**（虚拟机）、**节点**。 这些都是指某种类型的远程计算机，通常运行 Linux，你可以在其中运行程序。
 
 ## 安装服务器程序 { #install-the-server-program }
 
-当您安装 FastAPI 时，它自带一个生产环境服务器——Uvicorn，并且您可以使用 `fastapi run` 命令来启动它。
+当你安装 FastAPI 时，它自带一个生产环境服务器——Uvicorn，并且你可以使用 `fastapi run` 命令来启动它。
 
-不过，您也可以手动安装 ASGI 服务器。
+不过，你也可以手动安装 ASGI 服务器。
 
-请确保您创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装服务器应用程序。
+请确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装服务器应用程序。
 
 例如，要安装 Uvicorn，可以运行以下命令：
 
@@ -95,13 +95,13 @@ $ pip install "uvicorn[standard]"
 
 其中包括 `uvloop`，这是 `asyncio` 的高性能替代方案，能够显著提升并发性能。
 
-当您使用 `pip install "fastapi[standard]"` 安装 FastAPI 时，实际上也会安装 `uvicorn[standard]`。
+当你使用 `pip install "fastapi[standard]"` 安装 FastAPI 时，实际上也会安装 `uvicorn[standard]`。
 
 ///
 
 ## 运行服务器程序 { #run-the-server-program }
 
-如果您手动安装了 ASGI 服务器，通常需要以特定格式传递一个导入字符串，以便服务器能够正确导入您的 FastAPI 应用：
+如果你手动安装了 ASGI 服务器，通常需要以特定格式传递一个导入字符串，以便服务器能够正确导入你的 FastAPI 应用：
 
 <div class="termy">
 
@@ -128,7 +128,7 @@ from main import app
 
 ///
 
-每种 ASGI 服务器程序通常都会有类似的命令，您可以在它们的官方文档中找到更多信息。
+每种 ASGI 服务器程序通常都会有类似的命令，你可以在它们的官方文档中找到更多信息。
 
 /// warning | 警告
 
@@ -144,7 +144,7 @@ Uvicorn 和其他服务器支持 `--reload` 选项，该选项在开发过程中
 
 这些示例运行服务器程序（例如 Uvicorn），启动**单个进程**，在所有 IP（`0.0.0.0`）上监听预定义端口（例如`80`）。
 
-这是基本思路。 但您可能需要处理一些其他事情，例如：
+这是基本思路。 但你可能需要处理一些其他事情，例如：
 
 * 安全性 - HTTPS
 * 启动时运行
@@ -153,4 +153,4 @@ Uvicorn 和其他服务器支持 `--reload` 选项，该选项在开发过程中
 * 内存
 * 开始前的步骤
 
-在接下来的章节中，我将向您详细介绍每个概念、如何思考它们，以及一些具体示例以及处理它们的策略。 🚀
+在接下来的章节中，我将向你详细介绍每个概念、如何思考它们，以及一些具体示例以及处理它们的策略。 🚀

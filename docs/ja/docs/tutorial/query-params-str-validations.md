@@ -41,7 +41,7 @@ FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（
 
 ## `q` パラメータの型で `Annotated` を使う { #use-annotated-in-the-type-for-the-q-parameter }
 
-以前、[Python Types Intro](../python-types.md#type-hints-with-metadata-annotations) で `Annotated` を使ってパラメータにメタデータを追加できると説明したことを覚えていますか？
+以前、[Python 型入門](../python-types.md#type-hints-with-metadata-annotations) で `Annotated` を使ってパラメータにメタデータを追加できると説明したことを覚えていますか？
 
 いよいよ FastAPI で使うときです。 🚀
 
@@ -242,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-*path operation function* 内の *function parameter* `q` で、複数の `q` *query parameters'* 値（`foo` と `bar`）を Python の `list` として受け取ります。
+*path operation function* 内の *function parameter* `q` で、複数の `q` *クエリパラメータ*の値（`foo` と `bar`）を Python の `list` として受け取ります。
 
 そのため、このURLのレスポンスは以下のようになります:
 

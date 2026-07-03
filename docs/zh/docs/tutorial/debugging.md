@@ -62,7 +62,7 @@ from myapp import app
 # 其他一些代码
 ```
 
-在这种情况下，`myapp.py` 内部的自动变量不会有值为 `"__main__"` 的变量 `__name__`。
+在这种情况下，`myapp.py` 内部自动创建的变量 `__name__` 不会有值 `"__main__"`。
 
 所以，这一行：
 
@@ -89,7 +89,7 @@ from myapp import app
 * 进入到「调试」面板。
 * 「添加配置...」。
 * 选中「Python」
-* 运行「Python：当前文件（集成终端）」选项的调试器。
+* 使用选项 "`Python: Current File (Integrated Terminal)`" 运行调试器。
 
 然后它会使用你的 **FastAPI** 代码开启服务器，停在断点处，等等。
 
@@ -99,7 +99,7 @@ from myapp import app
 
 ---
 
-如果使用 Pycharm，你可以：
+如果使用 PyCharm，你可以：
 
 * 打开「运行」菜单。
 * 选中「调试...」。

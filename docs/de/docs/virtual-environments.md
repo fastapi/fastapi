@@ -443,6 +443,8 @@ Auf diese Weise, wenn Sie `python` ausführen, wird nicht versucht, es aus diese
 
 Jetzt sind Sie bereit, mit Ihrem Projekt zu arbeiten.
 
+
+
 /// tip | Tipp
 
 Möchten Sie verstehen, was das alles oben bedeutet?
@@ -455,7 +457,7 @@ Lesen Sie weiter. 👇🤓
 
 Um mit FastAPI zu arbeiten, müssen Sie [Python](https://www.python.org/) installieren.
 
-Danach müssen Sie FastAPI und alle anderen Pakete, die Sie verwenden möchten, **installieren**.
+Danach müssen Sie FastAPI und alle anderen **Pakete**, die Sie verwenden möchten, **installieren**.
 
 Um Pakete zu installieren, würden Sie normalerweise den `pip`-Befehl verwenden, der mit Python geliefert wird (oder ähnliche Alternativen).
 
@@ -639,7 +641,7 @@ $ source .venv/Scripts/activate
 
 Dieser Befehl erstellt oder ändert einige [Umgebungsvariablen](environment-variables.md), die für die nächsten Befehle verfügbar sein werden.
 
-Eine dieser Variablen ist die `PATH`-Umgebungsvariable.
+Eine dieser Variablen ist die `PATH`-Variable.
 
 /// tip | Tipp
 
@@ -649,7 +651,7 @@ Sie können mehr über die `PATH`-Umgebungsvariable im Abschnitt [Umgebungsvaria
 
 Das Aktivieren einer virtuellen Umgebung fügt deren Pfad `.venv/bin` (auf Linux und macOS) oder `.venv\Scripts` (auf Windows) zur `PATH`-Umgebungsvariable hinzu.
 
-Angenommen, die `PATH`-Umgebungsvariable sah vor dem Aktivieren der Umgebung so aus:
+Angenommen, die `PATH`-Variable sah vor dem Aktivieren der Umgebung so aus:
 
 //// tab | Linux, macOS
 
@@ -678,7 +680,7 @@ Das bedeutet, dass das System nach Programmen sucht in:
 
 ////
 
-Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Umgebungsvariable folgendermaßen aussehen:
+Nach dem Aktivieren der virtuellen Umgebung würde die `PATH`-Variable folgendermaßen aussehen:
 
 //// tab | Linux, macOS
 
@@ -728,7 +730,7 @@ finden und dieses verwenden.
 
 ////
 
-Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Umgebungsvariable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
+Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** der `PATH`-Variable platziert. Das System wird es **vor** allen anderen verfügbaren Pythons finden. Auf diese Weise, wenn Sie `python` ausführen, wird das Python **aus der virtuellen Umgebung** verwendet anstelle eines anderen `python` (zum Beispiel, einem `python` aus einer globalen Umgebung).
 
 Das Aktivieren einer virtuellen Umgebung ändert auch ein paar andere Dinge, aber dies ist eines der wichtigsten Dinge, die es tut.
 

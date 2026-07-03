@@ -20,20 +20,6 @@ FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 
 
 ///
 
-## FastAPI 스폰서의 SDK 생성기 { #sdk-generators-from-fastapi-sponsors }
-
-이 섹션에서는 FastAPI를 후원하는 회사들이 제공하는 **벤처 투자 기반** 및 **기업 지원** 솔루션을 소개합니다. 이 제품들은 고품질로 생성된 SDK에 더해 **추가 기능**과 **통합**을 제공합니다.
-
-✨ [**FastAPI 후원하기**](../help-fastapi.md#sponsor-the-author) ✨를 통해, 이 회사들은 프레임워크와 그 **생태계**가 건강하고 **지속 가능**하게 유지되도록 돕습니다.
-
-또한 이들의 후원은 FastAPI **커뮤니티**(여러분)에 대한 강한 헌신을 보여주며, **좋은 서비스**를 제공하는 것뿐 아니라, 견고하고 활발한 프레임워크인 FastAPI를 지원하는 데에도 관심이 있음을 나타냅니다. 🙇
-
-예를 들어 다음을 사용해 볼 수 있습니다:
-
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-
-이 중 일부는 오픈 소스이거나 무료 티어를 제공하므로, 비용 부담 없이 사용해 볼 수 있습니다. 다른 상용 SDK 생성기도 있으며 온라인에서 찾을 수 있습니다. 🤓
-
 ## TypeScript SDK 만들기 { #create-a-typescript-sdk }
 
 간단한 FastAPI 애플리케이션으로 시작해 보겠습니다:

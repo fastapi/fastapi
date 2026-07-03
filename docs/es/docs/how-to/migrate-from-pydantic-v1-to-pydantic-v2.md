@@ -8,6 +8,8 @@ FastAPI versión 0.119.0 introdujo compatibilidad parcial con Pydantic v1 desde 
 
 FastAPI 0.126.0 eliminó la compatibilidad con Pydantic v1, aunque siguió soportando `pydantic.v1` por un poquito más de tiempo.
 
+FastAPI 0.128.0 también eliminó la compatibilidad con `pydantic.v1`, así que las versiones más recientes de FastAPI requieren Pydantic v2.
+
 /// warning | Advertencia
 
 El equipo de Pydantic dejó de dar soporte a Pydantic v1 para las versiones más recientes de Python, comenzando con **Python 3.14**.
@@ -53,6 +55,16 @@ Esto significa que puedes instalar la versión más reciente de Pydantic v2 e im
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### Compatibilidad de FastAPI con Pydantic v1 en v2 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | Advertencia
+
+Esta compatibilidad de FastAPI con modelos de `pydantic.v1` se añadió en **FastAPI 0.119.0** y se eliminó en **FastAPI 0.128.0**. Estaba pensada para ser una ayuda temporal para la migración a Pydantic v2.
+
+En las versiones actuales de FastAPI, usar un modelo de `pydantic.v1` en tu app generará un error.
+
+El resto de esta sección describe la compatibilidad temporal disponible solo en esas versiones antiguas.
+
+///
 
 Desde FastAPI 0.119.0, también hay compatibilidad parcial para Pydantic v1 desde dentro de Pydantic v2, para facilitar la migración a v2.
 
@@ -121,6 +133,12 @@ Si necesitas usar algunas de las herramientas específicas de FastAPI para pará
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### Migra por pasos { #migrate-in-steps }
+
+/// warning | Advertencia
+
+La migración gradual usando tanto modelos de Pydantic v1 como de v2 en la misma app descrita abajo solo funciona en **FastAPI 0.119.0 a 0.127.x**. Se eliminó en **FastAPI 0.128.0**, las versiones más recientes requieren modelos de **Pydantic v2**.
+
+///
 
 /// tip | Consejo
 

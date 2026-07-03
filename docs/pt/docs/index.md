@@ -38,7 +38,7 @@ include_yaml:
 
 ---
 
-FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nos type hints padrões do Python.
+FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nas anotações de tipo padrão do Python.
 
 Os recursos chave são:
 
@@ -46,7 +46,7 @@ Os recursos chave são:
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a editores. <dfn title="também conhecido como: autocompletar, preenchimento automático, IntelliSense">Completação</dfn> em todos os lugares. Menos tempo debugando.
-* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo docs.
+* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplas funcionalidades para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
 * **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (anteriormente conhecido como Swagger) e [JSON Schema](https://json-schema.org/).
@@ -239,7 +239,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Nota**:
 
-Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` nas docs](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
+Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` na documentação](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
 
 </details>
 

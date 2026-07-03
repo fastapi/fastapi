@@ -20,20 +20,6 @@ FastAPI otomatik olarak **OpenAPI 3.1** spesifikasyonları üretir; bu yüzden k
 
 ///
 
-## FastAPI Sponsorlarından SDK Üreteçleri { #sdk-generators-from-fastapi-sponsors }
-
-Bu bölüm, FastAPI'yi sponsorlayan şirketlerin sunduğu **yatırım destekli** ve **şirket destekli** çözümleri öne çıkarır. Bu ürünler, yüksek kaliteli üretilen SDK'ların üzerine **ek özellikler** ve **entegrasyonlar** sağlar.
-
-✨ [**FastAPI'ye sponsor olarak**](../help-fastapi.md#sponsor-the-author) ✨ bu şirketler, framework'ün ve **ekosisteminin** sağlıklı ve **sürdürülebilir** kalmasına yardımcı olur.
-
-Sponsor olmaları aynı zamanda FastAPI **topluluğuna** (size) güçlü bir bağlılığı da gösterir; yalnızca **iyi bir hizmet** sunmayı değil, aynı zamanda **güçlü ve gelişen bir framework** olan FastAPI'yi desteklemeyi de önemsediklerini gösterir. 🙇
-
-Örneğin şunları deneyebilirsiniz:
-
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-
-Bu çözümlerin bazıları açık kaynak olabilir veya ücretsiz katman sunabilir; yani finansal bir taahhüt olmadan deneyebilirsiniz. Başka ticari SDK üreteçleri de vardır ve internette bulunabilir. 🤓
-
 ## TypeScript SDK Oluşturma { #create-a-typescript-sdk }
 
 Basit bir FastAPI uygulamasıyla başlayalım:

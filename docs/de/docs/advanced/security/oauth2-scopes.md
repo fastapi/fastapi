@@ -247,7 +247,7 @@ Das würde einer Drittanbieteranwendung passieren, die versucht, auf eine dieser
 
 ## Über Integrationen von Drittanbietern { #about-third-party-integrations }
 
-In diesem Beispiel verwenden wir den OAuth2-Flow „Password“.
+In diesem Beispiel verwenden wir den OAuth2-Flow „password“.
 
 Das ist angemessen, wenn wir uns bei unserer eigenen Anwendung anmelden, wahrscheinlich mit unserem eigenen Frontend.
 
@@ -255,9 +255,9 @@ Weil wir darauf vertrauen können, dass es den `username` und das `password` erh
 
 Wenn Sie jedoch eine OAuth2-Anwendung erstellen, mit der andere eine Verbindung herstellen würden (d.h. wenn Sie einen Authentifizierungsanbieter erstellen, der Facebook, Google, GitHub usw. entspricht), sollten Sie einen der anderen Flows verwenden.
 
-Am häufigsten ist der „Implicit“-Flow.
+Am häufigsten ist der implicit Flow.
 
-Am sichersten ist der „Code“-Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den „Implicit“-Flow vor.
+Am sichersten ist der code Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den implicit Flow vor.
 
 /// note | Hinweis
 

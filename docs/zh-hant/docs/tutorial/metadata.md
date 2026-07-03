@@ -1,6 +1,6 @@
 # 中繼資料與文件 URL { #metadata-and-docs-urls }
 
-你可以在你的 FastAPI 應用程式中自訂多項中繼資料設定。
+你可以在你的 **FastAPI** 應用程式中自訂多項中繼資料設定。
 
 ## API 的中繼資料 { #metadata-for-api }
 
@@ -11,7 +11,7 @@
 | `title` | `str` | API 的標題。 |
 | `summary` | `str` | API 的簡短摘要。<small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small> |
 | `description` | `str` | API 的簡短說明。可使用 Markdown。 |
-| `version` | `string` | API 的版本號。這是你自己的應用程式版本，不是 OpenAPI 的版本，例如 `2.5.0`。 |
+| `version` | `str` | API 的版本號。這是你自己的應用程式版本，不是 OpenAPI 的版本，例如 `2.5.0`。 |
 | `terms_of_service` | `str` | 指向 API 服務條款的 URL。若提供，必須是 URL。 |
 | `contact` | `dict` | 對外公開的 API 聯絡資訊。可包含多個欄位。<details><summary><code>contact</code> 欄位</summary><table><thead><tr><th>參數</th><th>型別</th><th>說明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>聯絡人／組織的識別名稱。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>指向聯絡資訊的 URL。必須是 URL 格式。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>聯絡人／組織的電子郵件地址。必須是電子郵件格式。</td></tr></tbody></table></details> |
 | `license_info` | `dict` | 對外公開的 API 授權資訊。可包含多個欄位。<details><summary><code>license_info</code> 欄位</summary><table><thead><tr><th>參數</th><th>型別</th><th>說明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必填</strong>（若有設定 <code>license_info</code>）。API 使用的授權名稱。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API 的 [SPDX](https://spdx.org/licenses/) 授權表示式。<code>identifier</code> 欄位與 <code>url</code> 欄位互斥。<small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API 所採用授權的 URL。必須是 URL 格式。</td></tr></tbody></table></details> |
@@ -46,7 +46,7 @@
 
 每個 dictionary 可包含：
 
-* `name`（**必填**）：一個 `str`，其值需與你在路徑操作與 `APIRouter`s 的 `tags` 參數中使用的標籤名稱相同。
+* `name`（**必填**）：一個 `str`，其值需與你在*路徑操作*與 `APIRouter`s 的 `tags` 參數中使用的標籤名稱相同。
 * `description`：一個 `str`，為該標籤的簡短描述。可使用 Markdown，並會顯示在文件介面中。
 * `externalDocs`：一個 `dict`，描述外部文件，包含：
     * `description`：一個 `str`，外部文件的簡短描述。
@@ -70,7 +70,7 @@
 
 ### 使用你的標籤 { #use-your-tags }
 
-在你的路徑操作（以及 `APIRouter`s）上使用 `tags` 參數，將它們歸類到不同標籤下：
+在你的*路徑操作*（以及 `APIRouter`s）上使用 `tags` 參數，將它們歸類到不同標籤下：
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
@@ -108,10 +108,10 @@
 
 你可以設定內建的兩個文件使用者介面：
 
-* Swagger UI：提供於 `/docs`。
+* **Swagger UI**：提供於 `/docs`。
     * 可用 `docs_url` 參數設定其 URL。
     * 設定 `docs_url=None` 可停用。
-* ReDoc：提供於 `/redoc`。
+* **ReDoc**：提供於 `/redoc`。
     * 可用 `redoc_url` 參數設定其 URL。
     * 設定 `redoc_url=None` 可停用。
 

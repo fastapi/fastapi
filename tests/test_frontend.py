@@ -1,11 +1,13 @@
 import errno
 import os
 import runpy
+from contextlib import AsyncExitStack
 from pathlib import Path
+from typing import Literal
 
 import anyio
 import pytest
-from fastapi import APIRouter, FastAPI, HTTPException, Request, WebSocket
+from fastapi import APIRouter, Depends, FastAPI, HTTPException, Request, WebSocket
 from fastapi.testclient import TestClient
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import PlainTextResponse, Response
@@ -17,11 +19,18 @@ def write_file(path: Path, content: str) -> None:
     path.write_text(content)
 
 
+def record_dependency(calls: list[str], name: str):
+    def dependency() -> None:
+        calls.append(name)
+
+    return dependency
+
+
 def test_frontend_exact_prefix_path_serves_index(tmp_path: Path):
     dist = tmp_path / "dist"
     write_file(dist / "index.html", "app")
     app = FastAPI()
-    app.frontend("/app", directory=dist)
+    app.frontend("/", directory=dist)
 
     response = TestClient(app).get("/app")
 
@@ -108,7 +117,7 @@ def test_frontend_route_group_helpers(tmp_path: Path):
     dist = tmp_path / "dist"
     write_file(dist / "index.html", "app")
     app = FastAPI()
-    app.frontend("/", directory=dist)
+    app.frontend("/app", directory=dist)
     route_group = app.router._frontend_routes
     assert route_group is not None
 
@@ -116,9 +125,22 @@ def test_frontend_route_group_helpers(tmp_path: Path):
     assert match == Match.NONE
     assert child_scope == {}
 
+    match, child_scope = route_group.matches_with_prefix(
+        {"type": "http", "path": "/prefix/app", "method": "GET"},
+        "/prefix",
+    )
+    assert match == Match.FULL
+    assert child_scope["fastapi"]["frontend_path"] == ""
+
+    match, child_scope = route_group.routes[0].matches(
+        {"type": "http", "path": "/app", "method": "GET"}
+    )
+    assert match == Match.FULL
+    assert child_scope["fastapi"]["frontend_path"] == ""
+
     with pytest.raises(StarletteHTTPException) as exc_info:
         anyio.run(
-            route_group.with_prefix("/app").handle,
+            route_group.handle,
             {"type": "http", "path": "/missing", "method": "GET"},
             None,
             None,
@@ -243,6 +265,322 @@ def test_basic_file_serving(tmp_path: Path):
     assert response.text == "console.log('ok')"
     assert "etag" in response.headers
     assert "last-modified" in response.headers
+
+
+def test_app_frontend_dependencies_protect_root_asset_and_fallback(tmp_path: Path):
+    calls: list[str] = []
+
+    def require_cookie(request: Request) -> None:
+        calls.append(request.url.path)
+        if request.cookies.get("session") != "ok":
+            raise HTTPException(status_code=401)
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    write_file(dist / "assets" / "app.js", "console.log('ok')")
+    app = FastAPI(dependencies=[Depends(require_cookie)])
+    app.frontend("/", directory=dist, fallback="index.html")
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 401
+
+    response = client.get("/", headers={"cookie": "session=ok"})
+    assert response.status_code == 200
+    assert response.text == "app"
+
+    response = client.get("/assets/app.js", headers={"cookie": "session=ok"})
+    assert response.status_code == 200
+    assert response.text == "console.log('ok')"
+
+    response = client.get(
+        "/dashboard",
+        headers={"accept": "text/html", "cookie": "session=ok"},
+    )
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert calls == ["/", "/", "/assets/app.js", "/dashboard"]
+
+
+def test_apirouter_frontend_dependencies_protect_prefixed_frontend(tmp_path: Path):
+    def require_cookie(request: Request) -> None:
+        if request.cookies.get("session") != "ok":
+            raise HTTPException(status_code=401)
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    write_file(dist / "assets" / "app.js", "console.log('ok')")
+    router = APIRouter(dependencies=[Depends(require_cookie)])
+    router.frontend("/", directory=dist, fallback="index.html")
+    app = FastAPI()
+    app.include_router(router, prefix="/app")
+    client = TestClient(app)
+
+    response = client.get("/app/")
+    assert response.status_code == 401
+
+    response = client.get("/app/", headers={"cookie": "session=ok"})
+    assert response.status_code == 200
+    assert response.text == "app"
+
+    response = client.get("/app/assets/app.js", headers={"cookie": "session=ok"})
+    assert response.status_code == 200
+    assert response.text == "console.log('ok')"
+
+    response = client.get(
+        "/app/dashboard",
+        headers={"accept": "text/html", "cookie": "session=ok"},
+    )
+    assert response.status_code == 200
+    assert response.text == "app"
+
+
+def test_included_frontend_does_not_block_url_path_for(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    frontend_router = APIRouter()
+    frontend_router.frontend("/", directory=dist)
+    api_router = APIRouter()
+
+    @api_router.get("/api", name="read_api")
+    def read_api():
+        return {"ok": True}
+
+    app = FastAPI()
+    app.include_router(frontend_router, prefix="/app")
+    app.include_router(api_router)
+    included_frontend = next(
+        route
+        for route in app.router.routes
+        if hasattr(route, "effective_low_priority_routes")
+    )
+
+    with pytest.raises(NoMatchFound):
+        included_frontend.url_path_for("missing")
+    assert app.url_path_for("read_api") == "/api"
+    response = TestClient(app).get("/api")
+    assert response.status_code == 200
+    assert response.json() == {"ok": True}
+
+
+def test_include_router_frontend_dependencies_apply_in_nested_order(tmp_path: Path):
+    calls: list[str] = []
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    child = APIRouter(dependencies=[Depends(record_dependency(calls, "child"))])
+    child.frontend("/ui", directory=dist)
+    parent = APIRouter(dependencies=[Depends(record_dependency(calls, "parent"))])
+    parent.include_router(
+        child,
+        prefix="/child",
+        dependencies=[Depends(record_dependency(calls, "parent-include"))],
+    )
+    app = FastAPI(dependencies=[Depends(record_dependency(calls, "app"))])
+    app.include_router(
+        parent,
+        prefix="/parent",
+        dependencies=[Depends(record_dependency(calls, "app-include"))],
+    )
+
+    response = TestClient(app).get("/parent/child/ui/")
+
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert calls == ["app", "app-include", "parent", "parent-include", "child"]
+
+
+def test_frontend_dependency_overrides_apply(tmp_path: Path):
+    calls: list[str] = []
+
+    def require_cookie() -> None:
+        raise HTTPException(status_code=401)  # pragma: no cover
+
+    def allow_cookie() -> None:
+        calls.append("override")
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(require_cookie)])
+    app.dependency_overrides[require_cookie] = allow_cookie
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/")
+
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert calls == ["override"]
+
+
+def test_frontend_dependencies_do_not_run_when_api_route_wins(tmp_path: Path):
+    calls: list[str] = []
+
+    def frontend_dependency() -> None:
+        calls.append("frontend")  # pragma: no cover
+
+    dist = tmp_path / "dist"
+    write_file(dist / "api", "frontend")
+    router = APIRouter(dependencies=[Depends(frontend_dependency)])
+    router.frontend("/", directory=dist)
+    app = FastAPI()
+
+    @app.get("/api")
+    def read_api():
+        return {"source": "api"}
+
+    app.include_router(router)
+
+    response = TestClient(app).get("/api")
+
+    assert response.status_code == 200
+    assert response.json() == {"source": "api"}
+    assert calls == []
+
+
+def test_only_selected_frontend_mount_dependencies_run(tmp_path: Path):
+    calls: list[str] = []
+
+    site = tmp_path / "site"
+    admin = tmp_path / "admin"
+    write_file(site / "index.html", "site")
+    write_file(admin / "index.html", "admin")
+    site_router = APIRouter()
+    site_router.frontend("/", directory=site)
+    admin_router = APIRouter()
+    admin_router.frontend("/", directory=admin)
+    app = FastAPI()
+    app.include_router(
+        site_router, dependencies=[Depends(record_dependency(calls, "site"))]
+    )
+    app.include_router(
+        admin_router,
+        prefix="/admin",
+        dependencies=[Depends(record_dependency(calls, "admin"))],
+    )
+
+    response = TestClient(app).get("/admin/")
+
+    assert response.status_code == 200
+    assert response.text == "admin"
+    assert calls == ["admin"]
+
+
+def test_app_middleware_still_runs_for_frontend_dependencies(tmp_path: Path):
+    calls: list[str] = []
+
+    def frontend_dependency() -> None:
+        calls.append("dependency")
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(frontend_dependency)])
+
+    @app.middleware("http")
+    async def record_middleware(request: Request, call_next):
+        calls.append("middleware-before")
+        response = await call_next(request)
+        calls.append("middleware-after")
+        return response
+
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/")
+
+    assert response.status_code == 200
+    assert response.text == "app"
+    assert calls == ["middleware-before", "dependency", "middleware-after"]
+
+
+def test_frontend_dependency_validation_errors_return_422(tmp_path: Path):
+    def require_token(token: str) -> None:
+        pass  # pragma: no cover
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(require_token)])
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/")
+
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
+
+@pytest.mark.anyio
+async def test_frontend_dependency_restores_existing_dependency_stacks(
+    tmp_path: Path,
+):
+    def frontend_dependency() -> None:
+        pass
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    app = FastAPI(dependencies=[Depends(frontend_dependency)])
+    app.frontend("/", directory=dist)
+    assert app.router._frontend_routes is not None
+    inner_stack = AsyncExitStack()
+    function_stack = AsyncExitStack()
+    scope = {
+        "type": "http",
+        "http_version": "1.1",
+        "method": "GET",
+        "scheme": "http",
+        "path": "/",
+        "root_path": "",
+        "query_string": b"",
+        "headers": [],
+        "client": ("testclient", 50000),
+        "server": ("testserver", 80),
+        "fastapi_inner_astack": inner_stack,
+        "fastapi_function_astack": function_stack,
+    }
+    messages = []
+
+    async def receive():
+        return {  # pragma: no cover
+            "type": "http.request",
+            "body": b"",
+            "more_body": False,
+        }
+
+    async def send(message):
+        messages.append(message)
+
+    async with inner_stack, function_stack:
+        await app.router._frontend_routes.handle(scope, receive, send)
+
+    assert scope["fastapi_inner_astack"] is inner_stack
+    assert scope["fastapi_function_astack"] is function_stack
+    assert messages[0]["type"] == "http.response.start"
+    assert messages[0]["status"] == 200
+
+
+def test_non_frontend_low_priority_route_keeps_order_before_frontend(
+    tmp_path: Path,
+):
+    async def low_priority_endpoint(request: Request):
+        return PlainTextResponse("low")
+
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "frontend")
+    app = FastAPI()
+    app.router._low_priority_routes.append(Route("/admin", low_priority_endpoint))
+    app.router._mark_routes_changed()
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).get("/admin")
+
+    assert response.status_code == 200
+    assert response.text == "low"
 
 
 def test_existing_api_route_wins_over_frontend(tmp_path: Path):
@@ -639,6 +977,21 @@ def test_head_requests_work(tmp_path: Path):
     assert response.headers["content-length"] == "2"
 
 
+def test_head_fallback_request_works(tmp_path: Path):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).head(
+        "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 200
+    assert response.text == ""
+    assert response.headers["content-length"] == "9"
+
+
 def test_unsupported_methods_return_405(tmp_path: Path):
     dist = tmp_path / "dist"
     write_file(dist / "asset.txt", "ok")
@@ -648,6 +1001,125 @@ def test_unsupported_methods_return_405(tmp_path: Path):
     response = TestClient(app).post("/asset.txt")
 
     assert response.status_code == 405
+
+
+@pytest.mark.parametrize("method", ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+def test_unsupported_methods_to_fallback_only_routes_return_404(
+    tmp_path: Path, method: str
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).request(
+        method, "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_unsupported_methods_to_frontend_root_and_directory_index_return_405(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app")
+    write_file(dist / "about" / "index.html", "about")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+    client = TestClient(app)
+
+    root_response = client.post("/")
+    directory_response = client.post("/about/")
+
+    assert root_response.status_code == 405
+    assert directory_response.status_code == 405
+
+
+def test_unsupported_method_to_directory_without_index_returns_404(tmp_path: Path):
+    dist = tmp_path / "dist"
+    (dist / "empty").mkdir(parents=True)
+    write_file(dist / "index.html", "app")
+    app = FastAPI()
+    app.frontend("/", directory=dist)
+
+    response = TestClient(app).post("/empty/")
+
+    assert response.status_code == 404
+
+
+def test_unsupported_methods_to_fallback_only_routes_ignore_accept(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "app shell")
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback="index.html")
+
+    response = TestClient(app).post(
+        "/dashboard/settings", headers={"accept": "application/json"}
+    )
+
+    assert response.status_code == 404
+
+
+@pytest.mark.parametrize(
+    ("fallback", "files"),
+    [
+        ("404.html", {"404.html": "missing"}),
+        ("auto", {"index.html": "app shell"}),
+        (None, {"index.html": "app shell"}),
+    ],
+)
+def test_unsupported_methods_to_fallback_only_routes_return_404_for_fallback_modes(
+    tmp_path: Path,
+    fallback: Literal["auto", "index.html", "404.html"] | None,
+    files: dict[str, str],
+):
+    dist = tmp_path / "dist"
+    for file, content in files.items():
+        write_file(dist / file, content)
+    app = FastAPI()
+    app.frontend("/", directory=dist, fallback=fallback)
+
+    response = TestClient(app).post(
+        "/dashboard/settings", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_apirouter_frontend_unsupported_method_to_fallback_only_route_returns_404(
+    tmp_path: Path,
+):
+    dist = tmp_path / "dist"
+    write_file(dist / "index.html", "admin")
+    router = APIRouter()
+    router.frontend("/", directory=dist, fallback="index.html")
+    app = FastAPI()
+    app.include_router(router, prefix="/admin")
+
+    response = TestClient(app).post(
+        "/admin/client-route", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
+
+
+def test_unsupported_method_uses_longest_matching_frontend_prefix(tmp_path: Path):
+    site = tmp_path / "site"
+    admin = tmp_path / "admin"
+    write_file(site / "admin" / "client-route", "site asset")
+    write_file(admin / "index.html", "admin")
+    app = FastAPI()
+    app.frontend("/", directory=site)
+    app.frontend("/admin", directory=admin, fallback="index.html")
+
+    response = TestClient(app).post(
+        "/admin/client-route", headers={"accept": "text/html"}
+    )
+
+    assert response.status_code == 404
 
 
 @pytest.mark.parametrize(

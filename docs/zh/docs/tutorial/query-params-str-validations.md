@@ -1,5 +1,6 @@
 # 查询参数和字符串校验 { #query-parameters-and-string-validations }
 
+
 **FastAPI** 允许你为参数声明额外的信息和校验。
 
 让我们以下面的应用为例：

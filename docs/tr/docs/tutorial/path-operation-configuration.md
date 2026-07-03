@@ -1,5 +1,6 @@
 # Path Operation Yapılandırması { #path-operation-configuration }
 
+
 Onu yapılandırmak için *path operation decorator*’ınıza geçebileceğiniz çeşitli parametreler vardır.
 
 /// warning | Uyarı

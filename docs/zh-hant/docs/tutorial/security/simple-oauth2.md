@@ -132,7 +132,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 `UserInDB(**user_dict)` 的意思是：
 
-把 `user_dict` 的鍵和值直接當作具名參數傳入，等同於：
+*把 `user_dict` 的鍵和值直接當作具名參數傳入，等同於：*
 
 ```Python
 UserInDB(
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note
 
-想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict)。
+想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-model-dump)。
 
 ///
 

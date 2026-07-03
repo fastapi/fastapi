@@ -1,5 +1,6 @@
 # クエリパラメータ { #query-parameters }
 
+
 パスパラメータではない関数パラメータを宣言すると、それらは自動的に「クエリ」パラメータとして解釈されます。
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}

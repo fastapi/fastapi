@@ -53,7 +53,7 @@ A principal coisa que você precisa para executar uma aplicação **FastAPI** (o
 Existem diversas alternativas, incluindo:
 
 * [Uvicorn](https://www.uvicorn.dev/): um servidor ASGI de alta performance.
-* [Hypercorn](https://hypercorn.readthedocs.io/): um servidor ASGI compatível com HTTP/2, Trio e outros recursos.
+* [Hypercorn](https://hypercorn.readthedocs.io/): um servidor ASGI compatível com HTTP/2, Trio e outras funcionalidades.
 * [Daphne](https://github.com/django/daphne): servidor ASGI construído para Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): um servidor HTTP Rust para aplicações Python.
 
@@ -136,7 +136,7 @@ Uvicorn e outros servidores suportam a opção `--reload` que é útil durante o
 
 A opção `--reload` consome muito mais recursos, é mais instável, etc.
 
-Ela ajuda muito durante o **desenvolvimento**, mas você **não deve** usá-la em **produção**.
+Ela ajuda muito durante o **desenvolvimento**, mas você **não deveria** usá-la em **produção**.
 
 ///
 

@@ -72,7 +72,7 @@
 
 由 `GzipRequest.get_route_handler` 返回的函数唯一不同之处是把 `Request` 转换为 `GzipRequest`。
 
-这样，在传给我们的路径操作之前，`GzipRequest` 会（在需要时）负责解压数据。
+这样，在传给我们的*路径操作*之前，`GzipRequest` 会（在需要时）负责解压数据。
 
 之后，其余处理逻辑完全相同。
 
@@ -104,6 +104,6 @@
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
-在此示例中，`router` 下的路径操作将使用自定义的 `TimedRoute` 类，响应中会多一个 `X-Response-Time` 头，包含生成响应所用的时间：
+在此示例中，`router` 下的*路径操作*将使用自定义的 `TimedRoute` 类，响应中会多一个 `X-Response-Time` 头，包含生成响应所用的时间：
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
