@@ -27,7 +27,7 @@ async def stream_raw() -> AsyncIterable[str]:
     i = 0
     while True:
         yield f"item {i}\n"
-        i += 1
+        i += 1  # pragma: no cover
 
 
 @app.get("/stream-jsonl")
@@ -36,15 +36,20 @@ async def stream_jsonl() -> AsyncIterable[int]:
     i = 0
     while True:
         yield i
-        i += 1
+        i += 1  # pragma: no cover
 
 
-async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
-    """Call the ASGI app for *path* and cancel after *timeout* seconds.
+async def _run_asgi_and_cancel(
+    app: FastAPI, path: str, *, timeout: float = 10.0
+) -> bool:
+    """Call the ASGI app for *path* and cancel as soon as the first body chunk arrives.
 
-    Returns `True` if the cancellation was delivered (i.e. it did not hang).
+    Returns `True` if cancellation was delivered at a checkpoint (and the stream
+    actually produced data). A *timeout* safety net prevents the test from hanging
+    if cancellation never gets delivered.
     """
     chunks: list[bytes] = []
+    cancel_scope: anyio.CancelScope | None = None
 
     async def receive() -> Message:
         # Simulate a client that never disconnects, rely on cancellation
@@ -52,8 +57,11 @@ async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
         return {"type": "http.disconnect"}  # pragma: no cover
 
     async def send(message: Message) -> None:
+        nonlocal cancel_scope
         if message["type"] == "http.response.body":
             chunks.append(message.get("body", b""))
+            if cancel_scope is not None and not cancel_scope.cancel_called:
+                cancel_scope.cancel()
 
     scope: Scope = {
         "type": "http",
@@ -67,23 +75,20 @@ async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
         "server": ("test", 80),
     }
 
-    with anyio.move_on_after(timeout) as cancel_scope:
-        await app(scope, receive, send)
+    with anyio.move_on_after(timeout):
+        with anyio.CancelScope() as cancel_scope:
+            await app(scope, receive, send)
 
-    # If we got here within the timeout the generator was cancellable.
-    # cancel_scope.cancelled_caught is True when move_on_after fired.
-    return cancel_scope.cancelled_caught or len(chunks) > 0
+    return cancel_scope.cancelled_caught and len(chunks) > 0
 
 
 async def test_raw_stream_cancellation() -> None:
     """Raw streaming endpoint should be cancellable within a reasonable time."""
-    cancelled = await _run_asgi_and_cancel(app, "/stream-raw", timeout=3.0)
-    # The key assertion: we reached this line at all (didn't hang).
-    # cancelled will be True because the infinite generator was interrupted.
+    cancelled = await _run_asgi_and_cancel(app, "/stream-raw")
     assert cancelled
 
 
 async def test_jsonl_stream_cancellation() -> None:
     """JSONL streaming endpoint should be cancellable within a reasonable time."""
-    cancelled = await _run_asgi_and_cancel(app, "/stream-jsonl", timeout=3.0)
+    cancelled = await _run_asgi_and_cancel(app, "/stream-jsonl")
     assert cancelled
