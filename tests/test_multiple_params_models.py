@@ -1,4 +1,5 @@
-from typing import Annotated, Any, Callable
+from collections.abc import Callable
+from typing import Annotated, Any
 
 import pytest
 from fastapi import APIRouter, Cookie, FastAPI, Header, Query, status
