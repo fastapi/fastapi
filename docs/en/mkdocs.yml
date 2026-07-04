@@ -213,6 +213,7 @@ nav:
   - reference/httpconnection.md
   - reference/response.md
   - reference/responses.md
+  - reference/sse.md
   - reference/middleware.md
   - "":
     - reference/openapi/index.md
