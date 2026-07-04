@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -22,7 +20,7 @@ def get_user(user_id: str):
 
 
 @item_router.get("/")
-def get_items(user_id: Optional[str] = None):
+def get_items(user_id: str | None = None):
     if user_id is None:
         return [{"item_id": "i1", "user_id": "u1"}, {"item_id": "i2", "user_id": "u2"}]
     else:
@@ -30,7 +28,7 @@ def get_items(user_id: Optional[str] = None):
 
 
 @item_router.get("/{item_id}")
-def get_item(item_id: str, user_id: Optional[str] = None):
+def get_item(item_id: str, user_id: str | None = None):
     if user_id is None:
         return {"item_id": item_id}
     else:

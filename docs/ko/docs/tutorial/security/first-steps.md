@@ -1,5 +1,6 @@
 # 보안 - 첫 단계 { #security-first-steps }
 
+
 어떤 도메인에 **backend** API가 있다고 가정해 보겠습니다.
 
 그리고 다른 도메인에 **frontend**가 있거나, 같은 도메인의 다른 경로에 있거나(또는 모바일 애플리케이션에 있을 수도 있습니다).
@@ -20,17 +21,17 @@
 
 예제를 파일 `main.py`에 복사하세요:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## 실행하기 { #run-it }
 
-/// info | 정보
+/// note | 참고
 
-<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
+[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
 
 하지만 `pip install fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
 
-수동으로 설치하려면, [가상 환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음, 아래로 설치하세요:
+수동으로 설치하려면, [가상 환경](../../virtual-environments.md)을 만들고 활성화한 다음, 아래로 설치하세요:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +46,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,13 +55,13 @@ $ fastapi dev main.py
 
 ## 확인하기 { #check-it }
 
-대화형 문서로 이동하세요: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서로 이동하세요: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 다음과 비슷한 화면이 보일 것입니다:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 버튼!
+/// tip | Authorize 버튼!
 
 반짝이는 새 "Authorize" 버튼이 이미 있습니다.
 
@@ -118,7 +119,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 이 예제에서는 **OAuth2**의 **Password** 플로우와 **Bearer** token을 사용합니다. 이를 위해 `OAuth2PasswordBearer` 클래스를 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 "bearer" token만이 유일한 선택지는 아닙니다.
 
@@ -132,7 +133,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 `OAuth2PasswordBearer` 클래스의 인스턴스를 만들 때 `tokenUrl` 파라미터를 전달합니다. 이 파라미터에는 클라이언트(사용자의 브라우저에서 실행되는 frontend)가 token을 받기 위해 `username`과 `password`를 보낼 URL이 들어 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | 팁
 
@@ -140,7 +141,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 상대 URL을 사용하므로, 예를 들어 API가 `https://example.com/`에 있다면 `https://example.com/token`을 가리킵니다. 하지만 API가 `https://example.com/api/v1/`에 있다면 `https://example.com/api/v1/token`을 가리킵니다.
 
-상대 URL을 사용하는 것은 [프록시 뒤에서](../../advanced/behind-a-proxy.md){.internal-link target=_blank} 같은 고급 사용 사례에서도 애플리케이션이 계속 동작하도록 보장하는 데 중요합니다.
+상대 URL을 사용하는 것은 [프록시 뒤에서](../../advanced/behind-a-proxy.md) 같은 고급 사용 사례에서도 애플리케이션이 계속 동작하도록 보장하는 데 중요합니다.
 
 ///
 
@@ -148,7 +149,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 곧 실제 경로 처리를 만들 것입니다.
 
-/// info | 정보
+/// note | 참고
 
 엄격한 "Pythonista"라면 `token_url` 대신 `tokenUrl` 같은 파라미터 이름 스타일이 마음에 들지 않을 수도 있습니다.
 
@@ -170,13 +171,13 @@ oauth2_scheme(some, parameters)
 
 이제 `Depends`로 `oauth2_scheme`를 의존성에 전달할 수 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 이 의존성은 `str`을 제공하고, 그 값은 *경로 처리 함수*의 파라미터 `token`에 할당됩니다.
 
 **FastAPI**는 이 의존성을 사용해 OpenAPI 스키마(및 자동 API 문서)에 "security scheme"를 정의할 수 있다는 것을 알게 됩니다.
 
-/// info | 기술 세부사항
+/// note | 기술 세부사항
 
 **FastAPI**는 (의존성에 선언된) `OAuth2PasswordBearer` 클래스를 사용해 OpenAPI에서 보안 스킴을 정의할 수 있다는 것을 알고 있습니다. 이는 `OAuth2PasswordBearer`가 `fastapi.security.oauth2.OAuth2`를 상속하고, 이것이 다시 `fastapi.security.base.SecurityBase`를 상속하기 때문입니다.
 

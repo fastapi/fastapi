@@ -88,7 +88,6 @@ OpenAPI define os seguintes esquemas de segurança:
 * `openIdConnect`: tem uma forma para definir como descobrir automaticamente o dado da autenticação OAuth2.
     * Essa descoberta automática é o que é definido na especificação OpenID Connect.
 
-
 /// tip | Dica
 
 Integração com outros provedores de autenticação/autorização como Google, Facebook, X (Twitter), GitHub, etc. é bem possível e relativamente fácil.
@@ -99,7 +98,7 @@ O problema mais complexo é criar um provedor de autenticação/autorização co
 
 ## **FastAPI** utilitários { #fastapi-utilities }
 
-**FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplesmente usa esses mecanismos de segurança.
+**FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplificam o uso desses mecanismos de segurança.
 
 Nos próximos capítulos você irá ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas pelo **FastAPI**.
 

@@ -1,18 +1,18 @@
-# Cookie Parameter Models { #cookie-parameter-models }
+# Cookie Parametre Modelleri { #cookie-parameter-models }
 
-Birbirleriyle ilişkili bir **cookie** grubunuz varsa, bunları tanımlamak için bir **Pydantic model** oluşturabilirsiniz.
+Birbirleriyle ilişkili bir **cookie** grubunuz varsa, bunları tanımlamak için bir **Pydantic model** oluşturabilirsiniz. 🍪
 
-Bu sayede **model'i yeniden kullanabilir**, **birden fazla yerde** tekrar tekrar kullanabilir ve tüm parametreler için validation ve metadata'yı tek seferde tanımlayabilirsiniz.
+Bu sayede **model'i yeniden kullanabilir**, **birden fazla yerde** tekrar tekrar kullanabilir ve tüm parametreler için validation ve metadata'yı tek seferde tanımlayabilirsiniz. 😎
 
 /// note | Not
 
-Bu özellik FastAPI `0.115.0` sürümünden beri desteklenmektedir.
+Bu özellik FastAPI'nin `0.115.0` sürümünden itibaren desteklenmektedir. 🤓
 
 ///
 
 /// tip | İpucu
 
-Aynı teknik `Query`, `Cookie` ve `Header` için de geçerlidir.
+Aynı teknik `Query`, `Cookie` ve `Header` için de geçerlidir. 😎
 
 ///
 
@@ -32,7 +32,7 @@ Tanımlanan cookie'leri `/docs` altındaki docs UI'da görebilirsiniz:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 Tarayıcıların cookie'leri özel biçimlerde ve arka planda yönetmesi nedeniyle, **JavaScript**'in cookie'lere erişmesine kolayca izin vermediğini aklınızda bulundurun.
 
@@ -42,11 +42,11 @@ Ancak verileri **doldurup** "Execute" düğmesine tıklasanız bile, docs UI **J
 
 ///
 
-## Fazladan Cookies'leri Yasaklayın { #forbid-extra-cookies }
+## Fazladan Cookie'leri Yasaklayın { #forbid-extra-cookies }
 
 Bazı özel kullanım senaryolarında (muhtemelen çok yaygın değildir) almak istediğiniz cookie'leri **kısıtlamak** isteyebilirsiniz.
 
-API'niz artık kendi <abbr title="This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪">cookie consent</abbr>'ını kontrol etme gücüne sahip.
+API'niz artık kendi <dfn title="Bu bir şaka, sadece bilginize. Cookie onaylarıyla ilgisi yok, ama API'nin de artık zavallı cookie'leri reddedebilmesi komik. Bir cookie alın. 🍪">cookie onayı</dfn>'nı kontrol etme gücüne sahip. 🤪🍪
 
 Pydantic'in model configuration'ını kullanarak `extra` olan herhangi bir field'ı `forbid` edebilirsiniz:
 
@@ -54,9 +54,9 @@ Pydantic'in model configuration'ını kullanarak `extra` olan herhangi bir field
 
 Bir client **fazladan cookie** göndermeye çalışırsa, bir **error** response alır.
 
-Onayınızı almak için bunca çaba harcayan zavallı cookie banner'ları... <abbr title="This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕">API'nin bunu reddetmesi için</abbr>.
+Onayınızı almak için bunca çaba harcayan zavallı cookie banner'ları... <dfn title="Bu da başka bir şaka. Dikkate almayın. Cookie'niz için biraz kahve alın. ☕">API'nin bunu reddetmesi için</dfn>. 🍪
 
-Örneğin client, değeri `good-list-please` olan bir `santa_tracker` cookie'si göndermeye çalışırsa, client `santa_tracker` <abbr title="Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.">cookie is not allowed</abbr> diyen bir **error** response alır:
+Örneğin client, değeri `good-list-please` olan bir `santa_tracker` cookie'si göndermeye çalışırsa, client `santa_tracker` <dfn title="Noel Baba cookie eksikliğini onaylamıyor. 🎅 Tamam, artık cookie şakası yok.">cookie'ye izin verilmiyor</dfn> diyen bir **error** response alır:
 
 ```json
 {
@@ -73,4 +73,4 @@ Onayınızı almak için bunca çaba harcayan zavallı cookie banner'ları... <a
 
 ## Özet { #summary }
 
-**FastAPI**'de <abbr title="Have a last cookie before you go. 🍪">**cookies**</abbr> tanımlamak için **Pydantic model**'lerini kullanabilirsiniz. 😎
+**FastAPI**'de <dfn title="Gitmeden önce son bir cookie alın. 🍪">**cookie**</dfn> tanımlamak için **Pydantic model**'lerini kullanabilirsiniz. 😎

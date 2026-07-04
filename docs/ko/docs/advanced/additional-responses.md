@@ -26,7 +26,7 @@
 
 예를 들어, 상태 코드 `404`와 Pydantic 모델 `Message`를 사용하는 다른 응답을 선언하려면 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | 참고
 
@@ -34,7 +34,7 @@
 
 ///
 
-/// info | 정보
+/// note | 참고
 
 `model` 키는 OpenAPI의 일부가 아닙니다.
 
@@ -183,7 +183,7 @@
 
 ///
 
-/// info | 정보
+/// note | 참고
 
 `responses` 파라미터에서 다른 미디어 타입을 명시적으로 지정하지 않는 한, FastAPI는 응답이 주요 응답 클래스와 동일한 미디어 타입(기본값 `application/json`)을 가진다고 가정합니다.
 
@@ -203,7 +203,7 @@
 
 또한 `response_model`을 사용하는 상태 코드 `200` 응답을 선언하되, 커스텀 `example`을 포함할 수도 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 이 모든 내용은 OpenAPI에 결합되어 포함되고, API 문서에 표시됩니다:
 
@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 응답에 정확히 무엇을 포함할 수 있는지 보려면, OpenAPI 사양의 다음 섹션을 확인하세요:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>: `Response Object`를 포함합니다.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>: `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object): `Response Object`를 포함합니다.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object): `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.

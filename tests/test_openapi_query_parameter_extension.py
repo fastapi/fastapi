@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -26,7 +24,7 @@ app = FastAPI()
         ]
     },
 )
-def route_with_extra_query_parameters(standard_query_param: Optional[int] = 50):
+def route_with_extra_query_parameters(standard_query_param: int | None = 50):
     return {}
 
 

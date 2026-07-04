@@ -1,0 +1,53 @@
+name: Guard Dependencies
+
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] -- This workflow only reads context.payload metadata, never checks out PR code
+    branches: [master]
+    paths:
+      - pyproject.toml
+      - uv.lock
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  check-author:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check if author is org member or allowed bot
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const author = pr.user.login;
+            const assoc = pr.author_association;
+
+            const botAllowlist = new Set(['dependabot[bot]']);
+            const orgAuthorAssociations = new Set(['MEMBER', 'OWNER']);
+
+            const allowed =
+              botAllowlist.has(author) ||
+              (assoc != null && orgAuthorAssociations.has(assoc));
+
+            if (!allowed) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: `This PR modifies dependency files (\`pyproject.toml\` or \`uv.lock\`), which is restricted to members of the **${context.repo.owner}** organization on GitHub.\n\nIf you need a dependency change, please [open a discussion](https://github.com/${context.repo.owner}/${context.repo.repo}/discussions/new) describing what you need and why.\n\nClosing this PR automatically.`
+              });
+
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                state: 'closed'
+              });
+
+              core.setFailed('Dependency changes are restricted to organization members.');
+            } else {
+              console.log(`Author ${author} (author_association=${assoc}) is allowed to make dependency changes.`);
+            }

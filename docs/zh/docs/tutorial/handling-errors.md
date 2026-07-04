@@ -6,16 +6,16 @@
 
 你可能需要告诉客户端：
 
-- 客户端没有执行该操作的权限
-- 客户端没有访问该资源的权限
-- 客户端要访问的项目不存在
-- 等等
+* 客户端没有执行该操作的权限
+* 客户端没有访问该资源的权限
+* 客户端要访问的项目不存在
+* 等等
 
-遇到这些情况时，通常要返回 **4XX**（400 至 499）**HTTP 状态码**。
+遇到这些情况时，通常要返回 **400** 范围内（400 至 499）的 **HTTP 状态码**。
 
-这与表示请求成功的 **2XX**（200 至 299）HTTP 状态码类似。那些“200”状态码表示某种程度上的“成功”。
+这与 200 HTTP 状态码（200 至 299）类似。那些“200”状态码表示请求在某种程度上“成功”。
 
-而 **4XX** 状态码表示客户端发生了错误。
+而 400 范围内的状态码表示客户端发生了错误。
 
 大家都知道**「404 Not Found」**错误，还有调侃这个错误的笑话吧？
 
@@ -25,7 +25,7 @@
 
 ### 导入 `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### 在代码中触发 `HTTPException` { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@
 
 本例中，客户端用不存在的 `ID` 请求 `item` 时，触发状态码为 `404` 的异常：
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### 响应结果 { #the-resulting-response }
 
@@ -77,11 +77,11 @@
 
 但在某些高级场景中需要时，你可以添加自定义响应头：
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## 安装自定义异常处理器 { #install-custom-exception-handlers }
 
-可以使用<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">与 Starlette 相同的异常处理工具</a>添加自定义异常处理器。
+可以使用[与 Starlette 相同的异常处理工具](https://www.starlette.dev/exceptions/)添加自定义异常处理器。
 
 假设有一个自定义异常 `UnicornException`（你自己或你使用的库可能会 `raise` 它）。
 
@@ -89,7 +89,7 @@
 
 此时，可以用 `@app.exception_handler()` 添加自定义异常处理器：
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 这里，请求 `/unicorns/yolo` 时，路径操作会触发 `UnicornException`。
 
@@ -127,7 +127,7 @@
 
 异常处理器会接收 `Request` 和该异常。
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 现在，访问 `/items/foo` 时，默认的 JSON 错误为：
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 例如，只为这些错误返回纯文本响应，而不是 JSON：
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | 技术细节
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 开发时，你可以用它来记录请求体、调试错误，或返回给用户等。
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 现在试着发送一个无效的 `item`，例如：
 
@@ -237,8 +237,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### 复用 **FastAPI** 的异常处理器 { #reuse-fastapis-exception-handlers }
 
-如果你想在自定义处理后仍复用 **FastAPI** 的默认异常处理器，可以从 `fastapi.exception_handlers` 导入并复用这些默认处理器：
+如果你想在使用该异常的同时使用 **FastAPI** 的相同默认异常处理器，可以从 `fastapi.exception_handlers` 导入并复用这些默认处理器：
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
-虽然本例只是用非常夸张的信息打印了错误，但足以说明：你可以先处理异常，然后再复用默认的异常处理器。
+虽然本例只是用非常夸张的信息打印了错误，但足以说明：你可以使用该异常，然后直接复用默认的异常处理器。

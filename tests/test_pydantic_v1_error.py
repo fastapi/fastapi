@@ -1,6 +1,5 @@
 import sys
 import warnings
-from typing import Union
 
 import pytest
 
@@ -80,7 +79,7 @@ def test_raises_pydantic_v1_model_in_union() -> None:
     with pytest.raises(PydanticV1NotSupportedError):
 
         @app.post("/union")
-        def endpoint(data: Union[dict, ModelV1A]):  # pragma: no cover
+        def endpoint(data: dict | ModelV1A):  # pragma: no cover
             return data
 
 

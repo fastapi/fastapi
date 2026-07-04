@@ -1,21 +1,31 @@
 import dataclasses
 import inspect
 import sys
-from collections.abc import Coroutine, Mapping, Sequence
+from collections.abc import (
+    AsyncGenerator,
+    AsyncIterable,
+    AsyncIterator,
+    Callable,
+    Generator,
+    Iterable,
+    Iterator,
+    Mapping,
+    Sequence,
+)
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
 from typing import (
     Annotated,
     Any,
-    Callable,
     ForwardRef,
-    Optional,
+    Literal,
     Union,
     cast,
+    get_args,
+    get_origin,
 )
 
-import anyio
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -64,7 +74,6 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Literal, get_args, get_origin
 from typing_inspection.typing_objects import is_typealiastype
 
 multipart_not_installed_error = (
@@ -91,7 +100,9 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__  # type: ignore[no-redef,import-untyped]
+            from multipart import (  # type: ignore[no-redef,import-untyped]
+                __version__,
+            )
 
             assert __version__
             try:
@@ -128,8 +139,8 @@ def get_flat_dependant(
     dependant: Dependant,
     *,
     skip_repeats: bool = False,
-    visited: Optional[list[DependencyCacheKey]] = None,
-    parent_oauth_scopes: Optional[list[str]] = None,
+    visited: list[DependencyCacheKey] | None = None,
+    parent_oauth_scopes: list[str] | None = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -200,20 +211,17 @@ def get_flat_params(dependant: Dependant) -> list[ModelField]:
 
 
 def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
-    if sys.version_info >= (3, 10):
-        try:
-            signature = inspect.signature(call, eval_str=True)
-        except NameError:
-            # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
-            # e.g. dependency return types
-            if sys.version_info >= (3, 14):
-                from annotationlib import Format
+    try:
+        signature = inspect.signature(call, eval_str=True)
+    except NameError:
+        # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
+        # e.g. dependency return types
+        if sys.version_info >= (3, 14):
+            from annotationlib import Format
 
-                signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
-            else:
-                signature = inspect.signature(call)
-    else:
-        signature = inspect.signature(call)
+            signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
+        else:
+            signature = inspect.signature(call)
     return signature
 
 
@@ -255,15 +263,35 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     return get_typed_annotation(annotation, globalns)
 
 
+_STREAM_ORIGINS = {
+    AsyncIterable,
+    AsyncIterator,
+    AsyncGenerator,
+    Iterable,
+    Iterator,
+    Generator,
+}
+
+
+def get_stream_item_type(annotation: Any) -> Any | None:
+    origin = get_origin(annotation)
+    if origin is not None and origin in _STREAM_ORIGINS:
+        type_args = get_args(annotation)
+        if type_args:
+            return type_args[0]
+        return Any
+    return None
+
+
 def get_dependant(
     *,
     path: str,
     call: Callable[..., Any],
-    name: Optional[str] = None,
-    own_oauth_scopes: Optional[list[str]] = None,
-    parent_oauth_scopes: Optional[list[str]] = None,
+    name: str | None = None,
+    own_oauth_scopes: list[str] | None = None,
+    parent_oauth_scopes: list[str] | None = None,
     use_cache: bool = True,
-    scope: Union[Literal["function", "request"], None] = None,
+    scope: Literal["function", "request"] | None = None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -294,8 +322,9 @@ def get_dependant(
                 and param_details.depends.scope == "function"
             ):
                 assert dependant.call
+                call_name = getattr(dependant.call, "__name__", "<unnamed_callable>")
                 raise DependencyScopeError(
-                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    f'The dependency "{call_name}" has a scope of '
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
             sub_own_oauth_scopes: list[str] = []
@@ -332,7 +361,7 @@ def get_dependant(
 
 def add_non_field_param_to_dependency(
     *, param_name: str, type_annotation: Any, dependant: Dependant
-) -> Optional[bool]:
+) -> bool | None:
     if lenient_issubclass(type_annotation, Request):
         dependant.request_param_name = param_name
         return True
@@ -357,8 +386,8 @@ def add_non_field_param_to_dependency(
 @dataclass
 class ParamDetails:
     type_annotation: Any
-    depends: Optional[params.Depends]
-    field: Optional[ModelField]
+    depends: params.Depends | None
+    field: ModelField | None
 
 
 def analyze_param(
@@ -400,7 +429,7 @@ def analyze_param(
             )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
+            fastapi_annotation: FieldInfo | params.Depends | None = (
                 fastapi_specific_annotations[-1]
             )
         else:
@@ -561,20 +590,20 @@ async def _solve_generator(
 class SolvedDependency:
     values: dict[str, Any]
     errors: list[Any]
-    background_tasks: Optional[StarletteBackgroundTasks]
+    background_tasks: StarletteBackgroundTasks | None
     response: Response
     dependency_cache: dict[DependencyCacheKey, Any]
 
 
 async def solve_dependencies(
     *,
-    request: Union[Request, WebSocket],
+    request: Request | WebSocket,
     dependant: Dependant,
-    body: Optional[Union[dict[str, Any], FormData]] = None,
-    background_tasks: Optional[StarletteBackgroundTasks] = None,
-    response: Optional[Response] = None,
-    dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[dict[DependencyCacheKey, Any]] = None,
+    body: dict[str, Any] | FormData | bytes | None = None,
+    background_tasks: StarletteBackgroundTasks | None = None,
+    response: Response | None = None,
+    dependency_overrides_provider: Any | None = None,
+    dependency_cache: dict[DependencyCacheKey, Any] | None = None,
     # TODO: remove this parameter later, no longer used, not removing it yet as some
     # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
@@ -722,7 +751,7 @@ def _is_json_field(field: ModelField) -> bool:
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+    field: ModelField, values: Mapping[str, Any], alias: str | None = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
     if (
@@ -754,7 +783,7 @@ def _get_multidict_value(
 
 def request_params_to_args(
     fields: Sequence[ModelField],
-    received_params: Union[Mapping[str, Any], QueryParams, Headers],
+    received_params: Mapping[str, Any] | QueryParams | Headers,
 ) -> tuple[dict[str, Any], list[Any]]:
     values: dict[str, Any] = {}
     errors: list[dict[str, Any]] = []
@@ -792,10 +821,14 @@ def request_params_to_args(
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
+        # For headers with convert_underscores=True, mark both the converted
+        # header name and the original field alias as processed to avoid
+        # accepting the original alias as an extra header.
+        processed_keys.add(get_validation_alias(field))
 
     for key in received_params.keys():
         if key not in processed_keys:
-            if hasattr(received_params, "getlist"):
+            if isinstance(received_params, (ImmutableMultiDict, Headers)):
                 value = received_params.getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
                     params_to_process[key] = value[0]
@@ -894,17 +927,9 @@ async def _extract_form_body(
         ):
             # For types
             assert isinstance(value, sequence_types)
-            results: list[Union[bytes, str]] = []
-
-            async def process_fn(
-                fn: Callable[[], Coroutine[Any, Any, Any]],
-            ) -> None:
-                result = await fn()
-                results.append(result)  # noqa: B023
-
-            async with anyio.create_task_group() as tg:
-                for sub_value in value:
-                    tg.start_soon(process_fn, sub_value.read)
+            results: list[bytes | str] = []
+            for sub_value in value:
+                results.append(await sub_value.read())
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[get_validation_alias(field)] = value
@@ -921,7 +946,7 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: Optional[Union[dict[str, Any], FormData]],
+    received_body: dict[str, Any] | FormData | bytes | None,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -951,8 +976,8 @@ async def request_body_to_args(
         return {first_field.name: v_}, errors_
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
-        value: Optional[Any] = None
-        if body_to_process is not None:
+        value: Any | None = None
+        if body_to_process is not None and not isinstance(body_to_process, bytes):
             try:
                 value = body_to_process.get(get_validation_alias(field))
             # If the received body is a list, not a dict
@@ -971,7 +996,7 @@ async def request_body_to_args(
 
 def get_body_field(
     *, flat_dependant: Dependant, name: str, embed_body_fields: bool
-) -> Optional[ModelField]:
+) -> ModelField | None:
     """
     Get a ModelField representing the request body for a path operation, combining
     all body parameters into a single field if necessary.

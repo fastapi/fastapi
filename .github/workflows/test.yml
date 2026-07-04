@@ -5,15 +5,15 @@ on:
     branches:
       - master
   pull_request:
-    types:
-      - opened
-      - synchronize
   schedule:
     # cron every week on monday
     - cron: "0 0 * * 1"
 
+permissions: {}
+
 env:
   UV_NO_SYNC: true
+  INLINE_SNAPSHOT_DEFAULT_FLAGS: review
 
 jobs:
   changes:
@@ -22,12 +22,15 @@ jobs:
     permissions:
       pull-requests: read
     # Set job outputs to values from filter step
+    timeout-minutes: 5
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     # For pull requests it's not necessary to checkout the code but for the main branch it is
-    - uses: dorny/paths-filter@v3
+    - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
       id: filter
       with:
         filters: |
@@ -44,44 +47,55 @@ jobs:
   test:
     needs:
       - changes
-    if: needs.changes.outputs.src == 'true'
+    if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
-        python-version: [ "3.14" ]
+        python-version: [ "3.14", "3.14t" ]
+        deprecated-tests: [ "no-deprecation" ]
         uv-resolution:
           - highest
         starlette-src:
           - starlette-pypi
           - starlette-git
         include:
-          - os: ubuntu-latest
-            python-version: "3.9"
-            coverage: coverage
-            uv-resolution: lowest-direct
           - os: macos-latest
             python-version: "3.10"
             coverage: coverage
-            uv-resolution: highest
+            uv-resolution: lowest-direct
+            deprecated-tests: "no-deprecation"
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
             uv-resolution: lowest-direct
+            deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
             uv-resolution: highest
-            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+            deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
             python-version: "3.13"
-            coverage: coverage
             uv-resolution: highest
             codspeed: codspeed
+            deprecated-tests: "no-deprecation"
+          - os: ubuntu-latest
+            python-version: "3.13"
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+            without-httpx2: true
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
             starlette-src: starlette-git
+            deprecated-tests: "test-deprecation"
+          - os: ubuntu-latest
+            python-version: "3.14t"
+            coverage: coverage
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
@@ -93,64 +107,117 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
+      - name: Ensure that we have the lowest supported Pydantic version
+        if: matrix.uv-resolution == 'lowest-direct'
+        run: uv pip install "pydantic==2.9.0"
       - name: Install Starlette from source
         if: matrix.starlette-src == 'starlette-git'
         run: uv pip install "git+https://github.com/Kludex/starlette@main"
+      - name: Install deprecated libraries just for testing
+        if: matrix.deprecated-tests == 'test-deprecation'
+        run: uv pip install orjson ujson
+      - name: Uninstall httpx2 to run tests with httpx
+        if: matrix.without-httpx2 == 'true'
+        run: uv pip uninstall httpx2
+      - name: Reinstall SQLAlchemy without Cython extensions
+        if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
+        run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
-        if: matrix.codspeed != 'codspeed'
-        run: uv run --no-sync bash scripts/test.sh
+        run: uv run --no-sync bash scripts/test-cov.sh $PYTEST_OPTIONS
         env:
-          COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
-          CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-      - name: CodSpeed benchmarks
-        if: matrix.codspeed == 'codspeed'
-        uses: CodSpeedHQ/action@v4
-        env:
-            COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
-            CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-        with:
-          mode: simulation
-          run: uv run --no-sync coverage run -m pytest tests/ --codspeed
+          COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          PYTEST_OPTIONS: ${{ (matrix.without-httpx2 == 'true') && '-W ignore::UserWarning' || '' }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
+          name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.deprecated-tests}}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
 
-  coverage-combine:
+  benchmark:
     needs:
-      - test
+      - changes
+    if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      UV_PYTHON: "3.13"
+      UV_RESOLUTION: highest
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.13"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
+          enable-cache: true
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Install Dependencies
+        run: uv sync --no-dev --group tests --extra all
+      - name: CodSpeed benchmarks
+        uses: CodSpeedHQ/action@63f3e98b61959fe67f146a3ff022e4136fe9bb9c # v4.17.6
+        with:
+          mode: simulation
+          run: uv run --no-sync pytest tests/benchmarks --codspeed
+
+  coverage-combine:
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -158,7 +225,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --locked --no-dev --group tests --extra all
       - name: Get coverage files
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: coverage-*
           path: coverage
@@ -167,7 +234,7 @@ jobs:
       - run: uv run coverage combine coverage
       - run: uv run coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-html
           path: htmlcov
@@ -175,18 +242,21 @@ jobs:
       - run: uv run coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
-  check:  # This job does nothing and is only used for the branch protection
+  test-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
+      - test
       - coverage-combine
+      - benchmark
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@release/v1
+        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
         with:
           jobs: ${{ toJSON(needs) }}
-          allowed-skips: coverage-combine,test
+          allowed-skips: coverage-combine,test,benchmark

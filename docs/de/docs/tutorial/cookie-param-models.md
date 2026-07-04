@@ -32,7 +32,7 @@ Sie können die definierten Cookies in der Dokumentationsoberfläche unter `/doc
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Bitte beachten Sie, dass Browser Cookies auf spezielle Weise und im Hintergrund bearbeiten, sodass sie **nicht** leicht **JavaScript** erlauben, diese zu berühren.
 
@@ -46,7 +46,7 @@ Aber selbst wenn Sie die **Daten ausfüllen** und auf „Ausführen“ klicken, 
 
 In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Cookies, die Sie empfangen möchten, **einschränken**.
 
-Ihre API hat jetzt die Macht, ihre eigene <abbr title="Das ist ein Scherz, nur für den Fall. Es hat nichts mit Cookie-Einwilligungen zu tun, aber es ist witzig, dass selbst die API jetzt die armen Cookies ablehnen kann. Haben Sie einen Keks. 🍪">Cookie-Einwilligung</abbr> zu kontrollieren. 🤪🍪
+Ihre API hat jetzt die Macht, ihre eigene <dfn title="Das ist ein Scherz, nur für den Fall. Es hat nichts mit Cookie-Einwilligungen zu tun, aber es ist witzig, dass selbst die API jetzt die armen Cookies ablehnen kann. Haben Sie einen Keks. 🍪">Cookie-Einwilligung</dfn> zu kontrollieren. 🤪🍪
 
 Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu verbieten (`forbid`):
 
@@ -54,9 +54,9 @@ Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu
 
 Wenn ein Client versucht, einige **zusätzliche Cookies** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
-Arme Cookie-Banner, wie sie sich mühen, Ihre Einwilligung zu erhalten, dass die <abbr title="Das ist ein weiterer Scherz. Beachten Sie mich nicht. Trinken Sie einen Kaffee zu Ihrem Keks. ☕">API sie ablehnen darf</abbr>. 🍪
+Arme Cookie-Banner, wie sie sich mühen, Ihre Einwilligung zu erhalten, dass die <dfn title="Das ist ein weiterer Scherz. Beachten Sie mich nicht. Trinken Sie einen Kaffee zu Ihrem Keks. ☕">API sie ablehnen darf</dfn>. 🍪
 
-Wenn der Client beispielsweise versucht, ein `santa_tracker`-Cookie mit einem Wert von `good-list-please` zu senden, erhält der Client eine **Error-Response**, die ihm mitteilt, dass das `santa_tracker` <abbr title="Santa beschwert sich über den Mangel an Cookies. 🎅 Okay, keine Cookie-Witze mehr.">Cookie nicht erlaubt ist</abbr>:
+Wenn der Client beispielsweise versucht, ein `santa_tracker`-Cookie mit einem Wert von `good-list-please` zu senden, erhält der Client eine **Error-Response**, die ihm mitteilt, dass das `santa_tracker` <dfn title="Santa missbilligt den Mangel an Cookies. 🎅 Okay, keine Cookie-Witze mehr.">Cookie nicht erlaubt ist</dfn>:
 
 ```json
 {
@@ -73,4 +73,4 @@ Wenn der Client beispielsweise versucht, ein `santa_tracker`-Cookie mit einem We
 
 ## Zusammenfassung { #summary }
 
-Sie können **Pydantic-Modelle** verwenden, um <abbr title="Nehmen Sie einen letzten Keks, bevor Sie gehen. 🍪">**Cookies**</abbr> in **FastAPI** zu deklarieren. 😎
+Sie können **Pydantic-Modelle** verwenden, um <dfn title="Nehmen Sie einen letzten Keks, bevor Sie gehen. 🍪">**Cookies**</dfn> in **FastAPI** zu deklarieren. 😎

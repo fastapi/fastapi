@@ -6,13 +6,12 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py310
+from tests.utils import needs_py310, workdir_lock
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial004_py39"),
         pytest.param("tutorial004_py310", marks=needs_py310),
     ],
 )
@@ -30,6 +29,7 @@ def test_path_operation(client: TestClient):
     assert response.json() == {"id": "foo", "value": "there goes my hero"}
 
 
+@workdir_lock
 def test_path_operation_img(client: TestClient):
     shutil.copy("./docs/en/docs/img/favicon.png", "./image.png")
     response = client.get("/items/foo?img=1")

@@ -20,17 +20,17 @@ Let's first just use the code and see how it works, and then we'll come back to 
 
 Copy the example in a file `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Run it { #run-it }
 
-/// info
+/// note
 
-The <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
+The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
 
 However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
 
-To install it manually, make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it with:
+To install it manually, make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install it with:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ Run the example with:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,13 +54,13 @@ $ fastapi dev main.py
 
 ## Check it { #check-it }
 
-Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Go to the interactive docs at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You will see something like this:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize button!
+/// tip | Authorize button!
 
 You already have a shiny new "Authorize" button.
 
@@ -88,7 +88,7 @@ And it can also be used by yourself, to debug, check and test the same applicati
 
 ## The `password` flow { #the-password-flow }
 
-Now let's go back a bit and understand what is all that.
+Now let's go back a bit and understand what all that is.
 
 The `password` "flow" is one of the ways ("flows") defined in OAuth2, to handle security and authentication.
 
@@ -118,7 +118,7 @@ So, let's review it from that simplified point of view:
 
 In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.
 
-/// info
+/// note
 
 A "bearer" token is not the only option.
 
@@ -132,7 +132,7 @@ In that case, **FastAPI** also provides you with the tools to build it.
 
 When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip
 
@@ -140,7 +140,7 @@ Here `tokenUrl="token"` refers to a relative URL `token` that we haven't created
 
 Because we are using a relative URL, if your API was located at `https://example.com/`, then it would refer to `https://example.com/token`. But if your API was located at `https://example.com/api/v1/`, then it would refer to `https://example.com/api/v1/token`.
 
-Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md).
 
 ///
 
@@ -148,7 +148,7 @@ This parameter doesn't create that endpoint / *path operation*, but declares tha
 
 We will soon also create the actual path operation.
 
-/// info
+/// note
 
 If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.
 
@@ -170,13 +170,13 @@ So, it can be used with `Depends`.
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
 
 **FastAPI** will know that it can use this dependency to define a "security scheme" in the OpenAPI schema (and the automatic API docs).
 
-/// info | Technical Details
+/// note | Technical Details
 
 **FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.
 

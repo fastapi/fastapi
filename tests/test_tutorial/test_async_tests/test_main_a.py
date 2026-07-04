@@ -1,6 +1,6 @@
 import pytest
 
-from docs_src.async_tests.app_a_py39.test_main import test_root
+from docs_src.async_tests.app_a_py310.test_main import test_root
 
 
 @pytest.mark.anyio

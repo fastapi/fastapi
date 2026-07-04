@@ -2,7 +2,7 @@
 
 当你在 Python 工程中工作时，你可能会有必要用到一个**虚拟环境**（或类似的机制）来隔离你为每个工程安装的包。
 
-/// info | 信息
+/// note | 注意
 
 如果你已经了解虚拟环境，知道如何创建和使用它们，你可以考虑跳过这一部分。🤓
 
@@ -18,11 +18,11 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 这个页面将教你如何使用**虚拟环境**以及了解它们的工作原理。
 
-如果你计划使用一个**可以为你管理一切的工具**（包括安装 Python），试试 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+如果你计划使用一个**可以为你管理一切的工具**（包括安装 Python），试试 [uv](https://github.com/astral-sh/uv)。
 
 ///
 
@@ -30,7 +30,7 @@
 
 首先，为你的工程创建一个目录。
 
-我 (指原作者 —— 译者注) 通常会在我的主目录下创建一个名为 `code` 的目录。
+我通常会在我的主目录下创建一个名为 `code` 的目录。
 
 在这个目录下，我再为每个工程创建一个目录。
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## 创建一个虚拟环境 { #create-a-virtual-environment }
 
-在开始一个 Python 工程的**第一时间**，**<abbr title="还有其他做法，此处仅作一个简单的指南">在你的工程内部</abbr>**创建一个虚拟环境。
+在开始一个 Python 工程的**第一时间**，**<dfn title="还有其他做法，此处仅作一个简单的指南">在你的工程内部</dfn>**创建一个虚拟环境。
 
 /// tip | 提示
 
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-如果你安装了 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>，你也可以使用它来创建一个虚拟环境。
+如果你安装了 [`uv`](https://github.com/astral-sh/uv)，你也可以使用它来创建一个虚拟环境。
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者，如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者，如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip | 提示
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 来安装内容，而不是 `pip`，那么你就不需要升级 `pip`。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 来安装内容，而不是 `pip`，那么你就不需要升级 `pip`。😎
 
 ///
 
@@ -268,7 +268,7 @@ $ python -m ensurepip --upgrade
 
 /// tip | 提示
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 来创建虚拟环境，它会自动为你完成这个操作，你可以跳过这一步。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 来创建虚拟环境，它会自动为你完成这个操作，你可以跳过这一步。😎
 
 ///
 
@@ -316,7 +316,7 @@ $ echo "*" > .venv/.gitignore
 
 ### 直接安装包 { #install-packages-directly }
 
-如果你急于安装，不想使用文件来声明工程的软件包依赖，您可以直接安装它们。
+如果你急于安装，不想使用文件来声明工程的软件包依赖，你可以直接安装它们。
 
 /// tip | 提示
 
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -412,12 +412,12 @@ Hello World
 
 ## 配置编辑器 { #configure-your-editor }
 
-你可能会用到编辑器（即 IDE —— 译者注），请确保配置它使用与你创建的相同的虚拟环境（它可能会自动检测到），以便你可以获得自动补全和内联错误提示。
+你可能会用到编辑器，请确保配置它使用与你创建的相同的虚拟环境（它可能会自动检测到），以便你可以获得自动补全和内联错误提示。
 
 例如：
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | 提示
 
@@ -437,7 +437,7 @@ $ deactivate
 
 </div>
 
-这样，当你运行 `python` 时，它不会尝试从安装了软件包的虚拟环境中运行。（即，它将不再会尝试从虚拟环境中运行，也不会使用其中安装的软件包。—— 译者注）
+这样，当你运行 `python` 时，它不会尝试从那个虚拟环境及其已安装的软件包中运行。
 
 ## 开始工作 { #ready-to-work }
 
@@ -455,7 +455,7 @@ $ deactivate
 
 ## 为什么要使用虚拟环境 { #why-virtual-environments }
 
-你需要安装 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+你需要安装 [Python](https://www.python.org/) 才能使用 FastAPI。
 
 之后，你需要**安装** FastAPI 和你想要使用的任何其他**软件包**。
 
@@ -564,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-这将会从 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下载一个压缩文件，其中包含 FastAPI 代码。
+这将会从 [PyPI](https://pypi.org/project/fastapi/) 下载一个压缩文件，其中包含 FastAPI 代码。
 
 它还会**下载** FastAPI 依赖的其他软件包的文件。
 
@@ -627,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-这个命令会创建或修改一些[环境变量](environment-variables.md){.internal-link target=_blank}，这些环境变量将在接下来的命令中可用。
+这个命令会创建或修改一些[环境变量](environment-variables.md)，这些环境变量将在接下来的命令中可用。
 
 其中之一是 `PATH` 变量。
 
 /// tip | 提示
 
-你可以在 [环境变量](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多关于 `PATH` 环境变量的内容。
+你可以在 [环境变量](environment-variables.md#path-environment-variable) 部分了解更多关于 `PATH` 环境变量的内容。
 
 ///
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-但是如果你停用虚拟环境并激活 `prisoner-of-askaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-askaban` 中的虚拟环境中的 Python。
+但是如果你停用虚拟环境并激活 `prisoner-of-azkaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-azkaban` 中的虚拟环境中的 Python。
 
 <div class="termy">
 
@@ -846,7 +846,7 @@ I solemnly swear 🐺
 
 有许多**替代方案**来管理虚拟环境、包依赖（requirements）、工程。
 
-一旦你准备好并想要使用一个工具来**管理整个工程**、包依赖、虚拟环境等，建议你尝试 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+一旦你准备好并想要使用一个工具来**管理整个工程**、包依赖、虚拟环境等，建议你尝试 [uv](https://github.com/astral-sh/uv)。
 
 `uv` 可以做很多事情，它可以：
 

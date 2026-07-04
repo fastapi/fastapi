@@ -19,10 +19,10 @@ Python’a ihtiyaç duymadan, **shell (terminal)** içinde ortam değişkenleri 
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// MY_NAME adlı bir env var'ı şöyle oluşturabilirsiniz
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// Sonra bunu diğer programlarla şöyle kullanabilirsiniz
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// MY_NAME adlı bir env var oluşturun
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// Bunu diğer programlarla şöyle kullanın
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Python’da env var Okuma { #read-env-vars-in-python }
+## Python’da Env Var Okuma { #read-env-vars-in-python }
 
 Ortam değişkenlerini Python’un **dışında** (terminalde veya başka bir yöntemle) oluşturup daha sonra **Python’da okuyabilirsiniz**.
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | İpucu
 
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> fonksiyonunun ikinci argümanı, bulunamadığında döndürülecek varsayılan (default) değerdir.
+[`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) fonksiyonunun ikinci argümanı, bulunamadığında döndürülecek varsayılan (default) değerdir.
 
 Verilmezse varsayılan olarak `None` olur; burada varsayılan değer olarak `"World"` verdik.
 
@@ -78,20 +78,20 @@ Sonrasında bu Python programını çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Burada env var'ı henüz ayarlamıyoruz
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Env var'ı ayarlamadığımız için varsayılan değeri alırız
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Ama önce bir ortam değişkeni oluşturursak
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// Sonra programı tekrar çağırırsak
 $ python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Burada env var'ı henüz ayarlamıyoruz
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Env var'ı ayarlamadığımız için varsayılan değeri alırız
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Ama önce bir ortam değişkeni oluşturursak
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// Sonra programı tekrar çağırırsak
 $ python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 ```
@@ -136,14 +136,14 @@ Bunu yapmak için, program komutunun hemen öncesinde ve aynı satırda tanımla
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// Bu program çağrısı için aynı satırda MY_NAME adlı bir env var oluşturun
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// Sonrasında env var artık mevcut değildir
 $ python main.py
 
 Hello World from Python
@@ -153,17 +153,17 @@ Hello World from Python
 
 /// tip | İpucu
 
-Bu konuyla ilgili daha fazlasını <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> bölümünde okuyabilirsiniz.
+Bu konuyla ilgili daha fazlasını [Twelve-Factor Uygulaması: Config](https://12factor.net/config) bölümünde okuyabilirsiniz.
 
 ///
 
-## Tipler ve Doğrulama { #types-and-validation }
+## Türler ve Doğrulama { #types-and-validation }
 
 Bu ortam değişkenleri yalnızca **metin string**’lerini taşıyabilir. Çünkü Python’un dışındadırlar ve diğer programlarla, sistemin geri kalanıyla (hatta Linux, Windows, macOS gibi farklı işletim sistemleriyle) uyumlu olmak zorundadırlar.
 
 Bu, Python’da bir ortam değişkeninden okunan **her değerin `str` olacağı** anlamına gelir. Farklı bir tipe dönüştürme veya doğrulama işlemleri kod içinde yapılmalıdır.
 
-Uygulama **ayarları**nı yönetmek için ortam değişkenlerini kullanmayı, [İleri Seviye Kullanıcı Rehberi - Ayarlar ve Ortam Değişkenleri](./advanced/settings.md){.internal-link target=_blank} bölümünde daha detaylı öğreneceksiniz.
+Uygulama **ayarları**nı yönetmek için ortam değişkenlerini kullanmayı, [İleri Seviye Kullanıcı Rehberi - Ayarlar ve Ortam Değişkenleri](./advanced/settings.md) bölümünde daha detaylı öğreneceksiniz.
 
 ## `PATH` Ortam Değişkeni { #path-environment-variable }
 
@@ -285,14 +285,14 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Bu bilgiler, [Virtual Environments](virtual-environments.md){.internal-link target=_blank} konusunu öğrenirken işinize yarayacak.
+Bu bilgiler, [Sanal Ortamlar](virtual-environments.md) konusunu öğrenirken işinize yarayacak.
 
 ## Sonuç { #conclusion }
 
 Buraya kadar **ortam değişkenleri**nin ne olduğuna ve Python’da nasıl kullanılacağına dair temel bir fikir edinmiş olmalısınız.
 
-Ayrıca <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a> sayfasından daha fazlasını da okuyabilirsiniz.
+Ayrıca [Ortam Değişkeni için Wikipedia](https://en.wikipedia.org/wiki/Environment_variable) sayfasından daha fazlasını da okuyabilirsiniz.
 
 Çoğu zaman ortam değişkenlerinin hemen nasıl işe yarayacağı ilk bakışta çok net olmayabilir. Ancak geliştirme yaparken birçok farklı senaryoda tekrar tekrar karşınıza çıkarlar; bu yüzden bunları bilmek faydalıdır.
 
-Örneğin bir sonraki bölümde, [Virtual Environments](virtual-environments.md) konusunda bu bilgilere ihtiyaç duyacaksınız.
+Örneğin bir sonraki bölümde, [Sanal Ortamlar](virtual-environments.md) konusunda bu bilgilere ihtiyaç duyacaksınız.

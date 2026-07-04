@@ -4,7 +4,7 @@ Detalhes sobre a sintaxe `async def` para *funções de operação de rota* e al
 
 ## Com pressa? { #in-a-hurry }
 
-<abbr title="too long; didn't read – muito longo; não li"><strong>TL;DR:</strong></abbr>
+<abbr title="too long; didn't read - muito longo; não li"><strong>TL;DR:</strong></abbr>
 
 Se você estiver utilizando bibliotecas de terceiros que dizem para você chamar as funções com `await`, como:
 
@@ -44,11 +44,11 @@ Se sua aplicação (de alguma forma) não tem que se comunicar com nada mais e e
 
 ---
 
-Se você simplesmente não sabe, use apenas `def`.
+Se você simplesmente não sabe, use `def` normal.
 
 ---
 
-**Note**: Você pode misturar `def` e `async def` nas suas *funções de operação de rota* tanto quanto necessário e definir cada função usando a melhor opção para você. FastAPI irá fazer a coisa certa com elas.
+**Nota**: Você pode misturar `def` e `async def` nas suas *funções de operação de rota* tanto quanto necessário e definir cada função usando a melhor opção para você. FastAPI irá fazer a coisa certa com elas.
 
 De qualquer forma, em ambos os casos acima, FastAPI irá trabalhar assincronamente e ser extremamente rápido.
 
@@ -74,7 +74,7 @@ Então o computador / programa 🤖 irá voltar sempre que tiver uma chance, sej
 
 Depois, ele 🤖 pega a primeira tarefa para finalizar (vamos dizer, nosso "arquivo lento" 📝) e continua o que tem que fazer com ela.
 
-Esse "esperar por algo" normalmente se refere a operações <abbr title="Input and Output – Entrada e Saída">I/O</abbr> que são relativamente "lentas" (comparadas à velocidade do processador e da memória RAM), como esperar por:
+Esse "esperar por algo" normalmente se refere a operações <abbr title="Input and Output - Entrada e Saída">I/O</abbr> que são relativamente "lentas" (comparadas à velocidade do processador e da memória RAM), como esperar por:
 
 * dados do cliente para serem enviados através da rede
 * dados enviados pelo seu programa serem recebidos pelo cliente através da rede
@@ -82,10 +82,10 @@ Esse "esperar por algo" normalmente se refere a operações <abbr title="Input a
 * conteúdo que seu programa deu ao sistema para ser escrito no disco
 * uma operação em uma API remota
 * uma operação no banco de dados finalizar
-* uma solicitação no banco de dados retornar o resultado
+* uma consulta ao banco de dados retornar os resultados
 * etc.
 
-Quanto o tempo de execução é consumido majoritariamente pela espera de operações <abbr title="Input and Output – Entrada e Saída">I/O</abbr>, essas operações são chamadas operações "limitadas por I/O".
+Como o tempo de execução é consumido majoritariamente pela espera de operações <abbr title="Input and Output - Entrada e Saída">I/O</abbr>, essas operações são chamadas operações "limitadas por I/O".
 
 Isso é chamado de "assíncrono" porque o computador / programa não tem que ser "sincronizado" com a tarefa lenta, esperando pelo momento exato em que a tarefa finaliza, enquanto não faz nada, para ser capaz de pegar o resultado da tarefa e dar continuidade ao trabalho.
 
@@ -109,7 +109,7 @@ Você vai com seu _crush_ na lanchonete, e fica na fila enquanto o caixa pega os
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Então chega a sua vez, você pede dois saborosos hambúrgueres para você e seu _crush_.  🍔🍔
+Então chega a sua vez, você pede dois saborosos hambúrgueres para você e seu _crush_. 🍔🍔
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
@@ -139,9 +139,9 @@ Você e seu _crush_ comem os hambúrgueres e aproveitam o tempo. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Informação
+/// note | Nota
 
-Belas ilustrações de <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Belas ilustrações de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -189,39 +189,39 @@ Você espera, na frente do balcão 🕙, para que ninguém pegue seus hambúrgue
 
 Como você e seu _crush_ estão ocupados não permitindo que ninguém passe na frente e pegue seus hambúrgueres assim que estiverem prontos, você não pode dar atenção ao seu _crush_. 😞
 
-Isso é trabalho "síncrono", você está "sincronizado" com o caixa / cozinheiro 👨‍🍳. Você tem que esperar 🕙 e estar lá no exato momento que o caixa / cozinheiro 👨‍🍳 terminar os hambúrgueres e os der a você, ou então, outro alguém pode pegá-los.
+Isso é trabalho "síncrono", você está "sincronizado" com o caixa/cozinheiro 👨‍🍳. Você tem que esperar 🕙 e estar lá no exato momento que o caixa/cozinheiro 👨‍🍳 terminar os hambúrgueres e os der a você, ou então, outro alguém pode pegá-los.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-Então seu caixa / cozinheiro 👨‍🍳 finalmente volta com seus hambúrgueres, depois de um longo tempo esperando 🕙 por eles em frente ao balcão.
+Então seu caixa/cozinheiro 👨‍🍳 finalmente volta com seus hambúrgueres, depois de um longo tempo esperando 🕙 por eles em frente ao balcão.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
 Você pega seus hambúrgueres e vai para a mesa com seu _crush_.
 
-Vocês comem os hambúrgueres, e o trabalho está terminado. ⏹
+Vocês apenas os comem, e o trabalho está terminado. ⏹
 
 <img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
 
 Não houve muita conversa ou flerte já que a maior parte do tempo foi gasto esperando 🕙 na frente do balcão. 😞
 
-/// info | Informação
+/// note | Nota
 
-Belas ilustrações de <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Belas ilustrações de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
 ---
 
-Nesse cenário dos hambúrgueres paralelos, você é um computador / programa 🤖 com dois processadores (você e seu _crush_), ambos esperando 🕙 e dedicando sua atenção ⏯ "esperando no balcão" 🕙 por um bom tempo.
+Nesse cenário dos hambúrgueres paralelos, você é um computador / programa 🤖 com dois processadores (você e seu _crush_), ambos esperando 🕙 e dedicando sua atenção ⏯ a "esperar no balcão" 🕙 por um bom tempo.
 
-A lanchonete paralela tem 8 processadores (caixas / cozinheiros), enquanto a lanchonete dos hambúrgueres concorrentes tinha apenas 2 (um caixa e um cozinheiro).
+A lanchonete tem 8 processadores (caixas/cozinheiros). Enquanto a lanchonete dos hambúrgueres concorrentes poderia ter apenas 2 (um caixa e um cozinheiro).
 
 Ainda assim, a experiência final não foi a melhor. 😞
 
 ---
 
-Essa seria o equivalente paralelo à história dos hambúrgueres. 🍔
+Essa seria a história equivalente paralela para hambúrgueres. 🍔
 
 Para um exemplo "mais real", imagine um banco.
 
@@ -231,15 +231,15 @@ Todos os caixas fazendo todo o trabalho, um cliente após o outro 👨‍💼⏯
 
 E você tinha que esperar 🕙 na fila por um longo tempo ou poderia perder a vez.
 
-Você provavelmente não gostaria de levar seu _crush_ 😍 com você para um rolezinho no banco 🏦.
+Você provavelmente não gostaria de levar seu _crush_ 😍 com você para resolver assuntos no banco 🏦.
 
 ### Conclusão dos hambúrgueres { #burger-conclusion }
 
-Nesse cenário dos "hambúrgueres com seu _crush_", como tem muita espera, faz mais sentido ter um sistema concorrente ⏸🔀⏯.
+Nesse cenário dos "hambúrgueres de fast food com seu _crush_", como tem muita espera 🕙, faz mais sentido ter um sistema concorrente ⏸🔀⏯.
 
 Esse é o caso da maioria das aplicações web.
 
-Muitos, muitos usuários, mas seu servidor está esperando 🕙 pela sua conexão não tão boa enviar suas requisições.
+Muitos, muitos usuários, mas seu servidor está esperando 🕙 pela conexão não tão boa deles enviar suas requisições.
 
 E então esperando 🕙 novamente as respostas voltarem.
 
@@ -251,7 +251,7 @@ Esse tipo de assincronicidade é o que fez NodeJS popular (embora NodeJS não se
 
 E esse é o mesmo nível de performance que você tem com o **FastAPI**.
 
-E como você pode ter paralelismo e assincronicidade ao mesmo tempo, você tem uma maior performance do que a maioria dos frameworks NodeJS testados e lado a lado com Go, que é uma linguagem compilada, mais próxima ao C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(tudo graças ao Starlette)</a>.
+E como você pode ter paralelismo e assincronicidade ao mesmo tempo, você tem uma maior performance do que a maioria dos frameworks NodeJS testados e lado a lado com Go, que é uma linguagem compilada, mais próxima ao C [(tudo graças ao Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Concorrência é melhor que paralelismo? { #is-concurrency-better-than-parallelism }
 
@@ -269,15 +269,15 @@ Então, para equilibrar tudo, imagine a seguinte historinha:
 
 Não há espera 🕙 em lugar algum, apenas um monte de trabalho para ser feito, em múltiplos cômodos da casa.
 
-Você poderia ter turnos como no exemplo dos hambúrgueres, primeiro a sala de estar, então a cozinha, mas como você não está esperando por nada, apenas limpando e limpando, as chamadas não afetariam em nada.
+Você poderia ter turnos como no exemplo dos hambúrgueres, primeiro a sala de estar, então a cozinha, mas como você não está esperando 🕙 por nada, apenas limpando e limpando, as chamadas não afetariam em nada.
 
 Levaria o mesmo tempo para finalizar com ou sem turnos (concorrência) e você teria feito o mesmo tanto de trabalho.
 
-Mas nesse caso, se você trouxesse os 8 ex-caixas / cozinheiros / agora-faxineiros, e cada um deles (mais você) pudessem dividir a casa para limpá-la, vocês fariam toda a limpeza em **paralelo**, com a ajuda extra, e terminariam muito mais cedo.
+Mas nesse caso, se você trouxesse os 8 ex-caixas/cozinheiros/agora-faxineiros, e cada um deles (mais você) pudessem dividir a casa para limpá-la, vocês fariam toda a limpeza em **paralelo**, com a ajuda extra, e terminariam muito mais cedo.
 
 Nesse cenário, cada um dos faxineiros (incluindo você) poderia ser um processador, fazendo a sua parte do trabalho.
 
-E a maior parte do tempo de execução é tomada por trabalho real (ao invés de ficar esperando), e o trabalho em um computador é feito pela <abbr title="Central Processing Unit – Unidade Central de Processamento">CPU</abbr>. Eles chamam esses problemas de "limitados por CPU".
+E a maior parte do tempo de execução é tomada por trabalho real (ao invés de ficar esperando), e o trabalho em um computador é feito pela <abbr title="Central Processing Unit - Unidade Central de Processamento">CPU</abbr>. Eles chamam esses problemas de "limitados por CPU".
 
 ---
 
@@ -285,20 +285,20 @@ Exemplos comuns de operações limitadas por CPU são coisas que exigem processa
 
 Por exemplo:
 
-* **Processamento de áudio** ou **imagem**
-* **Visão Computacional**: uma imagem é composta por milhões de pixels, cada pixel tem 3 valores / cores, processar isso normalmente exige alguma computação em todos esses pixels ao mesmo tempo
-* **Aprendizado de Máquina**: Normalmente exige muita multiplicação de matrizes e vetores. Pense numa grande planilha com números e em multiplicar todos eles juntos e ao mesmo tempo.
-* **Deep Learning**: Esse é um subcampo do Aprendizado de Máquina, então, o mesmo se aplica. A diferença é que não há apenas uma grande planilha com números para multiplicar, mas um grande conjunto delas, e em muitos casos, você utiliza um processador especial para construir e/ou usar esses modelos.
+* **Processamento de áudio** ou **imagem**.
+* **Visão Computacional**: uma imagem é composta por milhões de pixels, cada pixel tem 3 valores / cores, processar isso normalmente exige alguma computação nesses pixels, todos ao mesmo tempo.
+* **Aprendizado de Máquina**: normalmente exige muita multiplicação de "matrizes" e "vetores". Pense numa grande planilha com números e em multiplicar todos eles juntos e ao mesmo tempo.
+* **Deep Learning**: esse é um subcampo do Aprendizado de Máquina, então, o mesmo se aplica. A diferença é que não há apenas uma planilha com números para multiplicar, mas um grande conjunto delas, e em muitos casos, você utiliza um processador especial para construir e / ou usar esses modelos.
 
 ### Concorrência + Paralelismo: Web + Aprendizado de Máquina { #concurrency-parallelism-web-machine-learning }
 
 Com **FastAPI** você pode levar a vantagem da concorrência que é muito comum para desenvolvimento web (o mesmo atrativo de NodeJS).
 
-Mas você também pode explorar os benefícios do paralelismo e multiprocessamento (tendo múltiplos processadores rodando em paralelo) para trabalhos **limitados por CPU** como aqueles em sistemas de Aprendizado de Máquina.
+Mas você também pode explorar os benefícios do paralelismo e multiprocessamento (tendo múltiplos processos rodando em paralelo) para trabalhos **limitados por CPU** como aqueles em sistemas de Aprendizado de Máquina.
 
-Isso, somado ao simples fato que Python é a principal linguagem para **Data Science**, Aprendizado de Máquina e especialmente Deep Learning, faz do FastAPI uma ótima escolha para APIs web e aplicações com Data Science / Aprendizado de Máquina (entre muitas outras).
+Isso, somado ao simples fato que Python é a principal linguagem para **Data Science**, Aprendizado de Máquina e especialmente Deep Learning, faz do FastAPI uma ótima escolha para APIs web e aplicações de Data Science / Aprendizado de Máquina (entre muitas outras).
 
-Para ver como alcançar esse paralelismo em produção veja a seção sobre [Implantação](deployment/index.md){.internal-link target=_blank}.
+Para ver como alcançar esse paralelismo em produção veja a seção sobre [Implantação](deployment/index.md).
 
 ## `async` e `await` { #async-and-await }
 
@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-Então, se você está usando uma biblioteca que diz que você pode chamá-la com `await`, você precisa criar as *funções de operação de rota* com `async def`, como em:
+Então, se você está usando uma biblioteca que diz que você pode chamá-la com `await`, você precisa criar as *funções de operação de rota* que a utilizam com `async def`, como em:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -355,21 +355,21 @@ Você deve ter observado que `await` pode ser usado somente dentro de funções 
 
 Mas ao mesmo tempo, funções definidas com `async def` têm que ser "aguardadas". Então, funções com `async def` podem ser chamadas somente dentro de funções definidas com `async def` também.
 
-Então, sobre o ovo e a galinha, como você chama a primeira função async?
+Então, sobre o ovo e a galinha, como você chama a primeira função `async`?
 
-Se você estivar trabalhando com **FastAPI** não terá que se preocupar com isso, porquê essa "primeira" função será a sua *função de operação de rota*, e o FastAPI saberá como fazer a coisa certa.
+Se você estiver trabalhando com **FastAPI** não terá que se preocupar com isso, porquê essa "primeira" função será a sua *função de operação de rota*, e o FastAPI saberá como fazer a coisa certa.
 
 Mas se você quiser usar `async` / `await` sem FastAPI, você também pode fazê-lo.
 
 ### Escreva seu próprio código assíncrono { #write-your-own-async-code }
 
-Starlette (e **FastAPI**) são baseados no <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, o que o torna compatível com ambos o <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> da biblioteca padrão do Python, e o <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (e **FastAPI**) são baseados no [AnyIO](https://anyio.readthedocs.io/en/stable/), o que o torna compatível com ambos o [asyncio](https://docs.python.org/3/library/asyncio-task.html) da biblioteca padrão do Python, e o [Trio](https://trio.readthedocs.io/en/stable/).
 
-Em particular, você pode usar diretamente o <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para seus casos de uso avançados de concorrência que requerem padrões mais avançados no seu próprio código.
+Em particular, você pode usar diretamente o [AnyIO](https://anyio.readthedocs.io/en/stable/) para seus casos de uso avançados de concorrência que requerem padrões mais avançados no seu próprio código.
 
-E até se você não estiver utilizando FastAPI, você também pode escrever suas próprias aplicações assíncronas com o <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> por ser altamente compatível e ganhar seus benefícios (e.g. *concorrência estruturada*).
+E até se você não estiver utilizando FastAPI, você também pode escrever suas próprias aplicações assíncronas com o [AnyIO](https://anyio.readthedocs.io/en/stable/) por ser altamente compatível e ganhar seus benefícios (e.g. *concorrência estruturada*).
 
-Eu criei outra biblioteca em cima do AnyIO, como uma fina camada acima, para melhorar um pouco as anotações de tipo e obter melhor **preenchimento automático**, **erros inline**, etc. Ela também possui uma introdução amigável e um tutorial para ajudar você a **entender** e escrever **seu próprio código async**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Seria particularmente útil se você precisar **combinar código async com código regular** (bloqueador/síncrono).
+Eu criei outra biblioteca em cima do AnyIO, como uma fina camada acima, para melhorar um pouco as anotações de tipo e obter melhor **preenchimento automático**, **erros inline**, etc. Ela também possui uma introdução amigável e um tutorial para ajudar você a **entender** e escrever **seu próprio código async**: [Asyncer](https://asyncer.tiangolo.com/). Seria particularmente útil se você precisar **combinar código async com código regular** (bloqueador/síncrono).
 
 ### Outras formas de código assíncrono { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Essa mesma sintaxe (ou quase a mesma) foi também incluída recentemente em vers
 
 Mas antes disso, controlar código assíncrono era bem mais complexo e difícil.
 
-Nas versões anteriores do Python, você poderia utilizar threads ou <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Mas o código é bem mais complexo de entender, debugar, e pensar sobre.
+Nas versões anteriores do Python, você poderia utilizar threads ou [Gevent](https://www.gevent.org/). Mas o código é bem mais complexo de entender, debugar, e pensar sobre.
 
 Nas versões anteriores do NodeJS / Navegador JavaScript, você utilizaria "callbacks". O que leva ao "inferno do callback".
 
@@ -417,17 +417,17 @@ Se você tem certo conhecimento técnico (corrotinas, threads, blocking etc) e e
 
 Quando você declara uma *função de operação de rota* com `def` normal ao invés de `async def`, ela é rodada em uma threadpool externa que é então aguardada, ao invés de ser chamada diretamente (já que ela bloquearia o servidor).
 
-Se você está chegando de outro framework assíncrono que não funciona como descrito acima e você está acostumado a definir *funções de operação de rota* triviais somente de computação com simples `def` para ter um mínimo ganho de performance (cerca de 100 nanosegundos), por favor observe que no **FastAPI** o efeito pode ser bem o oposto. Nesses casos, é melhor usar `async def` a menos que suas *funções de operação de rota* utilizem código que performe bloqueamento <abbr title="Input/Output – Entrada e Saída: leitura ou escrita no disco, comunicações de rede.">I/O</abbr>.
+Se você está chegando de outro framework assíncrono que não funciona como descrito acima e você está acostumado a definir *funções de operação de rota* triviais somente de computação com simples `def` para ter um mínimo ganho de performance (cerca de 100 nanosegundos), por favor observe que no **FastAPI** o efeito pode ser bem o oposto. Nesses casos, é melhor usar `async def` a menos que suas *funções de operação de rota* utilizem código que performe bloqueamento <abbr title="Input/Output - Entrada e Saída: leitura ou escrita no disco, comunicações de rede.">I/O</abbr>.
 
-Ainda, em ambas as situações, as chances são que o **FastAPI** [ainda será mais rápido](index.md#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seu framework anterior.
+Ainda, em ambas as situações, as chances são que o **FastAPI** [ainda será mais rápido](index.md#performance) do que (ou ao menos comparável a) seu framework anterior.
 
 ### Dependências { #dependencies }
 
-O mesmo se aplica para as [dependências](tutorial/dependencies/index.md){.internal-link target=_blank}. Se uma dependência tem as funções com padrão `def` ao invés de `async def`, ela é rodada no threadpool externo.
+O mesmo se aplica para as [dependências](tutorial/dependencies/index.md). Se uma dependência é uma função `def` padrão ao invés de `async def`, ela é rodada no threadpool externo.
 
 ### Sub-dependências { #sub-dependencies }
 
-Você pode ter múltiplas dependências e [sub-dependências](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requisitando uma à outra (como parâmetros de definições de funções), algumas delas podem ser criadas com `async def` e algumas com `def` normal. Isso ainda funcionaria, e aquelas criadas com `def` normal seriam chamadas em uma thread externa (do threadpool) ao invés de serem "aguardadas".
+Você pode ter múltiplas dependências e [sub-dependências](tutorial/dependencies/sub-dependencies.md) requisitando uma à outra (como parâmetros de definições de funções), algumas delas podem ser criadas com `async def` e algumas com `def` normal. Isso ainda funcionaria, e aquelas criadas com `def` normal seriam chamadas em uma thread externa (do threadpool) ao invés de serem "aguardadas".
 
 ### Outras funções de utilidade { #other-utility-functions }
 
@@ -435,7 +435,7 @@ Qualquer outra função de utilidade que você chame diretamente pode ser criada
 
 Isso está em contraste às funções que o FastAPI chama para você: *funções de operação de rota* e dependências.
 
-Se sua função de utilidade é uma função normal com `def`, ela será chamada diretamente (como você a escreve no código), não em uma threadpool, se a função é criada com `async def` então você deve esperar por essa função quando você chamá-la no seu código.
+Se sua função de utilidade é uma função normal com `def`, ela será chamada diretamente (como você a escreve no código), não em uma threadpool, se a função é criada com `async def` então você deveria usar `await` nessa função quando você chamá-la no seu código.
 
 ---
 

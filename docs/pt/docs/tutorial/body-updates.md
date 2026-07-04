@@ -2,7 +2,7 @@
 
 ## Atualização substituindo com `PUT` { #update-replacing-with-put }
 
-Para atualizar um item, você pode usar a operação <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a>.
+Para atualizar um item, você pode usar a operação [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT).
 
 Você pode usar `jsonable_encoder` para converter os dados de entrada em dados que podem ser armazenados como JSON (por exemplo, com um banco de dados NoSQL). Por exemplo, convertendo `datetime` em `str`.
 
@@ -28,7 +28,7 @@ E os dados seriam salvos com esse "novo" `tax` de `10.5`.
 
 ## Atualizações parciais com `PATCH` { #partial-updates-with-patch }
 
-Você também pode usar a operação <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> para atualizar dados *parcialmente*.
+Você também pode usar a operação [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) para atualizar dados *parcialmente*.
 
 Isso significa que você pode enviar apenas os dados que deseja atualizar, deixando o restante intacto.
 
@@ -95,6 +95,6 @@ Observe que o modelo de entrada ainda é validado.
 
 Portanto, se você quiser receber atualizações parciais que possam omitir todos os atributos, você precisa ter um modelo com todos os atributos marcados como opcionais (com valores padrão ou `None`).
 
-Para distinguir entre os modelos com todos os valores opcionais para **atualizações** e modelos com valores obrigatórios para **criação**, você pode usar as ideias descritas em [Modelos Adicionais](extra-models.md){.internal-link target=_blank}.
+Para distinguir entre os modelos com todos os valores opcionais para **atualizações** e modelos com valores obrigatórios para **criação**, você pode usar as ideias descritas em [Modelos Adicionais](extra-models.md).
 
 ///

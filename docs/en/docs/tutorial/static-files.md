@@ -2,12 +2,20 @@
 
 You can serve static files automatically from a directory using `StaticFiles`.
 
+/// tip
+
+If you need to host a frontend, use `app.frontend()` instead, read about it in [Frontend](frontend.md).
+
+`app.frontend()` uses `StaticFiles` underneath, with several additional advantages for frontends, like handling client-side routing.
+
+///
+
 ## Use `StaticFiles` { #use-staticfiles }
 
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Technical Details
 
@@ -23,7 +31,7 @@ You could also use `from starlette.staticfiles import StaticFiles`.
 
 This is different from using an `APIRouter` as a mounted application is completely independent. The OpenAPI and docs from your main application won't include anything from the mounted application, etc.
 
-You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
+You can read more about this in the [Advanced User Guide](../advanced/index.md).
 
 ## Details { #details }
 
@@ -33,8 +41,8 @@ The `directory="static"` refers to the name of the directory that contains your 
 
 The `name="static"` gives it a name that can be used internally by **FastAPI**.
 
-All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
+All these parameters can be different than "`static`", adjust them to the needs and specific details of your own application.
 
 ## More info { #more-info }
 
-For more details and options check <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check [Starlette's docs about Static Files](https://www.starlette.dev/staticfiles/).

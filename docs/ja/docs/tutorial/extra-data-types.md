@@ -1,5 +1,6 @@
 # 追加データ型 { #extra-data-types }
 
+
 今まで、以下のような一般的なデータ型を使用してきました:
 
 * `int`
@@ -36,7 +37,7 @@
 * `datetime.timedelta`:
     * Pythonの`datetime.timedelta`です。
     * リクエストとレスポンスでは合計秒数の`float`で表現されます。
-    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。<a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">詳細はドキュメントを参照してください</a>。
+    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。[詳細はドキュメントを参照してください](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers)。
 * `frozenset`:
     * リクエストとレスポンスでは`set`と同じように扱われます:
         * リクエストでは、リストが読み込まれ、重複を排除して`set`に変換されます。
@@ -49,7 +50,7 @@
 * `Decimal`:
     * Pythonの標準的な`Decimal`です。
     * リクエストとレスポンスでは`float`と同じように扱われます。
-* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>。
+* 有効なPydanticのデータ型はここで確認できます: [Pydantic のデータ型](https://docs.pydantic.dev/latest/usage/types/types/)。
 
 ## 例 { #example }
 

@@ -2,11 +2,11 @@
 
 FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
-/// info | 信息
+/// note | 注意
 
-接收上传的文件和/或表单数据，首先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+接收上传的文件和/或表单数据，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请先创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+请先创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 ```console
 $ pip install python-multipart
@@ -16,17 +16,17 @@ $ pip install python-multipart
 
 ## 导入 `File` 与 `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## 定义 `File` 与 `Form` 参数 { #define-file-and-form-parameters }
 
 创建文件和表单参数的方式与 `Body` 和 `Query` 一样：
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 文件和表单字段作为表单数据上传与接收。
 
-声明文件可以使用 `bytes` 或 `UploadFile` 。
+并且你可以将部分文件声明为 `bytes`，将部分文件声明为 `UploadFile`。
 
 /// warning | 警告
 

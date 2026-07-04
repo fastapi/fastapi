@@ -139,16 +139,16 @@ def hello_world():
 
 ## Простые включения кода { #simple-code-includes }
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}
 
-{* ../../docs_src/python_types/tutorial002_py39.py *}
+{* ../../docs_src/python_types/tutorial002_py310.py *}
 
 
 ## Включения кода с подсветкой { #code-includes-with-highlighting }
 
-{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-{* ../../docs_src/python_types/tutorial006_py39.py hl[10] *}
+{* ../../docs_src/python_types/tutorial006_py310.py hl[10] *}
 
 
 ## Включения кода с диапазонами строк { #code-includes-with-line-ranges }
@@ -167,19 +167,19 @@ def hello_world():
 
 ## Включения кода с заголовком { #code-includes-with-title }
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 ## Включения кода с неизвестными атрибутами { #code-includes-with-unknown-attributes }
 
-{* ../../docs_src/python_types/tutorial001_py39.py unknown[123] *}
+{* ../../docs_src/python_types/tutorial001_py310.py unknown[123] *}
 
 ## Ещё включения кода для тестирования исправления { #some-more-code-includes-to-test-fixing }
 
 {*    ../../docs_src/dependencies/tutorial013_an_py310.py     ln[19 : 21]    *}
 
-{* ../../docs_src/bigger_applications/app_an_py39/wrong.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/wrong.py hl[3] title["app/internal/admin.py"] *}
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[1:30] hl[1:10] *}
 

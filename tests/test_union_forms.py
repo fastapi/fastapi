@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
@@ -19,7 +19,7 @@ class CompanyForm(BaseModel):
 
 
 @app.post("/form-union/")
-def post_union_form(data: Annotated[Union[UserForm, CompanyForm], Form()]):
+def post_union_form(data: Annotated[UserForm | CompanyForm, Form()]):
     return {"received": data}
 
 

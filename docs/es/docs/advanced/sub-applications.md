@@ -10,7 +10,7 @@ Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con 
 
 Primero, crea la aplicación principal de nivel superior de **FastAPI**, y sus *path operations*:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### Sub-aplicación { #sub-application }
 
@@ -18,7 +18,7 @@ Luego, crea tu sub-aplicación, y sus *path operations*.
 
 Esta sub-aplicación es solo otra aplicación estándar de FastAPI, pero es la que se "montará":
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### Montar la sub-aplicación { #mount-the-sub-application }
 
@@ -26,29 +26,29 @@ En tu aplicación de nivel superior, `app`, monta la sub-aplicación, `subapi`.
 
 En este caso, se montará en el path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
-Ahora, ejecuta el comando `fastapi` con tu archivo:
+Ahora, ejecuta el comando `fastapi`:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Y abre la documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Y abre la documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás la documentación automática de la API para la aplicación principal, incluyendo solo sus propias _path operations_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-Y luego, abre la documentación para la sub-aplicación, en <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+Y luego, abre la documentación para la sub-aplicación, en [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs).
 
 Verás la documentación automática de la API para la sub-aplicación, incluyendo solo sus propias _path operations_, todas bajo el prefijo correcto del sub-path `/subapi`:
 
@@ -64,4 +64,4 @@ De esa manera, la sub-aplicación sabrá usar ese prefijo de path para la interf
 
 Y la sub-aplicación también podría tener sus propias sub-aplicaciones montadas y todo funcionaría correctamente, porque FastAPI maneja todos estos `root_path`s automáticamente.
 
-Aprenderás más sobre el `root_path` y cómo usarlo explícitamente en la sección sobre [Detrás de un Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Aprenderás más sobre el `root_path` y cómo usarlo explícitamente en la sección sobre [Detrás de un Proxy](behind-a-proxy.md).

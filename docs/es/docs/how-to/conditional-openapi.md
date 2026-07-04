@@ -10,7 +10,7 @@ Eso no añade ninguna seguridad extra a tu API, las *path operations* seguirán 
 
 Si hay una falla de seguridad en tu código, seguirá existiendo.
 
-Ocultar la documentación solo hace que sea más difícil entender cómo interactuar con tu API y podría dificultar más depurarla en producción. Podría considerarse simplemente una forma de <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Seguridad mediante oscuridad</a>.
+Ocultar la documentación solo hace que sea más difícil entender cómo interactuar con tu API y podría dificultar más depurarla en producción. Podría considerarse simplemente una forma de [Seguridad mediante oscuridad](https://en.wikipedia.org/wiki/Security_through_obscurity).
 
 Si quieres asegurar tu API, hay varias cosas mejores que puedes hacer, por ejemplo:
 
@@ -29,7 +29,7 @@ Puedes usar fácilmente las mismas configuraciones de Pydantic para configurar t
 
 Por ejemplo:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Aquí declaramos la configuración `openapi_url` con el mismo valor por defecto de `"/openapi.json"`.
 

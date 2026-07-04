@@ -46,6 +46,7 @@ Sonrasında override'larınızı (yani kaldırıp sıfırlamayı) `app.dependenc
 app.dependency_overrides = {}
 ```
 
+
 /// tip | İpucu
 
 Bir dependency'yi yalnızca bazı testler sırasında override etmek istiyorsanız, override'ı testin başında (test function'ının içinde) ayarlayıp testin sonunda (yine test function'ının sonunda) sıfırlayabilirsiniz.

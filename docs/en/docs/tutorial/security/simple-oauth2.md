@@ -6,7 +6,7 @@ Now let's build from the previous chapter and add the missing parts to have a co
 
 We are going to use **FastAPI** security utilities to get the `username` and `password`.
 
-OAuth2 specifies that when using the "password flow" (that we are using) the client/user must send a `username` and `password` fields as form data.
+OAuth2 specifies that when using the "password flow" (that we are using) the client/user must send `username` and `password` fields as form data.
 
 And the spec says that the fields have to be named like that. So `user-name` or `email` wouldn't work.
 
@@ -32,7 +32,7 @@ They are normally used to declare specific security permissions, for example:
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
-/// info
+/// note
 
 In OAuth2 a "scope" is just a string that declares a specific permission required.
 
@@ -72,7 +72,7 @@ If you need to enforce it, use `OAuth2PasswordRequestFormStrict` instead of `OAu
 * An optional `client_id` (we don't need it for our example).
 * An optional `client_secret` (we don't need it for our example).
 
-/// info
+/// note
 
 The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
 
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info
+/// note
 
-For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
+For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -190,13 +190,13 @@ We want to get the `current_user` *only* if this user is active.
 
 So, we create an additional dependency `get_current_active_user` that in turn uses `get_current_user` as a dependency.
 
-Both of these dependencies will just return an HTTP error if the user doesn't exist, or if is inactive.
+Both of these dependencies will just return an HTTP error if the user doesn't exist, or is inactive.
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info
+/// note
 
 The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.
 
@@ -216,7 +216,7 @@ That's the benefit of standards...
 
 ## See it in action { #see-it-in-action }
 
-Open the interactive docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Open the interactive docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### Authenticate { #authenticate }
 

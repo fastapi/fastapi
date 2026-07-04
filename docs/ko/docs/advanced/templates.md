@@ -8,7 +8,7 @@
 
 ## 의존성 설치 { #install-dependencies }
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고, 활성화한 후 `jinja2`를 설치해야 합니다:
+[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 후 `jinja2`를 설치해야 합니다:
 
 <div class="termy">
 
@@ -27,7 +27,7 @@ $ pip install jinja2
 * 템플릿을 반환할 *경로 처리*에 `Request` 매개변수를 선언합니다.
 * 생성한 `templates`를 사용하여 `TemplateResponse`를 렌더링하고 반환합니다. 템플릿의 이름, 요청 객체 및 Jinja2 템플릿 내에서 사용될 키-값 쌍이 포함된 "컨텍스트" 딕셔너리도 전달합니다.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | 참고
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## 더 많은 세부 사항 { #more-details }
 
-템플릿 테스트를 포함한 더 많은 세부 사항은 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette의 템플릿 문서</a>를 확인하세요.
+템플릿 테스트를 포함한 더 많은 세부 사항은 [Starlette의 템플릿 문서](https://www.starlette.dev/templates/)를 확인하세요.

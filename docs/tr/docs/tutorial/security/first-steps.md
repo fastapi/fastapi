@@ -20,17 +20,17 @@ Güvenliği yönetmek için **FastAPI**’nin sunduğu araçları kullanalım.
 
 Örneği `main.py` adlı bir dosyaya kopyalayın:
 
-{* ../../docs_src/security/tutorial001_an_py39.py *}
+{* ../../docs_src/security/tutorial001_an_py310.py *}
 
 ## Çalıştırın { #run-it }
 
-/// info | Bilgi
+/// note | Not
 
-<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
+[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
 
 Ancak `pip install fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
 
-Elle kurmak için bir [virtual environment](../../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından şununla kurun:
+Elle kurmak için bir [Sanal ortam](../../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından şununla kurun:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ Bunun nedeni, **OAuth2**’nin `username` ve `password` göndermek için "form d
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,13 +54,13 @@ $ fastapi dev main.py
 
 ## Kontrol Edin { #check-it }
 
-Etkileşimli dokümantasyona gidin: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Etkileşimli dokümantasyona gidin: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Şuna benzer bir şey göreceksiniz:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize butonu!
+/// tip | Authorize butonu!
 
 Artık parıl parıl yeni bir "Authorize" butonunuz var.
 
@@ -118,7 +118,7 @@ O yüzden basitleştirilmiş bu bakış açısından üzerinden geçelim:
 
 Bu örnekte **OAuth2**’yi, **Password** flow ile, **Bearer** token kullanarak uygulayacağız. Bunu `OAuth2PasswordBearer` sınıfı ile yaparız.
 
-/// info | Bilgi
+/// note | Not
 
 "Bearer" token tek seçenek değildir.
 
@@ -132,7 +132,7 @@ Bu durumda bile **FastAPI**, onu oluşturabilmeniz için gereken araçları suna
 
 `OAuth2PasswordBearer` sınıfının bir instance’ını oluştururken `tokenUrl` parametresini veririz. Bu parametre, client’ın (kullanıcının browser’ında çalışan frontend’in) token almak için `username` ve `password` göndereceği URL’yi içerir.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
 
 /// tip | İpucu
 
@@ -140,7 +140,7 @@ Burada `tokenUrl="token"`, henüz oluşturmadığımız göreli bir URL olan `to
 
 Göreli URL kullandığımız için, API’niz `https://example.com/` adresinde olsaydı `https://example.com/token` anlamına gelirdi. Ama API’niz `https://example.com/api/v1/` adresinde olsaydı, bu kez `https://example.com/api/v1/token` anlamına gelirdi.
 
-Göreli URL kullanmak, [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank} gibi daha ileri kullanım senaryolarında bile uygulamanızın çalışmaya devam etmesini garanti etmek açısından önemlidir.
+Göreli URL kullanmak, [Bir Proxy Arkasında](../../advanced/behind-a-proxy.md) gibi daha ileri kullanım senaryolarında bile uygulamanızın çalışmaya devam etmesini garanti etmek açısından önemlidir.
 
 ///
 
@@ -148,7 +148,7 @@ Bu parametre o endpoint’i / *path operation*’ı oluşturmaz; fakat `/token` 
 
 Birazdan gerçek path operation’ı da oluşturacağız.
 
-/// info | Teknik Detaylar
+/// note | Teknik Detaylar
 
 Eğer çok katı bir "Pythonista" iseniz, `token_url` yerine `tokenUrl` şeklindeki parametre adlandırma stilini sevmeyebilirsiniz.
 
@@ -170,13 +170,13 @@ Dolayısıyla `Depends` ile kullanılabilir.
 
 Artık `Depends` ile bir dependency olarak `oauth2_scheme`’i geçebilirsiniz.
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Bu dependency, *path operation function* içindeki `token` parametresine atanacak bir `str` sağlar.
 
 **FastAPI**, bu dependency’yi OpenAPI şemasında (ve otomatik API dokümanlarında) bir "security scheme" tanımlamak için kullanabileceğini bilir.
 
-/// info | Teknik Detaylar
+/// note | Teknik Detaylar
 
 **FastAPI**, bir dependency içinde tanımlanan `OAuth2PasswordBearer` sınıfını OpenAPI’de security scheme tanımlamak için kullanabileceğini bilir; çünkü bu sınıf `fastapi.security.oauth2.OAuth2`’den kalıtım alır, o da `fastapi.security.base.SecurityBase`’den kalıtım alır.
 

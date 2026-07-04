@@ -18,7 +18,7 @@ Sie benötigen nicht unbedingt OAuth2-Scopes, und Sie können die Authentifizier
 
 Aber OAuth2 mit Scopes kann bequem in Ihre API (mit OpenAPI) und deren API-Dokumentation integriert werden.
 
-Dennoch, verwenden Sie solche Scopes oder andere Sicherheits-/Autorisierungsanforderungen in Ihrem Code so wie Sie es möchten.
+Dennoch erzwingen Sie solche Scopes oder andere Sicherheits-/Autorisierungsanforderungen in Ihrem Code so, wie Sie es benötigen.
 
 In vielen Fällen kann OAuth2 mit Scopes ein Overkill sein.
 
@@ -46,7 +46,7 @@ Er wird normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu dekla
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info | Info
+/// note | Hinweis
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -60,7 +60,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 ## Gesamtübersicht { #global-view }
 
-Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} ändern. Diesmal verwenden wir OAuth2-Scopes:
+Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md) ändern. Diesmal verwenden wir OAuth2-Scopes:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -126,7 +126,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Technische Details
+/// note | Technische Details
 
 `Security` ist tatsächlich eine Unterklasse von `Depends` und hat nur noch einen zusätzlichen Parameter, den wir später kennenlernen werden.
 
@@ -247,7 +247,7 @@ Das würde einer Drittanbieteranwendung passieren, die versucht, auf eine dieser
 
 ## Über Integrationen von Drittanbietern { #about-third-party-integrations }
 
-In diesem Beispiel verwenden wir den OAuth2-Flow „Password“.
+In diesem Beispiel verwenden wir den OAuth2-Flow „password“.
 
 Das ist angemessen, wenn wir uns bei unserer eigenen Anwendung anmelden, wahrscheinlich mit unserem eigenen Frontend.
 
@@ -255,9 +255,9 @@ Weil wir darauf vertrauen können, dass es den `username` und das `password` erh
 
 Wenn Sie jedoch eine OAuth2-Anwendung erstellen, mit der andere eine Verbindung herstellen würden (d.h. wenn Sie einen Authentifizierungsanbieter erstellen, der Facebook, Google, GitHub usw. entspricht), sollten Sie einen der anderen Flows verwenden.
 
-Am häufigsten ist der „Implicit“-Flow.
+Am häufigsten ist der implicit Flow.
 
-Am sichersten ist der „Code“-Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den „Implicit“-Flow vor.
+Am sichersten ist der code Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den implicit Flow vor.
 
 /// note | Hinweis
 
@@ -271,4 +271,4 @@ Aber am Ende implementieren sie denselben OAuth2-Standard.
 
 ## `Security` in Dekorator-`dependencies` { #security-in-decorator-dependencies }
 
-Auf die gleiche Weise können Sie eine `list`e von `Depends` im Parameter `dependencies` des Dekorators definieren (wie in [Abhängigkeiten in Pfadoperation-Dekoratoren](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} erläutert), Sie könnten auch dort `Security` mit `scopes` verwenden.
+Auf die gleiche Weise können Sie eine `list`e von `Depends` im Parameter `dependencies` des Dekorators definieren (wie in [Abhängigkeiten in Pfadoperation-Dekoratoren](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md) erläutert), Sie könnten auch dort `Security` mit `scopes` verwenden.

@@ -15,7 +15,7 @@ Isso inclui, por exemplo:
 
 Primeiro, importe `BackgroundTasks` e defina um parâmetro na sua *função de operação de rota* com uma declaração de tipo `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 O **FastAPI** criará o objeto do tipo `BackgroundTasks` para você e o passará como esse parâmetro.
 
@@ -31,13 +31,13 @@ Neste caso, a função da tarefa escreverá em um arquivo (simulando o envio de 
 
 E como a operação de escrita não usa `async` e `await`, definimos a função com um `def` normal:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Adicione a tarefa em segundo plano { #add-the-background-task }
 
 Dentro da sua *função de operação de rota*, passe sua função de tarefa para o objeto de *tarefas em segundo plano* com o método `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 O `.add_task()` recebe como argumentos:
 
@@ -62,7 +62,7 @@ E então outra tarefa em segundo plano gerada na *função de operação de rota
 
 ## Detalhes técnicos { #technical-details }
 
-A classe `BackgroundTasks` vem diretamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+A classe `BackgroundTasks` vem diretamente de [`starlette.background`](https://www.starlette.dev/background/).
 
 Ela é importada/incluída diretamente no FastAPI para que você possa importá-la de `fastapi` e evitar importar acidentalmente a alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
 
@@ -70,11 +70,11 @@ Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é possível usá-la 
 
 Ainda é possível usar `BackgroundTask` sozinho no FastAPI, mas você precisa criar o objeto no seu código e retornar uma `Response` da Starlette incluindo-o.
 
-Você pode ver mais detalhes na <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">documentação oficial da Starlette para tarefas em segundo plano</a>.
+Você pode ver mais detalhes na [documentação oficial da Starlette para tarefas em segundo plano](https://www.starlette.dev/background/).
 
 ## Ressalva { #caveat }
 
-Se você precisar realizar computação pesada em segundo plano e não necessariamente precisar que seja executada pelo mesmo processo (por exemplo, você não precisa compartilhar memória, variáveis, etc.), pode se beneficiar do uso de outras ferramentas maiores, como o <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+Se você precisar realizar computação pesada em segundo plano e não necessariamente precisar que seja executada pelo mesmo processo (por exemplo, você não precisa compartilhar memória, variáveis, etc.), pode se beneficiar do uso de outras ferramentas maiores, como o [Celery](https://docs.celeryq.dev).
 
 Elas tendem a exigir configurações mais complexas, um gerenciador de fila de mensagens/tarefas, como RabbitMQ ou Redis, mas permitem executar tarefas em segundo plano em vários processos e, especialmente, em vários servidores.
 

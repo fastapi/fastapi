@@ -9,9 +9,692 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for hi (add-missing). PR [#15797](https://github.com/fastapi/fastapi/pull/15797) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update `llm-prompt.md` for Hindi. PR [#15810](https://github.com/fastapi/fastapi/pull/15810) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Fix language-specific translation prompt for Russian language. PR [#15924](https://github.com/fastapi/fastapi/pull/15924) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔧 Update sponsors: remove RapidProxy. PR [#15929](https://github.com/fastapi/fastapi/pull/15929) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update issue-manager to 0.8.1. PR [#15928](https://github.com/fastapi/fastapi/pull/15928) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update latest-changes to 0.6.1. PR [#15926](https://github.com/fastapi/fastapi/pull/15926) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.139.0 (2026-07-01)
+
+### Features
+
+* ✨ Support dependencies in `app.frontend()`, e.g. for automatic cookie authentication for the frontend. PR [#15908](https://github.com/fastapi/fastapi/pull/15908) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for fr (update-outdated). PR [#15897](https://github.com/fastapi/fastapi/pull/15897) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15895](https://github.com/fastapi/fastapi/pull/15895) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15896](https://github.com/fastapi/fastapi/pull/15896) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15899](https://github.com/fastapi/fastapi/pull/15899) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15892](https://github.com/fastapi/fastapi/pull/15892) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15891](https://github.com/fastapi/fastapi/pull/15891) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15893](https://github.com/fastapi/fastapi/pull/15893) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (update-outdated). PR [#15898](https://github.com/fastapi/fastapi/pull/15898) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15900](https://github.com/fastapi/fastapi/pull/15900) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15890](https://github.com/fastapi/fastapi/pull/15890) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-outdated). PR [#15894](https://github.com/fastapi/fastapi/pull/15894) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (add-missing). PR [#15888](https://github.com/fastapi/fastapi/pull/15888) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (add-missing). PR [#15880](https://github.com/fastapi/fastapi/pull/15880) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (add-missing). PR [#15889](https://github.com/fastapi/fastapi/pull/15889) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (add-missing). PR [#15883](https://github.com/fastapi/fastapi/pull/15883) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (add-missing). PR [#15885](https://github.com/fastapi/fastapi/pull/15885) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (add-missing). PR [#15882](https://github.com/fastapi/fastapi/pull/15882) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (add-missing). PR [#15887](https://github.com/fastapi/fastapi/pull/15887) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (add-missing). PR [#15886](https://github.com/fastapi/fastapi/pull/15886) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (add-missing). PR [#15881](https://github.com/fastapi/fastapi/pull/15881) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (add-missing). PR [#15884](https://github.com/fastapi/fastapi/pull/15884) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (add-missing). PR [#15879](https://github.com/fastapi/fastapi/pull/15879) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#15909](https://github.com/fastapi/fastapi/pull/15909) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15906](https://github.com/fastapi/fastapi/pull/15906) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15878](https://github.com/fastapi/fastapi/pull/15878) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Remove not needed `allow-unsafe-pr-checkout: true`. PR [#15876](https://github.com/fastapi/fastapi/pull/15876) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump the github-actions group with 5 updates. PR [#15872](https://github.com/fastapi/fastapi/pull/15872) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the python-packages group across 1 directory with 10 updates. PR [#15870](https://github.com/fastapi/fastapi/pull/15870) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump CodSpeedHQ/action from 4.17.0 to 4.17.5 in the github-actions group. PR [#15826](https://github.com/fastapi/fastapi/pull/15826) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.138.2 (2026-06-29)
+
+### Refactors
+
+* ♻️ Make `app.frontend()` return 404 for methods other than `GET` or `HEAD` with no static file matches. PR [#15863](https://github.com/fastapi/fastapi/pull/15863) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Update sponsors: remove Stainless. PR [#15862](https://github.com/fastapi/fastapi/pull/15862) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor how sponsors data is handled for banners. PR [#15852](https://github.com/fastapi/fastapi/pull/15852) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.138.1 (2026-06-25)
+
+### Refactors
+
+* ♻️ Refactor Library Skills, make info easier to find for agents. PR [#15841](https://github.com/fastapi/fastapi/pull/15841) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👷 Simplify pull request workflow triggers. PR [#15836](https://github.com/fastapi/fastapi/pull/15836) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update issue-manager to 0.7.1. PR [#15833](https://github.com/fastapi/fastapi/pull/15833) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update issue-manager to 0.7.0. PR [#15831](https://github.com/fastapi/fastapi/pull/15831) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: Add TestMu again. PR [#15830](https://github.com/fastapi/fastapi/pull/15830) by [@tiangolo](https://github.com/tiangolo).
+* 🔒️ Update zizmor workflow security checks. PR [#15820](https://github.com/fastapi/fastapi/pull/15820) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump pydantic-settings from 2.14.1 to 2.14.2. PR [#15799](https://github.com/fastapi/fastapi/pull/15799) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.138.0 (2026-06-20)
+
+### Features
+
+* ✨ Add support for `app.frontend("/", directory="dist")` and `router.frontend("/", directory="dist")`. PR [#15800](https://github.com/fastapi/fastapi/pull/15800) by [@tiangolo](https://github.com/tiangolo).
+    * Read the docs: [Frontend](https://fastapi.tiangolo.com/tutorial/frontend/).
+
+### Docs
+
+* 📝 Fix typo in release notes. PR [#15807](https://github.com/fastapi/fastapi/pull/15807) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add `app.frontend()` instructions to Agent Library Skill. PR [#15805](https://github.com/fastapi/fastapi/pull/15805) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update release notes link. PR [#15802](https://github.com/fastapi/fastapi/pull/15802) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ Update white space characters in bigger apps. PR [#15801](https://github.com/fastapi/fastapi/pull/15801) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ Fix grammar, typos, and broken links in docs. PR [#15694](https://github.com/fastapi/fastapi/pull/15694) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Translations
+
+* 🌐 Enable Hindi docs translations. PR [#15554](https://github.com/fastapi/fastapi/pull/15554) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🐛 Fix failing test, update format for raised errors. PR [#15804](https://github.com/fastapi/fastapi/pull/15804) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix test-alls-green. PR [#15803](https://github.com/fastapi/fastapi/pull/15803) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Enable checking `release-notes.md` for typos. PR [#15796](https://github.com/fastapi/fastapi/pull/15796) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Tweak wording about deploying to FastAPI Cloud. PR [#15793](https://github.com/fastapi/fastapi/pull/15793) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Use `gpt-5.5` model in `translate.py`, specify `-chat` to avoid warnings. PR [#15792](https://github.com/fastapi/fastapi/pull/15792) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.137.2 (2026-06-18)
+
+### Features
+
+* ✨ Add `iter_route_contexts()` for advanced use cases that used to use `router.routes` (e.g. Jupyverse). PR [#15785](https://github.com/fastapi/fastapi/pull/15785) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Fix broken Markdown in Korean custom response docs. PR [#15774](https://github.com/fastapi/fastapi/pull/15774) by [@kooqooo](https://github.com/kooqooo).
+* 🌐 Update translations for fr (update-outdated). PR [#15761](https://github.com/fastapi/fastapi/pull/15761) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15760](https://github.com/fastapi/fastapi/pull/15760) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15759](https://github.com/fastapi/fastapi/pull/15759) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15757](https://github.com/fastapi/fastapi/pull/15757) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15756](https://github.com/fastapi/fastapi/pull/15756) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (update-outdated). PR [#15755](https://github.com/fastapi/fastapi/pull/15755) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15754](https://github.com/fastapi/fastapi/pull/15754) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15753](https://github.com/fastapi/fastapi/pull/15753) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15752](https://github.com/fastapi/fastapi/pull/15752) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15751](https://github.com/fastapi/fastapi/pull/15751) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-outdated). PR [#15758](https://github.com/fastapi/fastapi/pull/15758) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Update sponsors: add BairesDev. PR [#15787](https://github.com/fastapi/fastapi/pull/15787) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update sponsors script to simplify previews. PR [#15786](https://github.com/fastapi/fastapi/pull/15786) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump the python-packages group across 1 directory with 7 updates. PR [#15777](https://github.com/fastapi/fastapi/pull/15777) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cryptography from 46.0.7 to 48.0.1. PR [#15779](https://github.com/fastapi/fastapi/pull/15779) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump aiohttp from 3.14.0 to 3.14.1. PR [#15781](https://github.com/fastapi/fastapi/pull/15781) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.2.1 to 1.3.1. PR [#15780](https://github.com/fastapi/fastapi/pull/15780) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump astral-sh/setup-uv from 8.1.0 to 8.2.0 in the github-actions group. PR [#15776](https://github.com/fastapi/fastapi/pull/15776) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump https://github.com/crate-ci/typos from v1.47.1 to v1.47.2 in the pre-commit group. PR [#15775](https://github.com/fastapi/fastapi/pull/15775) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-multipart from 0.0.30 to 0.0.32. PR [#15778](https://github.com/fastapi/fastapi/pull/15778) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⏪️ Revert removing scripts, only remove `coverage.sh`. PR [#15772](https://github.com/fastapi/fastapi/pull/15772) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove unused scripts. PR [#15771](https://github.com/fastapi/fastapi/pull/15771) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add ty configs to check docs sources. PR [#15770](https://github.com/fastapi/fastapi/pull/15770) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add ty configs to check docs sources. PR [#15769](https://github.com/fastapi/fastapi/pull/15769) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.137.1 (2026-06-15)
+
+### Fixes
+
+* 🚨 Fix typing checks for APIRoute. PR [#15765](https://github.com/fastapi/fastapi/pull/15765) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix bug, allow empty path in path operation in prefixless router. PR [#15763](https://github.com/fastapi/fastapi/pull/15763) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.137.0 (2026-06-14)
+
+### Breaking Changes
+
+* ♻️ Refactor internals to preserve `APIRouter` and `APIRoute` instances. PR [#15745](https://github.com/fastapi/fastapi/pull/15745) by [@tiangolo](https://github.com/tiangolo).
+
+Unblocks ✨ SO MANY THINGS ✨
+
+Before this, `router.include_router(other_router)` would take each path operation from `other_router` and "clone" it, or recreate it from scratch.
+
+This would mean that in the end there was only one top level router, part of the app.
+
+The way it is structured here is that there are a few additional classes to handle intermediate metadata for router and route inclusion. That way the information of "router X includes Y and Y includes Z" is stored somewhere, without affecting (recreating / cloning) the final route.
+
+#### Non Objectives
+
+Dependencies for 404: previously I intended to support dependencies that would be executed even for 404, but that would conflict with the fact that a router could _not_ find a match, but the next router _did_ find a match. Executing dependencies in the router that did not find a match would not make sense, they could consume the request, body, etc. This original idea was discarded.
+
+#### Specific Breaking Changes
+
+Now `router.routes` is no longer a plain list of `APIRoute` objects, it can contain these intermediate objects that can contain additional routers, forming a tree.
+
+Any logic that depended on iterating on the `router.routes` directly would be affected, that logic cannot expect to be able to extract data from a plain list of routes, as it's no longer a plain list but a tree.
+
+Additionally, any logic that iterated on `router.routes` to modify them would now also see these new objects, and would not see all the routes in the app.
+
+`router.routes` should be considered an internal implementation detail, only passed around to the FastAPI functions that need it.
+
+#### Features
+
+* Adding routes (path operations) after a router is included now works, they are reflected as they are not copied.
+* Including `subrouter` in `mainrouter` can be done before adding routes (path operations) to `subrouter`, because now the entire object is stored instead of copying the routes.
+* As routes are not copied, in some cases that might save some memory.
+
+#### Alpha Features
+
+This is not documented yet, so it's not officially supported yet and could change in the future.
+
+But, as `APIRoute` and `APIRouter` instances are now preserved, they could be customized.
+
+`APIRouter` has two new methods, `.matches()` and `.handle()`, counterpart to the existing ones in `APIRoute`. With this a router could customize how it matches and handles requests. For example, it could match only requests that include some specific header, for example for handling versions in headers.
+
+Still, for now, consider this very experimental and potentially changing and breaking in the future.
+
+#### Future Features Enabled
+
+* Custom `APIRoute` subclasses (undocumented, but already works as described above)
+* Custom `APIRouter` subclasses (undocumented, but already works as described above)
+* Dependencies per router
+* Exception handlers per router
+* Middleware per router
+* Other features planned
+
+### Docs
+
+* 📝 Update release notes. PR [#15747](https://github.com/fastapi/fastapi/pull/15747) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update FastAPI Cloud deployment instructions. PR [#15724](https://github.com/fastapi/fastapi/pull/15724) by [@alejsdev](https://github.com/alejsdev).
+* ✏️ Use `Annotated` in inline example in `docs/en/docs/tutorial/body-multiple-params.md`. PR [#15591](https://github.com/fastapi/fastapi/pull/15591) by [@TheArchons](https://github.com/TheArchons).
+* 📝 Remove "NGINX Unit" from the list of ASGI-servers in docs. PR [#15475](https://github.com/fastapi/fastapi/pull/15475) by [@angryfoxx](https://github.com/angryfoxx).
+* 📝 Update `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#14781](https://github.com/fastapi/fastapi/pull/14781) by [@zadevhub](https://github.com/zadevhub).
+
+### Translations
+
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15671](https://github.com/fastapi/fastapi/pull/15671) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15670](https://github.com/fastapi/fastapi/pull/15670) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (update-outdated). PR [#15669](https://github.com/fastapi/fastapi/pull/15669) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15668](https://github.com/fastapi/fastapi/pull/15668) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15667](https://github.com/fastapi/fastapi/pull/15667) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15666](https://github.com/fastapi/fastapi/pull/15666) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (update-outdated). PR [#15665](https://github.com/fastapi/fastapi/pull/15665) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15664](https://github.com/fastapi/fastapi/pull/15664) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15673](https://github.com/fastapi/fastapi/pull/15673) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15672](https://github.com/fastapi/fastapi/pull/15672) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-outdated). PR [#15674](https://github.com/fastapi/fastapi/pull/15674) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Update sponsors: remove TalorData. PR [#15744](https://github.com/fastapi/fastapi/pull/15744) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove ExoFlare. PR [#15736](https://github.com/fastapi/fastapi/pull/15736) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove InterviewPal. PR [#15735](https://github.com/fastapi/fastapi/pull/15735) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove Liblab. PR [#15731](https://github.com/fastapi/fastapi/pull/15731) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove Scalar. PR [#15730](https://github.com/fastapi/fastapi/pull/15730) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump the python-packages group across 1 directory with 6 updates. PR [#15721](https://github.com/fastapi/fastapi/pull/15721) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-multipart from 0.0.29 to 0.0.30. PR [#15723](https://github.com/fastapi/fastapi/pull/15723) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group with 3 updates. PR [#15720](https://github.com/fastapi/fastapi/pull/15720) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.1.0 to 1.2.1. PR [#15722](https://github.com/fastapi/fastapi/pull/15722) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump https://github.com/crate-ci/typos from v1.46.0 to v1.47.1 in the pre-commit group. PR [#15719](https://github.com/fastapi/fastapi/pull/15719) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors, add Rapidproxy. PR [#15689](https://github.com/fastapi/fastapi/pull/15689) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: Remove TestMu. PR [#15688](https://github.com/fastapi/fastapi/pull/15688) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump the python-packages group across 1 directory with 11 updates. PR [#15683](https://github.com/fastapi/fastapi/pull/15683) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump aiohttp from 3.13.4 to 3.14.0. PR [#15681](https://github.com/fastapi/fastapi/pull/15681) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group with 2 updates. PR [#15682](https://github.com/fastapi/fastapi/pull/15682) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.0.0 to 1.1.0. PR [#15684](https://github.com/fastapi/fastapi/pull/15684) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Experts. PR [#15677](https://github.com/fastapi/fastapi/pull/15677) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15675](https://github.com/fastapi/fastapi/pull/15675) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15662](https://github.com/fastapi/fastapi/pull/15662) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Automate release preparation. PR [#15661](https://github.com/fastapi/fastapi/pull/15661) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove slim package stub, deprecated for a while. PR [#15649](https://github.com/fastapi/fastapi/pull/15649) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump authlib from 1.6.11 to 1.7.2. PR [#15512](https://github.com/fastapi/fastapi/pull/15512) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pymdown-extensions from 10.21.2 to 10.21.3. PR [#15569](https://github.com/fastapi/fastapi/pull/15569) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump CodSpeedHQ/action from 4.14.0 to 4.15.1. PR [#15513](https://github.com/fastapi/fastapi/pull/15513) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-multipart from 0.0.26 to 0.0.29. PR [#15595](https://github.com/fastapi/fastapi/pull/15595) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔒️ Improve GitHub actions security. PR [#15607](https://github.com/fastapi/fastapi/pull/15607) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⚰️ Remove ruff and coverage ignores for non-existing files. PR [#15610](https://github.com/fastapi/fastapi/pull/15610) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Use custom `changing_dir` instead of `CLIRunner.isolated_filesystem` to set working dir. PR [#15616](https://github.com/fastapi/fastapi/pull/15616) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Add `httpx2` test dependency to avoid deprecation warning. PR [#15603](https://github.com/fastapi/fastapi/pull/15603) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump the python-packages group with 15 updates. PR [#15594](https://github.com/fastapi/fastapi/pull/15594) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Configure Dependabot to group updates and update weekly. PR [#15560](https://github.com/fastapi/fastapi/pull/15560) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.136.3 (2026-05-23)
+
+### Refactors
+
+* ♻️ Do not accept underscore headers when using `convert_underscores=True` (the default). PR [#15589](https://github.com/fastapi/fastapi/pull/15589) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.136.2 (2026-05-23)
+
+### Refactors
+
+* ♻️ Validate Server Sent Event fields to avoid applications from sending broken data. PR [#15588](https://github.com/fastapi/fastapi/pull/15588) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Document `--entrypoint` CLI option. PR [#15464](https://github.com/fastapi/fastapi/pull/15464) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Update and simplify docs about help and management. PR [#15583](https://github.com/fastapi/fastapi/pull/15583) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add docs references to central contributing docs. PR [#15580](https://github.com/fastapi/fastapi/pull/15580) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update security policy. PR [#15577](https://github.com/fastapi/fastapi/pull/15577) by [@tiangolo](https://github.com/tiangolo).
+* 🍱 Update sponsors: TalorData image. PR [#15562](https://github.com/fastapi/fastapi/pull/15562) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs, simplify usage of admonitions, only default ones. PR [#15553](https://github.com/fastapi/fastapi/pull/15553) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Fix image URLs in `index.md`. PR [#15534](https://github.com/fastapi/fastapi/pull/15534) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✏️ Fix Azkaban spelling typo in `virtual-environments.md‎`. PR [#15463](https://github.com/fastapi/fastapi/pull/15463) by [@isaacbernat](https://github.com/isaacbernat).
+* 💄 Improve layout and styling. PR [#15462](https://github.com/fastapi/fastapi/pull/15462) by [@alejsdev](https://github.com/alejsdev).
+* 💄 Refactor opinions section with interactive tabs and new logos. PR [#15458](https://github.com/fastapi/fastapi/pull/15458) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Add FastAPI Conf '26 announcement to docs. PR [#15457](https://github.com/fastapi/fastapi/pull/15457) by [@alejsdev](https://github.com/alejsdev).
+
+### Translations
+
+* 🌐 Improve translation consistency in `‎docs/pt/docs/advanced/generate-clients.md‎`. PR [#15456](https://github.com/fastapi/fastapi/pull/15456) by [@Will-thom](https://github.com/Will-thom).
+* 🌐 Update translations for ja (update-outdated). PR [#15530](https://github.com/fastapi/fastapi/pull/15530) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15529](https://github.com/fastapi/fastapi/pull/15529) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15528](https://github.com/fastapi/fastapi/pull/15528) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15527](https://github.com/fastapi/fastapi/pull/15527) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15526](https://github.com/fastapi/fastapi/pull/15526) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15525](https://github.com/fastapi/fastapi/pull/15525) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15524](https://github.com/fastapi/fastapi/pull/15524) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (update-outdated). PR [#15522](https://github.com/fastapi/fastapi/pull/15522) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15523](https://github.com/fastapi/fastapi/pull/15523) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (update-outdated). PR [#15520](https://github.com/fastapi/fastapi/pull/15520) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-outdated). PR [#15521](https://github.com/fastapi/fastapi/pull/15521) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Fix typos in Spanish LLM-prompt. PR [#15472](https://github.com/fastapi/fastapi/pull/15472) by [@crr004](https://github.com/crr004).
+
+### Internal
+
+* ✅ Update tests, don't double dispose the engine. PR [#15587](https://github.com/fastapi/fastapi/pull/15587) by [@tiangolo](https://github.com/tiangolo).
+* ⚡️ Speed up test suite via caching and fixture scopes to make it ~24% faster. PR [#13583](https://github.com/fastapi/fastapi/pull/13583) by [@dikos1337](https://github.com/dikos1337).
+* 🔥 Remove config files now in central GitHub repo. PR [#15585](https://github.com/fastapi/fastapi/pull/15585) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump urllib3 from 2.6.3 to 2.7.0. PR [#15502](https://github.com/fastapi/fastapi/pull/15502) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump idna from 3.11 to 3.15. PR [#15565](https://github.com/fastapi/fastapi/pull/15565) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cloudflare/wrangler-action from 3.15.0 to 4.0.0. PR [#15571](https://github.com/fastapi/fastapi/pull/15571) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Migrate docs from MkDocs to Zensical. PR [#15563](https://github.com/fastapi/fastapi/pull/15563) by [@tiangolo](https://github.com/tiangolo).
+* 🔒️ Only allow team members to modify dependencies. PR [#15548](https://github.com/fastapi/fastapi/pull/15548) by [@svlandeg](https://github.com/svlandeg).
+* ⬆ Bump actions/add-to-project from 1.0.2 to 2.0.0. PR [#15490](https://github.com/fastapi/fastapi/pull/15490) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/labeler from 6.0.1 to 6.1.0. PR [#15507](https://github.com/fastapi/fastapi/pull/15507) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Remove Ruff ignored rule for tabs. PR [#15533](https://github.com/fastapi/fastapi/pull/15533) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors badge. PR [#15532](https://github.com/fastapi/fastapi/pull/15532) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add sponsor: TalorData. PR [#15531](https://github.com/fastapi/fastapi/pull/15531) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump ty from 0.0.21 to 0.0.34. PR [#15443](https://github.com/fastapi/fastapi/pull/15443) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pydantic from 2.13.2 to 2.13.3. PR [#15444](https://github.com/fastapi/fastapi/pull/15444) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Add pre-commit to check typos. PR [#15482](https://github.com/fastapi/fastapi/pull/15482) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15470](https://github.com/fastapi/fastapi/pull/15470) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Experts. PR [#15471](https://github.com/fastapi/fastapi/pull/15471) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15467](https://github.com/fastapi/fastapi/pull/15467) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix missing credentials issue in `translate` workflow. PR [#15468](https://github.com/fastapi/fastapi/pull/15468) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump sqlmodel from 0.0.32 to 0.0.38. PR [#15437](https://github.com/fastapi/fastapi/pull/15437) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump CodSpeedHQ/action from 4.12.1 to 4.14.0. PR [#15436](https://github.com/fastapi/fastapi/pull/15436) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pydantic from 2.12.5 to 2.13.2. PR [#15439](https://github.com/fastapi/fastapi/pull/15439) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pydantic-ai from 1.63.0 to 1.83.0. PR [#15417](https://github.com/fastapi/fastapi/pull/15417) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump prek from 0.3.2 to 0.3.9. PR [#15418](https://github.com/fastapi/fastapi/pull/15418) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump fastar from 0.9.0 to 0.11.0. PR [#15419](https://github.com/fastapi/fastapi/pull/15419) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump astral-sh/setup-uv from 7.6.0 to 8.1.0. PR [#15415](https://github.com/fastapi/fastapi/pull/15415) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.136.1 (2026-04-23)
+
+### Upgrades
+
+* ⬆️ Update Pydantic v2 code to address deprecations. PR [#15101](https://github.com/fastapi/fastapi/pull/15101) by [@svlandeg](https://github.com/svlandeg).
+
+### Internal
+
+* 🔨 Tweak translation script. PR [#15174](https://github.com/fastapi/fastapi/pull/15174) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump mkdocs-material from 9.7.1 to 9.7.6. PR [#15408](https://github.com/fastapi/fastapi/pull/15408) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump inline-snapshot from 0.31.1 to 0.32.6. PR [#15409](https://github.com/fastapi/fastapi/pull/15409) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pytest-codspeed from 4.3.0 to 4.4.0. PR [#15407](https://github.com/fastapi/fastapi/pull/15407) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pytest-cov from 7.0.0 to 7.1.0. PR [#15406](https://github.com/fastapi/fastapi/pull/15406) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cloudflare/wrangler-action from 3.14.1 to 3.15.0. PR [#15405](https://github.com/fastapi/fastapi/pull/15405) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mypy from 1.19.1 to 1.20.1. PR [#15410](https://github.com/fastapi/fastapi/pull/15410) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-dotenv from 1.2.1 to 1.2.2. PR [#15400](https://github.com/fastapi/fastapi/pull/15400) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 0.52.1 to 1.0.0. PR [#15397](https://github.com/fastapi/fastapi/pull/15397) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pygithub from 2.8.1 to 2.9.1. PR [#15396](https://github.com/fastapi/fastapi/pull/15396) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyjwt from 2.12.0 to 2.12.1. PR [#15393](https://github.com/fastapi/fastapi/pull/15393) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump zizmor from 1.23.1 to 1.24.1. PR [#15394](https://github.com/fastapi/fastapi/pull/15394) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump strawberry-graphql from 0.312.3 to 0.314.3. PR [#15395](https://github.com/fastapi/fastapi/pull/15395) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump python-multipart from 0.0.22 to 0.0.26. PR [#15360](https://github.com/fastapi/fastapi/pull/15360) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump authlib from 1.6.9 to 1.6.11. PR [#15373](https://github.com/fastapi/fastapi/pull/15373) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump aiohttp from 3.13.3 to 3.13.4. PR [#15282](https://github.com/fastapi/fastapi/pull/15282) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pygments from 2.19.2 to 2.20.0. PR [#15263](https://github.com/fastapi/fastapi/pull/15263) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pymdown-extensions from 10.20.1 to 10.21.2. PR [#15391](https://github.com/fastapi/fastapi/pull/15391) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump pillow from 12.1.1 to 12.2.0. PR [#15333](https://github.com/fastapi/fastapi/pull/15333) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pytest from 9.0.2 to 9.0.3. PR [#15334](https://github.com/fastapi/fastapi/pull/15334) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/upload-artifact from 7.0.0 to 7.0.1. PR [#15374](https://github.com/fastapi/fastapi/pull/15374) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/cache from 5.0.4 to 5.0.5. PR [#15385](https://github.com/fastapi/fastapi/pull/15385) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors: remove Zuplo. PR [#15369](https://github.com/fastapi/fastapi/pull/15369) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove Speakeasy. PR [#15368](https://github.com/fastapi/fastapi/pull/15368) by [@tiangolo](https://github.com/tiangolo).
+* 🔒️ Add zizmor and fix audit findings. PR [#15316](https://github.com/fastapi/fastapi/pull/15316) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.136.0 (2026-04-16)
+
+### Upgrades
+
+* ⬆️ Support free-threaded Python 3.14t. PR [#15149](https://github.com/fastapi/fastapi/pull/15149) by [@svlandeg](https://github.com/svlandeg).
+
+## 0.135.4 (2026-04-16)
+
+### Refactors
+
+* 🔥 Remove April Fool's `@app.vibe()` 🤪. PR [#15363](https://github.com/fastapi/fastapi/pull/15363) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump cryptography from 46.0.5 to 46.0.7. PR [#15314](https://github.com/fastapi/fastapi/pull/15314) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump strawberry-graphql from 0.307.1 to 0.312.3. PR [#15309](https://github.com/fastapi/fastapi/pull/15309) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔨 Add pre-commit hook to ensure latest release header has date. PR [#15293](https://github.com/fastapi/fastapi/pull/15293) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.135.3 (2026-04-01)
+
+### Features
+
+* ✨ Add support for `@app.vibe()`. PR [#15280](https://github.com/fastapi/fastapi/pull/15280) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Vibe Coding](https://fastapi.tiangolo.com/advanced/vibe/).
+
+### Docs
+
+* ✏️ Fix typo for `client_secret` in OAuth2 form docstrings. PR [#14946](https://github.com/fastapi/fastapi/pull/14946) by [@bysiber](https://github.com/bysiber).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#15279](https://github.com/fastapi/fastapi/pull/15279) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump orjson from 3.11.7 to 3.11.8. PR [#15276](https://github.com/fastapi/fastapi/pull/15276) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump ruff from 0.15.0 to 0.15.8. PR [#15277](https://github.com/fastapi/fastapi/pull/15277) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15274](https://github.com/fastapi/fastapi/pull/15274) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump fastmcp from 2.14.5 to 3.2.0. PR [#15267](https://github.com/fastapi/fastapi/pull/15267) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15270](https://github.com/fastapi/fastapi/pull/15270) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump requests from 2.32.5 to 2.33.0. PR [#15228](https://github.com/fastapi/fastapi/pull/15228) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Add ty check to `lint.sh`. PR [#15136](https://github.com/fastapi/fastapi/pull/15136) by [@svlandeg](https://github.com/svlandeg).
+
+## 0.135.2 (2026-03-01)
+
+### Upgrades
+
+* ⬆️ Increase lower bound to `pydantic >=2.9.0.` and fix the test suite. PR [#15139](https://github.com/fastapi/fastapi/pull/15139) by [@svlandeg](https://github.com/svlandeg).
+
+### Docs
+
+* 📝 Add missing last release notes dates. PR [#15202](https://github.com/fastapi/fastapi/pull/15202) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for contributors and team members regarding translation PRs. PR [#15200](https://github.com/fastapi/fastapi/pull/15200) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 💄 Fix code blocks in reference docs overflowing table width. PR [#15094](https://github.com/fastapi/fastapi/pull/15094) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Fix duplicated words in docstrings. PR [#15116](https://github.com/fastapi/fastapi/pull/15116) by [@AhsanSheraz](https://github.com/AhsanSheraz).
+* 📝 Add docs for `pyproject.toml` with `entrypoint`. PR [#15075](https://github.com/fastapi/fastapi/pull/15075) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update links in docs to no longer use the classes external-link and internal-link. PR [#15061](https://github.com/fastapi/fastapi/pull/15061) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Add JS and CSS handling for automatic `target=_blank` for links in docs. PR [#15063](https://github.com/fastapi/fastapi/pull/15063) by [@tiangolo](https://github.com/tiangolo).
+* 💄 Update styles for internal and external links in new tab. PR [#15058](https://github.com/fastapi/fastapi/pull/15058) by [@tiangolo](https://github.com/tiangolo).
+* 📝  Add documentation for the FastAPI VS Code extension. PR [#15008](https://github.com/fastapi/fastapi/pull/15008) by [@savannahostrowski](https://github.com/savannahostrowski).
+* 📝 Fix doctrings for `max_digits` and `decimal_places`. PR [#14944](https://github.com/fastapi/fastapi/pull/14944) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Add dates to release notes. PR [#15001](https://github.com/fastapi/fastapi/pull/15001) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Translations
+
+* 🌐 Update translations for zh (update-outdated). PR [#15177](https://github.com/fastapi/fastapi/pull/15177) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#15178](https://github.com/fastapi/fastapi/pull/15178) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh-hant (add-missing). PR [#15176](https://github.com/fastapi/fastapi/pull/15176) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for zh (add-missing). PR [#15175](https://github.com/fastapi/fastapi/pull/15175) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (update-outdated). PR [#15171](https://github.com/fastapi/fastapi/pull/15171) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (update-outdated). PR [#15170](https://github.com/fastapi/fastapi/pull/15170) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (update-outdated). PR [#15172](https://github.com/fastapi/fastapi/pull/15172) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ko (add-missing). PR [#15168](https://github.com/fastapi/fastapi/pull/15168) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ja (add-missing). PR [#15167](https://github.com/fastapi/fastapi/pull/15167) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for tr (add-missing). PR [#15169](https://github.com/fastapi/fastapi/pull/15169) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (update-outdated). PR [#15165](https://github.com/fastapi/fastapi/pull/15165) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for fr (add-missing). PR [#15163](https://github.com/fastapi/fastapi/pull/15163) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (update-outdated). PR [#15160](https://github.com/fastapi/fastapi/pull/15160) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for uk (add-missing). PR [#15158](https://github.com/fastapi/fastapi/pull/15158) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (add-missing). PR [#15157](https://github.com/fastapi/fastapi/pull/15157) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#15159](https://github.com/fastapi/fastapi/pull/15159) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (update-outdated). PR [#15155](https://github.com/fastapi/fastapi/pull/15155) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for es (add-missing). PR [#15154](https://github.com/fastapi/fastapi/pull/15154) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (update-outdated). PR [#15156](https://github.com/fastapi/fastapi/pull/15156) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for ru (update-and-add). PR [#15152](https://github.com/fastapi/fastapi/pull/15152) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for de (add-missing). PR [#15153](https://github.com/fastapi/fastapi/pull/15153) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔨 Exclude spam comments from statistics in `scripts/people.py`. PR [#15088](https://github.com/fastapi/fastapi/pull/15088) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump authlib from 1.6.7 to 1.6.9. PR [#15128](https://github.com/fastapi/fastapi/pull/15128) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyasn1 from 0.6.2 to 0.6.3. PR [#15143](https://github.com/fastapi/fastapi/pull/15143) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump ujson from 5.11.0 to 5.12.0. PR [#15150](https://github.com/fastapi/fastapi/pull/15150) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔨 Tweak translation workflow and translation fixer tool. PR [#15166](https://github.com/fastapi/fastapi/pull/15166) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔨 Fix `commit_in_place` passed via env variable in `translate.yml` workflow. PR [#15151](https://github.com/fastapi/fastapi/pull/15151) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔨 Update translation general prompt to enforce link style in translation matches the original link style. PR [#15148](https://github.com/fastapi/fastapi/pull/15148) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Re-enable translation workflow run by cron in CI (twice a month). PR [#15145](https://github.com/fastapi/fastapi/pull/15145) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Add `ty` to precommit. PR [#15091](https://github.com/fastapi/fastapi/pull/15091) by [@svlandeg](https://github.com/svlandeg).
+* ⬆ Bump dorny/paths-filter from 3 to 4. PR [#15106](https://github.com/fastapi/fastapi/pull/15106) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cairosvg from 2.8.2 to 2.9.0. PR [#15108](https://github.com/fastapi/fastapi/pull/15108) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyjwt from 2.11.0 to 2.12.0. PR [#15110](https://github.com/fastapi/fastapi/pull/15110) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump black from 26.1.0 to 26.3.1. PR [#15100](https://github.com/fastapi/fastapi/pull/15100) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔨 Update script to autofix permalinks to account for headers with Markdown links. PR [#15062](https://github.com/fastapi/fastapi/pull/15062) by [@tiangolo](https://github.com/tiangolo).
+* 📌 Pin Click for MkDocs live reload. PR [#15057](https://github.com/fastapi/fastapi/pull/15057) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump werkzeug from 3.1.5 to 3.1.6. PR [#14948](https://github.com/fastapi/fastapi/pull/14948) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pydantic-ai from 1.62.0 to 1.63.0. PR [#15035](https://github.com/fastapi/fastapi/pull/15035) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pytest-codspeed from 4.2.0 to 4.3.0. PR [#15034](https://github.com/fastapi/fastapi/pull/15034) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump strawberry-graphql from 0.291.2 to 0.307.1. PR [#15033](https://github.com/fastapi/fastapi/pull/15033) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump typer from 0.21.1 to 0.24.1. PR [#15032](https://github.com/fastapi/fastapi/pull/15032) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/download-artifact from 7 to 8. PR [#15020](https://github.com/fastapi/fastapi/pull/15020) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/upload-artifact from 6 to 7. PR [#15019](https://github.com/fastapi/fastapi/pull/15019) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.135.1 (2026-03-01)
+
+### Fixes
+
+* 🐛 Fix, avoid yield from a TaskGroup, only as an async context manager, closed in the request async exit stack. PR [#15038](https://github.com/fastapi/fastapi/pull/15038) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* ✏️ Fix typo in `docs/en/docs/_llm-test.md`. PR [#15007](https://github.com/fastapi/fastapi/pull/15007) by [@adityagiri3600](https://github.com/adityagiri3600).
+* 📝 Update Skill, optimize context, trim and refactor into references. PR [#15031](https://github.com/fastapi/fastapi/pull/15031) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#15037](https://github.com/fastapi/fastapi/pull/15037) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#15029](https://github.com/fastapi/fastapi/pull/15029) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#15036](https://github.com/fastapi/fastapi/pull/15036) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.135.0 (2026-03-01)
+
+### Features
+
+* ✨ Add support for Server Sent Events. PR [#15030](https://github.com/fastapi/fastapi/pull/15030) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Server-Sent Events (SSE)](https://fastapi.tiangolo.com/tutorial/server-sent-events/).
+
+## 0.134.0 (2026-02-27)
+
+### Features
+
+* ✨ Add support for streaming JSON Lines and binary data with `yield`. PR [#15022](https://github.com/fastapi/fastapi/pull/15022) by [@tiangolo](https://github.com/tiangolo).
+    * This also upgrades Starlette from `>=0.40.0` to `>=0.46.0`, as it's needed to properly unwrap and re-raise exceptions from exception groups.
+    * New docs: [Stream JSON Lines](https://fastapi.tiangolo.com/tutorial/stream-json-lines/).
+    * And new docs: [Stream Data](https://fastapi.tiangolo.com/advanced/stream-data/).
+
+### Docs
+
+* 📝 Update Library Agent Skill with streaming responses. PR [#15024](https://github.com/fastapi/fastapi/pull/15024) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for responses and new stream with `yield`. PR [#15023](https://github.com/fastapi/fastapi/pull/15023) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add `await` in `StreamingResponse` code example to allow cancellation. PR [#14681](https://github.com/fastapi/fastapi/pull/14681) by [@casperdcl](https://github.com/casperdcl).
+* 📝 Rename `docs_src/websockets` to `docs_src/websockets_` to avoid import errors. PR [#14979](https://github.com/fastapi/fastapi/pull/14979) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔨 Run tests with `pytest-xdist` and `pytest-cov`. PR [#14992](https://github.com/fastapi/fastapi/pull/14992) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.133.1 (2026-02-25)
+
+### Features
+
+* 🔧 Add FastAPI Agents Skill. PR [#14982](https://github.com/fastapi/fastapi/pull/14982) by [@tiangolo](https://github.com/tiangolo).
+    * Read more about it in [Library Agent Skills](https://tiangolo.com/ideas/library-agent-skills/).
+
+### Internal
+
+* ✅ Fix all tests are skipped on Windows. PR [#14994](https://github.com/fastapi/fastapi/pull/14994) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.133.0 (2026-02-24)
+
+### Upgrades
+
+* ⬆️ Add support for Starlette 1.0.0+. PR [#14987](https://github.com/fastapi/fastapi/pull/14987) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.132.1 (2026-02-24)
+
+### Refactors
+
+* ♻️ Refactor logic to handle OpenAPI and Swagger UI escaping data. PR [#14986](https://github.com/fastapi/fastapi/pull/14986) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#14972](https://github.com/fastapi/fastapi/pull/14972) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Allow skipping `benchmark` job in `test` workflow. PR [#14974](https://github.com/fastapi/fastapi/pull/14974) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.132.0 (2026-02-23)
+
+### Breaking Changes
+
+* 🔒️ Add `strict_content_type` checking for JSON requests. PR [#14978](https://github.com/fastapi/fastapi/pull/14978) by [@tiangolo](https://github.com/tiangolo).
+    * Now FastAPI checks, by default, that JSON requests have a `Content-Type` header with a valid JSON value, like `application/json`, and rejects requests that don't.
+    * If the clients for your app don't send a valid `Content-Type` header you can disable this with `strict_content_type=False`.
+    * Check the new docs: [Strict Content-Type Checking](https://fastapi.tiangolo.com/advanced/strict-content-type/).
+
+### Internal
+
+* ⬆ Bump flask from 3.1.2 to 3.1.3. PR [#14949](https://github.com/fastapi/fastapi/pull/14949) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Update all dependencies to use `griffelib` instead of `griffe`. PR [#14973](https://github.com/fastapi/fastapi/pull/14973) by [@svlandeg](https://github.com/svlandeg).
+* 🔨 Fix `FastAPI People` workflow. PR [#14951](https://github.com/fastapi/fastapi/pull/14951) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Do not run codspeed with coverage as it's not tracked. PR [#14966](https://github.com/fastapi/fastapi/pull/14966) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Do not include benchmark tests in coverage to speed up coverage processing. PR [#14965](https://github.com/fastapi/fastapi/pull/14965) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.131.0 (2026-02-22)
+
+### Breaking Changes
+
+* 🗑️ Deprecate `ORJSONResponse` and `UJSONResponse`. PR [#14964](https://github.com/fastapi/fastapi/pull/14964) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.130.0 (2026-02-22)
+
+### Features
+
+* ✨ Serialize JSON response with Pydantic (in Rust), when there's a Pydantic return type or response model. PR [#14962](https://github.com/fastapi/fastapi/pull/14962) by [@tiangolo](https://github.com/tiangolo).
+    * This results in 2x (or more) performance increase for JSON responses.
+    * New docs: [Custom Response - JSON Performance](https://fastapi.tiangolo.com/advanced/custom-response/#json-performance).
+
+## 0.129.2 (2026-02-21)
+
+### Internal
+
+* ⬆️ Upgrade pytest. PR [#14959](https://github.com/fastapi/fastapi/pull/14959) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix CI, do not attempt to publish `fastapi-slim`. PR [#14958](https://github.com/fastapi/fastapi/pull/14958) by [@tiangolo](https://github.com/tiangolo).
+* ➖ Drop support for `fastapi-slim`, no more versions will be released, use only `"fastapi[standard]"` or `fastapi`. PR [#14957](https://github.com/fastapi/fastapi/pull/14957) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update pyproject.toml, remove unneeded lines. PR [#14956](https://github.com/fastapi/fastapi/pull/14956) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.129.1 (2026-02-21)
+
+### Fixes
+
+* ♻️ Fix JSON Schema for bytes, use `"contentMediaType": "application/octet-stream"` instead of `"format": "binary"`. PR [#14953](https://github.com/fastapi/fastapi/pull/14953) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 🔨 Add Kapa.ai widget (AI chatbot). PR [#14938](https://github.com/fastapi/fastapi/pull/14938) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove Python 3.9 specific files, no longer needed after updating translations. PR [#14931](https://github.com/fastapi/fastapi/pull/14931) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for JWT to prevent timing attacks. PR [#14908](https://github.com/fastapi/fastapi/pull/14908) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* ✏️ Fix several typos in ru translations. PR [#14934](https://github.com/fastapi/fastapi/pull/14934) by [@argoarsiks](https://github.com/argoarsiks).
+* 🌐 Update translations for ko (update-all and add-missing). PR [#14923](https://github.com/fastapi/fastapi/pull/14923) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for uk (add-missing). PR [#14922](https://github.com/fastapi/fastapi/pull/14922) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for zh-hant (update-all and add-missing). PR [#14921](https://github.com/fastapi/fastapi/pull/14921) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for fr (update-all and add-missing). PR [#14920](https://github.com/fastapi/fastapi/pull/14920) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for de (update-all) . PR [#14910](https://github.com/fastapi/fastapi/pull/14910) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for ja (update-all). PR [#14916](https://github.com/fastapi/fastapi/pull/14916) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for pt (update-all). PR [#14912](https://github.com/fastapi/fastapi/pull/14912) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for es (update-all and add-missing). PR [#14911](https://github.com/fastapi/fastapi/pull/14911) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for zh (update-all). PR [#14917](https://github.com/fastapi/fastapi/pull/14917) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for uk (update-all). PR [#14914](https://github.com/fastapi/fastapi/pull/14914) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for tr (update-all). PR [#14913](https://github.com/fastapi/fastapi/pull/14913) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for ru (update-outdated). PR [#14909](https://github.com/fastapi/fastapi/pull/14909) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 👷 Always run tests on push to `master` branch and when run by scheduler. PR [#14940](https://github.com/fastapi/fastapi/pull/14940) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🎨 Upgrade typing syntax for Python 3.10. PR [#14932](https://github.com/fastapi/fastapi/pull/14932) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump cryptography from 46.0.4 to 46.0.5. PR [#14892](https://github.com/fastapi/fastapi/pull/14892) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pillow from 12.1.0 to 12.1.1. PR [#14899](https://github.com/fastapi/fastapi/pull/14899) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.129.0 (2026-02-12)
+
+### Breaking Changes
+
+* ➖ Drop support for Python 3.9. PR [#14897](https://github.com/fastapi/fastapi/pull/14897) by [@tiangolo](https://github.com/tiangolo).
+
+### Refactors
+
+* 🎨 Update internal types for Python 3.10. PR [#14898](https://github.com/fastapi/fastapi/pull/14898) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update highlights in webhooks docs. PR [#14905](https://github.com/fastapi/fastapi/pull/14905) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update source examples and docs from Python 3.9 to 3.10. PR [#14900](https://github.com/fastapi/fastapi/pull/14900) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔨 Update docs.py scripts to migrate Python 3.9 to Python 3.10. PR [#14906](https://github.com/fastapi/fastapi/pull/14906) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.8 (2026-02-11)
+
+### Docs
+
+* 📝 Fix grammar in `docs/en/docs/tutorial/first-steps.md`. PR [#14708](https://github.com/fastapi/fastapi/pull/14708) by [@SanjanaS10](https://github.com/SanjanaS10).
+
+### Internal
+
+* 🔨 Tweak PDM hook script. PR [#14895](https://github.com/fastapi/fastapi/pull/14895) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Update build setup for `fastapi-slim`, deprecate it, and make it only depend on `fastapi`. PR [#14894](https://github.com/fastapi/fastapi/pull/14894) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.7 (2026-02-10)
+
+### Features
+
+* ✨ Show a clear error on attempt to include router into itself. PR [#14258](https://github.com/fastapi/fastapi/pull/14258) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
+* ✨ Replace `dict` by `Mapping` on `HTTPException.headers`. PR [#12997](https://github.com/fastapi/fastapi/pull/12997) by [@rijenkii](https://github.com/rijenkii).
+
+### Refactors
+
+* ♻️ Simplify reading files in memory, do it sequentially instead of (fake) parallel. PR [#14884](https://github.com/fastapi/fastapi/pull/14884) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Use `dfn` tag for definitions instead of `abbr` in docs. PR [#14744](https://github.com/fastapi/fastapi/pull/14744) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ✅ Tweak comment in test to reference PR. PR [#14885](https://github.com/fastapi/fastapi/pull/14885) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update LLM-prompt for `abbr` and `dfn` tags. PR [#14747](https://github.com/fastapi/fastapi/pull/14747) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Test order for the submitted byte Files. PR [#14828](https://github.com/fastapi/fastapi/pull/14828) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.128.6 (2026-02-09)
+
+### Fixes
+
+* 🐛 Fix `on_startup` and `on_shutdown` parameters of `APIRouter`. PR [#14873](https://github.com/fastapi/fastapi/pull/14873) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Translations
+
 * 🌐 Update translations for zh (update-outdated). PR [#14843](https://github.com/fastapi/fastapi/pull/14843) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.5
+### Internal
+
+* ✅ Fix parameterized tests with snapshots. PR [#14875](https://github.com/fastapi/fastapi/pull/14875) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.128.5 (2026-02-08)
 
 ### Refactors
 
@@ -21,7 +704,7 @@ hide:
 
 * ✅ Add inline snapshot tests for OpenAPI before changes from Pydantic v2. PR [#14864](https://github.com/fastapi/fastapi/pull/14864) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.4
+## 0.128.4 (2026-02-07)
 
 ### Refactors
 
@@ -38,7 +721,7 @@ hide:
 
 * ⬆️ Upgrade development dependencies. PR [#14854](https://github.com/fastapi/fastapi/pull/14854) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.3
+## 0.128.3 (2026-02-06)
 
 ### Refactors
 
@@ -57,7 +740,7 @@ hide:
 * 👷 Run tests with Starlette from git. PR [#14849](https://github.com/fastapi/fastapi/pull/14849) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run tests with lower bound uv sync, upgrade `fastapi[all]` minimum dependencies: `ujson >=5.8.0`, `orjson >=3.9.3`. PR [#14846](https://github.com/fastapi/fastapi/pull/14846) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.2
+## 0.128.2 (2026-02-05)
 
 ### Features
 
@@ -93,7 +776,7 @@ hide:
 
 * 🔨 Add max pages to translate to configs. PR [#14840](https://github.com/fastapi/fastapi/pull/14840) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.1
+## 0.128.1 (2026-02-04)
 
 ### Features
 
@@ -193,7 +876,7 @@ hide:
 * 🔥 Remove test variants for Pydantic v1 in test_request_params. PR [#14612](https://github.com/fastapi/fastapi/pull/14612) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove Pydantic v1  specific test variants. PR [#14611](https://github.com/fastapi/fastapi/pull/14611) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.128.0
+## 0.128.0 (2025-12-27)
 
 ### Breaking Changes
 
@@ -203,7 +886,7 @@ hide:
 
 * ✅ Run performance tests only on Pydantic v2. PR [#14608](https://github.com/fastapi/fastapi/pull/14608) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.127.1
+## 0.127.1 (2025-12-26)
 
 ### Refactors
 
@@ -227,7 +910,7 @@ hide:
 * 👷 Run CodSpeed tests in parallel to other tests to speed up CI. PR [#14586](https://github.com/fastapi/fastapi/pull/14586) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update scripts and pre-commit to autofix files. PR [#14585](https://github.com/fastapi/fastapi/pull/14585) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.127.0
+## 0.127.0 (2025-12-21)
 
 ### Breaking Changes
 
@@ -242,7 +925,7 @@ hide:
 
 * ⬆️ Upgrade OpenAI model for translations to gpt-5.2. PR [#14579](https://github.com/fastapi/fastapi/pull/14579) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.126.0
+## 0.126.0 (2025-12-20)
 
 ### Upgrades
 
@@ -264,7 +947,7 @@ hide:
 * ⬆️ Use prek as a pre-commit alternative. PR [#14572](https://github.com/fastapi/fastapi/pull/14572) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add performance tests with CodSpeed. PR [#14558](https://github.com/fastapi/fastapi/pull/14558) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.125.0
+## 0.125.0 (2025-12-17)
 
 ### Breaking Changes
 
@@ -308,13 +991,13 @@ hide:
 * 👷 Update github-actions user for GitHub Actions workflows. PR [#14528](https://github.com/fastapi/fastapi/pull/14528) by [@tiangolo](https://github.com/tiangolo).
 * ➕ Add requirements for translations. PR [#14515](https://github.com/fastapi/fastapi/pull/14515) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.124.4
+## 0.124.4 (2025-12-12)
 
 ### Fixes
 
 * 🐛 Fix parameter aliases. PR [#14371](https://github.com/fastapi/fastapi/pull/14371) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.124.3
+## 0.124.3 (2025-12-12)
 
 ### Fixes
 
@@ -340,13 +1023,13 @@ hide:
 * 👷 Tweak coverage to not pass Smokeshow max file size limit. PR [#14507](https://github.com/fastapi/fastapi/pull/14507) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Expand test matrix to include Windows and MacOS. PR [#14171](https://github.com/fastapi/fastapi/pull/14171) by [@svlandeg](https://github.com/svlandeg).
 
-## 0.124.2
+## 0.124.2 (2025-12-10)
 
 ### Fixes
 
 * 🐛 Fix support for `if TYPE_CHECKING`,  non-evaluated stringified annotations. PR [#14485](https://github.com/fastapi/fastapi/pull/14485) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.124.1
+## 0.124.1 (2025-12-10)
 
 ### Fixes
 
@@ -361,7 +1044,7 @@ hide:
 
 * ✅ Add test for Pydantic v2, dataclasses, UUID, and `__annotations__`. PR [#14477](https://github.com/fastapi/fastapi/pull/14477) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.124.0
+## 0.124.0 (2025-12-06)
 
 ### Features
 
@@ -371,38 +1054,38 @@ hide:
 
 * ✏️ Fix typo in `scripts/mkdocs_hooks.py`. PR [#14457](https://github.com/fastapi/fastapi/pull/14457) by [@yujiteshima](https://github.com/yujiteshima).
 
-## 0.123.10
+## 0.123.10 (2025-12-05)
 
 ### Fixes
 
 * 🐛 Fix using class (not instance) dependency that has `__call__` method. PR [#14458](https://github.com/fastapi/fastapi/pull/14458) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🐛 Fix `separate_input_output_schemas=False` with `computed_field`. PR [#14453](https://github.com/fastapi/fastapi/pull/14453) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.123.9
+## 0.123.9 (2025-12-04)
 
 ### Fixes
 
 * 🐛 Fix OAuth2 scopes in OpenAPI in extra corner cases, parent dependency with scopes, sub-dependency security scheme without scopes. PR [#14459](https://github.com/fastapi/fastapi/pull/14459) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.123.8
+## 0.123.8 (2025-12-04)
 
 ### Fixes
 
 * 🐛 Fix OpenAPI security scheme OAuth2 scopes declaration, deduplicate security schemes with different scopes. PR [#14455](https://github.com/fastapi/fastapi/pull/14455) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.123.7
+## 0.123.7 (2025-12-04)
 
 ### Fixes
 
 * 🐛 Fix evaluating stringified annotations in Python 3.10. PR [#11355](https://github.com/fastapi/fastapi/pull/11355) by [@chaen](https://github.com/chaen).
 
-## 0.123.6
+## 0.123.6 (2025-12-04)
 
 ### Fixes
 
 * 🐛 Fix support for functools wraps and partial combined, for async and regular functions and classes in path operations and dependencies. PR [#14448](https://github.com/fastapi/fastapi/pull/14448) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.123.5
+## 0.123.5 (2025-12-02)
 
 ### Features
 
@@ -423,7 +1106,7 @@ hide:
 
 * 🌐 Sync German docs. PR [#14367](https://github.com/fastapi/fastapi/pull/14367) by [@nilslindemann](https://github.com/nilslindemann).
 
-## 0.123.4
+## 0.123.4 (2025-12-02)
 
 ### Fixes
 
@@ -433,14 +1116,14 @@ hide:
 
 * 📝 Fix docstring of `servers` parameter. PR [#14405](https://github.com/fastapi/fastapi/pull/14405) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.123.3
+## 0.123.3 (2025-12-02)
 
 ### Fixes
 
 * 🐛 Fix Query\Header\Cookie parameter model alias. PR [#14360](https://github.com/fastapi/fastapi/pull/14360) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🐛 Fix optional sequence handling in `serialize sequence value` with Pydantic V2. PR [#14297](https://github.com/fastapi/fastapi/pull/14297) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.123.2
+## 0.123.2 (2025-12-02)
 
 ### Fixes
 
@@ -455,7 +1138,7 @@ hide:
 * 📝 Update Primary Key notes for the SQL databases tutorial to avoid confusion. PR [#14120](https://github.com/fastapi/fastapi/pull/14120) by [@FlaviusRaducu](https://github.com/FlaviusRaducu).
 * 📝 Clarify estimation note in documentation. PR [#14070](https://github.com/fastapi/fastapi/pull/14070) by [@SaisakthiM](https://github.com/SaisakthiM).
 
-## 0.123.1
+## 0.123.1 (2025-12-02)
 
 ### Fixes
 
@@ -471,13 +1154,13 @@ hide:
 * 👥 Update FastAPI People - Sponsors. PR [#14422](https://github.com/fastapi/fastapi/pull/14422) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#14420](https://github.com/fastapi/fastapi/pull/14420) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.123.0
+## 0.123.0 (2025-11-30)
 
 ### Fixes
 
 * 🐛 Cache dependencies that don't use scopes and don't have sub-dependencies with scopes. PR [#14419](https://github.com/fastapi/fastapi/pull/14419) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.122.1
+## 0.122.1 (2025-11-30)
 
 ### Fixes
 
@@ -491,7 +1174,7 @@ hide:
 
 * ⬆ Bump markdown-include-variants from 0.0.5 to 0.0.6. PR [#14418](https://github.com/fastapi/fastapi/pull/14418) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.122.0
+## 0.122.0 (2025-11-24)
 
 ### Fixes
 
@@ -509,7 +1192,7 @@ hide:
 * 🛠️ Add `add-permalinks` and `add-permalinks-page` to `scripts/docs.py`. PR [#14033](https://github.com/fastapi/fastapi/pull/14033) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Upgrade Material for MkDocs and remove insiders. PR [#14375](https://github.com/fastapi/fastapi/pull/14375) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.121.3
+## 0.121.3 (2025-11-19)
 
 ### Refactors
 
@@ -525,7 +1208,7 @@ hide:
 * 📝 Fix typos in code comments. PR [#14364](https://github.com/fastapi/fastapi/pull/14364) by [@Edge-Seven](https://github.com/Edge-Seven).
 * 📝 Add docs for using FastAPI Cloud. PR [#14359](https://github.com/fastapi/fastapi/pull/14359) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.121.2
+## 0.121.2 (2025-11-13)
 
 ### Fixes
 
@@ -543,7 +1226,7 @@ hide:
 * 🌐 Sync Russian docs. PR [#14331](https://github.com/fastapi/fastapi/pull/14331) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync German docs. PR [#14317](https://github.com/fastapi/fastapi/pull/14317) by [@nilslindemann](https://github.com/nilslindemann).
 
-## 0.121.1
+## 0.121.1 (2025-11-08)
 
 ### Fixes
 
@@ -558,7 +1241,7 @@ hide:
 * ⬆ Bump ruff from 0.13.2 to 0.14.3. PR [#14276](https://github.com/fastapi/fastapi/pull/14276) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14289](https://github.com/fastapi/fastapi/pull/14289) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.121.0
+## 0.121.0 (2025-11-03)
 
 ### Features
 
@@ -573,13 +1256,13 @@ hide:
 * ⬆ Bump mkdocs-macros-plugin from 1.4.0 to 1.4.1. PR [#14277](https://github.com/fastapi/fastapi/pull/14277) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocstrings[python] from 0.26.1 to 0.30.1. PR [#14279](https://github.com/fastapi/fastapi/pull/14279) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.120.4
+## 0.120.4 (2025-10-31)
 
 ### Fixes
 
 * 🐛 Fix security schemes in OpenAPI when added at the top level app. PR [#14266](https://github.com/fastapi/fastapi/pull/14266) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.120.3
+## 0.120.3 (2025-10-30)
 
 ### Refactors
 
@@ -591,7 +1274,7 @@ hide:
 
 * 📝 Update note for untranslated pages. PR [#14257](https://github.com/fastapi/fastapi/pull/14257) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.120.2
+## 0.120.2 (2025-10-29)
 
 ### Fixes
 
@@ -604,7 +1287,7 @@ hide:
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14237](https://github.com/fastapi/fastapi/pull/14237) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump actions/upload-artifact from 4 to 5. PR [#14235](https://github.com/fastapi/fastapi/pull/14235) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.120.1
+## 0.120.1 (2025-10-27)
 
 ### Upgrades
 
@@ -614,7 +1297,7 @@ hide:
 
 * 🔧 Add `license` and `license-files` to `pyproject.toml`, remove `License` from `classifiers`. PR [#14230](https://github.com/fastapi/fastapi/pull/14230) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.120.0
+## 0.120.0 (2025-10-23)
 
 There are no major nor breaking changes in this release. ☕️
 
@@ -634,7 +1317,7 @@ This new version `0.120.0` only contains that transition to the new home package
 * 🛠️ Update German LLM prompt and test file. PR [#14189](https://github.com/fastapi/fastapi/pull/14189) by [@nilslindemann](https://github.com/nilslindemann).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14181](https://github.com/fastapi/fastapi/pull/14181) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.119.1
+## 0.119.1 (2025-10-20)
 
 ### Fixes
 
@@ -649,7 +1332,7 @@ This new version `0.120.0` only contains that transition to the new home package
 * 🔧 Add sponsor Requestly. PR [#14205](https://github.com/fastapi/fastapi/pull/14205) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Configure reminder for `waiting` label in `issue-manager`. PR [#14156](https://github.com/fastapi/fastapi/pull/14156) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.119.0
+## 0.119.0 (2025-10-11)
 
 FastAPI now (temporarily) supports both Pydantic v2 models and `pydantic.v1` models at the same time in the same app, to make it easier for any FastAPI apps still using Pydantic v1 to gradually but quickly **migrate to Pydantic v2**.
 
@@ -689,13 +1372,13 @@ You can read in the docs more about how to [Migrate from Pydantic v1 to Pydantic
 
 * ✨ Add support for `from pydantic.v1 import BaseModel`, mixed Pydantic v1 and v2 models in the same app. PR [#14168](https://github.com/fastapi/fastapi/pull/14168) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.118.3
+## 0.118.3 (2025-10-10)
 
 ### Upgrades
 
 * ⬆️ Add support for Python 3.14. PR [#14165](https://github.com/fastapi/fastapi/pull/14165) by [@svlandeg](https://github.com/svlandeg).
 
-## 0.118.2
+## 0.118.2 (2025-10-08)
 
 ### Fixes
 
@@ -705,7 +1388,7 @@ You can read in the docs more about how to [Migrate from Pydantic v1 to Pydantic
 
 * ⬆ Bump astral-sh/setup-uv from 6 to 7. PR [#14167](https://github.com/fastapi/fastapi/pull/14167) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.118.1
+## 0.118.1 (2025-10-08)
 
 ### Upgrades
 
@@ -740,7 +1423,7 @@ You can read in the docs more about how to [Migrate from Pydantic v1 to Pydantic
 * 👷 Update docs previews comment, single comment, add failure status. PR [#14129](https://github.com/fastapi/fastapi/pull/14129) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Modify `mkdocs_hooks.py` to add `title` to page's metadata (remove permalinks in social cards). PR [#14125](https://github.com/fastapi/fastapi/pull/14125) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-## 0.118.0
+## 0.118.0 (2025-09-29)
 
 ### Fixes
 
@@ -773,13 +1456,13 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 * 🐛 Fix sponsor display issue by hiding element on image error. PR [#14097](https://github.com/fastapi/fastapi/pull/14097) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Hide sponsor badge when sponsor image is not displayed. PR [#14096](https://github.com/fastapi/fastapi/pull/14096) by [@alejsdev](https://github.com/alejsdev).
 
-## 0.117.1
+## 0.117.1 (2025-09-20)
 
 ### Fixes
 
 * 🐛 Fix validation error when `File` is declared after `Form` parameter. PR [#11194](https://github.com/fastapi/fastapi/pull/11194) by [@thomasleveil](https://github.com/thomasleveil).
 
-## 0.117.0
+## 0.117.0 (2025-09-20)
 
 ### Features
 
@@ -820,7 +1503,7 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 * 🛠️ Update `docs.py generate-readme` command to remove permalinks from headers. PR [#14055](https://github.com/fastapi/fastapi/pull/14055) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆️ Update mypy to 1.14.1. PR [#12970](https://github.com/fastapi/fastapi/pull/12970) by [@tamird](https://github.com/tamird).
 
-## 0.116.2
+## 0.116.2 (2025-09-16)
 
 ### Upgrades
 
@@ -850,7 +1533,7 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 * 🌐 Add Persian translation for `docs/fa/docs/python-types.md`. PR [#13524](https://github.com/fastapi/fastapi/pull/13524) by [@Mohammad222PR](https://github.com/Mohammad222PR).
 * 🌐 Update Portuguese Translation for `docs/pt/docs/project-generation.md`. PR [#13875](https://github.com/fastapi/fastapi/pull/13875) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
 * 🌐 Add Persian translation for `docs/fa/docs/async.md`. PR [#13541](https://github.com/fastapi/fastapi/pull/13541) by [@Mohammad222PR](https://github.com/Mohammad222PR).
-* 🌐 Add Bangali translation for `docs/bn/about/index.md`. PR [#13882](https://github.com/fastapi/fastapi/pull/13882) by [@sajjadrahman56](https://github.com/sajjadrahman56).
+* 🌐 Add Bengali translation for `docs/bn/about/index.md`. PR [#13882](https://github.com/fastapi/fastapi/pull/13882) by [@sajjadrahman56](https://github.com/sajjadrahman56).
 
 ### Internal
 
@@ -901,7 +1584,7 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 * 👥 Update FastAPI People - Experts. PR [#13889](https://github.com/fastapi/fastapi/pull/13889) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update FastAPI People sleep interval, use external settings. PR [#13888](https://github.com/fastapi/fastapi/pull/13888) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.116.1
+## 0.116.1 (2025-07-11)
 
 ### Upgrades
 
@@ -915,7 +1598,7 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13871](https://github.com/fastapi/fastapi/pull/13871) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.116.0
+## 0.116.0 (2025-07-07)
 
 ### Features
 
@@ -942,7 +1625,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13843](https://github.com/fastapi/fastapi/pull/13843) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#13845](https://github.com/fastapi/fastapi/pull/13845) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.14
+## 0.115.14 (2025-06-26)
 
 ### Fixes
 
@@ -966,7 +1649,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13823](https://github.com/fastapi/fastapi/pull/13823) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.115.13
+## 0.115.13 (2025-06-17)
 
 ### Fixes
 
@@ -1071,7 +1754,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 🔧 Clean up `docs/en/mkdocs.yml` configuration file. PR [#13542](https://github.com/fastapi/fastapi/pull/13542) by [@svlandeg](https://github.com/svlandeg).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12986](https://github.com/fastapi/fastapi/pull/12986) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.115.12
+## 0.115.12 (2025-03-23)
 
 ### Fixes
 
@@ -1100,7 +1783,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: pause TestDriven. PR [#13446](https://github.com/fastapi/fastapi/pull/13446) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.11
+## 0.115.11 (2025-03-01)
 
 ### Fixes
 
@@ -1117,7 +1800,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 👥 Update FastAPI People - Contributors and Translators. PR [#13432](https://github.com/fastapi/fastapi/pull/13432) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#13433](https://github.com/fastapi/fastapi/pull/13433) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.10
+## 0.115.10 (2025-02-28)
 
 ### Fixes
 
@@ -1141,7 +1824,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-forms.md`. PR [#13383](https://github.com/fastapi/fastapi/pull/13383) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/testing.md`. PR [#13371](https://github.com/fastapi/fastapi/pull/13371) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 
-## 0.115.9
+## 0.115.9 (2025-02-27)
 
 ### Fixes
 
@@ -1204,7 +1887,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * ⬆ Bump inline-snapshot from 0.18.1 to 0.19.3. PR [#13298](https://github.com/fastapi/fastapi/pull/13298) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors, add Permit. PR [#13288](https://github.com/fastapi/fastapi/pull/13288) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.8
+## 0.115.8 (2025-01-30)
 
 ### Fixes
 
@@ -1239,7 +1922,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 🔨 Update FastAPI People Experts script, refactor and optimize data fetching to handle rate limits. PR [#13267](https://github.com/fastapi/fastapi/pull/13267) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.3 to 1.12.4. PR [#13251](https://github.com/fastapi/fastapi/pull/13251) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.115.7
+## 0.115.7 (2025-01-22)
 
 ### Upgrades
 
@@ -1371,7 +2054,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 🔧 Update team members. PR [#13033](https://github.com/fastapi/fastapi/pull/13033) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update sponsors: remove Codacy. PR [#13032](https://github.com/fastapi/fastapi/pull/13032) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.6
+## 0.115.6 (2024-12-03)
 
 ### Fixes
 
@@ -1405,7 +2088,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12954](https://github.com/fastapi/fastapi/pull/12954) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.115.5
+## 0.115.5 (2024-11-12)
 
 ### Refactors
 
@@ -1542,7 +2225,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 🔧 Update sponsors: add Render. PR [#12733](https://github.com/fastapi/fastapi/pull/12733) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12707](https://github.com/fastapi/fastapi/pull/12707) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.115.4
+## 0.115.4 (2024-10-27)
 
 ### Refactors
 
@@ -1604,7 +2287,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 👷 Update GitHub Action to deploy docs previews to handle missing deploy comments. PR [#12527](https://github.com/fastapi/fastapi/pull/12527) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12505](https://github.com/fastapi/fastapi/pull/12505) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.115.3
+## 0.115.3 (2024-10-22)
 
 ### Upgrades
 
@@ -1640,13 +2323,13 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * 👷 Use uv in CI. PR [#12281](https://github.com/fastapi/fastapi/pull/12281) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Update httpx requirement from <0.25.0,>=0.23.0 to >=0.23.0,<0.28.0. PR [#11509](https://github.com/fastapi/fastapi/pull/11509) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.115.2
+## 0.115.2 (2024-10-12)
 
 ### Upgrades
 
 * ⬆️ Upgrade Starlette to `>=0.37.2,<0.41.0`. PR [#12431](https://github.com/fastapi/fastapi/pull/12431) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.115.1
+## 0.115.1 (2024-10-12)
 
 ### Fixes
 
@@ -1692,7 +2375,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * ➕ Add docs dependency: markdown-include-variants. PR [#12399](https://github.com/fastapi/fastapi/pull/12399) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Fix extra mdx-base-path paths. PR [#12397](https://github.com/fastapi/fastapi/pull/12397) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Tweak labeler to not override custom labels. PR [#12398](https://github.com/fastapi/fastapi/pull/12398) by [@tiangolo](https://github.com/tiangolo).
-* 👷 Update worfkow deploy-docs-notify URL. PR [#12392](https://github.com/fastapi/fastapi/pull/12392) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update workflow deploy-docs-notify URL. PR [#12392](https://github.com/fastapi/fastapi/pull/12392) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update Cloudflare GitHub Action. PR [#12387](https://github.com/fastapi/fastapi/pull/12387) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR [#12386](https://github.com/fastapi/fastapi/pull/12386) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocstrings[python] from 0.25.1 to 0.26.1. PR [#12371](https://github.com/fastapi/fastapi/pull/12371) by [@dependabot[bot]](https://github.com/apps/dependabot).
@@ -1702,7 +2385,7 @@ If you want to install `fastapi` with the standard dependencies but without `fas
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12253](https://github.com/fastapi/fastapi/pull/12253) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ✏️ Fix docstring typos in http security. PR [#12223](https://github.com/fastapi/fastapi/pull/12223) by [@albertvillanova](https://github.com/albertvillanova).
 
-## 0.115.0
+## 0.115.0 (2024-09-17)
 
 ### Highlights
 
@@ -1836,7 +2519,7 @@ This applies to `Query`, `Header`, and `Cookie` parameters, read the new docs:
 
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12204](https://github.com/fastapi/fastapi/pull/12204) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.114.2
+## 0.114.2 (2024-09-13)
 
 ### Fixes
 
@@ -1853,7 +2536,7 @@ This applies to `Query`, `Header`, and `Cookie` parameters, read the new docs:
 * 💡 Add comments with instructions for Playwright screenshot scripts. PR [#12193](https://github.com/fastapi/fastapi/pull/12193) by [@tiangolo](https://github.com/tiangolo).
 * ➕ Add inline-snapshot for tests. PR [#12189](https://github.com/fastapi/fastapi/pull/12189) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.114.1
+## 0.114.1 (2024-09-11)
 
 ### Refactors
 
@@ -1878,7 +2561,7 @@ This applies to `Query`, `Header`, and `Cookie` parameters, read the new docs:
 * 👷 Update `issue-manager.yml`. PR [#12159](https://github.com/fastapi/fastapi/pull/12159) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix typo in `fastapi/params.py`. PR [#12143](https://github.com/fastapi/fastapi/pull/12143) by [@surreal30](https://github.com/surreal30).
 
-## 0.114.0
+## 0.114.0 (2024-09-06)
 
 You can restrict form fields to only include those declared in a Pydantic model and forbid any extra field sent in the request using Pydantic's `model_config = {"extra": "forbid"}`:
 
@@ -1916,7 +2599,7 @@ Read the new docs: [Form Models - Forbid Extra Form Fields](https://fastapi.tian
 
 * ✅ Update internal tests for latest Pydantic, including CI tweaks to install the latest Pydantic. PR [#12147](https://github.com/fastapi/fastapi/pull/12147) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.113.0
+## 0.113.0 (2024-09-05)
 
 Now you can declare form fields with Pydantic models:
 
@@ -1949,7 +2632,7 @@ Read the new docs: [Form Models](https://fastapi.tiangolo.com/tutorial/request-f
 
 * 🔧 Update sponsors: Coherence link. PR [#12130](https://github.com/fastapi/fastapi/pull/12130) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.112.4
+## 0.112.4 (2024-09-05)
 
 This release is mainly a big internal refactor to enable adding support for Pydantic models for `Form` fields, but that feature comes in the next release.
 
@@ -1964,7 +2647,7 @@ This release shouldn't affect apps using FastAPI in any way. You don't even have
 * ⏪️ Temporarily revert "✨ Add support for Pydantic models in `Form` parameters" to make a checkpoint release. PR [#12128](https://github.com/fastapi/fastapi/pull/12128) by [@tiangolo](https://github.com/tiangolo). Restored by PR [#12129](https://github.com/fastapi/fastapi/pull/12129).
 * ✨ Add support for Pydantic models in `Form` parameters. PR [#12127](https://github.com/fastapi/fastapi/pull/12127) by [@tiangolo](https://github.com/tiangolo). Reverted by PR [#12128](https://github.com/fastapi/fastapi/pull/12128) to make a checkpoint release with only refactors. Restored by PR [#12129](https://github.com/fastapi/fastapi/pull/12129).
 
-## 0.112.3
+## 0.112.3 (2024-09-05)
 
 This release is mainly internal refactors, it shouldn't affect apps using FastAPI in any way. You don't even have to upgrade to this version yet. There are a few bigger releases coming right after. 🚀
 
@@ -2011,7 +2694,7 @@ This release is mainly internal refactors, it shouldn't affect apps using FastAP
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12076](https://github.com/fastapi/fastapi/pull/12076) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 👷 Update `latest-changes` GitHub Action. PR [#12073](https://github.com/fastapi/fastapi/pull/12073) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.112.2
+## 0.112.2 (2024-08-24)
 
 ### Fixes
 
@@ -2062,7 +2745,7 @@ This release is mainly internal refactors, it shouldn't affect apps using FastAP
 * 🙈 Add .coverage* to `.gitignore`. PR [#11940](https://github.com/fastapi/fastapi/pull/11940) by [@gitworkflows](https://github.com/gitworkflows).
 * ⚙️ Record and show test coverage contexts (what test covers which line). PR [#11518](https://github.com/fastapi/fastapi/pull/11518) by [@slafs](https://github.com/slafs).
 
-## 0.112.1
+## 0.112.1 (2024-08-15)
 
 ### Upgrades
 
@@ -2114,7 +2797,7 @@ This release is mainly internal refactors, it shouldn't affect apps using FastAP
 * 🔧 Update docs setup with latest configs and plugins. PR [#11953](https://github.com/fastapi/fastapi/pull/11953) by [@tiangolo](https://github.com/tiangolo).
 * 🔇 Ignore warning from attrs in Trio. PR [#11949](https://github.com/fastapi/fastapi/pull/11949) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.112.0
+## 0.112.0 (2024-08-02)
 
 ### Breaking Changes
 
@@ -2184,7 +2867,7 @@ Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here
 * 🔧 Update sponsors: remove TalkPython. PR [#11861](https://github.com/tiangolo/fastapi/pull/11861) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update docs Termynal scripts to not include line nums for local dev. PR [#11854](https://github.com/tiangolo/fastapi/pull/11854) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.111.1
+## 0.111.1 (2024-07-14)
 
 ### Upgrades
 
@@ -2208,7 +2891,7 @@ Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here
 * 📝 Update `security/first-steps.md`. PR [#11673](https://github.com/tiangolo/fastapi/pull/11673) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update note in `path-params-numeric-validations.md`. PR [#11672](https://github.com/tiangolo/fastapi/pull/11672) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Tweak intro docs about `Annotated` and `Query()` params. PR [#11664](https://github.com/tiangolo/fastapi/pull/11664) by [@tiangolo](https://github.com/tiangolo).
-* 📝 Update JWT auth documentation to use PyJWT instead of pyhon-jose. PR [#11589](https://github.com/tiangolo/fastapi/pull/11589) by [@estebanx64](https://github.com/estebanx64).
+* 📝 Update JWT auth documentation to use PyJWT instead of python-jose. PR [#11589](https://github.com/tiangolo/fastapi/pull/11589) by [@estebanx64](https://github.com/estebanx64).
 * 📝 Update docs. PR [#11603](https://github.com/tiangolo/fastapi/pull/11603) by [@alejsdev](https://github.com/alejsdev).
 * ✏️ Fix typo: convert every 're-use' to 'reuse'.. PR [#11598](https://github.com/tiangolo/fastapi/pull/11598) by [@hasansezertasan](https://github.com/hasansezertasan).
 * ✏️ Fix typo in `fastapi/applications.py`. PR [#11593](https://github.com/tiangolo/fastapi/pull/11593) by [@petarmaric](https://github.com/petarmaric).
@@ -2278,7 +2961,7 @@ Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here
 * 👷 Tweak CI for test-redistribute, add needed env vars for slim. PR [#11549](https://github.com/tiangolo/fastapi/pull/11549) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#11511](https://github.com/tiangolo/fastapi/pull/11511) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.111.0
+## 0.111.0 (2024-05-03)
 
 ### Features
 
@@ -2317,7 +3000,7 @@ INFO:     Application startup complete.
 
 * 🔧 Add configs and setup for `fastapi-slim` including optional extras `fastapi-slim[standard]`, and `fastapi` including by default the same `standard` extras. PR [#11503](https://github.com/tiangolo/fastapi/pull/11503) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.110.3
+## 0.110.3 (2024-04-30)
 
 ### Docs
 
@@ -2341,7 +3024,7 @@ INFO:     Application startup complete.
 * ⬆ Bump pillow from 10.2.0 to 10.3.0. PR [#11403](https://github.com/tiangolo/fastapi/pull/11403) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Ungroup dependabot updates. PR [#11465](https://github.com/tiangolo/fastapi/pull/11465) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.110.2
+## 0.110.2 (2024-04-19)
 
 ### Fixes
 
@@ -2379,7 +3062,7 @@ INFO:     Application startup complete.
 
 * ⬆️ Upgrade version of typer for docs. PR [#11393](https://github.com/tiangolo/fastapi/pull/11393) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.110.1
+## 0.110.1 (2024-04-02)
 
 ### Fixes
 
@@ -2568,7 +3251,7 @@ INFO:     Application startup complete.
 * 🔥 Remove Jina AI QA Bot from the docs. PR [#11268](https://github.com/tiangolo/fastapi/pull/11268) by [@nan-wang](https://github.com/nan-wang).
 * 🔧 Update sponsors, remove Jina, remove Powens, move TestDriven.io. PR [#11213](https://github.com/tiangolo/fastapi/pull/11213) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.110.0
+## 0.110.0 (2024-02-24)
 
 ### Breaking Changes
 
@@ -2629,7 +3312,7 @@ def my_dep():
 * 🌐 Add Spanish translation for `docs/es/docs/benchmarks.md`. PR [#10928](https://github.com/tiangolo/fastapi/pull/10928) by [@pablocm83](https://github.com/pablocm83).
 * 🌐 Add Spanish translation for `docs/es/docs/advanced/response-change-status-code.md`. PR [#11100](https://github.com/tiangolo/fastapi/pull/11100) by [@alejsdev](https://github.com/alejsdev).
 
-## 0.109.2
+## 0.109.2 (2024-02-04)
 
 ### Upgrades
 
@@ -2643,11 +3326,11 @@ def my_dep():
 
 * 🍱 Add new FastAPI logo. PR [#11090](https://github.com/tiangolo/fastapi/pull/11090) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.109.1
+## 0.109.1 (2024-02-03)
 
 ### Security fixes
 
-* ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDos attack. You can also simply upgrade `python-multipart`.
+* ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDoS attack. You can also simply upgrade `python-multipart`.
 
 Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiangolo/fastapi/security/advisories/GHSA-qf9m-vfgh-m389).
 
@@ -2807,7 +3490,7 @@ Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiango
 * ⬆ Bump dawidd6/action-download-artifact from 2.28.0 to 3.0.0. PR [#10777](https://github.com/tiangolo/fastapi/pull/10777) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧  Add support for translations to languages with a longer code name, like `zh-hant`. PR [#10950](https://github.com/tiangolo/fastapi/pull/10950) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.109.0
+## 0.109.0 (2024-01-11)
 
 ### Features
 
@@ -2877,13 +3560,13 @@ Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiango
 * 👷 Upgrade GitHub Action label-approved. PR [#10913](https://github.com/tiangolo/fastapi/pull/10913) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade GitHub Action label-approved. PR [#10905](https://github.com/tiangolo/fastapi/pull/10905) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.108.0
+## 0.108.0 (2023-12-26)
 
 ### Upgrades
 
 * ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. Remove pin of AnyIO `>=3.7.1,<4.0.0`, add support for AnyIO 4.x.x. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.107.0
+## 0.107.0 (2023-12-26)
 
 ### Upgrades
 
@@ -2894,7 +3577,7 @@ Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiango
 * 📝 Add docs: Node.js script alternative to update OpenAPI for generated clients. PR [#10845](https://github.com/tiangolo/fastapi/pull/10845) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Restructure Docs section in Contributing page. PR [#10844](https://github.com/tiangolo/fastapi/pull/10844) by [@alejsdev](https://github.com/alejsdev).
 
-## 0.106.0
+## 0.106.0 (2023-12-25)
 
 ### Breaking Changes
 
@@ -3010,7 +3693,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 
 * 👥 Update FastAPI People. PR [#10567](https://github.com/tiangolo/fastapi/pull/10567) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.105.0
+## 0.105.0 (2023-12-12)
 
 ### Features
 
@@ -3035,7 +3718,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 📝 Update release notes, move and check latest-changes. PR [#10588](https://github.com/tiangolo/fastapi/pull/10588) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Upgrade latest-changes GitHub Action. PR [#10587](https://github.com/tiangolo/fastapi/pull/10587) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.104.1
+## 0.104.1 (2023-10-30)
 
 ### Fixes
 
@@ -3070,7 +3753,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 🐛 Fix overriding MKDocs theme lang in hook. PR [#10490](https://github.com/tiangolo/fastapi/pull/10490) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Drop/close Gitter chat. Questions should go to GitHub Discussions, free conversations to Discord.. PR [#10485](https://github.com/tiangolo/fastapi/pull/10485) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.104.0
+## 0.104.0 (2023-10-18)
 
 ## Features
 
@@ -3088,7 +3771,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 🔧 Update sponsors, Bump.sh images. PR [#10381](https://github.com/tiangolo/fastapi/pull/10381) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#10363](https://github.com/tiangolo/fastapi/pull/10363) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.103.2
+## 0.103.2 (2023-09-28)
 
 ### Refactors
 
@@ -3115,7 +3798,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 🔧 Update sponsors, remove Svix. PR [#10228](https://github.com/tiangolo/fastapi/pull/10228) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, add Bump.sh. PR [#10227](https://github.com/tiangolo/fastapi/pull/10227) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.103.1
+## 0.103.1 (2023-09-02)
 
 ### Fixes
 
@@ -3150,7 +3833,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 
 * 👥 Update FastAPI People. PR [#10186](https://github.com/tiangolo/fastapi/pull/10186) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.103.0
+## 0.103.0 (2023-08-26)
 
 ### Features
 
@@ -3161,7 +3844,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 
 * 📝 Add note to docs about Separate Input and Output Schemas with FastAPI version. PR [#10150](https://github.com/tiangolo/fastapi/pull/10150) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.102.0
+## 0.102.0 (2023-08-25)
 
 ### Features
 
@@ -3185,7 +3868,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 
 * 🔧 Update sponsors, add Speakeasy. PR [#10098](https://github.com/tiangolo/fastapi/pull/10098) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.101.1
+## 0.101.1 (2023-08-14)
 
 ### Fixes
 
@@ -3222,7 +3905,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * ⬆ Bump mypy from 1.4.0 to 1.4.1. PR [#9756](https://github.com/tiangolo/fastapi/pull/9756) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocs-material from 9.1.17 to 9.1.21. PR [#9960](https://github.com/tiangolo/fastapi/pull/9960) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.101.0
+## 0.101.0 (2023-08-04)
 
 ### Features
 
@@ -3257,7 +3940,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 🔧 Update sponsor Fern. PR [#9979](https://github.com/tiangolo/fastapi/pull/9979) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update CI debug mode with Tmate. PR [#9977](https://github.com/tiangolo/fastapi/pull/9977) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.100.1
+## 0.100.1 (2023-07-27)
 
 ### Fixes
 
@@ -3289,7 +3972,7 @@ The new execution flow can be found in the docs: [Execution of dependencies with
 * 👷 Update MkDocs Material token. PR [#9843](https://github.com/tiangolo/fastapi/pull/9843) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update token for latest changes. PR [#9842](https://github.com/tiangolo/fastapi/pull/9842) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.100.0
+## 0.100.0 (2023-07-07)
 
 ✨ Support for **Pydantic v2** ✨
 
@@ -3360,14 +4043,14 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * The attribute `schema_extra` for the internal class `Config` has been replaced by the key `json_schema_extra` in the new `model_config` dict.
     * You can read more about it in the docs for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
 * When you install `"fastapi[all]"` it now also includes:
-    * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
-    * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+    * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - for settings management.
+    * [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - for extra types to be used with Pydantic.
 * Now Pydantic Settings is an additional optional package (included in `"fastapi[all]"`). To use settings you should now import `from pydantic_settings import BaseSettings` instead of importing from `pydantic` directly.
     * You can read more about it in the docs for [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/).
 
 * PR [#9816](https://github.com/tiangolo/fastapi/pull/9816) by [@tiangolo](https://github.com/tiangolo), included all the work done (in multiple PRs) on the beta branch (`main-pv2`).
 
-## 0.99.1
+## 0.99.1 (2023-07-02)
 
 ### Fixes
 
@@ -3377,15 +4060,15 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 
 * 📝 Update source examples to use new JSON Schema examples field. PR [#9776](https://github.com/tiangolo/fastapi/pull/9776) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.99.0
+## 0.99.0 (2023-06-30)
 
 ### Features
 
 * ✨ Add support for OpenAPI 3.1.0. PR [#9770](https://github.com/tiangolo/fastapi/pull/9770) by [@tiangolo](https://github.com/tiangolo).
-    * New support for documenting **webhooks**, read the new docs here: <a href="https://fastapi.tiangolo.com/advanced/openapi-webhooks/" class="external-link" target="_blank">Advanced User Guide: OpenAPI Webhooks</a>.
+    * New support for documenting **webhooks**, read the new docs here: [Advanced User Guide: OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
     * Upgrade OpenAPI 3.1.0, this uses JSON Schema 2020-12.
     * Upgrade Swagger UI to version 5.x.x, that supports OpenAPI 3.1.0.
-    * Updated `examples` field in `Query()`, `Cookie()`, `Body()`, etc. based on the latest JSON Schema and OpenAPI. Now it takes a list of examples and they are included directly in the JSON Schema, not outside. Read more about it (including the historical technical details) in the updated docs: <a href="https://fastapi.tiangolo.com/tutorial/schema-extra-example/" class="external-link" target="_blank">Tutorial: Declare Request Example Data</a>.
+    * Updated `examples` field in `Query()`, `Cookie()`, `Body()`, etc. based on the latest JSON Schema and OpenAPI. Now it takes a list of examples and they are included directly in the JSON Schema, not outside. Read more about it (including the historical technical details) in the updated docs: [Tutorial: Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
 
 * ✨ Add support for `deque` objects and children in `jsonable_encoder`. PR [#9433](https://github.com/tiangolo/fastapi/pull/9433) by [@cranium](https://github.com/cranium).
 
@@ -3416,7 +4099,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * ⬆️ Upgrade MkDocs and MkDocs Material. PR [#9729](https://github.com/tiangolo/fastapi/pull/9729) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Build and deploy docs only on docs changes. PR [#9728](https://github.com/tiangolo/fastapi/pull/9728) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.98.0
+## 0.98.0 (2023-06-22)
 
 ### Features
 
@@ -3460,7 +4143,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 🔧 Update sponsors, add Flint. PR [#9699](https://github.com/tiangolo/fastapi/pull/9699) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Lint in CI only once, only with one version of Python, run tests with all of them. PR [#9686](https://github.com/tiangolo/fastapi/pull/9686) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.97.0
+## 0.97.0 (2023-06-11)
 
 ### Features
 
@@ -3482,7 +4165,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 💚 Update CI cache to fix installs when dependencies change. PR [#9659](https://github.com/tiangolo/fastapi/pull/9659) by [@tiangolo](https://github.com/tiangolo).
 * ⬇️ Separate requirements for development into their own requirements.txt files, they shouldn't be extras. PR [#9655](https://github.com/tiangolo/fastapi/pull/9655) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.96.1
+## 0.96.1 (2023-06-10)
 
 ### Fixes
 
@@ -3515,7 +4198,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 👷 Add custom token to Smokeshow and Preview Docs for download-artifact, to prevent API rate limits. PR [#9646](https://github.com/tiangolo/fastapi/pull/9646) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add custom tokens for GitHub Actions to avoid rate limits. PR [#9647](https://github.com/tiangolo/fastapi/pull/9647) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.96.0
+## 0.96.0 (2023-06-03)
 
 ### Features
 
@@ -3545,7 +4228,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 👥 Update FastAPI People. PR [#9602](https://github.com/tiangolo/fastapi/pull/9602) by [@github-actions[bot]](https://github.com/apps/github-actions).
 * 🔧 Update sponsors, remove InvestSuite. PR [#9612](https://github.com/tiangolo/fastapi/pull/9612) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.95.2
+## 0.95.2 (2023-05-16)
 
 * ⬆️ Upgrade Starlette version to `>=0.27.0` for a security release. PR [#9541](https://github.com/tiangolo/fastapi/pull/9541) by [@tiangolo](https://github.com/tiangolo). Details on [Starlette's security advisory](https://github.com/encode/starlette/security/advisories/GHSA-v5gw-mw7f-84px).
 
@@ -3571,7 +4254,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 💚 Disable setup-python pip cache in CI. PR [#9438](https://github.com/tiangolo/fastapi/pull/9438) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.6.4 to 1.8.5. PR [#9346](https://github.com/tiangolo/fastapi/pull/9346) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.95.1
+## 0.95.1 (2023-04-13)
 
 ### Fixes
 
@@ -3608,7 +4291,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * 🔧 Update sponsors: remove Jina. PR [#9388](https://github.com/tiangolo/fastapi/pull/9388) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, add databento, remove Ines's course and StriveWorks. PR [#9351](https://github.com/tiangolo/fastapi/pull/9351) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.95.0
+## 0.95.0 (2023-03-18)
 
 ### Highlights
 
@@ -3717,13 +4400,13 @@ Special thanks to [@nzig](https://github.com/nzig) for the core implementation a
 * 📝 Update order of examples, latest Python version first, and simplify version tab names. PR [#9269](https://github.com/tiangolo/fastapi/pull/9269) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update all docs to use `Annotated` as the main recommendation, with new examples and tests. PR [#9268](https://github.com/tiangolo/fastapi/pull/9268) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.94.1
+## 0.94.1 (2023-03-14)
 
 ### Fixes
 
 * 🎨 Fix types for lifespan, upgrade Starlette to 0.26.1. PR [#9245](https://github.com/tiangolo/fastapi/pull/9245) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.94.0
+## 0.94.0 (2023-03-10)
 
 ### Upgrades
 
@@ -3746,7 +4429,7 @@ Special thanks to [@nzig](https://github.com/nzig) for the core implementation a
 * ⬆ Bump dawidd6/action-download-artifact from 2.24.3 to 2.26.0. PR [#6034](https://github.com/tiangolo/fastapi/pull/6034) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#5709](https://github.com/tiangolo/fastapi/pull/5709) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.93.0
+## 0.93.0 (2023-03-07)
 
 ### Features
 
@@ -3815,7 +4498,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
 * ⬆️ Upgrade analytics. PR [#6025](https://github.com/tiangolo/fastapi/pull/6025) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade and re-enable installing Typer-CLI. PR [#6008](https://github.com/tiangolo/fastapi/pull/6008) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.92.0
+## 0.92.0 (2023-02-14)
 
 🚨 This is a security fix. Please upgrade as soon as possible.
 
@@ -3826,7 +4509,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
     * Only applications using forms (e.g. file uploads) could be affected.
     * For most cases, upgrading won't have any breaking changes.
 
-## 0.91.0
+## 0.91.0 (2023-02-10)
 
 ### Upgrades
 
@@ -3834,7 +4517,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
     * This can solve nuanced errors when using middlewares. Before Starlette `0.24.0`, a new instance of each middleware class would be created when a new middleware was added. That normally was not a problem, unless the middleware class expected to be created only once, with only one instance, that happened in some cases. This upgrade would solve those cases (thanks [@adriangb](https://github.com/adriangb)! Starlette PR [#2017](https://github.com/encode/starlette/pull/2017)). Now the middleware class instances are created once, right before the first request (the first time the app is called).
     * If you depended on that previous behavior, you might need to update your code. As always, make sure your tests pass before merging the upgrade.
 
-## 0.90.1
+## 0.90.1 (2023-02-09)
 
 ### Upgrades
 
@@ -3854,7 +4537,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
 
 * ✏ Update `zip-docs.sh` internal script, remove extra space. PR [#5931](https://github.com/tiangolo/fastapi/pull/5931) by [@JuanPerdomo00](https://github.com/JuanPerdomo00).
 
-## 0.90.0
+## 0.90.0 (2023-02-08)
 
 ### Upgrades
 
@@ -3886,7 +4569,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
 * 🔧 Update Sponsor Budget Insight to Powens. PR [#5916](https://github.com/tiangolo/fastapi/pull/5916) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update GitHub Sponsors badge data. PR [#5915](https://github.com/tiangolo/fastapi/pull/5915) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.89.1
+## 0.89.1 (2023-01-10)
 
 ### Fixes
 
@@ -3901,7 +4584,7 @@ Read more about it in the new docs: [Advanced User Guide: Lifespan Events](https
 
 * 🌐 Add Turkish translation for `docs/tr/docs/tutorial/first_steps.md`. PR [#5691](https://github.com/tiangolo/fastapi/pull/5691) by [@Kadermiyanyedi](https://github.com/Kadermiyanyedi).
 
-## 0.89.0
+## 0.89.0 (2023-01-07)
 
 ### Features
 
@@ -3971,7 +4654,7 @@ Read more about it in the new docs: [Response Model - Return Type](https://fasta
 * 🔧 Update sponsors, disable course bundle. PR [#5713](https://github.com/tiangolo/fastapi/pull/5713) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Update typer[all] requirement from <0.7.0,>=0.6.1 to >=0.6.1,<0.8.0. PR [#5639](https://github.com/tiangolo/fastapi/pull/5639) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.88.0
+## 0.88.0 (2022-11-27)
 
 ### Upgrades
 
@@ -3996,7 +4679,7 @@ Read more about it in the new docs: [Response Model - Return Type](https://fasta
 * 👷 Update `setup-python` action in tests to use new caching feature. PR [#5680](https://github.com/tiangolo/fastapi/pull/5680) by [@madkinsz](https://github.com/madkinsz).
 * ⬆ Bump black from 22.8.0 to 22.10.0. PR [#5569](https://github.com/tiangolo/fastapi/pull/5569) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
-## 0.87.0
+## 0.87.0 (2022-11-13)
 
 Highlights of this release:
 
@@ -4035,7 +4718,7 @@ Highlights of this release:
 * ⬆ Bump dawidd6/action-download-artifact from 2.24.0 to 2.24.1. PR [#5603](https://github.com/tiangolo/fastapi/pull/5603) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 📝 Update coverage badge to use Samuel Colvin's Smokeshow. PR [#5585](https://github.com/tiangolo/fastapi/pull/5585) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.86.0
+## 0.86.0 (2022-11-03)
 
 ### Features
 
@@ -4063,7 +4746,7 @@ Highlights of this release:
 * 👷 Switch from Codecov to Smokeshow plus pytest-cov to pure coverage for internal tests. PR [#5583](https://github.com/tiangolo/fastapi/pull/5583) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#5571](https://github.com/tiangolo/fastapi/pull/5571) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
-## 0.85.2
+## 0.85.2 (2022-10-31)
 
 ### Docs
 
@@ -4101,7 +4784,7 @@ Highlights of this release:
 * ⬆️ Upgrade Typer to include Rich in scripts for docs. PR [#5502](https://github.com/tiangolo/fastapi/pull/5502) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix calling `mkdocs` for languages as a subprocess to fix/enable MkDocs Material search plugin. PR [#5501](https://github.com/tiangolo/fastapi/pull/5501) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.85.1
+## 0.85.1 (2022-10-14)
 
 ### Fixes
 
@@ -4117,7 +4800,7 @@ Highlights of this release:
 * 🔧 Disable Material for MkDocs search plugin. PR [#5495](https://github.com/tiangolo/fastapi/pull/5495) by [@tiangolo](https://github.com/tiangolo).
 * 🔇 Ignore Trio warning in tests for CI. PR [#5483](https://github.com/tiangolo/fastapi/pull/5483) by [@samuelcolvin](https://github.com/samuelcolvin).
 
-## 0.85.0
+## 0.85.0 (2022-09-15)
 
 ### Features
 
@@ -4132,7 +4815,7 @@ Highlights of this release:
 * ⬆️ Upgrade mypy and tweak internal type annotations. PR [#5398](https://github.com/tiangolo/fastapi/pull/5398) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update test dependencies, upgrade Pytest, move dependencies from dev to test. PR [#5396](https://github.com/tiangolo/fastapi/pull/5396) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.84.0
+## 0.84.0 (2022-09-14)
 
 ### Breaking Changes
 
@@ -4140,7 +4823,7 @@ This version of FastAPI drops support for Python 3.6. 🔥 Please upgrade to a s
 
 * 🔧 Update package metadata, drop support for Python 3.6, move build internals from Flit to Hatch. PR [#5240](https://github.com/tiangolo/fastapi/pull/5240) by [@ofek](https://github.com/ofek).
 
-## 0.83.0
+## 0.83.0 (2022-09-11)
 
 🚨 This is probably the last release (or one of the last releases) to support Python 3.6. 🔥
 
@@ -4155,7 +4838,7 @@ You hopefully updated to a supported version of Python a while ago. If you haven
 ### Fixes
 
 * 🐛 Fix `RuntimeError` raised when `HTTPException` has a status code with no content. PR [#5365](https://github.com/tiangolo/fastapi/pull/5365) by [@iudeen](https://github.com/iudeen).
-* 🐛 Fix empty response body when default `status_code` is empty but the a `Response` parameter with `response.status_code` is set. PR [#5360](https://github.com/tiangolo/fastapi/pull/5360) by [@tmeckel](https://github.com/tmeckel).
+* 🐛 Fix empty response body when default `status_code` is empty but the `Response` parameter with `response.status_code` is set. PR [#5360](https://github.com/tiangolo/fastapi/pull/5360) by [@tmeckel](https://github.com/tmeckel).
 
 ### Docs
 
@@ -4165,7 +4848,7 @@ You hopefully updated to a supported version of Python a while ago. If you haven
 
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#5352](https://github.com/tiangolo/fastapi/pull/5352) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
-## 0.82.0
+## 0.82.0 (2022-09-04)
 
 🚨 This is probably the last release (or one of the last releases) to support Python 3.6. 🔥
 
@@ -4212,7 +4895,7 @@ You hopefully updated to a supported version of Python a while ago. If you haven
 * ♻ Internal small refactor, move `operation_id` parameter position in delete method for consistency with the code. PR [#4474](https://github.com/tiangolo/fastapi/pull/4474) by [@hiel](https://github.com/hiel).
 * 🔧 Update sponsors, disable ImgWhale. PR [#5338](https://github.com/tiangolo/fastapi/pull/5338) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.81.0
+## 0.81.0 (2022-08-26)
 
 ### Features
 
@@ -4265,7 +4948,7 @@ You hopefully updated to a supported version of Python a while ago. If you haven
 * ⬆ Upgrade version pin accepted for Flake8, for internal code, to `flake8 >=3.8.3,<6.0.0`. PR [#4097](https://github.com/tiangolo/fastapi/pull/4097) by [@jamescurtin](https://github.com/jamescurtin).
 * 🍱 Update Jina banner, fix typo. PR [#5301](https://github.com/tiangolo/fastapi/pull/5301) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.80.0
+## 0.80.0 (2022-08-23)
 
 ### Breaking Changes - Fixes
 
@@ -4348,7 +5031,7 @@ This way the data will be correctly validated, you won't have an internal server
 * 🌐 Add missing navigator for `encoder.md` in Korean translation. PR [#5238](https://github.com/tiangolo/fastapi/pull/5238) by [@joonas-yoon](https://github.com/joonas-yoon).
 * (Empty PR merge by accident) [#4913](https://github.com/tiangolo/fastapi/pull/4913).
 
-## 0.79.1
+## 0.79.1 (2022-08-18)
 
 ### Fixes
 
@@ -4384,7 +5067,7 @@ This way the data will be correctly validated, you won't have an internal server
 * 🔧 Update Jina sponsorship. PR [#5272](https://github.com/tiangolo/fastapi/pull/5272) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, Striveworks badge. PR [#5179](https://github.com/tiangolo/fastapi/pull/5179) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.79.0
+## 0.79.0 (2022-07-14)
 
 ### Fixes - Breaking Changes
 
@@ -4421,7 +5104,7 @@ This way the data will be correctly validated, you won't have an internal server
 * 🔧 Update sponsors, remove Dropbase, add Doist. PR [#5096](https://github.com/tiangolo/fastapi/pull/5096) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, remove Classiq, add ImgWhale. PR [#5079](https://github.com/tiangolo/fastapi/pull/5079) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.78.0
+## 0.78.0 (2022-05-14)
 
 ### Features
 
@@ -4517,7 +5200,7 @@ def main(
 ### Internal
 
 * ♻ Refactor dict value extraction to minimize key lookups `fastapi/utils.py`. PR [#3139](https://github.com/tiangolo/fastapi/pull/3139) by [@ShahriyarR](https://github.com/ShahriyarR).
-* ✅ Add tests for required nonable parameters and body fields. PR [#4907](https://github.com/tiangolo/fastapi/pull/4907) by [@tiangolo](https://github.com/tiangolo).
+* ✅ Add tests for required `None`-able parameters and body fields. PR [#4907](https://github.com/tiangolo/fastapi/pull/4907) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix installing Material for MkDocs Insiders in CI. PR [#4897](https://github.com/tiangolo/fastapi/pull/4897) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add pre-commit CI instead of custom GitHub Action. PR [#4896](https://github.com/tiangolo/fastapi/pull/4896) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add pre-commit GitHub Action workflow. PR [#4895](https://github.com/tiangolo/fastapi/pull/4895) by [@tiangolo](https://github.com/tiangolo).
@@ -4527,7 +5210,7 @@ def main(
 * 🔧 Add pre-commit with first config and first formatting pass. PR [#4888](https://github.com/tiangolo/fastapi/pull/4888) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Disable CI installing Material for MkDocs in forks. PR [#4410](https://github.com/tiangolo/fastapi/pull/4410) by [@dolfinus](https://github.com/dolfinus).
 
-## 0.77.1
+## 0.77.1 (2022-05-10)
 
 ### Upgrades
 
@@ -4550,7 +5233,7 @@ def main(
 
 * 🔧 Add notifications in issue for Uzbek translations. PR [#4884](https://github.com/tiangolo/fastapi/pull/4884) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.77.0
+## 0.77.0 (2022-05-10)
 
 ### Upgrades
 
@@ -4583,7 +5266,7 @@ def main(
 * 🌐 Add Portuguese translation of `tutorial/extra-data-types.md`. PR [#4077](https://github.com/tiangolo/fastapi/pull/4077) by [@luccasmmg](https://github.com/luccasmmg).
 * 🌐 Update German translation for `docs/features.md`. PR [#3905](https://github.com/tiangolo/fastapi/pull/3905) by [@jomue](https://github.com/jomue).
 
-## 0.76.0
+## 0.76.0 (2022-05-05)
 
 ### Upgrades
 
@@ -4596,7 +5279,7 @@ def main(
 * 🍱 Update sponsor, ExoFlare badge. PR [#4822](https://github.com/tiangolo/fastapi/pull/4822) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, enable Dropbase again, update TalkPython link. PR [#4821](https://github.com/tiangolo/fastapi/pull/4821) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.75.2
+## 0.75.2 (2022-04-17)
 
 This release includes upgrades to third-party packages that handle security issues. Although there's a chance these issues don't affect you in particular, please upgrade as soon as possible.
 
@@ -4617,7 +5300,7 @@ This release includes upgrades to third-party packages that handle security issu
 * 🔧 Update sponsors, add: ExoFlare, Ines Course; remove: Dropbase, Vim.so, Calmcode; update: Striveworks, TalkPython and TestDriven.io. PR [#4805](https://github.com/tiangolo/fastapi/pull/4805) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade Codecov GitHub Action. PR [#4801](https://github.com/tiangolo/fastapi/pull/4801) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.75.1
+## 0.75.1 (2022-04-01)
 
 ### Translations
 
@@ -4636,19 +5319,19 @@ This release includes upgrades to third-party packages that handle security issu
 * 🔧 Add Classiq sponsor. PR [#4671](https://github.com/tiangolo/fastapi/pull/4671) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add Jina's QA Bot to the docs to help people that want to ask quick questions. PR [#4655](https://github.com/tiangolo/fastapi/pull/4655) by [@tiangolo](https://github.com/tiangolo) based on original PR [#4626](https://github.com/tiangolo/fastapi/pull/4626) by [@hanxiao](https://github.com/hanxiao).
 
-## 0.75.0
+## 0.75.0 (2022-03-04)
 
 ### Features
 
 * ✨ Add support for custom `generate_unique_id_function` and docs for generating clients. New docs: [Advanced - Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/). PR [#4650](https://github.com/tiangolo/fastapi/pull/4650) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.74.1
+## 0.74.1 (2022-02-21)
 
 ### Features
 
 * ✨ Include route in scope to allow middleware and other tools to extract its information. PR [#4603](https://github.com/tiangolo/fastapi/pull/4603) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.74.0
+## 0.74.0 (2022-02-17)
 
 ### Breaking Changes
 
@@ -4718,7 +5401,7 @@ async def set_up_request_state_dependency():
 * 💚 Only build docs on push when on master to avoid duplicate runs from PRs. PR [#4564](https://github.com/tiangolo/fastapi/pull/4564) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#4502](https://github.com/tiangolo/fastapi/pull/4502) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
-## 0.73.0
+## 0.73.0 (2022-01-23)
 
 ### Features
 
@@ -4741,7 +5424,7 @@ async def set_up_request_state_dependency():
 * 🐛 Fix docs dependencies cache, to get the latest Material for MkDocs. PR [#4466](https://github.com/tiangolo/fastapi/pull/4466) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add sponsor Dropbase. PR [#4465](https://github.com/tiangolo/fastapi/pull/4465) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.72.0
+## 0.72.0 (2022-01-16)
 
 ### Features
 
@@ -4762,7 +5445,7 @@ async def set_up_request_state_dependency():
 
 * 🔧 Enable MkDocs Material Insiders' `content.tabs.link`. PR [#4399](https://github.com/tiangolo/fastapi/pull/4399) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.71.0
+## 0.71.0 (2022-01-07)
 
 ### Features
 
@@ -4777,7 +5460,7 @@ async def set_up_request_state_dependency():
 * 🔧 Add FastAPI Trove Classifier for PyPI as now there's one 🤷😁. PR [#4386](https://github.com/tiangolo/fastapi/pull/4386) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Upgrade MkDocs Material and configs. PR [#4385](https://github.com/tiangolo/fastapi/pull/4385) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.70.1
+## 0.70.1 (2021-12-12)
 
 There's nothing interesting in this particular FastAPI release. It is mainly to enable/unblock the release of the next version of Pydantic that comes packed with features and improvements. 🤩
 
@@ -4806,7 +5489,7 @@ There's nothing interesting in this particular FastAPI release. It is mainly to 
 
 * 👥 Update FastAPI People. PR [#4274](https://github.com/tiangolo/fastapi/pull/4274) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
-## 0.70.0
+## 0.70.0 (2021-10-07)
 
 This release just upgrades Starlette to the latest version, `0.16.0`, which includes several bug fixes and some small breaking changes.
 
@@ -4827,7 +5510,7 @@ Also upgrades the ranges of optional dependencies:
 * `"jinja2 >=2.11.2,<4.0.0"`
 * `"itsdangerous >=1.1.0,<3.0.0"`
 
-## 0.69.0
+## 0.69.0 (2021-10-07)
 
 ### Breaking Changes - Upgrade
 
@@ -4876,7 +5559,7 @@ This release also removes `graphene` as an optional dependency for GraphQL. If y
 * 🔧 Lint only in Python 3.7 and above. PR [#4006](https://github.com/tiangolo/fastapi/pull/4006) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add GitHub Action notify-translations config for Azerbaijani. PR [#3995](https://github.com/tiangolo/fastapi/pull/3995) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.68.2
+## 0.68.2 (2021-10-05)
 
 This release has **no breaking changes**. 🎉
 
@@ -4910,7 +5593,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 
 ### Internal
 
-* ✨ Update GitHub Action: notify-translations, to avoid a race conditions. PR [#3989](https://github.com/tiangolo/fastapi/pull/3989) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Update GitHub Action: notify-translations, to avoid race conditions. PR [#3989](https://github.com/tiangolo/fastapi/pull/3989) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade development `autoflake`, supporting multi-line imports. PR [#3988](https://github.com/tiangolo/fastapi/pull/3988) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Increase dependency ranges for tests and docs: pytest-cov, pytest-asyncio, black, httpx, sqlalchemy, databases, mkdocs-markdownextradata-plugin. PR [#3987](https://github.com/tiangolo/fastapi/pull/3987) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#3986](https://github.com/tiangolo/fastapi/pull/3986) by [@github-actions[bot]](https://github.com/apps/github-actions).
@@ -4920,7 +5603,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 🎨 Tweak CSS styles for shell animations. PR [#3888](https://github.com/tiangolo/fastapi/pull/3888) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add new Sponsor Calmcode.io. PR [#3777](https://github.com/tiangolo/fastapi/pull/3777) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.68.1
+## 0.68.1 (2021-08-24)
 
 * ✨ Add support for `read_with_orm_mode`, to support [SQLModel](https://sqlmodel.tiangolo.com/) relationship attributes. PR [#3757](https://github.com/tiangolo/fastapi/pull/3757) by [@tiangolo](https://github.com/tiangolo).
 
@@ -4944,7 +5627,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * ⬆ Enable tests for Python 3.9. PR [#2298](https://github.com/tiangolo/fastapi/pull/2298) by [@Kludex](https://github.com/Kludex).
 * 👥 Update FastAPI People. PR [#3642](https://github.com/tiangolo/fastapi/pull/3642) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
-## 0.68.0
+## 0.68.0 (2021-07-29)
 
 ### Features
 
@@ -4973,7 +5656,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 🔧 Add new GitHub templates with forms for new issues. PR [#3612](https://github.com/tiangolo/fastapi/pull/3612) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add official FastAPI Twitter to docs: [@fastapi](https://x.com/fastapi). PR [#3578](https://github.com/tiangolo/fastapi/pull/3578) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.67.0
+## 0.67.0 (2021-07-21)
 
 ### Features
 
@@ -5001,7 +5684,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 👷 Update GitHub Action latest-changes, strike 2 ⚾. PR [#3575](https://github.com/tiangolo/fastapi/pull/3575) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Sort external links in docs to have the most recent at the top. PR [#3568](https://github.com/tiangolo/fastapi/pull/3568) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.66.1
+## 0.66.1 (2021-07-19)
 
 ### Translations
 
@@ -5014,7 +5697,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 🔧 Configure strict pytest options and update/refactor tests. Upgrade pytest to `>=6.2.4,<7.0.0` and pytest-cov to `>=2.12.0,<3.0.0`. Initial PR [#2790](https://github.com/tiangolo/fastapi/pull/2790) by [@graingert](https://github.com/graingert).
 * ⬆️ Upgrade python-jose dependency to `>=3.3.0,<4.0.0` for tests. PR [#3468](https://github.com/tiangolo/fastapi/pull/3468) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.66.0
+## 0.66.0 (2021-07-04)
 
 ### Features
 
@@ -5032,7 +5715,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 🌐 Add Spanish translation for `advanced/additional-status-codes.md`. PR [#1252](https://github.com/tiangolo/fastapi/pull/1252) by [@jfunez](https://github.com/jfunez).
 * 🌐 Add Spanish translation for `advanced/path-operation-advanced-configuration.md`. PR [#1251](https://github.com/tiangolo/fastapi/pull/1251) by [@jfunez](https://github.com/jfunez).
 
-## 0.65.3
+## 0.65.3 (2021-07-03)
 
 ### Fixes
 
@@ -5063,7 +5746,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 * 👥 Update FastAPI People. PR [#3319](https://github.com/tiangolo/fastapi/pull/3319) by [@github-actions[bot]](https://github.com/apps/github-actions).
 * ⬆ Upgrade docs development dependency on `typer-cli` to >=0.0.12 to fix conflicts. PR [#3429](https://github.com/tiangolo/fastapi/pull/3429) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.65.2
+## 0.65.2 (2021-06-09)
 
 ### Security fixes
 
@@ -5088,13 +5771,13 @@ Thanks to [Dima Boger](https://x.com/b0g3r) for the security report! 🙇🔒
 * 🔧 Add new banner sponsor badge for FastAPI courses bundle. PR [#3288](https://github.com/tiangolo/fastapi/pull/3288) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Upgrade Issue Manager GitHub Action. PR [#3236](https://github.com/tiangolo/fastapi/pull/3236) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.65.1
+## 0.65.1 (2021-05-11)
 
 ### Security fixes
 
 * 📌 Upgrade pydantic pin, to handle security vulnerability [CVE-2021-29510](https://github.com/pydantic/pydantic/security/advisories/GHSA-5jqp-qgf6-3pvh). PR [#3213](https://github.com/tiangolo/fastapi/pull/3213) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.65.0
+## 0.65.0 (2021-05-10)
 
 ### Breaking Changes - Upgrade
 
@@ -5113,7 +5796,7 @@ Thanks to [Dima Boger](https://x.com/b0g3r) for the security report! 🙇🔒
 * 👥 Update FastAPI People. PR [#3189](https://github.com/tiangolo/fastapi/pull/3189) by [@github-actions[bot]](https://github.com/apps/github-actions).
 * 🔊 Update FastAPI People to allow better debugging. PR [#3188](https://github.com/tiangolo/fastapi/pull/3188) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.64.0
+## 0.64.0 (2021-05-07)
 
 ### Features
 
@@ -5193,7 +5876,7 @@ Thanks to [Dima Boger](https://x.com/b0g3r) for the security report! 🙇🔒
 * 🔧 Update InvestSuite sponsor data. PR [#2608](https://github.com/tiangolo/fastapi/pull/2608) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#2590](https://github.com/tiangolo/fastapi/pull/2590) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
-## 0.63.0
+## 0.63.0 (2020-12-20)
 
 ### Features
 
@@ -5232,7 +5915,7 @@ Thanks to [Dima Boger](https://x.com/b0g3r) for the security report! 🙇🔒
 * ✨ Add new Gold Sponsor: InvestSuite 🎉. PR [#2508](https://github.com/tiangolo/fastapi/pull/2508) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add issue template configs. PR [#2476](https://github.com/tiangolo/fastapi/pull/2476) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.62.0
+## 0.62.0 (2020-11-29)
 
 ### Features
 
@@ -5298,7 +5981,7 @@ router = APIRouter(prefix="/users", dependencies=[Depends(some_dependency)])
 
 Most of these settings are now supported in `APIRouter`, which normally lives closer to the related code, so it is recommended to use `APIRouter` when possible.
 
-But `include_router` is still useful to, for example, adding options (like `dependencies`, `prefix`, and `tags`) when including a third party router, or a generic router that is shared between several projects.
+But `include_router` is still useful to, for example, add options (like `dependencies`, `prefix`, and `tags`) when including a third party router, or a generic router that is shared between several projects.
 
 This PR allows setting the (mostly new) parameters (additionally to the already existing parameters):
 
@@ -5318,10 +6001,10 @@ Note: all the previous parameters are still there, so it's still possible to dec
 ### Docs
 
 * PR [#2434](https://github.com/tiangolo/fastapi/pull/2434) (above) includes new or updated docs:
-    * <a href="https://fastapi.tiangolo.com/advanced/openapi-callbacks/" class="external-link" target="_blank">Advanced User Guide - OpenAPI Callbacks</a>.
-    * <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" class="external-link" target="_blank">Tutorial - Bigger Applications</a>.
-    * <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/" class="external-link" target="_blank">Tutorial - Dependencies - Dependencies in path operation decorators</a>.
-    * <a href="https://fastapi.tiangolo.com/tutorial/dependencies/global-dependencies/" class="external-link" target="_blank">Tutorial - Dependencies - Global Dependencies</a>.
+    * [Advanced User Guide - OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+    * [Tutorial - Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
+    * [Tutorial - Dependencies - Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
+    * [Tutorial - Dependencies - Global Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/global-dependencies/).
 
 * 📝 Add FastAPI monitoring blog post to External Links. PR [#2324](https://github.com/tiangolo/fastapi/pull/2324) by [@louisguitton](https://github.com/louisguitton).
 * ✏️ Fix typo in Deta tutorial. PR [#2320](https://github.com/tiangolo/fastapi/pull/2320) by [@tiangolo](https://github.com/tiangolo).
@@ -5348,7 +6031,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * ✨ Add silver sponsor WeTransfer. PR [#2338](https://github.com/tiangolo/fastapi/pull/2338) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Set up and enable Material for MkDocs Insiders for the docs. PR [#2325](https://github.com/tiangolo/fastapi/pull/2325) by [@tiangolo](https://github.com/tiangolo).
 
-## 0.61.2
+## 0.61.2 (2020-11-05)
 
 ### Fixes
 
@@ -5360,7 +6043,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * ✏️  Fix typo in Tutorial - Path Parameters. PR [#2231](https://github.com/tiangolo/fastapi/pull/2231) by [@mariacamilagl](https://github.com/mariacamilagl).
 * ✏ Fix a stylistic error in docs. PR [#2206](https://github.com/tiangolo/fastapi/pull/2206) by [@ddobrinskiy](https://github.com/ddobrinskiy).
-* ✏ Fix capitalizaiton typo in docs. PR [#2204](https://github.com/tiangolo/fastapi/pull/2204) by [@imba-tjd](https://github.com/imba-tjd).
+* ✏ Fix capitalization typo in docs. PR [#2204](https://github.com/tiangolo/fastapi/pull/2204) by [@imba-tjd](https://github.com/imba-tjd).
 * ✏ Fix typo in docs. PR [#2179](https://github.com/tiangolo/fastapi/pull/2179) by [@ammarasmro](https://github.com/ammarasmro).
 * 📝 Update/fix links in docs to use HTTPS. PR [#2165](https://github.com/tiangolo/fastapi/pull/2165) by [@imba-tjd](https://github.com/imba-tjd).
 * ✏ Fix typos and add rewording in docs. PR [#2159](https://github.com/tiangolo/fastapi/pull/2159) by [@nukopy](https://github.com/nukopy).
@@ -5430,7 +6113,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * 👷 Add GitHub Action Latest Changes. PR [#2160](https://github.com/tiangolo/fastapi/pull/2160).
 * 👷 Add GitHub Action Label Approved. PR [#2161](https://github.com/tiangolo/fastapi/pull/2161).
 
-## 0.61.1
+## 0.61.1 (2020-08-29)
 
 ### Fixes
 
@@ -5450,7 +6133,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Improve docs maintainability by updating `hl_lines` syntax to use ranges. PR [#1863](https://github.com/tiangolo/fastapi/pull/1863) by [@la-mar](https://github.com/la-mar).
 
-## 0.61.0
+## 0.61.0 (2020-08-09)
 
 ### Features
 
@@ -5483,12 +6166,12 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add Flake8 linting. Original PR [#1774](https://github.com/tiangolo/fastapi/pull/1774) by [@MashhadiNima](https://github.com/MashhadiNima).
 * Disable Gitter bot, as it's currently broken, and Gitter's response doesn't show the problem. PR [#1853](https://github.com/tiangolo/fastapi/pull/1853).
 
-## 0.60.2
+## 0.60.2 (2020-08-08)
 
 * Fix typo in docs for query parameters. PR [#1832](https://github.com/tiangolo/fastapi/pull/1832) by [@ycd](https://github.com/ycd).
 * Add docs about [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/). PR [#1619](https://github.com/tiangolo/fastapi/pull/1619) by [@empicano](https://github.com/empicano).
 * Raise an exception when using form data (`Form`, `File`) without having `python-multipart` installed.
-    * Up to now the application would run, and raise an exception only when receiving a request with form data, the new behavior, raising early, will prevent from deploying applications with broken dependencies.
+    * Up to now the application would run, and raise an exception only when receiving a request with form data, the new behavior, raising early, will prevent deploying applications with broken dependencies.
     * It also detects if the correct package `python-multipart` is installed instead of the incorrect `multipart` (both importable as `multipart`).
     * PR [#1851](https://github.com/tiangolo/fastapi/pull/1851) based on original PR [#1627](https://github.com/tiangolo/fastapi/pull/1627) by [@chrisngyn](https://github.com/chrisngyn), [@YKo20010](https://github.com/YKo20010), [@kx-chen](https://github.com/kx-chen).
 * Re-enable Gitter releases bot. PR [#1831](https://github.com/tiangolo/fastapi/pull/1831).
@@ -5512,7 +6195,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Remove docs preview comment from each commit. PR [#1826](https://github.com/tiangolo/fastapi/pull/1826).
 * Update GitHub context extraction for Gitter notification bot. PR [#1766](https://github.com/tiangolo/fastapi/pull/1766).
 
-## 0.60.1
+## 0.60.1 (2020-07-22)
 
 * Add debugging logs for GitHub actions to introspect GitHub hidden context. PR [#1764](https://github.com/tiangolo/fastapi/pull/1764).
 * Use OS preference theme for online docs. PR [#1760](https://github.com/tiangolo/fastapi/pull/1760) by [@adriencaccia](https://github.com/adriencaccia).
@@ -5521,7 +6204,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Update GitHub Actions, use commit from PR for docs preview, not commit from pre-merge. PR [#1761](https://github.com/tiangolo/fastapi/pull/1761).
 * Update GitHub Actions, refactor Gitter bot. PR [#1746](https://github.com/tiangolo/fastapi/pull/1746).
 
-## 0.60.0
+## 0.60.0 (2020-07-20)
 
 * Add GitHub Action to watch for missing preview docs and trigger a preview deploy. PR [#1740](https://github.com/tiangolo/fastapi/pull/1740).
 * Add custom GitHub Action to get artifact with docs preview. PR [#1739](https://github.com/tiangolo/fastapi/pull/1739).
@@ -5531,7 +6214,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add GitHub Actions for CI, move from Travis. PR [#1735](https://github.com/tiangolo/fastapi/pull/1735).
 * Add support for adding OpenAPI schema for GET requests with a body. PR [#1626](https://github.com/tiangolo/fastapi/pull/1626) by [@victorphoenix3](https://github.com/victorphoenix3).
 
-## 0.59.0
+## 0.59.0 (2020-07-10)
 
 * Fix typo in docstring for OAuth2 utils. PR [#1621](https://github.com/tiangolo/fastapi/pull/1621) by [@tomarv2](https://github.com/tomarv2).
 * Update JWT docs to use Python-jose instead of PyJWT. Initial PR [#1610](https://github.com/tiangolo/fastapi/pull/1610) by [@asheux](https://github.com/asheux).
@@ -5549,7 +6232,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Pin dependencies. PR [#1697](https://github.com/tiangolo/fastapi/pull/1697).
 * Update isort to version 5.x.x. PR [#1670](https://github.com/tiangolo/fastapi/pull/1670) by [@asheux](https://github.com/asheux).
 
-## 0.58.1
+## 0.58.1 (2020-06-28)
 
 * Add link in docs to Pydantic data types. PR [#1612](https://github.com/tiangolo/fastapi/pull/1612) by [@tayoogunbiyi](https://github.com/tayoogunbiyi).
 * Fix link in warning logs for `openapi_prefix`. PR [#1611](https://github.com/tiangolo/fastapi/pull/1611) by [@bavaria95](https://github.com/bavaria95).
@@ -5564,7 +6247,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add translation to Chinese for [Path Parameters and Numeric Validations - 路径参数和数值校验](https://fastapi.tiangolo.com/zh/tutorial/path-params-numeric-validations/). PR [#1506](https://github.com/tiangolo/fastapi/pull/1506) by [@waynerv](https://github.com/waynerv).
 * Add GitHub action to auto-label approved PRs (mainly for translations). PR [#1638](https://github.com/tiangolo/fastapi/pull/1638).
 
-## 0.58.0
+## 0.58.0 (2020-06-15)
 
 * Deep merge OpenAPI responses to preserve all the additional metadata. PR [#1577](https://github.com/tiangolo/fastapi/pull/1577).
 * Mention in docs that only main app events are run (not sub-apps). PR [#1554](https://github.com/tiangolo/fastapi/pull/1554) by [@amacfie](https://github.com/amacfie).
@@ -5573,7 +6256,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix Model for JSON Schema keyword `not` as a JSON Schema instead of a list. PR [#1548](https://github.com/tiangolo/fastapi/pull/1548) by [@v-do](https://github.com/v-do).
 * Add support for OpenAPI `servers`. PR [#1547](https://github.com/tiangolo/fastapi/pull/1547) by [@mikaello](https://github.com/mikaello).
 
-## 0.57.0
+## 0.57.0 (2020-06-13)
 
 * Remove broken link from "External Links". PR [#1565](https://github.com/tiangolo/fastapi/pull/1565) by [@victorphoenix3](https://github.com/victorphoenix3).
 * Update/fix docs for [WebSockets with dependencies](https://fastapi.tiangolo.com/advanced/websockets/#using-depends-and-others). Original PR [#1540](https://github.com/tiangolo/fastapi/pull/1540) by [@ChihSeanHsu](https://github.com/ChihSeanHsu).
@@ -5595,7 +6278,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Remove obsolete Chinese articles after adding official community translations. PR [#1510](https://github.com/tiangolo/fastapi/pull/1510) by [@waynerv](https://github.com/waynerv).
 * Add `__repr__` for *path operation function* parameter helpers (like `Query`, `Depends`, etc) to simplify debugging. PR [#1560](https://github.com/tiangolo/fastapi/pull/1560) by [@rkbeatss](https://github.com/rkbeatss) and [@victorphoenix3](https://github.com/victorphoenix3).
 
-## 0.56.1
+## 0.56.1 (2020-06-12)
 
 * Add link to advanced docs from tutorial. PR [#1512](https://github.com/tiangolo/fastapi/pull/1512) by [@kx-chen](https://github.com/kx-chen).
 * Remove internal unnecessary f-strings. PR [#1526](https://github.com/tiangolo/fastapi/pull/1526) by [@kotamatsuoka](https://github.com/kotamatsuoka).
@@ -5615,7 +6298,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Remove `*,` from functions in docs where it's not needed. PR [#1239](https://github.com/tiangolo/fastapi/pull/1239) by [@pankaj-giri](https://github.com/pankaj-giri).
 * Start translations for Italian. PR [#1557](https://github.com/tiangolo/fastapi/pull/1557) by [@csr](https://github.com/csr).
 
-## 0.56.0
+## 0.56.0 (2020-06-11)
 
 * Add support for ASGI `root_path`:
     * Use `root_path` internally for mounted applications, so that OpenAPI and the docs UI works automatically without extra configurations and parameters.
@@ -5638,22 +6321,22 @@ Note: all the previous parameters are still there, so it's still possible to dec
         * [Using FastAPI with Django](https://www.stavros.io/posts/fastapi-with-django/)  by [Stavros Korokithakis](https://x.com/Stavros).
         * [Introducing Dispatch](https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072) by [Netflix](https://netflixtechblog.com/).
     * **Podcasts**:
-        * [Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastían Ramírez (tiangolo)](https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/) by [Podcast.`__init__`](https://www.pythonpodcast.com/).
+        * [Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastián Ramírez (tiangolo)](https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/) by [Podcast.`__init__`](https://www.pythonpodcast.com/).
     * **Talks**:
         * [PyConBY 2020: Serve ML models easily with FastAPI](https://www.youtube.com/watch?v=z9K5pwb0rt8) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
         * [[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI](https://www.youtube.com/watch?v=PnpTY1f4k2U) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
     * PR [#1467](https://github.com/tiangolo/fastapi/pull/1467).
 * Add translation to Chinese for [Python Types Intro - Python 类型提示简介](https://fastapi.tiangolo.com/zh/python-types/). PR [#1197](https://github.com/tiangolo/fastapi/pull/1197) by [@waynerv](https://github.com/waynerv).
 
-## 0.55.1
+## 0.55.1 (2020-05-23)
 
 * Fix handling of enums with their own schema in path parameters. To support [pydantic/pydantic#1432](https://github.com/pydantic/pydantic/pull/1432) in FastAPI. PR [#1463](https://github.com/tiangolo/fastapi/pull/1463).
 
-## 0.55.0
+## 0.55.0 (2020-05-23)
 
 * Allow enums to allow them to have their own schemas in OpenAPI. To support [pydantic/pydantic#1432](https://github.com/pydantic/pydantic/pull/1432) in FastAPI. PR [#1461](https://github.com/tiangolo/fastapi/pull/1461).
 * Add links for funding through [GitHub sponsors](https://github.com/sponsors/tiangolo). PR [#1425](https://github.com/tiangolo/fastapi/pull/1425).
-* Update issue template for for questions. PR [#1344](https://github.com/tiangolo/fastapi/pull/1344) by [@retnikt](https://github.com/retnikt).
+* Update issue template for questions. PR [#1344](https://github.com/tiangolo/fastapi/pull/1344) by [@retnikt](https://github.com/retnikt).
 * Update warning about storing passwords in docs. PR [#1336](https://github.com/tiangolo/fastapi/pull/1336) by [@skorokithakis](https://github.com/skorokithakis).
 * Fix typo. PR [#1326](https://github.com/tiangolo/fastapi/pull/1326) by [@chenl](https://github.com/chenl).
 * Add translation to Portuguese for [Alternatives, Inspiration and Comparisons - Alternativas, Inspiração e Comparações](https://fastapi.tiangolo.com/pt/alternatives/). PR [#1325](https://github.com/tiangolo/fastapi/pull/1325) by [@Serrones](https://github.com/Serrones).
@@ -5665,7 +6348,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Update order of execution for `get_db` in SQLAlchemy tutorial. PR [#1293](https://github.com/tiangolo/fastapi/pull/1293) by [@bcb](https://github.com/bcb).
 * Fix typos in Async docs. PR [#1423](https://github.com/tiangolo/fastapi/pull/1423).
 
-## 0.54.2
+## 0.54.2 (2020-05-16)
 
 * Add translation to Spanish for [Concurrency and async / await - Concurrencia y async / await](https://fastapi.tiangolo.com/es/async/). PR [#1290](https://github.com/tiangolo/fastapi/pull/1290) by [@alvaropernas](https://github.com/alvaropernas).
 * Remove obsolete vote link. PR [#1289](https://github.com/tiangolo/fastapi/pull/1289) by [@donhui](https://github.com/donhui).
@@ -5685,12 +6368,12 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add Spanish translation for [Introducción a los Tipos de Python (Python Types Intro)](https://fastapi.tiangolo.com/es/python-types/). PR [#1237](https://github.com/tiangolo/fastapi/pull/1237) by [@mariacamilagl](https://github.com/mariacamilagl).
 * Add Spanish translation for [Características (Features)](https://fastapi.tiangolo.com/es/features/). PR [#1220](https://github.com/tiangolo/fastapi/pull/1220) by [@mariacamilagl](https://github.com/mariacamilagl).
 
-## 0.54.1
+## 0.54.1 (2020-04-08)
 
 * Update database test setup. PR [#1226](https://github.com/tiangolo/fastapi/pull/1226).
 * Improve test debugging by showing response text in failing tests. PR [#1222](https://github.com/tiangolo/fastapi/pull/1222) by [@samuelcolvin](https://github.com/samuelcolvin).
 
-## 0.54.0
+## 0.54.0 (2020-04-05)
 
 * Fix grammatical mistakes in async docs. PR [#1188](https://github.com/tiangolo/fastapi/pull/1188) by [@mickeypash](https://github.com/mickeypash).
 * Add support for `response_model_exclude_defaults` and `response_model_exclude_none`:
@@ -5705,7 +6388,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add first translation to Spanish [FastAPI](https://fastapi.tiangolo.com/es/). PR [#1201](https://github.com/tiangolo/fastapi/pull/1201) by [@mariacamilagl](https://github.com/mariacamilagl).
 * Add docs about [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/). Initial PR [1118](https://github.com/tiangolo/fastapi/pull/1118) by [@alexmitelman](https://github.com/alexmitelman).
 
-## 0.53.2
+## 0.53.2 (2020-03-30)
 
 * Fix automatic embedding of body fields for dependencies and sub-dependencies. Original PR [#1079](https://github.com/tiangolo/fastapi/pull/1079) by [@Toad2186](https://github.com/Toad2186).
 * Fix dependency overrides in WebSocket testing. PR [#1122](https://github.com/tiangolo/fastapi/pull/1122) by [@amitlissack](https://github.com/amitlissack).
@@ -5713,7 +6396,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Start translations for Chinese. PR [#1187](https://github.com/tiangolo/fastapi/pull/1187) by [@RunningIkkyu](https://github.com/RunningIkkyu).
 * Add docs for [Schema Extra - Example](https://fastapi.tiangolo.com/tutorial/schema-extra-example/). PR [#1185](https://github.com/tiangolo/fastapi/pull/1185).
 
-## 0.53.1
+## 0.53.1 (2020-03-29)
 
 * Fix included example after translations refactor. PR [#1182](https://github.com/tiangolo/fastapi/pull/1182).
 * Add docs example for `example` in `Field`. Docs at [Body - Fields: JSON Schema extras](https://fastapi.tiangolo.com/tutorial/body-fields/#json-schema-extras). PR [#1106](https://github.com/tiangolo/fastapi/pull/1106) by [@JohnPaton](https://github.com/JohnPaton).
@@ -5722,7 +6405,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix typo in docs. PR [#1148](https://github.com/tiangolo/fastapi/pull/1148) by [@PLNech](https://github.com/PLNech).
 * Update Windows development environment instructions. PR [#1179](https://github.com/tiangolo/fastapi/pull/1179).
 
-## 0.53.0
+## 0.53.0 (2020-03-27)
 
 * Update test coverage badge. PR [#1175](https://github.com/tiangolo/fastapi/pull/1175).
 * Add `orjson` to `pip install fastapi[all]`. PR [#1161](https://github.com/tiangolo/fastapi/pull/1161) by [@michael0liver](https://github.com/michael0liver).
@@ -5737,11 +6420,11 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add support for docs translations. New docs: [Development - Contributing: Docs: Translations](https://fastapi.tiangolo.com/contributing/#translations). PR [#1168](https://github.com/tiangolo/fastapi/pull/1168).
 * Update terminal styles in docs and add note about [**Typer**, the FastAPI of CLIs](https://typer.tiangolo.com/). PR [#1139](https://github.com/tiangolo/fastapi/pull/1139).
 
-## 0.52.0
+## 0.52.0 (2020-03-01)
 
 * Add new high-performance JSON response class using `orjson`. New docs: [Custom Response - HTML, Stream, File, others: `ORJSONResponse`](https://fastapi.tiangolo.com/advanced/custom-response/#use-orjsonresponse). PR [#1065](https://github.com/tiangolo/fastapi/pull/1065).
 
-## 0.51.0
+## 0.51.0 (2020-03-01)
 
 * Re-export utils from Starlette:
     * This allows using things like `from fastapi.responses import JSONResponse` instead of `from starlette.responses import JSONResponse`.
@@ -5753,7 +6436,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
         * [Including WSGI - Flask, Django, others](https://fastapi.tiangolo.com/advanced/wsgi/).
     * PR [#1064](https://github.com/tiangolo/fastapi/pull/1064).
 
-## 0.50.0
+## 0.50.0 (2020-02-29)
 
 * Add link to Release Notes from docs about pinning versions for deployment. PR [#1058](https://github.com/tiangolo/fastapi/pull/1058).
 * Upgrade code to use the latest version of Starlette, including:
@@ -5763,7 +6446,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * PR [#1057](https://github.com/tiangolo/fastapi/pull/1057).
 * Add docs about pinning FastAPI versions for deployment: [Deployment: FastAPI versions](https://fastapi.tiangolo.com/deployment/#fastapi-versions). PR [#1056](https://github.com/tiangolo/fastapi/pull/1056).
 
-## 0.49.2
+## 0.49.2 (2020-02-29)
 
 * Fix links in release notes. PR [#1052](https://github.com/tiangolo/fastapi/pull/1052) by [@sattosan](https://github.com/sattosan).
 * Fix typo in release notes. PR [#1051](https://github.com/tiangolo/fastapi/pull/1051) by [@sattosan](https://github.com/sattosan).
@@ -5773,14 +6456,14 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix accepting valid types for response models, including Python types like `List[int]`. PR [#1017](https://github.com/tiangolo/fastapi/pull/1017) by [@patrickmckenna](https://github.com/patrickmckenna).
 * Fix format in SQL tutorial. PR [#1015](https://github.com/tiangolo/fastapi/pull/1015) by [@vegarsti](https://github.com/vegarsti).
 
-## 0.49.1
+## 0.49.1 (2020-02-28)
 
 * Fix path operation duplicated parameters when used in dependencies and the path operation function. PR [#994](https://github.com/tiangolo/fastapi/pull/994) by [@merowinger92](https://github.com/merowinger92).
 * Update Netlify previews deployment GitHub action as the fix is already merged and there's a new release. PR [#1047](https://github.com/tiangolo/fastapi/pull/1047).
 * Move mypy configurations to config file. PR [#987](https://github.com/tiangolo/fastapi/pull/987) by [@hukkinj1](https://github.com/hukkinj1).
 * Temporary fix to Netlify previews not deployable from PRs from forks. PR [#1046](https://github.com/tiangolo/fastapi/pull/1046) by [@mariacamilagl](https://github.com/mariacamilagl).
 
-## 0.49.0
+## 0.49.0 (2020-02-16)
 
 * Fix encoding of `pathlib` paths in `jsonable_encoder`. PR [#978](https://github.com/tiangolo/fastapi/pull/978) by [@patrickmckenna](https://github.com/patrickmckenna).
 * Add articles to [External Links](https://fastapi.tiangolo.com/external-links/): [PythonのWeb frameworkのパフォーマンス比較 (Django, Flask, responder, FastAPI, japronto)](https://qiita.com/bee2/items/0ad260ab9835a2087dae) and [[FastAPI] Python製のASGI Web フレームワーク FastAPIに入門する](https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9). PR [#974](https://github.com/tiangolo/fastapi/pull/974) by [@tokusumi](https://github.com/tokusumi).
@@ -5791,7 +6474,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Update CI to run docs deployment in GitHub actions. PR [#983](https://github.com/tiangolo/fastapi/pull/983).
 * Allow `callable`s in *path operation functions*, like functions modified with `functools.partial`. PR [#977](https://github.com/tiangolo/fastapi/pull/977).
 
-## 0.48.0
+## 0.48.0 (2020-02-04)
 
 * Run linters first in tests to error out faster. PR [#948](https://github.com/tiangolo/fastapi/pull/948).
 * Log warning about `email-validator` only when used. PR [#946](https://github.com/tiangolo/fastapi/pull/946).
@@ -5808,12 +6491,12 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix link in middleware docs. PR [#893](https://github.com/tiangolo/fastapi/pull/893) by [@linchiwei123](https://github.com/linchiwei123).
 * Rename default API title from "Fast API" to "FastAPI" for consistency. PR [#890](https://github.com/tiangolo/fastapi/pull/890).
 
-## 0.47.1
+## 0.47.1 (2020-01-18)
 
 * Fix model filtering in `response_model`, cloning sub-models. PR [#889](https://github.com/tiangolo/fastapi/pull/889).
 * Fix FastAPI serialization of Pydantic models using ORM mode blocking the event loop. PR [#888](https://github.com/tiangolo/fastapi/pull/888).
 
-## 0.47.0
+## 0.47.0 (2020-01-18)
 
 * Refactor documentation to make a simpler and shorter [Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/) and an additional [Advanced User Guide](https://fastapi.tiangolo.com/advanced/) with all the additional docs. PR [#887](https://github.com/tiangolo/fastapi/pull/887).
 * Tweak external links, Markdown format, typos. PR [#881](https://github.com/tiangolo/fastapi/pull/881).
@@ -5825,7 +6508,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Setup development environment with Python's Venv and Flit, instead of requiring the extra Pipenv duplicating dependencies. Updated docs: [Development - Contributing](https://fastapi.tiangolo.com/contributing/). PR [#877](https://github.com/tiangolo/fastapi/pull/877).
 * Update docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/) to improve security against timing attacks. Initial PR [#807](https://github.com/tiangolo/fastapi/pull/807) by [@zwass](https://github.com/zwass).
 
-## 0.46.0
+## 0.46.0 (2020-01-08)
 
 * Fix typos and tweak configs. PR [#837](https://github.com/tiangolo/fastapi/pull/837).
 * Add link to Chinese article in [External Links](https://fastapi.tiangolo.com/external-links/). PR [810](https://github.com/tiangolo/fastapi/pull/810) by [@wxq0309](https://github.com/wxq0309).
@@ -5839,7 +6522,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix Twitter links in docs. PR [#813](https://github.com/tiangolo/fastapi/pull/813) by [@justindujardin](https://github.com/justindujardin).
 * Add docs for correctly [using FastAPI with Peewee ORM](https://fastapi.tiangolo.com/advanced/sql-databases-peewee/). Including how to overwrite parts of Peewee to correctly handle async threads. PR [#789](https://github.com/tiangolo/fastapi/pull/789).
 
-## 0.45.0
+## 0.45.0 (2019-12-11)
 
 * Add support for OpenAPI Callbacks:
     * New docs: [OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
@@ -5851,7 +6534,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Remove gender bias in docs for handling errors. PR [#780](https://github.com/tiangolo/fastapi/pull/780). Original idea in PR [#761](https://github.com/tiangolo/fastapi/pull/761) by [@classywhetten](https://github.com/classywhetten).
 * Rename docs and references to `body-schema` to `body-fields` to keep in line with Pydantic. PR [#746](https://github.com/tiangolo/fastapi/pull/746) by [@prostomarkeloff](https://github.com/prostomarkeloff).
 
-## 0.44.1
+## 0.44.1 (2019-12-04)
 
 * Add GitHub social preview images to git. PR [#752](https://github.com/tiangolo/fastapi/pull/752).
 * Update PyPI "trove classifiers". PR [#751](https://github.com/tiangolo/fastapi/pull/751).
@@ -5859,7 +6542,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Update "new issue" templates. PR [#749](https://github.com/tiangolo/fastapi/pull/749).
 * Fix serialization of errors for exotic Pydantic types. PR [#748](https://github.com/tiangolo/fastapi/pull/748) by [@dmontagu](https://github.com/dmontagu).
 
-## 0.44.0
+## 0.44.0 (2019-11-27)
 
 * Add GitHub action [Issue Manager](https://github.com/tiangolo/issue-manager). PR [#742](https://github.com/tiangolo/fastapi/pull/742).
 * Fix typos in docs. PR [734](https://github.com/tiangolo/fastapi/pull/734) by [@bundabrg](https://github.com/bundabrg).
@@ -5872,7 +6555,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix typo in HTTP protocol in CORS example. PR [#647](https://github.com/tiangolo/fastapi/pull/647) by [@forestmonster](https://github.com/forestmonster).
 * Add support for Pydantic versions `1.0.0` and above, with temporary (deprecated) backwards compatibility for Pydantic `0.32.2`. PR [#646](https://github.com/tiangolo/fastapi/pull/646) by [@dmontagu](https://github.com/dmontagu).
 
-## 0.43.0
+## 0.43.0 (2019-11-24)
 
 * Update docs to reduce gender bias. PR [#645](https://github.com/tiangolo/fastapi/pull/645) by [@ticosax](https://github.com/ticosax).
 * Add docs about [overriding the `operationId` for all the *path operations*](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#using-the-path-operation-function-name-as-the-operationid) based on their function name. PR [#642](https://github.com/tiangolo/fastapi/pull/642) by [@SKalt](https://github.com/SKalt).
@@ -5882,7 +6565,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add docs for [self-serving docs' (Swagger UI) static assets](https://fastapi.tiangolo.com/advanced/extending-openapi/#self-hosting-javascript-and-css-for-docs), e.g. to use the docs offline, or without Internet. Initial PR [#557](https://github.com/tiangolo/fastapi/pull/557) by [@svalouch](https://github.com/svalouch).
 * Fix `black` linting after upgrade. PR [#682](https://github.com/tiangolo/fastapi/pull/682) by [@frankie567](https://github.com/frankie567).
 
-## 0.42.0
+## 0.42.0 (2019-10-09)
 
 * Add dependencies with `yield`, a.k.a. exit steps, context managers, cleanup, teardown, ...
     * This allows adding extra code after a dependency is done. It can be used, for example, to close database connections.
@@ -5897,7 +6580,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * PR [#595](https://github.com/tiangolo/fastapi/pull/595).
 * Fix `sitemap.xml` in website. PR [#598](https://github.com/tiangolo/fastapi/pull/598) by [@samuelcolvin](https://github.com/samuelcolvin).
 
-## 0.41.0
+## 0.41.0 (2019-10-07)
 
 * Upgrade required Starlette to `0.12.9`, the new range is `>=0.12.9,<=0.12.9`.
     * Add `State` to FastAPI apps at `app.state`.
@@ -5912,7 +6595,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * PR [#589](https://github.com/tiangolo/fastapi/pull/589) by [@dmontagu](https://github.com/dmontagu).
 * Fix preserving custom route class in routers when including other sub-routers. PR [#538](https://github.com/tiangolo/fastapi/pull/538) by [@dmontagu](https://github.com/dmontagu).
 
-## 0.40.0
+## 0.40.0 (2019-10-04)
 
 * Add notes to docs about installing `python-multipart` when using forms. PR [#574](https://github.com/tiangolo/fastapi/pull/574) by [@sliptonic](https://github.com/sliptonic).
 * Generate OpenAPI schemas in alphabetical order. PR [#554](https://github.com/tiangolo/fastapi/pull/554) by [@dmontagu](https://github.com/dmontagu).
@@ -5925,7 +6608,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix incorrect documentation example in [first steps](https://fastapi.tiangolo.com/tutorial/first-steps/). PR [#511](https://github.com/tiangolo/fastapi/pull/511) by [@IgnatovFedor](https://github.com/IgnatovFedor).
 * Add support for Swagger UI [initOauth](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md) settings with the parameter `swagger_ui_init_oauth`. PR [#499](https://github.com/tiangolo/fastapi/pull/499) by [@zamiramir](https://github.com/zamiramir).
 
-## 0.39.0
+## 0.39.0 (2019-09-29)
 
 * Allow path parameters to have default values (e.g. `None`) and discard them instead of raising an error.
     * This allows declaring a parameter like `user_id: str = None` that can be taken from a query parameter, but the same *path operation* can be included in a router with a path `/users/{user_id}`, in which case will be taken from the path and will be required.
@@ -5933,17 +6616,17 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add support for setting a `default_response_class` in the `FastAPI` instance or in `include_router`. Initial PR [#467](https://github.com/tiangolo/fastapi/pull/467) by [@toppk](https://github.com/toppk).
 * Add support for type annotations using strings and `from __future__ import annotations`. PR [#451](https://github.com/tiangolo/fastapi/pull/451) by [@dmontagu](https://github.com/dmontagu).
 
-## 0.38.1
+## 0.38.1 (2019-09-01)
 
 * Fix incorrect `Request` class import. PR [#493](https://github.com/tiangolo/fastapi/pull/493) by [@kamalgill](https://github.com/kamalgill).
 
-## 0.38.0
+## 0.38.0 (2019-08-31)
 
 * Add recent articles to [External Links](https://fastapi.tiangolo.com/external-links/) and recent opinions. PR [#490](https://github.com/tiangolo/fastapi/pull/490).
 * Upgrade support range for Starlette to include `0.12.8`. The new range is `>=0.11.1,<=0.12.8"`. PR [#477](https://github.com/tiangolo/fastapi/pull/477) by [@dmontagu](https://github.com/dmontagu).
 * Upgrade support to Pydantic version 0.32.2 and update internal code to use it (breaking change). PR [#463](https://github.com/tiangolo/fastapi/pull/463) by [@dmontagu](https://github.com/dmontagu).
 
-## 0.37.0
+## 0.37.0 (2019-08-31)
 
 * Add support for custom route classes for advanced use cases. PR [#468](https://github.com/tiangolo/fastapi/pull/468) by [@dmontagu](https://github.com/dmontagu).
 * Allow disabling Google fonts in ReDoc. PR [#481](https://github.com/tiangolo/fastapi/pull/481) by [@b1-luettje](https://github.com/b1-luettje).
@@ -5959,7 +6642,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Fix using `"default"` extra response with status codes at the same time. PR [#489](https://github.com/tiangolo/fastapi/pull/489).
 * Allow additional responses to use status code ranges (like `5XX` and `4XX`) and `"default"`. PR [#435](https://github.com/tiangolo/fastapi/pull/435) by [@divums](https://github.com/divums).
 
-## 0.36.0
+## 0.36.0 (2019-08-26)
 
 * Fix implementation for `skip_defaults` when returning a Pydantic model. PR [#422](https://github.com/tiangolo/fastapi/pull/422) by [@dmontagu](https://github.com/dmontagu).
 * Fix OpenAPI generation when using the same dependency in multiple places for the same *path operation*. PR [#417](https://github.com/tiangolo/fastapi/pull/417) by [@dmontagu](https://github.com/dmontagu).
@@ -5970,23 +6653,23 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * PR [#415](https://github.com/tiangolo/fastapi/pull/415) by [@vitalik](https://github.com/vitalik).
 * Fix mypy error after merging PR #415. PR [#462](https://github.com/tiangolo/fastapi/pull/462).
 
-## 0.35.0
+## 0.35.0 (2019-08-08)
 
 * Fix typo in routing `assert`. PR [#419](https://github.com/tiangolo/fastapi/pull/419) by [@pablogamboa](https://github.com/pablogamboa).
 * Fix typo in docs. PR [#411](https://github.com/tiangolo/fastapi/pull/411) by [@bronsen](https://github.com/bronsen).
 * Fix parsing a body type declared with `Union`. PR [#400](https://github.com/tiangolo/fastapi/pull/400) by [@koxudaxi](https://github.com/koxudaxi).
 
-## 0.34.0
+## 0.34.0 (2019-08-06)
 
 * Upgrade Starlette supported range to include the latest `0.12.7`. The new range is `0.11.1,<=0.12.7`. PR [#367](https://github.com/tiangolo/fastapi/pull/367) by [@dedsm](https://github.com/dedsm).
 
 * Add test for OpenAPI schema with duplicate models from PR [#333](https://github.com/tiangolo/fastapi/pull/333) by [@dmontagu](https://github.com/dmontagu). PR [#385](https://github.com/tiangolo/fastapi/pull/385).
 
-## 0.33.0
+## 0.33.0 (2019-07-13)
 
 * Upgrade Pydantic version to `0.30.0`. PR [#384](https://github.com/tiangolo/fastapi/pull/384) by [@jekirl](https://github.com/jekirl).
 
-## 0.32.0
+## 0.32.0 (2019-07-12)
 
 * Fix typo in docs for features. PR [#380](https://github.com/tiangolo/fastapi/pull/380) by [@MartinoMensio](https://github.com/MartinoMensio).
 
@@ -6010,14 +6693,14 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * This also adds the possibility of using `.include_router()` with the same `APIRouter` *multiple*  times, with different prefixes, e.g. `/api/v2` and `/api/latest`, and it will now work correctly.
     * PR [#347](https://github.com/tiangolo/fastapi/pull/347).
 
-## 0.31.0
+## 0.31.0 (2019-06-28)
 
 * Upgrade Pydantic supported version to `0.29.0`.
     * New supported version range is `"pydantic >=0.28,<=0.29.0"`.
     * This adds support for Pydantic [Generic Models](https://docs.pydantic.dev/latest/#generic-models), kudos to [@dmontagu](https://github.com/dmontagu).
     * PR [#344](https://github.com/tiangolo/fastapi/pull/344).
 
-## 0.30.1
+## 0.30.1 (2019-06-28)
 
 * Add section in docs about [External Links and Articles](https://fastapi.tiangolo.com/external-links/). PR [#341](https://github.com/tiangolo/fastapi/pull/341).
 
@@ -6031,7 +6714,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Add SQLite [online viewers to the docs](https://fastapi.tiangolo.com/tutorial/sql-databases/#interact-with-the-database-directly). PR [#330](https://github.com/tiangolo/fastapi/pull/330) by [@cyrilbois](https://github.com/cyrilbois).
 
-## 0.30.0
+## 0.30.0 (2019-06-20)
 
 * Add support for Pydantic's ORM mode:
     * Updated documentation about SQL with SQLAlchemy, using Pydantic models with ORM mode, SQLAlchemy models with relations, separation of files, simplification of code and other changes. New docs: [SQL (Relational) Databases](https://fastapi.tiangolo.com/tutorial/sql-databases/).
@@ -6044,7 +6727,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
         * When declaring a `response_model` it is used directly to generate the response content, from whatever was returned from the *path operation function*.
         * Before this, the return content was first passed through `jsonable_encoder` to ensure it was a "jsonable" object, like a `dict`, instead of an arbitrary object with attributes (like an ORM model). That's why you should make sure to update your Pydantic models for objects with attributes to use `orm_mode = True`.
         * If you don't have a `response_model`, the return object will still be passed through `jsonable_encoder` first.
-        * When a `response_model` is declared, the same `response_model` type declaration won't be used as is, it will be "cloned" to create an new one (a cloned Pydantic `Field` with all the submodels cloned as well).
+        * When a `response_model` is declared, the same `response_model` type declaration won't be used as is, it will be "cloned" to create a new one (a cloned Pydantic `Field` with all the submodels cloned as well).
         * This avoids/fixes a potential security issue: as the returned object is passed directly to Pydantic, if the returned object was a subclass of the `response_model` (e.g. you return a `UserInDB` that inherits from `User` but contains extra fields, like `hashed_password`, and `User` is used in the `response_model`), it would still pass the validation (because `UserInDB` is a subclass of `User`) and the object would be returned as-is, including the `hashed_password`. To fix this, the declared `response_model` is cloned, if it is a Pydantic model class (or contains Pydantic model classes in it, e.g. in a `List[Item]`), the Pydantic model class(es) will be a different one (the "cloned" one). So, an object that is a subclass won't simply pass the validation and returned as-is, because it is no longer a sub-class of the cloned `response_model`. Instead, a new Pydantic model object will be created with the contents of the returned object. So, it will be a new object (made with the data from the returned one), and will be filtered by the cloned `response_model`, containing only the declared fields as normally.
     * PR [#322](https://github.com/tiangolo/fastapi/pull/322).
 
@@ -6054,7 +6737,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade Pydantic support to `0.28`. PR [#320](https://github.com/tiangolo/fastapi/pull/320) by [@jekirl](https://github.com/jekirl).
 
-## 0.29.1
+## 0.29.1 (2019-06-13)
 
 * Fix handling an empty-body request with a required body param. PR [#311](https://github.com/tiangolo/fastapi/pull/311).
 
@@ -6062,7 +6745,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix docs discrepancy in docs for [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/). PR [#288](https://github.com/tiangolo/fastapi/pull/288) by [@awiddersheim](https://github.com/awiddersheim).
 
-## 0.29.0
+## 0.29.0 (2019-06-06)
 
 * Add support for declaring a `Response` parameter:
     * This allows declaring:
@@ -6073,7 +6756,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * Update attribution to Hug, for inspiring the `response` parameter pattern.
     * PR [#294](https://github.com/tiangolo/fastapi/pull/294).
 
-## 0.28.0
+## 0.28.0 (2019-06-05)
 
 * Implement dependency cache per request.
     * This avoids calling each dependency multiple times for the same request.
@@ -6088,17 +6771,17 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * New docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/advanced/testing-dependencies/).
     * PR [#291](https://github.com/tiangolo/fastapi/pull/291).
 
-## 0.27.2
+## 0.27.2 (2019-06-03)
 
 * Fix path and query parameters receiving `dict` as a valid type. It should be mapped to a body payload. PR [#287](https://github.com/tiangolo/fastapi/pull/287). Updated docs at: [Query parameter list / multiple values with defaults: Using `list`](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#using-list).
 
-## 0.27.1
+## 0.27.1 (2019-06-03)
 
 * Fix `auto_error=False` handling in `HTTPBearer` security scheme. Do not `raise` when there's an incorrect `Authorization` header if `auto_error=False`. PR [#282](https://github.com/tiangolo/fastapi/pull/282).
 
 * Fix type declaration of `HTTPException`. PR [#279](https://github.com/tiangolo/fastapi/pull/279).
 
-## 0.27.0
+## 0.27.0 (2019-05-30)
 
 * Fix broken link in docs about OAuth 2.0 with scopes. PR [#275](https://github.com/tiangolo/fastapi/pull/275) by [@dmontagu](https://github.com/dmontagu).
 
@@ -6109,7 +6792,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * Add support for type annotations using `Optional` as in `param: Optional[str] = None`. New documentation: [Optional type declarations](https://fastapi.tiangolo.com/tutorial/query-params/#optional-type-declarations).
     * PR [#278](https://github.com/tiangolo/fastapi/pull/278).
 
-## 0.26.0
+## 0.26.0 (2019-05-29)
 
 * Separate error handling for validation errors.
     * This will allow developers to customize the exception handlers.
@@ -6130,7 +6813,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix type declaration of `response_model` to allow generic Python types as `List[Model]`. Mainly to fix `mypy` for users. PR [#266](https://github.com/tiangolo/fastapi/pull/266).
 
-## 0.25.0
+## 0.25.0 (2019-05-27)
 
 * Add support for Pydantic's `include`, `exclude`, `by_alias`.
     * Update documentation: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
@@ -6146,7 +6829,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * New [documentation section about using `response_model_skip_defaults`](https://fastapi.tiangolo.com/tutorial/response-model/#response-model-encoding-parameters).
     * PR [#248](https://github.com/tiangolo/fastapi/pull/248) by [@wshayes](https://github.com/wshayes).
 
-## 0.24.0
+## 0.24.0 (2019-05-24)
 
 * Add support for WebSockets with dependencies and parameters.
     * Support included for:
@@ -6164,7 +6847,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * This includes JSON Schema support for IP address and network objects, bug fixes, and other features.
     * PR [#247](https://github.com/tiangolo/fastapi/pull/247) by [@euri10](https://github.com/euri10).
 
-## 0.23.0
+## 0.23.0 (2019-05-21)
 
 * Upgrade the compatible version of Starlette to `0.12.0`.
     * This includes support for ASGI 3 (the latest version of the standard).
@@ -6182,12 +6865,12 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Make Swagger UI and ReDoc URLs parameterizable, allowing to host and serve local versions of them and have offline docs. PR [#112](https://github.com/tiangolo/fastapi/pull/112) by [@euri10](https://github.com/euri10).
 
-## 0.22.0
+## 0.22.0 (2019-05-16)
 
 * Add support for `dependencies` parameter:
     * A parameter in *path operation decorators*, for dependencies that should be executed but the return value is not important or not used in the *path operation function*.
     * A parameter in the `.include_router()` method of FastAPI applications and routers, to include dependencies that should be executed in each *path operation* in a router.
-        * This is useful, for example, to require authentication or permissions in specific group of *path operations*.
+        * This is useful, for example, to require authentication or permissions in a specific group of *path operations*.
         * Different `dependencies` can be applied to different routers.
     * These `dependencies` are run before the normal parameter dependencies. And normal dependencies are run too. They can be combined.
     * Dependencies declared in a router are executed first, then the ones defined in *path operation decorators*, and then the ones declared in normal parameters. They are all combined and executed.
@@ -6204,7 +6887,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Re-enable `black` formatting checks for Python 3.7. PR [#229](https://github.com/tiangolo/fastapi/pull/229) by [@zamiramir](https://github.com/zamiramir).
 
-## 0.21.0
+## 0.21.0 (2019-05-15)
 
 * On body parsing errors, raise `from` previous exception, to allow better introspection in logging code. PR [#192](https://github.com/tiangolo/fastapi/pull/195) by [@ricardomomm](https://github.com/ricardomomm).
 
@@ -6214,13 +6897,13 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix typo in routing. PR [#221](https://github.com/tiangolo/fastapi/pull/221) by [@djlambert](https://github.com/djlambert).
 
-## 0.20.1
+## 0.20.1 (2019-05-11)
 
 * Add typing information to package including file `py.typed`. PR [#209](https://github.com/tiangolo/fastapi/pull/209) by [@meadsteve](https://github.com/meadsteve).
 
 * Add FastAPI bot for Gitter. To automatically announce new releases. PR [#189](https://github.com/tiangolo/fastapi/pull/189).
 
-## 0.20.0
+## 0.20.0 (2019-04-27)
 
 * Upgrade OAuth2:
     * Upgrade Password flow using Bearer tokens to use the correct HTTP status code 401 `UNAUTHORIZED`, with `WWW-Authenticate` headers.
@@ -6237,7 +6920,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix typos in docs. PR [#176](https://github.com/tiangolo/fastapi/pull/176) by [@chdsbd](https://github.com/chdsbd).
 
-## 0.19.0
+## 0.19.0 (2019-04-26)
 
 * Rename *path operation decorator* parameter `content_type` to `response_class`. PR [#183](https://github.com/tiangolo/fastapi/pull/183).
 
@@ -6247,7 +6930,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * Update how to use a [Custom Response Class](https://fastapi.tiangolo.com/advanced/custom-response/).
     * PR [#184](https://github.com/tiangolo/fastapi/pull/184).
 
-## 0.18.0
+## 0.18.0 (2019-04-22)
 
 * Add docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/custom-response/). PR [#177](https://github.com/tiangolo/fastapi/pull/177).
 
@@ -6257,7 +6940,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Add docs for [Middleware](https://fastapi.tiangolo.com/tutorial/middleware/). PR [#173](https://github.com/tiangolo/fastapi/pull/173).
 
-## 0.17.0
+## 0.17.0 (2019-04-20)
 
 * Make Flit publish from CI. PR [#170](https://github.com/tiangolo/fastapi/pull/170).
 
@@ -6265,7 +6948,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * By default, encode by alias. This allows using Pydantic `alias` parameters working by default. PR [#168](https://github.com/tiangolo/fastapi/pull/168).
 
-## 0.16.0
+## 0.16.0 (2019-04-16)
 
 * Upgrade *path operation* `docstring` parsing to support proper Markdown descriptions. New documentation at [Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring). PR [#163](https://github.com/tiangolo/fastapi/pull/163).
 
@@ -6277,13 +6960,13 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix [Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/) URL examples in docs. PR [#157](https://github.com/tiangolo/fastapi/pull/157) by [@hayata-yamamoto](https://github.com/hayata-yamamoto).
 
-## 0.15.0
+## 0.15.0 (2019-04-14)
 
 * Add support for multiple file uploads (as a single form field). New docs at: [Multiple file uploads](https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads). PR [#158](https://github.com/tiangolo/fastapi/pull/158).
 
 * Add docs for: [Additional Status Codes](https://fastapi.tiangolo.com/advanced/additional-status-codes/). PR [#156](https://github.com/tiangolo/fastapi/pull/156).
 
-## 0.14.0
+## 0.14.0 (2019-04-12)
 
 * Improve automatically generated names of *path operations* in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR [#155](https://github.com/tiangolo/fastapi/pull/155).
 
@@ -6295,7 +6978,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Include Falcon and Hug in: [Alternatives, Inspiration and Comparisons](https://fastapi.tiangolo.com/alternatives/).
 
-## 0.13.0
+## 0.13.0 (2019-04-09)
 
 * Improve/upgrade OAuth2 scopes support with `SecurityScopes`:
     * `SecurityScopes` can be declared as a parameter like `Request`, to get the scopes of all super-dependencies/dependants.
@@ -6305,7 +6988,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * New docs about: [OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).
     * PR [#141](https://github.com/tiangolo/fastapi/pull/141).
 
-## 0.12.1
+## 0.12.1 (2019-04-05)
 
 * Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR [#140](https://github.com/tiangolo/fastapi/pull/140).
 
@@ -6313,7 +6996,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix typos in section about nested models and OAuth2 with JWT. PR [#127](https://github.com/tiangolo/fastapi/pull/127) by [@mmcloud](https://github.com/mmcloud).
 
-## 0.12.0
+## 0.12.0 (2019-04-05)
 
 * Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
     * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
@@ -6322,7 +7005,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * PR [#97](https://github.com/tiangolo/fastapi/pull/97) originally initiated by [@barsi](https://github.com/barsi).
 * Update `scripts/test-cov-html.sh` to allow passing extra parameters like `-vv`, for development.
 
-## 0.11.0
+## 0.11.0 (2019-04-03)
 
 * Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR [#134](https://github.com/tiangolo/fastapi/pull/134).
 
@@ -6330,7 +7013,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix duplicate dependency in `pyproject.toml`. PR [#128](https://github.com/tiangolo/fastapi/pull/128) by [@zxalif](https://github.com/zxalif).
 
-## 0.10.3
+## 0.10.3 (2019-03-30)
 
 * Add Gitter chat, badge, links, etc. [https://gitter.im/tiangolo/fastapi](https://gitter.im/tiangolo/fastapi) . PR [#117](https://github.com/tiangolo/fastapi/pull/117).
 
@@ -6344,7 +7027,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix event docs (startup/shutdown) function name. PR [#105](https://github.com/tiangolo/fastapi/pull/105) by [@stratosgear](https://github.com/stratosgear).
 
-## 0.10.2
+## 0.10.2 (2019-03-29)
 
 * Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR [#121](https://github.com/tiangolo/fastapi/pull/121).
 
@@ -6352,11 +7035,11 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Document response models using unions and lists, updated at: [Extra Models](https://fastapi.tiangolo.com/tutorial/extra-models/). PR [#108](https://github.com/tiangolo/fastapi/pull/108).
 
-## 0.10.1
+## 0.10.1 (2019-03-25)
 
 * Add docs and tests for [encode/databases](https://github.com/encode/databases). New docs at: [Async SQL (Relational) Databases](https://fastapi.tiangolo.com/advanced/async-sql-databases/). PR [#107](https://github.com/tiangolo/fastapi/pull/107).
 
-## 0.10.0
+## 0.10.0 (2019-03-24)
 
 * Add support for Background Tasks in *path operation functions* and dependencies. New documentation about [Background Tasks is here](https://fastapi.tiangolo.com/tutorial/background-tasks/). PR [#103](https://github.com/tiangolo/fastapi/pull/103).
 
@@ -6364,11 +7047,11 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * New docs section about [Events: startup - shutdown](https://fastapi.tiangolo.com/advanced/events/). PR [#99](https://github.com/tiangolo/fastapi/pull/99).
 
-## 0.9.1
+## 0.9.1 (2019-03-22)
 
 * Document receiving [Multiple values with the same query parameter](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values) and [Duplicate headers](https://fastapi.tiangolo.com/tutorial/header-params/#duplicate-headers). PR [#95](https://github.com/tiangolo/fastapi/pull/95).
 
-## 0.9.0
+## 0.9.0 (2019-03-22)
 
 * Upgrade compatible Pydantic version to `0.21.0`. PR [#90](https://github.com/tiangolo/fastapi/pull/90).
 
@@ -6378,7 +7061,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Fix link in "Deployment" to "Bigger Applications".
 
-## 0.8.0
+## 0.8.0 (2019-03-16)
 
 * Make development scripts executable. PR [#76](https://github.com/tiangolo/fastapi/pull/76) by [@euri10](https://github.com/euri10).
 
@@ -6388,7 +7071,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Update `isort` imports and scripts to be compatible with newer versions. PR [#75](https://github.com/tiangolo/fastapi/pull/75).
 
-## 0.7.1
+## 0.7.1 (2019-03-04)
 
 * Update [technical details about `async def` handling](https://fastapi.tiangolo.com/async/#path-operation-functions) with respect to previous frameworks. PR [#64](https://github.com/tiangolo/fastapi/pull/64) by [@haizaar](https://github.com/haizaar).
 
@@ -6396,7 +7079,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Trigger Docker images build on Travis CI automatically. PR [#65](https://github.com/tiangolo/fastapi/pull/65).
 
-## 0.7.0
+## 0.7.0 (2019-03-03)
 
 * Add support for `UploadFile` in `File` parameter annotations.
     * This includes a file-like interface.
@@ -6404,7 +7087,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
     * And here's the updated documentation for using [`Form` parameters mixed with `File` parameters, supporting `bytes` and `UploadFile`](https://fastapi.tiangolo.com/tutorial/request-forms-and-files/) at the same time.
     * PR [#63](https://github.com/tiangolo/fastapi/pull/63).
 
-## 0.6.4
+## 0.6.4 (2019-03-02)
 
 * Add [technical details about `async def` handling to docs](https://fastapi.tiangolo.com/async/#very-technical-details). PR [#61](https://github.com/tiangolo/fastapi/pull/61).
 
@@ -6418,11 +7101,11 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Add docs for using [WebSockets with **FastAPI**](https://fastapi.tiangolo.com/advanced/websockets/). PR [#62](https://github.com/tiangolo/fastapi/pull/62).
 
-## 0.6.3
+## 0.6.3 (2019-02-23)
 
 * Add Favicons to docs. PR [#53](https://github.com/tiangolo/fastapi/pull/53).
 
-## 0.6.2
+## 0.6.2 (2019-02-23)
 
 * Introduce new project generator based on FastAPI and PostgreSQL: [https://github.com/tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql). PR [#52](https://github.com/tiangolo/fastapi/pull/52).
 
@@ -6430,17 +7113,17 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Improve middleware naming in tutorial for SQL with SQLAlchemy [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/).
 
-## 0.6.1
+## 0.6.1 (2019-02-20)
 
 * Add docs for GraphQL: [https://fastapi.tiangolo.com/advanced/graphql/](https://fastapi.tiangolo.com/advanced/graphql/). PR [#48](https://github.com/tiangolo/fastapi/pull/48).
 
-## 0.6.0
+## 0.6.0 (2019-02-19)
 
 * Update SQL with SQLAlchemy tutorial at [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/) using the new official `request.state`. PR [#45](https://github.com/tiangolo/fastapi/pull/45).
 
 * Upgrade Starlette to version `0.11.1` and add required compatibility changes. PR [#44](https://github.com/tiangolo/fastapi/pull/44).
 
-## 0.5.1
+## 0.5.1 (2019-02-18)
 
 * Add section about [helping and getting help with **FastAPI**](https://fastapi.tiangolo.com/help-fastapi/).
 
@@ -6448,9 +7131,9 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Update [section about error handling](https://fastapi.tiangolo.com/tutorial/handling-errors/) with more information and make relation with Starlette error handling utilities more explicit. PR [#41](https://github.com/tiangolo/fastapi/pull/41).
 
-* Add <a href="" target="_blank">Development - Contributing section to the docs</a>. PR [#42](https://github.com/tiangolo/fastapi/pull/42).
+* Add [Development - Contributing section to the docs](). PR [#42](https://github.com/tiangolo/fastapi/pull/42).
 
-## 0.5.0
+## 0.5.0 (2019-02-16)
 
 * Add new `HTTPException` with support for custom headers. With new documentation for handling errors at: [https://fastapi.tiangolo.com/tutorial/handling-errors/](https://fastapi.tiangolo.com/tutorial/handling-errors/). PR [#35](https://github.com/tiangolo/fastapi/pull/35).
 
@@ -6460,26 +7143,26 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Update example for the SQLAlchemy tutorial at [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/) using middleware and database session attached to request.
 
-## 0.4.0
+## 0.4.0 (2019-02-16)
 
 * Add `openapi_prefix`, support for reverse proxy and mounting sub-applications. See the docs at [https://fastapi.tiangolo.com/advanced/sub-applications-proxy/](https://fastapi.tiangolo.com/advanced/sub-applications-proxy/): [#26](https://github.com/tiangolo/fastapi/pull/26) by [@kabirkhan](https://github.com/kabirkhan).
 
 * Update [docs/tutorial for SQLAlchemy](https://fastapi.tiangolo.com/tutorial/sql-databases/) including note about _DB Browser for SQLite_.
 
-## 0.3.0
+## 0.3.0 (2019-02-12)
 
 * Fix/add SQLAlchemy support, including ORM, and update [docs for SQLAlchemy](https://fastapi.tiangolo.com/tutorial/sql-databases/): [#30](https://github.com/tiangolo/fastapi/pull/30).
 
-## 0.2.1
+## 0.2.1 (2019-02-12)
 
 * Fix `jsonable_encoder` for Pydantic models with `Config` but without `json_encoders`: [#29](https://github.com/tiangolo/fastapi/pull/29).
 
-## 0.2.0
+## 0.2.0 (2019-02-08)
 
 * Fix typos in Security section: [#24](https://github.com/tiangolo/fastapi/pull/24) by [@kkinder](https://github.com/kkinder).
 
 * Add support for Pydantic custom JSON encoders: [#21](https://github.com/tiangolo/fastapi/pull/21) by [@euri10](https://github.com/euri10).
 
-## 0.1.19
+## 0.1.19 (2019-02-01)
 
 * Upgrade Starlette version to the current latest `0.10.1`: [#17](https://github.com/tiangolo/fastapi/pull/17) by [@euri10](https://github.com/euri10).

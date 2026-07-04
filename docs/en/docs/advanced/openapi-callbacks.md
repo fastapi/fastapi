@@ -4,7 +4,7 @@ You could create an API with a *path operation* that could trigger a request to 
 
 The process that happens when your API app calls the *external API* is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API *calls back*, sending a request to an *external API* (that was probably created by the same developer).
 
-In this case, you could want to document how that external API *should* look like. What *path operation* it should have, what body it should expect, what response it should return, etc.
+In this case, you could want to document how that external API *should* look. What *path operation* it should have, what body it should expect, what response it should return, etc.
 
 ## An app with callbacks { #an-app-with-callbacks }
 
@@ -25,7 +25,7 @@ Then your API will (let's imagine):
 
 ## The normal **FastAPI** app { #the-normal-fastapi-app }
 
-Let's first see how the normal API app would look like before adding the callback.
+Let's first see how the normal API app would look before adding the callback.
 
 It will have a *path operation* that will receive an `Invoice` body, and a query parameter `callback_url` that will contain the URL for the callback.
 
@@ -35,7 +35,7 @@ This part is pretty normal, most of the code is probably already familiar to you
 
 /// tip
 
-The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
+The `callback_url` query parameter uses a Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type.
 
 ///
 
@@ -56,7 +56,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 But possibly the most important part of the callback is making sure that your API user (the external developer) implements the *external API* correctly, according to the data that *your API* is going to send in the request body of the callback, etc.
 
-So, what we will do next is add the code to document how that *external API* should look like to receive the callback from *your API*.
+So, what we will do next is add the code to document how that *external API* should look to receive the callback from *your API*.
 
 That documentation will show up in the Swagger UI at `/docs` in your API, and it will let external developers know how to build the *external API*.
 
@@ -66,17 +66,17 @@ This example doesn't implement the callback itself (that could be just a line of
 
 The actual callback is just an HTTP request.
 
-When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+When implementing the callback yourself, you could use something like [HTTPX](https://www.python-httpx.org) or [Requests](https://requests.readthedocs.io/).
 
 ///
 
 ## Write the callback documentation code { #write-the-callback-documentation-code }
 
-This code won't be executed in your app, we only need it to *document* how that *external API* should look like.
+This code won't be executed in your app, we only need it to *document* how that *external API* should look.
 
 But, you already know how to easily create automatic documentation for an API with **FastAPI**.
 
-So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
+So we are going to use that same knowledge to document how the *external API* should look... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
 
 /// tip
 
@@ -106,11 +106,11 @@ It should look just like a normal FastAPI *path operation*:
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression { #the-callback-path-expression }
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -167,20 +167,20 @@ Notice how the callback URL used contains the URL received as a query parameter 
 
 At this point you have the *callback path operation(s)* needed (the one(s) that the *external developer*  should implement in the *external API*) in the callback router you created above.
 
-Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
+Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` from that callback router:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip
 
-Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+Notice that you are not passing the router itself (`invoices_callback_router`) to `callbacks=`, but its `.routes`, as in `invoices_callback_router.routes`. FastAPI will use those routes to generate the callback OpenAPI documentation.
 
 ///
 
 ### Check the docs { #check-the-docs }
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
+You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look:
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

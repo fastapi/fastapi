@@ -32,7 +32,7 @@ You can see the defined cookies in the docs UI at `/docs`:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info
+/// note
 
 Have in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.
 
@@ -46,7 +46,7 @@ But even if you **fill the data** and click "Execute", because the docs UI works
 
 In some special use cases (probably not very common), you might want to **restrict** the cookies that you want to receive.
 
-Your API now has the power to control its own <abbr title="This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪">cookie consent</abbr>. 🤪🍪
+Your API now has the power to control its own <dfn title="This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪">cookie consent</dfn>. 🤪🍪
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
@@ -54,9 +54,9 @@ You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
 If a client tries to send some **extra cookies**, they will receive an **error** response.
 
-Poor cookie banners with all their effort to get your consent for the <abbr title="This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕">API to reject it</abbr>. 🍪
+Poor cookie banners with all their effort to get your consent for the <dfn title="This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕">API to reject it</dfn>. 🍪
 
-For example, if the client tries to send a `santa_tracker` cookie with a value of `good-list-please`, the client will receive an **error** response telling them that the `santa_tracker` <abbr title="Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.">cookie is not allowed</abbr>:
+For example, if the client tries to send a `santa_tracker` cookie with a value of `good-list-please`, the client will receive an **error** response telling them that the `santa_tracker` <dfn title="Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.">cookie is not allowed</dfn>:
 
 ```json
 {
@@ -73,4 +73,4 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
 
 ## Summary { #summary }
 
-You can use **Pydantic models** to declare <abbr title="Have a last cookie before you go. 🍪">**cookies**</abbr> in **FastAPI**. 😎
+You can use **Pydantic models** to declare <dfn title="Have a last cookie before you go. 🍪">**cookies**</dfn> in **FastAPI**. 😎

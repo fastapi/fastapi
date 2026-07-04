@@ -1,8 +1,9 @@
 # 查询参数 { #query-parameters }
 
-声明的参数不是路径参数时，路径操作函数会把该参数自动解释为**查询**参数。
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+声明的参数不是路径参数时，路径操作函数会把该参数自动解释为“查询”参数。
+
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 查询字符串是键值对的集合，这些键值对位于 URL 的 `?` 之后，以 `&` 分隔。
 
@@ -12,19 +13,19 @@
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-……查询参数为：
+...查询参数为：
 
 * `skip`：值为 `0`
 * `limit`：值为 `10`
 
-这些值都是 URL 的组成部分，因此，它们的类型**本应**是字符串。
+这些值都是 URL 的组成部分，因此，它们的类型“本应”是字符串。
 
 但声明 Python 类型（上例中为 `int`）之后，这些值就会转换为声明的类型，并进行类型校验。
 
 所有应用于路径参数的流程也适用于查询参数：
 
 * （显而易见的）编辑器支持
-* 数据<abbr title="将来自 HTTP 请求的字符串转换为 Python 数据类型">**解析**</abbr>
+* 数据<dfn title="将来自 HTTP 请求的字符串转换为 Python 数据">"解析"</dfn>
 * 数据校验
 * 自动文档
 
@@ -59,13 +60,13 @@ http://127.0.0.1:8000/items/?skip=20
 
 ## 可选参数 { #optional-parameters }
 
-同理，把默认值设为 `None` 即可声明**可选的**查询参数：
+同理，把默认值设为 `None` 即可声明可选的查询参数：
 
 {* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
-/// check | 检查
+/// tip | 提示
 
 注意，**FastAPI** 可以识别出 `item_id` 是路径参数，`q` 不是路径参数，而是查询参数。
 
@@ -74,7 +75,6 @@ http://127.0.0.1:8000/items/?skip=20
 ## 查询参数类型转换 { #query-parameter-type-conversion }
 
 参数还可以声明为 `bool` 类型，FastAPI 会自动转换参数类型：
-
 
 {* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
@@ -123,13 +123,13 @@ FastAPI 通过参数名进行检测：
 
 ## 必选查询参数 { #required-query-parameters }
 
-为不是路径参数的参数声明默认值（至此，仅有查询参数），该参数就**不是必选**的了。
+为不是路径参数的参数声明默认值（至此，仅有查询参数），该参数就不是必选的了。
 
-如果只想把参数设为**可选**，但又不想指定参数的值，则要把默认值设为 `None`。
+如果只想把参数设为可选，但又不想指定参数的值，则要把默认值设为 `None`。
 
-如果要把查询参数设置为**必选**，就不要声明默认值：
+如果要把查询参数设置为必选，就不要声明默认值：
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 这里的查询参数 `needy` 是类型为 `str` 的必选查询参数。
 
@@ -139,7 +139,7 @@ FastAPI 通过参数名进行检测：
 http://127.0.0.1:8000/items/foo-item
 ```
 
-……因为路径中没有必选参数 `needy`，返回的响应中会显示如下错误信息：
+...因为路径中没有必选参数 `needy`，返回的响应中会显示如下错误信息：
 
 ```JSON
 {
@@ -163,7 +163,7 @@ http://127.0.0.1:8000/items/foo-item
 http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 ```
 
-……这样就正常了：
+...这样就正常了：
 
 ```JSON
 {
@@ -184,6 +184,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 提示
 
-还可以像在[路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
+还可以像在[路径参数](path-params.md#predefined-values)中那样使用 `Enum`。
 
 ///

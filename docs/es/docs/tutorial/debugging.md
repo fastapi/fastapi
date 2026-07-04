@@ -1,12 +1,13 @@
 # Depuración { #debugging }
 
+
 Puedes conectar el depurador en tu editor, por ejemplo con Visual Studio Code o PyCharm.
 
 ## Llama a `uvicorn` { #call-uvicorn }
 
 En tu aplicación de FastAPI, importa y ejecuta `uvicorn` directamente:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Acerca de `__name__ == "__main__"` { #about-name-main }
 
@@ -62,7 +63,7 @@ from myapp import app
 # Algún código adicional
 ```
 
-en ese caso, la variable creada automáticamente dentro de `myapp.py` no tendrá la variable `__name__` con un valor de `"__main__"`.
+en ese caso, la variable creada automáticamente `__name__` dentro de `myapp.py` no tendrá el valor `"__main__"`.
 
 Así que, la línea:
 
@@ -72,9 +73,9 @@ Así que, la línea:
 
 no se ejecutará.
 
-/// info | Información
+/// note | Nota
 
-Para más información, revisa <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">la documentación oficial de Python</a>.
+Para más información, revisa [la documentación oficial de Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -88,7 +89,7 @@ Por ejemplo, en Visual Studio Code, puedes:
 
 * Ir al panel de "Debug".
 * "Add configuration...".
-* Seleccionar "Python".
+* Seleccionar "Python"
 * Ejecutar el depurador con la opción "`Python: Current File (Integrated Terminal)`".
 
 Luego, iniciará el servidor con tu código **FastAPI**, deteniéndose en tus puntos de interrupción, etc.

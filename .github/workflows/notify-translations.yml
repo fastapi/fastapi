@@ -1,10 +1,12 @@
 name: Notify Translations
 
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types:
       - labeled
       - closed
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       number:
@@ -15,24 +17,32 @@ on:
         required: false
         default: 'false'
 
+permissions: {}
+
 jobs:
   job:
     runs-on: ubuntu-latest
     permissions:
       discussions: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -41,7 +51,7 @@ jobs:
         run: uv sync --locked --no-dev --group github-actions
       # Allow debugging with tmate
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true

@@ -3,19 +3,18 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
-from typing import Any, Optional, Union, cast
+from typing import Any, Literal, cast
 
 from fastapi import routing
 from fastapi._compat import (
     ModelField,
-    Undefined,
     get_definitions,
     get_flat_models_from_fields,
     get_model_name_map,
     get_schema_from_model_field,
     lenient_issubclass,
 )
-from fastapi.datastructures import DefaultPlaceholder
+from fastapi.datastructures import DefaultPlaceholder, _Unset
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
@@ -29,6 +28,7 @@ from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
+from fastapi.sse import _SSE_EVENT_SCHEMA
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
@@ -38,7 +38,6 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
-from typing_extensions import Literal
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -170,7 +169,7 @@ def _get_openapi_operation_parameters(
             example = getattr(field_info, "example", None)
             if openapi_examples:
                 parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example != Undefined:
+            elif example is not _Unset:
                 parameter["example"] = jsonable_encoder(example)
             if getattr(field_info, "deprecated", None):
                 parameter["deprecated"] = True
@@ -180,13 +179,13 @@ def _get_openapi_operation_parameters(
 
 def get_openapi_operation_request_body(
     *,
-    body_field: Optional[ModelField],
+    body_field: ModelField | None,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
-) -> Optional[dict[str, Any]]:
+) -> dict[str, Any] | None:
     if not body_field:
         return None
     assert isinstance(body_field, ModelField)
@@ -207,14 +206,14 @@ def get_openapi_operation_request_body(
         request_media_content["examples"] = jsonable_encoder(
             field_info.openapi_examples
         )
-    elif field_info.example != Undefined:
+    elif field_info.example is not _Unset:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 
 
 def generate_operation_id(
-    *, route: routing.APIRoute, method: str
+    *, route: routing._APIRouteLike, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
         message="fastapi.openapi.utils.generate_operation_id() was deprecated, "
@@ -228,14 +227,14 @@ def generate_operation_id(
     return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
-def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_summary(*, route: routing._APIRouteLike, method: str) -> str:
     if route.summary:
         return route.summary
     return route.name.replace("_", " ").title()
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str, operation_ids: set[str]
+    *, route: routing._APIRouteLike, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
     operation: dict[str, Any] = {}
     if route.tags:
@@ -245,10 +244,8 @@ def get_openapi_operation_metadata(
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
-        message = (
-            f"Duplicate Operation ID {operation_id} for function "
-            + f"{route.endpoint.__name__}"
-        )
+        endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
+        message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
@@ -262,7 +259,7 @@ def get_openapi_operation_metadata(
 
 def get_openapi_path(
     *,
-    route: routing.APIRoute,
+    route: routing._APIRouteLike,
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
@@ -279,7 +276,7 @@ def get_openapi_path(
     else:
         current_response_class = route.response_class
     assert current_response_class, "A response class is needed to generate OpenAPI"
-    route_response_media_type: Optional[str] = current_response_class.media_type
+    route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
             operation = get_openapi_operation_metadata(
@@ -332,7 +329,7 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback,
+                            route=cast(routing._APIRouteLike, callback),
                             operation_ids=operation_ids,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
@@ -356,25 +353,60 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if route_response_media_type and is_body_allowed_for_status_code(
-                route.status_code
-            ):
-                response_schema = {"type": "string"}
-                if lenient_issubclass(current_response_class, JSONResponse):
-                    if route.response_field:
-                        response_schema = get_schema_from_model_field(
-                            field=route.response_field,
+            if is_body_allowed_for_status_code(route.status_code):
+                # Check for JSONL streaming (generator endpoints)
+                if route.is_json_stream:
+                    jsonl_content: dict[str, Any] = {}
+                    if route.stream_item_field:
+                        item_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
                         )
+                        jsonl_content["itemSchema"] = item_schema
                     else:
-                        response_schema = {}
-                operation.setdefault("responses", {}).setdefault(
-                    status_code, {}
-                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                    "schema"
-                ] = response_schema
+                        jsonl_content["itemSchema"] = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["application/jsonl"] = jsonl_content
+                elif route.is_sse_stream:
+                    sse_content: dict[str, Any] = {}
+                    item_schema = copy.deepcopy(_SSE_EVENT_SCHEMA)
+                    if route.stream_item_field:
+                        content_schema = get_schema_from_model_field(
+                            field=route.stream_item_field,
+                            model_name_map=model_name_map,
+                            field_mapping=field_mapping,
+                            separate_input_output_schemas=separate_input_output_schemas,
+                        )
+                        item_schema["required"] = ["data"]
+                        item_schema["properties"]["data"] = {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": content_schema,
+                        }
+                    sse_content["itemSchema"] = item_schema
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {})["text/event-stream"] = sse_content
+                elif route_response_media_type:
+                    response_schema = {"type": "string"}
+                    if lenient_issubclass(current_response_class, JSONResponse):
+                        if route.response_field:
+                            response_schema = get_schema_from_model_field(
+                                field=route.response_field,
+                                model_name_map=model_name_map,
+                                field_mapping=field_mapping,
+                                separate_input_output_schemas=separate_input_output_schemas,
+                            )
+                        else:
+                            response_schema = {}
+                    operation.setdefault("responses", {}).setdefault(
+                        status_code, {}
+                    ).setdefault("content", {}).setdefault(
+                        route_response_media_type, {}
+                    )["schema"] = response_schema
             if route.responses:
                 operation_responses = operation.setdefault("responses", {})
                 for (
@@ -393,7 +425,7 @@ def get_openapi_path(
                         "An additional response must be a dict"
                     )
                     field = route.response_fields.get(additional_status_code)
-                    additional_field_schema: Optional[dict[str, Any]] = None
+                    additional_field_schema: dict[str, Any] | None = None
                     if field:
                         additional_field_schema = get_schema_from_model_field(
                             field=field,
@@ -408,7 +440,7 @@ def get_openapi_path(
                             .setdefault("schema", {})
                         )
                         deep_dict_update(additional_schema, additional_field_schema)
-                    status_text: Optional[str] = status_code_ranges.get(
+                    status_text: str | None = status_code_ranges.get(
                         str(additional_status_code).upper()
                     ) or http.client.responses.get(int(additional_status_code))
                     description = (
@@ -446,29 +478,40 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
+def _get_api_route_for_openapi(
+    route_context: routing.RouteContext,
+) -> routing._APIRouteLike | None:
+    if isinstance(route_context.original_route, routing.APIRoute):
+        return cast(routing._APIRouteLike, route_context)
+    return None
+
+
 def get_fields_from_routes(
-    routes: Sequence[BaseRoute],
+    routes: Sequence[BaseRoute | routing.RouteContext],
 ) -> list[ModelField]:
     body_fields_from_routes: list[ModelField] = []
     responses_from_routes: list[ModelField] = []
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
-    for route in routes:
-        if getattr(route, "include_in_schema", None) and isinstance(
-            route, routing.APIRoute
-        ):
-            if route.body_field:
-                assert isinstance(route.body_field, ModelField), (
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is None:
+            continue
+        if api_route.include_in_schema:
+            if api_route.body_field:
+                assert isinstance(api_route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
-                body_fields_from_routes.append(route.body_field)
-            if route.response_field:
-                responses_from_routes.append(route.response_field)
-            if route.response_fields:
-                responses_from_routes.extend(route.response_fields.values())
-            if route.callbacks:
-                callback_flat_models.extend(get_fields_from_routes(route.callbacks))
-            params = get_flat_params(route.dependant)
+                body_fields_from_routes.append(api_route.body_field)
+            if api_route.response_field:
+                responses_from_routes.append(api_route.response_field)
+            if api_route.response_fields:
+                responses_from_routes.extend(api_route.response_fields.values())
+            if api_route.stream_item_field:
+                responses_from_routes.append(api_route.stream_item_field)
+            if api_route.callbacks:
+                callback_flat_models.extend(get_fields_from_routes(api_route.callbacks))
+            params = get_flat_params(api_route.dependant)
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(
@@ -482,17 +525,17 @@ def get_openapi(
     title: str,
     version: str,
     openapi_version: str = "3.1.0",
-    summary: Optional[str] = None,
-    description: Optional[str] = None,
-    routes: Sequence[BaseRoute],
-    webhooks: Optional[Sequence[BaseRoute]] = None,
-    tags: Optional[list[dict[str, Any]]] = None,
-    servers: Optional[list[dict[str, Union[str, Any]]]] = None,
-    terms_of_service: Optional[str] = None,
-    contact: Optional[dict[str, Union[str, Any]]] = None,
-    license_info: Optional[dict[str, Union[str, Any]]] = None,
+    summary: str | None = None,
+    description: str | None = None,
+    routes: Sequence[BaseRoute | routing.RouteContext],
+    webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
+    tags: list[dict[str, Any]] | None = None,
+    servers: list[dict[str, str | Any]] | None = None,
+    terms_of_service: str | None = None,
+    contact: dict[str, str | Any] | None = None,
+    license_info: dict[str, str | Any] | None = None,
     separate_input_output_schemas: bool = True,
-    external_docs: Optional[dict[str, Any]] = None,
+    external_docs: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     info: dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -512,7 +555,7 @@ def get_openapi(
     paths: dict[str, dict[str, Any]] = {}
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
-    all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
+    all_fields = get_fields_from_routes(list(routes) + list(webhooks or []))
     flat_models = get_flat_models_from_fields(all_fields, known_models=set())
     model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
@@ -520,10 +563,11 @@ def get_openapi(
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    for route in routes or []:
-        if isinstance(route, routing.APIRoute):
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is not None:
             result = get_openapi_path(
-                route=route,
+                route=api_route,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -532,17 +576,18 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    paths.setdefault(api_route.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
-    for webhook in webhooks or []:
-        if isinstance(webhook, routing.APIRoute):
+    for webhook_context in routing.iter_route_contexts(webhooks or []):
+        api_webhook = _get_api_route_for_openapi(webhook_context)
+        if api_webhook is not None:
             result = get_openapi_path(
-                route=webhook,
+                route=api_webhook,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -551,7 +596,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                    webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
@@ -569,4 +614,4 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore[no-any-return]

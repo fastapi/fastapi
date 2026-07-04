@@ -10,9 +10,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial005_py39"),
         pytest.param("tutorial005_py310", marks=needs_py310),
-        pytest.param("tutorial005_an_py39"),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )
@@ -84,7 +82,7 @@ def test_post_no_body(client: TestClient):
     }
 
 
-def test_post_like_not_embeded(client: TestClient):
+def test_post_like_not_embedded(client: TestClient):
     response = client.put(
         "/items/5",
         json={

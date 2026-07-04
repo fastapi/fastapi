@@ -1,6 +1,6 @@
 # CORS（跨域资源共享） { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 或者「跨域资源共享」</a> 指浏览器中运行的前端拥有与后端通信的 JavaScript 代码，而后端处于与前端不同的「源」的情况。
+[CORS 或者「跨域资源共享」](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) 指浏览器中运行的前端拥有与后端通信的 JavaScript 代码，而后端处于与前端不同的「源」的情况。
 
 ## 源 { #origin }
 
@@ -46,7 +46,7 @@
 * 特定的 HTTP 方法（`POST`，`PUT`）或者使用通配符 `"*"` 允许所有方法。
 * 特定的 HTTP 请求头或者使用通配符 `"*"` 允许所有请求头。
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 默认情况下，这个 `CORSMiddleware` 实现所使用的默认参数较为保守，所以你需要显式地启用特定的源、方法或者 headers，以便浏览器能够在跨域上下文中使用它们。
 
@@ -55,15 +55,15 @@
 * `allow_origins` - 一个允许跨域请求的源列表。例如 `['https://example.org', 'https://www.example.org']`。你可以使用 `['*']` 允许任何源。
 * `allow_origin_regex` - 一个正则表达式字符串，匹配的源允许跨域请求。例如 `'https://.*\.example\.org'`。
 * `allow_methods` - 一个允许跨域请求的 HTTP 方法列表。默认为 `['GET']`。你可以使用 `['*']` 来允许所有标准方法。
-* `allow_headers` - 一个允许跨域请求的 HTTP 请求头列表。默认为 `[]`。你可以使用 `['*']` 允许所有的请求头。`Accept`、`Accept-Language`、`Content-Language` 以及 `Content-Type` 这几个请求头在<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">简单 CORS 请求</a>中总是被允许。
+* `allow_headers` - 一个允许跨域请求的 HTTP 请求头列表。默认为 `[]`。你可以使用 `['*']` 允许所有的请求头。`Accept`、`Accept-Language`、`Content-Language` 以及 `Content-Type` 这几个请求头在[简单 CORS 请求](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)中总是被允许。
 * `allow_credentials` - 指示跨域请求支持 cookies。默认是 `False`。
 
-    当 `allow_credentials` 设为 `True` 时，`allow_origins`、`allow_methods` 和 `allow_headers` 都不能设为 `['*']`。它们必须<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">显式指定</a>。
+    当 `allow_credentials` 设为 `True` 时，`allow_origins`、`allow_methods` 和 `allow_headers` 都不能设为 `['*']`。它们必须[显式指定](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards)。
 
 * `expose_headers` - 指示可以被浏览器访问的响应头。默认为 `[]`。
 * `max_age` - 设定浏览器缓存 CORS 响应的最长时间，单位是秒。默认为 `600`。
 
-中间件响应两种特定类型的 HTTP 请求……
+中间件响应两种特定类型的 HTTP 请求...
 
 ### CORS 预检请求 { #cors-preflight-requests }
 
@@ -77,7 +77,7 @@
 
 ## 更多信息 { #more-info }
 
-更多关于 <abbr title="Cross-Origin Resource Sharing - 跨域资源共享">CORS</abbr> 的信息，请查看 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 文档</a>。
+更多关于 <abbr title="Cross-Origin Resource Sharing - 跨域资源共享">CORS</abbr> 的信息，请查看 [Mozilla CORS 文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)。
 
 /// note | 技术细节
 

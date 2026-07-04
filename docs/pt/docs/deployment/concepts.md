@@ -1,6 +1,6 @@
 # Conceitos de Implantações { #deployments-concepts }
 
-Ao implantar um aplicativo **FastAPI**, ou na verdade, qualquer tipo de API da web, há vários conceitos com os quais você provavelmente se importa e, usando-os, você pode encontrar a maneira **mais apropriada** de **implantar seu aplicativo**.
+Ao implantar uma aplicação **FastAPI**, ou na verdade, qualquer tipo de API da web, há vários conceitos com os quais você provavelmente se importa e, usando-os, você pode encontrar a maneira **mais apropriada** de **implantar sua aplicação**.
 
 Alguns dos conceitos importantes são:
 
@@ -19,15 +19,15 @@ Vou lhe contar um pouco mais sobre esses **conceitos** aqui, e espero que isso l
 
 Ao considerar esses conceitos, você será capaz de **avaliar e projetar** a melhor maneira de implantar **suas próprias APIs**.
 
-Nos próximos capítulos, darei a você mais **receitas concretas** para implantar aplicativos FastAPI.
+Nos próximos capítulos, darei a você mais **receitas concretas** para implantar aplicações FastAPI.
 
 Mas por enquanto, vamos verificar essas importantes **ideias conceituais**. Esses conceitos também se aplicam a qualquer outro tipo de API da web. 💡
 
 ## Segurança - HTTPS { #security-https }
 
-No [capítulo anterior sobre HTTPS](https.md){.internal-link target=_blank} aprendemos como o HTTPS fornece criptografia para sua API.
+No [capítulo anterior sobre HTTPS](https.md) aprendemos como o HTTPS fornece criptografia para sua API.
 
-Também vimos que o HTTPS normalmente é fornecido por um componente **externo** ao seu servidor de aplicativos, um **Proxy de terminação TLS**.
+Também vimos que o HTTPS normalmente é fornecido por um componente **externo** ao seu servidor de aplicações, um **Proxy de terminação TLS**.
 
 E tem que haver algo responsável por **renovar os certificados HTTPS**, pode ser o mesmo componente ou pode ser algo diferente.
 
@@ -75,7 +75,7 @@ A palavra **processo** normalmente é usada de forma mais específica, referindo
     * Isso não se refere ao arquivo, nem ao código, refere-se **especificamente** à coisa que está sendo **executada** e gerenciada pelo sistema operacional.
 * Qualquer programa, qualquer código, **só pode fazer coisas** quando está sendo **executado**. Então, quando há um **processo em execução**.
 * O processo pode ser **terminado** (ou "morto") por você, ou pelo sistema operacional. Nesse ponto, ele para de rodar/ser executado, e ele **não pode mais fazer coisas**.
-* Cada aplicativo que você tem em execução no seu computador tem algum processo por trás dele, cada programa em execução, cada janela, etc. E normalmente há muitos processos em execução **ao mesmo tempo** enquanto um computador está ligado.
+* Cada aplicação que você tem em execução no seu computador tem algum processo por trás dela, cada programa em execução, cada janela, etc. E normalmente há muitos processos em execução **ao mesmo tempo** enquanto um computador está ligado.
 * Pode haver **vários processos** do **mesmo programa** em execução ao mesmo tempo.
 
 Se você verificar o "gerenciador de tarefas" ou o "monitor do sistema" (ou ferramentas semelhantes) no seu sistema operacional, poderá ver muitos desses processos em execução.
@@ -104,11 +104,11 @@ E se o servidor for reiniciado (por exemplo, após atualizações ou migrações
 
 ### Executar automaticamente na inicialização { #run-automatically-on-startup }
 
-Em geral, você provavelmente desejará que o programa do servidor (por exemplo, Uvicorn) seja iniciado automaticamente na inicialização do servidor e, sem precisar de nenhuma **intervenção humana**, tenha um processo sempre em execução com sua API (por exemplo, Uvicorn executando seu aplicativo FastAPI).
+Em geral, você provavelmente desejará que o programa do servidor (por exemplo, Uvicorn) seja iniciado automaticamente na inicialização do servidor e, sem precisar de nenhuma **intervenção humana**, tenha um processo sempre em execução com sua API (por exemplo, Uvicorn executando sua aplicação FastAPI).
 
 ### Programa separado { #separate-program }
 
-Para conseguir isso, você normalmente terá um **programa separado** que garantiria que seu aplicativo fosse executado na inicialização. E em muitos casos, ele também garantiria que outros componentes ou aplicativos também fossem executados, por exemplo, um banco de dados.
+Para conseguir isso, você normalmente terá um **programa separado** que garantiria que sua aplicação fosse executada na inicialização. E em muitos casos, ele também garantiria que outros componentes ou aplicações também fossem executados, por exemplo, um banco de dados.
 
 ### Ferramentas de exemplo para executar na inicialização { #example-tools-to-run-at-startup }
 
@@ -127,7 +127,7 @@ Darei exemplos mais concretos nos próximos capítulos.
 
 ## Reinicializações { #restarts }
 
-Semelhante a garantir que seu aplicativo seja executado na inicialização, você provavelmente também deseja garantir que ele seja **reiniciado** após falhas.
+Semelhante a garantir que sua aplicação seja executada na inicialização, você provavelmente também deseja garantir que ela seja **reiniciada** após falhas.
 
 ### Nós cometemos erros { #we-make-mistakes }
 
@@ -137,15 +137,15 @@ E nós, como desenvolvedores, continuamos aprimorando o código à medida que en
 
 ### Pequenos erros são tratados automaticamente { #small-errors-automatically-handled }
 
-Ao criar APIs da web com FastAPI, se houver um erro em nosso código, o FastAPI normalmente o conterá na única solicitação que acionou o erro. 🛡
+Ao criar APIs da web com FastAPI, se houver um erro em nosso código, o FastAPI normalmente o conterá na única request que acionou o erro. 🛡
 
-O cliente receberá um **Erro Interno do Servidor 500** para essa solicitação, mas o aplicativo continuará funcionando para as próximas solicitações em vez de travar completamente.
+O cliente receberá um **Erro Interno do Servidor 500** para essa request, mas a aplicação continuará funcionando para as próximas requests em vez de travar completamente.
 
 ### Erros maiores - Travamentos { #bigger-errors-crashes }
 
-No entanto, pode haver casos em que escrevemos algum código que **trava todo o aplicativo**, fazendo com que o Uvicorn e o Python travem. 💥
+No entanto, pode haver casos em que escrevemos algum código que **trava toda a aplicação**, fazendo com que o Uvicorn e o Python travem. 💥
 
-E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse inativo porque houve um erro em um lugar, você provavelmente quer que ele **continue em execução** pelo menos para as *operações de caminho* que não estão quebradas.
+E ainda assim, você provavelmente não gostaria que a aplicação permanecesse inativa porque houve um erro em um lugar, você provavelmente quer que ela **continue em execução** pelo menos para as *operações de rota* que não estão quebradas.
 
 ### Reiniciar após falha { #restart-after-crash }
 
@@ -153,13 +153,13 @@ Mas nos casos com erros realmente graves que travam o **processo** em execução
 
 /// tip | Dica
 
-...Embora se o aplicativo inteiro estiver **travando imediatamente**, provavelmente não faça sentido reiniciá-lo para sempre. Mas nesses casos, você provavelmente notará isso durante o desenvolvimento, ou pelo menos logo após a implantação.
+...Embora se a aplicação inteira estiver **travando imediatamente**, provavelmente não faça sentido reiniciá-la para sempre. Mas nesses casos, você provavelmente notará isso durante o desenvolvimento, ou pelo menos logo após a implantação.
 
-Então, vamos nos concentrar nos casos principais, onde ele pode travar completamente em alguns casos específicos **no futuro**, e ainda faz sentido reiniciá-lo.
+Então, vamos nos concentrar nos casos principais, onde ela pode travar completamente em alguns casos específicos **no futuro**, e ainda faz sentido reiniciá-la.
 
 ///
 
-Você provavelmente gostaria de ter a coisa responsável por reiniciar seu aplicativo como um **componente externo**, porque a essa altura, o mesmo aplicativo com Uvicorn e Python já havia travado, então não há nada no mesmo código do mesmo aplicativo que possa fazer algo a respeito.
+Você provavelmente gostaria de ter a coisa responsável por reiniciar sua aplicação como um **componente externo**, porque a essa altura, a mesma aplicação com Uvicorn e Python já havia travado, então não há nada no mesmo código da mesma aplicação que possa fazer algo a respeito.
 
 ### Ferramentas de exemplo para reiniciar automaticamente { #example-tools-to-restart-automatically }
 
@@ -178,19 +178,19 @@ Por exemplo, isso poderia ser resolvido por:
 
 ## Replicação - Processos e Memória { #replication-processes-and-memory }
 
-Com um aplicativo FastAPI, usando um programa de servidor como o comando `fastapi` que executa o Uvicorn, executá-lo uma vez em **um processo** pode atender a vários clientes simultaneamente.
+Com uma aplicação FastAPI, usando um programa de servidor como o comando `fastapi` que executa o Uvicorn, executá-lo uma vez em **um processo** pode atender a vários clientes simultaneamente.
 
 Mas em muitos casos, você desejará executar vários processos de trabalho ao mesmo tempo.
 
 ### Processos Múltiplos - Trabalhadores { #multiple-processes-workers }
 
-Se você tiver mais clientes do que um único processo pode manipular (por exemplo, se a máquina virtual não for muito grande) e tiver **vários núcleos** na CPU do servidor, você poderá ter **vários processos** em execução com o mesmo aplicativo ao mesmo tempo e distribuir todas as solicitações entre eles.
+Se você tiver mais clientes do que um único processo pode manipular (por exemplo, se a máquina virtual não for muito grande) e tiver **vários núcleos** na CPU do servidor, você poderá ter **vários processos** em execução com a mesma aplicação ao mesmo tempo e distribuir todas as requests entre eles.
 
 Quando você executa **vários processos** do mesmo programa de API, eles são comumente chamados de **trabalhadores**.
 
 ### Processos do Trabalhador e Portas { #worker-processes-and-ports }
 
-Lembra da documentação [Sobre HTTPS](https.md){.internal-link target=_blank} que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
+Lembra da documentação [Sobre HTTPS](https.md) que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
 
 Isso ainda é verdade.
 
@@ -204,7 +204,7 @@ E vários processos normalmente **não compartilham nenhuma memória**. Isso sig
 
 ### Memória do servidor { #server-memory }
 
-Por exemplo, se seu código carrega um modelo de Machine Learning com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
+Por exemplo, se seu código carrega um modelo de Aprendizado de Máquina com **1 GB de tamanho**, quando você executa um processo com sua API, ele consumirá pelo menos 1 GB de RAM. E se você iniciar **4 processos** (4 trabalhadores), cada um consumirá 1 GB de RAM. Então, no total, sua API consumirá **4 GB de RAM**.
 
 E se o seu servidor remoto ou máquina virtual tiver apenas 3 GB de RAM, tentar carregar mais de 4 GB de RAM causará problemas. 🚨
 
@@ -214,11 +214,11 @@ Neste exemplo, há um **Processo Gerenciador** que inicia e controla dois **Proc
 
 Este Processo de Gerenciador provavelmente seria o que escutaria na **porta** no IP. E ele transmitiria toda a comunicação para os processos de trabalho.
 
-Esses processos de trabalho seriam aqueles que executariam seu aplicativo, eles executariam os cálculos principais para receber uma **solicitação** e retornar uma **resposta**, e carregariam qualquer coisa que você colocasse em variáveis ​​na RAM.
+Esses processos de trabalho seriam aqueles que executariam sua aplicação, eles executariam os cálculos principais para receber uma **request** e retornar uma **resposta**, e carregariam qualquer coisa que você colocasse em variáveis ​​na RAM.
 
 <img src="/img/deployment/concepts/process-ram.drawio.svg">
 
-E, claro, a mesma máquina provavelmente teria **outros processos** em execução, além do seu aplicativo.
+E, claro, a mesma máquina provavelmente teria **outros processos** em execução, além da sua aplicação.
 
 Um detalhe interessante é que a porcentagem da **CPU usada** por cada processo pode **variar** muito ao longo do tempo, mas a **memória (RAM)** normalmente fica mais ou menos **estável**.
 
@@ -243,7 +243,7 @@ Aqui estão algumas combinações e estratégias possíveis:
 
 Não se preocupe se alguns desses itens sobre **contêineres**, Docker ou Kubernetes ainda não fizerem muito sentido.
 
-Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Falarei mais sobre imagens de contêiner, Docker, Kubernetes, etc. em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 
@@ -255,9 +255,9 @@ Por exemplo, você pode querer executar **migrações de banco de dados**.
 
 Mas na maioria dos casos, você precisará executar essas etapas apenas **uma vez**.
 
-Portanto, você vai querer ter um **processo único** para executar essas **etapas anteriores** antes de iniciar o aplicativo.
+Portanto, você vai querer ter um **processo único** para executar essas **etapas anteriores** antes de iniciar a aplicação.
 
-E você terá que se certificar de que é um único processo executando essas etapas anteriores *mesmo* se depois, você iniciar **vários processos** (vários trabalhadores) para o próprio aplicativo. Se essas etapas fossem executadas por **vários processos**, eles **duplicariam** o trabalho executando-o em **paralelo**, e se as etapas fossem algo delicado como uma migração de banco de dados, elas poderiam causar conflitos entre si.
+E você terá que se certificar de que é um único processo executando essas etapas anteriores *mesmo* se depois, você iniciar **vários processos** (vários trabalhadores) para a própria aplicação. Se essas etapas fossem executadas por **vários processos**, eles **duplicariam** o trabalho executando-o em **paralelo**, e se as etapas fossem algo delicado como uma migração de banco de dados, elas poderiam causar conflitos entre si.
 
 Claro, há alguns casos em que não há problema em executar as etapas anteriores várias vezes; nesse caso, é muito mais fácil de lidar.
 
@@ -276,12 +276,12 @@ Isso **dependerá muito** da maneira como você **implanta seu sistema** e prova
 Aqui estão algumas ideias possíveis:
 
 * Um "Init Container" no Kubernetes que roda antes do seu app container
-* Um script bash que roda os passos anteriores e então inicia seu aplicativo
+* Um script bash que roda os passos anteriores e então inicia sua aplicação
     * Você ainda precisaria de uma maneira de iniciar/reiniciar *aquele* script bash, detectar erros, etc.
 
 /// tip | Dica
 
-Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
+Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md).
 
 ///
 
@@ -307,7 +307,7 @@ Você pode usar ferramentas simples como `htop` para ver a CPU e a RAM usadas no
 
 ## Recapitular { #recap }
 
-Você leu aqui alguns dos principais conceitos que provavelmente precisa ter em mente ao decidir como implantar seu aplicativo:
+Você leu aqui alguns dos principais conceitos que provavelmente precisa ter em mente ao decidir como implantar sua aplicação:
 
 * Segurança - HTTPS
 * Executando na inicialização

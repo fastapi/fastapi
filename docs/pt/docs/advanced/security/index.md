@@ -2,7 +2,7 @@
 
 ## Funcionalidades Adicionais { #additional-features }
 
-Existem algumas funcionalidades adicionais para lidar com segurança além das cobertas em [Tutorial - Guia de Usuário: Segurança](../../tutorial/security/index.md){.internal-link target=_blank}.
+Existem algumas funcionalidades adicionais para lidar com segurança além das cobertas em [Tutorial - Guia de Usuário: Segurança](../../tutorial/security/index.md).
 
 /// tip | Dica
 
@@ -14,6 +14,6 @@ E é possível que para o seu caso de uso, a solução está em uma delas.
 
 ## Leia o Tutorial primeiro { #read-the-tutorial-first }
 
-As próximas seções pressupõem que você já leu o principal [Tutorial - Guia de Usuário: Segurança](../../tutorial/security/index.md){.internal-link target=_blank}.
+As próximas seções pressupõem que você já leu o principal [Tutorial - Guia de Usuário: Segurança](../../tutorial/security/index.md).
 
 Todas elas são baseadas nos mesmos conceitos, mas permitem algumas funcionalidades extras.

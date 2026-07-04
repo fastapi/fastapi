@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import APIKeyHeader
 from fastapi.testclient import TestClient
@@ -15,7 +13,7 @@ class User(BaseModel):
     username: str
 
 
-def get_current_user(oauth_header: Optional[str] = Security(api_key)):
+def get_current_user(oauth_header: str | None = Security(api_key)):
     if oauth_header is None:
         return None
     user = User(username=oauth_header)
@@ -23,7 +21,7 @@ def get_current_user(oauth_header: Optional[str] = Security(api_key)):
 
 
 @app.get("/users/me")
-def read_current_user(current_user: Optional[User] = Depends(get_current_user)):
+def read_current_user(current_user: User | None = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     return current_user

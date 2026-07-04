@@ -95,7 +95,7 @@ Pydantic 模型的每个属性都具有类型。
 
 除了普通的单一值类型（如 `str`、`int`、`float` 等）外，你还可以使用从 `str` 继承的更复杂的单一值类型。
 
-要了解所有的可用选项，请查看 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic 的类型概览</a>。你将在下一章节中看到一些示例。
+要了解所有的可用选项，请查看 [Pydantic 的类型概览](https://docs.pydantic.dev/latest/concepts/types/)。你将在下一章节中看到一些示例。
 
 例如，在 `Image` 模型中我们有一个 `url` 字段，我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
 
@@ -135,9 +135,9 @@ Pydantic 模型的每个属性都具有类型。
 }
 ```
 
-/// info | 信息
+/// note | 注意
 
-请注意 `images` 键现在具有一组 image 对象是如何发生的。
+请注意 `images` 键现在具有一个 image 对象列表是如何发生的。
 
 ///
 
@@ -147,9 +147,9 @@ Pydantic 模型的每个属性都具有类型。
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | 信息
+/// note | 注意
 
-请注意 `Offer` 拥有一组 `Item` 而反过来 `Item` 又是一个可选的 `Image` 列表是如何发生的。
+请注意 `Offer` 拥有一个 `Item` 列表，而反过来 `Item` 又有一个可选的 `Image` 列表是如何发生的。
 
 ///
 
@@ -163,7 +163,7 @@ images: list[Image]
 
 例如：
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## 无处不在的编辑器支持 { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ images: list[Image]
 
 在下面的例子中，你将接受任意键为 `int` 类型并且值为 `float` 类型的 `dict`：
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | 提示
 

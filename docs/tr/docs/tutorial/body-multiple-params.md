@@ -106,18 +106,12 @@ Varsayılan olarak tekil değerler query parametresi olarak yorumlandığı içi
 q: str | None = None
 ```
 
-Ya da Python 3.9'da:
-
-```Python
-q: Union[str, None] = None
-```
-
 Örneğin:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 
-/// info | Bilgi
+/// note | Not
 
 `Body`, `Query`, `Path` ve daha sonra göreceğiniz diğerleriyle aynı ek validasyon ve metadata parametrelerine de sahiptir.
 
@@ -132,7 +126,7 @@ Varsayılan olarak **FastAPI**, body'nin doğrudan bu modelin içeriği olmasın
 Ancak, ek body parametreleri tanımladığınızda olduğu gibi, `item` anahtarı olan bir JSON ve onun içinde modelin içeriğini beklemesini istiyorsanız, `Body`'nin özel parametresi olan `embed`'i kullanabilirsiniz:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 yani şöyle:

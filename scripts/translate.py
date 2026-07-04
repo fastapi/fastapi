@@ -24,6 +24,7 @@ non_translated_sections = (
     "management-tasks.md",
     "management.md",
     "contributing.md",
+    "translations.md",
 )
 
 general_prompt_path = Path(__file__).absolute().parent / "general-llm-prompt.md"
@@ -57,39 +58,19 @@ def generate_en_path(*, lang: str, path: Path) -> Path:
     return out_path
 
 
-@app.command()
-def translate_page(
-    *,
-    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
-    en_path: Annotated[Path, typer.Option(envvar="EN_PATH")],
-) -> None:
-    assert language != "en", (
-        "`en` is the source language, choose another language as translation target"
+def get_prompt(
+    lang_prompt_content: str,
+    old_translation: str | None,
+    language: str,
+    language_name: str,
+    original_content: str,
+    additional_instructions: str,
+) -> str:
+    general_prompt_with_additional_instructions = general_prompt.replace(
+        "[placeholder_for_additional_instructions]", additional_instructions
     )
-    langs = get_langs()
-    language_name = langs[language]
-    lang_path = Path(f"docs/{language}")
-    lang_path.mkdir(exist_ok=True)
-    lang_prompt_path = lang_path / "llm-prompt.md"
-    assert lang_prompt_path.exists(), f"Prompt file not found: {lang_prompt_path}"
-    lang_prompt_content = lang_prompt_path.read_text(encoding="utf-8")
-
-    en_docs_path = Path("docs/en/docs")
-    assert str(en_path).startswith(str(en_docs_path)), (
-        f"Path must be inside {en_docs_path}"
-    )
-    out_path = generate_lang_path(lang=language, path=en_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    original_content = en_path.read_text(encoding="utf-8")
-    old_translation: str | None = None
-    if out_path.exists():
-        print(f"Found existing translation: {out_path}")
-        old_translation = out_path.read_text(encoding="utf-8")
-    print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai:gpt-5")
-
     prompt_segments = [
-        general_prompt,
+        general_prompt_with_additional_instructions,
         lang_prompt_content,
     ]
     if old_translation:
@@ -119,12 +100,57 @@ def translate_page(
             f"%%%\n{original_content}%%%",
         ]
     )
-    prompt = "\n\n".join(prompt_segments)
+    return "\n\n".join(prompt_segments)
+
+
+@app.command()
+def translate_page(
+    *,
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    en_path: Annotated[Path, typer.Option(envvar="EN_PATH")],
+) -> None:
+    assert language != "en", (
+        "`en` is the source language, choose another language as translation target"
+    )
+    langs = get_langs()
+    language_name = langs[language]
+    lang_path = Path(f"docs/{language}")
+    lang_path.mkdir(exist_ok=True)
+    lang_prompt_path = lang_path / "llm-prompt.md"
+    assert lang_prompt_path.exists(), f"Prompt file not found: {lang_prompt_path}"
+    lang_prompt_content = lang_prompt_path.read_text(encoding="utf-8")
+
+    en_docs_path = Path("docs/en/docs")
+    assert str(en_path).startswith(str(en_docs_path)), (
+        f"Path must be inside {en_docs_path}"
+    )
+    out_path = generate_lang_path(lang=language, path=en_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    original_content = en_path.read_text(encoding="utf-8")
+    old_translation: str | None = None
+    if out_path.exists():
+        print(f"Found existing translation: {out_path}")
+        old_translation = out_path.read_text(encoding="utf-8")
+    print(f"Translating {en_path} to {language} ({language_name})")
+    agent = Agent("openai-chat:gpt-5.5")
 
     MAX_ATTEMPTS = 3
+    additional_instructions = ""
     for attempt_no in range(1, MAX_ATTEMPTS + 1):
         print(f"Running agent for {out_path} (attempt {attempt_no}/{MAX_ATTEMPTS})")
-        result = agent.run_sync(prompt)
+        prompt = get_prompt(
+            lang_prompt_content=lang_prompt_content,
+            old_translation=old_translation,
+            language=language,
+            language_name=language_name,
+            original_content=original_content,
+            additional_instructions=additional_instructions,
+        )
+        result = agent.run_sync(
+            prompt.replace(
+                "[placeholder_for_additional_instructions]", additional_instructions
+            )
+        )
         out_content = f"{result.output.strip()}\n"
         try:
             check_translation(
@@ -139,10 +165,14 @@ def translate_page(
             print(
                 f"Translation check failed on attempt {attempt_no}/{MAX_ATTEMPTS}: {e}"
             )
+            additional_instructions = (
+                f"Current translation fails validation checks ({str(e)}). "
+                "Please, pay special attention to it."
+            )
+            old_translation = out_content
             continue  # Retry if not reached max attempts
     else:  # Max retry attempts reached
         print(f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts")
-        raise typer.Exit(code=1)
 
     print(f"Saving translation to {out_path}")
     out_path.write_text(out_content, encoding="utf-8", newline="\n")

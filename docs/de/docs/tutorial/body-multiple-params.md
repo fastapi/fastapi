@@ -104,17 +104,11 @@ Da einfache Werte standardmäßig als Query-Parameter interpretiert werden, müs
 q: str | None = None
 ```
 
-Oder in Python 3.9:
-
-```Python
-q: Union[str, None] = None
-```
-
 Zum Beispiel:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | Info
+/// note | Hinweis
 
 `Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query`, `Path` und andere, die Sie später kennenlernen werden.
 
@@ -129,7 +123,7 @@ Standardmäßig wird **FastAPI** dann seinen Body direkt erwarten.
 Aber wenn Sie möchten, dass es einen JSON-Body mit einem Schlüssel `item` erwartet, und darin den Inhalt des Modells, so wie es das tut, wenn Sie mehrere Body-Parameter deklarieren, dann können Sie den speziellen `Body`-Parameter `embed` setzen:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 so wie in:
