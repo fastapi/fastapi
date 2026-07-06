@@ -54,8 +54,6 @@ async def jsonl_default() -> AsyncIterable[dict[str, str]]:
     yield {"message": "ok"}
 
 
-
-
 @app.post("/sse-created-override", response_class=EventSourceResponse, status_code=201)
 async def sse_created_override(
     accepted: None = Depends(set_accepted),
@@ -144,25 +142,23 @@ def test_jsonl_stream_default_status_code_stays_200() -> None:
     assert get_jsonl_data(response.text) == [{"message": "ok"}]
 
 
-
-
 def test_sse_stream_dependency_overrides_declared_status_code() -> None:
     response = client.post("/sse-created-override")
-    
+
     assert response.status_code == 202
     assert get_sse_data(response.text) == [{"message": "overridden"}]
 
 
 def test_jsonl_stream_dependency_overrides_declared_status_code() -> None:
     response = client.post("/jsonl-created-override")
-    
+
     assert response.status_code == 202
     assert get_jsonl_data(response.text) == [{"message": "overridden"}]
 
 
 def test_raw_stream_dependency_overrides_declared_status_code() -> None:
     response = client.post("/raw-created-override")
-    
+
     assert response.status_code == 202
     assert response.text == "overridden"
 
@@ -174,8 +170,7 @@ def test_stream_status_codes_match_openapi() -> None:
     assert response_status_codes(schema, "/jsonl-created", "post") == ["201"]
     assert response_status_codes(schema, "/sse-default", "get") == ["200"]
     assert response_status_codes(schema, "/jsonl-default", "get") == ["200"]
-    
-   
+
     assert response_status_codes(schema, "/sse-created-override", "post") == ["201"]
     assert response_status_codes(schema, "/jsonl-created-override", "post") == ["201"]
     assert response_status_codes(schema, "/raw-created-override", "post") == ["201"]
