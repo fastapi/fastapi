@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add TutorCruncher. PR [#15947](https://github.com/fastapi/fastapi/pull/15947) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix notify translations checkout target. PR [#15933](https://github.com/fastapi/fastapi/pull/15933) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix latest-changes checkout target. PR [#15932](https://github.com/fastapi/fastapi/pull/15932) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove RapidProxy. PR [#15929](https://github.com/fastapi/fastapi/pull/15929) by [@tiangolo](https://github.com/tiangolo).
