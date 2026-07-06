@@ -54,6 +54,9 @@ silver:
   - url: https://www.bairesdev.com/
     title: "BairesDev | Nearshore Software Development & Staff Augmentation Company"
     img: /img/sponsors/bairesdev.svg
+  - url: https://tutorcruncher.com/?utm_source=fastapi
+    title: TutorCruncher
+    img: /img/sponsors/tutorcruncher.png
 bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
