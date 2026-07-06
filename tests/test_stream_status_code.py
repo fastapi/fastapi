@@ -54,7 +54,7 @@ async def jsonl_default() -> AsyncIterable[dict[str, str]]:
     yield {"message": "ok"}
 
 
-# --- NEW OVERRIDE ENDPOINTS ---
+
 
 @app.post("/sse-created-override", response_class=EventSourceResponse, status_code=201)
 async def sse_created_override(
@@ -144,7 +144,7 @@ def test_jsonl_stream_default_status_code_stays_200() -> None:
     assert get_jsonl_data(response.text) == [{"message": "ok"}]
 
 
-# --- NEW OVERRIDE TESTS ---
+
 
 def test_sse_stream_dependency_overrides_declared_status_code() -> None:
     response = client.post("/sse-created-override")
@@ -175,8 +175,7 @@ def test_stream_status_codes_match_openapi() -> None:
     assert response_status_codes(schema, "/sse-default", "get") == ["200"]
     assert response_status_codes(schema, "/jsonl-default", "get") == ["200"]
     
-    # Asserting that OpenAPI still documents the declared status code (201), 
-    # even though the dependency sets it to 202 at runtime.
+   
     assert response_status_codes(schema, "/sse-created-override", "post") == ["201"]
     assert response_status_codes(schema, "/jsonl-created-override", "post") == ["201"]
     assert response_status_codes(schema, "/raw-created-override", "post") == ["201"]
