@@ -229,7 +229,7 @@ But when you register an exception handler, you should register it for Starlette
 
 This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it.
 
-In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:
+In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions are renamed to `StarletteHTTPException`:
 
 ```Python
 from starlette.exceptions import HTTPException as StarletteHTTPException
