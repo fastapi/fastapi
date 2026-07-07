@@ -1,6 +1,6 @@
 # Déclarer des exemples de données de requête { #declare-request-example-data }
 
-Vous pouvez déclarer des exemples des données que votre application peut recevoir.
+Vous pouvez déclarer des exemples de données que votre application peut recevoir.
 
 Voici plusieurs façons de le faire.
 
@@ -10,9 +10,9 @@ Vous pouvez déclarer `examples` pour un modèle Pydantic qui seront ajoutés au
 
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
-Ces informations supplémentaires seront ajoutées telles quelles au **JSON Schema** de sortie pour ce modèle, et elles seront utilisées dans la documentation de l'API.
+Ces informations supplémentaires seront ajoutées telles quelles au **JSON Schema** de sortie pour ce modèle, et elles seront utilisées dans les documents de l'API.
 
-Vous pouvez utiliser l'attribut `model_config` qui accepte un `dict` comme décrit dans [Documentation de Pydantic : Configuration](https://docs.pydantic.dev/latest/api/config/).
+Vous pouvez utiliser l'attribut `model_config` qui accepte un `dict` comme décrit dans [documents de Pydantic : Configuration](https://docs.pydantic.dev/latest/api/config/).
 
 Vous pouvez définir `"json_schema_extra"` avec un `dict` contenant toutes les données supplémentaires que vous souhaitez voir apparaître dans le JSON Schema généré, y compris `examples`.
 
@@ -24,11 +24,11 @@ Par exemple, vous pourriez l'utiliser pour ajouter des métadonnées pour une in
 
 ///
 
-/// info
+/// note | Remarque
 
 OpenAPI 3.1.0 (utilisé depuis FastAPI 0.99.0) a ajouté la prise en charge de `examples`, qui fait partie du standard **JSON Schema**.
 
-Avant cela, seule la clé `example` avec un exemple unique était prise en charge. Elle l'est toujours par OpenAPI 3.1.0, mais elle est dépréciée et ne fait pas partie du standard JSON Schema. Vous êtes donc encouragé à migrer de `example` vers `examples`. 🤓
+Avant cela, seul le mot-clé `example` avec un exemple unique était pris en charge. Il l'est toujours par OpenAPI 3.1.0, mais il est déprécié et ne fait pas partie du standard JSON Schema. Vous êtes donc encouragé à migrer de `example` vers `examples`. 🤓
 
 Vous pouvez en lire davantage à la fin de cette page.
 
@@ -155,7 +155,7 @@ OpenAPI a également ajouté les champs `example` et `examples` à d'autres part
     * `File()`
     * `Form()`
 
-/// info
+/// note | Remarque
 
 Ce paramètre `examples` ancien et spécifique à OpenAPI est désormais `openapi_examples` depuis FastAPI `0.103.0`.
 
@@ -171,9 +171,9 @@ Et désormais, ce nouveau champ `examples` a priorité sur l'ancien champ unique
 
 Ce nouveau champ `examples` dans JSON Schema est **juste une `list`** d'exemples, et non pas un dict avec des métadonnées supplémentaires comme dans les autres endroits d'OpenAPI (décrits ci-dessus).
 
-/// info
+/// note | Remarque
 
-Même après la sortie d'OpenAPI 3.1.0 avec cette nouvelle intégration plus simple avec JSON Schema, pendant un temps, Swagger UI, l'outil qui fournit la documentation automatique, ne prenait pas en charge OpenAPI 3.1.0 (il le fait depuis la version 5.0.0 🎉).
+Même après la sortie d'OpenAPI 3.1.0 avec cette nouvelle intégration plus simple avec JSON Schema, pendant un temps, Swagger UI, l'outil qui fournit les documents automatiques, ne prenait pas en charge OpenAPI 3.1.0 (il le fait depuis la version 5.0.0 🎉).
 
 À cause de cela, les versions de FastAPI antérieures à 0.99.0 utilisaient encore des versions d'OpenAPI inférieures à 3.1.0.
 
@@ -183,7 +183,7 @@ Même après la sortie d'OpenAPI 3.1.0 avec cette nouvelle intégration plus sim
 
 Lorsque vous ajoutez `examples` dans un modèle Pydantic, en utilisant `schema_extra` ou `Field(examples=["something"])`, cet exemple est ajouté au **JSON Schema** de ce modèle Pydantic.
 
-Et ce **JSON Schema** du modèle Pydantic est inclus dans l'**OpenAPI** de votre API, puis il est utilisé dans l'interface de la documentation.
+Et ce **JSON Schema** du modèle Pydantic est inclus dans l'**OpenAPI** de votre API, puis il est utilisé dans l'interface des documents.
 
 Dans les versions de FastAPI antérieures à 0.99.0 (0.99.0 et supérieures utilisent le nouveau OpenAPI 3.1.0), lorsque vous utilisiez `example` ou `examples` avec l'une des autres utilitaires (`Query()`, `Body()`, etc.), ces exemples n'étaient pas ajoutés au JSON Schema qui décrit ces données (pas même à la version de JSON Schema propre à OpenAPI), ils étaient ajoutés directement à la déclaration du *chemin d'accès* dans OpenAPI (en dehors des parties d'OpenAPI qui utilisent JSON Schema).
 
@@ -191,7 +191,7 @@ Mais maintenant que FastAPI 0.99.0 et supérieures utilisent OpenAPI 3.1.0, qui 
 
 ### Swagger UI et `examples` spécifiques à OpenAPI { #swagger-ui-and-openapi-specific-examples }
 
-Comme Swagger UI ne prenait pas en charge plusieurs exemples JSON Schema (au 2023-08-26), les utilisateurs n'avaient pas de moyen d'afficher plusieurs exemples dans les documents.
+Maintenant, comme Swagger UI ne prenait pas en charge plusieurs exemples JSON Schema (au 2023-08-26), les utilisateurs n'avaient pas de moyen d'afficher plusieurs exemples dans les documents.
 
 Pour résoudre cela, FastAPI `0.103.0` a **ajouté la prise en charge** de la déclaration du même ancien champ `examples` **spécifique à OpenAPI** avec le nouveau paramètre `openapi_examples`. 🤓
 

@@ -101,7 +101,7 @@ Así que recibirás un error limpio, con un código de estado HTTP de `418` y un
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | Nota Técnica
+/// note | Detalles Técnicos
 
 También podrías usar `from starlette.requests import Request` y `from starlette.responses import JSONResponse`.
 
@@ -109,11 +109,11 @@ También podrías usar `from starlette.requests import Request` y `from starlett
 
 ///
 
-## Sobrescribir los manejadores de excepciones predeterminados { #override-the-default-exception-handlers }
+## Sobrescribir los manejadores de excepciones por defecto { #override-the-default-exception-handlers }
 
-**FastAPI** tiene algunos manejadores de excepciones predeterminados.
+**FastAPI** tiene algunos manejadores de excepciones por defecto.
 
-Estos manejadores se encargan de devolver los responses JSON predeterminadas cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
+Estos manejadores se encargan de devolver los responses JSON por defecto cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
 
 Puedes sobrescribir estos manejadores de excepciones con los tuyos propios.
 
@@ -121,7 +121,7 @@ Puedes sobrescribir estos manejadores de excepciones con los tuyos propios.
 
 Cuando un request contiene datos inválidos, **FastAPI** lanza internamente un `RequestValidationError`.
 
-Y también incluye un manejador de excepciones predeterminado para ello.
+Y también incluye un manejador de excepciones por defecto para ello.
 
 Para sobrescribirlo, importa el `RequestValidationError` y úsalo con `@app.exception_handler(RequestValidationError)` para decorar el manejador de excepciones.
 
@@ -161,7 +161,7 @@ Por ejemplo, podrías querer devolver un response de texto plano en lugar de JSO
 
 {* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
-/// note | Nota Técnica
+/// note | Detalles Técnicos
 
 También podrías usar `from starlette.responses import PlainTextResponse`.
 
@@ -237,8 +237,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### Reutilizar los manejadores de excepciones de **FastAPI** { #reuse-fastapis-exception-handlers }
 
-Si quieres usar la excepción junto con los mismos manejadores de excepciones predeterminados de **FastAPI**, puedes importar y reutilizar los manejadores de excepciones predeterminados de `fastapi.exception_handlers`:
+Si quieres usar la excepción junto con los mismos manejadores de excepciones por defecto de **FastAPI**, puedes importar y reutilizar los manejadores de excepciones por defecto de `fastapi.exception_handlers`:
 
 {* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
-En este ejemplo solo estás `print`eando el error con un mensaje muy expresivo, pero te haces una idea. Puedes usar la excepción y luego simplemente reutilizar los manejadores de excepciones predeterminados.
+En este ejemplo solo estás `print`eando el error con un mensaje muy expresivo, pero te haces una idea. Puedes usar la excepción y luego simplemente reutilizar los manejadores de excepciones por defecto.

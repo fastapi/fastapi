@@ -10,7 +10,7 @@ Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que 
 
 Isso é um recurso "avançado".
 
-Se você for um iniciante em **FastAPI** você deve considerar pular essa seção.
+Se você está apenas começando com **FastAPI**, talvez queira pular esta seção.
 
 ///
 
@@ -40,7 +40,7 @@ Primeiro, criamos uma classe `GzipRequest`, que irá sobrescrever o método `Req
 
 Se não houver `gzip` no cabeçalho, ele não tentará descomprimir o corpo.
 
-Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas ou não comprimidas.
+Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas com gzip ou não comprimidas.
 
 {* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
@@ -84,7 +84,7 @@ Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisiçã
 
 Para resolver esse mesmo problema, é provavelmente muito mais fácil usar o `body` em um manipulador personalizado para `RequestValidationError` ([Tratando Erros](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
-Mas esse exemplo ainda é valido e mostra como interagir com os componentes internos.
+Mas esse exemplo ainda é válido e mostra como interagir com os componentes internos.
 
 ///
 

@@ -12,7 +12,7 @@ Umgebungsvariablen können nützlich sein, um **Einstellungen** der Anwendung zu
 
 ## Umgebungsvariablen erstellen und verwenden { #create-and-use-env-vars }
 
-Sie können Umgebungsvariablen in der **Shell (Terminal)** erstellen und verwenden, ohne Python zu benötigen:
+Sie können Umgebungsvariablen in der **Shell (Terminal)** **erstellen** und verwenden, ohne Python zu benötigen:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -67,7 +67,7 @@ print(f"Hello {name} from Python")
 
 Das zweite Argument von [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) ist der Defaultwert, der zurückgegeben wird.
 
-Wenn er nicht angegeben wird, ist er standardmäßig `None`. Hier geben wir „World“ als den zu verwendenden Defaultwert an.
+Wenn er nicht angegeben wird, ist er standardmäßig `None`. Hier geben wir `"World"` als den zu verwendenden Defaultwert an.
 
 ///
 
@@ -255,7 +255,7 @@ $ python
 
 //// tab | Linux, macOS
 
-Das System wird das `python` Programm in `/opt/custompython/bin` **finden** und es ausführen.
+Das System wird das `python`-Programm in `/opt/custompython/bin` **finden** und es ausführen.
 
 Es wäre ungefähr gleichbedeutend mit der Eingabe von:
 
@@ -271,7 +271,7 @@ $ /opt/custompython/bin/python
 
 //// tab | Windows
 
-Das System wird das `python` Programm in `C:\opt\custompython\bin\python` **finden** und es ausführen.
+Das System wird das `python`-Programm in `C:\opt\custompython\bin\python` **finden** und es ausführen.
 
 Es wäre ungefähr gleichbedeutend mit der Eingabe von:
 

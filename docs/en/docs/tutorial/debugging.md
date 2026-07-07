@@ -72,7 +72,7 @@ So, the line:
 
 will not be executed.
 
-/// info
+/// note
 
 For more information, check [the official Python docs](https://docs.python.org/3/library/__main__.html).
 
@@ -99,7 +99,7 @@ Here's how it might look:
 
 ---
 
-If you use Pycharm, you can:
+If you use PyCharm, you can:
 
 * Open the "Run" menu.
 * Select the option "Debug...".

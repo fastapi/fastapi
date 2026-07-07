@@ -2,7 +2,7 @@
 
 When you work in Python projects you probably should use a **virtual environment** (or a similar mechanism) to isolate the packages you install for each project.
 
-/// info
+/// note
 
 If you already know about virtual environments, how to create them and use them, you might want to skip this section. 🤓
 
@@ -18,7 +18,7 @@ A **virtual environment** is a directory with some files in it.
 
 ///
 
-/// info
+/// note
 
 This page will teach you how to use **virtual environments** and how they work.
 
@@ -100,7 +100,7 @@ $ uv venv
 
 By default, `uv` will create a virtual environment in a directory called `.venv`.
 
-But you could customize it passing an additional argument with the directory name.
+But you could customize it by passing an additional argument with the directory name.
 
 ///
 
@@ -258,7 +258,7 @@ $ python -m ensurepip --upgrade
 
 </div>
 
-This command will install pip if it is not already installed and also ensures that the installed version of pip is at least as recent as the one available in `ensurepip`.
+This command will install pip if it is not already installed and also ensure that the installed version of pip is at least as recent as the one available in `ensurepip`.
 
 ///
 
@@ -447,7 +447,7 @@ Now you're ready to start working on your project.
 
 /// tip
 
-Do you want to understand what's all that above?
+Do you want to understand what all that above is?
 
 Continue reading. 👇🤓
 
@@ -548,7 +548,7 @@ Also, depending on your operating system (e.g. Linux, Windows, macOS), it could 
 
 ## Where are Packages Installed { #where-are-packages-installed }
 
-When you install Python, it creates some directories with some files in your computer.
+When you install Python, it creates some directories with some files on your computer.
 
 Some of these directories are the ones in charge of having all the packages you install.
 
@@ -568,7 +568,7 @@ That will download a compressed file with the FastAPI code, normally from [PyPI]
 
 It will also **download** files for other packages that FastAPI depends on.
 
-Then it will **extract** all those files and put them in a directory in your computer.
+Then it will **extract** all those files and put them in a directory on your computer.
 
 By default, it will put those files downloaded and extracted in the directory that comes with your Python installation, that's the **global environment**.
 
@@ -846,7 +846,7 @@ This is a simple guide to get you started and teach you how everything works **u
 
 There are many **alternatives** to managing virtual environments, package dependencies (requirements), projects.
 
-Once you are ready and want to use a tool to **manage the entire project**, packages dependencies, virtual environments, etc. I would suggest you try [uv](https://github.com/astral-sh/uv).
+Once you are ready and want to use a tool to **manage the entire project**, package dependencies, virtual environments, etc. I would suggest you try [uv](https://github.com/astral-sh/uv).
 
 `uv` can do a lot of things, it can:
 

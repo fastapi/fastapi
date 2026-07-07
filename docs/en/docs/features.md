@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note
 
 `**second_user_data` means:
 
@@ -73,11 +73,11 @@ Pass the keys and values of the `second_user_data` dict directly as key-value ar
 
 ### Editor support { #editor-support }
 
-All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+The whole framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
 In the Python developer surveys, it's clear [that one of the most used features is "autocompletion"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
-The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
+The whole **FastAPI** framework is designed to satisfy that. Autocompletion works everywhere.
 
 You will rarely need to come back to the docs.
 
@@ -147,7 +147,7 @@ FastAPI includes an extremely easy to use, but extremely powerful <dfn title='al
 
 ### Unlimited "plug-ins" { #unlimited-plug-ins }
 
-Or in other way, no need for them, import and use the code you need.
+Or, in other words, no need for them, import and use the code you need.
 
 Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
 
@@ -179,7 +179,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 **FastAPI** is fully compatible with (and based on) [**Pydantic**](https://docs.pydantic.dev/). So, any additional Pydantic code you have, will also work.
 
-Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
+Including external libraries also based on Pydantic, such as <abbr title="Object-Relational Mapper">ORM</abbr>s and <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 
 This also means that in many cases you can pass the same object you get from a request **directly to the database**, as everything is validated automatically.
 

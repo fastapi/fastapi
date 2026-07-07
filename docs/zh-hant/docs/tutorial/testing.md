@@ -8,7 +8,7 @@
 
 ## 使用 `TestClient` { #using-testclient }
 
-/// info
+/// note
 
 要使用 `TestClient`，請先安裝 [`httpx`](https://www.python-httpx.org)。
 
@@ -113,13 +113,13 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-假設現在你的 **FastAPI** 應用所在的 `main.py` 有一些其他的路徑操作（path operations）。
+假設現在你的 **FastAPI** 應用所在的 `main.py` 有一些其他的 **路徑操作**。
 
 它有一個可能回傳錯誤的 `GET` 操作。
 
 它有一個可能回傳多種錯誤的 `POST` 操作。
 
-兩個路徑操作都需要一個 `X-Token` 標頭（header）。
+兩個 *路徑操作* 都需要一個 `X-Token` 標頭（header）。
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
@@ -136,15 +136,15 @@ $ pip install httpx
 
 例如：
 
-* 要傳遞路徑或查詢參數，直接把它加在 URL 上。
+* 要傳遞 *path* 或 *query* 參數，直接把它加在 URL 上。
 * 要傳遞 JSON 本文，將 Python 物件（例如 `dict`）傳給 `json` 參數。
-* 如果需要送出表單資料（Form Data）而不是 JSON，改用 `data` 參數。
-* 要傳遞標頭（headers），在 `headers` 參數中放一個 `dict`。
-* 對於 Cookie（cookies），在 `cookies` 參數中放一個 `dict`。
+* 如果需要送出 *Form Data* 而不是 JSON，改用 `data` 參數。
+* 要傳遞 *headers*，在 `headers` 參數中放一個 `dict`。
+* 對於 *cookies*，在 `cookies` 參數中放一個 `dict`。
 
 關於如何把資料傳給後端（使用 `httpx` 或 `TestClient`），更多資訊請參考 [HTTPX 文件](https://www.python-httpx.org)。
 
-/// info
+/// note
 
 請注意，`TestClient` 接收的是可轉為 JSON 的資料，而不是 Pydantic models。
 

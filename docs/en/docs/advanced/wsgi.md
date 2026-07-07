@@ -6,7 +6,7 @@ For that, you can use the `WSGIMiddleware` and use it to wrap your WSGI applicat
 
 ## Using `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info
+/// note
 
 This requires installing `a2wsgi` for example with `pip install a2wsgi`.
 
@@ -24,7 +24,7 @@ And then mount that under a path.
 
 Previously, it was recommended to use `WSGIMiddleware` from `fastapi.middleware.wsgi`, but it is now deprecated.
 
-It’s advised to use the `a2wsgi` package instead. The usage remains the same.
+It's advised to use the `a2wsgi` package instead. The usage remains the same.
 
 Just ensure that you have the `a2wsgi` package installed and import `WSGIMiddleware` correctly from `a2wsgi`.
 

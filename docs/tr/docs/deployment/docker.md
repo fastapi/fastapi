@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx veya Traefik gibi bir proxy arkasında çalıştırıyorsanız --proxy-headers ekleyin
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 Paket bağımlılıklarını tanımlamak ve yüklemek için başka formatlar ve araçlar da vardır.
 
@@ -243,14 +243,14 @@ Aşağıda açıklandığı gibi `CMD` talimatının **her zaman** **exec form**
 ✅ **Exec** form:
 
 ```Dockerfile
-# ✅ Do this
+# ✅ Bunu yapın
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 ⛔️ **Shell** form:
 
 ```Dockerfile
-# ⛔️ Don't do this
+# ⛔️ Bunu yapmayın
 CMD fastapi run app/main.py --port 80
 ```
 
@@ -556,7 +556,7 @@ Container kullanıyorsanız (örn. Docker, Kubernetes), temelde iki yaklaşım v
 
 **Birden fazla container**'ınız varsa ve muhtemelen her biri **tek process** çalıştırıyorsa (ör. bir **Kubernetes** cluster'ında), replication yapılan worker container'lar çalışmadan **önce**, **başlatmadan önceki adımlar**ın işini yapan **ayrı bir container** kullanmak isteyebilirsiniz (tek container, tek process).
 
-/// info | Bilgi
+/// note | Not
 
 Kubernetes kullanıyorsanız, bu muhtemelen bir [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) olur.
 

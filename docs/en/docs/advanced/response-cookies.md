@@ -4,7 +4,7 @@
 
 You can declare a parameter of type `Response` in your *path operation function*.
 
-And then you can set cookies in that *temporal* response object.
+And then you can set cookies in that *temporary* response object.
 
 {* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
 
@@ -12,7 +12,7 @@ And then you can return any object you need, as you normally would (a `dict`, a 
 
 And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
 
-**FastAPI** will use that *temporal* response to extract the cookies (also headers and status code), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
+**FastAPI** will use that *temporary* response to extract the cookies (also headers and status code), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
 
 You can also declare the `Response` parameter in dependencies, and set cookies (and headers) in them.
 

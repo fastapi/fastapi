@@ -50,7 +50,7 @@ Uma imagem de contêiner é uma versão **estática** de todos os arquivos, vari
 
 Em contraste com a "**imagem de contêiner**" que contém os conteúdos estáticos armazenados, um "**contêiner**" normalmente se refere à instância rodando, a coisa que está sendo **executada**.
 
-Quando o **contêiner** é iniciado e está rodando (iniciado a partir de uma **imagem de contêiner**), ele pode criar ou modificar arquivos, variáveis de ambiente, etc. Essas mudanças vão existir somente nesse contêiner, mas não persistirão na imagem subjacente do container (não serão salvas no disco).
+Quando o **contêiner** é iniciado e está rodando (iniciado a partir de uma **imagem de contêiner**), ele pode criar ou modificar arquivos, variáveis de ambiente, etc. Essas mudanças vão existir somente nesse contêiner, mas não persistirão na imagem subjacente do contêiner (não serão salvas no disco).
 
 Uma imagem de contêiner é comparável ao arquivo de **programa** e seus conteúdos, ex.: `python` e algum arquivo `main.py`.
 
@@ -64,7 +64,7 @@ E existe um [Docker Hub](https://hub.docker.com/) público com **imagens de cont
 
 Por exemplo, há uma [Imagem Python](https://hub.docker.com/_/python) oficial.
 
-E existe muitas outras imagens para diferentes coisas, como bancos de dados, por exemplo:
+E existem muitas outras imagens para diferentes coisas, como bancos de dados, por exemplo:
 
 * [PostgreSQL](https://hub.docker.com/_/postgres)
 * [MySQL](https://hub.docker.com/_/mysql)
@@ -87,11 +87,11 @@ Quando um **contêiner** é iniciado, ele irá rodar esse comando/programa (embo
 
 Um contêiner está rodando enquanto o **processo principal** (comando ou programa) estiver rodando.
 
-Um contêiner normalmente tem um **único processo**, mas também é possível iniciar sub-processos a partir do processo principal, e dessa forma você terá **vários processos** no mesmo contêiner.
+Um contêiner normalmente tem um **único processo**, mas também é possível iniciar subprocessos a partir do processo principal, e dessa forma você terá **vários processos** no mesmo contêiner.
 
 Mas não é possível ter um contêiner rodando sem **pelo menos um processo rodando**. Se o processo principal parar, o contêiner também para.
 
-## Construir uma Imagem Docker para FastAPI { #build-a-docker-image-for-fastapi }
+## Construa uma Imagem Docker para FastAPI { #build-a-docker-image-for-fastapi }
 
 Okay, vamos construir algo agora! 🚀
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Informação
+/// note | Nota
 
 Há outros formatos e ferramentas para definir e instalar dependências de pacotes.
 
@@ -262,7 +262,7 @@ Isso pode ser bem perceptível ao usar `docker compose`. Veja esta seção de FA
 
 #### Estrutura de diretórios { #directory-structure }
 
-Agora você deve haver uma estrutura de diretório como:
+Agora você deveria ter uma estrutura de diretório como:
 
 ```
 .
@@ -275,7 +275,7 @@ Agora você deve haver uma estrutura de diretório como:
 
 #### Por trás de um Proxy de Terminação TLS { #behind-a-tls-termination-proxy }
 
-Se você está executando seu contêiner atrás de um Proxy de Terminação TLS (load balancer) como Nginx ou Traefik, adicione a opção `--proxy-headers`, isso fará com que o Uvicorn (pela CLI do FastAPI) confie nos cabeçalhos enviados por esse proxy, informando que o aplicativo está sendo executado atrás do HTTPS, etc.
+Se você está executando seu contêiner atrás de um Proxy de Terminação TLS (balanceador de carga) como Nginx ou Traefik, adicione a opção `--proxy-headers`, isso fará com que o Uvicorn (pela CLI do FastAPI) confie nos cabeçalhos enviados por esse proxy, informando que o aplicativo está sendo executado atrás do HTTPS, etc.
 
 ```Dockerfile
 CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
@@ -289,7 +289,7 @@ Existe um truque importante nesse `Dockerfile`, primeiro copiamos o **arquivo co
 COPY ./requirements.txt /code/requirements.txt
 ```
 
-Docker e outras ferramentas **constróem** essas imagens de contêiner **incrementalmente**, adicionando **uma camada em cima da outra**, começando do topo do `Dockerfile` e adicionando qualquer arquivo criado por cada uma das instruções do `Dockerfile`.
+Docker e outras ferramentas **constroem** essas imagens de contêiner **incrementalmente**, adicionando **uma camada em cima da outra**, começando do topo do `Dockerfile` e adicionando qualquer arquivo criado por cada uma das instruções do `Dockerfile`.
 
 Docker e ferramentas similares também usam um **cache interno** ao construir a imagem, se um arquivo não mudou desde a última vez que a imagem do contêiner foi construída, então ele irá **reutilizar a mesma camada** criada na última vez, ao invés de copiar o arquivo novamente e criar uma nova camada do zero.
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Verifique { #check-it }
 
-Você deve ser capaz de verificar isso no URL do seu contêiner Docker, por exemplo: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) ou [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (ou equivalente, usando seu host Docker).
+Você deveria conseguir verificar isso no URL do seu contêiner Docker, por exemplo: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) ou [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (ou equivalente, usando seu host Docker).
 
 Você verá algo como:
 
@@ -376,9 +376,9 @@ Você verá a documentação alternativa automática (fornecida pelo [ReDoc](htt
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Construa uma Imagem Docker com um FastAPI de Arquivo Único { #build-a-docker-image-with-a-single-file-fastapi }
+## Construa uma Imagem Docker com uma aplicação FastAPI de Arquivo Único { #build-a-docker-image-with-a-single-file-fastapi }
 
-Se seu FastAPI for um único arquivo, por exemplo, `main.py` sem um diretório `./app`, sua estrutura de arquivos poderia ser assim:
+Se sua aplicação FastAPI for um único arquivo, por exemplo, `main.py` sem um diretório `./app`, sua estrutura de arquivos poderia ser assim:
 
 ```
 .
@@ -456,7 +456,7 @@ Sem usar contêineres, fazer aplicativos executarem na inicialização e com rei
 
 Se você tiver um <dfn title="Um grupo de máquinas que são configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</dfn> de máquinas com **Kubernetes**, Docker Swarm Mode, Nomad ou outro sistema complexo semelhante para gerenciar contêineres distribuídos em várias máquinas, então provavelmente desejará **lidar com a replicação** no **nível do cluster** em vez de usar um **gerenciador de processos** (como Uvicorn com workers) em cada contêiner.
 
-Um desses sistemas de gerenciamento de contêineres distribuídos como o Kubernetes normalmente tem alguma maneira integrada de lidar com a **replicação de contêineres** enquanto ainda oferece **balanceamento de carga** para as solicitações recebidas. Tudo no **nível do cluster**.
+Um desses sistemas de gerenciamento de contêineres distribuídos como o Kubernetes normalmente tem alguma maneira integrada de lidar com a **replicação de contêineres** enquanto ainda oferece **balanceamento de carga** para os requests recebidos. Tudo no **nível do cluster**.
 
 Nesses casos, você provavelmente desejará criar uma **imagem Docker do zero** como [explicado acima](#dockerfile), instalando suas dependências e executando **um único processo Uvicorn** em vez de usar múltiplos workers do Uvicorn.
 
@@ -464,7 +464,7 @@ Nesses casos, você provavelmente desejará criar uma **imagem Docker do zero** 
 
 Quando usando contêineres, normalmente você terá algum componente **escutando na porta principal**. Poderia ser outro contêiner que também é um **Proxy de Terminação TLS** para lidar com **HTTPS** ou alguma ferramenta semelhante.
 
-Como esse componente assumiria a **carga** de solicitações e distribuiria isso entre os workers de uma maneira (esperançosamente) **balanceada**, ele também é comumente chamado de **Balanceador de Carga**.
+Como esse componente assumiria a **carga** de requests e distribuiria isso entre os workers de uma maneira (esperançosamente) **balanceada**, ele também é comumente chamado de **Balanceador de Carga**.
 
 /// tip | Dica
 
@@ -472,17 +472,17 @@ O mesmo componente **Proxy de Terminação TLS** usado para HTTPS provavelmente 
 
 ///
 
-E quando trabalhar com contêineres, o mesmo sistema que você usa para iniciar e gerenciá-los já terá ferramentas internas para transmitir a **comunicação de rede** (por exemplo, solicitações HTTP) do **balanceador de carga** (que também pode ser um **Proxy de Terminação TLS**) para o(s) contêiner(es) com seu aplicativo.
+E quando trabalhar com contêineres, o mesmo sistema que você usa para iniciar e gerenciá-los já terá ferramentas internas para transmitir a **comunicação de rede** (por exemplo, requests HTTP) do **balanceador de carga** (que também pode ser um **Proxy de Terminação TLS**) para o(s) contêiner(es) com seu aplicativo.
 
 ### Um Balanceador de Carga - Múltiplos Contêineres de Workers { #one-load-balancer-multiple-worker-containers }
 
-Quando trabalhando com **Kubernetes** ou sistemas similares de gerenciamento de contêiner distribuído, usar seus mecanismos de rede internos permite que o único **balanceador de carga** que está escutando na **porta principal** transmita a comunicação (solicitações) para possivelmente **múltiplos contêineres** executando seu aplicativo.
+Quando trabalhando com **Kubernetes** ou sistemas similares de gerenciamento de contêiner distribuído, usar seus mecanismos de rede internos permite que o único **balanceador de carga** que está escutando na **porta principal** transmita a comunicação (requests) para possivelmente **múltiplos contêineres** executando seu aplicativo.
 
 Cada um desses contêineres executando seu aplicativo normalmente teria **apenas um processo** (ex.: um processo Uvicorn executando seu aplicativo FastAPI). Todos seriam **contêineres idênticos**, executando a mesma coisa, mas cada um com seu próprio processo, memória, etc. Dessa forma, você aproveitaria a **paralelização** em **núcleos diferentes** da CPU, ou até mesmo em **máquinas diferentes**.
 
-E o sistema de contêiner com o **balanceador de carga** iria **distribuir as solicitações** para cada um dos contêineres com seu aplicativo **em turnos**. Portanto, cada solicitação poderia ser tratada por um dos múltiplos **contêineres replicados** executando seu aplicativo.
+E o sistema de contêiner com o **balanceador de carga** iria **distribuir os requests** para cada um dos contêineres com seu aplicativo **em turnos**. Portanto, cada request poderia ser tratado por um dos múltiplos **contêineres replicados** executando seu aplicativo.
 
-E normalmente esse **balanceador de carga** seria capaz de lidar com solicitações que vão para *outros* aplicativos em seu cluster (por exemplo, para um domínio diferente, ou sob um prefixo de URL diferente), e transmitiria essa comunicação para os contêineres certos para *esse outro* aplicativo em execução em seu cluster.
+E normalmente esse **balanceador de carga** seria capaz de lidar com requests que vão para *outros* aplicativos em seu cluster (por exemplo, para um domínio diferente, ou sob um prefixo de path de URL diferente), e transmitiria essa comunicação para os contêineres certos para *esse outro* aplicativo em execução em seu cluster.
 
 ### Um Processo por Contêiner { #one-process-per-container }
 
@@ -544,7 +544,7 @@ Se você executar **um único processo por contêiner**, terá uma quantidade ma
 
 E então você pode definir esses mesmos limites e requisitos de memória em suas configurações para seu sistema de gerenciamento de contêineres (por exemplo, no **Kubernetes**). Dessa forma, ele poderá **replicar os contêineres** nas **máquinas disponíveis** levando em consideração a quantidade de memória necessária por eles e a quantidade disponível nas máquinas no cluster.
 
-Se sua aplicação for **simples**, isso provavelmente **não será um problema**, e você pode não precisar especificar limites de memória rígidos. Mas se você estiver **usando muita memória** (por exemplo, com **modelos de aprendizado de máquina**), deve verificar quanta memória está consumindo e ajustar o **número de contêineres** que executa em **cada máquina** (e talvez adicionar mais máquinas ao seu cluster).
+Se sua aplicação for **simples**, isso provavelmente **não será um problema**, e você pode não precisar especificar limites de memória rígidos. Mas se você estiver **usando muita memória** (por exemplo, com modelos de **Aprendizado de Máquina**), você deveria verificar quanta memória está consumindo e ajustar o **número de contêineres** que executa em **cada máquina** (e talvez adicionar mais máquinas ao seu cluster).
 
 Se você executar **múltiplos processos por contêiner**, deve garantir que o número de processos iniciados não **consuma mais memória** do que o disponível.
 
@@ -556,7 +556,7 @@ Se você estiver usando contêineres (por exemplo, Docker, Kubernetes), existem 
 
 Se você tiver **múltiplos contêineres**, provavelmente cada um executando um **único processo** (por exemplo, em um cluster do **Kubernetes**), então provavelmente você gostaria de ter um **contêiner separado** fazendo o trabalho dos **passos anteriores** em um único contêiner, executando um único processo, **antes** de executar os contêineres workers replicados.
 
-/// info | Informação
+/// note | Nota
 
 Se você estiver usando o Kubernetes, provavelmente será um [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
@@ -572,7 +572,7 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 Antes havia uma imagem oficial do FastAPI para Docker: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). Mas agora ela está descontinuada. ⛔️
 
-Você provavelmente **não** deve usar essa imagem base do Docker (ou qualquer outra semelhante).
+Você provavelmente **não** deveria usar essa imagem base do Docker (ou qualquer outra semelhante).
 
 Se você está usando **Kubernetes** (ou outros) e já está definindo a **replicação** no nível do cluster, com vários **contêineres**. Nesses casos, é melhor **construir uma imagem do zero** como descrito acima: [Construir uma Imagem Docker para FastAPI](#build-a-docker-image-for-fastapi).
 

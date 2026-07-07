@@ -18,7 +18,7 @@ If you don't know, you will learn what a "password hash" is in the [security cha
 
 ## Multiple models { #multiple-models }
 
-Here's a general idea of how the models could look like with their password fields and the places where they are used:
+Here's a general idea of what the models could look like with their password fields and the places where they are used:
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
@@ -142,7 +142,7 @@ The supporting additional functions `fake_password_hasher` and `fake_save_user` 
 
 Reducing code duplication is one of the core ideas in **FastAPI**.
 
-As code duplication increments the chances of bugs, security issues, code desynchronization issues (when you update in one place but not in the others), etc.
+As code duplication increases the chances of bugs, security issues, code desynchronization issues (when you update in one place but not in the others), etc.
 
 And these models are all sharing a lot of the data and duplicating attribute names and types.
 
@@ -208,4 +208,4 @@ In this case, you can use `dict`:
 
 Use multiple Pydantic models and inherit freely for each case.
 
-You don't need to have a single data model per entity if that entity must be able to have different "states". As the case with the user "entity" with a state including `password`, `password_hash` and no password.
+You don't need to have a single data model per entity if that entity must be able to have different "states". The **user** "entity" is an example, with states that include `password`, `password_hash`, or no password.

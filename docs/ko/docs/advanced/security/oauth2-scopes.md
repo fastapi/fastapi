@@ -4,9 +4,9 @@
 
 이를 통해 OAuth2 표준을 따르는 더 세밀한 권한 시스템을 OpenAPI 애플리케이션(및 API 문서)에 통합할 수 있습니다.
 
-스코프를 사용하는 OAuth2는 Facebook, Google, GitHub, Microsoft, X(Twitter) 등 많은 대형 인증 제공자가 사용하는 메커니즘입니다. 이들은 이를 통해 사용자와 애플리케이션에 특정 권한을 제공합니다.
+스코프를 사용하는 OAuth2는 Facebook, Google, GitHub, Microsoft, X (Twitter) 등 많은 대형 인증 제공자가 사용하는 메커니즘입니다. 이들은 이를 통해 사용자와 애플리케이션에 특정 권한을 제공합니다.
 
-Facebook, Google, GitHub, Microsoft, X(Twitter)로 “로그인”할 때마다, 해당 애플리케이션은 스코프가 있는 OAuth2를 사용하고 있습니다.
+Facebook, Google, GitHub, Microsoft, X (Twitter)로 “로그인”할 때마다, 해당 애플리케이션은 스코프가 있는 OAuth2를 사용하고 있습니다.
 
 이 섹션에서는 **FastAPI** 애플리케이션에서 동일한 “스코프가 있는 OAuth2”로 인증(Authentication)과 인가(Authorization)를 관리하는 방법을 확인합니다.
 
@@ -46,7 +46,7 @@ OpenAPI(예: API 문서)에서는 “security schemes”를 정의할 수 있습
 * `instagram_basic` 는 Facebook/Instagram에서 사용합니다.
 * `https://www.googleapis.com/auth/drive` 는 Google에서 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 OAuth2에서 “스코프”는 필요한 특정 권한을 선언하는 문자열일 뿐입니다.
 
@@ -126,7 +126,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | 기술 세부사항
+/// note | 기술 세부사항
 
 `Security`는 실제로 `Depends`의 서브클래스이며, 나중에 보게 될 추가 매개변수 하나만 더 있습니다.
 

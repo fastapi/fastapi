@@ -20,7 +20,7 @@ Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion dekl
 
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
-/// check | Testen
+/// tip | Tipp
 
 Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
 
@@ -34,7 +34,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter [http://127.0.0.1:80
 {"item_id":3}
 ```
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String „3“, also ein `str`.
 
@@ -66,7 +66,7 @@ Der Pfad-Parameter `item_id` hatte den Wert „foo“, was kein `int` ist.
 
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Testen
+/// tip | Tipp
 
 Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
 
@@ -82,7 +82,7 @@ Wenn Sie die Seite [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in I
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Testen
+/// tip | Tipp
 
 Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 

@@ -1,6 +1,6 @@
 # Codes HTTP supplémentaires { #additional-status-codes }
 
-Par défaut, **FastAPI** renverra les réponses à l'aide d'une structure de données `JSONResponse`, en plaçant la réponse de votre  *chemin d'accès* à l'intérieur de cette `JSONResponse`.
+Par défaut, **FastAPI** renverra les réponses en utilisant une `JSONResponse`, en plaçant le contenu que vous renvoyez depuis votre *chemin d'accès* à l'intérieur de cette `JSONResponse`.
 
 Il utilisera le code HTTP par défaut ou celui que vous avez défini dans votre *chemin d'accès*.
 

@@ -20,7 +20,7 @@ You can declare the type of a path parameter in the function, using standard Pyt
 
 In this case, `item_id` is declared to be an `int`.
 
-/// check
+/// tip
 
 This will give you editor support inside of your function, with error checks, completion, etc.
 
@@ -34,7 +34,7 @@ If you run this example and open your browser at [http://127.0.0.1:8000/items/3]
 {"item_id":3}
 ```
 
-/// check
+/// tip
 
 Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
 
@@ -66,7 +66,7 @@ because the path parameter `item_id` had a value of `"foo"`, which is not an `in
 
 The same error would appear if you provided a `float` instead of an `int`, as in: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check
+/// tip
 
 So, with the same Python type declaration, **FastAPI** gives you data validation.
 
@@ -82,7 +82,7 @@ And when you open your browser at [http://127.0.0.1:8000/docs](http://127.0.0.1:
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check
+/// tip
 
 Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
 

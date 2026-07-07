@@ -1,5 +1,6 @@
 # 回應狀態碼 { #response-status-code }
 
+
 就像你可以指定回應模型一樣，你也可以在任一個「路徑操作（path operation）」的參數 `status_code` 中宣告回應所使用的 HTTP 狀態碼：
 
 * `@app.get()`
@@ -18,7 +19,7 @@
 
 參數 `status_code` 接受一個數字作為 HTTP 狀態碼。
 
-/// info | 資訊
+/// note | 注意
 
 `status_code` 也可以接收一個 `IntEnum`，例如 Python 的 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)。
 
@@ -27,7 +28,7 @@
 它會：
 
 * 在回應中傳回該狀態碼。
-* 在 OpenAPI 結構中如此記錄（因此也會反映在使用者介面中）：
+* 在 OpenAPI 構架中如此記錄（因此也會反映在使用者介面中）：
 
 <img src="/img/tutorial/response-status-code/image01.png">
 

@@ -36,7 +36,7 @@ Here are some of the additional data types you can use:
 * `datetime.timedelta`:
     * A Python `datetime.timedelta`.
     * In requests and responses will be represented as a `float` of total seconds.
-    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", [see the docs for more info](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic also allows representing it as an "ISO 8601 time diff encoding", [see the docs for more info](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * In requests and responses, treated the same as a `set`:
         * In requests, a list will be read, eliminating duplicates and converting it to a `set`.

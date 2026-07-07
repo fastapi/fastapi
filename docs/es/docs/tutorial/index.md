@@ -54,7 +54,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 Es **ALTAMENTE recomendable** que escribas o copies el código, lo edites y lo ejecutes localmente.
 
-Usarlo en tu editor es lo que realmente te muestra los beneficios de FastAPI, al ver cuán poco código tienes que escribir, todos los chequeos de tipos, autocompletado, etc.
+Usarlo en tu editor es lo que realmente te muestra los beneficios de FastAPI, al ver cuán poco código tienes que escribir, todo el chequeo de tipos, autocompletado, etc.
 
 ---
 

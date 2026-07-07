@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     config: dict[str, LabelSettings] | Literal[""] = default_config
 
 
-settings = Settings()
+settings = Settings()  # ty: ignore[missing-argument]
 if settings.debug:
     logging.basicConfig(level=logging.DEBUG)
 else:

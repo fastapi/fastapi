@@ -1,8 +1,8 @@
 # Environnements virtuels { #virtual-environments }
 
-Lorsque vous travaillez sur des projets Python, vous devriez probablement utiliser un environnement virtuel (ou un mécanisme similaire) pour isoler les packages que vous installez pour chaque projet.
+Lorsque vous travaillez sur des projets Python, vous devriez probablement utiliser un **environnement virtuel** (ou un mécanisme similaire) pour isoler les packages que vous installez pour chaque projet.
 
-/// info
+/// note | Remarque
 
 Si vous connaissez déjà les environnements virtuels, comment les créer et les utiliser, vous pouvez passer cette section. 🤓
 
@@ -10,19 +10,19 @@ Si vous connaissez déjà les environnements virtuels, comment les créer et les
 
 /// tip | Astuce
 
-Un environnement virtuel est différent d’une variable d’environnement.
+Un **environnement virtuel** est différent d’une **variable d’environnement**.
 
-Une variable d’environnement est une variable du système qui peut être utilisée par des programmes.
+Une **variable d’environnement** est une variable du système qui peut être utilisée par des programmes.
 
-Un environnement virtuel est un répertoire contenant certains fichiers.
+Un **environnement virtuel** est un répertoire contenant certains fichiers.
 
 ///
 
-/// info
+/// note | Remarque
 
-Cette page vous apprendra à utiliser les environnements virtuels et à comprendre leur fonctionnement.
+Cette page vous apprendra à utiliser les **environnements virtuels** et à comprendre leur fonctionnement.
 
-Si vous êtes prêt à adopter un outil qui gère tout pour vous (y compris l’installation de Python), essayez [uv](https://github.com/astral-sh/uv).
+Si vous êtes prêt à adopter un **outil qui gère tout** pour vous (y compris l’installation de Python), essayez [uv](https://github.com/astral-sh/uv).
 
 ///
 
@@ -53,11 +53,11 @@ $ cd awesome-project
 
 ## Créer un environnement virtuel { #create-a-virtual-environment }
 
-Lorsque vous commencez à travailler sur un projet Python pour la première fois, créez un environnement virtuel <strong><dfn title="il existe d'autres options, il s'agit d'une simple recommandation">dans votre projet</dfn></strong>.
+Lorsque vous commencez à travailler sur un projet Python **pour la première fois**, créez un environnement virtuel **<dfn title="il existe d'autres options, il s'agit d'une simple recommandation">dans votre projet</dfn>**.
 
 /// tip | Astuce
 
-Vous n’avez besoin de faire cela qu’une seule fois par projet, pas à chaque fois que vous travaillez.
+Vous n’avez besoin de faire cela qu’**une seule fois par projet**, pas à chaque fois que vous travaillez.
 
 ///
 
@@ -120,7 +120,7 @@ Activez le nouvel environnement virtuel afin que toute commande Python que vous 
 
 /// tip | Astuce
 
-Faites cela à chaque fois que vous démarrez une nouvelle session de terminal pour travailler sur le projet.
+Faites cela **chaque fois** que vous démarrez une **nouvelle session de terminal** pour travailler sur le projet.
 
 ///
 
@@ -164,9 +164,9 @@ $ source .venv/Scripts/activate
 
 /// tip | Astuce
 
-Chaque fois que vous installez un nouveau package dans cet environnement, activez de nouveau l’environnement.
+Chaque fois que vous installez un **nouveau package** dans cet environnement, **activez** de nouveau l’environnement.
 
-Vous vous assurez ainsi que si vous utilisez un programme de terminal (<abbr title="command line interface - interface en ligne de commande">CLI</abbr>) installé par ce package, vous utilisez celui de votre environnement virtuel et non un autre qui pourrait être installé globalement, probablement avec une version différente de celle dont vous avez besoin.
+Vous vous assurez ainsi que si vous utilisez un **programme de terminal (<abbr title="command line interface - interface en ligne de commande">CLI</abbr>)** installé par ce package, vous utilisez celui de votre environnement virtuel et non un autre qui pourrait être installé globalement, probablement avec une version différente de celle dont vous avez besoin.
 
 ///
 
@@ -176,7 +176,7 @@ Vérifiez que l’environnement virtuel est actif (la commande précédente a fo
 
 /// tip | Astuce
 
-C’est facultatif, mais c’est une bonne manière de vérifier que tout fonctionne comme prévu et que vous utilisez l’environnement virtuel voulu.
+C’est **facultatif**, mais c’est une bonne manière de **vérifier** que tout fonctionne comme prévu et que vous utilisez l’environnement virtuel voulu.
 
 ///
 
@@ -220,13 +220,13 @@ Si vous utilisez [`uv`](https://github.com/astral-sh/uv), vous l’utiliserez po
 
 ///
 
-Si vous utilisez `pip` pour installer des packages (il est fourni par défaut avec Python), vous devez le mettre à niveau vers la dernière version.
+Si vous utilisez `pip` pour installer des packages (il est fourni par défaut avec Python), vous devez le **mettre à niveau** vers la dernière version.
 
 Beaucoup d’erreurs exotiques lors de l’installation d’un package se résolvent simplement en mettant d’abord `pip` à niveau.
 
 /// tip | Astuce
 
-Vous feriez normalement cela une seule fois, juste après avoir créé l’environnement virtuel.
+Vous feriez normalement cela **une seule fois**, juste après avoir créé l’environnement virtuel.
 
 ///
 
@@ -264,7 +264,7 @@ Cette commande installera pip s’il n’est pas déjà installé et garantit au
 
 ## Ajouter `.gitignore` { #add-gitignore }
 
-Si vous utilisez Git (vous devriez), ajoutez un fichier `.gitignore` pour exclure tout ce qui se trouve dans votre `.venv` de Git.
+Si vous utilisez **Git** (vous devriez), ajoutez un fichier `.gitignore` pour exclure tout ce qui se trouve dans votre `.venv` de Git.
 
 /// tip | Astuce
 
@@ -274,7 +274,7 @@ Si vous avez utilisé [`uv`](https://github.com/astral-sh/uv) pour créer l’en
 
 /// tip | Astuce
 
-Faites cela une seule fois, juste après avoir créé l’environnement virtuel.
+Faites cela **une seule fois**, juste après avoir créé l’environnement virtuel.
 
 ///
 
@@ -308,19 +308,19 @@ Après avoir activé l’environnement, vous pouvez y installer des packages.
 
 /// tip | Astuce
 
-Faites cela une seule fois lorsque vous installez ou mettez à niveau les packages nécessaires à votre projet.
+Faites cela **une seule fois** lorsque vous installez ou mettez à niveau les packages nécessaires à votre projet.
 
-Si vous devez mettre à niveau une version ou ajouter un nouveau package, vous le referez.
+Si vous devez mettre à niveau une version ou ajouter un nouveau package, vous le **referez**.
 
 ///
 
 ### Installer des packages directement { #install-packages-directly }
 
-Si vous êtes pressé et ne souhaitez pas utiliser un fichier pour déclarer les dépendances de votre projet, vous pouvez les installer directement.
+Si vous êtes pressé et ne souhaitez pas utiliser un fichier pour déclarer les dépendances de packages de votre projet, vous pouvez les installer directement.
 
 /// tip | Astuce
 
-C’est une très bonne idée de placer les packages et leurs versions nécessaires à votre programme dans un fichier (par exemple `requirements.txt` ou `pyproject.toml`).
+C’est une (très) bonne idée de placer les packages et leurs versions nécessaires à votre programme dans un fichier (par exemple `requirements.txt` ou `pyproject.toml`).
 
 ///
 
@@ -421,13 +421,13 @@ Par exemple :
 
 /// tip | Astuce
 
-Vous devez normalement faire cela une seule fois, lorsque vous créez l’environnement virtuel.
+Vous devez normalement faire cela seulement **une fois**, lorsque vous créez l’environnement virtuel.
 
 ///
 
 ## Désactiver l’environnement virtuel { #deactivate-the-virtual-environment }
 
-Une fois que vous avez fini de travailler sur votre projet, vous pouvez désactiver l’environnement virtuel.
+Une fois que vous avez fini de travailler sur votre projet, vous pouvez **désactiver** l’environnement virtuel.
 
 <div class="termy">
 
@@ -457,17 +457,17 @@ Continuez la lecture. 👇🤓
 
 Pour travailler avec FastAPI, vous devez installer [Python](https://www.python.org/).
 
-Ensuite, vous devrez installer FastAPI et tout autre package que vous souhaitez utiliser.
+Ensuite, vous devez **installer** FastAPI et tout autre **package** que vous souhaitez utiliser.
 
 Pour installer des packages, vous utiliseriez normalement la commande `pip` fournie avec Python (ou des alternatives similaires).
 
-Néanmoins, si vous utilisez simplement `pip` directement, les packages seraient installés dans votre environnement Python global (l’installation globale de Python).
+Néanmoins, si vous utilisez simplement `pip` directement, les packages seraient installés dans votre **environnement Python global** (l’installation globale de Python).
 
 ### Le problème { #the-problem }
 
 Alors, quel est le problème d’installer des packages dans l’environnement Python global ?
 
-À un moment donné, vous finirez probablement par écrire de nombreux programmes différents qui dépendent de packages différents. Et certains de ces projets sur lesquels vous travaillez dépendront de versions différentes du même package. 😱
+À un moment donné, vous finirez probablement par écrire de nombreux programmes différents qui dépendent de **packages différents**. Et certains de ces projets sur lesquels vous travaillez dépendront de **versions différentes** du même package. 😱
 
 Par exemple, vous pourriez créer un projet appelé `philosophers-stone`, ce programme dépend d’un autre package appelé **`harry`, en version `1`**. Vous devez donc installer `harry`.
 
@@ -483,7 +483,7 @@ flowchart LR
     azkaban(prisoner-of-azkaban) --> |requires| harry-3[harry v3]
 ```
 
-Mais maintenant, le problème est que, si vous installez les packages globalement (dans l’environnement global) au lieu de dans un environnement virtuel local, vous devrez choisir quelle version de `harry` installer.
+Mais maintenant, le problème est que, si vous installez les packages globalement (dans l’environnement global) au lieu de dans un **environnement virtuel** local, vous devrez choisir quelle version de `harry` installer.
 
 Si vous voulez exécuter `philosophers-stone`, vous devrez d’abord installer `harry` en version `1`, par exemple avec :
 
@@ -519,7 +519,7 @@ $ pip install "harry==3"
 
 Et vous vous retrouverez alors avec `harry` version `3` installé dans votre environnement Python global.
 
-Et si vous essayez d’exécuter à nouveau `philosophers-stone`, il y a une chance que cela ne fonctionne pas car il a besoin de `harry` version `1`.
+Et si vous essayez d’exécuter à nouveau `philosophers-stone`, il y a une chance que cela **ne fonctionne pas** car il a besoin de `harry` version `1`.
 
 ```mermaid
 flowchart LR
@@ -538,13 +538,13 @@ flowchart LR
 
 /// tip | Astuce
 
-Il est très courant que les packages Python fassent de leur mieux pour éviter les changements cassants dans les nouvelles versions, mais il vaut mieux jouer la sécurité et installer de nouvelles versions intentionnellement et lorsque vous pouvez exécuter les tests pour vérifier que tout fonctionne correctement.
+Il est très courant que les packages Python fassent de leur mieux pour **éviter les changements cassants** dans les **nouvelles versions**, mais il vaut mieux jouer la sécurité et installer de nouvelles versions intentionnellement et lorsque vous pouvez exécuter les tests pour vérifier que tout fonctionne correctement.
 
 ///
 
-Maintenant, imaginez cela avec beaucoup d’autres packages dont tous vos projets dépendent. C’est très difficile à gérer. Et vous finiriez probablement par exécuter certains projets avec des versions incompatibles des packages, sans savoir pourquoi quelque chose ne fonctionne pas.
+Maintenant, imaginez cela avec **beaucoup** d’autres **packages** dont tous vos **projets dépendent**. C’est très difficile à gérer. Et vous finiriez probablement par exécuter certains projets avec des **versions incompatibles** des packages, sans savoir pourquoi quelque chose ne fonctionne pas.
 
-De plus, selon votre système d’exploitation (par exemple Linux, Windows, macOS), il se peut qu’il soit livré avec Python déjà installé. Et dans ce cas, il avait probablement des packages préinstallés avec des versions spécifiques nécessaires à votre système. Si vous installez des packages dans l’environnement Python global, vous pourriez finir par casser certains des programmes fournis avec votre système d’exploitation.
+De plus, selon votre système d’exploitation (par exemple Linux, Windows, macOS), il se peut qu’il soit livré avec Python déjà installé. Et dans ce cas, il avait probablement des packages préinstallés avec des versions spécifiques **nécessaires à votre système**. Si vous installez des packages dans l’environnement Python global, vous pourriez finir par **casser** certains des programmes fournis avec votre système d’exploitation.
 
 ## Où les packages sont-ils installés { #where-are-packages-installed }
 
@@ -566,17 +566,17 @@ $ pip install "fastapi[standard]"
 
 Cela téléchargera un fichier compressé avec le code de FastAPI, normalement depuis [PyPI](https://pypi.org/project/fastapi/).
 
-Il téléchargera également des fichiers pour d’autres packages dont FastAPI dépend.
+Il **téléchargera** également des fichiers pour d’autres packages dont FastAPI dépend.
 
-Ensuite, il extraira tous ces fichiers et les placera dans un répertoire de votre ordinateur.
+Ensuite, il **extraira** tous ces fichiers et les placera dans un répertoire de votre ordinateur.
 
-Par défaut, il placera ces fichiers téléchargés et extraits dans le répertoire fourni avec votre installation de Python, c’est l’environnement global.
+Par défaut, il placera ces fichiers téléchargés et extraits dans le répertoire fourni avec votre installation de Python, c’est l’**environnement global**.
 
 ## Qu’est-ce qu’un environnement virtuel { #what-are-virtual-environments }
 
-La solution aux problèmes posés par le fait d’avoir tous les packages dans l’environnement global est d’utiliser un environnement virtuel pour chaque projet sur lequel vous travaillez.
+La solution aux problèmes posés par le fait d’avoir tous les packages dans l’environnement global est d’utiliser un **environnement virtuel pour chaque projet** sur lequel vous travaillez.
 
-Un environnement virtuel est un répertoire, très similaire à celui global, où vous pouvez installer les packages pour un projet.
+Un environnement virtuel est un **répertoire**, très similaire à celui global, où vous pouvez installer les packages pour un projet.
 
 De cette manière, chaque projet aura son propre environnement virtuel (répertoire `.venv`) avec ses propres packages.
 
@@ -730,7 +730,7 @@ et utilisera celui-ci.
 
 ////
 
-Un détail important est qu’il placera le chemin de l’environnement virtuel au début de la variable `PATH`. Le système le trouvera avant de trouver tout autre Python disponible. Ainsi, lorsque vous exécutez `python`, il utilisera le Python de l’environnement virtuel au lieu de tout autre `python` (par exemple, un `python` d’un environnement global).
+Un détail important est qu’il placera le chemin de l’environnement virtuel au **début** de la variable `PATH`. Le système le trouvera **avant** de trouver tout autre Python disponible. Ainsi, lorsque vous exécutez `python`, il utilisera le Python **de l’environnement virtuel** au lieu de tout autre `python` (par exemple, un `python` d’un environnement global).
 
 Activer un environnement virtuel change aussi deux ou trois autres choses, mais c’est l’un des points les plus importants.
 
@@ -766,11 +766,11 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ////
 
-Cela signifie que le programme `python` qui sera utilisé est celui dans l’environnement virtuel.
+Cela signifie que le programme `python` qui sera utilisé est celui **dans l’environnement virtuel**.
 
 Vous utilisez `which` sous Linux et macOS et `Get-Command` sous Windows PowerShell.
 
-La façon dont cette commande fonctionne est qu’elle va vérifier la variable d’environnement `PATH`, en parcourant chaque chemin dans l’ordre, à la recherche du programme nommé `python`. Une fois trouvé, elle vous affichera le chemin vers ce programme.
+La façon dont cette commande fonctionne est qu’elle va vérifier la variable d’environnement `PATH`, en parcourant **chaque chemin dans l’ordre**, à la recherche du programme nommé `python`. Une fois trouvé, elle vous **affichera le chemin** vers ce programme.
 
 La partie la plus importante est que lorsque vous appelez `python`, c’est exactement « `python` » qui sera exécuté.
 
@@ -778,9 +778,9 @@ Ainsi, vous pouvez confirmer si vous êtes dans le bon environnement virtuel.
 
 /// tip | Astuce
 
-Il est facile d’activer un environnement virtuel, d’obtenir un Python, puis d’aller vers un autre projet.
+Il est facile d’activer un environnement virtuel, d’obtenir un Python, puis d’**aller vers un autre projet**.
 
-Et le second projet ne fonctionnerait pas parce que vous utilisez le Python incorrect, provenant d’un environnement virtuel d’un autre projet.
+Et le second projet **ne fonctionnerait pas** parce que vous utilisez le **Python incorrect**, provenant d’un environnement virtuel d’un autre projet.
 
 Il est utile de pouvoir vérifier quel `python` est utilisé. 🤓
 
@@ -788,9 +788,9 @@ Il est utile de pouvoir vérifier quel `python` est utilisé. 🤓
 
 ## Pourquoi désactiver un environnement virtuel { #why-deactivate-a-virtual-environment }
 
-Par exemple, vous pourriez travailler sur un projet `philosophers-stone`, activer cet environnement virtuel, installer des packages et travailler avec cet environnement.
+Par exemple, vous pourriez travailler sur un projet `philosophers-stone`, **activer cet environnement virtuel**, installer des packages et travailler avec cet environnement.
 
-Puis vous souhaitez travailler sur un autre projet `prisoner-of-azkaban`.
+Puis vous souhaitez travailler sur **un autre projet** `prisoner-of-azkaban`.
 
 Vous allez vers ce projet :
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Mais si vous désactivez l’environnement virtuel et activez le nouveau pour `prisoner-of-askaban`, alors lorsque vous exécuterez `python`, il utilisera le Python de l’environnement virtuel de `prisoner-of-azkaban`.
+Mais si vous désactivez l’environnement virtuel et activez le nouveau pour `prisoner-of-azkaban`, alors lorsque vous exécuterez `python`, il utilisera le Python de l’environnement virtuel de `prisoner-of-azkaban`.
 
 <div class="termy">
 
@@ -842,23 +842,23 @@ I solemnly swear 🐺
 
 ## Alternatives { #alternatives }
 
-Ceci est un guide simple pour vous lancer et vous montrer comment tout fonctionne en dessous.
+Ceci est un guide simple pour vous lancer et vous montrer comment tout fonctionne **en dessous**.
 
-Il existe de nombreuses alternatives pour gérer les environnements virtuels, les dépendances de packages (requirements), les projets.
+Il existe de nombreuses **alternatives** pour gérer les environnements virtuels, les dépendances de packages (requirements), les projets.
 
-Lorsque vous êtes prêt et souhaitez utiliser un outil pour gérer l’ensemble du projet, les dépendances, les environnements virtuels, etc., je vous suggère d’essayer [uv](https://github.com/astral-sh/uv).
+Lorsque vous êtes prêt et souhaitez utiliser un outil pour **gérer l’ensemble du projet**, les dépendances de packages, les environnements virtuels, etc., je vous suggère d’essayer [uv](https://github.com/astral-sh/uv).
 
 `uv` peut faire beaucoup de choses, il peut :
 
-* Installer Python pour vous, y compris différentes versions
-* Gérer l’environnement virtuel pour vos projets
-* Installer des packages
-* Gérer les dépendances de packages et leurs versions pour votre projet
-* Vous assurer d’avoir un ensemble exact de packages et de versions à installer, y compris leurs dépendances, afin que vous puissiez être certain d’exécuter votre projet en production exactement comme sur votre ordinateur pendant le développement, cela s’appelle le locking
+* **Installer Python** pour vous, y compris différentes versions
+* Gérer l’**environnement virtuel** pour vos projets
+* Installer des **packages**
+* Gérer les **dépendances et versions** de packages pour votre projet
+* Vous assurer d’avoir un ensemble **exact** de packages et de versions à installer, y compris leurs dépendances, afin que vous puissiez être certain d’exécuter votre projet en production exactement comme sur votre ordinateur pendant le développement, cela s’appelle le **locking**
 * Et bien d’autres choses
 
 ## Conclusion { #conclusion }
 
-Si vous avez lu et compris tout cela, vous en savez maintenant bien plus sur les environnements virtuels que beaucoup de développeurs. 🤓
+Si vous avez lu et compris tout cela, vous en savez maintenant **bien plus** sur les environnements virtuels que beaucoup de développeurs. 🤓
 
-Connaître ces détails vous sera très probablement utile à l’avenir lorsque vous déboguerez quelque chose qui semble complexe, mais vous saurez comment tout fonctionne en dessous. 😎
+Connaître ces détails vous sera très probablement utile à l’avenir lorsque vous déboguerez quelque chose qui semble complexe, mais vous saurez **comment tout fonctionne en dessous**. 😎

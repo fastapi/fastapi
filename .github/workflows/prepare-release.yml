@@ -1,0 +1,80 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Release bump
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      date:
+        description: Release date in YYYY-MM-DD format. Defaults to today.
+        required: false
+        type: string
+
+permissions: {}
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    env:
+      PREPARE_RELEASE_VERSION_FILE: fastapi/__init__.py
+      PREPARE_RELEASE_RELEASE_NOTES_FILE: docs/en/docs/release-notes.md
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }} # zizmor: ignore[secrets-outside-env]
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version-file: ".python-version"
+      - name: Install uv
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
+      - name: Prepare release
+        env:
+          PREPARE_RELEASE_BUMP: ${{ inputs.bump }}
+          PREPARE_RELEASE_DATE: ${{ inputs.date }}
+        run: uv run python scripts/prepare_release.py prepare
+      - name: Get release version
+        id: release-version
+        run: |
+          version="$(uv run python scripts/prepare_release.py current-version)"
+          echo "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Create release pull request
+        env:
+          GH_TOKEN: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+          VERSION: ${{ steps.release-version.outputs.version }}
+        run: |
+          set -euo pipefail
+          branch="release-${VERSION}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add $PREPARE_RELEASE_VERSION_FILE $PREPARE_RELEASE_RELEASE_NOTES_FILE
+          git commit -m "🔖 Release version ${VERSION}"
+          git push --set-upstream origin "$branch"
+          gh pr create \
+            --base master \
+            --head "$branch" \
+            --title "🔖 Release version ${VERSION}" \
+            --body "Prepare release ${VERSION}." \
+            --label release

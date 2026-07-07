@@ -1,5 +1,6 @@
 # SQL（リレーショナル）データベース { #sql-relational-databases }
 
+
 FastAPI は SQL（リレーショナル）データベースの使用を必須にはしません。必要であれば、任意のデータベースを使用できます。
 
 ここでは [SQLModel](https://sqlmodel.tiangolo.com/) を使った例を見ていきます。

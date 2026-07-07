@@ -8,7 +8,7 @@
 
 /// tip | 提示
 
-你可以使用任意其他你想要的 SQL 或 NoSQL 数据库库（在某些情况下称为 <abbr title="Object Relational Mapper - 对象关系映射器: 一个术语，用来指代一种库，其中某些类表示 SQL 表，这些类的实例表示这些表中的行">"ORMs"</abbr>），FastAPI 不会强迫你使用任何东西。😎
+你可以使用任意其他你想要的 SQL 或 NoSQL 数据库类库（在某些情况下称为 <abbr title="Object Relational Mapper - 对象关系映射器: 一个花哨的术语，指一种库，其中某些类表示 SQL 表，而实例表示这些表中的行">"ORMs"</abbr>），FastAPI 不会强迫你使用任何东西。😎
 
 ///
 
@@ -57,7 +57,7 @@ $ pip install sqlmodel
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-`Hero` 类与 Pydantic 模型非常相似（实际上，从底层来看，它确实就是一个 Pydantic 模型）。
+`Hero` 类与 Pydantic 模型非常相似（实际上，从底层来看，它*确实就是一个 Pydantic 模型*）。
 
 有一些区别：
 
@@ -65,7 +65,7 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)` 会告诉 SQLModel `id` 是 SQL 数据库中的**主键**（你可以在 SQLModel 文档中了解更多关于 SQL 主键的信息）。
 
-    **注意：** 我们为主键字段使用 `int | None`，这样在 Python 代码中我们可以在没有 `id`（`id=None`）的情况下创建对象，并假定数据库在保存时会生成它。SQLModel 会理解数据库会提供 `id`，并在数据库模式中将该列定义为非空的 `INTEGER`。详见 [SQLModel 关于主键的文档](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id)。
+    **注意：** 我们为主键字段使用 `int | None`，这样在 Python 代码中我们可以*在没有 `id` 的情况下创建对象*（`id=None`），并假定数据库会*在保存时生成它*。SQLModel 会理解数据库会提供 `id`，并在数据库模式中*将该列定义为非空的 `INTEGER`*。详见 [SQLModel 关于主键的文档](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id)。
 
 * `Field(index=True)` 会告诉 SQLModel 应该为此列创建一个 **SQL 索引**，这样在读取按此列过滤的数据时，程序能在数据库中进行更快的查找。
 
@@ -292,7 +292,7 @@ $ fastapi dev
 
 /// tip | 提示
 
-现在我们使用 `response_model=HeroPublic` 来代替**返回类型注解** `-> HeroPublic`，因为我们返回的值实际上并不是 `HeroPublic`。
+现在我们使用 `response_model=HeroPublic` 来代替**返回类型注解** `-> HeroPublic`，因为我们返回的值实际上*并不是* `HeroPublic`。
 
 如果我们声明了 `-> HeroPublic`，你的编辑器和代码检查工具会（理所应当地）抱怨你返回了一个 `Hero` 而不是一个 `HeroPublic`。
 

@@ -24,7 +24,7 @@ Copiez l'exemple dans un fichier `main.py` :
 
 ## Exécuter { #run-it }
 
-/// info
+/// note | Remarque
 
 Le package [`python-multipart`](https://github.com/Kludex/python-multipart) est installé automatiquement avec **FastAPI** lorsque vous exécutez la commande `pip install "fastapi[standard]"`.
 
@@ -54,13 +54,13 @@ $ fastapi dev
 
 ## Vérifier { #check-it }
 
-Allez à la documentation interactive à l'adresse : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Allez aux documents interactifs à l'adresse : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez quelque chose comme ceci :
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Bouton « Authorize » !
+/// tip | Bouton « Authorize » !
 
 Vous avez déjà un tout nouveau bouton « Authorize ».
 
@@ -98,19 +98,19 @@ Mais dans ce cas, la même application **FastAPI** gérera l'API et l'authentifi
 
 Voyons cela selon ce point de vue simplifié :
 
-- L'utilisateur saisit le `username` et le `password` dans le frontend, puis appuie sur Entrée.
-- Le frontend (exécuté dans le navigateur de l'utilisateur) envoie ce `username` et ce `password` vers une URL spécifique de notre API (déclarée avec `tokenUrl="token"`).
-- L'API vérifie ce `username` et ce `password`, et répond avec un « token » (nous n'avons encore rien implémenté de tout cela).
-    - Un « token » n'est qu'une chaîne contenant des informations que nous pouvons utiliser plus tard pour vérifier cet utilisateur.
-    - Normalement, un token est configuré pour expirer après un certain temps.
-        - Ainsi, l'utilisateur devra se reconnecter à un moment donné.
-        - Et si le token est volé, le risque est moindre. Ce n'est pas une clé permanente qui fonctionnerait indéfiniment (dans la plupart des cas).
-- Le frontend stocke ce token temporairement quelque part.
-- L'utilisateur clique dans le frontend pour aller vers une autre section de l'application web frontend.
-- Le frontend doit récupérer d'autres données depuis l'API.
-    - Mais cela nécessite une authentification pour cet endpoint spécifique.
-    - Donc, pour s'authentifier auprès de notre API, il envoie un en-tête `Authorization` avec une valeur `Bearer ` suivie du token.
-    - Si le token contient `foobar`, le contenu de l'en-tête `Authorization` serait : `Bearer foobar`.
+* L'utilisateur saisit le `username` et le `password` dans le frontend, puis appuie sur Entrée.
+* Le frontend (exécuté dans le navigateur de l'utilisateur) envoie ce `username` et ce `password` vers une URL spécifique de notre API (déclarée avec `tokenUrl="token"`).
+* L'API vérifie ce `username` et ce `password`, et répond avec un « token » (nous n'avons encore rien implémenté de tout cela).
+    * Un « token » n'est qu'une chaîne contenant des informations que nous pouvons utiliser plus tard pour vérifier cet utilisateur.
+    * Normalement, un token est configuré pour expirer après un certain temps.
+        * Ainsi, l'utilisateur devra se reconnecter à un moment donné.
+        * Et si le token est volé, le risque est moindre. Ce n'est pas une clé permanente qui fonctionnerait indéfiniment (dans la plupart des cas).
+* Le frontend stocke ce token temporairement quelque part.
+* L'utilisateur clique dans le frontend pour aller vers une autre section de l'application web frontend.
+* Le frontend doit récupérer d'autres données depuis l'API.
+    * Mais cela nécessite une authentification pour cet endpoint spécifique.
+    * Donc, pour s'authentifier auprès de notre API, il envoie un en-tête `Authorization` avec une valeur `Bearer ` suivie du token.
+    * Si le token contient `foobar`, le contenu de l'en-tête `Authorization` serait : `Bearer foobar`.
 
 ## Le `OAuth2PasswordBearer` de **FastAPI** { #fastapis-oauth2passwordbearer }
 
@@ -118,7 +118,7 @@ Voyons cela selon ce point de vue simplifié :
 
 Dans cet exemple, nous allons utiliser **OAuth2**, avec le flux **Password**, en utilisant un token **Bearer**. Nous le faisons avec la classe `OAuth2PasswordBearer`.
 
-/// info
+/// note | Remarque
 
 Un token « bearer » n'est pas la seule option.
 
@@ -148,7 +148,7 @@ Ce paramètre ne crée pas cet endpoint / *chemin d'accès*, mais déclare que l
 
 Nous créerons bientôt aussi le véritable chemin d'accès.
 
-/// info
+/// note | Remarque
 
 Si vous êtes un « Pythonista » très strict, vous pourriez ne pas apprécier le style du nom de paramètre `tokenUrl` au lieu de `token_url`.
 
@@ -172,15 +172,15 @@ Vous pouvez maintenant passer ce `oauth2_scheme` en dépendance avec `Depends`.
 
 {* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
-Cette dépendance fournira une `str` qui est affectée au paramètre `token` de la fonction de *chemin d'accès*.
+Cette dépendance fournira une `str` qui est affectée au paramètre `token` de la *fonction de chemin d'accès*.
 
-**FastAPI** saura qu'il peut utiliser cette dépendance pour définir un « schéma de sécurité » dans le schéma OpenAPI (et la documentation API automatique).
+**FastAPI** saura qu'il peut utiliser cette dépendance pour définir un « schéma de sécurité » dans le schéma OpenAPI (et les documents automatiques de l'API).
 
-/// info | Détails techniques
+/// note | Détails techniques
 
 **FastAPI** saura qu'il peut utiliser la classe `OAuth2PasswordBearer` (déclarée dans une dépendance) pour définir le schéma de sécurité dans OpenAPI parce qu'elle hérite de `fastapi.security.oauth2.OAuth2`, qui hérite à son tour de `fastapi.security.base.SecurityBase`.
 
-Tous les utilitaires de sécurité qui s'intègrent à OpenAPI (et à la documentation API automatique) héritent de `SecurityBase`, c'est ainsi que **FastAPI** sait comment les intégrer dans OpenAPI.
+Tous les utilitaires de sécurité qui s'intègrent à OpenAPI (et aux documents automatiques de l'API) héritent de `SecurityBase`, c'est ainsi que **FastAPI** sait comment les intégrer dans OpenAPI.
 
 ///
 
@@ -192,7 +192,7 @@ S'il ne voit pas d'en-tête `Authorization`, ou si la valeur n'a pas de token `B
 
 Vous n'avez même pas à vérifier si le token existe pour renvoyer une erreur. Vous pouvez être sûr que si votre fonction est exécutée, elle aura une `str` dans ce token.
 
-Vous pouvez déjà l'essayer dans la documentation interactive :
+Vous pouvez déjà l'essayer dans les documents interactifs :
 
 <img src="/img/tutorial/security/image03.png">
 

@@ -36,13 +36,13 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# 変数を str として宣言
+# 関数内でエディタの支援を受ける
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Pydantic モデル
 class User(BaseModel):
     id: int
     name: str
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note | 備考
 
 `**second_user_data` は次の意味です:
 
@@ -99,7 +99,7 @@ Python 開発者調査では、[最もよく使われる機能の 1 つが「オ
 
 すべてに妥当な **デフォルト** があり、どこでもオプションで構成できます。必要に応じてすべてのパラメータを微調整して、求める API を定義できます。
 
-しかしデフォルトのままでも、すべて **うまく動きます**。
+しかしデフォルトのままでも、すべて **「うまく動きます」**。
 
 ### 検証 { #validation }
 
@@ -140,7 +140,7 @@ FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title=
 
 * 依存関係は依存関係を持つこともでき、階層または **依存関係の「グラフ」** を作成できます。
 * すべてフレームワークによって**自動的に処理**されます。
-* すべての依存関係はリクエストからデータを要求でき、*path operation* の制約と自動ドキュメントを**拡張**できます。
+* すべての依存関係はリクエストからデータを要求でき、path operation の制約と自動ドキュメントを**拡張**できます。
 * 依存関係で定義された *path operation* のパラメータについても**自動検証**されます。
 * 複雑なユーザー認証システム、**データベース接続** などのサポート。
 * **データベースやフロントエンド等との妥協は不要**。すべてと簡単に統合できます。

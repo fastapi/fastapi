@@ -8,7 +8,7 @@
 
 ## `TestClient` 사용하기 { #using-testclient }
 
-/// info | 정보
+/// note | 참고
 
 `TestClient` 사용하려면, 우선 [`httpx`](https://www.python-httpx.org)를 설치해야 합니다.
 
@@ -62,7 +62,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 그리고 **FastAPI** 애플리케이션도 여러 파일이나 모듈 등으로 구성될 수 있습니다.
 
-### **FastAPI** app 파일 { #fastapi-app-file }
+### **FastAPI** 애플리케이션 파일 { #fastapi-app-file }
 
 [더 큰 애플리케이션](bigger-applications.md)에 묘사된 파일 구조를 가지고 있는 것으로 가정해봅시다.
 
@@ -73,7 +73,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 │   └── main.py
 ```
 
-`main.py` 파일 안에 **FastAPI** app 을 만들었습니다:
+`main.py` 파일 안에 **FastAPI** 애플리케이션이 있습니다:
 
 
 {* ../../docs_src/app_testing/app_a_py310/main.py *}
@@ -101,7 +101,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 이제 위의 예시를 확장하고 더 많은 세부 사항을 추가하여 다양한 부분을 어떻게 테스트하는지 살펴보겠습니다.
 
-### 확장된 **FastAPI** app 파일 { #extended-fastapi-app-file }
+### 확장된 **FastAPI** 애플리케이션 파일 { #extended-fastapi-app-file }
 
 이전과 같은 파일 구조를 계속 사용해 보겠습니다.
 
@@ -113,7 +113,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 │   └── test_main.py
 ```
 
-이제 **FastAPI** 앱이 있는 `main.py` 파일에 몇 가지 다른 **경로 처리**가 추가된 경우를 생각해봅시다.
+이제 **FastAPI** 애플리케이션이 있는 `main.py` 파일에 몇 가지 다른 **경로 처리**가 추가된 경우를 생각해봅시다.
 
 오류를 반환할 수 있는 `GET` 작업이 있습니다.
 
@@ -144,7 +144,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient`를 이용해서) [HTTPX 문서](https://www.python-httpx.org)를 확인하세요.
 
-/// info | 정보
+/// note | 참고
 
 `TestClient`는 Pydantic 모델이 아니라 JSON으로 변환될 수 있는 데이터를 받습니다.
 
