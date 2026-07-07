@@ -79,8 +79,25 @@ class HTTPException(StarletteHTTPException):
                 """
             ),
         ] = None,
+        type: Annotated[
+            str | None,
+            Doc(
+                """
+                An optional URI reference identifying the problem type, as defined in
+                RFC 9457.
+
+                When set, this overrides the automatic problem type resolution in
+                the RFC 9457 error response (e.g., from `problem_type_base_uri`
+                or `problem_types`).
+
+                Read more about it in the
+                [RFC 9457 - Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).
+                """
+            ),
+        ] = None,
     ) -> None:
         super().__init__(status_code=status_code, detail=detail, headers=headers)
+        self.type: str | None = type
 
 
 class WebSocketException(StarletteWebSocketException):

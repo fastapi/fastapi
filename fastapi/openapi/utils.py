@@ -68,6 +68,23 @@ validation_error_response_definition = {
     },
 }
 
+problem_details_definition = {
+    "title": "ProblemDetails",
+    "type": "object",
+    "properties": {
+        "type": {
+            "title": "Type",
+            "type": "string",
+            "default": "about:blank",
+        },
+        "title": {"title": "Title", "type": "string"},
+        "status": {"title": "Status", "type": "integer"},
+        "detail": {"title": "Detail", "type": "string"},
+        "instance": {"title": "Instance", "type": "string"},
+    },
+    "additionalProperties": True,
+}
+
 status_code_ranges: dict[str, str] = {
     "1XX": "Information",
     "2XX": "Success",
@@ -266,6 +283,7 @@ def get_openapi_path(
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
+    problem_details: bool = False,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     path = {}
     security_schemes: dict[str, Any] = {}
@@ -334,6 +352,7 @@ def get_openapi_path(
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
+                            problem_details=problem_details,
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
@@ -457,21 +476,37 @@ def get_openapi_path(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
             ):
-                operation["responses"][http422] = {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
-                            "schema": {"$ref": REF_PREFIX + "HTTPValidationError"}
-                        }
-                    },
-                }
-                if "ValidationError" not in definitions:
-                    definitions.update(
-                        {
-                            "ValidationError": validation_error_definition,
-                            "HTTPValidationError": validation_error_response_definition,
-                        }
-                    )
+                if problem_details:
+                    operation["responses"][http422] = {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {"$ref": REF_PREFIX + "ProblemDetails"}
+                            }
+                        },
+                    }
+                    if "ProblemDetails" not in definitions:
+                        definitions.update(
+                            {
+                                "ProblemDetails": problem_details_definition,
+                            }
+                        )
+                else:
+                    operation["responses"][http422] = {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": REF_PREFIX + "HTTPValidationError"}
+                            }
+                        },
+                    }
+                    if "ValidationError" not in definitions:
+                        definitions.update(
+                            {
+                                "ValidationError": validation_error_definition,
+                                "HTTPValidationError": validation_error_response_definition,
+                            }
+                        )
             if route.openapi_extra:
                 deep_dict_update(operation, route.openapi_extra)
             path[method.lower()] = operation
@@ -536,6 +571,7 @@ def get_openapi(
     license_info: dict[str, str | Any] | None = None,
     separate_input_output_schemas: bool = True,
     external_docs: dict[str, Any] | None = None,
+    problem_details: bool = False,
 ) -> dict[str, Any]:
     info: dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -572,6 +608,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                problem_details=problem_details,
             )
             if result:
                 path, security_schemes, path_definitions = result
@@ -592,6 +629,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                problem_details=problem_details,
             )
             if result:
                 path, security_schemes, path_definitions = result

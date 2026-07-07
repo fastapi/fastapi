@@ -18,7 +18,9 @@ from .param_functions import Header as Header
 from .param_functions import Path as Path
 from .param_functions import Query as Query
 from .param_functions import Security as Security
+from .problem_details import ProblemDetails as ProblemDetails
 from .requests import Request as Request
+from .responses import ProblemDetailsResponse as ProblemDetailsResponse
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter
 from .websockets import WebSocket as WebSocket

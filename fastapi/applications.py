@@ -8,6 +8,8 @@ from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
+    problem_details_http_exception_handler,
+    problem_details_request_validation_exception_handler,
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
@@ -860,6 +862,67 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        problem_details: Annotated[
+            bool,
+            Doc(
+                """
+                Enable RFC 9457 Problem Details for HTTP API error responses.
+
+                When `True`, the default exception handlers for `HTTPException`
+                and `RequestValidationError` return responses with
+                `Content-Type: application/problem+json` and the standard
+                Problem Details body (`type`, `title`, `status`, `detail`,
+                `instance`, and extension members). Read more about it in the
+                [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457).
+
+                When `False` (default), the traditional `{"detail": ...}` format
+                is used.
+                """
+            ),
+        ] = False,
+        problem_type_base_uri: Annotated[
+            str | None,
+            Doc(
+                """
+                A base URI for problem type identifiers when using RFC 9457
+                Problem Details.
+
+                When set, it is combined with a path segment derived from the
+                error to form the `type` URI. For example,
+                `"https://example.com/errors"` and a 404 error produces
+                `"https://example.com/errors/not-found"`.
+
+                The resolution hierarchy is:
+
+                1. **Per-exception override**: if `type` is passed to
+                `HTTPException()`, it is used directly (absolute URIs as-is;
+                relative paths combined with this base).
+                2. **`problem_types` mapping**: a status code lookup in
+                `problem_types` overrides auto-derivation.
+                3. **Auto-derivation**: the HTTP reason phrase is slugified
+                (e.g., "Not Found" → `not-found`).
+                4. If none of the above apply, `"about:blank"` is used.
+
+                Only meaningful when `problem_details=True`. Ignored otherwise.
+                """
+            ),
+        ] = None,
+        problem_types: Annotated[
+            dict[int | type, str] | None,
+            Doc(
+                """
+                A mapping of status codes to problem type path segments when
+                using RFC 9457 Problem Details.
+
+                For example, `{404: "order-not-found", 422: "bad-input"}`
+                produces `type` URIs like
+                `"https://example.com/errors/order-not-found"` when combined
+                with a `problem_type_base_uri`.
+
+                Only meaningful when `problem_details=True`. Ignored otherwise.
+                """
+            ),
+        ] = None,
         **extra: Annotated[
             Any,
             Doc(
@@ -890,6 +953,9 @@ class FastAPI(Starlette):
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
         self.extra = extra
+        self.problem_details = problem_details
+        self.problem_type_base_uri = problem_type_base_uri
+        self.problem_types = problem_types
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -1000,9 +1066,17 @@ class FastAPI(Starlette):
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
-        self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
-            RequestValidationError, request_validation_exception_handler
+            HTTPException,
+            problem_details_http_exception_handler
+            if problem_details
+            else http_exception_handler,
+        )
+        self.exception_handlers.setdefault(
+            RequestValidationError,
+            problem_details_request_validation_exception_handler
+            if problem_details
+            else request_validation_exception_handler,
         )
 
         # Starlette still has incorrect type specification for the handlers
@@ -1098,6 +1172,7 @@ class FastAPI(Starlette):
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
                 external_docs=self.openapi_external_docs,
+                problem_details=self.problem_details,
             )
             self._openapi_routes_version = routes_version
         return self.openapi_schema

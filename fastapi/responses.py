@@ -13,6 +13,10 @@ from starlette.responses import StreamingResponse as StreamingResponse  # noqa
 from typing_extensions import deprecated
 
 
+class ProblemDetailsResponse(JSONResponse):
+    media_type = "application/problem+json"
+
+
 class _UjsonModule(Protocol):
     def dumps(self, __obj: Any, *, ensure_ascii: bool = ...) -> str: ...
 
