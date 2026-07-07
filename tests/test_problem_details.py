@@ -137,7 +137,7 @@ def test_validation_error():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -165,7 +165,7 @@ def test_multiple_validation_errors():
 
     @app.post("/items")
     def create_item(item: Item):
-        return item
+        return item  # pragma: no cover
 
     client = TestClient(app)
     response = client.post("/items", json={})
@@ -180,7 +180,7 @@ def test_validation_error_content_type():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -198,7 +198,7 @@ def test_validation_error_overridden_by_custom_handler():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -242,7 +242,7 @@ def test_default_false_validation_uses_legacy_format():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -270,7 +270,7 @@ def test_openapi_schema_with_problem_details():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     schema = client.get("/openapi.json").json()
@@ -295,7 +295,7 @@ def test_openapi_schema_without_problem_details():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     schema = client.get("/openapi.json").json()
@@ -313,7 +313,7 @@ def test_openapi_schema_default():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     schema = client.get("/openapi.json").json()
@@ -361,7 +361,7 @@ def test_instance_url_reflects_request():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app, base_url="http://testserver")
     response = client.get("/items/abc")
@@ -459,7 +459,7 @@ def test_validation_error_type_with_base_uri():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -476,7 +476,7 @@ def test_validation_error_problem_types_map():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/items/foo")
@@ -502,7 +502,7 @@ def test_openapi_schema_problem_details_has_additional_properties():
 
     @app.get("/items/{item_id}")
     def read_item(item_id: int):
-        return {"item_id": item_id}
+        return {"item_id": item_id}  # pragma: no cover
 
     client = TestClient(app)
     schema = client.get("/openapi.json").json()
