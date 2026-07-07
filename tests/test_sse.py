@@ -337,6 +337,7 @@ def test_no_keepalive_when_fast(client: TestClient):
         ("Hello\rWorld", b"data: Hello\ndata: World\n\n"),
         ("A\u2028B", "data: A\u2028B\n\n".encode()),
         ("A\vB", b"data: A\x0bB\n\n"),
+        ("", b"data: \n\n"),
     ],
 )
 def test_format_sse_event_splitlines_behavior_in_data(
