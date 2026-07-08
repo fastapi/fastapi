@@ -6309,6 +6309,252 @@ class APIRouter(routing.Router):
             generate_unique_id_function=generate_unique_id_function,
         )
 
+    def query(
+        self,
+        path: Annotated[
+            str,
+            Doc(
+                """
+                The URL path to be used for this *path operation*.
+
+                For example, in `http://example.com/search`, the path is `/search`.
+                """
+            ),
+        ],
+        *,
+        response_model: Annotated[
+            Any,
+            Doc(
+                """
+                The type to use for the response.
+                """
+            ),
+        ] = Default(None),
+        status_code: Annotated[
+            int | None,
+            Doc(
+                """
+                The default status code to be used for the response.
+                """
+            ),
+        ] = None,
+        tags: Annotated[
+            list[str | Enum] | None,
+            Doc(
+                """
+                A list of tags to be applied to the *path operation*.
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Sequence[params.Depends] | None,
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to the
+                *path operation*.
+                """
+            ),
+        ] = None,
+        summary: Annotated[
+            str | None,
+            Doc(
+                """
+                A summary for the *path operation*.
+                """
+            ),
+        ] = None,
+        description: Annotated[
+            str | None,
+            Doc(
+                """
+                A description for the *path operation*.
+                """
+            ),
+        ] = None,
+        response_description: Annotated[
+            str,
+            Doc(
+                """
+                The description for the default response.
+                """
+            ),
+        ] = "Successful Response",
+        responses: Annotated[
+            dict[int | str, dict[str, Any]] | None,
+            Doc(
+                """
+                Additional responses that could be returned by this *path operation*.
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            bool | None,
+            Doc(
+                """
+                Mark this *path operation* as deprecated.
+                """
+            ),
+        ] = None,
+        operation_id: Annotated[
+            str | None,
+            Doc(
+                """
+                Custom operation ID to be used by this *path operation*.
+                """
+            ),
+        ] = None,
+        response_model_include: Annotated[
+            IncEx | None,
+            Doc(
+                """
+                Configuration passed to Pydantic to include only certain fields in the
+                response data.
+                """
+            ),
+        ] = None,
+        response_model_exclude: Annotated[
+            IncEx | None,
+            Doc(
+                """
+                Configuration passed to Pydantic to exclude certain fields in the
+                response data.
+                """
+            ),
+        ] = None,
+        response_model_by_alias: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to define if the response model
+                should be serialized by alias when an alias is used.
+                """
+            ),
+        ] = True,
+        response_model_exclude_unset: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to define if the response model
+                should exclude fields that were not explicitly set.
+                """
+            ),
+        ] = False,
+        response_model_exclude_defaults: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to define if the response model
+                should exclude fields that are set to their default value.
+                """
+            ),
+        ] = False,
+        response_model_exclude_none: Annotated[
+            bool,
+            Doc(
+                """
+                Configuration passed to Pydantic to define if the response model
+                should exclude fields set to `None`.
+                """
+            ),
+        ] = False,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                By default, this *path operation* is included in the generated OpenAPI
+                schema.
+                """
+            ),
+        ] = True,
+        response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                Response class to use for this *path operation*.
+                """
+            ),
+        ] = Default(JSONResponse),
+        name: Annotated[
+            str | None,
+            Doc(
+                """
+                The name for this *path operation*. Only used internally, by FastAPI.
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            list[BaseRoute] | None,
+            Doc(
+                """
+                OpenAPI callbacks that should be triggered by this *path operation*.
+                """
+            ),
+        ] = None,
+        openapi_extra: Annotated[
+            dict[str, Any] | None,
+            Doc(
+                """
+                Extra metadata to be added to the OpenAPI schema for this *path
+                operation*.
+                """
+            ),
+        ] = None,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                A callable to generate a unique ID for this *path operation*.
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        """
+        Add a *path operation* using an HTTP QUERY operation.
+
+        QUERY is a custom HTTP method for structured query operations.
+
+        ## Example
+
+        ```python
+        from fastapi import APIRouter, FastAPI
+
+        app = FastAPI()
+        router = APIRouter()
+
+        @router.query("/search")
+        def search_items(q: str):
+            return [{"name": "Item " + q}]
+
+        app.include_router(router)
+        ```
+        """
+        return self.api_route(
+            path=path,
+            response_model=response_model,
+            status_code=status_code,
+            tags=tags,
+            dependencies=dependencies,
+            summary=summary,
+            description=description,
+            response_description=response_description,
+            responses=responses,
+            deprecated=deprecated,
+            methods=["QUERY"],
+            operation_id=operation_id,
+            response_model_include=response_model_include,
+            response_model_exclude=response_model_exclude,
+            response_model_by_alias=response_model_by_alias,
+            response_model_exclude_unset=response_model_exclude_unset,
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
+            include_in_schema=include_in_schema,
+            response_class=response_class,
+            name=name,
+            callbacks=callbacks,
+            openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
+        )
+
     # TODO: remove this once the lifespan (or alternative) interface is improved
     async def _startup(self) -> None:
         """
