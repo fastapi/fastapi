@@ -19,6 +19,12 @@ import logging
 from collections.abc import AsyncIterable, Iterable
 
 import pytest
+
+try:
+    from builtins import ExceptionGroup
+except ImportError:  # pragma: no cover
+    from exceptiongroup import ExceptionGroup
+
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.responses import EventSourceResponse
@@ -234,7 +240,7 @@ def test_sse_invalid_item_propagates(raising_client: TestClient):
     wrapped in an ExceptionGroup when it escapes the group boundary.
     """
     # anyio task group wraps the sub-task exception in an ExceptionGroup
-    with pytest.raises((ResponseValidationError, ExceptionGroup)):  # type: ignore[name-defined]  # noqa: F821
+    with pytest.raises((ResponseValidationError, ExceptionGroup)):
         raising_client.get("/sse/invalid")
 
 
