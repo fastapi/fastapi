@@ -268,13 +268,12 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
-        if not sqlalchemy_safe:
-            return obj_dict
-        return {
-            k: v
-            for k, v in obj_dict.items()
-            if not (isinstance(k, str) and k.startswith("_sa"))
-        }
+        return jsonable_encoder(
+            obj_dict,
+            exclude_none=exclude_none,
+            exclude_defaults=exclude_defaults,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
