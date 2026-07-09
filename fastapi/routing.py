@@ -2551,7 +2551,9 @@ class APIRouter(routing.Router):
                     resolved_scope["path_params"] = dict(resolved_scope["path_params"])
                 scope.update(resolved_scope)
                 if effective_context is not None:
-                    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+                    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
+                        effective_context
+                    )
                     scope["route"] = effective_context.original_route
                 else:
                     scope["route"] = leaf_route
@@ -2575,11 +2577,18 @@ class APIRouter(routing.Router):
                     is_static = not leaf_route.param_convertors
 
                 if is_static:
-                    self._route_cache[cache_key] = (Match.FULL, leaf_route, child_scope, effective_context)
+                    self._route_cache[cache_key] = (
+                        Match.FULL,
+                        leaf_route,
+                        child_scope,
+                        effective_context,
+                    )
 
                 scope.update(child_scope)
                 if effective_context is not None:
-                    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+                    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
+                        effective_context
+                    )
                     scope["route"] = effective_context.original_route
                 else:
                     scope["route"] = leaf_route
@@ -2598,11 +2607,18 @@ class APIRouter(routing.Router):
                 is_static = not leaf_route.param_convertors
 
             if is_static:
-                self._route_cache[cache_key] = (Match.PARTIAL, leaf_route, child_scope, effective_context)
+                self._route_cache[cache_key] = (
+                    Match.PARTIAL,
+                    leaf_route,
+                    child_scope,
+                    effective_context,
+                )
 
             scope.update(child_scope)
             if effective_context is not None:
-                _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+                _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
+                    effective_context
+                )
                 scope["route"] = effective_context.original_route
             else:
                 scope["route"] = leaf_route
