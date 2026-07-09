@@ -254,7 +254,8 @@ def jsonable_encoder(
             if not sqlalchemy_safe:
                 return obj_dict
             return {
-                k: v for k, v in obj_dict.items()
+                k: v
+                for k, v in obj_dict.items()
                 if not (isinstance(k, str) and k.startswith("_sa"))
             }
         # Fallback to recursive call for recursive exclude_none/exclude_defaults cleanup
