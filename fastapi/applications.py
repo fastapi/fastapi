@@ -66,7 +66,7 @@ class FastAPI(Starlette):
                 errors.
 
                 Read more in the
-                [Starlette docs for Applications](https://www.starlette.dev/applications/#instantiating-the-application).
+                [Starlette docs for Applications](https://www.starlette.dev/applications/#starlette.applications.Starlette).
                 """
             ),
         ] = False,
