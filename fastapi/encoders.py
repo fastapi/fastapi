@@ -241,6 +241,23 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     if isinstance(obj, BaseModel):
+        if not exclude_none and not exclude_defaults:
+            obj_dict = obj.model_dump(
+                mode="json",
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_none=exclude_none,
+                exclude_defaults=exclude_defaults,
+            )
+            if not sqlalchemy_safe:
+                return obj_dict
+            return {
+                k: v for k, v in obj_dict.items()
+                if not (isinstance(k, str) and k.startswith("_sa"))
+            }
+        # Fallback to recursive call for recursive exclude_none/exclude_defaults cleanup
         obj_dict = obj.model_dump(
             mode="json",
             include=include,
