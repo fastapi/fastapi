@@ -2388,10 +2388,20 @@ class APIRouter(routing.Router):
             tuple[str, str | None, str],
             tuple[Match, BaseRoute, dict[str, Any], Any | None],
         ] = {}
+        self._custom_routing_detected: bool | None = None
 
     def _mark_routes_changed(self) -> None:
         self._routes_version += 1
         self._route_cache.clear()
+        self._custom_routing_detected = None
+
+    def _check_custom_routing(self) -> bool:
+        if type(self).matches is not APIRouter.matches or type(self).handle is not APIRouter.handle:
+            return True
+        for route in self.routes:
+            if isinstance(route, _IncludedRouter) and route.original_router._check_custom_routing():
+                return True
+        return False
 
     def _get_routes_version(self, seen: set[int] | None = None) -> int:
         if seen is None:
@@ -2540,36 +2550,61 @@ class APIRouter(routing.Router):
             await self.lifespan(scope, receive, send)
             return
 
-        # Check cache
-        cache_key = (scope["type"], scope.get("method"), scope["path"])
-        cached = self._route_cache.get(cache_key)
-        if cached is not None:
-            match_type, leaf_route, child_scope, effective_context = cached
-            if match_type in (Match.FULL, Match.PARTIAL):
-                resolved_scope = dict(child_scope)
-                if "path_params" in resolved_scope:
-                    resolved_scope["path_params"] = dict(resolved_scope["path_params"])
-                scope.update(resolved_scope)
-                if effective_context is not None:
-                    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
-                        effective_context
-                    )
-                    scope["route"] = effective_context.original_route
+        if self._custom_routing_detected is None:
+            self._custom_routing_detected = self._check_custom_routing()
+
+        if not self._custom_routing_detected:
+            # Check cache
+            cache_key = (scope["type"], scope.get("method"), scope["path"])
+            cached = self._route_cache.get(cache_key)
+            if cached is not None:
+                match_type, leaf_route, child_scope, effective_context = cached
+                if match_type in (Match.FULL, Match.PARTIAL):
+                    resolved_scope = dict(child_scope)
+                    if "path_params" in resolved_scope:
+                        resolved_scope["path_params"] = dict(resolved_scope["path_params"])
+                    scope.update(resolved_scope)
+                    if effective_context is not None:
+                        _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+                        scope["route"] = effective_context.original_route
+                    else:
+                        scope["route"] = leaf_route
+                    await leaf_route.handle(scope, receive, send)
+                    return
+
+            partial_optimized: tuple[BaseRoute, Scope, BaseRoute, Any] | None = None
+            for route in self.routes:
+                if isinstance(route, _IncludedRouter):
+                    match, child_scope, leaf_route, effective_context = route._match(scope)
                 else:
-                    scope["route"] = leaf_route
-                await leaf_route.handle(scope, receive, send)
-                return
+                    match, child_scope = route.matches(scope)
+                    leaf_route = route
+                    effective_context = None
 
-        partial: tuple[BaseRoute, Scope, BaseRoute, Any] | None = None
-        for route in self.routes:
-            if isinstance(route, _IncludedRouter):
-                match, child_scope, leaf_route, effective_context = route._match(scope)
-            else:
-                match, child_scope = route.matches(scope)
-                leaf_route = route
-                effective_context = None
+                if match == Match.FULL:
+                    is_static = False
+                    if isinstance(leaf_route, APIRoute):
+                        is_static = len(leaf_route.dependant.path_params) == 0
+                    elif isinstance(leaf_route, routing.Route):
+                        is_static = not leaf_route.param_convertors
 
-            if match == Match.FULL:
+                    if is_static:
+                        self._route_cache[cache_key] = (Match.FULL, leaf_route, child_scope, effective_context)
+
+                    scope.update(child_scope)
+                    if effective_context is not None:
+                        _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+                        scope["route"] = effective_context.original_route
+                    else:
+                        scope["route"] = leaf_route
+                    await leaf_route.handle(scope, receive, send)
+                    return
+
+                if match == Match.PARTIAL and partial_optimized is None:
+                    partial_optimized = (route, child_scope, leaf_route, effective_context)
+
+            if partial_optimized is not None:
+                _, child_scope, leaf_route, effective_context = partial_optimized
                 is_static = False
                 if isinstance(leaf_route, APIRoute):
                     is_static = len(leaf_route.dependant.path_params) == 0
@@ -2577,12 +2612,16 @@ class APIRouter(routing.Router):
                     is_static = not leaf_route.param_convertors
 
                 if is_static:
+<<<<<<< HEAD
                     self._route_cache[cache_key] = (
                         Match.FULL,
                         leaf_route,
                         child_scope,
                         effective_context,
                     )
+=======
+                    self._route_cache[cache_key] = (Match.PARTIAL, leaf_route, child_scope, effective_context)
+>>>>>>> fb6c05704 (perf: optimize route matching by caching static routes and adding a detection mechanism for custom routing classes)
 
                 scope.update(child_scope)
                 if effective_context is not None:
@@ -2595,9 +2634,19 @@ class APIRouter(routing.Router):
                 await leaf_route.handle(scope, receive, send)
                 return
 
-            if match == Match.PARTIAL and partial is None:
-                partial = (route, child_scope, leaf_route, effective_context)
+        else:
+            # Fallback to standard Starlette matching loop to preserve custom router matches/handle subclasses
+            partial: tuple[BaseRoute, Scope] | None = None
+            for route in self.routes:
+                match, child_scope = route.matches(scope)
+                if match == Match.FULL:
+                    scope.update(child_scope)
+                    await route.handle(scope, receive, send)
+                    return
+                if match == Match.PARTIAL and partial is None:
+                    partial = (route, child_scope)
 
+<<<<<<< HEAD
         if partial is not None:
             _, child_scope, leaf_route, effective_context = partial
             is_static = False
@@ -2624,6 +2673,13 @@ class APIRouter(routing.Router):
                 scope["route"] = leaf_route
             await leaf_route.handle(scope, receive, send)
             return
+=======
+            if partial is not None:
+                route, child_scope = partial
+                scope.update(child_scope)
+                await route.handle(scope, receive, send)
+                return
+>>>>>>> fb6c05704 (perf: optimize route matching by caching static routes and adding a detection mechanism for custom routing classes)
 
         route_path = get_route_path(scope)
         if scope["type"] == "http" and self.redirect_slashes and route_path != "/":
