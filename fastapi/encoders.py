@@ -280,11 +280,20 @@ def jsonable_encoder(
         return None
     if isinstance(obj, dict):
         encoded_dict = {}
-        allowed_keys = set(obj.keys())
         if include is not None:
-            allowed_keys &= set(include)
+            if isinstance(include, dict):
+                allowed_keys = set(obj.keys()) & set(include.keys())
+            else:
+                allowed_keys = set(obj.keys()) & set(include)
+        else:
+            allowed_keys = set(obj.keys())
         if exclude is not None:
-            allowed_keys -= set(exclude)
+            if isinstance(exclude, dict):
+                for k, v in exclude.items():
+                    if v is True:
+                        allowed_keys.discard(k)
+            else:
+                allowed_keys -= set(exclude)
         for key, value in obj.items():
             if (
                 (
@@ -295,6 +304,20 @@ def jsonable_encoder(
                 and (value is not None or not exclude_none)
                 and key in allowed_keys
             ):
+                next_include = None
+                if include is not None:
+                    if isinstance(include, dict):
+                        next_include = include.get(key)
+                        if not isinstance(next_include, (dict, set)):
+                            next_include = None
+
+                next_exclude = None
+                if exclude is not None:
+                    if isinstance(exclude, dict):
+                        next_exclude = exclude.get(key)
+                        if not isinstance(next_exclude, (dict, set)):
+                            next_exclude = None
+
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
@@ -305,6 +328,8 @@ def jsonable_encoder(
                 )
                 encoded_value = jsonable_encoder(
                     value,
+                    include=next_include,
+                    exclude=next_exclude,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,

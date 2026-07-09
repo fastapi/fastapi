@@ -329,3 +329,36 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encode_dict_nested_exclude():
+    pet = {"name": "Firulais", "owner": {"name": "Foo", "age": 20}}
+    assert jsonable_encoder(pet, exclude={"owner": {"age"}}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
+
+
+def test_encode_dict_nested_include():
+    pet = {"name": "Firulais", "owner": {"name": "Foo", "age": 20}}
+    assert jsonable_encoder(pet, include={"owner": {"name"}}) == {
+        "owner": {"name": "Foo"}
+    }
+
+
+def test_encode_dataclass_nested_exclude():
+    @dataclass
+    class Owner:
+        name: str
+        age: int
+
+    @dataclass
+    class PetWithNested:
+        name: str
+        owner: Owner
+
+    pet = PetWithNested(name="Firulais", owner=Owner(name="Foo", age=20))
+    assert jsonable_encoder(pet, exclude={"owner": {"age"}}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
