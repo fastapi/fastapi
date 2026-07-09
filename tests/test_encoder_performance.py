@@ -1,6 +1,5 @@
-from typing import List, Optional
-from pydantic import BaseModel
 from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
 
 
 class SubModel(BaseModel):
@@ -12,8 +11,8 @@ class MainModel(BaseModel):
     id: int
     title: str
     sub: SubModel
-    items: List[SubModel]
-    maybe: Optional[str] = None
+    items: list[SubModel]
+    maybe: str | None = None
     _sa_instance_state: str = "should-be-removed"
 
 
