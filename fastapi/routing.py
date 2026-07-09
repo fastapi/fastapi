@@ -2612,16 +2612,12 @@ class APIRouter(routing.Router):
                     is_static = not leaf_route.param_convertors
 
                 if is_static:
-<<<<<<< HEAD
                     self._route_cache[cache_key] = (
-                        Match.FULL,
+                        Match.PARTIAL,
                         leaf_route,
                         child_scope,
                         effective_context,
                     )
-=======
-                    self._route_cache[cache_key] = (Match.PARTIAL, leaf_route, child_scope, effective_context)
->>>>>>> fb6c05704 (perf: optimize route matching by caching static routes and adding a detection mechanism for custom routing classes)
 
                 scope.update(child_scope)
                 if effective_context is not None:
@@ -2646,40 +2642,11 @@ class APIRouter(routing.Router):
                 if match == Match.PARTIAL and partial is None:
                     partial = (route, child_scope)
 
-<<<<<<< HEAD
-        if partial is not None:
-            _, child_scope, leaf_route, effective_context = partial
-            is_static = False
-            if isinstance(leaf_route, APIRoute):
-                is_static = len(leaf_route.dependant.path_params) == 0
-            elif isinstance(leaf_route, routing.Route):
-                is_static = not leaf_route.param_convertors
-
-            if is_static:
-                self._route_cache[cache_key] = (
-                    Match.PARTIAL,
-                    leaf_route,
-                    child_scope,
-                    effective_context,
-                )
-
-            scope.update(child_scope)
-            if effective_context is not None:
-                _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
-                    effective_context
-                )
-                scope["route"] = effective_context.original_route
-            else:
-                scope["route"] = leaf_route
-            await leaf_route.handle(scope, receive, send)
-            return
-=======
             if partial is not None:
                 route, child_scope = partial
                 scope.update(child_scope)
                 await route.handle(scope, receive, send)
                 return
->>>>>>> fb6c05704 (perf: optimize route matching by caching static routes and adding a detection mechanism for custom routing classes)
 
         route_path = get_route_path(scope)
         if scope["type"] == "http" and self.redirect_slashes and route_path != "/":
