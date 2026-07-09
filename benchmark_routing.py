@@ -1,4 +1,5 @@
 import time
+
 from fastapi import APIRouter, FastAPI
 
 # Setup Router
@@ -7,26 +8,34 @@ router = APIRouter()
 
 # 50 Static Routes
 for i in range(50):
+
     @router.get(f"/static-{i}")
     def static_route(i=i):
         return {"route": f"static-{i}"}
 
+
 # 50 Dynamic Routes
 for i in range(50):
+
     @router.get(f"/dynamic-{i}/{{item_id}}")
     def dynamic_route(item_id: int, i=i):
         return {"route": f"dynamic-{i}", "item_id": item_id}
 
+
 app.include_router(router)
-import anyio
 from contextlib import AsyncExitStack
+
+import anyio
+
 
 # Mock ASGI stack
 async def mock_receive():
     return {"type": "http.request", "body": b"", "more_body": False}
 
+
 async def mock_send(message):
     pass
+
 
 scope_static = {
     "type": "http",
@@ -53,6 +62,7 @@ scope_dynamic = {
     "fastapi_inner_astack": AsyncExitStack(),
     "fastapi_function_astack": AsyncExitStack(),
 }
+
 
 async def run_benchmark():
     # Warmup
@@ -82,13 +92,14 @@ async def run_benchmark():
     print(f"Speedup: {cache_disabled_time / cache_enabled_time:.2f}x")
 
     print("\nRunning Dynamic Route Benchmark (10,000 iterations)...")
-    
+
     # Caching has no effect on dynamic routes
     start_time = time.perf_counter()
     for _ in range(10000):
         await app.router.app(dict(scope_dynamic), mock_receive, mock_send)
     dynamic_time = time.perf_counter() - start_time
     print(f"Dynamic Route time: {dynamic_time:.4f} seconds")
+
 
 if __name__ == "__main__":
     anyio.run(run_benchmark)
