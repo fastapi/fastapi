@@ -237,7 +237,7 @@ Generate the OpenAPI schema automatically, from the same code that defines seria
 
 ///
 
-### [NestJS](https://nestjs.com/) (and [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (and [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework inspired by Angular.
 
