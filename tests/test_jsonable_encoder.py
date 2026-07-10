@@ -349,10 +349,14 @@ def test_jsonable_encoder_sqlalchemy_safe_base_model():
     }
 
     # Test case 3: sqlalchemy_safe=True (default) and exclude_none=True
-    assert jsonable_encoder(model, by_alias=True, exclude_none=True) == {"normal_key": "bar"}
+    assert jsonable_encoder(model, by_alias=True, exclude_none=True) == {
+        "normal_key": "bar"
+    }
 
     # Test case 4: sqlalchemy_safe=False and exclude_none=True
-    assert jsonable_encoder(model, by_alias=True, exclude_none=True, sqlalchemy_safe=False) == {
+    assert jsonable_encoder(
+        model, by_alias=True, exclude_none=True, sqlalchemy_safe=False
+    ) == {
         "_sa_key": "foo",
         "normal_key": "bar",
     }
@@ -387,4 +391,3 @@ def test_jsonable_encoder_sqlalchemy_safe_dataclass():
         "_sa_key": "foo",
         "normal_key": "bar",
     }
-
