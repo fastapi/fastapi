@@ -329,3 +329,62 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_jsonable_encoder_sqlalchemy_safe_base_model():
+    class Model(BaseModel):
+        sa_key: str = Field(alias="_sa_key")
+        normal_key: str
+
+    model = Model(_sa_key="foo", normal_key="bar")
+
+    # Test case 1: sqlalchemy_safe=True (default) and no exclude_none/exclude_defaults
+    assert jsonable_encoder(model, by_alias=True) == {"normal_key": "bar"}
+
+    # Test case 2: sqlalchemy_safe=False and no exclude_none/exclude_defaults
+    # This hits: "if not sqlalchemy_safe: return obj_dict"
+    assert jsonable_encoder(model, by_alias=True, sqlalchemy_safe=False) == {
+        "_sa_key": "foo",
+        "normal_key": "bar",
+    }
+
+    # Test case 3: sqlalchemy_safe=True (default) and exclude_none=True
+    assert jsonable_encoder(model, by_alias=True, exclude_none=True) == {"normal_key": "bar"}
+
+    # Test case 4: sqlalchemy_safe=False and exclude_none=True
+    assert jsonable_encoder(model, by_alias=True, exclude_none=True, sqlalchemy_safe=False) == {
+        "_sa_key": "foo",
+        "normal_key": "bar",
+    }
+
+
+def test_jsonable_encoder_sqlalchemy_safe_dict():
+    data = {"_sa_key": "foo", "normal_key": "bar"}
+
+    # Test case 5: dict with sqlalchemy_safe=True (default)
+    assert jsonable_encoder(data) == {"normal_key": "bar"}
+
+    # Test case 6: dict with sqlalchemy_safe=False
+    assert jsonable_encoder(data, sqlalchemy_safe=False) == {
+        "_sa_key": "foo",
+        "normal_key": "bar",
+    }
+
+
+def test_jsonable_encoder_sqlalchemy_safe_dataclass():
+    @dataclass
+    class DataclassItem:
+        normal_key: str
+        _sa_key: str
+
+    item = DataclassItem(normal_key="bar", _sa_key="foo")
+
+    # Test case 7: dataclass with sqlalchemy_safe=True (default)
+    assert jsonable_encoder(item) == {"normal_key": "bar"}
+
+    # Test case 8: dataclass with sqlalchemy_safe=False
+    assert jsonable_encoder(item, sqlalchemy_safe=False) == {
+        "_sa_key": "foo",
+        "normal_key": "bar",
+    }
+
