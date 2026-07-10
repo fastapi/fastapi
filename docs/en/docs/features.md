@@ -177,7 +177,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 ## Pydantic features { #pydantic-features }
 
-**FastAPI** is fully compatible with (and based on) [**Pydantic**](https://docs.pydantic.dev/). So, any additional Pydantic code you have, will also work.
+**FastAPI** is fully compatible with (and based on) [**Pydantic**](https://pydantic.dev/docs/). So, any additional Pydantic code you have, will also work.
 
 Including external libraries also based on Pydantic, such as <abbr title="Object-Relational Mapper">ORM</abbr>s and <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 

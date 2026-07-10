@@ -102,7 +102,7 @@ The same way, there are many compatible tools. Including code generation tools f
 
 ## Pydantic { #pydantic }
 
-All the data validation is performed under the hood by [Pydantic](https://docs.pydantic.dev/), so you get all the benefits from it. And you know you are in good hands.
+All the data validation is performed under the hood by [Pydantic](https://pydantic.dev/docs/), so you get all the benefits from it. And you know you are in good hands.
 
 You can use the same type declarations with `str`, `float`, `bool` and many other complex data types.
 

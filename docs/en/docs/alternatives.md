@@ -401,7 +401,7 @@ I consider **FastAPI** a "spiritual successor" to APIStar, while improving and i
 
 ## Used by **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 

@@ -176,7 +176,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 FastAPI stands on the shoulders of giants:
 
 * [Starlette](https://starlette.dev/) for the web parts.
-* [Pydantic](https://docs.pydantic.dev/) for the data parts.
+* [Pydantic](https://pydantic.dev/docs/) for the data parts.
 
 ## Installation { #installation }
 
@@ -572,7 +572,7 @@ There are some additional dependencies you might want to install.
 
 Additional optional Pydantic dependencies:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - for settings management.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - for settings management.
 * [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - for extra types to be used with Pydantic.
 
 Additional optional FastAPI dependencies:

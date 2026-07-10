@@ -35,7 +35,7 @@ This part is pretty normal, most of the code is probably already familiar to you
 
 /// tip
 
-The `callback_url` query parameter uses a Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type.
+The `callback_url` query parameter uses a Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) type.
 
 ///
 

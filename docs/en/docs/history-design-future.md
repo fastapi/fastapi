@@ -54,7 +54,7 @@ All in a way that provided the best development experience for all the developer
 
 ## Requirements { #requirements }
 
-After testing several alternatives, I decided that I was going to use [**Pydantic**](https://docs.pydantic.dev/) for its advantages.
+After testing several alternatives, I decided that I was going to use [**Pydantic**](https://pydantic.dev/docs/) for its advantages.
 
 Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
 

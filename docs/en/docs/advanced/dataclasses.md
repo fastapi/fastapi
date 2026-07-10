@@ -88,7 +88,7 @@ Check the in-code annotation tips above to see more specific details.
 
 You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
 
-To learn more, check the [Pydantic docs about dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
+To learn more, check the [Pydantic docs about dataclasses](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Version { #version }
 
