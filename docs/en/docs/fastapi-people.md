@@ -287,7 +287,7 @@ The main intention of this page is to highlight the effort of the community to h
 
 Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with questions and reviewing Pull Requests with translations.
 
-The data is calculated each month, you can read the [source code here](https://github.com/fastapi/fastapi/blob/master/scripts/).
+The data is calculated each month, you can read the [source code here](https://github.com/fastapi/fastapi/tree/master/scripts).
 
 Here I'm also highlighting contributions from sponsors.
 
