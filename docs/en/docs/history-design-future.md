@@ -58,7 +58,7 @@ After testing several alternatives, I decided that I was going to use [**Pydanti
 
 Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
 
-During the development, I also contributed to [**Starlette**](https://www.starlette.dev/), the other key requirement.
+During the development, I also contributed to [**Starlette**](https://starlette.dev/), the other key requirement.
 
 ## Development { #development }
 

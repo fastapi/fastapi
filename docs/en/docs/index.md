@@ -175,7 +175,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 FastAPI stands on the shoulders of giants:
 
-* [Starlette](https://www.starlette.dev/) for the web parts.
+* [Starlette](https://starlette.dev/) for the web parts.
 * [Pydantic](https://docs.pydantic.dev/) for the data parts.
 
 ## Installation { #installation }
@@ -277,7 +277,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>About the command <code>fastapi dev</code>...</summary>
 
-The command `fastapi dev` reads your `main.py` file automatically, detects the **FastAPI** app in it, and starts a server using [Uvicorn](https://www.uvicorn.dev).
+The command `fastapi dev` reads your `main.py` file automatically, detects the **FastAPI** app in it, and starts a server using [Uvicorn](https://uvicorn.dev).
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
@@ -554,7 +554,7 @@ Used by Starlette:
 
 Used by FastAPI:
 
-* [`uvicorn`](https://www.uvicorn.dev) - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
+* [`uvicorn`](https://uvicorn.dev) - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli[standard]` - to provide the `fastapi` command.
     * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to [FastAPI Cloud](https://fastapicloud.com).
 

@@ -66,7 +66,7 @@ class FastAPI(Starlette):
                 errors.
 
                 Read more in the
-                [Starlette docs for Applications](https://www.starlette.dev/applications/#starlette.applications.Starlette).
+                [Starlette docs for Applications](https://starlette.dev/applications/#starlette.applications.Starlette).
                 """
             ),
         ] = False,
@@ -960,7 +960,7 @@ class FastAPI(Starlette):
                 This is simply inherited from Starlette.
 
                 Read more about it in the
-                [Starlette docs for Applications](https://www.starlette.dev/applications/#storing-state-on-the-app-instance).
+                [Starlette docs for Applications](https://starlette.dev/applications/#storing-state-on-the-app-instance).
                 """
             ),
         ] = State()

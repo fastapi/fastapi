@@ -94,4 +94,4 @@ For example:
 * [Uvicorn's `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-To see other available middlewares check [Starlette's Middleware docs](https://www.starlette.dev/middleware/) and the [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).
+To see other available middlewares check [Starlette's Middleware docs](https://starlette.dev/middleware/) and the [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).

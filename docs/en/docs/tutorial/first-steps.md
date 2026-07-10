@@ -232,7 +232,7 @@ That's it! Now you can access your app at that URL. ✨
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the [Starlette](https://www.starlette.dev/) functionality with `FastAPI` too.
+You can use all the [Starlette](https://starlette.dev/) functionality with `FastAPI` too.
 
 ///
 

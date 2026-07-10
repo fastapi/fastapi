@@ -1,6 +1,6 @@
 # Testing { #testing }
 
-Thanks to [Starlette](https://www.starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
+Thanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
 
 It is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.
 
