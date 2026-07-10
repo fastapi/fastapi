@@ -68,7 +68,7 @@ You can [create a new question](https://github.com/fastapi/fastapi/discussions/n
 
 ## Join the Chat { #join-the-chat }
 
-Join the 👥 [Discord chat server](https://discord.gg/VQjSZaeJmf) 👥 and hang out with others in the FastAPI community.
+Join the 👥 [Discord chat server](https://discord.com/invite/VQjSZaeJmf) 👥 and hang out with others in the FastAPI community.
 
 /// tip
 
