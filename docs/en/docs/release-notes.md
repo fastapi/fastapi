@@ -7,6 +7,23 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for hi (add-missing). PR [#15797](https://github.com/fastapi/fastapi/pull/15797) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update `llm-prompt.md` for Hindi. PR [#15810](https://github.com/fastapi/fastapi/pull/15810) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Fix language-specific translation prompt for Russian language. PR [#15924](https://github.com/fastapi/fastapi/pull/15924) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ⬆ Bump CodSpeedHQ/action from 4.17.6 to 4.18.1 in the github-actions group. PR [#15950](https://github.com/fastapi/fastapi/pull/15950) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the python-packages group with 8 updates. PR [#15952](https://github.com/fastapi/fastapi/pull/15952) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors: add TutorCruncher. PR [#15947](https://github.com/fastapi/fastapi/pull/15947) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix notify translations checkout target. PR [#15933](https://github.com/fastapi/fastapi/pull/15933) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix latest-changes checkout target. PR [#15932](https://github.com/fastapi/fastapi/pull/15932) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove RapidProxy. PR [#15929](https://github.com/fastapi/fastapi/pull/15929) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update issue-manager to 0.8.1. PR [#15928](https://github.com/fastapi/fastapi/pull/15928) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update latest-changes to 0.6.1. PR [#15926](https://github.com/fastapi/fastapi/pull/15926) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.139.0 (2026-07-01)
 
 ### Features
