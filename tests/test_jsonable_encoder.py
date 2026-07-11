@@ -362,3 +362,19 @@ def test_encode_dataclass_nested_exclude():
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
+
+
+def test_encode_enum():
+    assert jsonable_encoder(RoleEnum.admin) == "admin"
+
+
+def test_encode_dict_exclude_true():
+    pet = {"name": "Firulais", "owner": {"name": "Foo", "age": 20}}
+    assert jsonable_encoder(pet, exclude={"owner": True}) == {"name": "Firulais"}
+
+
+def test_encode_dict_include_true():
+    pet = {"name": "Firulais", "owner": {"name": "Foo", "age": 20}}
+    assert jsonable_encoder(pet, include={"owner": True}) == {
+        "owner": {"name": "Foo", "age": 20}
+    }
