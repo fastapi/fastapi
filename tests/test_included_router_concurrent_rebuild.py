@@ -1,6 +1,6 @@
 import sys
 import threading
-from typing import Any
+from typing import Any, cast
 
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import _IncludedRouter
@@ -92,9 +92,10 @@ def test_candidates_rebuilt_while_waiting_for_lock_are_reused() -> None:
     app.include_router(router)
     included = get_included_router(app)
     cache: list = []
-    included._rebuild_lock = StampCacheOnEnter(  # type: ignore[assignment]
+    fake_lock = StampCacheOnEnter(
         included, "_effective_candidates", "_effective_candidates_version", cache
     )
+    included._rebuild_lock = cast(threading.Lock, fake_lock)
     assert included.effective_candidates() is cache
 
 
@@ -105,10 +106,11 @@ def test_low_priority_routes_rebuilt_while_waiting_for_lock_are_reused() -> None
     app.include_router(router)
     included = get_included_router(app)
     cache: list = []
-    included._rebuild_lock = StampCacheOnEnter(  # type: ignore[assignment]
+    fake_lock = StampCacheOnEnter(
         included,
         "_effective_low_priority_routes",
         "_effective_low_priority_routes_version",
         cache,
     )
+    included._rebuild_lock = cast(threading.Lock, fake_lock)
     assert included.effective_low_priority_routes() is cache
