@@ -1,4 +1,5 @@
 """Test thread safety of _IncludedRouter cache rebuild."""
+
 import sys
 import threading
 
@@ -15,8 +16,10 @@ def test_effective_candidates_thread_safety():
     app = FastAPI()
     router = APIRouter()
     for i in range(N_ROUTES):
+
         def endpoint(i: int = i):
             return {"i": i}
+
         router.add_api_route(f"/r{i}", endpoint, methods=["GET"])
     app.include_router(router)
 
@@ -42,9 +45,7 @@ def test_effective_candidates_thread_safety():
 
     assert not errors, f"Errors during concurrent requests: {errors}"
 
-    included = next(
-        r for r in app.router.routes if isinstance(r, _IncludedRouter)
-    )
+    included = next(r for r in app.router.routes if isinstance(r, _IncludedRouter))
     n_candidates = len(included._effective_candidates)
     assert n_candidates == N_ROUTES, (
         f"Expected {N_ROUTES} cached candidates, got {n_candidates}"
@@ -59,9 +60,13 @@ def test_effective_low_priority_thread_safety():
     app = FastAPI()
     router = APIRouter()
     for i in range(N_ROUTES):
+
         def endpoint(i: int = i):
             return {"i": i}
-        router.add_api_route(f"/r{i}", endpoint, methods=["GET"], include_in_schema=False)
+
+        router.add_api_route(
+            f"/r{i}", endpoint, methods=["GET"], include_in_schema=False
+        )
     app.include_router(router)
 
     sys.setswitchinterval(1e-5)

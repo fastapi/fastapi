@@ -1589,7 +1589,7 @@ class _IncludedRouter(BaseRoute):
         with self._rebuild_lock:
             if routes_version == self._effective_candidates_version:
                 return self._effective_candidates
-            new_candidates: list["_EffectiveRouteContext | _IncludedRouter"] = []
+            new_candidates: list[_EffectiveRouteContext | _IncludedRouter] = []
             candidates = self.original_router.routes
             for route in candidates:
                 if isinstance(route, _IncludedRouter):
@@ -1614,7 +1614,7 @@ class _IncludedRouter(BaseRoute):
         with self._rebuild_lock:
             if routes_version == self._effective_low_priority_routes_version:
                 return self._effective_low_priority_routes
-            new_low_priority: list["_EffectiveRouteContext"] = []
+            new_low_priority: list[_EffectiveRouteContext] = []
             for route in self.original_router._low_priority_routes:
                 route_context = self._build_effective_context(route)
                 if route_context is not None:
