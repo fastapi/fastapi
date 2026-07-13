@@ -163,8 +163,8 @@ from main import app
 ```
 .
 ├── backend
-│   ├── main.py
-│   ├── __init__.py
+│   ├── main.py
+│   ├── __init__.py
 ```
 
 तो आप `entrypoint` इस तरह सेट करेंगे:
