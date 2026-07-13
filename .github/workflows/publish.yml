@@ -36,4 +36,9 @@ jobs:
       - name: Build distribution
         run: uv build
       - name: Publish
-        run: uv publish
+        # gh-action-pypi-publish emits PEP 740 attestations by default under Trusted
+        # Publishing; `uv publish` does not generate them. Using it here restores the
+        # release provenance that fastapi published up to and including 0.128.0.
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
+        with:
+          packages-dir: dist/
