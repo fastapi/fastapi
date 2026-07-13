@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump typing-extensions from 4.15.0 to 4.16.0. PR [#15982](https://github.com/fastapi/fastapi/pull/15982) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group across 1 directory with 4 updates. PR [#15983](https://github.com/fastapi/fastapi/pull/15983) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pre-commit hooks. PR [#15985](https://github.com/fastapi/fastapi/pull/15985) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use `FASTAPI_LATEST_CHANGES` token in `bump-pre-commit-hooks` workflow. PR [#15984](https://github.com/fastapi/fastapi/pull/15984) by [@YuriiMotov](https://github.com/YuriiMotov).
