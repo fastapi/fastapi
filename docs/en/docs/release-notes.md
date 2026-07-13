@@ -13,6 +13,24 @@ hide:
 * 🌐 Update `llm-prompt.md` for Hindi. PR [#15810](https://github.com/fastapi/fastapi/pull/15810) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Fix language-specific translation prompt for Russian language. PR [#15924](https://github.com/fastapi/fastapi/pull/15924) by [@YuriiMotov](https://github.com/YuriiMotov).
 
+### Internal
+
+* ⬆ Bump the python-packages group across 1 directory with 6 updates. PR [#15981](https://github.com/fastapi/fastapi/pull/15981) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump typing-extensions from 4.15.0 to 4.16.0. PR [#15982](https://github.com/fastapi/fastapi/pull/15982) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group across 1 directory with 4 updates. PR [#15983](https://github.com/fastapi/fastapi/pull/15983) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pre-commit hooks. PR [#15985](https://github.com/fastapi/fastapi/pull/15985) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Use `FASTAPI_LATEST_CHANGES` token in `bump-pre-commit-hooks` workflow. PR [#15984](https://github.com/fastapi/fastapi/pull/15984) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Add GH workflow to bump pre-commit hook versions. PR [#15873](https://github.com/fastapi/fastapi/pull/15873) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔧 Set Dependabot schedule interval to "monthly". PR [#15874](https://github.com/fastapi/fastapi/pull/15874) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump CodSpeedHQ/action from 4.17.6 to 4.18.1 in the github-actions group. PR [#15950](https://github.com/fastapi/fastapi/pull/15950) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the python-packages group with 8 updates. PR [#15952](https://github.com/fastapi/fastapi/pull/15952) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors: add TutorCruncher. PR [#15947](https://github.com/fastapi/fastapi/pull/15947) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix notify translations checkout target. PR [#15933](https://github.com/fastapi/fastapi/pull/15933) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix latest-changes checkout target. PR [#15932](https://github.com/fastapi/fastapi/pull/15932) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove RapidProxy. PR [#15929](https://github.com/fastapi/fastapi/pull/15929) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update issue-manager to 0.8.1. PR [#15928](https://github.com/fastapi/fastapi/pull/15928) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update latest-changes to 0.6.1. PR [#15926](https://github.com/fastapi/fastapi/pull/15926) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.139.0 (2026-07-01)
 
 ### Features
