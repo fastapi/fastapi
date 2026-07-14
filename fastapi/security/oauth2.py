@@ -350,7 +350,7 @@ class OAuth2(SecurityBase):
                 The dictionary of OAuth2 flows.
                 """
             ),
-        ] = OAuthFlowsModel(),
+        ] = None,
         scheme_name: Annotated[
             str | None,
             Doc(
@@ -392,6 +392,8 @@ class OAuth2(SecurityBase):
             ),
         ] = True,
     ):
+        if flows is None:
+            flows = OAuthFlowsModel()
         self.model = OAuth2Model(
             flows=cast(OAuthFlowsModel, flows), description=description
         )
