@@ -129,7 +129,7 @@ Docs के लिए जरूरी static files download करें और 
 यह कुछ इस तरह से शुरू हो सकती है:
 
 ```JavaScript
-/*! लाइसेंस जानकारी के लिए कृपया redoc.standalone.js.LICENSE.txt देखें */
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
