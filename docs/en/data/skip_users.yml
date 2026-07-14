@@ -1,6 +1,6 @@
 users:
-  - tiangolo
-  - codecov
-  - github-actions
-  - pre-commit-ci
-  - dependabot
+- tiangolo
+- codecov
+- github-actions
+- pre-commit-ci
+- dependabot
