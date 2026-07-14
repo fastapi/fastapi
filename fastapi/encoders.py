@@ -252,8 +252,13 @@ def jsonable_encoder(
         )
         return jsonable_encoder(
             obj_dict,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
+            custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
