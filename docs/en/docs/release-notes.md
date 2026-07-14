@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for hi (add-missing). PR [#15990](https://github.com/fastapi/fastapi/pull/15990) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for hi (add-missing). PR [#15925](https://github.com/fastapi/fastapi/pull/15925) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for hi (add-missing). PR [#15797](https://github.com/fastapi/fastapi/pull/15797) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update `llm-prompt.md` for Hindi. PR [#15810](https://github.com/fastapi/fastapi/pull/15810) by [@YuriiMotov](https://github.com/YuriiMotov).
