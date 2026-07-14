@@ -131,3 +131,18 @@ def test_openapi_schema(client: TestClient):
             },
         }
     )
+
+def test_read_user_item(client: TestClient, path, expected_json):
+    response = client.get(path)
+    assert response.status_code == 200
+    assert response.json() == expected_json
+
+
+def test_invalid_query_parameter(client: TestClient):
+    response = client.get("/items/?skip=invalid")
+
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["loc"] == ["query", "skip"]
+
+
+def test_openapi_schema(client: TestClient):
