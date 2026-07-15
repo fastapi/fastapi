@@ -126,6 +126,12 @@ En este ejemplo, los paths frontend se sirven bajo `/app`.
 
 Cualquier *path operation* regular en la app seguirá teniendo prioridad, incluso en otros routers.
 
+## Dependencias y Middleware { #dependencies-and-middleware }
+
+Las responses frontend se ejecutan dentro de la aplicación **FastAPI** normal, así que el middleware HTTP se aplica a ellas.
+
+Las dependencias de la app, de un `APIRouter` y de `include_router()` también se aplican a las responses frontend. Esto puede ser útil para proteger un frontend con autenticación por cookie o similar.
+
 ## Solo salida estática del build { #static-build-output-only }
 
 `app.frontend()` sirve archivos ya generados por tu build del frontend.
