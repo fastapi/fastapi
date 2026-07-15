@@ -34,7 +34,7 @@ Si vous utilisez un autre outil pour gérer vos installations, comme `uv`, Poetr
 
 ## Versions disponibles { #available-versions }
 
-Vous pouvez consulter les versions disponibles (par exemple, pour vérifier quelle est la dernière version en date) dans les [Notes de version](../release-notes.md).
+Vous pouvez consulter les versions disponibles (par exemple, pour vérifier quelle est la dernière version en date) dans les [Notes de version](https://fastapi.tiangolo.com/release-notes/).
 
 ## À propos des versions { #about-versions }
 

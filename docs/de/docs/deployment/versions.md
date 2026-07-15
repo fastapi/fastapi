@@ -34,7 +34,7 @@ Wenn Sie zum Verwalten Ihrer Installationen andere Tools wie `uv`, Poetry, Pipen
 
 ## Verfügbare Versionen { #available-versions }
 
-Die verfügbaren Versionen können Sie in den [Versionshinweisen](../release-notes.md) einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
+Die verfügbaren Versionen können Sie in den [Versionshinweisen](https://fastapi.tiangolo.com/release-notes/) einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
 
 ## Über Versionen { #about-versions }
 

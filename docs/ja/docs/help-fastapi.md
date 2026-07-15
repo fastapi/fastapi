@@ -7,7 +7,7 @@ FastAPI を手助けしたい、または FastAPI についてヘルプが必要
 
 ## ニュースレターを購読 { #subscribe-to-the-newsletter }
 
-最新情報を受け取るために、（配信はまれな）[**FastAPI and friends** ニュースレター](newsletter.md)を購読できます:
+最新情報を受け取るために、（配信はまれな）[**FastAPI and friends** ニュースレター](https://fastapi.tiangolo.com/newsletter/)を購読できます:
 
 * FastAPI と関連プロジェクトのニュース 🚀
 * ガイド 📝
@@ -52,7 +52,7 @@ GitHubでFastAPIを「Watch」できます（右上の「Watch」ボタンをク
 
 多くの場合、その質問の答えをすでに知っているかもしれません。🤓
 
-多くの人の質問に答えて助けてくれたなら、あなたは公式の[FastAPI Expert](fastapi-people.md#fastapi-experts)になります。🎉
+多くの人の質問に答えて助けてくれたなら、あなたは公式の[FastAPI Expert](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts)になります。🎉
 
 最も大事なポイントは「親切であること」を心がけることです。🤗
 

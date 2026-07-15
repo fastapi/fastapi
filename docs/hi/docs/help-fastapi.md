@@ -6,7 +6,7 @@
 
 ## newsletter की सदस्यता लें { #subscribe-to-the-newsletter }
 
-आप (कभी-कभार आने वाले) [**FastAPI and friends** newsletter](newsletter.md) की सदस्यता ले सकते हैं ताकि आप इन चीज़ों से अपडेट रहें:
+आप (कभी-कभार आने वाले) [**FastAPI and friends** newsletter](https://fastapi.tiangolo.com/newsletter/) की सदस्यता ले सकते हैं ताकि आप इन चीज़ों से अपडेट रहें:
 
 * FastAPI और friends के बारे में खबरें 🚀
 * गाइड्स 📝
@@ -51,7 +51,7 @@ Star जोड़ने से, अन्य users इसे अधिक आस
 
 कई मामलों में आपको उन प्रश्नों का उत्तर पहले से पता हो सकता है। 🤓
 
-यदि आप बहुत से लोगों के प्रश्नों में उनकी मदद कर रहे हैं, तो आप आधिकारिक [FastAPI Expert](fastapi-people.md#fastapi-experts) बन जाएंगे। 🎉
+यदि आप बहुत से लोगों के प्रश्नों में उनकी मदद कर रहे हैं, तो आप आधिकारिक [FastAPI Expert](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts) बन जाएंगे। 🎉
 
 बस याद रखें, सबसे महत्वपूर्ण बात है: विनम्र रहने की कोशिश करें। 🤗
 

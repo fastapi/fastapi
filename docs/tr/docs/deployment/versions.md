@@ -34,7 +34,7 @@ Kurulumları yönetmek için `uv`, Poetry, Pipenv gibi başka bir araç (veya be
 
 ## Mevcut sürümler { #available-versions }
 
-Mevcut sürümleri (ör. en güncel son sürümün hangisi olduğunu kontrol etmek için) [Sürüm Notları](../release-notes.md) sayfasında görebilirsiniz.
+Mevcut sürümleri (ör. en güncel son sürümün hangisi olduğunu kontrol etmek için) [Sürüm Notları](https://fastapi.tiangolo.com/release-notes/) sayfasında görebilirsiniz.
 
 ## Sürümler Hakkında { #about-versions }
 

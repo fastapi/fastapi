@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 利用可能なバージョン { #available-versions }
 
-利用可能なバージョン（例: 現在の最新が何かを確認するため）は、[Release Notes](../release-notes.md) で確認できます。
+利用可能なバージョン（例: 現在の最新が何かを確認するため）は、[Release Notes](https://fastapi.tiangolo.com/release-notes/) で確認できます。
 
 ## バージョンについて { #about-versions }
 

@@ -7,7 +7,7 @@ Es gibt sehr einfache Möglichkeiten, zu helfen und Hilfe zu bekommen.
 
 ## Newsletter abonnieren { #subscribe-to-the-newsletter }
 
-Sie können den (unregelmäßigen) [**FastAPI and friends**-Newsletter](newsletter.md) abonnieren, um über Folgendes informiert zu bleiben:
+Sie können den (unregelmäßigen) [**FastAPI and friends**-Newsletter](https://fastapi.tiangolo.com/newsletter/) abonnieren, um über Folgendes informiert zu bleiben:
 
 * Neuigkeiten über FastAPI und Freunde 🚀
 * Anleitungen 📝
@@ -52,7 +52,7 @@ Sie können versuchen, anderen bei ihren Fragen in [GitHub-Diskussionen](https:/
 
 In vielen Fällen kennen Sie möglicherweise bereits die Antwort auf diese Fragen. 🤓
 
-Wenn Sie vielen Menschen bei ihren Fragen helfen, werden Sie offizieller [FastAPI-Experte](fastapi-people.md#fastapi-experts). 🎉
+Wenn Sie vielen Menschen bei ihren Fragen helfen, werden Sie offizieller [FastAPI-Experte](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts). 🎉
 
 Denken Sie daran, der wichtigste Punkt ist: Versuchen Sie, freundlich zu sein. 🤗
 

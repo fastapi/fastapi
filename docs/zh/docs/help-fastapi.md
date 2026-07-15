@@ -6,7 +6,7 @@
 
 ## 订阅新闻邮件 { #subscribe-to-the-newsletter }
 
-你可以订阅（不频繁的）[**FastAPI and friends** 新闻邮件](newsletter.md)，获取如下更新：
+你可以订阅（不频繁的）[**FastAPI and friends** 新闻邮件](https://fastapi.tiangolo.com/newsletter/)，获取如下更新：
 
 * FastAPI 及其小伙伴的新闻 🚀
 * 指南 📝
@@ -51,7 +51,7 @@
 
 很多情况下，你也许已经知道这些问题的答案了。🤓
 
-如果你帮助了很多人解答问题，你会成为官方的 [FastAPI 专家](fastapi-people.md#fastapi-experts)。🎉
+如果你帮助了很多人解答问题，你会成为官方的 [FastAPI 专家](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts)。🎉
 
 只要记住，最重要的是：尽量友善。🤗
 
