@@ -126,6 +126,12 @@ npm run build
 
 他の router 内のものを含め、アプリ内の通常の *path operations* は引き続き優先されます。
 
+## 依存関係とミドルウェア { #dependencies-and-middleware }
+
+フロントエンドのレスポンスは通常の **FastAPI** アプリケーション内で実行されるため、HTTP ミドルウェアが適用されます。
+
+アプリ、`APIRouter`、および `include_router()` からの依存関係もフロントエンドのレスポンスに適用されます。これは、cookie 認証などでフロントエンドを保護する場合に役立ちます。
+
 ## 静的ビルド出力のみ { #static-build-output-only }
 
 `app.frontend()` は、フロントエンドのビルドで既に生成されたファイルを配信します。
