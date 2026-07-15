@@ -1,6 +1,6 @@
 # Frontend { #frontend }
 
-Você pode servir aplicações frontend estáticas com `app.frontend()` ou `router.frontend()`.
+Você pode servir aplicações frontend estáticas com `app.frontend()` (ou `router.frontend()`).
 
 Isso é útil para ferramentas de frontend que geram arquivos estáticos, como React com Vite, TanStack Router, Astro, Vue, Svelte, Angular, Solid e outras.
 
@@ -125,6 +125,12 @@ Você também pode adicionar arquivos de frontend a um `APIRouter` e incluí-lo 
 Neste exemplo, os paths de frontend são servidos em `/app`.
 
 Quaisquer *operações de rota* regulares na aplicação ainda terão precedência, inclusive em outros routers.
+
+## Dependências e Middleware { #dependencies-and-middleware }
+
+Responses de frontend são executadas dentro da aplicação **FastAPI** normal, então middlewares HTTP se aplicam a elas.
+
+Dependências da aplicação, de um `APIRouter` e de `include_router()` também se aplicam a responses de frontend. Isso pode ser útil para proteger um frontend com autenticação por cookie ou similar.
 
 ## Apenas Saída de Build Estático { #static-build-output-only }
 
