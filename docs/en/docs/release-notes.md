@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for tr (update-outdated). PR [#16005](https://github.com/fastapi/fastapi/pull/16005) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh-hant (update-outdated). PR [#15996](https://github.com/fastapi/fastapi/pull/15996) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (update-outdated). PR [#16006](https://github.com/fastapi/fastapi/pull/16006) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for de (update-outdated). PR [#15999](https://github.com/fastapi/fastapi/pull/15999) by [@tiangolo](https://github.com/tiangolo).
