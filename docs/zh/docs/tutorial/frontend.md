@@ -126,6 +126,12 @@ npm run build
 
 应用中的任何常规*路径操作*仍会优先，包括其他 router 中的路径操作。
 
+## 依赖项和中间件 { #dependencies-and-middleware }
+
+前端响应在普通 **FastAPI** 应用内部运行，因此 HTTP 中间件会应用于它们。
+
+来自 app、`APIRouter` 和 `include_router()` 的依赖项也会应用于前端响应。这可用于通过 cookie 身份验证或类似方式保护前端。
+
 ## 仅限静态构建输出 { #static-build-output-only }
 
 `app.frontend()` 提供的是你的前端构建已经生成的文件。
