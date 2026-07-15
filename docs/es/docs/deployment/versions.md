@@ -34,7 +34,7 @@ Si utilizas cualquier otra herramienta para gestionar tus instalaciones, como `u
 
 ## Versiones disponibles { #available-versions }
 
-Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la más reciente) en las [Release Notes](https://fastapi.tiangolo.com/release-notes/).
+Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la más reciente) en las [Release Notes](../release-notes.md).
 
 ## Sobre las versiones { #about-versions }
 

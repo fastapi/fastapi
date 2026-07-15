@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 이용 가능한 버전들 { #available-versions }
 
-사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [릴리스 노트](https://fastapi.tiangolo.com/release-notes/)에서 확인할 수 있습니다.
+사용 가능한 버전(예: 현재 최신 버전이 무엇인지 확인하기 위해)은 [릴리스 노트](../release-notes.md)에서 확인할 수 있습니다.
 
 ## 버전들에 대해 { #about-versions }
 

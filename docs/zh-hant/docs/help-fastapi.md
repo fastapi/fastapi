@@ -7,7 +7,7 @@
 
 ## 訂閱電子報 { #subscribe-to-the-newsletter }
 
-你可以訂閱（不常寄送的）[**FastAPI 與夥伴**電子報](https://fastapi.tiangolo.com/newsletter/)，隨時掌握：
+你可以訂閱（不常寄送的）[**FastAPI 與夥伴**電子報](newsletter.md)，隨時掌握：
 
 * 關於 FastAPI 與夥伴的最新消息 🚀
 * 教學指南 📝
@@ -52,7 +52,7 @@
 
 很多時候你可能已經知道這些問題的答案。🤓
 
-如果你經常幫大家解決問題，你會成為官方的 [FastAPI 專家](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts)。🎉
+如果你經常幫大家解決問題，你會成為官方的 [FastAPI 專家](fastapi-people.md#fastapi-experts)。🎉
 
 請記得，最重要的是：盡量友善。🤗
 

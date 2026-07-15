@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## 可用版本 { #available-versions }
 
-你可以在 [發行說明](https://fastapi.tiangolo.com/release-notes/) 查看可用版本（例如用來確認目前最新版本）。
+你可以在 [發行說明](../release-notes.md) 查看可用版本（例如用來確認目前最新版本）。
 
 ## 關於版本 { #about-versions }
 

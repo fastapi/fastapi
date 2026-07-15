@@ -7,7 +7,7 @@ FastAPI를 돕거나 FastAPI에 대한 도움을 받고 싶으신가요?
 
 ## 뉴스레터 구독 { #subscribe-to-the-newsletter }
 
-(자주 발송되지 않는) [**FastAPI and friends** 뉴스레터](https://fastapi.tiangolo.com/newsletter/)를 구독하여 다음 소식을 받아보세요:
+(자주 발송되지 않는) [**FastAPI and friends** 뉴스레터](newsletter.md)를 구독하여 다음 소식을 받아보세요:
 
 * FastAPI and friends 뉴스 🚀
 * 가이드 📝
@@ -52,7 +52,7 @@ FastAPI와 friends에 대한 소식을 공유할 때 알림을 받으려면, 개
 
 많은 경우, 이미 그 질문에 대한 답을 알고 있을 수 있습니다. 🤓
 
-많은 사람들의 질문을 도와주면, 공식 [FastAPI 전문가](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts)가 됩니다. 🎉
+많은 사람들의 질문을 도와주면, 공식 [FastAPI 전문가](fastapi-people.md#fastapi-experts)가 됩니다. 🎉
 
 가장 중요한 점은: 친절하려고 노력하는 것입니다. 🤗
 

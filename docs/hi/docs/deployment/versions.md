@@ -34,7 +34,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 ## उपलब्ध संस्करण { #available-versions }
 
-आप उपलब्ध संस्करणों को (जैसे वर्तमान नवीनतम क्या है यह जांचने के लिए) [Release Notes](https://fastapi.tiangolo.com/release-notes/) में देख सकते हैं।
+आप उपलब्ध संस्करणों को (जैसे वर्तमान नवीनतम क्या है यह जांचने के लिए) [Release Notes](../release-notes.md) में देख सकते हैं।
 
 ## संस्करणों के बारे में { #about-versions }
 
