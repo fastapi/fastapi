@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix topic repository list not being displayed and `skip_users` not being applied. PR [#15995](https://github.com/fastapi/fastapi/pull/15995) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Translations
 
 * 🌐 Update translations for tr (update-outdated). PR [#16005](https://github.com/fastapi/fastapi/pull/16005) by [@tiangolo](https://github.com/tiangolo).
