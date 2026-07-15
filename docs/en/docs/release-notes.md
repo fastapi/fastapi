@@ -1504,7 +1504,7 @@ You can read more about it in the docs for [Advanced Dependencies - Dependencies
 * ⚡️ Fix `default_factory` for response model field with Pydantic V1. PR [#9704](https://github.com/fastapi/fastapi/pull/9704) by [@vvanglro](https://github.com/vvanglro).
 * 🐛 Fix inconsistent processing of model docstring formfeed char with Pydantic V1. PR [#6039](https://github.com/fastapi/fastapi/pull/6039) by [@MaxwellPayne](https://github.com/MaxwellPayne).
 * 🐛 Fix `jsonable_encoder` alters `json_encoders` of Pydantic v1 objects. PR [#4972](https://github.com/fastapi/fastapi/pull/4972) by [@aboubacs](https://github.com/aboubacs).
-* 🐛 Reenable `allow_arbitrary_types` when only 1 argument is used on the API endpoint. PR [#13694](https://github.com/fastapi/fastapi/pull/13694) by [@rmawatson](https://github.com/rmawatson).
+* 🐛 Re-enable `allow_arbitrary_types` when only 1 argument is used on the API endpoint. PR [#13694](https://github.com/fastapi/fastapi/pull/13694) by [@rmawatson](https://github.com/rmawatson).
 * 🐛 Fix `inspect.getcoroutinefunction()` can break testing with `unittest.mock.patch()`. PR [#14022](https://github.com/fastapi/fastapi/pull/14022) by [@secrett2633](https://github.com/secrett2633).
 
 ### Refactors
@@ -4714,7 +4714,7 @@ Highlights of this release:
 
 * [Upgraded Starlette](https://github.com/encode/starlette/releases/tag/0.21.0)
     * Now the `TestClient` is based on HTTPX instead of Requests. 🚀
-    * There are some possible **breaking changes** in the `TestClient` usage, but [@Kludex](https://github.com/Kludex) built [bump-testclient](https://github.com/Kludex/bump-testclient) to help you automatize migrating your tests. Make sure you are using Git and that you can undo any unnecessary changes (false positive changes, etc) before using `bump-testclient`.
+    * There are some possible **breaking changes** in the `TestClient` usage, but [@Kludex](https://github.com/Kludex) built [bump-testclient](https://github.com/Kludex/bump-testclient) to help you automate migrating your tests. Make sure you are using Git and that you can undo any unnecessary changes (false positive changes, etc) before using `bump-testclient`.
 * New [WebSocketException (and docs)](https://fastapi.tiangolo.com/advanced/websockets/#using-depends-and-others), re-exported from Starlette.
 * Upgraded and relaxed dependencies for package extras `all` (including new Uvicorn version), when you install `"fastapi[all]"`.
 * New docs about how to [**Help Maintain FastAPI**](https://fastapi.tiangolo.com/help-fastapi/#help-maintain-fastapi).
