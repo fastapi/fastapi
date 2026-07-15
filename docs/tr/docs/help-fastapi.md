@@ -6,7 +6,7 @@ Yardım etmek ve yardım almak için çok basit yollar var.
 
 ## Bültene Abone Olun { #subscribe-to-the-newsletter }
 
-Şunlardan haberdar olmak için (seyrek yayımlanan) [**FastAPI and friends** bültenine](https://fastapi.tiangolo.com/newsletter/) abone olabilirsiniz:
+Şunlardan haberdar olmak için (seyrek yayımlanan) [**FastAPI and friends** bültenine](newsletter.md) abone olabilirsiniz:
 
 * FastAPI ve friends ile ilgili haberler 🚀
 * Rehberler 📝
@@ -51,7 +51,7 @@ FastAPI ve friends hakkında paylaşacak haberlerim olduğunda duymak için, yaz
 
 Birçok durumda bu soruların cevabını zaten biliyor olabilirsiniz. 🤓
 
-Eğer insanların sorularına çok yardım ederseniz, resmi bir [FastAPI Expert](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts) olursunuz. 🎉
+Eğer insanların sorularına çok yardım ederseniz, resmi bir [FastAPI Expert](fastapi-people.md#fastapi-experts) olursunuz. 🎉
 
 Şunu unutmayın: en önemli nokta, nazik olmaya çalışmak. 🤗
 
