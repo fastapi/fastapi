@@ -126,6 +126,12 @@ Bu örnekte frontend path'leri `/app` altında sunulur.
 
 Uygulamadaki herhangi bir normal *path operation*, diğer router'larda olanlar dahil, yine öncelikli olur.
 
+## Dependencies ve Middleware { #dependencies-and-middleware }
+
+Frontend response'ları normal **FastAPI** uygulaması içinde çalışır, bu yüzden HTTP middleware onlara uygulanır.
+
+Uygulamadan, bir `APIRouter`'dan ve `include_router()`'dan gelen dependencies de frontend response'larına uygulanır. Bu, bir frontend'i cookie authentication veya benzeri bir yöntemle korumak için kullanışlı olabilir.
+
 ## Yalnızca Statik Build Çıktısı { #static-build-output-only }
 
 `app.frontend()`, frontend build'iniz tarafından önceden oluşturulmuş dosyaları sunar.
