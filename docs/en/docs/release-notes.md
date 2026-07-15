@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for es (update-outdated). PR [#15997](https://github.com/fastapi/fastapi/pull/15997) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ru (update-outdated). PR [#16002](https://github.com/fastapi/fastapi/pull/16002) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for hi (add-missing). PR [#15990](https://github.com/fastapi/fastapi/pull/15990) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for hi (add-missing). PR [#15925](https://github.com/fastapi/fastapi/pull/15925) by [@tiangolo](https://github.com/tiangolo).
