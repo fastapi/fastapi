@@ -126,6 +126,12 @@ npm run build
 
 다른 라우터에 있는 것을 포함하여, 애플리케이션의 모든 일반 *경로 처리*가 여전히 우선합니다.
 
+## 의존성과 미들웨어 { #dependencies-and-middleware }
+
+프론트엔드 응답은 일반 **FastAPI** 애플리케이션 안에서 실행되므로 HTTP 미들웨어가 적용됩니다.
+
+애플리케이션, `APIRouter`, `include_router()`의 의존성도 프론트엔드 응답에 적용됩니다. 이는 쿠키 인증 등으로 프론트엔드를 보호하는 데 유용할 수 있습니다.
+
 ## 정적 빌드 출력만 사용하기 { #static-build-output-only }
 
 `app.frontend()`는 프론트엔드 빌드에서 이미 생성된 파일을 제공합니다.
