@@ -1984,24 +1984,13 @@ def _iter_accept_media_types(accept: str) -> Iterator[tuple[str, float]]:
 
 
 def _is_frontend_navigation_request(scope: Scope) -> bool:
-    route_path = get_route_path(scope)
-    final_segment = route_path.rsplit("/", 1)[-1]
-    if os.path.splitext(final_segment)[1]:
-        return False
     request = Request(scope)
-    wildcard_accepted = False
-    html_rejected = False
     for media_type, quality in _iter_accept_media_types(
         request.headers.get("accept", "")
     ):
-        if media_type in {"text/html", "application/xhtml+xml"}:
-            if quality == 0:
-                html_rejected = True
-            else:
-                return True
-        elif media_type == "*/*" and quality != 0:
-            wildcard_accepted = True
-    return wildcard_accepted and not html_rejected
+        if media_type in {"text/html", "application/xhtml+xml"} and quality != 0:
+            return True
+    return False
 
 
 class _FrontendRoute(BaseRoute):
