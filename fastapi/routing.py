@@ -7,6 +7,7 @@ import inspect
 import json
 import os
 import stat
+import threading
 import types
 from collections.abc import (
     AsyncIterator,
@@ -1571,6 +1572,9 @@ class RouteContext:
 class _IncludedRouter(BaseRoute):
     original_router: "APIRouter"
     include_context: _RouterIncludeContext
+    _effective_routes_lock: Any = field(
+        default_factory=threading.Lock, repr=False, compare=False
+    )
     _effective_candidates: list["_EffectiveRouteContext | _IncludedRouter"] = field(
         default_factory=list
     )
@@ -1584,44 +1588,53 @@ class _IncludedRouter(BaseRoute):
         routes_version = self.original_router._get_routes_version()
         if routes_version == self._effective_candidates_version:
             return self._effective_candidates
-        self._effective_candidates = []
-        candidates = self.original_router.routes
-        for route in candidates:
-            if isinstance(route, _IncludedRouter):
-                child_context = self.include_context.combine(route.include_context)
-                child_branch = _IncludedRouter(
-                    original_router=route.original_router,
-                    include_context=child_context,
-                )
-                self._effective_candidates.append(child_branch)
-                continue
-            route_context = self._build_effective_context(route)
-            if route_context is not None:
-                self._effective_candidates.append(route_context)
-        self._effective_candidates_version = routes_version
-        return self._effective_candidates
+        with self._effective_routes_lock:
+            routes_version = self.original_router._get_routes_version()
+            if routes_version == self._effective_candidates_version:
+                return self._effective_candidates
+            effective_candidates: list[_EffectiveRouteContext | _IncludedRouter] = []
+            for route in self.original_router.routes:
+                if isinstance(route, _IncludedRouter):
+                    child_context = self.include_context.combine(route.include_context)
+                    child_branch = _IncludedRouter(
+                        original_router=route.original_router,
+                        include_context=child_context,
+                    )
+                    effective_candidates.append(child_branch)
+                    continue
+                route_context = self._build_effective_context(route)
+                if route_context is not None:
+                    effective_candidates.append(route_context)
+            self._effective_candidates = effective_candidates
+            self._effective_candidates_version = routes_version
+            return effective_candidates
 
     def effective_low_priority_routes(self) -> list["_EffectiveRouteContext"]:
         routes_version = self.original_router._get_routes_version()
         if routes_version == self._effective_low_priority_routes_version:
             return self._effective_low_priority_routes
-        self._effective_low_priority_routes = []
-        for route in self.original_router._low_priority_routes:
-            route_context = self._build_effective_context(route)
-            if route_context is not None:
-                self._effective_low_priority_routes.append(route_context)
-        for route in self.original_router.routes:
-            if isinstance(route, _IncludedRouter):
-                child_context = self.include_context.combine(route.include_context)
-                child_branch = _IncludedRouter(
-                    original_router=route.original_router,
-                    include_context=child_context,
-                )
-                self._effective_low_priority_routes.extend(
-                    child_branch.effective_low_priority_routes()
-                )
-        self._effective_low_priority_routes_version = routes_version
-        return self._effective_low_priority_routes
+        with self._effective_routes_lock:
+            routes_version = self.original_router._get_routes_version()
+            if routes_version == self._effective_low_priority_routes_version:
+                return self._effective_low_priority_routes
+            effective_low_priority_routes: list[_EffectiveRouteContext] = []
+            for route in self.original_router._low_priority_routes:
+                route_context = self._build_effective_context(route)
+                if route_context is not None:
+                    effective_low_priority_routes.append(route_context)
+            for route in self.original_router.routes:
+                if isinstance(route, _IncludedRouter):
+                    child_context = self.include_context.combine(route.include_context)
+                    child_branch = _IncludedRouter(
+                        original_router=route.original_router,
+                        include_context=child_context,
+                    )
+                    effective_low_priority_routes.extend(
+                        child_branch.effective_low_priority_routes()
+                    )
+            self._effective_low_priority_routes = effective_low_priority_routes
+            self._effective_low_priority_routes_version = routes_version
+            return effective_low_priority_routes
 
     def _build_effective_context(
         self, route: BaseRoute
