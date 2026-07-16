@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.139.1 (2026-07-16)
+
 ### Fixes
 
 * 🐛 Fix frontend fallback support for doted paths like `/users/john.doe`. PR [#16011](https://github.com/fastapi/fastapi/pull/16011) by [@tiangolo](https://github.com/tiangolo).
