@@ -11,6 +11,10 @@ hide:
 
 * 📝 Restructure FastAPI People and related pages. PR [#16015](https://github.com/fastapi/fastapi/pull/16015) by [@tiangolo](https://github.com/tiangolo).
 
+### Internal
+
+* 🔥 Remove now-obsolete scripts to generate data for FastAPI People. PR [#16016](https://github.com/fastapi/fastapi/pull/16016) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.139.2 (2026-07-16)
 
 ### Fixes
