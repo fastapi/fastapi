@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.139.2 (2026-07-16)
+
 ### Fixes
 
 * 🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon). PR [#16013](https://github.com/fastapi/fastapi/pull/16013) by [@tiangolo](https://github.com/tiangolo).
