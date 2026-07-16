@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix frontend fallback support for doted paths like `/users/john.doe`. PR [#16011](https://github.com/fastapi/fastapi/pull/16011) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Fix topic repository list not being displayed and `skip_users` not being applied. PR [#15995](https://github.com/fastapi/fastapi/pull/15995) by [@YuriiMotov](https://github.com/YuriiMotov).
