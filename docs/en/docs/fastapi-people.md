@@ -72,11 +72,11 @@ Here's the hall of fame of the first FastAPI Experts:
 
 Currently, most of the code changes in FastAPI are done by the team.
 
-But during the years, there have been many contributions done by others as well.
+But over the years, there have also been many contributions made by others.
 
 They contributed source code, documentation, etc. 📦
 
-Here's the wall of fame of the first **Top Contributors**. 👷
+Here's the hall of fame of the first **Top Contributors**. 👷
 
 <div class="user-list user-list-center">
 
@@ -98,7 +98,7 @@ There are hundreds of other contributors, you can see them all in the [FastAPI G
 
 Currently, translations are done using AI tools, steered by the FastAPI team and native speakers.
 
-At some point, FastAPI had some documentation pages translated into other languages, done by hand, by community members.
+At some point, FastAPI had some documentation pages that community members translated into other languages by hand.
 
 Here's the hall of fame of the first **Top Translation Reviewers**. 🕵️
 
@@ -117,7 +117,7 @@ Here's the hall of fame of the first **Top Translation Reviewers**. 🕵️
 
 ## Sponsors
 
-**Sponsors**  support **FastAPI** and friends, mainly through [GitHub Sponsors](https://github.com/sponsors/tiangolo). ✨
+**Sponsors** support **FastAPI** and friends, mainly through [GitHub Sponsors](https://github.com/sponsors/tiangolo). ✨
 
 {% if sponsors %}
 
@@ -172,15 +172,13 @@ Here's the hall of fame of the first **Top Translation Reviewers**. 🕵️
 
 ## About the data - technical details
 
-The main intention of this page has been to highlight the effort of the community to help others.
+The main intention of this page has been to highlight the effort of the community to help others, especially efforts that were normally less visible and, in many cases, more arduous, like helping others with questions and reviewing Pull Requests with translations.
 
-Especially including efforts that were normally less visible, and in many cases were more arduous, like helping others with questions and reviewing Pull Requests with translations.
-
-Also contributions from sponsors.
+It also highlights contributions from sponsors.
 
 The data used to be calculated continuously, each month.
 
-As of 2026-07, for quite some time now, most of the work is done by (paid) team members.
+As of July 2026, most of the work has been done by (paid) team members for quite some time.
 
 GitHub Discussions are answered mostly by team members.
 
@@ -188,8 +186,8 @@ Most of the code changes are done by team members.
 
 And translations are continuously done for the entire documentation in multiple languages, using AI tools, managed by team members.
 
-Additionally, in the last months there's been an overwhelming amount of AI spam, mainly to cheat the FastAPI Experts system or to get a PR merged by any means, to then be considered a contributor. You can read more about the point of view in [Automated Code and AI](https://tiangolo.com/open-source/contributing/#automated-code-and-ai).
+Additionally, in recent months, there's been an overwhelming amount of AI spam, mainly to cheat the FastAPI Experts system or to get a PR merged by any means and thereby be considered a contributor. You can read more about the point of view in [Automated Code and AI](https://tiangolo.com/open-source/contributing/#automated-code-and-ai).
 
-Because of this, the data for the FastAPI Experts, Top Contributors, and Top Translators is no longer continuously updated.
+Because of this, the data for the FastAPI Experts, Top Contributors, and Top Translation Reviewers is no longer continuously updated.
 
-This section is currently kept as a homage to the humans that helped shape what FastAPI is today. 🙌
+This section is currently kept as a tribute to the humans that helped shape what FastAPI is today. 🙌
