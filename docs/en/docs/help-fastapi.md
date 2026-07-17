@@ -45,20 +45,6 @@ You can follow [me (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com), th
 * [@tiangolo.com on **Bluesky**](https://bsky.app/profile/tiangolo.com)
 * [@tiangolo on **LinkedIn**](https://www.linkedin.com/in/tiangolo/).
 
-## Help others with questions in GitHub { #help-others-with-questions-in-github }
-
-You can try and help others with their questions in [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered).
-
-In many cases you might already know the answer for those questions. 🤓
-
-If you are helping a lot of people with their questions, you will become an official [FastAPI Expert](fastapi-people.md#fastapi-experts). 🎉
-
-Just remember, the most important point is: try to be kind. 🤗
-
-### How to Help { #how-to-help }
-
-Follow the [guide on how to help](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) here.
-
 ## Ask Questions { #ask-questions }
 
 You can [create a new question](https://github.com/fastapi/fastapi/discussions/new?category=questions) in the GitHub repository, for example to:
@@ -85,3 +71,9 @@ Keep in mind that as chats allow more "free conversation", it's easy to ask ques
 In GitHub, the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking.
 
 Conversations in the chat systems are also not as easily searchable as in GitHub, they get lost.
+
+## Try FastAPI Cloud { #try-fastapi-cloud }
+
+The main funding for FastAPI and friends comes from [**FastAPI Cloud**](https://fastapicloud.com), a platform to deploy FastAPI applications in a simple and fast way, with a single command, `fastapi deploy`.
+
+FastAPI Cloud is built by the same team behind FastAPI. You can try it and consider it for your projects.

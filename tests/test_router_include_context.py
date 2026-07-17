@@ -1,3 +1,5 @@
+import threading
+from collections.abc import Sequence
 from typing import Annotated, cast
 
 import pytest
@@ -896,6 +898,66 @@ async def test_included_unknown_route_is_ignored_and_can_return_default_404():
 
     assert messages[0]["type"] == "http.response.start"
     assert messages[0]["status"] == 404
+
+
+def test_included_router_candidate_cache_is_thread_safe():
+    router = APIRouter()
+    route_count = 120
+    thread_count = 6
+    for index in range(route_count):
+
+        @router.get(f"/items/{index}")
+        def read_item(index: int = index):
+            return {"index": index}
+
+    app = FastAPI()
+    app.include_router(router)
+    included_router = cast(_IncludedRouter, app.router.routes[-1])
+    barrier = threading.Barrier(thread_count)
+    results: list[Sequence[object]] = []
+
+    def build_candidates() -> None:
+        barrier.wait()
+        results.append(included_router.effective_candidates())
+
+    threads = [threading.Thread(target=build_candidates) for _ in range(thread_count)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    assert len(results) == thread_count
+    assert all(result is results[0] for result in results)
+    assert len(results[0]) == route_count
+    assert TestClient(app).get("/items/0").json() == {"index": 0}
+
+
+def test_included_router_low_priority_cache_rechecks_version_after_lock(monkeypatch):
+    router = APIRouter()
+    app = FastAPI()
+    app.include_router(router)
+    included_router = cast(_IncludedRouter, app.router.routes[-1])
+    routes_version = router._get_routes_version()
+    version_checked = threading.Event()
+
+    def get_routes_version() -> int:
+        version_checked.set()
+        return routes_version
+
+    monkeypatch.setattr(router, "_get_routes_version", get_routes_version)
+    result: list[Sequence[object]] = []
+
+    def build_low_priority_routes() -> None:
+        result.append(included_router.effective_low_priority_routes())
+
+    with included_router._effective_routes_lock:
+        thread = threading.Thread(target=build_low_priority_routes)
+        thread.start()
+        assert version_checked.wait(timeout=1)
+        included_router._effective_low_priority_routes_version = routes_version
+    thread.join()
+
+    assert result == [[]]
 
 
 def test_no_prefix_include_validation_sees_effective_starlette_route_candidates():

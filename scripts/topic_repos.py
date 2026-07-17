@@ -44,7 +44,7 @@ def main() -> None:
                 owner_html_url=repo.owner.html_url,
             )
         )
-    data = [repo.model_dump() for repo in final_repos]
+    data = {"repos": [repo.model_dump() for repo in final_repos]}
 
     # Local development
     # repos_path = Path("../docs/en/data/topic_repos.yml")

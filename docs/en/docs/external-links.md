@@ -23,7 +23,7 @@ But now that FastAPI is the backend framework with the most GitHub stars across 
 
 Most starred [GitHub repositories with the topic `fastapi`](https://github.com/topics/fastapi):
 
-{% for repo in topic_repos %}
+{% for repo in topic_repos.repos %}
 
 <a href={{repo.html_url}} target="_blank">★ {{repo.stars}} - {{repo.name}}</a> by <a href={{repo.owner_html_url}} target="_blank">@{{repo.owner_login}}</a>.
 
