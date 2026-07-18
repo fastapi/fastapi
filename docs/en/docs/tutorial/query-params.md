@@ -20,7 +20,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 As they are part of the URL, they are "naturally" strings.
 
 But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.
-For example, if `skip` is declared as an `int`, sending a value that cannot be converted to an integer: 
+For example, if `skip` is declared as an `int`, sending a value that cannot be converted to an integer:
 ```
 http://127.0.0.1:8000/items/?skip=abc
 ```
