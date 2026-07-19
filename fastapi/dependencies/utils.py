@@ -871,7 +871,11 @@ def request_params_to_args(
 
 
 def is_union_of_base_models(field_type: Any) -> bool:
-    """Check if field type is a Union where all members are BaseModel subclasses."""
+    """Check if field type is a Union where all members are BaseModel subclasses.
+
+    `None` members are ignored, so `Optional[SomeModel]` (i.e. `SomeModel | None`)
+    is still treated as a top-level model union.
+    """
     from fastapi.types import UnionType
 
     origin = get_origin(field_type)
@@ -882,11 +886,17 @@ def is_union_of_base_models(field_type: Any) -> bool:
 
     union_args = get_args(field_type)
 
+    found_base_model = False
     for arg in union_args:
+        # Ignore `None`, so that `Optional[SomeModel]` keeps being treated as a
+        # top-level model union instead of being forced to embed.
+        if arg is type(None):
+            continue
         if not lenient_issubclass(arg, BaseModel):
             return False
+        found_base_model = True
 
-    return True
+    return found_base_model
 
 
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
