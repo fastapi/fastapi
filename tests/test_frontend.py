@@ -32,7 +32,7 @@ def test_frontend_exact_prefix_path_serves_index(tmp_path: Path):
     app = FastAPI()
     app.frontend("/", directory=dist)
 
-    response = TestClient(app).get("/app")
+    response = TestClient(app).get("/app", headers={"accept": "text/html"})
 
     assert response.status_code == 200
     assert response.text == "app"
@@ -617,15 +617,21 @@ def test_api_route_404_is_not_replaced_by_frontend_fallback(tmp_path: Path):
     assert response.json() == {"detail": "api missing"}
 
 
-def test_index_fallback_for_navigation_request(tmp_path: Path):
+@pytest.mark.parametrize(
+    ("path", "accept"),
+    [
+        ("/dashboard/settings", "text/html"),
+        ("/users/jane.doe", "text/html"),
+        ("/v/1.2.3", "application/xhtml+xml"),
+    ],
+)
+def test_index_fallback_for_navigation_request(tmp_path: Path, path: str, accept: str):
     dist = tmp_path / "dist"
     write_file(dist / "index.html", "app shell")
     app = FastAPI()
     app.frontend("/", directory=dist, fallback="index.html")
 
-    response = TestClient(app).get(
-        "/dashboard/settings", headers={"accept": "text/html"}
-    )
+    response = TestClient(app).get(path, headers={"accept": accept})
 
     assert response.status_code == 200
     assert response.text == "app shell"
@@ -638,7 +644,8 @@ def test_index_fallback_parses_accept_parameters(tmp_path: Path):
     app.frontend("/", directory=dist, fallback="index.html")
 
     response = TestClient(app).get(
-        "/dashboard/settings", headers={"accept": "text/html; q=0.8"}
+        "/dashboard/settings",
+        headers={"accept": "text/html; charset=utf-8; q=0.8"},
     )
 
     assert response.status_code == 200
@@ -697,10 +704,10 @@ def test_index_fallback_respects_explicit_xhtml_rejection_with_wildcard(
         ("/assets/missing.css", "text/css"),
         ("/assets/missing.png", "image/png"),
         ("/api/missing", "application/json"),
-        ("/users/jane.doe", "text/html"),
+        ("/dashboard/settings", ""),
     ],
 )
-def test_index_fallback_does_not_handle_asset_like_or_non_html_requests(
+def test_index_fallback_requires_explicit_html_acceptance(
     tmp_path: Path, path: str, accept: str
 ):
     dist = tmp_path / "dist"

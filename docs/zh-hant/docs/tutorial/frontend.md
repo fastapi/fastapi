@@ -126,6 +126,12 @@ npm run build
 
 應用程式中的任何一般*路徑操作*仍會優先，包括其他 router 中的路徑操作。
 
+## 依賴項與中介軟體 { #dependencies-and-middleware }
+
+前端回應會在一般的 **FastAPI** 應用程式內執行，因此 HTTP middleware 會套用到它們。
+
+來自 app、`APIRouter` 和 `include_router()` 的 dependencies 也會套用到前端回應。這對使用 cookie authentication 或類似方式保護前端很有用。
+
 ## 僅限靜態建置輸出 { #static-build-output-only }
 
 `app.frontend()` 會提供你的前端建置已經產生的檔案。
