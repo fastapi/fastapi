@@ -29,7 +29,7 @@ To achieve that, first import:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
@@ -382,7 +382,7 @@ For example, this custom validator checks that the item ID starts with `isbn-` f
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info
+/// note
 
 This is available with Pydantic version 2 or above. 😎
 
@@ -406,7 +406,7 @@ But if you're curious about this specific code example and you're still entertai
 
 #### String with `value.startswith()` { #string-with-value-startswith }
 
-Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+Did you notice? A string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 

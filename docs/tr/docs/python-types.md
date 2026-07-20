@@ -1,5 +1,6 @@
 # Python Tiplerine Giriş { #python-types-intro }
 
+
 Python, isteğe bağlı "type hints" (diğer adıyla "type annotations") desteğine sahiptir.
 
 Bu **"type hints"** veya annotations, bir değişkenin <dfn title="örneğin: str, int, float, bool">tip</dfn>'ini bildirmeye yarayan özel bir sözdizimidir.
@@ -172,7 +173,7 @@ Tip olarak `list` yazın.
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Bilgi
+/// note | Not
 
 Köşeli parantez içindeki bu iç tiplere "type parameters" denir.
 
@@ -283,7 +284,7 @@ Resmî Pydantic dokümanlarından bir örnek:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Bilgi
+/// note | Not
 
 Daha fazlasını öğrenmek için [Pydantic'in dokümanlarına bakın](https://docs.pydantic.dev/).
 
@@ -341,7 +342,7 @@ Bunların hepsi kulağa soyut gelebilir. Merak etmeyin. Tüm bunları [Eğitim -
 
 Önemli olan, standart Python tiplerini tek bir yerde kullanarak (daha fazla sınıf, decorator vb. eklemek yerine), **FastAPI**'nin sizin için işin büyük kısmını yapmasıdır.
 
-/// info | Bilgi
+/// note | Not
 
 Tüm tutorial'ı zaten bitirdiyseniz ve tipler hakkında daha fazlasını görmek için geri döndüyseniz, iyi bir kaynak: [`mypy`'nin "cheat sheet"i](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 

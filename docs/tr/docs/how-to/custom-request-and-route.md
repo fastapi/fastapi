@@ -1,5 +1,6 @@
 # Özel Request ve APIRoute sınıfı { #custom-request-and-apiroute-class }
 
+
 Bazı durumlarda, `Request` ve `APIRoute` sınıflarının kullandığı mantığı override etmek isteyebilirsiniz.
 
 Özellikle bu yaklaşım, bir middleware içindeki mantığa iyi bir alternatif olabilir.

@@ -26,7 +26,7 @@ Sonra bunun içinde Cookie'leri set edin ve response'u döndürün:
 
 {* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip
+/// tip | İpucu
 
 `Response` parametresini kullanmak yerine doğrudan bir response döndürürseniz, FastAPI onu olduğu gibi (doğrudan) döndürür.
 

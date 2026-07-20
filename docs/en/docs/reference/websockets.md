@@ -50,7 +50,7 @@ When you want to define dependencies that should be compatible with both HTTP an
 
 Additional classes for handling WebSockets.
 
-Provided directly by Starlette, but you can import it from `fastapi`:
+Provided directly by Starlette, but you can import them from `fastapi`:
 
 ```python
 from fastapi.websockets import WebSocketDisconnect, WebSocketState
@@ -60,7 +60,7 @@ from fastapi.websockets import WebSocketDisconnect, WebSocketState
 
 When a client disconnects, a `WebSocketDisconnect` exception is raised, you can catch it.
 
-You can import it directly form `fastapi`:
+You can import it directly from `fastapi`:
 
 ```python
 from fastapi import WebSocketDisconnect

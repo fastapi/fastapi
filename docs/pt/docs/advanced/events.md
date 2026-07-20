@@ -1,5 +1,6 @@
 # Eventos de lifespan { #lifespan-events }
 
+
 Você pode definir a lógica (código) que deve ser executada antes da aplicação **inicializar**. Isso significa que esse código será executado **uma vez**, **antes** de a aplicação **começar a receber requisições**.
 
 Da mesma forma, você pode definir a lógica (código) que deve ser executada quando a aplicação estiver **encerrando**. Nesse caso, esse código será executado **uma vez**, **depois** de possivelmente ter tratado **várias requisições**.
@@ -120,7 +121,7 @@ Para adicionar uma função que deve ser executada quando a aplicação estiver 
 
 Aqui, a função de manipulador do evento `shutdown` escreverá uma linha de texto `"Application shutdown"` no arquivo `log.txt`.
 
-/// info | Informação
+/// note | Nota
 
 Na função `open()`, o `mode="a"` significa "acrescentar", então a linha será adicionada depois do que já estiver naquele arquivo, sem sobrescrever o conteúdo anterior.
 
@@ -152,7 +153,7 @@ Apenas um detalhe técnico para nerds curiosos. 🤓
 
 Por baixo, na especificação técnica do ASGI, isso é parte do [Protocolo Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), e define eventos chamados `startup` e `shutdown`.
 
-/// info | Informação
+/// note | Nota
 
 Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://www.starlette.dev/lifespan/).
 

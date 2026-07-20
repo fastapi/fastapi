@@ -1,5 +1,6 @@
 # Ayarlar ve Ortam Değişkenleri { #settings-and-environment-variables }
 
+
 Birçok durumda uygulamanızın bazı harici ayarlara veya konfigürasyonlara ihtiyacı olabilir; örneğin secret key'ler, veritabanı kimlik bilgileri, e-posta servisleri için kimlik bilgileri vb.
 
 Bu ayarların çoğu değişkendir (değişebilir); örneğin veritabanı URL'leri. Ayrıca birçoğu hassas olabilir; örneğin secret'lar.

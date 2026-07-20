@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info
+/// note
 
 There are other formats and tools to define and install package dependencies.
 
@@ -283,7 +283,7 @@ CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 
 #### Docker Cache { #docker-cache }
 
-There's an important trick in this `Dockerfile`, we first copy the **file with the dependencies alone**, not the rest of the code. Let me tell you why is that.
+There's an important trick in this `Dockerfile`, we first copy the **file with the dependencies alone**, not the rest of the code. Let me tell you why that is.
 
 ```Dockerfile
 COPY ./requirements.txt /code/requirements.txt
@@ -301,7 +301,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 The file with the package requirements **won't change frequently**. So, by copying only that file, Docker will be able to **use the cache** for that step.
 
-And then, Docker will be able to **use the cache for the next step** that downloads and install those dependencies. And here's where we **save a lot of time**. ✨ ...and avoid boredom waiting. 😪😆
+And then, Docker will be able to **use the cache for the next step** that downloads and installs those dependencies. And here's where we **save a lot of time**. ✨ ...and avoid boredom waiting. 😪😆
 
 Downloading and installing the package dependencies **could take minutes**, but using the **cache** would **take seconds** at most.
 
@@ -488,7 +488,7 @@ And normally this **load balancer** would be able to handle requests that go to 
 
 In this type of scenario, you probably would want to have **a single (Uvicorn) process per container**, as you would already be handling replication at the cluster level.
 
-So, in this case, you **would not** want to have a multiple workers in the container, for example with the `--workers` command line option. You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
+So, in this case, you **would not** want to have multiple workers in the container, for example with the `--workers` command line option. You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
 
 Having another process manager inside the container (as would be with multiple workers) would only add **unnecessary complexity** that you are most probably already taking care of with your cluster system.
 
@@ -519,7 +519,7 @@ Here are some examples of when that could make sense:
 
 #### A Simple App { #a-simple-app }
 
-You could want a process manager in the container if your application is **simple enough** that can run it on a **single server**, not a cluster.
+You could want a process manager in the container if your application is **simple enough** that you can run it on a **single server**, not a cluster.
 
 #### Docker Compose { #docker-compose }
 
@@ -544,7 +544,7 @@ If you run **a single process per container** you will have a more or less well-
 
 And then you can set those same memory limits and requirements in your configurations for your container management system (for example in **Kubernetes**). That way it will be able to **replicate the containers** in the **available machines** taking into account the amount of memory needed by them, and the amount available in the machines in the cluster.
 
-If your application is **simple**, this will probably **not be a problem**, and you might not need to specify hard memory limits. But if you are **using a lot of memory** (for example with **machine learning** models), you should check how much memory you are consuming and adjust the **number of containers** that runs in **each machine** (and maybe add more machines to your cluster).
+If your application is **simple**, this will probably **not be a problem**, and you might not need to specify hard memory limits. But if you are **using a lot of memory** (for example with **machine learning** models), you should check how much memory you are consuming and adjust the **number of containers** that run on **each machine** (and maybe add more machines to your cluster).
 
 If you run **multiple processes per container** you will have to make sure that the number of processes started doesn't **consume more memory** than what is available.
 
@@ -556,7 +556,7 @@ If you are using containers (e.g. Docker, Kubernetes), then there are two main a
 
 If you have **multiple containers**, probably each one running a **single process** (for example, in a **Kubernetes** cluster), then you would probably want to have a **separate container** doing the work of the **previous steps** in a single container, running a single process, **before** running the replicated worker containers.
 
-/// info
+/// note
 
 If you are using Kubernetes, this would probably be an [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

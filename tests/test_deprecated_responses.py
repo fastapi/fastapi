@@ -3,7 +3,7 @@ import warnings
 import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIDeprecationWarning
-from fastapi.responses import ORJSONResponse, UJSONResponse
+from fastapi.responses import ORJSONResponse, UJSONResponse  # ty: ignore[deprecated]
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -21,7 +21,7 @@ class Item(BaseModel):
 def _make_orjson_app() -> FastAPI:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", FastAPIDeprecationWarning)
-        app = FastAPI(default_response_class=ORJSONResponse)
+        app = FastAPI(default_response_class=ORJSONResponse)  # ty: ignore[deprecated]
 
     @app.get("/items")
     def get_items() -> Item:
@@ -44,7 +44,7 @@ def test_orjson_response_returns_correct_data():
 @needs_orjson
 def test_orjson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="ORJSONResponse is deprecated"):
-        ORJSONResponse(content={"hello": "world"})
+        ORJSONResponse(content={"hello": "world"})  # ty: ignore[deprecated]
 
 
 # UJSON
@@ -53,7 +53,7 @@ def test_orjson_response_emits_deprecation_warning():
 def _make_ujson_app() -> FastAPI:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", FastAPIDeprecationWarning)
-        app = FastAPI(default_response_class=UJSONResponse)
+        app = FastAPI(default_response_class=UJSONResponse)  # ty: ignore[deprecated]
 
     @app.get("/items")
     def get_items() -> Item:
@@ -76,4 +76,4 @@ def test_ujson_response_returns_correct_data():
 @needs_ujson
 def test_ujson_response_emits_deprecation_warning():
     with pytest.warns(FastAPIDeprecationWarning, match="UJSONResponse is deprecated"):
-        UJSONResponse(content={"hello": "world"})
+        UJSONResponse(content={"hello": "world"})  # ty: ignore[deprecated]

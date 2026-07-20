@@ -352,6 +352,6 @@ $ fastapi dev
 
 ## Özet { #recap }
 
-Bir SQL veritabanıyla etkileşim kurmak için [**SQLModel**](https://sqlmodel.tiangolo.com/) kullanabilir ve *data model* ile *table model* yaklaşımıyla kodu sadeleştirebilirsiniz.
+Bir SQL veritabanıyla etkileşim kurmak için [**SQLModel**](https://sqlmodel.tiangolo.com/) kullanabilir ve *data model*’ler ile *table model*’ler kullanarak kodu sadeleştirebilirsiniz.
 
 **SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini [tutorial](https://sqlmodel.tiangolo.com/tutorial/fastapi/) da bulunuyor. 🚀

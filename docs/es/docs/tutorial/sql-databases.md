@@ -65,7 +65,7 @@ Hay algunas diferencias:
 
 * `Field(primary_key=True)` le dice a SQLModel que `id` es la **clave primaria** en la base de datos SQL (puedes aprender más sobre claves primarias de SQL en la documentación de SQLModel).
 
-    Nota: Usamos `int | None` para el campo de clave primaria para que en el código Python podamos *crear un objeto sin un `id`* (`id=None`), asumiendo que la base de datos lo *generará al guardar*. SQLModel entiende que la base de datos proporcionará el `id` y *define la columna como un `INTEGER` no nulo* en el esquema de la base de datos. Consulta la [documentación de SQLModel sobre claves primarias](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) para más detalles.
+    **Nota:** Usamos `int | None` para el campo de clave primaria para que en el código Python podamos *crear un objeto sin un `id`* (`id=None`), asumiendo que la base de datos lo *generará al guardar*. SQLModel entiende que la base de datos proporcionará el `id` y *define la columna como un `INTEGER` no nulo* en el esquema de la base de datos. Consulta la [documentación de SQLModel sobre claves primarias](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) para más detalles.
 
 * `Field(index=True)` le dice a SQLModel que debe crear un **índice SQL** para esta columna, lo que permitirá búsquedas más rápidas en la base de datos cuando se lean datos filtrados por esta columna.
 
@@ -181,7 +181,7 @@ Arreglaremos estas cosas añadiendo unos **modelos extra**. Aquí es donde SQLMo
 
 En **SQLModel**, cualquier clase de modelo que tenga `table=True` es un **modelo de tabla**.
 
-Y cualquier clase de modelo que no tenga `table=True` es un **modelo de datos**, estos son en realidad solo modelos de Pydantic (con un par de características extra pequeñas). 🤓
+Y cualquier clase de modelo que no tenga `table=True` es un **modelo de datos**, estos son en realidad solo modelos de Pydantic (con un par de pequeñas funcionalidades extra). 🤓
 
 Con SQLModel, podemos usar **herencia** para **evitar duplicar** todos los campos en todos los casos.
 
@@ -296,7 +296,7 @@ Ahora usamos `response_model=HeroPublic` en lugar de la **anotación de tipo de 
 
 Si hubiéramos declarado `-> HeroPublic`, tu editor y linter se quejarían (con razón) de que estás devolviendo un `Hero` en lugar de un `HeroPublic`.
 
-Al declararlo en `response_model` le estamos diciendo a **FastAPI** que haga lo suyo, sin interferir con las anotaciones de tipo y la ayuda de tu editor y otras herramientas.
+Al declararlo en `response_model` le estamos diciendo a **FastAPI** que haga lo suyo, sin interferir con las anotaciones de tipos y la ayuda de tu editor y otras herramientas.
 
 ///
 

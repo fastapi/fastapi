@@ -304,7 +304,7 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 
 def main() -> None:
-    settings = Settings()
+    settings = Settings()  # ty: ignore[missing-argument]
     if settings.debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
@@ -324,6 +324,7 @@ def main() -> None:
     ) or settings.number
     if number is None:
         raise RuntimeError("No PR number available")
+    number = cast(int, number)
 
     # Avoid race conditions with multiple labels
     sleep_time = random.random() * 10  # random number between 0 and 10 seconds

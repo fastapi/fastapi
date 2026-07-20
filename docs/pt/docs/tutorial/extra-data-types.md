@@ -36,19 +36,19 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 * `datetime.timedelta`:
     * O `datetime.timedelta` do Python.
     * Em requisições e respostas será representado como um `float` de segundos totais.
-    * O Pydantic também permite representá-lo como uma "codificação ISO 8601 diferença de tempo", [cheque a documentação para mais informações](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * O Pydantic também permite representá-lo como uma "codificação de diferença de tempo ISO 8601", [veja a documentação para mais informações](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * Em requisições e respostas, será tratado da mesma forma que um `set`:
-        * Nas requisições, uma lista será lida, eliminando duplicadas e convertendo-a em um `set`.
+        * Nas requisições, uma list será lida, eliminando duplicadas e convertendo-a em um `set`.
         * Nas respostas, o `set` será convertido para uma `list`.
         * O esquema gerado vai especificar que os valores do `set` são únicos (usando o `uniqueItems` do JSON Schema).
 * `bytes`:
     * O `bytes` padrão do Python.
-    * Em requisições e respostas será representado como uma `str`.
+    * Em requisições e respostas será tratado como `str`.
     * O esquema gerado vai especificar que é uma `str` com o "formato" `binary`.
 * `Decimal`:
     * O `Decimal` padrão do Python.
-    * Em requisições e respostas será representado como um `float`.
+    * Em requisições e respostas, tratado da mesma forma que um `float`.
 * Você pode checar todos os tipos de dados válidos do Pydantic aqui: [Tipos de dados do Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
 
 ## Exemplo { #example }

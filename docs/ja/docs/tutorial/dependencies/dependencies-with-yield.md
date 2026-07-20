@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 情報
+/// note | 備考
 
 **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 
@@ -234,6 +234,7 @@ participant operation as Path Operation
 `yield`を持つ依存関係は、さまざまなユースケースをカバーし、いくつかの問題を修正するために、時間とともに進化してきました。
 
 FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)で詳しく読めます。
+
 ## コンテキストマネージャ { #context-managers }
 
 ### 「コンテキストマネージャ」とは { #what-are-context-managers }

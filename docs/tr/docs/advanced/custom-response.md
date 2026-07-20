@@ -41,7 +41,7 @@ Kısaca, en yüksek performansı istiyorsanız bir [Response Model](../tutorial/
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | Bilgi
+/// note | Not
 
 `response_class` parametresi, response’un "media type"’ını tanımlamak için de kullanılır.
 
@@ -65,7 +65,7 @@ Yukarıdaki örneğin aynısı, bu sefer bir `HTMLResponse` döndürerek, şöyl
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Elbette gerçek `Content-Type` header’ı, status code vb. değerler, döndürdüğünüz `Response` objesinden gelir.
 

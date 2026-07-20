@@ -65,6 +65,6 @@ presets: [
 ]
 ```
 
-這些是 JavaScript 物件，而不是字串，因此無法直接從 Python 程式碼傳遞。
+這些是 **JavaScript** 物件，而不是字串，因此無法直接從 Python 程式碼傳遞。
 
-若需要使用這類僅限 JavaScript 的設定，你可以使用上面介紹的方法：覆寫所有 Swagger UI 的路徑操作（path operation），並手動撰寫所需的 JavaScript。
+若需要使用這類僅限 JavaScript 的設定，你可以使用上述其中一種方法。覆寫整個 Swagger UI *路徑操作*，並手動撰寫所需的 JavaScript。

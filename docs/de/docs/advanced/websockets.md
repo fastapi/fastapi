@@ -111,7 +111,7 @@ Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfa
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info | Info
+/// note | Hinweis
 
 Da es sich um einen WebSocket handelt, macht es keinen Sinn, eine `HTTPException` auszulösen, stattdessen lösen wir eine `WebSocketException` aus.
 

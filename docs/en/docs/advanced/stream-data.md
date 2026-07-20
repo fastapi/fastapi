@@ -4,7 +4,7 @@ If you want to stream data that can be structured as JSON, you should [Stream JS
 
 But if you want to **stream pure binary data** or strings, here's how you can do it.
 
-/// info
+/// note
 
 Added in FastAPI 0.134.0.
 
@@ -14,7 +14,7 @@ Added in FastAPI 0.134.0.
 
 You could use this if you want to stream pure strings, for example directly from the output of an **AI LLM** service.
 
-You could also use it to stream **large binary files**, where you stream each chunk of data as you read it, without having to read it all in memory at once.
+You could also use it to stream **large binary files**, where you stream each chunk of data as you read it, without having to read it all into memory at once.
 
 You could also stream **video** or **audio** this way, it could even be generated as you process and send it.
 
@@ -90,7 +90,7 @@ For example, they don't have an `await file.read()`, or `async for chunk in file
 
 And in many cases, reading them would be a blocking operation (that could block the event loop), because they are read from disk or from the network.
 
-/// info
+/// note
 
 The example above is actually an exception, because the `io.BytesIO` object is already in memory, so reading it won't block anything.
 

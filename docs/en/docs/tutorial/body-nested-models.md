@@ -96,7 +96,7 @@ Again, doing just that declaration, with **FastAPI** you get:
 
 Apart from normal singular types like `str`, `int`, `float`, etc. you can use more complex singular types that inherit from `str`.
 
-To see all the options you have, checkout [Pydantic's Type Overview](https://docs.pydantic.dev/latest/concepts/types/). You will see some examples in the next chapter.
+To see all the options you have, check out [Pydantic's Type Overview](https://docs.pydantic.dev/latest/concepts/types/). You will see some examples in the next chapter.
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be an instance of Pydantic's `HttpUrl` instead of a `str`:
 
@@ -136,7 +136,7 @@ This will expect (convert, validate, document, etc.) a JSON body like:
 }
 ```
 
-/// info
+/// note
 
 Notice how the `images` key now has a list of image objects.
 
@@ -148,7 +148,7 @@ You can define arbitrarily deeply nested models:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info
+/// note
 
 Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
 

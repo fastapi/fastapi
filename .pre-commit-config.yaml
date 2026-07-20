@@ -14,6 +14,12 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
+  - repo: https://github.com/crate-ci/typos
+    rev: bee27e3a4fd1ea2111cf90ab89cd076c870fce14 # frozen: v1.48.0
+    hooks:
+      - id: typos
+        args: [--force-exclude]
+
   - repo: local
     hooks:
       - id: local-ruff-check
@@ -39,7 +45,7 @@ repos:
 
       - id: local-ty
         name: ty check
-        entry: uv run ty check fastapi
+        entry: uv run ty check
         require_serial: true
         language: unsupported
         pass_filenames: false
@@ -57,6 +63,13 @@ repos:
         name: generate README.md from index.md
         entry: uv run ./scripts/docs.py generate-readme
         files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
+        pass_filenames: false
+
+      - id: render-banner-sponsors
+        language: unsupported
+        name: render sponsor banner partial
+        entry: uv run ./scripts/docs.py render-banner-sponsors
+        files: ^docs/en/data/sponsors\.yml|^docs/en/overrides/partials/banner-sponsors\.html|^scripts/docs\.py$
         pass_filenames: false
 
       - id: update-languages
@@ -90,6 +103,6 @@ repos:
         name: zizmor
         language: python
         entry: uv run zizmor .
-        files: ^\.github\/workflows\/
+        files: ^\.github/workflows/|^uv\.lock$
         require_serial: true
         pass_filenames: false

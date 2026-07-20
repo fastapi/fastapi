@@ -18,7 +18,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 It is not encrypted, so, anyone could recover the information from the contents.
 
-But it's signed. So, when you receive a token that you emitted, you can verify that you actually emitted it.
+But it's signed. So, when you receive a token that you issued, you can verify that it was you who issued it.
 
 That way, you can create a token with an expiration of, let's say, 1 week. And then when the user comes back the next day with the token, you know that user is still logged in to your system.
 
@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info
+/// note
 
 If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
@@ -124,7 +124,7 @@ This ensures the endpoint takes roughly the same amount of time to respond wheth
 
 /// note
 
-If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
+If you check the new (fake) database `fake_users_db`, you will see what the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 
@@ -213,7 +213,7 @@ Using the credentials:
 Username: `johndoe`
 Password: `secret`
 
-/// check
+/// tip
 
 Notice that nowhere in the code is the plaintext password "`secret`", we only have the hashed version.
 

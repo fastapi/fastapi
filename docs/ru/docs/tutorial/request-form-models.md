@@ -2,7 +2,7 @@
 
 Вы можете использовать **Pydantic-модели** для объявления **полей формы** в FastAPI.
 
-/// info | Дополнительная информация
+/// note | Заметка
 
 Чтобы использовать формы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 

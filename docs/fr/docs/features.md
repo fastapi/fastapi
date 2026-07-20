@@ -17,7 +17,7 @@ Documentation d'API interactive et interfaces web d'exploration. Comme le framew
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui), avec exploration interactive, appelez et testez votre API directement depuis le navigateur.
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![interaction avec Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * Documentation d'API alternative avec [**ReDoc**](https://github.com/Rebilly/ReDoc).
 
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note | Remarque
 
 `**second_user_data` signifie :
 
@@ -85,11 +85,11 @@ Voici comment votre éditeur peut vous aider :
 
 * dans [Visual Studio Code](https://code.visualstudio.com/) :
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![support de l'éditeur](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * dans [PyCharm](https://www.jetbrains.com/pycharm/) :
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![support de l'éditeur](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 Vous obtiendrez de l'autocomplétion dans du code que vous auriez pu considérer impossible auparavant. Par exemple, la clé `price` à l'intérieur d'un corps JSON (qui aurait pu être imbriqué) provenant d'une requête.
 
@@ -105,7 +105,7 @@ Mais par défaut, tout **« just works »**.
 
 * Validation pour la plupart (ou tous ?) des **types de données** Python, y compris :
     * objets JSON (`dict`).
-    * tableaux JSON (`list`) définissant les types d'éléments.
+    * tableau JSON (`list`) définissant les types d'éléments.
     * champs String (`str`), définition des longueurs minimale et maximale.
     * nombres (`int`, `float`) avec valeurs minimale et maximale, etc.
 

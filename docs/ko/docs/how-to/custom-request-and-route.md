@@ -1,5 +1,6 @@
 # 커스텀 Request 및 APIRoute 클래스 { #custom-request-and-apiroute-class }
 
+
 일부 경우에는 `Request`와 `APIRoute` 클래스에서 사용되는 로직을 오버라이드하고 싶을 수 있습니다.
 
 특히, 이는 middleware에 있는 로직의 좋은 대안이 될 수 있습니다.

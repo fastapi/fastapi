@@ -55,8 +55,7 @@ Es gibt mehrere Alternativen, einschließlich:
 * [Uvicorn](https://www.uvicorn.dev/): ein hochperformanter ASGI-Server.
 * [Hypercorn](https://hypercorn.readthedocs.io/): ein ASGI-Server, der unter anderem kompatibel mit HTTP/2 und Trio ist.
 * [Daphne](https://github.com/django/daphne): der für Django Channels entwickelte ASGI-Server.
-* [Granian](https://github.com/emmett-framework/granian): Ein Rust HTTP-Server für Python-Anwendungen.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit ist eine leichte und vielseitige Laufzeitumgebung für Webanwendungen.
+* [Granian](https://github.com/emmett-framework/granian): Ein Rust-HTTP-Server für Python-Anwendungen.
 
 ## Servermaschine und Serverprogramm { #server-machine-and-server-program }
 
@@ -66,11 +65,11 @@ Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud
 
 Denken Sie einfach daran, dass sich „Server“ im Allgemeinen auf eines dieser beiden Dinge beziehen kann.
 
-Wenn man sich auf die entfernte Maschine bezieht, wird sie üblicherweise als **Server**, aber auch als **Maschine**, **VM** (virtuelle Maschine) oder **Knoten** bezeichnet. Diese Begriffe beziehen sich auf irgendeine Art von entfernten Rechner, normalerweise unter Linux, auf dem Sie Programme ausführen.
+Wenn man sich auf die entfernte Maschine bezieht, wird sie üblicherweise als **Server**, aber auch als **Maschine**, **VM** (virtuelle Maschine) oder **Knoten** bezeichnet. Diese Begriffe beziehen sich auf irgendeine Art von entferntem Rechner, normalerweise unter Linux, auf dem Sie Programme ausführen.
 
 ## Das Serverprogramm installieren { #install-the-server-program }
 
-Wenn Sie FastAPI installieren, wird es mit einem Produktionsserver, Uvicorn, geliefert, und Sie können ihn mit dem `fastapi run` Befehl starten.
+Wenn Sie FastAPI installieren, wird es mit einem Produktionsserver, Uvicorn, geliefert, und Sie können ihn mit dem `fastapi run`-Befehl starten.
 
 Aber Sie können auch ein ASGI-Serverprogramm manuell installieren.
 

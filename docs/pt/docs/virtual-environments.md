@@ -2,7 +2,7 @@
 
 Ao trabalhar em projetos Python, você provavelmente deveria usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
 
-/// info | Informação
+/// note | Nota
 
 Se você já sabe sobre ambientes virtuais, como criá-los e usá-los, talvez seja melhor pular esta seção. 🤓
 
@@ -18,7 +18,7 @@ Um **ambiente virtual** é um diretório com alguns arquivos.
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Esta página lhe ensinará como usar **ambientes virtuais** e como eles funcionam.
 
@@ -26,7 +26,7 @@ Se você estiver pronto para adotar uma **ferramenta que gerencia tudo** para vo
 
 ///
 
-## Criar um Projeto { #create-a-project }
+## Crie um Projeto { #create-a-project }
 
 Primeiro, crie um diretório para seu projeto.
 
@@ -212,7 +212,7 @@ Se ele mostrar o binário `python` em `.venv\Scripts\python`, dentro do seu proj
 
 ////
 
-## Atualizar `pip` { #upgrade-pip }
+## Atualize `pip` { #upgrade-pip }
 
 /// tip | Dica
 
@@ -262,7 +262,7 @@ Esse comando instalará o pip caso ele ainda não esteja instalado e também gar
 
 ///
 
-## Adicionar `.gitignore` { #add-gitignore }
+## Adicione `.gitignore` { #add-gitignore }
 
 Se você estiver usando **Git** (você deveria), adicione um arquivo `.gitignore` para excluir tudo em seu `.venv` do Git.
 
@@ -302,7 +302,7 @@ Esse comando criará um arquivo `.gitignore` com o conteúdo:
 
 ///
 
-## Instalar Pacotes { #install-packages }
+## Instale Pacotes { #install-packages }
 
 Após ativar o ambiente, você pode instalar pacotes nele.
 
@@ -314,7 +314,7 @@ Se precisar atualizar uma versão ou adicionar um novo pacote, você **fará iss
 
 ///
 
-### Instalar pacotes diretamente { #install-packages-directly }
+### Instale pacotes diretamente { #install-packages-directly }
 
 Se estiver com pressa e não quiser usar um arquivo para declarar os requisitos de pacote do seu projeto, você pode instalá-los diretamente.
 
@@ -353,7 +353,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Instalar a partir de `requirements.txt` { #install-from-requirements-txt }
+### Instale a partir de `requirements.txt` { #install-from-requirements-txt }
 
 Se você tiver um `requirements.txt`, agora poderá usá-lo para instalar seus pacotes.
 
@@ -425,7 +425,7 @@ Normalmente, você só precisa fazer isso **uma vez**, ao criar o ambiente virtu
 
 ///
 
-## Desativar o ambiente virtual { #deactivate-the-virtual-environment }
+## Desative o ambiente virtual { #deactivate-the-virtual-environment }
 
 Quando terminar de trabalhar no seu projeto, você pode **desativar** o ambiente virtual.
 
@@ -768,7 +768,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 Isso significa que o programa `python` que será usado é aquele **no ambiente virtual**.
 
-você usa `which` no Linux e macOS e `Get-Command` no Windows PowerShell.
+Você usa `which` no Linux e macOS e `Get-Command` no Windows PowerShell.
 
 A maneira como esse comando funciona é que ele vai e verifica na variável de ambiente `PATH`, passando por **cada caminho em ordem**, procurando pelo programa chamado `python`. Uma vez que ele o encontre, ele **mostrará o caminho** para esse programa.
 
@@ -811,7 +811,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Erro ao importar o Sirius, ele não está instalado 😱
+// Erro ao importar sirius, ele não está instalado 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Mas se você desativar o ambiente virtual e ativar o novo para `prisoner-of-askaban`, quando você executar `python`, ele usará o Python do ambiente virtual em `prisoner-of-azkaban`.
+Mas se você desativar o ambiente virtual e ativar o novo para `prisoner-of-azkaban`, quando você executar `python`, ele usará o Python do ambiente virtual em `prisoner-of-azkaban`.
 
 <div class="termy">
 
@@ -861,4 +861,4 @@ Quando estiver pronto e quiser usar uma ferramenta para **gerenciar todo o proje
 
 Se você leu e entendeu tudo isso, agora **você sabe muito mais** sobre ambientes virtuais do que muitos desenvolvedores por aí. 🤓
 
-Saber esses detalhes provavelmente será útil no futuro, quando você estiver depurando algo que parece complexo, mas você saberá **como tudo funciona**. 😎
+Saber esses detalhes provavelmente será útil no futuro, quando você estiver depurando algo que parece complexo, mas você saberá **como tudo funciona por baixo**. 😎

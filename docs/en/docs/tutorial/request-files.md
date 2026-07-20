@@ -2,7 +2,7 @@
 
 You can define files to be uploaded by the client using `File`.
 
-/// info
+/// note
 
 To receive uploaded files, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -28,7 +28,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info
+/// note
 
 `File` is a class that inherits directly from `Form`.
 
@@ -60,7 +60,7 @@ Using `UploadFile` has several advantages over `bytes`:
 
 * You don't have to use `File()` in the default value of the parameter.
 * It uses a "spooled" file:
-    * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
+    * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored on disk.
 * This means that it will work well for large files like images, videos, large binaries, etc. without consuming all the memory.
 * You can get metadata from the uploaded file.
 * It has a [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async` interface.
@@ -111,7 +111,7 @@ When you use the `async` methods, **FastAPI** runs the file methods in a threadp
 
 ## What is "Form Data" { #what-is-form-data }
 
-The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
+The way HTML forms (`<form></form>`) send the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 

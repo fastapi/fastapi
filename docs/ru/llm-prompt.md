@@ -21,7 +21,7 @@ For the following technical terms, use these specific translations to ensure con
 * path operation: операция пути (optionally clarify as `обработчик пути`)
 * path operation function: функция-обработчик пути (or `функция обработки пути`)
 * proprietary: проприетарный
-* benchmark: бенчмарк (add (`тест производительности`) if clarification is needed or use just `тест производительности`)
+* benchmark: бенчмарк (add `(тест производительности)` if clarification is needed or use just `тест производительности`)
 * ASGI server: ASGI-сервер
 * In a hurry? : Нет времени?
 * response status code: статус-код ответа
@@ -42,7 +42,7 @@ For the following technical terms, use these specific translations to ensure con
 * include: включать (add `в себя` if it's appropriate, or use `содержать` as an alternative)
 * virtual environment: виртуальное окружение
 * framework: фреймворк
-* path paremeter: path-параметр
+* path parameter: path-параметр
 * path (as in URL path): путь
 * form (as in HTML form): форма
 * media type: тип содержимого (or `медиа-тип`)
@@ -76,9 +76,9 @@ For the following technical terms, use these specific translations to ensure con
 * have the next best performance, after: быть на следующем месте по производительности после
 * timing attack: тайминговая атака (clarify `атака по времени` if needed)
 * OAuth2 scope: OAuth2 scope (clarify `область` if needed)
-* TLS Termination Proxy: прокси-сервер TSL-терминации
+* TLS Termination Proxy: прокси-сервер TLS-терминации
 * utilize (resources): использовать
-* сontent: содержимое (or `контент`)
+* content: содержимое (or `контент`)
 * raise exception: вызвать исключение (also possible to use `сгенерировать исключение` or `выбросить исключение`)
 * password flow: password flow (clarify as `аутентификация по паролю` if needed)
 * tutorial: руководство (or `учебник`)
@@ -95,7 +95,7 @@ For the following technical terms, use these specific translations to ensure con
 * submodule: подмодуль
 * subpackage: подпакет
 * router: роутер
-* building, deploying, accessing (when describing features of FastAPI Cloud): созданиe образа, развертывание и доступ
+* building, deploying, accessing (when describing features of FastAPI Cloud): создание образа, развертывание и доступ
 * type checker tool: инструмент проверки типов
 
 Do not add whitespace in `т.д.`, `т.п.`.

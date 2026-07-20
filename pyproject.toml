@@ -132,24 +132,21 @@ docs = [
     { include-group = "docs-tests" },
     "black >=25.1.0",
     "cairosvg >=2.8.2",
-    # for MkDocs live reload
-    "click==8.2.1",
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
     "markdown-include-variants >=0.0.8",
     "mdx-include >=1.4.1,<2.0.0",
-    "mkdocs-macros-plugin >=1.5.0",
-    "mkdocs-material >=9.7.0",
-    "mkdocs-redirects >=1.2.1,<1.3.0",
-    "mkdocstrings[python] >=0.30.1",
+    "mkdocstrings[python] >=1.0.3",
     "pillow >=11.3.0",
     "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
     "typer >=0.21.1",
+    "zensical >=0.0.42",
 ]
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
+    "httpx2>=2.0.0",
     "ruff >=0.14.14",
 ]
 github-actions = [
@@ -175,7 +172,8 @@ tests = [
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
-    "ty>=0.0.9",
+    "ty>=0.0.25",
+    "typer >=0.24.1",
     "a2wsgi >=1.9.0,<=2.0.0",
     "pytest-xdist[psutil]>=2.5.0",
     "pytest-cov>=4.0.0",
@@ -246,7 +244,6 @@ relative_files = true
 context = '${CONTEXT}'
 omit = [
     "tests/benchmarks/*",
-    "docs_src/response_model/tutorial003_04_py39.py",
     "docs_src/response_model/tutorial003_04_py310.py",
     "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
     "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
@@ -278,47 +275,26 @@ ignore = [
     "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
-    "W191",  # indentation contains tabs
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
 "docs_src/custom_request_and_route/tutorial002_an_py310.py" = ["B904"]
-"docs_src/custom_request_and_route/tutorial002_an_py39.py" = ["B904"]
 "docs_src/custom_request_and_route/tutorial002_py310.py" = ["B904"]
-"docs_src/custom_request_and_route/tutorial002_py39.py" = ["B904"]
 "docs_src/custom_response/tutorial007_py310.py" = ["B007"]
-"docs_src/custom_response/tutorial007_py39.py" = ["B007"]
-"docs_src/dataclasses/tutorial003_py39.py" = ["I001"]
 "docs_src/dependencies/tutorial007_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial007_py39.py" = ["F821"]
 "docs_src/dependencies/tutorial008_an_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]
 "docs_src/dependencies/tutorial008_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial008_py39.py" = ["F821"]
 "docs_src/dependencies/tutorial008b_an_py310.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
 "docs_src/dependencies/tutorial008b_py310.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_py39.py" = ["B904"]
-"docs_src/dependencies/tutorial009_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial009_py39.py" = ["F821"]
 "docs_src/dependencies/tutorial010_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial010_py39.py" = ["F821"]
-"docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py" = ["B904"]
 "docs_src/path_operation_advanced_configuration/tutorial007_py310.py" = ["B904"]
-"docs_src/path_operation_advanced_configuration/tutorial007_py39.py" = ["B904"]
 "docs_src/query_params_str_validations/tutorial012_an_py310.py" = ["B006"]
-"docs_src/query_params_str_validations/tutorial012_an_py39.py" = ["B006"]
 "docs_src/query_params_str_validations/tutorial013_an_py310.py" = ["B006"]
-"docs_src/query_params_str_validations/tutorial013_an_py39.py" = ["B006"]
 "docs_src/security/tutorial004_an_py310.py" = ["B904"]
-"docs_src/security/tutorial004_an_py39.py" = ["B904"]
 "docs_src/security/tutorial004_py310.py" = ["B904"]
-"docs_src/security/tutorial004_py39.py" = ["B904"]
 "docs_src/security/tutorial005_an_py310.py" = ["B904"]
-"docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
-"docs_src/security/tutorial005_py39.py" = ["B904"]
 "docs_src/json_base64_bytes/tutorial001_py310.py" = ["UP012"]
 "docs_src/stream_json_lines/tutorial001_py310.py" = ["UP028"]
 "docs_src/stream_data/tutorial001_py310.py" = ["UP028"]
@@ -335,3 +311,89 @@ keep-runtime-typing = true
 [tool.inline-snapshot]
 # default-flags=["fix"]
 # default-flags=["create"]
+
+[tool.typos.files]
+extend-exclude = [
+    "coverage/",
+    "dist/",
+    "docs/de/",
+    "docs/en/data/",
+    "docs/en/docs/img/",
+    "docs/es/",
+    "docs/fr/",
+    "docs/ja/",
+    "docs/ko/",
+    "docs/language_names.yml",
+    "docs/pt/",
+    "docs/ru/",
+    "docs/tr/",
+    "docs/uk/",
+    "docs/zh/",
+    "docs/zh-hant/",
+    "docs/hi/",
+    "htmlcov/",
+    "scripts/general-llm-prompt.md",
+    "scripts/tests/test_translation_fixer/test_complex_doc/",
+    "site/",
+    "site_build/",
+    "uv.lock",
+]
+
+[tool.typos.default]
+extend-ignore-re = [
+    # GitHub usernames in @mentions
+    "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
+    # Quoted typo documented in a release note
+    "'wll' to 'will'",
+    # German article title in a release note
+    "FastAPI Modul.",
+]
+
+[tool.typos.default.extend-identifiers]
+alls = "alls"
+
+[tool.typos.default.extend-words]
+ba = "ba"
+fo = "fo"
+havin = "havin"
+Ines = "Ines"
+ser = "ser"
+
+[tool.ty.src]
+exclude = [
+    # These docs examples are intentionally partial, dynamic, environment-driven,
+    # deprecated, or currently require broader tutorial rewrites to satisfy ty.
+    "docs_src/additional_status_codes/",
+    "docs_src/app_testing/tutorial003_py310.py",
+    "docs_src/body_multiple_params/",
+    "docs_src/body_updates/tutorial002_py310.py",
+    "docs_src/custom_docs_ui/",
+    "docs_src/custom_response/tutorial001_py310.py",
+    "docs_src/custom_response/tutorial001b_py310.py",
+    "docs_src/custom_response/tutorial009c_py310.py",
+    "docs_src/dependencies/tutorial007_py310.py",
+    "docs_src/dependencies/tutorial008_an_py310.py",
+    "docs_src/dependencies/tutorial008_py310.py",
+    "docs_src/dependencies/tutorial010_py310.py",
+    "docs_src/events/",
+    "docs_src/extending_openapi/tutorial001_py310.py",
+    "docs_src/path_params_numeric_validations/",
+    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
+    "docs_src/python_types/tutorial003_py310.py",
+    "docs_src/python_types/tutorial011_py310.py",
+    "docs_src/query_params_str_validations/",
+    "docs_src/response_model/tutorial006_py310.py",
+    "docs_src/security/tutorial003_an_py310.py",
+    "docs_src/security/tutorial003_py310.py",
+    "docs_src/security/tutorial004_an_py310.py",
+    "docs_src/security/tutorial004_py310.py",
+    "docs_src/security/tutorial005_an_py310.py",
+    "docs_src/security/tutorial005_py310.py",
+    "docs_src/settings/",
+    "docs_src/sql_databases/",
+    "docs_src/using_request_directly/tutorial001_py310.py",
+    "docs_src/wsgi/tutorial001_py310.py",
+]
+
+[tool.ty.terminal]
+error-on-warning = true

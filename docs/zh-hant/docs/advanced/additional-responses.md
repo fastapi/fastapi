@@ -34,7 +34,7 @@
 
 ///
 
-/// info | 說明
+/// note | 注意
 
 `model` 這個鍵不屬於 OpenAPI。
 
@@ -183,7 +183,7 @@
 
 ///
 
-/// info | 說明
+/// note | 注意
 
 除非你在 `responses` 參數中明確指定不同的媒體型別，否則 FastAPI 會假設回應的媒體型別與主回應類別相同（預設為 `application/json`）。
 

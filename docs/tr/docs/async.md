@@ -82,12 +82,12 @@ Bu "başka bir şeyi beklemek" genelde işlemci ve RAM hızına kıyasla nispete
 * programınızın sisteme verdiği içeriğin diske yazılması
 * uzak bir API işlemi
 * bir veritabanı işleminin bitmesi
-* bir veritabanı sorgusunun sonuç döndürmesi
+* bir veritabanı query'sinin sonuç döndürmesi
 * vb.
 
 Çalışma süresi çoğunlukla <abbr title="Input and Output - Giriş ve Çıkış">I/O</abbr> işlemlerini beklemekle geçtiğinden, bunlara "I/O bound" işlemler denir.
 
-"Bunun" asenkron" denmesinin sebebi, bilgisayarın / programın yavaş görevle "senkronize" olmak, görev tam bittiği anda orada olup görev sonucunu almak ve işe devam etmek için hiçbir şey yapmadan beklemek zorunda olmamasıdır.
+Buna "asenkron" denmesinin sebebi, bilgisayarın / programın yavaş görevle "senkronize" olmak, görev tam bittiği anda orada olup görev sonucunu almak ve işe devam etmek için hiçbir şey yapmadan beklemek zorunda olmamasıdır.
 
 Bunun yerine "asenkron" bir sistem olarak, görev bittiğinde, bilgisayarın / programın o sırada yaptığı işi bitirmesi için biraz (birkaç mikrosaniye) sırada bekleyebilir ve sonra sonuçları almak üzere geri dönüp onlarla çalışmaya devam edebilir.
 
@@ -139,7 +139,7 @@ Aşkınla burgerleri yiyip güzel vakit geçiriyorsunuz. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Bilgi
+/// note | Not
 
 Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -205,7 +205,7 @@ Sadece yiyorsunuz ve iş bitiyor. ⏹
 
 Vaktin çoğu tezgâhın önünde 🕙 beklemekle geçtiğinden, pek konuşma ya da flört olmadı. 😞
 
-/// info | Bilgi
+/// note | Not
 
 Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -239,9 +239,9 @@ Muhtemelen, bankada 🏦 işlerini hallederken aşkını 😍 yanında götürme
 
 Bu, çoğu web uygulaması için de geçerlidir.
 
-Çok fazla kullanıcı vardır; ancak sunucunuz, iyi olmayan bağlantılarından gelen istekleri 🕙 bekler.
+Çok fazla kullanıcı vardır; ancak sunucunuz, onların pek iyi olmayan bağlantıları üzerinden request'lerin gelmesini 🕙 bekler.
 
-Ve sonra yanıtların geri gelmesini yine 🕙 bekler.
+Ardından response'ların geri gelmesini yine 🕙 bekler.
 
 Bu "beklemeler" 🕙 mikrosaniyelerle ölçülür; ama hepsi toplandığında sonuçta oldukça fazla bekleme olur.
 

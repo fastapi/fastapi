@@ -54,7 +54,7 @@ checker(q="somequery")
 
 /// tip
 
-All this might seem contrived. And it might not be very clear how is it useful yet.
+All this might seem contrived. And it might not be very clear how it is useful yet.
 
 These examples are intentionally simple, but show how it all works.
 
@@ -98,7 +98,7 @@ For example, if you had a database session in a dependency with `yield`, the `St
 
 This behavior was reverted in 0.118.0, to make the exit code after `yield` be executed after the response is sent.
 
-/// info
+/// note
 
 As you will see below, this is very similar to the behavior before version 0.106.0, but with several improvements and bug fixes for corner cases.
 
@@ -112,7 +112,7 @@ For example, imagine you have code that uses a database session in a dependency 
 
 In this case, the database session would be held until the response is finished being sent, but if you don't use it, then it wouldn't be necessary to hold it.
 
-Here's how it could look like:
+Here's how it could look:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py *}
 

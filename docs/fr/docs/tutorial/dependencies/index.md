@@ -6,7 +6,7 @@ Il est conçu pour être très simple à utiliser, et pour faciliter l’intégr
 
 ## Qu’est-ce que « l’injection de dépendances » { #what-is-dependency-injection }
 
-L’**« injection de dépendances »** signifie, en programmation, qu’il existe un moyen pour votre code (dans ce cas, vos fonctions de chemins d’accès) de déclarer ce dont il a besoin pour fonctionner et utiliser : « dépendances ».
+L’**« injection de dépendances »** signifie, en programmation, qu’il existe un moyen pour votre code (dans ce cas, vos fonctions de chemin d’accès) de déclarer ce dont il a besoin pour fonctionner et utiliser : « dépendances ».
 
 Ensuite, ce système (dans ce cas **FastAPI**) se charge de faire tout le nécessaire pour fournir à votre code ces dépendances requises (« injecter » les dépendances).
 
@@ -37,7 +37,7 @@ C’est tout.
 
 **2 lignes**.
 
-Et elle a la même forme et structure que toutes vos fonctions de chemins d’accès.
+Et elle a la même forme et structure que toutes vos fonctions de chemin d’accès.
 
 Vous pouvez la considérer comme une fonction de chemin d’accès sans le « décorateur » (sans le `@app.get("/some-path")`).
 
@@ -51,7 +51,7 @@ Dans ce cas, cette dépendance attend :
 
 Puis elle retourne simplement un `dict` contenant ces valeurs.
 
-/// info
+/// note | Remarque
 
 FastAPI a ajouté la prise en charge de `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
@@ -79,7 +79,7 @@ Ce paramètre doit être quelque chose comme une fonction.
 
 Vous ne l’appelez pas directement (n’ajoutez pas de parenthèses à la fin), vous le passez simplement en paramètre à `Depends()`.
 
-Et cette fonction prend des paramètres de la même manière que les fonctions de chemins d’accès.
+Et cette fonction prend des paramètres de la même manière que les fonctions de chemin d’accès.
 
 /// tip | Astuce
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 De cette façon vous écrivez le code partagé une seule fois et **FastAPI** se charge de l’appeler pour vos chemins d’accès.
 
-/// check | Vérifications
+/// tip | Astuce
 
 Notez que vous n’avez pas à créer une classe spéciale et à la passer quelque part à **FastAPI** pour l’« enregistrer » ou quoi que ce soit de similaire.
 
@@ -142,11 +142,11 @@ Cela sera particulièrement utile lorsque vous l’utiliserez dans une **grande 
 
 ## Utiliser `async` ou non { #to-async-or-not-to-async }
 
-Comme les dépendances seront aussi appelées par **FastAPI** (tout comme vos fonctions de chemins d’accès), les mêmes règles s’appliquent lors de la définition de vos fonctions.
+Comme les dépendances seront aussi appelées par **FastAPI** (tout comme vos fonctions de chemin d’accès), les mêmes règles s’appliquent lors de la définition de vos fonctions.
 
 Vous pouvez utiliser `async def` ou un `def` normal.
 
-Et vous pouvez déclarer des dépendances avec `async def` à l’intérieur de fonctions de chemins d’accès `def` normales, ou des dépendances `def` à l’intérieur de fonctions de chemins d’accès `async def`, etc.
+Et vous pouvez déclarer des dépendances avec `async def` à l’intérieur de fonctions de chemin d’accès `def` normales, ou des dépendances `def` à l’intérieur de fonctions de chemin d’accès `async def`, etc.
 
 Peu importe. **FastAPI** saura quoi faire.
 
@@ -166,7 +166,7 @@ Ainsi, la documentation interactive contiendra aussi toutes les informations iss
 
 ## Utilisation simple { #simple-usage }
 
-Si vous y regardez de près, les fonctions de chemins d’accès sont déclarées pour être utilisées chaque fois qu’un « chemin » et une « opération » correspondent, puis **FastAPI** se charge d’appeler la fonction avec les bons paramètres, en extrayant les données de la requête.
+Si vous y regardez de près, les fonctions de chemin d’accès sont déclarées pour être utilisées chaque fois qu’un « chemin » et une « opération » correspondent, puis **FastAPI** se charge d’appeler la fonction avec les bons paramètres, en extrayant les données de la requête.
 
 En réalité, tous (ou la plupart) des frameworks web fonctionnent de cette manière.
 
@@ -184,7 +184,7 @@ D’autres termes courants pour cette même idée « d’injection de dépendanc
 
 ## Plug-ins **FastAPI** { #fastapi-plug-ins }
 
-Les intégrations et « plug-ins » peuvent être construits en utilisant le système d’**injection de dépendances**. Mais en réalité, il n’y a **pas besoin de créer des « plug-ins »**, car en utilisant des dépendances il est possible de déclarer un nombre infini d’intégrations et d’interactions qui deviennent disponibles pour vos fonctions de chemins d’accès.
+Les intégrations et « plug-ins » peuvent être construits en utilisant le système d’**injection de dépendances**. Mais en réalité, il n’y a **pas besoin de créer des « plug-ins »**, car en utilisant des dépendances il est possible de déclarer un nombre infini d’intégrations et d’interactions qui deviennent disponibles pour vos fonctions de chemin d’accès.
 
 Et les dépendances peuvent être créées de manière très simple et intuitive, ce qui vous permet d’importer juste les packages Python dont vous avez besoin, et de les intégrer à vos fonctions d’API en quelques lignes de code, *littéralement*.
 

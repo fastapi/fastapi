@@ -2,7 +2,7 @@
 
 Quando você precisar receber campos de formulário em vez de JSON, você pode usar `Form`.
 
-/// info | Informação
+/// note | Nota
 
 Para usar formulários, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
@@ -32,7 +32,7 @@ A <dfn title="especificação">especificação</dfn> exige que os campos sejam e
 
 Com `Form` você pode declarar as mesmas configurações que com `Body` (e `Query`, `Path`, `Cookie`), incluindo validação, exemplos, um alias (por exemplo, `user-name` em vez de `username`), etc.
 
-/// info | Informação
+/// note | Nota
 
 `Form` é uma classe que herda diretamente de `Body`.
 
@@ -56,7 +56,7 @@ Os dados dos formulários são normalmente codificados usando o "media type" `ap
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o [<abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [documentação web da <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
