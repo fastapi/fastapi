@@ -31,6 +31,8 @@ Use the following preferred translations when they apply in documentation prose:
 
 - request (HTTP): 请求
 - response (HTTP): 响应
+- HTTP header(s): 请求头
+- Header parameter(s): `Header` 参数
 - path operation: 路径操作
 - path operation function: 路径操作函数
 
