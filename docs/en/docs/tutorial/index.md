@@ -10,12 +10,12 @@ It is also built to work as a future reference so you can come back and see exac
 
 All the code blocks can be copied and used directly (they are actually tested Python files).
 
-To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev`:
+To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev` with `uv run`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -60,33 +60,55 @@ Using it in your editor is what really shows you the benefits of FastAPI, seeing
 
 ## Install FastAPI { #install-fastapi }
 
-The first step is to install FastAPI.
+The first step is to set up your project and add FastAPI.
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then **install FastAPI**:
+Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/), then create a project and add FastAPI:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv init awesome-project --bare
+$ cd awesome-project
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-/// note
+`uv add` creates the project's virtual environment in `.venv`, adds FastAPI to `pyproject.toml`, and creates `uv.lock` so the same package versions can be installed later.
 
-When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAPI Cloud](https://fastapicloud.com).
+/// details | What these commands do
 
-If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
+* `uv init`: create a new Python project.
+* `awesome-project`: create the project in a new directory with this name.
+* `--bare`: create only the minimal `pyproject.toml` file, without generating a sample `main.py`, `README.md`, or other files. You will create the application files yourself in the next steps of this tutorial.
 
-If you want to install the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+Then `cd awesome-project` enters the new project directory before adding FastAPI.
+
+`uv` will use a compatible Python version already installed on your system, or download one if needed.
+
+When you run `uv add`, it selects compatible versions of FastAPI and all the packages FastAPI depends on. It records the exact versions in `uv.lock`, making it possible to install the same package versions later on another computer or when deploying the application.
+
+Creating or updating this file is called [**locking** the project dependencies](https://docs.astral.sh/uv/concepts/projects/sync/). `uv` does this automatically when you add a package.
 
 ///
 
-/// tip
+/// details | FastAPI installation options
 
-FastAPI has an [official extension for VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (and Cursor), which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests (jump to definition from tests), and FastAPI Cloud deployment and logs, all from your editor.
+When you install with `uv add "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAPI Cloud](https://fastapicloud.com).
+
+If you don't want to have those optional dependencies, you can instead install `uv add fastapi`.
+
+If you want to install the standard dependencies but without the `fastapi-cloud-cli`, you can install with `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
+
+///
+
+/// details | Using `pip` instead
+
+If you prefer to manage a virtual environment and packages manually, create and activate a virtual environment and then install FastAPI with `pip install "fastapi[standard]"`.
+
+Read the [Virtual Environments guide](https://tiangolo.com/guides/virtual-environments/) for the detailed steps.
 
 ///
 

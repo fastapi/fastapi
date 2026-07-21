@@ -6,12 +6,18 @@ The simplest FastAPI file could look like this:
 
 Copy that to a file `main.py`.
 
+/// tip
+
+FastAPI has an [official extension for VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (and Cursor), which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests (jump to definition from tests), and FastAPI Cloud deployment and logs, all from your editor.
+
+///
+
 Run the live server:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -185,13 +191,13 @@ from backend.main import app
 You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Or, you can also pass the `--entrypoint` option to the `fastapi dev` command:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 But you would have to remember to pass the correct path\entrypoint every time you call the `fastapi` command.
@@ -205,7 +211,7 @@ You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapiclo
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
