@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update docs to use uv projects by default. PR [#16032](https://github.com/fastapi/fastapi/pull/16032) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Restructure FastAPI People and related pages. PR [#16015](https://github.com/fastapi/fastapi/pull/16015) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
