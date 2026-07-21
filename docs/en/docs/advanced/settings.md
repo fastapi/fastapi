@@ -6,9 +6,13 @@ Most of these settings are variable (can change), like database URLs. And many c
 
 For this reason it's common to provide them in environment variables that are read by the application.
 
+An **environment variable** (also known as an **env var**) is a value that lives outside of the Python code, in the operating system, and can be read by your application and other programs.
+
+You can create an environment variable for a command when you run it. You will see the platform-specific commands below.
+
 /// tip
 
-To understand environment variables you can read [Environment Variables](../environment-variables.md).
+Read the [Environment Variables guide](https://tiangolo.com/guides/environment-variables/) for a detailed explanation of how environment variables work.
 
 ///
 
@@ -24,12 +28,12 @@ Fortunately, Pydantic provides a great utility to handle these settings coming f
 
 ### Install `pydantic-settings` { #install-pydantic-settings }
 
-First, make sure you create your [virtual environment](../virtual-environments.md), activate it, and then install the `pydantic-settings` package:
+Add the `pydantic-settings` package to your project:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ It also comes included when you install the `all` extras with:
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Then you can use the new `settings` object in your application:
 
 Next, you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip
 
-To set multiple env vars for a single command just separate them with a space, and put them all before the command.
+In Bash, to set multiple env vars for a single command, separate them with a space and put them all before the command.
 
 ///
 
@@ -176,7 +200,7 @@ Pydantic has support for reading from these types of files using an external lib
 
 /// tip
 
-For this to work, you need to `pip install python-dotenv`.
+For this to work, add `python-dotenv` to your project with `uv add python-dotenv`.
 
 ///
 
