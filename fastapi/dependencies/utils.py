@@ -830,6 +830,33 @@ def request_params_to_args(
         # header name and the original field alias as processed to avoid
         # accepting the original alias as an extra header.
         processed_keys.add(get_validation_alias(field))
+        if isinstance(received_params, Headers):
+            if alias:
+                processed_keys.add(alias.lower())
+                processed_keys.add(alias.lower().replace("_", "-"))
+            val_alias = get_validation_alias(field)
+            if val_alias:
+                processed_keys.add(val_alias.lower())
+                processed_keys.add(val_alias.lower().replace("_", "-"))
+
+    if single_not_embedded_field and isinstance(received_params, Headers):
+        model_config = getattr(first_field.field_info.annotation, "model_config", {})
+        extra_mode = (
+            model_config.get("extra")
+            if isinstance(model_config, dict)
+            else getattr(model_config, "extra", None)
+        )
+        if extra_mode == "forbid":
+            processed_keys = processed_keys | {
+                "host",
+                "user-agent",
+                "accept",
+                "accept-encoding",
+                "connection",
+                "keep-alive",
+                "content-type",
+                "content-length",
+            }
 
     for key in received_params.keys():
         if key not in processed_keys:
