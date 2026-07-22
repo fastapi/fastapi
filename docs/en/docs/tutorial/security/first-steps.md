@@ -26,14 +26,14 @@ Copy the example in a file `main.py`:
 
 /// note
 
-The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
+The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `uv add "fastapi[standard]"` command.
 
-However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
+However, if you use the `uv add fastapi` command, the `python-multipart` package is not included by default.
 
-To install it manually, make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install it with:
+To install it manually, add it to your project with:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 This is because **OAuth2** uses "form data" for sending the `username` and `password`.
@@ -45,7 +45,7 @@ Run the example with:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

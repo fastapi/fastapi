@@ -8,7 +8,7 @@ For that, you can use the `WSGIMiddleware` and use it to wrap your WSGI applicat
 
 /// note
 
-This requires installing `a2wsgi` for example with `pip install a2wsgi`.
+This requires adding `a2wsgi` to your project, for example with `uv add a2wsgi`.
 
 ///
 

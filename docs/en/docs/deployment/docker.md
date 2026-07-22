@@ -105,36 +105,32 @@ This is what you would want to do in **most cases**, for example:
 
 ### Package Requirements { #package-requirements }
 
-You would normally have the **package requirements** for your application in some file.
+When you manage your project with `uv`, its direct dependencies are declared in `pyproject.toml` and the exact resolved versions are stored in `uv.lock`.
 
-It would depend mainly on the tool you use to **install** those requirements.
-
-The most common way to do it is to have a file `requirements.txt` with the package names and their versions, one per line.
-
-You would of course use the same ideas you read in [About FastAPI versions](versions.md) to set the ranges of versions.
-
-For example, your `requirements.txt` could look like:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-And you would normally install those package dependencies with `pip`, for example:
+You can add the packages your application needs with:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note
 
-There are other formats and tools to define and install package dependencies.
+The Dockerfile below uses `pip` inside the container. You can export the locked dependencies from your uv project to the `requirements.txt` format it expects:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+The generated `requirements.txt` is an export for the container build. Continue managing dependencies with `uv add` and regenerate it when `uv.lock` changes.
 
 ///
 

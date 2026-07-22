@@ -81,8 +81,6 @@ nav:
   - learn/index.md
   - python-types.md
   - async.md
-  - environment-variables.md
-  - virtual-environments.md
   - "":
     - tutorial/index.md
     - tutorial/first-steps.md

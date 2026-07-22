@@ -8,12 +8,12 @@ There are utilities to configure it easily that you can use directly in your **F
 
 ## Install dependencies { #install-dependencies }
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and install `jinja2`:
+Add `jinja2` to your project:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
