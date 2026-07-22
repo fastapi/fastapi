@@ -316,7 +316,7 @@ We can **read** a single hero:
 
 We can **update a hero**. For this we use an HTTP `PATCH` operation.
 
-And in the code, we get a `dict` with all the data sent by the client, **only the data sent by the client**, excluding any values that would be there just for being the default values. To do it we use `exclude_unset=True`. This is the main trick. 🪄
+And in the code, we get a `dict` with all the data sent by the client, **only the data sent by the client**, excluding any values that would be there just for being the default values. To do this we use `exclude_unset=True`. This is the main trick. 🪄
 
 Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with the data from `hero_data`.
 
