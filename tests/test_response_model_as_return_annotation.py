@@ -508,6 +508,37 @@ def test_invalid_response_model_field():
     assert "parameter response_model=None" in e.value.args[0]
 
 
+def test_iterable_return_type_response_model_inferred():
+    """
+    Test that non-generator endpoints with Iterable return type
+    correctly infer the response model from the return annotation.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/15093
+    """
+    from typing import Iterable as TypingIterable
+
+    app = FastAPI()
+
+    class ItemOut(BaseModel):
+        name: str
+        price: float | None = None
+
+    @app.get(
+        "/items-iterable",
+        response_model_exclude_none=True,
+    )
+    def get_items() -> TypingIterable[ItemOut]:
+        return [ItemOut(name="Foo", price=None), ItemOut(name="Bar", price=42.0)]
+
+    client = TestClient(app)
+
+    response = client.get("/items-iterable")
+    assert response.status_code == 200, response.text
+    data = response.json()
+    # response_model_exclude_none should exclude the None price field
+    assert data == [{"name": "Foo"}, {"name": "Bar", "price": 42.0}]
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text

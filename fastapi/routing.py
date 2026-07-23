@@ -987,18 +987,27 @@ def _populate_api_route_state(
         else:
             stream_item = get_stream_item_type(return_annotation)
             if stream_item is not None:
-                # Extract item type for JSONL or SSE streaming when
-                # response_class is DefaultPlaceholder (JSONL) or
-                # EventSourceResponse (SSE).
-                # ServerSentEvent is excluded: it's a transport
-                # wrapper, not a data model, so it shouldn't feed
-                # into validation or OpenAPI schema generation.
-                if (
-                    isinstance(response_class, DefaultPlaceholder)
-                    or lenient_issubclass(response_class, EventSourceResponse)
-                ) and not lenient_issubclass(stream_item, ServerSentEvent):
-                    route.stream_item_type = stream_item
-                response_model = None
+                # Only treat Iterable/AsyncIterable/etc. as a stream when the
+                # endpoint is an actual generator. Non-generator endpoints
+                # returning Iterable[T] should still have a response_model for
+                # proper serialization with response_model_* params.
+                if inspect.isasyncgenfunction(
+                    endpoint
+                ) or inspect.isgeneratorfunction(endpoint):
+                    # Extract item type for JSONL or SSE streaming when
+                    # response_class is DefaultPlaceholder (JSONL) or
+                    # EventSourceResponse (SSE).
+                    # ServerSentEvent is excluded: it's a transport
+                    # wrapper, not a data model, so it shouldn't feed
+                    # into validation or OpenAPI schema generation.
+                    if (
+                        isinstance(response_class, DefaultPlaceholder)
+                        or lenient_issubclass(response_class, EventSourceResponse)
+                    ) and not lenient_issubclass(stream_item, ServerSentEvent):
+                        route.stream_item_type = stream_item
+                    response_model = None
+                else:
+                    response_model = return_annotation
             else:
                 response_model = return_annotation
     route.response_model = response_model
