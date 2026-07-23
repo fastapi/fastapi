@@ -68,6 +68,8 @@ def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
             if field_annotation_is_sequence(arg):
                 return True
         return False
+    if origin is Annotated:
+        return field_annotation_is_sequence(get_args(annotation)[0])
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
     )
@@ -117,6 +119,8 @@ def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
             elif not field_annotation_is_scalar(arg):
                 return False
         return at_least_one_scalar_sequence
+    if origin is Annotated:
+        return field_annotation_is_scalar_sequence(get_args(annotation)[0])
     return field_annotation_is_sequence(annotation) and all(
         field_annotation_is_scalar(sub_annotation)
         for sub_annotation in get_args(annotation)
@@ -154,6 +158,8 @@ def is_bytes_sequence_annotation(annotation: Any) -> bool:
                 at_least_one = True
                 continue
         return at_least_one
+    if origin is Annotated:
+        return is_bytes_sequence_annotation(get_args(annotation)[0])
     return field_annotation_is_sequence(annotation) and all(
         is_bytes_or_nonable_bytes_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
@@ -169,6 +175,8 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
                 at_least_one = True
                 continue
         return at_least_one
+    if origin is Annotated:
+        return is_uploadfile_sequence_annotation(get_args(annotation)[0])
     return field_annotation_is_sequence(annotation) and all(
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)

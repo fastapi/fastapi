@@ -118,6 +118,39 @@ def test_nested_router():
     assert response.json() == {"foo": "bar"}
 
 
+def test_nested_annotated_sequence_in_query():
+    """
+    Test that nested Annotated types with sequences work correctly.
+
+    Regression test for https://github.com/fastapi/fastapi/issues/14874
+    """
+    from pydantic import Field
+
+    MaxSizedSet = Annotated[set[str], Field(max_length=3)]
+
+    app = FastAPI()
+
+    @app.get("/")
+    def read_root(foo: Annotated[MaxSizedSet | None, Query()] = None):
+        return {"foo": foo}
+
+    client = TestClient(app)
+
+    # No query param should return None
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"foo": None}
+
+    # Valid values should be returned (order not guaranteed for sets)
+    response = client.get("/", params={"foo": ["bar", "baz"]})
+    assert response.status_code == 200
+    assert set(response.json()["foo"]) == {"bar", "baz"}
+
+    # Exceeding max_length should fail validation
+    response = client.get("/", params={"foo": ["a", "b", "c", "d"]})
+    assert response.status_code == 422
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
