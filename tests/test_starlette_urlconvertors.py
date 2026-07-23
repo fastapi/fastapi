@@ -98,7 +98,10 @@ def test_implicit_path_param_with_converters():
 
     # Test url_path_for with implicit converters
     assert app_implicit.url_path_for("implicit_int_convertor", param=5) == "/int/5"
-    assert app_implicit.url_path_for("implicit_float_convertor", param=25.5) == "/float/25.5"
+    assert (
+        app_implicit.url_path_for("implicit_float_convertor", param=25.5)
+        == "/float/25.5"
+    )
     assert (
         app_implicit.url_path_for("implicit_path_convertor", param="some/example")
         == "/path/some/example"
