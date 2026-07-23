@@ -81,8 +81,6 @@ nav:
   - learn/index.md
   - python-types.md
   - async.md
-  - environment-variables.md
-  - virtual-environments.md
   - "":
     - tutorial/index.md
     - tutorial/first-steps.md
@@ -223,9 +221,9 @@ nav:
   - reference/staticfiles.md
   - reference/templating.md
   - reference/testclient.md
-- fastapi-people.md
 - "":
   - resources/index.md
+  - fastapi-people.md
   - help-fastapi.md
   - contributing.md
   - translations.md

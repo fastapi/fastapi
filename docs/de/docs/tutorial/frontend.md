@@ -126,6 +126,12 @@ In diesem Beispiel werden Frontend-Pfade unter `/app` bereitgestellt.
 
 Alle regulären *Pfadoperationen* in der App haben weiterhin Vorrang, auch in anderen Routern.
 
+## Abhängigkeiten und Middleware { #dependencies-and-middleware }
+
+Frontend-Responses laufen innerhalb der normalen **FastAPI**-Anwendung, daher gilt HTTP-Middleware für sie.
+
+Abhängigkeiten aus der App, aus einem `APIRouter` und aus `include_router()` gelten ebenfalls für Frontend-Responses. Das kann nützlich sein, um ein Frontend mit Cookie-Authentifizierung oder Ähnlichem zu schützen.
+
 ## Nur statischer Build-Output { #static-build-output-only }
 
 `app.frontend()` liefert Dateien aus, die bereits von Ihrem Frontend-Build generiert wurden.

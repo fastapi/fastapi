@@ -52,7 +52,7 @@ For that, use `fallback="index.html"`:
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI** uses this fallback only for `GET` and `HEAD` requests that look like browser navigation. Missing files like JavaScript, CSS, and images still return `404`.
+**FastAPI** uses this fallback only for `GET` and `HEAD` requests that explicitly accept HTML with `Accept: text/html` or `Accept: application/xhtml+xml`, as browser navigation requests normally do. Missing files like JavaScript, CSS, and images still return `404`.
 
 Requests with other methods, like `POST` or `PUT`, to paths that only match the frontend fallback also return `404`. Regular **FastAPI** *path operations* still have higher priority than frontend routes.
 
