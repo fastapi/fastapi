@@ -515,7 +515,7 @@ def test_iterable_return_type_response_model_inferred():
 
     Regression test for https://github.com/fastapi/fastapi/issues/15093
     """
-    from typing import Iterable as TypingIterable
+    from collections.abc import Iterable as TypingIterable
 
     app = FastAPI()
 

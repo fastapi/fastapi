@@ -991,9 +991,9 @@ def _populate_api_route_state(
                 # endpoint is an actual generator. Non-generator endpoints
                 # returning Iterable[T] should still have a response_model for
                 # proper serialization with response_model_* params.
-                if inspect.isasyncgenfunction(
+                if inspect.isasyncgenfunction(endpoint) or inspect.isgeneratorfunction(
                     endpoint
-                ) or inspect.isgeneratorfunction(endpoint):
+                ):
                     # Extract item type for JSONL or SSE streaming when
                     # response_class is DefaultPlaceholder (JSONL) or
                     # EventSourceResponse (SSE).
