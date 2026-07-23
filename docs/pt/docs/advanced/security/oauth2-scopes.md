@@ -2,9 +2,9 @@
 
 Você pode utilizar escopos do OAuth2 diretamente com o **FastAPI**, eles são integrados para funcionar perfeitamente.
 
-Isso permitiria que você tivesse um sistema de permissionamento mais refinado, seguindo o padrão do OAuth2 integrado na sua aplicação OpenAPI (e as documentações da API).
+Isso permitiria que você tivesse um sistema de permissionamento mais refinado, seguindo o padrão OAuth2, integrado na sua aplicação OpenAPI (e a documentação da API).
 
-OAuth2 com escopos é o mecanismo utilizado por muitos provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
+OAuth2 com escopos é o mecanismo utilizado por muitos grandes provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
 
 Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, X (Twitter), aquela aplicação está utilizando o OAuth2 com escopos.
 
@@ -34,7 +34,7 @@ O conteúdo de cada uma dessas strings pode ter qualquer formato, mas não devem
 
 Estes escopos representam "permissões".
 
-No OpenAPI (e.g. os documentos da API), você pode definir "esquemas de segurança".
+No OpenAPI (por exemplo, a documentação da API), você pode definir "esquemas de segurança".
 
 Quando um desses esquemas de segurança utiliza OAuth2, você pode também declarar e utilizar escopos.
 
@@ -42,11 +42,11 @@ Cada "escopo" é apenas uma string (sem espaços).
 
 Eles são normalmente utilizados para declarar permissões de segurança específicas, como por exemplo:
 
-* `users:read` or `users:write` são exemplos comuns.
+* `users:read` ou `users:write` são exemplos comuns.
 * `instagram_basic` é utilizado pelo Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` é utilizado pelo Google.
 
-/// info | Informação
+/// note | Nota
 
 No OAuth2, um "escopo" é apenas uma string que declara uma permissão específica necessária.
 
@@ -60,7 +60,7 @@ Para o OAuth2, eles são apenas strings.
 
 ## Visão global { #global-view }
 
-Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - Guia de Usuário** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md). Agora utilizando escopos OAuth2:
+Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos no **Tutorial - Guia de Usuário** principal para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md). Agora utilizando escopos OAuth2:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -74,7 +74,7 @@ O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descr
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 
-Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você se autenticar/autorizar.
+Pelo motivo de estarmos declarando estes escopos, eles aparecerão na documentação da API quando você se autenticar/autorizar.
 
 E você poderá selecionar quais escopos você deseja dar acesso: `me` e `items`.
 
@@ -108,7 +108,7 @@ Para isso, nós importamos e utilizamos `Security` de `fastapi`.
 
 Você pode utilizar `Security` para declarar dependências (assim como `Depends`), porém o `Security` também recebe o parâmetro `scopes` com uma lista de escopos (strings).
 
-Neste caso, nós passamos a função `get_current_active_user` como dependência para `Security` (da mesma forma que nós faríamos com `Depends`).
+Neste caso, nós passamos a função de dependência `get_current_active_user` para `Security` (da mesma forma que nós faríamos com `Depends`).
 
 Mas nós também passamos uma `list` de escopos, neste caso com apenas um escopo: `items` (poderia ter mais).
 
@@ -142,7 +142,7 @@ Agora atualize a dependência `get_current_user`.
 
 Este é o usado pelas dependências acima.
 
-Aqui é onde estamos utilizando o mesmo esquema OAuth2 que nós declaramos antes, declarando-o como uma dependência: `oauth2_scheme`.
+Aqui é onde estamos utilizando o mesmo esquema OAuth2 que nós criamos antes, declarando-o como uma dependência: `oauth2_scheme`.
 
 Porque esta função de dependência não possui nenhum requerimento de escopo, nós podemos utilizar `Depends` com o `oauth2_scheme`. Nós não precisamos utilizar `Security` quando nós não precisamos especificar escopos de segurança.
 
@@ -235,7 +235,7 @@ Todos eles serão validados independentemente para cada *operação de rota*.
 
 ## Verifique { #check-it }
 
-Se você abrir os documentos da API, você pode autenticar e especificar quais escopos você quer autorizar.
+Se você abrir a documentação da API, você pode autenticar e especificar quais escopos você quer autorizar.
 
 <img src="/img/tutorial/security/image11.png">
 
@@ -249,11 +249,11 @@ Isso é o que aconteceria se uma aplicação terceira que tentou acessar uma des
 
 Neste exemplo nós estamos utilizando o fluxo de senha do OAuth2.
 
-Isso é apropriado quando nós estamos autenticando em nossa própria aplicação, provavelmente com o nosso próprio "*frontend*".
+Isso é apropriado quando nós estamos autenticando em nossa própria aplicação, provavelmente com o nosso próprio frontend.
 
 Porque nós podemos confiar nele para receber o `username` e o `password`, pois nós controlamos isso.
 
-Mas se nós estamos construindo uma aplicação OAuth2 que outros poderiam conectar (i.e., se você está construindo um provedor de autenticação equivalente ao Facebook, Google, GitHub, etc.) você deveria utilizar um dos outros fluxos.
+Mas se nós estamos construindo uma aplicação OAuth2 que outros poderiam conectar (ou seja, se você está construindo um provedor de autenticação equivalente ao Facebook, Google, GitHub, etc.) você deveria utilizar um dos outros fluxos.
 
 O mais comum é o fluxo implícito.
 

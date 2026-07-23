@@ -44,7 +44,7 @@ Es ist ein sehr einfaches Programm.
 
 Aber nun stellen Sie sich vor, Sie würden es selbst schreiben.
 
-Irgendwann sind die Funktions-Parameter fertig, Sie starten mit der Definition des Körpers ...
+Irgendwann beginnen Sie, die Funktion zu definieren, und haben die Parameter bereit ...
 
 Aber dann müssen Sie „diese Methode aufrufen, die den ersten Buchstaben in Großbuchstaben umwandelt“.
 
@@ -52,7 +52,7 @@ War es `upper`? War es `uppercase`? `first_uppercase`? `capitalize`?
 
 Dann versuchen Sie es mit dem langjährigen Freund des Programmierers, der Editor-Autovervollständigung.
 
-Sie geben den ersten Parameter der Funktion ein, `first_name`, dann einen Punkt (`.`) und drücken `Strg+Leertaste`, um die Vervollständigung auszulösen.
+Sie geben den ersten Parameter der Funktion ein, `first_name`, dann einen Punkt (`.`) und drücken `Ctrl+Space`, um die Vervollständigung auszulösen.
 
 Aber leider erhalten Sie nichts Nützliches:
 
@@ -62,7 +62,7 @@ Aber leider erhalten Sie nichts Nützliches:
 
 Lassen Sie uns eine einzelne Zeile aus der vorherigen Version ändern.
 
-Wir ändern den folgenden Teil, die Parameter der Funktion, von:
+Wir ändern genau dieses Fragment, die Parameter der Funktion, von:
 
 ```Python
     first_name, last_name
@@ -94,7 +94,7 @@ Und das Hinzufügen von Typhinweisen ändert normalerweise nichts an dem, was oh
 
 Aber jetzt stellen Sie sich vor, Sie sind wieder mitten in der Erstellung dieser Funktion, aber mit Typhinweisen.
 
-An derselben Stelle versuchen Sie, die Autovervollständigung mit „Strg+Leertaste“ auszulösen, und Sie sehen:
+An derselben Stelle versuchen Sie, die Autovervollständigung mit `Ctrl+Space` auszulösen, und Sie sehen:
 
 <img src="/img/python-types/image02.png">
 
@@ -116,7 +116,7 @@ Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mi
 
 {* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
 
-## Deklarieren von Typen { #declaring-types }
+## Typen deklarieren { #declaring-types }
 
 Sie haben gerade den Haupt-Einsatzort für die Deklaration von Typhinweisen gesehen. Als Funktionsparameter.
 
@@ -180,7 +180,7 @@ In diesem Fall ist `str` der Typ-Parameter, der an `list` übergeben wird.
 
 ///
 
-Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist ein String – `str`.
+Das bedeutet: „Die Variable `items` ist eine `list`, und jedes der Elemente in dieser Liste ist ein `str`“.
 
 Auf diese Weise kann Ihr Editor Sie auch bei der Bearbeitung von Einträgen aus der Liste unterstützen:
 
@@ -263,9 +263,9 @@ Und wiederum bekommen Sie die volle Editor-Unterstützung:
 
 <img src="/img/python-types/image06.png">
 
-Beachten Sie, das bedeutet: „`one_person` ist eine **Instanz** der Klasse `Person`“.
+Beachten Sie, dass das bedeutet: „`one_person` ist eine **Instanz** der Klasse `Person`“.
 
-Es bedeutet nicht: „`one_person` ist die **Klasse** genannt `Person`“.
+Es bedeutet nicht: „`one_person` ist die **Klasse** namens `Person`“.
 
 ## Pydantic-Modelle { #pydantic-models }
 
@@ -279,7 +279,7 @@ Dann erzeugen Sie eine Instanz dieser Klasse mit einigen Werten, und Pydantic va
 
 Und Sie erhalten volle Editor-Unterstützung für dieses Objekt.
 
-Ein Beispiel aus der offiziellen Pydantic Dokumentation:
+Ein Beispiel aus der offiziellen Pydantic-Dokumentation:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
@@ -301,11 +301,11 @@ Sie können `Annotated` von `typing` importieren.
 
 {* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
 
-Python selbst macht nichts mit `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
+Python selbst macht nichts mit diesem `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
 
-Aber Sie können `Annotated` nutzen, um **FastAPI** mit Metadaten zu versorgen, die ihm sagen, wie sich Ihre Anwendung verhalten soll.
+Aber Sie können diesen Platz in `Annotated` nutzen, um **FastAPI** zusätzliche Metadaten darüber bereitzustellen, wie sich Ihre Anwendung verhalten soll.
 
-Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind Metadaten für andere Tools.
+Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind nur Metadaten für andere Tools.
 
 Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standard-Python ist. 😎
 
@@ -335,7 +335,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 * **Daten zu validieren**: aus jedem Request:
     * **Automatische Fehler** generieren, die an den Client zurückgegeben werden, wenn die Daten ungültig sind.
 * Die API mit OpenAPI zu **dokumentieren**:
-    * Die dann von den Benutzeroberflächen der automatisch generierten interaktiven Dokumentation verwendet wird.
+    * die dann von den Benutzeroberflächen der automatisch generierten interaktiven Dokumentation verwendet wird.
 
 Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial – Benutzerhandbuch](tutorial/index.md).
 

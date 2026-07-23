@@ -34,7 +34,7 @@ Bu response `dict`'lerinin her birinde, `response_model`'e benzer şekilde bir P
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 `model` anahtarı OpenAPI'nin bir parçası değildir.
 
@@ -183,7 +183,7 @@ Görseli `FileResponse` kullanarak doğrudan döndürmeniz gerektiğine dikkat e
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 `responses` parametrenizde açıkça farklı bir media type belirtmediğiniz sürece FastAPI, response'un ana response class'ı ile aynı media type'a sahip olduğunu varsayar (varsayılan `application/json`).
 

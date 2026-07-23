@@ -8,7 +8,7 @@
 
 ## 使用 `TestClient` { #using-testclient }
 
-/// info | 信息
+/// note | 注意
 
 要使用 `TestClient`，先要安装 [`httpx`](https://www.python-httpx.org)。
 
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | 提示
 
-除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md) 。
+除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下[异步测试](../advanced/async-tests.md)。
 
 ///
 
@@ -60,7 +60,7 @@ $ pip install httpx
 
 在实际应用中，你可能会把你的测试放在另一个文件里。
 
-您的**FastAPI**应用程序也可能由一些文件/模块组成等等。
+你的**FastAPI**应用程序也可能由一些文件/模块组成等等。
 
 ### **FastAPI** app 文件 { #fastapi-app-file }
 
@@ -80,7 +80,7 @@ $ pip install httpx
 
 ### 测试文件 { #testing-file }
 
-然后你会有一个包含测试的文件 `test_main.py` 。app可以像Python包那样存在（一样是目录，但有个 `__init__.py` 文件）：
+然后你会有一个包含测试的文件 `test_main.py` 。它可以位于同一个 Python 包中（一样是目录，但有个 `__init__.py` 文件）：
 
 ``` hl_lines="5"
 .
@@ -93,6 +93,7 @@ $ pip install httpx
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+
 
 ...然后测试代码和之前一样的。
 
@@ -114,19 +115,20 @@ $ pip install httpx
 
 假设现在包含**FastAPI** app的文件 `main.py` 有些其他**路径操作**。
 
-有个 `GET` 操作会返回错误。
+有个 `GET` 操作可能返回一个错误。
 
-有个 `POST` 操作会返回一些错误。
+有个 `POST` 操作可能返回多个错误。
 
-所有*路径操作* 都需要一个`X-Token` 头。
+两个*路径操作* 都需要一个`X-Token` 头。
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### 扩展后的测试文件 { #extended-testing-file }
 
-然后您可以使用扩展后的测试更新`test_main.py`：
+然后你可以使用扩展后的测试更新`test_main.py`：
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+
 
 每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx` 做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
 
@@ -142,11 +144,11 @@ $ pip install httpx
 
 关于如何传数据给后端的更多信息（使用 `httpx` 或 `TestClient`），请查阅 [HTTPX 文档](https://www.python-httpx.org)。
 
-/// info | 信息
+/// note | 注意
 
 注意 `TestClient` 接收可以被转化为JSON的数据，而不是Pydantic模型。
 
-如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON Compatible Encoder](encoder.md)介绍的`jsonable_encoder` 。
+如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON 兼容编码器](encoder.md)介绍的`jsonable_encoder` 。
 
 ///
 
@@ -166,7 +168,7 @@ $ pip install pytest
 
 </div>
 
-他会自动检测文件和测试，执行测试，然后向你报告结果。
+它会自动检测文件和测试，执行测试，然后向你报告结果。
 
 执行测试：
 

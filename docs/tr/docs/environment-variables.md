@@ -19,10 +19,10 @@ Python’a ihtiyaç duymadan, **shell (terminal)** içinde ortam değişkenleri 
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// MY_NAME adlı bir env var'ı şöyle oluşturabilirsiniz
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// Sonra bunu diğer programlarla şöyle kullanabilirsiniz
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// MY_NAME adlı bir env var oluşturun
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// Bunu diğer programlarla şöyle kullanın
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -78,20 +78,20 @@ Sonrasında bu Python programını çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Burada env var'ı henüz ayarlamıyoruz
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Env var'ı ayarlamadığımız için varsayılan değeri alırız
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Ama önce bir ortam değişkeni oluşturursak
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// Sonra programı tekrar çağırırsak
 $ python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Burada env var'ı henüz ayarlamıyoruz
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Env var'ı ayarlamadığımız için varsayılan değeri alırız
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Ama önce bir ortam değişkeni oluşturursak
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// Sonra programı tekrar çağırırsak
 $ python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 ```
@@ -136,14 +136,14 @@ Bunu yapmak için, program komutunun hemen öncesinde ve aynı satırda tanımla
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// Bu program çağrısı için aynı satırda MY_NAME adlı bir env var oluşturun
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// Artık ortam değişkenini okuyabilir
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// Sonrasında env var artık mevcut değildir
 $ python main.py
 
 Hello World from Python

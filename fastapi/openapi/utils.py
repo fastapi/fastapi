@@ -479,26 +479,22 @@ def get_openapi_path(
 
 
 def _get_api_route_for_openapi(
-    route: BaseRoute, route_context: routing._EffectiveRouteContext | None
+    route_context: routing.RouteContext,
 ) -> routing._APIRouteLike | None:
-    if route_context is not None and isinstance(
-        route_context.original_route, routing.APIRoute
-    ):
+    if isinstance(route_context.original_route, routing.APIRoute):
         return cast(routing._APIRouteLike, route_context)
-    if isinstance(route, routing.APIRoute):
-        return cast(routing._APIRouteLike, route)
     return None
 
 
 def get_fields_from_routes(
-    routes: Sequence[BaseRoute],
+    routes: Sequence[BaseRoute | routing.RouteContext],
 ) -> list[ModelField]:
     body_fields_from_routes: list[ModelField] = []
     responses_from_routes: list[ModelField] = []
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
-    for route, route_context in routing._iter_routes_with_context(routes):
-        api_route = _get_api_route_for_openapi(route, route_context)
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
         if api_route is None:
             continue
         if api_route.include_in_schema:
@@ -531,8 +527,8 @@ def get_openapi(
     openapi_version: str = "3.1.0",
     summary: str | None = None,
     description: str | None = None,
-    routes: Sequence[BaseRoute],
-    webhooks: Sequence[BaseRoute] | None = None,
+    routes: Sequence[BaseRoute | routing.RouteContext],
+    webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
     tags: list[dict[str, Any]] | None = None,
     servers: list[dict[str, str | Any]] | None = None,
     terms_of_service: str | None = None,
@@ -567,8 +563,8 @@ def get_openapi(
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    for route, route_context in routing._iter_routes_with_context(routes):
-        api_route = _get_api_route_for_openapi(route, route_context)
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
         if api_route is not None:
             result = get_openapi_path(
                 route=api_route,
@@ -587,8 +583,8 @@ def get_openapi(
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
-    for webhook, webhook_context in routing._iter_routes_with_context(webhooks or []):
-        api_webhook = _get_api_route_for_openapi(webhook, webhook_context)
+    for webhook_context in routing.iter_route_contexts(webhooks or []):
+        api_webhook = _get_api_route_for_openapi(webhook_context)
         if api_webhook is not None:
             result = get_openapi_path(
                 route=api_webhook,

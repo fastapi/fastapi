@@ -81,7 +81,7 @@ http://localhost:8000/v1/agents/multivac
 
 이 설정을 사용하면 `Content-Type` 헤더가 없는 요청도 본문이 JSON으로 파싱됩니다. 이는 이전 버전의 FastAPI와 동일한 동작입니다.
 
-/// info | 정보
+/// note | 참고
 
 이 동작과 설정은 FastAPI 0.132.0에 추가되었습니다.
 

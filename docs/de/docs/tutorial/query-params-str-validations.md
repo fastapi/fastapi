@@ -29,7 +29,7 @@ Um dies zu erreichen, importieren Sie zuerst:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Info
+/// note | Hinweis
 
 FastAPI hat Unterstützung für `Annotated` hinzugefügt (und begonnen, es zu empfehlen) in der Version 0.95.0.
 
@@ -81,7 +81,7 @@ FastAPI wird nun:
 
 * Die Daten **validieren**, um sicherzustellen, dass die Länge maximal 50 Zeichen beträgt
 * Einen **klaren Fehler** für den Client anzeigen, wenn die Daten ungültig sind
-* Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatischen Dokumentation** angezeigt wird)
+* Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatischen Dokumentationsoberfläche** angezeigt wird)
 
 ## Alternative (alt): `Query` als Defaultwert { #alternative-old-query-as-the-default-value }
 
@@ -179,7 +179,7 @@ Dieses spezielle Suchmuster im regulären Ausdruck überprüft, dass der erhalte
 
 Wenn Sie sich mit all diesen **„regulärer Ausdruck“**-Ideen verloren fühlen, keine Sorge. Sie sind ein schwieriges Thema für viele Menschen. Sie können noch viele Dinge tun, ohne reguläre Ausdrücke direkt zu benötigen.
 
-Aber nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, wenn Sie sie brauchen.
+Nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, wenn Sie sie brauchen.
 
 ## Defaultwerte { #default-values }
 
@@ -276,7 +276,7 @@ Wenn Sie zu:
 http://localhost:8000/items/
 ```
 
-gehen, wird der Default für `q` sein: `["foo", "bar"]`, und Ihre Response wird sein:
+gehen, wird der Defaultwert für `q` sein: `["foo", "bar"]`, und Ihre Response wird sein:
 
 ```JSON
 {
@@ -311,7 +311,7 @@ Diese Informationen werden in das generierte OpenAPI aufgenommen und von den Dok
 
 Beachten Sie, dass verschiedene Tools möglicherweise unterschiedliche Unterstützungslevels für OpenAPI haben.
 
-Einige davon könnten noch nicht alle zusätzlichen Informationen anzuzeigen, die Sie erklärten, obwohl in den meisten Fällen die fehlende Funktionalität bereits in der Entwicklung geplant ist.
+Einige davon könnten noch nicht alle zusätzlichen Informationen anzeigen, die Sie deklariert haben, obwohl in den meisten Fällen die fehlende Funktionalität bereits in der Entwicklung geplant ist.
 
 ///
 
@@ -335,7 +335,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Aber `item-query` ist kein gültiger Name für eine Variable in Python.
 
-Der am ähnlichsten wäre `item_query`.
+Am ähnlichsten wäre `item_query`.
 
 Aber Sie benötigen dennoch, dass er genau `item-query` ist ...
 
@@ -347,7 +347,7 @@ Dann können Sie ein `alias` deklarieren, und dieser Alias wird verwendet, um de
 
 Nehmen wir an, Ihnen gefällt dieser Parameter nicht mehr.
 
-Sie müssen ihn eine Weile dort belassen, da es Clients gibt, die ihn verwenden, aber Sie möchten, dass die Dokumentation ihn klar als <dfn title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</dfn> anzeigt.
+Sie müssen ihn eine Weile dort belassen, da es Clients gibt, die ihn verwenden, aber Sie möchten, dass die Dokumentation ihn klar als <dfn title="obsolet, es wird empfohlen, es nicht zu verwenden">deprecatet</dfn> anzeigt.
 
 Dann übergeben Sie den Parameter `deprecated=True` an `Query`:
 
@@ -381,7 +381,7 @@ Zum Beispiel überprüft dieser benutzerdefinierte Validator, ob die Artikel-ID 
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Info
+/// note | Hinweis
 
 Dies ist verfügbar seit Pydantic Version 2 oder höher. 😎
 
@@ -395,7 +395,7 @@ Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit d
 
 ///
 
-### Dieses Codebeispiel verstehen { #understand-that-code }
+### Diesen Code verstehen { #understand-that-code }
 
 Der wichtige Punkt ist einfach die Verwendung von **`AfterValidator` mit einer Funktion innerhalb von `Annotated`**. Fühlen Sie sich frei, diesen Teil zu überspringen. 🤸
 
@@ -403,9 +403,9 @@ Der wichtige Punkt ist einfach die Verwendung von **`AfterValidator` mit einer F
 
 Aber wenn Sie neugierig auf dieses spezielle Codebeispiel sind und immer noch Spaß haben, hier sind einige zusätzliche Details.
 
-#### Zeichenkette mit `value.startswith()` { #string-with-value-startswith }
+#### String mit `value.startswith()` { #string-with-value-startswith }
 
-Haben Sie bemerkt? Eine Zeichenkette mit `value.startswith()` kann ein Tuple übernehmen, und es wird jeden Wert im Tuple überprüfen:
+Haben Sie bemerkt? Ein String mit `value.startswith()` kann ein Tuple übernehmen, und es wird jeden Wert im Tuple überprüfen:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 

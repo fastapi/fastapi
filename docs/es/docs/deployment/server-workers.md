@@ -17,7 +17,7 @@ Como viste en el capítulo anterior sobre [Conceptos de Despliegue](concepts.md)
 
 Aquí te mostraré cómo usar **Uvicorn** con **worker processes** usando el comando `fastapi` o el comando `uvicorn` directamente.
 
-/// info | Información
+/// note | Nota
 
 Si estás usando contenedores, por ejemplo con Docker o Kubernetes, te contaré más sobre eso en el próximo capítulo: [FastAPI en Contenedores - Docker](docker.md).
 

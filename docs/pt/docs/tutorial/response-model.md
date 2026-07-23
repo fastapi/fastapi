@@ -72,7 +72,7 @@ Aqui estamos declarando um modelo `UserIn`, ele conterá uma senha em texto simp
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Informação
+/// note | Nota
 
 Para usar `EmailStr`, primeiro instale [`email-validator`](https://github.com/JoshData/python-email-validator).
 
@@ -251,7 +251,7 @@ Então, se você enviar uma solicitação para essa *operação de rota* para o 
 }
 ```
 
-/// info | Informação
+/// note | Nota
 
 Você também pode usar:
 

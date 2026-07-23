@@ -67,4 +67,4 @@ presets: [
 
 These are **JavaScript** objects, not strings, so you can't pass them from Python code directly.
 
-If you need to use JavaScript-only configurations like those, you can use one of the methods above. Override all the Swagger UI *path operation* and manually write any JavaScript you need.
+If you need to use JavaScript-only configurations like those, you can use one of the methods above. Override the whole Swagger UI *path operation* and manually write any JavaScript you need.

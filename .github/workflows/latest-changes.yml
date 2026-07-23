@@ -28,8 +28,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
+          ref: ${{ github.event.repository.default_branch }}
           # To allow latest-changes to commit to the main branch
           token: ${{ secrets.FASTAPI_LATEST_CHANGES }}  # zizmor: ignore[secrets-outside-env]
           persist-credentials: true # required by tiangolo/latest-changes
@@ -39,7 +40,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-      - uses: tiangolo/latest-changes@eb3f6e7ff0073896ecb561e774a121de9418fa06 # 0.5.0
+      - uses: tiangolo/latest-changes@c9b73efbc8992ef1a401e4235ea307a8ca8a724b # 0.6.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md

@@ -1,16 +1,16 @@
 # 安全性 - 入門 { #security-first-steps }
 
-想像你有一個部署在某個網域的後端 API。
+想像你有一個部署在某個網域的 **後端** API。
 
-還有一個前端在另一個網域，或同一網域的不同路徑（或是行動應用程式）。
+還有一個 **前端** 在另一個網域，或同一網域的不同路徑（或是行動應用程式）。
 
-你希望前端能用使用者名稱與密碼向後端進行身分驗證。
+你希望前端能用**使用者名稱**與**密碼**向後端進行身分驗證。
 
-我們可以用 OAuth2 搭配 FastAPI 來實作。
+我們可以用 **OAuth2** 搭配 **FastAPI** 來實作。
 
 但不必通讀整份冗長規格只為了找出你需要的幾個重點。
 
-就用 FastAPI 提供的工具處理安全性。
+就用 **FastAPI** 提供的工具處理安全性。
 
 ## 看起來如何 { #how-it-looks }
 
@@ -24,9 +24,9 @@
 
 ## 執行 { #run-it }
 
-/// info
+/// note
 
-當你使用 `pip install "fastapi[standard]"` 指令安裝時，[`python-multipart`](https://github.com/Kludex/python-multipart) 套件會隨 FastAPI 自動安裝。
+當你使用 `pip install "fastapi[standard]"` 指令安裝時，[`python-multipart`](https://github.com/Kludex/python-multipart) 套件會隨 **FastAPI** 自動安裝。
 
 不過若只執行 `pip install fastapi`，預設不會包含 `python-multipart`。
 
@@ -36,7 +36,7 @@
 $ pip install python-multipart
 ```
 
-因為 OAuth2 會以「form data」傳送 `username` 與 `password`。
+因為 **OAuth2** 會以「form data」傳送 `username` 與 `password`。
 
 ///
 
@@ -60,11 +60,11 @@ $ fastapi dev
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 按鈕！
+/// tip | Authorize 按鈕！
 
-你會看到一個新的「Authorize」按鈕。
+你已經有一個亮眼的全新「Authorize」按鈕。
 
-而你的「路徑操作」右上角也會出現一個小鎖頭可以點擊。
+而你的 *路徑操作* 右上角也會出現一個小鎖頭可以點擊。
 
 ///
 
@@ -94,31 +94,31 @@ $ fastapi dev
 
 OAuth2 的設計讓後端或 API 可以獨立於執行使用者驗證的伺服器。
 
-但在這個例子中，同一個 FastAPI 應用會同時處理 API 與驗證。
+但在這個例子中，同一個 **FastAPI** 應用會同時處理 API 與驗證。
 
 簡化來看流程如下：
 
 - 使用者在前端輸入 `username` 與 `password`，按下 `Enter`。
 - 前端（在使用者的瀏覽器中執行）把 `username` 與 `password` 傳到我們 API 的特定 URL（在程式中宣告為 `tokenUrl="token"`）。
-- API 檢查 `username` 與 `password`，並回傳一個「token（權杖）」（我們還沒實作這部分）。
+- API 檢查 `username` 與 `password`，並回應一個「token（權杖）」（我們還沒實作這部分）。
     - 「token（權杖）」就是一段字串，之後可用來識別並驗證此使用者。
     - 通常 token 會設定一段時間後失效。
         - 因此使用者之後需要重新登入。
         - 若 token 被竊取，風險也較低；它不像永遠有效的萬用鑰匙（多數情況下）。
 - 前端會暫存這個 token。
-- 使用者在前端點擊前往其他頁面/區段。
+- 使用者在前端點擊，前往前端網頁應用程式的另一個區段。
 - 前端需要再向 API 取得資料。
     - 但該端點需要驗證。
     - 因此為了向 API 驗證，請求會帶上一個 `Authorization` 標頭，值為 `Bearer ` 加上 token。
     - 例如 token 是 `foobar`，則 `Authorization` 標頭內容為：`Bearer foobar`。
 
-## FastAPI 的 `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
+## **FastAPI** 的 `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
-FastAPI 提供多層抽象的工具來實作這些安全機制。
+**FastAPI** 提供多層抽象的工具來實作這些安全機制。
 
-本例將使用 OAuth2 的 Password 流程，並以 Bearer token 進行驗證；我們會用 `OAuth2PasswordBearer` 類別來完成。
+本例將使用 **OAuth2** 的 **Password** 流程，並以 **Bearer** token 進行驗證；我們會用 `OAuth2PasswordBearer` 類別來完成。
 
-/// info
+/// note
 
 「Bearer」token 不是唯一選項。
 
@@ -126,7 +126,7 @@ FastAPI 提供多層抽象的工具來實作這些安全機制。
 
 通常對多數情境也足夠，除非你是 OAuth2 專家並確信有更適合你的選項。
 
-在那種情況下，FastAPI 也提供相應工具讓你自行組合。
+在那種情況下，**FastAPI** 也提供相應工具讓你自行組合。
 
 ///
 
@@ -144,11 +144,11 @@ FastAPI 提供多層抽象的工具來實作這些安全機制。
 
 ///
 
-這個參數不會建立該端點／「路徑操作」，而是宣告 `/token` 將是客戶端用來取得 token 的 URL。這些資訊會出現在 OpenAPI，並被互動式 API 文件系統使用。
+這個參數不會建立該端點 / *路徑操作*，而是宣告 `/token` 將是客戶端用來取得 token 的 URL。這些資訊會出現在 OpenAPI，並被互動式 API 文件系統使用。
 
 我們很快也會建立實際的路徑操作。
 
-/// info
+/// note
 
 如果你是非常嚴格的「Pythonista」，可能不喜歡參數名稱用 `tokenUrl` 而不是 `token_url`。
 
@@ -172,15 +172,15 @@ oauth2_scheme(some, parameters)
 
 {* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
-此相依性會提供一個 `str`，指派給「路徑操作函式」的參數 `token`。
+此相依性會提供一個 `str`，指派給 *路徑操作函式* 的參數 `token`。
 
-FastAPI 會知道可以使用這個相依性，在 OpenAPI（以及自動產生的 API 文件）中定義一個「安全性方案」。
+**FastAPI** 會知道可以使用這個相依性，在 OpenAPI schema（以及自動產生的 API 文件）中定義一個「安全性方案」。
 
-/// info | 技術細節
+/// note | 技術細節
 
-FastAPI 之所以知道可以用（相依性中宣告的）`OAuth2PasswordBearer` 類別，在 OpenAPI 中定義安全性方案，是因為它繼承自 `fastapi.security.oauth2.OAuth2`，而後者又繼承自 `fastapi.security.base.SecurityBase`。
+**FastAPI** 之所以知道可以用（相依性中宣告的）`OAuth2PasswordBearer` 類別，在 OpenAPI 中定義安全性方案，是因為它繼承自 `fastapi.security.oauth2.OAuth2`，而後者又繼承自 `fastapi.security.base.SecurityBase`。
 
-所有能與 OpenAPI（以及自動 API 文件）整合的安全工具都繼承自 `SecurityBase`，FastAPI 才能知道如何把它們整合進 OpenAPI。
+所有能與 OpenAPI（以及自動 API 文件）整合的安全工具都繼承自 `SecurityBase`，**FastAPI** 才能知道如何把它們整合進 OpenAPI。
 
 ///
 
@@ -188,7 +188,7 @@ FastAPI 之所以知道可以用（相依性中宣告的）`OAuth2PasswordBearer
 
 它會從請求中尋找 `Authorization` 標頭，檢查其值是否為 `Bearer ` 加上一段 token，並將該 token 以 `str` 回傳。
 
-若未找到 `Authorization` 標頭，或其值不是 `Bearer ` token，則會直接回傳 401（`UNAUTHORIZED`）錯誤。
+若未找到 `Authorization` 標頭，或其值不是 `Bearer ` token，則會直接回應 401 狀態碼錯誤（`UNAUTHORIZED`）。
 
 你不必再自行檢查 token 是否存在；你可以確信只要你的函式被執行，該 token 參數就一定會是 `str`。
 

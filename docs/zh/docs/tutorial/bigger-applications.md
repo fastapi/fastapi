@@ -17,16 +17,16 @@
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | 提示
@@ -396,9 +396,9 @@ from .routers.users import router
 
 /// note | 技术细节
 
-实际上，它将在内部为声明在 `APIRouter` 中的每个*路径操作*创建一个*路径操作*。
+当在主应用中包含路由器时，FastAPI 会保留原始的 `APIRouter` 及其 `APIRoute` 处于活动状态。
 
-所以，在幕后，它实际上会像所有的东西都是同一个应用程序一样工作。
+这意味着自定义的 `APIRouter` 和 `APIRoute` 子类在被包含之后仍然能够参与工作。
 
 ///
 
@@ -406,7 +406,7 @@ from .routers.users import router
 
 包含路由器时，你不必担心性能问题。
 
-这将花费几微秒时间，并且只会在启动时发生。
+这被设计为轻量级的，并且避免给每个请求增加开销。
 
 因此，它不会影响性能。⚡
 
@@ -457,11 +457,11 @@ from .routers.users import router
 
 ---
 
-`APIRouter` 没有被「挂载」，它们与应用程序的其余部分没有隔离。
+`APIRouter` 并不是「挂载」的，它们并没有和应用程序的其余部分隔离。
 
-这是因为我们想要在 OpenAPI 模式和用户界面中包含它们的*路径操作*。
+这是因为我们希望在 OpenAPI 模式和用户界面中包含它们的*路径操作*。
 
-由于我们不能仅仅隔离它们并独立于其余部分来「挂载」它们，因此*路径操作*是被「克隆的」（重新创建），而不是直接包含。
+FastAPI 会保留原始的路由器和路径操作处于活动状态，并在处理请求和生成 OpenAPI 时组合路由器的前缀、依赖项、标签、响应以及其他元数据。
 
 ///
 
@@ -532,4 +532,16 @@ $ fastapi dev
 router.include_router(other_router)
 ```
 
-请确保在你将 `router` 包含到 `FastAPI` 应用程序之前进行此操作，以便 `other_router` 中的*路径操作*也能被包含进来。
+你可以在将 `router` 包含到 `FastAPI` 应用之前或之后执行此操作。FastAPI 仍然会在路由和 OpenAPI 中包含 `other_router` 中的*路径操作*。
+
+同样适用于之后添加到这些路由器的*路径操作*。它们也会通过先前的包含可见。
+
+/// warning | 技术细节
+
+在包含路由器之后，避免直接修改 `router.routes`。FastAPI 将路由器的包含视为「实时」的，因此原始路由器及其路由会继续参与路由和 OpenAPI 生成。
+
+使用文档化的 API（例如路径操作装饰器和 `.include_router()`）来添加路由和路由器。
+
+将 `router.routes` 视为较低层级的路由树，它可以包含路由定义和被包含的路由器；避免把它当作最终路径操作的扁平列表来依赖。
+
+///

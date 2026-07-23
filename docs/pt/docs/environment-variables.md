@@ -289,7 +289,7 @@ Essas informações serão úteis ao aprender sobre [Ambientes Virtuais](virtual
 
 ## Conclusão { #conclusion }
 
-Com isso, você deve ter uma compreensão básica do que são **variáveis ​​de ambiente** e como usá-las em Python.
+Com isso, você deveria ter uma compreensão básica do que são **variáveis ​​de ambiente** e como usá-las em Python.
 
 Você também pode ler mais sobre elas na [Wikipedia para Variáveis ​​de Ambiente](https://en.wikipedia.org/wiki/Environment_variable).
 

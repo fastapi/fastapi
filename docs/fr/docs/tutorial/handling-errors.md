@@ -43,7 +43,7 @@ Dans cet exemple, lorsque le client demande un élément par un ID qui n'existe 
 
 ### Réponse résultante { #the-resulting-response }
 
-Si le client demande `http://example.com/items/foo` (un `item_id` « foo »), il recevra un code d'état HTTP 200 et une réponse JSON :
+Si le client demande `http://example.com/items/foo` (un `item_id` `"foo"`), il recevra un code d'état HTTP 200 et une réponse JSON :
 
 ```JSON
 {
@@ -51,7 +51,7 @@ Si le client demande `http://example.com/items/foo` (un `item_id` « foo »), il
 }
 ```
 
-Mais si le client demande `http://example.com/items/bar` (un `item_id` inexistant « bar »), il recevra un code d'état HTTP 404 (l'erreur « not found ») et une réponse JSON :
+Mais si le client demande `http://example.com/items/bar` (un `item_id` inexistant `"bar"`), il recevra un code d'état HTTP 404 (l'erreur « not found ») et une réponse JSON :
 
 ```JSON
 {

@@ -1,15 +1,15 @@
 # 额外数据类型 { #extra-data-types }
 
-到目前为止，您一直在使用常见的数据类型，如:
+到目前为止，你一直在使用常见的数据类型，如:
 
 * `int`
 * `float`
 * `str`
 * `bool`
 
-但是您也可以使用更复杂的数据类型。
+但是你也可以使用更复杂的数据类型。
 
-您仍然会拥有现在已经看到的相同的特性:
+你仍然会拥有现在已经看到的相同的特性:
 
 * 很棒的编辑器支持。
 * 传入请求的数据转换。
@@ -49,7 +49,7 @@
 * `Decimal`:
     * 标准的 Python `Decimal`。
     * 在请求和响应中被当做 `float` 一样处理。
-* 您可以在这里检查所有有效的 Pydantic 数据类型: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/)。
+* 你可以在这里检查所有有效的 Pydantic 数据类型: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/)。
 
 ## 例子 { #example }
 

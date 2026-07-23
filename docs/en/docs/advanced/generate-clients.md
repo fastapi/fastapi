@@ -20,20 +20,6 @@ FastAPI automatically generates **OpenAPI 3.1** specifications, so any tool you 
 
 ///
 
-## SDK Generators from FastAPI Sponsors { #sdk-generators-from-fastapi-sponsors }
-
-This section highlights **venture-backed** and **company-supported** solutions from companies that sponsor FastAPI. These products provide **additional features** and **integrations** on top of high-quality generated SDKs.
-
-By ✨ [**sponsoring FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, these companies help ensure the framework and its **ecosystem** remain healthy and **sustainable**.
-
-Their sponsorship also demonstrates a strong commitment to the FastAPI **community** (you), showing that they care not only about offering a **great service** but also about supporting a **robust and thriving framework**, FastAPI. 🙇
-
-For example, you might want to try:
-
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-
-Some of these solutions may also be open source or offer free tiers, so you can try them without a financial commitment. Other commercial SDK generators are available and can be found online. 🤓
-
 ## Create a TypeScript SDK { #create-a-typescript-sdk }
 
 Let's start with a simple FastAPI application:

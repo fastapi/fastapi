@@ -1,5 +1,6 @@
 # Configurações e Variáveis de Ambiente { #settings-and-environment-variables }
 
+
 Em muitos casos, sua aplicação pode precisar de configurações externas, por exemplo chaves secretas, credenciais de banco de dados, credenciais para serviços de e-mail, etc.
 
 A maioria dessas configurações é variável (pode mudar), como URLs de banco de dados. E muitas podem ser sensíveis, como segredos.

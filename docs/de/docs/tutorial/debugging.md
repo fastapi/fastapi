@@ -99,7 +99,7 @@ So könnte es aussehen:
 
 ---
 
-Wenn Sie Pycharm verwenden, können Sie:
+Wenn Sie PyCharm verwenden, können Sie:
 
 * Das Menü „Run“ öffnen.
 * Die Option „Debug ...“ auswählen.

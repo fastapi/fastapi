@@ -1,5 +1,6 @@
 # 경로 처리 설정 { #path-operation-configuration }
 
+
 *경로 처리 데코레이터*를 설정하기 위해 전달할 수 있는 몇 가지 매개변수가 있습니다.
 
 /// warning | 경고
@@ -72,13 +73,13 @@
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 정보
+/// note | 참고
 
 `response_description`은 구체적으로 응답을 지칭하며, `description`은 일반적인 *경로 처리*를 지칭합니다.
 
 ///
 
-/// check | 확인
+/// tip | 팁
 
 OpenAPI는 각 *경로 처리*가 응답에 관한 설명을 요구할 것을 명시합니다.
 

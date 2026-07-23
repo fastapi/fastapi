@@ -26,7 +26,7 @@
 
 你可以在 GitHub 上为 FastAPI 点亮「星标」（点击右上角的星形按钮）：[https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。⭐️
 
-加星后，其他用户更容易发现它，并看到它已经对许多人有帮助。
+加星后，其他用户更容易发现它，并看到它已经对其他人有帮助。
 
 ## 关注 GitHub 资源库的版本发布 { #watch-the-github-repository-for-releases }
 
@@ -34,7 +34,7 @@
 
 在那里你可以选择「Releases only」。
 
-这样做之后，每当 **FastAPI** 发布新版本（包含修复和新功能），你都会收到通知（邮件）。
+这样做之后，每当 **FastAPI** 发布包含 Bug 修复和新功能的新版本时，你都会收到通知（邮件）。
 
 ## 关注作者 { #follow-the-author }
 

@@ -78,7 +78,7 @@ Nevertheless, at the <dfn title="2023-08-26">time of writing this</dfn>, Swagger
 
 ### OpenAPI-specific `examples` { #openapi-specific-examples }
 
-Since before **JSON Schema** supported `examples` OpenAPI had support for a different field also called `examples`.
+Since before **JSON Schema** supported `examples`, OpenAPI had support for a different field also called `examples`.
 
 This **OpenAPI-specific** `examples` goes in another section in the OpenAPI specification. It goes in the **details for each *path operation***, not inside each JSON Schema.
 

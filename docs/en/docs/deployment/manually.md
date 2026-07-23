@@ -73,14 +73,14 @@ When you install FastAPI, it comes with a production server, Uvicorn, and you ca
 
 But you can also install an ASGI server manually.
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then you can install the server application.
+Add the server application to your project.
 
 For example, to install Uvicorn:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -93,9 +93,9 @@ A similar process would apply to any other ASGI server program.
 
 By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
 
-That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+That includes `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
-When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
+When you add FastAPI with something like `uv add "fastapi[standard]"` you already get `uvicorn[standard]` as well.
 
 ///
 
@@ -106,7 +106,7 @@ If you installed an ASGI server manually, you would normally need to pass an imp
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

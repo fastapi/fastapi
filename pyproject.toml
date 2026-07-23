@@ -319,7 +319,6 @@ extend-exclude = [
     "docs/de/",
     "docs/en/data/",
     "docs/en/docs/img/",
-    "docs/en/docs/release-notes.md",
     "docs/es/",
     "docs/fr/",
     "docs/ja/",
@@ -331,12 +330,23 @@ extend-exclude = [
     "docs/uk/",
     "docs/zh/",
     "docs/zh-hant/",
+    "docs/hi/",
     "htmlcov/",
     "scripts/general-llm-prompt.md",
     "scripts/tests/test_translation_fixer/test_complex_doc/",
     "site/",
     "site_build/",
     "uv.lock",
+]
+
+[tool.typos.default]
+extend-ignore-re = [
+    # GitHub usernames in @mentions
+    "@[a-zA-Z0-9](?:-?[a-zA-Z0-9])*",
+    # Quoted typo documented in a release note
+    "'wll' to 'will'",
+    # German article title in a release note
+    "FastAPI Modul.",
 ]
 
 [tool.typos.default.extend-identifiers]
@@ -348,6 +358,42 @@ fo = "fo"
 havin = "havin"
 Ines = "Ines"
 ser = "ser"
+
+[tool.ty.src]
+exclude = [
+    # These docs examples are intentionally partial, dynamic, environment-driven,
+    # deprecated, or currently require broader tutorial rewrites to satisfy ty.
+    "docs_src/additional_status_codes/",
+    "docs_src/app_testing/tutorial003_py310.py",
+    "docs_src/body_multiple_params/",
+    "docs_src/body_updates/tutorial002_py310.py",
+    "docs_src/custom_docs_ui/",
+    "docs_src/custom_response/tutorial001_py310.py",
+    "docs_src/custom_response/tutorial001b_py310.py",
+    "docs_src/custom_response/tutorial009c_py310.py",
+    "docs_src/dependencies/tutorial007_py310.py",
+    "docs_src/dependencies/tutorial008_an_py310.py",
+    "docs_src/dependencies/tutorial008_py310.py",
+    "docs_src/dependencies/tutorial010_py310.py",
+    "docs_src/events/",
+    "docs_src/extending_openapi/tutorial001_py310.py",
+    "docs_src/path_params_numeric_validations/",
+    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
+    "docs_src/python_types/tutorial003_py310.py",
+    "docs_src/python_types/tutorial011_py310.py",
+    "docs_src/query_params_str_validations/",
+    "docs_src/response_model/tutorial006_py310.py",
+    "docs_src/security/tutorial003_an_py310.py",
+    "docs_src/security/tutorial003_py310.py",
+    "docs_src/security/tutorial004_an_py310.py",
+    "docs_src/security/tutorial004_py310.py",
+    "docs_src/security/tutorial005_an_py310.py",
+    "docs_src/security/tutorial005_py310.py",
+    "docs_src/settings/",
+    "docs_src/sql_databases/",
+    "docs_src/using_request_directly/tutorial001_py310.py",
+    "docs_src/wsgi/tutorial001_py310.py",
+]
 
 [tool.ty.terminal]
 error-on-warning = true

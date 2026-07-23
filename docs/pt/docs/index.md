@@ -38,7 +38,7 @@ include_yaml:
 
 ---
 
-FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nos type hints padrões do Python.
+FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nas anotações de tipo padrão do Python.
 
 Os recursos chave são:
 
@@ -46,7 +46,7 @@ Os recursos chave são:
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a editores. <dfn title="também conhecido como: autocompletar, preenchimento automático, IntelliSense">Completação</dfn> em todos os lugares. Menos tempo debugando.
-* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo docs.
+* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplas funcionalidades para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
 * **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (anteriormente conhecido como Swagger) e [JSON Schema](https://json-schema.org/).
@@ -239,7 +239,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Nota**:
 
-Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` nas docs](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
+Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` na documentação](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
 
 </details>
 
@@ -469,7 +469,7 @@ Experimente mudar a seguinte linha:
         ... "item_price": item.price ...
 ```
 
-...e veja como seu editor irá auto-completar os atributos e saberá os tipos:
+...e veja como seu editor irá autocompletar os atributos e saberá os tipos:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -492,9 +492,7 @@ Para um exemplo mais completo incluindo mais recursos, veja o <a href="https://f
 
 ### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
 
-Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com), vá e entre na lista de espera se ainda não o fez. 🚀
-
-Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode implantar sua aplicação com um único comando.
+Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com) com um único comando. 🚀
 
 <div class="termy">
 
@@ -509,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+A CLI detectará automaticamente sua aplicação FastAPI e a implantará na nuvem. Se você não estiver autenticado, o navegador será aberto para concluir o processo de autenticação.
 
 É isso! Agora você pode acessar sua aplicação nesse URL. ✨
 

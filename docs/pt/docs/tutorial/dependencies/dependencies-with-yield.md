@@ -115,15 +115,15 @@ Se você quiser capturar exceções e criar uma resposta personalizada com base 
 
 ## Dependências com `yield` e `except` { #dependencies-with-yield-and-except }
 
-Se você capturar uma exceção com `except` em uma dependência que utilize `yield` e ela não for levantada novamente (ou uma nova exceção for levantada), o FastAPI não será capaz de identificar que houve uma exceção, da mesma forma que aconteceria com Python puro:
+Se você capturar uma exceção com `except` em uma dependência que utilize `yield` e não a levantar novamente (nem levantar uma nova exceção), o FastAPI não será capaz de identificar que houve uma exceção, da mesma forma que aconteceria com Python puro:
 
 {* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 Neste caso, o cliente irá ver uma resposta *HTTP 500 Internal Server Error* como deveria acontecer, já que não estamos levantando nenhuma `HTTPException` ou coisa parecida, mas o servidor **não terá nenhum log** ou qualquer outra indicação de qual foi o erro. 😱
 
-### Sempre levante (`raise`) em Dependências com `yield` e `except` { #always-raise-in-dependencies-with-yield-and-except }
+### Sempre `raise` em Dependências com `yield` e `except` { #always-raise-in-dependencies-with-yield-and-except }
 
-Se você capturar uma exceção em uma dependência com `yield`, a menos que você esteja levantando outra `HTTPException` ou coisa parecida, **você deve relançar a exceção original**.
+Se você capturar uma exceção em uma dependência com `yield`, a menos que você esteja levantando outra `HTTPException` ou coisa parecida, **você deveria relançar a exceção original**.
 
 Você pode relançar a mesma exceção utilizando `raise`:
 
@@ -170,7 +170,7 @@ participant tasks as Tarefas de Background
     end
 ```
 
-/// info | Informação
+/// note | Nota
 
 Apenas **uma resposta** será enviada para o cliente. Ela pode ser uma das respostas de erro, ou então a resposta da *operação de rota*.
 
@@ -194,7 +194,7 @@ Mas se você sabe que não precisará usar a dependência depois de retornar da 
 
 `Depends()` recebe um parâmetro `scope` que pode ser:
 
-* `"function"`: iniciar a dependência antes da *função de operação de rota* que trata a requisição, encerrar a dependência depois que a *função de operação de rota* termina, mas **antes** de a resposta ser enviada de volta ao cliente. Assim, a função da dependência será executada **em torno** da *função de operação de rota*.
+* `"function"`: iniciar a dependência antes da *função de operação de rota* que trata a requisição, encerrar a dependência depois que a *função de operação de rota* termina, mas **antes** de a resposta ser enviada de volta ao cliente. Assim, a função da dependência será executada **em torno** da ***função*** *de operação de rota*.
 * `"request"`: iniciar a dependência antes da *função de operação de rota* que trata a requisição (semelhante a quando se usa `"function"`), mas encerrar **depois** que a resposta é enviada de volta ao cliente. Assim, a função da dependência será executada **em torno** do ciclo de **requisição** e resposta.
 
 Se não for especificado e a dependência tiver `yield`, ela terá `scope` igual a `"request"` por padrão.
@@ -234,6 +234,7 @@ participant operation as Operação de Rota
 Dependências com `yield` evoluíram ao longo do tempo para cobrir diferentes casos de uso e corrigir alguns problemas.
 
 Se você quiser ver o que mudou em diferentes versões do FastAPI, você pode ler mais sobre isso no guia avançado, em [Dependências Avançadas - Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+
 ## Gerenciadores de contexto { #context-managers }
 
 ### O que são "Gerenciadores de Contexto" { #what-are-context-managers }
