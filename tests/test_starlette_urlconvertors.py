@@ -61,3 +61,45 @@ def test_url_path_for_path_convertor():
     assert (
         app.url_path_for("path_convertor", param="some/example") == "/path/some/example"
     )
+
+
+def test_implicit_path_param_with_converters():
+    # Test that converters work with implicit path parameters (without Path())
+    app_implicit = FastAPI()
+
+    @app_implicit.get("/int/{param:int}")
+    def implicit_int_convertor(param: int):
+        return {"int": param}
+
+    @app_implicit.get("/float/{param:float}")
+    def implicit_float_convertor(param: float):
+        return {"float": param}
+
+    @app_implicit.get("/path/{param:path}")
+    def implicit_path_convertor(param: str):
+        return {"path": param}
+
+    client_implicit = TestClient(app_implicit)
+
+    # Test integer conversion
+    response = client_implicit.get("/int/5")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"int": 5}
+
+    # Test float conversion
+    response = client_implicit.get("/float/25.5")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"float": 25.5}
+
+    # Test path conversion
+    response = client_implicit.get("/path/some/example")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"path": "some/example"}
+
+    # Test url_path_for with implicit converters
+    assert app_implicit.url_path_for("implicit_int_convertor", param=5) == "/int/5"
+    assert app_implicit.url_path_for("implicit_float_convertor", param=25.5) == "/float/25.5"
+    assert (
+        app_implicit.url_path_for("implicit_path_convertor", param="some/example")
+        == "/path/some/example"
+    )
