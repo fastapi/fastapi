@@ -425,11 +425,15 @@ def analyze_param(
             try:
                 _safe_ns: dict[str, Any] = dict(globalns)
                 _missing = ForwardRef  # noqa: F811
+
                 class _SafeDict(dict):
                     def __missing__(self, key):  # type: ignore[override]
                         return _missing(key)
+
                 use_annotation = eval(
-                    use_annotation.__forward_arg__, {"__builtins__": {}}, _SafeDict(_safe_ns)
+                    use_annotation.__forward_arg__,
+                    {"__builtins__": {}},
+                    _SafeDict(_safe_ns),
                 )
                 if use_annotation is not inspect.Signature.empty:
                     type_annotation = use_annotation

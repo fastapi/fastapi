@@ -2,6 +2,7 @@
 
 See https://github.com/fastapi/fastapi/pull/15411
 """
+
 from __future__ import annotations
 
 from typing import Annotated
@@ -9,7 +10,6 @@ from typing import Annotated
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-
 
 # ── Positive case: Annotated[ForwardRef, Depends()] before type definition ───
 
