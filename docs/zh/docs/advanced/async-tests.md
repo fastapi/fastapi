@@ -16,11 +16,11 @@
 
 `TestClient` 在内部通过一些“魔法”操作，使得您可以在普通的 `def` 测试函数中调用异步的 FastAPI 应用程序，并使用标准的 pytest。但当我们在异步函数中使用它时，这种“魔法”就不再生效了。由于测试以异步方式运行，我们无法在测试函数中继续使用 `TestClient`。
 
-`TestClient` 是基于 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> 的。幸运的是，我们可以直接使用它来测试API。
+`TestClient` 是基于 [HTTPX](https://www.python-httpx.org) 的。幸运的是，我们可以直接使用它来测试 API。
 
 ## 示例 { #example }
 
-举个简单的例子，让我们来看一个[更大的应用](../tutorial/bigger-applications.md){.internal-link target=_blank}和[测试](../tutorial/testing.md){.internal-link target=_blank}中描述的类似文件结构：
+举个简单的例子，让我们来看一个与[更大的应用](../tutorial/bigger-applications.md)和[测试](../tutorial/testing.md)中描述的类似文件结构：
 
 ```
 .
@@ -32,11 +32,11 @@
 
 文件 `main.py` 将包含:
 
-{* ../../docs_src/async_tests/app_a_py39/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 文件 `test_main.py` 将包含针对 `main.py` 的测试，现在它可能看起来如下：
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## 运行测试 { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 这个标记 `@pytest.mark.anyio` 会告诉 pytest 该测试函数应该被异步调用：
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | 提示
 
@@ -66,7 +66,7 @@ $ pytest
 
 我们现在可以使用应用程序创建一个 `AsyncClient` ，并使用 `await` 向其发送异步请求。
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 这相当于：
 
@@ -74,7 +74,7 @@ $ pytest
 response = client.get('/')
 ```
 
-我们曾经通过它向 `TestClient` 发出请求。
+...我们曾经通过它向 `TestClient` 发出请求。
 
 /// tip | 提示
 
@@ -84,7 +84,7 @@ response = client.get('/')
 
 /// warning | 警告
 
-如果您的应用程序依赖于生命周期事件， `AsyncClient` 将不会触发这些事件。为了确保它们被触发，请使用 <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a> 中的 `LifespanManager` 。
+如果您的应用程序依赖于生命周期事件， `AsyncClient` 将不会触发这些事件。为了确保它们被触发，请使用 [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage) 中的 `LifespanManager` 。
 
 ///
 
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | 提示
 
-如果您在测试程序中集成异步函数调用的时候遇到一个 `RuntimeError: Task attached to a different loop` 的报错（例如，使用 <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB 的 MotorClient</a> 时），请记住，只能在异步函数中实例化需要事件循环的对象，例如在 `@app.on_event("startup")` 回调中初始化。
+如果您在测试程序中集成异步函数调用的时候遇到一个 `RuntimeError: Task attached to a different loop` 的报错（例如，使用 [MongoDB 的 MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop) 时），请记住，只能在异步函数中实例化需要事件循环的对象，例如在 `@app.on_event("startup")` 回调中初始化。
 
 ///

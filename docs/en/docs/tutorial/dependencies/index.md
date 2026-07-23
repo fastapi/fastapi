@@ -51,13 +51,13 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
 If you have an older version, you would get errors when trying to use `Annotated`.
 
-Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions) to at least 0.95.1 before using `Annotated`.
 
 ///
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 This way you write shared code once and **FastAPI** takes care of calling it for your *path operations*.
 
-/// check
+/// tip
 
 Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
 
@@ -152,7 +152,7 @@ It doesn't matter. **FastAPI** will know what to do.
 
 /// note
 
-If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
+If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry) section about `async` and `await` in the docs.
 
 ///
 

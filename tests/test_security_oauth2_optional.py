@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
@@ -24,7 +22,7 @@ class User(BaseModel):
     username: str
 
 
-def get_current_user(oauth_header: Optional[str] = Security(reusable_oauth2)):
+def get_current_user(oauth_header: str | None = Security(reusable_oauth2)):
     if oauth_header is None:
         return None
     user = User(username=oauth_header)
@@ -37,7 +35,7 @@ def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
 
 
 @app.get("/users/me")
-def read_users_me(current_user: Optional[User] = Depends(get_current_user)):
+def read_users_me(current_user: User | None = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     return current_user

@@ -10,7 +10,7 @@ Dadurch wird Ihrer API keine zusätzliche Sicherheit hinzugefügt, die *Pfadoper
 
 Wenn Ihr Code eine Sicherheitslücke aufweist, ist diese weiterhin vorhanden.
 
-Das Verstecken der Dokumentation macht es nur schwieriger zu verstehen, wie mit Ihrer API interagiert werden kann, und könnte es auch schwieriger machen, diese in der Produktion zu debuggen. Man könnte es einfach als eine Form von <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Sicherheit durch Verschleierung</a> betrachten.
+Das Verstecken der Dokumentation macht es nur schwieriger zu verstehen, wie mit Ihrer API interagiert werden kann, und könnte es auch schwieriger machen, diese in der Produktion zu debuggen. Man könnte es einfach als eine Form von [Sicherheit durch Verschleierung](https://en.wikipedia.org/wiki/Security_through_obscurity) betrachten.
 
 Wenn Sie Ihre API sichern möchten, gibt es mehrere bessere Dinge, die Sie tun können, zum Beispiel:
 
@@ -29,7 +29,7 @@ Sie können problemlos dieselben Pydantic-Einstellungen verwenden, um Ihre gener
 
 Zum Beispiel:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Hier deklarieren wir die Einstellung `openapi_url` mit dem gleichen Defaultwert `"/openapi.json"`.
 

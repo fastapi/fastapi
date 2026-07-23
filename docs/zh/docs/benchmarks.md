@@ -1,6 +1,6 @@
 # 基准测试 { #benchmarks }
 
-第三方机构 TechEmpower 的基准测试表明在 Uvicorn 下运行的 **FastAPI** 应用程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">可用的最快的 Python 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（由 FastAPI 内部使用）。
+第三方机构 TechEmpower 的基准测试表明在 Uvicorn 下运行的 **FastAPI** 应用程序是 [可用的最快的 Python 框架之一](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7)，仅次于 Starlette 和 Uvicorn 本身（由 FastAPI 内部使用）。
 
 但是在查看基准得分和对比时，请注意以下几点。
 
@@ -23,7 +23,7 @@
     * 你不会直接在 Uvicorn 中编写应用程序。这意味着你的代码至少必须包含 Starlette（或 **FastAPI**）提供的代码。如果你这样做了（即直接在 Uvicorn 中编写应用程序），最终的应用程序会和使用了框架并且最小化了应用代码和 bug 的情况具有相同的性能损耗。
     * 如果你要对比 Uvicorn，请将其与 Daphne，Hypercorn，uWSGI 等应用服务器进行比较。
 * **Starlette**:
-    * 在 Uvicorn 后使用 Starlette，性能会略有下降。实际上，Starlette 使用 Uvicorn 运行。因此，由于必须执行更多的代码，它只会比 Uvicorn 更慢。
+    * 性能仅次于 Uvicorn。实际上，Starlette 使用 Uvicorn 运行。因此，由于必须执行更多的代码，它只会比 Uvicorn 更慢。
     * 但它为你提供了构建简单的网络程序的工具，并具有基于路径的路由等功能。
     * 如果想对比与 Starlette 对标的开发框架，请将其与 Sanic，Flask，Django 等网络框架（或微框架）进行比较。
 * **FastAPI**:

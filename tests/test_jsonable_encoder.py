@@ -6,7 +6,7 @@ from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import Optional, TypedDict
+from typing import TypedDict
 
 import pytest
 from fastapi._compat import Undefined
@@ -57,7 +57,7 @@ class RoleEnum(Enum):
 
 
 class ModelWithConfig(BaseModel):
-    role: Optional[RoleEnum] = None
+    role: RoleEnum | None = None
 
     model_config = {"use_enum_values": True}
 
@@ -87,10 +87,10 @@ def test_encode_dict():
 def test_encode_dict_include_exclude_list():
     pet = {"name": "Firulais", "owner": {"name": "Foo"}}
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
-    assert jsonable_encoder(pet, include=["name"]) == {"name": "Firulais"}
-    assert jsonable_encoder(pet, exclude=["owner"]) == {"name": "Firulais"}
-    assert jsonable_encoder(pet, include=[]) == {}
-    assert jsonable_encoder(pet, exclude=[]) == {
+    assert jsonable_encoder(pet, include=["name"]) == {"name": "Firulais"}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, exclude=["owner"]) == {"name": "Firulais"}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, include=[]) == {}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, exclude=[]) == {  # ty: ignore[invalid-argument-type]
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
@@ -176,7 +176,7 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        ModelWithAlias(foo="Bar")
+        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument, unknown-argument]
 
 
 def test_encode_model_with_alias():
@@ -311,3 +311,21 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+@pytest.mark.parametrize(
+    "module_path",
+    [
+        pytest.param("pydantic.color"),
+        pytest.param("pydantic_extra_types.color"),
+    ],
+)
+def test_encode_color(module_path):
+    try:
+        Color = __import__(module_path, fromlist=["Color"]).Color
+    except ImportError:  # pragma: no cover
+        pytest.skip(f"{module_path} not available")
+
+    data = {"color": Color("blue")}
+    assert jsonable_encoder(data) == {"color": "blue"}

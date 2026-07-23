@@ -46,7 +46,7 @@ They are normally used to declare specific security permissions, for example:
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
-/// info
+/// note
 
 In OAuth2 a "scope" is just a string that declares a specific permission required.
 
@@ -60,7 +60,7 @@ For OAuth2 they are just strings.
 
 ## Global view { #global-view }
 
-First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
+First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md). Now using OAuth2 scopes:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -126,7 +126,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Technical Details
+/// note | Technical Details
 
 `Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
 
@@ -194,11 +194,11 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
 
 Let's review again this dependency tree and the scopes.
 
-As the `get_current_active_user` dependency has as a sub-dependency on `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
+As the `get_current_active_user` dependency has `get_current_user` as a sub-dependency, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
 
 The *path operation* itself also declares a scope, `"items"`, so this will also be in the list of `security_scopes.scopes` passed to `get_current_user`.
 
-Here's how the hierarchy of dependencies and scopes looks like:
+Here's what the hierarchy of dependencies and scopes looks like:
 
 * The *path operation* `read_own_items` has:
     * Required scopes `["items"]` with the dependency:
@@ -271,4 +271,4 @@ But in the end, they are implementing the same OAuth2 standard.
 
 ## `Security` in decorator `dependencies` { #security-in-decorator-dependencies }
 
-The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.
+The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), you could also use `Security` with `scopes` there.

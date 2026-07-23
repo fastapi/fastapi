@@ -25,7 +25,7 @@ Para devolver responses HTTP con errores al cliente, usa `HTTPException`.
 
 ### Importa `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### Lanza un `HTTPException` en tu código { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ El beneficio de lanzar una excepción en lugar de `return`ar un valor será más
 
 En este ejemplo, cuando el cliente solicita un ítem por un ID que no existe, lanza una excepción con un código de estado de `404`:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### El response resultante { #the-resulting-response }
 
@@ -77,11 +77,11 @@ Probablemente no necesitarás usarlos directamente en tu código.
 
 Pero en caso de que los necesites para un escenario avanzado, puedes agregar headers personalizados:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## Instalar manejadores de excepciones personalizados { #install-custom-exception-handlers }
 
-Puedes agregar manejadores de excepciones personalizados con <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">las mismas utilidades de excepciones de Starlette</a>.
+Puedes agregar manejadores de excepciones personalizados con [las mismas utilidades de excepciones de Starlette](https://www.starlette.dev/exceptions/).
 
 Supongamos que tienes una excepción personalizada `UnicornException` que tú (o un paquete que usas) podrías lanzar.
 
@@ -89,7 +89,7 @@ Y quieres manejar esta excepción globalmente con FastAPI.
 
 Podrías agregar un manejador de excepciones personalizado con `@app.exception_handler()`:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 Aquí, si solicitas `/unicorns/yolo`, la *path operation* lanzará un `UnicornException`.
 
@@ -101,7 +101,7 @@ Así que recibirás un error limpio, con un código de estado HTTP de `418` y un
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | Nota Técnica
+/// note | Detalles Técnicos
 
 También podrías usar `from starlette.requests import Request` y `from starlette.responses import JSONResponse`.
 
@@ -109,11 +109,11 @@ También podrías usar `from starlette.requests import Request` y `from starlett
 
 ///
 
-## Sobrescribir los manejadores de excepciones predeterminados { #override-the-default-exception-handlers }
+## Sobrescribir los manejadores de excepciones por defecto { #override-the-default-exception-handlers }
 
-**FastAPI** tiene algunos manejadores de excepciones predeterminados.
+**FastAPI** tiene algunos manejadores de excepciones por defecto.
 
-Estos manejadores se encargan de devolver los responses JSON predeterminadas cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
+Estos manejadores se encargan de devolver los responses JSON por defecto cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
 
 Puedes sobrescribir estos manejadores de excepciones con los tuyos propios.
 
@@ -121,13 +121,13 @@ Puedes sobrescribir estos manejadores de excepciones con los tuyos propios.
 
 Cuando un request contiene datos inválidos, **FastAPI** lanza internamente un `RequestValidationError`.
 
-Y también incluye un manejador de excepciones predeterminado para ello.
+Y también incluye un manejador de excepciones por defecto para ello.
 
 Para sobrescribirlo, importa el `RequestValidationError` y úsalo con `@app.exception_handler(RequestValidationError)` para decorar el manejador de excepciones.
 
 El manejador de excepciones recibirá un `Request` y la excepción.
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 Ahora, si vas a `/items/foo`, en lugar de obtener el error JSON por defecto con:
 
@@ -159,9 +159,9 @@ De la misma manera, puedes sobrescribir el manejador de `HTTPException`.
 
 Por ejemplo, podrías querer devolver un response de texto plano en lugar de JSON para estos errores:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
-/// note | Nota Técnica
+/// note | Detalles Técnicos
 
 También podrías usar `from starlette.responses import PlainTextResponse`.
 
@@ -183,7 +183,7 @@ El `RequestValidationError` contiene el `body` que recibió con datos inválidos
 
 Podrías usarlo mientras desarrollas tu aplicación para registrar el body y depurarlo, devolverlo al usuario, etc.
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 Ahora intenta enviar un ítem inválido como:
 
@@ -237,8 +237,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### Reutilizar los manejadores de excepciones de **FastAPI** { #reuse-fastapis-exception-handlers }
 
-Si quieres usar la excepción junto con los mismos manejadores de excepciones predeterminados de **FastAPI**, puedes importar y reutilizar los manejadores de excepciones predeterminados de `fastapi.exception_handlers`:
+Si quieres usar la excepción junto con los mismos manejadores de excepciones por defecto de **FastAPI**, puedes importar y reutilizar los manejadores de excepciones por defecto de `fastapi.exception_handlers`:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
-En este ejemplo solo estás `print`eando el error con un mensaje muy expresivo, pero te haces una idea. Puedes usar la excepción y luego simplemente reutilizar los manejadores de excepciones predeterminados.
+En este ejemplo solo estás `print`eando el error con un mensaje muy expresivo, pero te haces una idea. Puedes usar la excepción y luego simplemente reutilizar los manejadores de excepciones por defecto.

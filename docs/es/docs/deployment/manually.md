@@ -46,17 +46,16 @@ Podrías usar ese comando, por ejemplo, para iniciar tu app **FastAPI** en un co
 
 Vamos a profundizar un poquito en los detalles.
 
-FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface – Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>. FastAPI es un framework web ASGI.
+FastAPI usa un estándar para construir frameworks de web y servidores de Python llamado <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>. FastAPI es un framework web ASGI.
 
 Lo principal que necesitas para ejecutar una aplicación **FastAPI** (o cualquier otra aplicación ASGI) en una máquina de servidor remota es un programa de servidor ASGI como **Uvicorn**, que es el que viene por defecto en el comando `fastapi`.
 
 Hay varias alternativas, incluyendo:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: un servidor ASGI de alto rendimiento.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: un servidor ASGI compatible con HTTP/2 y Trio entre otras funcionalidades.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: el servidor ASGI construido para Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Un servidor HTTP Rust para aplicaciones en Python.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit es un runtime para aplicaciones web ligero y versátil.
+* [Uvicorn](https://www.uvicorn.dev/): un servidor ASGI de alto rendimiento.
+* [Hypercorn](https://hypercorn.readthedocs.io/): un servidor ASGI compatible con HTTP/2 y Trio entre otras funcionalidades.
+* [Daphne](https://github.com/django/daphne): el servidor ASGI construido para Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): Un servidor HTTP Rust para aplicaciones en Python.
 
 ## Máquina Servidor y Programa Servidor { #server-machine-and-server-program }
 
@@ -74,7 +73,7 @@ Cuando instalas FastAPI, viene con un servidor de producción, Uvicorn, y puedes
 
 Pero también puedes instalar un servidor ASGI manualmente.
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego puedes instalar la aplicación del servidor.
+Asegúrate de crear un [entorno virtual](../virtual-environments.md), actívalo, y luego puedes instalar la aplicación del servidor.
 
 Por ejemplo, para instalar Uvicorn:
 
@@ -94,7 +93,7 @@ Un proceso similar se aplicaría a cualquier otro programa de servidor ASGI.
 
 Al añadir `standard`, Uvicorn instalará y usará algunas dependencias adicionales recomendadas.
 
-Eso incluye `uvloop`, el reemplazo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
+Eso incluye `uvloop`, el reemplazo directo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
 
 Cuando instalas FastAPI con algo como `pip install "fastapi[standard]"` ya obtienes `uvicorn[standard]` también.
 

@@ -1,10 +1,10 @@
 # WebSockets { #websockets }
 
-您可以在 **FastAPI** 中使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>。
+您可以在 **FastAPI** 中使用 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)。
 
 ## 安装 `websockets` { #install-websockets }
 
-请确保您创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
+请确保您创建一个[虚拟环境](../virtual-environments.md)、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
 
 <div class="termy">
 
@@ -38,13 +38,13 @@ $ pip install websockets
 
 但这是一种专注于 WebSockets 的服务器端并提供一个工作示例的最简单方式：
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## 创建 `websocket` { #create-a-websocket }
 
 在您的 **FastAPI** 应用程序中，创建一个 `websocket`：
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技术细节
 
@@ -58,25 +58,25 @@ $ pip install websockets
 
 在您的 WebSocket 路由中，您可以使用 `await` 等待消息并发送消息。
 
-{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 您可以接收和发送二进制、文本和 JSON 数据。
 
 ## 尝试一下 { #try-it }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+将代码放在 `main.py`，然后运行你的应用程序：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 您将看到一个简单的页面，如下所示：
 
@@ -86,7 +86,7 @@ $ fastapi dev main.py
 
 <img src="/img/tutorial/websockets/image02.png">
 
-您的 **FastAPI** 应用程序将回复：
+您的 **FastAPI** 应用程序将通过 WebSockets 回复：
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -109,38 +109,38 @@ $ fastapi dev main.py
 
 它们的工作方式与其他 FastAPI 端点/*路径操作* 相同：
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note | 注意
 
 由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
 
-您可以使用<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">规范中定义的有效代码</a>。
+您可以使用[规范中定义的有效关闭代码](https://tools.ietf.org/html/rfc6455#section-7.4.1)。
 
 ///
 
 ### 尝试带有依赖项的 WebSockets { #try-the-websockets-with-dependencies }
 
-如果您的文件名为 `main.py`，请使用以下命令运行应用程序：
+运行你的应用程序：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在浏览器中打开 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在浏览器中打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 在页面中，您可以设置：
 
 * "Item ID"，用于路径。
 * "Token"，作为查询参数。
 
-/// tip
+/// tip | 提示
 
 注意，查询参数 `token` 将由依赖项处理。
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 当 WebSocket 连接关闭时，`await websocket.receive_text()` 将引发 `WebSocketDisconnect` 异常，您可以捕获并处理该异常，就像本示例中的示例一样。
 
-{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 尝试以下操作：
 
@@ -168,13 +168,13 @@ $ fastapi dev main.py
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | 提示
 
 上面的应用程序是一个最小和简单的示例，用于演示如何处理和向多个 WebSocket 连接广播消息。
 
 但请记住，由于所有内容都在内存中以单个列表的形式处理，因此它只能在进程运行时工作，并且只能使用单个进程。
 
-如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>。
+如果您需要与 FastAPI 集成更简单但更健壮的方案，支持 Redis、PostgreSQL 或其他，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
 
 ///
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 要了解更多选项，请查看 Starlette 的文档：
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` 类</a>。
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">基于类的 WebSocket 处理</a>。
+* [`WebSocket` 类](https://www.starlette.dev/websockets/)。
+* [基于类的 WebSocket 处理](https://www.starlette.dev/endpoints/#websocketendpoint)。

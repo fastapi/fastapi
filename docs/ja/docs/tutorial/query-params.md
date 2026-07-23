@@ -1,8 +1,9 @@
 # クエリパラメータ { #query-parameters }
 
+
 パスパラメータではない関数パラメータを宣言すると、それらは自動的に「クエリ」パラメータとして解釈されます。
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 クエリはURL内で `?` の後に続くキーとバリューの組で、 `&` で区切られています。
 
@@ -24,7 +25,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 パスパラメータに適用される処理と完全に同様な処理がクエリパラメータにも施されます:
 
 * エディターサポート (明らかに)
-* データ <abbr title="converting the string that comes from an HTTP request into Python data">「解析」</abbr>
+* データ <dfn title="HTTP リクエストから来る文字列を Python のデータに変換すること">「解析」</dfn>
 * データバリデーション
 * 自動ドキュメント生成
 
@@ -65,7 +66,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
 
-/// check | 確認
+/// tip | 豆知識
 
 パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
 
@@ -128,7 +129,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 しかしクエリパラメータを必須にしたい場合は、ただデフォルト値を宣言しなければよいです:
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 ここで、クエリパラメータ `needy` は `str` 型の必須のクエリパラメータです。
 
@@ -183,6 +184,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 豆知識
 
-[パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
+[パスパラメータ](path-params.md#predefined-values)と同様に `Enum` を使用できます。
 
 ///

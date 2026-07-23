@@ -2,7 +2,7 @@
 
 ## 用 `PUT` 替换式更新 { #update-replacing-with-put }
 
-更新数据可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
+更新数据可以使用 [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) 操作。
 
 把输入数据转换为以 JSON 格式存储的数据（比如，使用 NoSQL 数据库时），可以使用 `jsonable_encoder`。例如，把 `datetime` 转换为 `str`。
 
@@ -28,7 +28,7 @@
 
 ## 用 `PATCH` 进行部分更新 { #partial-updates-with-patch }
 
-也可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> 操作对数据进行*部分*更新。
+也可以使用 [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) 操作对数据进行*部分*更新。
 
 也就是说，你只需发送想要更新的数据，其余数据保持不变。
 
@@ -95,6 +95,6 @@
 
 因此，如果希望接收的部分更新可以省略所有属性，则需要一个所有属性都标记为可选（带默认值或 `None`）的模型。
 
-为了区分用于**更新**（全部可选）和用于**创建**（必填）的模型，可以参考[更多模型](extra-models.md){.internal-link target=_blank} 中介绍的思路。
+为了区分用于**更新**（全部可选）和用于**创建**（必填）的模型，可以参考[更多模型](extra-models.md) 中介绍的思路。
 
 ///

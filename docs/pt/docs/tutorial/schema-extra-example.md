@@ -1,4 +1,5 @@
-# Declarar dados de exemplo da requisição { #declare-request-example-data }
+# Declare dados de exemplo da requisição { #declare-request-example-data }
+
 
 Você pode declarar exemplos dos dados que sua aplicação pode receber.
 
@@ -12,7 +13,7 @@ Você pode declarar `examples` para um modelo Pydantic que serão adicionados ao
 
 Essas informações extras serão adicionadas como estão ao **JSON Schema** de saída para esse modelo e serão usadas na documentação da API.
 
-Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">documentação do Pydantic: Configuration</a>.
+Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na [documentação do Pydantic: Configuration](https://docs.pydantic.dev/latest/api/config/).
 
 Você pode definir `"json_schema_extra"` com um `dict` contendo quaisquer dados adicionais que você queira que apareçam no JSON Schema gerado, incluindo `examples`.
 
@@ -24,7 +25,7 @@ Por exemplo, você poderia usá-la para adicionar metadados para uma interface d
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 O OpenAPI 3.1.0 (usado desde o FastAPI 0.99.0) adicionou suporte a `examples`, que faz parte do padrão **JSON Schema**.
 
@@ -74,7 +75,7 @@ Você também pode, é claro, passar vários `examples`:
 
 Quando fizer isso, os exemplos farão parte do **JSON Schema** interno para esses dados do body.
 
-No entanto, <abbr title="2023-08-26">no momento em que isto foi escrito</abbr>, o Swagger UI, a ferramenta responsável por exibir a UI da documentação, não suporta mostrar vários exemplos para os dados no **JSON Schema**. Mas leia abaixo para uma solução alternativa.
+No entanto, <dfn title="2023-08-26">no momento em que isto foi escrito</dfn>, o Swagger UI, a ferramenta responsável por exibir a UI da documentação, não suporta mostrar vários exemplos para os dados no **JSON Schema**. Mas leia abaixo para uma solução alternativa.
 
 ### `examples` específicos do OpenAPI { #openapi-specific-examples }
 
@@ -145,17 +146,17 @@ O JSON Schema não tinha `examples`, então o OpenAPI adicionou seu próprio cam
 
 O OpenAPI também adicionou os campos `example` e `examples` a outras partes da especificação:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (na especificação)</a>, usado no FastAPI por:
+* [`Parameter Object` (na especificação)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object), usado no FastAPI por:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`, no campo `content`, no `Media Type Object` (na especificação)</a>, usado no FastAPI por:
+* [`Request Body Object`, no campo `content`, no `Media Type Object` (na especificação)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object), usado no FastAPI por:
     * `Body()`
     * `File()`
     * `Form()`
 
-/// info | Informação
+/// note | Nota
 
 Esse parâmetro antigo `examples` específico do OpenAPI agora é `openapi_examples` desde o FastAPI `0.103.0`.
 
@@ -163,7 +164,7 @@ Esse parâmetro antigo `examples` específico do OpenAPI agora é `openapi_examp
 
 ### Campo `examples` do JSON Schema { #json-schemas-examples-field }
 
-Depois, o JSON Schema adicionou um campo <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> em uma nova versão da especificação.
+Depois, o JSON Schema adicionou um campo [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) em uma nova versão da especificação.
 
 E então o novo OpenAPI 3.1.0 passou a se basear na versão mais recente (JSON Schema 2020-12), que incluiu esse novo campo `examples`.
 
@@ -171,7 +172,7 @@ E agora esse novo campo `examples` tem precedência sobre o antigo campo único 
 
 Esse novo campo `examples` no JSON Schema é **apenas uma `list`** de exemplos, não um dict com metadados extras como nos outros lugares do OpenAPI (descritos acima).
 
-/// info | Informação
+/// note | Nota
 
 Mesmo após o lançamento do OpenAPI 3.1.0 com essa nova integração mais simples com o JSON Schema, por um tempo o Swagger UI, a ferramenta que fornece a documentação automática, não suportava OpenAPI 3.1.0 (passou a suportar desde a versão 5.0.0 🎉).
 

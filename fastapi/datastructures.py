@@ -139,7 +139,7 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_json_schema__(
         cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
     ) -> dict[str, Any]:
-        return {"type": "string", "format": "binary"}
+        return {"type": "string", "contentMediaType": "application/octet-stream"}
 
     @classmethod
     def __get_pydantic_core_schema__(
@@ -179,3 +179,8 @@ def Default(value: DefaultType) -> DefaultType:
     if the overridden default value was truthy.
     """
     return DefaultPlaceholder(value)  # type: ignore
+
+
+# Sentinel for "parameter not provided" in Param/FieldInfo.
+# Typed as None to satisfy ty
+_Unset = Default(None)

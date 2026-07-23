@@ -2,12 +2,20 @@
 
 `StaticFiles`를 사용하면 디렉터리에서 정적 파일을 자동으로 제공할 수 있습니다.
 
+/// tip | 팁
+
+프론트엔드를 호스팅해야 한다면 대신 `app.frontend()`를 사용하세요. 자세한 내용은 [프론트엔드](frontend.md)에서 확인하세요.
+
+`app.frontend()`는 내부적으로 `StaticFiles`를 사용하며, 클라이언트 사이드 라우팅 처리와 같은 프론트엔드를 위한 여러 추가 이점이 있습니다.
+
+///
+
 ## `StaticFiles` 사용 { #use-staticfiles }
 
 * `StaticFiles`를 임포트합니다.
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트"합니다.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | 기술 세부사항
 
@@ -23,7 +31,7 @@
 
 마운트된 애플리케이션은 완전히 독립적이므로 `APIRouter`를 사용하는 것과는 다릅니다. 메인 애플리케이션의 OpenAPI 및 문서에는 마운트된 애플리케이션의 내용 등이 포함되지 않습니다.
 
-자세한 내용은 [고급 사용자 가이드](../advanced/index.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+자세한 내용은 [고급 사용자 가이드](../advanced/index.md)에서 확인할 수 있습니다.
 
 ## 세부사항 { #details }
 
@@ -37,4 +45,4 @@
 
 ## 추가 정보 { #more-info }
 
-자세한 내용과 옵션은 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette의 정적 파일 문서</a>를 확인하세요.
+자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://www.starlette.dev/staticfiles/)를 확인하세요.

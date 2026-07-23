@@ -1,5 +1,6 @@
 # Zusätzliche Statuscodes { #additional-status-codes }
 
+
 Standardmäßig liefert **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> als `JSONResponse` zurück und fügt den Inhalt, den Sie aus Ihrer *Pfadoperation* zurückgeben, in diese `JSONResponse` ein.
 
 Es wird der Default-Statuscode oder derjenige verwendet, den Sie in Ihrer *Pfadoperation* festgelegt haben.
@@ -38,4 +39,4 @@ Sie können auch `from starlette.responses import JSONResponse` verwenden.
 
 Wenn Sie zusätzliche Statuscodes und Responses direkt zurückgeben, werden diese nicht in das OpenAPI-Schema (die API-Dokumentation) aufgenommen, da FastAPI keine Möglichkeit hat, im Voraus zu wissen, was Sie zurückgeben werden.
 
-Sie können das jedoch in Ihrem Code dokumentieren, indem Sie Folgendes verwenden: [Zusätzliche Responses](additional-responses.md){.internal-link target=_blank}.
+Sie können das jedoch in Ihrem Code dokumentieren, indem Sie Folgendes verwenden: [Zusätzliche Responses](additional-responses.md).

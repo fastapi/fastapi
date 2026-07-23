@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-**한 번의 명령**으로 FastAPI 앱을 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
-
-## 로그인하기 { #login }
-
-먼저 **FastAPI Cloud** 계정이 이미 있는지 확인하세요(대기자 명단에서 초대해 드렸을 거예요 😉).
-
-그다음 로그인합니다:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## 배포하기 { #deploy }
-
-이제 **한 번의 명령**으로 앱을 배포합니다:
+**한 번의 명령**으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -36,11 +16,13 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI가 FastAPI 애플리케이션을 자동으로 감지하여 클라우드에 배포합니다. 로그인되어 있지 않다면, 인증을 완료할 수 있도록 브라우저가 자동으로 열립니다.
+
 이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
 
 ## FastAPI Cloud 소개 { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**는 **FastAPI**를 만든 동일한 저자와 팀이 구축했습니다.
+**[FastAPI Cloud](https://fastapicloud.com)**는 **FastAPI**를 만든 동일한 저자와 팀이 구축했습니다.
 
 최소한의 노력으로 API를 **구축**, **배포**, **접근**하는 과정을 간소화합니다.
 

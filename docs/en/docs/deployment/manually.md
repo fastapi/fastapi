@@ -52,11 +52,10 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 
 There are several alternatives, including:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: a high performance ASGI server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: the ASGI server built for Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: A Rust HTTP server for Python applications.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit is a lightweight and versatile web application runtime.
+* [Uvicorn](https://www.uvicorn.dev/): a high performance ASGI server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): an ASGI server compatible with HTTP/2 and Trio among other features.
+* [Daphne](https://github.com/django/daphne): the ASGI server built for Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): A Rust HTTP server for Python applications.
 
 ## Server Machine and Server Program { #server-machine-and-server-program }
 
@@ -74,14 +73,14 @@ When you install FastAPI, it comes with a production server, Uvicorn, and you ca
 
 But you can also install an ASGI server manually.
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then you can install the server application.
+Add the server application to your project.
 
 For example, to install Uvicorn:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -94,9 +93,9 @@ A similar process would apply to any other ASGI server program.
 
 By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
 
-That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+That includes `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
-When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
+When you add FastAPI with something like `uv add "fastapi[standard]"` you already get `uvicorn[standard]` as well.
 
 ///
 
@@ -107,7 +106,7 @@ If you installed an ASGI server manually, you would normally need to pass an imp
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

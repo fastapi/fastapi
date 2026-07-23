@@ -6,7 +6,7 @@ You can connect the debugger in your editor, for example with Visual Studio Code
 
 In your FastAPI application, import and run `uvicorn` directly:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### About `__name__ == "__main__"` { #about-name-main }
 
@@ -15,7 +15,7 @@ The main purpose of the `__name__ == "__main__"` is to have some code that is ex
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ If you run it with:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -72,9 +72,9 @@ So, the line:
 
 will not be executed.
 
-/// info
+/// note
 
-For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
+For more information, check [the official Python docs](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -99,7 +99,7 @@ Here's how it might look:
 
 ---
 
-If you use Pycharm, you can:
+If you use PyCharm, you can:
 
 * Open the "Run" menu.
 * Select the option "Debug...".

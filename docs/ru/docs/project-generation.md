@@ -4,7 +4,7 @@
 
 Вы можете использовать этот шаблон для старта: в нём уже сделана значительная часть начальной настройки, безопасность, база данных и несколько эндпоинтов API.
 
-Репозиторий GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+Репозиторий GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI — Технологический стек и возможности { #full-stack-fastapi-template-technology-stack-and-features }
 
@@ -18,11 +18,11 @@
     - 🤖 Автоматически сгенерированный фронтенд‑клиент.
     - 🧪 [Playwright](https://playwright.dev) для End‑to‑End тестирования.
     - 🦇 Поддержка тёмной темы.
-- 🐋 [Docker Compose](https://www.docker.com) для разработки и продакшна.
+- 🐋 [Docker Compose](https://www.docker.com) для разработки и продакшн.
 - 🔒 Безопасное хэширование паролей по умолчанию.
-- 🔑 Аутентификация по JWT‑токенам.
+- 🔑 Аутентификация JWT (JSON Web Token).
 - 📫 Восстановление пароля по электронной почте.
 - ✅ Тесты с [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) в роли обратного прокси / балансировщика нагрузки.
 - 🚢 Инструкции по развёртыванию с использованием Docker Compose, включая настройку фронтенд‑прокси Traefik для автоматического получения сертификатов HTTPS.
-- 🏭 CI (continuous integration) и CD (continuous deployment) на основе GitHub Actions.
+- 🏭 CI (непрерывная интеграция) и CD (непрерывное развертывание) на основе GitHub Actions.

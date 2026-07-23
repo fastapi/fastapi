@@ -4,23 +4,23 @@ Las plantillas, aunque normalmente vienen con una configuración específica, es
 
 Puedes usar esta plantilla para comenzar, ya que incluye gran parte de la configuración inicial, seguridad, base de datos y algunos endpoints de API ya hechos para ti.
 
-Repositorio de GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Plantilla Full Stack FastAPI</a>
+Repositorio de GitHub: [Plantilla Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
 
-## Plantilla Full Stack FastAPI - Tecnología y Funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
+## Plantilla Full Stack FastAPI - Stack de tecnología y funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/es) para la API del backend en Python.
-    - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
-    - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
-    - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
+  - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
+  - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
+  - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
-    - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.
-    - 🎨 [Tailwind CSS](https://tailwindcss.com) y [shadcn/ui](https://ui.shadcn.com) para los componentes del frontend.
-    - 🤖 Un cliente de frontend generado automáticamente.
-    - 🧪 [Playwright](https://playwright.dev) para escribir pruebas End-to-End.
-    - 🦇 Soporte para modo oscuro.
+  - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.
+  - 🎨 [Tailwind CSS](https://tailwindcss.com) y [shadcn/ui](https://ui.shadcn.com) para los componentes del frontend.
+  - 🤖 Un cliente de frontend generado automáticamente.
+  - 🧪 [Playwright](https://playwright.dev) para escribir pruebas End-to-End.
+  - 🦇 Soporte para modo oscuro.
 - 🐋 [Docker Compose](https://www.docker.com) para desarrollo y producción.
 - 🔒 Hashing seguro de contraseñas por defecto.
-- 🔑 Autenticación con tokens JWT.
+- 🔑 Autenticación con JWT (JSON Web Token).
 - 📫 Recuperación de contraseñas basada en email.
 - ✅ Pruebas con [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) como proxy inverso / load balancer.

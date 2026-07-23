@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
-from docs_src.dependencies.tutorial010_py39 import get_db
+from docs_src.dependencies.tutorial010_py310 import get_db
 
 
 def test_get_db():
@@ -19,7 +19,7 @@ def test_get_db():
     dbsession_mock = Mock()
 
     with patch(
-        "docs_src.dependencies.tutorial010_py39.DBSession",
+        "docs_src.dependencies.tutorial010_py310.DBSession",
         return_value=dbsession_mock,
         create=True,
     ):

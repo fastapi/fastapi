@@ -2,14 +2,22 @@
 
 你可以使用 `StaticFiles` 从目录中自动提供静态文件。
 
+/// tip | 提示
+
+如果你需要托管前端，请改用 `app.frontend()`，可在[前端](frontend.md)中阅读相关内容。
+
+`app.frontend()` 底层使用 `StaticFiles`，并为前端提供了几个额外优势，例如处理客户端路由。
+
+///
+
 ## 使用 `StaticFiles` { #use-staticfiles }
 
 * 导入 `StaticFiles`。
 * 将一个 `StaticFiles()` 实例“挂载”（Mount）到指定路径。
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
-/// note | 注意
+/// note | 技术细节
 
 你也可以用 `from starlette.staticfiles import StaticFiles`。
 
@@ -23,7 +31,7 @@
 
 这与使用 `APIRouter` 不同，因为挂载的应用是完全独立的。主应用的 OpenAPI 和文档不会包含已挂载应用的任何内容，等等。
 
-你可以在[高级用户指南](../advanced/index.md){.internal-link target=_blank}中了解更多。
+你可以在[高级用户指南](../advanced/index.md)中了解更多。
 
 ## 细节 { #details }
 
@@ -37,4 +45,4 @@
 
 ## 更多信息 { #more-info }
 
-更多细节和选项请查阅 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette 的静态文件文档</a>。
+更多细节和选项请查阅 [Starlette 的静态文件文档](https://www.starlette.dev/staticfiles/)。

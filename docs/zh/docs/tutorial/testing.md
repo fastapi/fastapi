@@ -1,18 +1,18 @@
 # 测试 { #testing }
 
-感谢 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>，测试**FastAPI** 应用轻松又愉快。
+感谢 [Starlette](https://www.starlette.dev/testclient/)，测试**FastAPI** 应用轻松又愉快。
 
-它基于 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>， 而HTTPX又是基于Requests设计的，所以很相似且易懂。
+它基于 [HTTPX](https://www.python-httpx.org)，而HTTPX又是基于Requests设计的，所以很相似且易懂。
 
-有了它，你可以直接与**FastAPI**一起使用 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>。
+有了它，你可以直接与**FastAPI**一起使用 [pytest](https://docs.pytest.org/)。
 
 ## 使用 `TestClient` { #using-testclient }
 
-/// info | 信息
+/// note | 注意
 
-要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>。
+要使用 `TestClient`，先要安装 [`httpx`](https://www.python-httpx.org)。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 ```console
 $ pip install httpx
@@ -30,7 +30,7 @@ $ pip install httpx
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 提示
 
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | 提示
 
-除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} 。
+除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下[异步测试](../advanced/async-tests.md)。
 
 ///
 
@@ -60,11 +60,11 @@ $ pip install httpx
 
 在实际应用中，你可能会把你的测试放在另一个文件里。
 
-您的**FastAPI**应用程序也可能由一些文件/模块组成等等。
+你的**FastAPI**应用程序也可能由一些文件/模块组成等等。
 
 ### **FastAPI** app 文件 { #fastapi-app-file }
 
-假设你有一个像 [更大的应用](bigger-applications.md){.internal-link target=_blank} 中所描述的文件结构:
+假设你有一个像[更大的应用](bigger-applications.md)中所描述的文件结构:
 
 ```
 .
@@ -76,11 +76,11 @@ $ pip install httpx
 在 `main.py` 文件中你有一个 **FastAPI** app:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### 测试文件 { #testing-file }
 
-然后你会有一个包含测试的文件 `test_main.py` 。app可以像Python包那样存在（一样是目录，但有个 `__init__.py` 文件）：
+然后你会有一个包含测试的文件 `test_main.py` 。它可以位于同一个 Python 包中（一样是目录，但有个 `__init__.py` 文件）：
 
 ``` hl_lines="5"
 .
@@ -92,7 +92,8 @@ $ pip install httpx
 
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+
 
 ...然后测试代码和之前一样的。
 
@@ -112,23 +113,24 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-假设现在包含**FastAPI** app的文件 `main.py`  有些其他**路径操作**。
+假设现在包含**FastAPI** app的文件 `main.py` 有些其他**路径操作**。
 
-有个 `GET` 操作会返回错误。
+有个 `GET` 操作可能返回一个错误。
 
-有个 `POST` 操作会返回一些错误。
+有个 `POST` 操作可能返回多个错误。
 
-所有*路径操作* 都需要一个`X-Token` 头。
+两个*路径操作* 都需要一个`X-Token` 头。
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### 扩展后的测试文件 { #extended-testing-file }
 
-然后您可以使用扩展后的测试更新`test_main.py`：
+然后你可以使用扩展后的测试更新`test_main.py`：
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
-每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx`做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
+
+每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx` 做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
 
 接着只需在测试中同样操作。
 
@@ -140,13 +142,13 @@ $ pip install httpx
 * 要发送 *headers*，传 `dict` 给 `headers` 参数。
 * 对于 *cookies*，传 `dict` 给 `cookies` 参数。
 
-关于如何传数据给后端的更多信息 (使用`httpx` 或 `TestClient`)，请查阅 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX 文档</a>.
+关于如何传数据给后端的更多信息（使用 `httpx` 或 `TestClient`），请查阅 [HTTPX 文档](https://www.python-httpx.org)。
 
-/// info | 信息
+/// note | 注意
 
 注意 `TestClient` 接收可以被转化为JSON的数据，而不是Pydantic模型。
 
-如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON Compatible Encoder](encoder.md){.internal-link target=_blank}介绍的`jsonable_encoder` 。
+如果你在测试中有一个Pydantic模型，并且你想在测试时发送它的数据给应用，你可以使用在[JSON 兼容编码器](encoder.md)介绍的`jsonable_encoder` 。
 
 ///
 
@@ -154,7 +156,7 @@ $ pip install httpx
 
 之后，你只需要安装 `pytest`。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
+确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
 
 <div class="termy">
 
@@ -166,7 +168,7 @@ $ pip install pytest
 
 </div>
 
-他会自动检测文件和测试，执行测试，然后向你报告结果。
+它会自动检测文件和测试，执行测试，然后向你报告结果。
 
 执行测试：
 

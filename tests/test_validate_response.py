@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
@@ -11,8 +9,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/invalid", response_model=Item)
@@ -25,7 +23,7 @@ def get_invalid_none():
     return None
 
 
-@app.get("/items/validnone", response_model=Union[Item, None])
+@app.get("/items/validnone", response_model=Item | None)
 def get_valid_none(send_none: bool = False):
     if send_none:
         return None

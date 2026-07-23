@@ -1,6 +1,6 @@
 # Deployment-Konzepte { #deployments-concepts }
 
-Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zum **Deployment Ihrer Anwendung** finden können.
+Beim Deployment einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe derer Sie die **am besten geeignete** Methode zum **Deployment Ihrer Anwendung** finden können.
 
 Einige wichtige Konzepte sind:
 
@@ -25,7 +25,7 @@ Aber schauen wir uns zunächst einmal diese grundlegenden **konzeptionellen Idee
 
 ## Sicherheit – HTTPS { #security-https }
 
-Im [vorherigen Kapitel über HTTPS](https.md){.internal-link target=_blank} haben wir erfahren, wie HTTPS Verschlüsselung für Ihre API bereitstellt.
+Im [vorherigen Kapitel über HTTPS](https.md) haben wir erfahren, wie HTTPS Verschlüsselung für Ihre API bereitstellt.
 
 Wir haben auch gesehen, dass HTTPS normalerweise von einer Komponente **außerhalb** Ihres Anwendungsservers bereitgestellt wird, einem **TLS-Terminierungsproxy**.
 
@@ -45,7 +45,7 @@ Einige der Tools, die Sie als TLS-Terminierungsproxy verwenden können, sind:
     * Mit einer externen Komponente wie Certbot für Zertifikat-Erneuerungen
 * Kubernetes mit einem Ingress Controller wie Nginx
     * Mit einer externen Komponente wie cert-manager für Zertifikat-Erneuerungen
-* Es wird intern von einem Cloud-Anbieter als Teil seiner Dienste verwaltet (siehe unten 👇)
+* Es wird intern von einem Cloudanbieter als Teil seiner Dienste verwaltet (siehe unten 👇)
 
 Eine andere Möglichkeit besteht darin, dass Sie einen **Cloud-Dienst** verwenden, der den größten Teil der Arbeit übernimmt, einschließlich der Einrichtung von HTTPS. Er könnte einige Einschränkungen haben oder Ihnen mehr in Rechnung stellen, usw. In diesem Fall müssten Sie jedoch nicht selbst einen TLS-Terminierungsproxy einrichten.
 
@@ -59,7 +59,7 @@ Die nächsten zu berücksichtigenden Konzepte drehen sich dann um das Programm, 
 
 Wir werden viel über den laufenden „**Prozess**“ sprechen, daher ist es nützlich, Klarheit darüber zu haben, was das bedeutet und was der Unterschied zum Wort „**Programm**“ ist.
 
-### Was ist ein Programm { #what-is-a-program }
+### Was ein Programm ist { #what-is-a-program }
 
 Das Wort **Programm** wird häufig zur Beschreibung vieler Dinge verwendet:
 
@@ -67,14 +67,14 @@ Das Wort **Programm** wird häufig zur Beschreibung vieler Dinge verwendet:
 * Die **Datei**, die vom Betriebssystem **ausgeführt** werden kann, zum Beispiel: `python`, `python.exe` oder `uvicorn`.
 * Ein bestimmtes Programm, während es auf dem Betriebssystem **läuft**, die CPU nutzt und Dinge im Arbeitsspeicher ablegt. Dies wird auch als **Prozess** bezeichnet.
 
-### Was ist ein Prozess { #what-is-a-process }
+### Was ein Prozess ist { #what-is-a-process }
 
 Das Wort **Prozess** wird normalerweise spezifischer verwendet und bezieht sich nur auf das, was im Betriebssystem ausgeführt wird (wie im letzten Punkt oben):
 
 * Ein bestimmtes Programm, während es auf dem Betriebssystem **ausgeführt** wird.
     * Dies bezieht sich weder auf die Datei noch auf den Code, sondern **speziell** auf das, was vom Betriebssystem **ausgeführt** und verwaltet wird.
-* Jedes Programm, jeder Code **kann nur dann Dinge tun**, wenn er **ausgeführt** wird, wenn also ein **Prozess läuft**.
-* Der Prozess kann von Ihnen oder vom Betriebssystem **terminiert** („beendet“, „gekillt“) werden. An diesem Punkt hört es auf zu laufen/ausgeführt zu werden und kann **keine Dinge mehr tun**.
+* Jedes Programm, jeder Code **kann nur dann Dinge tun**, wenn er **ausgeführt** wird. Also dann, wenn ein **Prozess läuft**.
+* Der Prozess kann von Ihnen oder vom Betriebssystem **terminiert** („beendet“, „gekillt“) werden. An diesem Punkt hört er auf zu laufen/ausgeführt zu werden und kann **keine Dinge mehr tun**.
 * Hinter jeder Anwendung, die Sie auf Ihrem Computer ausführen, steckt ein Prozess, jedes laufende Programm, jedes Fenster usw. Und normalerweise laufen viele Prozesse **gleichzeitig**, während ein Computer eingeschaltet ist.
 * Es können **mehrere Prozesse** desselben **Programms** gleichzeitig ausgeführt werden.
 
@@ -100,7 +100,7 @@ Und es wird funktionieren und **während der Entwicklung** nützlich sein.
 
 Wenn Ihre Verbindung zum Server jedoch unterbrochen wird, wird der **laufende Prozess** wahrscheinlich abstürzen.
 
-Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloud-Anbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
+Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloudanbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
 
 ### Beim Hochfahren automatisch ausführen { #run-automatically-on-startup }
 
@@ -117,10 +117,10 @@ Einige Beispiele für Tools, die diese Aufgabe übernehmen können, sind:
 * Docker
 * Kubernetes
 * Docker Compose
-* Docker im Schwarm-Modus
+* Docker im Swarm-Modus
 * Systemd
 * Supervisor
-* Es wird intern von einem Cloud-Anbieter im Rahmen seiner Dienste verwaltet
+* Es wird intern von einem Cloudanbieter im Rahmen seiner Dienste verwaltet
 * Andere ...
 
 In den nächsten Kapiteln werde ich Ihnen konkretere Beispiele geben.
@@ -137,7 +137,7 @@ Und wir als Entwickler verbessern den Code ständig, wenn wir diese Bugs finden 
 
 ### Kleine Fehler automatisch handhaben { #small-errors-automatically-handled }
 
-Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise dem einzelnen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zurückgeben, der den Fehler ausgelöst hat. 🛡
+Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise auf den einzelnen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> beschränken, der den Fehler ausgelöst hat. 🛡
 
 Der Client erhält für diesen Request einen **500 Internal Server Error**, aber die Anwendung arbeitet bei den nächsten Requests weiter, anstatt einfach komplett abzustürzen.
 
@@ -170,15 +170,15 @@ Dies könnte zum Beispiel erledigt werden durch:
 * Docker
 * Kubernetes
 * Docker Compose
-* Docker im Schwarm-Modus
+* Docker im Swarm-Modus
 * Systemd
 * Supervisor
-* Intern von einem Cloud-Anbieter im Rahmen seiner Dienste
+* Intern von einem Cloudanbieter im Rahmen seiner Dienste
 * Andere ...
 
 ## Replikation – Prozesse und Arbeitsspeicher { #replication-processes-and-memory }
 
-Wenn Sie eine FastAPI-Anwendung verwenden und ein Serverprogramm wie den `fastapi`-Befehl, der Uvicorn ausführt, kann **ein einzelner Prozess** an mehrere Clients gleichzeitig ausliefern.
+Wenn Sie eine FastAPI-Anwendung verwenden und ein Serverprogramm wie den `fastapi`-Befehl, der Uvicorn ausführt, kann die Ausführung in **einem Prozess** mehrere Clients gleichzeitig versorgen.
 
 In vielen Fällen möchten Sie jedoch mehrere Workerprozesse gleichzeitig ausführen.
 
@@ -190,7 +190,7 @@ Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden die
 
 ### Workerprozesse und Ports { #worker-processes-and-ports }
 
-Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md){.internal-link target=_blank}, dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
+Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md), dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
 
 Das ist immer noch wahr.
 
@@ -200,7 +200,7 @@ Um also **mehrere Prozesse** gleichzeitig zu haben, muss es einen **einzelnen Pr
 
 Wenn das Programm nun Dinge in den Arbeitsspeicher lädt, zum Beispiel ein Modell für maschinelles Lernen in einer Variablen oder den Inhalt einer großen Datei in einer Variablen, verbraucht das alles **einen Teil des Arbeitsspeichers (RAM – Random Access Memory)** des Servers.
 
-Und mehrere Prozesse teilen sich normalerweise keinen Speicher. Das bedeutet, dass jeder laufende Prozess seine eigenen Dinge, eigenen Variablen und eigenen Speicher hat. Und wenn Sie in Ihrem Code viel Speicher verbrauchen, verbraucht **jeder Prozess** die gleiche Menge Speicher.
+Und mehrere Prozesse **teilen sich normalerweise keinen Speicher**. Das bedeutet, dass jeder laufende Prozess seine eigenen Dinge, eigenen Variablen und eigenen Speicher hat. Und wenn Sie in Ihrem Code viel Speicher verbrauchen, verbraucht **jeder Prozess** die gleiche Menge Speicher.
 
 ### Serverspeicher { #server-memory }
 
@@ -243,7 +243,7 @@ Hier sind einige mögliche Kombinationen und Strategien:
 
 Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
 
-Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md).
 
 ///
 
@@ -281,7 +281,7 @@ Hier sind einige mögliche Ideen:
 
 /// tip | Tipp
 
-Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md).
 
 ///
 

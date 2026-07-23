@@ -2,12 +2,20 @@
 
 `StaticFiles` を使用して、ディレクトリから静的ファイルを自動的に提供できます。
 
+/// tip | 豆知識
+
+フロントエンドをホストする必要がある場合は、代わりに `app.frontend()` を使用してください。詳しくは [フロントエンド](frontend.md) を読んでください。
+
+`app.frontend()` は内部で `StaticFiles` を使用しており、client-side routing の処理など、フロントエンド向けの追加の利点がいくつかあります。
+
+///
+
 ## `StaticFiles` の使用 { #use-staticfiles }
 
 * `StaticFiles` をインポート。
 * `StaticFiles()` インスタンスを特定のパスに「マウント」。
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | 技術詳細
 
@@ -23,7 +31,7 @@
 
 これは、マウントされたアプリケーションが完全に独立しているため、`APIRouter` とは異なります。メインアプリケーションのOpenAPIとドキュメントには、マウントされたアプリケーションの内容などは含まれません。
 
-これについて詳しくは、[高度なユーザーガイド](../advanced/index.md){.internal-link target=_blank} をご覧ください。
+これについて詳しくは、[高度なユーザーガイド](../advanced/index.md) をご覧ください。
 
 ## 詳細 { #details }
 
@@ -37,4 +45,4 @@
 
 ## より詳しい情報 { #more-info }
 
-詳細とオプションについては、<a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starletteの静的ファイルに関するドキュメント</a>を確認してください。
+詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://www.starlette.dev/staticfiles/)を確認してください。

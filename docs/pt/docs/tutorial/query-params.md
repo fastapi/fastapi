@@ -2,7 +2,7 @@
 
 Quando você declara outros parâmetros na função que não fazem parte dos parâmetros da rota, esses parâmetros são automaticamente interpretados como parâmetros de "consulta".
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 A consulta é o conjunto de pares chave-valor que vai depois de `?` na URL, separado pelo caractere `&`.
 
@@ -24,7 +24,7 @@ Mas quando você declara eles com os tipos do Python (no exemplo acima, como `in
 Todo o processo que era aplicado para parâmetros de rota também é aplicado para parâmetros de consulta:
 
 * Suporte do editor (obviamente)
-* <abbr title="convertendo uma string que vem de um request HTTP em um dado Python">"Parsing"</abbr> de dados
+* <dfn title="convertendo a string que vem de um request HTTP em dados Python">"análise"</dfn> de dados
 * Validação de dados
 * Documentação automática
 
@@ -54,8 +54,8 @@ http://127.0.0.1:8000/items/?skip=20
 
 Os valores dos parâmetros na sua função serão:
 
-* `skip=20`: Por que você definiu isso na URL
-* `limit=10`: Por que esse era o valor padrão
+* `skip=20`: porque você definiu isso na URL
+* `limit=10`: porque esse era o valor padrão
 
 ## Parâmetros opcionais { #optional-parameters }
 
@@ -65,7 +65,7 @@ Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
 
-/// check | Verifique
+/// tip | Dica
 
 Você também pode notar que o **FastAPI** é esperto o suficiente para perceber que o parâmetro da rota `item_id` é um parâmetro da rota, e `q` não é, portanto, `q` é o parâmetro de consulta.
 
@@ -109,6 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 ou qualquer outra variação (tudo em maiúscula, primeira letra em maiúscula, etc), a sua função vai ver o parâmetro `short` com um valor `bool` de `True`. Caso contrário `False`.
 
+
 ## Múltiplos parâmetros de rota e consulta { #multiple-path-and-query-parameters }
 
 Você pode declarar múltiplos parâmetros de rota e parâmetros de consulta ao mesmo tempo, o **FastAPI** vai saber o quê é o quê.
@@ -127,11 +128,11 @@ Caso você não queira adicionar um valor específico mas queira apenas torná-l
 
 Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão.
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-Aqui o parâmetro de consulta `needy` é um valor obrigatório, do tipo `str`.
+Aqui o parâmetro da consulta `needy` é um parâmetro de consulta obrigatório, do tipo `str`.
 
-Se você abrir no seu navegador a URL:
+Se você abrir no seu navegador uma URL como:
 
 ```
 http://127.0.0.1:8000/items/foo-item
@@ -182,6 +183,6 @@ Nesse caso, existem 3 parâmetros de consulta:
 
 /// tip | Dica
 
-Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+Você também poderia usar `Enum`s da mesma forma que com [Parâmetros de rota](path-params.md#predefined-values).
 
 ///

@@ -1,130 +1,130 @@
 # OpenAPI 回调 { #openapi-callbacks }
 
-您可以创建一个包含*路径操作*的 API，它会触发对别人创建的*外部 API*的请求（很可能就是那个会“使用”您 API 的同一个开发者）。
+你可以创建一个包含*路径操作*的 API，该*路径操作*可以触发对其他人创建的*外部 API*的请求（很可能就是那个会*使用*你的 API 的同一个开发者）。
 
-当您的 API 应用调用*外部 API*时，这个过程被称为“回调”。因为外部开发者编写的软件会先向您的 API 发送请求，然后您的 API 再进行*回调*，向*外部 API*发送请求（很可能也是该开发者创建的）。
+当你的 API 应用调用*外部 API*时，这个过程被称为“回调”。因为外部开发者编写的软件会先向你的 API 发送请求，然后你的 API 再*回调*，向*外部 API*发送请求（很可能也是该开发者创建的）。
 
-此时，我们需要存档外部 API 的*信息*，比如应该有哪些*路径操作*，请求体应该是什么，应该返回什么响应等。
+在这种情况下，你可能希望记录该外部 API *应该*是什么样子。它应该有哪些*路径操作*，应该接收什么请求体，应该返回什么响应等。
 
 ## 使用回调的应用 { #an-app-with-callbacks }
 
-示例如下。
+让我们通过一个例子来看这一切。
 
-假设要开发一个创建发票的应用。
+假设你开发一个可以创建发票的应用。
 
-发票包括 `id`、`title`（可选）、`customer`、`total` 等属性。
+这些发票会有 `id`、`title`（可选）、`customer` 和 `total`。
 
-API 的用户（外部开发者）要在您的 API 内使用 POST 请求创建一条发票记录。
+你的 API 用户（外部开发者）会通过 POST 请求在你的 API 中创建一张发票。
 
-（假设）您的 API 将：
+然后你的 API 会（假设）：
 
-* 把发票发送至外部开发者的消费者
-* 归集现金
-* 把通知发送至 API 的用户（外部开发者）
-    * 通过（从您的 API）发送 POST 请求至外部 API（即**回调**）来完成
+* 将发票发送给外部开发者的某个客户。
+* 收款。
+* 向 API 用户（外部开发者）发回通知。
+    * 这会通过（从*你的 API*）向该外部开发者提供的某个*外部 API*发送 POST 请求来完成（这就是“回调”）。
 
 ## 常规 **FastAPI** 应用 { #the-normal-fastapi-app }
 
-添加回调前，首先看下常规 API 应用是什么样子。
+我们先看看在添加回调之前，常规 API 应用会是什么样子。
 
-常规 API 应用包含接收 `Invoice` 请求体的*路径操作*，还有包含回调 URL 的查询参数 `callback_url`。
+它会有一个接收 `Invoice` 请求体的*路径操作*，以及一个包含回调 URL 的查询参数 `callback_url`。
 
-这部分代码很常规，您对绝大多数代码应该都比较熟悉了：
+这部分很常规，大部分代码你应该已经很熟悉了：
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
 
 /// tip | 提示
 
-`callback_url` 查询参数使用 Pydantic 的 <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> 类型。
+`callback_url` 查询参数使用 Pydantic 的 [Url](https://docs.pydantic.dev/latest/api/networks/) 类型。
 
 ///
 
-此处唯一比较新的内容是*路径操作装饰器*中的 `callbacks=invoices_callback_router.routes` 参数，下文介绍。
+唯一的新内容是*路径操作装饰器*中的参数 `callbacks=invoices_callback_router.routes`。接下来我们会看看它是什么。
 
-## 存档回调 { #documenting-the-callback }
+## 为回调编写文档 { #documenting-the-callback }
 
-实际的回调代码高度依赖于您自己的 API 应用。
+实际的回调代码会高度依赖你自己的 API 应用。
 
-并且可能每个应用都各不相同。
+而且很可能在不同应用之间差异很大。
 
-回调代码可能只有一两行，比如：
+它可能只有一两行代码，例如：
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
 httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
-但回调最重要的部分可能是，根据 API 要发送给回调请求体的数据等内容，确保您的 API 用户（外部开发者）正确地实现*外部 API*。
+但回调最重要的部分可能是确保你的 API 用户（外部开发者）正确实现*外部 API*，与*你的 API*将在回调请求体中发送的数据等相匹配。
 
-因此，我们下一步要做的就是添加代码，为从 API 接收回调的*外部 API*存档。
+因此，接下来我们要做的是添加代码，用来记录该*外部 API*应该是什么样子，才能接收来自*你的 API*的回调。
 
-这部分文档在 `/docs` 下的 Swagger UI 中显示，并且会告诉外部开发者如何构建*外部 API*。
+这份文档会显示在你的 API 的 `/docs` 下的 Swagger UI 中，并且会让外部开发者知道如何构建*外部 API*。
 
-本例没有实现回调本身（只是一行代码），只有文档部分。
+本例不实现回调本身（那可能只是一行代码），只实现文档部分。
 
 /// tip | 提示
 
-实际的回调只是 HTTP 请求。
+实际的回调只是一个 HTTP 请求。
 
-实现回调时，要使用 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> 或 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>。
+自己实现回调时，你可以使用类似 [HTTPX](https://www.python-httpx.org) 或 [Requests](https://requests.readthedocs.io/) 的工具。
 
 ///
 
 ## 编写回调文档代码 { #write-the-callback-documentation-code }
 
-应用不执行这部分代码，只是用它来*记录 外部 API* 。
+这段代码不会在你的应用中执行，我们只需要用它来*记录*该*外部 API*应该是什么样子。
 
-但，您已经知道用 **FastAPI** 创建自动 API 文档有多简单了。
+不过，你已经知道如何使用 **FastAPI** 轻松为 API 创建自动文档了。
 
-我们要使用与存档*外部 API* 相同的知识...通过创建外部 API 要实现的*路径操作*（您的 API 要调用的）。
+因此，我们会使用相同的知识来记录该*外部 API*应该是什么样子...通过创建外部 API 应该实现的*路径操作*（也就是你的 API 将调用的那些）。
 
 /// tip | 提示
 
-编写存档回调的代码时，假设您是*外部开发者*可能会用的上。并且您当前正在实现的是*外部 API*，不是*您自己的 API*。
+在编写用于记录回调的代码时，可以想象你就是那个*外部开发者*。而且你现在正在实现的是*外部 API*，不是*你的 API*。
 
-临时改变（为外部开发者的）视角能让您更清楚该如何放置*外部 API* 响应和请求体的参数与 Pydantic 模型等。
+临时采用这个（*外部开发者*的）视角，可以帮助你更清楚地判断该把参数、请求体的 Pydantic 模型、响应等放在该*外部 API*的什么位置。
 
 ///
 
-### 创建回调的 `APIRouter` { #create-a-callback-apirouter }
+### 创建回调 `APIRouter` { #create-a-callback-apirouter }
 
-首先，新建包含一些用于回调的 `APIRouter`。
+首先创建一个新的 `APIRouter`，它将包含一个或多个回调。
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
 ### 创建回调*路径操作* { #create-the-callback-path-operation }
 
-创建回调*路径操作*也使用之前创建的 `APIRouter`。
+要创建回调*路径操作*，请使用你在上面创建的同一个 `APIRouter`。
 
-它看起来和常规 FastAPI *路径操作*差不多：
+它看起来应该就像普通的 FastAPI *路径操作*：
 
-* 声明要接收的请求体，例如，`body: InvoiceEvent`
-* 还要声明要返回的响应，例如，`response_model=InvoiceEventReceived`
+* 它可能应该声明要接收的请求体，例如 `body: InvoiceEvent`。
+* 它也可以声明要返回的响应，例如 `response_model=InvoiceEventReceived`。
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
-回调*路径操作*与常规*路径操作*有两点主要区别：
+它与普通*路径操作*有 2 个主要区别：
 
-* 它不需要任何实际的代码，因为应用不会调用这段代码。它只是用于存档*外部 API*。因此，函数的内容只需要 `pass` 就可以了
-* *路径*可以包含 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 表达式</a>（详见下文），可以使用带参数的变量，以及发送至您的 API 的原始请求的部分
+* 它不需要任何实际代码，因为你的应用永远不会调用这段代码。它只用于记录*外部 API*。因此，函数可以只有 `pass`。
+* *路径*可以包含 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（见下文），其中可以使用带参数的变量，以及发送到*你的 API*的原始请求的部分内容。
 
 ### 回调路径表达式 { #the-callback-path-expression }
 
-回调*路径*支持包含发送给您的 API 的原始请求的部分的  <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 表达式</a>。
+回调*路径*可以有一个 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)，其中可以包含发送到*你的 API*的原始请求的部分内容。
 
-本例中是**字符串**：
+在这个例子中，它是这个 `str`：
 
 ```Python
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-因此，如果您的 API 用户（外部开发者）发送请求到您的 API：
+所以，如果你的 API 用户（外部开发者）向*你的 API*发送请求到：
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
 ```
 
-使用如下 JSON 请求体：
+并带有如下 JSON 请求体：
 
 ```JSON
 {
@@ -134,13 +134,13 @@ https://yourapi.com/invoices/?callback_url=https://www.external.org/events
 }
 ```
 
-然后，您的 API 就会处理发票，并在某个点之后，发送回调请求至 `callback_url`（外部 API）：
+那么*你的 API*会处理该发票，并在稍后的某个时间点，向 `callback_url`（*外部 API*）发送回调请求：
 
 ```
 https://www.external.org/events/invoices/2expen51ve
 ```
 
-JSON 请求体包含如下内容：
+并带有类似如下内容的 JSON 请求体：
 
 ```JSON
 {
@@ -149,7 +149,7 @@ JSON 请求体包含如下内容：
 }
 ```
 
-它会预期*外部 API* 的响应包含如下 JSON 请求体：
+它会预期该*外部 API*返回类似如下 JSON 请求体的响应：
 
 ```JSON
 {
@@ -159,28 +159,28 @@ JSON 请求体包含如下内容：
 
 /// tip | 提示
 
-注意，回调 URL 包含 `callback_url`（`https://www.external.org/events`）中的查询参数，还有 JSON 请求体内部的发票 ID（`2expen51ve`）。
+请注意，使用的回调 URL 包含在 `callback_url` 中作为查询参数接收到的 URL（`https://www.external.org/events`），也包含 JSON 请求体内部的发票 `id`（`2expen51ve`）。
 
 ///
 
 ### 添加回调路由 { #add-the-callback-router }
 
-至此，在上文创建的回调路由里就包含了*回调路径操作*（外部开发者要在外部 API 中实现）。
+此时，你已经在上面创建的回调路由中拥有了所需的*回调路径操作*（即*外部开发者*应该在*外部 API*中实现的那些）。
 
-现在使用 API *路径操作装饰器*的参数 `callbacks`，从回调路由传递属性 `.routes`（实际上只是路由/路径操作的**列表**）：
+现在，在*你的 API 的路径操作装饰器*中使用参数 `callbacks`，传入该回调路由的 `.routes` 属性：
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | 提示
 
-注意，不能把路由本身（`invoices_callback_router`）传递给 `callback=`，要传递 `invoices_callback_router.routes` 中的 `.routes` 属性。
+请注意，你不是把路由本身（`invoices_callback_router`）传给 `callbacks=`，而是传它的 `.routes`，也就是 `invoices_callback_router.routes`。FastAPI 会使用这些路由来生成回调的 OpenAPI 文档。
 
 ///
 
 ### 查看文档 { #check-the-docs }
 
-现在，使用 Uvicorn 启动应用，打开 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+现在你可以启动应用并访问 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
-就能看到文档的*路径操作*已经包含了**回调**的内容以及*外部 API*：
+你会看到文档中为你的*路径操作*包含了一个 "Callbacks" 部分，展示了*外部 API*应该是什么样子：
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

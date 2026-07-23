@@ -2,7 +2,7 @@
 
 No capítulo anterior, o sistema de segurança (que é baseado no sistema de injeção de dependências) estava fornecendo à *função de operação de rota* um `token` como uma `str`:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Mas isso ainda não é tão útil.
 
@@ -14,11 +14,11 @@ Primeiro, vamos criar um modelo de usuário com Pydantic.
 
 Da mesma forma que usamos o Pydantic para declarar corpos, podemos usá-lo em qualquer outro lugar:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## Criar uma dependência `get_current_user` { #create-a-get-current-user-dependency }
 
-Vamos criar uma dependência chamada `get_current_user`.
+Vamos criar uma dependência `get_current_user`.
 
 Lembra que as dependências podem ter subdependências?
 
@@ -52,7 +52,7 @@ Aqui, o **FastAPI** não ficará confuso porque você está usando `Depends`.
 
 ///
 
-/// check | Verifique
+/// tip | Dica
 
 A forma como esse sistema de dependências foi projetado nos permite ter diferentes dependências (diferentes "dependables") que retornam um modelo `User`.
 

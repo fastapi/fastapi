@@ -15,7 +15,7 @@ This includes, for example:
 
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
 
@@ -31,13 +31,13 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Add the background task { #add-the-background-task }
 
 Inside of your *path operation function*, pass your task function to the *background tasks* object with the method `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` receives as arguments:
 
@@ -63,7 +63,7 @@ And then another background task generated at the *path operation function* will
 
 ## Technical Details { #technical-details }
 
-The class `BackgroundTasks` comes directly from <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
+The class `BackgroundTasks` comes directly from [`starlette.background`](https://www.starlette.dev/background/).
 
 It is imported/included directly into FastAPI so that you can import it from `fastapi` and avoid accidentally importing the alternative `BackgroundTask` (without the `s` at the end) from `starlette.background`.
 
@@ -71,11 +71,11 @@ By only using `BackgroundTasks` (and not `BackgroundTask`), it's then possible t
 
 It's still possible to use `BackgroundTask` alone in FastAPI, but you have to create the object in your code and return a Starlette `Response` including it.
 
-You can see more details in <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
+You can see more details in [Starlette's official docs for Background Tasks](https://www.starlette.dev/background/).
 
 ## Caveat { #caveat }
 
-If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
+If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 

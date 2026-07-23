@@ -1,18 +1,18 @@
 # Тестування { #testing }
 
-Завдяки <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> тестувати застосунки **FastAPI** просто й приємно.
+Завдяки [Starlette](https://www.starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
 
-Воно базується на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
+Воно базується на [HTTPX](https://www.python-httpx.org), який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
 
-З його допомогою ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
+З його допомогою ви можете використовувати [pytest](https://docs.pytest.org/) безпосередньо з **FastAPI**.
 
 ## Використання `TestClient` { #using-testclient }
 
-/// info | Інформація
+/// note | Примітка
 
-Щоб використовувати `TestClient`, спочатку встановіть <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Щоб використовувати `TestClient`, спочатку встановіть [`httpx`](https://www.python-httpx.org).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили `httpx`, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили `httpx`, наприклад:
 
 ```console
 $ pip install httpx
@@ -30,7 +30,7 @@ $ pip install httpx
 
 Записуйте прості `assert`-вирази зі стандартними виразами Python, які потрібно перевірити (це також стандарт для `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Порада
 
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | Порада
 
-Якщо ви хочете викликати `async`-функції у ваших тестах, окрім відправлення запитів до вашого застосунку FastAPI (наприклад, асинхронні функції роботи з базою даних), перегляньте [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} у розширеному керівництві.
+Якщо ви хочете викликати `async`-функції у ваших тестах, окрім відправлення запитів до вашого застосунку FastAPI (наприклад, асинхронні функції роботи з базою даних), перегляньте [Асинхронні тести](../advanced/async-tests.md) у просунутому навчальному посібнику.
 
 ///
 
@@ -64,7 +64,7 @@ $ pip install httpx
 
 ### Файл застосунку **FastAPI** { #fastapi-app-file }
 
-Припустимо, у вас є структура файлів, описана в розділі [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
+Припустимо, у вас є структура файлів, описана в розділі [Більші застосунки](bigger-applications.md):
 
 ```
 .
@@ -76,7 +76,7 @@ $ pip install httpx
 У файлі `main.py` знаходиться ваш застосунок **FastAPI**:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Файл тестування { #testing-file }
 
@@ -90,9 +90,9 @@ $ pip install httpx
 │   └── test_main.py
 ```
 
-Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app`  із модуля `main` (`main.py`):
+Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app` із модуля `main` (`main.py`):
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...і написати код для тестів так само як і раніше.
@@ -130,25 +130,25 @@ $ pip install httpx
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Коли вам потрібно передати клієнту інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайні Requests.
+Коли вам потрібно, щоб клієнт передав інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайні Requests.
 
 Далі ви просто повторюєте ці ж дії у ваших тестах.
 
 Наприклад:
 
-* Щоб передати *path* або *query* параметр, додайте його безпосередньо до URL.
+* Щоб передати параметр *шляху* або *запиту*, додайте його безпосередньо до URL.
 * Щоб передати тіло JSON, передайте Python-об'єкт (наприклад, `dict`) у параметр `json`.
-* Якщо потрібно надіслати *Form Data* замість JSON, використовуйте параметр `data`.
-* Щоб передати заголовки *headers*, використовуйте `dict` у параметрі `headers`.
-* Для *cookies* використовуйте `dict` у параметрі `cookies`.
+* Якщо потрібно надіслати *дані форми* замість JSON, використовуйте параметр `data`.
+* Щоб передати *заголовки*, використовуйте `dict` у параметрі `headers`.
+* Для *кукі* використовуйте `dict` у параметрі `cookies`.
 
-Докладніше про передачу даних у бекенд (за допомогою `httpx` або `TestClient`) можна знайти в <a href="https://www.python-httpx.org" class="external-link" target="_blank">документації HTTPX</a>.
+Докладніше про передачу даних у бекенд (за допомогою `httpx` або `TestClient`) можна знайти в [документації HTTPX](https://www.python-httpx.org).
 
-/// info | Інформація
+/// note | Примітка
 
 Зверніть увагу, що `TestClient` отримує дані, які можна конвертувати в JSON, а не Pydantic-моделі.
 
-Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в застосунок під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в застосунок під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON-сумісний кодувальник](encoder.md).
 
 ///
 
@@ -156,7 +156,7 @@ $ pip install httpx
 
 Після цього вам потрібно встановити `pytest`.
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його і встановили необхідні пакети, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його і встановили необхідні пакети, наприклад:
 
 <div class="termy">
 

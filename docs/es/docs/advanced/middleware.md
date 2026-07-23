@@ -1,14 +1,14 @@
 # Middleware Avanzado { #advanced-middleware }
 
-En el tutorial principal leíste cómo agregar [Middleware Personalizado](../tutorial/middleware.md){.internal-link target=_blank} a tu aplicación.
+En el tutorial principal leíste cómo agregar [Middleware Personalizado](../tutorial/middleware.md) a tu aplicación.
 
-Y luego también leíste cómo manejar [CORS con el `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+Y luego también leíste cómo manejar [CORS con el `CORSMiddleware`](../tutorial/cors.md).
 
 En esta sección veremos cómo usar otros middlewares.
 
 ## Agregando middlewares ASGI { #adding-asgi-middlewares }
 
-Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface – Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>, puedes usar cualquier middleware ASGI.
+Como **FastAPI** está basado en Starlette e implementa la especificación <abbr title="Asynchronous Server Gateway Interface - Interfaz de puerta de enlace de servidor asíncrona">ASGI</abbr>, puedes usar cualquier middleware ASGI.
 
 Un middleware no tiene que estar hecho para FastAPI o Starlette para funcionar, siempre que siga la especificación ASGI.
 
@@ -57,13 +57,13 @@ Impone que todas las requests entrantes deben ser `https` o `wss`.
 
 Cualquier request entrante a `http` o `ws` será redirigida al esquema seguro.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Impone que todas las requests entrantes tengan correctamente configurado el header `Host`, para proteger contra ataques de HTTP Host Header.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Se soportan los siguientes argumentos:
 
@@ -78,7 +78,7 @@ Maneja responses GZip para cualquier request que incluya `"gzip"` en el header `
 
 El middleware manejará tanto responses estándar como en streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Se soportan los siguientes argumentos:
 
@@ -91,7 +91,7 @@ Hay muchos otros middlewares ASGI.
 
 Por ejemplo:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">`ProxyHeadersMiddleware` de Uvicorn</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [`ProxyHeadersMiddleware` de Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Para ver otros middlewares disponibles, revisa <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">la documentación de Middleware de Starlette</a> y la <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">Lista ASGI Awesome</a>.
+Para ver otros middlewares disponibles, revisa [la documentación de Middleware de Starlette](https://www.starlette.dev/middleware/) y la [Lista ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

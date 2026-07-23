@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI, Form
@@ -14,12 +14,12 @@ app = FastAPI()
 
 
 @app.post("/optional-str", operation_id="optional_str")
-async def read_optional_str(p: Annotated[Optional[str], Form()] = None):
+async def read_optional_str(p: Annotated[str | None, Form()] = None):
     return {"p": p}
 
 
 class FormModelOptionalStr(BaseModel):
-    p: Optional[str] = None
+    p: str | None = None
 
 
 @app.post("/model-optional-str", operation_id="model_optional_str")
@@ -75,13 +75,13 @@ def test_optional_str(path: str):
 
 @app.post("/optional-alias", operation_id="optional_alias")
 async def read_optional_alias(
-    p: Annotated[Optional[str], Form(alias="p_alias")] = None,
+    p: Annotated[str | None, Form(alias="p_alias")] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalAlias(BaseModel):
-    p: Optional[str] = Field(None, alias="p_alias")
+    p: str | None = Field(None, alias="p_alias")
 
 
 @app.post("/model-optional-alias", operation_id="model_optional_alias")
@@ -151,13 +151,13 @@ def test_optional_alias_by_alias(path: str):
 
 @app.post("/optional-validation-alias", operation_id="optional_validation_alias")
 def read_optional_validation_alias(
-    p: Annotated[Optional[str], Form(validation_alias="p_val_alias")] = None,
+    p: Annotated[str | None, Form(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalValidationAlias(BaseModel):
-    p: Optional[str] = Field(None, validation_alias="p_val_alias")
+    p: str | None = Field(None, validation_alias="p_val_alias")
 
 
 @app.post(
@@ -238,14 +238,14 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 )
 def read_optional_alias_and_validation_alias(
     p: Annotated[
-        Optional[str], Form(alias="p_alias", validation_alias="p_val_alias")
+        str | None, Form(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalAliasAndValidationAlias(BaseModel):
-    p: Optional[str] = Field(None, alias="p_alias", validation_alias="p_val_alias")
+    p: str | None = Field(None, alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

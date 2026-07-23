@@ -1,10 +1,11 @@
 # Full Stack FastAPI Şablonu { #full-stack-fastapi-template }
 
+
 Şablonlar genellikle belirli bir kurulumla gelir, ancak esnek ve özelleştirilebilir olacak şekilde tasarlanırlar. Bu sayede şablonu projenizin gereksinimlerine göre değiştirip uyarlayabilir, çok iyi bir başlangıç noktası olarak kullanabilirsiniz. 🏁
 
 Bu şablonu başlangıç için kullanabilirsiniz; çünkü ilk kurulumun, güvenliğin, veritabanının ve bazı API endpoint'lerinin önemli bir kısmı sizin için zaten hazırlanmıştır.
 
-GitHub Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHub Repository: [Full Stack FastAPI Şablonu](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Şablonu - Teknoloji Yığını ve Özellikler { #full-stack-fastapi-template-technology-stack-and-features }
 

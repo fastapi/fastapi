@@ -25,9 +25,17 @@ Y esa función `get_openapi()` recibe como parámetros:
 * `openapi_version`: La versión de la especificación OpenAPI utilizada. Por defecto, la más reciente: `3.1.0`.
 * `summary`: Un breve resumen de la API.
 * `description`: La descripción de tu API, esta puede incluir markdown y se mostrará en la documentación.
-* `routes`: Una list de rutas, estas son cada una de las *path operations* registradas. Se toman de `app.routes`.
+* `routes`: Las rutas de la aplicación, tomadas de `app.routes`. FastAPI las usa para recolectar las *path operations* registradas, incluidas las de los routers incluidos.
 
-/// info | Información
+/// tip | Detalles técnicos
+
+`app.routes` es un árbol de rutas de nivel inferior. Puede incluir rutas candidatas que FastAPI usa internamente para routers incluidos, no solo objetos `APIRoute` finales.
+
+Aun así puedes pasar `app.routes` a `get_openapi()`. FastAPI recorrerá ese árbol de rutas para recolectar las path operations efectivas.
+
+///
+
+/// note | Nota
 
 El parámetro `summary` está disponible en OpenAPI 3.1.0 y versiones superiores, soportado por FastAPI 0.99.0 y superiores.
 
@@ -37,25 +45,25 @@ El parámetro `summary` está disponible en OpenAPI 3.1.0 y versiones superiores
 
 Usando la información anterior, puedes usar la misma función de utilidad para generar el esquema de OpenAPI y sobrescribir cada parte que necesites.
 
-Por ejemplo, vamos a añadir <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">la extensión OpenAPI de ReDoc para incluir un logo personalizado</a>.
+Por ejemplo, vamos a añadir [la extensión OpenAPI de ReDoc para incluir un logo personalizado](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
 
 ### **FastAPI** normal { #normal-fastapi }
 
 Primero, escribe toda tu aplicación **FastAPI** como normalmente:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
 ### Generar el esquema de OpenAPI { #generate-the-openapi-schema }
 
 Luego, usa la misma función de utilidad para generar el esquema de OpenAPI, dentro de una función `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
 ### Modificar el esquema de OpenAPI { #modify-the-openapi-schema }
 
 Ahora puedes añadir la extensión de ReDoc, agregando un `x-logo` personalizado al "objeto" `info` en el esquema de OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
 ### Cachear el esquema de OpenAPI { #cache-the-openapi-schema }
 
@@ -65,16 +73,16 @@ De esa forma, tu aplicación no tendrá que generar el esquema cada vez que un u
 
 Se generará solo una vez, y luego se usará el mismo esquema cacheado para las siguientes requests.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
 ### Sobrescribir el método { #override-the-method }
 
 Ahora puedes reemplazar el método `.openapi()` por tu nueva función.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
 ### Revisa { #check-it }
 
-Una vez que vayas a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> verás que estás usando tu logo personalizado (en este ejemplo, el logo de **FastAPI**):
+Una vez que vayas a [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) verás que estás usando tu logo personalizado (en este ejemplo, el logo de **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

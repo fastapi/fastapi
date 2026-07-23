@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
@@ -61,5 +59,5 @@ def test_invalid_simple_dict():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Optional[dict] = Query(default=None)):
+        def read_items(q: dict | None = Query(default=None)):
             pass  # pragma: no cover

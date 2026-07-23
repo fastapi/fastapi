@@ -2,11 +2,11 @@
 
 FastAPI에서 **Pydantic 모델**을 이용하여 **폼 필드**를 선언할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
-폼을 사용하려면, 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치하세요.
+폼을 사용하려면, 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치하세요.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고 활성화한 다음, 예를 들어 아래와 같이 설치하세요:
+[가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, 예를 들어 아래와 같이 설치하세요:
 
 ```console
 $ pip install python-multipart
@@ -24,7 +24,7 @@ $ pip install python-multipart
 
 **폼 필드**로 받고 싶은 필드를 **Pydantic 모델**로 선언한 다음, 매개변수를 `Form`으로 선언하면 됩니다:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI**는 요청에서 받은 **폼 데이터**에서 **각 필드**에 대한 데이터를 **추출**하고 정의한 Pydantic 모델을 줍니다.
 
@@ -48,7 +48,7 @@ $ pip install python-multipart
 
 Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있습니다:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 클라이언트가 추가 데이터를 보내려고 하면 **오류** 응답을 받게 됩니다.
 
