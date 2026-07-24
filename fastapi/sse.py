@@ -156,6 +156,12 @@ class ServerSentEvent(BaseModel):
         return self
 
 
+def _split_sse_lines(value: str) -> list[str]:
+    # Split on SSE-spec line terminators only (\n, \r\n, \r), preserving
+    # trailing empty strings.
+    return value.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+
+
 def format_sse_event(
     *,
     data_str: Annotated[
@@ -206,14 +212,14 @@ def format_sse_event(
     lines: list[str] = []
 
     if comment is not None:
-        for line in comment.splitlines():
+        for line in _split_sse_lines(comment):
             lines.append(f": {line}")
 
     if event is not None:
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        for line in _split_sse_lines(data_str):
             lines.append(f"data: {line}")
 
     if id is not None:
