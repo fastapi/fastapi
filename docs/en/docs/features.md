@@ -19,7 +19,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Alternative API documentation with [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
