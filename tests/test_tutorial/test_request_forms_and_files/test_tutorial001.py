@@ -197,11 +197,13 @@ def test_openapi_schema(client: TestClient):
                         "properties": {
                             "file": {
                                 "title": "File",
+                                "format": "binary",
                                 "type": "string",
                                 "contentMediaType": "application/octet-stream",
                             },
                             "fileb": {
                                 "title": "Fileb",
+                                "format": "binary",
                                 "contentMediaType": "application/octet-stream",
                                 "type": "string",
                             },
