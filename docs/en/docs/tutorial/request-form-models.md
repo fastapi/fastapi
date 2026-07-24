@@ -6,10 +6,10 @@ You can use **Pydantic models** to declare **form fields** in FastAPI.
 
 To use forms, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
+Add it to your project:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

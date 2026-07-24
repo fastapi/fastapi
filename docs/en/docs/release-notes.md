@@ -9,10 +9,13 @@ hide:
 
 ### Docs
 
+* 📝 Add Library Skills documentation. PR [#16041](https://github.com/fastapi/fastapi/pull/16041) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs to use uv projects by default. PR [#16032](https://github.com/fastapi/fastapi/pull/16032) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Restructure FastAPI People and related pages. PR [#16015](https://github.com/fastapi/fastapi/pull/16015) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
 
+* 👥 Update FastAPI People - Sponsors. PR [#16027](https://github.com/fastapi/fastapi/pull/16027) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove now-obsolete scripts to generate data for FastAPI People. PR [#16016](https://github.com/fastapi/fastapi/pull/16016) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.139.2 (2026-07-16)
