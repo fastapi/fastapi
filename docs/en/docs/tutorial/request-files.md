@@ -99,7 +99,7 @@ contents = myfile.file.read()
 
 /// note | `async` Technical Details
 
-When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
+The `UploadFile` async methods wrap blocking file I/O operations and run them in a threadpool to make them non-blocking. This allows the async event loop to process other requests while file operations are in progress, which is essential for maintaining the non-blocking nature of your `async def` path operation functions.
 
 ///
 
