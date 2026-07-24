@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 👷 Add CI memory benchmark. PR [#16046](https://github.com/fastapi/fastapi/pull/16046) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#16027](https://github.com/fastapi/fastapi/pull/16027) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove now-obsolete scripts to generate data for FastAPI People. PR [#16016](https://github.com/fastapi/fastapi/pull/16016) by [@tiangolo](https://github.com/tiangolo).
 
