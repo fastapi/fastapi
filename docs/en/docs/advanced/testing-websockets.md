@@ -8,6 +8,6 @@ For this, you use the `TestClient` in a `with` statement, connecting to the WebS
 
 /// note
 
-For more details, check Starlette's documentation for [testing WebSockets](https://www.starlette.dev/testclient/#testing-websocket-sessions).
+For more details, check Starlette's documentation for [testing WebSockets](https://starlette.dev/testclient/#testing-websocket-sessions).
 
 ///

@@ -125,7 +125,7 @@ Adopt and use an open standard for API specifications, instead of a custom schem
 And integrate standards-based user interface tools:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
@@ -237,7 +237,7 @@ Generate the OpenAPI schema automatically, from the same code that defines seria
 
 ///
 
-### [NestJS](https://nestjs.com/) (and [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (and [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework inspired by Angular.
 
@@ -337,7 +337,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 
 /// note
 
-Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/timothycrosley/isort), a great tool to automatically sort imports in Python files.
+Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/PyCQA/isort), a great tool to automatically sort imports in Python files.
 
 ///
 
@@ -401,7 +401,7 @@ I consider **FastAPI** a "spiritual successor" to APIStar, while improving and i
 
 ## Used by **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 
@@ -417,7 +417,7 @@ Handle all the data validation, data serialization and automatic model documenta
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette is a lightweight <dfn title="The new standard for building asynchronous Python web applications">ASGI</dfn> framework/toolkit, which is ideal for building high-performance asyncio services.
 
@@ -462,7 +462,7 @@ So, anything that you can do with Starlette, you can do it directly with **FastA
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn is a lightning-fast ASGI server, built on uvloop and httptools.
 

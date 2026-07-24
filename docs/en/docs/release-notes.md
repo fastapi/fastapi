@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 👷 Add CI memory benchmark. PR [#16046](https://github.com/fastapi/fastapi/pull/16046) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#16027](https://github.com/fastapi/fastapi/pull/16027) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove now-obsolete scripts to generate data for FastAPI People. PR [#16016](https://github.com/fastapi/fastapi/pull/16016) by [@tiangolo](https://github.com/tiangolo).
 
@@ -4095,7 +4096,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * The attribute `schema_extra` for the internal class `Config` has been replaced by the key `json_schema_extra` in the new `model_config` dict.
     * You can read more about it in the docs for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
 * When you install `"fastapi[all]"` it now also includes:
-    * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - for settings management.
+    * [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - for settings management.
     * [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - for extra types to be used with Pydantic.
 * Now Pydantic Settings is an additional optional package (included in `"fastapi[all]"`). To use settings you should now import `from pydantic_settings import BaseSettings` instead of importing from `pydantic` directly.
     * You can read more about it in the docs for [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/).
@@ -6903,7 +6904,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade the compatible version of Starlette to `0.12.0`.
     * This includes support for ASGI 3 (the latest version of the standard).
-    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
+    * It's now possible to use [Starlette's `StreamingResponse`](https://starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
     * It's now possible to use the low level utility `iterate_in_threadpool` from `starlette.concurrency` (for advanced scenarios).
     * PR [#243](https://github.com/tiangolo/fastapi/pull/243).
 
