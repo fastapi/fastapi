@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ⚡️ Reduce memory usage in dependencies. PR [#16049](https://github.com/fastapi/fastapi/pull/16049) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Fix links in docs. PR [#15967](https://github.com/fastapi/fastapi/pull/15967) by [@YuriiMotov](https://github.com/YuriiMotov).
