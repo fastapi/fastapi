@@ -15,7 +15,12 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, _Unset
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _get_oauth_scopes,
+    _get_security_dependencies,
+    _get_security_scheme,
+)
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     get_flat_dependant,
@@ -84,18 +89,19 @@ def get_openapi_security_definitions(
     security_definitions = {}
     # Use a dict to merge scopes for same security scheme
     operation_security_dict: dict[str, list[str]] = {}
-    for security_dependency in flat_dependant._security_dependencies:
+    for security_dependency in _get_security_dependencies(dependant=flat_dependant):
+        security_scheme = _get_security_scheme(dependant=security_dependency)
         security_definition = jsonable_encoder(
-            security_dependency._security_scheme.model,
+            security_scheme.model,
             by_alias=True,
             exclude_none=True,
         )
-        security_name = security_dependency._security_scheme.scheme_name
+        security_name = security_scheme.scheme_name
         security_definitions[security_name] = security_definition
         # Merge scopes for the same security scheme
         if security_name not in operation_security_dict:
             operation_security_dict[security_name] = []
-        for scope in security_dependency.oauth_scopes or []:
+        for scope in _get_oauth_scopes(dependant=security_dependency):
             if scope not in operation_security_dict[security_name]:
                 operation_security_dict[security_name].append(scope)
     operation_security = [

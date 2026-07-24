@@ -48,7 +48,12 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _is_async_gen_callable,
+    _is_coroutine_callable,
+    _is_gen_callable,
+)
 from fastapi.dependencies.utils import (
     _should_embed_body_fields,
     get_body_field,
@@ -384,7 +389,7 @@ def get_request_handler(
     is_json_stream: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = dependant.is_coroutine_callable
+    is_coroutine = _is_coroutine_callable(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
@@ -543,7 +548,7 @@ def get_request_handler(
                             data_str=_serialize_data(item).decode("utf-8")
                         )
 
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
                     sse_aiter: AsyncIterator[Any] = gen.__aiter__()
                 else:
                     sse_aiter = iterate_in_threadpool(gen)
@@ -641,7 +646,7 @@ def get_request_handler(
                 def _serialize_item(item: Any) -> bytes:
                     return _serialize_data(item) + b"\n"
 
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
 
                     async def _async_stream_jsonl() -> AsyncIterator[bytes]:
                         async for item in gen:
@@ -667,10 +672,12 @@ def get_request_handler(
                     background=solved_result.background_tasks,
                 )
                 response.headers.raw.extend(solved_result.response.headers.raw)
-            elif dependant.is_async_gen_callable or dependant.is_gen_callable:
+            elif _is_async_gen_callable(dependant.call) or _is_gen_callable(
+                dependant.call
+            ):
                 # Raw streaming with explicit response_class (e.g. StreamingResponse)
                 gen = dependant.call(**solved_result.values)
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
 
                     async def _async_stream_raw(
                         async_gen: AsyncIterator[Any],
@@ -1097,8 +1104,8 @@ def _populate_api_route_state(
         embed_body_fields=route._embed_body_fields,
     )
     # Detect generator endpoints that should stream as JSONL or SSE
-    is_generator = (
-        route.dependant.is_async_gen_callable or route.dependant.is_gen_callable
+    is_generator = _is_async_gen_callable(route.dependant.call) or _is_gen_callable(
+        route.dependant.call
     )
     route.is_sse_stream = is_generator and lenient_issubclass(
         response_class, EventSourceResponse
