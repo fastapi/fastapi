@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.0 (2026-07-24)
+
 ### Refactors
 
 * ⚡️ Reduce memory usage in dependencies. PR [#16049](https://github.com/fastapi/fastapi/pull/16049) by [@tiangolo](https://github.com/tiangolo).
