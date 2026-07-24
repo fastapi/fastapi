@@ -21,40 +21,40 @@ from fastapi.security import APIKeyHeader
 
 
 def sync_dependency() -> None:
-    pass
+    pass  # pragma: no cover
 
 
 async def async_dependency() -> None:
-    pass
+    pass  # pragma: no cover
 
 
 def generator_dependency() -> Generator[None, None, None]:
-    yield
+    yield  # pragma: no cover
 
 
 async def async_generator_dependency() -> AsyncGenerator[None, None]:
-    yield
+    yield  # pragma: no cover
 
 
 class UnhashableCallable:
     __hash__ = None
 
     async def __call__(self) -> None:
-        pass
+        pass  # pragma: no cover
 
 
 class UnhashableGeneratorCallable:
     __hash__ = None
 
     def __call__(self) -> Generator[None, None, None]:
-        yield
+        yield  # pragma: no cover
 
 
 class UnhashableAsyncGeneratorCallable:
     __hash__ = None
 
     async def __call__(self) -> AsyncGenerator[None, None]:
-        yield
+        yield  # pragma: no cover
 
 
 class EqualCallable:
@@ -62,17 +62,17 @@ class EqualCallable:
         return isinstance(other, EqualCallable)
 
     def __hash__(self) -> int:
-        return 1
+        return 1  # pragma: no cover
 
 
 class EqualAsyncCallable(EqualCallable):
     async def __call__(self) -> None:
-        pass
+        pass  # pragma: no cover
 
 
 class EqualSyncCallable(EqualCallable):
     def __call__(self) -> None:
-        pass
+        pass  # pragma: no cover
 
 
 def test_callable_classification_is_shared_by_call() -> None:
@@ -180,7 +180,7 @@ def test_explicit_and_generator_scopes() -> None:
 def test_callable_return_annotations_are_not_used() -> None:
     class CallableWithUnhashableReturn:
         def __call__(self) -> Any:
-            return None
+            return None  # pragma: no cover
 
         __hash__ = None
 
