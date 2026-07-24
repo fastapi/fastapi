@@ -2,7 +2,7 @@ import copy
 import http.client
 import inspect
 import warnings
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import Any, Literal, cast
 
 from fastapi import routing
@@ -614,4 +614,51 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore[no-any-return]
+    # Collect user-provided `example` / `examples` values from the pre-encoded
+    # `output` so we can restore them after the final encode below. The final
+    # `exclude_none=True` pass would otherwise strip `null` values from
+    # inside those user examples, where `null` may be a legitimate documented
+    # value (see e.g. github discussion #8401, issue #5559).
+    example_entries = list(_collect_example_paths(output))
+    encoded = jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)
+    for example_path, value in example_entries:
+        preserved = jsonable_encoder(value, by_alias=True)
+        _set_path(encoded, example_path, preserved)
+    return cast(dict[str, Any], encoded)
+
+
+_EXAMPLE_KEYS = frozenset({"example", "examples"})
+
+
+def _collect_example_paths(
+    obj: Any, path: tuple[Any, ...] = ()
+) -> "Iterable[tuple[tuple[Any, ...], Any]]":
+    """Yield `(path, value)` for every non-None `example` / `examples` value
+    in `obj`. `None`-valued keys are skipped — they come from FastAPI's
+    internal defaults (the OpenAPI Pydantic model has `example: Any = None`)
+    rather than the user, and re-attaching them would surface spurious
+    `"example": null` entries the historical strip pass hid. Subtrees under
+    these keys are treated as opaque user data and not recursed into."""
+    if isinstance(obj, dict):
+        for key, value in obj.items():
+            if key in _EXAMPLE_KEYS:
+                if value is not None:
+                    yield (*path, key), value
+            else:
+                yield from _collect_example_paths(value, (*path, key))
+    elif isinstance(obj, list):
+        for i, item in enumerate(obj):
+            yield from _collect_example_paths(item, (*path, i))
+
+
+def _set_path(obj: Any, path: tuple[Any, ...], value: Any) -> None:
+    """Set `obj[path] = value`, creating intermediate dicts if the path was
+    stripped during the `exclude_none=True` encode."""
+    for key in path[:-1]:
+        if isinstance(obj, list):
+            obj = obj[key]
+            continue
+        if key not in obj:
+            obj[key] = {}
+        obj = obj[key]
+    obj[path[-1]] = value
