@@ -9,7 +9,7 @@ RELEASE_HEADER_PATTERN = re.compile(r"^## (\d+\.\d+\.\d+)\s*(\(.*\))?\s*$")
 
 
 def main() -> None:
-    with open(RELEASE_NOTES_FILE) as f:
+    with open(RELEASE_NOTES_FILE, encoding="utf-8") as f:
         lines = f.readlines()
 
     for i, line in enumerate(lines):
@@ -28,7 +28,7 @@ def main() -> None:
         lines[i] = f"## {version} ({today})\n"
         print(f"Added date: {version} ({today})")
 
-        with open(RELEASE_NOTES_FILE, "w") as f:
+        with open(RELEASE_NOTES_FILE, "w", encoding="utf-8") as f:
             f.writelines(lines)
         sys.exit(0)
 
