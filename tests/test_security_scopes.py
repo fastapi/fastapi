@@ -24,7 +24,7 @@ def app_fixture(call_counter: dict[str, int]):
     @app.get("/")
     def endpoint(
         db: Annotated[str, Depends(get_db)],
-        user: Annotated[str, Security(get_user, scopes=["read"])],
+        user: Annotated[str, Security(get_user, oauth_scopes=["read"])],
     ):
         return {"db": db}
 
