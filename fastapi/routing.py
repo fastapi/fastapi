@@ -976,10 +976,11 @@ def _populate_api_route_state(
         generate_unique_id
     ),
     strict_content_type: bool | DefaultPlaceholder = Default(True),
+    stream_item_type: Any | None = None,
 ) -> None:
     route.path = path
     route.endpoint = endpoint
-    route.stream_item_type = None
+    route.stream_item_type = stream_item_type
     if isinstance(response_model, DefaultPlaceholder):
         return_annotation = get_typed_return_annotation(endpoint)
         if lenient_issubclass(return_annotation, Response):
@@ -1460,6 +1461,7 @@ class _EffectiveRouteContext:
                 include_context.included_router.strict_content_type,
                 include_context.strict_content_type,
             ),
+            stream_item_type=route.stream_item_type,
         )
         return context
 
