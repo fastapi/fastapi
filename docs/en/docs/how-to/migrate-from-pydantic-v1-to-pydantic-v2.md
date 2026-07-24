@@ -24,7 +24,7 @@ If you have an old FastAPI app with Pydantic v1, here I'll show you how to migra
 
 ## Official Guide { #official-guide }
 
-Pydantic has an official [Migration Guide](https://docs.pydantic.dev/latest/migration/) from v1 to v2.
+Pydantic has an official [Migration Guide](https://pydantic.dev/docs/validation/latest/get-started/migration/) from v1 to v2.
 
 It also includes what has changed, how validations are now more correct and strict, possible caveats, etc.
 

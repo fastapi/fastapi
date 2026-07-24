@@ -269,7 +269,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) is a Python library to perform data validation.
+[Pydantic](https://pydantic.dev/docs/) is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -285,7 +285,7 @@ An example from the official Pydantic docs:
 
 /// note
 
-To learn more about [Pydantic, check its docs](https://docs.pydantic.dev/).
+To learn more about [Pydantic, check its docs](https://pydantic.dev/docs/).
 
 ///
 

@@ -182,5 +182,5 @@ If you need something easy to integrate with FastAPI but that is more robust, su
 
 To learn more about the options, check Starlette's documentation for:
 
-* [The `WebSocket` class](https://www.starlette.dev/websockets/).
-* [Class-based WebSocket handling](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [The `WebSocket` class](https://starlette.dev/websockets/).
+* [Class-based WebSocket handling](https://starlette.dev/endpoints/#websocketendpoint).

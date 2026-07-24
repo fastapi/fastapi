@@ -84,7 +84,7 @@ You will see the automatic interactive API documentation (provided by [Swagger U
 
 And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Rebilly/ReDoc)):
+You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -238,7 +238,7 @@ That's it! Now you can access your app at that URL. ✨
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the [Starlette](https://www.starlette.dev/) functionality with `FastAPI` too.
+You can use all the [Starlette](https://starlette.dev/) functionality with `FastAPI` too.
 
 ///
 
