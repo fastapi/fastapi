@@ -168,7 +168,7 @@ tests = [
     "pwdlib[argon2] >=0.2.1",
     "pyjwt >=2.9.0",
     "pytest >=9.0.0",
-    "pytest-codspeed >=4.2.0",
+    "pytest-codspeed >=4.3.0",
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
     "strawberry-graphql >=0.200.0,<1.0.0",
@@ -244,6 +244,7 @@ relative_files = true
 context = '${CONTEXT}'
 omit = [
     "tests/benchmarks/*",
+    "tests/memory_benchmarks/*",
     "docs_src/response_model/tutorial003_04_py310.py",
     "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
     "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
