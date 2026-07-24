@@ -2,8 +2,8 @@ import inspect
 import sys
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from functools import cached_property, partial
-from typing import Any, Literal
+from functools import partial
+from typing import Any, Literal, cast
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -18,17 +18,17 @@ else:  # pragma: no cover
 def _unwrapped_call(call: Callable[..., Any] | None) -> Any:
     if call is None:
         return call  # pragma: no cover
-    unwrapped = inspect.unwrap(_impartial(call))
+    unwrapped = inspect.unwrap(cast(Callable[..., Any], _impartial(call)))
     return unwrapped
 
 
-def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
+def _impartial(func: Callable[..., Any] | None) -> Callable[..., Any] | None:
     while isinstance(func, partial):
         func = func.func
     return func
 
 
-@dataclass
+@dataclass(slots=True)
 class Dependant:
     path_params: list[ModelField] = field(default_factory=list)
     query_params: list[ModelField] = field(default_factory=list)
@@ -50,8 +50,8 @@ class Dependant:
     path: str | None = None
     scope: Literal["function", "request"] | None = None
 
-    @cached_property
-    def oauth_scopes(self) -> list[str]:
+    @property
+    def _oauth_scopes(self) -> list[str]:
         scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
         # This doesn't use a set to preserve order, just in case
         for scope in self.own_oauth_scopes or []:
@@ -59,8 +59,8 @@ class Dependant:
                 scopes.append(scope)
         return scopes
 
-    @cached_property
-    def cache_key(self) -> DependencyCacheKey:
+    @property
+    def _cache_key(self) -> DependencyCacheKey:
         scopes_for_cache = (
             tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
         )
@@ -70,8 +70,8 @@ class Dependant:
             self.computed_scope or "",
         )
 
-    @cached_property
-    def _uses_scopes(self) -> bool:
+    @property
+    def __uses_scopes(self) -> bool:
         if self.own_oauth_scopes:
             return True
         if self.security_scopes_param_name is not None:
@@ -83,27 +83,27 @@ class Dependant:
                 return True
         return False
 
-    @cached_property
-    def _is_security_scheme(self) -> bool:
+    @property
+    def __is_security_scheme(self) -> bool:
         if self.call is None:
             return False  # pragma: no cover
         unwrapped = _unwrapped_call(self.call)
         return isinstance(unwrapped, SecurityBase)
 
     # Mainly to get the type of SecurityBase, but it's the same self.call
-    @cached_property
-    def _security_scheme(self) -> SecurityBase:
+    @property
+    def __security_scheme(self) -> SecurityBase:
         unwrapped = _unwrapped_call(self.call)
         assert isinstance(unwrapped, SecurityBase)
         return unwrapped
 
-    @cached_property
-    def _security_dependencies(self) -> list["Dependant"]:
+    @property
+    def __security_dependencies(self) -> list["Dependant"]:
         security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
         return security_deps
 
-    @cached_property
-    def is_gen_callable(self) -> bool:
+    @property
+    def _is_gen_callable(self) -> bool:
         if self.call is None:
             return False  # pragma: no cover
         if inspect.isgeneratorfunction(
@@ -128,8 +128,8 @@ class Dependant:
             return True
         return False
 
-    @cached_property
-    def is_async_gen_callable(self) -> bool:
+    @property
+    def _is_async_gen_callable(self) -> bool:
         if self.call is None:
             return False  # pragma: no cover
         if inspect.isasyncgenfunction(
@@ -154,8 +154,8 @@ class Dependant:
             return True
         return False
 
-    @cached_property
-    def is_coroutine_callable(self) -> bool:
+    @property
+    def _is_coroutine_callable(self) -> bool:
         if self.call is None:
             return False  # pragma: no cover
         if inspect.isroutine(_impartial(self.call)) and iscoroutinefunction(
@@ -184,10 +184,102 @@ class Dependant:
             return True
         return False
 
-    @cached_property
-    def computed_scope(self) -> str | None:
+    @property
+    def _computed_scope(self) -> str | None:
         if self.scope:
             return self.scope
         if self.is_gen_callable or self.is_async_gen_callable:
             return "request"
         return None
+
+    # Lazy cached fields
+    _oauth_scopes_cache: list[str] | None = field(default=None, init=False, repr=False)
+    _cache_key_cache: DependencyCacheKey | None = field(
+        default=None, init=False, repr=False
+    )
+    _uses_scopes_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_security_scheme_cache: bool | None = field(default=None, init=False, repr=False)
+    _security_scheme_cache: SecurityBase | None = field(
+        default=None, init=False, repr=False
+    )
+    _security_dependencies_cache: list["Dependant"] | None = field(
+        default=None, init=False, repr=False
+    )
+    _is_gen_callable_cache: bool | None = field(default=None, init=False, repr=False)
+    _is_async_gen_callable_cache: bool | None = field(
+        default=None, init=False, repr=False
+    )
+    _is_coroutine_callable_cache: bool | None = field(
+        default=None, init=False, repr=False
+    )
+    _computed_scope_cache: str | None = field(default=None, init=False, repr=False)
+
+    @property
+    def oauth_scopes(self) -> list[str]:
+        if self._oauth_scopes_cache is None:
+            self._oauth_scopes_cache = self._oauth_scopes
+
+        return self._oauth_scopes_cache
+
+    @property
+    def cache_key(self) -> DependencyCacheKey:
+        if self._cache_key_cache is None:
+            self._cache_key_cache = self._cache_key
+
+        return self._cache_key_cache
+
+    @property
+    def _uses_scopes(self) -> bool:
+        if self._uses_scopes_cache is None:
+            self._uses_scopes_cache = self.__uses_scopes
+
+        return self._uses_scopes_cache
+
+    @property
+    def _is_security_scheme(self) -> bool:
+        if self._is_security_scheme_cache is None:
+            self._is_security_scheme_cache = self.__is_security_scheme
+
+        return self._is_security_scheme_cache
+
+    @property
+    def _security_scheme(self) -> SecurityBase:
+        if self._security_scheme_cache is None:
+            self._security_scheme_cache = self.__security_scheme
+
+        return self._security_scheme_cache
+
+    @property
+    def _security_dependencies(self) -> list["Dependant"]:
+        if self._security_dependencies_cache is None:
+            self._security_dependencies_cache = self.__security_dependencies
+
+        return self._security_dependencies_cache
+
+    @property
+    def is_gen_callable(self) -> bool:
+        if self._is_gen_callable_cache is None:
+            self._is_gen_callable_cache = self._is_gen_callable
+
+        return self._is_gen_callable_cache
+
+    @property
+    def is_async_gen_callable(self) -> bool:
+        if self._is_async_gen_callable_cache is None:
+            self._is_async_gen_callable_cache = self._is_async_gen_callable
+
+        return self._is_async_gen_callable_cache
+
+    @property
+    def is_coroutine_callable(self) -> bool:
+        if self._is_coroutine_callable_cache is None:
+            self._is_coroutine_callable_cache = self._is_coroutine_callable
+
+        return self._is_coroutine_callable_cache
+
+    @property
+    def computed_scope(self) -> str | None:
+        if self._computed_scope_cache is None:
+            self._computed_scope_cache = self._computed_scope
+
+        return self._computed_scope_cache
