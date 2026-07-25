@@ -237,7 +237,7 @@ Generar el esquema OpenAPI automáticamente, desde el mismo código que define l
 
 ///
 
-### [NestJS](https://nestjs.com/) (y [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (y [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Esto ni siquiera es Python, NestJS es un framework de JavaScript (TypeScript) NodeJS inspirado por Angular.
 
@@ -337,7 +337,7 @@ Dado que se basa en el estándar previo para frameworks web Python sincrónicos 
 
 /// note | Nota
 
-Hug fue creado por Timothy Crosley, el mismo creador de [`isort`](https://github.com/timothycrosley/isort), una gran herramienta para ordenar automáticamente imports en archivos Python.
+Hug fue creado por Timothy Crosley, el mismo creador de [`isort`](https://github.com/PyCQA/isort), una gran herramienta para ordenar automáticamente imports en archivos Python.
 
 ///
 
@@ -401,7 +401,7 @@ Considero a **FastAPI** un "sucesor espiritual" de APIStar, mientras mejora y au
 
 ## Usado por **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic es un paquete para definir validación de datos, serialización y documentación (usando JSON Schema) basándose en las anotaciones de tipos de Python.
 
@@ -417,7 +417,7 @@ Manejar toda la validación de datos, serialización de datos y documentación a
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette es un framework/toolkit <dfn title="El nuevo estándar para construir aplicaciones web asíncronas en Python">ASGI</dfn> liviano, ideal para construir servicios asyncio de alto rendimiento.
 
@@ -462,7 +462,7 @@ Por lo tanto, cualquier cosa que puedas hacer con Starlette, puedes hacerlo dire
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn es un servidor ASGI extremadamente rápido, construido sobre uvloop y httptools.
 

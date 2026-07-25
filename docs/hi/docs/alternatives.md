@@ -237,7 +237,7 @@ OpenAPI schema को automatically generate किया जाए, उसी c
 
 ///
 
-### [NestJS](https://nestjs.com/) (और [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (और [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 यह Python भी नहीं है, NestJS Angular से प्रेरित एक JavaScript (TypeScript) NodeJS framework है।
 
@@ -337,7 +337,7 @@ Hug उन पहले frameworks में से एक था जिसन�
 
 /// note | नोट
 
-Hug को Timothy Crosley ने बनाया था, वही [`isort`](https://github.com/timothycrosley/isort) के creator हैं, जो Python files में imports को automatically sort करने के लिए एक बेहतरीन tool है।
+Hug को Timothy Crosley ने बनाया था, वही [`isort`](https://github.com/PyCQA/isort) के creator हैं, जो Python files में imports को automatically sort करने के लिए एक बेहतरीन tool है।
 
 ///
 
@@ -401,7 +401,7 @@ APIStar को Tom Christie ने बनाया था। वही व्य
 
 ## **FastAPI** द्वारा उपयोग किया गया { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic Python type hints के आधार पर data validation, serialization और documentation (JSON Schema का उपयोग करके) define करने के लिए एक library है।
 
@@ -417,7 +417,7 @@ Pydantic Python type hints के आधार पर data validation, serializa
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette एक lightweight <dfn title="asynchronous Python web applications बनाने के लिए नया standard">ASGI</dfn> framework/toolkit है, जो high-performance asyncio services बनाने के लिए ideal है।
 
@@ -462,7 +462,7 @@ Class `FastAPI` खुद सीधे class `Starlette` से inherit कर�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn एक lightning-fast ASGI server है, जो uvloop और httptools पर बना है।
 

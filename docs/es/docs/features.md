@@ -159,7 +159,7 @@ Cualquier integración está diseñada para ser tan simple de usar (con dependen
 
 ## Funcionalidades de Starlette { #starlette-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://www.starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
 
 `FastAPI` es en realidad una subclase de `Starlette`. Así que, si ya conoces o usas Starlette, la mayoría de las funcionalidades funcionarán de la misma manera.
 
@@ -177,7 +177,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 
 ## Funcionalidades de Pydantic { #pydantic-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://pydantic.dev/docs/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
 Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s y <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 

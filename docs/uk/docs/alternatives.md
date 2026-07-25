@@ -237,7 +237,7 @@ Flask-apispec був створений тими ж розробниками Mar
 
 ///
 
-### [NestJS](https://nestjs.com/) (та [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (та [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Це навіть не Python, NestJS - це фреймворк NodeJS JavaScript (TypeScript), натхненний Angular.
 
@@ -337,7 +337,7 @@ Hug був одним із перших фреймворків, який реа�
 
 /// note | Примітка
 
-Hug створив Тімоті Крослі, той самий творець [`isort`](https://github.com/timothycrosley/isort), чудовий інструмент для автоматичного сортування імпорту у файлах Python.
+Hug створив Тімоті Крослі, той самий творець [`isort`](https://github.com/PyCQA/isort), чудовий інструмент для автоматичного сортування імпорту у файлах Python.
 
 ///
 
@@ -401,7 +401,7 @@ APIStar створив Том Крісті. Той самий хлопець, я
 
 ## Використовується **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic - це бібліотека для визначення перевірки даних, серіалізації та документації (за допомогою Схеми JSON) на основі підказок типу Python.
 
@@ -417,7 +417,7 @@ Pydantic - це бібліотека для визначення перевір�
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette - це легкий фреймворк/набір інструментів <dfn title="Новий стандарт для створення асинхронних вебзастосунків на Python">ASGI</dfn>, який ідеально підходить для створення високопродуктивних asyncio сервісів.
 
@@ -462,7 +462,7 @@ ASGI - це новий «стандарт», який розробляється
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn - це блискавичний сервер ASGI, побудований на uvloop і httptools.
 

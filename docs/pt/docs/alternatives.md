@@ -237,7 +237,7 @@ Gerar o schema OpenAPI automaticamente, a partir do mesmo código que define ser
 
 ///
 
-### [NestJS](https://nestjs.com/) (e [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (e [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Isso nem é Python, NestJS é um framework NodeJS em JavaScript (TypeScript) inspirado pelo Angular.
 
@@ -337,7 +337,7 @@ Como é baseado no padrão anterior para frameworks web Python síncronos (WSGI)
 
 /// note | Nota
 
-Hug foi criado por Timothy Crosley, o mesmo criador do [`isort`](https://github.com/timothycrosley/isort), uma ótima ferramenta para ordenar automaticamente imports em arquivos Python.
+Hug foi criado por Timothy Crosley, o mesmo criador do [`isort`](https://github.com/PyCQA/isort), uma ótima ferramenta para ordenar automaticamente imports em arquivos Python.
 
 ///
 
@@ -401,7 +401,7 @@ Eu considero o **FastAPI** um "sucessor espiritual" do APIStar, enquanto aprimor
 
 ## Usados por **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic é uma biblioteca para definir validação de dados, serialização e documentação (usando JSON Schema) com base nas anotações de tipo do Python.
 
@@ -417,7 +417,7 @@ Controlar toda a validação de dados, serialização de dados e documentação 
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette é um framework/caixa de ferramentas <dfn title="O novo padrão para construir aplicações web Python assíncronas">ASGI</dfn> leve, o que é ideal para construir serviços asyncio de alta performance.
 
@@ -462,7 +462,7 @@ Então, qualquer coisa que você pode fazer com Starlette, você pode fazer dire
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn é um servidor ASGI extremamente rápido, construído com uvloop e httptools.
 

@@ -159,7 +159,7 @@ Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanm�
 
 ## Starlette Özellikleri { #starlette-features }
 
-**FastAPI**, [**Starlette**](https://www.starlette.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Starlette kodları da çalışır.
+**FastAPI**, [**Starlette**](https://starlette.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Starlette kodları da çalışır.
 
 `FastAPI` aslında `Starlette`’in bir alt sınıfıdır. Starlette’i zaten biliyor veya kullanıyorsanız, işlevlerin çoğu aynı şekilde çalışır.
 
@@ -177,7 +177,7 @@ Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanm�
 
 ## Pydantic Özellikleri { #pydantic-features }
 
-**FastAPI**, [**Pydantic**](https://docs.pydantic.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Pydantic kodları da çalışır.
+**FastAPI**, [**Pydantic**](https://pydantic.dev/docs/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Pydantic kodları da çalışır.
 
 Pydantic’e dayanan harici kütüphaneler de dâhildir; veritabanları için <abbr title="Object-Relational Mapper - Nesne-İlişkisel Eşleyici">ORM</abbr>’ler, <abbr title="Object-Document Mapper - Nesne-Belge Eşleyici">ODM</abbr>’ler gibi.
 
