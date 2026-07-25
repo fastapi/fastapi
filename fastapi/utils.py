@@ -145,4 +145,4 @@ def truncate_middle(text: str, max_length: int) -> str:
     chars_to_show = max_length - 3
     front_chars = (chars_to_show + 1) // 2
     back_chars = chars_to_show // 2
-    return f"{text[:front_chars]}...{text[len(text) - back_chars:]}"
+    return f"{text[:front_chars]}...{text[len(text) - back_chars :]}"
