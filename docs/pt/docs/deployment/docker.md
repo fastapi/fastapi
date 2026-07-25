@@ -372,7 +372,7 @@ Você verá a documentação interativa automática da API (fornecida pelo [Swag
 
 E você também pode ir para [http://192.168.99.100/redoc](http://192.168.99.100/redoc) ou [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (ou equivalente, usando seu host Docker).
 
-Você verá a documentação alternativa automática (fornecida pelo [ReDoc](https://github.com/Rebilly/ReDoc)):
+Você verá a documentação alternativa automática (fornecida pelo [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

@@ -372,7 +372,7 @@ Otomatik etkileşimli API dokümantasyonunu görürsünüz ( [Swagger UI](https:
 
 Ayrıca [http://192.168.99.100/redoc](http://192.168.99.100/redoc) veya [http://127.0.0.1/redoc](http://127.0.0.1/redoc) adresine de gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
 
-Alternatif otomatik dokümantasyonu görürsünüz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
+Alternatif otomatik dokümantasyonu görürsünüz ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

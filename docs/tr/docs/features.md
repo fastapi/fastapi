@@ -19,7 +19,7 @@ Etkileşimli API dokümantasyonu ve keşif için web arayüzleri. Framework Open
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc) ile alternatif API dokümantasyonu.
+* [**ReDoc**](https://github.com/Redocly/redoc) ile alternatif API dokümantasyonu.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 

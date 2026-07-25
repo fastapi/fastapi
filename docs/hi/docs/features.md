@@ -19,7 +19,7 @@ Interactive API documentation और exploration web user interfaces। क्�
 
 ![Swagger UI इंटरैक्शन](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc) के साथ वैकल्पिक API documentation।
+* [**ReDoc**](https://github.com/Redocly/redoc) के साथ वैकल्पिक API documentation।
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 

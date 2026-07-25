@@ -125,7 +125,7 @@ Einen offenen Standard für API-Spezifikationen zu übernehmen und zu verwenden,
 Und Standard-basierte Tools für die Oberfläche zu integrieren:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Diese beiden wurden ausgewählt, weil sie ziemlich beliebt und stabil sind, aber bei einer schnellen Suche könnten Sie Dutzende alternativer Benutzeroberflächen für OpenAPI finden (welche Sie mit **FastAPI** verwenden können).
 

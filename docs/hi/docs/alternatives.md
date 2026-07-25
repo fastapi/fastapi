@@ -125,7 +125,7 @@ Custom schema के बजाय API specifications के लिए एक ope
 और standards-based user interface tools को integrate किया जाए:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 इन दोनों को इसलिए चुना गया क्योंकि ये काफी popular और stable थे, लेकिन एक quick search करने पर, आप OpenAPI के लिए दर्जनों alternative user interfaces पा सकते हैं (जिन्हें आप **FastAPI** के साथ उपयोग कर सकते हैं)।
 

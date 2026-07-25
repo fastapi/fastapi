@@ -19,7 +19,7 @@ Interfaces web de documentación y exploración de APIs interactivas. Como el fr
 
 ![Interacción Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentación alternativa de API con [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Documentación alternativa de API con [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 

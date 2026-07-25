@@ -78,7 +78,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 И теперь перейдите по адресу [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено [ReDoc](https://github.com/Rebilly/ReDoc)):
+Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

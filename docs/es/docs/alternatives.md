@@ -125,7 +125,7 @@ Adoptar y usar un estándar abierto para especificaciones de API, en lugar de us
 Y a integrar herramientas de interfaz de usuario basadas en estándares:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Estas dos fueron elegidas por ser bastante populares y estables, pero haciendo una búsqueda rápida, podrías encontrar docenas de interfaces de usuario alternativas para OpenAPI (que puedes usar con **FastAPI**).
 

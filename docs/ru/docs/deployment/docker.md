@@ -372,7 +372,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 Также можно открыть [http://192.168.99.100/redoc](http://192.168.99.100/redoc) или [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (или аналогичный URL вашего Docker-хоста).
 
-Вы увидите альтернативную автоматическую документацию (на базе [ReDoc](https://github.com/Rebilly/ReDoc)):
+Вы увидите альтернативную автоматическую документацию (на базе [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

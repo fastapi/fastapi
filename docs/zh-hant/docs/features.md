@@ -19,7 +19,7 @@
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 使用 [**ReDoc**](https://github.com/Rebilly/ReDoc) 的替代 API 文件。
+* 使用 [**ReDoc**](https://github.com/Redocly/redoc) 的替代 API 文件。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 

@@ -314,7 +314,7 @@ INFO:     Application startup complete.
 
 और अब, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) पर जाएँ।
 
-आपको वैकल्पिक स्वचालित दस्तावेज़ीकरण दिखेगा (जो [ReDoc](https://github.com/Rebilly/ReDoc) द्वारा प्रदान किया जाता है):
+आपको वैकल्पिक स्वचालित दस्तावेज़ीकरण दिखेगा (जो [ReDoc](https://github.com/Redocly/redoc) द्वारा प्रदान किया जाता है):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

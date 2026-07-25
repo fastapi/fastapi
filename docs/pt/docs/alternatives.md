@@ -125,7 +125,7 @@ Adotar e usar um padrão aberto para especificações de API, em vez de um schem
 E integrar ferramentas de interface para usuários baseadas nos padrões:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Essas duas foram escolhidas por serem bem populares e estáveis, mas fazendo uma pesquisa rápida, você pode encontrar dúzias de interfaces alternativas adicionais para OpenAPI (que você pode utilizar com **FastAPI**).
 

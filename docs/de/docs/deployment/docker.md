@@ -372,7 +372,7 @@ Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von [Sw
 
 Sie können auch auf [http://192.168.99.100/redoc](http://192.168.99.100/redoc) oder [http://127.0.0.1/redoc](http://127.0.0.1/redoc) gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
-Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Rebilly/ReDoc)):
+Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

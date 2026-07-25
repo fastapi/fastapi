@@ -78,7 +78,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 그리고 이제, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅니다.
 
-대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Redocly/redoc) 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

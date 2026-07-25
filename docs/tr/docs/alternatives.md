@@ -125,7 +125,7 @@ API spesifikasyonları için özel bir şema yerine açık bir standart benimsem
 Ve standartlara dayalı kullanıcı arayüzü araçlarını entegre etmek:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Bu ikisi oldukça popüler ve istikrarlı oldukları için seçildi; hızlı bir aramayla OpenAPI için onlarca alternatif kullanıcı arayüzü bulabilirsiniz (**FastAPI** ile de kullanabilirsiniz).
 
