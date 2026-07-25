@@ -161,6 +161,21 @@ def test_security_scheme_helpers() -> None:
     assert _uses_scopes(dependant=dependant)
 
 
+def test_uses_scopes_with_deep_dependency_graph() -> None:
+    dependant = Dependant(call=sync_dependency)
+    root = dependant
+    for _ in range(500):
+        child = Dependant(call=sync_dependency)
+        dependant.dependencies.append(child)
+        dependant = child
+
+    assert not _uses_scopes(dependant=root)
+
+    dependant.security_scopes_param_name = "scopes"
+
+    assert _uses_scopes(dependant=root)
+
+
 def test_derived_values_follow_dependency_state() -> None:
     child = Dependant(call=sync_dependency)
     dependant = Dependant(

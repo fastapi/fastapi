@@ -105,19 +105,43 @@ def _uses_scopes(
     cached = cache.get(cache_key)
     if cached is not None and cached[0] is dependant:
         return cached[1]
-    if dependant.own_oauth_scopes:
-        result = True
-    elif dependant.security_scopes_param_name is not None:
-        result = True
-    elif _is_security_scheme(dependant=dependant):
-        result = True
-    else:
-        result = any(
-            _uses_scopes(dependant=sub_dep, cache=cache)
-            for sub_dep in dependant.dependencies
-        )
-    cache[cache_key] = (dependant, result)
-    return result
+
+    # Resolve children before parents without using the Python call stack. Deep
+    # dependency chains are valid, and this analysis is also used while flattening
+    # them during route construction.
+    stack = [(dependant, False)]
+    scheduled: set[int] = set()
+    while stack:
+        current, children_resolved = stack.pop()
+        current_key = id(current)
+        if children_resolved:
+            result = bool(
+                current.own_oauth_scopes
+                or current.security_scopes_param_name is not None
+                or _is_security_scheme(dependant=current)
+            )
+            if not result:
+                result = any(
+                    (child_cached := cache.get(id(child))) is not None
+                    and child_cached[0] is child
+                    and child_cached[1]
+                    for child in current.dependencies
+                )
+            cache[current_key] = (current, result)
+            continue
+
+        scheduled.add(current_key)
+        stack.append((current, True))
+        for child in current.dependencies:
+            child_key = id(child)
+            child_cached = cache.get(child_key)
+            if (
+                child_cached is None or child_cached[0] is not child
+            ) and child_key not in scheduled:
+                scheduled.add(child_key)
+                stack.append((child, False))
+
+    return cache[cache_key][1]
 
 
 def _is_security_scheme(*, dependant: Dependant) -> bool:
