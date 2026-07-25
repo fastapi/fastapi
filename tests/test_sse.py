@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -262,6 +262,29 @@ def test_data_and_raw_data_mutually_exclusive():
     """Cannot set both data and raw_data."""
     with pytest.raises(ValueError, match="Cannot set both"):
         ServerSentEvent(data="json", raw_data="raw")
+
+
+def test_format_sse_event_data_line_splitting():
+    """data is split on SSE line terminators (CRLF/CR/LF) only.
+
+    ``str.splitlines()`` silently drops a trailing newline and splits on
+    additional Unicode separators that the SSE wire format does not treat
+    as line breaks, corrupting the payload a client reconstructs.
+    """
+    # A trailing newline must be preserved: it becomes a second, empty
+    # ``data:`` field so the client rebuilds "line1\n", not "line1".
+    assert format_sse_event(data_str="line1\n") == b"data: line1\ndata: \n\n"
+    # Empty data still emits a data field.
+    assert format_sse_event(data_str="") == b"data: \n\n"
+    # Multi-line data is unchanged.
+    assert format_sse_event(data_str="a\nb") == b"data: a\ndata: b\n\n"
+    # CRLF and lone CR are SSE line terminators.
+    assert format_sse_event(data_str="a\r\nb") == b"data: a\ndata: b\n\n"
+    assert format_sse_event(data_str="a\rb") == b"data: a\ndata: b\n\n"
+    # Other Unicode/control separators are NOT line breaks in SSE and must
+    # pass through untouched (str.splitlines would wrongly split these).
+    assert format_sse_event(data_str="a\x0bb") == b"data: a\x0bb\n\n"
+    assert format_sse_event(data_str="a\x0cb") == b"data: a\x0cb\n\n"
 
 
 def test_sse_on_router_included_in_app(client: TestClient):

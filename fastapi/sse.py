@@ -1,3 +1,4 @@
+import re
 from typing import Annotated, Any
 
 from annotated_doc import Doc
@@ -156,6 +157,13 @@ class ServerSentEvent(BaseModel):
         return self
 
 
+# Line terminators recognized by the SSE wire format: CR LF, CR, or LF
+# (see the WHATWG stream parsing spec). Unlike ``str.splitlines()`` this
+# does not treat other Unicode separators (e.g. \v, \f, \x1c-\x1e, \x85,
+# \u2028, \u2029) as line breaks, and it preserves a trailing empty field.
+_SSE_LINE_TERMINATORS = re.compile(r"\r\n|\r|\n")
+
+
 def format_sse_event(
     *,
     data_str: Annotated[
@@ -213,7 +221,7 @@ def format_sse_event(
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        for line in _SSE_LINE_TERMINATORS.split(data_str):
             lines.append(f"data: {line}")
 
     if id is not None:
