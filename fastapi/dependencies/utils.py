@@ -156,60 +156,95 @@ def get_flat_dependant(
         visited = []
     if _uses_scopes_cache is None:
         _uses_scopes_cache = {}
-    visited.append(
-        _get_cache_key(
-            dependant=dependant,
+    try:
+        visited_set: set[DependencyCacheKey] | None = set(visited)
+    except TypeError:
+        # Keep supporting unhashable dependency callables as the previous list
+        # based implementation did.
+        visited_set = None
+
+    def cache_key_was_visited(cache_key: DependencyCacheKey) -> bool:
+        nonlocal visited_set
+        if visited_set is not None:
+            try:
+                return cache_key in visited_set
+            except TypeError:
+                visited_set = None
+        return cache_key in visited
+
+    def mark_cache_key_visited(cache_key: DependencyCacheKey) -> None:
+        nonlocal visited_set
+        visited.append(cache_key)
+        if visited_set is not None:
+            try:
+                visited_set.add(cache_key)
+            except TypeError:
+                visited_set = None
+
+    def copy_dependant(
+        source: Dependant, inherited_oauth_scopes: list[str] | None
+    ) -> Dependant:
+        use_parent_oauth_scopes = (inherited_oauth_scopes or []) + (
+            _get_oauth_scopes(dependant=source)
+        )
+        return Dependant(
+            path_params=source.path_params.copy(),
+            query_params=source.query_params.copy(),
+            header_params=source.header_params.copy(),
+            cookie_params=source.cookie_params.copy(),
+            body_params=source.body_params.copy(),
+            name=source.name,
+            call=source.call,
+            request_param_name=source.request_param_name,
+            websocket_param_name=source.websocket_param_name,
+            http_connection_param_name=source.http_connection_param_name,
+            response_param_name=source.response_param_name,
+            background_tasks_param_name=source.background_tasks_param_name,
+            security_scopes_param_name=source.security_scopes_param_name,
+            own_oauth_scopes=source.own_oauth_scopes,
+            parent_oauth_scopes=use_parent_oauth_scopes,
+            use_cache=source.use_cache,
+            path=source.path,
+            scope=source.scope,
+        )
+
+    root_cache_key = _get_cache_key(
+        dependant=dependant,
+        uses_scopes_cache=_uses_scopes_cache,
+    )
+    mark_cache_key_visited(root_cache_key)
+    flat_dependant = copy_dependant(dependant, parent_oauth_scopes)
+
+    # Accumulate directly into one flat result. The previous recursive approach
+    # built a flattened subtree at every level and copied each subtree into all
+    # its ancestors, making a dependency chain quadratic in time and memory.
+    stack = [
+        (sub_dependant, _get_oauth_scopes(dependant=flat_dependant))
+        for sub_dependant in reversed(dependant.dependencies)
+    ]
+    while stack:
+        sub_dependant, inherited_oauth_scopes = stack.pop()
+        sub_dependant_cache_key = _get_cache_key(
+            dependant=sub_dependant,
             uses_scopes_cache=_uses_scopes_cache,
         )
-    )
-    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
-        _get_oauth_scopes(dependant=dependant)
-    )
-
-    flat_dependant = Dependant(
-        path_params=dependant.path_params.copy(),
-        query_params=dependant.query_params.copy(),
-        header_params=dependant.header_params.copy(),
-        cookie_params=dependant.cookie_params.copy(),
-        body_params=dependant.body_params.copy(),
-        name=dependant.name,
-        call=dependant.call,
-        request_param_name=dependant.request_param_name,
-        websocket_param_name=dependant.websocket_param_name,
-        http_connection_param_name=dependant.http_connection_param_name,
-        response_param_name=dependant.response_param_name,
-        background_tasks_param_name=dependant.background_tasks_param_name,
-        security_scopes_param_name=dependant.security_scopes_param_name,
-        own_oauth_scopes=dependant.own_oauth_scopes,
-        parent_oauth_scopes=use_parent_oauth_scopes,
-        use_cache=dependant.use_cache,
-        path=dependant.path,
-        scope=dependant.scope,
-    )
-    for sub_dependant in dependant.dependencies:
-        if (
-            skip_repeats
-            and _get_cache_key(
-                dependant=sub_dependant,
-                uses_scopes_cache=_uses_scopes_cache,
-            )
-            in visited
-        ):
+        if skip_repeats and cache_key_was_visited(sub_dependant_cache_key):
             continue
-        flat_sub = get_flat_dependant(
-            sub_dependant,
-            skip_repeats=skip_repeats,
-            visited=visited,
-            parent_oauth_scopes=_get_oauth_scopes(dependant=flat_dependant),
-            _uses_scopes_cache=_uses_scopes_cache,
-        )
+        mark_cache_key_visited(sub_dependant_cache_key)
+
+        flat_sub = copy_dependant(sub_dependant, inherited_oauth_scopes)
         flat_dependant.dependencies.append(flat_sub)
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
         flat_dependant.header_params.extend(flat_sub.header_params)
         flat_dependant.cookie_params.extend(flat_sub.cookie_params)
         flat_dependant.body_params.extend(flat_sub.body_params)
-        flat_dependant.dependencies.extend(flat_sub.dependencies)
+
+        child_oauth_scopes = _get_oauth_scopes(dependant=flat_sub)
+        stack.extend(
+            (child, child_oauth_scopes)
+            for child in reversed(sub_dependant.dependencies)
+        )
 
     return flat_dependant
 
