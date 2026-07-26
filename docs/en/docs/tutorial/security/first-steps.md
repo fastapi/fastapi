@@ -28,6 +28,10 @@ Copy the example in a file `main.py`:
 
 The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
 
+/// tip
+
+For production deployments, consider implementing additional security measures such as **rate limiting** on login endpoints, **account lockout** after repeated failed attempts, and **multi-factor authentication** to protect against brute-force and credential-stuffing attacks. FastAPI integrates well with middleware libraries like `slowapi` for rate limiting.
+
 However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
 
 To install it manually, make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install it with:
