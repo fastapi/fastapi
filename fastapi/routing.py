@@ -55,10 +55,10 @@ from fastapi.dependencies.models import (
     _is_gen_callable,
 )
 from fastapi.dependencies.utils import (
+    _get_body_field,
+    _get_flat_body_params,
     _should_embed_body_fields,
-    get_body_field,
     get_dependant,
-    get_flat_dependant,
     get_parameterless_sub_dependant,
     get_stream_item_type,
     get_typed_return_annotation,
@@ -849,16 +849,16 @@ def _build_dependant_with_parameterless_dependencies(
     path: str,
     call: Callable[..., Any],
     dependencies: Sequence[params.Depends],
-) -> tuple[Dependant, Dependant, bool]:
+) -> tuple[Dependant, list[ModelField], bool]:
     dependant = get_dependant(path=path, call=call, scope="function")
     for depends in dependencies[::-1]:
         dependant.dependencies.insert(
             0,
             get_parameterless_sub_dependant(depends=depends, path=path),
         )
-    flat_dependant = get_flat_dependant(dependant)
-    embed_body_fields = _should_embed_body_fields(flat_dependant.body_params)
-    return dependant, flat_dependant, embed_body_fields
+    body_params = _get_flat_body_params(dependant)
+    embed_body_fields = _should_embed_body_fields(body_params)
+    return dependant, body_params, embed_body_fields
 
 
 class _RouteWithPath(Protocol):
@@ -1090,15 +1090,15 @@ def _populate_api_route_state(
     assert callable(endpoint), "An endpoint must be a callable"
     (
         route.dependant,
-        flat_dependant,
+        body_params,
         route._embed_body_fields,
     ) = _build_dependant_with_parameterless_dependencies(
         path=route.path_format,
         call=route.endpoint,
         dependencies=route.dependencies,
     )
-    route.body_field = get_body_field(
-        flat_dependant=flat_dependant,
+    route.body_field = _get_body_field(
+        body_params=body_params,
         name=route.unique_id,
         embed_body_fields=route._embed_body_fields,
     )

@@ -219,6 +219,16 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def _get_flat_body_params(dependant: Dependant) -> list[ModelField]:
+    body_params: list[ModelField] = []
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        body_params.extend(current_dependant.body_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    return body_params
+
+
 def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
     if not fields:
         return fields
@@ -1043,8 +1053,8 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_body_field(
-    *, flat_dependant: Dependant, name: str, embed_body_fields: bool
+def _get_body_field(
+    *, body_params: list[ModelField], name: str, embed_body_fields: bool
 ) -> ModelField | None:
     """
     Get a ModelField representing the request body for a path operation, combining
@@ -1056,34 +1066,30 @@ def get_body_field(
     This is **not** used to validate/parse the request body, that's done with each
     individual body parameter.
     """
-    if not flat_dependant.body_params:
+    if not body_params:
         return None
-    first_param = flat_dependant.body_params[0]
+    first_param = body_params[0]
     if not embed_body_fields:
         return first_param
     model_name = "Body_" + name
-    BodyModel = create_body_model(
-        fields=flat_dependant.body_params, model_name=model_name
-    )
-    required = any(
-        True for f in flat_dependant.body_params if f.field_info.is_required()
-    )
+    BodyModel = create_body_model(fields=body_params, model_name=model_name)
+    required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
         "alias": "body",
     }
     if not required:
         BodyFieldInfo_kwargs["default"] = None
-    if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
+    if any(isinstance(f.field_info, params.File) for f in body_params):
         BodyFieldInfo: type[params.Body] = params.File
-    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+    elif any(isinstance(f.field_info, params.Form) for f in body_params):
         BodyFieldInfo = params.Form
     else:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
-            for f in flat_dependant.body_params
+            for f in body_params
             if isinstance(f.field_info, params.Body)
         ]
         if len(set(body_param_media_types)) == 1:
