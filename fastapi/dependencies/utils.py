@@ -152,16 +152,20 @@ def get_flat_dependant(
     parent_oauth_scopes: list[str] | None = None,
     _uses_scopes_cache: _UsesScopesCache | None = None,
 ) -> Dependant:
-    if visited is None:
-        visited = []
-    if _uses_scopes_cache is None:
-        _uses_scopes_cache = {}
-    visited.append(
-        _get_cache_key(
-            dependant=dependant,
-            uses_scopes_cache=_uses_scopes_cache,
-        )
+    track_visited = (
+        skip_repeats or visited is not None or _uses_scopes_cache is not None
     )
+    if track_visited:
+        if visited is None:
+            visited = []
+        if _uses_scopes_cache is None:
+            _uses_scopes_cache = {}
+        visited.append(
+            _get_cache_key(
+                dependant=dependant,
+                uses_scopes_cache=_uses_scopes_cache,
+            )
+        )
     use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
         _get_oauth_scopes(dependant=dependant)
     )
@@ -187,15 +191,16 @@ def get_flat_dependant(
         scope=dependant.scope,
     )
     for sub_dependant in dependant.dependencies:
-        if (
-            skip_repeats
-            and _get_cache_key(
-                dependant=sub_dependant,
-                uses_scopes_cache=_uses_scopes_cache,
-            )
-            in visited
-        ):
-            continue
+        if skip_repeats:
+            assert visited is not None
+            if (
+                _get_cache_key(
+                    dependant=sub_dependant,
+                    uses_scopes_cache=_uses_scopes_cache,
+                )
+                in visited
+            ):
+                continue
         flat_sub = get_flat_dependant(
             sub_dependant,
             skip_repeats=skip_repeats,
