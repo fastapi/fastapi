@@ -112,7 +112,7 @@ def get_openapi_security_definitions(
 
 def _get_openapi_operation_parameters(
     *,
-    dependant: Dependant,
+    flat_dependant: Dependant,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
@@ -120,7 +120,6 @@ def _get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
     parameters = []
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     path_params = _get_flat_fields_from_params(flat_dependant.path_params)
     query_params = _get_flat_fields_from_params(flat_dependant.query_params)
     header_params = _get_flat_fields_from_params(flat_dependant.header_params)
@@ -284,12 +283,22 @@ def get_openapi_path(
     assert current_response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
+        flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
+        all_route_params = [
+            field
+            for fields in (
+                flat_dependant.path_params,
+                flat_dependant.query_params,
+                flat_dependant.header_params,
+                flat_dependant.cookie_params,
+            )
+            for field in _get_flat_fields_from_params(fields)
+        ]
         for method in route.methods:
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
             parameters: list[dict[str, Any]] = []
-            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
                 flat_dependant=flat_dependant
             )
@@ -298,7 +307,7 @@ def get_openapi_path(
             if security_definitions:
                 security_schemes.update(security_definitions)
             operation_parameters = _get_openapi_operation_parameters(
-                dependant=route.dependant,
+                flat_dependant=flat_dependant,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -458,7 +467,6 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = "422"
-            all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
