@@ -134,10 +134,6 @@ def _get_security_scheme(*, dependant: Dependant) -> SecurityBase:
     return unwrapped
 
 
-def _get_security_dependencies(*, dependant: Dependant) -> list[Dependant]:
-    return [dep for dep in dependant.dependencies if _is_security_scheme(dependant=dep)]
-
-
 @lru_cache(maxsize=_CALLABLE_CLASSIFICATION_CACHE_SIZE)
 def _is_gen_callable_cached(call_identity: _CallIdentity) -> bool:
     call = call_identity.call
