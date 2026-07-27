@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.5 (2026-07-27)
+
 ### Refactors
 
 * ⚡️ Avoid flattening dependencies for body fields. PR [#16071](https://github.com/fastapi/fastapi/pull/16071) by [@tiangolo](https://github.com/tiangolo).
