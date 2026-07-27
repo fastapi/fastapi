@@ -1,4 +1,4 @@
-from collections.abc import AsyncGenerator, Generator
+from collections.abc import AsyncGenerator, Callable, Generator
 from typing import Any
 
 from fastapi.dependencies.models import (
@@ -93,7 +93,27 @@ def test_callable_classification_is_shared_by_call() -> None:
         cache_info = cached_function.cache_info()
         assert cache_info.hits == 1
         assert cache_info.misses == 1
-        assert cache_info.maxsize == 1024
+        assert cache_info.maxsize == 4096
+
+
+def test_callable_classification_cache_supports_large_apps() -> None:
+    callables: list[Callable[[], None]] = [lambda: None for _ in range(3000)]
+
+    for classifier, cached_classifier in (
+        (_is_gen_callable, _is_gen_callable_cached),
+        (_is_async_gen_callable, _is_async_gen_callable_cached),
+        (_is_coroutine_callable, _is_coroutine_callable_cached),
+    ):
+        cached_classifier.cache_clear()
+
+        for _ in range(2):
+            assert all(not classifier(call) for call in callables)
+
+        cache_info = cached_classifier.cache_info()
+        assert cache_info.hits == len(callables)
+        assert cache_info.misses == len(callables)
+        assert cache_info.maxsize == 4096
+        cached_classifier.cache_clear()
 
 
 def test_unhashable_callable_classification() -> None:
