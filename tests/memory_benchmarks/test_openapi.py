@@ -16,6 +16,7 @@ if "--codspeed" not in sys.argv:
     )
 
 
+@pytest.mark.timeout(60)
 def test_openapi_dependency_graph(benchmark) -> None:
     app = create_openapi_app()
     schema = benchmark(generate_openapi, app)
