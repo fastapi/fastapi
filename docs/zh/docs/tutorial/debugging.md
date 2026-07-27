@@ -6,7 +6,7 @@
 
 在你的 FastAPI 应用中直接导入 `uvicorn` 并运行：
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### 关于 `__name__ == "__main__"` { #about-name-main }
 
@@ -42,11 +42,13 @@ $ python myapp.py
 
 那么文件中由 Python 自动创建的内部变量 `__name__`，会将字符串 `"__main__"` 作为值。
 
-所以，下面这部分代码才会运行：
+所以，这一段：
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
+
+会运行。
 
 ---
 
@@ -60,17 +62,19 @@ from myapp import app
 # 其他一些代码
 ```
 
-在这种情况下，`myapp.py` 内部的自动变量不会有值为 `"__main__"` 的变量 `__name__`。
+在这种情况下，`myapp.py` 内部自动创建的变量 `__name__` 不会有值 `"__main__"`。
 
-所以，下面这一行不会被执行：
+所以，这一行：
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-/// info
+不会被执行。
 
-更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
+/// note | 注意
+
+更多信息请检查 [Python 官方文档](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -85,7 +89,7 @@ from myapp import app
 * 进入到「调试」面板。
 * 「添加配置...」。
 * 选中「Python」
-* 运行「Python：当前文件（集成终端）」选项的调试器。
+* 使用选项 "`Python: Current File (Integrated Terminal)`" 运行调试器。
 
 然后它会使用你的 **FastAPI** 代码开启服务器，停在断点处，等等。
 
@@ -95,7 +99,7 @@ from myapp import app
 
 ---
 
-如果使用 Pycharm，你可以：
+如果使用 PyCharm，你可以：
 
 * 打开「运行」菜单。
 * 选中「调试...」。

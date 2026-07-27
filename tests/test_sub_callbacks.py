@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -10,7 +8,7 @@ app = FastAPI()
 
 class Invoice(BaseModel):
     id: str
-    title: Optional[str] = None
+    title: str | None = None
     customer: str
     total: float
 
@@ -51,7 +49,7 @@ subrouter = APIRouter()
 
 
 @subrouter.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
+def create_invoice(invoice: Invoice, callback_url: HttpUrl | None = None):
     """
     Create an invoice.
 

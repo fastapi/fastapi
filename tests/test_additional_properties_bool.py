@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -19,7 +17,7 @@ app = FastAPI()
 
 @app.post("/")
 async def post(
-    foo: Union[Foo, None] = None,
+    foo: Foo | None = None,
 ):
     return foo
 

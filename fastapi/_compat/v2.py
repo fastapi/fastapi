@@ -8,8 +8,11 @@ from functools import lru_cache
 from typing import (
     Annotated,
     Any,
+    Literal,
     Union,
     cast,
+    get_args,
+    get_origin,
 )
 
 from fastapi._compat import lenient_issubclass, shared
@@ -19,12 +22,12 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
+from pydantic._internal import _typing_extra as _pydantic_typing_extra
 from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
-from pydantic._internal._typing_extra import eval_type_lenient
 from pydantic.fields import FieldInfo as FieldInfo
-from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
+from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined
@@ -32,11 +35,40 @@ from pydantic_core import Url as Url
 from pydantic_core.core_schema import (
     with_info_plain_validator_function as with_info_plain_validator_function,
 )
-from typing_extensions import Literal, get_args, get_origin
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-evaluate_forwardref = eval_type_lenient
+
+
+def evaluate_forwardref(
+    value: Any,
+    globalns: dict[str, Any] | None = None,
+    localns: dict[str, Any] | None = None,
+) -> Any:
+    # eval_type_lenient has been deprecated since Pydantic v2.10.0b1 (PR #10530)
+    try_eval_type = getattr(_pydantic_typing_extra, "try_eval_type", None)
+    if try_eval_type is not None:
+        return try_eval_type(value, globalns, localns)[0]
+    return _pydantic_typing_extra.eval_type_lenient(  # ty: ignore[deprecated]
+        value, globalns, localns
+    )
+
+
+class GenerateJsonSchema(_GenerateJsonSchema):
+    # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
+    # and dropping support for any version of Pydantic before that one (so, in a very long time)
+    def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
+        json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
+        bytes_mode = (
+            self._config.ser_json_bytes
+            if self.mode == "serialization"
+            else self._config.val_json_bytes
+        )
+        if bytes_mode == "base64":
+            json_schema["contentEncoding"] = "base64"
+        self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
+        return json_schema
+
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -83,7 +115,7 @@ class ModelField:
     field_info: FieldInfo
     name: str
     mode: Literal["validation", "serialization"] = "validation"
-    config: Union[ConfigDict, None] = None
+    config: ConfigDict | None = None
 
     @property
     def alias(self) -> str:
@@ -91,14 +123,14 @@ class ModelField:
         return a if a is not None else self.name
 
     @property
-    def validation_alias(self) -> Union[str, None]:
+    def validation_alias(self) -> str | None:
         va = self.field_info.validation_alias
         if isinstance(va, str) and va:
             return va
         return None
 
     @property
-    def serialization_alias(self) -> Union[str, None]:
+    def serialization_alias(self) -> str | None:
         sa = self.field_info.serialization_alias
         return sa or None
 
@@ -129,7 +161,7 @@ class ModelField:
                 Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[annotated_args],
+                Annotated[annotated_args],  # ty: ignore[invalid-type-form]
                 config=self.config,
             )
 
@@ -143,7 +175,7 @@ class ModelField:
         value: Any,
         values: dict[str, Any] = {},  # noqa: B006
         *,
-        loc: tuple[Union[int, str], ...] = (),
+        loc: tuple[int | str, ...] = (),
     ) -> tuple[Any, list[dict[str, Any]]]:
         try:
             return (
@@ -160,8 +192,8 @@ class ModelField:
         value: Any,
         *,
         mode: Literal["json", "python"] = "json",
-        include: Union[IncEx, None] = None,
-        exclude: Union[IncEx, None] = None,
+        include: IncEx | None = None,
+        exclude: IncEx | None = None,
         by_alias: bool = True,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
@@ -172,6 +204,32 @@ class ModelField:
         return self._type_adapter.dump_python(
             value,
             mode=mode,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
+
+    def serialize_json(
+        self,
+        value: Any,
+        *,
+        include: IncEx | None = None,
+        exclude: IncEx | None = None,
+        by_alias: bool = True,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+    ) -> bytes:
+        # What calls this code passes a value that already called
+        # self._type_adapter.validate_python(value)
+        # This uses Pydantic's dump_json() which serializes directly to JSON
+        # bytes in one pass (via Rust), avoiding the intermediate Python dict
+        # step of dump_python(mode="json") + json.dumps().
+        return self._type_adapter.dump_json(
+            value,
             include=include,
             exclude=exclude,
             by_alias=by_alias,
@@ -202,7 +260,7 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> dict[str, Any]:
-    override_mode: Union[Literal["validation"], None] = (
+    override_mode: Literal["validation"] | None = (
         None
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
@@ -314,23 +372,23 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
                 continue
             origin_type = get_origin(union_arg) or union_arg
             break
-    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
-    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
+    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]  # ty: ignore[invalid-return-type]
 
 
-def get_missing_field_error(loc: tuple[Union[int, str], ...]) -> dict[str, Any]:
+def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
     error = ValidationError.from_exception_data(
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
     error["input"] = None
-    return error  # type: ignore[return-value]
+    return error  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
 
 def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
 ) -> type[BaseModel]:
     field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
+    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]  # ty: ignore[no-matching-overload]
     return BodyModel
 
 
@@ -360,7 +418,7 @@ def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 
-TypeModelOrEnum = Union[type["BaseModel"], type[Enum]]
+TypeModelOrEnum = type["BaseModel"] | type[Enum]
 TypeModelSet = set[TypeModelOrEnum]
 
 
@@ -377,7 +435,7 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
 
 
 def get_flat_models_from_model(
-    model: type["BaseModel"], known_models: Union[TypeModelSet, None] = None
+    model: type["BaseModel"], known_models: TypeModelSet | None = None
 ) -> TypeModelSet:
     known_models = known_models or set()
     fields = get_model_fields(model)
@@ -426,7 +484,7 @@ def get_flat_models_from_fields(
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+    *, errors: Sequence[Any], loc_prefix: tuple[str | int, ...]
 ) -> list[dict[str, Any]]:
     updated_loc_errors: list[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors

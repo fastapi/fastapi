@@ -1,13 +1,12 @@
-# 歴史、設計、そしてこれから
+# 歴史、設計、そしてこれから { #history-design-and-future }
 
-少し前に、<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">**FastAPI**
-のユーザーに以下の様に尋ねられました</a>:
+しばらく前に、[ある **FastAPI** ユーザーが質問しました](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > このプロジェクトの歴史は？何もないところから、数週間ですごいものができているようです。 [...]
 
 これがその歴史のほんの一部です。
 
-## 代替手段
+## 代替手段 { #alternatives }
 
 数年前から、私は複雑な要件を持つAPI (機械学習、分散システム、非同期ジョブ、NoSQLデータベースなど) を作成しており、いくつかの開発者チームを率いています。
 
@@ -15,11 +14,11 @@
 
 **FastAPI** の歴史は、その前身の歴史が大部分を占めています。
 
-[代替ツールから受けたインスピレーションと比較](alternatives.md){.internal-link target=_blank}のセクションでこう述べています:
+[代替手段](alternatives.md)のセクションでこう述べています:
 
 <blockquote markdown="1">
 
-**FastAPI**は、代替ツールのこれまでの働きがなければ存在しなかったでしょう。
+**FastAPI**は、他の人々のこれまでの働きがなければ存在しなかったでしょう。
 
 以前に作られた多くのツールが、作成における刺激として役立ってきました。
 
@@ -29,7 +28,7 @@
 
 </blockquote>
 
-## 調査
+## 調査 { #investigation }
 
 すべて既存の代替手段を使うことで、そのすべてを学び、アイデアを得て、自分や一緒に仕事をしてきた開発者のチームにとって最良の方法で組み合わせる機会を得ました。
 
@@ -39,13 +38,13 @@
 
 そこで、**FastAPI**のコードを書き始める前に、OpenAPI、JSON Schema、OAuth2などの仕様を数ヶ月かけて勉強し、それらの関係、重複する箇所、相違点を理解しました。
 
-## 設計
+## 設計 { #design }
 
 その後、 (FastAPIを使う開発者として) ユーザーが欲しい「API」の設計に時間を費やしました。
 
 もっとも人気のあるPythonエディターでいくつかのアイデアをテストしました。PyCharm、VS Code、Jediベースのエディターです。
 
-最新の <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python開発者調査</a>で、それらのエディターがユーザーの80%をカバーしていました。
+最新の [Python開発者調査](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)で、それらのエディターがユーザーの80%をカバーしていました。
 
 これは、**FastAPI**がPython開発者の80%が使用しているエディターで特別にテストされたことを意味します。また、ほとんどの他のエディターも同様に動作する傾向があるため、この恩恵は事実上すべてのエディターでうけられるはずです。
 
@@ -53,19 +52,19 @@
 
 すべての箇所で、すべての開発者に最高の開発体験を提供しました。
 
-## 要件
+## 要件 { #requirements }
 
-いくつかの代替手法を試したあと、私は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>の強みを利用することを決めました。
+いくつかの代替手法を試したあと、私は[**Pydantic**](https://docs.pydantic.dev/)の強みを利用することを決めました。
 
 そして、JSON Schemaに完全に準拠するようにしたり、制約宣言を定義するさまざまな方法をサポートしたり、いくつかのエディターでのテストに基づいてエディターのサポート (型チェック、自動補完) を改善するために貢献しました。
 
-開発中、もう1つの重要な鍵となる<a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>、にも貢献しました。
+開発中、もう1つの重要な鍵となる[**Starlette**](https://www.starlette.dev/)にも貢献しました。
 
-## 開発
+## 開発 { #development }
 
 私が**FastAPI**自体の作成を開始した時には、ほとんどの部分がすでに準備されており、設計が定義され、必要な条件とツールの準備ができていました。そして規格や仕様に関する知識が、明確になり、更新されていました。
 
-## これから
+## これから { #future }
 
 この時点ですでに、これらのアイデアを持った**FastAPI**が多くの人の役に立っていることは明らかです。
 
@@ -77,4 +76,4 @@
 
 **FastAPI**には大きな未来が待っています。
 
-そして、[あなたの助け](help-fastapi.md){.internal-link target=_blank}を大いに歓迎します。
+そして、[あなたの助け](help-fastapi.md)を大いに歓迎します。

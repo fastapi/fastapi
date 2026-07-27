@@ -104,17 +104,11 @@ Comme, par défaut, les valeurs singulières sont interprétées comme des param
 q: str | None = None
 ```
 
-Ou en Python 3.9 :
-
-```Python
-q: Union[str, None] = None
-```
-
 Par exemple :
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info
+/// note | Remarque
 
 `Body` possède également les mêmes paramètres supplémentaires de validation et de métadonnées que `Query`, `Path` et d'autres que vous verrez plus tard.
 
@@ -129,7 +123,7 @@ Par défaut, **FastAPI** attendra alors son contenu directement.
 Mais si vous voulez qu'il attende un JSON avec une clé `item` contenant le contenu du modèle, comme lorsqu'on déclare des paramètres supplémentaires du corps de la requête, vous pouvez utiliser le paramètre spécial `embed` de `Body` :
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 comme dans :

@@ -1,6 +1,6 @@
 # 의존성 { #dependencies }
 
-**FastAPI**는 아주 강력하지만 직관적인 **<abbr title="also known as components, resources, providers, services, injectables">의존성 주입</abbr>** 시스템을 가지고 있습니다.
+**FastAPI**는 아주 강력하지만 직관적인 **<dfn title="컴포넌트, 리소스, 제공자, 서비스, 인젝터블로도 알려져 있음">의존성 주입</dfn>** 시스템을 가지고 있습니다.
 
 이는 사용하기 아주 쉽게 설계했으며, 어느 개발자나 다른 컴포넌트와 **FastAPI**를 쉽게 통합할 수 있도록 만들었습니다.
 
@@ -47,17 +47,17 @@
 
 * 선택적인 쿼리 매개변수 `q`, `str`을 자료형으로 가집니다.
 * 선택적인 쿼리 매개변수 `skip`, `int`를 자료형으로 가지며 기본 값은 `0`입니다.
-* 선택적인 쿼리 매개변수 `limit` that is an `int`, and by default is `100`.
+* 선택적인 쿼리 매개변수 `limit`, `int`를 자료형으로 가지며 기본 값은 `100`입니다.
 
 그 후 위의 값을 포함한 `dict` 자료형으로 반환할 뿐입니다.
 
-/// info | 정보
+/// note | 참고
 
 FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를 사용하기 권장합니다) 추가했습니다.
 
 옛날 버전을 가지고 있는 경우, `Annotated`를 사용하려 하면 에러를 맞이하게 될 것입니다.
 
-`Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}를 확실하게 하세요.
+`Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions)를 확실하게 하세요.
 
 ///
 
@@ -71,7 +71,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
 
-비록 `Body`, `Query` 등을 사용하는 것과 같은 방식으로 여러분의 함수의 매개변수에 있는 `Depends`를 사용하지만, `Depends`는 약간 다르게 작동합니다.
+비록 `Depends`를 함수의 매개변수에서 `Body`, `Query` 등을 사용하는 것과 같은 방식으로 사용하지만, `Depends`는 약간 다르게 작동합니다.
 
 `Depends`에 단일 매개변수만 전달했습니다.
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 이렇게 하면 공용 코드를 한번만 적어도 되며, **FastAPI**는 *경로 처리*을 위해 이에 대한 호출을 처리합니다.
 
-/// check | 확인
+/// tip | 팁
 
 특별한 클래스를 만들지 않아도 되며, 이러한 것 혹은 비슷한 종류를 **FastAPI**에 "등록"하기 위해 어떤 곳에 넘겨주지 않아도 됩니다.
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 참고
 
-잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
+잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md#in-a-hurry) 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
 
 ///
 

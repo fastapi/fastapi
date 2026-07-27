@@ -1,6 +1,7 @@
 import importlib
 
 import pytest
+from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -10,9 +11,7 @@ from tests.utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial001_an_py39"),
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -70,7 +69,9 @@ def test_header_param_model_invalid(client: TestClient):
                         "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
-                        "accept-encoding": "gzip, deflate",
+                        "accept-encoding": IsOneOf(
+                            "gzip, deflate", "gzip, deflate, zstd"
+                        ),
                         "connection": "keep-alive",
                         "user-agent": "testclient",
                     },

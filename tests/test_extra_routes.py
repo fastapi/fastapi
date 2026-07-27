@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
@@ -11,7 +9,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    price: Optional[float] = None
+    price: float | None = None
 
 
 @app.api_route("/items/{item_id}", methods=["GET"])

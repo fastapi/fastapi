@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from docs_src.path_operation_configuration.tutorial006_py39 import app
+from docs_src.path_operation_configuration.tutorial006_py310 import app
 
 client = TestClient(app)
 

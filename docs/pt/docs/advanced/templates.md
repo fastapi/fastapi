@@ -8,7 +8,7 @@ Existem utilitários para configurá-lo facilmente que você pode usar diretamen
 
 ## Instalar dependências { #install-dependencies }
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e instalar `jinja2`:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalar `jinja2`:
 
 <div class="termy">
 
@@ -27,7 +27,7 @@ $ pip install jinja2
 * Declare um parâmetro `Request` no *path operation* que retornará um template.
 * Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto `request` e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Nota
 
@@ -123,4 +123,4 @@ E como você está usando `StaticFiles`, este arquivo CSS será automaticamente 
 
 ## Mais detalhes { #more-details }
 
-Para obter mais detalhes, incluindo como testar templates, consulte a <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">documentação da Starlette sobre templates</a>.
+Para obter mais detalhes, incluindo como testar templates, consulte a [documentação da Starlette sobre templates](https://www.starlette.dev/templates/).

@@ -44,7 +44,7 @@ Beachten Sie, wie jedes Attribut eines Modells mit einem Typ, Defaultwert und `F
 
 Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarieren. Und es wird im generierten JSON-Schema untergebracht.
 
-Sie werden später mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
+Sie werden später in der Dokumentation mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
 /// warning | Achtung
 

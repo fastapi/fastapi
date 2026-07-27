@@ -12,7 +12,7 @@ Dies gilt insbesondere für Benutzermodelle, denn:
 
 Speichern Sie niemals das Klartextpasswort eines Benutzers. Speichern Sie immer einen „sicheren Hash“, den Sie dann verifizieren können.
 
-Wenn Sie nicht wissen, was das ist, werden Sie in den [Sicherheitskapiteln](security/simple-oauth2.md#password-hashing){.internal-link target=_blank} lernen, was ein „Passworthash“ ist.
+Wenn Sie nicht wissen, was das ist, werden Sie in den [Sicherheitskapiteln](security/simple-oauth2.md#password-hashing) lernen, was ein „Passworthash“ ist.
 
 ///
 
@@ -63,7 +63,7 @@ würden wir ein Python-`dict` erhalten mit:
 
 #### Ein `dict` entpacken { #unpacking-a-dict }
 
-Wenn wir ein `dict` wie `user_dict` nehmen und es einer Funktion (oder Klasse) mit `**user_dict` übergeben, wird Python es „entpacken“. Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüsselwort-Argumente übergeben.
+Wenn wir ein `dict` wie `user_dict` nehmen und es einer Funktion (oder Klasse) mit `**user_dict` übergeben, wird Python es „entpacken“. Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüssel-Wert-Argumente übergeben.
 
 Setzen wir also das `user_dict` von oben ein:
 
@@ -162,11 +162,11 @@ Sie können deklarieren, dass eine <abbr title="Response – Antwort: Daten, die
 
 Dies wird in OpenAPI mit `anyOf` definiert.
 
-Um das zu tun, verwenden Sie den Standard-Python-Typhinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Um das zu tun, verwenden Sie den Standard-Python-Typhinweis [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Hinweis
 
-Wenn Sie eine <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, listen Sie den spezifischeren Typ zuerst auf, gefolgt vom weniger spezifischen Typ. Im Beispiel unten steht `PlaneItem` vor `CarItem` in `Union[PlaneItem, CarItem]`.
+Wenn Sie eine [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) definieren, listen Sie den spezifischeren Typ zuerst auf, gefolgt vom weniger spezifischen Typ. Im Beispiel unten steht `PlaneItem` vor `CarItem` in `Union[PlaneItem, CarItem]`.
 
 ///
 
@@ -190,22 +190,22 @@ Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, 
 
 Auf die gleiche Weise können Sie Responses von Listen von Objekten deklarieren.
 
-Dafür verwenden Sie Pythons Standard-`typing.List` (oder nur `list` in Python 3.9 und höher):
+Dafür verwenden Sie Pythons Standard-`list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response mit beliebigem `dict` { #response-with-arbitrary-dict }
 
-Sie können auch eine Response deklarieren, die ein beliebiges `dict` zurückgibt, indem Sie nur die Typen der Schlüssel und Werte ohne ein Pydantic-Modell deklarieren.
+Sie können auch eine Response deklarieren, die ein einfaches beliebiges `dict` verwendet, indem Sie nur den Typ der Schlüssel und Werte deklarieren, ohne ein Pydantic-Modell zu verwenden.
 
 Dies ist nützlich, wenn Sie die gültigen Feld-/Attributnamen nicht im Voraus kennen (die für ein Pydantic-Modell benötigt werden würden).
 
-In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.9 und höher):
+In diesem Fall können Sie `dict` verwenden:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Zusammenfassung { #recap }
 
 Verwenden Sie gerne mehrere Pydantic-Modelle und vererben Sie je nach Bedarf.
 
-Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit in der Lage sein muss, verschiedene „Zustände“ zu haben. Wie im Fall der Benutzer-„Einheit“ mit einem Zustand einschließlich `password`, `password_hash` und ohne Passwort.
+Sie brauchen kein einzelnes Datenmodell pro Entität, wenn diese Entität in der Lage sein muss, verschiedene „Zustände“ zu haben. Die **Benutzer**-„Entität“ ist ein Beispiel, mit Zuständen, die `password`, `password_hash` oder kein Passwort umfassen.

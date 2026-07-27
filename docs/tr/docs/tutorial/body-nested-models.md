@@ -1,5 +1,6 @@
 # Body - İç İçe Modeller { #body-nested-models }
 
+
 **FastAPI** ile (Pydantic sayesinde) istediğiniz kadar derin iç içe geçmiş modelleri tanımlayabilir, doğrulayabilir, dokümante edebilir ve kullanabilirsiniz.
 
 ## List alanları { #list-fields }
@@ -95,7 +96,7 @@ Yine, sadece bu tanımı yaparak **FastAPI** ile şunları elde edersiniz:
 
 `str`, `int`, `float` vb. normal tekil tiplerin yanında, `str`’den türeyen daha karmaşık tekil tipleri de kullanabilirsiniz.
 
-Tüm seçenekleri görmek için <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic Type Overview</a> sayfasına göz atın. Sonraki bölümde bazı örnekleri göreceksiniz.
+Tüm seçenekleri görmek için [Pydantic Türlerine Genel Bakış](https://docs.pydantic.dev/latest/concepts/types/) sayfasına göz atın. Sonraki bölümde bazı örnekleri göreceksiniz.
 
 Örneğin `Image` modelinde bir `url` alanımız olduğuna göre, bunu `str` yerine Pydantic’in `HttpUrl` tipinden bir instance olacak şekilde tanımlayabiliriz:
 
@@ -135,7 +136,7 @@ Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, doküman
 }
 ```
 
-/// info | Bilgi
+/// note | Not
 
 `images` key’inin artık image object’lerinden oluşan bir list içerdiğine dikkat edin.
 
@@ -147,7 +148,7 @@ Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, doküman
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Bilgi
+/// note | Not
 
 `Offer`’ın bir `Item` list’i olduğuna, `Item`’ların da opsiyonel bir `Image` list’ine sahip olduğuna dikkat edin.
 
@@ -163,7 +164,7 @@ images: list[Image]
 
 şu örnekte olduğu gibi:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Her yerde editör desteği { #editor-support-everywhere }
 
@@ -193,7 +194,7 @@ Burada göreceğimiz şey de bu.
 
 Bu durumda, `int` key’lere ve `float` value’lara sahip olduğu sürece herhangi bir `dict` kabul edersiniz:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | İpucu
 

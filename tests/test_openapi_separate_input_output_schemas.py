@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -8,15 +6,15 @@ from pydantic import BaseModel, computed_field
 
 class SubItem(BaseModel):
     subname: str
-    sub_description: Optional[str] = None
+    sub_description: str | None = None
     tags: list[str] = []
     model_config = {"json_schema_serialization_defaults_required": True}
 
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
-    sub: Optional[SubItem] = None
+    description: str | None = None
+    sub: SubItem | None = None
     model_config = {"json_schema_serialization_defaults_required": True}
 
 

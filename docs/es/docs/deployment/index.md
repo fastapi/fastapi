@@ -16,7 +16,7 @@ Hay varias maneras de hacerlo dependiendo de tu caso de uso específico y las he
 
 Podrías **desplegar un servidor** tú mismo utilizando una combinación de herramientas, podrías usar un **servicio en la nube** que hace parte del trabajo por ti, u otras opciones posibles.
 
-Por ejemplo, nosotros, el equipo detrás de FastAPI, construimos <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>, para hacer que desplegar aplicaciones de FastAPI en la nube sea lo más ágil posible, con la misma experiencia de desarrollador de trabajar con FastAPI.
+Por ejemplo, nosotros, el equipo detrás de FastAPI, construimos [**FastAPI Cloud**](https://fastapicloud.com), para hacer que desplegar aplicaciones de FastAPI en la nube sea lo más ágil posible, con la misma experiencia de desarrollador de trabajar con FastAPI.
 
 Te mostraré algunos de los conceptos principales que probablemente deberías tener en cuenta al desplegar una aplicación **FastAPI** (aunque la mayoría se aplica a cualquier otro tipo de aplicación web).
 

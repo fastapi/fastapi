@@ -8,6 +8,8 @@ FastAPI Version 0.119.0 führte eine teilweise Unterstützung für Pydantic v1 i
 
 FastAPI 0.126.0 entfernte die Unterstützung für Pydantic v1, während `pydantic.v1` noch eine Weile unterstützt wurde.
 
+FastAPI 0.128.0 entfernte ebenfalls die Unterstützung für `pydantic.v1`, daher erfordern die neuesten Versionen von FastAPI Pydantic v2.
+
 /// warning | Achtung
 
 Das Pydantic-Team hat die Unterstützung für Pydantic v1 in den neuesten Python-Versionen eingestellt, beginnend mit **Python 3.14**.
@@ -22,7 +24,7 @@ Wenn Sie eine ältere FastAPI-App mit Pydantic v1 haben, zeige ich Ihnen hier, w
 
 ## Offizieller Leitfaden { #official-guide }
 
-Pydantic hat einen offiziellen <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Migrationsleitfaden</a> von v1 zu v2.
+Pydantic hat einen offiziellen [Migrationsleitfaden](https://docs.pydantic.dev/latest/migration/) von v1 zu v2.
 
 Er enthält auch, was sich geändert hat, wie Validierungen nun korrekter und strikter sind, mögliche Stolpersteine, usw.
 
@@ -30,7 +32,7 @@ Sie können ihn lesen, um besser zu verstehen, was sich geändert hat.
 
 ## Tests { #tests }
 
-Stellen Sie sicher, dass Sie [Tests](../tutorial/testing.md){.internal-link target=_blank} für Ihre App haben und diese in Continuous Integration (CI) ausführen.
+Stellen Sie sicher, dass Sie [Tests](../tutorial/testing.md) für Ihre App haben und diese in Continuous Integration (CI) ausführen.
 
 Auf diese Weise können Sie das Update durchführen und sicherstellen, dass weiterhin alles wie erwartet funktioniert.
 
@@ -38,7 +40,7 @@ Auf diese Weise können Sie das Update durchführen und sicherstellen, dass weit
 
 In vielen Fällen, wenn Sie reguläre Pydantic-Modelle ohne Anpassungen verwenden, können Sie den Großteil des Prozesses der Migration von Pydantic v1 auf Pydantic v2 automatisieren.
 
-Sie können <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> vom selben Pydantic-Team verwenden.
+Sie können [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) vom selben Pydantic-Team verwenden.
 
 Dieses Tool hilft Ihnen, den Großteil des zu ändernden Codes automatisch anzupassen.
 
@@ -53,6 +55,16 @@ Das bedeutet, Sie können die neueste Version von Pydantic v2 installieren und d
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### FastAPI-Unterstützung für Pydantic v1 in v2 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | Achtung
+
+Diese FastAPI-Unterstützung für `pydantic.v1`-Modelle wurde in **FastAPI 0.119.0** hinzugefügt und in **FastAPI 0.128.0** entfernt. Sie war als temporäre Hilfe für die Migration zu Pydantic v2 gedacht.
+
+In aktuellen Versionen von FastAPI löst die Verwendung eines `pydantic.v1`-Modells in Ihrer App einen Fehler aus.
+
+Der Rest dieses Abschnitts beschreibt die temporäre Unterstützung, die nur in diesen älteren Versionen verfügbar ist.
+
+///
 
 Seit FastAPI 0.119.0 gibt es außerdem eine teilweise Unterstützung für Pydantic v1 innerhalb von Pydantic v2, um die Migration auf v2 zu erleichtern.
 
@@ -121,6 +133,12 @@ Wenn Sie einige der FastAPI-spezifischen Tools für Parameter wie `Body`, `Query
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### In Schritten migrieren { #migrate-in-steps }
+
+/// warning | Achtung
+
+Die unten beschriebene schrittweise Migration mit sowohl Pydantic‑v1‑ als auch Pydantic‑v2‑Modellen in derselben App funktioniert nur in **FastAPI 0.119.0 bis 0.127.x**. Sie wurde in **FastAPI 0.128.0** entfernt, die neuesten Versionen erfordern **Pydantic‑v2**-Modelle.
+
+///
 
 /// tip | Tipp
 

@@ -1,4 +1,4 @@
-from typing import Annotated, Optional, Union
+from typing import Annotated
 
 from annotated_doc import Doc
 from fastapi.openapi.models import APIKey, APIKeyIn
@@ -9,18 +9,20 @@ from starlette.status import HTTP_401_UNAUTHORIZED
 
 
 class APIKeyBase(SecurityBase):
+    model: APIKey
+
     def __init__(
         self,
         location: APIKeyIn,
         name: str,
-        description: Union[str, None],
-        scheme_name: Union[str, None],
+        description: str | None,
+        scheme_name: str | None,
         auto_error: bool,
     ):
         self.auto_error = auto_error
 
         self.model: APIKey = APIKey(
-            **{"in": location},
+            **{"in": location},  # ty: ignore[invalid-argument-type]
             name=name,
             description=description,
         )
@@ -42,7 +44,7 @@ class APIKeyBase(SecurityBase):
             headers={"WWW-Authenticate": "APIKey"},
         )
 
-    def check_api_key(self, api_key: Optional[str]) -> Optional[str]:
+    def check_api_key(self, api_key: str | None) -> str | None:
         if not api_key:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
@@ -90,7 +92,7 @@ class APIKeyQuery(APIKeyBase):
             Doc("Query parameter name."),
         ],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -100,7 +102,7 @@ class APIKeyQuery(APIKeyBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -137,7 +139,7 @@ class APIKeyQuery(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         api_key = request.query_params.get(self.model.name)
         return self.check_api_key(api_key)
 
@@ -179,7 +181,7 @@ class APIKeyHeader(APIKeyBase):
         *,
         name: Annotated[str, Doc("Header name.")],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -189,7 +191,7 @@ class APIKeyHeader(APIKeyBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -225,7 +227,7 @@ class APIKeyHeader(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         api_key = request.headers.get(self.model.name)
         return self.check_api_key(api_key)
 
@@ -267,7 +269,7 @@ class APIKeyCookie(APIKeyBase):
         *,
         name: Annotated[str, Doc("Cookie name.")],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -277,7 +279,7 @@ class APIKeyCookie(APIKeyBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -313,6 +315,6 @@ class APIKeyCookie(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         api_key = request.cookies.get(self.model.name)
         return self.check_api_key(api_key)

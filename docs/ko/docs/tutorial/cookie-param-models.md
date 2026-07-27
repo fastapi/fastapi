@@ -32,7 +32,7 @@
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | 정보
+/// note | 참고
 
 명심하세요, 내부적으로 **브라우저는 쿠키를 특별한 방식으로 처리**하기 때문에 **자바스크립트**가 쉽게 쿠키를 건드릴 수 **없습니다**.
 
@@ -46,7 +46,7 @@
 
 일부 특별한 사용 사례(흔하지는 않겠지만)에서는 수신하려는 쿠키를 **제한**할 수 있습니다.
 
-이제 API는 자신의 <abbr title="This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪">cookie consent</abbr>를 제어할 수 있는 권한을 갖게 되었습니다. 🤪🍪
+이제 API는 자신의 <dfn title="혹시라도 오해할까 봐 하는 농담입니다. 쿠키 동의와는 아무 관련이 없지만, 이제 API도 불쌍한 쿠키를 거절할 수 있다는 점이 웃기네요. 쿠키 하나 드세요. 🍪">쿠키 동의</dfn>를 제어할 수 있는 권한을 갖게 되었습니다. 🤪🍪
 
 Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forbid`)할 수 있습니다:
 
@@ -54,9 +54,9 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 
 클라이언트가 **추가 쿠키**를 보내려고 시도하면, **오류** 응답을 받게 됩니다.
 
-동의를 얻기 위해 애쓰는 불쌍한 쿠키 배너(팝업)들, <abbr title="This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕">API가 거부</abbr>하는데도. 🍪
+동의를 얻기 위해 애쓰는 불쌍한 쿠키 배너(팝업)들, <dfn title="이것도 농담입니다. 신경 쓰지 마세요. 쿠키와 함께 커피 한 잔 하세요. ☕">API가 거부</dfn>하는데도. 🍪
 
-예를 들어, 클라이언트가 `good-list-please` 값으로 `santa_tracker` 쿠키를 보내려고 하면 클라이언트는 `santa_tracker` <abbr title="Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.">쿠키가 허용되지 않는다</abbr>는 **오류** 응답을 받게 됩니다:
+예를 들어, 클라이언트가 `good-list-please` 값으로 `santa_tracker` 쿠키를 보내려고 하면 클라이언트는 `santa_tracker` <dfn title="산타는 쿠키가 부족한 것을 못마땅해합니다. 🎅 좋아요, 이제 더 이상 쿠키 농담은 하지 않겠습니다.">쿠키가 허용되지 않는다</dfn>는 **오류** 응답을 받게 됩니다:
 
 ```json
 {
@@ -73,4 +73,4 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 
 ## 요약 { #summary }
 
-**Pydantic 모델**을 사용하여 **FastAPI**에서 <abbr title="Have a last cookie before you go. 🍪">**쿠키**</abbr>를 선언할 수 있습니다. 😎
+**Pydantic 모델**을 사용하여 **FastAPI**에서 <dfn title="가시기 전에 마지막 쿠키 하나 드세요. 🍪">**쿠키**</dfn>를 선언할 수 있습니다. 😎

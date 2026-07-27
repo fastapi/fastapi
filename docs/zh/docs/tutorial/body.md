@@ -6,9 +6,9 @@
 
 你的 API 几乎总是需要发送**响应体**。但客户端不一定总是要发送**请求体**，有时它们只请求某个路径，可能带一些查询参数，但不会发送请求体。
 
-使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求体**，能充分利用它的功能和优点。
+使用 [Pydantic](https://docs.pydantic.dev/) 模型来声明**请求体**，能充分利用它的功能和优点。
 
-/// info | 信息
+/// note | 注意
 
 发送数据应使用以下之一：`POST`（最常见）、`PUT`、`DELETE` 或 `PATCH`。
 
@@ -20,21 +20,22 @@
 
 ## 导入 Pydantic 的 `BaseModel` { #import-pydantics-basemodel }
 
-从 `pydantic` 中导入 `BaseModel`：
+首先，你需要从 `pydantic` 中导入 `BaseModel`：
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## 创建数据模型 { #create-your-data-model }
 
-把数据模型声明为继承 `BaseModel` 的类。
+然后，把数据模型声明为继承 `BaseModel` 的类。
 
 使用 Python 标准类型声明所有属性：
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
+
 与声明查询参数一样，包含默认值的模型属性是可选的，否则就是必选的。把默认值设为 `None` 可使其变为可选。
 
-例如，上述模型声明如下 JSON "object"（即 Python `dict`）：
+例如，上述模型声明如下 JSON "`object`"（即 Python `dict`）：
 
 ```JSON
 {
@@ -45,7 +46,7 @@
 }
 ```
 
-...由于 `description` 和 `tax` 是可选的（默认值为 `None`），下面的 JSON "object" 也有效：
+...由于 `description` 和 `tax` 是可选的（默认值为 `None`），下面的 JSON "`object`" 也有效：
 
 ```JSON
 {
@@ -72,7 +73,7 @@
     * 数据无效时返回清晰的错误信息，并指出错误数据的确切位置和内容。
 * 把接收的数据赋值给参数 `item`。
     * 因为你把函数中的参数类型声明为 `Item`，所以还能获得所有属性及其类型的编辑器支持（补全等）。
-* 为你的模型生成 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定义，如果对你的项目有意义，还可以在其他地方使用它们。
+* 为你的模型生成 [JSON Schema](https://json-schema.org) 定义，如果对你的项目有意义，还可以在其他地方使用它们。
 * 这些 schema 会成为生成的 OpenAPI Schema 的一部分，并被自动文档的 <abbr title="User Interfaces - 用户界面">UIs</abbr> 使用。
 
 ## 自动文档 { #automatic-docs }
@@ -101,15 +102,15 @@
 
 我们甚至对 Pydantic 本身做了一些改动以支持这些功能。
 
-上面的截图来自 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>。
+上面的截图来自 [Visual Studio Code](https://code.visualstudio.com)。
 
-但使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 和大多数其他 Python 编辑器，你也会获得相同的编辑器支持：
+但使用 [PyCharm](https://www.jetbrains.com/pycharm/) 和大多数其他 Python 编辑器，你也会获得相同的编辑器支持：
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | 提示
 
-如果你使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 作为编辑器，可以使用 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>。
+如果你使用 [PyCharm](https://www.jetbrains.com/pycharm/) 作为编辑器，可以使用 [Pydantic PyCharm 插件](https://github.com/koxudaxi/pydantic-pycharm-plugin/)。
 
 它能改进对 Pydantic 模型的编辑器支持，包括：
 
@@ -123,7 +124,7 @@
 
 ## 使用模型 { #use-the-model }
 
-在*路径操作*函数内部直接访问模型对象的所有属性：
+在函数内部直接访问模型对象的所有属性：
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
@@ -134,6 +135,7 @@
 **FastAPI** 能识别与**路径参数**匹配的函数参数应该**从路径中获取**，而声明为 Pydantic 模型的函数参数应该**从请求体中获取**。
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## 请求体 + 路径 + 查询参数 { #request-body-path-query-parameters }
 
@@ -153,7 +155,7 @@
 
 FastAPI 会根据默认值 `= None` 知道 `q` 的值不是必填的。
 
-`str | None`（Python 3.10+）或 `Union[str, None]`（Python 3.9+ 中的 `Union`）并不是 FastAPI 用来判断是否必填的依据；是否必填由是否有默认值 `= None` 决定。
+`str | None` 并不是 FastAPI 用来判断是否必填的依据；是否必填由是否有默认值 `= None` 决定。
 
 但添加这些类型注解可以让你的编辑器提供更好的支持并检测错误。
 
@@ -161,4 +163,4 @@ FastAPI 会根据默认值 `= None` 知道 `q` 的值不是必填的。
 
 ## 不使用 Pydantic { #without-pydantic }
 
-即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body)。

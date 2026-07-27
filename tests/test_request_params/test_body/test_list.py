@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsOneOf, IsPartialDict
@@ -55,7 +55,7 @@ def test_required_list_str_schema(path: str):
     "path",
     ["/required-list-str", "/model-required-list-str"],
 )
-def test_required_list_str_missing(path: str, json: Union[dict, None]):
+def test_required_list_str_missing(path: str, json: dict | None):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422
@@ -132,7 +132,7 @@ def test_required_list_str_alias_schema(path: str):
     "path",
     ["/required-list-alias", "/model-required-list-alias"],
 )
-def test_required_list_alias_missing(path: str, json: Union[dict, None]):
+def test_required_list_alias_missing(path: str, json: dict | None):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422
@@ -236,7 +236,7 @@ def test_required_list_validation_alias_schema(path: str):
         "/model-required-list-validation-alias",
     ],
 )
-def test_required_list_validation_alias_missing(path: str, json: Union[dict, None]):
+def test_required_list_validation_alias_missing(path: str, json: dict | None):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422

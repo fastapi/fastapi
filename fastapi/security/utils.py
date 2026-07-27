@@ -1,8 +1,5 @@
-from typing import Optional
-
-
 def get_authorization_scheme_param(
-    authorization_header_value: Optional[str],
+    authorization_header_value: str | None,
 ) -> tuple[str, str]:
     if not authorization_header_value:
         return "", ""

@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from annotated_doc import Doc
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
@@ -15,7 +15,7 @@ class OpenIdConnect(SecurityBase):
 
     **Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,
     but it doesn't implement the full OpenIdConnect scheme, for example, it doesn't use
-    the OpenIDConnect URL. You would need to to subclass it and implement it in your
+    the OpenIDConnect URL. You would need to subclass it and implement it in your
     code.
     """
 
@@ -31,7 +31,7 @@ class OpenIdConnect(SecurityBase):
             ),
         ],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -41,7 +41,7 @@ class OpenIdConnect(SecurityBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -84,7 +84,7 @@ class OpenIdConnect(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
