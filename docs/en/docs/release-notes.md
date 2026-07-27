@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.4 (2026-07-27)
+
 ### Refactors
 
 * ⚡️ Skip unused dependency repeat bookkeeping. PR [#16069](https://github.com/fastapi/fastapi/pull/16069) by [@tiangolo](https://github.com/tiangolo).
