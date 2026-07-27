@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.2 (2026-07-27)
+
 ### Refactors
 
 * ⚡️ Stop retaining flat dependency trees. PR [#16065](https://github.com/fastapi/fastapi/pull/16065) by [@tiangolo](https://github.com/tiangolo).
