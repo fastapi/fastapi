@@ -1,8 +1,9 @@
 # Esquemas OpenAPI Separados para Entrada e Saída ou Não { #separate-openapi-schemas-for-input-and-output-or-not }
 
-Ao usar **Pydantic v2**, o OpenAPI gerado é um pouco mais exato e **correto** do que antes. 😎
 
-Inclusive, em alguns casos, ele terá até **dois JSON Schemas** no OpenAPI para o mesmo modelo Pydantic, para entrada e saída, dependendo se eles possuem **valores padrão**.
+Desde que o **Pydantic v2** foi lançado, o OpenAPI gerado é um pouco mais exato e **correto** do que antes. 😎
+
+De fato, em alguns casos, ele terá até **dois JSON Schemas** no OpenAPI para o mesmo modelo Pydantic, para entrada e saída, dependendo se eles possuem **valores padrão**.
 
 Vamos ver como isso funciona e como alterar se for necessário.
 
@@ -38,7 +39,7 @@ Mas se você usar o mesmo modelo como saída, como aqui:
 
 ### Modelo para Dados de Resposta de Saída { #model-for-output-response-data }
 
-Se você interagir com a documentação e verificar a resposta, mesmo que o código não tenha adicionado nada em um dos campos `description`, a resposta JSON contém o valor padrão (`null`):
+Se você interagir com a documentação e verificar a resposta, mesmo que o código não tenha adicionado nada em um dos campos `description`, a response JSON contém o valor padrão (`null`):
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image02.png">
@@ -81,11 +82,11 @@ Com esse recurso do **Pydantic v2**, sua documentação da API fica mais **preci
 
 Agora, há alguns casos em que você pode querer ter o **mesmo esquema para entrada e saída**.
 
-Provavelmente, o principal caso de uso para isso é se você já tem algum código de cliente/SDK gerado automaticamente e não quer atualizar todo o código de cliente/SDK gerado ainda, você provavelmente vai querer fazer isso em algum momento, mas talvez não agora.
+Provavelmente, o principal caso de uso para isso é se você já tem algum código de cliente/SDKs gerado automaticamente e não quer atualizar todo o código de cliente/SDKs gerado ainda, você provavelmente vai querer fazer isso em algum momento, mas talvez não agora.
 
 Nesse caso, você pode desativar esse recurso no **FastAPI**, com o parâmetro `separate_input_output_schemas=False`.
 
-/// info | Informação
+/// note | Nota
 
 O suporte para `separate_input_output_schemas` foi adicionado no FastAPI `0.102.0`. 🤓
 
@@ -95,10 +96,8 @@ O suporte para `separate_input_output_schemas` foi adicionado no FastAPI `0.102.
 
 ### Mesmo Esquema para Modelos de Entrada e Saída na Documentação { #same-schema-for-input-and-output-models-in-docs }
 
-E agora haverá um único esquema para entrada e saída para o modelo, apenas `Item`, e `description` **não será obrigatório**:
+E agora haverá um único esquema para entrada e saída para o modelo, apenas `Item`, e ele terá `description` como **não obrigatório**:
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">
 </div>
-
-Esse é o mesmo comportamento do Pydantic v1. 🤓

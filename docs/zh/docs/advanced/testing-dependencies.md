@@ -1,6 +1,6 @@
-# 测试依赖项
+# 使用覆盖测试依赖项 { #testing-dependencies-with-overrides }
 
-## 测试时覆盖依赖项
+## 测试时覆盖依赖项 { #overriding-dependencies-during-testing }
 
 有些场景下，您可能需要在测试时覆盖依赖项。
 
@@ -8,7 +8,7 @@
 
 反之，要在测试期间（或只是为某些特定测试）提供只用于测试的依赖项，并使用此依赖项的值替换原有依赖项的值。
 
-### 用例：外部服务
+### 用例：外部服务 { #use-cases-external-service }
 
 常见实例是调用外部第三方身份验证应用。
 
@@ -20,7 +20,7 @@
 
 此时，最好覆盖调用外部验证应用的依赖项，使用返回模拟测试用户的自定义依赖项就可以了。
 
-### 使用 `app.dependency_overrides` 属性
+### 使用 `app.dependency_overrides` 属性 { #use-the-app-dependency-overrides-attribute }
 
 对于这些用例，**FastAPI** 应用支持 `app.dependency_overrides` 属性，该属性就是**字典**。
 

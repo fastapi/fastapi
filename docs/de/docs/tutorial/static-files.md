@@ -2,12 +2,20 @@
 
 Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisch bereitstellen.
 
+/// tip | Tipp
+
+Wenn Sie ein Frontend hosten müssen, verwenden Sie stattdessen `app.frontend()`; lesen Sie mehr dazu unter [Frontend](frontend.md).
+
+`app.frontend()` verwendet darunter `StaticFiles`, mit mehreren zusätzlichen Vorteilen für Frontends, wie der Handhabung von clientseitigem Routing.
+
+///
+
 ## `StaticFiles` verwenden { #use-staticfiles }
 
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
-{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
 
 /// note | Technische Details
 
@@ -23,7 +31,7 @@ Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 
 Dies unterscheidet sich von der Verwendung eines `APIRouter`, da eine gemountete Anwendung völlig unabhängig ist. Die OpenAPI und Dokumentation Ihrer Hauptanwendung enthalten nichts von der gemounteten Anwendung, usw.
 
-Weitere Informationen hierzu finden Sie im [Handbuch für fortgeschrittene Benutzer](../advanced/index.md){.internal-link target=_blank}.
+Weitere Informationen hierzu finden Sie im [Handbuch für fortgeschrittene Benutzer](../advanced/index.md).
 
 ## Einzelheiten { #details }
 
@@ -37,4 +45,4 @@ Alle diese Parameter können anders als „`static`“ lauten, passen Sie sie an
 
 ## Weitere Informationen { #more-info }
 
-Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.
+Weitere Details und Optionen finden Sie in [Starlettes Dokumentation zu statischen Dateien](https://www.starlette.dev/staticfiles/).

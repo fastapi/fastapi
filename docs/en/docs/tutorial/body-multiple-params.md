@@ -103,12 +103,6 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-q: Union[str, None] = None
-```
-
-Or in Python 3.10 and above:
-
-```Python
 q: str | None = None
 ```
 
@@ -117,7 +111,7 @@ For example:
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 
-/// info
+/// note
 
 `Body` also has all the same extra validation and metadata parameters as `Query`, `Path` and others you will see later.
 
@@ -132,7 +126,7 @@ By default, **FastAPI** will then expect its body directly.
 But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 as in:

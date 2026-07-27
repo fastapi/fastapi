@@ -1,6 +1,6 @@
 # OAuth2 com Senha (e hashing), Bearer com tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-Agora que temos todo o fluxo de segurança, vamos tornar a aplicação realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> e hashing de senhas seguras.
+Agora que temos todo o fluxo de segurança, vamos tornar a aplicação realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> e hashing seguro de senhas.
 
 Este código é algo que você pode realmente usar na sua aplicação, salvar os hashes das senhas no seu banco de dados, etc.
 
@@ -24,13 +24,13 @@ Dessa forma, você pode criar um token com um prazo de expiração, digamos, de 
 
 Depois de uma semana, o token expirará e o usuário não estará autorizado, precisando fazer login novamente para obter um novo token. E se o usuário (ou uma terceira parte) tentar modificar o token para alterar a expiração, você seria capaz de descobrir isso, pois as assinaturas não iriam corresponder.
 
-Se você quiser brincar com tokens JWT e ver como eles funcionam, visite <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Se você quiser brincar com tokens JWT e ver como eles funcionam, visite [https://jwt.io](https://jwt.io/).
 
 ## Instalar `PyJWT` { #install-pyjwt }
 
 Nós precisamos instalar o `PyJWT` para criar e verificar os tokens JWT em Python.
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar o `pyjwt`:
+Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o `pyjwt`:
 
 <div class="termy">
 
@@ -42,11 +42,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Informação
+/// note | Nota
 
-Se você pretente utilizar algoritmos de assinatura digital como o RSA ou o ECDSA, você deve instalar a dependência da biblioteca de criptografia `pyjwt[crypto]`.
+Se você pretende utilizar algoritmos de assinatura digital como o RSA ou o ECDSA, você deveria instalar a dependência da biblioteca de criptografia `pyjwt[crypto]`.
 
-Você pode ler mais sobre isso na <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentação de instalação do PyJWT</a>.
+Você pode ler mais sobre isso na [documentação de instalação do PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ Ele suporta muitos algoritmos de hashing seguros e utilitários para trabalhar c
 
 O algoritmo recomendado é o "Argon2".
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar o pwdlib com Argon2:
+Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o pwdlib com Argon2:
 
 <div class="termy">
 
@@ -88,7 +88,7 @@ $ pip install "pwdlib[argon2]"
 
 Com o `pwdlib`, você poderia até configurá-lo para ser capaz de ler senhas criadas pelo **Django**, um plug-in de segurança do **Flask** ou muitos outros.
 
-Assim, você poderia, por exemplo, compartilhar os mesmos dados de um aplicativo Django em um banco de dados com um aplicativo FastAPI. Ou migrar gradualmente uma aplicação Django usando o mesmo banco de dados.
+Assim, você poderia, por exemplo, compartilhar os mesmos dados de uma aplicação Django em um banco de dados com uma aplicação FastAPI. Ou migrar gradualmente uma aplicação Django usando o mesmo banco de dados.
 
 E seus usuários poderiam fazer login tanto pela sua aplicação Django quanto pela sua aplicação **FastAPI**, ao mesmo tempo.
 
@@ -116,7 +116,11 @@ E outra função utilitária para verificar se uma senha recebida corresponde ao
 
 E outra para autenticar e retornar um usuário.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+Quando `authenticate_user` é chamado com um nome de usuário que não existe no banco de dados, ainda executamos `verify_password` contra um hash fictício.
+
+Isso garante que o endpoint leve aproximadamente o mesmo tempo para responder, seja o nome de usuário válido ou não, prevenindo **timing attacks** que poderiam ser usados para enumerar nomes de usuário existentes.
 
 /// note | Nota
 
@@ -152,7 +156,7 @@ Defina um modelo Pydantic que será usado no endpoint de token para a resposta.
 
 Crie uma função utilitária para gerar um novo token de acesso.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Atualize as dependências { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ Decodifique o token recebido, verifique-o e retorne o usuário atual.
 
 Se o token for inválido, retorne um erro HTTP imediatamente.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## Atualize a *operação de rota* `/token` { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ Crie um `timedelta` com o tempo de expiração do token.
 
 Crie um token de acesso JWT real e o retorne.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### Detalhes técnicos sobre o "sujeito" `sub` do JWT { #technical-details-about-the-jwt-subject-sub }
 
@@ -196,7 +200,7 @@ O importante a se lembrar é que a chave `sub` deve ter um identificador único 
 
 ## Verifique { #check-it }
 
-Execute o servidor e vá para a documentação: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Execute o servidor e vá para a documentação: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Você verá a interface de usuário assim:
 
@@ -209,7 +213,7 @@ Usando as credenciais:
 Username: `johndoe`
 Password: `secret`
 
-/// check | Verifique
+/// tip | Dica
 
 Observe que em nenhuma parte do código está a senha em texto puro "`secret`", nós temos apenas o hash.
 
@@ -256,7 +260,7 @@ Com o que você viu até agora, você pode configurar uma aplicação **FastAPI*
 
 Em quase qualquer framework, lidar com a segurança se torna rapidamente um assunto bastante complexo.
 
-Muitos pacotes que simplificam bastante isso precisam fazer muitas concessões com o modelo de dados, o banco de dados e os recursos disponíveis. E alguns desses pacotes que simplificam demais na verdade têm falhas de segurança subjacentes.
+Muitos pacotes que simplificam bastante isso precisam fazer muitas concessões com o modelo de dados, o banco de dados e as funcionalidades disponíveis. E alguns desses pacotes que simplificam demais na verdade têm falhas de segurança subjacentes.
 
 ---
 

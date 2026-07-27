@@ -36,7 +36,7 @@ Você pode definir uma sobreposição de dependência para uma dependência que 
 
 A dependência original pode estar sendo utilizada em uma *função de operação de rota*, um *decorador de operação de rota* (quando você não utiliza o valor retornado), uma chamada ao `.include_router()`, etc.
 
-O FastAPI ainda poderá sobrescrevê-lo.
+O FastAPI ainda poderá sobrescrevê-la.
 
 ///
 
@@ -45,6 +45,7 @@ E então você pode redefinir as suas sobreposições (removê-las) definindo o 
 ```Python
 app.dependency_overrides = {}
 ```
+
 
 /// tip | Dica
 

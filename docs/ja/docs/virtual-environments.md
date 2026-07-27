@@ -1,10 +1,10 @@
-# 仮想環境
+# 仮想環境 { #virtual-environments }
 
 Pythonプロジェクトの作業では、**仮想環境**（または類似の仕組み）を使用し、プロジェクトごとにインストールするパッケージを分離するべきでしょう。
 
-/// info | 情報
+/// note | 備考
 
-もし、仮想環境の概要や作成方法、使用方法について既にご存知なら、このセクションをスキップすることができます。🤓
+もし、仮想環境の概要や作成方法、使用方法について既にご存知なら、このセクションをスキップした方がよいかもしれません。🤓
 
 ///
 
@@ -18,14 +18,15 @@ Pythonプロジェクトの作業では、**仮想環境**（または類似の�
 
 ///
 
-/// info | 情報
+/// note | 備考
+
 このページでは、**仮想環境**の使用方法と、そのはたらきについて説明します。
 
-もし**すべてを管理するツール**（Pythonのインストールも含む）を導入する準備ができているなら、<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> をお試しください。
+もし**すべてを管理するツール**（Pythonのインストールも含む）を導入する準備ができているなら、[uv](https://github.com/astral-sh/uv) をお試しください。
 
 ///
 
-## プロジェクトの作成
+## プロジェクトの作成 { #create-a-project }
 
 まず、プロジェクト用のディレクトリを作成します。
 
@@ -34,23 +35,23 @@ Pythonプロジェクトの作業では、**仮想環境**（または類似の�
 <div class="termy">
 
 ```console
-// Go to the home directory
+// ホームディレクトリに移動
 $ cd
-// Create a directory for all your code projects
+// すべてのコードプロジェクト用のディレクトリを作成
 $ mkdir code
-// Enter into that code directory
+// その code ディレクトリに入る
 $ cd code
-// Create a directory for this project
+// このプロジェクト用のディレクトリを作成
 $ mkdir awesome-project
-// Enter into that project directory
+// そのプロジェクトディレクトリに入る
 $ cd awesome-project
 ```
 
 </div>
 
-## 仮想環境の作成
+## 仮想環境の作成 { #create-a-virtual-environment }
 
-Pythonプロジェクトでの**初めての**作業を開始する際には、**<abbr title="他の選択肢もありますが、これはシンプルなガイドラインです">プロジェクト内</abbr>**に仮想環境を作成してください。
+Pythonプロジェクトでの**初めての**作業を開始する際には、**<dfn title="他の選択肢もありますが、これはシンプルなガイドラインです">プロジェクト内</dfn>**に仮想環境を作成してください。
 
 /// tip | 豆知識
 
@@ -72,10 +73,10 @@ $ python -m venv .venv
 
 /// details | このコマンドの意味
 
-- `python` : `python` というプログラムを呼び出します
-- `-m` : モジュールをスクリプトとして呼び出します。どのモジュールを呼び出すのか、この次に指定します
-- `venv` : 通常Pythonに付随してインストールされる `venv`モジュールを使用します
-- `.venv` : 仮想環境を`.venv`という新しいディレクトリに作成します
+* `python`: `python` というプログラムを呼び出します
+* `-m`: モジュールをスクリプトとして呼び出します。どのモジュールを呼び出すのか、この次に指定します
+* `venv`: 通常Pythonに付随してインストールされる `venv`モジュールを使用します
+* `.venv`: 仮想環境を`.venv`という新しいディレクトリに作成します
 
 ///
 
@@ -83,7 +84,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> をインストール済みなら、仮想環境を作成するために `uv` を使うこともできます。
+もし [`uv`](https://github.com/astral-sh/uv) をインストール済みなら、仮想環境を作成するために `uv` を使うこともできます。
 
 <div class="termy">
 
@@ -111,13 +112,13 @@ $ uv venv
 
 ///
 
-## 仮想環境の有効化
+## 仮想環境の有効化 { #activate-the-virtual-environment }
 
 実行されるPythonコマンドやインストールされるパッケージが新しく作成した仮想環境を使用するよう、その仮想環境を有効化しましょう。
 
 /// tip | 豆知識
 
-そのプロジェクトの作業で**新しいターミナルセッション**を開始する際には、**毎回**有効化が必要です。
+そのプロジェクトの作業で**新しいターミナルセッション**を開始する際には、**毎回**有効化してください。
 
 ///
 
@@ -147,7 +148,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-もしWindowsでBashを使用している場合 (<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>など):
+もしWindowsでBashを使用している場合 ([Git Bash](https://gitforwindows.org/)など):
 
 <div class="termy">
 
@@ -161,13 +162,13 @@ $ source .venv/Scripts/activate
 
 /// tip | 豆知識
 
-**新しいパッケージ**を仮想環境にインストールするときには、再度**有効化**してください。
+**新しいパッケージ**を仮想環境にインストールするたびに、環境をもう一度**有効化**してください。
 
-こうすることで、そのパッケージがインストールした**ターミナル（<abbr title="command line interface">CLI</abbr>）プログラム**を使用する場合に、仮想環境内のものが確実に使われ、グローバル環境にインストールされている別のもの（おそらく必要なものとは異なるバージョン）を誤って使用することを防ぎます。
+こうすることで、そのパッケージがインストールした**ターミナル（<abbr title="command line interface - コマンドラインインターフェース">CLI</abbr>）プログラム**を使用する場合に、仮想環境内のものが確実に使われ、グローバル環境にインストールされている別のもの（おそらく必要なものとは異なるバージョン）を誤って使用することを防ぎます。
 
 ///
 
-## 仮想環境が有効であることを確認する
+## 仮想環境が有効であることを確認する { #check-the-virtual-environment-is-active }
 
 仮想環境が有効である（前のコマンドが正常に機能した）ことを確認します。
 
@@ -197,7 +198,7 @@ $ which python
 
 <div class="termy">
 
-``` console
+```console
 $ Get-Command python
 
 C:\Users\user\code\awesome-project\.venv\Scripts\python
@@ -209,11 +210,11 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ////
 
-## `pip` をアップグレードする
+## `pip` をアップグレードする { #upgrade-pip }
 
 /// tip | 豆知識
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用している場合は、 `pip` の代わりに `uv` を使ってインストールを行うため、 `pip` をアップグレードする必要はありません 😎。
+もし [`uv`](https://github.com/astral-sh/uv) を使用している場合は、 `pip` の代わりに `uv` を使ってインストールを行うため、 `pip` をアップグレードする必要はありません 😎。
 
 ///
 
@@ -239,13 +240,33 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## `.gitignore` を追加する
+/// tip | 豆知識
+
+ときどき、pip をアップグレードしようとすると **`No module named pip`** エラーが表示されることがあります。
+
+その場合は、以下のコマンドで pip をインストールしてアップグレードしてください:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+このコマンドは、pip がまだインストールされていなければ pip をインストールし、また、インストールされる pip のバージョンが `ensurepip` で利用可能なもの以上に新しいことも保証します。
+
+///
+
+## `.gitignore` を追加する { #add-gitignore }
 
 **Git**を使用している場合（使用するべきでしょう）、 `.gitignore` ファイルを追加して、 `.venv` 内のあらゆるファイルをGitの管理対象から除外します。
 
 /// tip | 豆知識
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用して仮想環境を作成した場合、すでにこの作業は済んでいるので、この手順をスキップできます 😎。
+もし [`uv`](https://github.com/astral-sh/uv) を使用して仮想環境を作成した場合、すでにこの作業は済んでいるので、この手順をスキップできます 😎。
 
 ///
 
@@ -265,9 +286,9 @@ $ echo "*" > .venv/.gitignore
 
 /// details | このコマンドの意味
 
-- `echo "*"` : ターミナルに `*` というテキストを「表示」しようとします。（次の部分によってその動作が少し変わります）
-- `>` : `>` の左側のコマンドがターミナルに表示しようとする内容を、ターミナルには表示せず、 `>` の右側のファイルに書き込みます。
-- `.gitignore` : `*` を書き込むファイル名。
+* `echo "*"`: ターミナルに `*` というテキストを「表示」しようとします。（次の部分によってその動作が少し変わります）
+* `>`: `>` の左側のコマンドがターミナルに表示しようとする内容を、ターミナルには表示せず、 `>` の右側のファイルに書き込みます。
+* `.gitignore`: `*` を書き込むファイル名。
 
 ここで、Gitにおける `*` は「すべて」を意味するので、このコマンドによって `.venv` ディレクトリ内のすべてがGitに無視されるようになります。
 
@@ -279,7 +300,7 @@ $ echo "*" > .venv/.gitignore
 
 ///
 
-## パッケージのインストール
+## パッケージのインストール { #install-packages }
 
 仮想環境を有効化した後、その中でパッケージをインストールできます。
 
@@ -291,7 +312,7 @@ $ echo "*" > .venv/.gitignore
 
 ///
 
-### パッケージを直接インストールする
+### パッケージを直接インストールする { #install-packages-directly }
 
 急いでいて、プロジェクトのパッケージ要件を宣言するファイルを使いたくない場合、パッケージを直接インストールできます。
 
@@ -317,7 +338,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用できるなら:
+もし [`uv`](https://github.com/astral-sh/uv) を使用できるなら:
 
 <div class="termy">
 
@@ -330,7 +351,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### `requirements.txt` からインストールする
+### `requirements.txt` からインストールする { #install-from-requirements-txt }
 
 もし `requirements.txt` があるなら、パッケージのインストールに使用できます。
 
@@ -349,7 +370,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用できるなら:
+もし [`uv`](https://github.com/astral-sh/uv) を使用できるなら:
 
 <div class="termy">
 
@@ -373,7 +394,7 @@ pydantic==2.8.0
 
 ///
 
-## プログラムを実行する
+## プログラムを実行する { #run-your-program }
 
 仮想環境を有効化した後、プログラムを実行できます。この際、仮想環境内のPythonと、そこにインストールしたパッケージが使用されます。
 
@@ -387,14 +408,14 @@ Hello World
 
 </div>
 
-## エディタの設定
+## エディタの設定 { #configure-your-editor }
 
 プロジェクトではおそらくエディタを使用するでしょう。コード補完やインラインエラーの表示ができるように、作成した仮想環境をエディタでも使えるよう設定してください。（多くの場合、自動検出されます）
 
 設定例:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | 豆知識
 
@@ -402,7 +423,7 @@ Hello World
 
 ///
 
-## 仮想環境の無効化
+## 仮想環境の無効化 { #deactivate-the-virtual-environment }
 
 プロジェクトの作業が終了したら、その仮想環境を**無効化**できます。
 
@@ -416,9 +437,11 @@ $ deactivate
 
 これにより、 `python` コマンドを実行しても、そのプロジェクト用（のパッケージがインストールされた）仮想環境から `python` プログラムを呼び出そうとはしなくなります。
 
-## 作業準備完了
+## 作業準備完了 { #ready-to-work }
 
-ここまでで、プロジェクトの作業を始める準備が整いました。
+これで、プロジェクトの作業を始める準備が整いました。
+
+
 
 /// tip | 豆知識
 
@@ -428,9 +451,9 @@ $ deactivate
 
 ///
 
-## なぜ仮想環境？
+## なぜ仮想環境？ { #why-virtual-environments }
 
-FastAPIを使った作業をするには、 [Python](https://www.python.org/) のインストールが必要です。
+FastAPIを使った作業をするには、[Python](https://www.python.org/) のインストールが必要です。
 
 それから、FastAPIや、使用したいその他の**パッケージ**を**インストール**する必要があります。
 
@@ -438,7 +461,7 @@ FastAPIを使った作業をするには、 [Python](https://www.python.org/) �
 
 ただし、`pip` を直接使用すると、パッケージは**グローバルなPython環境**（OS全体にインストールされたPython環境）にインストールされます。
 
-### 問題点
+### 問題点 { #the-problem }
 
 では、グローバルPython環境にパッケージをインストールすることの問題点は何でしょうか？
 
@@ -521,7 +544,7 @@ Pythonのパッケージでは、**新しいバージョン**で**互換性を�
 
 また、使用しているOS（Linux、Windows、macOS など）によっては、Pythonがすでにインストールされていることがあります。この場合、特定のバージョンのパッケージが**OSの動作に必要である**ことがあります。グローバル環境にパッケージをインストールすると、OSに付属するプログラムを**壊してしまう**可能性があります。
 
-## パッケージのインストール先
+## パッケージのインストール先 { #where-are-packages-installed }
 
 Pythonをインストールしたとき、ファイルを含んだいくつかのディレクトリが作成されます。
 
@@ -532,7 +555,7 @@ Pythonをインストールしたとき、ファイルを含んだいくつか�
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// 今は実行しないでください。これは単なる例です 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
@@ -547,7 +570,7 @@ FastAPIのコードを含む圧縮ファイルが、通常は [PyPI](https://pyp
 
 デフォルトでは、これらのファイルはPythonのインストール時に作成されるディレクトリ、つまり**グローバル環境**に配置されます。
 
-## 仮想環境とは
+## 仮想環境とは { #what-are-virtual-environments }
 
 すべてのパッケージをグローバル環境に配置することによって生じる問題の解決策は、作業する**プロジェクトごとの仮想環境**を使用することです。
 
@@ -572,7 +595,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## 仮想環境の有効化とは
+## 仮想環境の有効化とは { #what-does-activating-a-virtual-environment-mean }
 
 仮想環境を有効にしたとき、例えば次のコマンドを実行した場合を考えます：
 
@@ -602,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-あるいは、WindowsでBashを使用している場合 (<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>など):
+あるいは、WindowsでBashを使用している場合 ([Git Bash](https://gitforwindows.org/)など):
 
 <div class="termy">
 
@@ -614,13 +637,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-これによって、いくつかの [環境変数](environment-variables.md){.internal-link target=_blank} が作成・修正され、次に実行されるコマンドで使用できるようになります。
+これによって、いくつかの [環境変数](environment-variables.md) が作成・修正され、次に実行されるコマンドで使用できるようになります。
 
 これらの環境変数のひとつに、 `PATH` 変数があります。
 
 /// tip | 豆知識
 
-`PATH` 変数についての詳細は [環境変数](environment-variables.md#path環境変数){.internal-link target=_blank} を参照してください。
+`PATH` 変数についての詳細は [環境変数](environment-variables.md#path-environment-variable) を参照してください。
 
 ///
 
@@ -701,7 +724,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 仮想環境を有効にして変更されることは他にもありますが、これが最も重要な変更のひとつです。
 
-## 仮想環境の確認
+## 仮想環境の確認 { #checking-a-virtual-environment }
 
 仮想環境が有効かどうか、例えば次のように確認できます。：
 
@@ -753,7 +776,7 @@ LinuxやmacOSでは `which` を、Windows PowerShellでは `Get-Command` を使�
 
 ///
 
-## なぜ仮想環境を無効化するのか
+## なぜ仮想環境を無効化するのか { #why-deactivate-a-virtual-environment }
 
 例えば、`philosophers-stone` （賢者の石）というプロジェクトで作業をしていて、**その仮想環境を有効にし**、必要なパッケージをインストールしてその環境内で作業を進めているとします。
 
@@ -778,7 +801,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// sirius のインポートエラー。インストールされていません 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -786,20 +809,20 @@ Traceback (most recent call last):
 
 </div>
 
-しかし、その仮想環境を無効化し、 `prisoner-of-azkaban` （アズカバンの囚人）のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
+しかし、その仮想環境を無効化し、 `prisoner-of-azkaban` のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// 無効化のために古いディレクトリにいる必要はありません。どこにいても、他のプロジェクトに移動した後でも実行できます 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// prisoner-of-azkaban/.venv の仮想環境を有効化する 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// これで python を実行すると、この仮想環境にインストールされた sirius パッケージが見つかります ✨
 $ python main.py
 
 I solemnly swear 🐺
@@ -807,13 +830,13 @@ I solemnly swear 🐺
 
 </div>
 
-## 代替手段
+## 代替手段 { #alternatives }
 
 これは、あらゆる仕組みを**根本から**学ぶためのシンプルな入門ガイドです。
 
 仮想環境、パッケージの依存関係（requirements）、プロジェクトの管理には、多くの**代替手段**があります。
 
-準備が整い、パッケージの依存関係、仮想環境など**プロジェクト全体の管理**ツールを使いたいと考えたら、<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> を試してみることをおすすめします。
+準備が整い、パッケージの依存関係、仮想環境など**プロジェクト全体の管理**ツールを使いたいと考えたら、[uv](https://github.com/astral-sh/uv) を試してみることをおすすめします。
 
 `uv` では以下のような多くのことができます：
 
@@ -824,7 +847,7 @@ I solemnly swear 🐺
 * パッケージとそのバージョンの、依存関係を含めた**厳密な**組み合わせを保持し、これによって、本番環境で、開発環境と全く同じようにプロジェクトを実行できる（これは**locking**と呼ばれます）
 * その他のさまざまな機能
 
-## まとめ
+## まとめ { #conclusion }
 
 ここまで読みすべて理解したなら、世間の多くの開発者と比べて、仮想環境について**あなたはより多くのことを知っています**。🤓
 

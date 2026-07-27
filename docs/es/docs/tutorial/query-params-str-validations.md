@@ -29,57 +29,33 @@ Para lograr eso, primero importa:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Información
+/// note | Nota
 
 FastAPI añadió soporte para `Annotated` (y empezó a recomendarlo) en la versión 0.95.0.
 
 Si tienes una versión más antigua, obtendrás errores al intentar usar `Annotated`.
 
-Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} a al menos 0.95.1 antes de usar `Annotated`.
+Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) a al menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
 ## Usar `Annotated` en el tipo del parámetro `q` { #use-annotated-in-the-type-for-the-q-parameter }
 
-¿Recuerdas que te dije antes que `Annotated` puede usarse para agregar metadatos a tus parámetros en la [Introducción a Tipos de Python](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
+¿Recuerdas que te dije antes que `Annotated` puede usarse para agregar metadatos a tus parámetros en la [Introducción a Tipos de Python](../python-types.md#type-hints-with-metadata-annotations)?
 
 Ahora es el momento de usarlo con FastAPI. 🚀
 
 Teníamos esta anotación de tipo:
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 Lo que haremos es envolver eso con `Annotated`, para que se convierta en:
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 Ambas versiones significan lo mismo, `q` es un parámetro que puede ser un `str` o `None`, y por defecto, es `None`.
 
@@ -105,11 +81,11 @@ FastAPI ahora:
 
 * **Validará** los datos asegurándose de que la longitud máxima sea de 50 caracteres
 * Mostrará un **error claro** para el cliente cuando los datos no sean válidos
-* **Documentará** el parámetro en el OpenAPI esquema *path operation* (así aparecerá en la **UI de documentación automática**)
+* **Documentará** el parámetro en el esquema de OpenAPI *path operation* (así aparecerá en la **UI de documentación automática**)
 
 ## Alternativa (antigua): `Query` como valor por defecto { #alternative-old-query-as-the-default-value }
 
-Versiones anteriores de FastAPI (antes de <abbr title="antes de 2023-03">0.95.0</abbr>) requerían que usaras `Query` como el valor por defecto de tu parámetro, en lugar de ponerlo en `Annotated`, hay una alta probabilidad de que veas código usándolo alrededor, así que te lo explicaré.
+Versiones anteriores de FastAPI (antes de <dfn title="antes de 2023-03">0.95.0</dfn>) requerían que usaras `Query` como el valor por defecto de tu parámetro, en lugar de ponerlo en `Annotated`, hay una alta probabilidad de que veas código usándolo alrededor, así que te lo explicaré.
 
 /// tip | Consejo
 
@@ -144,7 +120,7 @@ Luego, podemos pasar más parámetros a `Query`. En este caso, el parámetro `ma
 q: str | None = Query(default=None, max_length=50)
 ```
 
-Esto validará los datos, mostrará un error claro cuando los datos no sean válidos, y documentará el parámetro en el esquema del *path operation* de OpenAPI.
+Esto validará los datos, mostrará un error claro cuando los datos no sean válidos, y documentará el parámetro en el esquema de OpenAPI *path operation*.
 
 ### `Query` como valor por defecto o en `Annotated` { #query-as-the-default-value-or-in-annotated }
 
@@ -176,13 +152,13 @@ q: str = Query(default="rick")
 
 **Usar `Annotated` es recomendado** en lugar del valor por defecto en los parámetros de función, es **mejor** por múltiples razones. 🤓
 
-El valor **por defecto** del **parámetro de función** es el valor **real por defecto**, eso es más intuitivo con Python en general. 😌
+El valor **por defecto** del **parámetro de función** es el **valor real por defecto**, eso es más intuitivo con Python en general. 😌
 
 Podrías **llamar** a esa misma función en **otros lugares** sin FastAPI, y **funcionaría como se espera**. Si hay un parámetro **requerido** (sin un valor por defecto), tu **editor** te avisará con un error, **Python** también se quejará si lo ejecutas sin pasar el parámetro requerido.
 
-Cuando no usas `Annotated` y en su lugar usas el estilo de valor por defecto **(antiguo)**, si llamas a esa función sin FastAPI en **otros lugares**, tienes que **recordar** pasar los argumentos a la función para que funcione correctamente, de lo contrario, los valores serán diferentes de lo que esperas (por ejemplo, `QueryInfo` o algo similar en lugar de `str`). Y tu editor no se quejará, y Python no se quejará al ejecutar esa función, solo cuando los errores dentro de las operaciones hagan que funcione incorrectamente.
+Cuando no usas `Annotated` y en su lugar usas el **estilo de valor por defecto (antiguo)**, si llamas a esa función sin FastAPI en **otros lugares**, tienes que **recordar** pasar los argumentos a la función para que funcione correctamente, de lo contrario, los valores serán diferentes de lo que esperas (por ejemplo, `QueryInfo` o algo similar en lugar de `str`). Y tu editor no se quejará, y Python no se quejará al ejecutar esa función, solo cuando las operaciones internas generen errores.
 
-Dado que `Annotated` puede tener más de una anotación de metadato, ahora podrías incluso usar la misma función con otras herramientas, como <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Dado que `Annotated` puede tener más de una anotación de metadato, ahora podrías incluso usar la misma función con otras herramientas, como [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Agregar más validaciones { #add-more-validations }
 
@@ -192,11 +168,11 @@ También puedes agregar un parámetro `min_length`:
 
 ## Agregar expresiones regulares { #add-regular-expressions }
 
-Puedes definir un <abbr title="Una expresión regular, regex o regexp es una secuencia de caracteres que define un patrón de búsqueda para strings.">expresión regular</abbr> `pattern` que el parámetro debe coincidir:
+Puedes definir una <dfn title="Una expresión regular, regex o regexp es una secuencia de caracteres que define un patrón de búsqueda para strings.">expresión regular</dfn> `pattern` que el parámetro debe coincidir:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
-Este patrón específico de expresión regular comprueba que el valor recibido del parámetro:
+Este patrón específico de expresión regular revisa que el valor recibido del parámetro:
 
 * `^`: comienza con los siguientes caracteres, no tiene caracteres antes.
 * `fixedquery`: tiene el valor exacto `fixedquery`.
@@ -206,27 +182,13 @@ Si te sientes perdido con todas estas ideas de **"expresión regular"**, no te p
 
 Ahora sabes que cuando las necesites puedes usarlas en **FastAPI**.
 
-### Pydantic v1 `regex` en lugar de `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Antes de la versión 2 de Pydantic y antes de FastAPI 0.100.0, el parámetro se llamaba `regex` en lugar de `pattern`, pero ahora está en desuso.
-
-Todavía podrías ver algo de código que lo usa:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-Pero que sepas que esto está deprecado y debería actualizarse para usar el nuevo parámetro `pattern`. 🤓
-
 ## Valores por defecto { #default-values }
 
 Puedes, por supuesto, usar valores por defecto diferentes de `None`.
 
 Digamos que quieres declarar el parámetro de query `q` para que tenga un `min_length` de `3`, y para que tenga un valor por defecto de `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note | Nota
 
@@ -256,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Así que, cuando necesites declarar un valor como requerido mientras usas `Query`, simplemente puedes no declarar un valor por defecto:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### Requerido, puede ser `None` { #required-can-be-none }
 
@@ -280,7 +242,7 @@ Entonces, con una URL como:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-recibirías los múltiples valores del *query parameter* `q` (`foo` y `bar`) en una `list` de Python dentro de tu *path operation function*, en el *parámetro de función* `q`.
+recibirías los múltiples valores de los *query parameters* `q` (`foo` y `bar`) en una `list` de Python dentro de tu *path operation function*, en el *parámetro de función* `q`.
 
 Entonces, el response a esa URL sería:
 
@@ -307,7 +269,7 @@ La documentación interactiva de API se actualizará en consecuencia, para permi
 
 También puedes definir un valor por defecto `list` de valores si no se proporciona ninguno:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 Si vas a:
 
@@ -330,13 +292,13 @@ el valor por defecto de `q` será: `["foo", "bar"]` y tu response será:
 
 También puedes usar `list` directamente en lugar de `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note | Nota
 
-Ten en cuenta que en este caso, FastAPI no comprobará el contenido de la lista.
+Ten en cuenta que en este caso, FastAPI no revisará el contenido de la list.
 
-Por ejemplo, `list[int]` comprobaría (y documentaría) que el contenido de la lista son enteros. Pero `list` sola no lo haría.
+Por ejemplo, `list[int]` revisaría (y documentaría) que el contenido de la list son enteros. Pero `list` sola no lo haría.
 
 ///
 
@@ -386,7 +348,7 @@ Entonces puedes declarar un `alias`, y ese alias será usado para encontrar el v
 
 Ahora digamos que ya no te gusta este parámetro.
 
-Tienes que dejarlo allí por un tiempo porque hay clientes usándolo, pero quieres que la documentación lo muestre claramente como <abbr title="obsoleto, se recomienda no usarlo">deprecated</abbr>.
+Tienes que dejarlo allí por un tiempo porque hay clientes usándolo, pero quieres que la documentación lo muestre claramente como <dfn title="obsoleto, se recomienda no usarlo">obsoleto</dfn>.
 
 Luego pasa el parámetro `deprecated=True` a `Query`:
 
@@ -408,19 +370,19 @@ Podría haber casos donde necesites hacer alguna **validación personalizada** q
 
 En esos casos, puedes usar una **función validadora personalizada** que se aplique después de la validación normal (por ejemplo, después de validar que el valor es un `str`).
 
-Puedes lograr eso usando <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">`AfterValidator` de Pydantic</a> dentro de `Annotated`.
+Puedes lograr eso usando [`AfterValidator` de Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) dentro de `Annotated`.
 
 /// tip | Consejo
 
-Pydantic también tiene <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> y otros. 🤓
+Pydantic también tiene [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) y otros. 🤓
 
 ///
 
-Por ejemplo, este validador personalizado comprueba que el ID del ítem empiece con `isbn-` para un número de libro <abbr title="International Standard Book Number – Número Estándar Internacional de Libro">ISBN</abbr> o con `imdb-` para un ID de URL de película de <abbr title="IMDB (Internet Movie Database) es un sitio web con información sobre películas">IMDB</abbr>:
+Por ejemplo, este validador personalizado revisa que el ID del ítem empiece con `isbn-` para un número de libro <abbr title="International Standard Book Number - Número Estándar Internacional de Libros">ISBN</abbr> o con `imdb-` para un ID de URL de película de <abbr title="Internet Movie Database - Base de datos de películas en Internet: un sitio web con información sobre películas">IMDB</abbr>:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Información
+/// note | Nota
 
 Esto está disponible con Pydantic versión 2 o superior. 😎
 
@@ -430,7 +392,7 @@ Esto está disponible con Pydantic versión 2 o superior. 😎
 
 Si necesitas hacer cualquier tipo de validación que requiera comunicarte con algún **componente externo**, como una base de datos u otra API, deberías usar **Dependencias de FastAPI**, las aprenderás más adelante.
 
-Estos validadores personalizados son para cosas que pueden comprobarse **solo** con los **mismos datos** provistos en el request.
+Estos validadores personalizados son para cosas que pueden revisarse **solo** con los **mismos datos** provistos en el request.
 
 ///
 
@@ -444,17 +406,17 @@ Pero si te da curiosidad este ejemplo de código específico y sigues entretenid
 
 #### String con `value.startswith()` { #string-with-value-startswith }
 
-¿Lo notaste? un string usando `value.startswith()` puede recibir una tupla, y comprobará cada valor en la tupla:
+¿Lo notaste? Un string usando `value.startswith()` puede recibir una tupla, y revisará cada valor en la tupla:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 
 #### Un ítem aleatorio { #a-random-item }
 
-Con `data.items()` obtenemos un <abbr title="Algo que podemos iterar con un for, como una list, set, etc.">objeto iterable</abbr> con tuplas que contienen la clave y el valor para cada elemento del diccionario.
+Con `data.items()` obtenemos un <dfn title="Algo que podemos iterar con un for loop, como una list, set, etc.">objeto iterable</dfn> con tuplas que contienen la clave y el valor para cada elemento del diccionario.
 
 Convertimos este objeto iterable en una `list` propiamente dicha con `list(data.items())`.
 
-Luego con `random.choice()` podemos obtener un **valor aleatorio** de la lista, así que obtenemos una tupla con `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Luego con `random.choice()` podemos obtener un **valor aleatorio** de la list, así que obtenemos una tupla con `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
 Luego **asignamos esos dos valores** de la tupla a las variables `id` y `name`.
 

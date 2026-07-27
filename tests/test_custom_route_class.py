@@ -2,7 +2,7 @@ import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
-from starlette.routing import Route
+from inline_snapshot import snapshot
 
 app = FastAPI()
 
@@ -62,57 +62,55 @@ def test_get_path(path, expected_status, expected_response):
 
 
 def test_route_classes():
-    routes = {}
-    for r in app.router.routes:
-        assert isinstance(r, Route)
-        routes[r.path] = r
-    assert getattr(routes["/a/"], "x_type") == "A"  # noqa: B009
-    assert getattr(routes["/a/b/"], "x_type") == "B"  # noqa: B009
-    assert getattr(routes["/a/b/c/"], "x_type") == "C"  # noqa: B009
+    assert isinstance(router_a.routes[0], APIRouteA)
+    assert isinstance(router_b.routes[0], APIRouteB)
+    assert isinstance(router_c.routes[0], APIRouteC)
 
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/a/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Get A",
-                    "operationId": "get_a_a__get",
-                }
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/a/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Get A",
+                        "operationId": "get_a_a__get",
+                    }
+                },
+                "/a/b/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Get B",
+                        "operationId": "get_b_a_b__get",
+                    }
+                },
+                "/a/b/c/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Get C",
+                        "operationId": "get_c_a_b_c__get",
+                    }
+                },
             },
-            "/a/b/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Get B",
-                    "operationId": "get_b_a_b__get",
-                }
-            },
-            "/a/b/c/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Get C",
-                    "operationId": "get_c_a_b_c__get",
-                }
-            },
-        },
-    }
+        }
+    )

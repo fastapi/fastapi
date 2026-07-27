@@ -3,6 +3,7 @@ from typing import Annotated
 import pytest
 from fastapi import FastAPI, Path
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 
 app = FastAPI()
 
@@ -53,14 +54,16 @@ def read_required_alias_and_validation_alias(
     ],
 )
 def test_schema(path: str, expected_name: str, expected_title: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": True,
-            "schema": {"title": expected_title, "type": "string"},
-            "name": expected_name,
-            "in": "path",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": True,
+                "schema": {"title": Is(expected_title), "type": "string"},
+                "name": Is(expected_name),
+                "in": "path",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(

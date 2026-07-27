@@ -24,13 +24,13 @@ But remember that when you import `Query`, `Path`, `Cookie` and others from `fas
 
 ///
 
-/// info
+/// note
 
 To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
 
 ///
 
-/// info
+/// note
 
 Have in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.
 

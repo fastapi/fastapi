@@ -10,6 +10,7 @@ from typing import Annotated
 import git
 import typer
 import yaml
+from doc_parsing_utils import check_translation
 from github import Github
 from pydantic_ai import Agent
 from rich import print
@@ -23,9 +24,10 @@ non_translated_sections = (
     "management-tasks.md",
     "management.md",
     "contributing.md",
+    "translations.md",
 )
 
-general_prompt_path = Path(__file__).absolute().parent / "llm-general-prompt.md"
+general_prompt_path = Path(__file__).absolute().parent / "general-llm-prompt.md"
 general_prompt = general_prompt_path.read_text(encoding="utf-8")
 
 app = typer.Typer()
@@ -54,6 +56,51 @@ def generate_en_path(*, lang: str, path: Path) -> Path:
     lang_docs_path = Path(f"docs/{lang}/docs")
     out_path = Path(str(path).replace(str(lang_docs_path), str(en_docs_path)))
     return out_path
+
+
+def get_prompt(
+    lang_prompt_content: str,
+    old_translation: str | None,
+    language: str,
+    language_name: str,
+    original_content: str,
+    additional_instructions: str,
+) -> str:
+    general_prompt_with_additional_instructions = general_prompt.replace(
+        "[placeholder_for_additional_instructions]", additional_instructions
+    )
+    prompt_segments = [
+        general_prompt_with_additional_instructions,
+        lang_prompt_content,
+    ]
+    if old_translation:
+        prompt_segments.extend(
+            [
+                "There is an existing previous translation for the original English content, that may be outdated.",
+                "Update the translation only where necessary:",
+                "- If the original English content has added parts, also add these parts to the translation.",
+                "- If the original English content has removed parts, also remove them from the translation, unless you were instructed earlier to not do that in specific cases.",
+                "- If parts of the original English content have changed, also change those parts in the translation.",
+                "- If the previous translation violates current instructions, update it.",
+                "- Otherwise, preserve the original translation LINE-BY-LINE, AS-IS.",
+                "Do not:",
+                "- rephrase or rewrite correct lines just to improve the style.",
+                "- add or remove line breaks, unless the original English content changed.",
+                "- change formatting or whitespace unless absolutely required.",
+                "Only change what must be changed. The goal is to minimize diffs for easier human review.",
+                "UNLESS you were instructed earlier to behave different, there MUST NOT be whole sentences or partial sentences in the updated translation, which are not in the original English content, and there MUST NOT be whole sentences or partial sentences in the original English content, which are not in the updated translation. Remember: the updated translation shall be IN SYNC with the original English content.",
+                "Previous translation:",
+                f"%%%\n{old_translation}%%%",
+            ]
+        )
+    prompt_segments.extend(
+        [
+            f"Translate to {language} ({language_name}).",
+            "Original content:",
+            f"%%%\n{original_content}%%%",
+        ]
+    )
+    return "\n\n".join(prompt_segments)
 
 
 @app.command()
@@ -85,43 +132,48 @@ def translate_page(
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai:gpt-5.2")
+    agent = Agent("openai-chat:gpt-5.5")
 
-    prompt_segments = [
-        general_prompt,
-        lang_prompt_content,
-    ]
-    if old_translation:
-        prompt_segments.extend(
-            [
-                "There is an existing previous translation for the original English content, that may be outdated.",
-                "Update the translation only where necessary:",
-                "- If the original English content has added parts, also add these parts to the translation.",
-                "- If the original English content has removed parts, also remove them from the translation, unless you were instructed earlier to not do that in specific cases.",
-                "- If parts of the original English content have changed, also change those parts in the translation.",
-                "- If the previous translation violates current instructions, update it.",
-                "- Otherwise, preserve the original translation LINE-BY-LINE, AS-IS.",
-                "Do not:",
-                "- rephrase or rewrite correct lines just to improve the style.",
-                "- add or remove line breaks, unless the original English content changed.",
-                "- change formatting or whitespace unless absolutely required.",
-                "Only change what must be changed. The goal is to minimize diffs for easier human review.",
-                "UNLESS you were instructed earlier to behave different, there MUST NOT be whole sentences or partial sentences in the updated translation, which are not in the original English content, and there MUST NOT be whole sentences or partial sentences in the original English content, which are not in the updated translation. Remember: the updated translation shall be IN SYNC with the original English content.",
-                "Previous translation:",
-                f"%%%\n{old_translation}%%%",
-            ]
+    MAX_ATTEMPTS = 3
+    additional_instructions = ""
+    for attempt_no in range(1, MAX_ATTEMPTS + 1):
+        print(f"Running agent for {out_path} (attempt {attempt_no}/{MAX_ATTEMPTS})")
+        prompt = get_prompt(
+            lang_prompt_content=lang_prompt_content,
+            old_translation=old_translation,
+            language=language,
+            language_name=language_name,
+            original_content=original_content,
+            additional_instructions=additional_instructions,
         )
-    prompt_segments.extend(
-        [
-            f"Translate to {language} ({language_name}).",
-            "Original content:",
-            f"%%%\n{original_content}%%%",
-        ]
-    )
-    prompt = "\n\n".join(prompt_segments)
-    print(f"Running agent for {out_path}")
-    result = agent.run_sync(prompt)
-    out_content = f"{result.output.strip()}\n"
+        result = agent.run_sync(
+            prompt.replace(
+                "[placeholder_for_additional_instructions]", additional_instructions
+            )
+        )
+        out_content = f"{result.output.strip()}\n"
+        try:
+            check_translation(
+                doc_lines=out_content.splitlines(),
+                en_doc_lines=original_content.splitlines(),
+                lang_code=language,
+                auto_fix=False,
+                path=str(out_path),
+            )
+            break  # Exit loop if no errors
+        except ValueError as e:
+            print(
+                f"Translation check failed on attempt {attempt_no}/{MAX_ATTEMPTS}: {e}"
+            )
+            additional_instructions = (
+                f"Current translation fails validation checks ({str(e)}). "
+                "Please, pay special attention to it."
+            )
+            old_translation = out_content
+            continue  # Retry if not reached max attempts
+    else:  # Max retry attempts reached
+        print(f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts")
+
     print(f"Saving translation to {out_path}")
     out_path.write_text(out_content, encoding="utf-8", newline="\n")
 
@@ -325,9 +377,12 @@ def list_outdated(language: str) -> list[Path]:
 
 
 @app.command()
-def update_outdated(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def update_outdated(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     outdated_paths = list_outdated(language)
-    for path in outdated_paths:
+    for path in outdated_paths[:max]:
         print(f"Updating lang: {language} path: {path}")
         translate_page(language=language, en_path=path)
         print(f"Done updating: {path}")
@@ -335,9 +390,12 @@ def update_outdated(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -
 
 
 @app.command()
-def add_missing(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def add_missing(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     missing_paths = list_missing(language)
-    for path in missing_paths:
+    for path in missing_paths[:max]:
         print(f"Adding lang: {language} path: {path}")
         translate_page(language=language, en_path=path)
         print(f"Done adding: {path}")
@@ -345,11 +403,14 @@ def add_missing(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> No
 
 
 @app.command()
-def update_and_add(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def update_and_add(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     print(f"Updating outdated translations for {language}")
-    update_outdated(language=language)
+    update_outdated(language=language, max=max)
     print(f"Adding missing translations for {language}")
-    add_missing(language=language)
+    add_missing(language=language, max=max)
     print(f"Done updating and adding for {language}")
 
 
@@ -360,6 +421,9 @@ def make_pr(
     command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
     github_token: Annotated[str, typer.Option(envvar="GITHUB_TOKEN")],
     github_repository: Annotated[str, typer.Option(envvar="GITHUB_REPOSITORY")],
+    commit_in_place: Annotated[
+        bool, typer.Option(envvar="COMMIT_IN_PLACE", show_default=True)
+    ] = False,
 ) -> None:
     print("Setting up GitHub Actions git user")
     repo = git.Repo(Path(__file__).absolute().parent.parent)
@@ -371,14 +435,23 @@ def make_pr(
         ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
         check=True,
     )
-    branch_name = "translate"
-    if language:
-        branch_name += f"-{language}"
-    if command:
-        branch_name += f"-{command}"
-    branch_name += f"-{secrets.token_hex(4)}"
-    print(f"Creating a new branch {branch_name}")
-    subprocess.run(["git", "checkout", "-b", branch_name], check=True)
+    current_branch = repo.active_branch.name
+    if current_branch == "master" and commit_in_place:
+        print("Can't commit directly to master")
+        raise typer.Exit(code=1)
+
+    if not commit_in_place:
+        branch_name = "translate"
+        if language:
+            branch_name += f"-{language}"
+        if command:
+            branch_name += f"-{command}"
+        branch_name += f"-{secrets.token_hex(4)}"
+        print(f"Creating a new branch {branch_name}")
+        subprocess.run(["git", "checkout", "-b", branch_name], check=True)
+    else:
+        branch_name = current_branch
+        print(f"Committing in place on branch {branch_name}")
     print("Adding updated files")
     git_path = Path("docs")
     subprocess.run(["git", "add", str(git_path)], check=True)
@@ -391,17 +464,20 @@ def make_pr(
     subprocess.run(["git", "commit", "-m", message], check=True)
     print("Pushing branch")
     subprocess.run(["git", "push", "origin", branch_name], check=True)
-    print("Creating PR")
-    g = Github(github_token)
-    gh_repo = g.get_repo(github_repository)
-    body = (
-        message
-        + "\n\nThis PR was created automatically using LLMs."
-        + f"\n\nIt uses the prompt file https://github.com/fastapi/fastapi/blob/master/docs/{language}/llm-prompt.md."
-        + "\n\nIn most cases, it's better to make PRs updating that file so that the LLM can do a better job generating the translations than suggesting changes in this PR."
-    )
-    pr = gh_repo.create_pull(title=message, body=body, base="master", head=branch_name)
-    print(f"Created PR: {pr.number}")
+    if not commit_in_place:
+        print("Creating PR")
+        g = Github(github_token)
+        gh_repo = g.get_repo(github_repository)
+        body = (
+            message
+            + "\n\nThis PR was created automatically using LLMs."
+            + f"\n\nIt uses the prompt file https://github.com/fastapi/fastapi/blob/master/docs/{language}/llm-prompt.md."
+            + "\n\nIn most cases, it's better to make PRs updating that file so that the LLM can do a better job generating the translations than suggesting changes in this PR."
+        )
+        pr = gh_repo.create_pull(
+            title=message, body=body, base="master", head=branch_name
+        )
+        print(f"Created PR: {pr.number}")
     print("Finished")
 
 

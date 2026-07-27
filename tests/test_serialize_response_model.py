@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
@@ -9,8 +7,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str = Field(alias="aliased_name")
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/valid", response_model=Item)
@@ -20,7 +18,7 @@ def get_valid():
 
 @app.get("/items/coerce", response_model=Item)
 def get_coerce():
-    return Item(aliased_name="coerce", price="1.0")
+    return Item(aliased_name="coerce", price="1.0")  # ty: ignore[invalid-argument-type]
 
 
 @app.get("/items/validlist", response_model=list[Item])
@@ -54,7 +52,7 @@ def get_valid_exclude_unset():
     response_model_exclude_unset=True,
 )
 def get_coerce_exclude_unset():
-    return Item(aliased_name="coerce", price="1.0")
+    return Item(aliased_name="coerce", price="1.0")  # ty: ignore[invalid-argument-type]
 
 
 @app.get(

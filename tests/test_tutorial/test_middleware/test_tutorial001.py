@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from docs_src.middleware.tutorial001_py39 import app
+from docs_src.middleware.tutorial001_py310 import app
 
 client = TestClient(app)
 
@@ -14,11 +15,13 @@ def test_response_headers():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {
-            "title": "FastAPI",
-            "version": "0.1.0",
-        },
-        "paths": {},
-    }
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "FastAPI",
+                "version": "0.1.0",
+            },
+            "paths": {},
+        }
+    )

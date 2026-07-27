@@ -1,14 +1,15 @@
 # Request Body { #request-body }
 
+
 Cuando necesitas enviar datos desde un cliente (digamos, un navegador) a tu API, los envías como un **request body**.
 
 Un **request** body es un dato enviado por el cliente a tu API. Un **response** body es el dato que tu API envía al cliente.
 
 Tu API casi siempre tiene que enviar un **response** body. Pero los clientes no necesariamente necesitan enviar **request bodies** todo el tiempo, a veces solo solicitan un path, quizás con algunos parámetros de query, pero no envían un body.
 
-Para declarar un **request** body, usas modelos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> con todo su poder y beneficios.
+Para declarar un **request** body, usas modelos de [Pydantic](https://docs.pydantic.dev/) con todo su poder y beneficios.
 
-/// info | Información
+/// note | Nota
 
 Para enviar datos, deberías usar uno de estos métodos: `POST` (el más común), `PUT`, `DELETE` o `PATCH`.
 
@@ -32,7 +33,8 @@ Usa tipos estándar de Python para todos los atributos:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo opcional.
+
+Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo solo opcional.
 
 Por ejemplo, el modelo anterior declara un “`object`” JSON (o `dict` en Python) como:
 
@@ -72,8 +74,8 @@ Con solo esa declaración de tipo en Python, **FastAPI** hará lo siguiente:
     * Si los datos son inválidos, devolverá un error claro e indicado, señalando exactamente dónde y qué fue lo incorrecto.
 * Proporcionar los datos recibidos en el parámetro `item`.
     * Como lo declaraste en la función como de tipo `Item`, también tendrás todo el soporte del editor (autocompletado, etc.) para todos los atributos y sus tipos.
-* Generar definiciones de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para tu modelo, que también puedes usar en cualquier otro lugar si tiene sentido para tu proyecto.
-* Esos esquemas serán parte del esquema de OpenAPI generado y usados por las <abbr title="User Interfaces – Interfaces de usuario">UIs</abbr> de documentación automática.
+* Generar definiciones de [JSON Schema](https://json-schema.org) para tu modelo, que también puedes usar en cualquier otro lugar si tiene sentido para tu proyecto.
+* Esos esquemas serán parte del esquema de OpenAPI generado y usados por las <abbr title="User Interfaces - Interfaces de usuario">UIs</abbr> de documentación automática.
 
 ## Documentación automática { #automatic-docs }
 
@@ -101,15 +103,15 @@ Y fue rigurosamente probado en la fase de diseño, antes de cualquier implementa
 
 Incluso se hicieron algunos cambios en Pydantic para admitir esto.
 
-Las capturas de pantalla anteriores se tomaron con <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+Las capturas de pantalla anteriores se tomaron con [Visual Studio Code](https://code.visualstudio.com).
 
-Pero obtendrías el mismo soporte en el editor con <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> y la mayoría de los otros editores de Python:
+Pero obtendrías el mismo soporte en el editor con [PyCharm](https://www.jetbrains.com/pycharm/) y la mayoría de los otros editores de Python:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | Consejo
 
-Si usas <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como tu editor, puedes usar el <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+Si usas [PyCharm](https://www.jetbrains.com/pycharm/) como tu editor, puedes usar el [Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/).
 
 Mejora el soporte del editor para modelos de Pydantic, con:
 
@@ -127,14 +129,6 @@ Dentro de la función, puedes acceder a todos los atributos del objeto modelo di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info | Información
-
-En Pydantic v1 el método se llamaba `.dict()`, se marcó como obsoleto (pero sigue soportado) en Pydantic v2, y se renombró a `.model_dump()`.
-
-Los ejemplos aquí usan `.dict()` por compatibilidad con Pydantic v1, pero deberías usar `.model_dump()` si puedes usar Pydantic v2.
-
-///
-
 ## Request body + parámetros de path { #request-body-path-parameters }
 
 Puedes declarar parámetros de path y request body al mismo tiempo.
@@ -142,6 +136,7 @@ Puedes declarar parámetros de path y request body al mismo tiempo.
 **FastAPI** reconocerá que los parámetros de función que coinciden con los parámetros de path deben ser **tomados del path**, y que los parámetros de función que se declaran como modelos de Pydantic deben ser **tomados del request body**.
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## Request body + path + parámetros de query { #request-body-path-query-parameters }
 
@@ -155,13 +150,13 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 * Si el parámetro también se declara en el **path**, se utilizará como un parámetro de path.
 * Si el parámetro es de un **tipo singular** (como `int`, `float`, `str`, `bool`, etc.), se interpretará como un parámetro de **query**.
-* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **request body**.
+* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **body** de request.
 
 /// note | Nota
 
 FastAPI sabrá que el valor de `q` no es requerido debido al valor por defecto `= None`.
 
-El `str | None` (Python 3.10+) o `Union` en `Union[str, None]` (Python 3.9+) no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
+El `str | None` no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
 
 Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejor soporte y detecte errores.
 
@@ -169,4 +164,4 @@ Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejo
 
 ## Sin Pydantic { #without-pydantic }
 
-Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Si no quieres usar modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Múltiples parámetros: Valores singulares en el body](body-multiple-params.md#singular-values-in-body).

@@ -1,8 +1,7 @@
-from typing import Optional
-
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPDigest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 app = FastAPI()
 
@@ -11,7 +10,7 @@ security = HTTPDigest(auto_error=False)
 
 @app.get("/users/me")
 def read_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(security),
+    credentials: HTTPAuthorizationCredentials | None = Security(security),
 ):
     if credentials is None:
         return {"msg": "Create an account first"}
@@ -44,25 +43,27 @@ def test_security_http_digest_incorrect_scheme_credentials():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Current User",
-                    "operationId": "read_current_user_users_me_get",
-                    "security": [{"HTTPDigest": []}],
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Current User",
+                        "operationId": "read_current_user_users_me_get",
+                        "security": [{"HTTPDigest": []}],
+                    }
                 }
-            }
-        },
-        "components": {
-            "securitySchemes": {"HTTPDigest": {"type": "http", "scheme": "digest"}}
-        },
-    }
+            },
+            "components": {
+                "securitySchemes": {"HTTPDigest": {"type": "http", "scheme": "digest"}}
+            },
+        }
+    )

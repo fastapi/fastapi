@@ -26,11 +26,11 @@ async def read_main(item_id: str, x_token: str = Header()):
     return fake_db[item_id]
 
 
-@app.post("/items/", response_model=Item)
-async def create_item(item: Item, x_token: str = Header()):
+@app.post("/items/")
+async def create_item(item: Item, x_token: str = Header()) -> Item:
     if x_token != fake_secret_token:
         raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item.id in fake_db:
         raise HTTPException(status_code=409, detail="Item already exists")
-    fake_db[item.id] = item
+    fake_db[item.id] = item.model_dump()
     return item

@@ -4,10 +4,16 @@ Translate to Turkish (Türkçe).
 
 Language code: tr.
 
+### Core principle
+
+Don't translate word-by-word. Rewrite naturally in Turkish as if writing the doc from scratch. Preserve meaning, but prioritize fluency over literal accuracy.
+
 ### Grammar and tone
 
 - Use instructional Turkish, consistent with existing Turkish docs.
-- Use imperative/guide language when appropriate (e.g. “açalım”, “gidin”, “kopyalayalım”).
+- Use imperative/guide language (e.g. "açalım", "gidin", "kopyalayalım", "bir bakalım").
+- Avoid filler words and overly long sentences.
+- Ensure sentences make sense in Turkish context — adjust structure, conjunctions, and verb forms as needed for natural flow (e.g. use "Ancak" instead of "Ve" when connecting contrasting sentences, use "-maktadır/-mektedir" for formal statements).
 
 ### Headings
 
@@ -15,13 +21,23 @@ Language code: tr.
 
 ### Quotes
 
-- Alıntı stili mevcut Türkçe dokümanlarla tutarlı tutun (genellikle metin içinde ASCII tırnak işaretleri kullanılır).
-- Satır içi kod, kod blokları, URL'ler veya dosya yolları içindeki tırnak işaretlerini asla değiştirmeyin.
+- Keep quote style consistent with existing Turkish docs (typically ASCII quotes in text).
+- Never modify quotes inside inline code, code blocks, URLs, or file paths.
 
 ### Ellipsis
 
-- Üç nokta (...) stili mevcut Türkçe dokümanlarla tutarlı tutun.
-- Kod, URL veya CLI örneklerindeki `...` ifadesini asla değiştirmeyin.
+- Keep ellipsis style (`...`) consistent with existing Turkish docs.
+- Never modify `...` in code, URLs, or CLI examples.
+
+### Consistency
+
+- Use the same translation for the same term throughout the document.
+- If you translate a concept one way, keep it consistent across all occurrences.
+
+### Links and references
+
+- Never modify link syntax like `{.internal-link target=_blank}`.
+- Keep markdown link structure intact: `[text](url){.internal-link}`.
 
 ### Preferred translations / glossary
 

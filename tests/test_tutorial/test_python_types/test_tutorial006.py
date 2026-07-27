@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from docs_src.python_types.tutorial006_py39 import process_items
+from docs_src.python_types.tutorial006_py310 import process_items
 
 
 def test_process_items():

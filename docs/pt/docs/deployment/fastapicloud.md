@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Você pode implantar sua aplicação FastAPI no <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> com um **único comando**; entre na lista de espera, caso ainda não tenha feito isso. 🚀
-
-## Login { #login }
-
-Certifique-se de que você já tem uma conta no **FastAPI Cloud** (nós convidamos você a partir da lista de espera 😉).
-
-Depois, faça login:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Implantar { #deploy }
-
-Agora, implante sua aplicação, com **um único comando**:
+Você pode implantar sua aplicação FastAPI no [FastAPI Cloud](https://fastapicloud.com) com apenas **um comando**. 🚀
 
 <div class="termy">
 
@@ -36,11 +16,13 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+A CLI detectará automaticamente sua aplicação FastAPI e a implantará na nuvem. Se você não estiver autenticado, seu navegador será aberto para concluir o processo de autenticação.
+
 É isso! Agora você pode acessar sua aplicação nesse URL. ✨
 
 ## Sobre o FastAPI Cloud { #about-fastapi-cloud }
 
-O **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** é desenvolvido pelo mesmo autor e equipe por trás do **FastAPI**.
+O **[FastAPI Cloud](https://fastapicloud.com)** é desenvolvido pelo mesmo autor e equipe por trás do **FastAPI**.
 
 Ele simplifica o processo de **criar**, **implantar** e **acessar** uma API com esforço mínimo.
 

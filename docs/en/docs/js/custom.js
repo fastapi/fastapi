@@ -81,8 +81,14 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+                const inputCommands = useLines
+                    .filter(line => line.type === "input")
+                    .map(line => line.value)
+                    .join("\n");
+                node.textContent = inputCommands;
                 const div = document.createElement("div");
-                node.replaceWith(div);
+                node.style.display = "none";
+                node.after(div);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,
@@ -168,10 +174,76 @@ function handleSponsorImages() {
         });
 }
 
+function openLinksInNewTab() {
+    const siteUrl = document.querySelector("link[rel='canonical']")?.href
+        || window.location.origin;
+    const siteOrigin = new URL(siteUrl).origin;
+    document.querySelectorAll(".md-content a[href]").forEach(a => {
+        if (a.getAttribute("target") === "_self") return;
+        const href = a.getAttribute("href");
+        if (!href) return;
+        try {
+            const url = new URL(href, window.location.href);
+            // Skip same-page anchor links (only the hash differs)
+            if (url.origin === window.location.origin
+                && url.pathname === window.location.pathname
+                && url.search === window.location.search) return;
+            if (!a.hasAttribute("target")) {
+                a.setAttribute("target", "_blank");
+                a.setAttribute("rel", "noopener");
+            }
+            if (url.origin !== siteOrigin) {
+                a.dataset.externalLink = "";
+            } else {
+                a.dataset.internalLink = "";
+            }
+        } catch (_) {}
+    });
+}
+
+function setupOpinionsTabs() {
+    const root = document.querySelector('.fastapi-opinions');
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+    if (!tabs.length) return;
+
+    function activate(tab, focus) {
+        tabs.forEach(t => {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', selected ? 'true' : 'false');
+            t.setAttribute('tabindex', selected ? '0' : '-1');
+        });
+        const targetId = tab.getAttribute('aria-controls');
+        panels.forEach(p => {
+            if (p.id === targetId) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+        if (focus) tab.focus();
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => activate(tab, false));
+        tab.addEventListener('keydown', (e) => {
+            let next = null;
+            if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+            else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === 'Home') next = tabs[0];
+            else if (e.key === 'End') next = tabs[tabs.length - 1];
+            if (next) {
+                e.preventDefault();
+                activate(next, true);
+            }
+        });
+    });
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
     handleSponsorImages();
+    openLinksInNewTab();
+    setupOpinionsTabs();
 }
 document$.subscribe(() => {
     main()

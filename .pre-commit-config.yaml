@@ -2,16 +2,23 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
     hooks:
       - id: check-added-large-files
         args: ['--maxkb=750']
+        exclude: ^uv.lock$
       - id: check-toml
       - id: check-yaml
         args:
         - --unsafe
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
+  - repo: https://github.com/crate-ci/typos
+    rev: bee27e3a4fd1ea2111cf90ab89cd076c870fce14 # frozen: v1.48.0
+    hooks:
+      - id: typos
+        args: [--force-exclude]
 
   - repo: local
     hooks:
@@ -29,6 +36,20 @@ repos:
         language: unsupported
         types: [python]
 
+      - id: local-mypy
+        name: mypy check
+        entry: uv run mypy fastapi
+        require_serial: true
+        language: unsupported
+        pass_filenames: false
+
+      - id: local-ty
+        name: ty check
+        entry: uv run ty check
+        require_serial: true
+        language: unsupported
+        pass_filenames: false
+
       - id: add-permalinks-pages
         language: unsupported
         name: add-permalinks-pages
@@ -44,6 +65,13 @@ repos:
         files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
         pass_filenames: false
 
+      - id: render-banner-sponsors
+        language: unsupported
+        name: render sponsor banner partial
+        entry: uv run ./scripts/docs.py render-banner-sponsors
+        files: ^docs/en/data/sponsors\.yml|^docs/en/overrides/partials/banner-sponsors\.html|^scripts/docs\.py$
+        pass_filenames: false
+
       - id: update-languages
         language: unsupported
         name: update languages
@@ -56,4 +84,25 @@ repos:
         name: ensure non-translated files are not modified
         entry: uv run ./scripts/docs.py ensure-non-translated
         files: ^docs/(?!en/).*|^scripts/docs\.py$
+        pass_filenames: false
+
+      - id: fix-translations
+        language: unsupported
+        name: fix translations
+        entry: uv run ./scripts/translation_fixer.py fix-pages
+        files: ^docs/(?!en/).*/docs/.*\.md$
+
+      - id: add-release-date
+        language: unsupported
+        name: add date to latest release header
+        entry: uv run python scripts/add_latest_release_date.py
+        files: ^docs/en/docs/release-notes\.md$
+        pass_filenames: false
+
+      - id: zizmor
+        name: zizmor
+        language: python
+        entry: uv run zizmor .
+        files: ^\.github/workflows/|^uv\.lock$
+        require_serial: true
         pass_filenames: false

@@ -2,6 +2,8 @@
 
 When defining WebSockets, you normally declare a parameter of type `WebSocket` and with it you can read data from the client and send data to it.
 
+Read more about it in the [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/)
+
 It is provided directly by Starlette, but you can import it from `fastapi`:
 
 ```python
@@ -44,21 +46,11 @@ When you want to define dependencies that should be compatible with both HTTP an
             - send_json
             - close
 
-When a client disconnects, a `WebSocketDisconnect` exception is raised, you can catch it.
-
-You can import it directly form `fastapi`:
-
-```python
-from fastapi import WebSocketDisconnect
-```
-
-::: fastapi.WebSocketDisconnect
-
 ## WebSockets - additional classes
 
 Additional classes for handling WebSockets.
 
-Provided directly by Starlette, but you can import it from `fastapi`:
+Provided directly by Starlette, but you can import them from `fastapi`:
 
 ```python
 from fastapi.websockets import WebSocketDisconnect, WebSocketState
@@ -66,4 +58,16 @@ from fastapi.websockets import WebSocketDisconnect, WebSocketState
 
 ::: fastapi.websockets.WebSocketDisconnect
 
+When a client disconnects, a `WebSocketDisconnect` exception is raised, you can catch it.
+
+You can import it directly from `fastapi`:
+
+```python
+from fastapi import WebSocketDisconnect
+```
+
+Read more about it in the [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/#handling-disconnections-and-multiple-clients)
+
 ::: fastapi.websockets.WebSocketState
+
+`WebSocketState` is an enumeration of the possible states of a WebSocket connection.

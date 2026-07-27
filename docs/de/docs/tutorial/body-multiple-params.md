@@ -1,6 +1,6 @@
 # Body – Mehrere Parameter { #body-multiple-parameters }
 
-Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von <abbr title="Anfragekörper">Requestbody</abbr>-Deklarationen an.
+Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von <abbr title="Requestbody">Requestbody</abbr>-Deklarationen an.
 
 ## `Path`-, `Query`- und Body-Parameter vermischen { #mix-path-query-and-body-parameters }
 
@@ -101,12 +101,6 @@ Natürlich können Sie auch, wann immer Sie das brauchen, weitere Query-Paramete
 Da einfache Werte standardmäßig als Query-Parameter interpretiert werden, müssen Sie `Query` nicht explizit hinzufügen, Sie können einfach schreiben:
 
 ```Python
-q: Union[str, None] = None
-```
-
-Oder in Python 3.10 und darüber:
-
-```Python
 q: str | None = None
 ```
 
@@ -114,7 +108,7 @@ Zum Beispiel:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | Info
+/// note | Hinweis
 
 `Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query`, `Path` und andere, die Sie später kennenlernen werden.
 
@@ -129,7 +123,7 @@ Standardmäßig wird **FastAPI** dann seinen Body direkt erwarten.
 Aber wenn Sie möchten, dass es einen JSON-Body mit einem Schlüssel `item` erwartet, und darin den Inhalt des Modells, so wie es das tut, wenn Sie mehrere Body-Parameter deklarieren, dann können Sie den speziellen `Body`-Parameter `embed` setzen:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 so wie in:

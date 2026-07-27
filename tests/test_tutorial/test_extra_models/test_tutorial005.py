@@ -2,12 +2,13 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial005_py39"),
+        pytest.param("tutorial005_py310"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -26,29 +27,31 @@ def test_get_items(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/keyword-weights/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "title": "Response Read Keyword Weights Keyword Weights  Get",
-                                        "type": "object",
-                                        "additionalProperties": {"type": "number"},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/keyword-weights/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "title": "Response Read Keyword Weights Keyword Weights  Get",
+                                            "type": "object",
+                                            "additionalProperties": {"type": "number"},
+                                        }
                                     }
-                                }
-                            },
-                        }
-                    },
-                    "summary": "Read Keyword Weights",
-                    "operationId": "read_keyword_weights_keyword_weights__get",
+                                },
+                            }
+                        },
+                        "summary": "Read Keyword Weights",
+                        "operationId": "read_keyword_weights_keyword_weights__get",
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )

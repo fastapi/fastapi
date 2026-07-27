@@ -70,7 +70,7 @@ Asynchronous code just means that the language 💬 has a way to tell the comput
 
 So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
 
-Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finished all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
+Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finishes all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
 
 Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) and continues whatever it had to do with it.
 
@@ -78,7 +78,7 @@ That "wait for something else" normally refers to <abbr title="Input and Output"
 
 * the data from the client to be sent through the network
 * the data sent by your program to be received by the client through the network
-* the contents of a file in the disk to be read by the system and given to your program
+* the contents of a file on the disk to be read by the system and given to your program
 * the contents your program gave to the system to be written to disk
 * a remote API operation
 * a database operation to finish
@@ -139,9 +139,9 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info
+/// note
 
-Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Beautiful illustrations by [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -205,9 +205,9 @@ You just eat them, and you are done. ⏹
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
-/// info
+/// note
 
-Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Beautiful illustrations by [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -251,13 +251,13 @@ This kind of asynchronicity is what made NodeJS popular (even though NodeJS is n
 
 And that's the same level of performance you get with **FastAPI**.
 
-And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
+And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C [(all thanks to Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Is concurrency better than parallelism? { #is-concurrency-better-than-parallelism }
 
 Nope! That's not the moral of the story.
 
-Concurrency is different than parallelism. And it is better on **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
+Concurrency is different than parallelism. And it is better in **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
 
 So, to balance that out, imagine the following short story:
 
@@ -267,7 +267,7 @@ So, to balance that out, imagine the following short story:
 
 ---
 
-There's no waiting 🕙 anywhere, just a lot of work to be done, on multiple places of the house.
+There's no waiting 🕙 anywhere, just a lot of work to be done, in multiple places of the house.
 
 You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything.
 
@@ -296,9 +296,9 @@ With **FastAPI** you can take advantage of concurrency that is very common for w
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
-That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
+That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, makes FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 
-To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
+To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md).
 
 ## `async` and `await` { #async-and-await }
 
@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`, like in:
+So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that use it with `async def`, like in:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -363,13 +363,13 @@ But if you want to use `async` / `await` without FastAPI, you can do it as well.
 
 ### Write your own async code { #write-your-own-async-code }
 
-Starlette (and **FastAPI**) are based on <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, which makes it compatible with both Python's standard library <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> and <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (and **FastAPI**) are based on [AnyIO](https://anyio.readthedocs.io/en/stable/), which makes it compatible with both Python's standard library [asyncio](https://docs.python.org/3/library/asyncio-task.html) and [Trio](https://trio.readthedocs.io/en/stable/).
 
-In particular, you can directly use <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> for your advanced concurrency use cases that require more advanced patterns in your own code.
+In particular, you can directly use [AnyIO](https://anyio.readthedocs.io/en/stable/) for your advanced concurrency use cases that require more advanced patterns in your own code.
 
-And even if you were not using FastAPI, you could also write your own async applications with <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> to be highly compatible and get its benefits (e.g. *structured concurrency*).
+And even if you were not using FastAPI, you could also write your own async applications with [AnyIO](https://anyio.readthedocs.io/en/stable/) to be highly compatible and get its benefits (e.g. *structured concurrency*).
 
-I created another library on top of AnyIO, as a thin layer on top, to improve a bit the type annotations and get better **autocompletion**, **inline errors**, etc. It also has a friendly introduction and tutorial to help you **understand** and write **your own async code**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. It would be particularly useful if you need to **combine async code with regular** (blocking/synchronous) code.
+I created another library on top of AnyIO, as a thin layer on top, to improve a bit the type annotations and get better **autocompletion**, **inline errors**, etc. It also has a friendly introduction and tutorial to help you **understand** and write **your own async code**: [Asyncer](https://asyncer.tiangolo.com/). It would be particularly useful if you need to **combine async code with regular** (blocking/synchronous) code.
 
 ### Other forms of asynchronous code { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ This same syntax (or almost identical) was also included recently in modern vers
 
 But before that, handling asynchronous code was quite more complex and difficult.
 
-In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
+In previous versions of Python, you could have used threads or [Gevent](https://www.gevent.org/). But the code is way more complex to understand, debug, and think about.
 
 In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to "callback hell".
 
@@ -419,15 +419,15 @@ When you declare a *path operation function* with normal `def` instead of `async
 
 If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
+Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance) than (or at least comparable to) your previous framework.
 
 ### Dependencies { #dependencies }
 
-The same applies for [dependencies](tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](tutorial/dependencies/index.md). If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies { #sub-dependencies }
 
-You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md) requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions { #other-utility-functions }
 
@@ -435,7 +435,7 @@ Any other utility function that you call directly can be created with normal `de
 
 This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
 
-If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
+If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` that function when you call it in your code.
 
 ---
 

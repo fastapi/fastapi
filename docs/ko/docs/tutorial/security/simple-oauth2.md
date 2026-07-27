@@ -1,12 +1,12 @@
-# 패스워드와 Bearer를 이용한 간단한 OAuth2
+# 패스워드와 Bearer를 이용한 간단한 OAuth2 { #simple-oauth2-with-password-and-bearer }
 
 이제 이전 장에서 빌드하고 누락된 부분을 추가하여 완전한 보안 흐름을 갖도록 하겠습니다.
 
-## `username`와 `password` 얻기
+## `username`와 `password` 얻기 { #get-the-username-and-password }
 
 **FastAPI** 보안 유틸리티를 사용하여 `username` 및 `password`를 가져올 것입니다.
 
-OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 때 클라이언트/유저가 `username` 및 `password` 필드를 폼 데이터로 보내야 함을 지정합니다.
+OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"를 사용할 때 클라이언트/유저가 `username` 및 `password` 필드를 폼 데이터로 보내야 함을 지정합니다.
 
 그리고 사양에는 필드의 이름을 그렇게 지정해야 한다고 나와 있습니다. 따라서 `user-name` 또는 `email`은 작동하지 않습니다.
 
@@ -14,11 +14,11 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 그리고 데이터베이스 모델은 원하는 다른 이름을 사용할 수 있습니다.
 
-그러나 로그인 *경로 작동*의 경우 사양과 호환되도록 이러한 이름을 사용해야 합니다(예를 들어 통합 API 문서 시스템을 사용할 수 있어야 합니다).
+그러나 로그인 *경로 처리*의 경우 사양과 호환되도록 이러한 이름을 사용해야 합니다(예를 들어 통합 API 문서 시스템을 사용할 수 있어야 합니다).
 
 사양에는 또한 `username`과 `password`가 폼 데이터로 전송되어야 한다고 명시되어 있습니다(따라서 여기에는 JSON이 없습니다).
 
-### `scope`
+### `scope` { #scope }
 
 사양에는 클라이언트가 다른 폼 필드 "`scope`"를 보낼 수 있다고 나와 있습니다.
 
@@ -32,7 +32,7 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 * `instagram_basic`은 페이스북/인스타그램에서 사용합니다.
 * `https://www.googleapis.com/auth/drive`는 Google에서 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 OAuth2에서 "범위"는 필요한 특정 권한을 선언하는 문자열입니다.
 
@@ -44,15 +44,15 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 ///
 
-## `username`과 `password`를 가져오는 코드
+## `username`과 `password`를 가져오는 코드 { #code-to-get-the-username-and-password }
 
 이제 **FastAPI**에서 제공하는 유틸리티를 사용하여 이를 처리해 보겠습니다.
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
-먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동*에서 `Depends`의 의존성으로 사용합니다.
+먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 처리*에서 `Depends`의 의존성으로 사용합니다.
 
-{* ../../docs_src/security/tutorial003.py hl[4,76] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm`은 다음을 사용하여 폼 본문을 선언하는 클래스 의존성입니다:
 
@@ -72,7 +72,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 * `client_id`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 * `client_secret`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 
-/// info | 정보
+/// note | 참고
 
 `OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
 
@@ -84,7 +84,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 ///
 
-### 폼 데이터 사용하기
+### 폼 데이터 사용하기 { #use-the-form-data }
 
 /// tip | 팁
 
@@ -100,11 +100,11 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 오류의 경우 `HTTPException` 예외를 사용합니다:
 
-{* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-### 패스워드 확인하기
+### 패스워드 확인하기 { #check-the-password }
 
-이 시점에서 데이터베이스의 사용자 데이터 형식을 확인했지만 암호를 확인하지 않았습니다.
+이 시점에서 데이터베이스의 사용자 데이터는 있지만, 아직 패스워드는 확인하지 않았습니다.
 
 먼저 데이터를 Pydantic `UserInDB` 모델에 넣겠습니다.
 
@@ -112,7 +112,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 두 패스워드가 일치하지 않으면 동일한 오류가 반환됩니다.
 
-#### 패스워드 해싱
+#### 패스워드 해싱 { #password-hashing }
 
 "해싱"은 일부 콘텐츠(이 경우 패스워드)를 횡설수설하는 것처럼 보이는 일련의 바이트(문자열)로 변환하는 것을 의미합니다.
 
@@ -120,21 +120,15 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 그러나 횡설수설에서 암호로 다시 변환할 수는 없습니다.
 
-##### 패스워드 해싱을 사용해야 하는 이유
+##### 패스워드 해싱을 사용해야 하는 이유 { #why-use-password-hashing }
 
 데이터베이스가 유출된 경우 해커는 사용자의 일반 텍스트 암호가 아니라 해시만 갖게 됩니다.
 
 따라서 해커는 다른 시스템에서 동일한 암호를 사용하려고 시도할 수 없습니다(많은 사용자가 모든 곳에서 동일한 암호를 사용하므로 이는 위험할 수 있습니다).
 
-//// tab | 파이썬 3.7 이상
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-{* ../../docs_src/security/tutorial003.py hl[80:83] *}
-
-////
-
-{* ../../docs_src/security/tutorial003_py310.py hl[78:81] *}
-
-#### `**user_dict`에 대해
+#### `**user_dict`에 대해 { #about-user-dict }
 
 `UserInDB(**user_dict)`는 다음을 의미한다:
 
@@ -150,13 +144,13 @@ UserInDB(
 )
 ```
 
-/// info | 정보
+/// note | 참고
 
-`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user_indict){.internal-link target=_blank}를 다시 읽어봅시다.
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-model-dump)를 다시 확인해보세요.
 
 ///
 
-## 토큰 반환하기
+## 토큰 반환하기 { #return-the-token }
 
 `token` 엔드포인트의 응답은 JSON 객체여야 합니다.
 
@@ -168,13 +162,13 @@ UserInDB(
 
 /// tip | 팁
 
-다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
+다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
 
 하지만 지금은 필요한 세부 정보에 집중하겠습니다.
 
 ///
 
-{* ../../docs_src/security/tutorial003.py hl[85] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
 /// tip | 팁
 
@@ -188,21 +182,21 @@ UserInDB(
 
 ///
 
-## 의존성 업데이트하기
+## 의존성 업데이트하기 { #update-the-dependencies }
 
 이제 의존성을 업데이트를 할 겁니다.
 
 이 사용자가 활성화되어 있는 *경우에만* `current_user`를 가져올 겁니다.
 
-따라서 `get_current_user`를 의존성으로 사용하는 추가 종속성 `get_current_active_user`를 만듭니다.
+따라서 `get_current_user`를 의존성으로 사용하는 추가 의존성 `get_current_active_user`를 만듭니다.
 
 이러한 의존성 모두, 사용자가 존재하지 않거나 비활성인 경우 HTTP 오류를 반환합니다.
 
 따라서 엔드포인트에서는 사용자가 존재하고 올바르게 인증되었으며 활성 상태인 경우에만 사용자를 얻습니다:
 
-{* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | 정보
+/// note | 참고
 
 여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.
 
@@ -220,11 +214,11 @@ UserInDB(
 
 ///
 
-## 확인하기
+## 확인하기 { #see-it-in-action }
 
-대화형 문서 열기: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서 열기: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-### 인증하기
+### 인증하기 { #authenticate }
 
 "Authorize" 버튼을 눌러봅시다.
 
@@ -240,7 +234,7 @@ UserInDB(
 
 <img src="/img/tutorial/security/image05.png">
 
-### 자신의 유저 데이터 가져오기
+### 자신의 유저 데이터 가져오기 { #get-your-own-user-data }
 
 이제 `/users/me` 경로에 `GET` 작업을 진행합시다.
 
@@ -266,7 +260,7 @@ UserInDB(
 }
 ```
 
-### 비활성된 유저
+### 비활성된 유저 { #inactive-user }
 
 이제 비활성된 사용자로 시도하고, 인증해봅시다:
 
@@ -284,7 +278,7 @@ UserInDB(
 }
 ```
 
-## 요약
+## 요약 { #recap }
 
 이제 API에 대한 `username` 및 `password`를 기반으로 완전한 보안 시스템을 구현할 수 있는 도구가 있습니다.
 
@@ -292,4 +286,4 @@ UserInDB(
 
 유일한 오점은 아직 실제로 "안전"하지 않다는 것입니다.
 
-다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.
+다음 장에서는 안전한 패스워드 해싱 라이브러리와 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰을 사용하는 방법을 살펴보겠습니다.

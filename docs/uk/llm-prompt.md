@@ -8,6 +8,7 @@ Language code: uk.
 
 - Use polite/formal address consistent with existing Ukrainian docs (use “ви/ваш”).
 - Keep the tone concise and technical.
+- Use one style of dashes. For example, if text contains "-" then use only this symbol to represent a dash.
 
 ### Headings
 
@@ -32,6 +33,71 @@ Use the following preferred translations when they apply in documentation prose:
 - response (HTTP): відповідь
 - path operation: операція шляху
 - path operation function: функція операції шляху
+- prompt: підсказка
+- check: перевірка
+- Parallel Server Gateway Interface: Інтерфейс Шлюзу Паралельного Сервера
+- Mozilla Developer Network: Мережа Розробників Mozilla
+- tutorial: навчальний посібник
+- advanced user guide: просунутий посібник користувача
+- deep learning: глибоке навчання
+- machine learning: машинне навчання
+- dependency injection: впровадження залежностей
+- digest (HTTP): дайджест
+- basic authentication (HTTP): базова автентифікація
+- JSON schema: Схема JSON
+- password flow: потік паролю
+- mobile: мобільний
+- body: тіло
+- form: форма
+- path: шлях
+- query: запит
+- cookie: кукі
+- header: заголовок
+- startup: запуск
+- shutdown: вимкнення
+- lifespan: тривалість життя
+- authorization: авторизація
+- forwarded header: направлений заголовок
+- dependable: залежний
+- dependent: залежний
+- bound: межа
+- concurrency: рівночасність
+- parallelism: паралелізм
+- multiprocessing: багатопроцесорність
+- env var: змінна оточення
+- dict: словник
+- enum: перелік
+- issue: проблема
+- server worker: серверний працівник
+- worker: працівник
+- software development kit: набір для розробки програмного забезпечення
+- bearer token: токен носія
+- breaking change: несумісна зміна
+- bug: помилка
+- button: кнопка
+- callable: викликаємий
+- code: код
+- commit: фіксація
+- context manager: менеджер контексту
+- coroutine: співпрограма
+- engine: рушій
+- fake X: фальшивий X
+- item: предмет
+- lock: блокування
+- middleware: проміжне програмне забезпечення
+- mounting: монтування
+- origin: джерело
+- override: переписування
+- payload: корисне навантаження
+- processor: процесор
+- property: властивість
+- proxy: представник
+- pull request: запит на витяг
+- random-access memory: пам'ять з довільним доступом
+- status code: код статусу
+- string: строка
+- tag: мітка
+- wildcard: дика карта
 
 ### `///` admonitions
 
@@ -44,3 +110,4 @@ Use the following preferred translations when they apply in documentation prose:
 - `/// warning | Попередження`
 - `/// info | Інформація`
 - `/// danger | Обережно`
+- `/// check | Перевірте`

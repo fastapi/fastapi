@@ -20,7 +20,7 @@ OAuth2 ist eine Spezifikation, die verschiedene Möglichkeiten zur Handhabung vo
 
 Es handelt sich um eine recht umfangreiche Spezifikation, und sie deckt mehrere komplexe Anwendungsfälle ab.
 
-Sie umfasst Möglichkeiten zur Authentifizierung mithilfe eines „Dritten“ („third party“).
+Sie umfasst Möglichkeiten zur Authentifizierung mithilfe eines „Dritten“.
 
 Das ist es, was alle diese „Login mit Facebook, Google, X (Twitter), GitHub“-Systeme unter der Haube verwenden.
 

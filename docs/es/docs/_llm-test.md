@@ -1,17 +1,17 @@
 # Archivo de prueba de LLM { #llm-test-file }
 
-Este documento prueba si el <abbr title="Large Language Model – Modelo de lenguaje grande">LLM</abbr>, que traduce la documentación, entiende el `general_prompt` en `scripts/translate.py` y el prompt específico del idioma en `docs/{language code}/llm-prompt.md`. El prompt específico del idioma se agrega al final de `general_prompt`.
+Este documento prueba si el <abbr title="Large Language Model - Modelo de lenguaje grande">LLM</abbr>, que traduce la documentación, entiende el `general_prompt` en `scripts/translate.py` y el prompt específico del idioma en `docs/{language code}/llm-prompt.md`. El prompt específico del idioma se agrega al final de `general_prompt`.
 
 Las pruebas añadidas aquí serán vistas por todas las personas que diseñan prompts específicos del idioma.
 
 Úsalo de la siguiente manera:
 
-* Ten un prompt específico del idioma – `docs/{language code}/llm-prompt.md`.
+* Ten un prompt específico del idioma - `docs/{language code}/llm-prompt.md`.
 * Haz una traducción fresca de este documento a tu idioma destino (mira, por ejemplo, el comando `translate-page` de `translate.py`). Esto creará la traducción en `docs/{language code}/docs/_llm-test.md`.
-* Comprueba si todo está bien en la traducción.
+* Revisa si las cosas están bien en la traducción.
 * Si es necesario, mejora tu prompt específico del idioma, el prompt general, o el documento en inglés.
 * Luego corrige manualmente los problemas restantes en la traducción para que sea una buena traducción.
-* Vuelve a traducir, teniendo la buena traducción en su lugar. El resultado ideal sería que el LLM ya no hiciera cambios a la traducción. Eso significa que el prompt general y tu prompt específico del idioma están tan bien como pueden estar (a veces hará algunos cambios aparentemente aleatorios; la razón es que <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">los LLMs no son algoritmos deterministas</a>).
+* Vuelve a traducir, teniendo la buena traducción en su lugar. El resultado ideal sería que el LLM ya no hiciera cambios a la traducción. Eso significa que el prompt general y tu prompt específico del idioma están tan bien como pueden estar (A veces hará algunos cambios aparentemente aleatorios; la razón es que [los LLMs no son algoritmos deterministas](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Las pruebas:
 
@@ -23,7 +23,7 @@ Este es un fragmento de código: `foo`. Y este es otro fragmento de código: `ba
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 El contenido de los fragmentos de código debe dejarse tal cual.
 
@@ -45,7 +45,7 @@ El LLM probablemente traducirá esto mal. Lo interesante es si mantiene la tradu
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 La persona que diseña el prompt puede elegir si quiere convertir comillas neutras a comillas tipográficas. También está bien dejarlas como están.
 
@@ -67,7 +67,7 @@ Hardcore: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you 
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 ... Sin embargo, las comillas dentro de fragmentos de código deben quedarse tal cual.
 
@@ -112,7 +112,7 @@ works(foo="bar")  # Esto funciona 🎉
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 El código en bloques de código no debe modificarse, con la excepción de los comentarios.
 
@@ -124,19 +124,11 @@ Consulta la sección `### Content of code blocks` en el prompt general en `scrip
 
 //// tab | Prueba
 
-/// info | Información
-Algo de texto
-///
-
 /// note | Nota
 Algo de texto
 ///
 
 /// note | Detalles técnicos
-Algo de texto
-///
-
-/// check | Revisa
 Algo de texto
 ///
 
@@ -154,7 +146,7 @@ Algo de texto
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 Las pestañas y los bloques `Info`/`Note`/`Warning`/etc. deben tener la traducción de su título añadida después de una barra vertical (`|`).
 
@@ -169,19 +161,19 @@ Consulta las secciones `### Special blocks` y `### Tab blocks` en el prompt gene
 El texto del enlace debe traducirse, la dirección del enlace debe permanecer sin cambios:
 
 * [Enlace al encabezado de arriba](#code-snippets)
-* [Enlace interno](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Enlace externo</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Enlace a un estilo</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Enlace a un script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Enlace a una imagen</a>
+* [Enlace interno](index.md#installation)
+* [Enlace externo](https://sqlmodel.tiangolo.com/)
+* [Enlace a un estilo](https://fastapi.tiangolo.com/css/styles.css)
+* [Enlace a un script](https://fastapi.tiangolo.com/js/logic.js)
+* [Enlace a una imagen](https://fastapi.tiangolo.com/img/foo.jpg)
 
 El texto del enlace debe traducirse, la dirección del enlace debe apuntar a la traducción:
 
-* <a href="https://fastapi.tiangolo.com/es/" class="external-link" target="_blank">Enlace a FastAPI</a>
+* [Enlace a FastAPI](https://fastapi.tiangolo.com/es/)
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 Los enlaces deben traducirse, pero su dirección debe permanecer sin cambios. Una excepción son los enlaces absolutos a páginas de la documentación de FastAPI. En ese caso deben enlazar a la traducción.
 
@@ -197,24 +189,19 @@ Aquí algunas cosas envueltas en elementos HTML "abbr" (algunas son inventadas):
 
 ### El abbr da una frase completa { #the-abbr-gives-a-full-phrase }
 
-* <abbr title="Getting Things Done – Hacer las cosas">GTD</abbr>
-* <abbr title="less than – menor que"><code>lt</code></abbr>
-* <abbr title="XML Web Token – Token web XML">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface – Interfaz de pasarela de servidor paralela">PSGI</abbr>
-
-### El abbr da una explicación { #the-abbr-gives-an-explanation }
-
-* <abbr title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</abbr>
-* <abbr title="Un método de machine learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</abbr>
+* <abbr title="Getting Things Done - Hacer las cosas">GTD</abbr>
+* <abbr title="less than - menor que"><code>lt</code></abbr>
+* <abbr title="XML Web Token - Token web XML">XWT</abbr>
+* <abbr title="Parallel Server Gateway Interface - Interfaz de pasarela de servidor paralela">PSGI</abbr>
 
 ### El abbr da una frase completa y una explicación { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network – Red de Desarrolladores de Mozilla: documentación para desarrolladores, escrita por la gente de Firefox">MDN</abbr>
-* <abbr title="Input/Output – Entrada/Salida: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla: documentación para desarrolladores, escrita por la gente de Firefox">MDN</abbr>
+* <abbr title="Input/Output - I/O: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 Los atributos "title" de los elementos "abbr" se traducen siguiendo instrucciones específicas.
 
@@ -223,6 +210,11 @@ Las traducciones pueden añadir sus propios elementos "abbr" que el LLM no debe 
 Consulta la sección `### HTML abbr elements` en el prompt general en `scripts/translate.py`.
 
 ////
+
+## Elementos HTML "dfn" { #html-dfn-elements }
+
+* <dfn title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</dfn>
+* <dfn title="Un método de Machine Learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</dfn>
 
 ## Encabezados { #headings }
 
@@ -242,7 +234,7 @@ Hola de nuevo.
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 La única regla estricta para los encabezados es que el LLM deje la parte del hash dentro de llaves sin cambios, lo que asegura que los enlaces no se rompan.
 
@@ -355,7 +347,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * los headers
 * el header de autorización
 * el header `Authorization`
-* el header Forwarded
+* el header forwarded
 
 * el sistema de inyección de dependencias
 * la dependencia
@@ -368,7 +360,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * paralelismo
 * multiprocesamiento
 
-* la variable de entorno
+* la env var
 * la variable de entorno
 * el `PATH`
 * la variable `PATH`
@@ -468,11 +460,11 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * el ítem
 * el paquete
 * el lifespan
-* el bloqueo
+* el lock
 * el middleware
 * la aplicación móvil
 * el módulo
-* el montaje
+* el mounting
 * la red
 * el origen
 * el override
@@ -494,7 +486,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 
 ////
 
-//// tab | Información
+//// tab | Info
 
 Esta es una lista no completa y no normativa de términos (mayormente) técnicos vistos en la documentación. Puede ayudar a la persona que diseña el prompt a identificar para qué términos el LLM necesita una mano. Por ejemplo cuando sigue revirtiendo una buena traducción a una traducción subóptima. O cuando tiene problemas conjugando/declinando un término en tu idioma.
 

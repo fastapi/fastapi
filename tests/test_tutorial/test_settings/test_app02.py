@@ -8,8 +8,8 @@ from pytest import MonkeyPatch
 @pytest.fixture(
     name="mod_path",
     params=[
-        pytest.param("app02_py39"),
-        pytest.param("app02_an_py39"),
+        pytest.param("app02_py310"),
+        pytest.param("app02_an_py310"),
     ],
 )
 def get_mod_path(request: pytest.FixtureRequest):

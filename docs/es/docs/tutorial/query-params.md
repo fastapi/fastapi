@@ -2,7 +2,7 @@
 
 Cuando declaras otros parámetros de función que no son parte de los parámetros de path, son automáticamente interpretados como parámetros de "query".
 
-{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
 
 La query es el conjunto de pares clave-valor que van después del `?` en una URL, separados por caracteres `&`.
 
@@ -24,7 +24,7 @@ Pero cuando los declaras con tipos de Python (en el ejemplo anterior, como `int`
 Todo el mismo proceso que se aplica para los parámetros de path también se aplica para los parámetros de query:
 
 * Soporte del editor (obviamente)
-* <abbr title="convirtiendo el string que viene de un request HTTP en datos de Python">"parsing"</abbr> de datos
+* <dfn title="convirtiendo el string que viene de un request HTTP en datos de Python">"parsing"</dfn> de datos
 * Validación de datos
 * Documentación automática
 
@@ -65,7 +65,7 @@ De la misma manera, puedes declarar parámetros de query opcionales, establecien
 
 En este caso, el parámetro de función `q` será opcional y será `None` por defecto.
 
-/// check | Revisa
+/// tip | Consejo
 
 Además, nota que **FastAPI** es lo suficientemente inteligente para notar que el parámetro de path `item_id` es un parámetro de path y `q` no lo es, por lo tanto, es un parámetro de query.
 
@@ -109,6 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.), tu función verá el parámetro `short` con un valor `bool` de `True`. De lo contrario, será `False`.
 
+
 ## Múltiples parámetros de path y de query { #multiple-path-and-query-parameters }
 
 Puedes declarar múltiples parámetros de path y de query al mismo tiempo, **FastAPI** sabe cuál es cuál.
@@ -127,7 +128,7 @@ Si no quieres agregar un valor específico pero solo hacer que sea opcional, est
 
 Pero cuando quieres hacer un parámetro de query requerido, simplemente no declares ningún valor por defecto:
 
-{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
 Aquí el parámetro de query `needy` es un parámetro de query requerido de tipo `str`.
 
@@ -182,6 +183,6 @@ En este caso, hay 3 parámetros de query:
 
 /// tip | Consejo
 
-También podrías usar `Enum`s de la misma manera que con [Parámetros de Path](path-params.md#predefined-values){.internal-link target=_blank}.
+También podrías usar `Enum`s de la misma manera que con [Parámetros de Path](path-params.md#predefined-values).
 
 ///

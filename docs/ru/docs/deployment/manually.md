@@ -2,7 +2,7 @@
 
 ## Используйте команду `fastapi run` { #use-the-fastapi-run-command }
 
-Коротко: используйте `fastapi run`, чтобы запустить ваше приложение FastAPI:
+Коротко: используйте `fastapi run`, чтобы предоставлять доступ к вашему приложению FastAPI:
 
 <div class="termy">
 
@@ -46,17 +46,16 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 Давайте немного углубимся в детали.
 
-FastAPI использует стандарт для построения Python‑веб‑фреймворков и серверов под названием <abbr title="Asynchronous Server Gateway Interface – Асинхронный шлюзовый интерфейс сервера">ASGI</abbr>. FastAPI — ASGI-веб‑фреймворк.
+FastAPI использует стандарт для построения Python‑веб‑фреймворков и серверов под названием <abbr title="Asynchronous Server Gateway Interface - Асинхронный шлюзовый интерфейс сервера">ASGI</abbr>. FastAPI — ASGI-веб‑фреймворк.
 
 Главное, что вам нужно, чтобы запустить приложение **FastAPI** (или любое другое ASGI‑приложение) на удалённой серверной машине, — это программа ASGI‑сервера, такая как **Uvicorn**; именно он используется по умолчанию в команде `fastapi`.
 
 Есть несколько альтернатив, например:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: высокопроизводительный ASGI‑сервер.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ASGI‑сервер, среди прочего совместимый с HTTP/2 и Trio.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: ASGI‑сервер, созданный для Django Channels.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: HTTP‑сервер на Rust для Python‑приложений.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit — лёгкая и многофункциональная среда выполнения веб‑приложений.
+* [Uvicorn](https://www.uvicorn.dev/): высокопроизводительный ASGI‑сервер.
+* [Hypercorn](https://hypercorn.readthedocs.io/): ASGI‑сервер, среди прочего совместимый с HTTP/2 и Trio.
+* [Daphne](https://github.com/django/daphne): ASGI‑сервер, созданный для Django Channels.
+* [Granian](https://github.com/emmett-framework/granian): HTTP‑сервер на Rust для Python‑приложений.
 
 ## Сервер как машина и сервер как программа { #server-machine-and-server-program }
 
@@ -74,7 +73,7 @@ FastAPI использует стандарт для построения Python
 
 Но вы также можете установить ASGI‑сервер вручную.
 
-Создайте [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активируйте его и затем установите серверное приложение.
+Создайте [виртуальное окружение](../virtual-environments.md), активируйте его и затем установите серверное приложение.
 
 Например, чтобы установить Uvicorn:
 

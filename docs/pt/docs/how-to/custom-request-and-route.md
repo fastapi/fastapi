@@ -10,7 +10,7 @@ Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que 
 
 Isso é um recurso "avançado".
 
-Se você for um iniciante em **FastAPI** você deve considerar pular essa seção.
+Se você está apenas começando com **FastAPI**, talvez queira pular esta seção.
 
 ///
 
@@ -18,7 +18,7 @@ Se você for um iniciante em **FastAPI** você deve considerar pular essa seçã
 
 Alguns casos de uso incluem:
 
-* Converter requisições não-JSON para JSON (por exemplo, <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Converter requisições não-JSON para JSON (por exemplo, [`msgpack`](https://msgpack.org/index.html)).
 * Descomprimir corpos de requisição comprimidos com gzip.
 * Registrar automaticamente todos os corpos de requisição.
 
@@ -32,7 +32,7 @@ E uma subclasse de `APIRoute` para usar essa classe de requisição personalizad
 
 /// tip | Dica
 
-Isso é um exemplo de brincadeira para demonstrar como funciona, se você precisar de suporte para Gzip, você pode usar o [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} fornecido.
+Isso é um exemplo de brincadeira para demonstrar como funciona, se você precisar de suporte para Gzip, você pode usar o [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) fornecido.
 
 ///
 
@@ -40,7 +40,7 @@ Primeiro, criamos uma classe `GzipRequest`, que irá sobrescrever o método `Req
 
 Se não houver `gzip` no cabeçalho, ele não tentará descomprimir o corpo.
 
-Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas ou não comprimidas.
+Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas com gzip ou não comprimidas.
 
 {* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
@@ -66,7 +66,7 @@ O dicionário `scope` e a função `receive` são ambos parte da especificação
 
 E essas duas coisas, `scope` e `receive`, são o que é necessário para criar uma nova instância de `Request`.
 
-Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">documentação do Starlette sobre Requests</a>.
+Para aprender mais sobre o `Request` confira a [documentação do Starlette sobre Requests](https://www.starlette.dev/requests/).
 
 ///
 
@@ -82,9 +82,9 @@ Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisiçã
 
 /// tip | Dica
 
-Para resolver esse mesmo problema, é provavelmente muito mais fácil usar o `body` em um manipulador personalizado para `RequestValidationError` ([Tratando Erros](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Para resolver esse mesmo problema, é provavelmente muito mais fácil usar o `body` em um manipulador personalizado para `RequestValidationError` ([Tratando Erros](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
-Mas esse exemplo ainda é valido e mostra como interagir com os componentes internos.
+Mas esse exemplo ainda é válido e mostra como interagir com os componentes internos.
 
 ///
 

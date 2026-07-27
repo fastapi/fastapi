@@ -1,21 +1,21 @@
 # Tutorial - Guia de Usuário { #tutorial-user-guide }
 
-Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
+Este tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
 
 Cada seção constrói, gradualmente, sobre as anteriores, mas sua estrutura são tópicos separados, para que você possa ir a qualquer um específico e resolver suas necessidades específicas de API.
 
 Ele também foi construído para servir como uma referência futura, então você pode voltar e ver exatamente o que você precisa.
 
-## Rode o código { #run-the-code }
+## Execute o código { #run-the-code }
 
 Todos os blocos de código podem ser copiados e utilizados diretamente (eles são, na verdade, arquivos Python testados).
 
-Para rodar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev` com:
+Para executar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev`:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -52,9 +52,9 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-É **ALTAMENTE recomendado** que você escreva ou copie o código, edite-o e rode-o localmente.
+É **ALTAMENTE recomendado** que você escreva ou copie o código, edite-o e execute-o localmente.
 
-Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ver quão pouco código você tem que escrever, todas as conferências de tipo, preenchimento automático, etc.
+Usá-lo em seu editor é o que realmente mostra os benefícios do FastAPI, vendo quão pouco código você tem que escrever, todas as verificações de tipo, preenchimento automático, etc.
 
 ---
 
@@ -62,7 +62,7 @@ Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ve
 
 O primeiro passo é instalar o FastAPI.
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então **instalar o FastAPI**:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e então **instalar o FastAPI**:
 
 <div class="termy">
 
@@ -76,7 +76,7 @@ $ pip install "fastapi[standard]"
 
 /// note | Nota
 
-Quando você instala com `pip install "fastapi[standard]"`, ele vem com algumas dependências opcionais padrão, incluindo `fastapi-cloud-cli`, que permite fazer deploy na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+Quando você instala com `pip install "fastapi[standard]"`, ele vem com algumas dependências opcionais padrão, incluindo `fastapi-cloud-cli`, que permite fazer deploy na [FastAPI Cloud](https://fastapicloud.com).
 
 Se você não quiser ter essas dependências opcionais, pode instalar `pip install fastapi` em vez disso.
 
@@ -84,11 +84,17 @@ Se você quiser instalar as dependências padrão, mas sem o `fastapi-cloud-cli`
 
 ///
 
+/// tip | Dica
+
+O FastAPI tem uma [extensão oficial para o VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (e para o Cursor), que fornece vários recursos, incluindo um explorador de operações de rota, busca de operações de rota, navegação CodeLens em testes (ir para a definição a partir dos testes) e deploy e logs da FastAPI Cloud, tudo direto do seu editor.
+
+///
+
 ## Guia Avançado de Usuário { #advanced-user-guide }
 
 Há também um **Guia Avançado de Usuário** que você pode ler após esse **Tutorial - Guia de Usuário**.
 
-O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e te ensina algumas funcionalidades extras.
+O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e ensina algumas funcionalidades extras.
 
 Mas você deveria ler primeiro o **Tutorial - Guia de Usuário** (que você está lendo agora).
 
