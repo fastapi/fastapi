@@ -242,11 +242,31 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
 
 
 def get_flat_params(dependant: Dependant) -> list[ModelField]:
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    path_params: list[ModelField] = []
+    query_params: list[ModelField] = []
+    header_params: list[ModelField] = []
+    cookie_params: list[ModelField] = []
+    visited: list[DependencyCacheKey] = []
+    uses_scopes_cache: _UsesScopesCache = {}
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        cache_key = _get_cache_key(
+            dependant=current_dependant,
+            uses_scopes_cache=uses_scopes_cache,
+        )
+        if cache_key in visited:
+            continue
+        visited.append(cache_key)
+        path_params.extend(current_dependant.path_params)
+        query_params.extend(current_dependant.query_params)
+        header_params.extend(current_dependant.header_params)
+        cookie_params.extend(current_dependant.cookie_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    path_params = _get_flat_fields_from_params(path_params)
+    query_params = _get_flat_fields_from_params(query_params)
+    header_params = _get_flat_fields_from_params(header_params)
+    cookie_params = _get_flat_fields_from_params(cookie_params)
     return path_params + query_params + header_params + cookie_params
 
 
