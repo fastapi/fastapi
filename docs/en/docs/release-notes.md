@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ⚡️ Stop retaining flat dependency trees. PR [#16065](https://github.com/fastapi/fastapi/pull/16065) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👷 Add new memory benchmark. PR [#16064](https://github.com/fastapi/fastapi/pull/16064) by [@tiangolo](https://github.com/tiangolo).
