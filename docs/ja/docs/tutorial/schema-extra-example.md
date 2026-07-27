@@ -1,5 +1,6 @@
 # リクエストのExampleデータの宣言 { #declare-request-example-data }
 
+
 アプリが受け取れるデータの例を宣言できます。
 
 ここでは、それを行ういくつかの方法を紹介します。
@@ -24,7 +25,7 @@
 
 ///
 
-/// info | 情報
+/// note | 備考
 
 OpenAPI 3.1.0（FastAPI 0.99.0以降で使用）では、**JSON Schema**標準の一部である`examples`がサポートされました。
 
@@ -155,7 +156,7 @@ OpenAPIは、仕様の他の部分にも`example`と`examples`フィールドを
     * `File()`
     * `Form()`
 
-/// info | 情報
+/// note | 備考
 
 この古いOpenAPI固有の`examples`パラメータは、FastAPI `0.103.0`以降は`openapi_examples`になりました。
 
@@ -171,7 +172,7 @@ OpenAPIは、仕様の他の部分にも`example`と`examples`フィールドを
 
 JSON Schemaのこの新しい`examples`フィールドは、OpenAPIの他の場所（上で説明）にあるような追加メタデータを持つdictではなく、**単なる例の`list`**です。
 
-/// info | 情報
+/// note | 備考
 
 OpenAPI 3.1.0がこのJSON Schemaとの新しいよりシンプルな統合とともにリリースされた後も、しばらくの間、自動ドキュメントを提供するツールであるSwagger UIはOpenAPI 3.1.0をサポートしていませんでした（バージョン5.0.0からサポートされています🎉）。
 

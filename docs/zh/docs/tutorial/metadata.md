@@ -1,6 +1,6 @@
 # 元数据和文档 URL { #metadata-and-docs-urls }
 
-你可以在 FastAPI 应用程序中自定义多个元数据配置。
+你可以在 **FastAPI** 应用程序中自定义多个元数据配置。
 
 ## API 元数据 { #metadata-for-api }
 
@@ -11,7 +11,7 @@
 | `title` | `str` | API 的标题。 |
 | `summary` | `str` | API 的简短摘要。 <small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small> |
 | `description` | `str` | API 的简短描述。可以使用 Markdown。 |
-| `version` | `string` | API 的版本。这是您自己的应用程序的版本，而不是 OpenAPI 的版本。例如 `2.5.0`。 |
+| `version` | `str` | API 的版本。这是你自己的应用程序的版本，而不是 OpenAPI 的版本。例如 `2.5.0`。 |
 | `terms_of_service` | `str` | API 服务条款的 URL。如果提供，则必须是 URL。 |
 | `contact` | `dict` | 公开的 API 的联系信息。它可以包含多个字段。<details><summary><code>contact</code> 字段</summary><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>联系人/组织的识别名称。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>指向联系信息的 URL。必须采用 URL 格式。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>联系人/组织的电子邮件地址。必须采用电子邮件地址的格式。</td></tr></tbody></table></details> |
 | `license_info` | `dict` | 公开的 API 的许可证信息。它可以包含多个字段。<details><summary><code>license_info</code> 字段</summary><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必须</strong>（如果设置了 <code>license_info</code>）。用于 API 的许可证名称。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API 的 [SPDX](https://spdx.org/licenses/) 许可证表达式。字段 <code>identifier</code> 与字段 <code>url</code> 互斥。<small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>用于 API 的许可证的 URL。必须采用 URL 格式。</td></tr></tbody></table></details> |
@@ -46,11 +46,11 @@
 
 每个字典可以包含：
 
-- `name`（必填）：一个 `str`，与在你的*路径操作*和 `APIRouter` 的 `tags` 参数中使用的标签名相同。
-- `description`：一个 `str`，该标签的简短描述。可以使用 Markdown，并会显示在文档 UI 中。
-- `externalDocs`：一个 `dict`，描述外部文档，包含：
-    - `description`：一个 `str`，该外部文档的简短描述。
-    - `url`（必填）：一个 `str`，该外部文档的 URL。
+* `name`（**必填**）：一个 `str`，与在你的*路径操作*和 `APIRouter` 的 `tags` 参数中使用的标签名相同。
+* `description`：一个 `str`，该标签的简短描述。可以使用 Markdown，并会显示在文档 UI 中。
+* `externalDocs`：一个 `dict`，描述外部文档，包含：
+    * `description`：一个 `str`，该外部文档的简短描述。
+    * `url`（**必填**）：一个 `str`，该外部文档的 URL。
 
 ### 创建标签元数据 { #create-metadata-for-tags }
 
@@ -74,7 +74,7 @@
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 信息
+/// note | 注意
 
 阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags)。
 
@@ -108,12 +108,12 @@
 
 你可以配置两个文档用户界面，包括：
 
-- **Swagger UI**：服务于 `/docs`。
-    - 可以使用参数 `docs_url` 设置它的 URL。
-    - 可以通过设置 `docs_url=None` 禁用它。
-- **ReDoc**：服务于 `/redoc`。
-    - 可以使用参数 `redoc_url` 设置它的 URL。
-    - 可以通过设置 `redoc_url=None` 禁用它。
+* **Swagger UI**：服务于 `/docs`。
+    * 可以使用参数 `docs_url` 设置它的 URL。
+    * 可以通过设置 `docs_url=None` 禁用它。
+* **ReDoc**：服务于 `/redoc`。
+    * 可以使用参数 `redoc_url` 设置它的 URL。
+    * 可以通过设置 `redoc_url=None` 禁用它。
 
 例如，设置 Swagger UI 服务于 `/documentation` 并禁用 ReDoc：
 

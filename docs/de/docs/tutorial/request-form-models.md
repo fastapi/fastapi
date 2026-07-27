@@ -2,7 +2,7 @@
 
 Sie können **Pydantic-Modelle** verwenden, um **Formularfelder** in FastAPI zu deklarieren.
 
-/// info | Info
+/// note | Hinweis
 
 Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 

@@ -12,7 +12,7 @@ Sehen wir uns das alles anhand eines Beispiels an.
 
 Stellen Sie sich vor, Sie entwickeln eine Anwendung, mit der Sie Rechnungen erstellen können.
 
-Diese Rechnungen haben eine `id`, einen optionalen `title`, einen `customer` (Kunde) und ein `total` (Gesamtsumme).
+Diese Rechnungen haben eine `id`, einen `title` (optional), einen `customer` und ein `total`.
 
 Der Benutzer Ihrer API (ein externer Entwickler) erstellt mit einem POST-Request eine Rechnung in Ihrer API.
 
@@ -118,13 +118,13 @@ In diesem Fall ist es der `str`:
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-Wenn Ihr API-Benutzer (der externe Entwickler) also einen Request an *Ihre API* sendet, via:
+Wenn Ihr API-Benutzer (der externe Entwickler) also einen Request an *Ihre API* sendet, an:
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
 ```
 
-mit einem JSON-Körper:
+mit einem JSON-Body:
 
 ```JSON
 {
@@ -167,13 +167,13 @@ Beachten Sie, dass die verwendete Callback-URL die URL enthält, die als Query-P
 
 An diesem Punkt haben Sie die benötigte(n) *Callback-Pfadoperation(en)* (diejenige(n), die der *externe Entwickler* in der *externen API* implementieren sollte) im Callback-Router, den Sie oben erstellt haben.
 
-Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer API*, um das Attribut `.routes` (das ist eigentlich nur eine `list`e von Routen/*Pfadoperationen*) dieses Callback-Routers zu übergeben:
+Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer API*, um das Attribut `.routes` dieses Callback-Routers zu übergeben:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Tipp
 
-Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `callback=` übergeben, sondern das Attribut `.routes`, wie in `invoices_callback_router.routes`.
+Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `callbacks=` übergeben, sondern dessen `.routes`, wie in `invoices_callback_router.routes`. FastAPI wird diese Routen verwenden, um die Callback-OpenAPI-Dokumentation zu generieren.
 
 ///
 

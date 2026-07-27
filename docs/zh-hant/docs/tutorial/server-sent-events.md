@@ -4,7 +4,7 @@
 
 這與[串流 JSON Lines](stream-json-lines.md)類似，但使用瀏覽器原生支援、透過 [`EventSource` API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) 的 `text/event-stream` 格式。
 
-/// info
+/// note
 
 在 FastAPI 0.135.0 新增。
 

@@ -29,7 +29,7 @@ Pour ce faire, importez d’abord :
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info
+/// note | Remarque
 
 FastAPI a ajouté la prise en charge de `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
@@ -81,7 +81,7 @@ FastAPI va maintenant :
 
 - **Valider** les données en s’assurant que la longueur maximale est de 50 caractères
 - Afficher une **erreur claire** au client quand les données ne sont pas valides
-- **Documenter** le paramètre dans la *chemin d'accès* du schéma OpenAPI (il apparaîtra donc dans l’**interface de documentation automatique**)
+- **Documenter** le paramètre dans le *chemin d'accès* du schéma OpenAPI (il apparaîtra donc dans l’**interface de documentation automatique**)
 
 ## Alternative (ancienne) : `Query` comme valeur par défaut { #alternative-old-query-as-the-default-value }
 
@@ -89,7 +89,7 @@ Les versions précédentes de FastAPI (avant <dfn title="avant 2023-03">0.95.0</
 
 /// tip | Astuce
 
-Pour du nouveau code et dès que possible, utilisez `Annotated` comme expliqué ci-dessus. Il y a de multiples avantages (expliqués ci-dessous) et aucun inconvénient. 🍰
+Pour du nouveau code et chaque fois que possible, utilisez `Annotated` comme expliqué ci-dessus. Il y a de multiples avantages (expliqués ci-dessous) et aucun inconvénient. 🍰
 
 ///
 
@@ -119,7 +119,7 @@ Ensuite, nous pouvons passer plus de paramètres à `Query`. Dans ce cas, le par
 q: str | None = Query(default=None, max_length=50)
 ```
 
-Cela validera les données, affichera une erreur claire lorsque les données ne sont pas valides et documentera le paramètre dans la *chemin d'accès* du schéma OpenAPI.
+Cela validera les données, affichera une erreur claire lorsque les données ne sont pas valides et documentera le paramètre dans le *chemin d'accès* du schéma OpenAPI.
 
 ### `Query` comme valeur par défaut ou dans `Annotated` { #query-as-the-default-value-or-in-annotated }
 
@@ -241,7 +241,7 @@ Ensuite, avec une URL comme :
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python à l’intérieur de votre fonction de *chemin d'accès*, dans le *paramètre de fonction* `q`.
+vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python à l’intérieur de votre *fonction de chemin d'accès*, dans le *paramètre de fonction* `q`.
 
 Donc, la réponse pour cette URL serait :
 
@@ -381,7 +381,7 @@ Par exemple, ce validateur personnalisé vérifie que l’ID d’item commence p
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info
+/// note | Remarque
 
 C’est disponible avec Pydantic version 2 ou supérieure. 😎
 

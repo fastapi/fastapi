@@ -22,7 +22,7 @@ With **FastAPI**, using OpenAPI, you can define the names of these webhooks, the
 
 This can make it a lot easier for your users to **implement their APIs** to receive your **webhook** requests, they might even be able to autogenerate some of their own API code.
 
-/// info
+/// note
 
 Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0` and above.
 
@@ -36,7 +36,7 @@ When you create a **FastAPI** application, there is a `webhooks` attribute that 
 
 The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.
 
-/// info
+/// note
 
 The `app.webhooks` object is actually just an `APIRouter`, the same type you would use when structuring your app with multiple files.
 

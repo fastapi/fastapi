@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -54,18 +59,27 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ### 키스톤 스폰서 { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### 골드 및 실버 스폰서 { #gold-and-silver-sponsors }
+### 골드 스폰서 { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### 실버 스폰서 { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
@@ -73,55 +87,81 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 의견들 { #opinions }
 
-"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부를 바꿀 계획입니다. 그중 일부는 핵심 **Windows**와 몇몇의 **Office** 제품들이 통합되고 있습니다._"
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>마이크로소프트</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">"저는 요즘 <strong>FastAPI</strong>를 많이 사용하고 있습니다. 우리 팀의 모든 <strong>마이크로소프트 ML 서비스</strong>에 사용할 계획입니다. 그중 일부는 핵심 <strong>Windows</strong> 제품과 일부 <strong>Office</strong> 제품에 통합되고 있습니다."</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"우리는 <strong>FastAPI</strong> 라이브러리를 채택해 <strong>예측</strong>을 얻기 위해 쿼리할 수 있는 <strong>REST</strong> 서버를 생성했습니다." <em>[Ludwig을 위해]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong>는 우리의 <strong>위기 관리</strong> 오케스트레이션 프레임워크인 <strong>Dispatch</strong>의 오픈 소스 공개를 발표하게 되어 기쁩니다!" <em>[FastAPI로 빌드]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"프로덕션 Python API를 만들고자 한다면, 저는 <strong>FastAPI</strong>를 강력히 추천합니다. <strong>아름답게 설계</strong>되었고, <strong>사용이 간단</strong>하며, <strong>확장성이 매우 뛰어납니다</strong> — 우리의 API 우선 개발 전략에서 <strong>핵심 구성 요소</strong>가 되었습니다."</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
+
+"_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부에 사용할 계획입니다. 그중 일부는 핵심 **Windows** 제품과 일부 **Office** 제품에 통합되고 있습니다._"
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
 ---
 
-"_**FastAPI** 라이브러리를 채택하여 **예측**을 얻기 위해 쿼리를 실행 할 수 있는 **REST** 서버를 생성했습니다. [Ludwig을 위해]_"
+"_**FastAPI** 라이브러리를 채택하여 **예측**을 얻기 위해 쿼리를 실행할 수 있는 **REST** 서버를 생성했습니다. [Ludwig을 위해]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin 그리고 Sai Sumanth Miryala - <strong>우버</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
-
----
-
-"_**Netflix**는 우리의 오픈 소스 배포판인 **위기 관리** 오케스트레이션 프레임워크를 발표할 수 있어 기쁩니다: 바로 **Dispatch**입니다! [**FastAPI**로 빌드]_"
-
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>넷플릭스</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
-"_**FastAPI**가 너무 좋아서 구름 위를 걷는듯 합니다. 정말 즐겁습니다!_"
+"_**Netflix**는 우리의 **위기 관리** 오케스트레이션 프레임워크인 **Dispatch**의 오픈 소스 공개를 발표하게 되어 기쁩니다! [**FastAPI**로 빌드]_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_솔직히, 당신이 만든 것은 매우 견고하고 세련되어 보입니다. 여러 면에서 **Hug**가 이렇게 되었으면 합니다 - 그걸 만든 누군가를 보는 것은 많은 영감을 줍니다._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>[Hug](https://github.com/hugapi/hug) 제작자</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
 
 ---
 
-"_REST API를 만들기 위해 **현대적인 프레임워크**를 찾고 있다면 **FastAPI**를 확인해 보십시오. [...] 빠르고, 쓰기 쉽고, 배우기도 쉽습니다 [...]_"
-
-"_우리 **API**를 **FastAPI**로 바꿨습니다  [...] 아마 여러분도 좋아하실 것입니다 [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>[Explosion AI](https://explosion.ai) 설립자 - [spaCy](https://spacy.io) 제작자</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
-"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나**고, 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었으며 Virtual TAC Engineer 같은 많은 자동화와 서비스를 이끌고 있습니다._"
+"_프로덕션 Python API를 만들고자 한다면, 저는 **FastAPI**를 강력히 추천합니다. **아름답게 설계**되었고, **사용이 간단**하며, **확장성이 매우 뛰어나** 우리의 API 우선 개발 전략에서 **핵심 구성 요소**가 되었고, 우리의 Virtual TAC Engineer와 같은 여러 자동화와 서비스들을 추진하고 있습니다._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
+## FastAPI Conf { #fastapi-conf }
+
+[**FastAPI Conf '26**](https://fastapiconf.com)은 **2026년 10월 28일**, **네덜란드 암스테르담**에서 열립니다. FastAPI에 관한 모든 것, 바로 출처에서. 🎤
+
+<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
+
 ## FastAPI 미니 다큐멘터리 { #fastapi-mini-documentary }
 
 2025년 말에 공개된 [FastAPI 미니 다큐멘터리](https://www.youtube.com/watch?v=mpR8ngthqiE)가 있습니다. 온라인에서 시청할 수 있습니다:
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, CLI를 위한 FastAPI { #typer-the-fastapi-of-clis }
 
@@ -152,7 +192,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Note**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
+**참고**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
 
 ## 예제 { #example }
 
@@ -197,9 +237,9 @@ async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**참고**:
 
-잘 모르겠다면, ["급하세요?"](https://fastapi.tiangolo.com/ko/async/#in-a-hurry) 섹션을 확인해 보십시오.
+잘 모르겠다면, 문서의 [`async`와 `await`](https://fastapi.tiangolo.com/ko/async/#in-a-hurry)에 관한 _"급하세요?"_ 섹션을 확인해 보십시오.
 
 </details>
 
@@ -452,9 +492,7 @@ item: Item
 
 ### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직이라면 대기자 명단에 등록해 보세요. 🚀
-
-이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
+선택적으로 FastAPI 앱을 한 번의 명령어로 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -469,6 +507,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하여 클라우드에 배포합니다. 로그인되어 있지 않다면, 인증을 완료하기 위해 브라우저가 열립니다.
 
 이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
 

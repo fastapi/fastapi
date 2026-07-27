@@ -201,11 +201,49 @@ function openLinksInNewTab() {
     });
 }
 
+function setupOpinionsTabs() {
+    const root = document.querySelector('.fastapi-opinions');
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+    if (!tabs.length) return;
+
+    function activate(tab, focus) {
+        tabs.forEach(t => {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', selected ? 'true' : 'false');
+            t.setAttribute('tabindex', selected ? '0' : '-1');
+        });
+        const targetId = tab.getAttribute('aria-controls');
+        panels.forEach(p => {
+            if (p.id === targetId) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+        if (focus) tab.focus();
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => activate(tab, false));
+        tab.addEventListener('keydown', (e) => {
+            let next = null;
+            if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+            else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === 'Home') next = tabs[0];
+            else if (e.key === 'End') next = tabs[tabs.length - 1];
+            if (next) {
+                e.preventDefault();
+                activate(next, true);
+            }
+        });
+    });
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
     handleSponsorImages();
     openLinksInNewTab();
+    setupOpinionsTabs();
 }
 document$.subscribe(() => {
     main()

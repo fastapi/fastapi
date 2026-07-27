@@ -111,7 +111,7 @@ Diğer FastAPI endpoint'leri/*path operations* ile aynı şekilde çalışırlar
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note
 
 Bu bir WebSocket olduğu için `HTTPException` raise etmek pek anlamlı değildir; bunun yerine `WebSocketException` raise ederiz.
 

@@ -1,16 +1,16 @@
 # Tutorial - Guia de Usuário { #tutorial-user-guide }
 
-Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
+Este tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
 
 Cada seção constrói, gradualmente, sobre as anteriores, mas sua estrutura são tópicos separados, para que você possa ir a qualquer um específico e resolver suas necessidades específicas de API.
 
 Ele também foi construído para servir como uma referência futura, então você pode voltar e ver exatamente o que você precisa.
 
-## Rode o código { #run-the-code }
+## Execute o código { #run-the-code }
 
 Todos os blocos de código podem ser copiados e utilizados diretamente (eles são, na verdade, arquivos Python testados).
 
-Para rodar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev`:
+Para executar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev`:
 
 <div class="termy">
 
@@ -52,9 +52,9 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 </div>
 
-É **ALTAMENTE recomendado** que você escreva ou copie o código, edite-o e rode-o localmente.
+É **ALTAMENTE recomendado** que você escreva ou copie o código, edite-o e execute-o localmente.
 
-Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ver quão pouco código você tem que escrever, todas as conferências de tipo, preenchimento automático, etc.
+Usá-lo em seu editor é o que realmente mostra os benefícios do FastAPI, vendo quão pouco código você tem que escrever, todas as verificações de tipo, preenchimento automático, etc.
 
 ---
 
@@ -94,7 +94,7 @@ O FastAPI tem uma [extensão oficial para o VS Code](https://marketplace.visuals
 
 Há também um **Guia Avançado de Usuário** que você pode ler após esse **Tutorial - Guia de Usuário**.
 
-O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e te ensina algumas funcionalidades extras.
+O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e ensina algumas funcionalidades extras.
 
 Mas você deveria ler primeiro o **Tutorial - Guia de Usuário** (que você está lendo agora).
 

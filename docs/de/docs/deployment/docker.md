@@ -36,7 +36,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 Container (hauptsächlich Linux-Container) sind eine sehr **leichtgewichtige** Möglichkeit, Anwendungen einschließlich aller ihrer Abhängigkeiten und erforderlichen Dateien zu verpacken und sie gleichzeitig von anderen Containern (anderen Anwendungen oder Komponenten) im selben System isoliert zu halten.
 
-Linux-Container werden mit demselben Linux-Kernel des Hosts (Maschine, virtuellen Maschine, Cloud-Servers, usw.) ausgeführt. Das bedeutet einfach, dass sie sehr leichtgewichtig sind (im Vergleich zu vollständigen virtuellen Maschinen, die ein gesamtes Betriebssystem emulieren).
+Linux-Container werden mit demselben Linux-Kernel des Hosts (Maschine, virtueller Maschine, Cloud-Server usw.) ausgeführt. Das bedeutet einfach, dass sie sehr leichtgewichtig sind (im Vergleich zu vollständigen virtuellen Maschinen, die ein gesamtes Betriebssystem emulieren).
 
 Auf diese Weise verbrauchen Container **wenig Ressourcen**, eine Menge vergleichbar mit der direkten Ausführung der Prozesse (eine virtuelle Maschine würde viel mehr verbrauchen).
 
@@ -46,7 +46,7 @@ Container verfügen außerdem über ihre eigenen **isoliert** laufenden Prozesse
 
 Ein **Container** wird von einem **Containerimage** ausgeführt.
 
-Ein Containerimage ist eine **statische** Version aller Dateien, Umgebungsvariablen und des Standardbefehls/-programms, welche in einem Container vorhanden sein sollten. **Statisch** bedeutet hier, dass das Container-**Image** nicht läuft, nicht ausgeführt wird, sondern nur die gepackten Dateien und Metadaten enthält.
+Ein Containerimage ist eine **statische** Version aller Dateien, Umgebungsvariablen und des Standardbefehls/-programms, die in einem Container vorhanden sein sollten. **Statisch** bedeutet hier, dass das Container-**Image** nicht läuft, nicht ausgeführt wird, sondern nur die gepackten Dateien und Metadaten enthält.
 
 Im Gegensatz zu einem „**Containerimage**“, bei dem es sich um den gespeicherten statischen Inhalt handelt, bezieht sich ein „**Container**“ normalerweise auf die laufende Instanz, das Ding, das **ausgeführt** wird.
 
@@ -89,7 +89,7 @@ Ein Container läuft, solange der **Hauptprozess** (Befehl oder Programm) läuft
 
 Ein Container hat normalerweise einen **einzelnen Prozess**, aber es ist auch möglich, Unterprozesse vom Hauptprozess aus zu starten, und auf diese Weise haben Sie **mehrere Prozesse** im selben Container.
 
-Es ist jedoch nicht möglich, einen laufenden Container, ohne **mindestens einen laufenden Prozess** zu haben. Wenn der Hauptprozess stoppt, stoppt der Container.
+Es ist jedoch nicht möglich, einen laufenden Container ohne **mindestens einen laufenden Prozess** zu haben. Wenn der Hauptprozess stoppt, stoppt der Container.
 
 ## Ein Docker-Image für FastAPI erstellen { #build-a-docker-image-for-fastapi }
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
 
@@ -184,19 +184,19 @@ COPY ./app /code/app
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
-1. Beginne mit dem offiziellen Python-Basisimage.
+1. Beginnen Sie mit dem offiziellen Python-Basisimage.
 
-2. Setze das aktuelle Arbeitsverzeichnis auf `/code`.
+2. Setzen Sie das aktuelle Arbeitsverzeichnis auf `/code`.
 
     Hier platzieren wir die Datei `requirements.txt` und das Verzeichnis `app`.
 
-3. Kopiere die Datei mit den Paketanforderungen in das Verzeichnis `/code`.
+3. Kopieren Sie die Datei mit den Paketanforderungen in das Verzeichnis `/code`.
 
     Kopieren Sie zuerst **nur** die Datei mit den Anforderungen, nicht den Rest des Codes.
 
     Da sich diese Datei **nicht oft ändert**, erkennt Docker das und verwendet den **Cache** für diesen Schritt, wodurch der Cache auch für den nächsten Schritt aktiviert wird.
 
-4. Installiere die Paketabhängigkeiten aus der Anforderungsdatei.
+4. Installieren Sie die Paketabhängigkeiten aus der Anforderungsdatei.
 
     Die Option `--no-cache-dir` weist `pip` an, die heruntergeladenen Pakete nicht lokal zu speichern, da dies nur benötigt wird, sollte `pip` erneut ausgeführt werden, um dieselben Pakete zu installieren, aber das ist beim Arbeiten mit Containern nicht der Fall.
 
@@ -212,13 +212,13 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
     Durch die Verwendung des Caches in diesem Schritt **sparen** Sie viel **Zeit**, wenn Sie das Image während der Entwicklung immer wieder erstellen, anstatt **jedes Mal** alle Abhängigkeiten **herunterzuladen und zu installieren**.
 
-5. Kopiere das Verzeichnis `./app` in das Verzeichnis `/code`.
+5. Kopieren Sie das Verzeichnis `./app` in das Verzeichnis `/code`.
 
     Da hier der gesamte Code enthalten ist, der sich **am häufigsten ändert**, wird der Docker-**Cache** nicht ohne weiteres für diesen oder andere **folgende Schritte** verwendet.
 
     Daher ist es wichtig, dies **nahe dem Ende** des `Dockerfile`s zu platzieren, um die Erstellungszeiten des Containerimages zu optimieren.
 
-6. Lege den **Befehl** fest, um `fastapi run` zu nutzen, welches Uvicorn darunter verwendet.
+6. Legen Sie den **Befehl** fest, um `fastapi run` zu nutzen, welches Uvicorn darunter verwendet.
 
     `CMD` nimmt eine Liste von Zeichenfolgen entgegen. Jede dieser Zeichenfolgen entspricht dem, was Sie durch Leerzeichen getrennt in die Befehlszeile eingeben würden.
 
@@ -334,7 +334,7 @@ $ docker build -t myimage .
 
 Beachten Sie das `.` am Ende, es entspricht `./` und teilt Docker mit, welches Verzeichnis zum Erstellen des Containerimages verwendet werden soll.
 
-In diesem Fall handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
+In diesem Case handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
 
 ///
 
@@ -405,7 +405,7 @@ COPY ./main.py /code/
 CMD ["fastapi", "run", "main.py", "--port", "80"]
 ```
 
-1. Kopiere die Datei `main.py` direkt in das Verzeichnis `/code` (ohne ein Verzeichnis `./app`).
+1. Kopieren Sie die Datei `main.py` direkt in das Verzeichnis `/code` (ohne ein Verzeichnis `./app`).
 
 2. Verwenden Sie `fastapi run`, um Ihre Anwendung in der einzelnen Datei `main.py` bereitzustellen.
 
@@ -440,7 +440,7 @@ Traefik verfügt über Integrationen mit Docker, Kubernetes und anderen, sodass 
 
 ///
 
-Alternativ könnte HTTPS von einem Cloud-Anbieter als einer seiner Dienste gehandhabt werden (während die Anwendung weiterhin in einem Container ausgeführt wird).
+Alternativ könnte HTTPS von einem Cloudanbieter als einer seiner Dienste gehandhabt werden (während die Anwendung weiterhin in einem Container ausgeführt wird).
 
 ## Beim Hochfahren ausführen und Neustarts { #running-on-startup-and-restarts }
 
@@ -488,7 +488,7 @@ Und normalerweise wäre dieser **Load Balancer** in der Lage, Requests zu verarb
 
 In einem solchen Szenario möchten Sie wahrscheinlich **einen einzelnen (Uvicorn-)Prozess pro Container** haben, da Sie die Replikation bereits auf Cluster-Ebene durchführen würden.
 
-In diesem Fall möchten Sie also **nicht** mehrere Worker im Container haben, z. B. mit der `--workers` Befehlszeilenoption. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
+In diesem Fall möchten Sie also **nicht** mehrere Worker im Container haben, z. B. mit der `--workers`-Befehlszeilenoption. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
 
 Ein weiterer Prozessmanager im Container (wie es bei mehreren Workern der Fall wäre) würde nur **unnötige Komplexität** hinzufügen, um welche Sie sich höchstwahrscheinlich bereits mit Ihrem Clustersystem kümmern.
 
@@ -496,7 +496,7 @@ Ein weiterer Prozessmanager im Container (wie es bei mehreren Workern der Fall w
 
 Natürlich gibt es **Sonderfälle**, in denen Sie **einen Container** mit mehreren **Uvicorn-Workerprozessen** haben möchten.
 
-In diesen Fällen können Sie die `--workers` Befehlszeilenoption verwenden, um die Anzahl der zu startenden Worker festzulegen:
+In diesen Fällen können Sie die `--workers`-Befehlszeilenoption verwenden, um die Anzahl der zu startenden Worker festzulegen:
 
 ```{ .dockerfile .annotate }
 FROM python:3.14
@@ -513,7 +513,7 @@ COPY ./app /code/app
 CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 ```
 
-1. Hier verwenden wir die `--workers` Befehlszeilenoption, um die Anzahl der Worker auf 4 festzulegen.
+1. Hier verwenden wir die `--workers`-Befehlszeilenoption, um die Anzahl der Worker auf 4 festzulegen.
 
 Hier sind einige Beispiele, wann das sinnvoll sein könnte:
 
@@ -529,7 +529,7 @@ Dann möchten Sie vielleicht **einen einzelnen Container** mit einem **Prozessma
 
 ---
 
-Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, der man blind folgen muss. Sie können diese Ideen verwenden, um **Ihren eigenen Anwendungsfall zu evaluieren**, zu entscheiden, welcher Ansatz für Ihr System am besten geeignet ist und herauszufinden, wie Sie folgende Konzepte verwalten:
+Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, der man blind folgen muss. Sie können diese Ideen verwenden, um **I Ihren eigenen Anwendungsfall zu evaluieren**, zu entscheiden, welcher Ansatz für Ihr System am besten geeignet ist und herauszufinden, wie Sie folgende Konzepte verwalten:
 
 * Sicherheit – HTTPS
 * Beim Hochfahren ausführen
@@ -556,7 +556,7 @@ Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächl
 
 Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein [Init-Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 
@@ -576,7 +576,7 @@ Sie sollten wahrscheinlich **nicht** dieses Basis-Docker-Image (oder ein anderes
 
 Wenn Sie **Kubernetes** (oder andere) verwenden und bereits **Replikation** auf Cluster-Ebene mit mehreren **Containern** eingerichtet haben. In diesen Fällen ist es besser, **ein Image von Grund auf neu zu erstellen**, wie oben beschrieben: [Ein Docker-Image für FastAPI erstellen](#build-a-docker-image-for-fastapi).
 
-Und wenn Sie mehrere Worker benötigen, können Sie einfach die `--workers` Befehlszeilenoption verwenden.
+Und wenn Sie mehrere Worker benötigen, können Sie einfach die `--workers`-Befehlszeilenoption verwenden.
 
 /// note | Technische Details
 

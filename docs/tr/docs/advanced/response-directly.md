@@ -18,7 +18,7 @@ Ayrıca doğrudan bir `JSONResponse` oluşturup döndürebilirsiniz.
 
 Aslında herhangi bir `Response` veya onun herhangi bir alt sınıfını döndürebilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 `JSONResponse` zaten `Response`'un bir alt sınıfıdır.
 

@@ -1,5 +1,6 @@
 # Variables de Entorno { #environment-variables }
 
+
 /// tip | Consejo
 
 Si ya sabes qué son las "variables de entorno" y cómo usarlas, siéntete libre de saltarte esto.

@@ -264,3 +264,189 @@ Inspired by Termynal's CSS tricks with modifications
   border-bottom: .05rem dotted var(--md-default-fg-color--light);
   cursor: help;
 }
+
+/* Opinions: interactive logo tabs */
+.fastapi-opinions {
+  margin: 1.5rem 0 2rem;
+}
+.fastapi-opinions__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+.fastapi-opinions__tab {
+  position: relative;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0.625rem 0.5rem;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font: inherit;
+  min-height: 40px;
+  min-width: 0;
+}
+.fastapi-opinions__tab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -1px;
+  height: 2px;
+  background-color: var(--md-primary-fg-color);
+  opacity: 0;
+  transition: left 0.2s ease, right 0.2s ease, opacity 0.2s ease;
+}
+.fastapi-opinions__tab[aria-selected="true"]::after {
+  left: 12%;
+  right: 12%;
+  opacity: 1;
+}
+.fastapi-opinions__tab:focus-visible {
+  outline: 2px solid var(--md-primary-fg-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.fastapi-opinions__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  max-width: 100%;
+  filter: grayscale(1);
+  opacity: 0.5;
+  transition: filter 0.2s, opacity 0.2s;
+}
+.fastapi-opinions__mark img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+.fastapi-opinions__tab:hover .fastapi-opinions__mark {
+  filter: grayscale(0.3);
+  opacity: 0.85;
+}
+.fastapi-opinions__tab[aria-selected="true"] .fastapi-opinions__mark {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* Dark mode: brighten dark wordmarks so they read on slate */
+[data-md-color-scheme="slate"] .fastapi-opinions__mark {
+  filter: grayscale(1) invert(0.85);
+}
+[data-md-color-scheme="slate"] .fastapi-opinions__tab:hover .fastapi-opinions__mark {
+  filter: grayscale(0.3) invert(0.4);
+}
+[data-md-color-scheme="slate"] .fastapi-opinions__tab[aria-selected="true"] .fastapi-opinions__mark {
+  filter: none;
+}
+
+.fastapi-opinions__panel {
+  position: relative;
+  padding: 0.5rem 1rem 0.5rem 3rem;
+}
+.fastapi-opinions__panel::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.75rem;
+  left: 0.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--md-primary-fg-color);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.md-typeset blockquote.fastapi-opinions__quote {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--md-default-fg-color);
+  border-left: 0;
+  padding-left: 0;
+}
+.fastapi-opinions__quote strong { font-style: normal; }
+.fastapi-opinions__attr {
+  margin-top: 0.875rem;
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+.fastapi-opinions__attr strong { color: var(--md-default-fg-color); }
+.fastapi-opinions__attr a {
+  color: var(--md-primary-fg-color);
+  text-decoration: none;
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+.fastapi-opinions__attr a:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fastapi-opinions__tab::after { transition: none; }
+}
+
+@media (max-width: 600px) {
+  .fastapi-opinions__tabs { gap: 0.125rem; }
+  .fastapi-opinions__mark { height: 18px; }
+  .fastapi-opinions__panel { padding-left: 2.25rem; }
+  .fastapi-opinions__panel::before { font-size: 3rem; }
+}
+
+.fastapi-sponsors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin: 1rem 0 2rem;
+}
+
+.fastapi-sponsors__card {
+  transition: transform 0.15s ease;
+}
+
+.fastapi-sponsors__card:hover {
+  transform: translateY(-1px);
+}
+
+.fastapi-sponsors__card--keystone {
+  width: 100%;
+  max-width: 560px;
+}
+
+.fastapi-sponsors__banner {
+  display: block;
+  border-radius: 12px;
+}
+
+.fastapi-sponsors__card--keystone .fastapi-sponsors__banner { width: 100%; }
+.fastapi-sponsors__card--gold     .fastapi-sponsors__banner { height: 80px; }
+.fastapi-sponsors__card--silver   .fastapi-sponsors__banner { height: 60px; }
+
+@media (max-width: 600px) {
+  .fastapi-sponsors__card--gold   .fastapi-sponsors__banner { height: 64px; }
+  .fastapi-sponsors__card--silver .fastapi-sponsors__banner { height: 50px; }
+}
+
+.fastapi-feature-banner {
+  display: block;
+  max-width: 680px;
+  margin: 1rem auto 1.5rem;
+}
+.fastapi-feature-banner img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* Hidden in MkDocs; rendered on GitHub (which doesn't load this stylesheet) */
+.only-github { display: none; }

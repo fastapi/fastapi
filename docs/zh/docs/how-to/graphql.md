@@ -2,7 +2,7 @@
 
 由于 **FastAPI** 基于 **ASGI** 标准，因此很容易集成任何也兼容 ASGI 的 **GraphQL** 库。
 
-你可以在同一个应用中将常规的 FastAPI 路径操作与 GraphQL 结合使用。
+你可以在同一个应用中将常规的 FastAPI *路径操作* 与 GraphQL 结合使用。
 
 /// tip | 提示
 

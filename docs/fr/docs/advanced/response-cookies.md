@@ -1,5 +1,6 @@
 # Cookies de réponse { #response-cookies }
 
+
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
 Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès*.

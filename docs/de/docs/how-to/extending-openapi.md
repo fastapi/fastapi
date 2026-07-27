@@ -25,9 +25,17 @@ Diese Funktion `get_openapi()` erhält als Parameter:
 * `openapi_version`: Die Version der verwendeten OpenAPI-Spezifikation. Standardmäßig die neueste Version: `3.1.0`.
 * `summary`: Eine kurze Zusammenfassung der API.
 * `description`: Die Beschreibung Ihrer API. Dies kann Markdown enthalten und wird in der Dokumentation angezeigt.
-* `routes`: Eine Liste von Routen, dies sind alle registrierten *Pfadoperationen*. Sie stammen von `app.routes`.
+* `routes`: Die Routen der Anwendung, entnommen aus `app.routes`. FastAPI nutzt sie, um die registrierten *Pfadoperationen* zu sammeln, einschließlich derer aus eingebundenen Routern.
 
-/// info | Info
+/// tip | Technische Details
+
+`app.routes` ist eine Routenstruktur auf niedrigerer Ebene. Sie kann Routenkandidaten enthalten, die FastAPI intern für eingebundene Router verwendet, nicht nur endgültige `APIRoute`-Objekte.
+
+Sie können dennoch `app.routes` an `get_openapi()` übergeben. FastAPI durchläuft diesen Routenbaum, um die tatsächlich wirksamen Pfadoperationen zu sammeln.
+
+///
+
+/// note | Hinweis
 
 Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von FastAPI 0.99.0 und höher unterstützt.
 

@@ -2,7 +2,7 @@
 
 当你在 Python 工程中工作时，你可能会有必要用到一个**虚拟环境**（或类似的机制）来隔离你为每个工程安装的包。
 
-/// info | 信息
+/// note | 注意
 
 如果你已经了解虚拟环境，知道如何创建和使用它们，你可以考虑跳过这一部分。🤓
 
@@ -18,7 +18,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 这个页面将教你如何使用**虚拟环境**以及了解它们的工作原理。
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-但是如果你停用虚拟环境并激活 `prisoner-of-askaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-askaban` 中的虚拟环境中的 Python。
+但是如果你停用虚拟环境并激活 `prisoner-of-azkaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-azkaban` 中的虚拟环境中的 Python。
 
 <div class="termy">
 

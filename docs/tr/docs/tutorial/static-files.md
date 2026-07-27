@@ -2,6 +2,14 @@
 
 `StaticFiles` kullanarak bir dizindeki statik dosyaları otomatik olarak sunabilirsiniz.
 
+/// tip | İpucu
+
+Bir frontend host etmeniz gerekiyorsa, bunun yerine `app.frontend()` kullanın; bununla ilgili bilgileri [Frontend](frontend.md) bölümünde okuyabilirsiniz.
+
+`app.frontend()`, altında `StaticFiles` kullanır ve frontend'ler için client-side routing'i handle etmek gibi ek avantajlar sağlar.
+
+///
+
 ## `StaticFiles` Kullanımı { #use-staticfiles }
 
 * `StaticFiles`'ı import edin.

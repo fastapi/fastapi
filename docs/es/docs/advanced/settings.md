@@ -20,7 +20,7 @@ Eso significa que cualquier valor leído en Python desde una variable de entorno
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
+Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con [Pydantic: Gestión de Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Instalar `pydantic-settings` { #install-pydantic-settings }
 
@@ -120,7 +120,7 @@ También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más
 
 En algunas ocasiones podría ser útil proporcionar las configuraciones desde una dependencia, en lugar de tener un objeto global con `settings` que se use en todas partes.
 
-Esto podría ser especialmente útil durante las pruebas, ya que es muy fácil sobrescribir una dependencia con tus propias configuraciones personalizadas.
+Esto podría ser especialmente útil al escribir pruebas, ya que es muy fácil sobrescribir una dependencia con tus propias configuraciones personalizadas.
 
 ### El archivo de configuración { #the-config-file }
 
@@ -148,9 +148,9 @@ Y luego podemos requerirlo desde la *path operation function* como una dependenc
 
 {* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
-### Configuraciones y pruebas { #settings-and-testing }
+### Configuraciones y escribir pruebas { #settings-and-testing }
 
-Luego sería muy fácil proporcionar un objeto de configuraciones diferente durante las pruebas al crear una sobrescritura de dependencia para `get_settings`:
+Luego sería muy fácil proporcionar un objeto de configuraciones diferente al escribir pruebas creando una sobrescritura de dependencia para `get_settings`:
 
 {* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
@@ -160,7 +160,7 @@ Luego podemos probar que se está usando.
 
 ## Leer un archivo `.env` { #reading-a-env-file }
 
-Si tienes muchas configuraciones que posiblemente cambien mucho, tal vez en diferentes entornos, podría ser útil ponerlos en un archivo y luego leerlos desde allí como si fueran variables de entorno.
+Si tienes muchas configuraciones que posiblemente cambien mucho, tal vez en diferentes entornos, podría ser útil ponerlas en un archivo y luego leerlas desde allí como si fueran variables de entorno.
 
 Esta práctica es lo suficientemente común que tiene un nombre, estas variables de entorno generalmente se colocan en un archivo `.env`, y el archivo se llama un "dotenv".
 
@@ -172,7 +172,7 @@ Pero un archivo dotenv realmente no tiene que tener ese nombre exacto.
 
 ///
 
-Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en [Pydantic Settings: soporte para Dotenv (.env)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Consejo
 
@@ -197,7 +197,7 @@ Y luego actualizar tu `config.py` con:
 
 /// tip | Consejo
 
-El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
+El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en [Pydantic: Conceptos: Configuración](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -289,14 +289,14 @@ participant execute as Ejecutar función
 
 En el caso de nuestra dependencia `get_settings()`, la función ni siquiera toma argumentos, por lo que siempre devuelve el mismo valor.
 
-De esa manera, se comporta casi como si fuera solo una variable global. Pero como usa una función de dependencia, entonces podemos sobrescribirla fácilmente para las pruebas.
+De esa manera, se comporta casi como si fuera solo una variable global. Pero como usa una función de dependencia, entonces podemos sobrescribirla fácilmente al escribir pruebas.
 
-`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en las [docs de Python para `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
+`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en la [documentación de Python para `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Resumen { #recap }
 
 Puedes usar Pydantic Settings para manejar las configuraciones o ajustes de tu aplicación, con todo el poder de los modelos de Pydantic.
 
-* Al usar una dependencia, puedes simplificar las pruebas.
+* Al usar una dependencia, puedes simplificar la escritura de pruebas.
 * Puedes usar archivos `.env` con él.
-* Usar `@lru_cache` te permite evitar leer el archivo dotenv una y otra vez para cada request, mientras te permite sobrescribirlo durante las pruebas.
+* Usar `@lru_cache` te permite evitar leer el archivo dotenv una y otra vez para cada request, mientras te permite sobrescribirlo al escribir pruebas.

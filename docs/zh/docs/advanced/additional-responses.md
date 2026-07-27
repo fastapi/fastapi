@@ -34,7 +34,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 `model` 键不是 OpenAPI 的一部分。
 
@@ -183,7 +183,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 除非你在 `responses` 参数中明确指定不同的媒体类型，否则 FastAPI 会假设响应与主响应类具有相同的媒体类型（默认是 `application/json`）。
 

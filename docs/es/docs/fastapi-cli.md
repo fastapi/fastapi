@@ -95,7 +95,7 @@ lo cual sería equivalente a:
 from backend.main import app
 ```
 
-### `fastapi dev` con path { #fastapi-dev-with-path }
+### `fastapi dev` con path o con la opción CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará el objeto app de FastAPI a usar:
 
@@ -103,7 +103,13 @@ También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará
 $ fastapi dev main.py
 ```
 
-Pero tendrías que recordar pasar el path correcto cada vez que llames al comando `fastapi`.
+O también puedes pasar la opción `--entrypoint` al comando `fastapi dev`:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Pero tendrías que recordar pasar el path\entrypoint correcto cada vez que llames al comando `fastapi`.
 
 Adicionalmente, otras herramientas podrían no ser capaces de encontrarla, por ejemplo la [Extensión de VS Code](editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
 
@@ -115,7 +121,7 @@ Por defecto, **auto-reload** está habilitado, recargando automáticamente el se
 
 ## `fastapi run` { #fastapi-run }
 
-Ejecutar `fastapi run` inicia FastAPI en modo de producción por defecto.
+Ejecutar `fastapi run` inicia FastAPI en modo de producción.
 
 Por defecto, **auto-reload** está deshabilitado. También escucha en la dirección IP `0.0.0.0`, lo que significa todas las direcciones IP disponibles, de esta manera será accesible públicamente por cualquiera que pueda comunicarse con la máquina. Esta es la manera en la que normalmente lo ejecutarías en producción, por ejemplo, en un contenedor.
 

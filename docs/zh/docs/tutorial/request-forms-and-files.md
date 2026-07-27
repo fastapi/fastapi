@@ -2,7 +2,7 @@
 
 FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
-/// info | 信息
+/// note | 注意
 
 接收上传的文件和/或表单数据，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 

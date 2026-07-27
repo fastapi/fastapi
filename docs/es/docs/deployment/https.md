@@ -32,7 +32,7 @@ Ahora, desde una **perspectiva de desarrollador**, aquí hay varias cosas a tene
     * Esta extensión SNI permite que un solo servidor (con una **sola dirección IP**) tenga **varios certificados HTTPS** y sirva **múltiples dominios/aplicaciones HTTPS**.
     * Para que esto funcione, un componente (programa) **único** que se ejecute en el servidor, escuchando en la **dirección IP pública**, debe tener **todos los certificados HTTPS** en el servidor.
 * **Después** de obtener una conexión segura, el protocolo de comunicación sigue siendo **HTTP**.
-    * Los contenidos están **encriptados**, aunque se envién con el **protocolo HTTP**.
+    * Los contenidos están **encriptados**, aunque se envíen con el **protocolo HTTP**.
 
 Es una práctica común tener **un programa/servidor HTTP** ejecutándose en el servidor (la máquina, host, etc.) y **gestionando todas las partes de HTTPS**: recibiendo los **requests HTTPS encriptados**, enviando los **requests HTTP desencriptados** a la aplicación HTTP real que se ejecuta en el mismo servidor (la aplicación **FastAPI**, en este caso), tomando el **response HTTP** de la aplicación, **encriptándolo** usando el **certificado HTTPS** adecuado y enviándolo de vuelta al cliente usando **HTTPS**. Este servidor a menudo se llama un **[TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy)**.
 

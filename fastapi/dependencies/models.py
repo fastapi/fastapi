@@ -2,7 +2,7 @@ import inspect
 import sys
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from functools import cached_property, partial
+from functools import lru_cache, partial
 from typing import Any, Literal
 
 from fastapi._compat import ModelField
@@ -28,7 +28,7 @@ def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
     return func
 
 
-@dataclass
+@dataclass(slots=True)
 class Dependant:
     path_params: list[ModelField] = field(default_factory=list)
     query_params: list[ModelField] = field(default_factory=list)
@@ -50,144 +50,188 @@ class Dependant:
     path: str | None = None
     scope: Literal["function", "request"] | None = None
 
-    @cached_property
-    def oauth_scopes(self) -> list[str]:
-        scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
-        # This doesn't use a set to preserve order, just in case
-        for scope in self.own_oauth_scopes or []:
-            if scope not in scopes:
-                scopes.append(scope)
-        return scopes
 
-    @cached_property
-    def cache_key(self) -> DependencyCacheKey:
-        scopes_for_cache = (
-            tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
+_UsesScopesCache = dict[int, tuple[Dependant, bool]]
+
+
+class _CallIdentity:
+    __slots__ = ("call",)
+
+    def __init__(self, call: Callable[..., Any]) -> None:
+        self.call = call
+
+    def __hash__(self) -> int:
+        return id(self.call)
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, _CallIdentity) and self.call is other.call
+
+
+def _get_oauth_scopes(*, dependant: Dependant) -> list[str]:
+    scopes = (
+        dependant.parent_oauth_scopes.copy() if dependant.parent_oauth_scopes else []
+    )
+    # This doesn't use a set to preserve order, just in case
+    for scope in dependant.own_oauth_scopes or []:
+        if scope not in scopes:
+            scopes.append(scope)
+    return scopes
+
+
+def _get_cache_key(
+    *,
+    dependant: Dependant,
+    uses_scopes_cache: _UsesScopesCache | None = None,
+) -> DependencyCacheKey:
+    scopes_for_cache = (
+        tuple(sorted(set(_get_oauth_scopes(dependant=dependant))))
+        if _uses_scopes(dependant=dependant, cache=uses_scopes_cache)
+        else ()
+    )
+    return (
+        dependant.call,
+        scopes_for_cache,
+        _get_computed_scope(dependant=dependant) or "",
+    )
+
+
+def _uses_scopes(
+    *, dependant: Dependant, cache: _UsesScopesCache | None = None
+) -> bool:
+    if cache is None:
+        cache = {}
+    cache_key = id(dependant)
+    cached = cache.get(cache_key)
+    if cached is not None and cached[0] is dependant:
+        return cached[1]
+    if dependant.own_oauth_scopes:
+        result = True
+    elif dependant.security_scopes_param_name is not None:
+        result = True
+    elif _is_security_scheme(dependant=dependant):
+        result = True
+    else:
+        result = any(
+            _uses_scopes(dependant=sub_dep, cache=cache)
+            for sub_dep in dependant.dependencies
         )
-        return (
-            self.call,
-            scopes_for_cache,
-            self.computed_scope or "",
-        )
+    cache[cache_key] = (dependant, result)
+    return result
 
-    @cached_property
-    def _uses_scopes(self) -> bool:
-        if self.own_oauth_scopes:
-            return True
-        if self.security_scopes_param_name is not None:
-            return True
-        if self._is_security_scheme:
-            return True
-        for sub_dep in self.dependencies:
-            if sub_dep._uses_scopes:
-                return True
+
+def _is_security_scheme(*, dependant: Dependant) -> bool:
+    if dependant.call is None:
+        return False  # pragma: no cover
+    unwrapped = _unwrapped_call(dependant.call)
+    return isinstance(unwrapped, SecurityBase)
+
+
+def _get_security_scheme(*, dependant: Dependant) -> SecurityBase:
+    # Mainly to get the type of SecurityBase, but it's the same dependant.call
+    unwrapped = _unwrapped_call(dependant.call)
+    assert isinstance(unwrapped, SecurityBase)
+    return unwrapped
+
+
+def _get_security_dependencies(*, dependant: Dependant) -> list[Dependant]:
+    return [dep for dep in dependant.dependencies if _is_security_scheme(dependant=dep)]
+
+
+@lru_cache(maxsize=1024)
+def _is_gen_callable_cached(call_identity: _CallIdentity) -> bool:
+    call = call_identity.call
+    if inspect.isgeneratorfunction(_impartial(call)) or inspect.isgeneratorfunction(
+        _unwrapped_call(call)
+    ):
+        return True
+    if inspect.isclass(_unwrapped_call(call)):
         return False
+    dunder_call = getattr(_impartial(call), "__call__", None)  # noqa: B004
+    if dunder_call is None:
+        return False  # pragma: no cover
+    if inspect.isgeneratorfunction(
+        _impartial(dunder_call)
+    ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_call)):
+        return True
+    dunder_unwrapped_call = getattr(_unwrapped_call(call), "__call__", None)  # noqa: B004
+    if dunder_unwrapped_call is None:
+        return False  # pragma: no cover
+    return inspect.isgeneratorfunction(
+        _impartial(dunder_unwrapped_call)
+    ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_unwrapped_call))
 
-    @cached_property
-    def _is_security_scheme(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        unwrapped = _unwrapped_call(self.call)
-        return isinstance(unwrapped, SecurityBase)
 
-    # Mainly to get the type of SecurityBase, but it's the same self.call
-    @cached_property
-    def _security_scheme(self) -> SecurityBase:
-        unwrapped = _unwrapped_call(self.call)
-        assert isinstance(unwrapped, SecurityBase)
-        return unwrapped
+def _is_gen_callable(call: Callable[..., Any] | None) -> bool:
+    if call is None:
+        return False  # pragma: no cover
+    return _is_gen_callable_cached(_CallIdentity(call))
 
-    @cached_property
-    def _security_dependencies(self) -> list["Dependant"]:
-        security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
-        return security_deps
 
-    @cached_property
-    def is_gen_callable(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        if inspect.isgeneratorfunction(
-            _impartial(self.call)
-        ) or inspect.isgeneratorfunction(_unwrapped_call(self.call)):
-            return True
-        if inspect.isclass(_unwrapped_call(self.call)):
-            return False
-        dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
-        if dunder_call is None:
-            return False  # pragma: no cover
-        if inspect.isgeneratorfunction(
-            _impartial(dunder_call)
-        ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_call)):
-            return True
-        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
-        if dunder_unwrapped_call is None:
-            return False  # pragma: no cover
-        if inspect.isgeneratorfunction(
-            _impartial(dunder_unwrapped_call)
-        ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_unwrapped_call)):
-            return True
+@lru_cache(maxsize=1024)
+def _is_async_gen_callable_cached(call_identity: _CallIdentity) -> bool:
+    call = call_identity.call
+    if inspect.isasyncgenfunction(_impartial(call)) or inspect.isasyncgenfunction(
+        _unwrapped_call(call)
+    ):
+        return True
+    if inspect.isclass(_unwrapped_call(call)):
         return False
+    dunder_call = getattr(_impartial(call), "__call__", None)  # noqa: B004
+    if dunder_call is None:
+        return False  # pragma: no cover
+    if inspect.isasyncgenfunction(
+        _impartial(dunder_call)
+    ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_call)):
+        return True
+    dunder_unwrapped_call = getattr(_unwrapped_call(call), "__call__", None)  # noqa: B004
+    if dunder_unwrapped_call is None:
+        return False  # pragma: no cover
+    return inspect.isasyncgenfunction(
+        _impartial(dunder_unwrapped_call)
+    ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_unwrapped_call))
 
-    @cached_property
-    def is_async_gen_callable(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        if inspect.isasyncgenfunction(
-            _impartial(self.call)
-        ) or inspect.isasyncgenfunction(_unwrapped_call(self.call)):
-            return True
-        if inspect.isclass(_unwrapped_call(self.call)):
-            return False
-        dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
-        if dunder_call is None:
-            return False  # pragma: no cover
-        if inspect.isasyncgenfunction(
-            _impartial(dunder_call)
-        ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_call)):
-            return True
-        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
-        if dunder_unwrapped_call is None:
-            return False  # pragma: no cover
-        if inspect.isasyncgenfunction(
-            _impartial(dunder_unwrapped_call)
-        ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_unwrapped_call)):
-            return True
+
+def _is_async_gen_callable(call: Callable[..., Any] | None) -> bool:
+    if call is None:
+        return False  # pragma: no cover
+    return _is_async_gen_callable_cached(_CallIdentity(call))
+
+
+@lru_cache(maxsize=1024)
+def _is_coroutine_callable_cached(call_identity: _CallIdentity) -> bool:
+    call = call_identity.call
+    if inspect.isroutine(_impartial(call)) and iscoroutinefunction(_impartial(call)):
+        return True
+    if inspect.isroutine(_unwrapped_call(call)) and iscoroutinefunction(
+        _unwrapped_call(call)
+    ):
+        return True
+    if inspect.isclass(_unwrapped_call(call)):
         return False
+    dunder_call = getattr(_impartial(call), "__call__", None)  # noqa: B004
+    if dunder_call is None:
+        return False  # pragma: no cover
+    if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
+        _unwrapped_call(dunder_call)
+    ):
+        return True
+    dunder_unwrapped_call = getattr(_unwrapped_call(call), "__call__", None)  # noqa: B004
+    if dunder_unwrapped_call is None:
+        return False  # pragma: no cover
+    return iscoroutinefunction(
+        _impartial(dunder_unwrapped_call)
+    ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call))
 
-    @cached_property
-    def is_coroutine_callable(self) -> bool:
-        if self.call is None:
-            return False  # pragma: no cover
-        if inspect.isroutine(_impartial(self.call)) and iscoroutinefunction(
-            _impartial(self.call)
-        ):
-            return True
-        if inspect.isroutine(_unwrapped_call(self.call)) and iscoroutinefunction(
-            _unwrapped_call(self.call)
-        ):
-            return True
-        if inspect.isclass(_unwrapped_call(self.call)):
-            return False
-        dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
-        if dunder_call is None:
-            return False  # pragma: no cover
-        if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
-            _unwrapped_call(dunder_call)
-        ):
-            return True
-        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
-        if dunder_unwrapped_call is None:
-            return False  # pragma: no cover
-        if iscoroutinefunction(
-            _impartial(dunder_unwrapped_call)
-        ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call)):
-            return True
-        return False
 
-    @cached_property
-    def computed_scope(self) -> str | None:
-        if self.scope:
-            return self.scope
-        if self.is_gen_callable or self.is_async_gen_callable:
-            return "request"
-        return None
+def _is_coroutine_callable(call: Callable[..., Any] | None) -> bool:
+    if call is None:
+        return False  # pragma: no cover
+    return _is_coroutine_callable_cached(_CallIdentity(call))
+
+
+def _get_computed_scope(*, dependant: Dependant) -> str | None:
+    if dependant.scope:
+        return dependant.scope
+    if _is_gen_callable(dependant.call) or _is_async_gen_callable(dependant.call):
+        return "request"
+    return None

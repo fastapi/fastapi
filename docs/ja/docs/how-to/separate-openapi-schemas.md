@@ -85,7 +85,7 @@
 
 その場合は、**FastAPI** のパラメータ `separate_input_output_schemas=False` でこの機能を無効化できます。
 
-/// info | 情報
+/// note | 備考
 
 `separate_input_output_schemas` のサポートは FastAPI `0.102.0` で追加されました。🤓
 

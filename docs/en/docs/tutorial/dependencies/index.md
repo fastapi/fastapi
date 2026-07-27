@@ -51,7 +51,7 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 This way you write shared code once and **FastAPI** takes care of calling it for your *path operations*.
 
-/// check
+/// tip
 
 Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
 

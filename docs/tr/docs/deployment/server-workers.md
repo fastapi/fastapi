@@ -17,7 +17,7 @@ Uygulamaları deploy ederken, çok çekirdekten (multiple cores) faydalanmak ve 
 
 Burada, `fastapi` komutunu kullanarak ya da `uvicorn` komutunu doğrudan çalıştırarak worker process'lerle Uvicorn'u nasıl kullanacağınızı göstereceğim.
 
-/// info | Bilgi
+/// note | Not
 
 Container kullanıyorsanız (örneğin Docker veya Kubernetes ile), bununla ilgili daha fazlasını bir sonraki bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 

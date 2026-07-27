@@ -53,7 +53,7 @@ Kullanabileceğiniz ek veri tiplerinden bazıları şunlardır:
 
 ## Örnek { #example }
 
-Yukarıdaki tiplerden bazılarını kullanan parametrelere sahip bir örnek *path operation* şöyle:
+Yukarıdaki tiplerden bazılarını kullanan parametrelere sahip bir örnek *path operation*:
 
 {* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 

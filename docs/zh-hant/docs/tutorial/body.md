@@ -8,7 +8,7 @@
 
 要宣告**請求**本文，你會使用 [Pydantic](https://docs.pydantic.dev/) 模型，享受其完整的功能與優點。
 
-/// info
+/// note
 
 要傳送資料，應使用下列其中一種方法：`POST`（最常見）、`PUT`、`DELETE` 或 `PATCH`。
 
@@ -31,6 +31,7 @@
 對所有屬性使用標準的 Python 型別：
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+
 
 就和宣告查詢參數時一樣，當模型屬性有預設值時，它就不是必填；否則就是必填。使用 `None` 可使其成為選填。
 
@@ -134,6 +135,7 @@
 **FastAPI** 會辨識出與路徑參數相符的函式參數應該從**路徑**取得，而宣告為 Pydantic 模型的函式參數應該從**請求本文**取得。
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## 請求本文 + 路徑 + 查詢參數 { #request-body-path-query-parameters }
 

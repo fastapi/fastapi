@@ -1,6 +1,6 @@
 # サーバーを手動で実行する { #run-a-server-manually }
 
-## fastapi run コマンドを使う { #use-the-fastapi-run-command }
+## `fastapi run` コマンドを使う { #use-the-fastapi-run-command }
 
 結論として、FastAPI アプリケーションを提供するには `fastapi run` を使います:
 
@@ -56,7 +56,6 @@ FastAPI は、Python の Web フレームワークとサーバーのための標
 * [Hypercorn](https://hypercorn.readthedocs.io/): HTTP/2 や Trio に対応する ASGI サーバーなど。
 * [Daphne](https://github.com/django/daphne): Django Channels のために作られた ASGI サーバー。
 * [Granian](https://github.com/emmett-framework/granian): Python アプリケーション向けの Rust 製 HTTP サーバー。
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): 軽量で多用途な Web アプリケーションランタイム。
 
 ## サーバーマシンとサーバープログラム { #server-machine-and-server-program }
 

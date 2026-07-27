@@ -8,7 +8,7 @@
 * **출력 모델**은 비밀번호를 가지면 안 됩니다.
 * **데이터베이스 모델**은 아마도 해시 처리된 비밀번호를 가질 필요가 있을 것입니다.
 
-/// danger
+/// danger | 위험
 
 절대 사용자의 비밀번호를 평문으로 저장하지 마세요. 항상 이후에 검증 가능한 "안전한 해시(secure hash)"로 저장하세요.
 
@@ -132,7 +132,7 @@ UserInDB(
 )
 ```
 
-/// warning
+/// warning | 경고
 
 추가적으로 제공된 함수 `fake_password_hasher`와 `fake_save_user`는 데이터 흐름을 시연하기 위한 예제일 뿐이며, 실제 보안을 제공하지 않습니다.
 
@@ -164,7 +164,7 @@ OpenAPI에서는 이를 `anyOf`로 정의합니다.
 
 이를 위해 표준 Python 타입 힌트인 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)을 사용할 수 있습니다:
 
-/// note
+/// note | 참고
 
 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)을 정의할 때는 더 구체적인 타입을 먼저 포함하고, 덜 구체적인 타입을 그 뒤에 나열해야 합니다. 아래 예제에서는 `Union[PlaneItem, CarItem]`에서 더 구체적인 `PlaneItem`이 `CarItem`보다 앞에 위치합니다.
 
@@ -208,4 +208,4 @@ Pydantic 모델을 사용하지 않고, 키와 값의 타입만 선언하여 평
 
 여러 Pydantic 모델을 사용하고, 각 경우에 맞게 자유롭게 상속하세요.
 
-엔터티가 서로 다른 "상태"를 가져야 하는 경우, 엔터티당 단일 데이터 모델을 사용할 필요는 없습니다. 예를 들어, 사용자 "엔터티"가 `password`, `password_hash`, 그리고 비밀번호가 없는 상태를 포함할 수 있는 경우처럼 말입니다.
+엔터티가 서로 다른 "상태"를 가져야 하는 경우, 엔터티당 단일 데이터 모델을 사용할 필요는 없습니다. 예를 들어, **사용자** "엔터티"가 `password`, `password_hash`, 그리고 비밀번호가 없는 상태를 포함할 수 있는 경우처럼 말입니다.

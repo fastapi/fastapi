@@ -1,8 +1,8 @@
 # Sous-dépendances { #sub-dependencies }
 
-Vous pouvez créer des dépendances qui ont des sous-dépendances.
+Vous pouvez créer des dépendances qui ont des **sous-dépendances**.
 
-Elles peuvent être aussi profondes que nécessaire.
+Elles peuvent être aussi **profondes** que nécessaire.
 
 **FastAPI** se chargera de les résoudre.
 
@@ -35,7 +35,7 @@ Nous pouvons ensuite utiliser la dépendance avec :
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info
+/// note | Remarque
 
 Notez que nous ne déclarons qu'une seule dépendance dans la *fonction de chemin d'accès*, `query_or_cookie_extractor`.
 

@@ -40,7 +40,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 這在多數情況下都適用。😎
 
-你可以用這個指令在容器、伺服器等環境中啟動你的 FastAPI 應用。
+你可以用這個指令在容器、伺服器等環境中啟動你的 **FastAPI** 應用。
 
 ## ASGI 伺服器 { #asgi-servers }
 
@@ -48,7 +48,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Asynchronous Server Gateway Interface - 非同步伺服器閘道介面">ASGI</abbr>。FastAPI 是一個 ASGI 網頁框架。
 
-在遠端伺服器機器上執行 FastAPI 應用（或任何 ASGI 應用）所需的關鍵是 ASGI 伺服器程式，例如 Uvicorn；`fastapi` 指令預設就是使用它。
+在遠端伺服器機器上執行 **FastAPI** 應用（或任何 ASGI 應用）所需的關鍵是 ASGI 伺服器程式，例如 **Uvicorn**；`fastapi` 指令預設就是使用它。
 
 有數個替代方案，包括：
 
@@ -56,17 +56,16 @@ FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Async
 * [Hypercorn](https://hypercorn.readthedocs.io/)：支援 HTTP/2 與 Trio 等功能的 ASGI 伺服器。
 * [Daphne](https://github.com/django/daphne)：為 Django Channels 打造的 ASGI 伺服器。
 * [Granian](https://github.com/emmett-framework/granian)：針對 Python 應用的 Rust HTTP 伺服器。
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/)：NGINX Unit 是輕量且多功能的網頁應用執行環境。
 
 ## 伺服器機器與伺服器程式 { #server-machine-and-server-program }
 
 有個命名上的小細節請留意。💡
 
-「server（伺服器）」一詞常同時用來指遠端／雲端電腦（實體或虛擬機器），也用來指在該機器上執行的程式（例如 Uvicorn）。
+「**server**（伺服器）」一詞常同時用來指遠端／雲端電腦（實體或虛擬機器），也用來指在該機器上執行的程式（例如 Uvicorn）。
 
 因此看到「server」時，文意可能指這兩者之一。
 
-指涉遠端機器時，常稱為 server、machine、VM（虛擬機器）、node 等，這些都指某種遠端機器（通常執行 Linux），你會在其上執行程式。
+指涉遠端機器時，常稱為 **server**、**machine**、**VM**（虛擬機器）、**node** 等，這些都指某種遠端機器（通常執行 Linux），你會在其上執行程式。
 
 ## 安裝伺服器程式 { #install-the-server-program }
 
@@ -137,13 +136,13 @@ Uvicorn 與其他伺服器支援 `--reload` 選項，對開發期間很有幫助
 
 `--reload` 會消耗更多資源，也較不穩定等。
 
-它在開發階段很實用，但在生產環境中不應使用。
+它在 **開發** 階段很實用，但在 **生產環境** 中**不應**使用。
 
 ///
 
 ## 部署觀念 { #deployment-concepts }
 
-上述範例會啟動伺服器程式（如 Uvicorn），以單一行程在指定連接埠（如 `80`）上監聽所有 IP（`0.0.0.0`）。
+上述範例會啟動伺服器程式（如 Uvicorn），以**單一行程**在指定連接埠（如 `80`）上監聽所有 IP（`0.0.0.0`）。
 
 這是基本概念。但你很可能還需要處理一些額外事項，例如：
 

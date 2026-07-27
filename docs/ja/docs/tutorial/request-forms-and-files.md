@@ -2,7 +2,7 @@
 
 `File`と`Form`を同時に使うことでファイルとフォームフィールドを定義することができます。
 
-/// info | 情報
+/// note | 備考
 
 アップロードされたファイルやフォームデータを受信するには、まず[`python-multipart`](https://github.com/Kludex/python-multipart)をインストールします。
 

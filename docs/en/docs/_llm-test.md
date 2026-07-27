@@ -124,19 +124,11 @@ See section `### Content of code blocks` in the general prompt in `scripts/trans
 
 //// tab | Test
 
-/// info
-Some text
-///
-
 /// note
 Some text
 ///
 
 /// note | Technical details
-Some text
-///
-
-/// check
 Some text
 ///
 
@@ -193,7 +185,7 @@ See section `### Links` in the general prompt in `scripts/translate.py`.
 
 //// tab | Test
 
-Here some things wrapped in HTML "abbr" elements (Some are invented):
+Here are some things wrapped in HTML "abbr" elements (Some are invented):
 
 ### The abbr gives a full phrase { #the-abbr-gives-a-full-phrase }
 
@@ -496,7 +488,7 @@ For some language specific instructions, see e.g. section `### Headings` in `doc
 
 //// tab | Info
 
-This is a not complete and not normative list of (mostly) technical terms seen in the docs. It may be helpful for the prompt designer to figure out for which terms the LLM needs a helping hand. For example when it keeps reverting a good translation to a suboptimal translation. Or when it has problems conjugating/declinating a term in your language.
+This is neither a complete nor a normative list of (mostly) technical terms seen in the docs. It may be helpful for the prompt designer to figure out for which terms the LLM needs a helping hand. For example when it keeps reverting a good translation to a suboptimal translation. Or when it has problems conjugating/declinating a term in your language.
 
 See e.g. section `### List of English terms and their preferred German translations` in `docs/de/llm-prompt.md`.
 

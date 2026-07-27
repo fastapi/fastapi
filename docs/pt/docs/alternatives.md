@@ -18,13 +18,13 @@ Mas em algum momento, não havia outra opção senão criar algo que fornecesse 
 
 É o framework Python mais popular e amplamente confiável. É utilizado para construir sistemas como o Instagram.
 
-É relativamente bem acoplado com bancos de dados relacionais (como MySQL ou PostgreSQL), então, ter um banco de dados NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como mecanismo principal de armazenamento não é muito fácil.
+É relativamente fortemente acoplado com bancos de dados relacionais (como MySQL ou PostgreSQL), então, ter um banco de dados NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como mecanismo principal de armazenamento não é muito fácil.
 
 Foi criado para gerar o HTML no backend, não para criar APIs usadas por um frontend moderno (como React, Vue.js e Angular) ou por outros sistemas (como dispositivos <abbr title="Internet of Things - Internet das Coisas">IoT</abbr>) comunicando com ele.
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework foi criado para ser uma caixa de ferramentas flexível para construção de APIs Web utilizando Django por baixo, para melhorar suas capacidades de API.
+Django REST Framework foi criado para ser uma caixa de ferramentas flexível para construção de APIs Web utilizando Django por baixo, para melhorar suas capacidades de API.
 
 Ele é utilizado por muitas empresas incluindo Mozilla, Red Hat e Eventbrite.
 
@@ -36,7 +36,7 @@ Django REST Framework foi criado por Tom Christie. O mesmo criador de Starlette 
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Ter uma interface web de documentação automática da API.
 
@@ -56,7 +56,7 @@ Esse desacoplamento de partes, e ser um "microframework" que pode ser estendido 
 
 Dada a simplicidade do Flask, ele parecia uma boa opção para construção de APIs. A próxima coisa a encontrar era um "Django REST Framework" para Flask.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Ser um microframework. Tornar fácil misturar e combinar as ferramentas e partes necessárias.
 
@@ -88,7 +88,7 @@ O jeito de usar é muito simples. Por exemplo, para fazer uma requisição `GET`
 response = requests.get("http://example.com/some/url")
 ```
 
-A contra-parte na aplicação FastAPI, a operação de rota, poderia ficar assim:
+A *operação de rota* da API equivalente no FastAPI poderia ficar assim:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -98,7 +98,7 @@ def read_url():
 
 Veja as similaridades em `requests.get(...)` e `@app.get(...)`.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 * Ter uma API simples e intuitiva.
 * Utilizar nomes de métodos HTTP (operações) diretamente, de um jeito direto e intuitivo.
@@ -118,7 +118,7 @@ Em algum ponto, Swagger foi doado para a Fundação Linux, para ser renomeado Op
 
 É por isso que ao falar sobre a versão 2.0 é comum dizer "Swagger", e para a versão 3+ "OpenAPI".
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Adotar e usar um padrão aberto para especificações de API, em vez de um schema personalizado.
 
@@ -147,7 +147,7 @@ Essas funcionalidades são o que o Marshmallow foi construído para fornecer. É
 
 Mas ele foi criado antes de existirem as anotações de tipo do Python. Então, para definir cada <dfn title="a definição de como os dados devem ser formados">schema</dfn> você precisa utilizar utilitários e classes específicos fornecidos pelo Marshmallow.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Usar código para definir "schemas" que forneçam, automaticamente, tipos de dados e validação.
 
@@ -163,13 +163,13 @@ Ele utiliza Marshmallow por baixo para a validação de dados. E foi criado pelo
 
 É uma grande ferramenta e eu também a utilizei bastante, antes de ter o **FastAPI**.
 
-/// info | Informação
+/// note | Nota
 
 Webargs foi criado pelos mesmos desenvolvedores do Marshmallow.
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Ter validação automática dos dados de requisições de entrada.
 
@@ -193,13 +193,13 @@ Mas então, temos novamente o problema de ter uma micro-sintaxe, dentro de uma s
 
 O editor não pode ajudar muito com isso. E se modificarmos parâmetros ou schemas do Marshmallow e esquecermos de também modificar aquela docstring em YAML, o schema gerado ficaria obsoleto.
 
-/// info | Informação
+/// note | Nota
 
 APISpec foi criado pelos mesmos desenvolvedores do Marshmallow.
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Dar suporte ao padrão aberto para APIs, OpenAPI.
 
@@ -225,13 +225,13 @@ Usá-la levou à criação de vários geradores Flask full-stack. Estas são as 
 
 E esses mesmos geradores full-stack foram a base dos [Geradores de Projetos **FastAPI**](project-generation.md).
 
-/// info | Informação
+/// note | Nota
 
 Flask-apispec foi criado pelos mesmos desenvolvedores do Marshmallow.
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Gerar o schema OpenAPI automaticamente, a partir do mesmo código que define serialização e validação.
 
@@ -251,7 +251,7 @@ Mas como os dados do TypeScript não são preservados após a compilação para 
 
 Ele não consegue lidar muito bem com modelos aninhados. Então, se o corpo JSON na requisição for um objeto JSON que contém campos internos que por sua vez são objetos JSON aninhados, ele não consegue ser documentado e validado apropriadamente.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Usar tipos do Python para ter um ótimo suporte do editor.
 
@@ -271,7 +271,7 @@ Ele claramente inspirou Uvicorn e Starlette, que atualmente são mais rápidos q
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Encontrar um jeito de ter uma performance insana.
 
@@ -287,7 +287,7 @@ Ele é projetado para ter funções que recebem dois parâmetros, uma "request" 
 
 Então, validação de dados, serialização e documentação têm que ser feitos no código, não automaticamente. Ou eles têm que ser implementados como um framework acima do Falcon, como o Hug. Essa mesma distinção acontece em outros frameworks inspirados pelo design do Falcon, de ter um objeto de request e um objeto de response como parâmetros.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Encontrar maneiras de obter uma ótima performance.
 
@@ -313,7 +313,7 @@ O sistema de injeção de dependência exige pré-registro das dependências e e
 
 As rotas são declaradas em um único lugar, usando funções declaradas em outros lugares (em vez de usar decorators que possam ser colocados diretamente acima da função que lida com o endpoint). Isso é mais próximo de como o Django faz do que de como o Flask (e o Starlette) fazem. Separa no código coisas que são relativamente bem acopladas.
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Definir validações extras para tipos de dados usando o valor "padrão" de atributos dos modelos. Isso melhora o suporte do editor, e não estava disponível no Pydantic antes.
 
@@ -335,13 +335,13 @@ Ele tem um recurso interessante e incomum: usando o mesmo framework, é possíve
 
 Como é baseado no padrão anterior para frameworks web Python síncronos (WSGI), ele não consegue lidar com Websockets e outras coisas, embora ainda tenha alta performance também.
 
-/// info | Informação
+/// note | Nota
 
 Hug foi criado por Timothy Crosley, o mesmo criador do [`isort`](https://github.com/timothycrosley/isort), uma ótima ferramenta para ordenar automaticamente imports em arquivos Python.
 
 ///
 
-/// check | Ideias que inspiraram o **FastAPI**
+/// tip | Ideias que inspiraram o **FastAPI**
 
 Hug inspirou partes do APIStar, e foi uma das ferramentas que achei mais promissoras, ao lado do APIStar.
 
@@ -375,9 +375,9 @@ Ele não era mais um framework web de API, pois o criador precisava focar no Sta
 
 Agora APIStar é um conjunto de ferramentas para validar especificações OpenAPI, não um framework web.
 
-/// info | Informação
+/// note | Nota
 
-APIStar foi criado por Tom Christie. O mesmo cara que criou:
+APIStar foi criado por Tom Christie. A mesma pessoa que criou:
 
 * Django REST Framework
 * Starlette (no qual **FastAPI** é baseado)
@@ -385,7 +385,7 @@ APIStar foi criado por Tom Christie. O mesmo cara que criou:
 
 ///
 
-/// check | Inspirou o **FastAPI** a
+/// tip | Inspirou o **FastAPI** a
 
 Existir.
 
@@ -409,7 +409,7 @@ Isso o torna extremamente intuitivo.
 
 Ele é comparável ao Marshmallow. Embora seja mais rápido que o Marshmallow em benchmarks. E como é baseado nas mesmas anotações de tipo do Python, o suporte do editor é ótimo.
 
-/// check | **FastAPI** usa isso para
+/// tip | **FastAPI** usa isso para
 
 Controlar toda a validação de dados, serialização de dados e documentação automática de modelos (baseada no JSON Schema).
 
@@ -452,7 +452,7 @@ No entanto, ele já está sendo utilizado como "padrão" por diversas ferramenta
 
 ///
 
-/// check | **FastAPI** usa isso para
+/// tip | **FastAPI** usa isso para
 
 Controlar todas as partes web centrais. Adiciona funcionalidades por cima.
 
@@ -470,7 +470,7 @@ Ele não é um framework web, mas sim um servidor. Por exemplo, ele não fornece
 
 Ele é o servidor recomendado para Starlette e **FastAPI**.
 
-/// check | **FastAPI** o recomenda como
+/// tip | **FastAPI** o recomenda como
 
 O principal servidor web para rodar aplicações **FastAPI**.
 

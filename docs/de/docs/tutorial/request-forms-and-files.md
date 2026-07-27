@@ -2,7 +2,7 @@
 
 Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definieren.
 
-/// info | Info
+/// note | Hinweis
 
 Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 

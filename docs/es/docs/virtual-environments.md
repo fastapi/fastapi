@@ -2,7 +2,7 @@
 
 Cuando trabajas en proyectos de Python probablemente deberías usar un **entorno virtual** (o un mecanismo similar) para aislar los paquetes que instalas para cada proyecto.
 
-/// info | Información
+/// note | Nota
 
 Si ya sabes sobre entornos virtuales, cómo crearlos y usarlos, podrías querer saltar esta sección. 🤓
 
@@ -18,7 +18,7 @@ Un **entorno virtual** es un directorio con algunos archivos en él.
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Esta página te enseñará cómo usar **entornos virtuales** y cómo funcionan.
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Cada vez que instales un **nuevo paquete** en ese entorno, **activa** el entorno de nuevo.
 
-Esto asegura que si usas un programa de **terminal (<abbr title="command line interface – interfaz de línea de comandos">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
+Esto asegura que si usas un **programa de terminal (<abbr title="command line interface - interfaz de línea de comandos">CLI</abbr>)** instalado por ese paquete, uses el de tu entorno virtual y no cualquier otro que podría estar instalado globalmente, probablemente con una versión diferente a la que necesitas.
 
 ///
 
@@ -288,8 +288,8 @@ $ echo "*" > .venv/.gitignore
 
 /// details | Qué significa ese comando
 
-* `echo "*"`: "imprimirá" el texto `*` en el terminal (la siguiente parte cambia eso un poco)
-* `>`: cualquier cosa impresa en el terminal por el comando a la izquierda de `>` no debería imprimirse, sino escribirse en el archivo que va a la derecha de `>`
+* `echo "*"`: "imprimirá" el texto `*` en la terminal (la siguiente parte cambia eso un poco)
+* `>`: cualquier cosa impresa en la terminal por el comando a la izquierda de `>` no debería imprimirse, sino escribirse en el archivo que va a la derecha de `>`
 * `.gitignore`: el nombre del archivo donde debería escribirse el texto
 
 Y `*` para Git significa "todo". Así que, ignorará todo en el directorio `.venv`.
@@ -442,6 +442,8 @@ De esta manera, cuando ejecutes `python` no intentará ejecutarse desde ese ento
 ## Listo para Trabajar { #ready-to-work }
 
 Ahora estás listo para empezar a trabajar en tu proyecto.
+
+
 
 /// tip | Consejo
 
@@ -694,7 +696,7 @@ Eso significa que el sistema ahora comenzará a buscar primero los programas en:
 
 antes de buscar en los otros directorios.
 
-Así que, cuando escribas `python` en el terminal, el sistema encontrará el programa Python en
+Así que, cuando escribas `python` en la terminal, el sistema encontrará el programa Python en
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin/python
@@ -718,7 +720,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts
 
 antes de buscar en los otros directorios.
 
-Así que, cuando escribas `python` en el terminal, el sistema encontrará el programa Python en
+Así que, cuando escribas `python` en la terminal, el sistema encontrará el programa Python en
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts\python
@@ -800,7 +802,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 </div>
 
-Si no desactivas el entorno virtual para `philosophers-stone`, cuando ejecutes `python` en el terminal, intentará usar el Python de `philosophers-stone`.
+Si no desactivas el entorno virtual para `philosophers-stone`, cuando ejecutes `python` en la terminal, intentará usar el Python de `philosophers-stone`.
 
 <div class="termy">
 
@@ -817,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-Pero si desactivas el entorno virtual y activas el nuevo para `prisoner-of-askaban` entonces cuando ejecutes `python` utilizará el Python del entorno virtual en `prisoner-of-azkaban`.
+Pero si desactivas el entorno virtual y activas el nuevo para `prisoner-of-azkaban` entonces cuando ejecutes `python` utilizará el Python del entorno virtual en `prisoner-of-azkaban`.
 
 <div class="termy">
 

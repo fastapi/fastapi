@@ -2,7 +2,7 @@
 
 ## Используйте команду `fastapi run` { #use-the-fastapi-run-command }
 
-Коротко: используйте `fastapi run`, чтобы запустить ваше приложение FastAPI:
+Коротко: используйте `fastapi run`, чтобы предоставлять доступ к вашему приложению FastAPI:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 Давайте немного углубимся в детали.
 
-FastAPI использует стандарт для построения Python‑веб‑фреймворков и серверов под названием <abbr title="Asynchronous Server Gateway Interface – Асинхронный шлюзовый интерфейс сервера">ASGI</abbr>. FastAPI — ASGI-веб‑фреймворк.
+FastAPI использует стандарт для построения Python‑веб‑фреймворков и серверов под названием <abbr title="Asynchronous Server Gateway Interface - Асинхронный шлюзовый интерфейс сервера">ASGI</abbr>. FastAPI — ASGI-веб‑фреймворк.
 
 Главное, что вам нужно, чтобы запустить приложение **FastAPI** (или любое другое ASGI‑приложение) на удалённой серверной машине, — это программа ASGI‑сервера, такая как **Uvicorn**; именно он используется по умолчанию в команде `fastapi`.
 
@@ -56,7 +56,6 @@ FastAPI использует стандарт для построения Python
 * [Hypercorn](https://hypercorn.readthedocs.io/): ASGI‑сервер, среди прочего совместимый с HTTP/2 и Trio.
 * [Daphne](https://github.com/django/daphne): ASGI‑сервер, созданный для Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): HTTP‑сервер на Rust для Python‑приложений.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit — лёгкая и многофункциональная среда выполнения веб‑приложений.
 
 ## Сервер как машина и сервер как программа { #server-machine-and-server-program }
 

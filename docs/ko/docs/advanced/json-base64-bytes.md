@@ -4,7 +4,7 @@
 
 ## Base64와 파일 { #base64-vs-files }
 
-바이너리 데이터 업로드에는 [요청 파일](../tutorial/request-files.md)을, 바이너리 데이터 전송에는 [커스텀 응답 - FileResponse](./custom-response.md#fileresponse--fileresponse-)를 사용할 수 있는지 먼저 고려하세요. JSON으로 인코딩하는 대신 말입니다.
+바이너리 데이터 업로드에는 [요청 파일](../tutorial/request-files.md)을, 바이너리 데이터 전송에는 [커스텀 응답 - FileResponse](./custom-response.md#fileresponse)를 사용할 수 있는지 먼저 고려하세요. JSON으로 인코딩하는 대신 말입니다.
 
 JSON은 UTF-8로 인코딩된 문자열만 포함할 수 있으므로, 원시 바이트를 그대로 담을 수 없습니다.
 

@@ -95,7 +95,7 @@ was gleichbedeutend wäre mit:
 from backend.main import app
 ```
 
-### `fastapi dev` mit Pfad { #fastapi-dev-with-path }
+### `fastapi dev` mit Pfad oder mit der CLI-Option `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, dann wird das zu verwendende FastAPI-App-Objekt erraten:
 
@@ -103,7 +103,13 @@ Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, dann wird
 $ fastapi dev main.py
 ```
 
-Aber Sie müssten sich merken, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad zu übergeben.
+Oder Sie können auch die Option `--entrypoint` an den Befehl `fastapi dev` übergeben:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Aber Sie müssten sich merken, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad\entrypoint zu übergeben.
 
 Zusätzlich könnten andere Tools sie nicht finden, z. B. die [VS Code Extension](editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com), daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
 

@@ -17,7 +17,7 @@ Bir kullanıcı gözüyle **HTTPS’in temellerini öğrenmek** için [https://h
 * HTTPS için **server**’ın, **üçüncü bir taraf** tarafından verilen **"sertifikalara"** sahip olması gerekir.
     * Bu sertifikalar aslında üçüncü tarafça "üretilmez", üçüncü taraftan **temin edilir**.
 * Sertifikaların bir **geçerlilik süresi** vardır.
-    * Süresi **dolar**.
+    * Süreleri **sona erer**.
     * Sonrasında **yenilenmeleri**, üçüncü taraftan **yeniden temin edilmeleri** gerekir.
 * Bağlantının şifrelenmesi **TCP seviyesinde** gerçekleşir.
     * Bu, **HTTP’nin bir katman altıdır**.
@@ -169,7 +169,7 @@ Bu şekilde TLS Termination Proxy, birden fazla uygulama için **birden fazla do
 
 ### Sertifika Yenileme { #certificate-renewal }
 
-Gelecekte bir noktada, her sertifikanın süresi **dolar** (temin edildikten yaklaşık 3 ay sonra).
+Gelecekte bir noktada, her sertifikanın süresi **sona erer** (temin edildikten yaklaşık 3 ay sonra).
 
 Ardından başka bir program (bazı durumlarda ayrı bir programdır, bazı durumlarda aynı TLS Termination Proxy olabilir) Let's Encrypt ile konuşup sertifika(ları) yeniler.
 
