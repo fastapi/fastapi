@@ -24,13 +24,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 一周后令牌过期，用户将不再被授权，需要重新登录以获取新令牌。而如果用户（或第三方）尝试修改令牌来更改过期时间，你也能发现，因为签名将不匹配。
 
-如果你想动手体验 JWT 令牌并了解它的工作方式，请访问 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
+如果你想动手体验 JWT 令牌并了解它的工作方式，请访问 [https://jwt.io](https://jwt.io/)。
 
 ## 安装 `PyJWT` { #install-pyjwt }
 
 我们需要安装 `PyJWT`，以便在 Python 中生成和校验 JWT 令牌。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md){.internal-link target=_blank}，然后安装 `pyjwt`：
+请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装 `pyjwt`：
 
 <div class="termy">
 
@@ -42,11 +42,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info | 信息
+/// note | 注意
 
 如果你计划使用类似 RSA 或 ECDSA 的数字签名算法，你应该安装加密库依赖项 `pyjwt[crypto]`。
 
-可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT 安装文档</a>中了解更多。
+可以在 [PyJWT 安装文档](https://pyjwt.readthedocs.io/en/latest/installation.html)中了解更多。
 
 ///
 
@@ -72,7 +72,7 @@ pwdlib 是一个用于处理密码哈希的优秀 Python 包。
 
 推荐的算法是 “Argon2”。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md){.internal-link target=_blank}，然后安装带 Argon2 的 pwdlib：
+请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装带 Argon2 的 pwdlib：
 
 <div class="termy">
 
@@ -120,7 +120,7 @@ pwdlib 也支持 bcrypt 哈希算法，但不包含遗留算法——如果需�
 
 当使用一个在数据库中不存在的用户名调用 `authenticate_user` 时，我们仍然会针对一个虚拟哈希运行 `verify_password`。
 
-这可以确保无论用户名是否有效，端点的响应时间大致相同，从而防止可用于枚举已存在用户名的“时间攻击”（timing attacks）。
+这可以确保无论用户名是否有效，端点的响应时间大致相同，从而防止可用于枚举已存在用户名的**时序攻击**。
 
 /// note | 注意
 
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## 更新 `/token` 路径操作 { #update-the-token-path-operation }
+## 更新 `/token` *路径操作* { #update-the-token-path-operation }
 
 用令牌的过期时间创建一个 `timedelta`。
 
@@ -200,7 +200,7 @@ JWT 除了用于识别用户并允许其直接在你的 API 上执行操作之�
 
 ## 检查 { #check-it }
 
-运行服务器并打开文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+运行服务器并打开文档：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 你会看到这样的用户界面：
 
@@ -213,7 +213,7 @@ JWT 除了用于识别用户并允许其直接在你的 API 上执行操作之�
 用户名: `johndoe`
 密码: `secret`
 
-/// check | 检查
+/// tip | 提示
 
 注意，代码中的任何地方都没有明文密码 “`secret`”，我们只有它的哈希版本。
 

@@ -1,5 +1,6 @@
 # ボディ - ネストされたモデル { #body-nested-models }
 
+
 **FastAPI** を使用すると、深くネストされた任意のモデルを定義、検証、文書化、使用することができます（Pydanticのおかげです）。
 
 ## リストのフィールド { #list-fields }
@@ -96,7 +97,7 @@ Pydanticモデルの各属性には型があります。
 
 `str`や`int`、`float`などの通常の単数型の他にも、`str`を継承したより複雑な単数型を使うこともできます。
 
-すべてのオプションをみるには、<a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydanticの型の概要</a>を確認してください。次の章でいくつかの例をみることができます。
+すべてのオプションをみるには、[Pydantic の型の概要](https://docs.pydantic.dev/latest/concepts/types/)を確認してください。次の章でいくつかの例をみることができます。
 
 例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`のインスタンスとして宣言することができます:
 
@@ -135,8 +136,7 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
     ]
 }
 ```
-
-/// info | 情報
+/// note | 備考
 
 `images`キーが画像オブジェクトのリストを持つようになったことに注目してください。
 
@@ -148,7 +148,7 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | 情報
+/// note | 備考
 
 `Offer`は`Item`のリストであり、それらがさらにオプションの`Image`のリストを持っていることに注目してください。
 

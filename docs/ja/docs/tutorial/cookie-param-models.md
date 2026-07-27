@@ -32,7 +32,7 @@
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | 情報
+/// note | 備考
 
 **ブラウザがクッキーを処理し**ていますが、特別な方法で内部的に処理を行っているために、**JavaScript**からは簡単に操作**できない**ことに留意してください。
 

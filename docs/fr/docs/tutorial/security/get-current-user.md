@@ -14,7 +14,7 @@ Commençons par créer un modèle d'utilisateur Pydantic.
 
 De la même manière que nous utilisons Pydantic pour déclarer des corps de requête, nous pouvons l'utiliser ailleurs :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## Créer une dépendance `get_current_user` { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@ Ici, **FastAPI** ne s'y trompera pas car vous utilisez `Depends`.
 
 ///
 
-/// check | Vérifications
+/// tip | Astuce
 
 La manière dont ce système de dépendances est conçu nous permet d'avoir différentes dépendances (différents « dependables ») qui retournent toutes un modèle `User`.
 

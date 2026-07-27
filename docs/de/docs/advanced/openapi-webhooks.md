@@ -22,7 +22,7 @@ Mit **FastAPI**, mithilfe von OpenAPI, können Sie die Namen dieser Webhooks, di
 
 Dies kann es Ihren Benutzern viel einfacher machen, **deren APIs zu implementieren**, um Ihre **Webhook**-Requests zu empfangen. Möglicherweise können diese sogar einen Teil ihres eigenen API-Codes automatisch generieren.
 
-/// info | Info
+/// note | Hinweis
 
 Webhooks sind in OpenAPI 3.1.0 und höher verfügbar und werden von FastAPI `0.99.0` und höher unterstützt.
 
@@ -36,7 +36,7 @@ Wenn Sie eine **FastAPI**-Anwendung erstellen, gibt es ein `webhooks`-Attribut, 
 
 Die von Ihnen definierten Webhooks landen im **OpenAPI**-Schema und der automatischen **Dokumentations-Oberfläche**.
 
-/// info | Info
+/// note | Hinweis
 
 Das `app.webhooks`-Objekt ist eigentlich nur ein `APIRouter`, derselbe Typ, den Sie verwenden würden, wenn Sie Ihre App mit mehreren Dateien strukturieren.
 
@@ -48,7 +48,7 @@ Das liegt daran, dass erwartet wird, dass **Ihre Benutzer** den tatsächlichen *
 
 ### Die Dokumentation testen { #check-the-docs }
 
-Jetzt können Sie Ihre App starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
+Jetzt können Sie Ihre App starten und auf [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) gehen.
 
 Sie werden sehen, dass Ihre Dokumentation die normalen *Pfadoperationen* und jetzt auch einige **Webhooks** enthält:
 

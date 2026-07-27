@@ -32,7 +32,7 @@ Aquí hay un ejemplo más completo.
 
 Usa una dependencia para comprobar si el nombre de usuario y la contraseña son correctos.
 
-Para esto, usa el módulo estándar de Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar el nombre de usuario y la contraseña.
+Para esto, usa el módulo estándar de Python [`secrets`](https://docs.python.org/3/library/secrets.html) para verificar el nombre de usuario y la contraseña.
 
 `secrets.compare_digest()` necesita tomar `bytes` o un `str` que solo contenga caracteres ASCII (los carácteres en inglés), esto significa que no funcionaría con caracteres como `á`, como en `Sebastián`.
 

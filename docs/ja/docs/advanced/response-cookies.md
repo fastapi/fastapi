@@ -1,5 +1,6 @@
 # レスポンスの Cookie { #response-cookies }
 
+
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 *path operation 関数*で `Response` 型のパラメータを宣言できます。
@@ -20,7 +21,7 @@
 
 コードで `Response` を直接返すときに、Cookie を作成することもできます。
 
-そのためには、[Response を直接返す](response-directly.md){.internal-link target=_blank} で説明されているとおりにレスポンスを作成します。
+そのためには、[Response を直接返す](response-directly.md) で説明されているとおりにレスポンスを作成します。
 
 そのレスポンスに Cookie を設定してから返します:
 
@@ -48,4 +49,4 @@
 
 ///
 
-利用可能なすべてのパラメータやオプションについては、<a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette のドキュメント</a>を参照してください。
+利用可能なすべてのパラメータやオプションについては、[Starlette のドキュメント](https://www.starlette.dev/responses/#set-cookie)を参照してください。

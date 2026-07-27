@@ -1,14 +1,15 @@
 # リクエストボディ { #request-body }
 
+
 クライアント（例えばブラウザ）からAPIにデータを送信する必要がある場合、**リクエストボディ**として送信します。
 
 **リクエスト**ボディは、クライアントからAPIへ送信されるデータです。**レスポンス**ボディは、APIがクライアントに送信するデータです。
 
 APIはほとんどの場合 **レスポンス** ボディを送信する必要があります。しかしクライアントは、常に **リクエストボディ** を送信する必要があるとは限りません。場合によっては、クエリパラメータ付きのパスだけをリクエストして、ボディを送信しないこともあります。
 
-**リクエスト**ボディを宣言するには、<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用し、その強力な機能とメリットをすべて利用します。
+**リクエスト**ボディを宣言するには、[Pydantic](https://docs.pydantic.dev/) モデルを使用し、その強力な機能とメリットをすべて利用します。
 
-/// info | 情報
+/// note | 備考
 
 データを送信するには、`POST`（より一般的）、`PUT`、`DELETE`、`PATCH` のいずれかを使用すべきです。
 
@@ -73,7 +74,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
     * データが無効な場合は、どこで何が不正なデータだったのかを正確に示す、分かりやすい明確なエラーを返します。
 * 受け取ったデータをパラメータ `item` に渡します。
     * 関数内で `Item` 型として宣言したため、すべての属性とその型について、エディタサポート（補完など）も利用できます。
-* モデル向けの <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定義を生成します。プロジェクトにとって意味があるなら、他の場所でも好きなように利用できます。
+* モデル向けの [JSON Schema](https://json-schema.org) 定義を生成します。プロジェクトにとって意味があるなら、他の場所でも好きなように利用できます。
 * それらのスキーマは生成されるOpenAPIスキーマの一部となり、自動ドキュメントの <abbr title="User Interfaces - ユーザーインターフェース">UIs</abbr> で使用されます。
 
 ## 自動ドキュメント { #automatic-docs }
@@ -102,15 +103,15 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 これをサポートするために、Pydantic自体にもいくつかの変更が加えられました。
 
-前述のスクリーンショットは <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a> で撮影されたものです。
+前述のスクリーンショットは [Visual Studio Code](https://code.visualstudio.com) で撮影されたものです。
 
-ただし、<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> や、他のほとんどのPythonエディタでも同じエディタサポートを得られます:
+ただし、[PyCharm](https://www.jetbrains.com/pycharm/) や、他のほとんどのPythonエディタでも同じエディタサポートを得られます:
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | 豆知識
 
-エディタとして <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> を使用している場合、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> を使用できます。
+エディタとして [PyCharm](https://www.jetbrains.com/pycharm/) を使用している場合、[Pydantic PyCharm Plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin/) を使用できます。
 
 以下により、Pydanticモデルに対するエディタサポートが改善されます:
 
@@ -163,4 +164,4 @@ FastAPIは、デフォルト値 `= None` があるため、`q` の値が必須�
 
 ## Pydanticを使わない方法 { #without-pydantic }
 
-Pydanticモデルを使いたくない場合は、**Body** パラメータも使用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} のドキュメントを参照してください。
+Pydanticモデルを使いたくない場合は、**Body** パラメータも使用できます。[Body - 複数のパラメータ: ボディ内の単一値](body-multiple-params.md#singular-values-in-body) のドキュメントを参照してください。

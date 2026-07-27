@@ -1,5 +1,6 @@
 # OAuth2 のスコープ { #oauth2-scopes }
 
+
 OAuth2 のスコープは **FastAPI** で直接利用でき、シームレスに統合されています。
 
 これにより、OAuth2 標準に従った、よりきめ細かな権限システムを、OpenAPI 対応アプリケーション（および API ドキュメント）に統合できます。
@@ -46,7 +47,7 @@ OpenAPI（例: API ドキュメント）では、「セキュリティスキー�
 - `instagram_basic` は Facebook / Instagram で使われています。
 - `https://www.googleapis.com/auth/drive` は Google で使われています。
 
-/// info | 情報
+/// note | 備考
 
 OAuth2 において「スコープ」は、必要な特定の権限を宣言する単なる文字列です。
 
@@ -60,7 +61,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 ## 全体像 { #global-view }
 
-まず、メインの**チュートリアル - ユーザーガイド**にある [OAuth2（パスワード［ハッシュ化あり］）、Bearer と JWT トークン](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} の例から変更される部分を、スコープ付き OAuth2 を使って手早く見てみましょう。
+まず、メインの**チュートリアル - ユーザーガイド**にある [OAuth2（パスワード［ハッシュ化あり］）、Bearer と JWT トークン](../../tutorial/security/oauth2-jwt.md) の例から変更される部分を、スコープ付き OAuth2 を使って手早く見てみましょう。
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -126,7 +127,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | 技術詳細
+/// note | 技術詳細
 
 `Security` は実際には `Depends` のサブクラスで、後述する追加パラメータが 1 つあるだけです。
 
@@ -271,4 +272,4 @@ API ドキュメントを開くと、認証して、許可するスコープを�
 
 ## デコレータ `dependencies` での `Security` { #security-in-decorator-dependencies }
 
-デコレータの `dependencies` パラメータに `Depends` の `list` を定義できるのと同様（[path operation デコレータでの依存関係](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} 参照）、ここで `scopes` を指定した `Security` も使用できます。
+デコレータの `dependencies` パラメータに `Depends` の `list` を定義できるのと同様（[path operation デコレータでの依存関係](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md) 参照）、ここで `scopes` を指定した `Security` も使用できます。

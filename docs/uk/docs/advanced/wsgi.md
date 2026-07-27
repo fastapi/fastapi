@@ -1,12 +1,13 @@
 # Підключення WSGI - Flask, Django та інші { #including-wsgi-flask-django-others }
 
-Ви можете монтувати застосунки WSGI, як ви бачили в [Підзастосунки - монтування](sub-applications.md){.internal-link target=_blank}, [За представником](behind-a-proxy.md){.internal-link target=_blank}.
+
+Ви можете монтувати застосунки WSGI, як ви бачили в [Підзастосунки - монтування](sub-applications.md), [За представником](behind-a-proxy.md).
 
 Для цього ви можете використати `WSGIMiddleware` і обгорнути ним ваш застосунок WSGI, наприклад Flask, Django тощо.
 
 ## Використання `WSGIMiddleware` { #using-wsgimiddleware }
 
-/// info | Інформація
+/// note | Примітка
 
 Для цього потрібно встановити `a2wsgi`, наприклад за допомогою `pip install a2wsgi`.
 
@@ -36,13 +37,13 @@
 
 А решта - **FastAPI**.
 
-Якщо ви запустите це й перейдете на <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>, ви побачите відповідь від Flask:
+Якщо ви запустите це й перейдете на [http://localhost:8000/v1/](http://localhost:8000/v1/), ви побачите відповідь від Flask:
 
 ```txt
 Hello, World from Flask!
 ```
 
-А якщо ви перейдете на <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>, ви побачите відповідь від FastAPI:
+А якщо ви перейдете на [http://localhost:8000/v2](http://localhost:8000/v2), ви побачите відповідь від FastAPI:
 
 ```JSON
 {

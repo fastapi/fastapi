@@ -1,5 +1,6 @@
 # Eventos de lifespan { #lifespan-events }
 
+
 Você pode definir a lógica (código) que deve ser executada antes da aplicação **inicializar**. Isso significa que esse código será executado **uma vez**, **antes** de a aplicação **começar a receber requisições**.
 
 Da mesma forma, você pode definir a lógica (código) que deve ser executada quando a aplicação estiver **encerrando**. Nesse caso, esse código será executado **uma vez**, **depois** de possivelmente ter tratado **várias requisições**.
@@ -120,7 +121,7 @@ Para adicionar uma função que deve ser executada quando a aplicação estiver 
 
 Aqui, a função de manipulador do evento `shutdown` escreverá uma linha de texto `"Application shutdown"` no arquivo `log.txt`.
 
-/// info | Informação
+/// note | Nota
 
 Na função `open()`, o `mode="a"` significa "acrescentar", então a linha será adicionada depois do que já estiver naquele arquivo, sem sobrescrever o conteúdo anterior.
 
@@ -150,11 +151,11 @@ Por causa disso, agora é recomendado usar o `lifespan`, como explicado acima.
 
 Apenas um detalhe técnico para nerds curiosos. 🤓
 
-Por baixo, na especificação técnica do ASGI, isso é parte do <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Protocolo Lifespan</a>, e define eventos chamados `startup` e `shutdown`.
+Por baixo, na especificação técnica do ASGI, isso é parte do [Protocolo Lifespan](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), e define eventos chamados `startup` e `shutdown`.
 
-/// info | Informação
+/// note | Nota
 
-Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Documentação do Lifespan do Starlette</a>.
+Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://www.starlette.dev/lifespan/).
 
 Incluindo como lidar com estado do lifespan que pode ser usado em outras áreas do seu código.
 
@@ -162,4 +163,4 @@ Incluindo como lidar com estado do lifespan que pode ser usado em outras áreas 
 
 ## Sub Aplicações { #sub-applications }
 
-🚨 Tenha em mente que esses eventos de lifespan (inicialização e encerramento) serão executados apenas para a aplicação principal, não para [Sub Aplicações - Montagem](sub-applications.md){.internal-link target=_blank}.
+🚨 Tenha em mente que esses eventos de lifespan (inicialização e encerramento) serão executados apenas para a aplicação principal, não para [Sub Aplicações - Montagem](sub-applications.md).

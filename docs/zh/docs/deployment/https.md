@@ -10,7 +10,7 @@
 
 ///
 
-要从用户的视角**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
+要从用户的视角**了解 HTTPS 的基础知识**，请查看 [https://howhttps.works/](https://howhttps.works/)。
 
 现在，从**开发人员的视角**，在了解 HTTPS 时需要记住以下几点：
 
@@ -28,13 +28,13 @@
 * **默认情况下**，这意味着你**每个 IP 地址只能拥有一个 HTTPS 证书**。
     * 无论你的服务器有多大，或者服务器上的每个应用程序有多小。
     * 不过，对此有一个**解决方案**。
-* **TLS** 协议（在 HTTP 之下的 TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - 服务器名称指示">SNI</abbr></a>**。
+* **TLS** 协议（在 HTTP 之下的 TCP 层处理加密的协议）有一个**扩展**，称为 **[<abbr title="Server Name Indication - 服务器名称指示">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)**。
     * SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域名/应用程序**。
     * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
 * **获得安全连接后**，通信协议**仍然是HTTP**。
     * 内容是 **加密过的**，即使它们是通过 **HTTP 协议** 发送的。
 
-通常的做法是在服务器上运行**一个程序/HTTP 服务器**并**管理所有 HTTPS 部分**：接收**加密的 HTTPS 请求**， 将 **解密的 HTTP 请求** 发送到在同一服务器中运行的实际 HTTP 应用程序（在本例中为 **FastAPI** 应用程序），从应用程序中获取 **HTTP 响应**， 使用适当的 **HTTPS 证书**对其进行加密并使用 **HTTPS** 将其发送回客户端。 此服务器通常被称为 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理(TLS Termination Proxy)</a>**。
+通常的做法是在服务器上运行**一个程序/HTTP 服务器**并**管理所有 HTTPS 部分**：接收**加密的 HTTPS 请求**， 将 **解密的 HTTP 请求** 发送到在同一服务器中运行的实际 HTTP 应用程序（在本例中为 **FastAPI** 应用程序），从应用程序中获取 **HTTP 响应**， 使用适当的 **HTTPS 证书**对其进行加密并使用 **HTTPS** 将其发送回客户端。 此服务器通常被称为 **[TLS 终止代理(TLS Termination Proxy)](https://en.wikipedia.org/wiki/TLS_termination_proxy)**。
 
 你可以用作 TLS 终止代理的一些选项包括：
 
@@ -49,7 +49,7 @@
 
 过去，获得这些证书的过程非常繁琐，需要大量的文书工作，而且证书非常昂贵。
 
-但随后 **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** 创建了。
+但随后 **[Let's Encrypt](https://letsencrypt.org/)** 创建了。
 
 它是 Linux 基金会的一个项目。 它以自动方式免费提供 **HTTPS 证书**。 这些证书可以使用所有符合标准的安全加密，并且有效期很短（大约 3 个月），因此**安全性实际上更好**，因为它们的生命周期缩短了。
 
@@ -67,7 +67,7 @@
 
 你可能拥有一个云服务器（虚拟机）或类似的东西，并且它会有一个<dfn title="不会随时间改变。非动态的。">固定</dfn> **公共IP地址**。
 
-在 DNS 服务器中，你可以配置一条记录（“A 记录”）以将 **你的域名** 指向你服务器的公共 **IP 地址**。
+在 DNS 服务器中，你可以配置一条记录（一个 `A record`）以将 **你的域名** 指向你服务器的公共 **IP 地址**。
 
 这个操作一般只需要在最开始执行一次。
 
@@ -179,7 +179,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 因此，要更新证书，更新程序需要向权威机构（Let's Encrypt）**证明**它确实**“拥有”并控制该域名**。
 
-有多种方法可以做到这一点。 一些流行的方式是：
+有多种方法可以做到这一点，并适应不同的应用需求。 一些流行的方式是：
 
 * **修改一些DNS记录**。
     * 为此，续订程序需要支持 DNS 提供商的 API，因此，要看你使用的 DNS 提供商是否提供这一功能。
@@ -188,8 +188,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
     * 这就是当同一个 TLS 终止代理还负责证书续订过程时它非常有用的原因之一。
     * 否则，你可能需要暂时停止 TLS 终止代理，启动续订程序以获取证书，然后使用 TLS 终止代理配置它们，然后重新启动 TLS 终止代理。 这并不理想，因为你的应用程序在 TLS 终止代理关闭期间将不可用。
 
-通过拥有一个**单独的系统来使用 TLS 终止代理来处理 HTTPS**, 而不是直接将 TLS 证书与应用程序服务器一起使用 （例如 Uvicorn）,你可以在
-更新证书的过程中同时保持提供服务。
+在仍然为应用提供服务的同时完成整个更新流程，是你想要用 TLS 终止代理拥有一个**单独系统来处理 HTTPS**，而不是直接在应用服务器（例如 Uvicorn）上使用 TLS 证书的主要原因之一。
 
 ## 代理转发请求头 { #proxy-forwarded-headers }
 
@@ -201,15 +200,15 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 这些代理请求头包括：
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
 不过，由于**应用服务器**并不知道自己位于受信任的**代理**之后，默认情况下，它不会信任这些请求头。
 
-但你可以配置**应用服务器**去信任由**代理**发送的这些“转发”请求头。如果你在使用 FastAPI CLI，可以使用命令行选项 `--forwarded-allow-ips` 指定它应该信任哪些 IP 发来的这些“转发”请求头。
+但你可以配置**应用服务器**去信任由**代理**发送的这些*转发*请求头。如果你在使用 FastAPI CLI，可以使用 *CLI 选项* `--forwarded-allow-ips` 指定它应该信任哪些 IP 发来的这些*转发*请求头。
 
 例如，如果**应用服务器**只接收来自受信任**代理**的通信，你可以设置 `--forwarded-allow-ips="*"`，让它信任所有传入的 IP，因为它只会接收来自**代理**所使用 IP 的请求。
 
@@ -219,7 +218,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 /// tip | 提示
 
-你可以在文档中了解更多：[在代理之后 - 启用代理转发请求头](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+你可以在文档中了解更多：[在代理之后 - 启用代理转发请求头](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers)
 
 ///
 

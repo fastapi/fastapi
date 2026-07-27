@@ -8,15 +8,19 @@ from typing import Any, Literal, cast
 from fastapi import routing
 from fastapi._compat import (
     ModelField,
-    Undefined,
     get_definitions,
     get_flat_models_from_fields,
     get_model_name_map,
     get_schema_from_model_field,
     lenient_issubclass,
 )
-from fastapi.datastructures import DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.datastructures import DefaultPlaceholder, _Unset
+from fastapi.dependencies.models import (
+    Dependant,
+    _get_oauth_scopes,
+    _get_security_dependencies,
+    _get_security_scheme,
+)
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     get_flat_dependant,
@@ -85,18 +89,19 @@ def get_openapi_security_definitions(
     security_definitions = {}
     # Use a dict to merge scopes for same security scheme
     operation_security_dict: dict[str, list[str]] = {}
-    for security_dependency in flat_dependant._security_dependencies:
+    for security_dependency in _get_security_dependencies(dependant=flat_dependant):
+        security_scheme = _get_security_scheme(dependant=security_dependency)
         security_definition = jsonable_encoder(
-            security_dependency._security_scheme.model,
+            security_scheme.model,
             by_alias=True,
             exclude_none=True,
         )
-        security_name = security_dependency._security_scheme.scheme_name
+        security_name = security_scheme.scheme_name
         security_definitions[security_name] = security_definition
         # Merge scopes for the same security scheme
         if security_name not in operation_security_dict:
             operation_security_dict[security_name] = []
-        for scope in security_dependency.oauth_scopes or []:
+        for scope in _get_oauth_scopes(dependant=security_dependency):
             if scope not in operation_security_dict[security_name]:
                 operation_security_dict[security_name].append(scope)
     operation_security = [
@@ -170,7 +175,7 @@ def _get_openapi_operation_parameters(
             example = getattr(field_info, "example", None)
             if openapi_examples:
                 parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example != Undefined:
+            elif example is not _Unset:
                 parameter["example"] = jsonable_encoder(example)
             if getattr(field_info, "deprecated", None):
                 parameter["deprecated"] = True
@@ -207,14 +212,14 @@ def get_openapi_operation_request_body(
         request_media_content["examples"] = jsonable_encoder(
             field_info.openapi_examples
         )
-    elif field_info.example != Undefined:
+    elif field_info.example is not _Unset:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 
 
 def generate_operation_id(
-    *, route: routing.APIRoute, method: str
+    *, route: routing._APIRouteLike, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
         message="fastapi.openapi.utils.generate_operation_id() was deprecated, "
@@ -228,14 +233,14 @@ def generate_operation_id(
     return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
-def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_summary(*, route: routing._APIRouteLike, method: str) -> str:
     if route.summary:
         return route.summary
     return route.name.replace("_", " ").title()
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str, operation_ids: set[str]
+    *, route: routing._APIRouteLike, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
     operation: dict[str, Any] = {}
     if route.tags:
@@ -245,10 +250,8 @@ def get_openapi_operation_metadata(
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
-        message = (
-            f"Duplicate Operation ID {operation_id} for function "
-            + f"{route.endpoint.__name__}"
-        )
+        endpoint_name = getattr(route.endpoint, "__name__", "<unnamed_endpoint>")
+        message = f"Duplicate Operation ID {operation_id} for function {endpoint_name}"
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
@@ -262,7 +265,7 @@ def get_openapi_operation_metadata(
 
 def get_openapi_path(
     *,
-    route: routing.APIRoute,
+    route: routing._APIRouteLike,
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
@@ -332,7 +335,7 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback,
+                            route=cast(routing._APIRouteLike, callback),
                             operation_ids=operation_ids,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
@@ -481,31 +484,40 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
+def _get_api_route_for_openapi(
+    route_context: routing.RouteContext,
+) -> routing._APIRouteLike | None:
+    if isinstance(route_context.original_route, routing.APIRoute):
+        return cast(routing._APIRouteLike, route_context)
+    return None
+
+
 def get_fields_from_routes(
-    routes: Sequence[BaseRoute],
+    routes: Sequence[BaseRoute | routing.RouteContext],
 ) -> list[ModelField]:
     body_fields_from_routes: list[ModelField] = []
     responses_from_routes: list[ModelField] = []
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
-    for route in routes:
-        if not isinstance(route, routing.APIRoute):
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is None:
             continue
-        if route.include_in_schema:
-            if route.body_field:
-                assert isinstance(route.body_field, ModelField), (
+        if api_route.include_in_schema:
+            if api_route.body_field:
+                assert isinstance(api_route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
-                body_fields_from_routes.append(route.body_field)
-            if route.response_field:
-                responses_from_routes.append(route.response_field)
-            if route.response_fields:
-                responses_from_routes.extend(route.response_fields.values())
-            if route.stream_item_field:
-                responses_from_routes.append(route.stream_item_field)
-            if route.callbacks:
-                callback_flat_models.extend(get_fields_from_routes(route.callbacks))
-            params = get_flat_params(route.dependant)
+                body_fields_from_routes.append(api_route.body_field)
+            if api_route.response_field:
+                responses_from_routes.append(api_route.response_field)
+            if api_route.response_fields:
+                responses_from_routes.extend(api_route.response_fields.values())
+            if api_route.stream_item_field:
+                responses_from_routes.append(api_route.stream_item_field)
+            if api_route.callbacks:
+                callback_flat_models.extend(get_fields_from_routes(api_route.callbacks))
+            params = get_flat_params(api_route.dependant)
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(
@@ -521,8 +533,8 @@ def get_openapi(
     openapi_version: str = "3.1.0",
     summary: str | None = None,
     description: str | None = None,
-    routes: Sequence[BaseRoute],
-    webhooks: Sequence[BaseRoute] | None = None,
+    routes: Sequence[BaseRoute | routing.RouteContext],
+    webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
     tags: list[dict[str, Any]] | None = None,
     servers: list[dict[str, str | Any]] | None = None,
     terms_of_service: str | None = None,
@@ -549,7 +561,7 @@ def get_openapi(
     paths: dict[str, dict[str, Any]] = {}
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
-    all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
+    all_fields = get_fields_from_routes(list(routes) + list(webhooks or []))
     flat_models = get_flat_models_from_fields(all_fields, known_models=set())
     model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
@@ -557,10 +569,11 @@ def get_openapi(
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    for route in routes or []:
-        if isinstance(route, routing.APIRoute):
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is not None:
             result = get_openapi_path(
-                route=route,
+                route=api_route,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -569,17 +582,18 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    paths.setdefault(api_route.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
-    for webhook in webhooks or []:
-        if isinstance(webhook, routing.APIRoute):
+    for webhook_context in routing.iter_route_contexts(webhooks or []):
+        api_webhook = _get_api_route_for_openapi(webhook_context)
+        if api_webhook is not None:
             result = get_openapi_path(
-                route=webhook,
+                route=api_webhook,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -588,7 +602,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                    webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
@@ -606,4 +620,4 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore[no-any-return]

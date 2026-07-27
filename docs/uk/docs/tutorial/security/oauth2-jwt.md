@@ -10,7 +10,7 @@
 
 JWT означає «JSON Web Tokens».
 
-Це стандарт кодування об'єкта JSON у довгий щільний рядок без пробілів. Він виглядає так:
+Це стандарт кодування об'єкта JSON у довгу щільну строку без пробілів. Він виглядає так:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
@@ -24,13 +24,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Через тиждень токен завершить термін дії, і користувач не буде авторизований та має знову увійти, щоб отримати новий токен. І якщо користувач (або третя сторона) намагатиметься змінити токен, щоб змінити термін дії, ви це виявите, бо підписи не співпадатимуть.
 
-Якщо хочете «погратися» з токенами JWT і побачити, як вони працюють, перегляньте <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Якщо хочете «погратися» з токенами JWT і побачити, як вони працюють, перегляньте [https://jwt.io](https://jwt.io/).
 
 ## Встановіть `PyJWT` { #install-pyjwt }
 
 Нам потрібно встановити `PyJWT`, щоб створювати та перевіряти токени JWT у Python.
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md){.internal-link target=_blank}, активували його і тоді встановіть `pyjwt`:
+Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть `pyjwt`:
 
 <div class="termy">
 
@@ -42,11 +42,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Інформація
+/// note | Примітка
 
 Якщо ви плануєте використовувати алгоритми цифрового підпису на кшталт RSA або ECDSA, слід встановити залежність криптобібліотеки `pyjwt[crypto]`.
 
-Докладніше про це можна прочитати у <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">документації з встановлення PyJWT</a>.
+Докладніше про це можна прочитати у [документації з встановлення PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ pwdlib - це чудовий пакет Python для роботи з хешам
 
 Рекомендований алгоритм - «Argon2».
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md){.internal-link target=_blank}, активували його і тоді встановіть pwdlib з Argon2:
+Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть pwdlib з Argon2:
 
 <div class="termy">
 
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## Оновіть операцію шляху `/token` { #update-the-token-path-operation }
+## Оновіть *операцію шляху* `/token` { #update-the-token-path-operation }
 
 Створіть `timedelta` з часом життя токена.
 
@@ -200,7 +200,7 @@ JWT може використовуватися й для інших речей,
 
 ## Перевірте { #check-it }
 
-Запустіть сервер і перейдіть до документації: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Запустіть сервер і перейдіть до документації: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Ви побачите такий інтерфейс користувача:
 
@@ -213,7 +213,7 @@ JWT може використовуватися й для інших речей,
 Username: `johndoe`
 Password: `secret`
 
-/// check | Перевірте
+/// tip | Порада
 
 Зверніть увагу, що ніде в коді немає відкритого пароля "`secret`", ми маємо лише хешовану версію.
 

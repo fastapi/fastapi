@@ -1,6 +1,6 @@
 # Histoire, conception et avenir { #history-design-and-future }
 
-Il y a quelque temps, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un utilisateur de **FastAPI** a demandé</a> :
+Il y a quelque temps, [un utilisateur de **FastAPI** a demandé](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920) :
 
 > Quelle est l'histoire de ce projet ? Il semble être sorti de nulle part et est devenu génial en quelques semaines [...].
 
@@ -14,7 +14,7 @@ Dans ce cadre, j'ai dû étudier, tester et utiliser de nombreuses alternatives.
 
 L'histoire de **FastAPI** est en grande partie l'histoire de ses prédécesseurs.
 
-Comme dit dans la section [Alternatives](alternatives.md){.internal-link target=_blank} :
+Comme dit dans la section [Alternatives](alternatives.md) :
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@ Ensuite, j'ai passé du temps à concevoir l'« API » de développeur que je vo
 
 J'ai testé plusieurs idées dans les éditeurs Python les plus populaires : PyCharm, VS Code, les éditeurs basés sur Jedi.
 
-D'après la dernière <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Enquête Développeurs Python</a>, cela couvre environ 80% des utilisateurs.
+D'après la dernière [Enquête Développeurs Python](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools), cela couvre environ 80% des utilisateurs.
 
 Cela signifie que **FastAPI** a été spécifiquement testé avec les éditeurs utilisés par 80% des développeurs Python. Et comme la plupart des autres éditeurs ont tendance à fonctionner de façon similaire, tous ses avantages devraient fonctionner pour pratiquement tous les éditeurs.
 
@@ -54,11 +54,11 @@ Le tout de manière à offrir la meilleure expérience de développement à tous
 
 ## Exigences { #requirements }
 
-Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> pour ses avantages.
+Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser [**Pydantic**](https://docs.pydantic.dev/) pour ses avantages.
 
 J'y ai ensuite contribué, pour le rendre entièrement compatible avec JSON Schema, pour supporter différentes manières de définir les déclarations de contraintes, et pour améliorer le support des éditeurs (vérifications de type, autocomplétion) sur la base des tests effectués dans plusieurs éditeurs.
 
-Pendant le développement, j'ai également contribué à <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, l'autre exigence clé.
+Pendant le développement, j'ai également contribué à [**Starlette**](https://www.starlette.dev/), l'autre exigence clé.
 
 ## Développement { #development }
 
@@ -76,4 +76,4 @@ Mais il y a encore de nombreuses améliorations et fonctionnalités à venir.
 
 **FastAPI** a un grand avenir devant lui.
 
-Et [votre aide](help-fastapi.md){.internal-link target=_blank} est grandement appréciée.
+Et [votre aide](help-fastapi.md) est grandement appréciée.

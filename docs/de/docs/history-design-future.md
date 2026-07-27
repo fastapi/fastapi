@@ -1,6 +1,6 @@
 # Geschichte, Design und Zukunft { #history-design-and-future }
 
-Vor einiger Zeit fragte <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">ein **FastAPI**-Benutzer</a>:
+Vor einiger Zeit fragte [ein **FastAPI**-Benutzer](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > Was ist die Geschichte dieses Projekts? Es scheint aus dem Nichts in ein paar Wochen zu etwas Großartigem geworden zu sein [...]
 
@@ -14,7 +14,7 @@ Dabei musste ich viele Alternativen untersuchen, testen und nutzen.
 
 Die Geschichte von **FastAPI** ist zu einem großen Teil die Geschichte seiner Vorgänger.
 
-Wie im Abschnitt [Alternativen](alternatives.md){.internal-link target=_blank} gesagt:
+Wie im Abschnitt [Alternativen](alternatives.md) gesagt:
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@ Dann habe ich einige Zeit damit verbracht, die Entwickler-„API“ zu entwerfen
 
 Ich habe mehrere Ideen in den beliebtesten Python-Editoren getestet: PyCharm, VS Code, Jedi-basierte Editoren.
 
-Laut der letzten <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python-Entwickler-Umfrage</a> deckt das etwa 80 % der Benutzer ab.
+Laut der letzten [Python-Entwickler-Umfrage](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools) deckt das etwa 80 % der Benutzer ab.
 
 Das bedeutet, dass **FastAPI** speziell mit den Editoren getestet wurde, die von 80 % der Python-Entwickler verwendet werden. Und da die meisten anderen Editoren in der Regel ähnlich funktionieren, sollten alle diese Vorteile für praktisch alle Editoren funktionieren.
 
@@ -54,11 +54,11 @@ Alles auf eine Weise, die allen Entwicklern das beste Entwicklungserlebnis bot.
 
 ## Anforderungen { #requirements }
 
-Nachdem ich mehrere Alternativen getestet hatte, entschied ich, dass ich <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> wegen seiner Vorteile verwenden würde.
+Nachdem ich mehrere Alternativen getestet hatte, entschied ich, dass ich [**Pydantic**](https://docs.pydantic.dev/) wegen seiner Vorteile verwenden würde.
 
 Dann habe ich zu dessen Code beigetragen, um es vollständig mit JSON Schema kompatibel zu machen, und so verschiedene Möglichkeiten zum Definieren von einschränkenden Deklarationen (Constraints) zu unterstützen, und die Editorunterstützung (Typprüfungen, Codevervollständigung) zu verbessern, basierend auf den Tests in mehreren Editoren.
 
-Während der Entwicklung habe ich auch zu <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a> beigetragen, die andere Schlüsselanforderung.
+Während der Entwicklung habe ich auch zu [**Starlette**](https://www.starlette.dev/) beigetragen, die andere Schlüsselanforderung.
 
 ## Entwicklung { #development }
 
@@ -76,4 +76,4 @@ Dennoch stehen uns noch viele Verbesserungen und Funktionen bevor.
 
 **FastAPI** hat eine große Zukunft vor sich.
 
-Und [Ihre Hilfe](help-fastapi.md){.internal-link target=_blank} wird sehr geschätzt.
+Und [Ihre Hilfe](help-fastapi.md) wird sehr geschätzt.

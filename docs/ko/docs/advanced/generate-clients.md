@@ -2,17 +2,17 @@
 
 **FastAPI**는 **OpenAPI** 사양을 기반으로 하므로, FastAPI의 API는 많은 도구가 이해할 수 있는 표준 형식으로 설명할 수 있습니다.
 
-덕분에 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 최신 **문서**, 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
+덕분에 최신 **문서**, 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
 
 이 가이드에서는 FastAPI 백엔드용 **TypeScript SDK**를 생성하는 방법을 배웁니다.
 
 ## 오픈 소스 SDK 생성기 { #open-source-sdk-generators }
 
-다양하게 활용할 수 있는 옵션으로 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>가 있으며, **다양한 프로그래밍 언어**를 지원하고 OpenAPI 사양으로부터 SDK를 생성할 수 있습니다.
+다양하게 활용할 수 있는 옵션으로 [OpenAPI Generator](https://openapi-generator.tech/)가 있으며, **다양한 프로그래밍 언어**를 지원하고 OpenAPI 사양으로부터 SDK를 생성할 수 있습니다.
 
-**TypeScript 클라이언트**의 경우 <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a>는 TypeScript 생태계에 최적화된 경험을 제공하는 목적에 맞게 설계된 솔루션입니다.
+**TypeScript 클라이언트**의 경우 [Hey API](https://heyapi.dev/)는 TypeScript 생태계에 최적화된 경험을 제공하는 목적에 맞게 설계된 솔루션입니다.
 
-더 많은 SDK 생성기는 <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>에서 확인할 수 있습니다.
+더 많은 SDK 생성기는 [OpenAPI.Tools](https://openapi.tools/#sdk)에서 확인할 수 있습니다.
 
 /// tip | 팁
 
@@ -20,29 +20,13 @@ FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 
 
 ///
 
-## FastAPI 스폰서의 SDK 생성기 { #sdk-generators-from-fastapi-sponsors }
-
-이 섹션에서는 FastAPI를 후원하는 회사들이 제공하는 **벤처 투자 기반** 및 **기업 지원** 솔루션을 소개합니다. 이 제품들은 고품질로 생성된 SDK에 더해 **추가 기능**과 **통합**을 제공합니다.
-
-✨ [**FastAPI 후원하기**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨를 통해, 이 회사들은 프레임워크와 그 **생태계**가 건강하고 **지속 가능**하게 유지되도록 돕습니다.
-
-또한 이들의 후원은 FastAPI **커뮤니티**(여러분)에 대한 강한 헌신을 보여주며, **좋은 서비스**를 제공하는 것뿐 아니라, 견고하고 활발한 프레임워크인 FastAPI를 지원하는 데에도 관심이 있음을 나타냅니다. 🙇
-
-예를 들어 다음을 사용해 볼 수 있습니다:
-
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
-
-이 중 일부는 오픈 소스이거나 무료 티어를 제공하므로, 비용 부담 없이 사용해 볼 수 있습니다. 다른 상용 SDK 생성기도 있으며 온라인에서 찾을 수 있습니다. 🤓
-
 ## TypeScript SDK 만들기 { #create-a-typescript-sdk }
 
 간단한 FastAPI 애플리케이션으로 시작해 보겠습니다:
 
 {* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
 
-*path operation*에서 요청 페이로드와 응답 페이로드에 사용하는 모델을 `Item`, `ResponseMessage` 모델로 정의하고 있다는 점에 주목하세요.
+*경로 처리*에서 요청 페이로드와 응답 페이로드에 사용하는 모델을 `Item`, `ResponseMessage` 모델로 정의하고 있다는 점에 주목하세요.
 
 ### API 문서 { #api-docs }
 
@@ -66,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 이 명령은 `./src/client`에 TypeScript SDK를 생성합니다.
 
-<a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">`@hey-api/openapi-ts` 설치 방법</a>과 <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">생성된 결과물</a>은 해당 웹사이트에서 확인할 수 있습니다.
+[`@hey-api/openapi-ts` 설치 방법](https://heyapi.dev/openapi-ts/get-started)과 [생성된 결과물](https://heyapi.dev/openapi-ts/output)은 해당 웹사이트에서 확인할 수 있습니다.
 
 ### SDK 사용하기 { #using-the-sdk }
 
@@ -94,7 +78,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 ## 태그가 있는 FastAPI 앱 { #fastapi-app-with-tags }
 
-대부분의 경우 FastAPI 앱은 더 커지고, 서로 다른 *path operations* 그룹을 분리하기 위해 태그를 사용하게 될 가능성이 큽니다.
+대부분의 경우 FastAPI 앱은 더 커지고, 서로 다른 *경로 처리* 그룹을 분리하기 위해 태그를 사용하게 될 가능성이 큽니다.
 
 예를 들어 **items** 섹션과 **users** 섹션이 있고, 이를 태그로 분리할 수 있습니다:
 
@@ -121,9 +105,9 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...이는 클라이언트 생성기가 각 *path operation*에 대해 OpenAPI 내부의 **operation ID**를 사용하기 때문입니다.
+...이는 클라이언트 생성기가 각 *경로 처리*에 대해 OpenAPI 내부의 **operation ID**를 사용하기 때문입니다.
 
-OpenAPI는 모든 *path operations* 전체에서 operation ID가 각각 유일해야 한다고 요구합니다. 그래서 FastAPI는 operation ID가 유일하도록 **함수 이름**, **경로**, **HTTP method/operation**을 조합해 operation ID를 생성합니다.
+OpenAPI는 모든 *경로 처리* 전체에서 operation ID가 각각 유일해야 한다고 요구합니다. 그래서 FastAPI는 operation ID가 유일하도록 **함수 이름**, **경로**, **HTTP method/operation**을 조합해 operation ID를 생성합니다.
 
 하지만 다음에서 이를 개선하는 방법을 보여드리겠습니다. 🤓
 
@@ -133,15 +117,15 @@ OpenAPI는 모든 *path operations* 전체에서 operation ID가 각각 유일�
 
 이 경우 operation ID가 다른 방식으로도 **유일**하도록 보장해야 합니다.
 
-예를 들어 각 *path operation*이 태그를 갖도록 한 다음, **태그**와 *path operation* **이름**(함수 이름)을 기반으로 operation ID를 생성할 수 있습니다.
+예를 들어 각 *경로 처리*이 태그를 갖도록 한 다음, **태그**와 *경로 처리* **이름**(함수 이름)을 기반으로 operation ID를 생성할 수 있습니다.
 
 ### 유일 ID 생성 함수 커스터마이징 { #custom-generate-unique-id-function }
 
-FastAPI는 각 *path operation*에 대해 **유일 ID**를 사용하며, 이는 **operation ID** 및 요청/응답에 필요한 커스텀 모델 이름에도 사용됩니다.
+FastAPI는 각 *경로 처리*에 대해 **유일 ID**를 사용하며, 이는 **operation ID** 및 요청/응답에 필요한 커스텀 모델 이름에도 사용됩니다.
 
 이 함수를 커스터마이징할 수 있습니다. 이 함수는 `APIRoute`를 받아 문자열을 반환합니다.
 
-예를 들어 아래에서는 첫 번째 태그(대부분 태그는 하나만 있을 것입니다)와 *path operation* 이름(함수 이름)을 사용합니다.
+예를 들어 아래에서는 첫 번째 태그(대부분 태그는 하나만 있을 것입니다)와 *경로 처리* 이름(함수 이름)을 사용합니다.
 
 그 다음 이 커스텀 함수를 `generate_unique_id_function` 매개변수로 **FastAPI**에 전달할 수 있습니다:
 
@@ -201,7 +185,7 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 
 또한 모든 것에 대해 **인라인 오류**도 확인할 수 있습니다.
 
-그리고 백엔드 코드를 업데이트한 뒤 프론트엔드를 **재생성(regenerate)**하면, 새 *path operations*가 메서드로 추가되고 기존 것은 제거되며, 그 밖의 변경 사항도 생성된 코드에 반영됩니다. 🤓
+그리고 백엔드 코드를 업데이트한 뒤 프론트엔드를 **재생성(regenerate)**하면, 새 *경로 처리*가 메서드로 추가되고 기존 것은 제거되며, 그 밖의 변경 사항도 생성된 코드에 반영됩니다. 🤓
 
 이는 무언가 변경되면 그 변경이 클라이언트 코드에도 자동으로 **반영**된다는 뜻입니다. 또한 클라이언트를 **빌드(build)**하면 사용된 데이터가 **불일치(mismatch)**할 경우 오류가 발생합니다.
 

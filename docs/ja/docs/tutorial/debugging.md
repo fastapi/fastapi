@@ -59,7 +59,7 @@ Pythonによって自動的に作成されたファイル内の内部変数 `__n
 ```Python
 from myapp import app
 
-# Some more code
+# その他のコード
 ```
 
 その場合、`myapp.py` 内の自動的に作成された変数 `__name__` は、値として `"__main__"` を持ちません。
@@ -72,9 +72,9 @@ from myapp import app
 
 は実行されません。
 
-/// info | 情報
+/// note | 備考
 
-より詳しい情報は、<a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">公式Pythonドキュメント</a>を参照してください。
+より詳しい情報は、[公式Pythonドキュメント](https://docs.python.org/3/library/__main__.html)を参照してください。
 
 ///
 
@@ -99,7 +99,7 @@ from myapp import app
 
 ---
 
-Pycharmを使用する場合、次のことが可能です:
+PyCharmを使用する場合、次のことが可能です:
 
 * 「実行」メニューをオープン。
 * オプション「デバッグ...」を選択。

@@ -12,7 +12,7 @@
 
 例如，它不接收`datetime`这类的对象，因为这些对象与JSON不兼容。
 
-因此，`datetime`对象必须转换为包含<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO 格式</a>的`str`类型对象。
+因此，`datetime`对象必须转换为包含[ISO 格式](https://en.wikipedia.org/wiki/ISO_8601)的`str`类型对象。
 
 同样，这个数据库也不会接收Pydantic模型（带有属性的对象），而只接收`dict`。
 
@@ -24,7 +24,7 @@
 
 在这个例子中，它将Pydantic模型转换为`dict`，并将`datetime`转换为`str`。
 
-调用它的结果后就可以使用Python标准编码中的<a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>。
+调用它的结果后就可以使用Python标准编码中的[`json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps)。
 
 这个操作不会返回一个包含JSON格式（作为字符串）数据的庞大的`str`。它将返回一个Python标准数据结构（例如`dict`），其值和子值都与JSON兼容。
 

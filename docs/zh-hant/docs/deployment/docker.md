@@ -1,6 +1,6 @@
 # 在容器中使用 FastAPI - Docker { #fastapi-in-containers-docker }
 
-部署 FastAPI 應用時，一個常見做法是建置一個「Linux 容器映像（container image）」。通常使用 <a href="https://www.docker.com/" class="external-link" target="_blank">Docker</a> 來完成。之後你可以用多種方式部署該容器映像。
+部署 FastAPI 應用時，一個常見做法是建置一個「Linux 容器映像（container image）」。通常使用 [Docker](https://www.docker.com/) 來完成。之後你可以用多種方式部署該容器映像。
 
 使用 Linux 容器有多種優點，包括安全性、可重現性、簡單性等。
 
@@ -60,16 +60,16 @@ Linux 容器使用與主機（機器、虛擬機、雲端伺服器等）相同�
 
 Docker 是用來建立與管理容器映像與容器的主要工具之一。
 
-也有一個公開的 <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>，內含許多工具、環境、資料庫與應用的預先製作「官方映像」。
+也有一個公開的 [Docker Hub](https://hub.docker.com/)，內含許多工具、環境、資料庫與應用的預先製作「官方映像」。
 
-例如，有官方的 <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python 映像</a>。
+例如，有官方的 [Python 映像](https://hub.docker.com/_/python)。
 
 也有許多其他針對不同用途的映像，例如資料庫：
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a> 等。
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis) 等。
 
 使用預製的容器映像很容易「組合」並使用不同工具。例如，嘗試一個新資料庫。多數情況下，你可以使用官方映像，並僅用環境變數加以設定。
 
@@ -111,7 +111,7 @@ Docker 是用來建立與管理容器映像與容器的主要工具之一。
 
 最常見的方式是準備一個 `requirements.txt` 檔案，逐行列出套件名稱與版本。
 
-當然，你會用與在 [關於 FastAPI 版本](versions.md){.internal-link target=_blank} 中讀到的相同概念，來設定版本範圍。
+當然，你會用與在 [關於 FastAPI 版本](versions.md) 中讀到的相同概念，來設定版本範圍。
 
 例如，你的 `requirements.txt` 可能像這樣：
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 資訊
+/// note | 注意
 
 還有其他格式與工具可以用來定義與安裝套件相依。
 
@@ -238,7 +238,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 #### 使用 `CMD` 的 Exec 形式 { #use-cmd-exec-form }
 
-Docker 的 <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> 指令可以有兩種寫法：
+Docker 的 [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) 指令可以有兩種寫法：
 
 ✅ Exec 形式：
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-務必總是使用 exec 形式，以確保 FastAPI 能夠優雅地關閉，並觸發 [lifespan events](../advanced/events.md){.internal-link target=_blank}。
+務必總是使用 exec 形式，以確保 FastAPI 能夠優雅地關閉，並觸發 [lifespan events](../advanced/events.md)。
 
-你可以在 <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker 關於 shell 與 exec 形式的文件</a>閱讀更多。
+你可以在 [Docker 關於 shell 與 exec 形式的文件](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) 閱讀更多。
 
-使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：<a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">為什麼我的服務要花 10 秒才重新建立或停止？</a>
+使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：[為什麼我的服務要花 10 秒才重新建立或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)。
 
 #### 目錄結構 { #directory-structure }
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 檢查 { #check-it }
 
-你應該可以透過 Docker 容器的網址檢查，例如：<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 或 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a>（或等效的、使用你的 Docker 主機）。
+你應該可以透過 Docker 容器的網址檢查，例如：[http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) 或 [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery)（或等效的、使用你的 Docker 主機）。
 
 你會看到類似這樣：
 
@@ -362,17 +362,17 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 互動式 API 文件 { #interactive-api-docs }
 
-現在你可以前往 <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> 或 <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a>（或等效的、使用你的 Docker 主機）。
+現在你可以前往 [http://192.168.99.100/docs](http://192.168.99.100/docs) 或 [http://127.0.0.1/docs](http://127.0.0.1/docs)（或等效的、使用你的 Docker 主機）。
 
-你會看到自動產生的互動式 API 文件（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 提供）：
+你會看到自動產生的互動式 API 文件（由 [Swagger UI](https://github.com/swagger-api/swagger-ui) 提供）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## 替代的 API 文件 { #alternative-api-docs }
 
-你也可以前往 <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> 或 <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a>（或等效的、使用你的 Docker 主機）。
+你也可以前往 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或等效的、使用你的 Docker 主機）。
 
-你會看到另一種自動產生的文件（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -413,7 +413,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ## 部署概念 { #deployment-concepts }
 
-我們用容器的角度再談一次部分相同的[部署概念](concepts.md){.internal-link target=_blank}。
+我們用容器的角度再談一次部分相同的[部署概念](concepts.md)。
 
 容器主要是簡化應用「建置與部署」流程的工具，但它們不強制特定的方式來處理這些「部署概念」，而是有多種策略可選。
 
@@ -432,7 +432,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 若僅聚焦於 FastAPI 應用的「容器映像」（以及稍後的執行中「容器」），HTTPS 通常會由另一個工具在「外部」處理。
 
-它可以是另一個容器，例如使用 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>，來處理「HTTPS」以及「自動」取得「憑證」。
+它可以是另一個容器，例如使用 [Traefik](https://traefik.io/)，來處理「HTTPS」以及「自動」取得「憑證」。
 
 /// tip | 提示
 
@@ -454,7 +454,7 @@ Traefik 與 Docker、Kubernetes 等整合良好，因此為你的容器設定與
 
 ## 複本 - 行程數量 { #replication-number-of-processes }
 
-如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「叢集」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
+如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「<dfn title="一組被設定為以某種方式連接並共同運作的機器。">叢集</dfn>」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
 
 像 Kubernetes 這類的分散式容器管理系統，通常內建處理「容器複本」以及支援進入請求的「負載平衡」的能力——全部都在「叢集層級」。
 
@@ -556,9 +556,9 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有「多個容器」，且每個容器大概都只執行「單一行程」（例如在一個 Kubernetes 叢集中），那你可能會想要一個「獨立的容器」來完成「前置步驟」的工作，並只在單一容器、單一行程中執行，接著才啟動多個複本的工作容器。
 
-/// info | 資訊
+/// note | 注意
 
-如果你使用 Kubernetes，這大概會是一個 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>。
+如果你使用 Kubernetes，這大概會是一個 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 
 ///
 
@@ -570,11 +570,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ### 基底 Docker 映像 { #base-docker-image }
 
-曾經有一個官方的 FastAPI Docker 映像：<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>。但現在已被棄用。⛔️
+曾經有一個官方的 FastAPI Docker 映像：[tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)。但現在已被棄用。⛔️
 
 你大概「不應該」使用這個基底 Docker 映像（或其他類似的）。
 
-如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述[從零建置映像](#build-a-docker-image-for-fastapi)。
+如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述「從零建置映像」：[為 FastAPI 建置 Docker 映像](#build-a-docker-image-for-fastapi)。
 
 若你需要多個 workers，只要使用 `--workers` 命令列選項即可。
 
@@ -600,7 +600,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ## 使用 `uv` 的 Docker 映像 { #docker-image-with-uv }
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> 來安裝與管理專案，你可以參考他們的 <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker 指南</a>。
+如果你使用 [uv](https://github.com/astral-sh/uv) 來安裝與管理專案，你可以參考他們的 [uv Docker 指南](https://docs.astral.sh/uv/guides/integration/docker/)。
 
 ## 總結 { #recap }
 

@@ -44,7 +44,7 @@ C'est un programme très simple.
 
 Mais maintenant imaginez que vous l'écriviez de zéro.
 
-À un certain moment, vous auriez commencé la définition de la fonction, vous aviez les paramètres prêts ...
+À un moment donné, vous commencez à définir la fonction, et vous avez les paramètres prêts ...
 
 Mais ensuite vous devez appeler « cette méthode qui convertit la première lettre en majuscule ».
 
@@ -172,7 +172,7 @@ Comme la liste est un type qui contient des types internes, mettez-les entre cro
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | Info
+/// note | Remarque
 
 Ces types internes entre crochets sont appelés « paramètres de type ».
 
@@ -269,7 +269,7 @@ Cela ne signifie pas « `one_person` est la **classe** appelée `Person` ».
 
 ## Modèles Pydantic { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
+[Pydantic](https://docs.pydantic.dev/) est une bibliothèque Python pour effectuer de la validation de données.
 
 Vous déclarez la « forme » de la donnée sous forme de classes avec des attributs.
 
@@ -279,19 +279,19 @@ Ensuite, vous créez une instance de cette classe avec certaines valeurs et elle
 
 Et vous obtenez tout le support de l'éditeur avec cet objet résultant.
 
-Un exemple tiré de la documentation officielle de Pydantic :
+Un exemple tiré des documents officiels de Pydantic :
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | Info
+/// note | Remarque
 
-Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, consultez sa documentation</a>.
+Pour en savoir plus à propos de [Pydantic, consultez ses documents](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI** est entièrement basé sur Pydantic.
 
-Vous verrez beaucoup plus de tout cela en pratique dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Vous verrez beaucoup plus de tout cela en pratique dans le [Tutoriel - Guide utilisateur](tutorial/index.md).
 
 ## Annotations de type avec métadonnées { #type-hints-with-metadata-annotations }
 
@@ -305,7 +305,7 @@ Python lui-même ne fait rien avec ce `Annotated`. Et pour les éditeurs et autr
 
 Mais vous pouvez utiliser cet espace dans `Annotated` pour fournir à **FastAPI** des métadonnées supplémentaires sur la façon dont vous voulez que votre application se comporte.
 
-L'important à retenir est que **le premier « paramètre de type »** que vous passez à `Annotated` est le **type réel**. Le reste n'est que des métadonnées pour d'autres outils.
+L'important à retenir est que **le premier *paramètre de type*** que vous passez à `Annotated` est le **type réel**. Le reste n'est que des métadonnées pour d'autres outils.
 
 Pour l'instant, vous avez juste besoin de savoir que `Annotated` existe, et que c'est du Python standard. 😎
 
@@ -337,12 +337,12 @@ Avec **FastAPI**, vous déclarez des paramètres avec des annotations de type et
 * **Documenter** l'API avec OpenAPI :
     * ce qui est ensuite utilisé par les interfaces utilisateur de documentation interactive automatiques.
 
-Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela en action dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela en action dans le [Tutoriel - Guide utilisateur](tutorial/index.md).
 
 L'important est qu'en utilisant les types standards de Python, en un seul endroit (au lieu d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
-/// info | Info
+/// note | Remarque
 
-Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">l'« aide-mémoire » de `mypy`</a>.
+Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est [l'« aide-mémoire » de `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

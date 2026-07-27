@@ -12,7 +12,7 @@ Isso é especialmente o caso para modelos de usuários, porque:
 
 Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
 
-Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing).
 
 ///
 
@@ -162,11 +162,11 @@ Você pode declarar uma resposta como o `Union` de dois ou mais tipos, o que sig
 
 Isso será definido no OpenAPI com `anyOf`.
 
-Para fazer isso, use a anotação de tipo padrão do Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para fazer isso, use a anotação de tipo padrão do Python [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union):
 
 /// note | Nota
 
-Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+Ao definir um [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
 
 ///
 
@@ -208,4 +208,4 @@ Neste caso, você pode usar `dict`:
 
 Use vários modelos Pydantic e herde livremente para cada caso.
 
-Não é necessário ter um único modelo de dados por entidade se essa entidade precisar ter diferentes "estados". No caso da "entidade" de usuário com um estado que inclui `password`, `password_hash` e sem senha.
+Não é necessário ter um único modelo de dados por entidade se essa entidade precisar ter diferentes "estados". A "entidade" **usuário** é um exemplo, com estados que incluem `password`, `password_hash` ou sem senha.

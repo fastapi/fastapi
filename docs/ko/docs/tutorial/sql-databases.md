@@ -1,10 +1,11 @@
 # SQL (관계형) 데이터베이스 { #sql-relational-databases }
 
+
 **FastAPI**에서 SQL(관계형) 데이터베이스 사용은 필수가 아닙니다. 하지만 여러분이 원하는 **어떤 데이터베이스든** 사용할 수 있습니다.
 
-여기서는 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>을 사용하는 예제를 살펴보겠습니다.
+여기서는 [SQLModel](https://sqlmodel.tiangolo.com/)을 사용하는 예제를 살펴보겠습니다.
 
-**SQLModel**은 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>와 Pydantic을 기반으로 구축되었습니다. **SQL 데이터베이스**를 사용해야 하는 FastAPI 애플리케이션에 완벽히 어울리도록 **FastAPI**와 같은 제작자가 만든 도구입니다.
+**SQLModel**은 [SQLAlchemy](https://www.sqlalchemy.org/)와 Pydantic을 기반으로 구축되었습니다. **SQL 데이터베이스**를 사용해야 하는 FastAPI 애플리케이션에 완벽히 어울리도록 **FastAPI**와 같은 제작자가 만든 도구입니다.
 
 /// tip | 팁
 
@@ -26,15 +27,15 @@ SQLModel은 SQLAlchemy를 기반으로 하므로, SQLAlchemy에서 **지원하�
 
 /// tip | 팁
 
-프론트엔드와 더 많은 도구를 포함하여 **FastAPI**와 **PostgreSQL**을 포함한 공식 프로젝트 생성기가 있습니다: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+프론트엔드와 더 많은 도구를 포함하여 **FastAPI**와 **PostgreSQL**을 포함한 공식 프로젝트 생성기가 있습니다: [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-이 튜토리얼은 매우 간단하고 짧습니다. 데이터베이스 기본 개념, SQL, 또는 더 고급 기능에 대해 배우고 싶다면, <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel 문서</a>를 참고하세요.
+이 튜토리얼은 매우 간단하고 짧습니다. 데이터베이스 기본 개념, SQL, 또는 더 고급 기능에 대해 배우고 싶다면, [SQLModel 문서](https://sqlmodel.tiangolo.com/)를 참고하세요.
 
 ## `SQLModel` 설치하기 { #install-sqlmodel }
 
-먼저, [가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고 활성화한 다음, `sqlmodel`을 설치하세요:
+먼저, [가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, `sqlmodel`을 설치하세요:
 
 <div class="termy">
 
@@ -65,7 +66,7 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)`는 SQLModel에 `id`가 SQL 데이터베이스의 **기본 키**임을 알려줍니다 (SQL 기본 키에 대한 자세한 내용은 SQLModel 문서를 참고하세요).
 
-    **참고:** 기본 키 필드에 `int | None`을 사용하는 이유는, Python 코드에서 *`id` 없이 객체를 생성*할 수 있게 하기 위해서입니다(`id=None`). 데이터베이스가 *저장할 때 생성해 줄 것*이라고 가정합니다. SQLModel은 데이터베이스가 `id`를 제공한다는 것을 이해하고, 데이터베이스 스키마에서 *해당 열을 null이 아닌 `INTEGER`*로 정의합니다. 자세한 내용은 <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">기본 키에 대한 SQLModel 문서</a>를 참고하세요.
+    **참고:** 기본 키 필드에 `int | None`을 사용하는 이유는, Python 코드에서 *`id` 없이 객체를 생성*할 수 있게 하기 위해서입니다(`id=None`). 데이터베이스가 *저장할 때 생성해 줄 것*이라고 가정합니다. SQLModel은 데이터베이스가 `id`를 제공한다는 것을 이해하고, 데이터베이스 스키마에서 *해당 열을 null이 아닌 `INTEGER`*로 정의합니다. 자세한 내용은 [기본 키에 대한 SQLModel 문서](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id)를 참고하세요.
 
 * `Field(index=True)`는 SQLModel에 해당 열에 대해 **SQL 인덱스**를 생성하도록 지시합니다. 이를 통해 데이터베이스에서 이 열로 필터링된 데이터를 읽을 때 더 빠르게 조회할 수 있습니다.
 
@@ -111,7 +112,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 /// tip | 팁
 
-SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 예정입니다. 하지만 현재 <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>을 직접 사용할 수 있습니다.
+SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 예정입니다. 하지만 현재 [Alembic](https://alembic.sqlalchemy.org/en/latest/)을 직접 사용할 수 있습니다.
 
 ///
 
@@ -152,7 +153,7 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +338,7 @@ hero **삭제**는 이전과 거의 동일합니다.
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +353,6 @@ $ fastapi dev main.py
 
 ## 요약 { #recap }
 
-<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a>을 사용하여 SQL 데이터베이스와 상호작용하고, *데이터 모델* 및 *테이블 모델*로 코드를 간소화할 수 있습니다.
+[**SQLModel**](https://sqlmodel.tiangolo.com/)을 사용하여 SQL 데이터베이스와 상호작용하고, *데이터 모델* 및 *테이블 모델*로 코드를 간소화할 수 있습니다.
 
-더 많은 내용을 배우려면 **SQLModel** 문서를 참고하세요. **FastAPI**와 함께 SQLModel을 사용하는 더 긴 미니 <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">튜토리얼</a>도 있습니다. 🚀
+더 많은 내용을 배우려면 **SQLModel** 문서를 참고하세요. **FastAPI**와 함께 SQLModel을 사용하는 더 긴 미니 [튜토리얼](https://sqlmodel.tiangolo.com/tutorial/fastapi/)도 있습니다. 🚀

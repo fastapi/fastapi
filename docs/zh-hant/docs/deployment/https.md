@@ -1,5 +1,6 @@
 # 關於 HTTPS { #about-https }
 
+
 人們很容易以為 HTTPS 只是「啟用或未啟用」的功能。
 
 但實際上複雜得多。
@@ -10,7 +11,7 @@
 
 ///
 
-想從使用者角度學習 HTTPS 基礎，請參考 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
+想從使用者角度學習 HTTPS 基礎，請參考 [https://howhttps.works/](https://howhttps.works/)。
 
 接著以開發者角度，談幾個關於 HTTPS 需要注意的重點：
 
@@ -28,13 +29,13 @@
 * **預設**情況下，這表示你每個 IP 位址**只能**使用**一張 HTTPS 憑證**。
     * 不論你的伺服器多強或你在上面跑的應用多小。
     * 不過，這是有**解法**的。
-* 在 **TLS** 協定（在 HTTP 之前於 TCP 層處理加密的協定）上有個**擴充**稱為 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - 伺服器名稱指示">SNI</abbr></a>**。
+* 在 **TLS** 協定（在 HTTP 之前於 TCP 層處理加密的協定）上有個**擴充**稱為 **[<abbr title="Server Name Indication - 伺服器名稱指示">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)**。
     * 這個 SNI 擴充讓單一伺服器（單一 IP 位址）可以擁有**多張 HTTPS 憑證**，並服務**多個 HTTPS 網域／應用**。
     * 要讓它運作，伺服器上必須有一個**單一**的元件（程式）在**公用 IP**上監聽，且持有伺服器上的**所有 HTTPS 憑證**。
 * 在取得安全連線**之後**，通訊協定**仍然是 HTTP**。
     * 雖然透過 **HTTP 協定**傳送，但內容是**加密**的。
 
-常見做法是讓伺服器（機器、主機等）上跑**一個程式／HTTP 伺服器**來**管理所有 HTTPS 相關工作**：接收**加密的 HTTPS 請求**、將其**解密**成**純 HTTP 請求**轉交給同台伺服器上實際運行的 HTTP 應用（本例為 **FastAPI** 應用）、從應用取得 **HTTP 回應**、再用合適的 **HTTPS 憑證**將其**加密**並以 **HTTPS** 傳回給用戶端。這類伺服器常被稱為 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 終止代理 (TLS Termination Proxy)</a>**。
+常見做法是讓伺服器（機器、主機等）上跑**一個程式／HTTP 伺服器**來**管理所有 HTTPS 相關工作**：接收**加密的 HTTPS 請求**、將其**解密**成**純 HTTP 請求**轉交給同台伺服器上實際運行的 HTTP 應用（本例為 **FastAPI** 應用）、從應用取得 **HTTP 回應**、再用合適的 **HTTPS 憑證**將其**加密**並以 **HTTPS** 傳回給用戶端。這類伺服器常被稱為 **[TLS 終止代理](https://en.wikipedia.org/wiki/TLS_termination_proxy)**。
 
 可作為 TLS 終止代理的選項包括：
 
@@ -49,7 +50,7 @@
 
 取得這些憑證的流程過去相當繁瑣，需要許多手續，且憑證相當昂貴。
 
-之後出現了 **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>**。
+之後出現了 **[Let's Encrypt](https://letsencrypt.org/)**。
 
 它是 Linux Foundation 的專案，能**免費**且自動化地提供 **HTTPS 憑證**。這些憑證採用標準的密碼學安全機制，且有效期較短（約 3 個月），因此因為壽命短，**安全性其實更好**。
 
@@ -200,9 +201,9 @@ TLS 終止代理接著會依照先前協商（起點是 `someapp.example.com` �
 
 這些代理標頭包括：
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -218,7 +219,7 @@ TLS 終止代理接著會依照先前協商（起點是 `someapp.example.com` �
 
 /// tip
 
-你可以在文件 [在代理後方 - 啟用代理轉發標頭](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} 中了解更多。
+你可以在文件 [在代理後方 - 啟用代理轉發標頭](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers) 中了解更多。
 
 ///
 

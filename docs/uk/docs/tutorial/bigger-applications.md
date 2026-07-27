@@ -4,7 +4,7 @@
 
 **FastAPI** надає зручний інструмент для структурування вашого застосунку, зберігаючи всю гнучкість.
 
-/// info | Інформація
+/// note | Примітка
 
 Якщо ви прийшли з Flask, це еквівалент «Blueprints» у Flask.
 
@@ -17,16 +17,16 @@
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | Порада
@@ -123,7 +123,7 @@ from app.routers import items
 
 Ми використовуємо вигаданий заголовок, щоб спростити приклад.
 
-Але в реальних випадках ви отримаєте кращі результати, використовуючи інтегровані [засоби безпеки](security/index.md){.internal-link target=_blank}.
+Але в реальних випадках ви отримаєте кращі результати, використовуючи інтегровані [засоби безпеки](security/index.md).
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | Порада
 
-Зверніть увагу, що так само як і для [залежностей у декораторах *операцій шляху*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, жодне значення не буде передано вашій *функції операції шляху*.
+Зверніть увагу, що так само як і для [залежностей у декораторах *операцій шляху*](dependencies/dependencies-in-path-operation-decorators.md), жодне значення не буде передано вашій *функції операції шляху*.
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * Усі вони включатимуть наперед визначені `responses`.
 * Для всіх цих *операцій шляху* список `dependencies` буде оцінений/виконаний перед ними.
     * Якщо ви також оголосите залежності в конкретній *операції шляху*, **вони також будуть виконані**.
-    * Спочатку виконуються залежності router'а, потім [`dependencies` у декораторі](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, а потім звичайні параметричні залежності.
-    * Ви також можете додати [`Security` залежності з `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+    * Спочатку виконуються залежності router'а, потім [`dependencies` у декораторі](dependencies/dependencies-in-path-operation-decorators.md), а потім звичайні параметричні залежності.
+    * Ви також можете додати [`Security` залежності з `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Порада
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | Перевірте
+/// tip | Порада
 
 Параметри `prefix`, `tags`, `responses` і `dependencies` - це (як і в багатьох інших випадках) просто можливість **FastAPI**, яка допомагає уникати дублювання коду.
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 Імпортуйте та створіть клас `FastAPI`, як зазвичай.
 
-І ми навіть можемо оголосити [глобальні залежності](dependencies/global-dependencies.md){.internal-link target=_blank}, які будуть поєднані із залежностями кожного `APIRouter`:
+І ми навіть можемо оголосити [глобальні залежності](dependencies/global-dependencies.md), які будуть поєднані із залежностями кожного `APIRouter`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | Інформація
+/// note | Примітка
 
 Перша версія - «відносний імпорт»:
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-Щоб дізнатися більше про пакети й модулі Python, прочитайте <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">офіційну документацію Python про модулі</a>.
+Щоб дізнатися більше про пакети й модулі Python, прочитайте [офіційну документацію Python про модулі](https://docs.python.org/3/tutorial/modules.html).
 
 ///
 
@@ -382,11 +382,11 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Інформація
+/// note | Примітка
 
-`users.router` містить `APIRouter` у файлі `app/routers/users.py`.
+`users.router` містить `APIRouter` всередині файлу `app/routers/users.py`.
 
-А `items.router` містить `APIRouter` у файлі `app/routers/items.py`.
+А `items.router` містить `APIRouter` всередині файлу `app/routers/items.py`.
 
 ///
 
@@ -396,17 +396,17 @@ from .routers.users import router
 
 /// note | Технічні деталі
 
-Фактично, всередині для кожної *операції шляху*, оголошеної в `APIRouter`, буде створена окрема *операція шляху*.
+FastAPI зберігає оригінальний `APIRouter` і його `APIRoute` активними після включення router'а до основного застосунку.
 
-Тобто за лаштунками все працюватиме так, ніби це один і той самий застосунок.
+Це означає, що користувацькі підкласи `APIRouter` і `APIRoute` і надалі братимуть участь після включення router'а.
 
 ///
 
-/// check | Перевірте
+/// tip | Порада
 
 Вам не потрібно перейматися продуктивністю під час включення router'ів.
 
-Це займе мікросекунди і відбуватиметься лише під час запуску.
+Це спроєктовано як легковагове рішення і не додає накладних витрат до кожного запиту.
 
 Тож це не вплине на продуктивність. ⚡
 
@@ -451,9 +451,9 @@ from .routers.users import router
 
 і це працюватиме коректно разом з усіма іншими *операціями шляху*, доданими через `app.include_router()`.
 
-/// info | Дуже технічні деталі
+/// note | Дуже технічні деталі
 
-Примітка: це дуже технічна деталь, яку ви, ймовірно, можете просто пропустити.
+**Примітка**: це дуже технічна деталь, яку ви, ймовірно, можете **просто пропустити**.
 
 ---
 
@@ -461,7 +461,38 @@ from .routers.users import router
 
 Це тому, що ми хочемо включати їхні *операції шляху* в схему OpenAPI та інтерфейси користувача.
 
-Оскільки ми не можемо просто ізолювати їх і «змонтувати» незалежно від решти, *операції шляху* «клонуються» (створюються заново), а не включаються безпосередньо.
+FastAPI зберігає оригінальні router'и та операції шляху активними й поєднує префікси router'ів, залежності, мітки, відповіді та інші метадані під час обробки запитів і генерації OpenAPI.
+
+///
+
+## Налаштуйте `entrypoint` у `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+
+Оскільки ваш об'єкт FastAPI `app` знаходиться в `app/main.py`, ви можете налаштувати `entrypoint` у файлі `pyproject.toml` так:
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+це еквівалентно імпорту:
+
+```python
+from app.main import app
+```
+
+Таким чином команда `fastapi` знатиме, де знайти ваш застосунок.
+
+/// Note | Примітка
+
+Ви також могли б передати шлях команді, наприклад:
+
+```console
+$ fastapi dev app/main.py
+```
+
+Але тоді вам доведеться щоразу пам'ятати, щоб передавати правильний шлях, коли ви викликаєте команду `fastapi`.
+
+Крім того, інші інструменти можуть не знайти його, наприклад [розширення VS Code](../editor-support.md) або [FastAPI Cloud](https://fastapicloud.com), тому рекомендовано використовувати `entrypoint` у `pyproject.toml`.
 
 ///
 
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-І відкрийте документацію за адресою <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+І відкрийте документацію за адресою [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Ви побачите автоматичну документацію API, що включає шляхи з усіх підмодулів, з правильними шляхами (і префіксами) та правильними мітками:
 
@@ -487,7 +518,7 @@ $ fastapi dev app/main.py
 
 ## Включайте той самий router кілька разів з різними `prefix` { #include-the-same-router-multiple-times-with-different-prefix }
 
-Ви також можете використовувати `.include_router()` кілька разів з одним і тим самим router'ом, але з різними префіксами.
+Ви також можете використовувати `.include_router()` кілька разів з *тим самим* router'ом, але з різними префіксами.
 
 Це може бути корисно, наприклад, щоб публікувати той самий API під різними префіксами, наприклад `/api/v1` і `/api/latest`.
 
@@ -501,4 +532,16 @@ $ fastapi dev app/main.py
 router.include_router(other_router)
 ```
 
-Переконайтеся, що ви робите це до включення `router` в застосунок `FastAPI`, щоб *операції шляху* з `other_router` також були включені.
+Ви можете зробити це до або після включення `router` у застосунок `FastAPI`. FastAPI все одно включить *операції шляху* з `other_router` у маршрутизацію та OpenAPI.
+
+Те саме стосується *операцій шляху*, доданих пізніше до router'ів. Вони також будуть видимі через попереднє включення.
+
+/// warning | Технічні деталі
+
+Уникайте прямої мутації `router.routes` після включення router'а. FastAPI розглядає включення router'а як «живе», тому оригінальний router і його маршрути залишаються частиною маршрутизації та генерації OpenAPI.
+
+Використовуйте задокументовані API, такі як декоратори *операцій шляху* і `.include_router()`, щоб додавати маршрути та router'и.
+
+Сприймайте `router.routes` як нижчорівневе дерево маршрутів, яке може містити визначення маршрутів і включені router'и, і уникайте покладатися на нього як на плаский список кінцевих *операцій шляху*.
+
+///

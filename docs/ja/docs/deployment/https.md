@@ -10,7 +10,7 @@ HTTPSは単に「有効」か「無効」かで決まるものだと思いがち
 
 ///
 
-利用者の視点から **HTTPS の基本を学ぶ**に当たっては、次のリソースをオススメします: <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
+利用者の視点から **HTTPS の基本を学ぶ**に当たっては、次のリソースをオススメします: [https://howhttps.works/](https://howhttps.works/).
 
 さて、**開発者の視点**から、HTTPSについて考える際に念頭に置くべきことをいくつかみていきましょう：
 
@@ -28,13 +28,13 @@ HTTPSは単に「有効」か「無効」かで決まるものだと思いがち
 * **デフォルトでは**、**IPアドレスごとに1つのHTTPS証明書**しか持てないことになります。
     * これは、サーバーの規模やアプリケーションの規模に寄りません。
     * しかし、これには**解決策**があります。
-* **TLS**プロトコル(HTTPの前に、TCPレベルで暗号化を処理するもの)には、**<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - サーバー名表示">SNI</abbr></a>**と呼ばれる**拡張**があります。
+* **TLS**プロトコル(HTTPの前に、TCPレベルで暗号化を処理するもの)には、**[<abbr title="Server Name Indication - サーバー名表示">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)**と呼ばれる**拡張**があります。
     * このSNI拡張機能により、1つのサーバー（**単一のIPアドレス**を持つ）が**複数のHTTPS証明書**を持ち、**複数のHTTPSドメイン/アプリケーション**にサービスを提供できるようになります。
     * これが機能するためには、**パブリックIPアドレス**でリッスンしている、サーバー上で動作している**単一の**コンポーネント(プログラム)が、サーバー内の**すべてのHTTPS証明書**を持っている必要があります。
 * セキュアな接続を取得した**後**でも、通信プロトコルは**HTTPのまま**です。
     * コンテンツは**HTTPプロトコル**で送信されているにもかかわらず、**暗号化**されています。
 
-サーバー（マシン、ホストなど）上で**1つのプログラム/HTTPサーバー**を実行させ、**HTTPSに関する全てのこと**を管理するのが一般的です。**暗号化された HTTPS リクエスト** を受信し、**復号化された HTTP リクエスト** を同じサーバーで実行されている実際の HTTP アプリケーション（この場合は **FastAPI** アプリケーション）に送信し、アプリケーションから **HTTP レスポンス** を受け取り、適切な **HTTPS 証明書** を使用して **暗号化** し、そして**HTTPS** を使用してクライアントに送り返します。このサーバーはしばしば **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>**と呼ばれます。
+サーバー（マシン、ホストなど）上で**1つのプログラム/HTTPサーバー**を実行させ、**HTTPSに関する全てのこと**を管理するのが一般的です。**暗号化された HTTPS リクエスト** を受信し、**復号化された HTTP リクエスト** を同じサーバーで実行されている実際の HTTP アプリケーション（この場合は **FastAPI** アプリケーション）に送信し、アプリケーションから **HTTP レスポンス** を受け取り、適切な **HTTPS 証明書** を使用して **暗号化** し、そして**HTTPS** を使用してクライアントに送り返します。このサーバーはしばしば **[TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy)**と呼ばれます。
 
 TLS Termination Proxyとして使えるオプションには、以下のようなものがあります：
 
@@ -43,14 +43,13 @@ TLS Termination Proxyとして使えるオプションには、以下のよう�
 * Nginx
 * HAProxy
 
-
 ## Let's Encrypt { #lets-encrypt }
 
 Let's Encrypt以前は、これらの**HTTPS証明書**は信頼できる第三者によって販売されていました。
 
 これらの証明書を取得するための手続きは面倒で、かなりの書類を必要とし、証明書はかなり高価なものでした。
 
-しかしその後、**<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** が作られました。
+しかしその後、**[Let's Encrypt](https://letsencrypt.org/)** が作られました。
 
 これはLinux Foundationのプロジェクトから生まれたものです。 自動化された方法で、**HTTPS証明書を無料で**提供します。これらの証明書は、すべての標準的な暗号化セキュリティを使用し、また短命（約3ヶ月）ですが、こういった寿命の短さによって、**セキュリティは実際に優れています**。
 
@@ -68,7 +67,7 @@ Let's Encrypt以前は、これらの**HTTPS証明書**は信頼できる第三�
 
 おそらくクラウドサーバー（仮想マシン）かそれに類するものを手に入れ、<dfn title="時間とともに変化しない。動的ではない。">固定の</dfn> **パブリックIPアドレス**を持つことになるでしょう。
 
-DNSサーバーでは、**取得したドメイン**をあなたのサーバーのパプリック**IPアドレス**に向けるレコード（「`A record`」）を設定します。
+DNSサーバーでは、**取得したドメイン**をあなたのサーバーのパブリック**IPアドレス**に向けるレコード（「`A record`」）を設定します。
 
 これはおそらく、最初の1回だけあり、すべてをセットアップするときに行うでしょう。
 
@@ -80,7 +79,7 @@ DNSサーバーでは、**取得したドメイン**をあなたのサーバー�
 
 ### DNS { #dns }
 
-では、実際のHTTPSの部分に注目してみよう。
+では、実際のHTTPSの部分に注目してみましょう。
 
 まず、ブラウザは**DNSサーバー**に**ドメインに対するIP**が何であるかを確認します。今回は、`someapp.example.com`とします。
 
@@ -100,11 +99,9 @@ TLS接続を確立するためのクライアントとサーバー間のこの�
 
 ### SNI拡張機能付きのTLS { #tls-with-sni-extension }
 
-サーバー内の**1つのプロセス**だけが、特定 の**IPアドレス**の特定の**ポート** で待ち受けることができます。
+サーバー内の**1つのプロセス**だけが、特定の**IPアドレス**の特定の**ポート**で待ち受けることができます。同じIPアドレスの他のポートで他のプロセスがリッスンしている可能性もありますが、IPアドレスとポートの組み合わせごとに1つだけです。
 
-同じIPアドレスの他のポートで他のプロセスがリッスンしている可能性もありますが、IPアドレスとポートの組み合わせごとに1つだけです。
-
-TLS（HTTPS）はデフォルトで`443`という特定のポートを使用する。つまり、これが必要なポートです。
+TLS（HTTPS）はデフォルトで`443`という特定のポートを使用します。つまり、これが必要なポートです。
 
 このポートをリクエストできるのは1つのプロセスだけなので、これを実行するプロセスは**TLS Termination Proxy**となります。
 
@@ -120,9 +117,9 @@ TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）に�
 
 次に証明書を使用して、クライアントとTLS Termination Proxy は、 **TCP通信**の残りを**どのように暗号化するかを決定**します。これで**TLSハンドシェイク**の部分が完了します。
 
-この後、クライアントとサーバーは**暗号化されたTCP接続**を持ちます。そして、その接続を使って実際の**HTTP通信**を開始することができます。
+この後、クライアントとサーバーは**暗号化されたTCP接続**を持ちます。これがTLSの提供するものです。そして、その接続を使って実際の**HTTP通信**を開始することができます。
 
-これが**HTTPS**であり、純粋な（暗号化されていない）TCP接続ではなく、**セキュアなTLS接続**の中に**HTTP**があるだけです。
+これが**HTTPS**であり、純粋な（暗号化されていない）TCP接続ではなく、**セキュアなTLS接続**の中に単なる**HTTP**があるだけです。
 
 /// tip | 豆知識
 
@@ -152,7 +149,7 @@ TLS Termination Proxy は、合意が取れている暗号化を使用して、*
 
 ### HTTPS レスポンス { #https-response }
 
-TLS Termination Proxyは次に、事前に合意が取れている暗号(`someapp.example.com`の証明書から始まる)を使って**レスポンスを暗号化し**、ブラウザに送り返す。
+TLS Termination Proxyは次に、事前に合意が取れている暗号(`someapp.example.com`の証明書から始まる)を使って**レスポンスを暗号化し**、ブラウザに送り返します。
 
 その後ブラウザでは、レスポンスが有効で正しい暗号キーで暗号化されていることなどを検証します。そして、ブラウザはレスポンスを**復号化**して処理します。
 
@@ -191,7 +188,6 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
     * これは、同じTLS Termination Proxyが証明書の更新処理も行う場合に非常に便利な理由の1つです。
     * そうでなければ、TLS Termination Proxyを一時的に停止し、証明書を取得するために更新プログラムを起動し、TLS Termination Proxyで証明書を設定し、TLS Termination Proxyを再起動しなければならないかもしれません。TLS Termination Proxyが停止している間はアプリが利用できなくなるため、これは理想的ではありません。
 
-
 アプリを提供しながらこのような更新処理を行うことは、アプリケーション・サーバー（Uvicornなど）でTLS証明書を直接使用するのではなく、TLS Termination Proxyを使用して**HTTPSを処理する別のシステム**を用意したくなる主な理由の1つです。
 
 ## プロキシ転送ヘッダー { #proxy-forwarded-headers }
@@ -204,9 +200,9 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 プロキシヘッダーは次のとおりです：
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -222,7 +218,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 /// tip | 豆知識
 
-これについては、[Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} のドキュメントで詳しく学べます。
+これについては、[Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers) のドキュメントで詳しく学べます。
 
 ///
 

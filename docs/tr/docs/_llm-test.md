@@ -11,7 +11,7 @@ Buraya eklenen testler, dile özel prompt'ları tasarlayan herkes tarafından g�
 * Çeviride her şeyin yolunda olup olmadığını kontrol edin.
 * Gerekirse dile özel prompt'u, genel prompt'u veya İngilizce dokümanı iyileştirin.
 * Ardından çeviride kalan sorunları elle düzeltin; böylece iyi bir çeviri elde edin.
-* İyi çeviri yerindeyken yeniden çeviri yapın. İdeal sonuç, LLM'nin artık çeviride hiçbir değişiklik yapmamasıdır. Bu da genel prompt'un ve dile özel prompt'un olabilecek en iyi hâle geldiği anlamına gelir (bazen rastgele gibi görünen birkaç değişiklik yapabilir; çünkü <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM'ler deterministik algoritmalar değildir</a>).
+* İyi çeviri yerindeyken yeniden çeviri yapın. İdeal sonuç, LLM'nin artık çeviride hiçbir değişiklik yapmamasıdır. Bu da genel prompt'un ve dile özel prompt'un olabilecek en iyi hâle geldiği anlamına gelir (bazen rastgele gibi görünen birkaç değişiklik yapabilir; çünkü [LLM'ler deterministik algoritmalar değildir](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Testler:
 
@@ -104,8 +104,8 @@ $ cd code
 ...ve bir Python code örneği...
 
 ```Python
-wont_work()  # This won't work 😱
-works(foo="bar")  # This works 🎉
+wont_work()  # Bu çalışmayacak 😱
+works(foo="bar")  # Bu çalışır 🎉
 ```
 
 ...ve hepsi bu.
@@ -124,19 +124,11 @@ Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır
 
 //// tab | Test
 
-/// info | Bilgi
-Bazı metin
-///
-
 /// note | Not
 Bazı metin
 ///
 
 /// note | Teknik Detaylar
-Bazı metin
-///
-
-/// check | Ek bilgi
 Bazı metin
 ///
 
@@ -169,15 +161,15 @@ Sekmelerin ve `Info`/`Note`/`Warning`/vb. blokların başlığı, dikey çizgide
 Link metni çevrilmelidir, link adresi değişmeden kalmalıdır:
 
 * [Yukarıdaki başlığa link](#code-snippets)
-* [Internal link](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Harici link</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Bir stile bağlantı</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Bir betiğe bağlantı</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Bir görsele bağlantı</a>
+* [Dahili link](index.md#installation)
+* [Harici link](https://sqlmodel.tiangolo.com/)
+* [Bir stile bağlantı](https://fastapi.tiangolo.com/css/styles.css)
+* [Bir betiğe bağlantı](https://fastapi.tiangolo.com/js/logic.js)
+* [Bir görsele bağlantı](https://fastapi.tiangolo.com/img/foo.jpg)
 
 Link metni çevrilmelidir, link adresi çeviriye işaret etmelidir:
 
-* <a href="https://fastapi.tiangolo.com/tr/" class="external-link" target="_blank">FastAPI link</a>
+* [FastAPI link](https://fastapi.tiangolo.com/tr/)
 
 ////
 
@@ -204,7 +196,7 @@ Burada HTML "abbr" öğeleriyle sarılmış bazı şeyler var (bazıları uydurm
 
 ### abbr tam bir ifade ve bir açıklama verir { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı: Firefox ekibi tarafından yazılmış, geliştiricilere yönelik dokümantasyon">MDN</abbr>
+* <abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı: geliştiriciler için dokümantasyon, Firefox ekibi tarafından yazılmış">MDN</abbr>
 * <abbr title="Input/Output - Girdi/Çıktı: disk okuma ya da yazma, ağ iletişimi.">I/O</abbr>.
 
 ////

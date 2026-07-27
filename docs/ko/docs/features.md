@@ -6,8 +6,8 @@
 
 ### 개방형 표준을 기반으로 { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>: <dfn title="또한 다음으로도 불림: 엔드포인트, 라우트">경로</dfn> <dfn title="HTTP 메소드(POST, GET, PUT, DELETE 등)로도 알려짐">처리</dfn>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
-* <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a>를 사용한 자동 데이터 모델 문서화(OpenAPI 자체가 JSON Schema를 기반으로 하기 때문입니다).
+* [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification): <dfn title="또한 다음으로도 불림: 엔드포인트, 라우트">경로</dfn> <dfn title="HTTP 메소드(POST, GET, PUT, DELETE 등)로도 알려짐">처리</dfn>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
+* [**JSON Schema**](https://json-schema.org/)를 사용한 자동 데이터 모델 문서화(OpenAPI 자체가 JSON Schema를 기반으로 하기 때문입니다).
 * 단순히 떠올려서 덧붙인 레이어가 아니라, 세심한 검토를 거친 뒤 이러한 표준을 중심으로 설계되었습니다.
 * 이는 또한 다양한 언어로 자동 **클라이언트 코드 생성**을 사용할 수 있게 해줍니다.
 
@@ -15,19 +15,19 @@
 
 대화형 API 문서와 탐색용 웹 사용자 인터페이스를 제공합니다. 프레임워크가 OpenAPI를 기반으로 하기에 여러 옵션이 있으며, 기본으로 2가지가 포함됩니다.
 
-* 대화형 탐색이 가능한 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>로 브라우저에서 직접 API를 호출하고 테스트할 수 있습니다.
+* [**Swagger UI**](https://github.com/swagger-api/swagger-ui)로 대화형 탐색이 가능하며 브라우저에서 직접 API를 호출하고 테스트할 수 있습니다.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>을 이용한 대체 API 문서화.
+* [**ReDoc**](https://github.com/Rebilly/ReDoc)을 이용한 대체 API 문서화.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### 그저 현대 파이썬 { #just-modern-python }
 
-( Pydantic 덕분에) 모든 것이 표준 **Python 타입** 선언을 기반으로 합니다. 새로 배울 문법이 없습니다. 그저 표준적인 현대 파이썬입니다.
+(Pydantic 덕분에) 모든 것이 표준 **Python 타입** 선언을 기반으로 합니다. 새로 배울 문법이 없습니다. 그저 표준적인 현대 파이썬입니다.
 
-Python 타입을 어떻게 사용하는지 2분 정도 복습이 필요하다면(FastAPI를 사용하지 않더라도), 다음의 짧은 자습서를 확인하세요: [Python 타입](python-types.md){.internal-link target=_blank}.
+Python 타입을 어떻게 사용하는지 2분 정도 복습이 필요하다면(FastAPI를 사용하지 않더라도), 다음의 짧은 자습서를 확인하세요: [Python 타입](python-types.md).
 
 여러분은 타입이 있는 표준 Python을 다음과 같이 작성합니다:
 
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | 정보
+/// note | 참고
 
 `**second_user_data`는 다음을 의미합니다:
 
@@ -75,7 +75,7 @@ my_second_user: User = User(**second_user_data)
 
 프레임워크 전체는 사용하기 쉽고 직관적으로 설계되었으며, 최고의 개발 경험을 보장하기 위해 개발을 시작하기도 전에 모든 결정은 여러 편집기에서 테스트되었습니다.
 
-Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">가장 많이 사용되는 기능 중 하나가 "자동 완성"이라는 점</a>이 분명합니다.
+Python 개발자 설문조사에서 [가장 많이 사용되는 기능 중 하나가 "자동 완성"이라는 점](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)이 분명합니다.
 
 **FastAPI** 프레임워크 전체는 이를 만족하기 위해 만들어졌습니다. 자동 완성은 어디서나 작동합니다.
 
@@ -83,11 +83,11 @@ Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/
 
 편집기가 여러분을 어떻게 도와줄 수 있는지 살펴보세요:
 
-* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>에서:
+* [Visual Studio Code](https://code.visualstudio.com/)에서:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>에서:
+* [PyCharm](https://www.jetbrains.com/pycharm/)에서:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -124,7 +124,7 @@ Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/
 다음을 포함해 OpenAPI에 정의된 모든 보안 스키마:
 
 * HTTP Basic.
-* **OAuth2**(**JWT tokens** 또한 포함). [JWT를 사용한 OAuth2](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 자습서를 확인해 보세요.
+* **OAuth2**(**JWT tokens** 또한 포함). [JWT를 사용한 OAuth2](tutorial/security/oauth2-jwt.md) 자습서를 확인해 보세요.
 * 다음에 들어 있는 API 키:
     * 헤더.
     * 쿼리 매개변수.
@@ -159,25 +159,25 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
 
 ## Starlette 기능 { #starlette-features }
 
-**FastAPI**는 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>와 완전히 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Starlette 코드도 모두 동작합니다.
+**FastAPI**는 [**Starlette**](https://www.starlette.dev/)와 완전히 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Starlette 코드도 모두 동작합니다.
 
 `FastAPI`는 실제로 `Starlette`의 하위 클래스입니다. 그래서 Starlette을 이미 알고 있거나 사용하고 있다면, 대부분의 기능이 같은 방식으로 동작할 것입니다.
 
 **FastAPI**를 사용하면 **Starlette**의 모든 기능을 얻게 됩니다(FastAPI는 Starlette에 강력한 기능을 더한 것입니다):
 
-* 정말 인상적인 성능. <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">**NodeJS**와 **Go**에 버금가는, 사용 가능한 가장 빠른 Python 프레임워크 중 하나입니다</a>.
+* 정말 인상적인 성능. [**NodeJS**와 **Go**에 버금가는, 사용 가능한 가장 빠른 Python 프레임워크 중 하나입니다](https://github.com/encode/starlette#performance).
 * **WebSocket** 지원.
 * 프로세스 내 백그라운드 작업.
 * 시작 및 종료 이벤트.
 * HTTPX 기반 테스트 클라이언트.
 * **CORS**, GZip, 정적 파일, 스트리밍 응답.
 * **세션과 쿠키** 지원.
-* 100% test coverage.
-* 100% type annotated codebase.
+* 100% 테스트 커버리지.
+* 100% 타입 어노테이션 코드 베이스.
 
 ## Pydantic 기능 { #pydantic-features }
 
-**FastAPI**는 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>과 완벽하게 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Pydantic 코드도 모두 동작합니다.
+**FastAPI**는 [**Pydantic**](https://docs.pydantic.dev/)과 완벽하게 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Pydantic 코드도 모두 동작합니다.
 
 데이터베이스를 위한 <abbr title="Object-Relational Mapper - 객체-관계 매퍼">ORM</abbr>, <abbr title="Object-Document Mapper - 객체-문서 매퍼">ODM</abbr>과 같은, Pydantic을 기반으로 하는 외부 라이브러리도 포함합니다.
 
@@ -198,4 +198,4 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
     * 깊게 **중첩된 JSON** 객체를 가질 수 있으며, 이를 모두 검증하고 주석을 달 수 있습니다.
 * **확장 가능**:
     * Pydantic은 사용자 정의 데이터 타입을 정의할 수 있게 하거나, validator decorator가 붙은 모델 메서드로 검증을 확장할 수 있습니다.
-* 100% test coverage.
+* 100% 테스트 커버리지.

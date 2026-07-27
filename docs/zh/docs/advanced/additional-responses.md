@@ -34,7 +34,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 `model` 键不是 OpenAPI 的一部分。
 
@@ -183,7 +183,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 除非你在 `responses` 参数中明确指定不同的媒体类型，否则 FastAPI 会假设响应与主响应类具有相同的媒体类型（默认是 `application/json`）。
 
@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 要查看响应中究竟可以包含什么，你可以查看 OpenAPI 规范中的以下部分：
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses 对象</a>，它包含 `Response Object`。
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response 对象</a>，你可以把这里的任何内容直接包含到 `responses` 参数中的每个响应里。包括 `description`、`headers`、`content`（在这里声明不同的媒体类型和 JSON Schemas），以及 `links`。
+* [OpenAPI Responses 对象](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object)，它包含 `Response Object`。
+* [OpenAPI Response 对象](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object)，你可以把这里的任何内容直接包含到 `responses` 参数中的每个响应里。包括 `description`、`headers`、`content`（在这里声明不同的媒体类型和 JSON Schemas），以及 `links`。

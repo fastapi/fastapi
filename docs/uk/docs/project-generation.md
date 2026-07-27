@@ -1,10 +1,11 @@
 # Шаблон Full Stack FastAPI { #full-stack-fastapi-template }
 
+
 Шаблони, хоча зазвичай постачаються з певним налаштуванням, спроєктовані бути гнучкими та налаштовуваними. Це дає змогу змінювати їх і адаптувати до вимог вашого проєкту, що робить їх чудовою відправною точкою. 🏁
 
 Ви можете використати цей шаблон для старту, адже в ньому вже виконано значну частину початкового налаштування, безпеки, роботи з базою даних і деяких кінцевих точок API.
 
-Репозиторій GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Шаблон Full Stack FastAPI</a>
+Репозиторій GitHub: [Шаблон Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI - стек технологій і можливості { #full-stack-fastapi-template-technology-stack-and-features }
 

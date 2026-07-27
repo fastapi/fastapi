@@ -4,6 +4,8 @@ import pytest
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
+pytest.importorskip("orjson")
+
 
 @pytest.fixture(
     name="client",

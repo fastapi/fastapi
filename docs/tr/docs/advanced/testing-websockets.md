@@ -8,6 +8,6 @@ Bunun için `TestClient`'ı bir `with` ifadesinde kullanarak WebSocket'e bağlan
 
 /// note | Not
 
-Daha fazla detay için Starlette'in <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">WebSockets'i test etme</a> dokümantasyonuna bakın.
+Daha fazla detay için Starlette'in [WebSockets'i test etme](https://www.starlette.dev/testclient/#testing-websocket-sessions) dokümantasyonuna bakın.
 
 ///

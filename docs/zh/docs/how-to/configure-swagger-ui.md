@@ -1,10 +1,10 @@
 # 配置 Swagger UI { #configure-swagger-ui }
 
-你可以配置一些额外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 参数</a>.
+你可以配置一些额外的 [Swagger UI 参数](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)。
 
 如果需要配置它们，可以在创建 `FastAPI()` 应用对象时或调用 `get_swagger_ui_html()` 函数时传递 `swagger_ui_parameters` 参数。
 
-`swagger_ui_parameters` 接受一个直接传递给 Swagger UI的字典，包含配置参数键值对。
+`swagger_ui_parameters` 接受一个字典，该字典会直接传递给 Swagger UI。
 
 FastAPI会将这些配置转换为 **JSON**，使其与 JavaScript 兼容，因为这是 Swagger UI 需要的。
 
@@ -16,11 +16,11 @@ FastAPI会将这些配置转换为 **JSON**，使其与 JavaScript 兼容，因�
 
 <img src="/img/tutorial/extending-openapi/image02.png">
 
-但是你可以通过设置 `syntaxHighlight` 为 `False` 来禁用 Swagger UI 中的语法高亮：
+但是你可以通过设置 `syntaxHighlight` 为 `False` 来禁用它：
 
 {* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
 
-...在此之后，Swagger UI 将不会高亮代码:
+...在此之后，Swagger UI 将不再显示语法高亮：
 
 <img src="/img/tutorial/extending-openapi/image03.png">
 
@@ -30,7 +30,7 @@ FastAPI会将这些配置转换为 **JSON**，使其与 JavaScript 兼容，因�
 
 {* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
-这个配置会改变语法高亮主题：
+这个配置会改变语法高亮颜色主题：
 
 <img src="/img/tutorial/extending-openapi/image04.png">
 
@@ -50,7 +50,7 @@ FastAPI 包含了一些默认配置参数，适用于大多数用例。
 
 ## 其他 Swagger UI 参数 { #other-swagger-ui-parameters }
 
-查看所有其他可用的配置，请阅读 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 参数文档</a>。
+查看所有其他可用的配置，请阅读官方的 [Swagger UI 参数文档](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)。
 
 ## JavaScript-only 配置 { #javascript-only-settings }
 

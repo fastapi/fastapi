@@ -16,11 +16,11 @@
 
 `TestClient` робить певну «магію» всередині, щоб викликати асинхронний застосунок FastAPI у ваших звичайних тестових функціях `def`, використовуючи стандартний pytest. Але ця «магія» більше не працює, коли ми використовуємо його всередині асинхронних функцій. Запускаючи тести асинхронно, ми більше не можемо використовувати `TestClient` у наших тестових функціях.
 
-`TestClient` побудований на основі <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, і на щастя, ми можемо використовувати його безпосередньо для тестування API.
+`TestClient` побудований на основі [HTTPX](https://www.python-httpx.org), і на щастя, ми можемо використовувати його безпосередньо для тестування API.
 
 ## Приклад { #example }
 
-Для простого прикладу розгляньмо структуру файлів, подібну до описаної в [Більші застосунки](../tutorial/bigger-applications.md){.internal-link target=_blank} та [Тестування](../tutorial/testing.md){.internal-link target=_blank}:
+Для простого прикладу розгляньмо структуру файлів, подібну до описаної в [Більші застосунки](../tutorial/bigger-applications.md) та [Тестування](../tutorial/testing.md):
 
 ```
 .
@@ -84,7 +84,7 @@ response = client.get('/')
 
 /// warning | Попередження
 
-Якщо ваш застосунок залежить від подій тривалості життя, `AsyncClient` не ініціюватиме ці події. Щоб гарантувати їх ініціалізацію, використовуйте `LifespanManager` з <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Якщо ваш застосунок залежить від подій тривалості життя, `AsyncClient` не ініціюватиме ці події. Щоб гарантувати їх ініціалізацію, використовуйте `LifespanManager` з [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).
 
 ///
 
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | Порада
 
-Якщо ви натрапили на `RuntimeError: Task attached to a different loop` під час інтеграції асинхронних викликів у ваші тести (наприклад, при використанні <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), пам'ятайте створювати об'єкти, яким потрібен цикл подій, лише всередині асинхронних функцій, наприклад, у зворотному виклику `@app.on_event("startup")`.
+Якщо ви натрапили на `RuntimeError: Task attached to a different loop` під час інтеграції асинхронних викликів у ваші тести (наприклад, при використанні [MongoDB's MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), пам'ятайте створювати об'єкти, яким потрібен цикл подій, лише всередині асинхронних функцій, наприклад, у зворотному виклику `@app.on_event("startup")`.
 
 ///

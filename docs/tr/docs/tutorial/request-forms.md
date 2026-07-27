@@ -1,12 +1,13 @@
 # Form Verisi { #form-data }
 
+
 JSON yerine form alanlarını almanız gerektiğinde `Form` kullanabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
-Formları kullanmak için önce <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> paketini kurun.
+Formları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu etkinleştirdiğinizden emin olun ve ardından örneğin şöyle kurun:
+Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden emin olun ve ardından örneğin şöyle kurun:
 
 ```console
 $ pip install python-multipart
@@ -28,11 +29,11 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
 Örneğin OAuth2 spesifikasyonunun kullanılabileceği ("password flow" olarak adlandırılan) yollardan birinde, form alanları olarak bir `username` ve `password` göndermek zorunludur.
 
-<dfn title="spesifikasyon">Spesifikasyon</dfn>, alanların adının tam olarak `username` ve `password` olmasını ve JSON değil form alanları olarak gönderilmesini gerektirir.
+<dfn title="spesifikasyon">spesifikasyon</dfn>, alanların adının tam olarak `username` ve `password` olmasını ve JSON değil form alanları olarak gönderilmesini gerektirir.
 
 `Form` ile `Body` (ve `Query`, `Path`, `Cookie`) ile yaptığınız aynı konfigürasyonları tanımlayabilirsiniz; validasyon, örnekler, alias (örn. `username` yerine `user-name`) vb. dahil.
 
-/// info | Bilgi
+/// note | Not
 
 `Form`, doğrudan `Body`'den miras alan bir sınıftır.
 
@@ -56,13 +57,13 @@ Formlardan gelen veri normalde "media type" `application/x-www-form-urlencoded` 
 
 Ancak form dosyalar içerdiğinde `multipart/form-data` olarak encode edilir. Dosyaları ele almayı bir sonraki bölümde okuyacaksınız.
 
-Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> web docs for <code>POST</code></a> sayfasına gidin.
+Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, [<abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> `POST` için web dokümanları](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) sayfasına gidin.
 
 ///
 
 /// warning | Uyarı
 
-Bir *path operation* içinde birden fazla `Form` parametresi tanımlayabilirsiniz, ancak JSON olarak almayı beklediğiniz `Body` alanlarını da ayrıca tanımlayamazsınız; çünkü bu durumda request'in body'si `application/x-www-form-urlencoded` ile encode edilmiş olur.
+Bir *path operation* içinde birden fazla `Form` parametresi tanımlayabilirsiniz, ancak JSON olarak almayı beklediğiniz `Body` alanlarını da ayrıca tanımlayamazsınız; çünkü bu durumda request'in body'si `application/json` yerine `application/x-www-form-urlencoded` ile encode edilmiş olur.
 
 Bu **FastAPI**'ın bir kısıtlaması değildir, HTTP protokolünün bir parçasıdır.
 

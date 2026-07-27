@@ -34,7 +34,7 @@ Bu response `dict`'lerinin her birinde, `response_model`'e benzer şekilde bir P
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 `model` anahtarı OpenAPI'nin bir parçası değildir.
 
@@ -183,7 +183,7 @@ Görseli `FileResponse` kullanarak doğrudan döndürmeniz gerektiğine dikkat e
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 `responses` parametrenizde açıkça farklı bir media type belirtmediğiniz sürece FastAPI, response'un ana response class'ı ile aynı media type'a sahip olduğunu varsayar (varsayılan `application/json`).
 
@@ -243,5 +243,5 @@ Bu tekniği, *path operation*'larınızda bazı ön tanımlı response'ları yen
 
 Response'ların içine tam olarak neleri dahil edebileceğinizi görmek için OpenAPI spesifikasyonundaki şu bölümlere bakabilirsiniz:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>, `Response Object`'i içerir.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>, buradaki her şeyi `responses` parametreniz içinde, her bir response'un içine doğrudan ekleyebilirsiniz. Buna `description`, `headers`, `content` (bunun içinde farklı media type'lar ve JSON Schema'lar tanımlarsınız) ve `links` dahildir.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), `Response Object`'i içerir.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), buradaki her şeyi `responses` parametreniz içinde, her bir response'un içine doğrudan ekleyebilirsiniz. Buna `description`, `headers`, `content` (bunun içinde farklı media type'lar ve JSON Schema'lar tanımlarsınız) ve `links` dahildir.

@@ -24,13 +24,13 @@ De cette façon, vous pouvez créer un jeton avec une expiration d'une semaine, 
 
 Après une semaine, le jeton aura expiré et l'utilisateur ne sera pas autorisé et devra se reconnecter pour obtenir un nouveau jeton. Et si l'utilisateur (ou un tiers) essayait de modifier le jeton pour changer l'expiration, vous pourriez le détecter, car les signatures ne correspondraient pas.
 
-Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnent, consultez <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnent, consultez [https://jwt.io](https://jwt.io/).
 
 ## Installer `PyJWT` { #install-pyjwt }
 
 Nous devons installer `PyJWT` pour générer et vérifier les jetons JWT en Python.
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer `pyjwt` :
+Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer `pyjwt` :
 
 <div class="termy">
 
@@ -42,11 +42,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info
+/// note | Remarque
 
 Si vous prévoyez d'utiliser des algorithmes de signature numérique comme RSA ou ECDSA, vous devez installer la dépendance de bibliothèque de cryptographie `pyjwt[crypto]`.
 
-Vous pouvez en lire davantage dans la <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentation d'installation de PyJWT</a>.
+Vous pouvez en lire davantage dans la [documentation d'installation de PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,7 +72,7 @@ Il prend en charge de nombreux algorithmes de hachage sécurisés et des utilita
 
 L'algorithme recommandé est « Argon2 ».
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer pwdlib avec Argon2 :
+Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer pwdlib avec Argon2 :
 
 <div class="termy">
 
@@ -120,7 +120,7 @@ Et une autre pour authentifier et renvoyer un utilisateur.
 
 Lorsque `authenticate_user` est appelée avec un nom d'utilisateur qui n'existe pas dans la base de données, nous exécutons tout de même `verify_password` contre un hachage factice.
 
-Cela garantit que le point de terminaison met approximativement le même temps à répondre que le nom d'utilisateur soit valide ou non, empêchant des **attaques temporelles** qui pourraient être utilisées pour énumérer les noms d'utilisateur existants.
+Cela garantit que l'endpoint met approximativement le même temps à répondre que le nom d'utilisateur soit valide ou non, empêchant des **attaques temporelles** qui pourraient être utilisées pour énumérer les noms d'utilisateur existants.
 
 /// note | Remarque
 
@@ -152,7 +152,7 @@ Créez une variable `ALGORITHM` avec l'algorithme utilisé pour signer le jeton 
 
 Créez une variable pour l'expiration du jeton.
 
-Définissez un modèle Pydantic qui sera utilisé dans le point de terminaison du jeton pour la réponse.
+Définissez un modèle Pydantic qui sera utilisé dans l'endpoint du jeton pour la réponse.
 
 Créez une fonction utilitaire pour générer un nouveau jeton d'accès.
 
@@ -200,7 +200,7 @@ L'important à garder à l'esprit est que la clé `sub` doit contenir un identif
 
 ## Vérifier { #check-it }
 
-Lancez le serveur et allez à la documentation : <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Lancez le serveur et accédez aux documents : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Vous verrez l'interface utilisateur suivante :
 
@@ -213,15 +213,15 @@ En utilisant les identifiants :
 Nom d'utilisateur : `johndoe`
 Mot de passe : `secret`
 
-/// check | Vérifications
+/// tip | Astuce
 
-Remarquez qu'à aucun endroit du code le mot de passe en clair « secret » n'apparaît, nous n'avons que la version hachée.
+Remarquez qu'à aucun endroit du code le mot de passe en clair « `secret` » n'apparaît, nous n'avons que la version hachée.
 
 ///
 
 <img src="/img/tutorial/security/image08.png">
 
-Appelez le point de terminaison `/users/me/`, vous obtiendrez la réponse suivante :
+Appelez l'endpoint `/users/me/`, vous obtiendrez la réponse suivante :
 
 ```JSON
 {

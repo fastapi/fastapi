@@ -1,6 +1,6 @@
 # Cookies de Response { #response-cookies }
 
-## Usar un parámetro `Response` { #use-a-response-parameter }
+## Usa un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function*.
 
@@ -16,11 +16,11 @@ Y si declaraste un `response_model`, todavía se utilizará para filtrar y conve
 
 También puedes declarar el parámetro `Response` en las dependencias, y establecer cookies (y headers) en ellas.
 
-## Devolver una `Response` directamente { #return-a-response-directly }
+## Devuelve una `Response` directamente { #return-a-response-directly }
 
 También puedes crear cookies al devolver una `Response` directamente en tu código.
 
-Para hacer eso, puedes crear un response como se describe en [Devolver un Response Directamente](response-directly.md){.internal-link target=_blank}.
+Para hacer eso, puedes crear un response como se describe en [Devuelve un Response Directamente](response-directly.md).
 
 Luego establece Cookies en ella, y luego devuélvela:
 
@@ -48,4 +48,4 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 ///
 
-Para ver todos los parámetros y opciones disponibles, revisa la <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentación en Starlette</a>.
+Para ver todos los parámetros y opciones disponibles, revisa la [documentación en Starlette](https://www.starlette.dev/responses/#set-cookie).

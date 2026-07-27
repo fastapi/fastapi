@@ -18,7 +18,7 @@
 
 一些使用场景包括：
 
-* 将非 JSON 的请求体转换为 JSON（例如 <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>）。
+* 将非 JSON 的请求体转换为 JSON（例如 [`msgpack`](https://msgpack.org/index.html)）。
 * 解压缩使用 gzip 压缩的请求体。
 * 自动记录所有请求体日志。
 
@@ -32,7 +32,7 @@
 
 /// tip | 提示
 
-这是一个演示工作原理的示例。如果你需要 Gzip 支持，可以直接使用提供的 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}。
+这是一个演示工作原理的示例。如果你需要 Gzip 支持，可以直接使用提供的 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware)。
 
 ///
 
@@ -66,13 +66,13 @@
 
 创建一个新的 `Request` 实例需要这两样：`scope` 和 `receive`。
 
-想了解更多关于 `Request` 的信息，请查看 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette 的 Request 文档</a>。
+想了解更多关于 `Request` 的信息，请查看 [Starlette 的 Request 文档](https://www.starlette.dev/requests/)。
 
 ///
 
 由 `GzipRequest.get_route_handler` 返回的函数唯一不同之处是把 `Request` 转换为 `GzipRequest`。
 
-这样，在传给我们的路径操作之前，`GzipRequest` 会（在需要时）负责解压数据。
+这样，在传给我们的*路径操作*之前，`GzipRequest` 会（在需要时）负责解压数据。
 
 之后，其余处理逻辑完全相同。
 
@@ -82,7 +82,7 @@
 
 /// tip | 提示
 
-要解决类似问题，使用 `RequestValidationError` 的自定义处理器中的 `body` 往往更简单（[处理错误](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}）。
+要解决类似问题，使用 `RequestValidationError` 的自定义处理器中的 `body` 往往更简单（[处理错误](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)）。
 
 但本示例同样有效，并展示了如何与内部组件交互。
 
@@ -104,6 +104,6 @@
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
-在此示例中，`router` 下的路径操作将使用自定义的 `TimedRoute` 类，响应中会多一个 `X-Response-Time` 头，包含生成响应所用的时间：
+在此示例中，`router` 下的*路径操作*将使用自定义的 `TimedRoute` 类，响应中会多一个 `X-Response-Time` 头，包含生成响应所用的时间：
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}

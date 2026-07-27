@@ -1,6 +1,6 @@
 # Історія, проєктування і майбутнє { #history-design-and-future }
 
-Деякий час тому <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">користувач **FastAPI** запитав</a>:
+Деякий час тому [користувач **FastAPI** запитав](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920):
 
 > Яка історія цього проєкту? Здається, він нізвідки за кілька тижнів став чудовим [...]
 
@@ -14,7 +14,7 @@
 
 Історія **FastAPI** значною мірою - це історія його попередників.
 
-Як сказано в розділі [Альтернативи](alternatives.md){.internal-link target=_blank}:
+Як сказано в розділі [Альтернативи](alternatives.md):
 
 <blockquote markdown="1">
 
@@ -44,7 +44,7 @@
 
 Я протестував кілька ідей у найпопулярніших Python-редакторах: PyCharm, VS Code, редакторах на основі Jedi.
 
-За даними <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>, це охоплює близько 80% користувачів.
+За даними [Python Developer Survey](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools), це охоплює близько 80% користувачів.
 
 Це означає, що **FastAPI** спеціально тестувався з редакторами, якими користуються 80% розробників Python. І оскільки більшість інших редакторів працюють подібно, усі ці переваги мають працювати практично у всіх редакторах.
 
@@ -54,11 +54,11 @@
 
 ## Вимоги { #requirements }
 
-Після перевірки кількох альтернатив я вирішив використовувати <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> через його переваги.
+Після перевірки кількох альтернатив я вирішив використовувати [**Pydantic**](https://docs.pydantic.dev/) через його переваги.
 
 Потім я зробив внески до нього, щоб зробити його повністю сумісним із Схемою JSON, додати підтримку різних способів оголошення обмежень і поліпшити підтримку редакторів (перевірки типів, автодоповнення) на основі тестів у кількох редакторах.
 
-Під час розробки я також зробив внески до <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, іншої ключової залежності.
+Під час розробки я також зробив внески до [**Starlette**](https://www.starlette.dev/), іншої ключової залежності.
 
 ## Розробка { #development }
 
@@ -76,4 +76,4 @@
 
 **FastAPI** має велике майбутнє.
 
-І [ваша допомога](help-fastapi.md){.internal-link target=_blank} дуже цінується.
+І [ваша допомога](help-fastapi.md) дуже цінується.

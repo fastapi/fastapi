@@ -1,6 +1,7 @@
 # 容器中的 FastAPI - Docker { #fastapi-in-containers-docker }
 
-部署 FastAPI 应用时，常见做法是构建一个**Linux 容器镜像**。通常使用 <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> 实现。然后你可以用几种方式之一部署该镜像。
+
+部署 FastAPI 应用时，常见做法是构建一个**Linux 容器镜像**。通常使用 [**Docker**](https://www.docker.com/) 实现。然后你可以用几种方式之一部署该镜像。
 
 使用 Linux 容器有多种优势，包括**安全性**、**可复制性**、**简单性**等。
 
@@ -26,7 +27,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# 如果在 Nginx 或 Traefik 等代理后运行，请添加 --proxy-headers
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -60,16 +61,16 @@ Linux 容器复用宿主机（物理机、虚拟机、云服务器等）的同�
 
 Docker 一直是创建和管理**容器镜像**与**容器**的主要工具之一。
 
-还有一个公共的 <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>，其中为许多工具、环境、数据库和应用提供了预制的**官方容器镜像**。
+还有一个公共的 [Docker Hub](https://hub.docker.com/)，其中为许多工具、环境、数据库和应用提供了预制的**官方容器镜像**。
 
-例如，有官方的 <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python 镜像</a>。
+例如，有官方的 [Python 镜像](https://hub.docker.com/_/python)。
 
 还有许多用于不同目的（如数据库）的镜像，例如：
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a> 等。
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis) 等。
 
 通过使用预制的容器镜像，可以很容易地**组合**并使用不同工具。例如，试用一个新的数据库。在大多数情况下，你可以直接使用**官方镜像**，只需通过环境变量配置即可。
 
@@ -111,7 +112,7 @@ Docker 一直是创建和管理**容器镜像**与**容器**的主要工具之�
 
 最常见的方式是使用 `requirements.txt` 文件，每行一个包名及其版本范围。
 
-当然，你也可以参考你在[关于 FastAPI 版本](versions.md){.internal-link target=_blank}中读到的思路来设置版本范围。
+当然，你也可以参考你在[关于 FastAPI 版本](versions.md)中读到的思路来设置版本范围。
 
 例如，你的 `requirements.txt` 可能是：
 
@@ -132,7 +133,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 信息
+/// note | 注意
 
 还有其他格式和工具可以定义并安装包依赖。
 
@@ -238,7 +239,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 #### 使用 `CMD` - Exec 形式 { #use-cmd-exec-form }
 
-<a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> 指令有两种写法：
+[`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) 指令有两种写法：
 
 ✅ **Exec** 形式：
 
@@ -254,11 +255,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-务必使用**exec** 形式，以确保 FastAPI 可以优雅停机并触发[生命周期事件](../advanced/events.md){.internal-link target=_blank}。
+务必使用**exec** 形式，以确保 FastAPI 可以优雅停机并触发[生命周期事件](../advanced/events.md)。
 
-你可以在 <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker 文档（Shell 与 Exec 形式）</a>中了解更多。
+你可以在 [Docker 文档（Shell 与 Exec 形式）](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form)中了解更多。
 
-在使用 `docker compose` 时这一点尤为明显。更多技术细节参见该 FAQ：<a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">为什么我的服务需要 10 秒才能重新创建或停止？</a>
+在使用 `docker compose` 时这一点尤为明显。更多技术细节参见该 FAQ：[为什么我的服务需要 10 秒才能重新创建或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)
 
 #### 目录结构 { #directory-structure }
 
@@ -352,7 +353,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 检查一下 { #check-it }
 
-你应该能在容器暴露的 URL 访问它，例如：<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 或 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a>（或其他等价地址，取决于你的 Docker 主机）。
+你应该能在容器暴露的 URL 访问它，例如：[http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) 或 [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery)（或其他等价地址，取决于你的 Docker 主机）。
 
 你会看到类似内容：
 
@@ -362,17 +363,17 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 交互式 API 文档 { #interactive-api-docs }
 
-现在你可以访问 <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> 或 <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a>（或其他等价地址，取决于你的 Docker 主机）。
+现在你可以访问 [http://192.168.99.100/docs](http://192.168.99.100/docs) 或 [http://127.0.0.1/docs](http://127.0.0.1/docs)（或其他等价地址，取决于你的 Docker 主机）。
 
-你将看到自动生成的交互式 API 文档（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 提供）：
+你将看到自动生成的交互式 API 文档（由 [Swagger UI](https://github.com/swagger-api/swagger-ui) 提供）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## 备选 API 文档 { #alternative-api-docs }
 
-你还可以访问 <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> 或 <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a>（或其他等价地址，取决于你的 Docker 主机）。
+你还可以访问 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或其他等价地址，取决于你的 Docker 主机）。
 
-你将看到备选的自动文档（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你将看到备选的自动文档（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -413,7 +414,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ## 部署概念 { #deployment-concepts }
 
-我们再从容器的角度讨论一些相同的[部署概念](concepts.md){.internal-link target=_blank}。
+我们再从容器的角度讨论一些相同的[部署概念](concepts.md)。
 
 容器主要是简化应用**构建与部署**流程的工具，但它们并不强制采用某种特定方式来处理这些**部署概念**，可选策略有多种。
 
@@ -432,7 +433,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 如果我们只关注 FastAPI 应用的**容器镜像**（以及后续运行的**容器**），HTTPS 通常由**外部**的其他工具处理。
 
-它可以是另一个容器，例如使用 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>，处理 **HTTPS** 并**自动**获取**证书**。
+它可以是另一个容器，例如使用 [Traefik](https://traefik.io/)，处理 **HTTPS** 并**自动**获取**证书**。
 
 /// tip | 提示
 
@@ -556,9 +557,9 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有**多个容器**，可能每个容器运行一个**单独进程**（例如在 **Kubernetes** 集群中），那么你可能希望使用一个**单独的容器**来执行**前置步骤**，在一个容器中运行一个进程，**在**启动那些复制的 worker 容器**之前**完成。
 
-/// info | 信息
+/// note | 注意
 
-如果你使用 Kubernetes，这通常会是一个 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>。
+如果你使用 Kubernetes，这通常会是一个 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 
 ///
 
@@ -570,7 +571,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ### 基础 Docker 镜像 { #base-docker-image }
 
-曾经有一个官方的 FastAPI Docker 镜像：<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>。但它现在已被弃用。⛔️
+曾经有一个官方的 FastAPI Docker 镜像：[tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)。但它现在已被弃用。⛔️
 
 你大概率**不应该**使用这个基础镜像（或任何其它类似的镜像）。
 
@@ -600,7 +601,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 ## 使用 `uv` 的 Docker 镜像 { #docker-image-with-uv }
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> 来安装和管理项目，可以参考他们的 <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker 指南</a>。
+如果你使用 [uv](https://github.com/astral-sh/uv) 来安装和管理项目，可以参考他们的 [uv Docker 指南](https://docs.astral.sh/uv/guides/integration/docker/)。
 
 ## 回顾 { #recap }
 

@@ -24,13 +24,13 @@
 
 ## 実行 { #run-it }
 
-/// info | 情報
+/// note | 備考
 
-<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> パッケージは、`pip install "fastapi[standard]"` コマンドを実行すると **FastAPI** と一緒に自動的にインストールされます。
+[`python-multipart`](https://github.com/Kludex/python-multipart) パッケージは、`pip install "fastapi[standard]"` コマンドを実行すると **FastAPI** と一緒に自動的にインストールされます。
 
 しかし、`pip install fastapi` コマンドを使用する場合、`python-multipart` パッケージはデフォルトでは含まれません。
 
-手動でインストールするには、[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成して有効化し、次のコマンドでインストールしてください:
+手動でインストールするには、[仮想環境](../../virtual-environments.md)を作成して有効化し、次のコマンドでインストールしてください:
 
 ```console
 $ pip install python-multipart
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,13 +54,13 @@ $ fastapi dev main.py
 
 ## 確認 { #check-it }
 
-次のインタラクティブなドキュメントにアクセスしてください: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+次のインタラクティブなドキュメントにアクセスしてください: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 下記のように見えるでしょう:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorizeボタン!
+/// tip | Authorizeボタン!
 
 すでにピカピカの新しい「Authorize」ボタンがあります。
 
@@ -109,7 +109,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 * ユーザーがフロントエンドでクリックして、フロントエンドのWebアプリの別のセクションに移動します。
 * フロントエンドはAPIからさらにデータを取得する必要があります。
     * しかし、特定のエンドポイントの認証が必要です。
-    * したがって、APIで認証するため、HTTPヘッダー`Authorization`に`Bearer`の文字列とトークンを加えた値を送信します。
+    * したがって、APIで認証するため、HTTPヘッダー`Authorization`に`Bearer `の文字列とトークンを加えた値を送信します。
     * トークンに`foobar`が含まれている場合、`Authorization`ヘッダーの内容は次のようになります: `Bearer foobar`。
 
 ## **FastAPI**の`OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
@@ -118,7 +118,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 この例では、**Bearer**トークンを使用して**OAuth2**を**Password**フローで使用します。これには`OAuth2PasswordBearer`クラスを使用します。
 
-/// info | 情報
+/// note | 備考
 
 「bearer」トークンが、唯一の選択肢ではありません。
 
@@ -140,7 +140,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
 
-相対 URL を使うことは、[プロキシの背後](../../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+相対 URL を使うことは、[プロキシの背後](../../advanced/behind-a-proxy.md)のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
 
 ///
 
@@ -148,7 +148,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 実際の path operation もすぐに作ります。
 
-/// info | 情報
+/// note | 備考
 
 非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`tokenUrl`ではなく`token_url`であることを気に入らないかもしれません。
 
@@ -176,9 +176,9 @@ oauth2_scheme(some, parameters)
 
 **FastAPI**は、この依存関係を使用してOpenAPIスキーマ (および自動APIドキュメント) で「セキュリティスキーム」を定義できることを知っています。
 
-/// info | 技術詳細
+/// note | 技術詳細
 
-**FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
+**FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは、このクラスが`fastapi.security.oauth2.OAuth2`を継承しており、さらにそれが`fastapi.security.base.SecurityBase`を継承しているからです。
 
 OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
 

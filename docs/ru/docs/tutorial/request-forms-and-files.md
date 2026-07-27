@@ -2,11 +2,11 @@
 
 Вы можете определять файлы и поля формы одновременно, используя `File` и `Form`.
 
-/// info | Информация
+/// note | Примечание
 
-Чтобы получать загруженные файлы и/или данные форм, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы получать загруженные файлы и/или данные форм, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет, например:
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет, например:
 
 ```console
 $ pip install python-multipart

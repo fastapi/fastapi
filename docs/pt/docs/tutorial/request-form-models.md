@@ -2,11 +2,11 @@
 
 Você pode utilizar **Modelos Pydantic** para declarar **campos de formulários** no FastAPI.
 
-/// info | Informação
+/// note | Nota
 
-Para utilizar formulários, instale primeiramente o <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Para utilizar formulários, instale primeiramente o [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo, e então instalar. Por exemplo:
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo, e então instalar. Por exemplo:
 
 ```console
 $ pip install python-multipart
@@ -28,7 +28,7 @@ Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja re
 
 O **FastAPI** irá **extrair** as informações para **cada campo** dos **dados do formulário** na requisição e dar para você o modelo Pydantic que você definiu.
 
-## Confira os Documentos { #check-the-docs }
+## Confira a Documentação { #check-the-docs }
 
 Você pode verificar na UI de documentação em `/docs`:
 

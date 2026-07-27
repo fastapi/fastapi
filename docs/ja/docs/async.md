@@ -139,9 +139,9 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | 情報
+/// note | 備考
 
-美しいイラストは <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a> によるものです。🎨
+美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 
 ///
 
@@ -205,9 +205,9 @@ def results():
 
 ほとんどの時間をカウンター前で待つ 🕙 のに費やしたため、あまり話したり、いちゃついたりできませんでした。😞
 
-/// info | 情報
+/// note | 備考
 
-美しいイラストは <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a> によるものです。🎨
+美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 
 ///
 
@@ -215,7 +215,7 @@ def results():
 
 この「並列ハンバーガー」のシナリオでは、あなたは 2 つのプロセッサ (あなたと好きな人) を持つコンピュータ/プログラム 🤖 で、どちらも長い間 🕙「カウンターでの待機」に注意 ⏯ を専念しています。
 
-ファストフード店には 8 個のプロセッサ (レジ係/料理人) があります。一方、並行ハンバーガーの店には (レジ係 1、人、料理人 1 人の) 2 個しかなかったかもしれません。
+ファストフード店には 8 個のプロセッサ (レジ係/料理人) があります。一方、並行ハンバーガーの店には (レジ係 1 人、料理人 1 人の) 2 個しかなかったかもしれません。
 
 それでも、最終的な体験は最良とは言えません。😞
 
@@ -251,7 +251,7 @@ def results():
 
 そして、それが **FastAPI** で得られるパフォーマンスの水準です。
 
-さらに、並列性と非同期性を同時に活用できるため、テストされた多くの NodeJS フレームワークより高い性能を発揮し、C に近いコンパイル言語である Go と同等の性能になります <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(すべて Starlette のおかげです)</a>。
+さらに、並列性と非同期性を同時に活用できるため、テストされた多くの NodeJS フレームワークより高い性能を発揮し、C に近いコンパイル言語である Go と同等の性能になります [(すべて Starlette のおかげです)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1)。
 
 ### 並行処理は並列処理より優れている？ { #is-concurrency-better-than-parallelism }
 
@@ -298,7 +298,7 @@ CPU バウンドな操作の一般的な例は、複雑な数値処理が必要�
 
 さらに、Python が **データサイエンス**、機械学習、特にディープラーニングの主要言語であるという事実も相まって、FastAPI はデータサイエンス/機械学習の Web API やアプリケーション (ほか多数) に非常に適しています。
 
-本番環境でこの並列性を実現する方法は、[デプロイ](deployment/index.md){.internal-link target=_blank} のセクションを参照してください。
+本番環境でこの並列性を実現する方法は、[デプロイ](deployment/index.md) のセクションを参照してください。
 
 ## `async` と `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ async def read_burgers():
 
 ### 自分で async コードを書く { #write-your-own-async-code }
 
-Starlette (**FastAPI** も) は <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> の上に構築されており、標準ライブラリの <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> と <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> の両方に対応しています。
+Starlette (**FastAPI** も) は [AnyIO](https://anyio.readthedocs.io/en/stable/) の上に構築されており、標準ライブラリの [asyncio](https://docs.python.org/3/library/asyncio-task.html) と [Trio](https://trio.readthedocs.io/en/stable/) の両方に対応しています。
 
-特に、あなた自身のコード内で、より高度なパターンを必要とする発展的な並行処理のユースケースに対して、<a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> を直接使えます。
+特に、あなた自身のコード内で、より高度なパターンを必要とする発展的な並行処理のユースケースに対して、[AnyIO](https://anyio.readthedocs.io/en/stable/) を直接使えます。
 
-仮に FastAPI を使っていなくても、<a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> で独自の async アプリケーションを書けば、高い互換性と利点 (例: 構造化並行性) を得られます。
+仮に FastAPI を使っていなくても、[AnyIO](https://anyio.readthedocs.io/en/stable/) で独自の async アプリケーションを書けば、高い互換性と利点 (例: 構造化並行性) を得られます。
 
-私は AnyIO の上に薄い層として、型注釈を少し改善し、より良い**補完**や**インラインエラー**などを得るための別ライブラリも作りました。また、**理解**して**自分で async コードを書く**のに役立つフレンドリーなイントロ/チュートリアルもあります: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。特に、**async コードと通常の** (ブロッキング/同期) **コードを組み合わせる**必要がある場合に有用です。
+私は AnyIO の上に薄い層として、型注釈を少し改善し、より良い**補完**や**インラインエラー**などを得るための別ライブラリも作りました。また、**理解**して**自分で async コードを書く**のに役立つフレンドリーなイントロ/チュートリアルもあります: [Asyncer](https://asyncer.tiangolo.com/)。特に、**async コードと通常の** (ブロッキング/同期) **コードを組み合わせる**必要がある場合に有用です。
 
 ### 非同期コードの他の形式 { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Starlette (**FastAPI** も) は <a href="https://anyio.readthedocs.io/en/stable/
 
 それ以前は、非同期コードの扱いはかなり複雑で難解でした。
 
-以前の Python ではスレッドや <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> を使えましたが、コードの理解・デバッグ・思考がはるかに難しくなります。
+以前の Python ではスレッドや [Gevent](https://www.gevent.org/) を使えましたが、コードの理解・デバッグ・思考がはるかに難しくなります。
 
 以前の NodeJS / ブラウザ JavaScript では「コールバック」を使っており、「コールバック地獄」を招きました。
 
@@ -419,15 +419,15 @@ Starlette (**FastAPI** も) は <a href="https://anyio.readthedocs.io/en/stable/
 
 上記とは異なる動作の別の非同期フレームワークから来ており、ほんのわずかなパフォーマンス向上 (約 100 ナノ秒) を狙って、計算のみの些細な *path operation 関数* を素の `def` で定義することに慣れている場合、**FastAPI** では効果がまったく逆になる点に注意してください。これらの場合、*path operation 関数* がブロッキングな <abbr title="Input/Output - 入出力: ディスクの読み取りまたは書き込み、ネットワーク通信。">I/O</abbr> を行うコードを使っていない限り、`async def` を使った方が良いです。
 
-それでも、どちらの状況でも、**FastAPI** はあなたが以前使っていたフレームワークよりも (少なくとも同等に) [高速である](index.md#performance){.internal-link target=_blank} 可能性が高いです。
+それでも、どちらの状況でも、**FastAPI** はあなたが以前使っていたフレームワークよりも (少なくとも同等に) [高速である](index.md#performance) 可能性が高いです。
 
 ### 依存関係 { #dependencies }
 
-[依存関係](tutorial/dependencies/index.md){.internal-link target=_blank} についても同様です。依存関係が `async def` ではなく標準の `def` 関数である場合、外部のスレッドプールで実行されます。
+[依存関係](tutorial/dependencies/index.md) についても同様です。依存関係が `async def` ではなく標準の `def` 関数である場合、外部のスレッドプールで実行されます。
 
 ### サブ依存関係 { #sub-dependencies }
 
-複数の依存関係や [サブ依存関係](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} を (関数定義のパラメータとして) 相互に要求させられます。その一部は `async def`、他は通常の `def` で作られていても動作します。通常の `def` で作られたものは「await」される代わりに、外部スレッドプールからスレッド上で呼び出されます。
+複数の依存関係や [サブ依存関係](tutorial/dependencies/sub-dependencies.md) を (関数定義のパラメータとして) 相互に要求させられます。その一部は `async def`、他は通常の `def` で作られていても動作します。通常の `def` で作られたものは「await」される代わりに、外部スレッドプールからスレッド上で呼び出されます。
 
 ### その他のユーティリティ関数 { #other-utility-functions }
 

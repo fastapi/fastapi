@@ -51,13 +51,13 @@
 
 그 후 위의 값을 포함한 `dict` 자료형으로 반환할 뿐입니다.
 
-/// info | 정보
+/// note | 참고
 
 FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를 사용하기 권장합니다) 추가했습니다.
 
 옛날 버전을 가지고 있는 경우, `Annotated`를 사용하려 하면 에러를 맞이하게 될 것입니다.
 
-`Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}를 확실하게 하세요.
+`Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions)를 확실하게 하세요.
 
 ///
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 이렇게 하면 공용 코드를 한번만 적어도 되며, **FastAPI**는 *경로 처리*을 위해 이에 대한 호출을 처리합니다.
 
-/// check | 확인
+/// tip | 팁
 
 특별한 클래스를 만들지 않아도 되며, 이러한 것 혹은 비슷한 종류를 **FastAPI**에 "등록"하기 위해 어떤 곳에 넘겨주지 않아도 됩니다.
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 참고
 
-잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
+잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md#in-a-hurry) 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
 
 ///
 

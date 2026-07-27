@@ -4,7 +4,7 @@
 
 Yeni özellikler sık sık eklenir, bug'lar düzenli olarak düzeltilir ve kod sürekli iyileştirilmektedir.
 
-Bu yüzden mevcut sürümler hâlâ `0.x.x` şeklindedir; bu da her sürümde breaking change olma ihtimalini yansıtır. Bu yaklaşım <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a> kurallarını takip eder.
+Bu yüzden mevcut sürümler hâlâ `0.x.x` şeklindedir; bu da her sürümde breaking change olma ihtimalini yansıtır. Bu yaklaşım [Anlamsal Sürümleme](https://semver.org/) kurallarını takip eder.
 
 Şu anda **FastAPI** ile production uygulamaları geliştirebilirsiniz (muhtemelen bir süredir yapıyorsunuz da); sadece kodunuzun geri kalanıyla doğru çalışan bir sürüm kullandığınızdan emin olmanız gerekir.
 
@@ -34,7 +34,7 @@ Kurulumları yönetmek için `uv`, Poetry, Pipenv gibi başka bir araç (veya be
 
 ## Mevcut sürümler { #available-versions }
 
-Mevcut sürümleri (ör. en güncel son sürümün hangisi olduğunu kontrol etmek için) [Release Notes](../release-notes.md){.internal-link target=_blank} sayfasında görebilirsiniz.
+Mevcut sürümleri (ör. en güncel son sürümün hangisi olduğunu kontrol etmek için) [Sürüm Notları](../release-notes.md) sayfasında görebilirsiniz.
 
 ## Sürümler Hakkında { #about-versions }
 
@@ -66,7 +66,7 @@ Breaking change'ler ve yeni özellikler "MINOR" sürümlerde eklenir.
 
 Uygulamanız için test'ler eklemelisiniz.
 
-**FastAPI** ile bu çok kolaydır (Starlette sayesinde). Dokümantasyona bakın: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+**FastAPI** ile bu çok kolaydır (Starlette sayesinde). Dokümantasyona bakın: [Testler](../tutorial/testing.md)
 
 Test'leriniz olduktan sonra **FastAPI** sürümünü daha yeni bir sürüme yükseltebilir ve test'lerinizi çalıştırarak tüm kodunuzun doğru çalıştığından emin olabilirsiniz.
 

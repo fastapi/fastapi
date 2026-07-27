@@ -11,7 +11,7 @@
 * 檢查翻譯是否正確。
 * 如有需要，改進你的語言特定提示、通用提示，或英文原文。
 * 然後手動修正翻譯中剩下的問題，讓它成為一個好的譯文。
-* 重新翻譯，並保留這份好的譯文。理想結果是 LLM 不再對該譯文做任何變更。這代表通用提示與你的語言特定提示已經盡可能完善（有時它仍可能做出幾個看似隨機的變更，原因是<a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs 並非決定性演算法</a>）。
+* 重新翻譯，並保留這份好的譯文。理想結果是 LLM 不再對該譯文做任何變更。這代表通用提示與你的語言特定提示已經盡可能完善（有時它仍可能做出幾個看似隨機的變更，原因是[LLMs 並非決定性演算法](https://doublespeak.chat/#/handbook#deterministic-output)）。
 
 測試：
 
@@ -35,7 +35,7 @@
 
 //// tab | 測試
 
-Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
+昨天，我的朋友寫道：「如果你正確地拼寫 incorrectly，你就把它拼成 incorrectly 了」。我回答：「正確，但 'incorrectly' 錯在它不是 '"incorrectly"'"」。
 
 /// note | 注意
 
@@ -59,7 +59,7 @@ LLM 很可能會把這段翻譯錯。重點只在於重新翻譯時是否能保�
 
 `pip install "foo[bar]"`
 
-程式碼片段中字串常值的例子："this"、'that'。
+程式碼片段中字串常值的例子：`"this"`、`'that'`。
 
 較難的程式碼片段中字串常值例子：`f"I like {'oranges' if orange else "apples"}"`
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...以及另一個主控台範例...
 
 ```console
-// 建立目錄 "code"
+// 建立目錄 "Code"
 $ mkdir code
 // 切換到該目錄
 $ cd code
@@ -124,32 +124,24 @@ works(foo="bar")  # 這可以運作 🎉
 
 //// tab | 測試
 
-/// info | 資訊
-Some text
-///
-
 /// note | 注意
-Some text
+一些文字
 ///
 
 /// note | 技術細節
-Some text
-///
-
-/// check | 檢查
-Some text
+一些文字
 ///
 
 /// tip | 提示
-Some text
+一些文字
 ///
 
 /// warning | 警告
-Some text
+一些文字
 ///
 
 /// danger | 危險
-Some text
+一些文字
 ///
 
 ////
@@ -169,15 +161,15 @@ Some text
 連結文字應被翻譯，連結位址應保持不變：
 
 * [連結到上方標題](#code-snippets)
-* [內部連結](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">外部連結</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">連結到樣式</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">連結到腳本</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">連結到圖片</a>
+* [內部連結](index.md#installation)
+* [外部連結](https://sqlmodel.tiangolo.com/)
+* [連結到樣式](https://fastapi.tiangolo.com/css/styles.css)
+* [連結到腳本](https://fastapi.tiangolo.com/js/logic.js)
+* [連結到圖片](https://fastapi.tiangolo.com/img/foo.jpg)
 
 連結文字應被翻譯，連結位址應指向對應的翻譯版本：
 
-* <a href="https://fastapi.tiangolo.com/zh-hant/" class="external-link" target="_blank">FastAPI 連結</a>
+* [FastAPI 連結](https://fastapi.tiangolo.com/zh-hant/)
 
 ////
 
@@ -230,15 +222,15 @@ Some text
 
 ### 開發網頁應用程式 - 教學 { #develop-a-webapp-a-tutorial }
 
-Hello.
+你好。
 
 ### 型別提示與註解 { #type-hints-and-annotations }
 
-Hello again.
+再次你好。
 
 ### 超類與子類別 { #super-and-subclasses }
 
-Hello again.
+再次你好。
 
 ////
 
@@ -256,15 +248,15 @@ Hello again.
 
 //// tab | 測試
 
-* you
-* your
+* 你
+* 你的
 
-* e.g.
-* etc.
+* 例如
+* 等等
 
-* `foo` as an `int`
-* `bar` as a `str`
-* `baz` as a `list`
+* `foo` 作為 `int`
+* `bar` 作為 `str`
+* `baz` 作為 `list`
 
 * 教學 - 使用者指南
 * 進階使用者指南

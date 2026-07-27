@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface">CLI</abbr>** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
 
-When you install FastAPI (e.g. with `pip install "fastapi[standard]"`), it comes with a command line program you can run in the terminal.
+When you add FastAPI to your project (e.g. with `uv add "fastapi[standard]"`), it comes with a command line program you can run in the terminal.
 
 To run your FastAPI app for development, you can use the `fastapi dev` command:
 
@@ -52,7 +52,7 @@ For production you would use `fastapi run` instead of `fastapi dev`. 🚀
 
 ///
 
-Internally, **FastAPI CLI** uses [Uvicorn](https://www.uvicorn.dev), a high-performance, production-ready, ASGI server. 😎
+Internally, **FastAPI CLI** uses [Uvicorn](https://uvicorn.dev), a high-performance, production-ready, ASGI server. 😎
 
 The `fastapi` CLI will try to detect automatically the FastAPI app to run, assuming it's an object called `app` in a file `main.py` (or a couple other variants).
 
@@ -95,15 +95,21 @@ which would be equivalent to:
 from backend.main import app
 ```
 
-### `fastapi dev` with path { #fastapi-dev-with-path }
+### `fastapi dev` with path or with `--entrypoint` CLI option { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-But you would have to remember to pass the correct path every time you call the `fastapi` command.
+Or, you can also pass the `--entrypoint` option to the `fastapi dev` command:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+But you would have to remember to pass the correct path\entrypoint every time you call the `fastapi` command.
 
 Additionally, other tools might not be able to find it, for example the [VS Code Extension](editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
 

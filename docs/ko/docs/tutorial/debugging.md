@@ -59,7 +59,7 @@ Python에 의해 자동으로 생성된 파일의 내부 변수 `__name__`은 �
 ```Python
 from myapp import app
 
-# Some more code
+# 추가 코드
 ```
 
 이 경우 `myapp.py` 내부의 자동 변수 `__name__`에는 값이 `"__main__"`이 들어가지 않습니다.
@@ -72,9 +72,9 @@ from myapp import app
 
 은 실행되지 않습니다.
 
-/// info | 정보
+/// note | 참고
 
-자세한 내용은 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">공식 Python 문서</a>를 확인하세요.
+자세한 내용은 [공식 Python 문서](https://docs.python.org/3/library/__main__.html)를 확인하세요.
 
 ///
 
@@ -99,7 +99,7 @@ from myapp import app
 
 ---
 
-Pycharm을 사용하는 경우 다음을 수행할 수 있습니다
+PyCharm을 사용하는 경우 다음을 수행할 수 있습니다
 
 * "Run" 메뉴를 엽니다.
 * "Debug..." 옵션을 선택합니다.

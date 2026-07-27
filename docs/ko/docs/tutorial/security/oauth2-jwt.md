@@ -1,6 +1,7 @@
 # 패스워드(해싱 포함)를 사용하는 OAuth2, JWT 토큰을 사용하는 Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
+
+모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
 
 이 코드는 실제로 애플리케이션에서 사용할 수 있으며, 패스워드 해시를 데이터베이스에 저장하는 등의 작업에 활용할 수 있습니다.
 
@@ -24,13 +25,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 1주일 뒤에는 토큰이 만료되고 사용자는 인가되지 않으므로 새 토큰을 받기 위해 다시 로그인해야 합니다. 그리고 사용자(또는 제3자)가 만료 시간을 바꾸기 위해 토큰을 수정하려고 하면, 서명이 일치하지 않기 때문에 이를 알아챌 수 있습니다.
 
-JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>를 확인하십시오.
+JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 [https://jwt.io](https://jwt.io/)를 확인하십시오.
 
 ## `PyJWT` 설치 { #install-pyjwt }
 
 Python에서 JWT 토큰을 생성하고 검증하려면 `PyJWT`를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
+[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
 
 <div class="termy">
 
@@ -42,11 +43,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info | 정보
+/// note | 참고
 
 RSA나 ECDSA 같은 전자 서명 알고리즘을 사용할 계획이라면, cryptography 라이브러리 의존성인 `pyjwt[crypto]`를 설치해야 합니다.
 
-자세한 내용은 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>에서 확인할 수 있습니다.
+자세한 내용은 [PyJWT 설치 문서](https://pyjwt.readthedocs.io/en/latest/installation.html)에서 확인할 수 있습니다.
 
 ///
 
@@ -72,7 +73,7 @@ pwdlib는 패스워드 해시를 다루기 위한 훌륭한 Python 패키지입�
 
 추천 알고리즘은 "Argon2"입니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
+[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
 
 <div class="termy">
 
@@ -200,7 +201,7 @@ JWT는 사용자를 식별하고 사용자가 API에서 직접 작업을 수행�
 
 ## 확인하기 { #check-it }
 
-서버를 실행하고 문서로 이동하십시오: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+서버를 실행하고 문서로 이동하십시오: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 다음과 같은 사용자 인터페이스가 보일 것입니다:
 
@@ -213,7 +214,7 @@ JWT는 사용자를 식별하고 사용자가 API에서 직접 작업을 수행�
 Username: `johndoe`
 Password: `secret`
 
-/// check | 확인
+/// tip | 팁
 
 코드 어디에도 평문 패스워드 "`secret`"은 없고, 해시된 버전만 있다는 점에 유의하십시오.
 

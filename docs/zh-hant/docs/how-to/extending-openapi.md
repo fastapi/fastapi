@@ -25,9 +25,17 @@
 * `openapi_version`：所使用的 OpenAPI 規格版本。預設為最新版本：`3.1.0`。
 * `summary`：API 的簡短摘要。
 * `description`：API 的描述，可包含 Markdown，會顯示在文件中。
-* `routes`：路由列表，也就是所有已註冊的路徑操作。來源為 `app.routes`。
+* `routes`：路由列表，來源為 `app.routes`。FastAPI 會用它們彙整已註冊的路徑操作，包含來自被包含的 routers。
 
-/// info
+/// tip | 技術細節
+
+`app.routes` 是較低階的路由樹。它可能包含 FastAPI 內部用於被包含的 routers 的候選路由，不僅僅是最終的 `APIRoute` 物件。
+
+你仍然可以把 `app.routes` 傳給 `get_openapi()`。FastAPI 會遍歷那棵路由樹以收集實際生效的路徑操作。
+
+///
+
+/// note | 注意
 
 `summary` 參數在 OpenAPI 3.1.0 以上可用，且需 FastAPI 0.99.0 以上版本支援。
 
@@ -37,7 +45,7 @@
 
 基於上述資訊，你可以用相同的工具函式來產生 OpenAPI 結構，並覆寫你需要客製的部分。
 
-例如，我們要加入 <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc 的 OpenAPI 擴充，插入自訂 logo</a>。
+例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 一般的 **FastAPI** { #normal-fastapi }
 
@@ -75,6 +83,6 @@
 
 ### 檢查看看 { #check-it }
 
-造訪 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 後，你會看到自訂的 logo（此例為 **FastAPI** 的 logo）：
+造訪 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 後，你會看到自訂的 logo（此例為 **FastAPI** 的 logo）：
 
 <img src="/img/tutorial/extending-openapi/image01.png">

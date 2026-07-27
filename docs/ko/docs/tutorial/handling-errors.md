@@ -1,5 +1,6 @@
 # 오류 처리 { #handling-errors }
 
+
 API를 사용하는 클라이언트에 오류를 알려야 하는 상황은 많이 있습니다.
 
 이 클라이언트는 프론트엔드가 있는 브라우저일 수도 있고, 다른 사람이 작성한 코드일 수도 있고, IoT 장치일 수도 있습니다.
@@ -81,7 +82,7 @@ HTTP 오류에 커스텀 헤더를 추가할 수 있으면 유용한 상황이 �
 
 ## 커스텀 예외 핸들러 설치하기 { #install-custom-exception-handlers }
 
-<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Starlette의 동일한 예외 유틸리티</a>를 사용해 커스텀 예외 핸들러를 추가할 수 있습니다.
+[Starlette의 동일한 예외 유틸리티](https://www.starlette.dev/exceptions/)를 사용해 커스텀 예외 핸들러를 추가할 수 있습니다.
 
 여러분(또는 사용하는 라이브러리)이 `raise`할 수 있는 커스텀 예외 `UnicornException`이 있다고 가정해 봅시다.
 

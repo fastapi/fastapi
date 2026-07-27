@@ -2,11 +2,11 @@
 
 FastAPI は **Pydantic** の上に構築されており、これまでにリクエストやレスポンスを宣言するために Pydantic モデルを使う方法を紹介してきました。
 
-しかし FastAPI は、同様の方法で <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> もサポートします:
+しかし FastAPI は、同様の方法で [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) もサポートします:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-これは **Pydantic** によって引き続きサポートされています。Pydantic には <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` の内部サポート</a> があるためです。
+これは **Pydantic** によって引き続きサポートされています。Pydantic には [`dataclasses` の内部サポート](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel) があるためです。
 
 そのため、上記のように明示的に Pydantic を使っていないコードでも、FastAPI は標準の dataclass を Pydantic 独自の dataclass に変換するために Pydantic を使用しています。
 
@@ -18,7 +18,7 @@ FastAPI は **Pydantic** の上に構築されており、これまでにリク�
 
 これは Pydantic モデルの場合と同じように動作します。内部的にも同様に Pydantic を使って実現されています。
 
-/// info | 情報
+/// note | 備考
 
 dataclasses は、Pydantic モデルができることをすべては行えない点に留意してください。
 
@@ -74,7 +74,7 @@ dataclass は自動的に Pydantic の dataclass に変換されます。
 
     いつもどおり、FastAPI では必要に応じて `def` と `async def` を組み合わせられます。
 
-    どちらをいつ使うかの復習が必要な場合は、[`async` と `await`](../async.md#in-a-hurry){.internal-link target=_blank} に関するドキュメントの _"In a hurry?"_ セクションを参照してください。
+    どちらをいつ使うかの復習が必要な場合は、[`async` と `await`](../async.md#in-a-hurry) に関するドキュメントの _「急いでいますか？」_ セクションを参照してください。
 
 9. この *path operation 関数* は（可能ではありますが）dataclass 自体は返さず、内部データを持つ辞書のリストを返しています。
 
@@ -82,13 +82,13 @@ dataclass は自動的に Pydantic の dataclass に変換されます。
 
 `dataclasses` は他の型注釈と多様な組み合わせが可能で、複雑なデータ構造を構成できます。
 
-上記のコード内コメントのヒントを参照して、より具体的な詳細を確認してください。
+上記のコード内の注釈のヒントを参照して、より具体的な詳細を確認してください。
 
 ## さらに学ぶ { #learn-more }
 
 `dataclasses` を他の Pydantic モデルと組み合わせたり、継承したり、自分のモデルに含めたりもできます。
 
-詳しくは、<a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">dataclasses に関する Pydantic ドキュメント</a> を参照してください。
+詳しくは、[dataclasses に関する Pydantic ドキュメント](https://docs.pydantic.dev/latest/concepts/dataclasses/) を参照してください。
 
 ## バージョン { #version }
 

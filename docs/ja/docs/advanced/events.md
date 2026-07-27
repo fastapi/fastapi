@@ -120,7 +120,7 @@ async with lifespan(app):
 
 ここでは、`shutdown` のイベントハンドラ関数が、テキスト行 `"Application shutdown"` をファイル `log.txt` に書き込みます。
 
-/// info | 情報
+/// note | 備考
 
 `open()` 関数の `mode="a"` は「追加」（append）を意味します。つまり、そのファイルに既にある内容を上書きせず、行が後ろに追記されます。
 
@@ -140,7 +140,7 @@ async with lifespan(app):
 
 ### `startup` と `shutdown` をまとめて { #startup-and-shutdown-together }
 
-起動時とシャットダウン時のロジックは関連していることが多いです。何かを開始してから終了したい、リソースを獲得してから解放したい、などです.
+起動時とシャットダウン時のロジックは関連していることが多いです。何かを開始してから終了したい、リソースを獲得してから解放したい、などです。
 
 共有するロジックや変数のない別々の関数でそれを行うのは難しく、グローバル変数などに値を保存する必要が出てきます。
 
@@ -150,11 +150,11 @@ async with lifespan(app):
 
 技術が気になる方への細かな詳細です。🤓
 
-内部的には、ASGI の技術仕様において、これは <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan プロトコル</a> の一部であり、`startup` と `shutdown` というイベントが定義されています。
+内部的には、ASGI の技術仕様において、これは [Lifespan プロトコル](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) の一部であり、`startup` と `shutdown` というイベントが定義されています。
 
-/// info | 情報
+/// note | 備考
 
-Starlette の `lifespan` ハンドラについては、<a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette の Lifespan ドキュメント</a>で詳しく読むことができます。
+Starlette の `lifespan` ハンドラについては、[Starlette の Lifespan ドキュメント](https://www.starlette.dev/lifespan/)で詳しく読むことができます。
 
 コードの他の領域で使える lifespan の状態をどのように扱うかも含まれています。
 
@@ -162,4 +162,4 @@ Starlette の `lifespan` ハンドラについては、<a href="https://www.star
 
 ## サブアプリケーション { #sub-applications }
 
-🚨 これらの lifespan イベント（startup と shutdown）はメインのアプリケーションに対してのみ実行され、[サブアプリケーション - マウント](sub-applications.md){.internal-link target=_blank} には実行されないことに注意してください。
+🚨 これらの lifespan イベント（startup と shutdown）はメインのアプリケーションに対してのみ実行され、[サブアプリケーション - マウント](sub-applications.md) には実行されないことに注意してください。

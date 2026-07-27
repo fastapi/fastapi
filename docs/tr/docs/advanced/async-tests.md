@@ -16,11 +16,11 @@ Testlerimizde asenkron fonksiyonlar çağırmak istiyorsak, test fonksiyonlarım
 
 `TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı “sihirli” işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
 
-`TestClient`, <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> tabanlıdır ve neyse ki API'yi test etmek için HTTPX'i doğrudan kullanabiliriz.
+`TestClient`, [HTTPX](https://www.python-httpx.org) tabanlıdır ve neyse ki API'yi test etmek için HTTPX'i doğrudan kullanabiliriz.
 
 ## Örnek { #example }
 
-Basit bir örnek için, [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} ve [Testing](../tutorial/testing.md){.internal-link target=_blank} bölümlerinde anlatılana benzer bir dosya yapısı düşünelim:
+Basit bir örnek için, [Daha Büyük Uygulamalar](../tutorial/bigger-applications.md) ve [Test Etme](../tutorial/testing.md) bölümlerinde anlatılana benzer bir dosya yapısı düşünelim:
 
 ```
 .
@@ -84,7 +84,7 @@ Yeni `AsyncClient` ile async/await kullandığımızı unutmayın; request asenk
 
 /// warning | Uyarı
 
-Uygulamanız lifespan event'lerine dayanıyorsa, `AsyncClient` bu event'leri tetiklemez. Tetiklendiklerinden emin olmak için <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a> paketindeki `LifespanManager`'ı kullanın.
+Uygulamanız lifespan event'lerine dayanıyorsa, `AsyncClient` bu event'leri tetiklemez. Tetiklendiklerinden emin olmak için [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage) paketindeki `LifespanManager`'ı kullanın.
 
 ///
 
@@ -94,6 +94,6 @@ Test fonksiyonu artık asenkron olduğundan, testlerinizde FastAPI uygulamanıza
 
 /// tip | İpucu
 
-Testlerinize asenkron fonksiyon çağrıları entegre ederken `RuntimeError: Task attached to a different loop` hatasıyla karşılaşırsanız (ör. <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB'nin MotorClient</a> kullanımı), event loop gerektiren nesneleri yalnızca async fonksiyonların içinde oluşturmanız gerektiğini unutmayın; örneğin bir `@app.on_event("startup")` callback'i içinde.
+Testlerinize asenkron fonksiyon çağrıları entegre ederken `RuntimeError: Task attached to a different loop` hatasıyla karşılaşırsanız (ör. [MongoDB'nin MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop) kullanımı), event loop gerektiren nesneleri yalnızca async fonksiyonların içinde oluşturmanız gerektiğini unutmayın; örneğin bir `@app.on_event("startup")` callback'i içinde.
 
 ///

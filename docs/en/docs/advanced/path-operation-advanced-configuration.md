@@ -16,17 +16,11 @@ You would have to make sure that it is unique for each operation.
 
 ### Using the *path operation function* name as the operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-If you want to use your APIs' function names as `operationId`s, you can iterate over all of them and override each *path operation's* `operation_id` using their `APIRoute.name`.
+If you want to use your APIs' function names as `operationId`s, you can pass a custom `generate_unique_id_function` to `FastAPI`.
 
-You should do it after adding all your *path operations*.
+The function receives each `APIRoute` and returns the `operationId` to use for that path operation.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip
-
-If you manually call `app.openapi()`, you should update the `operationId`s before that.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning
 

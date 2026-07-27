@@ -1,4 +1,4 @@
-# Générer des SDK { #generating-sdks }
+# Générer des SDKs { #generating-sdks }
 
 Parce que **FastAPI** est basé sur la spécification **OpenAPI**, ses API peuvent être décrites dans un format standard compris par de nombreux outils.
 
@@ -8,33 +8,17 @@ Dans ce guide, vous apprendrez à générer un **SDK TypeScript** pour votre bac
 
 ## Générateurs de SDK open source { #open-source-sdk-generators }
 
-Une option polyvalente est <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, qui prend en charge **de nombreux langages de programmation** et peut générer des SDK à partir de votre spécification OpenAPI.
+Une option polyvalente est le [OpenAPI Generator](https://openapi-generator.tech/), qui prend en charge **de nombreux langages de programmation** et peut générer des SDK à partir de votre spécification OpenAPI.
 
-Pour les **clients TypeScript**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> est une solution dédiée, offrant une expérience optimisée pour l’écosystème TypeScript.
+Pour les **clients TypeScript**, [Hey API](https://heyapi.dev/) est une solution dédiée, offrant une expérience optimisée pour l’écosystème TypeScript.
 
-Vous pouvez découvrir davantage de générateurs de SDK sur <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Vous pouvez découvrir davantage de générateurs de SDK sur [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip | Astuce
 
 FastAPI génère automatiquement des spécifications **OpenAPI 3.1**, donc tout outil que vous utilisez doit prendre en charge cette version.
 
 ///
-
-## Générateurs de SDK par les sponsors de FastAPI { #sdk-generators-from-fastapi-sponsors }
-
-Cette section met en avant des solutions **soutenues par des fonds** et **par des entreprises** qui sponsorisent FastAPI. Ces produits offrent **des fonctionnalités supplémentaires** et **des intégrations** en plus de SDK de haute qualité générés.
-
-En ✨ [**sponsorisant FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, ces entreprises contribuent à garantir que le framework et son **écosystème** restent sains et **durables**.
-
-Leur sponsoring démontre également un fort engagement envers la **communauté** FastAPI (vous), montrant qu’elles se soucient non seulement d’offrir un **excellent service**, mais aussi de soutenir un **framework robuste et florissant**, FastAPI. 🙇
-
-Par exemple, vous pourriez essayer :
-
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
-
-Certaines de ces solutions peuvent aussi être open source ou proposer des niveaux gratuits, afin que vous puissiez les essayer sans engagement financier. D’autres générateurs de SDK commerciaux existent et peuvent être trouvés en ligne. 🤓
 
 ## Créer un SDK TypeScript { #create-a-typescript-sdk }
 
@@ -58,7 +42,7 @@ Ces mêmes informations issues des modèles, incluses dans OpenAPI, peuvent êtr
 
 ### Hey API { #hey-api }
 
-Une fois que vous avez une application FastAPI avec les modèles, vous pouvez utiliser Hey API pour générer un client TypeScript. Le moyen le plus rapide de le faire est via npx.
+Une fois que nous avons une application FastAPI avec les modèles, nous pouvons utiliser Hey API pour générer un client TypeScript. Le moyen le plus rapide de le faire est via npx.
 
 ```sh
 npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
@@ -66,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Cela générera un SDK TypeScript dans `./src/client`.
 
-Vous pouvez apprendre à <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">installer `@hey-api/openapi-ts`</a> et lire à propos du <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">résultat généré</a> sur leur site.
+Vous pouvez apprendre à [installer `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started) et lire à propos du [résultat généré](https://heyapi.dev/openapi-ts/output) sur leur site.
 
 ### Utiliser le SDK { #using-the-sdk }
 

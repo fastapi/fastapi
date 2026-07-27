@@ -12,7 +12,7 @@
 
 例如，它不接受 `datetime` 物件，因為那與 JSON 不相容。
 
-因此，必須將 `datetime` 物件轉為一個以 <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO 格式</a> 表示資料的 `str`。
+因此，必須將 `datetime` 物件轉為一個以 [ISO 格式](https://en.wikipedia.org/wiki/ISO_8601) 表示資料的 `str`。
 
 同樣地，這個資料庫不會接受 Pydantic 模型（帶有屬性的物件），只接受 `dict`。
 
@@ -24,7 +24,7 @@
 
 在此範例中，它會把 Pydantic 模型轉成 `dict`，並將 `datetime` 轉成 `str`。
 
-呼叫後的結果可以用 Python 標準的 <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a> 進行編碼。
+呼叫後的結果可以用 Python 標準的 [`json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps) 進行編碼。
 
 它不會回傳一個包含 JSON 內容的大型 `str`（字串）。它會回傳 Python 標準的資料結構（例如 `dict`），其中的值與子值都與 JSON 相容。
 

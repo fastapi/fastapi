@@ -1,6 +1,6 @@
 # 响应 - 更改状态码 { #response-change-status-code }
 
-你可能之前已经了解到，你可以设置默认的[响应状态码](../tutorial/response-status-code.md){.internal-link target=_blank}。
+你可能之前已经了解到，你可以设置默认的[响应状态码](../tutorial/response-status-code.md)。
 
 但在某些情况下，你需要返回一个不同于默认值的状态码。
 
@@ -22,7 +22,7 @@
 
 {* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
-然后你可以像平常一样返回任何你需要的对象（例如一个`dict`或者一个数据库模型）。
+然后你可以像平常一样返回任何你需要的对象（一个`dict`、一个数据库模型等）。
 
 如果你声明了一个`response_model`，它仍然会被用来过滤和转换你返回的对象。
 

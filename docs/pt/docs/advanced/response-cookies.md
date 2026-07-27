@@ -20,7 +20,7 @@ Você também pode declarar o parâmetro `Response` em dependências e definir c
 
 Você também pode criar cookies ao retornar uma `Response` diretamente no seu código.
 
-Para fazer isso, você pode criar uma resposta como descrito em [Retorne uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
+Para fazer isso, você pode criar uma resposta como descrito em [Retorne uma Resposta Diretamente](response-directly.md).
 
 Então, defina os cookies nela e a retorne:
 
@@ -30,7 +30,7 @@ Então, defina os cookies nela e a retorne:
 
 Lembre-se de que se você retornar uma resposta diretamente em vez de usar o parâmetro `Response`, FastAPI a retornará diretamente.
 
-Portanto, você terá que garantir que seus dados sejam do tipo correto. E.g. será compatível com JSON se você estiver retornando um `JSONResponse`.
+Portanto, você terá que garantir que seus dados sejam do tipo correto. Por exemplo, será compatível com JSON se você estiver retornando um `JSONResponse`.
 
 E também que você não esteja enviando nenhum dado que deveria ter sido filtrado por um `response_model`.
 
@@ -48,4 +48,4 @@ E como o `Response` pode ser usado frequentemente para definir cabeçalhos e coo
 
 ///
 
-Para ver todos os parâmetros e opções disponíveis, verifique a <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentação no Starlette</a>.
+Para ver todos os parâmetros e opções disponíveis, verifique a [documentação no Starlette](https://www.starlette.dev/responses/#set-cookie).

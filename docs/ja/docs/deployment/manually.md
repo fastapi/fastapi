@@ -1,6 +1,6 @@
 # サーバーを手動で実行する { #run-a-server-manually }
 
-## fastapi run コマンドを使う { #use-the-fastapi-run-command }
+## `fastapi run` コマンドを使う { #use-the-fastapi-run-command }
 
 結論として、FastAPI アプリケーションを提供するには `fastapi run` を使います:
 
@@ -52,11 +52,10 @@ FastAPI は、Python の Web フレームワークとサーバーのための標
 
 他にもいくつかの選択肢があります:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: 高性能な ASGI サーバー。
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: HTTP/2 や Trio に対応する ASGI サーバーなど。
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: Django Channels のために作られた ASGI サーバー。
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Python アプリケーション向けの Rust 製 HTTP サーバー。
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: 軽量で多用途な Web アプリケーションランタイム。
+* [Uvicorn](https://www.uvicorn.dev/): 高性能な ASGI サーバー。
+* [Hypercorn](https://hypercorn.readthedocs.io/): HTTP/2 や Trio に対応する ASGI サーバーなど。
+* [Daphne](https://github.com/django/daphne): Django Channels のために作られた ASGI サーバー。
+* [Granian](https://github.com/emmett-framework/granian): Python アプリケーション向けの Rust 製 HTTP サーバー。
 
 ## サーバーマシンとサーバープログラム { #server-machine-and-server-program }
 
@@ -74,7 +73,7 @@ FastAPI をインストールすると、本番サーバーの Uvicorn が同梱
 
 ただし、ASGI サーバーを手動でインストールすることもできます。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化し、サーバーアプリケーションをインストールしてください。
+[仮想環境](../virtual-environments.md)を作成して有効化し、サーバーアプリケーションをインストールしてください。
 
 例として、Uvicorn をインストールするには:
 
@@ -94,7 +93,7 @@ $ pip install "uvicorn[standard]"
 
 `standard` を付けると、Uvicorn は推奨の追加依存関係もインストールして使用します。
 
-その中には、`asyncio` の高性能なドロップイン代替であり、大きな並行実行性能の向上をもたらす `uvloop` も含まれます。
+その中には、`uvloop` も含まれます。これは `asyncio` の高性能なドロップイン代替で、大きな並行実行性能の向上をもたらします。
 
 `pip install "fastapi[standard]"` のように FastAPI をインストールした場合は、すでに `uvicorn[standard]` も含まれます。
 

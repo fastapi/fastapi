@@ -11,13 +11,13 @@
 * 用戶端嘗試存取的項目不存在。
 * 等等。
 
-在這些情況下，通常會回傳範圍為 400（400 到 499）的 HTTP 狀態碼。
+在這些情況下，通常會回傳範圍為 **400**（400 到 499）的 **HTTP 狀態碼**。
 
 這類似於 200 範圍的 HTTP 狀態碼（200 到 299）。那些「200」狀態碼表示請求在某種程度上是「成功」的。
 
 400 範圍的狀態碼表示用戶端錯誤。
 
-還記得那些「404 Not Found」錯誤（和梗）嗎？
+還記得那些 **「404 Not Found」** 錯誤（和梗）嗎？
 
 ## 使用 `HTTPException` { #use-httpexception }
 
@@ -81,7 +81,7 @@
 
 ## 安裝自訂例外處理器 { #install-custom-exception-handlers }
 
-你可以使用 <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Starlette 的相同例外工具</a> 來加入自訂例外處理器。
+你可以使用 [Starlette 的相同例外工具](https://www.starlette.dev/exceptions/) 來加入自訂例外處理器。
 
 假設你有一個自訂例外 `UnicornException`，你（或你使用的函式庫）可能會 `raise` 它。
 

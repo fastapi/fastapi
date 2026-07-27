@@ -36,7 +36,7 @@ Nous pouvons créer une instance de cette classe avec :
 
 {* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
 
-Et de cette façon, nous pouvons « paramétrer » notre dépendance, qui contient maintenant « bar », en tant qu’attribut `checker.fixed_content`.
+Et de cette façon, nous pouvons « paramétrer » notre dépendance, qui contient maintenant `"bar"`, en tant qu’attribut `checker.fixed_content`.
 
 ## Utiliser l'instance comme dépendance { #use-the-instance-as-a-dependency }
 
@@ -78,7 +78,7 @@ Les dépendances avec `yield` ont évolué au fil du temps pour couvrir différe
 
 ### Dépendances avec `yield` et `scope` { #dependencies-with-yield-and-scope }
 
-Dans la version 0.121.0, **FastAPI** a ajouté la prise en charge de `Depends(scope="function")` pour les dépendances avec `yield`.
+Dans la version 0.121.0, FastAPI a ajouté la prise en charge de `Depends(scope="function")` pour les dépendances avec `yield`.
 
 Avec `Depends(scope="function")`, le code d’arrêt après `yield` s’exécute immédiatement après la fin de la *fonction de chemin d'accès*, avant que la réponse ne soit renvoyée au client.
 
@@ -98,7 +98,7 @@ Par exemple, si vous aviez une session de base de données dans une dépendance 
 
 Ce comportement a été annulé en 0.118.0, afin que le code d’arrêt après `yield` s’exécute après l’envoi de la réponse.
 
-/// info
+/// note | Remarque
 
 Comme vous le verrez ci‑dessous, c’est très similaire au comportement avant la version 0.106.0, mais avec plusieurs améliorations et corrections de bogues pour des cas limites.
 
@@ -132,7 +132,7 @@ Si vous avez ce cas d’utilisation spécifique avec SQLModel (ou SQLAlchemy), v
 
 De cette manière, la session libérera la connexion à la base de données, afin que d’autres requêtes puissent l’utiliser.
 
-Si vous avez un autre cas d’utilisation qui nécessite une sortie anticipée depuis une dépendance avec `yield`, veuillez créer une <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Question de discussion GitHub</a> avec votre cas spécifique et pourquoi vous bénéficieriez d’une fermeture anticipée pour les dépendances avec `yield`.
+Si vous avez un autre cas d’utilisation qui nécessite une sortie anticipée depuis une dépendance avec `yield`, veuillez créer une [Question de discussion GitHub](https://github.com/fastapi/fastapi/discussions/new?category=questions) avec votre cas spécifique et pourquoi vous bénéficieriez d’une fermeture anticipée pour les dépendances avec `yield`.
 
 S’il existe des cas d’utilisation convaincants pour une fermeture anticipée dans les dépendances avec `yield`, j’envisagerai d’ajouter une nouvelle façon d’y opter.
 
@@ -144,7 +144,7 @@ Cela a été modifié dans la version 0.110.0 pour corriger une consommation de 
 
 ### Tâches d'arrière‑plan et dépendances avec `yield`, Détails techniques { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait après l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} avaient déjà été exécutés.
+Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait après l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers) avaient déjà été exécutés.
 
 Cela avait été conçu ainsi principalement pour permettre d’utiliser les mêmes objets « générés par yield » par les dépendances à l’intérieur de tâches d’arrière‑plan, car le code d’arrêt s’exécutait après la fin des tâches d’arrière‑plan.
 

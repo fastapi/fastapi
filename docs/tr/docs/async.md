@@ -82,12 +82,12 @@ Bu "başka bir şeyi beklemek" genelde işlemci ve RAM hızına kıyasla nispete
 * programınızın sisteme verdiği içeriğin diske yazılması
 * uzak bir API işlemi
 * bir veritabanı işleminin bitmesi
-* bir veritabanı sorgusunun sonuç döndürmesi
+* bir veritabanı query'sinin sonuç döndürmesi
 * vb.
 
 Çalışma süresi çoğunlukla <abbr title="Input and Output - Giriş ve Çıkış">I/O</abbr> işlemlerini beklemekle geçtiğinden, bunlara "I/O bound" işlemler denir.
 
-"Bunun" asenkron" denmesinin sebebi, bilgisayarın / programın yavaş görevle "senkronize" olmak, görev tam bittiği anda orada olup görev sonucunu almak ve işe devam etmek için hiçbir şey yapmadan beklemek zorunda olmamasıdır.
+Buna "asenkron" denmesinin sebebi, bilgisayarın / programın yavaş görevle "senkronize" olmak, görev tam bittiği anda orada olup görev sonucunu almak ve işe devam etmek için hiçbir şey yapmadan beklemek zorunda olmamasıdır.
 
 Bunun yerine "asenkron" bir sistem olarak, görev bittiğinde, bilgisayarın / programın o sırada yaptığı işi bitirmesi için biraz (birkaç mikrosaniye) sırada bekleyebilir ve sonra sonuçları almak üzere geri dönüp onlarla çalışmaya devam edebilir.
 
@@ -139,9 +139,9 @@ Aşkınla burgerleri yiyip güzel vakit geçiriyorsunuz. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Bilgi
+/// note | Not
 
-Harika çizimler: <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -205,9 +205,9 @@ Sadece yiyorsunuz ve iş bitiyor. ⏹
 
 Vaktin çoğu tezgâhın önünde 🕙 beklemekle geçtiğinden, pek konuşma ya da flört olmadı. 😞
 
-/// info | Bilgi
+/// note | Not
 
-Harika çizimler: <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Harika çizimler: [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -239,9 +239,9 @@ Muhtemelen, bankada 🏦 işlerini hallederken aşkını 😍 yanında götürme
 
 Bu, çoğu web uygulaması için de geçerlidir.
 
-Çok fazla kullanıcı vardır; ancak sunucunuz, iyi olmayan bağlantılarından gelen istekleri 🕙 bekler.
+Çok fazla kullanıcı vardır; ancak sunucunuz, onların pek iyi olmayan bağlantıları üzerinden request'lerin gelmesini 🕙 bekler.
 
-Ve sonra yanıtların geri gelmesini yine 🕙 bekler.
+Ardından response'ların geri gelmesini yine 🕙 bekler.
 
 Bu "beklemeler" 🕙 mikrosaniyelerle ölçülür; ama hepsi toplandığında sonuçta oldukça fazla bekleme olur.
 
@@ -251,7 +251,7 @@ Bu tür asenkronluk, NodeJS’i popüler yapan şeydir (NodeJS paralel olmasa bi
 
 Ve **FastAPI** ile elde ettiğiniz performans seviyesi de budur.
 
-Ayrıca, aynı anda hem paralellik hem de asenkronluk kullanabildiğiniz için, test edilen çoğu NodeJS framework’ünden daha yüksek ve C’ye daha yakın derlenen bir dil olan Go ile başa baş performans elde edersiniz <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(hepsi Starlette sayesinde)</a>.
+Ayrıca, aynı anda hem paralellik hem de asenkronluk kullanabildiğiniz için, test edilen çoğu NodeJS framework’ünden daha yüksek ve C’ye daha yakın derlenen bir dil olan Go ile başa baş performans elde edersiniz [(hepsi Starlette sayesinde)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Eşzamanlılık paralellikten daha mı iyi? { #is-concurrency-better-than-parallelism }
 
@@ -298,7 +298,7 @@ Ama ayrıca **CPU’ya bağlı** iş yükleri (Makine Öğrenimi sistemlerindeki
 
 Buna ek olarak Python’un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olması, FastAPI’yi Veri Bilimi / Makine Öğrenimi web API’leri ve uygulamaları için çok iyi bir seçenek yapar.
 
-Production’da bu paralelliği nasıl sağlayacağınızı görmek için [Deployment](deployment/index.md){.internal-link target=_blank} bölümüne bakın.
+Production’da bu paralelliği nasıl sağlayacağınızı görmek için [Deployment](deployment/index.md) bölümüne bakın.
 
 ## `async` ve `await` { #async-and-await }
 
@@ -363,13 +363,13 @@ Ama FastAPI olmadan da `async` / `await` kullanmak isterseniz, bunu da yapabilir
 
 ### Kendi async kodunuzu yazın { #write-your-own-async-code }
 
-Starlette (ve **FastAPI**) <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> üzerine kuruludur; bu sayede Python standart kütüphanesindeki <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> ve <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> ile uyumludur.
+Starlette (ve **FastAPI**) [AnyIO](https://anyio.readthedocs.io/en/stable/) üzerine kuruludur; bu sayede Python standart kütüphanesindeki [asyncio](https://docs.python.org/3/library/asyncio-task.html) ve [Trio](https://trio.readthedocs.io/en/stable/) ile uyumludur.
 
-Özellikle, kendi kodunuzda daha gelişmiş desenler gerektiren ileri seviye eşzamanlılık kullanım senaryoları için doğrudan <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> kullanabilirsiniz.
+Özellikle, kendi kodunuzda daha gelişmiş desenler gerektiren ileri seviye eşzamanlılık kullanım senaryoları için doğrudan [AnyIO](https://anyio.readthedocs.io/en/stable/) kullanabilirsiniz.
 
-Hatta FastAPI kullanmıyor olsanız bile, yüksek uyumluluk ve avantajları (ör. *structured concurrency*) için <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> ile kendi async uygulamalarınızı yazabilirsiniz.
+Hatta FastAPI kullanmıyor olsanız bile, yüksek uyumluluk ve avantajları (ör. *structured concurrency*) için [AnyIO](https://anyio.readthedocs.io/en/stable/) ile kendi async uygulamalarınızı yazabilirsiniz.
 
-AnyIO’nun üzerine, tür açıklamalarını biraz iyileştirmek ve daha iyi **otomatik tamamlama**, **satır içi hatalar** vb. elde etmek için ince bir katman olarak başka bir kütüphane daha oluşturdum. Ayrıca **kendi async kodunuzu** anlamanıza ve yazmanıza yardımcı olacak dostça bir giriş ve eğitim içerir: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Özellikle **async kodu normal** (bloklayan/senkron) **kodla birleştirmeniz** gerektiğinde faydalı olacaktır.
+AnyIO’nun üzerine, tür açıklamalarını biraz iyileştirmek ve daha iyi **otomatik tamamlama**, **satır içi hatalar** vb. elde etmek için ince bir katman olarak başka bir kütüphane daha oluşturdum. Ayrıca **kendi async kodunuzu** anlamanıza ve yazmanıza yardımcı olacak dostça bir giriş ve eğitim içerir: [Asyncer](https://asyncer.tiangolo.com/). Özellikle **async kodu normal** (bloklayan/senkron) **kodla birleştirmeniz** gerektiğinde faydalı olacaktır.
 
 ### Asenkron kodun diğer biçimleri { #other-forms-of-asynchronous-code }
 
@@ -381,7 +381,7 @@ Aynı (ya da neredeyse aynı) sözdizimi yakın zamanda modern JavaScript sürü
 
 Bundan önce, asenkron kodu ele almak oldukça daha karmaşık ve zordu.
 
-Python’un önceki sürümlerinde thread’ler veya <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> kullanabilirdiniz. Ama kodu anlamak, hata ayıklamak ve üzerine düşünmek çok daha zordu.
+Python’un önceki sürümlerinde thread’ler veya [Gevent](https://www.gevent.org/) kullanabilirdiniz. Ama kodu anlamak, hata ayıklamak ve üzerine düşünmek çok daha zordu.
 
 NodeJS / Tarayıcı JavaScript’in önceki sürümlerinde "callback" kullanırdınız. Bu da "callback cehennemi"ne yol açardı.
 
@@ -419,15 +419,15 @@ Bir *path operasyon fonksiyonunu* `async def` yerine normal `def` ile tanımlad�
 
 Yukarıda açıklanan şekilde çalışmayan başka bir async framework’ten geliyorsanız ve ufak bir performans kazancı (yaklaşık 100 nanosaniye) için yalnızca hesaplama yapan basit *path operasyon fonksiyonlarını* düz `def` ile tanımlamaya alışkınsanız, **FastAPI**’de etkinin tam tersi olacağını unutmayın. Bu durumlarda, *path operasyon fonksiyonlarınız* bloklayan <abbr title="Input/Output - Giriş/Çıkış: disk okuma veya yazma, ağ iletişimi.">I/O</abbr> yapan kod kullanmadıkça `async def` kullanmak daha iyidir.
 
-Yine de her iki durumda da, **FastAPI**’nin önceki framework’ünüzden [hala daha hızlı](index.md#performance){.internal-link target=_blank} (ya da en azından karşılaştırılabilir) olması muhtemeldir.
+Yine de her iki durumda da, **FastAPI**’nin önceki framework’ünüzden [hala daha hızlı](index.md#performance) (ya da en azından karşılaştırılabilir) olması muhtemeldir.
 
 ### Bağımlılıklar { #dependencies }
 
-Aynısı [bağımlılıklar](tutorial/dependencies/index.md){.internal-link target=_blank} için de geçerlidir. Bir bağımlılık `async def` yerine standart bir `def` fonksiyonuysa, harici thread pool’da çalıştırılır.
+Aynısı [bağımlılıklar](tutorial/dependencies/index.md) için de geçerlidir. Bir bağımlılık `async def` yerine standart bir `def` fonksiyonuysa, harici thread pool’da çalıştırılır.
 
 ### Alt-bağımlılıklar { #sub-dependencies }
 
-Birbirini gerektiren birden çok bağımlılık ve [alt-bağımlılık](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} olabilir (fonksiyon tanımlarının parametreleri olarak). Bazıları `async def` ile, bazıları normal `def` ile oluşturulmuş olabilir. Yine de çalışır ve normal `def` ile oluşturulanlar "await" edilmek yerine harici bir thread’de (thread pool’dan) çağrılır.
+Birbirini gerektiren birden çok bağımlılık ve [alt-bağımlılık](tutorial/dependencies/sub-dependencies.md) olabilir (fonksiyon tanımlarının parametreleri olarak). Bazıları `async def` ile, bazıları normal `def` ile oluşturulmuş olabilir. Yine de çalışır ve normal `def` ile oluşturulanlar "await" edilmek yerine harici bir thread’de (thread pool’dan) çağrılır.
 
 ### Diğer yardımcı fonksiyonlar { #other-utility-functions }
 

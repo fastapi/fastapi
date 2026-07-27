@@ -1,5 +1,6 @@
 # 偵錯 { #debugging }
 
+
 你可以在編輯器中連接偵錯器，例如 Visual Studio Code 或 PyCharm。
 
 ## 呼叫 `uvicorn` { #call-uvicorn }
@@ -59,7 +60,7 @@ $ python myapp.py
 ```Python
 from myapp import app
 
-# Some more code
+# 其他程式碼
 ```
 
 在那種情況下，`myapp.py` 中自動建立的變數 `__name__` 就不會是 `"__main__"`。
@@ -72,9 +73,9 @@ from myapp import app
 
 就不會被執行。
 
-/// info | 說明
+/// note
 
-想了解更多，參考 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文件</a>。
+想了解更多，參考 [Python 官方文件](https://docs.python.org/3/library/__main__.html)。
 
 ///
 

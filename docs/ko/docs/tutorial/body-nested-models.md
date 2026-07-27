@@ -96,7 +96,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 `str`, `int`, `float` 등과 같은 일반적인 단일 타입과는 별개로, `str`을 상속하는 더 복잡한 단일 타입을 사용할 수 있습니다.
 
-사용할 수 있는 모든 옵션을 보려면 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic의 Type Overview</a>를 확인하세요. 다음 장에서 몇 가지 예제를 볼 수 있습니다.
+사용할 수 있는 모든 옵션을 보려면 [Pydantic의 Type Overview](https://docs.pydantic.dev/latest/concepts/types/)를 확인하세요. 다음 장에서 몇 가지 예제를 볼 수 있습니다.
 
 예를 들어 `Image` 모델에는 `url` 필드가 있으므로, 이를 `str` 대신 Pydantic의 `HttpUrl` 인스턴스로 선언할 수 있습니다:
 
@@ -136,7 +136,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 }
 ```
 
-/// info | 정보
+/// note | 참고
 
 `images` 키가 이제 이미지 객체 리스트를 갖는지 주목하세요.
 
@@ -148,7 +148,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | 정보
+/// note | 참고
 
 `Offer`가 `Item`의 리스트를 가지고, 그 `Item`이 다시 선택 사항인 `Image` 리스트를 갖는지 주목하세요
 
@@ -182,7 +182,7 @@ Pydantic 모델 대신 `dict`로 직접 작업한다면 이런 종류의 편집�
 
 또한 키는 어떤 타입이고 값은 다른 타입인 `dict`로 본문을 선언할 수 있습니다.
 
-이렇게 하면 (Pydantic 모델을 사용하는 경우처럼) 유효한 필드/어트리뷰트 이름이 무엇인지 미리 알 필요가 없습니다.
+이렇게 하면 (Pydantic 모델을 사용하는 경우와 달리) 유효한 필드/어트리뷰트 이름이 무엇인지 미리 알 필요가 없습니다.
 
 아직 모르는 키를 받으려는 경우에 유용합니다.
 

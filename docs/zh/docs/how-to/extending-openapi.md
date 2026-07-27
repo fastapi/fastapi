@@ -25,9 +25,17 @@
 - `openapi_version`：使用的 OpenAPI 规范版本。默认是最新的 `3.1.0`。
 - `summary`：API 的简短摘要。
 - `description`：API 的描述，可包含 Markdown，并会展示在文档中。
-- `routes`：路由列表，即已注册的每个路径操作。来自 `app.routes`。
+- `routes`：应用的路由，来自 `app.routes`。FastAPI 使用它们来收集已注册的路径操作，包括来自已包含路由器的那些。
 
-/// info | 信息
+/// tip | 技术细节
+
+`app.routes` 是一个更底层的路由树。它可能包含 FastAPI 在内部用于包含的路由器的候选路由，而不仅仅是最终的 `APIRoute` 对象。
+
+你仍然可以把 `app.routes` 传给 `get_openapi()`。FastAPI 会遍历这棵路由树来收集实际生效的路径操作。
+
+///
+
+/// note | 注意
 
 参数 `summary` 仅在 OpenAPI 3.1.0 及更高版本中可用，FastAPI 0.99.0 及以上版本支持。
 
@@ -37,7 +45,7 @@
 
 基于以上信息，你可以用同一个工具函数生成 OpenAPI 架构，并按需覆盖其中的各个部分。
 
-例如，让我们添加 <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc 的 OpenAPI 扩展以包含自定义 Logo</a>。
+例如，让我们添加 [ReDoc 的 OpenAPI 扩展以包含自定义 Logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 常规 **FastAPI** { #normal-fastapi }
 
@@ -61,7 +69,7 @@
 
 你可以把 `.openapi_schema` 属性当作“缓存”，用来存储已生成的架构。
 
-这样一来，用户每次打开 API 文档时，应用就不必重新生成架构。
+这样一来，应用每次打开 API 文档时就不必重新生成架构。
 
 它只会生成一次，后续请求都会使用同一份缓存的架构。
 
@@ -75,6 +83,6 @@
 
 ### 验证 { #check-it }
 
-当你访问 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 时，你会看到已使用你的自定义 Logo（本例中为 **FastAPI** 的 Logo）：
+当你访问 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 时，你会看到已使用你的自定义 Logo（本例中为 **FastAPI** 的 Logo）：
 
 <img src="/img/tutorial/extending-openapi/image01.png">

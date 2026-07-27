@@ -8,33 +8,17 @@
 
 ## Генераторы SDK с открытым исходным кодом { #open-source-sdk-generators }
 
-Гибкий вариант — <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, который поддерживает **многие языки программирования** и умеет генерировать SDK из вашей спецификации OpenAPI.
+Гибкий вариант — [OpenAPI Generator](https://openapi-generator.tech/), который поддерживает **многие языки программирования** и умеет генерировать SDK из вашей спецификации OpenAPI.
 
-Для **TypeScript‑клиентов** <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> — специализированное решение, обеспечивающее оптимальный опыт для экосистемы TypeScript.
+Для **TypeScript‑клиентов** [Hey API](https://heyapi.dev/) — специализированное решение, обеспечивающее оптимальный опыт для экосистемы TypeScript.
 
-Больше генераторов SDK можно найти на <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Больше генераторов SDK можно найти на [OpenAPI.Tools](https://openapi.tools/#sdk).
 
 /// tip | Совет
 
 FastAPI автоматически генерирует спецификации **OpenAPI 3.1**, поэтому любой используемый инструмент должен поддерживать эту версию.
 
 ///
-
-## Генераторы SDK от спонсоров FastAPI { #sdk-generators-from-fastapi-sponsors }
-
-В этом разделе представлены решения с **венчурной поддержкой** и **поддержкой компаний** от компаний, которые спонсируют FastAPI. Эти продукты предоставляют **дополнительные возможности** и **интеграции** сверх высококачественно генерируемых SDK.
-
-Благодаря ✨ [**спонсорству FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ эти компании помогают обеспечивать, чтобы фреймворк и его **экосистема** оставались здоровыми и **устойчивыми**.
-
-Их спонсорство также демонстрирует серьёзную приверженность **сообществу** FastAPI (вам), показывая, что им важно не только предоставлять **отличный сервис**, но и поддерживать **надёжный и процветающий фреймворк** FastAPI. 🙇
-
-Например, вы можете попробовать:
-
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
-
-Некоторые из этих решений также могут быть open source или иметь бесплатные тарифы, так что вы сможете попробовать их без финансовых затрат. Другие коммерческие генераторы SDK доступны и их можно найти онлайн. 🤓
 
 ## Создать TypeScript SDK { #create-a-typescript-sdk }
 
@@ -66,11 +50,11 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Это сгенерирует TypeScript SDK в `./src/client`.
 
-Вы можете узнать, как <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">установить `@hey-api/openapi-ts`</a> и почитать о <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">сгенерированном результате</a> на их сайте.
+Вы можете узнать, как [установить `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started) и почитать о [сгенерированном результате](https://heyapi.dev/openapi-ts/output) на их сайте.
 
 ### Использование SDK { #using-the-sdk }
 
-Теперь вы можете импортировать и использовать клиентский код. Это может выглядеть так, обратите внимание, что вы получаете автозавершение для методoв:
+Теперь вы можете импортировать и использовать клиентский код. Это может выглядеть так, обратите внимание, что вы получаете автозавершение для методов:
 
 <img src="/img/tutorial/generate-clients/image02.png">
 
@@ -84,7 +68,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 ///
 
-Вы получите ошибки прямо в редакторе для отправляемых данных:
+Вы получите ошибки прямо в редакторе кода для отправляемых данных:
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
@@ -187,7 +171,7 @@ FastAPI использует **уникальный ID** для каждой *о
 npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 ```
 
-После генерации нового клиента у вас будут **чистые имена методов**, со всем **автозавершением**, **ошибками прямо в редакторе** и т.д.:
+После генерации нового клиента у вас будут **чистые имена методов**, со всем **автозавершением**, **ошибками прямо в редакторе кода** и т.д.:
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
@@ -199,7 +183,7 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 * Данных запроса — в теле запроса, query‑параметрах и т.д.
 * Данных ответа.
 
-У вас также будут **ошибки прямо в редакторе** для всего.
+У вас также будут **ошибки прямо в редакторе кода** для всего.
 
 И каждый раз, когда вы обновляете код бэкенда и **перегенерируете** фронтенд, в нём появятся новые *операции пути* как методы, старые будут удалены, а любые другие изменения отразятся в сгенерированном коде. 🤓
 

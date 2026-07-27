@@ -6,12 +6,18 @@ The simplest FastAPI file could look like this:
 
 Copy that to a file `main.py`.
 
+/// tip
+
+FastAPI has an [official extension for VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (and Cursor), which provides a lot of features, including a path operation explorer, path operation search, CodeLens navigation in tests (jump to definition from tests), and FastAPI Cloud deployment and logs, all from your editor.
+
+///
+
 Run the live server:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ You will see the automatic interactive API documentation (provided by [Swagger U
 
 And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Rebilly/ReDoc)):
+You will see the alternative automatic documentation (provided by [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -108,7 +114,7 @@ OpenAPI defines an API schema for your API. And that schema includes definitions
 
 #### Check the `openapi.json` { #check-the-openapi-json }
 
-If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
+If you are curious about what the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
 You can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
@@ -180,42 +186,32 @@ which would be equivalent to:
 from backend.main import app
 ```
 
-### `fastapi dev` with path { #fastapi-dev-with-path }
+### `fastapi dev` with path or with `--entrypoint` CLI option { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 You can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-But you would have to remember to pass the correct path every time you call the `fastapi` command.
+Or, you can also pass the `--entrypoint` option to the `fastapi dev` command:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+But you would have to remember to pass the correct path\entrypoint every time you call the `fastapi` command.
 
 Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 
-You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com), go and join the waiting list if you haven't. 🚀
-
-If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
-
-Before deploying, make sure you are logged in:
+You can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Then deploy your app:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +221,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+The CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.
 
 That's it! Now you can access your app at that URL. ✨
 
@@ -240,7 +238,7 @@ That's it! Now you can access your app at that URL. ✨
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the [Starlette](https://www.starlette.dev/) functionality with `FastAPI` too.
+You can use all the [Starlette](https://starlette.dev/) functionality with `FastAPI` too.
 
 ///
 
@@ -270,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note
 
 A "path" is also commonly called an "endpoint" or a "route".
 
@@ -322,7 +320,7 @@ The `@app.get("/")` tells **FastAPI** that the function right below is in charge
 * the path `/`
 * using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
-/// info | `@decorator` Info
+/// note | `@decorator` Info
 
 That `@something` syntax in Python is called a "decorator".
 

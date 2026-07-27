@@ -29,19 +29,19 @@ Pour ce faire, importez d’abord :
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info
+/// note | Remarque
 
 FastAPI a ajouté la prise en charge de `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
 Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d’utiliser `Annotated`.
 
-Assurez-vous de [mettre à niveau la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} vers au moins 0.95.1 avant d’utiliser `Annotated`.
+Assurez-vous de [mettre à niveau la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) vers au moins 0.95.1 avant d’utiliser `Annotated`.
 
 ///
 
 ## Utiliser `Annotated` dans le type pour le paramètre `q` { #use-annotated-in-the-type-for-the-q-parameter }
 
-Vous vous souvenez que je vous ai dit plus tôt que `Annotated` peut être utilisé pour ajouter des métadonnées à vos paramètres dans l’[Introduction aux types Python](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} ?
+Vous vous souvenez que je vous ai dit plus tôt que `Annotated` peut être utilisé pour ajouter des métadonnées à vos paramètres dans l’[Introduction aux types Python](../python-types.md#type-hints-with-metadata-annotations) ?
 
 C’est le moment de l’utiliser avec FastAPI. 🚀
 
@@ -81,7 +81,7 @@ FastAPI va maintenant :
 
 - **Valider** les données en s’assurant que la longueur maximale est de 50 caractères
 - Afficher une **erreur claire** au client quand les données ne sont pas valides
-- **Documenter** le paramètre dans la *chemin d'accès* du schéma OpenAPI (il apparaîtra donc dans l’**interface de documentation automatique**)
+- **Documenter** le paramètre dans le *chemin d'accès* du schéma OpenAPI (il apparaîtra donc dans l’**interface de documentation automatique**)
 
 ## Alternative (ancienne) : `Query` comme valeur par défaut { #alternative-old-query-as-the-default-value }
 
@@ -89,7 +89,7 @@ Les versions précédentes de FastAPI (avant <dfn title="avant 2023-03">0.95.0</
 
 /// tip | Astuce
 
-Pour du nouveau code et dès que possible, utilisez `Annotated` comme expliqué ci-dessus. Il y a de multiples avantages (expliqués ci-dessous) et aucun inconvénient. 🍰
+Pour du nouveau code et chaque fois que possible, utilisez `Annotated` comme expliqué ci-dessus. Il y a de multiples avantages (expliqués ci-dessous) et aucun inconvénient. 🍰
 
 ///
 
@@ -119,7 +119,7 @@ Ensuite, nous pouvons passer plus de paramètres à `Query`. Dans ce cas, le par
 q: str | None = Query(default=None, max_length=50)
 ```
 
-Cela validera les données, affichera une erreur claire lorsque les données ne sont pas valides et documentera le paramètre dans la *chemin d'accès* du schéma OpenAPI.
+Cela validera les données, affichera une erreur claire lorsque les données ne sont pas valides et documentera le paramètre dans le *chemin d'accès* du schéma OpenAPI.
 
 ### `Query` comme valeur par défaut ou dans `Annotated` { #query-as-the-default-value-or-in-annotated }
 
@@ -157,7 +157,7 @@ Vous pouvez **appeler** cette même fonction dans **d’autres endroits** sans F
 
 Quand vous n’utilisez pas `Annotated` et utilisez à la place l’**ancienne** méthode avec la **valeur par défaut**, si vous appelez cette fonction sans FastAPI dans **d’autres endroits**, vous devez **penser** à passer les arguments à la fonction pour qu’elle fonctionne correctement, sinon les valeurs seront différentes de ce que vous attendez (par ex. `QueryInfo` ou quelque chose de similaire au lieu d’une `str`). Et votre éditeur ne se plaindra pas, et Python ne se plaindra pas en exécutant cette fonction, seulement quand les opérations internes échoueront.
 
-Comme `Annotated` peut avoir plus d’une annotation de métadonnées, vous pouvez maintenant même utiliser la même fonction avec d’autres outils, comme <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
+Comme `Annotated` peut avoir plus d’une annotation de métadonnées, vous pouvez maintenant même utiliser la même fonction avec d’autres outils, comme [Typer](https://typer.tiangolo.com/). 🚀
 
 ## Ajouter plus de validations { #add-more-validations }
 
@@ -241,7 +241,7 @@ Ensuite, avec une URL comme :
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python à l’intérieur de votre fonction de *chemin d'accès*, dans le *paramètre de fonction* `q`.
+vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python à l’intérieur de votre *fonction de chemin d'accès*, dans le *paramètre de fonction* `q`.
 
 Donc, la réponse pour cette URL serait :
 
@@ -369,11 +369,11 @@ Il peut y avoir des cas où vous devez faire une **validation personnalisée** q
 
 Dans ces cas, vous pouvez utiliser une **fonction de validation personnalisée** qui est appliquée après la validation normale (par ex. après avoir validé que la valeur est une `str`).
 
-Vous pouvez y parvenir en utilisant <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">`AfterValidator` de Pydantic</a> à l’intérieur de `Annotated`.
+Vous pouvez y parvenir en utilisant [`AfterValidator` de Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) à l’intérieur de `Annotated`.
 
 /// tip | Astuce
 
-Pydantic a aussi <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> et d’autres. 🤓
+Pydantic a aussi [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) et d’autres. 🤓
 
 ///
 
@@ -381,7 +381,7 @@ Par exemple, ce validateur personnalisé vérifie que l’ID d’item commence p
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info
+/// note | Remarque
 
 C’est disponible avec Pydantic version 2 ou supérieure. 😎
 

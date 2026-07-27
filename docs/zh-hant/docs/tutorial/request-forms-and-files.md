@@ -2,11 +2,11 @@
 
 你可以使用 `File` 與 `Form` 同時定義檔案與表單欄位。
 
-/// info
+/// note
 
-要接收上傳的檔案與/或表單資料，請先安裝 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要接收上傳的檔案與/或表單資料，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個 [虛擬環境](../virtual-environments.md){.internal-link target=_blank}，然後再安裝，例如：
+請先建立並啟用一個 [虛擬環境](../virtual-environments.md)，然後再安裝，例如：
 
 ```console
 $ pip install python-multipart

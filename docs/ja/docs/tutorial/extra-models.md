@@ -12,7 +12,7 @@
 
 ユーザーの平文のパスワードは絶対に保存しないでください。常に検証できる「安全なハッシュ」を保存してください。
 
-知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}で「パスワードハッシュ」とは何かを学ぶことができます。
+知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing)で「パスワードハッシュ」とは何かを学ぶことができます。
 
 ///
 
@@ -162,11 +162,11 @@ UserInDB(
 
 OpenAPIでは`anyOf`で定義されます。
 
-そのためには、標準的なPythonの型ヒント<a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>を使用します:
+そのためには、標準的なPythonの型ヒント[`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)を使用します:
 
 /// note | 備考
 
-<a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
+[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
 
 ///
 
@@ -208,4 +208,4 @@ some_variable: PlaneItem | CarItem
 
 複数のPydanticモデルを使用し、ケースごとに自由に継承します。
 
-エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つユーザー「エンティティ」の場合と同様です。
+エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つ**ユーザー**「エンティティ」の場合と同様です。

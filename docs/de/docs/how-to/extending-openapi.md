@@ -25,9 +25,17 @@ Diese Funktion `get_openapi()` erhält als Parameter:
 * `openapi_version`: Die Version der verwendeten OpenAPI-Spezifikation. Standardmäßig die neueste Version: `3.1.0`.
 * `summary`: Eine kurze Zusammenfassung der API.
 * `description`: Die Beschreibung Ihrer API. Dies kann Markdown enthalten und wird in der Dokumentation angezeigt.
-* `routes`: Eine Liste von Routen, dies sind alle registrierten *Pfadoperationen*. Sie stammen von `app.routes`.
+* `routes`: Die Routen der Anwendung, entnommen aus `app.routes`. FastAPI nutzt sie, um die registrierten *Pfadoperationen* zu sammeln, einschließlich derer aus eingebundenen Routern.
 
-/// info | Info
+/// tip | Technische Details
+
+`app.routes` ist eine Routenstruktur auf niedrigerer Ebene. Sie kann Routenkandidaten enthalten, die FastAPI intern für eingebundene Router verwendet, nicht nur endgültige `APIRoute`-Objekte.
+
+Sie können dennoch `app.routes` an `get_openapi()` übergeben. FastAPI durchläuft diesen Routenbaum, um die tatsächlich wirksamen Pfadoperationen zu sammeln.
+
+///
+
+/// note | Hinweis
 
 Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von FastAPI 0.99.0 und höher unterstützt.
 
@@ -37,7 +45,7 @@ Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von 
 
 Mithilfe der oben genannten Informationen können Sie dieselbe Hilfsfunktion verwenden, um das OpenAPI-Schema zu generieren und jeden benötigten Teil zu überschreiben.
 
-Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos</a> hinzu.
+Fügen wir beispielsweise [ReDocs OpenAPI-Erweiterung zum Einbinden eines benutzerdefinierten Logos](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) hinzu.
 
 ### Normales **FastAPI** { #normal-fastapi }
 
@@ -75,6 +83,6 @@ Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 
 ### Es testen { #check-it }
 
-Sobald Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
+Sobald Sie auf [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

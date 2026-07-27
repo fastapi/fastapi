@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Ви можете розгорнути свій застосунок FastAPI на <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> однією командою, приєднуйтесь до списку очікування, якщо ще ні. 🚀
-
-## Вхід { #login }
-
-Переконайтеся, що у вас вже є обліковий запис **FastAPI Cloud** (ми запросили вас зі списку очікування 😉).
-
-Потім увійдіть:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Розгортання { #deploy }
-
-Тепер розгорніть свій застосунок однією командою:
+Ви можете розгорнути свій застосунок FastAPI на [FastAPI Cloud](https://fastapicloud.com) лише **однією командою**. 🚀
 
 <div class="termy">
 
@@ -36,11 +16,13 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI автоматично визначить ваш застосунок FastAPI та розгорне його у хмарі. Якщо ви не увійшли, ваш браузер відкриється, щоб завершити процес автентифікації.
+
 Ось і все! Тепер ви можете отримати доступ до свого застосунку за цим URL. ✨
 
 ## Про FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** створено тим самим автором і командою, що стоїть за **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** створено тим самим автором і командою, що стоїть за **FastAPI**.
 
 Він спрощує процес **створення**, **розгортання** та **доступу** до API з мінімальними зусиллями.
 

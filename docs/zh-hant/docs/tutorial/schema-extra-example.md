@@ -10,9 +10,9 @@
 
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
-這些額外資訊會原封不動加入該模型輸出的 JSON Schema，並且會用在 API 文件裡。
+這些額外資訊會原封不動加入該模型輸出的 **JSON Schema**，並且會用在 API 文件裡。
 
-你可以使用屬性 `model_config`（接收一個 `dict`），詳見 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 文件：Configuration</a>。
+你可以使用屬性 `model_config`（接收一個 `dict`），詳見 [Pydantic 文件：Configuration](https://docs.pydantic.dev/latest/api/config/)。
 
 你可以將 `"json_schema_extra"` 設為一個 `dict`，其中包含你想在產生的 JSON Schema 中出現的任何額外資料，包括 `examples`。
 
@@ -24,7 +24,7 @@
 
 ///
 
-/// info
+/// note
 
 OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援，這是 **JSON Schema** 標準的一部分。
 
@@ -135,7 +135,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 以下是關於 **JSON Schema** 與 **OpenAPI** 標準的技術細節。
 
-如果上面的做法對你已經足夠可用，就不需要這些細節，儘管直接跳過。
+如果上面的做法對你已經足夠可用，就不需要這些細節，可以直接跳過。
 
 ///
 
@@ -145,17 +145,17 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 OpenAPI 也在規範的其他部分新增了 `example` 與 `examples` 欄位：
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object`（規範）</a>，對應到 FastAPI 的：
+* [`Parameter Object`（規範）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object)，對應到 FastAPI 的：
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object` 中的 `content` 欄位裡的 `Media Type Object`（規範）</a>，對應到 FastAPI 的：
+* [`Request Body Object` 中的 `content` 欄位裡的 `Media Type Object`（規範）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object)，對應到 FastAPI 的：
     * `Body()`
     * `File()`
     * `Form()`
 
-/// info
+/// note
 
 這個舊的、OpenAPI 特定的 `examples` 參數，從 FastAPI `0.103.0` 起改名為 `openapi_examples`。
 
@@ -163,7 +163,7 @@ OpenAPI 也在規範的其他部分新增了 `example` 與 `examples` 欄位：
 
 ### JSON Schema 的 `examples` 欄位 { #json-schemas-examples-field }
 
-後來 JSON Schema 在新版本規範中新增了 <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> 欄位。
+後來 JSON Schema 在新版本規範中新增了 [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) 欄位。
 
 接著新的 OpenAPI 3.1.0 以最新版本（JSON Schema 2020-12）為基礎，該版本就包含這個新的 `examples` 欄位。
 
@@ -171,7 +171,7 @@ OpenAPI 也在規範的其他部分新增了 `example` 與 `examples` 欄位：
 
 JSON Schema 中新的 `examples` 欄位「就是一個 `list`」的範例集合，而不是像 OpenAPI 其他地方（如上所述）那樣附帶額外中繼資料的 `dict`。
 
-/// info
+/// note
 
 即使 OpenAPI 3.1.0 已發佈並與 JSON Schema 有更簡潔的整合，一段時間內提供自動文件的 Swagger UI 並不支援 OpenAPI 3.1.0（自 5.0.0 版起支援 🎉）。
 

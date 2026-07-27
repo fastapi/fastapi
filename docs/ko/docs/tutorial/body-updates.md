@@ -2,7 +2,7 @@
 
 ## `PUT`으로 교체 업데이트하기 { #update-replacing-with-put }
 
-항목을 업데이트하려면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 작업을 사용할 수 있습니다.
+항목을 업데이트하려면 [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) 작업을 사용할 수 있습니다.
 
 `jsonable_encoder`를 사용해 입력 데이터를 JSON으로 저장할 수 있는 데이터로 변환할 수 있습니다(예: NoSQL 데이터베이스 사용 시). 예를 들어 `datetime`을 `str`로 변환하는 경우입니다.
 
@@ -28,7 +28,7 @@
 
 ## `PATCH`로 부분 업데이트하기 { #partial-updates-with-patch }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> 작업을 사용해 데이터를 *부분적으로* 업데이트할 수도 있습니다.
+[HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) 작업을 사용해 데이터를 *부분적으로* 업데이트할 수도 있습니다.
 
 이는 업데이트하려는 데이터만 보내고, 나머지는 그대로 두는 것을 의미합니다.
 
@@ -95,6 +95,6 @@
 
 따라서 모든 속성을 생략할 수 있는 부분 업데이트를 받으려면, 모든 속성이 optional로 표시된(기본값을 가지거나 `None`을 기본값으로 가지는) 모델이 필요합니다.
 
-**업데이트**를 위한 “모든 값이 optional인” 모델과, **생성**을 위한 “필수 값이 있는” 모델을 구분하려면 [추가 모델](extra-models.md){.internal-link target=_blank}에 설명된 아이디어를 사용할 수 있습니다.
+**업데이트**를 위한 “모든 값이 optional인” 모델과, **생성**을 위한 “필수 값이 있는” 모델을 구분하려면 [추가 모델](extra-models.md)에 설명된 아이디어를 사용할 수 있습니다.
 
 ///

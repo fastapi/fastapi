@@ -35,7 +35,7 @@
 
 /// tip | 팁
 
-`callback_url` 쿼리 파라미터는 Pydantic의 <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> 타입을 사용합니다.
+`callback_url` 쿼리 파라미터는 Pydantic의 [Url](https://docs.pydantic.dev/latest/api/networks/) 타입을 사용합니다.
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 실제 콜백은 단지 HTTP 요청입니다.
 
-콜백을 직접 구현할 때는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>나 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a> 같은 것을 사용할 수 있습니다.
+콜백을 직접 구현할 때는 [HTTPX](https://www.python-httpx.org)나 [Requests](https://requests.readthedocs.io/) 같은 것을 사용할 수 있습니다.
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 일반적인 *경로 처리*와의 주요 차이점은 2가지입니다:
 
 * 실제 코드를 가질 필요가 없습니다. 여러분의 앱은 이 코드를 절대 호출하지 않기 때문입니다. 이는 *external API*를 문서화하는 데만 사용됩니다. 따라서 함수는 그냥 `pass`만 있어도 됩니다.
-* *path*에는 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a>(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
+* *path*에는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
 
 ### 콜백 경로 표현식 { #the-callback-path-expression }
 
-콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a>을 가질 수 있습니다.
+콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)을 가질 수 있습니다.
 
 이 경우, 다음 `str`입니다:
 
@@ -165,21 +165,21 @@ https://www.external.org/events/invoices/2expen51ve
 
 ### 콜백 라우터 추가하기 { #add-the-callback-router }
 
-이 시점에서, 위에서 만든 콜백 라우터 안에 *콜백 경로 처리(들)*(즉 *external developer*가 *external API*에 구현해야 하는 것들)을 준비했습니다.
+이 시점에서, 위에서 만든 콜백 라우터 안에 *콜백 경로 처리(들)*(즉 *외부 개발자*가 *external API*에 구현해야 하는 것들)을 준비했습니다.
 
-이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성(실제로는 routes/*경로 처리*의 `list`)을 전달합니다:
+이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성을 전달합니다:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | 팁
 
-`callback=`에 라우터 자체(`invoices_callback_router`)를 넘기는 것이 아니라, `invoices_callback_router.routes`처럼 `.routes` 속성을 넘긴다는 점에 주목하세요.
+`callbacks=`에 라우터 자체(`invoices_callback_router`)를 넘기는 것이 아니라, `invoices_callback_router.routes`처럼 `.routes` 속성을 넘긴다는 점에 주목하세요. FastAPI는 이 라우트들을 사용하여 콜백 OpenAPI 문서를 생성합니다.
 
 ///
 
 ### 문서 확인하기 { #check-the-docs }
 
-이제 앱을 실행하고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 이동하세요.
+이제 앱을 실행하고 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)로 이동하세요.
 
 *경로 처리*에 대해 "Callbacks" 섹션을 포함한 문서가 표시되며, *external API*가 어떤 형태여야 하는지 확인할 수 있습니다:
 

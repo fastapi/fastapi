@@ -24,7 +24,7 @@ class Repo(BaseModel):
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
-    settings = Settings()
+    settings = Settings()  # ty: ignore[missing-argument]
 
     logging.info(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value(), per_page=100)
@@ -44,7 +44,7 @@ def main() -> None:
                 owner_html_url=repo.owner.html_url,
             )
         )
-    data = [repo.model_dump() for repo in final_repos]
+    data = {"repos": [repo.model_dump() for repo in final_repos]}
 
     # Local development
     # repos_path = Path("../docs/en/data/topic_repos.yml")

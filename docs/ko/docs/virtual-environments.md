@@ -1,14 +1,15 @@
 # 가상 환경 { #virtual-environments }
 
+
 Python 프로젝트를 작업할 때는 **가상 환경**(또는 이와 유사한 메커니즘)을 사용해 각 프로젝트마다 설치하는 패키지를 분리하는 것이 좋습니다.
 
-/// info
+/// note | 참고
 
 이미 가상 환경에 대해 알고 있고, 어떻게 생성하고 사용하는지도 알고 있다면, 이 섹션은 건너뛰어도 괜찮습니다. 🤓
 
 ///
 
-/// tip
+/// tip | 팁
 
 **가상 환경**은 **환경 변수**와 다릅니다.
 
@@ -18,11 +19,11 @@ Python 프로젝트를 작업할 때는 **가상 환경**(또는 이와 유사�
 
 ///
 
-/// info
+/// note | 참고
 
 이 페이지에서는 **가상 환경**을 사용하는 방법과 작동 방식을 알려드립니다.
 
-Python 설치까지 포함해 **모든 것을 관리해주는 도구**를 도입할 준비가 되었다면 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>를 사용해 보세요.
+Python 설치까지 포함해 **모든 것을 관리해주는 도구**를 도입할 준비가 되었다면 [uv](https://github.com/astral-sh/uv)를 사용해 보세요.
 
 ///
 
@@ -55,7 +56,7 @@ $ cd awesome-project
 
 Python 프로젝트를 **처음 시작할 때**, 가상 환경을 **<dfn title="다른 옵션도 있지만, 이것은 간단한 가이드라인입니다">프로젝트 내부</dfn>**에 생성하세요.
 
-/// tip
+/// tip | 팁
 
 이 작업은 **프로젝트당 한 번만** 하면 되며, 작업할 때마다 할 필요는 없습니다.
 
@@ -86,7 +87,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>가 설치되어 있다면, 이를 사용해 가상 환경을 생성할 수 있습니다.
+[`uv`](https://github.com/astral-sh/uv)가 설치되어 있다면, 이를 사용해 가상 환경을 생성할 수 있습니다.
 
 <div class="termy">
 
@@ -96,7 +97,7 @@ $ uv venv
 
 </div>
 
-/// tip
+/// tip | 팁
 
 기본적으로 `uv`는 `.venv`라는 디렉터리에 가상 환경을 생성합니다.
 
@@ -118,7 +119,7 @@ $ uv venv
 
 이후 실행하는 Python 명령어와 설치하는 패키지가 새 가상 환경을 사용하도록, 새 가상 환경을 활성화하세요.
 
-/// tip
+/// tip | 팁
 
 프로젝트 작업을 위해 **새 터미널 세션**을 시작할 때마다 **매번** 이 작업을 하세요.
 
@@ -150,7 +151,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-또는 Windows에서 Bash(예: <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)를 사용하는 경우:
+또는 Windows에서 Bash(예: [Git Bash](https://gitforwindows.org/))를 사용하는 경우:
 
 <div class="termy">
 
@@ -162,7 +163,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-/// tip
+/// tip | 팁
 
 해당 환경에 **새 패키지**를 설치할 때마다, 환경을 다시 **활성화**하세요.
 
@@ -174,7 +175,7 @@ $ source .venv/Scripts/activate
 
 가상 환경이 활성화되어 있는지(이전 명령어가 작동했는지) 확인합니다.
 
-/// tip
+/// tip | 팁
 
 이 단계는 **선택 사항**이지만, 모든 것이 예상대로 작동하고 있는지, 그리고 의도한 가상 환경을 사용하고 있는지 **확인**하는 좋은 방법입니다.
 
@@ -214,9 +215,9 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ## `pip` 업그레이드 { #upgrade-pip }
 
-/// tip
+/// tip | 팁
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>를 사용한다면, `pip` 대신 `uv`로 설치하게 되므로 `pip`을 업그레이드할 필요가 없습니다. 😎
+[`uv`](https://github.com/astral-sh/uv)를 사용한다면, `pip` 대신 `uv`로 설치하게 되므로 `pip`을 업그레이드할 필요가 없습니다. 😎
 
 ///
 
@@ -224,7 +225,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 패키지 설치 중 발생하는 다양한 특이한 오류는 먼저 `pip`를 업그레이드하는 것만으로 해결되는 경우가 많습니다.
 
-/// tip
+/// tip | 팁
 
 보통 이 작업은 가상 환경을 만든 직후 **한 번만** 하면 됩니다.
 
@@ -242,7 +243,7 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-/// tip
+/// tip | 팁
 
 때로는 pip를 업그레이드하려고 할 때 **`No module named pip`** 오류가 발생할 수 있습니다.
 
@@ -266,13 +267,13 @@ $ python -m ensurepip --upgrade
 
 **Git**을 사용하고 있다면(사용하는 것이 좋습니다), `.venv`의 모든 내용을 Git에서 제외하도록 `.gitignore` 파일을 추가하세요.
 
-/// tip
+/// tip | 팁
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>로 가상 환경을 만들었다면, 이미 자동으로 처리되어 있으므로 이 단계는 건너뛰어도 됩니다. 😎
+[`uv`](https://github.com/astral-sh/uv)로 가상 환경을 만들었다면, 이미 자동으로 처리되어 있으므로 이 단계는 건너뛰어도 됩니다. 😎
 
 ///
 
-/// tip
+/// tip | 팁
 
 가상 환경을 만든 직후 **한 번만** 하면 됩니다.
 
@@ -306,7 +307,7 @@ $ echo "*" > .venv/.gitignore
 
 환경을 활성화한 뒤, 그 안에 패키지를 설치할 수 있습니다.
 
-/// tip
+/// tip | 팁
 
 프로젝트에 필요한 패키지를 설치하거나 업그레이드할 때는 **한 번**만 하면 됩니다.
 
@@ -318,7 +319,7 @@ $ echo "*" > .venv/.gitignore
 
 급하게 작업 중이고 프로젝트의 패키지 요구사항을 선언하는 파일을 사용하고 싶지 않다면, 패키지를 직접 설치할 수 있습니다.
 
-/// tip
+/// tip | 팁
 
 프로그램에 필요한 패키지와 버전을 파일(예: `requirements.txt` 또는 `pyproject.toml`)에 적어두는 것은 (매우) 좋은 생각입니다.
 
@@ -340,7 +341,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>가 있다면:
+[`uv`](https://github.com/astral-sh/uv)가 있다면:
 
 <div class="termy">
 
@@ -372,7 +373,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>가 있다면:
+[`uv`](https://github.com/astral-sh/uv)가 있다면:
 
 <div class="termy">
 
@@ -416,10 +417,10 @@ Hello World
 
 예를 들면:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
-/// tip
+/// tip | 팁
 
 보통 이 설정은 가상 환경을 만들 때 **한 번만** 하면 됩니다.
 
@@ -445,7 +446,7 @@ $ deactivate
 
 
 
-/// tip
+/// tip | 팁
 
 위의 내용이 무엇인지 더 이해하고 싶으신가요?
 
@@ -455,7 +456,7 @@ $ deactivate
 
 ## 가상 환경을 왜 사용하나요 { #why-virtual-environments }
 
-FastAPI로 작업하려면 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>을 설치해야 합니다.
+FastAPI로 작업하려면 [Python](https://www.python.org/)을 설치해야 합니다.
 
 그 다음 FastAPI와 사용하려는 다른 **패키지**를 **설치**해야 합니다.
 
@@ -536,7 +537,7 @@ flowchart LR
     end
 ```
 
-/// tip
+/// tip | 팁
 
 Python 패키지에서는 **새 버전**에서 **호환성을 깨뜨리는 변경(breaking changes)**을 **피하려고** 최선을 다하는 것이 매우 일반적이지만, 안전을 위해 더 최신 버전은 의도적으로 설치하고, 테스트를 실행해 모든 것이 올바르게 작동하는지 확인할 수 있을 때 설치하는 것이 좋습니다.
 
@@ -564,7 +565,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-FastAPI 코드를 담은 압축 파일을 다운로드합니다. 보통 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>에서 받습니다.
+FastAPI 코드를 담은 압축 파일을 다운로드합니다. 보통 [PyPI](https://pypi.org/project/fastapi/)에서 받습니다.
 
 또한 FastAPI가 의존하는 다른 패키지들의 파일도 **다운로드**합니다.
 
@@ -627,7 +628,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-또는 Windows에서 Bash(예: <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)를 사용하는 경우:
+또는 Windows에서 Bash(예: [Git Bash](https://gitforwindows.org/))를 사용하는 경우:
 
 <div class="termy">
 
@@ -639,13 +640,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-다음 명령어들에서 사용할 수 있는 몇몇 [환경 변수](environment-variables.md){.internal-link target=_blank}를 생성하거나 수정하는 것을 의미합니다.
+다음 명령어들에서 사용할 수 있는 몇몇 [환경 변수](environment-variables.md)를 생성하거나 수정하는 것을 의미합니다.
 
 그 변수 중 하나가 `PATH` 변수입니다.
 
-/// tip
+/// tip | 팁
 
-`PATH` 환경 변수에 대해 더 알아보려면 [환경 변수](environment-variables.md#path-environment-variable){.internal-link target=_blank} 섹션을 참고하세요.
+`PATH` 환경 변수에 대해 더 알아보려면 [환경 변수](environment-variables.md#path-environment-variable) 섹션을 참고하세요.
 
 ///
 
@@ -776,7 +777,7 @@ Linux와 macOS에서는 `which`, Windows PowerShell에서는 `Get-Command`를 �
 
 따라서 올바른 가상 환경에 있는지 확인할 수 있습니다.
 
-/// tip
+/// tip | 팁
 
 가상 환경을 하나 활성화해서 Python을 사용한 다음, **다른 프로젝트로 이동**하기 쉽습니다.
 
@@ -819,7 +820,7 @@ Traceback (most recent call last):
 
 </div>
 
-하지만 가상 환경을 비활성화하고 `prisoner-of-askaban`에 대한 새 가상 환경을 활성화하면, `python`을 실행할 때 `prisoner-of-azkaban`의 가상 환경에 있는 Python을 사용하게 됩니다.
+하지만 가상 환경을 비활성화하고 `prisoner-of-azkaban`에 대한 새 가상 환경을 활성화하면, `python`을 실행할 때 `prisoner-of-azkaban`의 가상 환경에 있는 Python을 사용하게 됩니다.
 
 <div class="termy">
 
@@ -846,7 +847,7 @@ I solemnly swear 🐺
 
 가상 환경, 패키지 의존성(requirements), 프로젝트를 관리하는 방법에는 많은 **대안**이 있습니다.
 
-준비가 되었고 **프로젝트 전체**, 패키지 의존성, 가상 환경 등을 **관리**하는 도구를 사용하고 싶다면 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>를 사용해 보시길 권합니다.
+준비가 되었고 **프로젝트 전체**, 패키지 의존성, 가상 환경 등을 **관리**하는 도구를 사용하고 싶다면 [uv](https://github.com/astral-sh/uv)를 사용해 보시길 권합니다.
 
 `uv`는 많은 일을 할 수 있습니다. 예를 들어:
 

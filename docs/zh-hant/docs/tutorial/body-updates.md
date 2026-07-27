@@ -2,7 +2,7 @@
 
 ## 使用 `PUT` 取代式更新 { #update-replacing-with-put }
 
-要更新一個項目，你可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
+要更新一個項目，你可以使用 [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) 操作。
 
 你可以使用 `jsonable_encoder` 將輸入資料轉換為可儲存為 JSON 的資料（例如用於 NoSQL 資料庫）。例如把 `datetime` 轉成 `str`。
 
@@ -28,7 +28,7 @@
 
 ## 使用 `PATCH` 進行部分更新 { #partial-updates-with-patch }
 
-你也可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> 操作來進行*部分*更新。
+你也可以使用 [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) 操作來進行*部分*更新。
 
 這表示你只需傳送想要更新的資料，其餘保持不變。
 
@@ -95,6 +95,6 @@
 
 因此，如果你希望接收可以省略所有屬性的部分更新，你需要一個所有屬性皆為可選（具預設值或為 `None`）的模型。
 
-為了區分用於更新（全部可選）與用於建立（欄位為必填）的模型，你可以參考 [額外模型](extra-models.md){.internal-link target=_blank} 中的做法。
+為了區分用於更新（全部可選）與用於建立（欄位為必填）的模型，你可以參考 [額外模型](extra-models.md) 中的做法。
 
 ///

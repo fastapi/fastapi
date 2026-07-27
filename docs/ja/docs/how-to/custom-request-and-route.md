@@ -10,7 +10,7 @@
 
 これは「上級」機能です。
 
-FastAPI を始めたばかりの場合は、このセクションは読み飛ばしてもよいでしょう。
+**FastAPI** を始めたばかりの場合は、このセクションは読み飛ばしてもよいでしょう。
 
 ///
 
@@ -18,7 +18,7 @@ FastAPI を始めたばかりの場合は、このセクションは読み飛ば
 
 ユースケースの例:
 
-* JSON ではないリクエストボディを JSON に変換する（例: <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>）。
+* JSON ではないリクエストボディを JSON に変換する（例: [`msgpack`](https://msgpack.org/index.html)）。
 * gzip 圧縮されたリクエストボディの解凍。
 * すべてのリクエストボディの自動ロギング。
 
@@ -32,7 +32,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 /// tip | 豆知識
 
-これは仕組みを示すためのサンプルです。Gzip 対応が必要な場合は、用意されている [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} を使用できます。
+これは仕組みを示すためのサンプルです。Gzip 対応が必要な場合は、用意されている [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) を使用できます。
 
 ///
 
@@ -66,7 +66,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 そしてこの 2 つ（`scope` と `receive`）が、新しい `Request` インスタンスを作成するために必要なものです。
 
-`Request` について詳しくは、<a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette の Requests に関するドキュメント</a> を参照してください。
+`Request` について詳しくは、[Starlette の Requests に関するドキュメント](https://www.starlette.dev/requests/) を参照してください。
 
 ///
 
@@ -82,7 +82,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 /// tip | 豆知識
 
-同じ問題を解決するには、`RequestValidationError` 用のカスタムハンドラで `body` を使う方がずっと簡単でしょう（[エラー処理](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}）。
+同じ問題を解決するには、`RequestValidationError` 用のカスタムハンドラで `body` を使う方がずっと簡単でしょう（[エラー処理](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)）。
 
 ただし、この例も有効で、内部コンポーネントとどのようにやり取りするかを示しています。
 

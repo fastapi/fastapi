@@ -2,7 +2,7 @@
 
 當你在 Python 專案中工作時，你可能會需要使用一個**虛擬環境**（或類似的機制）來隔離你為每個專案安裝的套件。
 
-/// info
+/// note
 
 如果你已經了解虛擬環境，知道如何建立和使用它們，你可以考慮跳過這一部分。🤓
 
@@ -18,11 +18,11 @@
 
 ///
 
-/// info
+/// note
 
 這個頁面將教你如何使用**虛擬環境**以及了解它們的工作原理。
 
-如果你計畫使用一個**可以為你管理一切的工具**（包括安裝 Python），試試 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+如果你計畫使用一個**可以為你管理一切的工具**（包括安裝 Python），試試 [uv](https://github.com/astral-sh/uv)。
 
 ///
 
@@ -73,7 +73,7 @@ $ python -m venv .venv
 
 </div>
 
-/// details | 上述命令的含義
+/// details | 上述指令的含義
 
 * `python`: 使用名為 `python` 的程式
 * `-m`: 以腳本的方式呼叫一個模組，我們將告訴它接下來使用哪個模組
@@ -86,7 +86,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-如果你安裝了 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>，你也可以使用它來建立一個虛擬環境。
+如果你安裝了 [`uv`](https://github.com/astral-sh/uv)，你也可以使用它來建立一個虛擬環境。
 
 <div class="termy">
 
@@ -106,7 +106,7 @@ $ uv venv
 
 ////
 
-這個命令會在一個名為 `.venv` 的目錄中建立一個新的虛擬環境。
+這個指令會在一個名為 `.venv` 的目錄中建立一個新的虛擬環境。
 
 /// details | `.venv`，或是其他名稱
 
@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者，如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者，如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -164,7 +164,7 @@ $ source .venv/Scripts/activate
 
 /// tip
 
-每次你在這個環境中安裝一個**新的套件**時，都需要**重新啟動**這個環境。
+每次你在這個環境中安裝一個**新的套件**時，都需要**再次啟用**這個環境。
 
 這麼做確保了當你使用一個由這個套件安裝的**終端（<abbr title="command line interface - 命令列介面">CLI</abbr>）程式**時，你使用的是你的虛擬環境中的程式，而不是全域安裝、可能版本不同的程式。
 
@@ -216,7 +216,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 來安裝內容，而不是 `pip`，那麼你就不需要升級 `pip`。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 來安裝內容，而不是 `pip`，那麼你就不需要升級 `pip`。😎
 
 ///
 
@@ -242,7 +242,7 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-/// tip | 注意
+/// tip
 
 有時你在嘗試升級 pip 時，可能會遇到 **`No module named pip`** 的錯誤。
 
@@ -268,7 +268,7 @@ $ python -m ensurepip --upgrade
 
 /// tip
 
-如果你使用 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> 來建立虛擬環境，它會自動為你完成這個操作，你可以跳過這一步。😎
+如果你使用 [`uv`](https://github.com/astral-sh/uv) 來建立虛擬環境，它會自動為你完成這個操作，你可以跳過這一步。😎
 
 ///
 
@@ -294,7 +294,7 @@ $ echo "*" > .venv/.gitignore
 
 而 `*` 對於 Git 來說意味著「所有內容」。所以，它會忽略 `.venv` 目錄中的所有內容。
 
-該指令會建立一個名為 .gitignore 的檔案，內容如下：
+該指令會建立一個名為 `.gitignore` 的檔案，內容如下：
 
 ```gitignore
 *
@@ -340,7 +340,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -372,7 +372,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+如果你有 [`uv`](https://github.com/astral-sh/uv):
 
 <div class="termy">
 
@@ -385,7 +385,7 @@ $ uv pip install -r requirements.txt
 
 ////
 
-/// details | 關於 `requirements.txt`
+/// details | `requirements.txt`
 
 一個包含一些套件的 `requirements.txt` 檔案看起來應該是這樣的：
 
@@ -416,8 +416,8 @@ Hello World
 
 例如：
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip
 
@@ -455,7 +455,7 @@ $ deactivate
 
 ## 為什麼要使用虛擬環境 { #why-virtual-environments }
 
-你需要安裝 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+你需要安裝 [Python](https://www.python.org/) 才能使用 FastAPI。
 
 接下來，你需要**安裝** FastAPI 以及你想使用的其他**套件**。
 
@@ -544,7 +544,7 @@ Python 套件在推出**新版本**時通常會儘量**避免破壞性更改**�
 
 現在，想像一下如果有**許多**其他**套件**，它們都是你的**專案所依賴的**。這樣是非常難以管理的。你可能會發現有些專案使用了一些**不相容的套件版本**，而無法得知為什麼某些程式無法正常運作。
 
-此外，取決於你的操作系統（例如 Linux、Windows、macOS），它可能已經預先安裝了 Python。在這種情況下，它可能已經有一些系統所需的套件和特定版本。如果你在全域 Python 環境中安裝套件，可能會**破壞**某些隨作業系統一起安裝的程式。
+此外，取決於你的作業系統（例如 Linux、Windows、macOS），它可能已經預先安裝了 Python。在這種情況下，它可能已經有一些系統所需的套件和特定版本。如果你在全域 Python 環境中安裝套件，可能會**破壞**某些隨作業系統一起安裝的程式。
 
 ## 套件安裝在哪裡 { #where-are-packages-installed }
 
@@ -564,7 +564,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-這會從 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下載一個壓縮檔案，其中包含 FastAPI 的程式碼。
+這會從 [PyPI](https://pypi.org/project/fastapi/) 下載一個壓縮檔案，其中包含 FastAPI 的程式碼。
 
 它還會**下載** FastAPI 所依賴的其他套件的檔案。
 
@@ -627,7 +627,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+或者如果你在 Windows 上使用 Bash（例如 [Git Bash](https://gitforwindows.org/)）：
 
 <div class="termy">
 
@@ -639,13 +639,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-這個命令會建立或修改一些[環境變數](environment-variables.md){.internal-link target=_blank}，這些環境變數將在接下來的指令中可用。
+這個命令會建立或修改一些[環境變數](environment-variables.md)，這些環境變數將在接下來的指令中可用。
 
 其中之一是 `PATH` 變數。
 
 /// tip
 
-你可以在 [環境變數](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多關於 `PATH` 環境變數的內容。
+你可以在 [環境變數](environment-variables.md#path-environment-variable) 部分了解更多關於 `PATH` 環境變數的內容。
 
 ///
 
@@ -819,7 +819,7 @@ Traceback (most recent call last):
 
 </div>
 
-但如果你停用虛擬環境並啟用 `prisoner-of-askaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-askaban` 中虛擬環境的 Python。
+但如果你停用虛擬環境並啟用 `prisoner-of-azkaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-azkaban` 中虛擬環境的 Python。
 
 <div class="termy">
 
@@ -846,7 +846,7 @@ I solemnly swear 🐺
 
 有許多**替代方案**來管理虛擬環境、套件依賴（requirements）、專案。
 
-當你準備好並想要使用一個工具來**管理整個專案**、套件依賴、虛擬環境等，建議你嘗試 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+當你準備好並想要使用一個工具來**管理整個專案**、套件依賴、虛擬環境等，建議你嘗試 [uv](https://github.com/astral-sh/uv)。
 
 `uv` 可以執行許多操作，它可以：
 

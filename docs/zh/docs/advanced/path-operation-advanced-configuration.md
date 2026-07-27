@@ -16,17 +16,11 @@
 
 ### 使用 *路径操作函数* 的函数名作为 operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-如果你想用 API 的函数名作为 `operationId`，你可以遍历所有路径操作，并使用它们的 `APIRoute.name` 重写每个 *路径操作* 的 `operation_id`。
+如果你想用 API 的函数名作为 `operationId`，你可以向 `FastAPI` 传入自定义的 `generate_unique_id_function`。
 
-你应该在添加了所有 *路径操作* 之后执行此操作。
+该函数会接收每个 `APIRoute`，并返回用于该路径操作的 `operationId`。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip
-
-如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning
 
@@ -60,7 +54,7 @@
 
 你也可以为它声明带有各自模型、状态码等的附加响应。
 
-文档中有一个完整章节，你可以阅读这里的[OpenAPI 中的附加响应](additional-responses.md){.internal-link target=_blank}。
+文档中有一个完整章节，你可以阅读这里的[OpenAPI 中的附加响应](additional-responses.md)。
 
 ## OpenAPI Extra { #openapi-extra }
 
@@ -68,7 +62,7 @@
 
 /// note | 技术细节
 
-在 OpenAPI 规范中，这被称为 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation 对象</a>。
+在 OpenAPI 规范中，这被称为 [Operation 对象](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object)。
 
 ///
 
@@ -82,7 +76,7 @@
 
 这是一个较低层级的扩展点。
 
-如果你只需要声明附加响应，更方便的方式是使用[OpenAPI 中的附加响应](additional-responses.md){.internal-link target=_blank}。
+如果你只需要声明附加响应，更方便的方式是使用[OpenAPI 中的附加响应](additional-responses.md)。
 
 ///
 

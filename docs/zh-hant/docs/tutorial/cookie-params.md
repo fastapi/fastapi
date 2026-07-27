@@ -24,19 +24,19 @@
 
 ///
 
-/// info
+/// note
 
 要宣告 cookies，你需要使用 `Cookie`，否則參數會被當作查詢參數（query parameters）來解析。
 
 ///
 
-/// info
+/// note
 
-請注意，由於瀏覽器以特殊且在背後處理的方式管理 cookies，它們通常不允許 JavaScript 輕易存取它們。
+請注意，由於**瀏覽器會以特殊方式並在背後處理 cookies**，因此**不**容易讓 **JavaScript** 觸碰到它們。
 
-如果你前往位於 `/docs` 的 API 文件介面，你可以在你的路徑操作（path operations）的文件中看到 cookies 的說明。
+如果你前往位於 `/docs` 的 **API 文件介面**，你可以在你的*路徑操作（path operations）*中看到 cookies 的**文件**。
 
-但即使你填入資料並點擊「Execute」，由於該文件介面是以 JavaScript 運作，cookies 不會被送出，你會看到一則錯誤訊息，就好像你沒有填任何值一樣。
+但即使你**填入資料**並點擊「Execute」，由於該文件介面是以 **JavaScript** 運作，cookies 不會被送出，你會看到一則**錯誤**訊息，就好像你沒有填任何值一樣。
 
 ///
 

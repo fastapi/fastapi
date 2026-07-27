@@ -11,10 +11,10 @@ OpenAPI仕様および自動APIドキュメントUIで使用される次のフ�
 | `title` | `str` | APIのタイトルです。 |
 | `summary` | `str` | APIの短い要約です。 <small>OpenAPI 3.1.0、FastAPI 0.99.0 以降で利用できます。</small> |
 | `description` | `str` | APIの短い説明です。Markdownを使用できます。 |
-| `version` | `string` | APIのバージョンです。これはOpenAPIのバージョンではなく、あなた自身のアプリケーションのバージョンです。たとえば `2.5.0` です。 |
+| `version` | `str` | APIのバージョンです。これはOpenAPIのバージョンではなく、あなた自身のアプリケーションのバージョンです。たとえば `2.5.0` です。 |
 | `terms_of_service` | `str` | APIの利用規約へのURLです。指定する場合、URLである必要があります。 |
-| `contact` | `dict` | 公開されるAPIの連絡先情報です。複数のフィールドを含められます。 <details><summary><code>contact</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>連絡先の個人/組織を識別する名前です。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>連絡先情報を指すURLです。URL形式である必要があります。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>連絡先の個人/組織のメールアドレスです。メールアドレス形式である必要があります。</td></tr></tbody></table></details> |
-| `license_info` | `dict` | 公開されるAPIのライセンス情報です。複数のフィールドを含められます。 <details><summary><code>license_info</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必須</strong>（<code>license_info</code> が設定されている場合）。APIに使用されるライセンス名です。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>APIの <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> ライセンス式です。<code>identifier</code> フィールドは <code>url</code> フィールドと同時に指定できません。 <small>OpenAPI 3.1.0、FastAPI 0.99.0 以降で利用できます。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>APIに使用されるライセンスへのURLです。URL形式である必要があります。</td></tr></tbody></table></details> |
+| `contact` | `dict` | 公開されるAPIの連絡先情報です。複数のフィールドを含められます。 <details><summary><code>contact</code> のフィールド</summary><table><thead><tr><th>パラメータ</th><th>型</th><th>説明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>連絡先の個人/組織を識別する名前です。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>連絡先情報を指すURLです。URL形式である必要があります。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>連絡先の個人/組織のメールアドレスです。メールアドレス形式である必要があります。</td></tr></tbody></table></details> |
+| `license_info` | `dict` | 公開されるAPIのライセンス情報です。複数のフィールドを含められます。 <details><summary><code>license_info</code> のフィールド</summary><table><thead><tr><th>パラメータ</th><th>型</th><th>説明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必須</strong>（<code>license_info</code> が設定されている場合）。APIに使用されるライセンス名です。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>APIの [SPDX](https://spdx.org/licenses/) ライセンス式です。<code>identifier</code> フィールドは <code>url</code> フィールドと同時に指定できません。 <small>OpenAPI 3.1.0、FastAPI 0.99.0 以降で利用できます。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>APIに使用されるライセンスへのURLです。URL形式である必要があります。</td></tr></tbody></table></details> |
 
 以下のように設定できます:
 
@@ -74,9 +74,9 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 情報
+/// note | 備考
 
-タグの詳細は [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank} を参照してください。
+タグの詳細は [Path Operation の設定](path-operation-configuration.md#tags) を参照してください。
 
 ///
 

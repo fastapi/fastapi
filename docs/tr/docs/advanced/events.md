@@ -2,7 +2,7 @@
 
 Uygulama **başlamadan** önce çalıştırılması gereken mantığı (kodu) tanımlayabilirsiniz. Bu, bu kodun **bir kez**, uygulama **request almaya başlamadan önce** çalıştırılacağı anlamına gelir.
 
-Benzer şekilde, uygulama **kapanırken** çalıştırılması gereken mantığı (kodu) da tanımlayabilirsiniz. Bu durumda bu kod, muhtemelen **çok sayıda request** işlendi **sonra**, **bir kez** çalıştırılır.
+Benzer şekilde, uygulama **kapanırken** çalıştırılması gereken mantığı (kodu) da tanımlayabilirsiniz. Bu durumda bu kod, muhtemelen **çok sayıda request** işlendikten **sonra**, **bir kez** çalıştırılır.
 
 Bu kod, uygulama request almaya **başlamadan** önce ve request’leri işlemeyi **bitirdikten** hemen sonra çalıştığı için, uygulamanın tüm **lifespan**’ını (birazdan "lifespan" kelimesi önemli olacak 😉) kapsar.
 
@@ -120,7 +120,7 @@ Uygulama kapanırken çalıştırılacak bir fonksiyon eklemek için, `"shutdown
 
 Burada `shutdown` event handler fonksiyonu, `log.txt` dosyasına `"Application shutdown"` satırını yazar.
 
-/// info | Bilgi
+/// note | Not
 
 `open()` fonksiyonunda `mode="a"` "append" anlamına gelir; yani satır, önceki içeriği silmeden dosyada ne varsa onun sonuna eklenir.
 
@@ -150,11 +150,11 @@ Bu nedenle artık bunun yerine, yukarıda açıklandığı gibi `lifespan` kulla
 
 Meraklı nerd’ler için küçük bir teknik detay. 🤓
 
-Altta, ASGI teknik spesifikasyonunda bu, <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protokolü</a>’nün bir parçasıdır ve `startup` ile `shutdown` adında event’ler tanımlar.
+Altta, ASGI teknik spesifikasyonunda bu, [Lifespan Protokolü](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)’nün bir parçasıdır ve `startup` ile `shutdown` adında event’ler tanımlar.
 
-/// info | Bilgi
+/// note | Not
 
-Starlette `lifespan` handler’ları hakkında daha fazlasını <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette Lifespan dokümanları</a> içinde okuyabilirsiniz.
+Starlette `lifespan` handler’ları hakkında daha fazlasını [Starlette Lifespan dokümanları](https://www.starlette.dev/lifespan/) içinde okuyabilirsiniz.
 
 Ayrıca kodunuzun başka bölgelerinde de kullanılabilecek lifespan state’i nasıl yöneteceğinizi de kapsar.
 
@@ -162,4 +162,4 @@ Ayrıca kodunuzun başka bölgelerinde de kullanılabilecek lifespan state’i n
 
 ## Alt Uygulamalar { #sub-applications }
 
-🚨 Unutmayın: Bu lifespan event’leri (`startup` ve `shutdown`) yalnızca ana uygulama için çalıştırılır; [Alt Uygulamalar - Mounts](sub-applications.md){.internal-link target=_blank} için çalıştırılmaz.
+🚨 Unutmayın: Bu lifespan event’leri (`startup` ve `shutdown`) yalnızca ana uygulama için çalıştırılır; [Alt Uygulamalar - Mounts](sub-applications.md) için çalıştırılmaz.

@@ -2,11 +2,11 @@
 
 Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definieren.
 
-/// info | Info
+/// note | Hinweis
 
-Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, diese aktivieren und es dann installieren, z. B.:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, diese aktivieren und es dann installieren, z. B.:
 
 ```console
 $ pip install python-multipart

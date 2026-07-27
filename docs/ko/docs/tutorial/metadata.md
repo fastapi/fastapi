@@ -11,10 +11,10 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 | `title` | `str` | API의 제목입니다. |
 | `summary` | `str` | API에 대한 짧은 요약입니다. <small>OpenAPI 3.1.0, FastAPI 0.99.0부터 사용 가능.</small> |
 | `description` | `str` | API에 대한 짧은 설명입니다. 마크다운을 사용할 수 있습니다. |
-| `version` | `string` | API의 버전입니다. OpenAPI의 버전이 아닌, 여러분의 애플리케이션의 버전을 나타냅니다. 예: `2.5.0`. |
+| `version` | `str` | API의 버전입니다. OpenAPI의 버전이 아닌, 여러분의 애플리케이션의 버전을 나타냅니다. 예: `2.5.0`. |
 | `terms_of_service` | `str` | API 이용 약관의 URL입니다. 제공하는 경우 URL 형식이어야 합니다. |
 | `contact` | `dict` | 노출된 API에 대한 연락처 정보입니다. 여러 필드를 포함할 수 있습니다. <details><summary><code>contact</code> 필드</summary><table><thead><tr><th>매개변수</th><th>타입</th><th>설명</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>연락처 인물/조직의 식별명입니다.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>연락처 정보가 담긴 URL입니다. URL 형식이어야 합니다.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>연락처 인물/조직의 이메일 주소입니다. 이메일 주소 형식이어야 합니다.</td></tr></tbody></table></details> |
-| `license_info` | `dict` | 노출된 API의 라이선스 정보입니다. 여러 필드를 포함할 수 있습니다. <details><summary><code>license_info</code> 필드</summary><table><thead><tr><th>매개변수</th><th>타입</th><th>설명</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>필수</strong> (<code>license_info</code>가 설정된 경우). API에 사용된 라이선스 이름입니다.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API에 대한 <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> 라이선스 표현입니다. <code>identifier</code> 필드는 <code>url</code> 필드와 상호 배타적입니다. <small>OpenAPI 3.1.0, FastAPI 0.99.0부터 사용 가능.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API에 사용된 라이선스의 URL입니다. URL 형식이어야 합니다.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | 노출된 API의 라이선스 정보입니다. 여러 필드를 포함할 수 있습니다. <details><summary><code>license_info</code> 필드</summary><table><thead><tr><th>매개변수</th><th>타입</th><th>설명</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>필수</strong> (<code>license_info</code>가 설정된 경우). API에 사용된 라이선스 이름입니다.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API에 대한 [SPDX](https://spdx.org/licenses/) 라이선스 표현입니다. <code>identifier</code> 필드는 <code>url</code> 필드와 상호 배타적입니다. <small>OpenAPI 3.1.0, FastAPI 0.99.0부터 사용 가능.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API에 사용된 라이선스의 URL입니다. URL 형식이어야 합니다.</td></tr></tbody></table></details> |
 
 다음과 같이 설정할 수 있습니다:
 
@@ -26,7 +26,7 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 
 ///
 
-이 구성을 사용하면 문서 자동화(로 생성된) API 문서는 다음과 같이 보입니다:
+이 구성을 사용하면 자동 API 문서는 다음과 같이 보입니다:
 
 <img src="/img/tutorial/metadata/image01.png">
 
@@ -40,7 +40,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 ## 태그에 대한 메타데이터 { #metadata-for-tags }
 
-`openapi_tags` 매개변수를 사용하여 경로 처리을 그룹화하는 데 사용되는 여러 태그에 추가 메타데이터를 추가할 수도 있습니다.
+`openapi_tags` 매개변수를 사용하여 경로 처리를 그룹화하는 데 사용되는 여러 태그에 추가 메타데이터를 추가할 수도 있습니다.
 
 리스트는 각 태그에 대해 하나의 딕셔너리를 포함합니다.
 
@@ -74,9 +74,9 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | 정보
+/// note | 참고
 
-태그에 대한 자세한 내용은 [경로 처리 구성](path-operation-configuration.md#tags){.internal-link target=_blank}에서 읽어보세요.
+태그에 대한 자세한 내용은 [경로 처리 구성](path-operation-configuration.md#tags)에서 읽어보세요.
 
 ///
 

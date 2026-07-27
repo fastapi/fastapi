@@ -22,7 +22,7 @@ utilisez.
 Vous pouvez **déployer un serveur** vous-même en utilisant une combinaison d'outils, vous pouvez utiliser un **service
 cloud** qui fait une partie du travail pour vous, ou encore d'autres options possibles.
 
-Par exemple, nous, l'équipe derrière FastAPI, avons créé <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>, pour rendre le déploiement d'applications FastAPI dans le cloud aussi fluide que possible, avec la même expérience développeur que lorsque vous travaillez avec FastAPI.
+Par exemple, nous, l'équipe derrière FastAPI, avons créé [**FastAPI Cloud**](https://fastapicloud.com), pour rendre le déploiement d'applications FastAPI dans le cloud aussi fluide que possible, avec la même expérience développeur que lorsque vous travaillez avec FastAPI.
 
 Je vais vous montrer certains des principaux concepts que vous devriez probablement avoir à l'esprit lors du déploiement
 d'une application **FastAPI** (bien que la plupart de ces concepts s'appliquent à tout autre type d'application web).

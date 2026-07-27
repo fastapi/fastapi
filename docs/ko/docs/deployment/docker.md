@@ -1,6 +1,6 @@
 # 컨테이너의 FastAPI - 도커 { #fastapi-in-containers-docker }
 
-FastAPI 애플리케이션을 배포할 때 일반적인 접근 방법은 **리눅스 컨테이너 이미지**를 빌드하는 것입니다. 보통 <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>를 사용해 수행합니다. 그런 다음 해당 컨테이너 이미지를 몇 가지 가능한 방법 중 하나로 배포할 수 있습니다.
+FastAPI 애플리케이션을 배포할 때 일반적인 접근 방법은 **리눅스 컨테이너 이미지**를 빌드하는 것입니다. 보통 [**Docker**](https://www.docker.com/)를 사용해 수행합니다. 그런 다음 해당 컨테이너 이미지를 몇 가지 가능한 방법 중 하나로 배포할 수 있습니다.
 
 리눅스 컨테이너를 사용하면 **보안**, **재현 가능성**, **단순함** 등 여러 장점이 있습니다.
 
@@ -11,7 +11,7 @@ FastAPI 애플리케이션을 배포할 때 일반적인 접근 방법은 **리�
 ///
 
 <details>
-<summary>Dockerfile Preview 👀</summary>
+<summary>Dockerfile 미리보기 👀</summary>
 
 ```Dockerfile
 FROM python:3.14
@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx나 Traefik 같은 프록시 뒤에서 실행한다면 --proxy-headers를 추가하세요
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -46,7 +46,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 **컨테이너**는 **컨테이너 이미지**에서 실행됩니다.
 
-컨테이너 이미지는 컨테이너에 있어야 하는 모든 파일, 환경 변수, 기본 명령/프로그램의 **정적** 버전입니다. 여기서 **정적**이라는 것은 컨테이너 **이미지**가 실행 중이거나 수행되는 것이 아니라, 패키징된 파일과 메타데이터일 뿐이라는 뜻입니다.
+컨테이너 이미지는 컨테이너에 있어야 하는 모든 파일, 환경 변수, 기본 명령어/프로그램의 **정적** 버전입니다. 여기서 **정적**이라는 것은 컨테이너 **이미지**가 실행 중이거나 수행되는 것이 아니라, 패키징된 파일과 메타데이터일 뿐이라는 뜻입니다.
 
 저장된 정적 콘텐츠인 "**컨테이너 이미지**"와 달리, "**컨테이너**"는 보통 실행 중인 인스턴스, 즉 **실행되는** 대상을 의미합니다.
 
@@ -60,16 +60,16 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 Docker는 **컨테이너 이미지**와 **컨테이너**를 생성하고 관리하는 주요 도구 중 하나입니다.
 
-또한 <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>에는 다양한 도구, 환경, 데이터베이스, 애플리케이션을 위한 미리 만들어진 **공식 컨테이너 이미지**가 공개되어 있습니다.
+또한 [Docker Hub](https://hub.docker.com/)에는 다양한 도구, 환경, 데이터베이스, 애플리케이션을 위한 미리 만들어진 **공식 컨테이너 이미지**가 공개되어 있습니다.
 
-예를 들어, 공식 <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a>가 있습니다.
+예를 들어, 공식 [Python 이미지](https://hub.docker.com/_/python)가 있습니다.
 
 그리고 데이터베이스 등 다양한 용도의 다른 이미지도 많이 있습니다. 예를 들면:
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a> 등
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis) 등
 
 미리 만들어진 컨테이너 이미지를 사용하면 서로 다른 도구를 **결합**하고 사용하기가 매우 쉽습니다. 예를 들어 새로운 데이터베이스를 시험해 볼 때도 그렇습니다. 대부분의 경우 **공식 이미지**를 사용하고, 환경 변수로 설정만 하면 됩니다.
 
@@ -81,11 +81,11 @@ Docker나 Kubernetes 같은 모든 컨테이너 관리 시스템에는 이러한
 
 ## 컨테이너와 프로세스 { #containers-and-processes }
 
-**컨테이너 이미지**는 보통 **컨테이너**가 시작될 때 실행되어야 하는 기본 프로그램/명령과 해당 프로그램에 전달할 매개변수를 메타데이터에 포함합니다. 커맨드 라인에서 실행할 때와 매우 유사합니다.
+**컨테이너 이미지**는 보통 **컨테이너**가 시작될 때 실행되어야 하는 기본 프로그램/명령어와 해당 프로그램에 전달할 매개변수를 메타데이터에 포함합니다. 커맨드 라인에서 실행할 때와 매우 유사합니다.
 
-**컨테이너**가 시작되면 해당 명령/프로그램을 실행합니다(다만 오버라이드하여 다른 명령/프로그램을 실행하게 할 수도 있습니다).
+**컨테이너**가 시작되면 해당 명령어/프로그램을 실행합니다(다만 오버라이드하여 다른 명령어/프로그램을 실행하게 할 수도 있습니다).
 
-컨테이너는 **메인 프로세스**(명령 또는 프로그램)가 실행되는 동안 실행됩니다.
+컨테이너는 **메인 프로세스**(명령어 또는 프로그램)가 실행되는 동안 실행됩니다.
 
 컨테이너는 보통 **단일 프로세스**를 가지지만, 메인 프로세스에서 서브프로세스를 시작할 수도 있으며, 그러면 같은 컨테이너에 **여러 프로세스**가 존재하게 됩니다.
 
@@ -111,7 +111,7 @@ Docker나 Kubernetes 같은 모든 컨테이너 관리 시스템에는 이러한
 
 가장 일반적인 방법은 패키지 이름과 버전을 한 줄에 하나씩 적어 둔 `requirements.txt` 파일을 사용하는 것입니다.
 
-버전 범위를 설정할 때는 [FastAPI 버전들에 대하여](versions.md){.internal-link target=_blank}에서 읽은 것과 같은 아이디어를 사용하면 됩니다.
+버전 범위를 설정할 때는 [FastAPI 버전들에 대하여](versions.md)에서 읽은 것과 같은 아이디어를 사용하면 됩니다.
 
 예를 들어 `requirements.txt`는 다음과 같을 수 있습니다:
 
@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 정보
+/// note | 참고
 
 패키지 의존성을 정의하고 설치하는 다른 형식과 도구도 있습니다.
 
@@ -218,11 +218,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
     따라서 컨테이너 이미지 빌드 시간을 최적화하려면 `Dockerfile`의 **끝부분 근처**에 두는 것이 중요합니다.
 
-6. 내부적으로 Uvicorn을 사용하는 `fastapi run`을 사용하도록 **명령**을 설정합니다.
+6. 내부적으로 Uvicorn을 사용하는 `fastapi run`을 사용하도록 **명령어**를 설정합니다.
 
     `CMD`는 문자열 리스트를 받으며, 각 문자열은 커맨드 라인에서 공백으로 구분해 입력하는 항목들입니다.
 
-    이 명령은 **현재 작업 디렉터리**에서 실행되며, 이는 위에서 `WORKDIR /code`로 설정한 `/code` 디렉터리와 같습니다.
+    이 명령어는 **현재 작업 디렉터리**에서 실행되며, 이는 위에서 `WORKDIR /code`로 설정한 `/code` 디렉터리와 같습니다.
 
 /// tip | 팁
 
@@ -238,7 +238,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 #### `CMD` 사용하기 - Exec Form { #use-cmd-exec-form }
 
-Docker 지시어 <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a>는 두 가지 형식으로 작성할 수 있습니다:
+Docker 지시어 [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd)는 두 가지 형식으로 작성할 수 있습니다:
 
 ✅ **Exec** form:
 
@@ -254,11 +254,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-FastAPI가 정상적으로 종료(graceful shutdown)되고 [lifespan 이벤트](../advanced/events.md){.internal-link target=_blank}가 트리거되도록 하려면, 항상 **exec** form을 사용하세요.
+FastAPI가 정상적으로 종료(graceful shutdown)되고 [lifespan 이벤트](../advanced/events.md)가 트리거되도록 하려면, 항상 **exec** form을 사용하세요.
 
-자세한 내용은 <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell and exec form에 대한 Docker 문서</a>를 참고하세요.
+자세한 내용은 [shell and exec form에 대한 Docker 문서](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form)를 참고하세요.
 
-이는 `docker compose`를 사용할 때 꽤 눈에 띌 수 있습니다. 좀 더 기술적인 상세 내용은 Docker Compose FAQ 섹션을 참고하세요: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>.
+이는 `docker compose`를 사용할 때 꽤 눈에 띌 수 있습니다. 좀 더 기술적인 상세 내용은 Docker Compose FAQ 섹션을 참고하세요: [왜 내 서비스는 다시 생성되거나 중지되는 데 10초가 걸리나요?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### 디렉터리 구조 { #directory-structure }
 
@@ -305,7 +305,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 패키지 의존성을 다운로드하고 설치하는 데에는 **몇 분**이 걸릴 수 있지만, **캐시**를 사용하면 많아야 **몇 초**면 끝납니다.
 
-또한 개발 중에 코드 변경 사항이 동작하는지 확인하기 위해 컨테이너 이미지를 계속 빌드하게 되므로, 이렇게 절약되는 시간은 누적되어 상당히 커집니다.
+또한 개발 중에 코드 변경 사항이 동작하는지 확인하기 위해 컨테이너 이미지를 계속 빌드하게 되므로, 이렇게 절약되는 시간은 누중되어 상당히 커집니다.
 
 그 다음 `Dockerfile`의 끝부분 근처에서 모든 코드를 복사합니다. 이 부분은 **가장 자주 변경되는** 부분이므로, 거의 항상 이 단계 이후에는 캐시를 사용할 수 없기 때문에 끝부분에 둡니다.
 
@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 확인하기 { #check-it }
 
-Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들어: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 또는 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a>(또는 Docker 호스트를 사용해 동등하게 확인할 수 있습니다).
+Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들어: [http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) 또는 [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery)(또는 Docker 호스트를 사용해 동등하게 확인할 수 있습니다).
 
 아래와 같은 것을 보게 될 것입니다:
 
@@ -362,17 +362,17 @@ Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들�
 
 ## 인터랙티브 API 문서 { #interactive-api-docs }
 
-이제 <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> 또는 <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a>(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수 있습니다.
+이제 [http://192.168.99.100/docs](http://192.168.99.100/docs) 또는 [http://127.0.0.1/docs](http://127.0.0.1/docs)(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수 있습니다.
 
-자동으로 생성된 인터랙티브 API 문서(<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 제공)를 볼 수 있습니다:
+자동으로 생성된 인터랙티브 API 문서([Swagger UI](https://github.com/swagger-api/swagger-ui) 제공)를 볼 수 있습니다:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## 대안 API 문서 { #alternative-api-docs }
 
-또한 <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> 또는 <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a>(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수도 있습니다.
+또한 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 또는 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수도 있습니다.
 
-대안 자동 문서(<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 제공)를 볼 수 있습니다:
+대안 자동 문서([ReDoc](https://github.com/Rebilly/ReDoc) 제공)를 볼 수 있습니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -409,11 +409,11 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 2. 단일 파일 `main.py`에 있는 애플리케이션을 제공(serve)하기 위해 `fastapi run`을 사용합니다.
 
-`fastapi run`에 파일을 전달하면, 이것이 패키지의 일부가 아닌 단일 파일이라는 것을 자동으로 감지하고, 어떻게 임포트해서 FastAPI 앱을 제공할지 알아냅니다. 😎
+`fastapi run`에 파일을 전달하면, 이것이 패키지의 일부가 아닌 단일 파일이라는 것을 자동으로 감지하고, 어떻게 임포트해서 FastAPI 애플리케이션을 제공할지 알아냅니다. 😎
 
 ## 배포 개념 { #deployment-concepts }
 
-컨테이너 관점에서 같은 [배포 개념](concepts.md){.internal-link target=_blank}들을 다시 이야기해 봅시다.
+컨테이너 관점에서 같은 [배포 개념](concepts.md)들을 다시 이야기해 봅시다.
 
 컨테이너는 주로 애플리케이션의 **빌드 및 배포** 과정을 단순화하는 도구이지만, 이러한 **배포 개념**을 처리하는 특정 접근 방식을 강제하지는 않으며, 가능한 전략은 여러 가지입니다.
 
@@ -432,7 +432,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 FastAPI 애플리케이션의 **컨테이너 이미지**(그리고 나중에 실행 중인 **컨테이너**)에만 집중한다면, HTTPS는 보통 다른 도구에 의해 **외부적으로** 처리됩니다.
 
-예를 들어 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>을 사용하는 다른 컨테이너가 **HTTPS**와 **인증서**의 **자동** 획득을 처리할 수 있습니다.
+예를 들어 [Traefik](https://traefik.io/)을 사용하는 다른 컨테이너가 **HTTPS**와 **인증서**의 **자동** 획득을 처리할 수 있습니다.
 
 /// tip | 팁
 
@@ -472,17 +472,17 @@ HTTPS에 사용되는 동일한 **TLS 종료 프록시** 컴포넌트가 **로�
 
 ///
 
-또한 컨테이너로 작업할 때, 이를 시작하고 관리하는 시스템은 이미 해당 **로드 밸런서**(또는 **TLS 종료 프록시**)에서 여러분의 앱이 있는 컨테이너로 **네트워크 통신**(예: HTTP 요청)을 전달하는 내부 도구를 가지고 있습니다.
+또한 컨테이너로 작업할 때, 이를 시작하고 관리하는 시스템은 이미 해당 **로드 밸런서**(또는 **TLS 종료 프록시**)에서 여러분의 애플리케이션이 있는 컨테이너로 **네트워크 통신**(예: HTTP 요청)을 전달하는 내부 도구를 가지고 있습니다.
 
 ### 하나의 로드 밸런서 - 여러 워커 컨테이너 { #one-load-balancer-multiple-worker-containers }
 
-**Kubernetes** 같은 분산 컨테이너 관리 시스템에서는 내부 네트워킹 메커니즘을 통해, 메인 **포트**에서 대기하는 단일 **로드 밸런서**가 여러분의 앱을 실행하는 **여러 컨테이너**로 통신(요청)을 전달할 수 있습니다.
+**Kubernetes** 같은 분산 컨테이너 관리 시스템에서는 내부 네트워킹 메커니즘을 통해, 메인 **포트**에서 대기하는 단일 **로드 밸런서**가 여러분의 애플리케이션을 실행하는 **여러 컨테이너**로 통신(요청)을 전달할 수 있습니다.
 
-앱을 실행하는 각 컨테이너는 보통 **프로세스 하나만** 가집니다(예: FastAPI 애플리케이션을 실행하는 Uvicorn 프로세스). 모두 같은 것을 실행하는 **동일한 컨테이너**이지만, 각자 고유한 프로세스, 메모리 등을 가집니다. 이렇게 하면 CPU의 **서로 다른 코어** 또는 **서로 다른 머신**에서 **병렬화**의 이점을 얻을 수 있습니다.
+애플리케이션을 실행하는 각 컨테이너는 보통 **프로세스 하나만** 가집니다(예: FastAPI 애플리케이션을 실행하는 Uvicorn 프로세스). 모두 같은 것을 실행하는 **동일한 컨테이너**이지만, 각자 고유한 프로세스, 메모리 등을 가집니다. 이렇게 하면 CPU의 **서로 다른 코어** 또는 **서로 다른 머신**에서 **병렬화**의 이점을 얻을 수 있습니다.
 
-그리고 **로드 밸런서**가 있는 분산 컨테이너 시스템은 여러분의 앱을 실행하는 각 컨테이너에 **번갈아가며** 요청을 **분산**합니다. 따라서 각 요청은 여러분의 앱을 실행하는 여러 **복제된 컨테이너** 중 하나에서 처리될 수 있습니다.
+그리고 **로드 밸런서**가 있는 분산 컨테이너 시스템은 여러분의 애플리케이션을 실행하는 각 컨테이너에 **번갈아가며** 요청을 **분산**합니다. 따라서 각 요청은 여러분의 애플리케이션을 실행하는 여러 **복제된 컨테이너** 중 하나에서 처리될 수 있습니다.
 
-또한 보통 이 **로드 밸런서**는 클러스터 내 *다른* 앱으로 가는 요청(예: 다른 도메인, 또는 다른 URL 경로 접두사 아래로 가는 요청)도 처리할 수 있으며, 그 통신을 클러스터에서 실행 중인 *그 다른* 애플리케이션의 올바른 컨테이너로 전달할 수 있습니다.
+또한 보통 이 **로드 밸런서**는 클러스터 내 *다른* 애플리케이션으로 가는 요청(예: 다른 도메인, 또는 다른 URL 경로 접두사 아래로 가는 요청)도 처리할 수 있으며, 그 통신을 클러스터에서 실행 중인 *그 다른* 애플리케이션의 올바른 컨테이너로 전달할 수 있습니다.
 
 ### 컨테이너당 하나의 프로세스 { #one-process-per-container }
 
@@ -556,9 +556,9 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 **여러 컨테이너**가 있고 각 컨테이너가 보통 **단일 프로세스**를 실행한다면(예: **Kubernetes** 클러스터), 복제된 워커 컨테이너를 실행하기 **전에**, 단일 컨테이너에서 단일 프로세스로 **시작 전 사전 단계**를 수행하는 **별도의 컨테이너**를 두고 싶을 가능성이 큽니다.
 
-/// info | 정보
+/// note | 참고
 
-Kubernetes를 사용한다면, 이는 아마도 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>일 것입니다.
+Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)일 것입니다.
 
 ///
 
@@ -566,11 +566,11 @@ Kubernetes를 사용한다면, 이는 아마도 <a href="https://kubernetes.io/d
 
 ### 단일 컨테이너 { #single-container }
 
-**단일 컨테이너**에서 여러 **워커 프로세스**(또는 단일 프로세스)를 시작하는 단순한 셋업이라면, 앱이 있는 프로세스를 시작하기 직전에 같은 컨테이너에서 시작 전 사전 단계를 실행할 수 있습니다.
+**단일 컨테이너**에서 여러 **워커 프로세스**(또는 단일 프로세스)를 시작하는 단순한 셋업이라면, 애플리케이션이 있는 프로세스를 시작하기 직전에 같은 컨테이너에서 시작 전 사전 단계를 실행할 수 있습니다.
 
 ### 베이스 도커 이미지 { #base-docker-image }
 
-과거에는 공식 FastAPI Docker 이미지가 있었습니다: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. 하지만 이제는 deprecated되었습니다. ⛔️
+과거에는 공식 FastAPI Docker 이미지가 있었습니다: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). 하지만 이제는 deprecated되었습니다. ⛔️
 
 아마도 이 베이스 도커 이미지(또는 유사한 다른 이미지)는 **사용하지 않는** 것이 좋습니다.
 
@@ -582,7 +582,7 @@ Kubernetes를 사용한다면, 이는 아마도 <a href="https://kubernetes.io/d
 
 이 Docker 이미지는 Uvicorn이 죽은 워커를 관리하고 재시작하는 기능을 지원하지 않던 시기에 만들어졌습니다. 그래서 Gunicorn과 Uvicorn을 함께 사용해야 했고, Gunicorn이 Uvicorn 워커 프로세스를 관리하고 재시작하도록 하기 위해 상당한 복잡성이 추가되었습니다.
 
-하지만 이제 Uvicorn(그리고 `fastapi` 명령)은 `--workers`를 지원하므로, 베이스 도커 이미지를 사용하는 대신 직접 이미지를 빌드하지 않을 이유가 없습니다(코드 양도 사실상 거의 같습니다 😅).
+하지만 이제 Uvicorn(그리고 `fastapi` 명령어)은 `--workers`를 지원하므로, 베이스 도커 이미지를 사용하는 대신 직접 이미지를 빌드하지 않을 이유가 없습니다(코드 양도 사실상 거의 같습니다 😅).
 
 ///
 
@@ -600,7 +600,7 @@ Kubernetes를 사용한다면, 이는 아마도 <a href="https://kubernetes.io/d
 
 ## `uv`를 사용하는 도커 이미지 { #docker-image-with-uv }
 
-프로젝트를 설치하고 관리하기 위해 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>를 사용한다면, <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker guide</a>를 따를 수 있습니다.
+프로젝트를 설치하고 관리하기 위해 [uv](https://github.com/astral-sh/uv)를 사용한다면, [uv Docker 가이드](https://docs.astral.sh/uv/guides/integration/docker/)를 따를 수 있습니다.
 
 ## 요약 { #recap }
 

@@ -8,7 +8,7 @@
 
 ## 安裝相依套件 { #install-dependencies }
 
-請先建立一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}、啟用它，然後安裝 `jinja2`：
+請先建立一個[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `jinja2`：
 
 <div class="termy">
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## 更多細節 { #more-details }
 
-想了解更多細節（包含如何測試模板），請參考 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette 的模板說明文件</a>。
+想了解更多細節（包含如何測試模板），請參考 [Starlette 的模板說明文件](https://www.starlette.dev/templates/)。

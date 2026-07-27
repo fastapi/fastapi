@@ -2,6 +2,14 @@
 
 你可以使用 `StaticFiles` 從某個目錄自動提供靜態檔案。
 
+/// tip
+
+如果你需要託管前端，請改用 `app.frontend()`，請在 [前端](frontend.md) 閱讀相關內容。
+
+`app.frontend()` 底層使用 `StaticFiles`，並為前端提供幾項額外優勢，例如處理客戶端路由。
+
+///
+
 ## 使用 `StaticFiles` { #use-staticfiles }
 
 - 匯入 `StaticFiles`。
@@ -23,7 +31,7 @@
 
 這與使用 `APIRouter` 不同，因為被掛載的應用是完全獨立的。主應用的 OpenAPI 與文件不會包含掛載應用的任何內容，等等。
 
-你可以在[進階使用者指南](../advanced/index.md){.internal-link target=_blank}中閱讀更多相關內容。
+你可以在[進階使用者指南](../advanced/index.md)中閱讀更多相關內容。
 
 ## 細節 { #details }
 
@@ -37,4 +45,4 @@
 
 ## 更多資訊 { #more-info }
 
-如需更多細節與選項，請參考 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette 關於靜態檔案的文件</a>。
+如需更多細節與選項，請參考 [Starlette 關於靜態檔案的文件](https://www.starlette.dev/staticfiles/)。

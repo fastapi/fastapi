@@ -1,8 +1,8 @@
 # 요청 예제 데이터 선언 { #declare-request-example-data }
 
-여러분의 앱이 받을 수 있는 데이터 예제를 선언할 수 있습니다.
+여러분의 애플리케이션이 받을 수 있는 데이터 예제를 선언할 수 있습니다.
 
-여기 이를 위한 몇가지 방식이 있습니다.
+여기 이를 위한 몇 가지 방식이 있습니다.
 
 ## Pydantic 모델 속 추가 JSON 스키마 데이터 { #extra-json-schema-data-in-pydantic-models }
 
@@ -12,7 +12,7 @@
 
 추가 정보는 있는 그대로 해당 모델의 **JSON 스키마** 결과에 추가되고, API 문서에서 사용합니다.
 
-<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 문서: Configuration</a>에 설명된 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 수 있습니다.
+[Pydantic 문서: Configuration](https://docs.pydantic.dev/latest/api/config/)에 설명된 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 수 있습니다.
 
 `"json_schema_extra"`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
 
@@ -24,7 +24,7 @@ JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가
 
 ///
 
-/// info | 정보
+/// note | 참고
 
 (FastAPI 0.99.0부터 쓰이기 시작한) OpenAPI 3.1.0은 **JSON 스키마** 표준의 일부인 `examples`에 대한 지원을 추가했습니다.
 
@@ -145,17 +145,17 @@ JSON 스키마는 `examples`를 가지고 있지 않았고, 따라서 OpenAPI는
 
 OpenAPI는 또한 `example`과 `examples` 필드를 명세서의 다른 부분에 추가했습니다:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (명세서에 있는)</a>는 FastAPI의 다음 기능에서 쓰였습니다:
+* [`Parameter Object` (명세서에 있는)](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object)는 FastAPI의 다음 기능에서 쓰였습니다:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`, `Media Type Object` (명세서에 있는)의 `content` 필드에 있는</a>는 FastAPI의 다음 기능에서 쓰였습니다:
+* [`Request Body Object`, `Media Type Object` (명세서에 있는)의 `content` 필드에 있는](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object)는 FastAPI의 다음 기능에서 쓰였습니다:
     * `Body()`
     * `File()`
     * `Form()`
 
-/// info | 정보
+/// note | 참고
 
 이 예전 OpenAPI-특화 `examples` 매개변수는 이제 FastAPI `0.103.0`부터 `openapi_examples`입니다.
 
@@ -163,7 +163,7 @@ OpenAPI는 또한 `example`과 `examples` 필드를 명세서의 다른 부분�
 
 ### JSON 스키마의 `examples` 필드 { #json-schemas-examples-field }
 
-하지만, 후에 JSON 스키마는 <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> 필드를 명세서의 새 버전에 추가했습니다.
+하지만, 후에 JSON 스키마는 [`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5) 필드를 명세서의 새 버전에 추가했습니다.
 
 그리고 새로운 OpenAPI 3.1.0은 이 새로운 `examples` 필드가 포함된 최신 버전 (JSON 스키마 2020-12)을 기반으로 했습니다.
 
@@ -171,7 +171,7 @@ OpenAPI는 또한 `example`과 `examples` 필드를 명세서의 다른 부분�
 
 JSON 스키마의 새로운 `examples` 필드는 예제의 **단순한 `list`**일 뿐이며, (위에서 상술한 것처럼) OpenAPI의 다른 곳에 존재하는 추가 메타데이터가 있는 dict가 아닙니다.
 
-/// info | 정보
+/// note | 참고
 
 더 쉽고 새로운 JSON 스키마와의 통합과 함께 OpenAPI 3.1.0가 배포되었지만, 잠시동안 자동 문서 생성을 제공하는 도구인 Swagger UI는 OpenAPI 3.1.0을 지원하지 않았습니다 (5.0.0 버전부터 지원합니다 🎉).
 

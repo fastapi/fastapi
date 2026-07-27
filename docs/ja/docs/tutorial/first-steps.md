@@ -11,7 +11,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +58,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### チェック { #check-it }
 
-ブラウザで<a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>を開きます。
+ブラウザで[http://127.0.0.1:8000](http://127.0.0.1:8000)を開きます。
 
 次のようなJSONレスポンスが表示されます:
 
@@ -68,17 +68,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 対話的APIドキュメント { #interactive-api-docs }
 
-次に、<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>にアクセスします。
+次に、[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)にアクセスします。
 
-自動生成された対話的APIドキュメントが表示されます (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>で提供):
+自動生成された対話的APIドキュメントが表示されます（[Swagger UI](https://github.com/swagger-api/swagger-ui)で提供）:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### 代替APIドキュメント { #alternative-api-docs }
 
-次に、<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>にアクセスします。
+次に、[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)にアクセスします。
 
-先ほどとは異なる、自動生成された対話的APIドキュメントが表示されます (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>によって提供):
+代替の自動生成ドキュメントが表示されます（[ReDoc](https://github.com/Rebilly/ReDoc)によって提供）:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +92,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API「スキーマ」 { #api-schema }
 
-ここでは、<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>はAPIのスキーマ定義の方法を規定する仕様です。
+ここでは、[OpenAPI](https://github.com/OAI/OpenAPI-Specification)はAPIのスキーマ定義の方法を規定する仕様です。
 
 このスキーマ定義はAPIパス、受け取り可能なパラメータなどが含まれます。
 
@@ -104,13 +104,13 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### OpenAPIおよびJSONスキーマ { #openapi-and-json-schema }
 
-OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマは**JSONデータスキーマ**の標準規格である**JSON Schema**を利用するAPIによって送受されるデータの定義（または「スキーマ」）を含んでいます。
+OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマには、JSONデータスキーマの標準である**JSON Schema**を使用して、APIによって送受信されるデータの定義（または「スキーマ」）が含まれます。
 
 #### `openapi.json`を確認 { #check-the-openapi-json }
 
 素のOpenAPIスキーマがどのようなものか興味がある場合、FastAPIはすべてのAPIの説明を含むJSON（スキーマ）を自動的に生成します。
 
-次の場所で直接確認できます: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+次の場所で直接確認できます: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 次のようなJSONが表示されます。
 
@@ -143,25 +143,64 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 
 また、APIと通信するクライアント用のコードを自動的に生成するために使用することもできます。たとえば、フロントエンド、モバイル、またはIoTアプリケーションです。
 
-### アプリをデプロイ（任意） { #deploy-your-app-optional }
+### `pyproject.toml`でアプリの`entrypoint`を設定 { #configure-the-app-entrypoint-in-pyproject-toml }
 
-任意でFastAPIアプリを<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>にデプロイできます。まだなら、待機リストに登録してください。 🚀
+`pyproject.toml`でアプリの場所を次のように設定できます:
 
-すでに**FastAPI Cloud**アカウントがある場合（待機リストから招待済みの場合😉）、1コマンドでアプリケーションをデプロイできます。
-
-デプロイする前に、ログインしていることを確認してください:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
 ```
 
-</div>
+この`entrypoint`は、`fastapi`コマンドに対して、次のようにアプリをインポートすべきであることを伝えます:
 
-その後、アプリをデプロイします:
+```python
+from main import app
+```
+
+もしコード構成が次のようになっている場合:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+このときは`entrypoint`を次のように設定します:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+これは次と同等です:
+
+```python
+from backend.main import app
+```
+
+### パス指定の`fastapi dev`または`--entrypoint` CLIオプション { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+`fastapi dev`コマンドにファイルパスを渡すこともでき、使用すべきFastAPIのappオブジェクトを推測します:
+
+```console
+$ fastapi dev main.py
+```
+
+または、`fastapi dev`コマンドに`--entrypoint`オプションを渡すこともできます:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+ただし、その場合は毎回`fastapi`コマンドを呼ぶたびに正しいパスや`entrypoint`を渡すことを覚えておく必要があります。
+
+さらに、他のツール（たとえば、[VS Code 拡張機能](../editor-support.md)や[FastAPI Cloud](https://fastapicloud.com)）が見つけられない場合があります。そのため、`pyproject.toml`の`entrypoint`を使うことを推奨します。
+
+### アプリをデプロイ（任意） { #deploy-your-app-optional }
+
+任意でFastAPIアプリを[FastAPI Cloud](https://fastapicloud.com)に1コマンドでデプロイできます。 🚀
 
 <div class="termy">
 
@@ -177,6 +216,8 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLIはFastAPIアプリケーションを自動検出してクラウドにデプロイします。ログインしていない場合、認証を完了するためにブラウザが開きます。
+
 以上です！これで、そのURLでアプリにアクセスできます。 ✨
 
 ## ステップ毎の要約 { #recap-step-by-step }
@@ -191,13 +232,14 @@ Deploying to FastAPI Cloud...
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
-`FastAPI`でも<a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
+`FastAPI`でも[Starlette](https://www.starlette.dev/)のすべての機能を利用可能です。
 
 ///
 
 ### Step 2: `FastAPI`の「インスタンス」を生成 { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
 これが、すべてのAPIを作成するための主要なポイントになります。
@@ -220,7 +262,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | 情報
+/// note | 備考
 
 「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
@@ -272,7 +314,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * パス `/`
 * <dfn title="HTTP GET メソッド"><code>get</code> オペレーション</dfn>
 
-/// info | `@decorator` Info
+/// note | `@decorator` 情報
 
 Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
@@ -335,7 +377,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 /// note | 備考
 
-違いが分からない場合は、[Async: *"急いでいますか？"*](../async.md#in-a-hurry){.internal-link target=_blank}を確認してください。
+違いが分からない場合は、[Async: *「急いでいますか？」*](../async.md#in-a-hurry)を確認してください。
 
 ///
 
@@ -351,11 +393,11 @@ JSONに自動的に変換されるオブジェクトやモデルは他にもた�
 
 ### Step 6: デプロイする { #step-6-deploy-it }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**に1コマンドでアプリをデプロイします: `fastapi deploy`. 🎉
+**[FastAPI Cloud](https://fastapicloud.com)**に1コマンドでアプリをデプロイします: `fastapi deploy`. 🎉
 
 #### FastAPI Cloudについて { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**は、**FastAPI**の作者とそのチームによって開発されています。
+**[FastAPI Cloud](https://fastapicloud.com)**は、**FastAPI**の作者とそのチームによって開発されています。
 
 最小限の労力でAPIの**構築**、**デプロイ**、**アクセス**を行うプロセスを合理化します。
 

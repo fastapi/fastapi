@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Sie können Ihre FastAPI-App in der <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> mit **einem einzigen Befehl** deployen – tragen Sie sich in die Warteliste ein, falls noch nicht geschehen. 🚀
-
-## Anmelden { #login }
-
-Stellen Sie sicher, dass Sie bereits ein **FastAPI-Cloud-Konto** haben (wir haben Sie von der Warteliste eingeladen 😉).
-
-Melden Sie sich dann an:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Deployen { #deploy }
-
-Stellen Sie Ihre App jetzt mit **einem einzigen Befehl** bereit:
+Sie können Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) mit **einem einzigen Befehl** deployen. 🚀
 
 <div class="termy">
 
@@ -36,11 +16,13 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+Das CLI erkennt Ihre FastAPI-App automatisch und deployt sie in die Cloud. Wenn Sie nicht angemeldet sind, öffnet sich Ihr Browser, um den Authentifizierungsprozess abzuschließen.
+
 Das war’s! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
 
 ## Über FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** wird vom gleichen Autor und Team hinter **FastAPI** entwickelt.
+**[FastAPI Cloud](https://fastapicloud.com)** wird vom gleichen Autor und Team hinter **FastAPI** entwickelt.
 
 Es vereinfacht den Prozess des **Erstellens**, **Deployens** und **Nutzens** einer API mit minimalem Aufwand.
 
@@ -62,4 +44,4 @@ Folgen Sie den Anleitungen Ihres Cloudanbieters, um dort FastAPI-Apps zu deploye
 
 ## Auf den eigenen Server deployen { #deploy-your-own-server }
 
-Ich werde Ihnen später in diesem **Deployment-Leitfaden** auch alle Details zeigen, sodass Sie verstehen, was passiert, was geschehen muss und wie Sie FastAPI-Apps selbst deployen können, auch auf Ihre eigenen Server. 🤓
+Ich werde Ihnen später in diesem **Deployment**-Leitfaden auch alle Details zeigen, sodass Sie verstehen, was passiert, was geschehen muss und wie Sie FastAPI-Apps selbst deployen können, auch auf Ihre eigenen Server. 🤓

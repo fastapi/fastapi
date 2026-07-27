@@ -2,11 +2,11 @@
 
 Коли вам потрібно отримувати поля форми замість JSON, ви можете використовувати `Form`.
 
-/// info | Інформація
+/// note | Примітка
 
-Щоб використовувати форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Щоб використовувати форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, і потім встановили бібліотеку, наприклад:
+Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, і потім встановили бібліотеку, наприклад:
 
 ```console
 $ pip install python-multipart
@@ -26,15 +26,15 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
 
-Наприклад, один зі способів використання специфікації OAuth2 (так званий «password flow») вимагає надсилати `username` та `password` як поля форми.
+Наприклад, один зі способів використання специфікації OAuth2 (так званий «потік паролю») вимагає надсилати `username` та `password` як поля форми.
 
 <dfn title="специфікація">специфікація</dfn> вимагає, щоб ці поля мали точні назви `username` і `password` та надсилалися у вигляді полів форми, а не JSON.
 
 З `Form` ви можете оголошувати ті ж конфігурації, що і з `Body` (та `Query`, `Path`, `Cookie`), включаючи валідацію, приклади, псевдоніми (наприклад, `user-name` замість `username`) тощо.
 
-/// info | Інформація
+/// note | Примітка
 
-`Form` — це клас, який безпосередньо наслідується від `Body`.
+`Form` - це клас, який безпосередньо наслідується від `Body`.
 
 ///
 
@@ -56,7 +56,7 @@ HTML-форми (`<form></form>`) надсилають дані на серве�
 
 Але якщо форма містить файли, вона кодується як `multipart/form-data`. Ви дізнаєтеся про обробку файлів у наступному розділі.
 
-Якщо ви хочете дізнатися більше про ці кодування та поля форм, зверніться до <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> вебдокументації для <code>POST</code></a>.
+Якщо ви хочете дізнатися більше про ці кодування та поля форм, зверніться до [<abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> вебдокументації для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

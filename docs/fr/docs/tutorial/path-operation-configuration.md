@@ -1,5 +1,6 @@
 # Configurer les chemins d'accès { #path-operation-configuration }
 
+
 Vous pouvez passer plusieurs paramètres à votre *décorateur de chemin d'accès* pour le configurer.
 
 /// warning | Alertes
@@ -58,7 +59,7 @@ Vous pouvez ajouter un `summary` et une `description` :
 
 Comme les descriptions ont tendance à être longues et à couvrir plusieurs lignes, vous pouvez déclarer la description du *chemin d'accès* dans la <dfn title="une chaîne multilignes comme première expression à l'intérieur d'une fonction (non assignée à une variable) utilisée pour la documentation">docstring</dfn> de la fonction et **FastAPI** la lira à partir de là.
 
-Vous pouvez écrire <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> dans la docstring, il sera interprété et affiché correctement (en tenant compte de l'indentation de la docstring).
+Vous pouvez écrire [Markdown](https://en.wikipedia.org/wiki/Markdown) dans la docstring, il sera interprété et affiché correctement (en tenant compte de l'indentation de la docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -72,13 +73,13 @@ Vous pouvez spécifier la description de la réponse avec le paramètre `respons
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info
+/// note | Remarque
 
 Notez que `response_description` se réfère spécifiquement à la réponse, tandis que `description` se réfère au *chemin d'accès* en général.
 
 ///
 
-/// check | Vérifications
+/// tip | Astuce
 
 OpenAPI spécifie que chaque *chemin d'accès* requiert une description de réponse.
 

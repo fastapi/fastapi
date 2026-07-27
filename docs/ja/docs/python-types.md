@@ -151,7 +151,7 @@ def some_function(data: Any):
 
 一部の型は、角括弧内で「型パラメータ」を受け取り、内部の型を定義できます。例えば「文字列のリスト」は `list[str]` として宣言します。
 
-このように型パラメータを取れる型は **Generic types**（ジェネリクス）と呼ばれます。
+このように型パラメータを取れる型は **Generic types** または **Generics**（ジェネリクス）と呼ばれます。
 
 次の組み込み型をジェネリクスとして（角括弧と内部の型で）使えます:
 
@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 情報
+/// note | 備考
 
 角括弧内の内部の型は「型パラメータ」と呼ばれています。
 
@@ -231,7 +231,7 @@ def some_function(data: Any):
 {!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-これは `item` が `int` または `str` になり得ることを意味します.
+これは `item` が `int` または `str` になり得ることを意味します。
 
 #### `None` の可能性 { #possibly-none }
 
@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic のモデル { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うための Python ライブラリです。
+[Pydantic](https://docs.pydantic.dev/) はデータ検証を行うための Python ライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
@@ -283,15 +283,15 @@ Pydantic の公式ドキュメントからの例:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 情報
+/// note | 備考
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic の詳細はドキュメントを参照してください</a>。
+[Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
 
 ///
 
 **FastAPI** はすべて Pydantic をベースにしています。
 
-すべてのことは [チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank} で実際に見ることができます。
+すべてのことは [チュートリアル - ユーザーガイド](tutorial/index.md) で実際に見ることができます。
 
 ## メタデータアノテーション付き型ヒント { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ Python 自体は、この `Annotated` で何かをするわけではありませ
 * OpenAPI を使用して API を **ドキュメント化** します:
     * これは自動の対話型ドキュメントのユーザーインターフェイスで使われます。
 
-すべてが抽象的に聞こえるかもしれません。心配しないでください。 この全ての動作は [チュートリアル - ユーザーガイド](tutorial/index.md){.internal-link target=_blank} で見ることができます。
+すべてが抽象的に聞こえるかもしれません。心配しないでください。 この全ての動作は [チュートリアル - ユーザーガイド](tutorial/index.md) で見ることができます。
 
 重要なのは、Python の標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）1 つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
 
-/// info | 情報
+/// note | 備考
 
-すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` の「チートシート」</a> があります。
+すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして [`mypy` の「チートシート」](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html) があります。
 
 ///

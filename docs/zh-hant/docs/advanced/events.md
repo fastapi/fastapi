@@ -1,5 +1,6 @@
 # 生命週期事件 { #lifespan-events }
 
+
 你可以定義在應用程式**啟動**之前要執行的邏輯（程式碼）。也就是說，這段程式碼會在應用開始接收請求**之前**、**只執行一次**。
 
 同樣地，你也可以定義在應用程式**關閉**時要執行的邏輯（程式碼）。在這種情況下，這段程式碼會在處理了**許多請求**之後、**只執行一次**。
@@ -120,7 +121,7 @@ async with lifespan(app):
 
 在這裡，`shutdown` 事件處理器函式會把一行文字 `"Application shutdown"` 寫入檔案 `log.txt`。
 
-/// info
+/// note
 
 在 `open()` 函式中，`mode="a"` 表示「append（附加）」；也就是說，這行文字會加在檔案現有內容之後，而不會覆寫先前的內容。
 
@@ -150,11 +151,11 @@ async with lifespan(app):
 
 給有興趣鑽研的同好一點技術細節。🤓
 
-在底層的 ASGI 技術規範中，這屬於 <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a> 的一部分，並定義了 `startup` 與 `shutdown` 兩種事件。
+在底層的 ASGI 技術規範中，這屬於 [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) 的一部分，並定義了 `startup` 與 `shutdown` 兩種事件。
 
-/// info
+/// note
 
-你可以在 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette 的 Lifespan 文件</a> 讀到更多關於 Starlette `lifespan` 處理器的資訊。
+你可以在 [Starlette 的 Lifespan 文件](https://www.starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
 
 也包含如何處理可在程式其他區域使用的 lifespan 狀態。
 
@@ -162,4 +163,4 @@ async with lifespan(app):
 
 ## 子應用程式 { #sub-applications }
 
-🚨 請記住，這些生命週期事件（startup 與 shutdown）只會在主應用程式上執行，不會在[子應用程式 - 掛載](sub-applications.md){.internal-link target=_blank}上執行。
+🚨 請記住，這些生命週期事件（startup 與 shutdown）只會在主應用程式上執行，不會在[子應用程式 - 掛載](sub-applications.md)上執行。

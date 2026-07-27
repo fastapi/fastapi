@@ -2,11 +2,11 @@
 
 `File`을 사용하여 클라이언트가 업로드할 파일들을 정의할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
-업로드된 파일을 전달받기 위해 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
+업로드된 파일을 전달받기 위해 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치해야합니다.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고, 활성화한 다음, 예를 들어 다음과 같이 설치하세요:
+[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 다음, 예를 들어 다음과 같이 설치하세요:
 
 ```console
 $ pip install python-multipart
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | 정보
+/// note | 참고
 
 `File` 은 `Form` 으로부터 직접 상속된 클래스입니다.
 
@@ -63,8 +63,8 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
     *  최대 크기 제한까지만 메모리에 저장되며, 이를 초과하는 경우 디스크에 저장됩니다.
 * 따라서 이미지, 동영상, 큰 이진코드와 같은 대용량 파일들을 많은 메모리를 소모하지 않고 처리하기에 적합합니다.
 * 업로드 된 파일의 메타데이터를 얻을 수 있습니다.
-* <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a>  `async` 인터페이스를 갖고 있습니다.
-* file-like object를 필요로하는 다른 라이브러리에 직접적으로 전달할 수 있는 파이썬 <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> 객체를 반환합니다.
+* [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) `async` 인터페이스를 갖고 있습니다.
+* file-like object를 필요로하는 다른 라이브러리에 직접적으로 전달할 수 있는 파이썬 [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) 객체를 반환합니다.
 
 ### `UploadFile` { #uploadfile }
 
@@ -72,7 +72,7 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
 
 * `filename` : 문자열(`str`)로 된 업로드된 파일의 파일명입니다 (예: `myimage.jpg`).
 * `content_type` : 문자열(`str`)로 된 파일 형식(MIME type / media type)입니다 (예: `image/jpeg`).
-* `file` :  <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object)입니다. 이것은 "file-like" 객체를 필요로하는 다른 함수나 라이브러리에 직접적으로 전달할 수 있는 실질적인 파이썬 파일 객체입니다.
+* `file` :  [`SpooledTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile) (a [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) object)입니다. 이것은 "file-like" 객체를 필요로하는 다른 함수나 라이브러리에 직접적으로 전달할 수 있는 실질적인 파이썬 파일 객체입니다.
 
 `UploadFile` 에는 다음의 `async` 메소드들이 있습니다. 이들은 내부적인 `SpooledTemporaryFile` 을 사용하여 해당하는 파일 메소드를 호출합니다.
 
@@ -121,7 +121,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 하지만 파일이 포함된 경우, `multipart/form-data`로 인코딩됩니다. `File`을 사용하였다면, **FastAPI**는 본문의 적합한 부분에서 파일을 가져와야 한다는 것을 인지합니다.
 
-인코딩과 폼 필드에 대해 더 알고싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr> web docs for <code>POST</code></a>를 참고하기 바랍니다.
+인코딩과 폼 필드에 대해 더 알고싶다면, [<abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr> 웹 문서의 `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)를 참고하기 바랍니다.
 
 ///
 
@@ -151,11 +151,11 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 그들은 "폼 데이터"를 사용하여 전송된 동일한 "폼 필드"에 연결됩니다.
 
-이 기능을 사용하기 위해 , `bytes` 의 `List` 또는 `UploadFile` 를 선언하기 바랍니다:
+이 기능을 사용하려면 `bytes` 또는 `UploadFile`의 `list`를 선언하기 바랍니다:
 
 {* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 
-선언한대로, `bytes` 의 `list` 또는 `UploadFile` 들을 전송받을 것입니다.
+선언한 대로, `bytes` 또는 `UploadFile`의 `list`를 받게 됩니다.
 
 /// note | 기술 세부사항
 

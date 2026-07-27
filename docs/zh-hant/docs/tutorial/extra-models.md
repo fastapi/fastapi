@@ -4,15 +4,15 @@
 
 對使用者模型尤其如此，因為：
 
-* 「輸入模型」需要能包含密碼。
-* 「輸出模型」不應包含密碼。
-* 「資料庫模型」通常需要儲存雜湊後的密碼。
+* **輸入模型**需要能包含密碼。
+* **輸出模型**不應包含密碼。
+* **資料庫模型**通常需要儲存雜湊後的密碼。
 
 /// danger
 
 切勿儲存使用者的明文密碼。務必只儲存可供驗證的「安全雜湊」。
 
-若你還不清楚，稍後會在[安全性章節](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}學到什麼是「密碼雜湊」。
+若你還不清楚，稍後會在[安全性章節](security/simple-oauth2.md#password-hashing)學到什麼是「密碼雜湊」。
 
 ///
 
@@ -140,7 +140,7 @@ UserInDB(
 
 ## 減少重複 { #reduce-duplication }
 
-減少程式碼重複是 FastAPI 的核心理念之一。
+減少程式碼重複是 **FastAPI** 的核心理念之一。
 
 因為重複的程式碼會提高發生錯誤、安全性問題、程式不同步（某處更新但其他處未更新）等風險。
 
@@ -162,11 +162,11 @@ UserInDB(
 
 在 OpenAPI 中會以 `anyOf` 定義。
 
-要達成這點，使用標準的 Python 型別提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
+要達成這點，使用標準的 Python 型別提示 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)：
 
 /// note
 
-在定義 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
+在定義 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
 
 ///
 
@@ -176,7 +176,7 @@ UserInDB(
 
 此範例中，我們將 `Union[PlaneItem, CarItem]` 作為引數 `response_model` 的值。
 
-由於這裡是把它當作引數的「值」傳入，而非用於型別註記，因此即使在 Python 3.10 也必須使用 `Union`。
+由於這裡是把它當作**引數的值**傳入，而非放在**型別註記**中，因此即使在 Python 3.10 也必須使用 `Union`。
 
 若用於型別註記，則可以使用直線（|），如下：
 
@@ -184,7 +184,7 @@ UserInDB(
 some_variable: PlaneItem | CarItem
 ```
 
-但若寫成指定值 `response_model=PlaneItem | CarItem` 會發生錯誤，因為 Python 會嘗試在 `PlaneItem` 與 `CarItem` 之間執行「無效運算」，而非將其視為型別註記。
+但若寫成指定值 `response_model=PlaneItem | CarItem` 會發生錯誤，因為 Python 會嘗試在 `PlaneItem` 與 `CarItem` 之間執行**無效運算**，而非將其視為型別註記。
 
 ## 模型的清單 { #list-of-models }
 
@@ -208,4 +208,4 @@ some_variable: PlaneItem | CarItem
 
 依情境使用多個 Pydantic 模型並靈活繼承。
 
-當一個實體需要呈現不同「狀態」時，不必侷限於一個資料模型。例如使用者這個實體，可能有包含 `password`、包含 `password_hash`，或不含密碼等不同狀態。
+當一個實體需要呈現不同「狀態」時，不必侷限於一個資料模型。**使用者**「實體」是一個例子，可能有包含 `password`、包含 `password_hash`，或不含密碼等不同狀態。

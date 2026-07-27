@@ -2,7 +2,7 @@
 
 Pythonプロジェクトの作業では、**仮想環境**（または類似の仕組み）を使用し、プロジェクトごとにインストールするパッケージを分離するべきでしょう。
 
-/// info | 情報
+/// note | 備考
 
 もし、仮想環境の概要や作成方法、使用方法について既にご存知なら、このセクションをスキップした方がよいかもしれません。🤓
 
@@ -18,10 +18,11 @@ Pythonプロジェクトの作業では、**仮想環境**（または類似の�
 
 ///
 
-/// info | 情報
+/// note | 備考
+
 このページでは、**仮想環境**の使用方法と、そのはたらきについて説明します。
 
-もし**すべてを管理するツール**（Pythonのインストールも含む）を導入する準備ができているなら、<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> をお試しください。
+もし**すべてを管理するツール**（Pythonのインストールも含む）を導入する準備ができているなら、[uv](https://github.com/astral-sh/uv) をお試しください。
 
 ///
 
@@ -34,15 +35,15 @@ Pythonプロジェクトの作業では、**仮想環境**（または類似の�
 <div class="termy">
 
 ```console
-// Go to the home directory
+// ホームディレクトリに移動
 $ cd
-// Create a directory for all your code projects
+// すべてのコードプロジェクト用のディレクトリを作成
 $ mkdir code
-// Enter into that code directory
+// その code ディレクトリに入る
 $ cd code
-// Create a directory for this project
+// このプロジェクト用のディレクトリを作成
 $ mkdir awesome-project
-// Enter into that project directory
+// そのプロジェクトディレクトリに入る
 $ cd awesome-project
 ```
 
@@ -83,7 +84,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> をインストール済みなら、仮想環境を作成するために `uv` を使うこともできます。
+もし [`uv`](https://github.com/astral-sh/uv) をインストール済みなら、仮想環境を作成するために `uv` を使うこともできます。
 
 <div class="termy">
 
@@ -147,7 +148,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-もしWindowsでBashを使用している場合 (<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>など):
+もしWindowsでBashを使用している場合 ([Git Bash](https://gitforwindows.org/)など):
 
 <div class="termy">
 
@@ -213,7 +214,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 /// tip | 豆知識
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用している場合は、 `pip` の代わりに `uv` を使ってインストールを行うため、 `pip` をアップグレードする必要はありません 😎。
+もし [`uv`](https://github.com/astral-sh/uv) を使用している場合は、 `pip` の代わりに `uv` を使ってインストールを行うため、 `pip` をアップグレードする必要はありません 😎。
 
 ///
 
@@ -265,7 +266,7 @@ $ python -m ensurepip --upgrade
 
 /// tip | 豆知識
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用して仮想環境を作成した場合、すでにこの作業は済んでいるので、この手順をスキップできます 😎。
+もし [`uv`](https://github.com/astral-sh/uv) を使用して仮想環境を作成した場合、すでにこの作業は済んでいるので、この手順をスキップできます 😎。
 
 ///
 
@@ -337,7 +338,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用できるなら:
+もし [`uv`](https://github.com/astral-sh/uv) を使用できるなら:
 
 <div class="termy">
 
@@ -369,7 +370,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-もし <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> を使用できるなら:
+もし [`uv`](https://github.com/astral-sh/uv) を使用できるなら:
 
 <div class="termy">
 
@@ -413,8 +414,8 @@ Hello World
 
 設定例:
 
-* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
-* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+* [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment)
+* [PyCharm](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html)
 
 /// tip | 豆知識
 
@@ -452,7 +453,7 @@ $ deactivate
 
 ## なぜ仮想環境？ { #why-virtual-environments }
 
-FastAPIを使った作業をするには、<a href="https://www.python.org/" class="external-link" target="_blank">Python</a> のインストールが必要です。
+FastAPIを使った作業をするには、[Python](https://www.python.org/) のインストールが必要です。
 
 それから、FastAPIや、使用したいその他の**パッケージ**を**インストール**する必要があります。
 
@@ -554,14 +555,14 @@ Pythonをインストールしたとき、ファイルを含んだいくつか�
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// 今は実行しないでください。これは単なる例です 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
 
 </div>
 
-FastAPIのコードを含む圧縮ファイルが、通常は <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> からダウンロードされます。
+FastAPIのコードを含む圧縮ファイルが、通常は [PyPI](https://pypi.org/project/fastapi/) からダウンロードされます。
 
 また、FastAPIが依存する他のパッケージも**ダウンロード**されます。
 
@@ -624,7 +625,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-あるいは、WindowsでBashを使用している場合 (<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>など):
+あるいは、WindowsでBashを使用している場合 ([Git Bash](https://gitforwindows.org/)など):
 
 <div class="termy">
 
@@ -636,13 +637,13 @@ $ source .venv/Scripts/activate
 
 ////
 
-これによって、いくつかの [環境変数](environment-variables.md){.internal-link target=_blank} が作成・修正され、次に実行されるコマンドで使用できるようになります。
+これによって、いくつかの [環境変数](environment-variables.md) が作成・修正され、次に実行されるコマンドで使用できるようになります。
 
 これらの環境変数のひとつに、 `PATH` 変数があります。
 
 /// tip | 豆知識
 
-`PATH` 変数についての詳細は [環境変数](environment-variables.md#path-environment-variable){.internal-link target=_blank} を参照してください。
+`PATH` 変数についての詳細は [環境変数](environment-variables.md#path-environment-variable) を参照してください。
 
 ///
 
@@ -800,7 +801,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// sirius のインポートエラー。インストールされていません 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -808,20 +809,20 @@ Traceback (most recent call last):
 
 </div>
 
-しかし、その仮想環境を無効化し、 `prisoner-of-askaban` のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
+しかし、その仮想環境を無効化し、 `prisoner-of-azkaban` のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// 無効化のために古いディレクトリにいる必要はありません。どこにいても、他のプロジェクトに移動した後でも実行できます 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// prisoner-of-azkaban/.venv の仮想環境を有効化する 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// これで python を実行すると、この仮想環境にインストールされた sirius パッケージが見つかります ✨
 $ python main.py
 
 I solemnly swear 🐺
@@ -835,7 +836,7 @@ I solemnly swear 🐺
 
 仮想環境、パッケージの依存関係（requirements）、プロジェクトの管理には、多くの**代替手段**があります。
 
-準備が整い、パッケージの依存関係、仮想環境など**プロジェクト全体の管理**ツールを使いたいと考えたら、<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> を試してみることをおすすめします。
+準備が整い、パッケージの依存関係、仮想環境など**プロジェクト全体の管理**ツールを使いたいと考えたら、[uv](https://github.com/astral-sh/uv) を試してみることをおすすめします。
 
 `uv` では以下のような多くのことができます：
 

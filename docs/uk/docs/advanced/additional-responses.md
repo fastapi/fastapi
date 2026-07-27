@@ -34,7 +34,7 @@
 
 ///
 
-/// info | Інформація
+/// note | Примітка
 
 Ключ `model` не є частиною OpenAPI.
 
@@ -183,7 +183,7 @@
 
 ///
 
-/// info | Інформація
+/// note | Примітка
 
 Поки ви явно не вкажете інший тип медіа в параметрі `responses`, FastAPI вважатиме, що відповідь має той самий тип медіа, що й основний клас відповіді (типово `application/json`).
 
@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Щоб побачити, що саме можна включати у відповіді, ознайомтеся з цими розділами специфікації OpenAPI:
 
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Об'єкт відповідей OpenAPI</a>, він включає `Response Object`.
-- <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Об'єкт відповіді OpenAPI</a>, ви можете включити будь-що з цього безпосередньо в кожну відповідь у параметрі `responses`. Зокрема `description`, `headers`, `content` (усередині нього ви оголошуєте різні типи медіа та Схеми JSON) і `links`.
+- [Об'єкт відповідей OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), він включає `Response Object`.
+- [Об'єкт відповіді OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), ви можете включити будь-що з цього безпосередньо в кожну відповідь у параметрі `responses`. Зокрема `description`, `headers`, `content` (усередині нього ви оголошуєте різні типи медіа та Схеми JSON) і `links`.

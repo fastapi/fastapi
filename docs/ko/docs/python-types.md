@@ -124,7 +124,7 @@ John Doe
 
 이것은 **FastAPI**와 함께 사용할 때도 주요 위치입니다.
 
-### Simple 타입 { #simple-types }
+### 간단한 타입 { #simple-types }
 
 `str`뿐 아니라 모든 파이썬 표준 타입을 선언할 수 있습니다.
 
@@ -174,7 +174,7 @@ def some_function(data: Any):
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info | 정보
+/// note | 참고
 
 대괄호 안의 내부 타입은 "type parameters"라고 부릅니다.
 
@@ -271,7 +271,7 @@ def some_function(data: Any):
 
 ## Pydantic 모델 { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
+[Pydantic](https://docs.pydantic.dev/)은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
 
 속성을 가진 클래스 형태로 데이터의 "모양(shape)"을 선언합니다.
 
@@ -285,15 +285,15 @@ Pydantic 공식 문서의 예시:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info | 정보
+/// note | 참고
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic에 대해 더 알아보려면 문서를 확인하세요</a>.
+더 알아보려면 [Pydantic 문서를 확인하세요](https://docs.pydantic.dev/).
 
 ///
 
 **FastAPI**는 모두 Pydantic에 기반을 두고 있습니다.
 
-이 모든 것은 [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank}에서 실제로 많이 보게 될 것입니다.
+이 모든 것은 [자습서 - 사용자 안내서](tutorial/index.md)에서 실제로 많이 보게 될 것입니다.
 
 ## 메타데이터 애너테이션이 있는 타입 힌트 { #type-hints-with-metadata-annotations }
 
@@ -339,12 +339,12 @@ Pydantic 공식 문서의 예시:
 * OpenAPI를 사용해 API를 **문서화**:
     * 자동 상호작용 문서 UI에서 사용됩니다.
 
-이 모든 것이 다소 추상적으로 들릴 수도 있습니다. 걱정하지 마세요. [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank}에서 실제로 확인하게 될 것입니다.
+이 모든 것이 다소 추상적으로 들릴 수도 있습니다. 걱정하지 마세요. [자습서 - 사용자 안내서](tutorial/index.md)에서 실제로 확인하게 될 것입니다.
 
 가장 중요한 점은 표준 파이썬 타입을 한 곳에서 사용함으로써(더 많은 클래스, 데코레이터 등을 추가하는 대신) **FastAPI**가 여러분을 위해 많은 일을 해준다는 사실입니다.
 
-/// info | 정보
+/// note | 참고
 
-자습서를 모두 끝내고 타입에 대해 더 알아보기 위해 다시 돌아왔다면, 좋은 자료로 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`의 "cheat sheet"</a>가 있습니다.
+자습서를 모두 끝내고 타입에 대해 더 알아보기 위해 다시 돌아왔다면, 좋은 자료로 [`mypy`의 "cheat sheet"](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)가 있습니다.
 
 ///

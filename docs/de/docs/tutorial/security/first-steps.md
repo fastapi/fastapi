@@ -1,5 +1,6 @@
 # Sicherheit – Erste Schritte { #security-first-steps }
 
+
 Stellen wir uns vor, dass Sie Ihre **Backend**-API auf einer Domain haben.
 
 Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer Mobile-Anwendung).
@@ -24,13 +25,13 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 ## Ausführen { #run-it }
 
-/// info | Info
+/// note | Hinweis
 
-Das Paket <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
+Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
 
 Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und es dann mit:
+Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und es dann mit:
 
 ```console
 $ pip install python-multipart
@@ -47,7 +48,7 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -56,13 +57,13 @@ $ fastapi dev main.py
 
 ## Es testen { #check-it }
 
-Gehen Sie zu der interaktiven Dokumentation unter: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Gehen Sie zu der interaktiven Dokumentation unter: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Sie werden etwa Folgendes sehen:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize-Button!
+/// tip | Authorize-Button!
 
 Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
 
@@ -120,7 +121,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 
 In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem **Bearer**-Token. Wir machen das mit der Klasse `OAuth2PasswordBearer`.
 
-/// info | Info
+/// note | Hinweis
 
 Ein „Bearer“-Token ist nicht die einzige Option.
 
@@ -142,7 +143,7 @@ Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch
 
 Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
 
-Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
+Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [Hinter einem Proxy](../../advanced/behind-a-proxy.md), weiterhin funktioniert.
 
 ///
 
@@ -150,7 +151,7 @@ Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern
 
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
 
@@ -178,7 +179,7 @@ Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pf
 
 **FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein „Sicherheitsschema“ im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
-/// info | Technische Details
+/// note | Technische Details
 
 **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
 

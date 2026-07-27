@@ -30,25 +30,25 @@
 
 ### 查看自动 API 文档 { #check-the-automatic-api-docs }
 
-现在，使用你的文件运行 `fastapi` 命令：
+现在，运行 `fastapi` 命令：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-然后在 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 打开文档。
+然后在 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 打开文档。
 
 下图显示的是主应用 API 文档，只包括其自有的*路径操作*。
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-然后查看子应用文档 <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>。
+然后查看子应用文档 [http://127.0.0.1:8000/subapi/docs](http://127.0.0.1:8000/subapi/docs)。
 
 下图显示的是子应用的 API 文档，也是只包括其自有的*路径操作*，所有这些路径操作都在 `/subapi` 子路径前缀下。
 
@@ -64,4 +64,4 @@ $ fastapi dev main.py
 
 并且子应用还可以再挂载子应用，一切都会正常运行，FastAPI 可以自动处理所有 `root_path`。
 
-关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](behind-a-proxy.md){.internal-link target=_blank}一章。
+关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](behind-a-proxy.md)一章。

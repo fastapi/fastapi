@@ -22,7 +22,7 @@ Webhook'lar için URL'lerin nasıl kaydedileceğine dair tüm **mantık** ve bu 
 
 Bu, kullanıcılarınızın **webhook** request'lerinizi alacak şekilde **API'lerini implement etmesini** çok daha kolaylaştırabilir; hatta kendi API kodlarının bir kısmını otomatik üretebilirler.
 
-/// info | Bilgi
+/// note | Not
 
 Webhook'lar OpenAPI 3.1.0 ve üzeri sürümlerde mevcuttur; FastAPI `0.99.0` ve üzeri tarafından desteklenir.
 
@@ -36,7 +36,7 @@ Bir **FastAPI** uygulaması oluşturduğunuzda, *webhook*'ları tanımlamak içi
 
 Tanımladığınız webhook'lar **OpenAPI** şemasında ve otomatik **docs UI**'da yer alır.
 
-/// info | Bilgi
+/// note | Not
 
 `app.webhooks` nesnesi aslında sadece bir `APIRouter`'dır; uygulamanızı birden fazla dosya ile yapılandırırken kullanacağınız türün aynısıdır.
 
@@ -48,7 +48,7 @@ Bunun nedeni, webhook request'ini almak istedikleri gerçek **URL path**'i **kul
 
 ### Dokümanları kontrol edin { #check-the-docs }
 
-Şimdi uygulamanızı başlatıp <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidin.
+Şimdi uygulamanızı başlatıp [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidin.
 
 Dokümanlarınızda normal *path operation*'ları ve artık bazı **webhook**'ları da göreceksiniz:
 

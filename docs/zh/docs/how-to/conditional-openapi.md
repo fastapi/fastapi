@@ -10,7 +10,7 @@
 
 如果你的代码里有安全漏洞，它仍然存在。
 
-隐藏文档只会让理解如何与 API 交互变得更困难，也可能让你在生产环境中调试更困难。这大体上可以被视为一种 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">通过隐藏实现安全</a> 的做法。
+隐藏文档只会让理解如何与 API 交互变得更困难，也可能让你在生产环境中调试更困难。这大体上可以被视为一种 [通过隐藏实现安全](https://en.wikipedia.org/wiki/Security_through_obscurity) 的做法。
 
 如果你想保护你的 API，有很多更好的措施，例如：
 

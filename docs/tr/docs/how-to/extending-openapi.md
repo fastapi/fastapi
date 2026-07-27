@@ -25,9 +25,17 @@ Ve `get_openapi()` fonksiyonu şu parametreleri alır:
 * `openapi_version`: Kullanılan OpenAPI specification sürümü. Varsayılan olarak en günceli: `3.1.0`.
 * `summary`: API'nin kısa özeti.
 * `description`: API'nizin açıklaması; markdown içerebilir ve dokümanlarda gösterilir.
-* `routes`: route'ların listesi; bunların her biri kayıtlı *path operations*'lardır. `app.routes` içinden alınırlar.
+* `routes`: Uygulamadan gelen route'lar; `app.routes` içinden alınır. FastAPI, kayıtlı *path operations*'ları toplamak için bunları kullanır; eklenen router'lardan gelenler de dahildir.
 
-/// info | Bilgi
+/// tip | Teknik Detaylar
+
+`app.routes` daha alt seviyede bir route ağacıdır. Yalnızca son `APIRoute` objelerini değil, FastAPI'nin dahili olarak eklenen router'lar için kullandığı aday route'ları da içerebilir.
+
+Yine de `app.routes`'i `get_openapi()`'ye geçebilirsiniz. FastAPI, etkili path operation'ları toplamak için bu route ağacını gezecektir.
+
+///
+
+/// note | Bilgi
 
 `summary` parametresi OpenAPI 3.1.0 ve üzeri sürümlerde vardır; FastAPI 0.99.0 ve üzeri tarafından desteklenmektedir.
 
@@ -37,7 +45,7 @@ Ve `get_openapi()` fonksiyonu şu parametreleri alır:
 
 Yukarıdaki bilgileri kullanarak aynı yardımcı fonksiyonla OpenAPI şemasını üretebilir ve ihtiyacınız olan her parçayı override edebilirsiniz.
 
-Örneğin, <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">özel bir logo eklemek için ReDoc'un OpenAPI extension'ını</a> ekleyelim.
+Örneğin, [özel bir logo eklemek için ReDoc'un OpenAPI extension'ını](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) ekleyelim.
 
 ### Normal **FastAPI** { #normal-fastapi }
 
@@ -75,6 +83,6 @@ Böylece bir kullanıcı API docs'larınızı her açtığında uygulamanız şe
 
 ### Kontrol Edin { #check-it }
 
-<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresine gittiğinizde, özel logonuzu kullandığınızı göreceksiniz (bu örnekte **FastAPI**'nin logosu):
+[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gittiğinizde, özel logonuzu kullandığınızı göreceksiniz (bu örnekte **FastAPI**'nin logosu):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

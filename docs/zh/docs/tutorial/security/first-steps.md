@@ -1,5 +1,6 @@
 # 安全 - 第一步 { #security-first-steps }
 
+
 假设你的**后端** API 位于某个域名下。
 
 而**前端**在另一个域名，或同一域名的不同路径（或在移动应用中）。
@@ -24,13 +25,13 @@
 
 ## 运行 { #run-it }
 
-/// info | 信息
+/// note | 注意
 
-当你使用命令 `pip install "fastapi[standard]"` 安装 **FastAPI** 时，<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> 包会自动安装。
+当你使用命令 `pip install "fastapi[standard]"` 安装 **FastAPI** 时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会自动安装。
 
 但是，如果你使用 `pip install fastapi`，默认不会包含 `python-multipart` 包。
 
-如需手动安装，请先创建并激活[虚拟环境](../../virtual-environments.md){.internal-link target=_blank}，然后执行：
+如需手动安装，请先创建[虚拟环境](../../virtual-environments.md)、激活它，然后执行：
 
 ```console
 $ pip install python-multipart
@@ -45,7 +46,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,13 +55,13 @@ $ fastapi dev main.py
 
 ## 查看 { #check-it }
 
-打开交互式文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+打开交互式文档：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 你会看到类似这样的界面：
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 按钮！
+/// tip | Authorize 按钮！
 
 页面右上角已经有一个崭新的“Authorize”按钮。
 
@@ -118,7 +119,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 本示例将使用 **OAuth2** 的 **Password** 流程并配合 **Bearer** 令牌，通过 `OAuth2PasswordBearer` 类来实现。
 
-/// info | 信息
+/// note | 注意
 
 “Bearer” 令牌并非唯一选项。
 
@@ -140,7 +141,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 因为使用的是相对 URL，若你的 API 位于 `https://example.com/`，它将指向 `https://example.com/token`；若你的 API 位于 `https://example.com/api/v1/`，它将指向 `https://example.com/api/v1/token`。
 
-使用相对 URL 很重要，这能确保你的应用在诸如[使用代理](../../advanced/behind-a-proxy.md){.internal-link target=_blank}等高级用例中依然正常工作。
+使用相对 URL 很重要，这能确保你的应用在诸如[使用代理](../../advanced/behind-a-proxy.md)等高级用例中依然正常工作。
 
 ///
 
@@ -148,7 +149,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 我们很快也会创建对应的实际路径操作。
 
-/// info | 信息
+/// note | 注意
 
 如果你是非常严格的 “Pythonista”，可能不喜欢使用参数名 `tokenUrl` 而不是 `token_url`。
 
@@ -176,7 +177,7 @@ oauth2_scheme(some, parameters)
 
 **FastAPI** 会据此在 OpenAPI 架构（以及自动生成的 API 文档）中定义一个“安全方案”。
 
-/// info | 技术细节
+/// note | 技术细节
 
 **FastAPI** 之所以知道可以使用（在依赖中声明的）`OAuth2PasswordBearer` 在 OpenAPI 中定义安全方案，是因为它继承自 `fastapi.security.oauth2.OAuth2`，而后者又继承自 `fastapi.security.base.SecurityBase`。
 

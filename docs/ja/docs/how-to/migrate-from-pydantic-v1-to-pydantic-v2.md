@@ -8,6 +8,8 @@ FastAPI 0.119.0 では、Pydantic v2 内からの Pydantic v1 の部分的サポ
 
 FastAPI 0.126.0 で Pydantic v1 のサポートは終了しましたが、しばらくの間は `pydantic.v1` は利用可能でした。
 
+FastAPI 0.128.0 で `pydantic.v1` のサポートも終了したため、FastAPI の最新バージョンでは Pydantic v2 が必要です。
+
 /// warning | 注意
 
 Pydantic チームは Python の最新バージョン、つまり **Python 3.14** から、Pydantic v1 のサポートを終了しました。
@@ -22,7 +24,7 @@ Python の最新機能を使いたい場合は、Pydantic v2 を使用してい�
 
 ## 公式ガイド { #official-guide }
 
-Pydantic には v1 から v2 への公式の <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">移行ガイド</a> があります。
+Pydantic には v1 から v2 への公式の [移行ガイド](https://docs.pydantic.dev/latest/migration/) があります。
 
 変更点、検証がより正確で厳密になった点、注意事項などが含まれます。
 
@@ -30,7 +32,7 @@ Pydantic には v1 から v2 への公式の <a href="https://docs.pydantic.dev/
 
 ## テスト { #tests }
 
-アプリに対する[テスト](../tutorial/testing.md){.internal-link target=_blank}を用意し、継続的インテグレーション（CI）で実行するようにしてください。
+アプリに対する[テスト](../tutorial/testing.md)を用意し、継続的インテグレーション（CI）で実行するようにしてください。
 
 これにより、アップグレード後も期待どおり動作していることを確認できます。
 
@@ -38,7 +40,7 @@ Pydantic には v1 から v2 への公式の <a href="https://docs.pydantic.dev/
 
 多くの場合、カスタマイズのない通常の Pydantic モデルを使っていれば、v1 から v2 への移行作業の大半を自動化できます。
 
-同じ Pydantic チームが提供する <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> を使用できます。
+同じ Pydantic チームが提供する [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) を使用できます。
 
 このツールは必要なコード変更のほとんどを自動で行います。
 
@@ -53,6 +55,16 @@ Pydantic v2 には、Pydantic v1 がサブモジュール `pydantic.v1` とし�
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### v2 内の Pydantic v1 に対する FastAPI のサポート { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | 注意
+
+この FastAPI による `pydantic.v1` モデルのサポートは **FastAPI 0.119.0** で追加され、**FastAPI 0.128.0** で削除されました。これは Pydantic v2 への移行のための一時的な支援を意図したものでした。
+
+現在のバージョンの FastAPI では、アプリで `pydantic.v1` モデルを使用するとエラーが発生します。
+
+このセクションの残りは、それらの古いバージョンでのみ利用可能だった一時的なサポートについて説明します。
+
+///
 
 FastAPI 0.119.0 以降では、移行を容易にするため、Pydantic v2 内の Pydantic v1 に対する部分的サポートもあります。
 
@@ -88,7 +100,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-...but, you can have separated models using Pydantic v1 and v2 in the same app.
+...しかし、同じアプリ内で Pydantic v1 と v2 を別々のモデルとして分けて使うことは可能です。
 
 ```mermaid
 graph TB
@@ -121,6 +133,12 @@ Pydantic v1 のモデルで `Body`、`Query`、`Form` などの FastAPI 固有�
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### 段階的に移行 { #migrate-in-steps }
+
+/// warning | 注意
+
+以下で説明する、同じアプリ内で Pydantic v1 と v2 のモデルを併用する段階的移行は、**FastAPI 0.119.0 から 0.127.x** でのみ動作します。これは **FastAPI 0.128.0** で削除され、最新バージョンでは **Pydantic v2** モデルが必要です。
+
+///
 
 /// tip | 豆知識
 

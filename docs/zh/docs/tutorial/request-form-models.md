@@ -2,11 +2,11 @@
 
 你可以在 FastAPI 中使用 **Pydantic 模型**声明**表单字段**。
 
-/// info | 信息
+/// note | 注意
 
-要使用表单，首先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-确保你创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，激活它，然后再安装，例如：
+确保你创建一个[虚拟环境](../virtual-environments.md)，激活它，然后再安装，例如：
 
 ```console
 $ pip install python-multipart

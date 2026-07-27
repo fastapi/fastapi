@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-Vous pouvez déployer votre application FastAPI sur <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> avec une **seule commande**, allez vous inscrire sur la liste d’attente si ce n’est pas déjà fait. 🚀
-
-## Se connecter { #login }
-
-Vous devez vous assurer que vous avez déjà un compte **FastAPI Cloud** (nous vous avons invité depuis la liste d’attente 😉).
-
-Connectez-vous ensuite :
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## Déployer { #deploy }
-
-Déployez maintenant votre application, avec une **seule commande** :
+Vous pouvez déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com) avec une **seule commande**. 🚀
 
 <div class="termy">
 
@@ -36,11 +16,13 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+La CLI détecte automatiquement votre application FastAPI et la déploie dans le cloud. Si vous n’êtes pas connecté, votre navigateur s’ouvrira pour terminer le processus d’authentification.
+
 C’est tout ! Vous pouvez maintenant accéder à votre application à cette URL. ✨
 
 ## À propos de FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** est développé par le même auteur et la même équipe à l’origine de **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** est développé par le même auteur et la même équipe à l’origine de **FastAPI**.
 
 Cela simplifie le processus de **création**, de **déploiement** et **d’accès** à une API avec un effort minimal.
 
@@ -62,4 +44,4 @@ Suivez les guides de votre fournisseur cloud pour déployer des applications Fas
 
 ## Déployer votre propre serveur { #deploy-your-own-server }
 
-Je vous expliquerai également plus loin dans ce guide de **Déploiement** tous les détails, afin que vous compreniez ce qui se passe, ce qui doit être fait, et comment déployer des applications FastAPI par vous-même, y compris sur vos propres serveurs. 🤓
+Je vous expliquerai également plus loin dans ce guide de **Déploiement** tous les détails, afin que vous compreniez ce qui se passe, ce qui doit être fait, ou comment déployer des applications FastAPI par vous-même, y compris sur vos propres serveurs. 🤓

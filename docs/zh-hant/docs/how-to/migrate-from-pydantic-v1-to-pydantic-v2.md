@@ -8,6 +8,8 @@ FastAPI 0.119.0 透過 Pydantic v2 內的 `pydantic.v1` 提供對 Pydantic v1 �
 
 FastAPI 0.126.0 移除了對 Pydantic v1 的支援，但在一段時間內仍支援 `pydantic.v1`。
 
+FastAPI 0.128.0 也移除了對 `pydantic.v1` 的支援，因此最新版本的 FastAPI 需要 Pydantic v2。
+
 /// warning
 
 Pydantic 團隊自 **Python 3.14** 起，已停止在最新的 Python 版本中支援 Pydantic v1。
@@ -22,7 +24,7 @@ Pydantic 團隊自 **Python 3.14** 起，已停止在最新的 Python 版本中�
 
 ## 官方指南 { #official-guide }
 
-Pydantic 提供從 v1 遷移到 v2 的官方<a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">遷移指南</a>。
+Pydantic 提供從 v1 遷移到 v2 的官方[遷移指南](https://docs.pydantic.dev/latest/migration/)。
 
 其中包含變更內容、驗證如何更正確且更嚴格、可能的注意事項等。
 
@@ -30,7 +32,7 @@ Pydantic 提供從 v1 遷移到 v2 的官方<a href="https://docs.pydantic.dev/l
 
 ## 測試 { #tests }
 
-確保你的應用有[測試](../tutorial/testing.md){.internal-link target=_blank}，並在 CI（持續整合）上執行。
+確保你的應用有[測試](../tutorial/testing.md)，並在 CI（持續整合）上執行。
 
 如此一來，你可以升級後確認一切仍如預期運作。
 
@@ -38,7 +40,7 @@ Pydantic 提供從 v1 遷移到 v2 的官方<a href="https://docs.pydantic.dev/l
 
 在許多情況下，若你使用的是未自訂的標準 Pydantic 模型，多數遷移步驟都能自動化完成。
 
-你可以使用 Pydantic 團隊提供的 <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a>。
+你可以使用 Pydantic 團隊提供的 [`bump-pydantic`](https://github.com/pydantic/bump-pydantic)。
 
 這個工具會自動修改大部分需要變更的程式碼。
 
@@ -46,13 +48,23 @@ Pydantic 提供從 v1 遷移到 v2 的官方<a href="https://docs.pydantic.dev/l
 
 ## v2 中的 Pydantic v1 { #pydantic-v1-in-v2 }
 
-Pydantic v2 內含子模組 `pydantic.v1`，提供 Pydantic v1 的所有內容。但在 Python 3.13 以上版本不再支援。
+Pydantic v2 內含子模組 `pydantic.v1`，提供 Pydantic v1 的所有內容。但在 Python 3.13 之後的版本不再支援。
 
 這表示你可以安裝最新的 Pydantic v2，並從該子模組匯入並使用舊的 Pydantic v1 元件，就像安裝了舊版 Pydantic v1 一樣。
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### FastAPI 對 v2 中 Pydantic v1 的支援 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning
+
+FastAPI 對 `pydantic.v1` 模型的支援是在 **FastAPI 0.119.0** 加入，並在 **FastAPI 0.128.0** 移除。這原本是為了遷移到 Pydantic v2 而提供的臨時協助。
+
+在目前版本的 FastAPI 中，在你的應用使用 `pydantic.v1` 模型會引發錯誤。
+
+本節其餘內容描述的是只在那些較舊版本中可用的臨時支援。
+
+///
 
 自 FastAPI 0.119.0 起，也支援透過 Pydantic v2 內的 Pydantic v1（部分）以協助遷移至 v2。
 
@@ -121,6 +133,12 @@ graph TB
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### 分步遷移 { #migrate-in-steps }
+
+/// warning
+
+以下描述的，在同一應用中同時使用 Pydantic v1 與 v2 模型進行漸進式遷移，只適用於 **FastAPI 0.119.0 到 0.127.x**。這項支援已在 **FastAPI 0.128.0** 移除，最新版本需要 **Pydantic v2** 模型。
+
+///
 
 /// tip
 

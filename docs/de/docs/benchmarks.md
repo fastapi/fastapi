@@ -1,6 +1,6 @@
 # Benchmarks { #benchmarks }
 
-Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn ausgeführt werden, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur unterhalb von Starlette und Uvicorn selbst (die intern von FastAPI verwendet werden).
+Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn ausgeführt werden, als [eines der schnellsten verfügbaren Python-Frameworks](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7), nur unterhalb von Starlette und Uvicorn selbst (die intern von FastAPI verwendet werden).
 
 Aber bei der Betrachtung von Benchmarks und Vergleichen sollten Sie Folgendes beachten.
 

@@ -1,10 +1,11 @@
 # SQL（リレーショナル）データベース { #sql-relational-databases }
 
+
 FastAPI は SQL（リレーショナル）データベースの使用を必須にはしません。必要であれば、任意のデータベースを使用できます。
 
-ここでは <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> を使った例を見ていきます。
+ここでは [SQLModel](https://sqlmodel.tiangolo.com/) を使った例を見ていきます。
 
-SQLModel は <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> と Pydantic の上に構築されています。FastAPI と同じ作者により、SQL データベースを使う必要がある FastAPI アプリに最適になるように作られています。
+SQLModel は [SQLAlchemy](https://www.sqlalchemy.org/) と Pydantic の上に構築されています。FastAPI と同じ作者により、SQL データベースを使う必要がある FastAPI アプリに最適になるように作られています。
 
 /// tip | 豆知識
 
@@ -26,15 +27,15 @@ SQLModel は SQLAlchemy をベースにしているため、SQLAlchemy がサポ
 
 /// tip | 豆知識
 
-フロントエンドやその他のツールを含む、FastAPI と PostgreSQL の公式プロジェクトジェネレーターがあります: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+フロントエンドやその他のツールを含む、FastAPI と PostgreSQL の公式プロジェクトジェネレーターがあります: [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-これはとてもシンプルで短いチュートリアルです。データベースや SQL、より高度な機能について学びたい場合は、<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel のドキュメント</a>をご覧ください。
+これはとてもシンプルで短いチュートリアルです。データベースや SQL、より高度な機能について学びたい場合は、[SQLModel のドキュメント](https://sqlmodel.tiangolo.com/)をご覧ください。
 
 ## `SQLModel` のインストール { #install-sqlmodel }
 
-まずは [仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成・有効化し、`sqlmodel` をインストールします:
+まずは [仮想環境](../virtual-environments.md) を作成・有効化し、`sqlmodel` をインストールします:
 
 <div class="termy">
 
@@ -65,7 +66,7 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)` は `id` が SQL データベースのプライマリキーであることを SQLModel に伝えます（SQL のプライマリキーについては SQLModel ドキュメントを参照してください）。
 
-    注: プライマリキーのフィールドには `int | None` を使っています。これは Python コード内で `id=None` のように「`id` なしでオブジェクトを作成」し、保存時にデータベースが生成することを想定するためです。SQLModel はデータベースが `id` を提供することを理解し、スキーマでは「NULL 不可の `INTEGER` 列」を定義します。詳細は <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">SQLModel のプライマリキーに関するドキュメント</a> を参照してください。
+    注: プライマリキーのフィールドには `int | None` を使っています。これは Python コード内で `id=None` のように「`id` なしでオブジェクトを作成」し、保存時にデータベースが生成することを想定するためです。SQLModel はデータベースが `id` を提供することを理解し、スキーマでは「NULL 不可の `INTEGER` 列」を定義します。詳細は [SQLModel のプライマリキーに関するドキュメント](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) を参照してください。
 
 * `Field(index=True)` は、この列に対して SQL のインデックスを作成するよう SQLModel に指示します。これにより、この列でフィルタしてデータを読む場合に検索が高速になります。
 
@@ -111,7 +112,7 @@ SQLModel の `engine`（内部的には SQLAlchemy の `engine`）は、デー�
 
 /// tip | 豆知識
 
-SQLModel は Alembic をラップしたマイグレーションユーティリティを提供予定ですが、現時点では <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> を直接使えます。
+SQLModel は Alembic をラップしたマイグレーションユーティリティを提供予定ですが、現時点では [Alembic](https://alembic.sqlalchemy.org/en/latest/) を直接使えます。
 
 ///
 
@@ -152,7 +153,7 @@ SQLModel は Alembic をラップしたマイグレーションユーティリ�
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +338,7 @@ SQLModel では継承を使って、あらゆるケースでフィールドの�
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +353,6 @@ $ fastapi dev main.py
 
 ## まとめ { #recap }
 
-<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> を使って SQL データベースとやり取りし、データモデルとテーブルモデルでコードを簡潔にできます。
+[SQLModel](https://sqlmodel.tiangolo.com/) を使って SQL データベースとやり取りし、データモデルとテーブルモデルでコードを簡潔にできます。
 
-さらに多くを学ぶには SQLModel のドキュメントをご覧ください。<a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">FastAPI と SQLModel を使うチュートリアル</a> もあります。🚀
+さらに多くを学ぶには SQLModel のドキュメントをご覧ください。[FastAPI と SQLModel を使うチュートリアル](https://sqlmodel.tiangolo.com/tutorial/fastapi/) もあります。🚀

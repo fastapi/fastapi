@@ -1,12 +1,13 @@
 # WSGI の組み込み - Flask、Django など { #including-wsgi-flask-django-others }
 
-[サブアプリケーション - マウント](sub-applications.md){.internal-link target=_blank}、[プロキシの背後](behind-a-proxy.md){.internal-link target=_blank} で見たように、WSGI アプリケーションをマウントできます。
+
+[サブアプリケーション - マウント](sub-applications.md)、[プロキシの背後](behind-a-proxy.md) で見たように、WSGI アプリケーションをマウントできます。
 
 そのために `WSGIMiddleware` を使用して、Flask や Django などの WSGI アプリをラップできます。
 
 ## `WSGIMiddleware` の使用 { #using-wsgimiddleware }
 
-/// info | 情報
+/// note | 備考
 
 これには `a2wsgi` のインストールが必要です。例: `pip install a2wsgi`。
 
@@ -36,13 +37,13 @@
 
 それ以外は **FastAPI** が処理します。
 
-実行して <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> にアクセスすると、Flask からのレスポンスが表示されます:
+実行して [http://localhost:8000/v1/](http://localhost:8000/v1/) にアクセスすると、Flask からのレスポンスが表示されます:
 
 ```txt
 Hello, World from Flask!
 ```
 
-さらに <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a> にアクセスすると、FastAPI からのレスポンスが表示されます:
+さらに [http://localhost:8000/v2](http://localhost:8000/v2) にアクセスすると、FastAPI からのレスポンスが表示されます:
 
 ```JSON
 {

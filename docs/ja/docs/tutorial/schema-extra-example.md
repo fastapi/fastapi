@@ -1,5 +1,6 @@
 # リクエストのExampleデータの宣言 { #declare-request-example-data }
 
+
 アプリが受け取れるデータの例を宣言できます。
 
 ここでは、それを行ういくつかの方法を紹介します。
@@ -12,7 +13,7 @@
 
 その追加情報は、そのモデルの出力**JSON Schema**にそのまま追加され、APIドキュメントで使用されます。
 
-<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydanticのドキュメント: Configuration</a>で説明されているように、`dict`を受け取る属性`model_config`を使用できます。
+[Pydanticのドキュメント: Configuration](https://docs.pydantic.dev/latest/api/config/)で説明されているように、`dict`を受け取る属性`model_config`を使用できます。
 
 生成されるJSON Schemaに表示したい追加データ（`examples`を含む）を含む`dict`を使って、`"json_schema_extra"`を設定できます。
 
@@ -24,7 +25,7 @@
 
 ///
 
-/// info | 情報
+/// note | 備考
 
 OpenAPI 3.1.0（FastAPI 0.99.0以降で使用）では、**JSON Schema**標準の一部である`examples`がサポートされました。
 
@@ -145,17 +146,17 @@ JSON Schemaには`examples`がなかったため、OpenAPIは自身が改変し�
 
 OpenAPIは、仕様の他の部分にも`example`と`examples`フィールドを追加しました:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object`（仕様内）</a>。FastAPIの以下で使用されました:
+* [`Parameter Object`（仕様内）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object)。FastAPIの以下で使用されました:
     * `Path()`
     * `Query()`
     * `Header()`
     * `Cookie()`
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`。仕様内の`Media Type Object`の`content`フィールド（仕様内）</a>。FastAPIの以下で使用されました:
+* [`Request Body Object`、`Media Type Object`の`content`フィールド（仕様内）](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object)。FastAPIの以下で使用されました:
     * `Body()`
     * `File()`
     * `Form()`
 
-/// info | 情報
+/// note | 備考
 
 この古いOpenAPI固有の`examples`パラメータは、FastAPI `0.103.0`以降は`openapi_examples`になりました。
 
@@ -163,7 +164,7 @@ OpenAPIは、仕様の他の部分にも`example`と`examples`フィールドを
 
 ### JSON Schemaの`examples`フィールド { #json-schemas-examples-field }
 
-しかしその後、JSON Schemaは新しいバージョンの仕様に<a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a>フィールドを追加しました。
+しかしその後、JSON Schemaは新しいバージョンの仕様に[`examples`](https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5)フィールドを追加しました。
 
 そして、新しいOpenAPI 3.1.0は、この新しいフィールド`examples`を含む最新バージョン（JSON Schema 2020-12）に基づくようになりました。
 
@@ -171,7 +172,7 @@ OpenAPIは、仕様の他の部分にも`example`と`examples`フィールドを
 
 JSON Schemaのこの新しい`examples`フィールドは、OpenAPIの他の場所（上で説明）にあるような追加メタデータを持つdictではなく、**単なる例の`list`**です。
 
-/// info | 情報
+/// note | 備考
 
 OpenAPI 3.1.0がこのJSON Schemaとの新しいよりシンプルな統合とともにリリースされた後も、しばらくの間、自動ドキュメントを提供するツールであるSwagger UIはOpenAPI 3.1.0をサポートしていませんでした（バージョン5.0.0からサポートされています🎉）。
 

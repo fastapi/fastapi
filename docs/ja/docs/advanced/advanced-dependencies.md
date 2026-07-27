@@ -10,9 +10,9 @@
 
 ただし、その固定の内容はパラメータ化できるようにしたいです。
 
-## "callable" なインスタンス { #a-callable-instance }
+## 「callable」なインスタンス { #a-callable-instance }
 
-Python には、クラスのインスタンスを "callable" にする方法があります。
+Python には、クラスのインスタンスを「callable」にする方法があります。
 
 クラス自体（これはすでに callable です）ではなく、そのクラスのインスタンスです。
 
@@ -98,7 +98,7 @@ FastAPI 0.118.0 より前では、`yield` を使う依存関係を使用する�
 
 この挙動は 0.118.0 で元に戻され、`yield` の後の終了コードはレスポンス送信後に実行されるようになりました。
 
-/// info | 情報
+/// note | 備考
 
 以下で見るように、これはバージョン 0.106.0 より前の挙動ととても似ていますが、いくつかのコーナーケースに対する改良とバグ修正が含まれています。
 
@@ -132,7 +132,7 @@ SQLModel（または SQLAlchemy）でこの特定のユースケースがある�
 
 このようにすると、セッションはデータベース接続を解放するため、他のリクエストがそれを使えるようになります。
 
-`yield` を持つ依存関係で早期終了が必要な別のユースケースがある場合は、あなたの具体的なユースケースと、なぜ `yield` を持つ依存関係の早期クローズが有益かを説明して、<a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion の質問</a>を作成してください。
+`yield` を持つ依存関係で早期終了が必要な別のユースケースがある場合は、あなたの具体的なユースケースと、なぜ `yield` を持つ依存関係の早期クローズが有益かを説明して、[GitHub Discussion の質問](https://github.com/fastapi/fastapi/discussions/new?category=questions)を作成してください。
 
 `yield` を持つ依存関係の早期クローズに納得できるユースケースがある場合は、早期クローズにオプトインする新しい方法を追加することを検討します。
 
@@ -144,9 +144,9 @@ FastAPI 0.110.0 より前では、`yield` を持つ依存関係を使い、そ�
 
 ### バックグラウンドタスクと `yield` を伴う依存関係、技術詳細 { #background-tasks-and-dependencies-with-yield-technical-details }
 
-FastAPI 0.106.0 より前では、`yield` の後で例外を送出することはできませんでした。`yield` を持つ依存関係の終了コードはレスポンス送信「後」に実行されるため、[例外ハンドラ](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} はすでに実行済みでした。
+FastAPI 0.106.0 より前では、`yield` の後で例外を送出することはできませんでした。`yield` を持つ依存関係の終了コードはレスポンス送信「後」に実行されるため、[例外ハンドラ](../tutorial/handling-errors.md#install-custom-exception-handlers)はすでに実行済みでした。
 
-これは主に、依存関係が "yield" した同じオブジェクトをバックグラウンドタスク内で利用できるようにするための設計でした。終了コードはバックグラウンドタスク完了後に実行されるからです。
+これは主に、依存関係が「yield」した同じオブジェクトをバックグラウンドタスク内で利用できるようにするための設計でした。終了コードはバックグラウンドタスク完了後に実行されるからです。
 
 これは、レスポンスがネットワーク上を移動するのを待っている間にリソースを保持しないようにする意図で、FastAPI 0.106.0 で変更されました。
 

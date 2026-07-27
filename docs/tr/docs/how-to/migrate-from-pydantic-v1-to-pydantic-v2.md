@@ -8,9 +8,11 @@ FastAPI 0.119.0 sürümü, v2'ye geçişi kolaylaştırmak için, Pydantic v2’
 
 FastAPI 0.126.0 sürümü Pydantic v1 desteğini kaldırdı, ancak bir süre daha `pydantic.v1` desteğini sürdürdü.
 
+FastAPI 0.128.0 sürümü `pydantic.v1` desteğini de kaldırdı, bu yüzden FastAPI'nin en güncel sürümleri Pydantic v2 gerektirir.
+
 /// warning | Uyarı
 
-Pydantic ekibi, **Python 3.14** ile başlayarak Python'ın en yeni sürümleri için Pydantic v1 desteğini sonlandırdı.
+Pydantic ekibi, Python'ın en yeni sürümleri için Pydantic v1 desteğini, **Python 3.14** ile başlayarak sonlandırdı.
 
 Buna `pydantic.v1` de dahildir; Python 3.14 ve üzeri sürümlerde artık desteklenmemektedir.
 
@@ -22,7 +24,7 @@ Pydantic v1 kullanan eski bir FastAPI uygulamanız varsa, burada onu Pydantic v2
 
 ## Resmi Kılavuz { #official-guide }
 
-Pydantic'in v1'den v2'ye resmi bir <a href="https://docs.pydantic.dev/latest/migration/" class="external-link" target="_blank">Migration Guide</a>'ı vardır.
+Pydantic'in v1'den v2'ye resmi bir [Migration Guide](https://docs.pydantic.dev/latest/migration/)'ı vardır.
 
 Ayrıca nelerin değiştiğini, validasyonların artık nasıl daha doğru ve katı olduğunu, olası dikkat edilmesi gereken noktaları (caveat) vb. de içerir.
 
@@ -30,7 +32,7 @@ Nelerin değiştiğini daha iyi anlamak için okuyabilirsiniz.
 
 ## Testler { #tests }
 
-Uygulamanız için [testlerinizin](../tutorial/testing.md){.internal-link target=_blank} olduğundan ve bunları continuous integration (CI) üzerinde çalıştırdığınızdan emin olun.
+Uygulamanız için [testleriniz](../tutorial/testing.md) olduğundan ve bunları continuous integration (CI) üzerinde çalıştırdığınızdan emin olun.
 
 Bu şekilde yükseltmeyi yapabilir ve her şeyin hâlâ beklendiği gibi çalıştığını doğrulayabilirsiniz.
 
@@ -38,7 +40,7 @@ Bu şekilde yükseltmeyi yapabilir ve her şeyin hâlâ beklendiği gibi çalı�
 
 Birçok durumda, özel özelleştirmeler olmadan standart Pydantic modelleri kullanıyorsanız, Pydantic v1'den Pydantic v2'ye geçiş sürecinin büyük kısmını otomatikleştirebilirsiniz.
 
-Aynı Pydantic ekibinin geliştirdiği <a href="https://github.com/pydantic/bump-pydantic" class="external-link" target="_blank">`bump-pydantic`</a> aracını kullanabilirsiniz.
+Aynı Pydantic ekibinin geliştirdiği [`bump-pydantic`](https://github.com/pydantic/bump-pydantic) aracını kullanabilirsiniz.
 
 Bu araç, değişmesi gereken kodun büyük bir kısmını otomatik olarak dönüştürmenize yardımcı olur.
 
@@ -53,6 +55,16 @@ Bu da şu anlama gelir: Pydantic v2'nin en güncel sürümünü kurup, bu alt mo
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### v2 İçinde Pydantic v1 için FastAPI Desteği { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | Uyarı
+
+`pydantic.v1` modelleri için bu FastAPI desteği **FastAPI 0.119.0** sürümünde eklendi ve **FastAPI 0.128.0** sürümünde kaldırıldı. Pydantic v2'ye geçiş için geçici bir yardımcı olması amaçlanmıştı.
+
+FastAPI'nin güncel sürümlerinde, uygulamanızda bir `pydantic.v1` modeli kullanmak hataya neden olur.
+
+Bu bölümün geri kalanı yalnızca bu eski sürümlerde mevcut olan geçici desteği açıklar.
+
+///
 
 FastAPI 0.119.0'dan itibaren, v2'ye geçişi kolaylaştırmak için Pydantic v2’nin içinden Pydantic v1 kullanımına yönelik kısmi destek de vardır.
 
@@ -121,6 +133,12 @@ Pydantic v1 modelleriyle `Body`, `Query`, `Form` vb. parametreler için FastAPI'
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### Adım Adım Geçiş { #migrate-in-steps }
+
+/// warning | Uyarı
+
+Aşağıda açıklanan, aynı uygulamada hem Pydantic v1 hem de v2 modellerini kullanarak yapılan kademeli geçiş yalnızca **FastAPI 0.119.0 ile 0.127.x** arasında çalışır. Bu destek **FastAPI 0.128.0** sürümünde kaldırıldı; en güncel sürümler **Pydantic v2** modelleri gerektirir.
+
+///
 
 /// tip | İpucu
 

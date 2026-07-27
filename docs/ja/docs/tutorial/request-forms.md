@@ -2,11 +2,11 @@
 
 JSONの代わりにフィールドを受け取る場合は、`Form`を使用します。
 
-/// info | 情報
+/// note | 備考
 
-フォームを使うためには、まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+フォームを使うためには、まず[`python-multipart`](https://github.com/Kludex/python-multipart)をインストールします。
 
-必ず[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化してから、例えば次のようにインストールしてください:
+必ず[仮想環境](../virtual-environments.md)を作成して有効化してから、例えば次のようにインストールしてください:
 
 ```console
 $ pip install python-multipart
@@ -32,7 +32,7 @@ $ pip install python-multipart
 
 `Form`では`Body`（および`Query`や`Path`、`Cookie`）と同じ設定を宣言することができます。これには、バリデーション、例、エイリアス（例えば`username`の代わりに`user-name`）などが含まれます。
 
-/// info | 情報
+/// note | 備考
 
 `Form`は`Body`を直接継承するクラスです。
 
@@ -56,7 +56,7 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 しかし、フォームがファイルを含む場合は、`multipart/form-data`としてエンコードされます。ファイルの扱いについては次の章で説明します。
 
-これらのエンコーディングやフォームフィールドの詳細については、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr>の<code>POST</code></a>のウェブドキュメントを参照してください。
+これらのエンコーディングやフォームフィールドの詳細については、[<abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> の `POST` のウェブドキュメント](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)を参照してください。
 
 ///
 
@@ -70,4 +70,4 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 ## まとめ { #recap }
 
-フォームデータの入力パラメータを宣言するには、`Form`を使用する。
+フォームデータの入力パラメータを宣言するには、`Form`を使用します。

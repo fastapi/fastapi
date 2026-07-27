@@ -12,7 +12,7 @@ Umgebungsvariablen können nützlich sein, um **Einstellungen** der Anwendung zu
 
 ## Umgebungsvariablen erstellen und verwenden { #create-and-use-env-vars }
 
-Sie können Umgebungsvariablen in der **Shell (Terminal)** erstellen und verwenden, ohne Python zu benötigen:
+Sie können Umgebungsvariablen in der **Shell (Terminal)** **erstellen** und verwenden, ohne Python zu benötigen:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip | Tipp
 
-Das zweite Argument von <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> ist der Defaultwert, der zurückgegeben wird.
+Das zweite Argument von [`os.getenv()`](https://docs.python.org/3.8/library/os.html#os.getenv) ist der Defaultwert, der zurückgegeben wird.
 
 Wenn er nicht angegeben wird, ist er standardmäßig `None`. Hier geben wir `"World"` als den zu verwendenden Defaultwert an.
 
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip | Tipp
 
-Sie können mehr darüber lesen auf <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+Sie können mehr darüber lesen auf [The Twelve-Factor App: Config](https://12factor.net/config).
 
 ///
 
@@ -161,9 +161,9 @@ Sie können mehr darüber lesen auf <a href="https://12factor.net/config" class=
 
 Diese Umgebungsvariablen können nur **Textstrings** handhaben, da sie extern zu Python sind und kompatibel mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen, wie Linux, Windows, macOS) sein müssen.
 
-Das bedeutet, dass **jeder Wert**, der in Python von einer Umgebungsvariable gelesen wird, **ein `str` sein wird**, und jede Konvertierung in einen anderen Typ oder jede Validierung muss im Code vorgenommen werden.
+Das bedeutet, dass **jeder Wert**, der in Python von einer Umgebungsvariablen gelesen wird, **ein `str` sein wird**, und jede Konvertierung in einen anderen Typ oder jede Validierung muss im Code vorgenommen werden.
 
-Sie werden mehr darüber lernen, wie man Umgebungsvariablen zur Handhabung von **Anwendungseinstellungen** verwendet, im [Handbuch für fortgeschrittene Benutzer – Einstellungen und Umgebungsvariablen](./advanced/settings.md){.internal-link target=_blank}.
+Sie werden mehr darüber lernen, wie man Umgebungsvariablen zur Handhabung von **Anwendungseinstellungen** verwendet, im [Handbuch für fortgeschrittene Benutzer – Einstellungen und Umgebungsvariablen](./advanced/settings.md).
 
 ## `PATH`-Umgebungsvariable { #path-environment-variable }
 
@@ -255,7 +255,7 @@ $ python
 
 //// tab | Linux, macOS
 
-Das System wird das `python` Programm in `/opt/custompython/bin` **finden** und es ausführen.
+Das System wird das `python`-Programm in `/opt/custompython/bin` **finden** und es ausführen.
 
 Es wäre ungefähr gleichbedeutend mit der Eingabe von:
 
@@ -271,7 +271,7 @@ $ /opt/custompython/bin/python
 
 //// tab | Windows
 
-Das System wird das `python` Programm in `C:\opt\custompython\bin\python` **finden** und es ausführen.
+Das System wird das `python`-Programm in `C:\opt\custompython\bin\python` **finden** und es ausführen.
 
 Es wäre ungefähr gleichbedeutend mit der Eingabe von:
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-Diese Informationen werden nützlich sein, wenn Sie über [Virtuelle Umgebungen](virtual-environments.md){.internal-link target=_blank} lernen.
+Diese Informationen werden nützlich sein, wenn Sie über [Virtuelle Umgebungen](virtual-environments.md) lernen.
 
 ## Fazit { #conclusion }
 
 Mit diesem Wissen sollten Sie ein grundlegendes Verständnis davon haben, was **Umgebungsvariablen** sind und wie man sie in Python verwendet.
 
-Sie können auch mehr darüber in der <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia zu Umgebungsvariablen</a> lesen.
+Sie können auch mehr darüber in der [Wikipedia zu Umgebungsvariablen](https://en.wikipedia.org/wiki/Environment_variable) lesen.
 
 In vielen Fällen ist es nicht sehr offensichtlich, wie Umgebungsvariablen nützlich und sofort anwendbar sein könnten. Aber sie tauchen immer wieder in vielen verschiedenen Szenarien auf, wenn Sie entwickeln, deshalb ist es gut, darüber Bescheid zu wissen.
 

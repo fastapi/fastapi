@@ -8,33 +8,17 @@
 
 ## 开源 SDK 生成器 { #open-source-sdk-generators }
 
-一个功能多样的选择是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>，它支持**多种编程语言**，可以根据你的 OpenAPI 规范生成 SDK。
+一个功能多样的选择是 [OpenAPI Generator](https://openapi-generator.tech/)，它支持**多种编程语言**，可以根据你的 OpenAPI 规范生成 SDK。
 
-对于 **TypeScript 客户端**，<a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> 是为 TypeScript 生态打造的专用方案，提供优化的使用体验。
+对于 **TypeScript 客户端**，[Hey API](https://heyapi.dev/) 是为 TypeScript 生态打造的专用方案，提供优化的使用体验。
 
-你还可以在 <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a> 上发现更多 SDK 生成器。
+你还可以在 [OpenAPI.Tools](https://openapi.tools/#sdk) 上发现更多 SDK 生成器。
 
 /// tip | 提示
 
 FastAPI 会自动生成 **OpenAPI 3.1** 规范，因此你使用的任何工具都必须支持该版本。
 
 ///
-
-## 来自 FastAPI 赞助商的 SDK 生成器 { #sdk-generators-from-fastapi-sponsors }
-
-本节介绍的是由赞助 FastAPI 的公司提供的、具备**风险投资背景**或**公司支持**的方案。这些产品在高质量生成的 SDK 之上，提供了**更多特性**和**集成**。
-
-通过 ✨ [**赞助 FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨，这些公司帮助确保框架及其**生态**保持健康并且**可持续**。
-
-他们的赞助也体现了对 FastAPI **社区**（也就是你）的高度承诺，不仅关注提供**优秀的服务**，也支持一个**健壮且繁荣的框架**——FastAPI。🙇
-
-例如，你可以尝试：
-
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
-
-其中一些方案也可能是开源的或提供免费层级，你可以不花钱就先试用。其他商业 SDK 生成器也可在网上找到。🤓
 
 ## 创建一个 TypeScript SDK { #create-a-typescript-sdk }
 
@@ -58,7 +42,7 @@ OpenAPI 中包含的这些模型信息就是用于**生成客户端代码**的�
 
 ### Hey API { #hey-api }
 
-当我们有了带模型的 FastAPI 应用后，可以使用 Hey API 来生成 TypeScript 客户端。最快的方式是通过 npx：
+当我们有了带模型的 FastAPI 应用后，可以使用 Hey API 来生成 TypeScript 客户端。最快的方式是通过 npx。
 
 ```sh
 npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
@@ -66,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 这会在 `./src/client` 生成一个 TypeScript SDK。
 
-你可以在其官网了解如何<a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">安装 `@hey-api/openapi-ts`</a>，以及阅读<a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">生成结果</a>的说明。
+你可以在其官网了解如何[安装 `@hey-api/openapi-ts`](https://heyapi.dev/openapi-ts/get-started)，以及阅读[生成结果](https://heyapi.dev/openapi-ts/output)的说明。
 
 ### 使用 SDK { #using-the-sdk }
 
@@ -84,7 +68,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 ///
 
-你发送的数据如果不符合要求，会在编辑器中显示内联错误：
+你发送的数据会有**内联错误**：
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
@@ -121,9 +105,9 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...这是因为客户端生成器会把每个*路径操作*的 OpenAPI 内部**操作 ID（operation ID）**用作方法名的一部分。
+...这是因为客户端生成器会使用每个*路径操作*的 OpenAPI 内部**操作 ID（operation ID）**。
 
-OpenAPI 要求每个操作 ID 在所有*路径操作*中都是唯一的，因此 FastAPI 会使用**函数名**、**路径**和**HTTP 方法/操作**来生成操作 ID，以确保其唯一性。
+OpenAPI 要求每个操作 ID 在所有*路径操作*中都是唯一的，因此 FastAPI 会使用**函数名**、**路径**和**HTTP 方法/操作**来生成操作 ID，因为这样可以确保操作 ID 是唯一的。
 
 接下来我会告诉你如何改进。🤓
 
@@ -195,9 +179,9 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 
 使用自动生成的客户端时，你会获得以下内容的**自动补全**：
 
-* 方法
-* 请求体中的数据、查询参数等
-* 响应数据
+* 方法。
+* 请求体中的数据、查询参数等。
+* 响应数据。
 
 你还会为所有内容获得**内联错误**。
 

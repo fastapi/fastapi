@@ -4,7 +4,7 @@
 
 FastAPI 提供了一個方便的工具，讓你在維持彈性的同時，幫你組織應用程式的結構。
 
-/// info | 資訊
+/// note | 注意
 
 如果你來自 Flask，這相當於 Flask 的 Blueprints。
 
@@ -17,16 +17,16 @@ FastAPI 提供了一個方便的工具，讓你在維持彈性的同時，幫你
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | 提示
@@ -123,7 +123,7 @@ from app.routers import items
 
 為了簡化範例，我們使用了一個虛構的標頭。
 
-但在真實情況下，使用內建的[安全工具](security/index.md){.internal-link target=_blank}會有更好的效果。
+但在真實情況下，使用內建的 [安全工具](security/index.md) 會有更好的效果。
 
 ///
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | 提示
 
-請注意，就像在[路徑操作裝飾器中的相依性](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}一樣，不會把任何值傳遞給你的路徑操作函式（path operation function）。
+請注意，就像在[路徑操作裝飾器中的相依性](dependencies/dependencies-in-path-operation-decorators.md)一樣，不會把任何值傳遞給你的路徑操作函式（path operation function）。
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * 它們都會包含預先定義的 `responses`。
 * 這些路徑操作都會在執行前評估 / 執行其 `dependencies` 清單。
     * 如果你也在特定的路徑操作中宣告了相依性，這些相依性也會被執行。
-    * Router 的相依性會先執行，然後是[裝飾器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}，最後是一般參數相依性。
-    * 你也可以加入帶有 `scopes` 的 [`Security` 相依性](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}。
+    * Router 的相依性會先執行，然後是[裝飾器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md)，最後是一般參數相依性。
+    * 你也可以加入帶有 `scopes` 的 [`Security` 相依性](../advanced/security/oauth2-scopes.md)。
 
 /// tip | 提示
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 檢查
+/// tip | 提示
 
 `prefix`、`tags`、`responses` 與 `dependencies` 參數（就像許多其他情況一樣）只是 FastAPI 提供的功能，幫助你避免重複程式碼。
 
@@ -303,7 +303,7 @@ from ...dependencies import get_token_header
 
 照常匯入並建立 `FastAPI` 類別。
 
-我們甚至可以宣告[全域相依性](dependencies/global-dependencies.md){.internal-link target=_blank}，它們會與各 `APIRouter` 的相依性合併：
+我們甚至可以宣告[全域相依性](dependencies/global-dependencies.md)，它們會與各 `APIRouter` 的相依性合併：
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 資訊
+/// note | 注意
 
 第一種是「相對匯入」：
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-想了解更多關於 Python 套件與模組，請閱讀<a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">官方的模組說明文件</a>。
+想了解更多關於 Python 套件與模組，請閱讀[官方的模組說明文件](https://docs.python.org/3/tutorial/modules.html)。
 
 ///
 
@@ -382,7 +382,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 資訊
+/// note | 注意
 
 `users.router` 是位於 `app/routers/users.py` 檔案內的 `APIRouter`。
 
@@ -396,17 +396,17 @@ from .routers.users import router
 
 /// note | 技術細節
 
-實際上，它會在內部為 `APIRouter` 中宣告的每一個「路徑操作」建立一個對應的「路徑操作」。
+當 router 被納入主應用時，FastAPI 會保留原本的 `APIRouter` 與其 `APIRoute` 仍然是活的。
 
-所以在幕後，它實際運作起來就像是一個單一的應用。
+這表示自訂的 `APIRouter` 與 `APIRoute` 子類別在被納入之後依然會參與運作。
 
 ///
 
-/// check | 檢查
+/// tip | 提示
 
 把 router 納入時不需要擔心效能。
 
-這只會在啟動時花費微秒等級，且只發生一次。
+這個設計相當輕量，且避免為每次請求增加額外負擔。
 
 因此不會影響效能。⚡
 
@@ -451,7 +451,7 @@ from .routers.users import router
 
 而且它會和透過 `app.include_router()` 加入的其他路徑操作正確地一起運作。
 
-/// info | 非常技術細節
+/// note | 非常技術細節
 
 注意：這是個非常技術性的細節，你大概可以直接略過。
 
@@ -461,7 +461,38 @@ from .routers.users import router
 
 這是因為我們要把它們的路徑操作包含進 OpenAPI 結構與使用者介面中。
 
-由於無法將它們隔離並獨立「掛載」，所以這些路徑操作會被「複製」（重新建立），而不是直接包含進來。
+FastAPI 會保留原始的 routers 與路徑操作處於活躍狀態，並在處理請求與產生 OpenAPI 時，合併 router 的前綴、相依性、標籤、回應與其他中繼資料。
+
+///
+
+## 在 `pyproject.toml` 設定 `entrypoint` { #configure-the-entrypoint-in-pyproject-toml }
+
+因為你的 FastAPI `app` 物件位在 `app/main.py`，你可以在 `pyproject.toml` 檔案中這樣設定 `entrypoint`：
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+這等同於這樣匯入：
+
+```python
+from app.main import app
+```
+
+如此一來 `fastapi` 指令就會知道去哪裡找到你的 app。
+
+/// Note | 注意
+
+你也可以把路徑直接傳給指令，例如：
+
+```console
+$ fastapi dev app/main.py
+```
+
+但你每次呼叫 `fastapi` 指令時都得記得傳入正確的路徑。
+
+此外，其他工具可能找不到它，例如 [VS Code 擴充套件](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此建議在 `pyproject.toml` 中使用 `entrypoint`。
 
 ///
 
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-然後開啟位於 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 的文件。
+然後開啟位於 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 的文件。
 
 你會看到自動產生的 API 文件，包含來自所有子模組的路徑，使用正確的路徑（與前綴）與正確的標籤：
 
@@ -501,4 +532,16 @@ $ fastapi dev app/main.py
 router.include_router(other_router)
 ```
 
-請確保在把 `router` 納入 `FastAPI` 應用之前先這麼做，這樣 `other_router` 的路徑操作也會被包含進去。
+你可以在把 `router` 納入 `FastAPI` 應用的前或後這麼做。FastAPI 仍會在路由與 OpenAPI 中包含 `other_router` 的路徑操作。
+
+同樣地，之後新增到這些 routers 的路徑操作也適用。透過先前的納入，它們也會被看見。
+
+/// warning | 技術細節
+
+避免在納入 router 之後直接修改 `router.routes`。FastAPI 將 router 的納入視為即時的，因此原始 router 與其 routes 仍然是路由與 OpenAPI 產生的一部分。
+
+請使用有文件記載的 API，例如路徑操作的裝飾器與 `.include_router()` 來新增路由與 routers。
+
+把 `router.routes` 視為較低階的路由樹結構，它可能同時包含路由定義與被納入的 routers，避免將它當成最終路徑操作的扁平清單來依賴。
+
+///

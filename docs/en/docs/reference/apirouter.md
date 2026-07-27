@@ -13,6 +13,7 @@ from fastapi import APIRouter
         members:
             - websocket
             - include_router
+            - frontend
             - get
             - put
             - post

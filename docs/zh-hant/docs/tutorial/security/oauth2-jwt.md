@@ -24,13 +24,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 一週後，權杖會過期，使用者就不再被授權，需要再次登入以取得新的權杖。而如果使用者（或第三方）試圖修改權杖來改變有效期，你也能發現，因為簽名不會相符。
 
-如果你想玩玩看 JWT 權杖並了解其運作，請參考 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
+如果你想玩玩看 JWT 權杖並了解其運作，請參考 [https://jwt.io](https://jwt.io/)。
 
 ## 安裝 `PyJWT` { #install-pyjwt }
 
 我們需要安裝 `PyJWT` 才能在 Python 中產生與驗證 JWT 權杖。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md){.internal-link target=_blank}，然後安裝 `pyjwt`：
+請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後安裝 `pyjwt`：
 
 <div class="termy">
 
@@ -42,11 +42,11 @@ $ pip install pyjwt
 
 </div>
 
-/// info | 說明
+/// note | 注意
 
 如果你打算使用像 RSA 或 ECDSA 這類的數位簽章演算法，應該安裝帶有加密函式庫相依的 `pyjwt[crypto]`。
 
-更多內容可參考 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT 安裝文件</a>。
+更多內容可參考 [PyJWT 安裝文件](https://pyjwt.readthedocs.io/en/latest/installation.html)。
 
 ///
 
@@ -72,7 +72,7 @@ pwdlib 是一個很棒的 Python 套件，用來處理密碼雜湊。
 
 建議使用的演算法是「Argon2」。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md){.internal-link target=_blank}，然後以 Argon2 支援安裝 pwdlib：
+請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後以 Argon2 支援安裝 pwdlib：
 
 <div class="termy">
 
@@ -120,7 +120,7 @@ pwdlib 也支援 bcrypt 雜湊演算法，但不包含傳統（legacy）演算�
 
 當以不存在於資料庫的使用者名稱呼叫 `authenticate_user` 時，我們仍然會拿一個假的雜湊去跑一次 `verify_password`。
 
-這可確保無論使用者名稱是否有效，端點的回應時間都大致相同，避免可用來枚舉既有使用者名稱的「計時攻擊」（timing attacks）。
+這可確保無論使用者名稱是否有效，端點的回應時間都大致相同，避免可用來枚舉既有使用者名稱的 **計時攻擊**（timing attacks）。
 
 /// note | 注意
 
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## 更新 `/token` 路徑操作 { #update-the-token-path-operation }
+## 更新 `/token` *路徑操作* { #update-the-token-path-operation }
 
 用權杖有效期建立一個 `timedelta`。
 
@@ -200,7 +200,7 @@ JWT 除了用來識別使用者並允許他直接對你的 API 執行操作外�
 
 ## 試試看 { #check-it }
 
-啟動伺服器並前往文件頁：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+啟動伺服器並前往文件頁：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 你會看到這樣的介面：
 
@@ -213,7 +213,7 @@ JWT 除了用來識別使用者並允許他直接對你的 API 執行操作外�
 Username: `johndoe`
 Password: `secret`
 
-/// check | 檢查
+/// tip | 提示
 
 注意在程式碼中完全沒有明文密碼「`secret`」，我們只有雜湊後的版本。
 

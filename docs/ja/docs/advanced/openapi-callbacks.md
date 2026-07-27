@@ -23,7 +23,7 @@
 * API 利用者（外部開発者）に通知を送り返します。
     * これは（あなたの API から）外部開発者が提供する *外部 API* に POST リクエストを送ることで行われます（これが「コールバック」です）。
 
-## 通常の FastAPI アプリ { #the-normal-fastapi-app }
+## 通常の **FastAPI** アプリ { #the-normal-fastapi-app }
 
 まず、コールバックを追加する前の通常の API アプリがどうなるか見てみましょう。
 
@@ -35,7 +35,7 @@
 
 /// tip | 豆知識
 
-`callback_url` クエリパラメータは、Pydantic の <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> 型を使用します。
+`callback_url` クエリパラメータは、Pydantic の [Url](https://docs.pydantic.dev/latest/api/networks/) 型を使用します。
 
 ///
 
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 実際のコールバックは単なる HTTP リクエストです。
 
-自分でコールバックを実装する場合は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> や <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a> のようなものを使えます。
+自分でコールバックを実装する場合は、[HTTPX](https://www.python-httpx.org) や [Requests](https://requests.readthedocs.io/) のようなものを使えます。
 
 ///
 
@@ -76,7 +76,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 しかし、あなたはすでに **FastAPI** で API の自動ドキュメントを簡単に作る方法を知っています。
 
-その知識を使って、*外部 API* がどうあるべきかをドキュメント化します……つまり、外部 API が実装すべき *path operation(s)*（あなたの API が呼び出すもの）を作成します。
+その知識を使って、*外部 API* がどうあるべきかをドキュメント化します... つまり、外部 API が実装すべき *path operation(s)*（あなたの API が呼び出すもの）を作成します。
 
 /// tip | 豆知識
 
@@ -86,13 +86,13 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 ///
 
-### コールバック用 APIRouter を作成 { #create-a-callback-apirouter }
+### コールバック用 `APIRouter` を作成 { #create-a-callback-apirouter }
 
 まず、1 つ以上のコールバックを含む新しい `APIRouter` を作成します。
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
-### コールバックの path operation を作成 { #create-the-callback-path-operation }
+### コールバックの *path operation* を作成 { #create-the-callback-path-operation }
 
 上で作成したのと同じ `APIRouter` を使って、コールバックの *path operation* を作成します。
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 通常の *path operation* と異なる主な点が 2 つあります:
 
 * 実際のコードは不要です。あなたのアプリはこのコードを決して呼びません。これは *外部 API* をドキュメント化するためだけに使われます。したがって、関数本体は `pass` で構いません。
-* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 の式</a>（後述）を含められます。
+* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（後述）を含められます。
 
 ### コールバックのパス式 { #the-callback-path-expression }
 
-コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 の式</a>を使用できます。
+コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)を使用できます。
 
 この例では、`str` は次のとおりです:
 
@@ -167,19 +167,19 @@ JSON ボディは次のような内容です:
 
 これで、上で作成したコールバック用ルーター内に、必要なコールバックの *path operation(s)*（*外部開発者* が *外部 API* に実装すべきもの）が用意できました。
 
-次に、*あなたの API の path operation デコレータ*の `callbacks` パラメータに、そのコールバック用ルーターの属性 `.routes`（実体はルート/*path operations* の `list`）を渡します:
+次に、*あなたの API の path operation デコレータ*の `callbacks` パラメータに、そのコールバック用ルーターの属性 `.routes` を渡します:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | 豆知識
 
-`callback=` に渡すのはルーター本体（`invoices_callback_router`）ではなく、属性 `.routes`（`invoices_callback_router.routes`）である点に注意してください。
+`callbacks=` に渡すのはルーター本体（`invoices_callback_router`）ではなく、属性 `.routes`（`invoices_callback_router.routes`）である点に注意してください。FastAPI はそれらのルートを使ってコールバックの OpenAPI ドキュメントを生成します。
 
 ///
 
 ### ドキュメントを確認 { #check-the-docs }
 
-アプリを起動して <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> にアクセスします。
+アプリを起動して [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) にアクセスします。
 
 あなたの *path operation* に「Callbacks」セクションが含まれ、*外部 API* がどうあるべきかが表示されているのが確認できます:
 

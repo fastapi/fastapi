@@ -1,5 +1,6 @@
 # 경로 처리 설정 { #path-operation-configuration }
 
+
 *경로 처리 데코레이터*를 설정하기 위해 전달할 수 있는 몇 가지 매개변수가 있습니다.
 
 /// warning | 경고
@@ -58,7 +59,7 @@
 
 설명은 보통 길어지고 여러 줄에 걸쳐있기 때문에, *경로 처리* 설명을 함수 <dfn title="문서화에 사용되는 함수 내부 첫 표현식의 여러 줄 문자열(어떤 변수에도 할당되지 않음)">독스트링</dfn>에 선언할 수 있으며, **FastAPI**는 그곳에서 이를 읽습니다.
 
-독스트링에는 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>을 작성할 수 있으며, (독스트링의 들여쓰기를 고려하여) 올바르게 해석되고 표시됩니다.
+독스트링에는 [Markdown](https://en.wikipedia.org/wiki/Markdown)을 작성할 수 있으며, (독스트링의 들여쓰기를 고려하여) 올바르게 해석되고 표시됩니다.
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -72,13 +73,13 @@
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 정보
+/// note | 참고
 
 `response_description`은 구체적으로 응답을 지칭하며, `description`은 일반적인 *경로 처리*를 지칭합니다.
 
 ///
 
-/// check | 확인
+/// tip | 팁
 
 OpenAPI는 각 *경로 처리*가 응답에 관한 설명을 요구할 것을 명시합니다.
 

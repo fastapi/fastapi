@@ -2,13 +2,13 @@
 
 **FastAPI** 并不要求你使用 SQL（关系型）数据库。你可以使用你想用的**任何数据库**。
 
-这里，我们来看一个使用 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> 的示例。
+这里，我们来看一个使用 [SQLModel](https://sqlmodel.tiangolo.com/) 的示例。
 
-**SQLModel** 基于 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> 和 Pydantic 构建。它由 **FastAPI** 的同一作者制作，旨在完美匹配需要使用**SQL 数据库**的 FastAPI 应用程序。
+**SQLModel** 基于 [SQLAlchemy](https://www.sqlalchemy.org/) 和 Pydantic 构建。它由 **FastAPI** 的同一作者制作，旨在完美匹配需要使用**SQL 数据库**的 FastAPI 应用程序。
 
 /// tip | 提示
 
-你可以使用任意其他你想要的 SQL 或 NoSQL 数据库库（在某些情况下称为 <abbr title="Object Relational Mapper - 对象关系映射器: 一个术语，用来指代一种库，其中某些类表示 SQL 表，这些类的实例表示这些表中的行">"ORMs"</abbr>），FastAPI 不会强迫你使用任何东西。😎
+你可以使用任意其他你想要的 SQL 或 NoSQL 数据库类库（在某些情况下称为 <abbr title="Object Relational Mapper - 对象关系映射器: 一个花哨的术语，指一种库，其中某些类表示 SQL 表，而实例表示这些表中的行">"ORMs"</abbr>），FastAPI 不会强迫你使用任何东西。😎
 
 ///
 
@@ -26,15 +26,15 @@
 
 /// tip | 提示
 
-有一个使用 **FastAPI** 和 **PostgreSQL** 的官方项目生成器，其中包括了前端和更多工具： <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
+有一个使用 **FastAPI** 和 **PostgreSQL** 的官方项目生成器，其中包括了前端和更多工具： [https://github.com/fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ///
 
-这是一个非常简单和简短的教程。如果你想了解一般的数据库、SQL 或更高级的功能，请查看 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel 文档</a>。
+这是一个非常简单和简短的教程。如果你想了解一般的数据库、SQL 或更高级的功能，请查看 [SQLModel 文档](https://sqlmodel.tiangolo.com/)。
 
 ## 安装 `SQLModel` { #install-sqlmodel }
 
-首先，确保你创建并激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装 `sqlmodel`：
+首先，确保你创建并激活了[虚拟环境](../virtual-environments.md)，然后安装 `sqlmodel`：
 
 <div class="termy">
 
@@ -57,7 +57,7 @@ $ pip install sqlmodel
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-`Hero` 类与 Pydantic 模型非常相似（实际上，从底层来看，它确实就是一个 Pydantic 模型）。
+`Hero` 类与 Pydantic 模型非常相似（实际上，从底层来看，它*确实就是一个 Pydantic 模型*）。
 
 有一些区别：
 
@@ -65,7 +65,7 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)` 会告诉 SQLModel `id` 是 SQL 数据库中的**主键**（你可以在 SQLModel 文档中了解更多关于 SQL 主键的信息）。
 
-    **注意：** 我们为主键字段使用 `int | None`，这样在 Python 代码中我们可以在没有 `id`（`id=None`）的情况下创建对象，并假定数据库在保存时会生成它。SQLModel 会理解数据库会提供 `id`，并在数据库模式中将该列定义为非空的 `INTEGER`。详见 <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">SQLModel 关于主键的文档</a>。
+    **注意：** 我们为主键字段使用 `int | None`，这样在 Python 代码中我们可以*在没有 `id` 的情况下创建对象*（`id=None`），并假定数据库会*在保存时生成它*。SQLModel 会理解数据库会提供 `id`，并在数据库模式中*将该列定义为非空的 `INTEGER`*。详见 [SQLModel 关于主键的文档](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id)。
 
 * `Field(index=True)` 会告诉 SQLModel 应该为此列创建一个 **SQL 索引**，这样在读取按此列过滤的数据时，程序能在数据库中进行更快的查找。
 
@@ -111,7 +111,7 @@ SQLModel 的 `engine`（实际上它是一个 SQLAlchemy 的 `engine`）是用�
 
 /// tip | 提示
 
-SQLModel 将会拥有封装 Alembic 的迁移工具，但目前你可以直接使用 <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>。
+SQLModel 将会拥有封装 Alembic 的迁移工具，但目前你可以直接使用 [Alembic](https://alembic.sqlalchemy.org/en/latest/)。
 
 ///
 
@@ -152,7 +152,7 @@ SQLModel 将会拥有封装 Alembic 的迁移工具，但目前你可以直接�
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -292,7 +292,7 @@ $ fastapi dev main.py
 
 /// tip | 提示
 
-现在我们使用 `response_model=HeroPublic` 来代替**返回类型注解** `-> HeroPublic`，因为我们返回的值实际上并不是 `HeroPublic`。
+现在我们使用 `response_model=HeroPublic` 来代替**返回类型注解** `-> HeroPublic`，因为我们返回的值实际上*并不是* `HeroPublic`。
 
 如果我们声明了 `-> HeroPublic`，你的编辑器和代码检查工具会（理所应当地）抱怨你返回了一个 `Hero` 而不是一个 `HeroPublic`。
 
@@ -337,7 +337,7 @@ $ fastapi dev main.py
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ $ fastapi dev main.py
 
 ## 总结 { #recap }
 
-你可以使用 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> 与 SQL 数据库进行交互，并通过*数据模型*和*表模型*简化代码。
+你可以使用 [**SQLModel**](https://sqlmodel.tiangolo.com/) 与 SQL 数据库进行交互，并通过*数据模型*和*表模型*简化代码。
 
-你可以在 **SQLModel** 文档中学习到更多内容，其中有一个更详细的<a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">将 SQLModel 与 **FastAPI** 一起使用的迷你教程</a>。🚀
+你可以在 **SQLModel** 文档中学习到更多内容，其中有一个更详细的[将 SQLModel 与 **FastAPI** 一起使用的迷你教程](https://sqlmodel.tiangolo.com/tutorial/fastapi/)。🚀

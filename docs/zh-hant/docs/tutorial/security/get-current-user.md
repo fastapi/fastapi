@@ -14,7 +14,7 @@
 
 就像用 Pydantic 宣告請求體一樣，我們也可以在其他地方使用它：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## 建立 `get_current_user` 依賴 { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@
 
 ///
 
-/// check | 檢查
+/// tip | 提示
 
 這個依賴系統的設計讓我們可以有不同的依賴（不同的 "dependables"），都回傳 `User` 模型。
 

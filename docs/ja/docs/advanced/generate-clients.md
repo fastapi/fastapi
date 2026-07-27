@@ -6,35 +6,19 @@
 
 本ガイドでは、FastAPI バックエンド向けの **TypeScript SDK** を生成する方法を説明します。
 
-## オープソースの SDK ジェネレータ { #open-source-sdk-generators }
+## オープンソースの SDK ジェネレータ { #open-source-sdk-generators }
 
-多用途な選択肢として <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a> があります。これは**多数のプログラミング言語**をサポートし、OpenAPI 仕様から SDK を生成できます。
+多用途な選択肢として [OpenAPI Generator](https://openapi-generator.tech/) があります。これは**多数のプログラミング言語**をサポートし、OpenAPI 仕様から SDK を生成できます。
 
-**TypeScript クライアント**向けには、<a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> が目的特化のソリューションで、TypeScript エコシステムに最適化された体験を提供します。
+**TypeScript クライアント**向けには、[Hey API](https://heyapi.dev/) が目的特化のソリューションで、TypeScript エコシステムに最適化された体験を提供します。
 
-他の SDK ジェネレータは <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a> でも見つけられます。
+他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/#sdk) でも見つけられます。
 
 /// tip | 豆知識
 
 FastAPI は自動的に **OpenAPI 3.1** の仕様を生成します。したがって、使用するツールはこのバージョンをサポートしている必要があります。
 
 ///
-
-## FastAPI スポンサーによる SDK ジェネレータ { #sdk-generators-from-fastapi-sponsors }
-
-このセクションでは、FastAPI をスポンサーしている企業による、**ベンチャー支援**および**企業支援**のソリューションを紹介します。これらの製品は、高品質な生成 SDK に加えて、**追加機能**や**統合**を提供します。
-
-✨ [**FastAPI をスポンサーする**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ ことで、これらの企業はフレームワークとその**エコシステム**の健全性と**持続可能性**を支援しています。
-
-この支援は、FastAPI の**コミュニティ**（皆さん）への強いコミットメントの表明でもあり、**優れたサービス**の提供だけでなく、堅牢で発展するフレームワーク FastAPI を支える姿勢を示しています。🙇
-
-例えば、次のようなものがあります:
-
-* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
-
-これらのソリューションの中にはオープンソースや無料枠を提供するものもあり、金銭的コミットメントなしで試すことができます。他の商用 SDK ジェネレータも存在し、オンラインで見つけられます。🤓
 
 ## TypeScript SDK を作成する { #create-a-typescript-sdk }
 
@@ -66,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 これで TypeScript SDK が `./src/client` に生成されます。
 
-<a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">`@hey-api/openapi-ts` のインストール方法</a>や、<a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">生成物の詳細</a>は公式サイトを参照してください。
+[`@hey-api/openapi-ts` のインストール方法](https://heyapi.dev/openapi-ts/get-started)や、[生成物の詳細](https://heyapi.dev/openapi-ts/output)は公式サイトを参照してください。
 
 ### SDK の利用 { #using-the-sdk }
 

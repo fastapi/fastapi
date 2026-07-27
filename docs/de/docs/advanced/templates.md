@@ -8,7 +8,7 @@ Es gibt Werkzeuge zur einfachen Konfiguration, die Sie direkt in Ihrer **FastAPI
 
 ## Abhängigkeiten installieren { #install-dependencies }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `jinja2` installieren:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und `jinja2` installieren:
 
 <div class="termy">
 
@@ -123,4 +123,4 @@ Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer *
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlettes Dokumentation zu Templates</a>.
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://www.starlette.dev/templates/).
