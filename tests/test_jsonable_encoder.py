@@ -329,3 +329,9 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encode_bytes_invalid_utf8():
+    data = {"bytes": b"\x80\x81"}
+    encoded = jsonable_encoder(data)
+    assert isinstance(encoded["bytes"], str)
