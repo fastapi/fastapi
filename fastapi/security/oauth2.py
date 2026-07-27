@@ -53,7 +53,7 @@ class OAuth2PasswordRequestForm:
     You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
-    know that that it is application specific, it's not part of the specification.
+    know that it is application specific, it's not part of the specification.
     """
 
     def __init__(
@@ -143,7 +143,7 @@ class OAuth2PasswordRequestForm:
             Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
-                If there's a `client_password` (and a `client_id`), they can be sent
+                If there's a `client_secret` (and a `client_id`), they can be sent
                 as part of the form fields. But the OAuth2 specification recommends
                 sending the `client_id` and `client_secret` (if any) using HTTP Basic
                 auth.
@@ -207,7 +207,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
-    know that that it is application specific, it's not part of the specification.
+    know that it is application specific, it's not part of the specification.
 
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
@@ -309,7 +309,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             Form(),
             Doc(
                 """
-                If there's a `client_password` (and a `client_id`), they can be sent
+                If there's a `client_secret` (and a `client_id`), they can be sent
                 as part of the form fields. But the OAuth2 specification recommends
                 sending the `client_id` and `client_secret` (if any) using HTTP Basic
                 auth.

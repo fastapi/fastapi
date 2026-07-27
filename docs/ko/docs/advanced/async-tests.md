@@ -16,11 +16,11 @@
 
 `TestClient`는 표준 pytest를 사용하여, 일반 `def` 테스트 함수 안에서 비동기 FastAPI 애플리케이션을 호출하도록 내부에서 마법 같은 처리를 합니다. 하지만 비동기 함수 안에서 이를 사용하면 그 마법은 더 이상 동작하지 않습니다. 테스트를 비동기로 실행하면, 테스트 함수 안에서 `TestClient`를 더 이상 사용할 수 없습니다.
 
-`TestClient`는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 다행히 HTTPX를 직접 사용해 API를 테스트할 수 있습니다.
+`TestClient`는 [HTTPX](https://www.python-httpx.org)를 기반으로 하며, 다행히 HTTPX를 직접 사용해 API를 테스트할 수 있습니다.
 
 ## 예시 { #example }
 
-간단한 예시로, [더 큰 애플리케이션](../tutorial/bigger-applications.md){.internal-link target=_blank}과 [테스트](../tutorial/testing.md){.internal-link target=_blank}에서 설명한 것과 비슷한 파일 구조를 살펴보겠습니다:
+간단한 예시로, [더 큰 애플리케이션](../tutorial/bigger-applications.md)과 [테스트](../tutorial/testing.md)에서 설명한 것과 비슷한 파일 구조를 살펴보겠습니다:
 
 ```
 .
@@ -32,11 +32,11 @@
 
 `main.py` 파일은 다음과 같습니다:
 
-{* ../../docs_src/async_tests/app_a_py39/main.py *}
+{* ../../docs_src/async_tests/app_a_py310/main.py *}
 
 `test_main.py` 파일에는 `main.py`에 대한 테스트가 있으며, 이제 다음과 같이 보일 수 있습니다:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
 ## 실행하기 { #run-it }
 
@@ -56,7 +56,7 @@ $ pytest
 
 `@pytest.mark.anyio` 마커는 pytest에게 이 테스트 함수가 비동기로 호출되어야 한다고 알려줍니다:
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
 
 /// tip | 팁
 
@@ -66,7 +66,7 @@ $ pytest
 
 그 다음 앱으로 `AsyncClient`를 만들고, `await`를 사용해 비동기 요청을 보낼 수 있습니다.
 
-{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
 
 이는 다음과 동등합니다:
 
@@ -84,7 +84,7 @@ response = client.get('/')
 
 /// warning | 경고
 
-애플리케이션이 lifespan 이벤트에 의존한다면, `AsyncClient`는 이러한 이벤트를 트리거하지 않습니다. 이벤트가 트리거되도록 하려면 <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>의 `LifespanManager`를 사용하세요.
+애플리케이션이 lifespan 이벤트에 의존한다면, `AsyncClient`는 이러한 이벤트를 트리거하지 않습니다. 이벤트가 트리거되도록 하려면 [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage)의 `LifespanManager`를 사용하세요.
 
 ///
 
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | 팁
 
-테스트에 비동기 함수 호출을 통합할 때(예: <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB의 MotorClient</a>를 사용할 때) `RuntimeError: Task attached to a different loop`를 마주친다면, 이벤트 루프가 필요한 객체는 async 함수 안에서만 인스턴스화해야 한다는 점을 기억하세요. 예를 들어 `@app.on_event("startup")` 콜백에서 인스턴스화할 수 있습니다.
+테스트에 비동기 함수 호출을 통합할 때(예: [MongoDB의 MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)를 사용할 때) `RuntimeError: Task attached to a different loop`를 마주친다면, 이벤트 루프가 필요한 객체는 async 함수 안에서만 인스턴스화해야 한다는 점을 기억하세요. 예를 들어 `@app.on_event("startup")` 콜백에서 인스턴스화할 수 있습니다.
 
 ///

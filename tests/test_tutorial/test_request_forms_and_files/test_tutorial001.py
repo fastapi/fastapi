@@ -9,8 +9,8 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial001_py39",
-        "tutorial001_an_py39",
+        "tutorial001_py310",
+        "tutorial001_an_py310",
     ],
 )
 def get_app(request: pytest.FixtureRequest):
@@ -198,12 +198,12 @@ def test_openapi_schema(client: TestClient):
                             "file": {
                                 "title": "File",
                                 "type": "string",
-                                "format": "binary",
+                                "contentMediaType": "application/octet-stream",
                             },
                             "fileb": {
                                 "title": "Fileb",
+                                "contentMediaType": "application/octet-stream",
                                 "type": "string",
-                                "format": "binary",
                             },
                             "token": {"title": "Token", "type": "string"},
                         },

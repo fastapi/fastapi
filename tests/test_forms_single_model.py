@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ app = FastAPI()
 class FormModel(BaseModel):
     username: str
     lastname: str
-    age: Optional[int] = None
+    age: int | None = None
     tags: list[str] = ["foo", "bar"]
     alias_with: str = Field(alias="with", default="nothing")
 

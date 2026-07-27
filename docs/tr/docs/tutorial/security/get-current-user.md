@@ -2,7 +2,7 @@
 
 Önceki bölümde güvenlik sistemi (dependency injection sistemine dayanır) *path operation function*'a `str` olarak bir `token` veriyordu:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Ancak bu hâlâ pek kullanışlı değil.
 
@@ -14,7 +14,7 @@ Bize mevcut kullanıcıyı verecek şekilde düzenleyelim.
 
 Body'leri bildirmek için Pydantic'i nasıl kullanıyorsak, aynı şekilde onu başka her yerde de kullanabiliriz:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## `get_current_user` dependency'si oluşturun { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@ Burada `Depends` kullandığınız için **FastAPI** karışıklık yaşamaz.
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Bu dependency sisteminin tasarımı, hepsi `User` modeli döndüren farklı dependency'lere (farklı "dependable"lara) sahip olmamıza izin verir.
 

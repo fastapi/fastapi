@@ -15,7 +15,7 @@ Un "middleware" es una función que trabaja con cada **request** antes de que se
 
 Si tienes dependencias con `yield`, el código de salida se ejecutará *después* del middleware.
 
-Si hubiera tareas en segundo plano (cubiertas en la sección [Tareas en segundo plano](background-tasks.md){.internal-link target=_blank}, lo verás más adelante), se ejecutarán *después* de todo el middleware.
+Si hubiera tareas en segundo plano (cubiertas en la sección [Tareas en segundo plano](background-tasks.md), lo verás más adelante), se ejecutarán *después* de todo el middleware.
 
 ///
 
@@ -31,13 +31,13 @@ La función middleware recibe:
     * Luego devuelve la `response` generada por la correspondiente *path operation*.
 * Puedes entonces modificar aún más la `response` antes de devolverla.
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | Consejo
 
-Ten en cuenta que los custom proprietary headers se pueden añadir <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo `X-`</a>.
+Ten en cuenta que los custom proprietary headers se pueden añadir [usando el prefijo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación de CORS de Starlette</a>.
+Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando el parámetro `expose_headers` documentado en [la documentación de CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -57,11 +57,11 @@ Y también después de que se genere la `response`, antes de devolverla.
 
 Por ejemplo, podrías añadir un custom header `X-Process-Time` que contenga el tiempo en segundos que tomó procesar la request y generar una response:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | Consejo
 
-Aquí usamos <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> en lugar de `time.time()` porque puede ser más preciso para estos casos de uso. 🤓
+Aquí usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) en lugar de `time.time()` porque puede ser más preciso para estos casos de uso. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ Este comportamiento de apilamiento asegura que los middlewares se ejecuten en un
 
 ## Otros middlewares { #other-middlewares }
 
-Más adelante puedes leer sobre otros middlewares en la [Guía del Usuario Avanzado: Middleware Avanzado](../advanced/middleware.md){.internal-link target=_blank}.
+Más adelante puedes leer sobre otros middlewares en la [Guía del Usuario Avanzado: Middleware Avanzado](../advanced/middleware.md).
 
 Leerás sobre cómo manejar <abbr title="Cross-Origin Resource Sharing">CORS</abbr> con un middleware en la siguiente sección.

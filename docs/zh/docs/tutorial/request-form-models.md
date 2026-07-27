@@ -2,11 +2,11 @@
 
 你可以在 FastAPI 中使用 **Pydantic 模型**声明**表单字段**。
 
-/// info | 信息
+/// note | 注意
 
-要使用表单，首先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
+要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-确保你创建一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，激活它，然后再安装，例如：
+确保你创建一个[虚拟环境](../virtual-environments.md)，激活它，然后再安装，例如：
 
 ```console
 $ pip install python-multipart
@@ -24,7 +24,7 @@ $ pip install python-multipart
 
 你只需声明一个 **Pydantic 模型**，其中包含你希望接收的**表单字段**，然后将参数声明为 `Form`：
 
-{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
 **FastAPI** 将从请求中的**表单数据**中**提取**出**每个字段**的数据，并提供你定义的 Pydantic 模型。
 
@@ -48,7 +48,7 @@ $ pip install python-multipart
 
 你可以使用 Pydantic 的模型配置来 `forbid` 任何 `extra` 字段：
 
-{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
 如果客户端尝试发送一些额外的数据，他们将收到**错误**响应。
 

@@ -1,4 +1,4 @@
-# Extra Models { #extra-models }
+# 追加のモデル { #extra-models }
 
 先ほどの例に続き、複数の関連モデルを持つことは一般的です。
 
@@ -8,21 +8,21 @@
 * **出力モデル**はパスワードをもつべきではありません。
 * **データベースモデル**はおそらくハッシュ化されたパスワードが必要になるでしょう。
 
-/// danger
+/// danger | 警告
 
 ユーザーの平文のパスワードは絶対に保存しないでください。常に検証できる「安全なハッシュ」を保存してください。
 
-知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}で「パスワードハッシュ」とは何かを学ぶことができます。
+知らない方は、[セキュリティの章](security/simple-oauth2.md#password-hashing)で「パスワードハッシュ」とは何かを学ぶことができます。
 
 ///
 
-## Multiple models { #multiple-models }
+## 複数のモデル { #multiple-models }
 
 ここでは、パスワードフィールドをもつモデルがどのように見えるのか、また、どこで使われるのか、大まかなイメージを紹介します:
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-### About `**user_in.model_dump()` { #about-user-in-model-dump }
+### `**user_in.model_dump()` について { #about-user-in-model-dump }
 
 #### Pydanticの`.model_dump()` { #pydantics-model-dump }
 
@@ -132,13 +132,13 @@ UserInDB(
 )
 ```
 
-/// warning
+/// warning | 注意
 
 追加のサポート関数`fake_password_hasher`と`fake_save_user`は、データの可能な流れをデモするだけであり、もちろん本当のセキュリティを提供しているわけではありません。
 
 ///
 
-## Reduce duplication { #reduce-duplication }
+## 重複の削減 { #reduce-duplication }
 
 コードの重複を減らすことは、**FastAPI**の中核的なアイデアの１つです。
 
@@ -156,17 +156,17 @@ UserInDB(
 
 {* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-## `Union` or `anyOf` { #union-or-anyof }
+## `Union` または `anyOf` { #union-or-anyof }
 
 レスポンスを2つ以上の型の`Union`として宣言できます。つまり、そのレスポンスはそれらのいずれかになります。
 
 OpenAPIでは`anyOf`で定義されます。
 
-そのためには、標準的なPythonの型ヒント<a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>を使用します:
+そのためには、標準的なPythonの型ヒント[`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)を使用します:
 
 /// note | 備考
 
-<a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
+[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
 
 ///
 
@@ -186,26 +186,26 @@ some_variable: PlaneItem | CarItem
 
 しかし、これを代入で`response_model=PlaneItem | CarItem`のように書くと、Pythonはそれを型アノテーションとして解釈するのではなく、`PlaneItem`と`CarItem`の間で**無効な操作**を行おうとしてしまうため、エラーになります。
 
-## List of models { #list-of-models }
+## モデルのリスト { #list-of-models }
 
 同じように、オブジェクトのリストのレスポンスを宣言できます。
 
-そのためには、標準のPythonの`typing.List`（またはPython 3.9以降では単に`list`）を使用します:
+そのためには、標準のPythonの`list`を使用します:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
-## Response with arbitrary `dict` { #response-with-arbitrary-dict }
+## 任意の`dict`によるレスポンス { #response-with-arbitrary-dict }
 
 また、Pydanticモデルを使用せずに、キーと値の型だけを定義した任意の`dict`を使ってレスポンスを宣言することもできます。
 
 これは、有効なフィールド・属性名（Pydanticモデルに必要なもの）を事前に知らない場合に便利です。
 
-この場合、`typing.Dict`（またはPython 3.9以降では単に`dict`）を使用できます:
+この場合、`dict`を使用できます:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
-## Recap { #recap }
+## まとめ { #recap }
 
 複数のPydanticモデルを使用し、ケースごとに自由に継承します。
 
-エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つユーザー「エンティティ」の場合と同様です。
+エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つ**ユーザー**「エンティティ」の場合と同様です。

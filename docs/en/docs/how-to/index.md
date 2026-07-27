@@ -8,6 +8,6 @@ If something seems interesting and useful to your project, go ahead and check it
 
 /// tip
 
-If you want to **learn FastAPI** in a structured way (recommended), go and read the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} chapter by chapter instead.
+If you want to **learn FastAPI** in a structured way (recommended), go and read the [Tutorial - User Guide](../tutorial/index.md) chapter by chapter instead.
 
 ///

@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from docs_src.events.tutorial003_py39 import (
+from docs_src.events.tutorial003_py310 import (
     app,
     fake_answer_to_everything_ml_model,
     ml_models,

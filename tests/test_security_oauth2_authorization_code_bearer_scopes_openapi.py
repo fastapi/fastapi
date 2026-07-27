@@ -1,6 +1,6 @@
 # Ref: https://github.com/fastapi/fastapi/issues/14454
 
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI, Security
 from fastapi.security import OAuth2AuthorizationCodeBearer
@@ -46,13 +46,13 @@ router = APIRouter(dependencies=[Security(oauth2_scheme, scopes=["read"])])
 
 
 @router.get("/items/")
-async def read_items(token: Optional[str] = Depends(oauth2_scheme)):
+async def read_items(token: str | None = Depends(oauth2_scheme)):
     return {"token": token}
 
 
 @router.post("/items/")
 async def create_item(
-    token: Optional[str] = Security(oauth2_scheme, scopes=["read", "write"]),
+    token: str | None = Security(oauth2_scheme, scopes=["read", "write"]),
 ):
     return {"token": token}
 

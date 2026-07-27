@@ -1,6 +1,6 @@
 # Benchmarks { #benchmarks }
 
-Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn ausgeführt werden, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur unterhalb von Starlette und Uvicorn selbst (die intern von FastAPI verwendet werden).
+Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn ausgeführt werden, als [eines der schnellsten verfügbaren Python-Frameworks](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7), nur unterhalb von Starlette und Uvicorn selbst (die intern von FastAPI verwendet werden).
 
 Aber bei der Betrachtung von Benchmarks und Vergleichen sollten Sie Folgendes beachten.
 
@@ -23,7 +23,7 @@ Die Hierarchie ist wie folgt:
     * Sie würden eine Anwendung nicht direkt in Uvicorn schreiben. Das würde bedeuten, dass Ihr Code zumindest mehr oder weniger den gesamten von Starlette (oder **FastAPI**) bereitgestellten Code enthalten müsste. Und wenn Sie das täten, hätte Ihre endgültige Anwendung den gleichen Overhead wie bei der Verwendung eines Frameworks und der Minimierung Ihres Anwendungscodes und der Fehler.
     * Wenn Sie Uvicorn vergleichen, vergleichen Sie es mit Anwendungsservern wie Daphne, Hypercorn, uWSGI, usw.
 * **Starlette**:
-    * Wird nach Uvicorn die nächstbeste Performanz erbringen. Tatsächlich verwendet Starlette intern Uvicorn, um zu laufen. Daher kann es wahrscheinlich nur „langsamer“ als Uvicorn werden, weil mehr Code ausgeführt werden muss.
+    * Wird nach Uvicorn die nächstbeste Performanz erbringen. Tatsächlich verwendet Starlette Uvicorn, um zu laufen. Daher kann es wahrscheinlich nur „langsamer“ als Uvicorn werden, weil mehr Code ausgeführt werden muss.
     * Aber es bietet Ihnen die Werkzeuge, um einfache Webanwendungen zu erstellen, mit Routing basierend auf Pfaden, usw.
     * Wenn Sie Starlette vergleichen, vergleichen Sie es mit Webframeworks (oder Mikroframeworks) wie Sanic, Flask, Django, usw.
 * **FastAPI**:

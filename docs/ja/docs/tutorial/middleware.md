@@ -15,7 +15,7 @@
 
 `yield` を使った依存関係をもつ場合は、終了コードはミドルウェアの *後に* 実行されます。
 
-バックグラウンドタスク ([バックグラウンドタスク](background-tasks.md){.internal-link target=_blank} セクションで説明します。後で確認できます) がある場合は、それらは全てのミドルウェアの *後に* 実行されます。
+バックグラウンドタスク ([バックグラウンドタスク](background-tasks.md) セクションで説明します。後で確認できます) がある場合は、それらは全てのミドルウェアの *後に* 実行されます。
 
 ///
 
@@ -31,13 +31,13 @@
     * 次に、対応する*path operation*によって生成された `response` を返します。
 * その後、`response` を返す前にさらに `response` を変更することもできます。
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | 豆知識
 
-カスタムの独自ヘッダーは <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">`X-` プレフィックスを使用</a>して追加できる点に注意してください。
+カスタムの独自ヘッダーは [`X-` プレフィックスを使用](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)して追加できる点に注意してください。
 
-ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})。
+ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、[CORS (Cross-Origin Resource Sharing)](cors.md) の設定に、[StarletteのCORSドキュメント](https://www.starlette.dev/middleware/#corsmiddleware)に記載されているパラメータ `expose_headers` を使用して、それらを追加する必要があります。
 
 ///
 
@@ -57,11 +57,11 @@
 
 例えば、リクエストの処理とレスポンスの生成にかかった秒数を含むカスタムヘッダー `X-Process-Time` を追加できます:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | 豆知識
 
-ここでは、これらのユースケースに対してより正確になり得るため、`time.time()` の代わりに <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> を使用しています。 🤓
+ここでは、これらのユースケースに対してより正確になり得るため、`time.time()` の代わりに [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) を使用しています。 🤓
 
 ///
 
@@ -90,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## その他のミドルウェア { #other-middlewares }
 
-他のミドルウェアの詳細については、[高度なユーザーガイド: 高度なミドルウェア](../advanced/middleware.md){.internal-link target=_blank}を参照してください。
+他のミドルウェアの詳細については、[高度なユーザーガイド: 高度なミドルウェア](../advanced/middleware.md)を参照してください。
 
-次のセクションでは、ミドルウェアを使用して <abbr title="Cross-Origin Resource Sharing">CORS</abbr> を処理する方法について説明します。
+次のセクションでは、ミドルウェアを使用して <abbr title="Cross-Origin Resource Sharing - クロスオリジンリソース共有">CORS</abbr> を処理する方法について説明します。

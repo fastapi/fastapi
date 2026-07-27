@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -8,30 +6,30 @@ app = FastAPI()
 
 
 class SubModel(BaseModel):
-    a: Optional[str] = "foo"
+    a: str | None = "foo"
 
 
 class Model(BaseModel):
-    x: Optional[int] = None
+    x: int | None = None
     sub: SubModel
 
 
 class ModelSubclass(Model):
     y: int
     z: int = 0
-    w: Optional[int] = None
+    w: int | None = None
 
 
 class ModelDefaults(BaseModel):
-    w: Optional[str] = None
-    x: Optional[str] = None
+    w: str | None = None
+    x: str | None = None
     y: str = "y"
     z: str = "z"
 
 
 @app.get("/", response_model=Model, response_model_exclude_unset=True)
 def get_root() -> ModelSubclass:
-    return ModelSubclass(sub={}, y=1, z=0)
+    return ModelSubclass(sub={}, y=1, z=0)  # ty: ignore[invalid-argument-type]
 
 
 @app.get(

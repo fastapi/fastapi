@@ -4,7 +4,7 @@
 
 **FastAPI** 提供了一个方便的工具，可以在保持所有灵活性的同时构建你的应用程序。
 
-/// info | 信息
+/// note | 注意
 
 如果你来自 Flask，那这将相当于 Flask 的 Blueprints。
 
@@ -17,16 +17,16 @@
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | 提示
@@ -85,7 +85,7 @@ from app.routers import items
 
 你可以导入它并通过与 `FastAPI` 类相同的方式创建一个「实例」：
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### 使用 `APIRouter` 的*路径操作* { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 使用方式与 `FastAPI` 类相同：
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 你可以将 `APIRouter` 视为一个「迷你 `FastAPI`」类。
 
@@ -117,13 +117,13 @@ from app.routers import items
 
 现在我们将使用一个简单的依赖项来读取一个自定义的 `X-Token` 请求首部：
 
-{* ../../docs_src/bigger_applications/app_an_py39/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | 提示
 
 我们正在使用虚构的请求首部来简化此示例。
 
-但在实际情况下，使用集成的[安全性实用工具](security/index.md){.internal-link target=_blank}会得到更好的效果。
+但在实际情况下，使用集成的[安全性实用工具](security/index.md)会得到更好的效果。
 
 ///
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 因此，我们可以将其添加到 `APIRouter` 中，而不是将其添加到每个路径操作中。
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 由于每个*路径操作*的路径都必须以 `/` 开头，例如：
 
@@ -169,7 +169,7 @@ async def read_item(item_id: str):
 
 /// tip | 提示
 
-请注意，和[*路径操作装饰器*中的依赖项](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}很类似，没有值会被传递给你的*路径操作函数*。
+请注意，和[*路径操作装饰器*中的依赖项](dependencies/dependencies-in-path-operation-decorators.md)很类似，没有值会被传递给你的*路径操作函数*。
 
 ///
 
@@ -185,8 +185,8 @@ async def read_item(item_id: str):
 * 所有的路径操作都将包含预定义的 `responses`。
 * 所有的这些*路径操作*都将在自身之前计算/执行 `dependencies` 列表。
     * 如果你还在一个具体的*路径操作*中声明了依赖项，**它们也会被执行**。
-    * 路由器的依赖项最先执行，然后是[装饰器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}，再然后是普通的参数依赖项。
-    * 你还可以添加[具有 `scopes` 的 `Security` 依赖项](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}。
+    * 路由器的依赖项最先执行，然后是[装饰器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md)，再然后是普通的参数依赖项。
+    * 你还可以添加[具有 `scopes` 的 `Security` 依赖项](../advanced/security/oauth2-scopes.md)。
 
 /// tip | 提示
 
@@ -194,7 +194,7 @@ async def read_item(item_id: str):
 
 ///
 
-/// check | 检查
+/// tip | 提示
 
 `prefix`、`tags`、`responses` 以及 `dependencies` 参数只是（和其他很多情况一样）**FastAPI** 的一个用于帮助你避免代码重复的功能。
 
@@ -208,7 +208,7 @@ async def read_item(item_id: str):
 
 因此，我们通过 `..` 对依赖项使用了相对导入：
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### 相对导入如何工作 { #how-relative-imports-work }
 
@@ -279,11 +279,11 @@ from ...dependencies import get_token_header
 
 但是我们仍然可以添加*更多*将会应用于特定的*路径操作*的 `tags`，以及一些特定于该*路径操作*的额外 `responses`：
 
-{* ../../docs_src/bigger_applications/app_an_py39/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | 提示
 
-最后的这个路径操作将包含标签的组合：`["items"，"custom"]`。
+最后的这个路径操作将包含标签的组合：`["items", "custom"]`。
 
 并且在文档中也会有两个响应，一个用于 `404`，一个用于 `403`。
 
@@ -303,15 +303,15 @@ from ...dependencies import get_token_header
 
 你可以像平常一样导入并创建一个 `FastAPI` 类。
 
-我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md){.internal-link target=_blank}，它会和每个 `APIRouter` 的依赖项组合在一起：
+我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md)，它会和每个 `APIRouter` 的依赖项组合在一起：
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### 导入 `APIRouter` { #import-the-apirouter }
 
 现在，我们导入具有 `APIRouter` 的其他子模块：
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
 由于文件 `app/routers/users.py` 和 `app/routers/items.py` 是同一 Python 包 `app` 一个部分的子模块，因此我们可以使用单个点 ` .` 通过「相对导入」来导入它们。
 
@@ -339,7 +339,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-/// info | 信息
+/// note | 注意
 
 第一个版本是「相对导入」：
 
@@ -353,7 +353,7 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-要了解有关 Python 包和模块的更多信息，请查阅<a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">关于 Modules 的 Python 官方文档</a>。
+要了解有关 Python 包和模块的更多信息，请查阅[关于 Modules 的 Python 官方文档](https://docs.python.org/3/tutorial/modules.html)。
 
 ///
 
@@ -374,15 +374,15 @@ from .routers.users import router
 
 因此，为了能够在同一个文件中使用它们，我们直接导入子模块：
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
 ### 包含 `users` 和 `items` 的 `APIRouter` { #include-the-apirouters-for-users-and-items }
 
 现在，让我们来包含来自 `users` 和 `items` 子模块的 `router`。
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | 信息
+/// note | 注意
 
 `users.router` 包含了 `app/routers/users.py` 文件中的 `APIRouter`。
 
@@ -396,17 +396,17 @@ from .routers.users import router
 
 /// note | 技术细节
 
-实际上，它将在内部为声明在 `APIRouter` 中的每个*路径操作*创建一个*路径操作*。
+当在主应用中包含路由器时，FastAPI 会保留原始的 `APIRouter` 及其 `APIRoute` 处于活动状态。
 
-所以，在幕后，它实际上会像所有的东西都是同一个应用程序一样工作。
+这意味着自定义的 `APIRouter` 和 `APIRoute` 子类在被包含之后仍然能够参与工作。
 
 ///
 
-/// check | 检查
+/// tip | 提示
 
 包含路由器时，你不必担心性能问题。
 
-这将花费几微秒时间，并且只会在启动时发生。
+这被设计为轻量级的，并且避免给每个请求增加开销。
 
 因此，它不会影响性能。⚡
 
@@ -420,13 +420,13 @@ from .routers.users import router
 
 对于此示例，它将非常简单。但是假设由于它是与组织中的其他项目所共享的，因此我们无法对其进行修改，以及直接在 `APIRouter` 中添加 `prefix`、`dependencies`、`tags` 等：
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 但是我们仍然希望在包含 `APIRouter` 时设置一个自定义的 `prefix`，以便其所有*路径操作*以 `/admin` 开头，我们希望使用本项目已经有的 `dependencies` 保护它，并且我们希望它包含自定义的 `tags` 和 `responses`。
 
 我们可以通过将这些参数传递给 `app.include_router()` 来完成所有的声明，而不必修改原始的 `APIRouter`：
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
 
 这样，原始的 `APIRouter` 将保持不变，因此我们仍然可以与组织中的其他项目共享相同的 `app/internal/admin.py` 文件。
 
@@ -447,21 +447,52 @@ from .routers.users import router
 
 这里我们这样做了...只是为了表明我们可以做到🤷：
 
-{* ../../docs_src/bigger_applications/app_an_py39/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
 
 它将与通过 `app.include_router()` 添加的所有其他*路径操作*一起正常运行。
 
-/// info | 特别的技术细节
+/// note | 非常技术细节
 
 **注意**：这是一个非常技术性的细节，你也许可以**直接跳过**。
 
 ---
 
-`APIRouter` 没有被「挂载」，它们与应用程序的其余部分没有隔离。
+`APIRouter` 并不是「挂载」的，它们并没有和应用程序的其余部分隔离。
 
-这是因为我们想要在 OpenAPI 模式和用户界面中包含它们的*路径操作*。
+这是因为我们希望在 OpenAPI 模式和用户界面中包含它们的*路径操作*。
 
-由于我们不能仅仅隔离它们并独立于其余部分来「挂载」它们，因此*路径操作*是被「克隆的」（重新创建），而不是直接包含。
+FastAPI 会保留原始的路由器和路径操作处于活动状态，并在处理请求和生成 OpenAPI 时组合路由器的前缀、依赖项、标签、响应以及其他元数据。
+
+///
+
+## 在 `pyproject.toml` 中配置 `entrypoint` { #configure-the-entrypoint-in-pyproject-toml }
+
+因为你的 FastAPI `app` 对象位于 `app/main.py` 中，你可以在 `pyproject.toml` 中这样配置 `entrypoint`：
+
+```toml
+[tool.fastapi]
+entrypoint = "app.main:app"
+```
+
+等价于像这样导入：
+
+```python
+from app.main import app
+```
+
+这样 `fastapi` 命令就知道到哪里去找到你的应用了。
+
+/// Note | 注意
+
+你也可以把路径传给命令，比如：
+
+```console
+$ fastapi dev app/main.py
+```
+
+但是每次调用 `fastapi` 命令时，你都需要记得传入正确的路径。
+
+另外，其他工具可能找不到它，比如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
 
 ///
 
@@ -472,14 +503,14 @@ from .routers.users import router
 <div class="termy">
 
 ```console
-$ fastapi dev app/main.py
+$ fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-然后打开位于 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 的文档。
+然后打开位于 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 的文档。
 
 你将看到使用了正确路径（和前缀）和正确标签的自动化 API 文档，包括了来自所有子模块的路径：
 
@@ -501,4 +532,16 @@ $ fastapi dev app/main.py
 router.include_router(other_router)
 ```
 
-请确保在你将 `router` 包含到 `FastAPI` 应用程序之前进行此操作，以便 `other_router` 中的*路径操作*也能被包含进来。
+你可以在将 `router` 包含到 `FastAPI` 应用之前或之后执行此操作。FastAPI 仍然会在路由和 OpenAPI 中包含 `other_router` 中的*路径操作*。
+
+同样适用于之后添加到这些路由器的*路径操作*。它们也会通过先前的包含可见。
+
+/// warning | 技术细节
+
+在包含路由器之后，避免直接修改 `router.routes`。FastAPI 将路由器的包含视为「实时」的，因此原始路由器及其路由会继续参与路由和 OpenAPI 生成。
+
+使用文档化的 API（例如路径操作装饰器和 `.include_router()`）来添加路由和路由器。
+
+将 `router.routes` 视为较低层级的路由树，它可以包含路由定义和被包含的路由器；避免把它当作最终路径操作的扁平列表来依赖。
+
+///

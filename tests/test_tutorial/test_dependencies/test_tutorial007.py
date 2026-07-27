@@ -2,7 +2,7 @@ import asyncio
 from contextlib import asynccontextmanager
 from unittest.mock import Mock, patch
 
-from docs_src.dependencies.tutorial007_py39 import get_db
+from docs_src.dependencies.tutorial007_py310 import get_db
 
 
 def test_get_db():  # Just for coverage
@@ -14,7 +14,7 @@ def test_get_db():  # Just for coverage
     dbsession_moock = Mock()
 
     with patch(
-        "docs_src.dependencies.tutorial007_py39.DBSession",
+        "docs_src.dependencies.tutorial007_py310.DBSession",
         return_value=dbsession_moock,
         create=True,
     ):

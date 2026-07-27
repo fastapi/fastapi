@@ -1,6 +1,6 @@
 # `yield`を持つ依存関係 { #dependencies-with-yield }
 
-FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc. – 「exit code」「cleanup code」「teardown code」「closing code」「context manager exit code」などと呼ばれることもあります。'>終了後の追加のステップ</abbr>を行う依存関係をサポートしています。
+FastAPIは、いくつかの<dfn title="「終了コード」「クリーンアップコード」「ティアダウンコード」「クローズコード」「コンテキストマネージャの終了コード」などと呼ばれることもあります">終了後の追加のステップ</dfn>を行う依存関係をサポートしています。
 
 これを行うには、`return`の代わりに`yield`を使い、その後に追加のステップ（コード）を書きます。
 
@@ -14,8 +14,8 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 以下と一緒に使用できる関数なら何でも有効です:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>または
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) または
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 これらは **FastAPI** の依存関係として使用するのに有効です。
 
@@ -29,15 +29,15 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 レスポンスを作成する前に、`yield`文より前のコード（および`yield`文を含む）が実行されます:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
 
 生成された値は、*path operations*や他の依存関係に注入されるものです:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
 
 `yield`文に続くコードは、レスポンスの後に実行されます:
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
 
 /// tip | 豆知識
 
@@ -57,7 +57,7 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 同様に、`finally`を用いて例外があったかどうかにかかわらず、終了ステップを確実に実行することができます。
 
-{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
 ## `yield`を持つサブ依存関係 { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 例えば、`dependency_c`は`dependency_b`に、そして`dependency_b`は`dependency_a`に依存することができます:
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
 
 そして、それらはすべて`yield`を使用することができます。
 
@@ -75,7 +75,7 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 そして、`dependency_b`は`dependency_a`（ここでは`dep_a`という名前）の値を終了コードで利用できるようにする必要があります。
 
-{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
 
 同様に、`yield`を持つ依存関係と`return`を持つ他の依存関係をいくつか持ち、それらの一部が他の一部に依存するようにもできます。
 
@@ -87,7 +87,7 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 /// note | 技術詳細
 
-これはPythonの<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>のおかげで動作します。
+これはPythonの[コンテキストマネージャ](https://docs.python.org/3/library/contextlib.html)のおかげで動作します。
 
 **FastAPI** はこれを実現するために内部的に使用しています。
 
@@ -109,15 +109,15 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-例外をキャッチして、それに基づいてカスタムレスポンスを作成したい場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成してください。
+例外をキャッチして、それに基づいてカスタムレスポンスを作成したい場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers)を作成してください。
 
 ## `yield`と`except`を持つ依存関係 { #dependencies-with-yield-and-except }
 
 `yield`を持つ依存関係で`except`を使って例外をキャッチし、それを再度raiseしない（または新しい例外をraiseしない）場合、通常のPythonと同じように、FastAPIは例外があったことに気づけません:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
 
 この場合、（`HTTPException`やそれに類するものをraiseしていないため）クライアントには適切に*HTTP 500 Internal Server Error*レスポンスが返りますが、サーバーには**ログが一切残らず**、何がエラーだったのかを示す他の手がかりもありません。 😱
 
@@ -127,7 +127,7 @@ FastAPIは、いくつかの<abbr title='sometimes also called "exit code", "cle
 
 `raise`を使うと同じ例外を再raiseできます:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
 
 これでクライアントは同じ*HTTP 500 Internal Server Error*レスポンスを受け取りますが、サーバーのログにはカスタムの`InternalError`が残ります。 😎
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 情報
+/// note | 備考
 
 **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 
@@ -190,7 +190,7 @@ participant tasks as Background tasks
 
 しかし、*path operation 関数*からreturnした後に依存関係を使う必要がないと分かっている場合は、`Depends(scope="function")`を使って、**レスポンスが送信される前**に、*path operation 関数*のreturn後に依存関係を閉じるべきだとFastAPIに伝えられます。
 
-{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
 
 `Depends()`は、以下のいずれかを取る`scope`パラメータを受け取ります:
 
@@ -233,14 +233,15 @@ participant operation as Path Operation
 
 `yield`を持つ依存関係は、さまざまなユースケースをカバーし、いくつかの問題を修正するために、時間とともに進化してきました。
 
-FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}で詳しく読めます。
+FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)で詳しく読めます。
+
 ## コンテキストマネージャ { #context-managers }
 
 ### 「コンテキストマネージャ」とは { #what-are-context-managers }
 
 「コンテキストマネージャ」とは、`with`文の中で使用できるPythonオブジェクトのことです。
 
-例えば、<a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">ファイルを読み込むには`with`を使用することができます</a>:
+例えば、[ファイルを読み込むには`with`を使用することができます](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,18 +265,18 @@ with open("./somefile.txt") as f:
 
 ///
 
-Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">以下の２つのメソッドを持つクラスを作成する: `__enter__()`と`__exit__()`</a>ことでコンテキストマネージャを作成することができます。
+Pythonでは、[以下の２つのメソッドを持つクラスを作成する: `__enter__()`と`__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers)ことでコンテキストマネージャを作成することができます。
 
 また、依存関数の中で`with`や`async with`文を使用することによって`yield`を持つ **FastAPI** の依存関係の中でそれらを使用することができます:
 
-{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
 
 /// tip | 豆知識
 
-コンテキストマネージャを作成するもう一つの方法はwithです:
+コンテキストマネージャを作成するもう一つの方法は次の方法です:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> または
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) または
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 これらを使って、関数を単一の`yield`でデコレートすることができます。
 

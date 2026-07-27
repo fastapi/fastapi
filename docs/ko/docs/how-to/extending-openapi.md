@@ -25,9 +25,17 @@
 * `openapi_version`: 사용되는 OpenAPI 스펙 버전. 기본값은 최신인 `3.1.0`.
 * `summary`: API에 대한 짧은 요약.
 * `description`: API 설명. markdown을 포함할 수 있으며 문서에 표시됩니다.
-* `routes`: 라우트 목록. 각각 등록된 *경로 처리*입니다. `app.routes`에서 가져옵니다.
+* `routes`: 애플리케이션의 라우트. `app.routes`에서 가져옵니다. FastAPI는 이를 사용해 등록된 *경로 처리*를 수집하며, 포함된 라우터의 것까지 포함합니다.
 
-/// info | 정보
+/// tip | 기술 세부사항
+
+`app.routes`는 더 하위 수준의 라우트 트리입니다. 포함된 라우터를 위해 FastAPI가 내부적으로 사용하는 라우트 후보들을 포함할 수 있으며, 최종 `APIRoute` 객체만 있는 것은 아닙니다.
+
+`app.routes`를 그대로 `get_openapi()`에 전달해도 됩니다. FastAPI가 그 라우트 트리를 순회하여 실제 유효한 경로 처리들을 수집합니다.
+
+///
+
+/// note | 참고
 
 `summary` 파라미터는 OpenAPI 3.1.0 이상에서 사용할 수 있으며, FastAPI 0.99.0 이상에서 지원됩니다.
 
@@ -37,25 +45,25 @@
 
 위 정보를 바탕으로, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성하고 필요한 각 부분을 덮어쓸 수 있습니다.
 
-예를 들어, <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장</a>을 추가해 보겠습니다.
+예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
 
 ### 일반적인 **FastAPI** { #normal-fastapi }
 
 먼저, 평소처럼 **FastAPI** 애플리케이션을 모두 작성합니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
 
 ### OpenAPI 스키마 생성하기 { #generate-the-openapi-schema }
 
 그다음 `custom_openapi()` 함수 안에서, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성합니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
 
 ### OpenAPI 스키마 수정하기 { #modify-the-openapi-schema }
 
 이제 OpenAPI 스키마의 `info` "object"에 커스텀 `x-logo`를 추가하여 ReDoc 확장을 더할 수 있습니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
 
 ### OpenAPI 스키마 캐시하기 { #cache-the-openapi-schema }
 
@@ -65,16 +73,16 @@
 
 스키마는 한 번만 생성되고, 이후 요청에서는 같은 캐시된 스키마가 사용됩니다.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
 
 ### 메서드 오버라이드하기 { #override-the-method }
 
 이제 `.openapi()` 메서드를 새 함수로 교체할 수 있습니다.
 
-{* ../../docs_src/extending_openapi/tutorial001_py39.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
 ### 확인하기 { #check-it }
 
-<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 이동하면 커스텀 로고(이 예시에서는 **FastAPI** 로고)를 사용하는 것을 확인할 수 있습니다:
+[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 이동하면 커스텀 로고(이 예시에서는 **FastAPI** 로고)를 사용하는 것을 확인할 수 있습니다:
 
 <img src="/img/tutorial/extending-openapi/image01.png">

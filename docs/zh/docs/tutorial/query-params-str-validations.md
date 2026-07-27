@@ -1,5 +1,6 @@
 # 查询参数和字符串校验 { #query-parameters-and-string-validations }
 
+
 **FastAPI** 允许你为参数声明额外的信息和校验。
 
 让我们以下面的应用为例：
@@ -29,57 +30,33 @@ FastAPI 会因为默认值 `= None` 而知道 `q` 的值不是必填的。
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | 信息
+/// note | 注意
 
 FastAPI 在 0.95.0 版本中添加了对 `Annotated` 的支持（并开始推荐使用）。
 
 如果你的版本更旧，使用 `Annotated` 会报错。
 
-在使用 `Annotated` 之前，请确保先[升级 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}到至少 0.95.1。
+在使用 `Annotated` 之前，请确保先[升级 FastAPI 版本](../deployment/versions.md#upgrading-the-fastapi-versions)到至少 0.95.1。
 
 ///
 
 ## 在 `q` 参数的类型中使用 `Annotated` { #use-annotated-in-the-type-for-the-q-parameter }
 
-还记得我之前在[Python 类型简介](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}中说过可以用 `Annotated` 给参数添加元数据吗？
+还记得我之前在[Python 类型简介](../python-types.md#type-hints-with-metadata-annotations)中说过可以用 `Annotated` 给参数添加元数据吗？
 
 现在正是与 FastAPI 搭配使用它的时候。🚀
 
 我们之前的类型标注是：
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 我们要做的是用 `Annotated` 把它包起来，变成：
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 这两种写法含义相同，`q` 是一个可以是 `str` 或 `None` 的参数，默认是 `None`。
 
@@ -109,7 +86,7 @@ FastAPI 现在会：
 
 ## 另一种（旧的）方式：把 `Query` 作为默认值 { #alternative-old-query-as-the-default-value }
 
-早期版本的 FastAPI（<abbr title="早于 2023-03">0.95.0</abbr> 之前）要求你把 `Query` 作为参数的默认值，而不是放在 `Annotated` 里。你很可能会在别处看到这种写法，所以我也给你解释一下。
+早期版本的 FastAPI（<dfn title="早于 2023-03">0.95.0</dfn> 之前）要求你把 `Query` 作为参数的默认值，而不是放在 `Annotated` 里。你很可能会在别处看到这种写法，所以我也给你解释一下。
 
 /// tip | 提示
 
@@ -129,7 +106,7 @@ FastAPI 现在会：
 q: str | None = Query(default=None)
 ```
 
-……会让参数变成可选，默认值为 `None`，等同于：
+...会让参数变成可选，默认值为 `None`，等同于：
 
 ```Python
 q: str | None = None
@@ -157,7 +134,7 @@ q: str | None = Query(default=None, max_length=50)
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-……因为不清楚默认值应该是 `"rick"` 还是 `"morty"`。
+...因为不清楚默认值应该是 `"rick"` 还是 `"morty"`。
 
 因此，你应该这样用（推荐）：
 
@@ -165,7 +142,7 @@ q: Annotated[str, Query(default="rick")] = "morty"
 q: Annotated[str, Query()] = "rick"
 ```
 
-……或者在旧代码库中你会见到：
+...或者在旧代码库中你会见到：
 
 ```Python
 q: str = Query(default="rick")
@@ -181,7 +158,7 @@ q: str = Query(default="rick")
 
 当你不使用 `Annotated` 而是使用**（旧的）默认值风格**时，如果你在**其他地方**不通过 FastAPI 调用该函数，你必须**记得**给函数传参，否则得到的值会和预期不同（例如得到 `QueryInfo` 之类的对象而不是 `str`）。而你的编辑器不会报错，Python 也不会在调用时报错，只有在函数内部的操作出错时才会暴露问题。
 
-由于 `Annotated` 可以包含多个元数据标注，你甚至可以用同一个函数与其他工具配合，例如 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>。🚀
+由于 `Annotated` 可以包含多个元数据标注，你甚至可以用同一个函数与其他工具配合，例如 [Typer](https://typer.tiangolo.com/)。🚀
 
 ## 添加更多校验 { #add-more-validations }
 
@@ -191,7 +168,7 @@ q: str = Query(default="rick")
 
 ## 添加正则表达式 { #add-regular-expressions }
 
-你可以定义一个参数必须匹配的 <abbr title="正则表达式（regex 或 regexp）是用于定义字符串搜索模式的字符序列。">正则表达式</abbr> `pattern`：
+你可以定义一个参数必须匹配的 <dfn title="正则表达式（regex 或 regexp）是用于定义字符串搜索模式的字符序列。">正则表达式</dfn> `pattern`：
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -211,7 +188,7 @@ q: str = Query(default="rick")
 
 假设你想要声明查询参数 `q` 的 `min_length` 为 `3`，并且默认值为 `"fixedquery"`：
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note | 注意
 
@@ -241,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 因此，在使用 `Query` 的同时需要把某个值声明为必填时，只需不声明默认值：
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### 必填，但可以为 `None` { #required-can-be-none }
 
@@ -292,7 +269,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 你还可以定义在没有给定值时的默认 `list`：
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 如果你访问：
 
@@ -315,7 +292,7 @@ http://localhost:8000/items/
 
 你也可以直接使用 `list`，而不是 `list[str]`：
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note | 注意
 
@@ -361,7 +338,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 最接近的有效名称是 `item_query`。
 
-但你仍然需要它在 URL 中就是 `item-query`……
+但你仍然需要它在 URL 中就是 `item-query`...
 
 这时可以用 `alias` 参数声明一个别名，FastAPI 会用该别名在 URL 中查找参数值：
 
@@ -371,7 +348,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 现在假设你不再喜欢这个参数了。
 
-由于还有客户端在使用它，你不得不保留一段时间，但你希望文档清楚地将其展示为<abbr title="已过时，不推荐使用">已弃用</abbr>。
+由于还有客户端在使用它，你不得不保留一段时间，但你希望文档清楚地将其展示为<dfn title="已过时，不推荐使用">已弃用</dfn>。
 
 那么将参数 `deprecated=True` 传给 `Query`：
 
@@ -393,19 +370,19 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 在这些情况下，你可以使用**自定义校验函数**，该函数会在正常校验之后应用（例如，在先校验值是 `str` 之后）。
 
-你可以在 `Annotated` 中使用 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic 的 `AfterValidator`</a> 来实现。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 来实现。
 
 /// tip | 提示
 
-Pydantic 还有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> 等。🤓
+Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等。🤓
 
 ///
 
-例如，这个自定义校验器会检查条目 ID 是否以 `isbn-`（用于 <abbr title="ISBN 的含义是 International Standard Book Number（国际标准书号）">ISBN</abbr> 书号）或 `imdb-`（用于 <abbr title="IMDB（Internet Movie Database）是一个包含电影信息的网站">IMDB</abbr> 电影 URL 的 ID）开头：
+例如，这个自定义校验器会检查条目 ID 是否以 `isbn-`（用于 <abbr title="International Standard Book Number - 国际标准书号">ISBN</abbr> 书号）或 `imdb-`（用于 <abbr title="Internet Movie Database - 互联网电影数据库: 一个包含电影信息的网站">IMDB</abbr> 电影 URL 的 ID）开头：
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | 信息
+/// note | 注意
 
 这在 Pydantic 2 或更高版本中可用。😎
 
@@ -435,7 +412,7 @@ Pydantic 还有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#f
 
 #### 一个随机条目 { #a-random-item }
 
-使用 `data.items()` 我们会得到一个包含每个字典项键和值的元组的 <abbr title="可以用 for 循环迭代的对象，例如 list、set 等">可迭代对象</abbr>。
+使用 `data.items()` 我们会得到一个包含每个字典项键和值的元组的 <dfn title="可以用 for 循环迭代的对象，例如 list、set 等">可迭代对象</dfn>。
 
 我们用 `list(data.items())` 把这个可迭代对象转换成一个真正的 `list`。
 
@@ -445,7 +422,7 @@ Pydantic 还有 <a href="https://docs.pydantic.dev/latest/concepts/validators/#f
 
 所以，即使用户没有提供条目 ID，他们仍然会收到一个随机推荐。
 
-……而我们把这些都放在**一行简单的代码**里完成。🤯 你不爱 Python 吗？🐍
+...而我们把这些都放在**一行简单的代码**里完成。🤯 你不爱 Python 吗？🐍
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 

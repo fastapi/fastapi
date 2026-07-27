@@ -1,6 +1,6 @@
 # Abhängigkeiten { #dependencies }
 
-**FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="auch bekannt als: Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
+**FastAPI** hat ein sehr mächtiges, aber intuitives **<dfn title="auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Abhängigkeitsinjektion</dfn>** System.
 
 Es ist so konzipiert, sehr einfach zu verwenden zu sein und es jedem Entwickler sehr leicht zu machen, andere Komponenten mit **FastAPI** zu integrieren.
 
@@ -50,13 +50,13 @@ In diesem Fall erwartet diese Abhängigkeit:
 
 Und dann wird einfach ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> zurückgegeben, welches diese Werte enthält.
 
-/// info | Info
+/// note | Hinweis
 
 FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
 Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
 
-Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions) daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
@@ -105,7 +105,7 @@ common_parameters --> read_users
 
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
 
@@ -151,7 +151,7 @@ Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
 /// note | Hinweis
 
-Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-a-hurry){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-a-hurry)-Abschnitt über `async` und `await` in der Dokumentation.
 
 ///
 

@@ -1,5 +1,6 @@
 # 更多模型 { #extra-models }
 
+
 书接上文，多个关联模型这种情况很常见。
 
 特别是用户模型，因为：
@@ -8,11 +9,11 @@
 * **输出模型**不应含密码
 * **数据库模型**可能需要包含哈希后的密码
 
-/// danger
+/// danger | 危险
 
 不要存储用户的明文密码。始终只存储之后可用于校验的“安全哈希”。
 
-如果你还不了解，可以在[安全性章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}中学习什么是“密码哈希”。
+如果你还不了解，可以在[安全性章节](security/simple-oauth2.md#password-hashing)中学习什么是“密码哈希”。
 
 ///
 
@@ -108,7 +109,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.model_dump())
 ```
 
-……因为 `user_in.model_dump()` 是 `dict`，在传递给 `UserInDB` 时，把 `**` 加在 `user_in.model_dump()` 前，可以让 Python 进行解包。
+...因为 `user_in.model_dump()` 是 `dict`，在传递给 `UserInDB` 时，把 `**` 加在 `user_in.model_dump()` 前，可以让 Python 进行解包。
 
 这样，就可以用其它 Pydantic 模型中的数据生成 Pydantic 模型。
 
@@ -120,7 +121,7 @@ UserInDB(**user_in.model_dump())
 UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
-……输出结果如下：
+...输出结果如下：
 
 ```Python
 UserInDB(
@@ -132,7 +133,7 @@ UserInDB(
 )
 ```
 
-/// warning
+/// warning | 警告
 
 配套的辅助函数 `fake_password_hasher` 和 `fake_save_user` 仅用于演示可能的数据流，当然并不提供真实的安全性。
 
@@ -162,11 +163,11 @@ UserInDB(
 
 在 OpenAPI 中会用 `anyOf` 表示。
 
-为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
+为此，请使用 Python 标准类型提示 [`typing.Union`](https://docs.python.org/3/library/typing.html#typing.Union)：
 
-/// note
+/// note | 注意
 
-定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
+定义 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
 
 ///
 
@@ -190,9 +191,9 @@ some_variable: PlaneItem | CarItem
 
 同样地，你可以声明由对象列表构成的响应。
 
-为此，请使用标准的 Python `typing.List`（在 Python 3.9+ 中也可以直接用 `list`）：
+为此，请使用标准的 Python `list`：
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## 任意 `dict` 的响应 { #response-with-arbitrary-dict }
 
@@ -200,9 +201,9 @@ some_variable: PlaneItem | CarItem
 
 如果你事先不知道有效的字段/属性名（Pydantic 模型需要预先知道字段）时，这很有用。
 
-此时，可以使用 `typing.Dict`（在 Python 3.9+ 中也可以直接用 `dict`）：
+此时，可以使用 `dict`：
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## 小结 { #recap }
 

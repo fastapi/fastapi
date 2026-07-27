@@ -16,7 +16,7 @@
 
 你可以使用一些工具自行**部署服务器**，你也可以使用能为你完成部分工作的**云服务**，或其他可能的选项。
 
-例如，我们（FastAPI 团队）构建了 <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>，让将 FastAPI 应用部署到云端尽可能流畅，并且保持与使用 FastAPI 开发时相同的开发者体验。
+例如，我们（FastAPI 团队）构建了 [**FastAPI Cloud**](https://fastapicloud.com)，让将 FastAPI 应用部署到云端尽可能流畅，并且保持与使用 FastAPI 开发时相同的开发者体验。
 
 我将向你展示在部署 **FastAPI** 应用程序时你可能应该记住的一些主要概念（尽管其中大部分适用于任何其他类型的 Web 应用程序）。
 

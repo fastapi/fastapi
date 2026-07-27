@@ -2,7 +2,7 @@
 
 이전 장에서 (의존성 주입 시스템을 기반으로 한) 보안 시스템은 *경로 처리 함수*에 `str`로 `token`을 제공했습니다:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 하지만 이는 여전히 그다지 유용하지 않습니다.
 
@@ -14,7 +14,7 @@
 
 Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 곳에서도 어디서든 사용할 수 있습니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## `get_current_user` 의존성 생성하기 { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@ Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 
 
 ///
 
-/// check | 확인
+/// tip | 팁
 
 이 의존성 시스템이 설계된 방식은 모두 `User` 모델을 반환하는 서로 다른 의존성(서로 다른 "dependables")을 가질 수 있도록 합니다.
 

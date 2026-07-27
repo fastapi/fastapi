@@ -15,7 +15,7 @@
 
 如果你有使用 `yield` 的依赖，依赖中的退出代码会在中间件之后运行。
 
-如果有任何后台任务（会在[后台任务](background-tasks.md){.internal-link target=_blank}一节中介绍，你稍后会看到），它们会在所有中间件之后运行。
+如果有任何后台任务（会在[后台任务](background-tasks.md)一节中介绍，你稍后会看到），它们会在所有中间件之后运行。
 
 ///
 
@@ -31,13 +31,13 @@
     * 然后它返回由相应*路径操作*生成的 `response`。
 * 在返回之前，你可以进一步修改 `response`。
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip
 
-请记住可以<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">使用 `X-` 前缀</a>添加专有自定义请求头。
+请记住可以[使用 `X-` 前缀](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)添加专有自定义请求头。
 
-但是如果你有希望让浏览器中的客户端可见的自定义请求头，你需要把它们加到你的 CORS 配置（[CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}）的 `expose_headers` 参数中，参见 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette 的 CORS 文档</a>。
+但是如果你有希望让浏览器中的客户端可见的自定义请求头，你需要把它们加到你的 CORS 配置（[CORS（跨域资源共享）](cors.md)）的 `expose_headers` 参数中，参见 [Starlette 的 CORS 文档](https://www.starlette.dev/middleware/#corsmiddleware)。
 
 ///
 
@@ -57,11 +57,11 @@
 
 例如，你可以添加一个自定义请求头 `X-Process-Time`，其值为处理请求并生成响应所花费的秒数：
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip
 
-这里我们使用 <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> 而不是 `time.time()`，因为在这类场景中它可能更精确。🤓
+这里我们使用 [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) 而不是 `time.time()`，因为在这类场景中它可能更精确。🤓
 
 ///
 
@@ -90,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## 其他中间件 { #other-middlewares }
 
-你可以稍后在[高级用户指南：高级中间件](../advanced/middleware.md){.internal-link target=_blank}中阅读更多关于其他中间件的内容。
+你可以稍后在[高级用户指南：高级中间件](../advanced/middleware.md)中阅读更多关于其他中间件的内容。
 
 你将在下一节中了解如何使用中间件处理 <abbr title="Cross-Origin Resource Sharing - 跨域资源共享">CORS</abbr>。

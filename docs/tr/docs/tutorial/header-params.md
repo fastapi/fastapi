@@ -24,7 +24,7 @@ Ancak şunu unutmayın: `fastapi`'den `Query`, `Path`, `Header` ve diğerlerini 
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 Header'ları tanımlamak için `Header` kullanmanız gerekir; aksi halde parametreler query parametreleri olarak yorumlanır.
 

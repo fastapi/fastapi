@@ -8,7 +8,7 @@ Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Pytho
 
 {* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
 
-Isso fará com que tags seja uma lista de itens mesmo sem declarar o tipo dos elementos desta lista.
+Isso fará com que `tags` seja uma lista, mesmo sem declarar o tipo dos elementos desta lista.
 
 ## Campos do tipo Lista com um parâmetro de tipo { #list-fields-with-type-parameter }
 
@@ -53,7 +53,7 @@ Cada atributo de um modelo Pydantic tem um tipo.
 
 Mas esse tipo pode ser outro modelo Pydantic.
 
-Portanto, você pode declarar "objects" JSON profundamente aninhados com nomes, tipos e validações de atributos específicos.
+Portanto, você pode declarar "objetos" JSON profundamente aninhados com nomes, tipos e validações de atributos específicos.
 
 Tudo isso, aninhado arbitrariamente.
 
@@ -65,11 +65,11 @@ Por exemplo, nós podemos definir um modelo `Image`:
 
 ### Use o sub-modelo como um tipo { #use-the-submodel-as-a-type }
 
-E então podemos usa-lo como o tipo de um atributo:
+E então podemos usá-lo como o tipo de um atributo:
 
 {* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
 
-Isso significa que o **FastAPI** vai esperar um corpo similar à:
+Isso significa que o **FastAPI** vai esperar um corpo similar a:
 
 ```JSON
 {
@@ -90,19 +90,19 @@ Novamente, apenas fazendo essa declaração, com o **FastAPI**, você ganha:
 * Suporte do editor (preenchimento automático, etc.), inclusive para modelos aninhados
 * Conversão de dados
 * Validação de dados
-* Documentação automatica
+* Documentação automática
 
 ## Tipos especiais e validação { #special-types-and-validation }
 
 Além dos tipos singulares normais como `str`, `int`, `float`, etc. Você também pode usar tipos singulares mais complexos que herdam de `str`.
 
-Para ver todas as opções possíveis, consulte a <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Visão geral dos tipos do Pydantic</a>. Você verá alguns exemplos no próximo capítulo.
+Para ver todas as opções possíveis, consulte a [Visão geral dos tipos do Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Você verá alguns exemplos no próximo capítulo.
 
-Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declara-lo como um `HttpUrl` do Pydantic invés de como uma `str`:
+Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declará-lo como um `HttpUrl` do Pydantic em vez de como uma `str`:
 
 {* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
 
-A string será verificada para se tornar uma URL válida e documentada no JSON Schema / OpenAPI como tal.
+A string será verificada para ser uma URL válida e documentada no JSON Schema / OpenAPI como tal.
 
 ## Atributos como listas de submodelos { #attributes-with-lists-of-submodels }
 
@@ -110,7 +110,7 @@ Você também pode usar modelos Pydantic como subtipos de `list`, `set`, etc:
 
 {* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
 
-Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
+Isso vai esperar (converter, validar, documentar, etc) um corpo JSON tal qual:
 
 ```JSON hl_lines="11"
 {
@@ -136,7 +136,7 @@ Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
 }
 ```
 
-/// info | Informação
+/// note | Nota
 
 Observe como a chave `images` agora tem uma lista de objetos de imagem.
 
@@ -148,7 +148,7 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 
 {* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-/// info | Informação
+/// note | Nota
 
 Observe como `Offer` tem uma lista de `Item`s, que por sua vez têm uma lista opcional de `Image`s
 
@@ -156,7 +156,7 @@ Observe como `Offer` tem uma lista de `Item`s, que por sua vez têm uma lista op
 
 ## Corpos de listas puras { #bodies-of-pure-lists }
 
-Se o valor de primeiro nível do corpo JSON que você espera for um `array` do JSON (uma` lista` do Python), você pode declarar o tipo no parâmetro da função, da mesma forma que nos modelos do Pydantic:
+Se o valor de primeiro nível do corpo JSON que você espera for um `array` do JSON (uma `list` do Python), você pode declarar o tipo no parâmetro da função, da mesma forma que nos modelos do Pydantic:
 
 ```Python
 images: list[Image]
@@ -164,7 +164,7 @@ images: list[Image]
 
 como em:
 
-{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
 
 ## Suporte de editor em todo canto { #editor-support-everywhere }
 
@@ -188,23 +188,23 @@ Isso seria útil se você deseja receber chaves que ainda não conhece.
 
 ---
 
-Outro caso útil é quando você deseja ter chaves de outro tipo, por exemplo, `int`.
+Outro caso útil é quando você deseja ter chaves de outro tipo (por exemplo, `int`).
 
 É isso que vamos ver aqui.
 
-Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com valores `float`:
+Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves `int` com valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
 
 /// tip | Dica
 
-Leve em condideração que o JSON só suporta `str` como chaves.
+Leve em consideração que o JSON só suporta `str` como chaves.
 
 Mas o Pydantic tem conversão automática de dados.
 
 Isso significa que, embora os clientes da API só possam enviar strings como chaves, desde que essas strings contenham inteiros puros, o Pydantic irá convertê-los e validá-los.
 
-E o `dict` que você recebe como `weights` terá, na verdade, chaves `int` e valores` float`.
+E o `dict` que você recebe como `weights` terá, na verdade, chaves `int` e valores `float`.
 
 ///
 
@@ -215,7 +215,7 @@ Com **FastAPI** você tem a flexibilidade máxima fornecida pelos modelos Pydant
 Mas com todos os benefícios:
 
 * Suporte do editor (preenchimento automático em todo canto!)
-* Conversão de dados (parsing/serialização)
+* Conversão de dados (também conhecido como parsing / serialização)
 * Validação de dados
 * Documentação dos esquemas
 * Documentação automática

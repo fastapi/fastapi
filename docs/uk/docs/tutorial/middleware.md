@@ -15,7 +15,7 @@
 
 Якщо у вас є залежності з `yield`, код виходу виконається *після* middleware.
 
-Якщо були заплановані фонові задачі (розглянуто в розділі [Background Tasks](background-tasks.md){.internal-link target=_blank}, ви побачите це пізніше), вони виконаються *після* всіх middleware.
+Якщо були заплановані фонові задачі (розглянуто в розділі [Фонові задачі](background-tasks.md), ви побачите це пізніше), вони виконаються *після* всіх middleware.
 
 ///
 
@@ -31,13 +31,13 @@
     * Потім вона поверне `response`, згенеровану відповідною *операцією шляху*.
 * Потім ви можете додатково змінити `response` перед тим, як повернути її.
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
-/// tip | Порада
+/// tip
 
-Пам’ятайте, що власні пропрієтарні заголовки можна додавати <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">використовуючи префікс `X-`</a>.
+Пам’ятайте, що власні пропрієтарні заголовки можна додавати [використовуючи префікс `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Але якщо у вас є власні заголовки, які ви хочете, щоб клієнт у браузері міг побачити, потрібно додати їх до ваших конфігурацій CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) за допомогою параметра `expose_headers`, описаного в <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">документації Starlette по CORS</a>.
+Але якщо у вас є власні заголовки, які ви хочете, щоб клієнт у браузері міг побачити, потрібно додати їх до ваших конфігурацій CORS ([CORS (Спільне використання ресурсів між джерелами)](cors.md)) за допомогою параметра `expose_headers`, описаного в [документації Starlette по CORS](https://www.starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -57,11 +57,11 @@
 
 Наприклад, ви можете додати власний заголовок `X-Process-Time`, який міститиме час у секундах, який витратився на обробку запиту та генерацію відповіді:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
-/// tip | Порада
+/// tip
 
-Тут ми використовуємо <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> замість `time.time()` оскільки він може бути більш точним для таких випадків. 🤓
+Тут ми використовуємо [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) замість `time.time()` оскільки він може бути більш точним для таких випадків. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ app.add_middleware(MiddlewareB)
 
 ## Інші middlewares { #other-middlewares }
 
-Ви можете пізніше прочитати більше про інші middlewares в [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
+Ви можете пізніше прочитати більше про інші middlewares у [просунутому посібнику користувача: просунуте middleware](../advanced/middleware.md).
 
-Ви дізнаєтесь, як обробляти <abbr title="Cross-Origin Resource Sharing">CORS</abbr> за допомогою middleware в наступному розділі.
+Ви дізнаєтесь, як обробляти <abbr title="Cross-Origin Resource Sharing - Спільне використання ресурсів між джерелами">CORS</abbr> за допомогою middleware в наступному розділі.

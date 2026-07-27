@@ -1,5 +1,6 @@
 # 生命周期事件 { #lifespan-events }
 
+
 你可以定义在应用**启动**前执行的逻辑（代码）。这意味着在应用**开始接收请求**之前，这些代码只会被执行**一次**。
 
 同样地，你可以定义在应用**关闭**时应执行的逻辑。在这种情况下，这段代码将在**处理可能的多次请求后**执行**一次**。
@@ -30,7 +31,7 @@
 
 我们使用 `yield` 创建了一个异步函数 `lifespan()` 像这样：
 
-{* ../../docs_src/events/tutorial003_py39.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
 在这里，我们在 `yield` 之前将（虚拟的）模型函数放入机器学习模型的字典中，以此模拟加载模型的耗时**启动**操作。这段代码将在应用程序**开始处理请求之前**执行，即**启动**期间。
 
@@ -48,7 +49,7 @@
 
 首先要注意的是，我们定义了一个带有 `yield` 的异步函数。这与带有 `yield` 的依赖项非常相似。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
 
 这个函数在 `yield` 之前的部分，会在应用启动前执行。
 
@@ -60,7 +61,7 @@
 
 它将函数转化为所谓的“**异步上下文管理器**”。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
 
 在 Python 中，**上下文管理器**是一个你可以在 `with` 语句中使用的东西，例如，`open()` 可以作为上下文管理器使用。
 
@@ -82,7 +83,7 @@ async with lifespan(app):
 
 `FastAPI` 的 `lifespan` 参数接受一个**异步上下文管理器**，所以我们可以把我们新定义的异步上下文管理器 `lifespan` 传给它。
 
-{* ../../docs_src/events/tutorial003_py39.py hl[22] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
 ## 替代事件（弃用） { #alternative-events-deprecated }
 
@@ -104,7 +105,7 @@ async with lifespan(app):
 
 使用事件 `"startup"` 声明一个在应用启动前运行的函数：
 
-{* ../../docs_src/events/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
 本例中，`startup` 事件处理器函数为项目“数据库”（只是一个 `dict`）提供了一些初始值。
 
@@ -116,11 +117,11 @@ async with lifespan(app):
 
 使用事件 `"shutdown"` 声明一个在应用关闭时运行的函数：
 
-{* ../../docs_src/events/tutorial002_py39.py hl[6] *}
+{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 此处，`shutdown` 事件处理器函数会向文件 `log.txt` 写入一行文本 `"Application shutdown"`。
 
-/// info | 信息
+/// note | 注意
 
 在 `open()` 函数中，`mode="a"` 指的是“追加”。因此这行文本会添加在文件已有内容之后，不会覆盖之前的内容。
 
@@ -150,11 +151,11 @@ async with lifespan(app):
 
 只是为好奇者提供的技术细节。🤓
 
-在底层，这部分是 ASGI 技术规范中的 <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan 协议</a>的一部分，定义了称为 `startup` 和 `shutdown` 的事件。
+在底层，这部分是 ASGI 技术规范中的 [Lifespan 协议](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)的一部分，定义了称为 `startup` 和 `shutdown` 的事件。
 
-/// info | 信息
+/// note | 注意
 
-你可以在 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette 的 Lifespan 文档</a> 中阅读更多关于 `lifespan` 处理器的内容。
+你可以在 [Starlette 的 Lifespan 文档](https://www.starlette.dev/lifespan/) 中阅读更多关于 `lifespan` 处理器的内容。
 
 包括如何处理生命周期状态，以便在代码的其他部分使用。
 
@@ -162,4 +163,4 @@ async with lifespan(app):
 
 ## 子应用 { #sub-applications }
 
-🚨 请注意，这些生命周期事件（startup 和 shutdown）只会在主应用上执行，不会在[子应用 - 挂载](sub-applications.md){.internal-link target=_blank}上执行。
+🚨 请注意，这些生命周期事件（startup 和 shutdown）只会在主应用上执行，不会在[子应用 - 挂载](sub-applications.md)上执行。

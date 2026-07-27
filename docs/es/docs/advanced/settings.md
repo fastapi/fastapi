@@ -8,7 +8,7 @@ Por esta razón, es común proporcionarlas en variables de entorno que son leíd
 
 /// tip | Consejo
 
-Para entender las variables de entorno, puedes leer [Variables de Entorno](../environment-variables.md){.internal-link target=_blank}.
+Para entender las variables de entorno, puedes leer [Variables de Entorno](../environment-variables.md).
 
 ///
 
@@ -20,11 +20,11 @@ Eso significa que cualquier valor leído en Python desde una variable de entorno
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Afortunadamente, Pydantic proporciona una gran utilidad para manejar estas configuraciones provenientes de variables de entorno con [Pydantic: Gestión de Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 
 ### Instalar `pydantic-settings` { #install-pydantic-settings }
 
-Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo y luego instala el paquete `pydantic-settings`:
+Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md), actívalo y luego instala el paquete `pydantic-settings`:
 
 <div class="termy">
 
@@ -54,7 +54,7 @@ De la misma forma que con los modelos de Pydantic, declaras atributos de clase c
 
 Puedes usar todas las mismas funcionalidades de validación y herramientas que usas para los modelos de Pydantic, como diferentes tipos de datos y validaciones adicionales con `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Consejo
 
@@ -70,7 +70,7 @@ Luego convertirá y validará los datos. Así que, cuando uses ese objeto `setti
 
 Luego puedes usar el nuevo objeto `settings` en tu aplicación:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Ejecutar el servidor { #run-the-server }
 
@@ -100,19 +100,19 @@ Y el `items_per_user` mantendría su valor por defecto de `50`.
 
 ## Configuraciones en otro módulo { #settings-in-another-module }
 
-Podrías poner esas configuraciones en otro archivo de módulo como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Podrías poner esas configuraciones en otro archivo de módulo como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md).
 
 Por ejemplo, podrías tener un archivo `config.py` con:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 Y luego usarlo en un archivo `main.py`:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Consejo
 
-También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más Grandes - Múltiples Archivos](../tutorial/bigger-applications.md).
 
 ///
 
@@ -120,13 +120,13 @@ También necesitarías un archivo `__init__.py` como viste en [Aplicaciones Más
 
 En algunas ocasiones podría ser útil proporcionar las configuraciones desde una dependencia, en lugar de tener un objeto global con `settings` que se use en todas partes.
 
-Esto podría ser especialmente útil durante las pruebas, ya que es muy fácil sobrescribir una dependencia con tus propias configuraciones personalizadas.
+Esto podría ser especialmente útil al escribir pruebas, ya que es muy fácil sobrescribir una dependencia con tus propias configuraciones personalizadas.
 
 ### El archivo de configuración { #the-config-file }
 
 Proveniente del ejemplo anterior, tu archivo `config.py` podría verse como:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Nota que ahora no creamos un instance por defecto `settings = Settings()`.
 
@@ -134,7 +134,7 @@ Nota que ahora no creamos un instance por defecto `settings = Settings()`.
 
 Ahora creamos una dependencia que devuelve un nuevo `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Consejo
 
@@ -146,13 +146,13 @@ Por ahora puedes asumir que `get_settings()` es una función normal.
 
 Y luego podemos requerirlo desde la *path operation function* como una dependencia y usarlo donde lo necesitemos.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
-### Configuraciones y pruebas { #settings-and-testing }
+### Configuraciones y escribir pruebas { #settings-and-testing }
 
-Luego sería muy fácil proporcionar un objeto de configuraciones diferente durante las pruebas al crear una sobrescritura de dependencia para `get_settings`:
+Luego sería muy fácil proporcionar un objeto de configuraciones diferente al escribir pruebas creando una sobrescritura de dependencia para `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 En la sobrescritura de dependencia establecemos un nuevo valor para el `admin_email` al crear el nuevo objeto `Settings`, y luego devolvemos ese nuevo objeto.
 
@@ -160,7 +160,7 @@ Luego podemos probar que se está usando.
 
 ## Leer un archivo `.env` { #reading-a-env-file }
 
-Si tienes muchas configuraciones que posiblemente cambien mucho, tal vez en diferentes entornos, podría ser útil ponerlos en un archivo y luego leerlos desde allí como si fueran variables de entorno.
+Si tienes muchas configuraciones que posiblemente cambien mucho, tal vez en diferentes entornos, podría ser útil ponerlas en un archivo y luego leerlas desde allí como si fueran variables de entorno.
 
 Esta práctica es lo suficientemente común que tiene un nombre, estas variables de entorno generalmente se colocan en un archivo `.env`, y el archivo se llama un "dotenv".
 
@@ -172,7 +172,7 @@ Pero un archivo dotenv realmente no tiene que tener ese nombre exacto.
 
 ///
 
-Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic tiene soporte para leer desde estos tipos de archivos usando un paquete externo. Puedes leer más en [Pydantic Settings: soporte para Dotenv (.env)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Consejo
 
@@ -193,11 +193,11 @@ APP_NAME="ChimichangApp"
 
 Y luego actualizar tu `config.py` con:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Consejo
 
-El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+El atributo `model_config` se usa solo para configuración de Pydantic. Puedes leer más en [Pydantic: Conceptos: Configuración](https://docs.pydantic.dev/latest/concepts/config/).
 
 ///
 
@@ -226,7 +226,7 @@ crearíamos ese objeto para cada request, y estaríamos leyendo el archivo `.env
 
 Pero como estamos usando el decorador `@lru_cache` encima, el objeto `Settings` se creará solo una vez, la primera vez que se llame. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Entonces, para cualquier llamada subsiguiente de `get_settings()` en las dependencias de los próximos requests, en lugar de ejecutar el código interno de `get_settings()` y crear un nuevo objeto `Settings`, devolverá el mismo objeto que fue devuelto en la primera llamada, una y otra vez.
 
@@ -289,14 +289,14 @@ participant execute as Ejecutar función
 
 En el caso de nuestra dependencia `get_settings()`, la función ni siquiera toma argumentos, por lo que siempre devuelve el mismo valor.
 
-De esa manera, se comporta casi como si fuera solo una variable global. Pero como usa una función de dependencia, entonces podemos sobrescribirla fácilmente para las pruebas.
+De esa manera, se comporta casi como si fuera solo una variable global. Pero como usa una función de dependencia, entonces podemos sobrescribirla fácilmente al escribir pruebas.
 
-`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en las <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">docs de Python para `@lru_cache`</a>.
+`@lru_cache` es parte de `functools`, que es parte del paquete estándar de Python, puedes leer más sobre él en la [documentación de Python para `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Resumen { #recap }
 
 Puedes usar Pydantic Settings para manejar las configuraciones o ajustes de tu aplicación, con todo el poder de los modelos de Pydantic.
 
-* Al usar una dependencia, puedes simplificar las pruebas.
+* Al usar una dependencia, puedes simplificar la escritura de pruebas.
 * Puedes usar archivos `.env` con él.
-* Usar `@lru_cache` te permite evitar leer el archivo dotenv una y otra vez para cada request, mientras te permite sobrescribirlo durante las pruebas.
+* Usar `@lru_cache` te permite evitar leer el archivo dotenv una y otra vez para cada request, mientras te permite sobrescribirlo al escribir pruebas.

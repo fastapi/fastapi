@@ -6,15 +6,15 @@
 
 이 코드는 애플리케이션이 요청을 받기 **시작**하기 전에 실행되고, 요청 처리를 **끝낸 직후**에 실행되기 때문에 전체 애플리케이션의 **수명(lifespan)**을 다룹니다(잠시 후 "lifespan"이라는 단어가 중요해집니다 😉).
 
-이는 전체 앱에서 사용해야 하는 **자원**을 설정하고, 요청 간에 **공유되는** 자원을 설정하고, 그리고/또는 이후에 **정리**하는 데 매우 유용할 수 있습니다. 예를 들어, 데이터베이스 연결 풀 또는 공유 머신러닝 모델을 로드하는 경우입니다.
+이는 전체 애플리케이션에서 사용해야 하는 **자원**을 설정하고, 요청 간에 **공유되는** 자원을 설정하고, 그리고/또는 이후에 **정리**하는 데 매우 유용할 수 있습니다. 예를 들어, 데이터베이스 연결 풀 또는 공유 머신러닝 모델을 로드하는 경우입니다.
 
 ## 사용 사례 { #use-case }
 
 먼저 **사용 사례** 예시로 시작한 다음, 이를 어떻게 해결할지 살펴보겠습니다.
 
-요청을 처리하는 데 사용하고 싶은 **머신러닝 모델**이 있다고 상상해 봅시다. 🤖
+요청을 처리하는 데 사용하고 싶은 몇 가지 **머신러닝 모델**이 있다고 상상해 봅시다. 🤖
 
-동일한 모델이 요청 간에 공유되므로, 요청마다 모델이 하나씩 있거나 사용자마다 하나씩 있는 등의 방식이 아닙니다.
+동일한 모델들이 요청 간에 공유되므로, 요청마다 모델이 하나씩 있거나 사용자마다 하나씩 있는 등의 방식이 아닙니다.
 
 모델을 로드하는 데 **상당한 시간이 걸린다고 상상해 봅시다**, 왜냐하면 모델이 **디스크에서 많은 데이터를 읽어야** 하기 때문입니다. 그래서 모든 요청마다 이를 수행하고 싶지는 않습니다.
 
@@ -24,15 +24,15 @@
 
 ## Lifespan { #lifespan }
 
-`FastAPI` 앱의 `lifespan` 매개변수와 "컨텍스트 매니저"를 사용하여 *시작*과 *종료* 로직을 정의할 수 있습니다(컨텍스트 매니저가 무엇인지 잠시 후에 보여드리겠습니다).
+`FastAPI` 애플리케이션의 `lifespan` 매개변수와 "컨텍스트 매니저"를 사용하여 *시작*과 *종료* 로직을 정의할 수 있습니다(컨텍스트 매니저가 무엇인지 잠시 후에 보여드리겠습니다).
 
 예제로 시작한 다음 자세히 살펴보겠습니다.
 
 `yield`를 사용해 비동기 함수 `lifespan()`을 다음과 같이 생성합니다:
 
-{* ../../docs_src/events/tutorial003_py39.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
-여기서는 `yield` 이전에 (가짜) 모델 함수를 머신러닝 모델이 들어 있는 딕셔너리에 넣어 모델을 로드하는 비용이 큰 *시작* 작업을 시뮬레이션합니다. 이 코드는 애플리케이션이 **요청을 받기 시작하기 전**, *시작* 동안에 실행됩니다.
+여기서는 `yield` 이전에 (가짜) 모델 함수를 머신러닝 모델들이 들어 있는 딕셔너리에 넣어 모델을 로드하는 비용이 큰 *시작* 작업을 시뮬레이션합니다. 이 코드는 애플리케이션이 **요청을 받기 시작하기 전**, *시작* 동안에 실행됩니다.
 
 그리고 `yield` 직후에는 모델을 언로드합니다. 이 코드는 애플리케이션이 **요청 처리를 마친 후**, *종료* 직전에 실행됩니다. 예를 들어 메모리나 GPU 같은 자원을 해제할 수 있습니다.
 
@@ -48,7 +48,7 @@
 
 먼저 주목할 점은 `yield`를 사용하여 비동기 함수를 정의하고 있다는 것입니다. 이는 `yield`를 사용하는 의존성과 매우 유사합니다.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
 
 함수의 첫 번째 부분, 즉 `yield` 이전의 코드는 애플리케이션이 시작되기 **전에** 실행됩니다.
 
@@ -60,7 +60,7 @@
 
 이는 함수를 "**비동기 컨텍스트 매니저**"라고 불리는 것으로 변환합니다.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
 
 파이썬에서 **컨텍스트 매니저**는 `with` 문에서 사용할 수 있는 것입니다. 예를 들어, `open()`은 컨텍스트 매니저로 사용할 수 있습니다:
 
@@ -80,15 +80,15 @@ async with lifespan(app):
 
 위의 코드 예제에서는 직접 사용하지 않고, FastAPI에 전달하여 FastAPI가 이를 사용하도록 합니다.
 
-`FastAPI` 앱의 `lifespan` 매개변수는 **비동기 컨텍스트 매니저**를 받으므로, 새 `lifespan` 비동기 컨텍스트 매니저를 전달할 수 있습니다.
+`FastAPI` 애플리케이션의 `lifespan` 매개변수는 **비동기 컨텍스트 매니저**를 받으므로, 새 `lifespan` 비동기 컨텍스트 매니저를 전달할 수 있습니다.
 
-{* ../../docs_src/events/tutorial003_py39.py hl[22] *}
+{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
 ## 대체 이벤트(사용 중단) { #alternative-events-deprecated }
 
 /// warning | 경고
 
-*시작*과 *종료*를 처리하는 권장 방법은 위에서 설명한 대로 `FastAPI` 앱의 `lifespan` 매개변수를 사용하는 것입니다. `lifespan` 매개변수를 제공하면 `startup`과 `shutdown` 이벤트 핸들러는 더 이상 호출되지 않습니다. `lifespan`만 쓰거나 이벤트만 쓰거나 둘 중 하나이지, 둘 다는 아닙니다.
+*시작*과 *종료*를 처리하는 권장 방법은 위에서 설명한 대로 `FastAPI` 애플리케이션의 `lifespan` 매개변수를 사용하는 것입니다. `lifespan` 매개변수를 제공하면 `startup`과 `shutdown` 이벤트 핸들러는 더 이상 호출되지 않습니다. `lifespan`만 쓰거나 이벤트만 쓰거나 둘 중 하나이지, 둘 다는 아닙니다.
 
 이 부분은 아마 건너뛰셔도 됩니다.
 
@@ -104,7 +104,7 @@ async with lifespan(app):
 
 애플리케이션이 시작되기 전에 실행되어야 하는 함수를 추가하려면, `"startup"` 이벤트로 선언합니다:
 
-{* ../../docs_src/events/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
 이 경우, `startup` 이벤트 핸들러 함수는 "database"(그냥 `dict`) 항목을 일부 값으로 초기화합니다.
 
@@ -116,11 +116,11 @@ async with lifespan(app):
 
 애플리케이션이 종료될 때 실행되어야 하는 함수를 추가하려면, `"shutdown"` 이벤트로 선언합니다:
 
-{* ../../docs_src/events/tutorial002_py39.py hl[6] *}
+{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 여기서 `shutdown` 이벤트 핸들러 함수는 텍스트 한 줄 `"Application shutdown"`을 `log.txt` 파일에 기록합니다.
 
-/// info | 정보
+/// note | 참고
 
 `open()` 함수에서 `mode="a"`는 "append"(추가)를 의미하므로, 기존 내용을 덮어쓰지 않고 파일에 있던 내용 뒤에 줄이 추가됩니다.
 
@@ -150,11 +150,11 @@ async with lifespan(app):
 
 호기심 많은 분들을 위한 기술적인 세부사항입니다. 🤓
 
-내부적으로 ASGI 기술 사양에서는 이것이 <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
+내부적으로 ASGI 기술 사양에서는 이것이 [Lifespan 프로토콜](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
 
-/// info | 정보
+/// note | 참고
 
-Starlette `lifespan` 핸들러에 대해서는 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette의 Lifespan 문서</a>에서 더 읽어볼 수 있습니다.
+Starlette `lifespan` 핸들러에 대해서는 [Starlette의 Lifespan 문서](https://www.starlette.dev/lifespan/)에서 더 읽어볼 수 있습니다.
 
 또한 코드의 다른 영역에서 사용할 수 있는 lifespan 상태를 처리하는 방법도 포함되어 있습니다.
 
@@ -162,4 +162,4 @@ Starlette `lifespan` 핸들러에 대해서는 <a href="https://www.starlette.de
 
 ## 서브 애플리케이션 { #sub-applications }
 
-🚨 이 lifespan 이벤트(startup 및 shutdown)는 메인 애플리케이션에 대해서만 실행되며, [서브 애플리케이션 - Mounts](sub-applications.md){.internal-link target=_blank}에는 실행되지 않음을 유의하세요.
+🚨 이 lifespan 이벤트(startup 및 shutdown)는 메인 애플리케이션에 대해서만 실행되며, [서브 애플리케이션 - Mounts](sub-applications.md)에는 실행되지 않음을 유의하세요.

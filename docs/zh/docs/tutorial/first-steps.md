@@ -1,8 +1,9 @@
 # 第一步 { #first-steps }
 
+
 最简单的 FastAPI 文件可能像下面这样：
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 将其复制到 `main.py` 文件中。
 
@@ -11,7 +12,7 @@
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +59,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 查看 { #check-it }
 
-打开浏览器访问 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+打开浏览器访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 你将看到如下的 JSON 响应：
 
@@ -68,17 +69,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 交互式 API 文档 { #interactive-api-docs }
 
-跳转到 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+跳转到 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
-你将会看到自动生成的交互式 API 文档（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 提供）：
+你将会看到自动生成的交互式 API 文档（由 [Swagger UI](https://github.com/swagger-api/swagger-ui) 提供）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### 可选的 API 文档 { #alternative-api-docs }
 
-前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
+前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你将会看到可选的自动生成文档 （由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,7 +93,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API「模式」 { #api-schema }
 
-在这种场景下，<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> 是一种规定如何定义 API 模式的规范。
+在这种场景下，[OpenAPI](https://github.com/OAI/OpenAPI-Specification) 是一种规定如何定义 API 模式的规范。
 
 「模式」的定义包括你的 API 路径，以及它们可能使用的参数等等。
 
@@ -110,7 +111,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 如果你对原始的 OpenAPI 模式长什么样子感到好奇，FastAPI 自动生成了包含所有 API 描述的 JSON（模式）。
 
-你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:800api.json</a> 看到它。
+你可以直接在：[http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json) 看到它。
 
 它将显示以如下内容开头的 JSON：
 
@@ -143,25 +144,64 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 你还可以使用它自动生成与你的 API 进行通信的客户端代码。例如 web 前端，移动端或物联网嵌入程序。
 
-### 部署你的应用（可选） { #deploy-your-app-optional }
+### 在 `pyproject.toml` 中配置应用 `entrypoint` { #configure-the-app-entrypoint-in-pyproject-toml }
 
-你可以选择将 FastAPI 应用部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>，如果还没有，先去加入候补名单。🚀
+你可以在 `pyproject.toml` 文件中配置应用的位置，例如：
 
-如果你已经拥有 **FastAPI Cloud** 账户（我们从候补名单邀请了你 😉），你可以用一条命令部署应用。
-
-部署前，先确保已登录：
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
 ```
 
-</div>
+该 `entrypoint` 会告诉 `fastapi` 命令按如下方式导入应用：
 
-然后部署你的应用：
+```python
+from main import app
+```
+
+如果你的代码结构如下：
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+那么你可以将 `entrypoint` 设置为：
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+这等价于：
+
+```python
+from backend.main import app
+```
+
+### 带路径或使用 `--entrypoint` CLI 选项的 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：
+
+```console
+$ fastapi dev main.py
+```
+
+或者，你也可以给 `fastapi dev` 命令传入 `--entrypoint` 选项：
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径/entrypoint。
+
+另外，其他工具可能无法找到它，例如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
+
+### 部署你的应用（可选） { #deploy-your-app-optional }
+
+你可以选择用一条命令将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -177,13 +217,15 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚未登录，浏览器会打开以完成认证流程。
+
 就这些！现在你可以通过该 URL 访问你的应用了。✨
 
 ## 分步概括 { #recap-step-by-step }
 
 ### 步骤 1：导入 `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
@@ -191,13 +233,13 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 的功能。
+你可以通过 `FastAPI` 使用所有的 [Starlette](https://www.starlette.dev/) 的功能。
 
 ///
 
 ### 步骤 2：创建一个 `FastAPI`「实例」 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
@@ -221,7 +263,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note | 注意
 
 「路径」也通常被称为「端点」或「路由」。
 
@@ -266,14 +308,14 @@ https://example.com/items/foo
 
 #### 定义一个*路径操作装饰器* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 `@app.get("/")` 告诉 **FastAPI** 在它下方的函数负责处理如下访问请求：
 
 * 请求路径为 `/`
-* 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
+* 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
-/// info | `@decorator` Info
+/// note | `@decorator` 信息
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -300,7 +342,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip
+/// tip | 提示
 
 你可以随意使用任何一个操作（HTTP方法）。
 
@@ -320,7 +362,7 @@ https://example.com/items/foo
 * **操作**：是 `get`。
 * **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 这是一个 Python 函数。
 
@@ -332,17 +374,17 @@ https://example.com/items/foo
 
 你也可以将其定义为常规函数而不使用 `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note
+/// note | 注意
 
-如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry){.internal-link target=_blank}。
+如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry)。
 
 ///
 
 ### 步骤 5：返回内容 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 你可以返回一个 `dict`、`list`，像 `str`、`int` 一样的单个值，等等。
 
@@ -352,11 +394,11 @@ https://example.com/items/foo
 
 ### 步骤 6：部署 { #step-6-deploy-it }
 
-用一条命令将你的应用部署到 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**：`fastapi deploy`。🎉
+用一条命令将你的应用部署到 **[FastAPI Cloud](https://fastapicloud.com)**：`fastapi deploy`。🎉
 
 #### 关于 FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 的作者和团队打造。
+**[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者和团队打造。
 
 它以最小的投入简化了 **构建**、**部署** 和 **访问** API 的流程。
 

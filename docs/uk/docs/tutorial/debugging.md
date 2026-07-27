@@ -1,12 +1,13 @@
 # Налагодження { #debugging }
 
+
 Ви можете під'єднати дебагер у вашому редакторі коду, наприклад, у Visual Studio Code або PyCharm.
 
 ## Виклик `uvicorn` { #call-uvicorn }
 
 У вашому FastAPI-додатку імпортуйте та запустіть `uvicorn` безпосередньо:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Про `__name__ == "__main__"` { #about-name-main }
 
@@ -40,7 +41,7 @@ $ python myapp.py
 
 </div>
 
-тоді внутрішня змінна `__name__` у вашому файлі, яка створюється автоматично Python, матиме значення рядка `"__main__"`.
+тоді внутрішня змінна `__name__` у вашому файлі, яка створюється автоматично Python, матиме значення строки `"__main__"`.
 
 Отже, цей блок коду:
 
@@ -59,7 +60,7 @@ $ python myapp.py
 ```Python
 from myapp import app
 
-# Some more code
+# Ще трохи коду
 ```
 
 у цьому випадку автоматично створена змінна `__name__` всередині `myapp.py` не матиме значення `"__main__"`.
@@ -72,9 +73,9 @@ from myapp import app
 
 не буде виконано.
 
-/// info | Інформація
+/// note | Примітка
 
-Для отримання додаткової інформації дивіться <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">офіційну документацію Python</a>.
+Для отримання додаткової інформації дивіться [офіційну документацію Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 

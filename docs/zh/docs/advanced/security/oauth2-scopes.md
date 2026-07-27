@@ -46,7 +46,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 * Facebook / Instagram 使用 `instagram_basic`
 * Google 使用 `https://www.googleapis.com/auth/drive`
 
-/// info | 信息
+/// note | 注意
 
 在 OAuth2 中，“作用域”只是一个声明所需特定权限的字符串。
 
@@ -60,7 +60,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ## 全局纵览 { #global-view }
 
-首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
+首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md) 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -86,7 +86,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 现在，修改令牌的*路径操作*以返回请求的作用域。
 
-我们仍然使用 `OAuth2PasswordRequestForm`。它包含 `scopes` 属性，其值是 `list[str]`，包含请求中接收到的每个作用域。
+我们仍然使用 `OAuth2PasswordRequestForm`。它包含 `scopes` 属性，其值是 `list` of `str`，包含请求中接收到的每个作用域。
 
 我们把这些作用域作为 JWT 令牌的一部分返回。
 
@@ -126,7 +126,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | 技术细节
+/// note | 技术细节
 
 `Security` 实际上是 `Depends` 的子类，它只多了一个我们稍后会看到的参数。
 
@@ -174,7 +174,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 为此，我们给 Pydantic 模型 `TokenData` 添加了一个新属性 `scopes`。
 
-通过用 Pydantic 验证数据，我们可以确保确实得到了例如一个由作用域组成的 `list[str]`，以及一个 `str` 类型的 `username`。
+通过用 Pydantic 验证数据，我们可以确保确实得到了例如一个由作用域组成的 `list` of `str`，以及一个 `str` 类型的 `username`。
 
 而不是，例如得到一个 `dict` 或其它什么，这可能会在后续某个时刻破坏应用，形成安全风险。
 
@@ -271,4 +271,4 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ## 装饰器 `dependencies` 中的 `Security` { #security-in-decorator-dependencies }
 
-就像你可以在装饰器的 `dependencies` 参数中定义 `Depends` 的 `list`（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}），你也可以在那儿配合 `Security` 使用 `scopes`。
+就像你可以在装饰器的 `dependencies` 参数中定义 `Depends` 的 `list`（详见[路径操作装饰器依赖项](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)），你也可以在那儿配合 `Security` 使用 `scopes`。

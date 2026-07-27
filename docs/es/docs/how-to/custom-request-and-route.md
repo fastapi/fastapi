@@ -18,8 +18,8 @@ Si apenas estás comenzando con **FastAPI**, quizás quieras saltar esta secció
 
 Algunos casos de uso incluyen:
 
-* Convertir cuerpos de requests no-JSON a JSON (por ejemplo, <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
-* Descomprimir cuerpos de requests comprimidos con gzip.
+* Convertir request bodies no-JSON a JSON (por ejemplo, [`msgpack`](https://msgpack.org/index.html)).
+* Descomprimir request bodies comprimidos con gzip.
 * Registrar automáticamente todos los request bodies.
 
 ## Manejo de codificaciones personalizadas de request body { #handling-custom-request-body-encodings }
@@ -32,13 +32,13 @@ Y una subclase de `APIRoute` para usar esa clase de request personalizada.
 
 /// tip | Consejo
 
-Este es un ejemplo sencillo para demostrar cómo funciona. Si necesitas soporte para Gzip, puedes usar el [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} proporcionado.
+Este es un ejemplo de juguete para demostrar cómo funciona, si necesitas soporte para Gzip, puedes usar el [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware) proporcionado.
 
 ///
 
-Primero, creamos una clase `GzipRequest`, que sobrescribirá el método `Request.body()` para descomprimir el cuerpo si hay un header apropiado.
+Primero, creamos una clase `GzipRequest`, que sobrescribirá el método `Request.body()` para descomprimir el request body si hay un header apropiado.
 
-Si no hay `gzip` en el header, no intentará descomprimir el cuerpo.
+Si no hay `gzip` en el header, no intentará descomprimir el request body.
 
 De esa manera, la misma clase de ruta puede manejar requests comprimidos con gzip o no comprimidos.
 
@@ -60,13 +60,13 @@ Aquí lo usamos para crear un `GzipRequest` a partir del request original.
 
 Un `Request` tiene un atributo `request.scope`, que es simplemente un `dict` de Python que contiene los metadatos relacionados con el request.
 
-Un `Request` también tiene un `request.receive`, que es una función para "recibir" el cuerpo del request.
+Un `Request` también tiene un `request.receive`, que es una función para "recibir" el body del request.
 
 El `dict` `scope` y la función `receive` son ambos parte de la especificación ASGI.
 
-Y esas dos cosas, `scope` y `receive`, son lo que se necesita para crear una nueva *Request instance*.
+Y esas dos cosas, `scope` y `receive`, son lo que se necesita para crear una nueva instance de `Request`.
 
-Para aprender más sobre el `Request`, revisa <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">la documentación de Starlette sobre Requests</a>.
+Para aprender más sobre el `Request`, revisa [la documentación de Starlette sobre Requests](https://www.starlette.dev/requests/).
 
 ///
 
@@ -82,7 +82,7 @@ Pero debido a nuestros cambios en `GzipRequest.body`, el request body se descomp
 
 /// tip | Consejo
 
-Para resolver este mismo problema, probablemente sea mucho más fácil usar el `body` en un manejador personalizado para `RequestValidationError` ([Manejo de Errores](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+Para resolver este mismo problema, probablemente sea mucho más fácil usar el `body` en un manejador personalizado para `RequestValidationError` ([Manejo de Errores](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).
 
 Pero este ejemplo sigue siendo válido y muestra cómo interactuar con los componentes internos.
 
@@ -94,7 +94,7 @@ Todo lo que necesitamos hacer es manejar el request dentro de un bloque `try`/`e
 
 {* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
 
-Si ocurre una excepción, la `Request instance` aún estará en el alcance, así que podemos leer y hacer uso del request body cuando manejamos el error:
+Si ocurre una excepción, el instance de `Request` todavía estará en el alcance, así que podemos leer y hacer uso del request body cuando manejamos el error:
 
 {* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
 

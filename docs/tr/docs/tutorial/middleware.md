@@ -15,7 +15,7 @@
 
 `yield` ile dependency'leriniz varsa, çıkış (exit) kodu middleware'den *sonra* çalışır.
 
-Herhangi bir background task varsa ([Background Tasks](background-tasks.md){.internal-link target=_blank} bölümünde ele alınıyor, ileride göreceksiniz), bunlar tüm middleware'ler *tamamlandıktan sonra* çalışır.
+Herhangi bir background task varsa ([Background Tasks](background-tasks.md) bölümünde ele alınıyor, ileride göreceksiniz), bunlar tüm middleware'ler *tamamlandıktan sonra* çalışır.
 
 ///
 
@@ -31,13 +31,13 @@ Middleware fonksiyonu şunları alır:
     * Ardından ilgili *path operation* tarafından üretilen `response`'u döndürür.
 * Sonrasında `response`'u döndürmeden önce ayrıca değiştirebilirsiniz.
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
 /// tip | İpucu
 
-Özel (proprietary) header'lar <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">`X-` prefix'i kullanılarak</a> eklenebilir, bunu aklınızda tutun.
+Özel (proprietary) header'lar [`X-` prefix'i kullanılarak](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) eklenebilir, bunu aklınızda tutun.
 
-Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS konfigürasyonlarınıza ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) eklemeniz gerekir. Bunun için, <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette'ın CORS dokümanlarında</a> belgelenen `expose_headers` parametresini kullanın.
+Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS konfigürasyonlarınıza ([CORS (Cross-Origin Resource Sharing)](cors.md)) eklemeniz gerekir. Bunun için, [Starlette'ın CORS dokümanlarında](https://www.starlette.dev/middleware/#corsmiddleware) belgelenen `expose_headers` parametresini kullanın.
 
 ///
 
@@ -57,11 +57,11 @@ Ayrıca `response` üretildikten sonra, geri döndürmeden önce de kod çalış
 
 Örneğin, request'i işleyip response üretmenin kaç saniye sürdüğünü içeren `X-Process-Time` adlı özel bir header ekleyebilirsiniz:
 
-{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | İpucu
 
-Burada `time.time()` yerine <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> kullanıyoruz, çünkü bu kullanım senaryolarında daha hassas olabilir. 🤓
+Burada [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) yerine `time.time()` kullanıyoruz, çünkü bu kullanım senaryolarında daha hassas olabilir. 🤓
 
 ///
 
@@ -90,6 +90,6 @@ Bu stack davranışı, middleware'lerin öngörülebilir ve kontrol edilebilir b
 
 ## Diğer Middleware'ler { #other-middlewares }
 
-Diğer middleware'ler hakkında daha fazlasını daha sonra [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank} bölümünde okuyabilirsiniz.
+Diğer middleware'ler hakkında daha fazlasını daha sonra [Advanced User Guide: Advanced Middleware](../advanced/middleware.md) bölümünde okuyabilirsiniz.
 
-Bir sonraki bölümde, middleware ile <abbr title="Cross-Origin Resource Sharing">CORS</abbr>'un nasıl ele alınacağını göreceksiniz.
+Bir sonraki bölümde, middleware ile <abbr title="Cross-Origin Resource Sharing - Çapraz Kaynak Paylaşımı">CORS</abbr>'un nasıl ele alınacağını göreceksiniz.
