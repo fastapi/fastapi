@@ -52,6 +52,7 @@ class Dependant:
 
 
 _UsesScopesCache = dict[int, tuple[Dependant, bool]]
+_CALLABLE_CLASSIFICATION_CACHE_SIZE = 4096
 
 
 class _CallIdentity:
@@ -137,7 +138,7 @@ def _get_security_dependencies(*, dependant: Dependant) -> list[Dependant]:
     return [dep for dep in dependant.dependencies if _is_security_scheme(dependant=dep)]
 
 
-@lru_cache(maxsize=1024)
+@lru_cache(maxsize=_CALLABLE_CLASSIFICATION_CACHE_SIZE)
 def _is_gen_callable_cached(call_identity: _CallIdentity) -> bool:
     call = call_identity.call
     if inspect.isgeneratorfunction(_impartial(call)) or inspect.isgeneratorfunction(
@@ -167,7 +168,7 @@ def _is_gen_callable(call: Callable[..., Any] | None) -> bool:
     return _is_gen_callable_cached(_CallIdentity(call))
 
 
-@lru_cache(maxsize=1024)
+@lru_cache(maxsize=_CALLABLE_CLASSIFICATION_CACHE_SIZE)
 def _is_async_gen_callable_cached(call_identity: _CallIdentity) -> bool:
     call = call_identity.call
     if inspect.isasyncgenfunction(_impartial(call)) or inspect.isasyncgenfunction(
@@ -197,7 +198,7 @@ def _is_async_gen_callable(call: Callable[..., Any] | None) -> bool:
     return _is_async_gen_callable_cached(_CallIdentity(call))
 
 
-@lru_cache(maxsize=1024)
+@lru_cache(maxsize=_CALLABLE_CLASSIFICATION_CACHE_SIZE)
 def _is_coroutine_callable_cached(call_identity: _CallIdentity) -> bool:
     call = call_identity.call
     if inspect.isroutine(_impartial(call)) and iscoroutinefunction(_impartial(call)):
