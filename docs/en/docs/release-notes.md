@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ⚡️ Avoid flattening dependencies for request parameters, mainly for OpenAPI. PR [#16073](https://github.com/fastapi/fastapi/pull/16073) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.140.5 (2026-07-27)
 
 ### Refactors
