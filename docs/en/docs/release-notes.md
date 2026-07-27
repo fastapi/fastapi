@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 👷 Add new memory benchmark. PR [#16064](https://github.com/fastapi/fastapi/pull/16064) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.140.1 (2026-07-27)
 
 ### Refactors
