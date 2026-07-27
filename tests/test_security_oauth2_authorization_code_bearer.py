@@ -77,6 +77,17 @@ def test_openapi_schema():
                         },
                     }
                 }
-            },
-        }
+def test_auto_error_false():
+    app_optional = FastAPI()
+    oauth2_optional = OAuth2AuthorizationCodeBearer(
+        authorizationUrl="authorize", tokenUrl="token", auto_error=False
     )
+
+    @app_optional.get("/items/")
+    async def read_optional_items(token: str | None = Security(oauth2_optional)):
+        return {"token": token}
+
+    client_optional = TestClient(app_optional)
+    response = client_optional.get("/items/")
+    assert response.status_code == 200
+    assert response.json() == {"token": None}
