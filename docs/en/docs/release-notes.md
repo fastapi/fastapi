@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ⚡️ Avoid flattening dependencies for OpenAPI. PR [#16076](https://github.com/fastapi/fastapi/pull/16076) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👷 Add OpenAPI dependency benchmarks. PR [#16075](https://github.com/fastapi/fastapi/pull/16075) by [@tiangolo](https://github.com/tiangolo).
