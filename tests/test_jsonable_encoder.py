@@ -211,8 +211,8 @@ def test_encode_model_with_default_in_dict_and_list():
     assert jsonable_encoder({"key": [model]}, exclude_defaults=True) == {
         "key": [{"foo": "foo"}]
     }
-    assert jsonable_encoder({"key": model}, exclude_unset=True, exclude_none=True) == {
-        "key": {"foo": "foo", "bar": "bar"}
+    assert jsonable_encoder({"key": model}) == {
+        "key": {"foo": "foo", "bar": "bar", "bla": "bla"}
     }
 
 
