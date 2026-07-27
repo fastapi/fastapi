@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.7 (2026-07-27)
+
 ### Refactors
 
 * ⚡️ Avoid flattening dependencies for OpenAPI. PR [#16076](https://github.com/fastapi/fastapi/pull/16076) by [@tiangolo](https://github.com/tiangolo).
