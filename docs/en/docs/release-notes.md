@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Update the lru_cache limit for dependencies to account for large apps. PR [#16062](https://github.com/fastapi/fastapi/pull/16062) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.140.0 (2026-07-24)
 
 ### Refactors
