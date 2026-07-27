@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Upgrade latest-changes to 0.7.1. PR [#16077](https://github.com/fastapi/fastapi/pull/16077) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add OpenAPI dependency benchmarks. PR [#16075](https://github.com/fastapi/fastapi/pull/16075) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.140.6 (2026-07-27)
