@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `response_model_*` params ignored for non-generator endpoints with `Iterable[..]` return type. PR [#15093](https://github.com/fastapi/fastapi/pull/15093) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.140.10 (2026-07-28)
 
 ### Fixes
