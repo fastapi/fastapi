@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.8 (2026-07-28)
+
 ### Fixes
 
 * 🐛 Fix stream item type lost when using `include_router()`. PR [#15077](https://github.com/fastapi/fastapi/pull/15077) by [@alex-raw](https://github.com/alex-raw).
