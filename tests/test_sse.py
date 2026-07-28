@@ -399,6 +399,8 @@ def test_format_sse_event_splitlines_behavior_in_comment():
 def test_format_sse_event_keeps_empty_data_line():
     payload = format_sse_event(data_str="")
     assert payload == b"data: \n\n"
+
+
 # default_response_class tests
 
 
