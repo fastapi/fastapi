@@ -580,7 +580,6 @@ class SolvedDependency:
     errors: list[Any]
     background_tasks: StarletteBackgroundTasks | None
     response: Response
-    dependency_cache: dict[DependencyCacheKey, Any]
 
 
 async def solve_dependencies(
@@ -727,7 +726,6 @@ async def solve_dependencies(
         errors=errors,
         background_tasks=background_tasks,
         response=response,
-        dependency_cache=dependency_cache,
     )
 
 
