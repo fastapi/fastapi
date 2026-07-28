@@ -6,13 +6,13 @@ pytest.importorskip("orjson")
 
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIDeprecationWarning
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import ORJSONResponse  # ty: ignore[deprecated]
 from fastapi.testclient import TestClient
 from sqlalchemy.sql.elements import quoted_name
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", FastAPIDeprecationWarning)
-    app = FastAPI(default_response_class=ORJSONResponse)
+    app = FastAPI(default_response_class=ORJSONResponse)  # ty: ignore[deprecated]
 
 
 @app.get("/orjson_non_str_keys")

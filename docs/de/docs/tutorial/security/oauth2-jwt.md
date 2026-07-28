@@ -4,7 +4,7 @@ Da wir nun über den gesamten Sicherheitsablauf verfügen, machen wir die Anwend
 
 Diesen Code können Sie tatsächlich in Ihrer Anwendung verwenden, die Passwort-Hashes in Ihrer Datenbank speichern, usw.
 
-Wir bauen auf dem vorherigen Kapitel auf.
+Wir bauen auf dem vorherigen Kapitel auf und erweitern es.
 
 ## Über JWT { #about-jwt }
 
@@ -42,7 +42,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
 
@@ -120,7 +120,7 @@ Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
 Wenn `authenticate_user` mit einem Benutzernamen aufgerufen wird, der in der Datenbank nicht existiert, führen wir dennoch `verify_password` gegen einen Dummy-Hash aus.
 
-So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden Timing-Angriffe verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
+So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden **Timing-Angriffe** verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
 
 /// note | Hinweis
 
@@ -168,7 +168,7 @@ Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## Die *Pfadoperation* `/token` aktualisieren { #update-the-token-path-operation }
+## Die `/token`-*Pfadoperation* aktualisieren { #update-the-token-path-operation }
 
 Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufzeit des Tokens.
 
@@ -213,7 +213,7 @@ Verwenden Sie die Anmeldeinformationen:
 Benutzername: `johndoe`
 Passwort: `secret`
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass im Code nirgendwo das Klartext-Passwort „`secret`“ steht, wir haben nur die gehashte Version.
 

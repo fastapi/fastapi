@@ -6,7 +6,7 @@
 
 ## `WSGIMiddleware` 사용하기 { #using-wsgimiddleware }
 
-/// info | 정보
+/// note | 참고
 
 이를 사용하려면 `a2wsgi`를 설치해야 합니다. 예: `pip install a2wsgi`
 
@@ -42,7 +42,7 @@
 Hello, World from Flask!
 ```
 
-그리고 [http://localhost:8000/v2](http://localhost:8000/v2)로 이동하면 **FastAPI**의 응답을 볼 수 있습니다:
+그리고 [http://localhost:8000/v2](http://localhost:8000/v2)로 이동하면 FastAPI의 응답을 볼 수 있습니다:
 
 ```JSON
 {

@@ -33,7 +33,7 @@ If your **server** is behind a trusted **proxy** and only the proxy talks to it,
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ To achieve this, you can use the command line option `--root-path` like:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Then, if you start Uvicorn with:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ In a case like that (without a stripped path prefix), the proxy would listen on 
 
 You can easily run the experiment locally with a stripped path prefix using [Traefik](https://docs.traefik.io/).
 
-[Download Traefik](https://github.com/containous/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
+[Download Traefik](https://github.com/traefik/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
 Then create a file `traefik.toml` with:
 
@@ -321,7 +321,7 @@ And now start your app, using the `--root-path` option:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

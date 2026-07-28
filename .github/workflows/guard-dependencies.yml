@@ -15,6 +15,7 @@ permissions:
 jobs:
   check-author:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Check if author is org member or allowed bot
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0

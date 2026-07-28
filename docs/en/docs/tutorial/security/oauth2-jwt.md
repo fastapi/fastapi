@@ -30,12 +30,12 @@ If you want to play with JWT tokens and see how they work, check [https://jwt.io
 
 We need to install `PyJWT` to generate and verify the JWT tokens in Python.
 
-Make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install `pyjwt`:
+Add `pyjwt` to your project:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ It supports many secure hashing algorithms and utilities to work with them.
 
 The recommended algorithm is "Argon2".
 
-Make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install pwdlib with Argon2:
+Add `pwdlib` with Argon2 to your project:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -124,7 +124,7 @@ This ensures the endpoint takes roughly the same amount of time to respond wheth
 
 /// note
 
-If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
+If you check the new (fake) database `fake_users_db`, you will see what the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 

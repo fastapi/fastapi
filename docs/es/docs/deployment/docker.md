@@ -1,5 +1,6 @@
 # FastAPI en Contenedores - Docker { #fastapi-in-containers-docker }
 
+
 Al desplegar aplicaciones de FastAPI, un enfoque común es construir una **imagen de contenedor de Linux**. Normalmente se realiza usando [**Docker**](https://www.docker.com/). Luego puedes desplegar esa imagen de contenedor de varias formas.
 
 Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **replicabilidad**, **simplicidad**, y otras.
@@ -132,7 +133,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | Información
+/// note | Nota
 
 Existen otros formatos y herramientas para definir e instalar dependencias de paquetes.
 
@@ -556,7 +557,7 @@ Si estás usando contenedores (por ejemplo, Docker, Kubernetes), entonces hay do
 
 Si tienes **múltiples contenedores**, probablemente cada uno ejecutando un **proceso único** (por ejemplo, en un cluster de **Kubernetes**), entonces probablemente querrías tener un **contenedor separado** realizando el trabajo de los **pasos previos** en un solo contenedor, ejecutando un solo proceso, **antes** de ejecutar los contenedores worker replicados.
 
-/// info | Información
+/// note | Nota
 
 Si estás usando Kubernetes, probablemente sería un [Contenedor de Inicialización](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

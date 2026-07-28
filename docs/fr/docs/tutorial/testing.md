@@ -8,11 +8,11 @@ Avec cela, vous pouvez utiliser [pytest](https://docs.pytest.org/) directement a
 
 ## Utiliser `TestClient` { #using-testclient }
 
-/// info
+/// note | Remarque
 
 Pour utiliser `TestClient`, installez d’abord [`httpx`](https://www.python-httpx.org).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
 
 ```console
 $ pip install httpx
@@ -144,7 +144,7 @@ Par exemple :
 
 Pour plus d’informations sur la manière de transmettre des données au backend (en utilisant `httpx` ou le `TestClient`), consultez la [documentation HTTPX](https://www.python-httpx.org).
 
-/// info
+/// note | Remarque
 
 Notez que le `TestClient` reçoit des données qui peuvent être converties en JSON, pas des modèles Pydantic.
 
@@ -156,7 +156,7 @@ Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer s
 
 Après cela, vous avez simplement besoin d’installer `pytest`.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
 
 <div class="termy">
 

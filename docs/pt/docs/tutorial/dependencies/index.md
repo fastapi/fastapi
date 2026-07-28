@@ -51,7 +51,7 @@ Neste caso, a dependência espera por:
 
 E então retorna um `dict` contendo esses valores.
 
-/// info | Informação
+/// note | Nota
 
 FastAPI passou a suportar a notação `Annotated` (e começou a recomendá-la) na versão 0.95.0.
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 Assim, você escreve um código compartilhado apenas uma vez e o **FastAPI** se encarrega de chamá-lo em suas *operações de rota*.
 
-/// check | Verifique
+/// tip | Dica
 
 Perceba que você não precisa criar uma classe especial e enviar a dependência para algum outro lugar em que o **FastAPI** a "registre" ou realize qualquer operação similar.
 
@@ -136,7 +136,7 @@ Mas como o **FastAPI** se baseia em convenções do Python, incluindo `Annotated
 
 ///
 
-As dependências continuarão funcionando como esperado, e a **melhor parte** é que a **informação sobre o tipo é preservada**, o que signfica que seu editor de texto ainda irá incluir **preenchimento automático**, **visualização de erros**, etc. O mesmo vale para ferramentas como `mypy`.
+As dependências continuarão funcionando como esperado, e a **melhor parte** é que a **informação sobre o tipo é preservada**, o que significa que seu editor de texto ainda irá incluir **preenchimento automático**, **erros em linha**, etc. O mesmo vale para ferramentas como `mypy`.
 
 Isso é especialmente útil para uma **base de código grande** onde **as mesmas dependências** são utilizadas repetidamente em **muitas *operações de rota***.
 
@@ -152,7 +152,7 @@ Não faz diferença. O **FastAPI** sabe o que fazer.
 
 /// note | Nota
 
-Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#in-a-hurry) a sessão acerca de `async` e `await` na documentação.
+Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#in-a-hurry) a seção acerca de `async` e `await` na documentação.
 
 ///
 

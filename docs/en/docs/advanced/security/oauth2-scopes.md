@@ -194,11 +194,11 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
 
 Let's review again this dependency tree and the scopes.
 
-As the `get_current_active_user` dependency has as a sub-dependency on `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
+As the `get_current_active_user` dependency has `get_current_user` as a sub-dependency, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
 
 The *path operation* itself also declares a scope, `"items"`, so this will also be in the list of `security_scopes.scopes` passed to `get_current_user`.
 
-Here's how the hierarchy of dependencies and scopes looks like:
+Here's what the hierarchy of dependencies and scopes looks like:
 
 * The *path operation* `read_own_items` has:
     * Required scopes `["items"]` with the dependency:

@@ -59,7 +59,7 @@ The idea is to automate the acquisition and renewal of these certificates so tha
 
 ## HTTPS for Developers { #https-for-developers }
 
-Here's an example of how an HTTPS API could look like, step by step, paying attention mainly to the ideas important for developers.
+Here's an example of how an HTTPS API could look, step by step, paying attention mainly to the ideas important for developers.
 
 ### Domain Name { #domain-name }
 
@@ -192,7 +192,7 @@ All this renewal process, while still serving the app, is one of the main reason
 
 ## Proxy Forwarded Headers { #proxy-forwarded-headers }
 
-When using a proxy to handle HTTPS, your **application server** (for example Uvicorn via FastAPI CLI) doesn't known anything about the HTTPS process, it communicates with plain HTTP with the **TLS Termination Proxy**.
+When using a proxy to handle HTTPS, your **application server** (for example Uvicorn via FastAPI CLI) doesn't know anything about the HTTPS process, it communicates with plain HTTP with the **TLS Termination Proxy**.
 
 This **proxy** would normally set some HTTP headers on the fly before transmitting the request to the **application server**, to let the application server know that the request is being **forwarded** by the proxy.
 

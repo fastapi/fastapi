@@ -2,7 +2,7 @@
 
 Puedes definir archivos y campos de formulario al mismo tiempo usando `File` y `Form`.
 
-/// info | Información
+/// note | Nota
 
 Para recibir archivos subidos y/o form data, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 

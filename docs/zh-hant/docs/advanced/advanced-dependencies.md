@@ -1,5 +1,6 @@
 # 進階相依 { #advanced-dependencies }
 
+
 ## 參數化的相依 { #parameterized-dependencies }
 
 到目前為止看到的相依都是固定的函式或類別。
@@ -98,7 +99,7 @@ checker(q="somequery")
 
 這個行為在 0.118.0 被還原，使得 `yield` 之後的結束程式碼會在回應送出之後才被執行。
 
-/// info | 資訊
+/// note | 注意
 
 如下所見，這與 0.106.0 之前的行為非常類似，但對一些邊界情況做了多項改進與錯誤修正。
 

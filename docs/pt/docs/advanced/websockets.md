@@ -111,7 +111,7 @@ Eles funcionam da mesma forma que para outros endpoints FastAPI/*operações de 
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info | Informação
+/// note | Nota
 
 Como isso é um WebSocket, não faz muito sentido levantar uma `HTTPException`, em vez disso levantamos uma `WebSocketException`.
 

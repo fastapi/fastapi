@@ -2,7 +2,7 @@
 
 FastAPI에서 **Pydantic 모델**을 이용하여 **폼 필드**를 선언할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
 폼을 사용하려면, 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치하세요.
 

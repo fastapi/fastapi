@@ -66,7 +66,7 @@ Le `dict` `scope` et la fonction `receive` font tous deux partie de la spécific
 
 Et ces deux éléments, `scope` et `receive`, sont ce dont on a besoin pour créer une nouvelle instance de `Request`.
 
-Pour en savoir plus sur `Request`, consultez [la documentation de Starlette sur les requêtes](https://www.starlette.dev/requests/).
+Pour en savoir plus sur `Request`, consultez [les documents de Starlette sur les requêtes](https://www.starlette.dev/requests/).
 
 ///
 

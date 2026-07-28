@@ -2,6 +2,14 @@
 
 你可以使用 `StaticFiles` 从目录中自动提供静态文件。
 
+/// tip | 提示
+
+如果你需要托管前端，请改用 `app.frontend()`，可在[前端](frontend.md)中阅读相关内容。
+
+`app.frontend()` 底层使用 `StaticFiles`，并为前端提供了几个额外优势，例如处理客户端路由。
+
+///
+
 ## 使用 `StaticFiles` { #use-staticfiles }
 
 * 导入 `StaticFiles`。

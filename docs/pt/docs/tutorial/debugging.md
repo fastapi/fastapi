@@ -72,7 +72,7 @@ Então, a linha:
 
 não será executada.
 
-/// info | Informação
+/// note | Nota
 
 Para mais informações, consulte [a documentação oficial do Python](https://docs.python.org/3/library/__main__.html).
 
@@ -99,7 +99,7 @@ Veja como pode parecer:
 
 ---
 
-Se você usar o Pycharm, você pode:
+Se você usar o PyCharm, você pode:
 
 * Abrir o menu "Executar".
 * Selecionar a opção "Depurar...".

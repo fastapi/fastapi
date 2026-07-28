@@ -2,7 +2,7 @@
 
 **FastAPI**는 **OpenAPI** 사양을 기반으로 하므로, FastAPI의 API는 많은 도구가 이해할 수 있는 표준 형식으로 설명할 수 있습니다.
 
-덕분에 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 최신 **문서**, 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
+덕분에 최신 **문서**, 여러 언어용 클라이언트 라이브러리(<abbr title="Software Development Kits - 소프트웨어 개발 키트">**SDKs**</abbr>), 그리고 코드와 동기화된 **테스트** 또는 **자동화 워크플로**를 쉽게 생성할 수 있습니다.
 
 이 가이드에서는 FastAPI 백엔드용 **TypeScript SDK**를 생성하는 방법을 배웁니다.
 
@@ -19,21 +19,6 @@
 FastAPI는 **OpenAPI 3.1** 사양을 자동으로 생성하므로, 사용하는 도구는 이 버전을 지원해야 합니다.
 
 ///
-
-## FastAPI 스폰서의 SDK 생성기 { #sdk-generators-from-fastapi-sponsors }
-
-이 섹션에서는 FastAPI를 후원하는 회사들이 제공하는 **벤처 투자 기반** 및 **기업 지원** 솔루션을 소개합니다. 이 제품들은 고품질로 생성된 SDK에 더해 **추가 기능**과 **통합**을 제공합니다.
-
-✨ [**FastAPI 후원하기**](../help-fastapi.md#sponsor-the-author) ✨를 통해, 이 회사들은 프레임워크와 그 **생태계**가 건강하고 **지속 가능**하게 유지되도록 돕습니다.
-
-또한 이들의 후원은 FastAPI **커뮤니티**(여러분)에 대한 강한 헌신을 보여주며, **좋은 서비스**를 제공하는 것뿐 아니라, 견고하고 활발한 프레임워크인 FastAPI를 지원하는 데에도 관심이 있음을 나타냅니다. 🙇
-
-예를 들어 다음을 사용해 볼 수 있습니다:
-
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
-
-이 중 일부는 오픈 소스이거나 무료 티어를 제공하므로, 비용 부담 없이 사용해 볼 수 있습니다. 다른 상용 SDK 생성기도 있으며 온라인에서 찾을 수 있습니다. 🤓
 
 ## TypeScript SDK 만들기 { #create-a-typescript-sdk }
 

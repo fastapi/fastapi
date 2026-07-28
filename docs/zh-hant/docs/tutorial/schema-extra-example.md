@@ -10,7 +10,7 @@
 
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
-這些額外資訊會原封不動加入該模型輸出的 JSON Schema，並且會用在 API 文件裡。
+這些額外資訊會原封不動加入該模型輸出的 **JSON Schema**，並且會用在 API 文件裡。
 
 你可以使用屬性 `model_config`（接收一個 `dict`），詳見 [Pydantic 文件：Configuration](https://docs.pydantic.dev/latest/api/config/)。
 
@@ -24,7 +24,7 @@
 
 ///
 
-/// info
+/// note
 
 OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援，這是 **JSON Schema** 標準的一部分。
 
@@ -135,7 +135,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 以下是關於 **JSON Schema** 與 **OpenAPI** 標準的技術細節。
 
-如果上面的做法對你已經足夠可用，就不需要這些細節，儘管直接跳過。
+如果上面的做法對你已經足夠可用，就不需要這些細節，可以直接跳過。
 
 ///
 
@@ -155,7 +155,7 @@ OpenAPI 也在規範的其他部分新增了 `example` 與 `examples` 欄位：
     * `File()`
     * `Form()`
 
-/// info
+/// note
 
 這個舊的、OpenAPI 特定的 `examples` 參數，從 FastAPI `0.103.0` 起改名為 `openapi_examples`。
 
@@ -171,7 +171,7 @@ OpenAPI 也在規範的其他部分新增了 `example` 與 `examples` 欄位：
 
 JSON Schema 中新的 `examples` 欄位「就是一個 `list`」的範例集合，而不是像 OpenAPI 其他地方（如上所述）那樣附帶額外中繼資料的 `dict`。
 
-/// info
+/// note
 
 即使 OpenAPI 3.1.0 已發佈並與 JSON Schema 有更簡潔的整合，一段時間內提供自動文件的 Swagger UI 並不支援 OpenAPI 3.1.0（自 5.0.0 版起支援 🎉）。
 

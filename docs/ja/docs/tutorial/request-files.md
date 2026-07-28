@@ -1,8 +1,9 @@
 # リクエストファイル { #request-files }
 
+
 `File` を使って、クライアントがアップロードするファイルを定義できます。
 
-/// info | 情報
+/// note | 備考
 
 アップロードされたファイルを受け取るには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
@@ -28,7 +29,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | 情報
+/// note | 備考
 
 `File` は `Form` を直接継承したクラスです。
 

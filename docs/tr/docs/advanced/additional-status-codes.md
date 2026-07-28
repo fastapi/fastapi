@@ -1,5 +1,6 @@
 # Ek Status Code'ları { #additional-status-codes }
 
+
 Varsayılan olarak **FastAPI**, response'ları bir `JSONResponse` kullanarak döndürür; *path operation*'ınızdan döndürdüğünüz içeriği bu `JSONResponse`'un içine yerleştirir.
 
 Varsayılan status code'u veya *path operation* içinde sizin belirlediğiniz status code'u kullanır.

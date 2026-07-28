@@ -104,6 +104,6 @@
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
-在此範例中，`router` 底下的路徑操作會使用自訂的 `TimedRoute` 類別，並在回應中多加上一個 `X-Response-Time` 標頭，標示產生該回應所花費的時間：
+在此範例中，`router` 底下的 *路徑操作* 會使用自訂的 `TimedRoute` 類別，並在回應中多加上一個 `X-Response-Time` 標頭，標示產生該回應所花費的時間：
 
 {* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}

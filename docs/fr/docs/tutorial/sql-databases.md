@@ -30,7 +30,7 @@ Il existe un générateur de projet officiel avec **FastAPI** et **PostgreSQL**,
 
 ///
 
-Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur les bases de données en général, sur SQL, ou des fonctionnalités plus avancées, allez voir la [documentation SQLModel](https://sqlmodel.tiangolo.com/).
+Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur les bases de données en général, sur SQL, ou des fonctionnalités plus avancées, allez voir les [documents de SQLModel](https://sqlmodel.tiangolo.com/).
 
 ## Installer `SQLModel` { #install-sqlmodel }
 
@@ -57,15 +57,15 @@ Importez `SQLModel` et créez un modèle de base de données :
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-La classe `Hero` est très similaire à un modèle Pydantic (en fait, en dessous, c'est réellement un modèle Pydantic).
+La classe `Hero` est très similaire à un modèle Pydantic (en fait, en dessous, c'est réellement *un modèle Pydantic*).
 
 Il y a quelques différences :
 
 * `table=True` indique à SQLModel qu'il s'agit d'un *modèle de table*, il doit représenter une **table** dans la base SQL, ce n'est pas seulement un *modèle de données* (comme le serait n'importe quelle autre classe Pydantic classique).
 
-* `Field(primary_key=True)` indique à SQLModel que `id` est la **clé primaire** dans la base SQL (vous pouvez en savoir plus sur les clés primaires SQL dans la documentation SQLModel).
+* `Field(primary_key=True)` indique à SQLModel que `id` est la **clé primaire** dans la base SQL (vous pouvez en savoir plus sur les clés primaires SQL dans les documents de SQLModel).
 
-    Remarque : nous utilisons `int | None` pour le champ clé primaire afin qu'en Python nous puissions *créer un objet sans `id`* (`id=None`), en supposant que la base *le génère à l'enregistrement*. SQLModel comprend que la base fournira l'`id` et *définit la colonne comme un `INTEGER` non nul* dans le schéma de base. Voir la [documentation SQLModel sur les clés primaires](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) pour plus de détails.
+    **Remarque :** nous utilisons `int | None` pour le champ clé primaire afin qu'en Python nous puissions *créer un objet sans `id`* (`id=None`), en supposant que la base *le génère à l'enregistrement*. SQLModel comprend que la base fournira l'`id` et *définit la colonne comme un `INTEGER` non nul* dans le schéma de base. Voir les [documents de SQLModel sur les clés primaires](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id) pour plus de détails.
 
 * `Field(index=True)` indique à SQLModel qu'il doit créer un **index SQL** pour cette colonne, ce qui permettra des recherches plus rapides dans la base lors de la lecture de données filtrées par cette colonne.
 
@@ -121,7 +121,7 @@ Comme chaque modèle SQLModel est aussi un modèle Pydantic, vous pouvez l'utili
 
 Par exemple, si vous déclarez un paramètre de type `Hero`, il sera lu depuis le **corps JSON**.
 
-De la même manière, vous pouvez le déclarer comme **type de retour** de la fonction, et alors la forme des données apparaîtra dans l'UI automatique de documentation de l'API.
+De la même manière, vous pouvez le déclarer comme **type de retour** de la fonction, et alors la forme des données apparaîtra dans l'UI automatique des documents de l'API.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
@@ -173,7 +173,7 @@ Si vous vérifiez l'application précédente, dans l'UI vous pouvez voir que, ju
 
 Nous ne devrions pas laisser cela se produire, ils pourraient écraser un `id` que nous avons déjà attribué dans la base. Décider de l'`id` doit être fait par le **backend** ou la **base**, **pas par le client**.
 
-De plus, nous créons un `secret_name` pour le héros, mais jusqu'ici, nous le renvoyons partout, ce n'est pas très « secret » ... 😅
+De plus, nous créons un `secret_name` pour le héros, mais jusqu'ici, nous le renvoyons partout, ce n'est pas très **secret** ... 😅
 
 Nous allons corriger ces choses en ajoutant quelques **modèles supplémentaires**. C'est là que SQLModel brille. ✨
 
@@ -354,4 +354,4 @@ Si vous allez sur l'UI `/docs` de l'API, vous verrez qu'elle est maintenant à j
 
 Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données* et des *modèles de table*.
 
-Vous pouvez en apprendre beaucoup plus dans la documentation **SQLModel**, il y a un mini [tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀
+Vous pouvez en apprendre beaucoup plus dans les documents de **SQLModel**, il y a un mini [tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

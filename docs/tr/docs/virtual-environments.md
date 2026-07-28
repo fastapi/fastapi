@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Virtual Environment Oluşturun { #create-a-virtual-environment }
 
-Bir Python projesi üzerinde **ilk kez** çalışmaya başladığınızda, **virtual environment**'i <dfn title="başka seçenekler de var, bu basit bir yönergedir">projenizin içinde</dfn> oluşturun.
+Bir Python projesi üzerinde **ilk kez** çalışmaya başladığınızda, virtual environment'i **<dfn title="başka seçenekler de var, bu basit bir yönergedir">projenizin içinde</dfn>** oluşturun.
 
 /// tip | İpucu
 
@@ -443,6 +443,8 @@ Böylece `python` çalıştırdığınızda, o virtual environment içinden (ve 
 
 Artık projeniz üzerinde çalışmaya başlayabilirsiniz.
 
+
+
 /// tip | İpucu
 
 Yukarıdaki her şeyin aslında ne olduğunu anlamak ister misiniz?
@@ -517,7 +519,7 @@ $ pip install "harry==3"
 
 Sonuç olarak global Python environment'ınızda `harry` versiyon `3` kurulu olur.
 
-Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
+Ve `philosophers-stone`'u tekrar çalıştırmaya kalkarsanız, `harry` versiyon `1`'e ihtiyaç duyduğu için **çalışmama** ihtimali vardır.
 
 ```mermaid
 flowchart LR

@@ -20,7 +20,7 @@
 
 本例把 `item_id` 的类型声明为 `int`。
 
-/// check | 检查
+/// tip | 提示
 
 类型声明将为函数提供错误检查、代码补全等编辑器支持。
 
@@ -34,7 +34,7 @@
 {"item_id":3}
 ```
 
-/// check | 检查
+/// tip | 提示
 
 注意，函数接收并返回的值是 `3`（ `int`），不是 `"3"`（`str`）。
 
@@ -66,7 +66,7 @@
 
 值的类型不是 `int` 而是浮点数（`float`）时也会显示同样的错误，比如： [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | 检查
+/// tip | 提示
 
 **FastAPI** 使用同样的 Python 类型声明实现了数据校验。
 
@@ -82,7 +82,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | 检查
+/// tip | 提示
 
 还是使用 Python 类型声明，**FastAPI** 提供了（集成 Swagger UI 的）自动交互式文档。
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-FastAPI 充分地利用了 [Pydantic](https://docs.pydantic.dev/) 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
+所有数据校验都由 [Pydantic](https://docs.pydantic.dev/) 在幕后完成，因此你能从中获得所有好处。而且你可以放心。
 
 同样，`str`、`float`、`bool` 以及很多复合数据类型都可以使用类型声明。
 

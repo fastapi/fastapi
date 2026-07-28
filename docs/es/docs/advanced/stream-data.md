@@ -2,9 +2,9 @@
 
 Si quieres transmitir datos que se puedan estructurar como JSON, deberías [Transmitir JSON Lines](../tutorial/stream-json-lines.md).
 
-Pero si quieres transmitir datos binarios puros o strings, aquí tienes cómo hacerlo.
+Pero si quieres **transmitir datos binarios puros** o strings, aquí tienes cómo hacerlo.
 
-/// info | Información
+/// note | Nota
 
 Añadido en FastAPI 0.134.0.
 
@@ -12,11 +12,11 @@ Añadido en FastAPI 0.134.0.
 
 ## Casos de uso { #use-cases }
 
-Podrías usar esto si quieres transmitir strings puros, por ejemplo directamente de la salida de un servicio de AI LLM.
+Podrías usar esto si quieres transmitir strings puros, por ejemplo directamente de la salida de un servicio de **AI LLM**.
 
-También podrías usarlo para transmitir archivos binarios grandes, donde transmites cada bloque de datos a medida que lo lees, sin tener que leerlo todo en memoria de una sola vez.
+También podrías usarlo para transmitir **archivos binarios grandes**, donde transmites cada bloque de datos a medida que lo lees, sin tener que leerlo todo en memoria de una sola vez.
 
-También podrías transmitir video o audio de esta manera; incluso podría generarse mientras lo procesas y lo envías.
+También podrías transmitir **video** o **audio** de esta manera; incluso podría generarse mientras lo procesas y lo envías.
 
 ## Un `StreamingResponse` con `yield` { #a-streamingresponse-with-yield }
 
@@ -40,7 +40,7 @@ Como FastAPI no intentará convertir los datos a JSON con Pydantic ni serializar
 
 {* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
 
-Esto también significa que con `StreamingResponse` tienes la libertad y la responsabilidad de producir y codificar los bytes de datos exactamente como necesites enviarlos, independientemente de las anotaciones de tipos. 🤓
+Esto también significa que con `StreamingResponse` tienes la **libertad** y la **responsabilidad** de producir y codificar los bytes de datos exactamente como necesites enviarlos, independientemente de las anotaciones de tipos. 🤓
 
 ### Transmitir bytes { #stream-bytes }
 
@@ -90,7 +90,7 @@ Por ejemplo, no tienen un `await file.read()`, ni un `async for chunk in file`.
 
 Y en muchos casos leerlos sería una operación bloqueante (que podría bloquear el event loop), porque se leen desde disco o desde la red.
 
-/// info | Información
+/// note | Nota
 
 El ejemplo anterior es en realidad una excepción, porque el objeto `io.BytesIO` ya está en memoria, así que leerlo no bloqueará nada.
 

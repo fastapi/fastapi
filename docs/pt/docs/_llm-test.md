@@ -11,7 +11,7 @@ Use da seguinte forma:
 * Verifique se está tudo certo na tradução.
 * Se necessário, melhore seu prompt específico do idioma, o prompt geral ou o documento em inglês.
 * Em seguida, corrija manualmente os problemas restantes na tradução, para que fique uma boa tradução.
-* Retraduzir, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que [LLMs não são algoritmos determinísticos](https://doublespeak.chat/#/handbook#deterministic-output)).
+* Retraduza, tendo a boa tradução no lugar. O resultado ideal seria que o LLM não fizesse mais mudanças na tradução. Isso significa que o prompt geral e o seu prompt específico do idioma estão tão bons quanto possível (às vezes fará algumas mudanças aparentemente aleatórias, a razão é que [LLMs não são algoritmos determinísticos](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Os testes:
 
@@ -124,19 +124,11 @@ Veja a seção `### Content of code blocks` no prompt geral em `scripts/translat
 
 //// tab | Teste
 
-/// info | Informação
-Algum texto
-///
-
 /// note | Nota
 Algum texto
 ///
 
 /// note | Detalhes Técnicos
-Algum texto
-///
-
-/// check | Verifique
 Algum texto
 ///
 
@@ -197,15 +189,15 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 
 ### O abbr fornece uma frase completa { #the-abbr-gives-a-full-phrase }
 
-* <abbr title="Getting Things Done – Fazer as Coisas">GTD</abbr>
-* <abbr title="less than – menos que"><code>lt</code></abbr>
-* <abbr title="XML Web Token – Token Web XML">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface – Interface de Gateway de Servidor Paralelo">PSGI</abbr>
+* <abbr title="Getting Things Done - Fazer as Coisas">GTD</abbr>
+* <abbr title="less than - menos que"><code>lt</code></abbr>
+* <abbr title="XML Web Token - Token Web XML">XWT</abbr>
+* <abbr title="Parallel Server Gateway Interface - Interface de Gateway de Servidor Paralelo">PSGI</abbr>
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
-* <abbr title="Input/Output – Entrada/Saída: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla: documentação para desenvolvedores, escrita pelo pessoal do Firefox">MDN</abbr>
+* <abbr title="Input/Output: leitura ou escrita em disco, comunicações de rede.">I/O</abbr>.
 
 ////
 

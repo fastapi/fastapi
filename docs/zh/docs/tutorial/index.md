@@ -1,10 +1,10 @@
 # 教程 - 用户指南 { #tutorial-user-guide }
 
-本教程将一步步向您展示如何使用 **FastAPI** 的绝大部分特性。
+本教程将一步步向你展示如何使用 **FastAPI** 的绝大部分特性。
 
-各个章节的内容循序渐进，但是又围绕着单独的主题，所以您可以直接跳转到某个章节以解决您的特定 API 需求。
+各个章节的内容循序渐进，但是又围绕着单独的主题，所以你可以直接跳转到某个章节以解决你的特定 API 需求。
 
-本教程同样可以作为将来的参考手册，所以您可以随时回到本教程并查阅您需要的内容。
+本教程同样可以作为将来的参考手册，所以你可以随时回到本教程并查阅你需要的内容。
 
 ## 运行代码 { #run-the-code }
 
@@ -52,7 +52,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 </div>
 
-**强烈建议**您在本地编写或复制代码，对其进行编辑并运行。
+**强烈建议**你在本地编写或复制代码，对其进行编辑并运行。
 
 在编辑器中使用 FastAPI 会真正地展现出它的优势：只需要编写很少的代码，所有的类型检查，代码补全等等。
 
@@ -60,9 +60,9 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 ## 安装 FastAPI { #install-fastapi }
 
-第一个步骤是安装 FastAPI.
+第一个步骤是安装 FastAPI。
 
-请确保您创建并激活一个[虚拟环境](../virtual-environments.md)，然后**安装 FastAPI**：
+请确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后**安装 FastAPI**：
 
 <div class="termy">
 
@@ -76,11 +76,11 @@ $ pip install "fastapi[standard]"
 
 /// note | 注意
 
-当您使用 `pip install "fastapi[standard]"` 安装时，它会附带一些默认的可选标准依赖项，其中包括 `fastapi-cloud-cli`，它可以让您部署到 [FastAPI Cloud](https://fastapicloud.com)。
+当你使用 `pip install "fastapi[standard]"` 安装时，它会附带一些默认的可选标准依赖项，其中包括 `fastapi-cloud-cli`，它可以让你部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
-如果您不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
+如果你不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
 
-如果您想安装标准依赖但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"` 安装。
+如果你想安装标准依赖但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"` 安装。
 
 ///
 
@@ -92,10 +92,10 @@ FastAPI 提供了一个[VS Code 官方扩展](https://marketplace.visualstudio.c
 
 ## 进阶用户指南 { #advanced-user-guide }
 
-在本**教程-用户指南**之后，您可以阅读**进阶用户指南**。
+在本**教程-用户指南**之后，你可以阅读**进阶用户指南**。
 
 **进阶用户指南**以本教程为基础，使用相同的概念，并教授一些额外的特性。
 
-但是您应该先阅读**教程-用户指南**（即您现在正在阅读的内容）。
+但是你应该先阅读**教程-用户指南**（即你现在正在阅读的内容）。
 
-教程经过精心设计，使您可以仅通过**教程-用户指南**来开发一个完整的应用程序，然后根据您的需要，使用**进阶用户指南**中的一些其他概念，以不同的方式来扩展它。
+教程经过精心设计，使你可以仅通过**教程-用户指南**来开发一个完整的应用程序，然后根据你的需要，使用**进阶用户指南**中的一些其他概念，以不同的方式来扩展它。

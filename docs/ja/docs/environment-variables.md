@@ -163,7 +163,7 @@ Hello World from Python
 
 つまり、環境変数からPythonで読み取る**あらゆる値**は **`str`になり**、他の型への変換やバリデーションはコード内で行う必要があります。
 
-環境変数を使って**アプリケーション設定**を扱う方法については、[高度なユーザーガイド - Settings and Environment Variables](./advanced/settings.md)で詳しく学べます。
+環境変数を使って**アプリケーション設定**を扱う方法については、[高度なユーザーガイド - 設定と環境変数](./advanced/settings.md)で詳しく学べます。
 
 ## `PATH`環境変数 { #path-environment-variable }
 
@@ -285,7 +285,7 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-この情報は、[Virtual Environments](virtual-environments.md)について学ぶ際にも役立ちます。
+この情報は、[仮想環境](virtual-environments.md)について学ぶ際にも役立ちます。
 
 ## まとめ { #conclusion }
 
@@ -295,4 +295,4 @@ $ C:\opt\custompython\bin\python
 
 多くの場合、環境変数がどのように役立ち、すぐに適用できるのかはあまり明確ではありません。しかし、開発中のさまざまなシナリオで何度も登場するため、知っておくとよいでしょう。
 
-例えば、次のセクションの[Virtual Environments](virtual-environments.md)でこの情報が必要になります。
+例えば、次のセクションの[仮想環境](virtual-environments.md)でこの情報が必要になります。

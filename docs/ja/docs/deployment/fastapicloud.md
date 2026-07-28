@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-[FastAPI Cloud](https://fastapicloud.com) に **コマンド1つ** でデプロイできます。まだならウェイティングリストにご登録ください。🚀
-
-## ログイン { #login }
-
-すでに **FastAPI Cloud** アカウントをお持ちであることを確認してください（ウェイティングリストからご招待しています 😉）。
-
-次にログインします:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## デプロイ { #deploy }
-
-では、**コマンド1つ** でアプリをデプロイします:
+[FastAPI Cloud](https://fastapicloud.com) に **コマンド1つ** で FastAPI アプリをデプロイできます。🚀
 
 <div class="termy">
 
@@ -35,6 +15,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI は FastAPI アプリケーションを自動検出してクラウドにデプロイします。ログインしていない場合は、認証を完了するためにブラウザが開きます。
 
 以上です！その URL からアプリにアクセスできます。✨
 

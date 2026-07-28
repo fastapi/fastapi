@@ -2,7 +2,7 @@
 
 FastAPI では、フォームフィールドを宣言するために **Pydantic モデル**を使用できます。
 
-/// info | 情報
+/// note | 備考
 
 フォームを使うには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 

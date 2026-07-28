@@ -157,7 +157,7 @@ def test_post_broken_body(client: TestClient):
 
 
 def test_post_form_for_json(client: TestClient):
-    response = client.post("/items/", data={"name": "Foo", "price": 50.5})
+    response = client.post("/items/", data={"name": "Foo", "price": "50.5"})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
