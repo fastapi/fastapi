@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `status_code` being ignored for SSE and JSONL streaming endpoints. PR [#15937](https://github.com/fastapi/fastapi/pull/15937) by [@SAURABHSALVE](https://github.com/SAURABHSALVE).
+
 ### Docs
 
 * 📝 Fix `format_sse_event` docstring rendering of `\n\n` terminator. PR [#15613](https://github.com/fastapi/fastapi/pull/15613) by [@AshNicolus](https://github.com/AshNicolus).
