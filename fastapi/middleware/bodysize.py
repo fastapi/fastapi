@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from typing import List
-from starlette.types import ASGIApp, Receive, Scope, Send, Message
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 
 class BodySizeLimitMiddleware:
@@ -22,7 +21,7 @@ class BodySizeLimitMiddleware:
             return
 
         total = 0
-        chunks: List[bytes] = []
+        chunks: list[bytes] = []
         more_body = True
 
         # Read the incoming body in chunks, enforcing the limit.
@@ -39,16 +38,22 @@ class BodySizeLimitMiddleware:
                     # Drain the remaining body to allow the server to cleanly finish reading the request.
                     while message.get("more_body", False):
                         message = await receive()
-                    await send({
-                        "type": "http.response.start",
-                        "status": 413,
-                        "headers": [(b"content-type", b"text/plain; charset=utf-8")],
-                    })
-                    await send({
-                        "type": "http.response.body",
-                        "body": b"Payload Too Large",
-                        "more_body": False,
-                    })
+                    await send(
+                        {
+                            "type": "http.response.start",
+                            "status": 413,
+                            "headers": [
+                                (b"content-type", b"text/plain; charset=utf-8")
+                            ],
+                        }
+                    )
+                    await send(
+                        {
+                            "type": "http.response.body",
+                            "body": b"Payload Too Large",
+                            "more_body": False,
+                        }
+                    )
                     return
                 chunks.append(body)
             more_body = message.get("more_body", False)

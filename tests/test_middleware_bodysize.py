@@ -1,4 +1,3 @@
-import pytest
 from fastapi import FastAPI, Request
 from fastapi.middleware import BodySizeLimitMiddleware
 from starlette.testclient import TestClient
