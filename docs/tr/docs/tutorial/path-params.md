@@ -20,7 +20,7 @@ Standart Python tip belirteçlerini kullanarak path parametresinin tipini fonksi
 
 Bu durumda, `item_id` bir `int` olarak tanımlanır.
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Bu sayede, fonksiyon içinde hata denetimi, kod tamamlama vb. konularda editör desteğine kavuşursunuz.
 
@@ -34,7 +34,7 @@ Bu örneği çalıştırıp tarayıcınızda [http://127.0.0.1:8000/items/3](htt
 {"item_id":3}
 ```
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Dikkat edin: fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3`, string `"3"` değil, bir Python `int`'idir.
 
@@ -66,7 +66,7 @@ Ancak tarayıcınızda [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/i
 
 Aynı hata, şu örnekte olduğu gibi `int` yerine `float` verirseniz de ortaya çıkar: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Yani, aynı Python tip tanımıyla birlikte **FastAPI** size veri doğrulama sağlar.
 
@@ -82,7 +82,7 @@ Tarayıcınızı [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresi
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Yine, sadece aynı Python tip tanımıyla **FastAPI** size otomatik ve interaktif dokümantasyon (Swagger UI entegrasyonuyla) sağlar.
 

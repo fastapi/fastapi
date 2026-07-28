@@ -1,5 +1,6 @@
 # Response Header'ları { #response-headers }
 
+
 ## Bir `Response` parametresi kullanın { #use-a-response-parameter }
 
 *Path operation function* içinde (cookie'lerde yapabildiğiniz gibi) tipi `Response` olan bir parametre tanımlayabilirsiniz.

@@ -142,7 +142,7 @@ So, we declare the event handler function with standard `def` instead of `async 
 
 There's a high chance that the logic for your *startup* and *shutdown* is connected, you might want to start something and then finish it, acquire a resource and then release it, etc.
 
-Doing that in separated functions that don't share logic or variables together is more difficult as you would need to store values in global variables or similar tricks.
+Doing that in separate functions that don't share logic or variables together is more difficult as you would need to store values in global variables or similar tricks.
 
 Because of that, it's now recommended to instead use the `lifespan` as explained above.
 
@@ -154,7 +154,7 @@ Underneath, in the ASGI technical specification, this is part of the [Lifespan P
 
 /// note
 
-You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://www.starlette.dev/lifespan/).
+You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://starlette.dev/lifespan/).
 
 Including how to handle lifespan state that can be used in other areas of your code.
 

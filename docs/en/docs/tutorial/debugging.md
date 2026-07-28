@@ -15,7 +15,7 @@ The main purpose of the `__name__ == "__main__"` is to have some code that is ex
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ If you run it with:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -99,7 +99,7 @@ Here's how it might look:
 
 ---
 
-If you use Pycharm, you can:
+If you use PyCharm, you can:
 
 * Open the "Run" menu.
 * Select the option "Debug...".

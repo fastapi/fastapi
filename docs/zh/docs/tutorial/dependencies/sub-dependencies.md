@@ -35,7 +35,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | 信息
+/// note | 注意
 
 注意，这里在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor` 。
 

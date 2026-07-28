@@ -144,7 +144,7 @@ Pour l'instant, vous pouvez supposer que `get_settings()` est une fonction norma
 
 ///
 
-Nous pouvons ensuite l'exiger depuis la fonction de chemin d'accès comme dépendance et l'utiliser où nous en avons besoin.
+Nous pouvons ensuite l'exiger depuis la *fonction de chemin d'accès* comme dépendance et l'utiliser où nous en avons besoin.
 
 {* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 

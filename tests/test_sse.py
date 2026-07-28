@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -64,7 +64,8 @@ async def sse_items_event():
 
 @app.get("/items/stream-mixed", response_class=EventSourceResponse)
 async def sse_items_mixed() -> AsyncIterable[Item]:
-    yield items[0]
+    for item in items:
+        yield item
     yield ServerSentEvent(data="custom-event", event="special")
     yield items[1]
 
@@ -94,6 +95,12 @@ router = APIRouter()
 async def stream_events():
     yield {"msg": "hello"}
     yield {"msg": "world"}
+
+
+@router.get("/events-typed", response_class=EventSourceResponse)
+async def stream_events_typed() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
 
 
 app.include_router(router, prefix="/api")
@@ -227,7 +234,7 @@ def test_server_sent_event_single_line_fields_reject_newlines(
     field_name: str, value: str
 ):
     with pytest.raises(ValueError, match=f"SSE '{field_name}' must be a single line"):
-        ServerSentEvent(data="test", **{field_name: value})
+        ServerSentEvent(data="test", **{field_name: value})  # ty: ignore[invalid-argument-type]
 
 
 def test_server_sent_event_negative_retry_rejected():
@@ -237,7 +244,7 @@ def test_server_sent_event_negative_retry_rejected():
 
 def test_server_sent_event_float_retry_rejected():
     with pytest.raises(ValueError):
-        ServerSentEvent(data="test", retry=1.5)  # type: ignore[arg-type]
+        ServerSentEvent(data="test", retry=1.5)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
 
 def test_raw_data_sent_without_json_encoding(client: TestClient):
@@ -272,6 +279,45 @@ def test_sse_on_router_included_in_app(client: TestClient):
         line for line in response.text.strip().split("\n") if line.startswith("data: ")
     ]
     assert len(data_lines) == 2
+
+
+def test_sse_router_typed_stream(client: TestClient):
+    response = client.get("/api/events-typed")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_sse_router_typed_openapi_schema(client: TestClient):
+    """Typed SSE endpoint on a router should preserve itemSchema with contentSchema."""
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    paths = response.json()["paths"]
+    sse_response = paths["/api/events-typed"]["get"]["responses"]["200"]
+    assert sse_response == {
+        "description": "Successful Response",
+        "content": {
+            "text/event-stream": {
+                "itemSchema": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "string",
+                            "contentMediaType": "application/json",
+                            "contentSchema": {"$ref": "#/components/schemas/Item"},
+                        },
+                        "event": {"type": "string"},
+                        "id": {"type": "string"},
+                        "retry": {"type": "integer", "minimum": 0},
+                    },
+                    "required": ["data"],
+                }
+            }
+        },
+    }
 
 
 # Keepalive ping tests
@@ -325,3 +371,120 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+@pytest.mark.parametrize(
+    ("data", "expected_result"),
+    [
+        ("Hello\n", b"data: Hello\ndata: \n\n"),
+        ("Hello\n\n", b"data: Hello\ndata: \ndata: \n\n"),
+        ("\n", b"data: \ndata: \n\n"),
+        ("Hello\r\nWorld", b"data: Hello\ndata: World\n\n"),
+        ("Hello\rWorld", b"data: Hello\ndata: World\n\n"),
+        ("A\u2028B", "data: A\u2028B\n\n".encode()),
+        ("A\vB", b"data: A\x0bB\n\n"),
+        ("", b"data: \n\n"),
+    ],
+)
+def test_format_sse_event_splitlines_behavior_in_data(
+    data: str, expected_result: bytes
+) -> None:
+    assert format_sse_event(data_str=data) == expected_result
+
+
+def test_format_sse_event_splitlines_behavior_in_comment():
+    assert format_sse_event(comment="hi\n") == b": hi\n: \n\n"
+
+
+# default_response_class tests
+
+
+sse_schema_response = {
+    "description": "Successful Response",
+    "content": {
+        "text/event-stream": {
+            "itemSchema": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string",
+                        "contentMediaType": "application/json",
+                        "contentSchema": {"$ref": "#/components/schemas/Item"},
+                    },
+                    "event": {"type": "string"},
+                    "id": {"type": "string"},
+                    "retry": {"type": "integer", "minimum": 0},
+                },
+                "required": ["data"],
+            }
+        }
+    },
+}
+
+
+# default_response_class on app
+
+default_app_app = FastAPI(default_response_class=EventSourceResponse)
+default_app_router = APIRouter()
+
+
+@default_app_router.get("/stream")
+async def default_app_stream() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
+
+
+default_app_app.include_router(default_app_router, prefix="/api")
+
+
+def test_default_response_class_on_app_stream():
+    with TestClient(default_app_app) as client:
+        response = client.get("/api/stream")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_default_response_class_on_app_openapi_schema():
+    assert (
+        default_app_app.openapi()["paths"]["/api/stream"]["get"]["responses"]["200"]
+        == sse_schema_response
+    )
+
+
+# default_response_class on parent router
+
+default_parent_app = FastAPI()
+parent_router = APIRouter(default_response_class=EventSourceResponse)
+child_router = APIRouter()
+
+
+@child_router.get("/stream")
+async def default_parent_stream() -> AsyncIterable[Item]:
+    for item in items:
+        yield item
+
+
+parent_router.include_router(child_router)
+default_parent_app.include_router(parent_router, prefix="/api")
+
+
+def test_default_response_class_on_parent_router_stream():
+    with TestClient(default_parent_app) as client:
+        response = client.get("/api/stream")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 3
+
+
+def test_default_response_class_on_parent_router_openapi_schema():
+    assert (
+        default_parent_app.openapi()["paths"]["/api/stream"]["get"]["responses"]["200"]
+        == sse_schema_response
+    )

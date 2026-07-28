@@ -1,5 +1,6 @@
 import importlib
 import warnings
+from typing import Any, cast
 
 import pytest
 from dirty_equals import IsInt
@@ -35,15 +36,18 @@ def get_client(request: pytest.FixtureRequest):
         mod = importlib.import_module(f"docs_src.sql_databases.{request.param}")
         clear_sqlmodel()
         importlib.reload(mod)
-    mod.sqlite_url = "sqlite://"
-    mod.engine = create_engine(
-        mod.sqlite_url, connect_args={"check_same_thread": False}, poolclass=StaticPool
+    mod_any = cast(Any, mod)
+    mod_any.sqlite_url = "sqlite://"
+    mod_any.engine = create_engine(
+        mod_any.sqlite_url,
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
     )
 
-    with TestClient(mod.app) as c:
+    with TestClient(mod_any.app) as c:
         yield c
     # Clean up connection explicitly to avoid resource warning
-    mod.engine.dispose()
+    mod_any.engine.dispose()
 
 
 def test_crud_app(client: TestClient):

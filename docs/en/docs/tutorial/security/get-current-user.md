@@ -14,7 +14,7 @@ First, let's create a Pydantic user model.
 
 The same way we use Pydantic to declare bodies, we can use it anywhere else:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## Create a `get_current_user` dependency { #create-a-get-current-user-dependency }
 

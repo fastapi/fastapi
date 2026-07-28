@@ -1,5 +1,6 @@
 # Cabeçalhos de resposta { #response-headers }
 
+
 ## Use um parâmetro `Response` { #use-a-response-parameter }
 
 Você pode declarar um parâmetro do tipo `Response` na sua *função de operação de rota* (assim como você pode fazer para cookies).

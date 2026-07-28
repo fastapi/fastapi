@@ -4,7 +4,7 @@ Si estás construyendo una aplicación o una API web, rara vez podrás poner tod
 
 **FastAPI** proporciona una herramienta conveniente para estructurar tu aplicación manteniendo toda la flexibilidad.
 
-/// info | Información
+/// note | Nota
 
 Si vienes de Flask, esto sería el equivalente a los Blueprints de Flask.
 
@@ -17,16 +17,16 @@ Digamos que tienes una estructura de archivos como esta:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | Consejo
@@ -181,12 +181,12 @@ El resultado final es que los paths de item son ahora:
 ...como pretendíamos.
 
 * Serán marcados con una lista de tags que contiene un solo string `"items"`.
-  * Estos "tags" son especialmente útiles para los sistemas de documentación interactiva automática (usando OpenAPI).
+    * Estos "tags" son especialmente útiles para los sistemas de documentación interactiva automática (usando OpenAPI).
 * Todos incluirán las `responses` predefinidas.
 * Todas estas *path operations* tendrán la lista de `dependencies` evaluadas/ejecutadas antes de ellas.
-  * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
-  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md), y luego las dependencias de parámetros normales.
-  * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md).
+    * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
+    * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md), y luego las dependencias de parámetros normales.
+    * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Consejo
 
@@ -194,7 +194,7 @@ Tener `dependencies` en el `APIRouter` puede ser usado, por ejemplo, para requer
 
 ///
 
-/// check | Revisa
+/// tip | Consejo
 
 Los parámetros `prefix`, `tags`, `responses`, y `dependencies` son (como en muchos otros casos) solo una funcionalidad de **FastAPI** para ayudarte a evitar la duplicación de código.
 
@@ -339,7 +339,7 @@ También podríamos importarlos así:
 from app.routers import items, users
 ```
 
-/// info | Información
+/// note | Nota
 
 La primera versión es un "import relativo":
 
@@ -382,7 +382,7 @@ Ahora, incluyamos los `router`s de los submódulos `users` y `items`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Información
+/// note | Nota
 
 `users.router` contiene el `APIRouter` dentro del archivo `app/routers/users.py`.
 
@@ -396,17 +396,17 @@ Incluirá todas las rutas de ese router como parte de ella.
 
 /// note | Detalles Técnicos
 
-En realidad creará internamente una *path operation* para cada *path operation* que fue declarada en el `APIRouter`.
+FastAPI mantiene activo el `APIRouter` original y sus `APIRoute`s cuando el router se incluye en la aplicación principal.
 
-Así, detrás de escena, funcionará como si todo fuera la misma única app.
+Eso significa que las subclases personalizadas de `APIRouter` y `APIRoute` aún pueden participar después de incluir el router.
 
 ///
 
-/// check | Revisa
+/// tip | Consejo
 
 No tienes que preocuparte por el rendimiento al incluir routers.
 
-Esto tomará microsegundos y solo sucederá al inicio.
+Esto está diseñado para ser liviano y evitar añadir sobrecarga a cada request.
 
 Así que no afectará el rendimiento. ⚡
 
@@ -451,7 +451,7 @@ Aquí lo hacemos... solo para mostrar que podemos 🤷:
 
 y funcionará correctamente, junto con todas las otras *path operations* añadidas con `app.include_router()`.
 
-/// info | Detalles Muy Técnicos
+/// note | Detalles Muy Técnicos
 
 **Nota**: este es un detalle muy técnico que probablemente puedes **simplemente omitir**.
 
@@ -461,7 +461,7 @@ Los `APIRouter`s no están "montados", no están aislados del resto de la aplica
 
 Esto se debe a que queremos incluir sus *path operations* en el esquema de OpenAPI y las interfaces de usuario.
 
-Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, las *path operations* se "clonan" (se vuelven a crear), no se incluyen directamente.
+FastAPI mantiene los routers y path operations originales activos, y combina los prefijos del router, dependencias, tags, responses y otros metadatos al manejar requests y generar OpenAPI.
 
 ///
 
@@ -532,4 +532,16 @@ De la misma manera que puedes incluir un `APIRouter` en una aplicación `FastAPI
 router.include_router(other_router)
 ```
 
-Asegúrate de hacerlo antes de incluir `router` en la app de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.
+Puedes hacerlo antes o después de incluir `router` en la app de `FastAPI`. FastAPI seguirá incluyendo las *path operations* de `other_router` en el ruteo y en OpenAPI.
+
+Lo mismo aplica a las *path operations* añadidas después a los routers. También serán visibles a través de la inclusión anterior.
+
+/// warning | Detalles Técnicos
+
+Evita mutar directamente `router.routes` después de incluir un router. FastAPI trata la inclusión de routers como “en vivo”, así que el router original y sus rutas siguen formando parte del ruteo y de la generación de OpenAPI.
+
+Usa APIs documentadas como los decoradores de *path operations* y `.include_router()` para agregar rutas y routers.
+
+Trata `router.routes` como un árbol de rutas de nivel bajo que puede contener definiciones de rutas y routers incluidos, y evita depender de él como una lista plana de *path operations* finales.
+
+///

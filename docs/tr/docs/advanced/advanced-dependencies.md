@@ -78,7 +78,7 @@ Bu detaylar, özellikle 0.121.0'dan eski bir FastAPI uygulamanız varsa ve `yiel
 
 ### `yield` ve `scope` ile dependency'ler { #dependencies-with-yield-and-scope }
 
-0.121.0 sürümünde FastAPI, `Depends(scope="function")` desteğini ekledi.
+0.121.0 sürümünde FastAPI, `yield` kullanan dependency'ler için `Depends(scope="function")` desteğini ekledi.
 
 `Depends(scope="function")` kullanıldığında, `yield` sonrasındaki çıkış kodu, *path operation function* biter bitmez, response client'a geri gönderilmeden önce çalıştırılır.
 
@@ -98,7 +98,7 @@ Bu değişiklik aynı zamanda şunu da ifade ediyordu: `StreamingResponse` dönd
 
 Bu davranış 0.118.0'da geri alındı ve `yield` sonrasındaki çıkış kodunun, response gönderildikten sonra çalıştırılması sağlandı.
 
-/// info | Bilgi
+/// note | Not
 
 Aşağıda göreceğiniz gibi, bu davranış 0.106.0 sürümünden önceki davranışa oldukça benzer; ancak köşe durumlar için çeşitli iyileştirmeler ve bug fix'ler içerir.
 

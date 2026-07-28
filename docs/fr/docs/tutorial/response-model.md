@@ -72,7 +72,7 @@ Ici, nous déclarons un modèle `UserIn`, il contiendra un mot de passe en clair
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Info
+/// note | Remarque
 
 Pour utiliser `EmailStr`, installez d'abord [`email-validator`](https://github.com/JoshData/python-email-validator).
 
@@ -251,7 +251,7 @@ Ainsi, si vous envoyez une requête à ce *chemin d'accès* pour l'article avec 
 }
 ```
 
-/// info | Info
+/// note | Remarque
 
 Vous pouvez également utiliser :
 

@@ -4,7 +4,7 @@ Wenn Sie eine Anwendung oder eine Web-API erstellen, ist es selten der Fall, das
 
 **FastAPI** bietet ein praktisches Werkzeug zur Strukturierung Ihrer Anwendung bei gleichzeitiger Wahrung der Flexibilität.
 
-/// info | Info
+/// note | Hinweis
 
 Wenn Sie von Flask kommen, wäre dies das Äquivalent zu Flasks Blueprints.
 
@@ -17,16 +17,16 @@ Nehmen wir an, Sie haben eine Dateistruktur wie diese:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip | Tipp
@@ -194,7 +194,7 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Die Parameter `prefix`, `tags`, `responses` und `dependencies` sind (wie in vielen anderen Fällen) nur ein Feature von **FastAPI**, um Ihnen dabei zu helfen, Codeverdoppelung zu vermeiden.
 
@@ -339,7 +339,7 @@ Wir könnten sie auch wie folgt importieren:
 from app.routers import items, users
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Die erste Version ist ein „relativer Import“:
 
@@ -382,7 +382,7 @@ Inkludieren wir nun die `router` aus diesen Submodulen `users` und `items`:
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
 
-/// info | Info
+/// note | Hinweis
 
 `users.router` enthält den `APIRouter` in der Datei `app/routers/users.py`.
 
@@ -396,17 +396,17 @@ Es wird alle Routen von diesem Router als Teil von dieser inkludieren.
 
 /// note | Technische Details
 
-Tatsächlich wird intern eine *Pfadoperation* für jede *Pfadoperation* erstellt, die im `APIRouter` deklariert wurde.
+FastAPI behält den ursprünglichen `APIRouter` und seine `APIRoute`s aktiv, wenn der Router in die Hauptanwendung eingebunden wird.
 
-Hinter den Kulissen wird es also tatsächlich so funktionieren, als ob alles dieselbe einzige Anwendung wäre.
+Das bedeutet, dass benutzerdefinierte Subklassen von `APIRouter` und `APIRoute` auch nach dem Einbinden weiterhin beteiligt sein können.
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Leistung machen.
 
-Dies dauert Mikrosekunden und geschieht nur beim Start.
+Dies ist so konzipiert, dass es leichtgewichtig ist und keinen Overhead pro Request hinzufügt.
 
 Es hat also keinen Einfluss auf die Leistung. ⚡
 
@@ -451,7 +451,7 @@ Hier machen wir es ... nur um zu zeigen, dass wir es können 🤷:
 
 und es wird korrekt funktionieren, zusammen mit allen anderen *Pfadoperationen*, die mit `app.include_router()` hinzugefügt wurden.
 
-/// info | Sehr technische Details
+/// note | Sehr technische Details
 
 **Hinweis**: Dies ist ein sehr technisches Detail, das Sie wahrscheinlich **einfach überspringen** können.
 
@@ -459,9 +459,9 @@ und es wird korrekt funktionieren, zusammen mit allen anderen *Pfadoperationen*,
 
 Die `APIRouter` sind nicht „gemountet“, sie sind nicht vom Rest der Anwendung isoliert.
 
-Das liegt daran, dass wir deren *Pfadoperationen* in das OpenAPI-Schema und die Benutzeroberflächen einbinden möchten.
+Das liegt daran, dass wir ihre *Pfadoperationen* im OpenAPI-Schema und in den Benutzeroberflächen inkludieren möchten.
 
-Da wir sie nicht einfach isolieren und unabhängig vom Rest „mounten“ können, werden die *Pfadoperationen* „geklont“ (neu erstellt) und nicht direkt einbezogen.
+FastAPI behält die ursprünglichen Router und Pfadoperationen aktiv und kombiniert Router-Präfixe, Abhängigkeiten, Tags, Responses und weitere Metadaten beim Bearbeiten von Requests und beim Generieren von OpenAPI.
 
 ///
 
@@ -532,4 +532,16 @@ Auf die gleiche Weise, wie Sie einen `APIRouter` in eine `FastAPI`-Anwendung ein
 router.include_router(other_router)
 ```
 
-Stellen Sie sicher, dass Sie dies tun, bevor Sie `router` in die `FastAPI`-App einbinden, damit auch die *Pfadoperationen* von `other_router` inkludiert werden.
+Sie können dies vor oder nach dem Einbinden von `router` in die `FastAPI`-App tun. FastAPI inkludiert die *Pfadoperationen* von `other_router` dennoch in Routing und OpenAPI.
+
+Gleiches gilt für später zu den Routern hinzugefügte *Pfadoperationen*. Sie sind auch über die frühere Inklusion sichtbar.
+
+/// warning | Technische Details
+
+Vermeiden Sie es, `router.routes` direkt zu mutieren, nachdem ein Router inkludiert wurde. FastAPI behandelt Router-Inklusion als „live“, sodass der ursprüngliche Router und seine Routen Teil des Routings und der OpenAPI-Generierung bleiben.
+
+Verwenden Sie dokumentierte APIs wie Pfadoperation-Dekoratoren und `.include_router()`, um Routen und Router hinzuzufügen.
+
+Betrachten Sie `router.routes` als eine Low-Level-Routenstruktur, die sowohl Routendefinitionen als auch inkludierte Router enthalten kann, und verlassen Sie sich nicht darauf als flache Liste endgültiger Pfadoperationen.
+
+///

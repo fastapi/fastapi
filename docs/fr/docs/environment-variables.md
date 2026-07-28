@@ -6,13 +6,13 @@ Si vous savez déjà ce que sont les « variables d'environnement » et comment 
 
 ///
 
-Une variable d'environnement (également appelée « env var ») est une variable qui vit en dehors du code Python, dans le système d'exploitation, et qui peut être lue par votre code Python (ou par d'autres programmes également).
+Une variable d'environnement (également appelée « **env var** ») est une variable qui vit **en dehors** du code Python, dans le **système d'exploitation**, et qui peut être lue par votre code Python (ou par d'autres programmes également).
 
 Les variables d'environnement peuvent être utiles pour gérer des **paramètres** d'application, dans le cadre de l'**installation** de Python, etc.
 
 ## Créer et utiliser des variables d'environnement { #create-and-use-env-vars }
 
-Vous pouvez créer et utiliser des variables d'environnement dans le **shell (terminal)**, sans avoir besoin de Python :
+Vous pouvez **créer** et utiliser des variables d'environnement dans le **shell (terminal)**, sans avoir besoin de Python :
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -54,7 +54,7 @@ Hello Wade Wilson
 
 Vous pouvez également créer des variables d'environnement **en dehors** de Python, dans le terminal (ou par tout autre moyen), puis les **lire en Python**.
 
-Par exemple, vous pouvez avoir un fichier `main.py` contenant :
+Par exemple, vous pouvez avoir un fichier `main.py` contenant :
 
 ```Python hl_lines="3"
 import os
@@ -71,7 +71,7 @@ S'il n'est pas fourni, c'est `None` par défaut ; ici, nous fournissons `"World"
 
 ///
 
-Vous pouvez ensuite exécuter ce programme Python :
+Vous pouvez ensuite exécuter ce programme Python :
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -131,7 +131,7 @@ Comme les variables d'environnement peuvent être définies en dehors du code, m
 
 Vous pouvez également créer une variable d'environnement uniquement pour l'**invocation d'un programme spécifique**, qui ne sera disponible que pour ce programme et uniquement pendant sa durée d'exécution.
 
-Pour cela, créez-la juste avant le programme, sur la même ligne :
+Pour cela, créez-la juste avant le programme, sur la même ligne :
 
 <div class="termy">
 
@@ -159,7 +159,7 @@ Vous pouvez en lire davantage sur [The Twelve-Factor App : Config](https://12fac
 
 ## Gérer les types et la validation { #types-and-validation }
 
-Ces variables d'environnement ne peuvent gérer que des **chaînes de texte**, car elles sont externes à Python et doivent être compatibles avec les autres programmes et le reste du système (et même avec différents systèmes d'exploitation, comme Linux, Windows, macOS).
+Ces variables d'environnement ne peuvent gérer que des **chaînes de texte**, car elles sont externes à Python et doivent être compatibles avec les autres programmes et le reste du système (et même avec différents systèmes d'exploitation, comme Linux, Windows et macOS).
 
 Cela signifie que **toute valeur** lue en Python à partir d'une variable d'environnement **sera une `str`**, et que toute conversion vers un autre type ou toute validation doit être effectuée dans le code.
 
@@ -167,11 +167,11 @@ Vous en apprendrez davantage sur l'utilisation des variables d'environnement pou
 
 ## Variable d'environnement `PATH` { #path-environment-variable }
 
-Il existe une **variable d'environnement spéciale** appelée **`PATH`** qui est utilisée par les systèmes d'exploitation (Linux, macOS, Windows) pour trouver les programmes à exécuter.
+Il existe une variable d'environnement **spéciale** appelée **`PATH`** qui est utilisée par les systèmes d'exploitation (Linux, macOS, Windows) pour trouver les programmes à exécuter.
 
 La valeur de la variable `PATH` est une longue chaîne composée de répertoires séparés par deux-points `:` sous Linux et macOS, et par point-virgule `;` sous Windows.
 
-Par exemple, la variable d'environnement `PATH` peut ressembler à ceci :
+Par exemple, la variable d'environnement `PATH` peut ressembler à ceci :
 
 //// tab | Linux, macOS
 
@@ -179,7 +179,7 @@ Par exemple, la variable d'environnement `PATH` peut ressembler à ceci :
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-Cela signifie que le système doit rechercher les programmes dans les répertoires :
+Cela signifie que le système doit rechercher les programmes dans les répertoires :
 
 * `/usr/local/bin`
 * `/usr/bin`
@@ -195,7 +195,7 @@ Cela signifie que le système doit rechercher les programmes dans les répertoir
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32
 ```
 
-Cela signifie que le système doit rechercher les programmes dans les répertoires :
+Cela signifie que le système doit rechercher les programmes dans les répertoires :
 
 * `C:\Program Files\Python312\Scripts`
 * `C:\Program Files\Python312`
@@ -219,7 +219,7 @@ Supposons que vous installiez Python et qu'il se retrouve dans un répertoire `/
 
 Si vous acceptez de mettre à jour la variable d'environnement `PATH`, l'installateur ajoutera `/opt/custompython/bin` à la variable d'environnement `PATH`.
 
-Cela pourrait ressembler à ceci :
+Cela pourrait ressembler à ceci :
 
 ```plaintext
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
@@ -243,7 +243,7 @@ Ainsi, lorsque vous tapez `python` dans le terminal, le système trouvera le pro
 
 ////
 
-Ainsi, si vous tapez :
+Ainsi, si vous tapez :
 
 <div class="termy">
 
@@ -257,7 +257,7 @@ $ python
 
 Le système va **trouver** le programme `python` dans `/opt/custompython/bin` et l'exécuter.
 
-Cela reviendrait à peu près à taper :
+Cela reviendrait à peu près à taper :
 
 <div class="termy">
 
@@ -273,7 +273,7 @@ $ /opt/custompython/bin/python
 
 Le système va **trouver** le programme `python` dans `C:\opt\custompython\bin\python` et l'exécuter.
 
-Cela reviendrait à peu près à taper :
+Cela reviendrait à peu près à taper :
 
 <div class="termy">
 

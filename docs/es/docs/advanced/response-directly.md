@@ -16,9 +16,9 @@ Normalmente tendrás mucho mejor rendimiento usando un [Response Model](../tutor
 
 ## Devolver una `Response` { #return-a-response }
 
-De hecho, puedes devolver cualquier `Response` o cualquier subclase de ella.
+Puedes devolver una `Response` o cualquier subclase de ella.
 
-/// info | Información
+/// note | Nota
 
 `JSONResponse` en sí misma es una subclase de `Response`.
 
@@ -78,6 +78,6 @@ En su lugar, toma los bytes JSON generados con Pydantic usando el response model
 
 Cuando devuelves una `Response` directamente, sus datos no son validados, convertidos (serializados), ni documentados automáticamente.
 
-Pero aún puedes documentarlo como se describe en [Additional Responses in OpenAPI](additional-responses.md).
+Pero aún puedes documentarlo como se describe en [Respuestas adicionales en OpenAPI](additional-responses.md).
 
 Puedes ver en secciones posteriores cómo usar/declarar estas `Response`s personalizadas mientras todavía tienes conversión automática de datos, documentación, etc.

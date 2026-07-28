@@ -2,7 +2,7 @@
 
 Python has support for optional "type hints" (also called "type annotations").
 
-These **"type hints"** or annotations are a special syntax that allow declaring the <dfn title="for example: str, int, float, bool">type</dfn> of a variable.
+These **"type hints"** or annotations are a special syntax that allows declaring the <dfn title="for example: str, int, float, bool">type</dfn> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -44,7 +44,7 @@ It's a very simple program.
 
 But now imagine that you were writing it from scratch.
 
-At some point you would have started the definition of the function, you had the parameters ready...
+At some point you start defining the function, and you have the parameters ready...
 
 But then you have to call "that method that converts the first letter to upper case".
 
@@ -80,7 +80,7 @@ Those are the "type hints":
 
 {* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-That is not the same as declaring default values like would be with:
+That is not the same as declaring default values like it would be with:
 
 ```Python
     first_name="john", last_name="doe"
@@ -269,7 +269,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) is a Python library to perform data validation.
+[Pydantic](https://pydantic.dev/docs/) is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -285,7 +285,7 @@ An example from the official Pydantic docs:
 
 /// note
 
-To learn more about [Pydantic, check its docs](https://docs.pydantic.dev/).
+To learn more about [Pydantic, check its docs](https://pydantic.dev/docs/).
 
 ///
 

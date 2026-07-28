@@ -98,7 +98,7 @@ It will be clearly marked as deprecated in the interactive docs:
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 
-Check how deprecated and non-deprecated *path operations* look like:
+Check how deprecated and non-deprecated *path operations* look:
 
 <img src="/img/tutorial/path-operation-configuration/image05.png">
 

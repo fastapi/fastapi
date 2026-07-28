@@ -6,7 +6,7 @@ Now let's build from the previous chapter and add the missing parts to have a co
 
 We are going to use **FastAPI** security utilities to get the `username` and `password`.
 
-OAuth2 specifies that when using the "password flow" (that we are using) the client/user must send a `username` and `password` fields as form data.
+OAuth2 specifies that when using the "password flow" (that we are using) the client/user must send `username` and `password` fields as form data.
 
 And the spec says that the fields have to be named like that. So `user-name` or `email` wouldn't work.
 
@@ -146,7 +146,7 @@ UserInDB(
 
 /// note
 
-For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user-in-dict).
+For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -190,7 +190,7 @@ We want to get the `current_user` *only* if this user is active.
 
 So, we create an additional dependency `get_current_active_user` that in turn uses `get_current_user` as a dependency.
 
-Both of these dependencies will just return an HTTP error if the user doesn't exist, or if is inactive.
+Both of these dependencies will just return an HTTP error if the user doesn't exist, or is inactive.
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 

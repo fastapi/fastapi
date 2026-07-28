@@ -137,9 +137,9 @@ OpenAPI 為你的 API 定義了 API 的 schema。而該 schema 會包含你的 A
 
 #### OpenAPI 的用途 { #what-is-openapi-for }
 
-OpenAPI schema 驅動了兩個互動式文件系統。
+OpenAPI schema 驅動了內建的兩個互動式文件系統。
 
-而且有許多替代方案，所有這些都是基於 OpenAPI。你可以輕鬆地將任何這些替代方案添加到使用 **FastAPI** 建置的應用程式中。
+而且有數十種替代方案，所有這些都是基於 OpenAPI。你可以輕鬆地將任何這些替代方案加入到使用 **FastAPI** 建置的應用程式中。
 
 你也可以用它自動生成程式碼，讓用戶端與你的 API 通訊。例如前端、手機或物聯網（IoT）應用程式。
 
@@ -180,7 +180,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### 搭配路徑使用 `fastapi dev` { #fastapi-dev-with-path }
+### 使用路徑或 `--entrypoint` 命令列選項執行 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 你也可以把檔案路徑傳給 `fastapi dev` 指令，它會自動猜測要使用的 FastAPI app 物件：
 
@@ -188,29 +188,19 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-但這樣每次執行 `fastapi` 指令時都要記得傳入正確路徑。
+或者，你也可以把 `--entrypoint` 選項傳給 `fastapi dev` 指令：
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+但這樣每次執行 `fastapi` 指令時都要記得傳入正確的路徑\entrypoint。
 
 此外，其他工具可能找不到它，例如 [VS Code 擴充套件](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此建議在 `pyproject.toml` 中使用 `entrypoint`。
 
 ### 部署你的應用程式（可選） { #deploy-your-app-optional }
 
-你可以選擇將你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)，如果還沒有，去加入候補名單吧。🚀
-
-如果你已經有 **FastAPI Cloud** 帳號（我們已從候補名單邀請你 😉），你可以用一個指令部署你的應用程式。
-
-部署之前，先確保你已登入：
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-接著部署你的應用程式：
+你可以選擇將你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)，只要一行指令。🚀
 
 <div class="termy">
 
@@ -226,6 +216,8 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI 會自動偵測你的 FastAPI 應用並將它部署到雲端。若你尚未登入，瀏覽器會開啟以完成驗證流程。
+
 就這樣！現在你可以透過該 URL 存取你的應用程式了。✨
 
 ## 逐步回顧 { #recap-step-by-step }
@@ -234,7 +226,7 @@ Deploying to FastAPI Cloud...
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
-`FastAPI` 是一個 Python 類別，提供所有 API 的全部功能。
+`FastAPI` 是一個 Python 類別，提供你的 API 所需的所有功能。
 
 /// note | 技術細節
 
@@ -252,7 +244,7 @@ Deploying to FastAPI Cloud...
 
 這將是你建立所有 API 的主要互動點。
 
-### 第三步：建立一個「路徑操作」 { #step-3-create-a-path-operation }
+### 第三步：建立一個*路徑操作* { #step-3-create-a-path-operation }
 
 #### 路徑 { #path }
 
@@ -264,13 +256,13 @@ Deploying to FastAPI Cloud...
 https://example.com/items/foo
 ```
 
-……的路徑將會是：
+...的路徑將會是：
 
 ```
 /items/foo
 ```
 
-/// info
+/// note
 
 「路徑」也常被稱為「端點 endpoint」或「路由 route」。
 
@@ -289,7 +281,7 @@ https://example.com/items/foo
 * `PUT`
 * `DELETE`
 
-……以及更少見的：
+...以及更少見的：
 
 * `OPTIONS`
 * `HEAD`
@@ -313,16 +305,16 @@ https://example.com/items/foo
 
 我們將會稱它們為「**操作**」。
 
-#### 定義一個「路徑操作裝飾器」 { #define-a-path-operation-decorator }
+#### 定義一個*路徑操作裝飾器* { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
-`@app.get("/")` 告訴 **FastAPI** 那個函式負責處理請求：
+`@app.get("/")` 告訴 **FastAPI** 正下方的函式負責處理前往以下位置的請求：
 
 * 路徑 `/`
-* 使用 <dfn title="HTTP GET 方法"><code>get</code> 操作</dfn>
+* 使用 <dfn title="一個 HTTP GET 方法"><code>get</code> 操作</dfn>
 
-/// info | `@decorator` 說明
+/// note | `@decorator` 說明
 
 Python 中的 `@something` 語法被稱為「裝飾器」。
 
@@ -361,7 +353,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 ///
 
-### 第四步：定義「路徑操作函式」 { #step-4-define-the-path-operation-function }
+### 第四步：定義**路徑操作函式** { #step-4-define-the-path-operation-function }
 
 這是我們的「**路徑操作函式**」：
 
@@ -385,7 +377,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 /// note
 
-如果你不知道差別，請查看 [Async: *"In a hurry?"*](../async.md#in-a-hurry)。
+如果你不知道差別，請查看 [Async：*「很趕時間？」*](../async.md#in-a-hurry)。
 
 ///
 
@@ -407,11 +399,11 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 **[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者與團隊打造。
 
-它讓你以最小的成本完成 API 的**建置**、**部署**與**存取**流程。
+它讓你以最少的心力簡化 API 的**建置**、**部署**與**存取**流程。
 
 它把用 FastAPI 開發應用的同樣**開發者體驗**帶到將應用**部署**到雲端的流程中。🎉
 
-FastAPI Cloud 也是「FastAPI 與其好友」這些開源專案的主要贊助與資金提供者。✨
+FastAPI Cloud 也是 *FastAPI 與其好友* 這些開源專案的主要贊助與資金提供者。✨
 
 #### 部署到其他雲端供應商 { #deploy-to-other-cloud-providers }
 
@@ -423,7 +415,7 @@ FastAPI 是開源並基於標準的。你可以把 FastAPI 應用部署到你選
 
 * 引入 `FastAPI`。
 * 建立一個 `app` 實例。
-* 寫一個「路徑操作裝飾器」，像是 `@app.get("/")`。
-* 定義一個「路徑操作函式」；例如，`def root(): ...`。
+* 寫一個**路徑操作裝飾器**，像是 `@app.get("/")`。
+* 定義一個**路徑操作函式**；例如，`def root(): ...`。
 * 使用命令 `fastapi dev` 執行開發伺服器。
 * 可選：使用 `fastapi deploy` 部署你的應用程式。

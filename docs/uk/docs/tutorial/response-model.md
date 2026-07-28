@@ -72,7 +72,7 @@ FastAPI використовуватиме цей `response_model` для вик
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Інформація
+/// note | Примітка
 
 Щоб використовувати `EmailStr`, спочатку встановіть [`email-validator`](https://github.com/JoshData/python-email-validator).
 
@@ -182,7 +182,7 @@ FastAPI виконує кілька внутрішніх операцій з Pyd
 
 ### Повернути Response напряму { #return-a-response-directly }
 
-Найпоширенішим випадком буде [повернення Response напряму, як пояснюється пізніше у розширеній документації](../advanced/response-directly.md).
+Найпоширенішим випадком буде [повернення Response напряму, як пояснюється пізніше у просунутому посібнику користувача](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -251,7 +251,7 @@ FastAPI виконує кілька внутрішніх операцій з Pyd
 }
 ```
 
-/// info | Інформація
+/// note | Примітка
 
 Ви також можете використовувати:
 

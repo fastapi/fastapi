@@ -2,7 +2,7 @@
 
 추가적인 [Swagger UI 매개변수](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)를 구성할 수 있습니다.
 
-구성을 하려면, `FastAPI()` 앱 객체를 생성할 때 또는 `get_swagger_ui_html()` 함수에 `swagger_ui_parameters` 인수를 전달하십시오.
+구성을 하려면, `FastAPI()` 애플리케이션 객체를 생성할 때 또는 `get_swagger_ui_html()` 함수에 `swagger_ui_parameters` 인수를 전달하십시오.
 
 `swagger_ui_parameters`는 Swagger UI에 직접 전달된 구성을 포함하는 딕셔너리를 받습니다.
 

@@ -56,7 +56,6 @@ Hay varias alternativas, incluyendo:
 * [Hypercorn](https://hypercorn.readthedocs.io/): un servidor ASGI compatible con HTTP/2 y Trio entre otras funcionalidades.
 * [Daphne](https://github.com/django/daphne): el servidor ASGI construido para Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): Un servidor HTTP Rust para aplicaciones en Python.
-* [NGINX Unit](https://unit.nginx.org/howto/fastapi/): NGINX Unit es un runtime para aplicaciones web ligero y versátil.
 
 ## Máquina Servidor y Programa Servidor { #server-machine-and-server-program }
 
@@ -94,7 +93,7 @@ Un proceso similar se aplicaría a cualquier otro programa de servidor ASGI.
 
 Al añadir `standard`, Uvicorn instalará y usará algunas dependencias adicionales recomendadas.
 
-Eso incluye `uvloop`, el reemplazo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
+Eso incluye `uvloop`, el reemplazo directo de alto rendimiento para `asyncio`, que proporciona un gran impulso de rendimiento en concurrencia.
 
 Cuando instalas FastAPI con algo como `pip install "fastapi[standard]"` ya obtienes `uvicorn[standard]` también.
 

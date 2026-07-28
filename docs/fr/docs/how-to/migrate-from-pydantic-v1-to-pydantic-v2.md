@@ -8,6 +8,8 @@ FastAPI version 0.119.0 a introduit une prise en charge partielle de Pydantic v1
 
 FastAPI 0.126.0 a supprimé la prise en charge de Pydantic v1, tout en continuant à prendre en charge `pydantic.v1` pendant un certain temps.
 
+FastAPI 0.128.0 a également supprimé la prise en charge de `pydantic.v1`, donc les dernières versions de FastAPI nécessitent Pydantic v2.
+
 /// warning | Alertes
 
 L'équipe Pydantic a arrêté la prise en charge de Pydantic v1 pour les dernières versions de Python, à partir de **Python 3.14**.
@@ -53,6 +55,16 @@ Cela signifie que vous pouvez installer la dernière version de Pydantic v2 et i
 {* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
 
 ### Prise en charge de FastAPI pour Pydantic v1 dans v2 { #fastapi-support-for-pydantic-v1-in-v2 }
+
+/// warning | Alertes
+
+Cette prise en charge FastAPI des modèles `pydantic.v1` a été ajoutée dans **FastAPI 0.119.0** et supprimée dans **FastAPI 0.128.0**. Elle était destinée à être une aide temporaire pour la migration vers Pydantic v2.
+
+Dans les versions actuelles de FastAPI, l'utilisation d'un modèle `pydantic.v1` dans votre application lèvera une erreur.
+
+Le reste de cette section décrit la prise en charge temporaire disponible uniquement dans ces anciennes versions.
+
+///
 
 Depuis FastAPI 0.119.0, il existe également une prise en charge partielle de Pydantic v1 depuis l'intérieur de Pydantic v2, pour faciliter la migration vers v2.
 
@@ -121,6 +133,12 @@ Si vous devez utiliser certains des outils spécifiques à FastAPI pour les para
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
 ### Migrer par étapes { #migrate-in-steps }
+
+/// warning | Alertes
+
+La migration progressive utilisant à la fois des modèles Pydantic v1 et v2 dans la même application décrite ci-dessous ne fonctionne que dans **FastAPI 0.119.0 à 0.127.x**. Elle a été supprimée dans **FastAPI 0.128.0**, les dernières versions nécessitent des modèles **Pydantic v2**.
+
+///
 
 /// tip | Astuce
 

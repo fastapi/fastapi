@@ -76,11 +76,11 @@ $ pip install "fastapi[standard]"
 
 /// note | Not
 
-`pip install "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standard bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz.
+`pip install "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standart bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz.
 
 Bu opsiyonel bağımlılıkları istemiyorsanız bunun yerine `pip install fastapi` kurabilirsiniz.
 
-Standard bağımlılıkları kurmak istiyor ama `fastapi-cloud-cli` olmasın diyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile kurabilirsiniz.
+Standart bağımlılıkları kurmak istiyor ama `fastapi-cloud-cli` olmasın diyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile kurabilirsiniz.
 
 ///
 

@@ -124,19 +124,11 @@ Voir la section `### Content of code blocks` dans l’invite générale dans `sc
 
 //// tab | Test
 
-/// info | Info
-Du texte
-///
-
 /// note | Remarque
 Du texte
 ///
 
 /// note | Détails techniques
-Du texte
-///
-
-/// check | Vérifications
 Du texte
 ///
 
@@ -156,7 +148,7 @@ Du texte
 
 //// tab | Info
 
-Les onglets et les blocs « Info »/« Note »/« Warning »/etc. doivent avoir la traduction de leur titre ajoutée après une barre verticale (« | »).
+Les onglets et les blocs « Info »/« Note »/« Warning »/etc. doivent avoir la traduction de leur titre ajoutée après une barre verticale (`|`).
 
 Voir les sections `### Special blocks` et `### Tab blocks` dans l’invite générale dans `scripts/translate.py`.
 

@@ -24,7 +24,7 @@ It was created to generate the HTML in the backend, not to create APIs used by a
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
+Django REST Framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
 
 It is used by many companies including Mozilla, Red Hat and Eventbrite.
 
@@ -125,7 +125,7 @@ Adopt and use an open standard for API specifications, instead of a custom schem
 And integrate standards-based user interface tools:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
@@ -237,7 +237,7 @@ Generate the OpenAPI schema automatically, from the same code that defines seria
 
 ///
 
-### [NestJS](https://nestjs.com/) (and [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (and [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework inspired by Angular.
 
@@ -337,7 +337,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 
 /// note
 
-Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/timothycrosley/isort), a great tool to automatically sort imports in Python files.
+Hug was created by Timothy Crosley, the same creator of [`isort`](https://github.com/PyCQA/isort), a great tool to automatically sort imports in Python files.
 
 ///
 
@@ -345,7 +345,7 @@ Hug was created by Timothy Crosley, the same creator of [`isort`](https://github
 
 Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
-Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
+Hug helped inspire **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
 
 Hug inspired **FastAPI** to declare a `response` parameter in functions to set headers and cookies.
 
@@ -380,7 +380,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
 APIStar was created by Tom Christie. The same guy that created:
 
 * Django REST Framework
-* Starlette (in which **FastAPI** is based)
+* Starlette (on which **FastAPI** is based)
 * Uvicorn (used by Starlette and **FastAPI**)
 
 ///
@@ -393,7 +393,7 @@ The idea of declaring multiple things (data validation, serialization and docume
 
 And after searching for a long time for a similar framework and testing many different alternatives, APIStar was the best option available.
 
-Then APIStar stopped to exist as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
+Then APIStar stopped existing as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
 
 I consider **FastAPI** a "spiritual successor" to APIStar, while improving and increasing the features, typing system, and other parts, based on the learnings from all these previous tools.
 
@@ -401,7 +401,7 @@ I consider **FastAPI** a "spiritual successor" to APIStar, while improving and i
 
 ## Used by **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 
@@ -417,7 +417,7 @@ Handle all the data validation, data serialization and automatic model documenta
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette is a lightweight <dfn title="The new standard for building asynchronous Python web applications">ASGI</dfn> framework/toolkit, which is ideal for building high-performance asyncio services.
 
@@ -462,7 +462,7 @@ So, anything that you can do with Starlette, you can do it directly with **FastA
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn is a lightning-fast ASGI server, built on uvloop and httptools.
 

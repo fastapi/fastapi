@@ -20,7 +20,7 @@ Puedes declarar el tipo de un parámetro de path en la función, usando anotacio
 
 En este caso, `item_id` se declara como un `int`.
 
-/// check | Revisa
+/// tip | Consejo
 
 Esto te dará soporte del editor dentro de tu función, con chequeo de errores, autocompletado, etc.
 
@@ -34,7 +34,7 @@ Si ejecutas este ejemplo y abres tu navegador en [http://127.0.0.1:8000/items/3]
 {"item_id":3}
 ```
 
-/// check | Revisa
+/// tip | Consejo
 
 Nota que el valor que tu función recibió (y devolvió) es `3`, como un `int` de Python, no un string `"3"`.
 
@@ -66,7 +66,7 @@ porque el parámetro de path `item_id` tenía un valor de `"foo"`, que no es un 
 
 El mismo error aparecería si proporcionaras un `float` en lugar de un `int`, como en: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Revisa
+/// tip | Consejo
 
 Entonces, con la misma declaración de tipo de Python, **FastAPI** te ofrece validación de datos.
 
@@ -82,7 +82,7 @@ Y cuando abras tu navegador en [http://127.0.0.1:8000/docs](http://127.0.0.1:800
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Revisa
+/// tip | Consejo
 
 Nuevamente, solo con esa misma declaración de tipo de Python, **FastAPI** te ofrece documentación automática e interactiva (integrando Swagger UI).
 
@@ -130,7 +130,7 @@ La primera siempre será utilizada ya que el path coincide primero.
 
 ## Valores predefinidos { #predefined-values }
 
-Si tienes una *path operation* que recibe un *path parameter*, pero quieres que los valores posibles válidos del *path parameter* estén predefinidos, puedes usar un <abbr title="Enumeration – Enumeración">`Enum`</abbr> estándar de Python.
+Si tienes una *path operation* que recibe un *path parameter*, pero quieres que los valores posibles válidos del *path parameter* estén predefinidos, puedes usar un <abbr title="Enumeración">`Enum`</abbr> estándar de Python.
 
 ### Crear una clase `Enum` { #create-an-enum-class }
 

@@ -1,4 +1,4 @@
-# Testing { #testing }
+# Pruebas { #testing }
 
 Gracias a [Starlette](https://www.starlette.dev/testclient/), escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
 
@@ -8,7 +8,7 @@ Con él, puedes usar [pytest](https://docs.pytest.org/) directamente con **FastA
 
 ## Usando `TestClient` { #using-testclient }
 
-/// info | Información
+/// note | Nota
 
 Para usar `TestClient`, primero instala [`httpx`](https://www.python-httpx.org).
 
@@ -28,7 +28,7 @@ Crea funciones con un nombre que comience con `test_` (esta es la convención es
 
 Usa el objeto `TestClient` de la misma manera que con `httpx`.
 
-Escribe declaraciones `assert` simples con las expresiones estándar de Python que necesites revisar (otra vez, estándar de `pytest`).
+Escribe statements `assert` simples con las expresiones estándar de Python que necesites revisar (otra vez, estándar de `pytest`).
 
 {* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
@@ -90,7 +90,7 @@ Entonces podrías tener un archivo `test_main.py` con tus pruebas. Podría estar
 │   └── test_main.py
 ```
 
-Debido a que este archivo está en el mismo paquete, puedes usar importaciones relativas para importar el objeto `app` desde el módulo `main` (`main.py`):
+Debido a que este archivo está en el mismo paquete, puedes usar imports relativos para importar el objeto `app` desde el módulo `main` (`main.py`):
 
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
@@ -142,7 +142,7 @@ Por ejemplo:
 
 Para más información sobre cómo pasar datos al backend (usando `httpx` o el `TestClient`) revisa la [documentación de HTTPX](https://www.python-httpx.org).
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que el `TestClient` recibe datos que pueden ser convertidos a JSON, no modelos de Pydantic.
 

@@ -234,6 +234,7 @@ participant operation as Path Operation
 Dependencies with `yield` have evolved over time to cover different use cases and fix some issues.
 
 If you want to see what has changed in different versions of FastAPI, you can read more about it in the advanced guide, in [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+
 ## Context Managers { #context-managers }
 
 ### What are "Context Managers" { #what-are-context-managers }

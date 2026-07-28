@@ -1,5 +1,6 @@
 # 高级依赖项 { #advanced-dependencies }
 
+
 ## 参数化的依赖项 { #parameterized-dependencies }
 
 目前我们看到的依赖项都是固定的函数或类。
@@ -98,7 +99,7 @@ checker(q="somequery")
 
 在 0.118.0 中，这一行为被回退为：让 `yield` 之后的退出代码在响应发送之后再执行。
 
-/// info | 信息
+/// note | 注意
 
 如你在下文所见，这与 0.106.0 之前的行为非常相似，但对若干边界情况做了改进和修复。
 

@@ -8,7 +8,7 @@
 
 使用 [Pydantic](https://docs.pydantic.dev/) 模型来声明**请求体**，能充分利用它的功能和优点。
 
-/// info | 信息
+/// note | 注意
 
 发送数据应使用以下之一：`POST`（最常见）、`PUT`、`DELETE` 或 `PATCH`。
 
@@ -20,21 +20,22 @@
 
 ## 导入 Pydantic 的 `BaseModel` { #import-pydantics-basemodel }
 
-从 `pydantic` 中导入 `BaseModel`：
+首先，你需要从 `pydantic` 中导入 `BaseModel`：
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## 创建数据模型 { #create-your-data-model }
 
-把数据模型声明为继承 `BaseModel` 的类。
+然后，把数据模型声明为继承 `BaseModel` 的类。
 
 使用 Python 标准类型声明所有属性：
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
+
 与声明查询参数一样，包含默认值的模型属性是可选的，否则就是必选的。把默认值设为 `None` 可使其变为可选。
 
-例如，上述模型声明如下 JSON "object"（即 Python `dict`）：
+例如，上述模型声明如下 JSON "`object`"（即 Python `dict`）：
 
 ```JSON
 {
@@ -45,7 +46,7 @@
 }
 ```
 
-...由于 `description` 和 `tax` 是可选的（默认值为 `None`），下面的 JSON "object" 也有效：
+...由于 `description` 和 `tax` 是可选的（默认值为 `None`），下面的 JSON "`object`" 也有效：
 
 ```JSON
 {
@@ -123,7 +124,7 @@
 
 ## 使用模型 { #use-the-model }
 
-在*路径操作*函数内部直接访问模型对象的所有属性：
+在函数内部直接访问模型对象的所有属性：
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
@@ -134,6 +135,7 @@
 **FastAPI** 能识别与**路径参数**匹配的函数参数应该**从路径中获取**，而声明为 Pydantic 模型的函数参数应该**从请求体中获取**。
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## 请求体 + 路径 + 查询参数 { #request-body-path-query-parameters }
 

@@ -25,9 +25,17 @@
 - `openapi_version`: 使用する OpenAPI 仕様のバージョン。デフォルトは最新の `3.1.0`。
 - `summary`: API の短い概要。
 - `description`: API の説明。Markdown を含めることができ、ドキュメントに表示されます。
-- `routes`: ルートのリスト。登録済みの各 path operation です。`app.routes` から取得されます。
+- `routes`: アプリケーションのルート。`app.routes` から取得されます。FastAPI はこれらを使用して、登録済みの path operation（取り込んだルーター由来のものも含む）を収集します。
 
-/// info | 情報
+/// tip | 技術詳細
+
+`app.routes` はより低レベルなルートツリーです。最終的な `APIRoute` オブジェクトだけでなく、FastAPI が内部で使用する、取り込まれたルーター向けの候補ルートも含まれることがあります。
+
+それでも `app.routes` を `get_openapi()` に渡せます。FastAPI はそのルートツリーを走査して、有効な path operation を収集します。
+
+///
+
+/// note | 備考
 
 パラメータ `summary` は OpenAPI 3.1.0 以降で利用可能で、FastAPI 0.99.0 以降が対応しています。
 

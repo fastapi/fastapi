@@ -4,7 +4,7 @@ Podrías crear una API con una *path operation* que podría desencadenar un requ
 
 El proceso que ocurre cuando tu aplicación API llama a la *API externa* se llama un "callback". Porque el software que escribió el desarrollador externo envía un request a tu API y luego tu API hace un *callback*, enviando un request a una *API externa* (que probablemente fue creada por el mismo desarrollador).
 
-En este caso, podrías querer documentar cómo esa API externa *debería* verse. Qué *path operation* debería tener, qué cuerpo debería esperar, qué response debería devolver, etc.
+En este caso, podrías querer documentar cómo esa API externa *debería* verse. Qué *path operation* debería tener, qué body debería esperar, qué response debería devolver, etc.
 
 ## Una aplicación con callbacks { #an-app-with-callbacks }
 
@@ -167,13 +167,13 @@ Observa cómo la URL del callback utilizada contiene la URL recibida como parám
 
 En este punto tienes las *path operation(s)* del callback necesarias (las que el *desarrollador externo* debería implementar en la *API externa*) en el router de callback que creaste arriba.
 
-Ahora usa el parámetro `callbacks` en el *decorador de path operation de tu API* para pasar el atributo `.routes` (que en realidad es solo un `list` de rutas/*path operations*) de ese router de callback:
+Ahora usa el parámetro `callbacks` en el *decorador de path operation de tu API* para pasar el atributo `.routes` de ese router de callback:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Consejo
 
-Observa que no estás pasando el router en sí (`invoices_callback_router`) a `callback=`, sino el atributo `.routes`, como en `invoices_callback_router.routes`.
+Observa que no estás pasando el router en sí (`invoices_callback_router`) a `callbacks=`, sino su `.routes`, como en `invoices_callback_router.routes`. FastAPI usará esas rutas para generar la documentación OpenAPI del callback.
 
 ///
 

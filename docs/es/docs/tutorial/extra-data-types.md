@@ -1,5 +1,6 @@
 # Tipos de Datos Extra { #extra-data-types }
 
+
 Hasta ahora, has estado usando tipos de datos comunes, como:
 
 * `int`

@@ -95,7 +95,7 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev` с указанием пути { #fastapi-dev-with-path }
+### `fastapi dev` с указанием пути или с опцией CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Вы также можете передать путь к файлу команде `fastapi dev`, и она постарается определить объект приложения FastAPI:
 
@@ -103,7 +103,13 @@ from backend.main import app
 $ fastapi dev main.py
 ```
 
-Но тогда вам придется каждый раз не забывать передавать правильный путь при вызове команды `fastapi`.
+Или вы можете передать опцию `--entrypoint` команде `fastapi dev`:
+
+```console
+$ fastapi dev --entrypoint main:app
+```
+
+Но тогда вам придется каждый раз не забывать передавать правильный путь\entrypoint при вызове команды `fastapi`.
 
 Кроме того, другие инструменты могут не найти его, например [Расширение VS Code](editor-support.md) или [FastAPI Cloud](https://fastapicloud.com), поэтому рекомендуется использовать `entrypoint` в `pyproject.toml`.
 

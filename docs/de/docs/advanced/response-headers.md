@@ -38,4 +38,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header [mit dem Präfix `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) hinzugefügt werden können.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen können soll, müssen Sie diese zu Ihrer CORS-Konfiguration hinzufügen (weitere Informationen finden Sie unter [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), unter Verwendung des Parameters `expose_headers`, dokumentiert in [Starlettes CORS-Dokumentation](https://www.starlette.dev/middleware/#corsmiddleware).
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen können soll, müssen Sie diese zu Ihren CORS-Konfigurationen hinzufügen (weitere Informationen finden Sie unter [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), unter Verwendung des Parameters `expose_headers`, dokumentiert in [Starlettes CORS-Dokumentation](https://www.starlette.dev/middleware/#corsmiddleware).

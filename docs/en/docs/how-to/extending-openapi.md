@@ -25,7 +25,15 @@ And that function `get_openapi()` receives as parameters:
 * `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.1.0`.
 * `summary`: A short summary of the API.
 * `description`: The description of your API, this can include markdown and will be shown in the docs.
-* `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
+* `routes`: The routes from the application, taken from `app.routes`. FastAPI uses them to collect the registered *path operations*, including those from included routers.
+
+/// tip | Technical Details
+
+`app.routes` is a lower-level route tree. It can include route candidates that FastAPI uses internally for included routers, not only final `APIRoute` objects.
+
+You can still pass `app.routes` to `get_openapi()`. FastAPI will traverse that route tree to collect the effective path operations.
+
+///
 
 /// note
 
@@ -37,7 +45,7 @@ The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by Fa
 
 Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.
 
-For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+For example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Normal **FastAPI** { #normal-fastapi }
 

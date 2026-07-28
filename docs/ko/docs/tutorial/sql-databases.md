@@ -1,5 +1,6 @@
 # SQL (관계형) 데이터베이스 { #sql-relational-databases }
 
+
 **FastAPI**에서 SQL(관계형) 데이터베이스 사용은 필수가 아닙니다. 하지만 여러분이 원하는 **어떤 데이터베이스든** 사용할 수 있습니다.
 
 여기서는 [SQLModel](https://sqlmodel.tiangolo.com/)을 사용하는 예제를 살펴보겠습니다.

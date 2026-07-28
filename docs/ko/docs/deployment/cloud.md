@@ -10,13 +10,13 @@
 
 최소한의 노력으로 API를 **구축**, **배포**, **접근**하는 과정을 간소화합니다.
 
-FastAPI로 앱을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**하는 데에도 제공합니다. 🎉
+FastAPI로 애플리케이션을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**하는 데에도 제공합니다. 🎉
 
 FastAPI Cloud는 *FastAPI and friends* 오픈 소스 프로젝트의 주요 후원자이자 자금 제공자입니다. ✨
 
 ## 클라우드 제공업체 - 후원자들 { #cloud-providers-sponsors }
 
-다른 몇몇 클라우드 제공업체들도 ✨ [**FastAPI를 후원합니다**](../help-fastapi.md#sponsor-the-author) ✨. 🙇
+다른 몇몇 클라우드 제공업체들도 ✨ [**FastAPI를 후원합니다**](https://github.com/sponsors/tiangolo) ✨. 🙇
 
 가이드를 따라 하고 서비스를 사용해보기 위해 이들도 고려해볼 수 있습니다:
 

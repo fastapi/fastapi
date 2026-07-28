@@ -5,9 +5,9 @@
 如果你声明了 [响应模型](../tutorial/response-model.md)，FastAPI 会使用它通过 Pydantic 将数据序列化为 JSON。
 
 如果你没有声明响应模型，**FastAPI** 会使用在 [JSON 兼容编码器](../tutorial/encoder.md) 中阐述的 `jsonable_encoder`。
-然后，**FastAPI** 会在后台将这些兼容 JSON 的数据（比如字典）放到一个 `JSONResponse` 中，该 `JSONResponse` 会用来发送响应给客户端。
+然后，**FastAPI** 会将其放入一个 `JSONResponse` 中。
 
-但是你可以在你的 *路径操作* 中直接返回一个 `JSONResponse`。
+你也可以直接创建一个 `JSONResponse` 并返回它。
 
 /// tip | 提示
 
@@ -17,9 +17,9 @@
 
 ## 返回 `Response` { #return-a-response }
 
-事实上，你可以返回任意 `Response` 或者任意 `Response` 的子类。
+你可以返回一个 `Response` 或其任意子类。
 
-/// info | 信息
+/// note | 注意
 
 `JSONResponse` 本身是一个 `Response` 的子类。
 

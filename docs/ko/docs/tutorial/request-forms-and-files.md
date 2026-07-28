@@ -2,7 +2,7 @@
 
 `File` 과 `Form` 을 사용하여 파일과 폼 필드를 동시에 정의할 수 있습니다.
 
-/// info
+/// note
 
 업로드된 파일 및/또는 폼 데이터를 받으려면 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치해야 합니다.
 

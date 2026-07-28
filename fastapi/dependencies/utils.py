@@ -54,7 +54,16 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _get_cache_key,
+    _get_computed_scope,
+    _get_oauth_scopes,
+    _is_async_gen_callable,
+    _is_coroutine_callable,
+    _is_gen_callable,
+    _UsesScopesCache,
+)
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
@@ -135,58 +144,14 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     )
 
 
-def get_flat_dependant(
-    dependant: Dependant,
-    *,
-    skip_repeats: bool = False,
-    visited: list[DependencyCacheKey] | None = None,
-    parent_oauth_scopes: list[str] | None = None,
-) -> Dependant:
-    if visited is None:
-        visited = []
-    visited.append(dependant.cache_key)
-    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
-        dependant.oauth_scopes or []
-    )
-
-    flat_dependant = Dependant(
-        path_params=dependant.path_params.copy(),
-        query_params=dependant.query_params.copy(),
-        header_params=dependant.header_params.copy(),
-        cookie_params=dependant.cookie_params.copy(),
-        body_params=dependant.body_params.copy(),
-        name=dependant.name,
-        call=dependant.call,
-        request_param_name=dependant.request_param_name,
-        websocket_param_name=dependant.websocket_param_name,
-        http_connection_param_name=dependant.http_connection_param_name,
-        response_param_name=dependant.response_param_name,
-        background_tasks_param_name=dependant.background_tasks_param_name,
-        security_scopes_param_name=dependant.security_scopes_param_name,
-        own_oauth_scopes=dependant.own_oauth_scopes,
-        parent_oauth_scopes=use_parent_oauth_scopes,
-        use_cache=dependant.use_cache,
-        path=dependant.path,
-        scope=dependant.scope,
-    )
-    for sub_dependant in dependant.dependencies:
-        if skip_repeats and sub_dependant.cache_key in visited:
-            continue
-        flat_sub = get_flat_dependant(
-            sub_dependant,
-            skip_repeats=skip_repeats,
-            visited=visited,
-            parent_oauth_scopes=flat_dependant.oauth_scopes,
-        )
-        flat_dependant.dependencies.append(flat_sub)
-        flat_dependant.path_params.extend(flat_sub.path_params)
-        flat_dependant.query_params.extend(flat_sub.query_params)
-        flat_dependant.header_params.extend(flat_sub.header_params)
-        flat_dependant.cookie_params.extend(flat_sub.cookie_params)
-        flat_dependant.body_params.extend(flat_sub.body_params)
-        flat_dependant.dependencies.extend(flat_sub.dependencies)
-
-    return flat_dependant
+def _get_flat_body_params(dependant: Dependant) -> list[ModelField]:
+    body_params: list[ModelField] = []
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        body_params.extend(current_dependant.body_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    return body_params
 
 
 def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
@@ -202,11 +167,31 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
 
 
 def get_flat_params(dependant: Dependant) -> list[ModelField]:
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    path_params: list[ModelField] = []
+    query_params: list[ModelField] = []
+    header_params: list[ModelField] = []
+    cookie_params: list[ModelField] = []
+    visited: list[DependencyCacheKey] = []
+    uses_scopes_cache: _UsesScopesCache = {}
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        cache_key = _get_cache_key(
+            dependant=current_dependant,
+            uses_scopes_cache=uses_scopes_cache,
+        )
+        if cache_key in visited:
+            continue
+        visited.append(cache_key)
+        path_params.extend(current_dependant.path_params)
+        query_params.extend(current_dependant.query_params)
+        header_params.extend(current_dependant.header_params)
+        cookie_params.extend(current_dependant.cookie_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    path_params = _get_flat_fields_from_params(path_params)
+    query_params = _get_flat_fields_from_params(query_params)
+    header_params = _get_flat_fields_from_params(header_params)
+    cookie_params = _get_flat_fields_from_params(cookie_params)
     return path_params + query_params + header_params + cookie_params
 
 
@@ -317,8 +302,11 @@ def get_dependant(
         if param_details.depends is not None:
             assert param_details.depends.dependency
             if (
-                (dependant.is_gen_callable or dependant.is_async_gen_callable)
-                and dependant.computed_scope == "request"
+                (
+                    _is_gen_callable(dependant.call)
+                    or _is_async_gen_callable(dependant.call)
+                )
+                and _get_computed_scope(dependant=dependant) == "request"
                 and param_details.depends.scope == "function"
             ):
                 assert dependant.call
@@ -579,9 +567,9 @@ async def _solve_generator(
     *, dependant: Dependant, stack: AsyncExitStack, sub_values: dict[str, Any]
 ) -> Any:
     assert dependant.call
-    if dependant.is_async_gen_callable:
+    if _is_async_gen_callable(dependant.call):
         cm = asynccontextmanager(dependant.call)(**sub_values)
-    elif dependant.is_gen_callable:
+    elif _is_gen_callable(dependant.call):
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
 
@@ -608,6 +596,7 @@ async def solve_dependencies(
     # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
+    _uses_scopes_cache: _UsesScopesCache | None = None,
 ) -> SolvedDependency:
     request_astack = request.scope.get("fastapi_inner_astack")
     assert isinstance(request_astack, AsyncExitStack), (
@@ -625,6 +614,8 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
+    if _uses_scopes_cache is None:
+        _uses_scopes_cache = {}
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         call = sub_dependant.call
@@ -642,7 +633,7 @@ async def solve_dependencies(
                 path=use_path,
                 call=call,
                 name=sub_dependant.name,
-                parent_oauth_scopes=sub_dependant.oauth_scopes,
+                parent_oauth_scopes=_get_oauth_scopes(dependant=sub_dependant),
                 scope=sub_dependant.scope,
             )
 
@@ -656,15 +647,20 @@ async def solve_dependencies(
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
+            _uses_scopes_cache=_uses_scopes_cache,
         )
         background_tasks = solved_result.background_tasks
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif (
-            use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable
+        sub_dependant_cache_key = _get_cache_key(
+            dependant=sub_dependant,
+            uses_scopes_cache=_uses_scopes_cache,
+        )
+        if sub_dependant.use_cache and sub_dependant_cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant_cache_key]
+        elif _is_gen_callable(use_sub_dependant.call) or _is_async_gen_callable(
+            use_sub_dependant.call
         ):
             use_astack = request_astack
             if sub_dependant.scope == "function":
@@ -674,14 +670,14 @@ async def solve_dependencies(
                 stack=use_astack,
                 sub_values=solved_result.values,
             )
-        elif use_sub_dependant.is_coroutine_callable:
+        elif _is_coroutine_callable(use_sub_dependant.call):
             solved = await call(**solved_result.values)
         else:
             solved = await run_in_threadpool(call, **solved_result.values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
-        if sub_dependant.cache_key not in dependency_cache:
-            dependency_cache[sub_dependant.cache_key] = solved
+        if sub_dependant_cache_key not in dependency_cache:
+            dependency_cache[sub_dependant_cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
@@ -724,7 +720,7 @@ async def solve_dependencies(
         values[dependant.response_param_name] = response
     if dependant.security_scopes_param_name:
         values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.oauth_scopes
+            scopes=_get_oauth_scopes(dependant=dependant)
         )
     return SolvedDependency(
         values=values,
@@ -1002,8 +998,8 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_body_field(
-    *, flat_dependant: Dependant, name: str, embed_body_fields: bool
+def _get_body_field(
+    *, body_params: list[ModelField], name: str, embed_body_fields: bool
 ) -> ModelField | None:
     """
     Get a ModelField representing the request body for a path operation, combining
@@ -1015,34 +1011,30 @@ def get_body_field(
     This is **not** used to validate/parse the request body, that's done with each
     individual body parameter.
     """
-    if not flat_dependant.body_params:
+    if not body_params:
         return None
-    first_param = flat_dependant.body_params[0]
+    first_param = body_params[0]
     if not embed_body_fields:
         return first_param
     model_name = "Body_" + name
-    BodyModel = create_body_model(
-        fields=flat_dependant.body_params, model_name=model_name
-    )
-    required = any(
-        True for f in flat_dependant.body_params if f.field_info.is_required()
-    )
+    BodyModel = create_body_model(fields=body_params, model_name=model_name)
+    required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
         "alias": "body",
     }
     if not required:
         BodyFieldInfo_kwargs["default"] = None
-    if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
+    if any(isinstance(f.field_info, params.File) for f in body_params):
         BodyFieldInfo: type[params.Body] = params.File
-    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+    elif any(isinstance(f.field_info, params.Form) for f in body_params):
         BodyFieldInfo = params.Form
     else:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
-            for f in flat_dependant.body_params
+            for f in body_params
             if isinstance(f.field_info, params.Body)
         ]
         if len(set(body_param_media_types)) == 1:

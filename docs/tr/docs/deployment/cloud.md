@@ -16,7 +16,7 @@ FastAPI Cloud, *FastAPI and friends* açık kaynak projelerinin birincil sponsor
 
 ## Bulut Sağlayıcılar - Sponsorlar { #cloud-providers-sponsors }
 
-Diğer bazı bulut sağlayıcılar da ✨ [**FastAPI'ye sponsor olur**](../help-fastapi.md#sponsor-the-author) ✨. 🙇
+Diğer bazı bulut sağlayıcılar da ✨ [**FastAPI'ye sponsor olur**](https://github.com/sponsors/tiangolo) ✨. 🙇
 
 Kılavuzlarını takip etmek ve servislerini denemek için onları da değerlendirmek isteyebilirsiniz:
 

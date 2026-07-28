@@ -17,7 +17,7 @@
 
 這裡會示範如何使用 `fastapi` 指令或直接使用 `uvicorn` 指令，搭配 Uvicorn 的工作處理序（worker processes）。
 
-/// info
+/// note
 
 如果你使用容器（例如 Docker 或 Kubernetes），我會在下一章說明更多：[容器中的 FastAPI - Docker](docker.md)。
 

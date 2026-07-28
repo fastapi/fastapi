@@ -1,5 +1,6 @@
 # Headers de Response { #response-headers }
 
+
 ## Usa un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function* (como puedes hacer para cookies).

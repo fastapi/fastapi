@@ -30,7 +30,7 @@ Então, defina os cookies nela e a retorne:
 
 Lembre-se de que se você retornar uma resposta diretamente em vez de usar o parâmetro `Response`, FastAPI a retornará diretamente.
 
-Portanto, você terá que garantir que seus dados sejam do tipo correto. E.g. será compatível com JSON se você estiver retornando um `JSONResponse`.
+Portanto, você terá que garantir que seus dados sejam do tipo correto. Por exemplo, será compatível com JSON se você estiver retornando um `JSONResponse`.
 
 E também que você não esteja enviando nenhum dado que deveria ter sido filtrado por um `response_model`.
 

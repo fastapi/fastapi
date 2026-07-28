@@ -1,5 +1,6 @@
 # Path Operation Yapılandırması { #path-operation-configuration }
 
+
 Onu yapılandırmak için *path operation decorator*’ınıza geçebileceğiniz çeşitli parametreler vardır.
 
 /// warning | Uyarı
@@ -66,19 +67,19 @@ Interactive docs’ta şöyle kullanılacaktır:
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
-## Response description { #response-description }
+## Response Açıklaması { #response-description }
 
 `response_description` parametresi ile response açıklamasını belirtebilirsiniz:
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Bilgi
+/// note | Not
 
 `response_description` özellikle response’u ifade eder; `description` ise genel olarak *path operation*’ı ifade eder.
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 OpenAPI, her *path operation* için bir response description zorunlu kılar.
 

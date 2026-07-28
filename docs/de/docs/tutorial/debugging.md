@@ -72,7 +72,7 @@ Daher wird die Zeile:
 
 nicht ausgeführt.
 
-/// info | Info
+/// note | Hinweis
 
 Für weitere Informationen besuchen Sie bitte [die offizielle Python-Dokumentation](https://docs.python.org/3/library/__main__.html).
 
@@ -99,7 +99,7 @@ So könnte es aussehen:
 
 ---
 
-Wenn Sie Pycharm verwenden, können Sie:
+Wenn Sie PyCharm verwenden, können Sie:
 
 * Das Menü „Run“ öffnen.
 * Die Option „Debug ...“ auswählen.

@@ -10,9 +10,9 @@ Si vous êtes pressé ou si cela ne vous intéresse pas, continuez avec les sect
 
 ///
 
-Pour apprendre les bases du HTTPS, du point de vue d'un utilisateur, consultez [https://howhttps.works/](https://howhttps.works/).
+Pour **apprendre les bases du HTTPS**, du point de vue d'un utilisateur, consultez [https://howhttps.works/](https://howhttps.works/).
 
-Maintenant, du point de vue d'un développeur, voici plusieurs choses à avoir en tête en pensant au HTTPS :
+Maintenant, du **point de vue d'un développeur**, voici plusieurs choses à avoir en tête en pensant au HTTPS :
 
 * Pour le HTTPS, **le serveur** doit **disposer de « certificats »** générés par une **tierce partie**.
     * Ces certificats sont en réalité **acquis** auprès de la tierce partie, et non « générés ».
@@ -65,7 +65,7 @@ Voici un exemple de ce à quoi pourrait ressembler une API HTTPS, étape par ét
 
 Tout commencerait probablement par le fait que vous **acquériez** un **nom de domaine**. Ensuite, vous le configureriez dans un serveur DNS (possiblement le même que votre fournisseur cloud).
 
-Vous obtiendriez probablement un serveur cloud (une machine virtuelle) ou quelque chose de similaire, et il aurait une adresse IP publique <dfn title="Ne change pas dans le temps. Pas dynamique.">fixe</dfn>.
+Vous obtiendriez probablement un serveur cloud (une machine virtuelle) ou quelque chose de similaire, et il aurait une **adresse IP publique** <dfn title="Ne change pas dans le temps. Pas dynamique.">fixe</dfn>.
 
 Dans le ou les serveurs DNS, vous configureriez un enregistrement (un « `A record` ») pour faire pointer **votre domaine** vers l'**adresse IP publique de votre serveur**.
 
