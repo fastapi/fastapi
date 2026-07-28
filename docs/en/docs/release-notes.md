@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `exclude_defaults` not propagated to dict keys and values in `jsonable_encoder`. PR [#16043](https://github.com/fastapi/fastapi/pull/16043) by [@MBGrao](https://github.com/MBGrao).
+
 ### Internal
 
 * ⬆ Bump gitpython from 3.1.50 to 3.1.54. PR [#16047](https://github.com/fastapi/fastapi/pull/16047) by [@dependabot[bot]](https://github.com/apps/dependabot).
