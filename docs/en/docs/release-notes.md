@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix handling sequences with nested Annotated types. PR [#14874](https://github.com/fastapi/fastapi/pull/14874) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
 * 🐛 Accept any base test failure as regression. PR [#16092](https://github.com/fastapi/fastapi/pull/16092) by [@tiangolo](https://github.com/tiangolo).
