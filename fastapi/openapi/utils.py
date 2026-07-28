@@ -3,6 +3,7 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
+from dataclasses import dataclass, field
 from typing import Any, Literal, cast
 
 from fastapi import routing
@@ -15,10 +16,16 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, _Unset
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _get_cache_key,
+    _get_oauth_scopes,
+    _get_security_scheme,
+    _is_security_scheme,
+    _UsesScopesCache,
+)
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
-    get_flat_dependant,
     get_flat_params,
     get_validation_alias,
 )
@@ -29,7 +36,7 @@ from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.sse import _SSE_EVENT_SCHEMA
-from fastapi.types import ModelNameMap
+from fastapi.types import DependencyCacheKey, ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
@@ -78,24 +85,69 @@ status_code_ranges: dict[str, str] = {
 }
 
 
-def get_openapi_security_definitions(
-    flat_dependant: Dependant,
+@dataclass
+class _OpenAPIDependencyData:
+    path_params: list[ModelField] = field(default_factory=list)
+    query_params: list[ModelField] = field(default_factory=list)
+    header_params: list[ModelField] = field(default_factory=list)
+    cookie_params: list[ModelField] = field(default_factory=list)
+    security_dependencies: list[tuple[Dependant, list[str]]] = field(
+        default_factory=list
+    )
+
+
+def _get_openapi_dependency_data(dependant: Dependant) -> _OpenAPIDependencyData:
+    dependency_data = _OpenAPIDependencyData()
+    visited: list[DependencyCacheKey] = []
+    uses_scopes_cache: _UsesScopesCache = {}
+    dependants: list[tuple[Dependant, list[str], bool]] = [(dependant, [], True)]
+    while dependants:
+        current_dependant, parent_oauth_scopes, is_root = dependants.pop()
+        cache_key = _get_cache_key(
+            dependant=current_dependant,
+            uses_scopes_cache=uses_scopes_cache,
+        )
+        if cache_key in visited:
+            continue
+        visited.append(cache_key)
+        dependency_data.path_params.extend(current_dependant.path_params)
+        dependency_data.query_params.extend(current_dependant.query_params)
+        dependency_data.header_params.extend(current_dependant.header_params)
+        dependency_data.cookie_params.extend(current_dependant.cookie_params)
+        oauth_scopes = parent_oauth_scopes.copy()
+        for scope in _get_oauth_scopes(dependant=current_dependant):
+            if scope not in oauth_scopes:
+                oauth_scopes.append(scope)
+        if not is_root and _is_security_scheme(dependant=current_dependant):
+            dependency_data.security_dependencies.append(
+                (current_dependant, oauth_scopes)
+            )
+        dependants.extend(
+            (sub_dependant, oauth_scopes, False)
+            for sub_dependant in reversed(current_dependant.dependencies)
+        )
+    return dependency_data
+
+
+def _get_openapi_security_definitions(
+    security_dependencies: list[tuple[Dependant, list[str]]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     security_definitions = {}
     # Use a dict to merge scopes for same security scheme
     operation_security_dict: dict[str, list[str]] = {}
-    for security_dependency in flat_dependant._security_dependencies:
+    for security_dependency, oauth_scopes in security_dependencies:
+        security_scheme = _get_security_scheme(dependant=security_dependency)
         security_definition = jsonable_encoder(
-            security_dependency._security_scheme.model,
+            security_scheme.model,
             by_alias=True,
             exclude_none=True,
         )
-        security_name = security_dependency._security_scheme.scheme_name
+        security_name = security_scheme.scheme_name
         security_definitions[security_name] = security_definition
         # Merge scopes for the same security scheme
         if security_name not in operation_security_dict:
             operation_security_dict[security_name] = []
-        for scope in security_dependency.oauth_scopes or []:
+        for scope in oauth_scopes:
             if scope not in operation_security_dict[security_name]:
                 operation_security_dict[security_name].append(scope)
     operation_security = [
@@ -106,7 +158,7 @@ def get_openapi_security_definitions(
 
 def _get_openapi_operation_parameters(
     *,
-    dependant: Dependant,
+    dependency_data: _OpenAPIDependencyData,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
@@ -114,11 +166,10 @@ def _get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
     parameters = []
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    path_params = _get_flat_fields_from_params(dependency_data.path_params)
+    query_params = _get_flat_fields_from_params(dependency_data.query_params)
+    header_params = _get_flat_fields_from_params(dependency_data.header_params)
+    cookie_params = _get_flat_fields_from_params(dependency_data.cookie_params)
     parameter_groups = [
         (ParamTypes.path, path_params),
         (ParamTypes.query, query_params),
@@ -126,8 +177,8 @@ def _get_openapi_operation_parameters(
         (ParamTypes.cookie, cookie_params),
     ]
     default_convert_underscores = True
-    if len(flat_dependant.header_params) == 1:
-        first_field = flat_dependant.header_params[0]
+    if len(dependency_data.header_params) == 1:
+        first_field = dependency_data.header_params[0]
         if lenient_issubclass(first_field.field_info.annotation, BaseModel):
             default_convert_underscores = getattr(
                 first_field.field_info, "convert_underscores", True
@@ -278,21 +329,33 @@ def get_openapi_path(
     assert current_response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
+        dependency_data = _get_openapi_dependency_data(route.dependant)
+        all_route_params = [
+            field
+            for fields in (
+                dependency_data.path_params,
+                dependency_data.query_params,
+                dependency_data.header_params,
+                dependency_data.cookie_params,
+            )
+            for field in _get_flat_fields_from_params(fields)
+        ]
         for method in route.methods:
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
             parameters: list[dict[str, Any]] = []
-            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
-            security_definitions, operation_security = get_openapi_security_definitions(
-                flat_dependant=flat_dependant
+            security_definitions, operation_security = (
+                _get_openapi_security_definitions(
+                    security_dependencies=dependency_data.security_dependencies
+                )
             )
             if operation_security:
                 operation.setdefault("security", []).extend(operation_security)
             if security_definitions:
                 security_schemes.update(security_definitions)
             operation_parameters = _get_openapi_operation_parameters(
-                dependant=route.dependant,
+                dependency_data=dependency_data,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -452,7 +515,6 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = "422"
-            all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]

@@ -154,7 +154,7 @@ Underneath, in the ASGI technical specification, this is part of the [Lifespan P
 
 /// note
 
-You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://www.starlette.dev/lifespan/).
+You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://starlette.dev/lifespan/).
 
 Including how to handle lifespan state that can be used in other areas of your code.
 

@@ -52,7 +52,7 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 
 There are several alternatives, including:
 
-* [Uvicorn](https://www.uvicorn.dev/): a high performance ASGI server.
+* [Uvicorn](https://uvicorn.dev): a high performance ASGI server.
 * [Hypercorn](https://hypercorn.readthedocs.io/): an ASGI server compatible with HTTP/2 and Trio among other features.
 * [Daphne](https://github.com/django/daphne): the ASGI server built for Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): A Rust HTTP server for Python applications.

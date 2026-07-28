@@ -19,7 +19,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Alternative API documentation with [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -159,7 +159,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ## Starlette features { #starlette-features }
 
-**FastAPI** is fully compatible with (and based on) [**Starlette**](https://www.starlette.dev/). So, any additional Starlette code you have, will also work.
+**FastAPI** is fully compatible with (and based on) [**Starlette**](https://starlette.dev/). So, any additional Starlette code you have, will also work.
 
 `FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 
@@ -177,7 +177,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 ## Pydantic features { #pydantic-features }
 
-**FastAPI** is fully compatible with (and based on) [**Pydantic**](https://docs.pydantic.dev/). So, any additional Pydantic code you have, will also work.
+**FastAPI** is fully compatible with (and based on) [**Pydantic**](https://pydantic.dev/docs/). So, any additional Pydantic code you have, will also work.
 
 Including external libraries also based on Pydantic, such as <abbr title="Object-Relational Mapper">ORM</abbr>s and <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 

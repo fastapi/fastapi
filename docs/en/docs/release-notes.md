@@ -7,13 +7,91 @@ hide:
 
 ## Latest Changes
 
+## 0.140.9 (2026-07-28)
+
+### Fixes
+
+* 🐛 Fix `exclude_defaults` not propagated to dict keys and values in `jsonable_encoder`. PR [#16043](https://github.com/fastapi/fastapi/pull/16043) by [@MBGrao](https://github.com/MBGrao).
+
+### Internal
+
+* ⬆ Bump gitpython from 3.1.50 to 3.1.54. PR [#16047](https://github.com/fastapi/fastapi/pull/16047) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pymdown-extensions from 10.21.3 to 11.0. PR [#16048](https://github.com/fastapi/fastapi/pull/16048) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyasn1 from 0.6.3 to 0.6.4. PR [#16045](https://github.com/fastapi/fastapi/pull/16045) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.140.8 (2026-07-28)
+
+### Fixes
+
+* 🐛 Fix stream item type lost when using `include_router()`. PR [#15077](https://github.com/fastapi/fastapi/pull/15077) by [@alex-raw](https://github.com/alex-raw).
+
+## 0.140.7 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Avoid flattening dependencies for OpenAPI. PR [#16076](https://github.com/fastapi/fastapi/pull/16076) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆️ Upgrade latest-changes to 0.7.1. PR [#16077](https://github.com/fastapi/fastapi/pull/16077) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add OpenAPI dependency benchmarks. PR [#16075](https://github.com/fastapi/fastapi/pull/16075) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.6 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Avoid flattening dependencies for request parameters, mainly for OpenAPI. PR [#16073](https://github.com/fastapi/fastapi/pull/16073) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.5 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Avoid flattening dependencies for body fields. PR [#16071](https://github.com/fastapi/fastapi/pull/16071) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.4 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Skip unused dependency repeat bookkeeping. PR [#16069](https://github.com/fastapi/fastapi/pull/16069) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.3 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Avoid repeated dependency flattening in OpenAPI. PR [#16067](https://github.com/fastapi/fastapi/pull/16067) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.2 (2026-07-27)
+
+### Refactors
+
+* ⚡️ Stop retaining flat dependency trees. PR [#16065](https://github.com/fastapi/fastapi/pull/16065) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👷 Add new memory benchmark. PR [#16064](https://github.com/fastapi/fastapi/pull/16064) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.1 (2026-07-27)
+
+### Refactors
+
+* ♻️ Update the lru_cache limit for dependencies to account for large apps. PR [#16062](https://github.com/fastapi/fastapi/pull/16062) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.0 (2026-07-24)
+
+### Refactors
+
+* ⚡️ Reduce memory usage in dependencies. PR [#16049](https://github.com/fastapi/fastapi/pull/16049) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
+* 📝 Fix links in docs. PR [#15967](https://github.com/fastapi/fastapi/pull/15967) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Add Library Skills documentation. PR [#16041](https://github.com/fastapi/fastapi/pull/16041) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs to use uv projects by default. PR [#16032](https://github.com/fastapi/fastapi/pull/16032) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Restructure FastAPI People and related pages. PR [#16015](https://github.com/fastapi/fastapi/pull/16015) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
 
+* 👷 Add CI memory benchmark. PR [#16046](https://github.com/fastapi/fastapi/pull/16046) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#16027](https://github.com/fastapi/fastapi/pull/16027) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove now-obsolete scripts to generate data for FastAPI People. PR [#16016](https://github.com/fastapi/fastapi/pull/16016) by [@tiangolo](https://github.com/tiangolo).
 
@@ -4094,7 +4172,7 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
 * The attribute `schema_extra` for the internal class `Config` has been replaced by the key `json_schema_extra` in the new `model_config` dict.
     * You can read more about it in the docs for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
 * When you install `"fastapi[all]"` it now also includes:
-    * [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - for settings management.
+    * [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - for settings management.
     * [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - for extra types to be used with Pydantic.
 * Now Pydantic Settings is an additional optional package (included in `"fastapi[all]"`). To use settings you should now import `from pydantic_settings import BaseSettings` instead of importing from `pydantic` directly.
     * You can read more about it in the docs for [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/).
@@ -6902,7 +6980,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade the compatible version of Starlette to `0.12.0`.
     * This includes support for ASGI 3 (the latest version of the standard).
-    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
+    * It's now possible to use [Starlette's `StreamingResponse`](https://starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
     * It's now possible to use the low level utility `iterate_in_threadpool` from `starlette.concurrency` (for advanced scenarios).
     * PR [#243](https://github.com/tiangolo/fastapi/pull/243).
 

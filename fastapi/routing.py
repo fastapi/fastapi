@@ -48,12 +48,17 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _is_async_gen_callable,
+    _is_coroutine_callable,
+    _is_gen_callable,
+)
 from fastapi.dependencies.utils import (
+    _get_body_field,
+    _get_flat_body_params,
     _should_embed_body_fields,
-    get_body_field,
     get_dependant,
-    get_flat_dependant,
     get_parameterless_sub_dependant,
     get_stream_item_type,
     get_typed_return_annotation,
@@ -384,7 +389,7 @@ def get_request_handler(
     is_json_stream: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = dependant.is_coroutine_callable
+    is_coroutine = _is_coroutine_callable(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
@@ -543,7 +548,7 @@ def get_request_handler(
                             data_str=_serialize_data(item).decode("utf-8")
                         )
 
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
                     sse_aiter: AsyncIterator[Any] = gen.__aiter__()
                 else:
                     sse_aiter = iterate_in_threadpool(gen)
@@ -641,7 +646,7 @@ def get_request_handler(
                 def _serialize_item(item: Any) -> bytes:
                     return _serialize_data(item) + b"\n"
 
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
 
                     async def _async_stream_jsonl() -> AsyncIterator[bytes]:
                         async for item in gen:
@@ -667,10 +672,12 @@ def get_request_handler(
                     background=solved_result.background_tasks,
                 )
                 response.headers.raw.extend(solved_result.response.headers.raw)
-            elif dependant.is_async_gen_callable or dependant.is_gen_callable:
+            elif _is_async_gen_callable(dependant.call) or _is_gen_callable(
+                dependant.call
+            ):
                 # Raw streaming with explicit response_class (e.g. StreamingResponse)
                 gen = dependant.call(**solved_result.values)
-                if dependant.is_async_gen_callable:
+                if _is_async_gen_callable(dependant.call):
 
                     async def _async_stream_raw(
                         async_gen: AsyncIterator[Any],
@@ -800,7 +807,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         (
             self.dependant,
-            self._flat_dependant,
+            _,
             self._embed_body_fields,
         ) = _build_dependant_with_parameterless_dependencies(
             path=self.path_format,
@@ -842,16 +849,16 @@ def _build_dependant_with_parameterless_dependencies(
     path: str,
     call: Callable[..., Any],
     dependencies: Sequence[params.Depends],
-) -> tuple[Dependant, Dependant, bool]:
+) -> tuple[Dependant, list[ModelField], bool]:
     dependant = get_dependant(path=path, call=call, scope="function")
     for depends in dependencies[::-1]:
         dependant.dependencies.insert(
             0,
             get_parameterless_sub_dependant(depends=depends, path=path),
         )
-    flat_dependant = get_flat_dependant(dependant)
-    embed_body_fields = _should_embed_body_fields(flat_dependant.body_params)
-    return dependant, flat_dependant, embed_body_fields
+    body_params = _get_flat_body_params(dependant)
+    embed_body_fields = _should_embed_body_fields(body_params)
+    return dependant, body_params, embed_body_fields
 
 
 class _RouteWithPath(Protocol):
@@ -937,7 +944,6 @@ class _APIRouteLike(Protocol):
     description: str
     response_fields: dict[int | str, ModelField]
     dependant: Dependant
-    _flat_dependant: Dependant
     _embed_body_fields: bool
     body_field: ModelField | None
     is_sse_stream: bool
@@ -976,10 +982,11 @@ def _populate_api_route_state(
         generate_unique_id
     ),
     strict_content_type: bool | DefaultPlaceholder = Default(True),
+    stream_item_type: Any | None = None,
 ) -> None:
     route.path = path
     route.endpoint = endpoint
-    route.stream_item_type = None
+    route.stream_item_type = stream_item_type
     if isinstance(response_model, DefaultPlaceholder):
         return_annotation = get_typed_return_annotation(endpoint)
         if lenient_issubclass(return_annotation, Response):
@@ -1084,21 +1091,21 @@ def _populate_api_route_state(
     assert callable(endpoint), "An endpoint must be a callable"
     (
         route.dependant,
-        route._flat_dependant,
+        body_params,
         route._embed_body_fields,
     ) = _build_dependant_with_parameterless_dependencies(
         path=route.path_format,
         call=route.endpoint,
         dependencies=route.dependencies,
     )
-    route.body_field = get_body_field(
-        flat_dependant=route._flat_dependant,
+    route.body_field = _get_body_field(
+        body_params=body_params,
         name=route.unique_id,
         embed_body_fields=route._embed_body_fields,
     )
     # Detect generator endpoints that should stream as JSONL or SSE
-    is_generator = (
-        route.dependant.is_async_gen_callable or route.dependant.is_gen_callable
+    is_generator = _is_async_gen_callable(route.dependant.call) or _is_gen_callable(
+        route.dependant.call
     )
     route.is_sse_stream = is_generator and lenient_issubclass(
         response_class, EventSourceResponse
@@ -1138,7 +1145,6 @@ class APIRoute(routing.Route):
     description: str
     response_fields: dict[int | str, ModelField]
     dependant: Dependant
-    _flat_dependant: Dependant
     _embed_body_fields: bool
     body_field: ModelField | None
     is_sse_stream: bool
@@ -1403,7 +1409,6 @@ class _EffectiveRouteContext:
     description: str = ""
     response_fields: dict[int | str, ModelField] = field(default_factory=dict)
     dependant: Dependant | None = None
-    _flat_dependant: Dependant | None = None
     _embed_body_fields: bool = False
     body_field: ModelField | None = None
     is_sse_stream: bool = False
@@ -1460,6 +1465,7 @@ class _EffectiveRouteContext:
                 include_context.included_router.strict_content_type,
                 include_context.strict_content_type,
             ),
+            stream_item_type=route.stream_item_type,
         )
         return context
 
@@ -1479,7 +1485,7 @@ class _EffectiveRouteContext:
         )
         (
             context.dependant,
-            context._flat_dependant,
+            _,
             context._embed_body_fields,
         ) = _build_dependant_with_parameterless_dependencies(
             path="",
@@ -2073,7 +2079,7 @@ class _FrontendRouteGroup(BaseRoute):
         self.dependency_overrides_provider = dependency_overrides_provider
         (
             self.dependant,
-            self._flat_dependant,
+            _,
             self._embed_body_fields,
         ) = _build_dependant_with_parameterless_dependencies(
             path="",
