@@ -6,7 +6,7 @@ import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
-from fastapi.sse import ServerSentEvent
+from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -371,6 +371,29 @@ def test_no_keepalive_when_fast(client: TestClient):
     assert response.status_code == 200
     # KEEPALIVE_COMMENT is ": ping\n\n".
     assert ": ping\n" not in response.text
+
+
+@pytest.mark.parametrize(
+    ("data", "expected_result"),
+    [
+        ("Hello\n", b"data: Hello\ndata: \n\n"),
+        ("Hello\n\n", b"data: Hello\ndata: \ndata: \n\n"),
+        ("\n", b"data: \ndata: \n\n"),
+        ("Hello\r\nWorld", b"data: Hello\ndata: World\n\n"),
+        ("Hello\rWorld", b"data: Hello\ndata: World\n\n"),
+        ("A\u2028B", "data: A\u2028B\n\n".encode()),
+        ("A\vB", b"data: A\x0bB\n\n"),
+        ("", b"data: \n\n"),
+    ],
+)
+def test_format_sse_event_splitlines_behavior_in_data(
+    data: str, expected_result: bytes
+) -> None:
+    assert format_sse_event(data_str=data) == expected_result
+
+
+def test_format_sse_event_splitlines_behavior_in_comment():
+    assert format_sse_event(comment="hi\n") == b": hi\n: \n\n"
 
 
 # default_response_class tests
