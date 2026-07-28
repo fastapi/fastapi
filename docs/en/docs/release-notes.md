@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.9 (2026-07-28)
+
 ### Fixes
 
 * 🐛 Fix `exclude_defaults` not propagated to dict keys and values in `jsonable_encoder`. PR [#16043](https://github.com/fastapi/fastapi/pull/16043) by [@MBGrao](https://github.com/MBGrao).
