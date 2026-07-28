@@ -811,7 +811,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// Error importing sirius, it's not installed 😱
+// Ошибка при импорте sirius, он не установлен 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius

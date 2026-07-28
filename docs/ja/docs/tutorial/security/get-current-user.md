@@ -14,7 +14,7 @@
 
 ボディを宣言するのにPydanticを使用するのと同じやり方で、Pydanticを別のどんなところでも使うことができます:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## 依存関係 `get_current_user` を作成 { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@ Pydanticモデルの `User` として、 `current_user` の型を宣言するこ
 
 ///
 
-/// check | 確認
+/// tip | 豆知識
 
 依存関係システムがこのように設計されているおかげで、 `User` モデルを返却する別の依存関係（別の「dependables」）を持つことができます。
 

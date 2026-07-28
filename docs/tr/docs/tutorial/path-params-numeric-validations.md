@@ -8,7 +8,7 @@
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve bunu önermeye başladı).
 
@@ -56,7 +56,7 @@ Dolayısıyla fonksiyonunuzu şöyle tanımlayabilirsiniz:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
-Namun şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
+Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
@@ -131,7 +131,7 @@ Ayrıca sayısal doğrulamalar da tanımlayabilirsiniz:
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
 
-/// info | Bilgi
+/// note | Not
 
 `Query`, `Path` ve ileride göreceğiniz diğer class'lar ortak bir `Param` class'ının alt class'larıdır.
 

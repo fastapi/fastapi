@@ -1,6 +1,7 @@
 import importlib
 from functools import lru_cache
 from types import ModuleType
+from typing import Any, cast
 
 import pytest
 from fastapi.testclient import TestClient
@@ -29,12 +30,13 @@ def cache_verify_password(mod: ModuleType):
         f"Module {mod.__name__} does not have attribute 'verify_password'"
     )
 
-    original_func = mod.verify_password
+    mod_any = cast(Any, mod)
+    original_func = mod_any.verify_password
     cached_func = lru_cache()(original_func)
 
-    mod.verify_password = cached_func
+    mod_any.verify_password = cached_func
     yield
-    mod.verify_password = original_func
+    mod_any.verify_password = original_func
 
 
 def get_access_token(

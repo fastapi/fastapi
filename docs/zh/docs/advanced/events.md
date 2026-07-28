@@ -1,5 +1,6 @@
 # 生命周期事件 { #lifespan-events }
 
+
 你可以定义在应用**启动**前执行的逻辑（代码）。这意味着在应用**开始接收请求**之前，这些代码只会被执行**一次**。
 
 同样地，你可以定义在应用**关闭**时应执行的逻辑。在这种情况下，这段代码将在**处理可能的多次请求后**执行**一次**。
@@ -120,7 +121,7 @@ async with lifespan(app):
 
 此处，`shutdown` 事件处理器函数会向文件 `log.txt` 写入一行文本 `"Application shutdown"`。
 
-/// info | 信息
+/// note | 注意
 
 在 `open()` 函数中，`mode="a"` 指的是“追加”。因此这行文本会添加在文件已有内容之后，不会覆盖之前的内容。
 
@@ -152,7 +153,7 @@ async with lifespan(app):
 
 在底层，这部分是 ASGI 技术规范中的 [Lifespan 协议](https://asgi.readthedocs.io/en/latest/specs/lifespan.html)的一部分，定义了称为 `startup` 和 `shutdown` 的事件。
 
-/// info | 信息
+/// note | 注意
 
 你可以在 [Starlette 的 Lifespan 文档](https://www.starlette.dev/lifespan/) 中阅读更多关于 `lifespan` 处理器的内容。
 

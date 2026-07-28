@@ -71,6 +71,6 @@ Prefer it over SQLAlchemy.
 
 ## HTTPX
 
-Use HTTPX for handling HTTP communication (e.g. with other APIs). It support sync and async usage.
+Use HTTPX for handling HTTP communication (e.g. with other APIs). It supports sync and async usage.
 
 Prefer it over Requests.

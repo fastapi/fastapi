@@ -87,10 +87,10 @@ def test_encode_dict():
 def test_encode_dict_include_exclude_list():
     pet = {"name": "Firulais", "owner": {"name": "Foo"}}
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
-    assert jsonable_encoder(pet, include=["name"]) == {"name": "Firulais"}
-    assert jsonable_encoder(pet, exclude=["owner"]) == {"name": "Firulais"}
-    assert jsonable_encoder(pet, include=[]) == {}
-    assert jsonable_encoder(pet, exclude=[]) == {
+    assert jsonable_encoder(pet, include=["name"]) == {"name": "Firulais"}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, exclude=["owner"]) == {"name": "Firulais"}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, include=[]) == {}  # ty: ignore[invalid-argument-type]
+    assert jsonable_encoder(pet, exclude=[]) == {  # ty: ignore[invalid-argument-type]
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
@@ -176,7 +176,7 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        ModelWithAlias(foo="Bar")
+        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument, unknown-argument]
 
 
 def test_encode_model_with_alias():

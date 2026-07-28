@@ -28,7 +28,7 @@ Isso também pode ser útil para evitar confundir novos desenvolvedores que ao v
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Neste exemplo utilizamos cabeçalhos personalizados inventados `X-Key` e `X-Token`.
 

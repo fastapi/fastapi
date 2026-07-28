@@ -30,7 +30,7 @@ Ao adicionar uma estrela, outras pessoas conseguirão encontrá-lo com mais faci
 
 ## Acompanhe o repositório no GitHub para lançamentos { #watch-the-github-repository-for-releases }
 
-Você pode “acompanhar” (watch) o FastAPI no GitHub (clicando no botão “watch” no canto superior direito): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
+Você pode “acompanhar” o FastAPI no GitHub (clicando no botão “watch” no canto superior direito): [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi). 👀
 
 Lá você pode selecionar “Apenas lançamentos”.
 

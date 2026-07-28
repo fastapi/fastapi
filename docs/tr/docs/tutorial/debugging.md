@@ -59,7 +59,7 @@ Yani örneğin `importer.py` adında başka bir dosyanız var ve içinde şunlar
 ```Python
 from myapp import app
 
-# Some more code
+# Biraz daha kod
 ```
 
 bu durumda `myapp.py` içindeki otomatik oluşturulan `__name__` değişkeni `"__main__"` değerine sahip olmaz.

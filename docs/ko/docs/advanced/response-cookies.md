@@ -26,7 +26,7 @@
 
 {* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip
+/// tip | 팁
 
 `Response` 매개변수를 사용하지 않고 응답을 직접 반환하는 경우, FastAPI는 이를 직접 반환한다는 점에 유의하세요.
 

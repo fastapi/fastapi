@@ -1,12 +1,13 @@
 # WSGI の組み込み - Flask、Django など { #including-wsgi-flask-django-others }
 
+
 [サブアプリケーション - マウント](sub-applications.md)、[プロキシの背後](behind-a-proxy.md) で見たように、WSGI アプリケーションをマウントできます。
 
 そのために `WSGIMiddleware` を使用して、Flask や Django などの WSGI アプリをラップできます。
 
 ## `WSGIMiddleware` の使用 { #using-wsgimiddleware }
 
-/// info | 情報
+/// note | 備考
 
 これには `a2wsgi` のインストールが必要です。例: `pip install a2wsgi`。
 

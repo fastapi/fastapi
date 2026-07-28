@@ -151,7 +151,7 @@ def some_function(data: Any):
 
 一部の型は、角括弧内で「型パラメータ」を受け取り、内部の型を定義できます。例えば「文字列のリスト」は `list[str]` として宣言します。
 
-このように型パラメータを取れる型は **Generic types**（ジェネリクス）と呼ばれます。
+このように型パラメータを取れる型は **Generic types** または **Generics**（ジェネリクス）と呼ばれます。
 
 次の組み込み型をジェネリクスとして（角括弧と内部の型で）使えます:
 
@@ -265,7 +265,7 @@ def some_function(data: Any):
 
 これは「`one_person` はクラス `Person` の **インスタンス** である」ことを意味します。
 
-「`one_person` は `Person` という名前の **クラ ス** である」という意味ではありません。
+「`one_person` は `Person` という名前の **クラス** である」という意味ではありません。
 
 ## Pydantic のモデル { #pydantic-models }
 
@@ -343,6 +343,6 @@ Python 自体は、この `Annotated` で何かをするわけではありませ
 
 /// note | 備考
 
-すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして [`mypy` の「チートシート`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html) があります。
+すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、良いリソースとして [`mypy` の「チートシート」](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html) があります。
 
 ///

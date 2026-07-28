@@ -1,5 +1,6 @@
 # Modèle Full Stack FastAPI { #full-stack-fastapi-template }
 
+
 Les modèles, bien qu'ils soient généralement livrés avec une configuration spécifique, sont conçus pour être flexibles et personnalisables. Cela vous permet de les modifier et de les adapter aux exigences de votre projet, ce qui en fait un excellent point de départ. 🏁
 
 Vous pouvez utiliser ce modèle pour démarrer, car il inclut une grande partie de la configuration initiale, la sécurité, la base de données et quelques endpoints d'API déjà prêts pour vous.

@@ -10,7 +10,7 @@
 
 /// tip
 
-通常使用 [回應模型](../tutorial/response-model.md) 會有更好的效能，因為那樣會在 Rust 端使用 Pydantic 來序列化資料，而不是直接回傳 `JSONResponse`。
+通常使用 [回應模型](../tutorial/response-model.md) 會有更好的效能，因為那樣會在 Rust 端使用 Pydantic 來序列化資料。
 
 ///
 
@@ -18,7 +18,7 @@
 
 其實，你可以回傳任何 `Response`，或其任何子類別。
 
-/// info
+/// note
 
 `JSONResponse` 本身就是 `Response` 的子類別。
 

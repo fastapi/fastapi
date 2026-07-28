@@ -1,5 +1,6 @@
 # LLM テストファイル { #llm-test-file }
 
+
 このドキュメントは、ドキュメントを翻訳する <abbr title="Large Language Model - 大規模言語モデル">LLM</abbr> が、`scripts/translate.py` の `general_prompt` と、`docs/{language code}/llm-prompt.md` の言語固有プロンプトを理解しているかをテストします。言語固有プロンプトは `general_prompt` の末尾に追加されます。
 
 ここに追加したテストは、すべての言語固有プロンプトの設計者が参照します。

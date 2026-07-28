@@ -108,7 +108,7 @@ q: str | None = None
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | 注意
+/// note | 注意
 
 `Body` 也具有與 `Query`、`Path` 以及之後你會看到的其他工具相同的額外驗證與中繼資料參數。
 
@@ -123,7 +123,7 @@ q: str | None = None
 但如果你想讓它像宣告多個 Body 參數時那樣，期望一個帶有 `item` 鍵、其內含模型內容的 JSON，你可以使用 `Body` 的特殊參數 `embed`：
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 如下：

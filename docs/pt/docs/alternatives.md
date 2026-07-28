@@ -18,13 +18,13 @@ Mas em algum momento, não havia outra opção senão criar algo que fornecesse 
 
 É o framework Python mais popular e amplamente confiável. É utilizado para construir sistemas como o Instagram.
 
-É relativamente bem acoplado com bancos de dados relacionais (como MySQL ou PostgreSQL), então, ter um banco de dados NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como mecanismo principal de armazenamento não é muito fácil.
+É relativamente fortemente acoplado com bancos de dados relacionais (como MySQL ou PostgreSQL), então, ter um banco de dados NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como mecanismo principal de armazenamento não é muito fácil.
 
 Foi criado para gerar o HTML no backend, não para criar APIs usadas por um frontend moderno (como React, Vue.js e Angular) ou por outros sistemas (como dispositivos <abbr title="Internet of Things - Internet das Coisas">IoT</abbr>) comunicando com ele.
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework foi criado para ser uma caixa de ferramentas flexível para construção de APIs Web utilizando Django por baixo, para melhorar suas capacidades de API.
+Django REST Framework foi criado para ser uma caixa de ferramentas flexível para construção de APIs Web utilizando Django por baixo, para melhorar suas capacidades de API.
 
 Ele é utilizado por muitas empresas incluindo Mozilla, Red Hat e Eventbrite.
 
@@ -88,7 +88,7 @@ O jeito de usar é muito simples. Por exemplo, para fazer uma requisição `GET`
 response = requests.get("http://example.com/some/url")
 ```
 
-A contra-parte na aplicação FastAPI, a operação de rota, poderia ficar assim:
+A *operação de rota* da API equivalente no FastAPI poderia ficar assim:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -377,7 +377,7 @@ Agora APIStar é um conjunto de ferramentas para validar especificações OpenAP
 
 /// note | Nota
 
-APIStar foi criado por Tom Christie. O mesmo cara que criou:
+APIStar foi criado por Tom Christie. A mesma pessoa que criou:
 
 * Django REST Framework
 * Starlette (no qual **FastAPI** é baseado)

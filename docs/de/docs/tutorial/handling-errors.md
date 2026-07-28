@@ -8,12 +8,12 @@ Sie könnten dem Client mitteilen müssen, dass:
 
 * Der Client nicht genügend Berechtigungen für diese Operation hat.
 * Der Client keinen Zugriff auf diese Ressource hat.
-* Die Ressource, auf die der Client versucht hat, zuzugreifen, nicht existiert.
+* Das Item, auf das der Client versucht hat zuzugreifen, nicht existiert.
 * usw.
 
 In diesen Fällen würden Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (von 400 bis 499) zurückgeben.
 
-Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> in irgendeiner Weise erfolgreich war.
+Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> irgendwie ein „Erfolg“ war.
 
 Die Statuscodes im Bereich 400 bedeuten hingegen, dass es einen Fehler seitens des Clients gab.
 
@@ -37,7 +37,7 @@ Das bedeutet auch, wenn Sie sich innerhalb einer Hilfsfunktion befinden, die Sie
 
 Der Vorteil des Auslösens einer Exception gegenüber dem Zurückgeben eines Wertes wird im Abschnitt über Abhängigkeiten und Sicherheit deutlicher werden.
 
-In diesem Beispiel lösen wir eine Exception mit einem Statuscode von `404` aus, wenn der Client einen Artikel mit einer nicht existierenden ID anfordert:
+In diesem Beispiel lösen wir eine Exception mit einem Statuscode von `404` aus, wenn der Client ein Item mit einer nicht existierenden ID anfordert:
 
 {* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
@@ -51,7 +51,7 @@ Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`)
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „Not Found“-Error) und eine JSON-Response wie:
+Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „not found“-Error) und eine JSON-Response wie:
 
 ```JSON
 {
@@ -71,7 +71,7 @@ Diese werden von **FastAPI** automatisch gehandhabt und in JSON konvertiert.
 
 ## Benutzerdefinierte Header hinzufügen { #add-custom-headers }
 
-Es gibt Situationen, in denen es nützlich ist, dem HTTP-Error benutzerdefinierte Header hinzuzufügen. Zum Beispiel in einigen Sicherheitsszenarien.
+Es gibt Situationen, in denen es nützlich ist, dem HTTP-Error benutzerdefinierte Header hinzuzufügen. Zum Beispiel für einige Arten von Sicherheit.
 
 Sie werden es wahrscheinlich nicht direkt in Ihrem Code verwenden müssen.
 
@@ -117,7 +117,7 @@ Diese Handler sind dafür verantwortlich, die Default-JSON-Responses zurückzuge
 
 Sie können diese Exceptionhandler mit Ihren eigenen überschreiben.
 
-### Überschreiben von Request-Validierungs-Exceptions { #override-request-validation-exceptions }
+### Request-Validierungs-Exceptions überschreiben { #override-request-validation-exceptions }
 
 Wenn ein Request ungültige Daten enthält, löst **FastAPI** intern einen `RequestValidationError` aus.
 
@@ -153,7 +153,7 @@ Validation errors:
 Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
 
-### Überschreiben des `HTTPException`-Fehlerhandlers { #override-the-httpexception-error-handler }
+### Den `HTTPException`-Fehlerhandler überschreiben { #override-the-httpexception-error-handler }
 
 Auf die gleiche Weise können Sie den `HTTPException`-Handler überschreiben.
 
@@ -177,7 +177,7 @@ Das bedeutet aber auch, dass, wenn Sie ihn einfach in einen String umwandeln und
 
 ///
 
-### Verwenden des `RequestValidationError`-Bodys { #use-the-requestvalidationerror-body }
+### Den `RequestValidationError`-Body verwenden { #use-the-requestvalidationerror-body }
 
 Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen Daten.
 
@@ -185,7 +185,7 @@ Sie könnten diesen während der Entwicklung Ihrer Anwendung verwenden, um den B
 
 {* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
-Versuchen Sie nun, einen ungültigen Artikel zu senden:
+Versuchen Sie nun, ein ungültiges Item zu senden:
 
 ```JSON
 {
@@ -194,7 +194,7 @@ Versuchen Sie nun, einen ungültigen Artikel zu senden:
 }
 ```
 
-Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind und die den empfangenen Body enthält:
+Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind, und die den empfangenen Body enthält:
 
 ```JSON hl_lines="12-15"
 {

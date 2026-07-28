@@ -13,13 +13,3 @@ I normally give the final review to each PR before merging them. I make the fina
 There's a team of people that help manage and maintain the project. 😎
 
 Learn more about it in [tiangolo.com - GitHub FastAPI](https://tiangolo.com/github-fastapi/).
-
-## FastAPI Experts
-
-The people that help others the most in GitHub Discussions can become [**FastAPI Experts**](./fastapi-people.md#fastapi-experts).
-
-This is normally the best way to contribute to the project.
-
-## External Help
-
-External help is very much appreciated. There are many ways to [help](./help-fastapi.md). ☕️

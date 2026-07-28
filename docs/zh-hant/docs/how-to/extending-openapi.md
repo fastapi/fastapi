@@ -25,9 +25,17 @@
 * `openapi_version`：所使用的 OpenAPI 規格版本。預設為最新版本：`3.1.0`。
 * `summary`：API 的簡短摘要。
 * `description`：API 的描述，可包含 Markdown，會顯示在文件中。
-* `routes`：路由列表，也就是所有已註冊的路徑操作。來源為 `app.routes`。
+* `routes`：路由列表，來源為 `app.routes`。FastAPI 會用它們彙整已註冊的路徑操作，包含來自被包含的 routers。
 
-/// info
+/// tip | 技術細節
+
+`app.routes` 是較低階的路由樹。它可能包含 FastAPI 內部用於被包含的 routers 的候選路由，不僅僅是最終的 `APIRoute` 物件。
+
+你仍然可以把 `app.routes` 傳給 `get_openapi()`。FastAPI 會遍歷那棵路由樹以收集實際生效的路徑操作。
+
+///
+
+/// note | 注意
 
 `summary` 參數在 OpenAPI 3.1.0 以上可用，且需 FastAPI 0.99.0 以上版本支援。
 

@@ -44,7 +44,7 @@ C'est un programme très simple.
 
 Mais maintenant imaginez que vous l'écriviez de zéro.
 
-À un certain moment, vous auriez commencé la définition de la fonction, vous aviez les paramètres prêts ...
+À un moment donné, vous commencez à définir la fonction, et vous avez les paramètres prêts ...
 
 Mais ensuite vous devez appeler « cette méthode qui convertit la première lettre en majuscule ».
 
@@ -279,13 +279,13 @@ Ensuite, vous créez une instance de cette classe avec certaines valeurs et elle
 
 Et vous obtenez tout le support de l'éditeur avec cet objet résultant.
 
-Un exemple tiré de la documentation officielle de Pydantic :
+Un exemple tiré des documents officiels de Pydantic :
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// note | Remarque
 
-Pour en savoir plus à propos de [Pydantic, consultez sa documentation](https://docs.pydantic.dev/).
+Pour en savoir plus à propos de [Pydantic, consultez ses documents](https://docs.pydantic.dev/).
 
 ///
 
@@ -305,7 +305,7 @@ Python lui-même ne fait rien avec ce `Annotated`. Et pour les éditeurs et autr
 
 Mais vous pouvez utiliser cet espace dans `Annotated` pour fournir à **FastAPI** des métadonnées supplémentaires sur la façon dont vous voulez que votre application se comporte.
 
-L'important à retenir est que **le premier « paramètre de type »** que vous passez à `Annotated` est le **type réel**. Le reste n'est que des métadonnées pour d'autres outils.
+L'important à retenir est que **le premier *paramètre de type*** que vous passez à `Annotated` est le **type réel**. Le reste n'est que des métadonnées pour d'autres outils.
 
 Pour l'instant, vous avez juste besoin de savoir que `Annotated` existe, et que c'est du Python standard. 😎
 

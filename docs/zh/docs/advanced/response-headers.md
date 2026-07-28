@@ -1,5 +1,6 @@
 # 响应头 { #response-headers }
 
+
 ## 使用 `Response` 参数 { #use-a-response-parameter }
 
 你可以在你的*路径操作函数*中声明一个 `Response` 类型的参数（就像你可以为 cookies 做的那样）。

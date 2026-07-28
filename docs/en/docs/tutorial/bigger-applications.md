@@ -17,16 +17,16 @@ Let's say you have a file structure like this:
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── dependencies.py
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── items.py
-│   │   └── users.py
-│   └── internal
-│       ├── __init__.py
-│       └── admin.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
 ```
 
 /// tip
@@ -232,7 +232,7 @@ would mean:
 
 But that file doesn't exist, our dependencies are in a file at `app/dependencies.py`.
 
-Remember how our app/file structure looks like:
+Remember what our app/file structure looks like:
 
 <img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
@@ -487,7 +487,7 @@ That way the `fastapi` command will know where to find your app.
 You could also pass the path to the command, like:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 But you would have to remember to pass the correct path every time you call the `fastapi` command.
@@ -503,7 +503,7 @@ Now, run your app:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

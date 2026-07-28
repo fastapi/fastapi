@@ -38,7 +38,7 @@
 
 ## Подписаться на автора { #follow-the-author }
 
-Вы можете подписаться на [меня (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com) в нескольких местах, чтобы узнавать новости о FastAPI и друзьях:
+Вы можете подписаться на [меня (Sebastián Ramírez / `tiangolo`)](https://tiangolo.com), автора, в нескольких местах, чтобы узнавать новости о FastAPI и друзьях:
 
 * [@tiangolo в **GitHub**](https://github.com/tiangolo).
 * [@tiangolo в **X (Twitter)**](https://x.com/tiangolo)

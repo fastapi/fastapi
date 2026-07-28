@@ -78,22 +78,22 @@ def no_response_model_annotation_return_same_model() -> User:
 
 @app.get("/no_response_model-annotation-return_exact_dict")
 def no_response_model_annotation_return_exact_dict() -> User:
-    return {"name": "John", "surname": "Doe"}
+    return {"name": "John", "surname": "Doe"}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/no_response_model-annotation-return_invalid_dict")
 def no_response_model_annotation_return_invalid_dict() -> User:
-    return {"name": "John"}
+    return {"name": "John"}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/no_response_model-annotation-return_invalid_model")
 def no_response_model_annotation_return_invalid_model() -> User:
-    return Item(name="Foo", price=42.0)
+    return Item(name="Foo", price=42.0)  # ty: ignore[invalid-return-type]
 
 
 @app.get("/no_response_model-annotation-return_dict_with_extra_data")
 def no_response_model_annotation_return_dict_with_extra_data() -> User:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}
+    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/no_response_model-annotation-return_submodel_with_extra_data")
@@ -108,24 +108,24 @@ def response_model_none_annotation_return_same_model() -> User:
 
 @app.get("/response_model_none-annotation-return_exact_dict", response_model=None)
 def response_model_none_annotation_return_exact_dict() -> User:
-    return {"name": "John", "surname": "Doe"}
+    return {"name": "John", "surname": "Doe"}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/response_model_none-annotation-return_invalid_dict", response_model=None)
 def response_model_none_annotation_return_invalid_dict() -> User:
-    return {"name": "John"}
+    return {"name": "John"}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/response_model_none-annotation-return_invalid_model", response_model=None)
 def response_model_none_annotation_return_invalid_model() -> User:
-    return Item(name="Foo", price=42.0)
+    return Item(name="Foo", price=42.0)  # ty: ignore[invalid-return-type]
 
 
 @app.get(
     "/response_model_none-annotation-return_dict_with_extra_data", response_model=None
 )
 def response_model_none_annotation_return_dict_with_extra_data() -> User:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}
+    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -140,21 +140,21 @@ def response_model_none_annotation_return_submodel_with_extra_data() -> User:
     "/response_model_model1-annotation_model2-return_same_model", response_model=User
 )
 def response_model_model1_annotation_model2_return_same_model() -> Item:
-    return User(name="John", surname="Doe")
+    return User(name="John", surname="Doe")  # ty: ignore[invalid-return-type]
 
 
 @app.get(
     "/response_model_model1-annotation_model2-return_exact_dict", response_model=User
 )
 def response_model_model1_annotation_model2_return_exact_dict() -> Item:
-    return {"name": "John", "surname": "Doe"}
+    return {"name": "John", "surname": "Doe"}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
     "/response_model_model1-annotation_model2-return_invalid_dict", response_model=User
 )
 def response_model_model1_annotation_model2_return_invalid_dict() -> Item:
-    return {"name": "John"}
+    return {"name": "John"}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -169,7 +169,7 @@ def response_model_model1_annotation_model2_return_invalid_model() -> Item:
     response_model=User,
 )
 def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Item:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}
+    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -177,7 +177,7 @@ def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Ite
     response_model=User,
 )
 def response_model_model1_annotation_model2_return_submodel_with_extra_data() -> Item:
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash="secret")  # ty: ignore[invalid-return-type]
 
 
 @app.get(

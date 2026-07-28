@@ -1,5 +1,6 @@
 # Declare dados de exemplo da requisição { #declare-request-example-data }
 
+
 Você pode declarar exemplos dos dados que sua aplicação pode receber.
 
 Aqui estão várias maneiras de fazer isso.
@@ -24,7 +25,7 @@ Por exemplo, você poderia usá-la para adicionar metadados para uma interface d
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 O OpenAPI 3.1.0 (usado desde o FastAPI 0.99.0) adicionou suporte a `examples`, que faz parte do padrão **JSON Schema**.
 
@@ -155,7 +156,7 @@ O OpenAPI também adicionou os campos `example` e `examples` a outras partes da 
     * `File()`
     * `Form()`
 
-/// info | Informação
+/// note | Nota
 
 Esse parâmetro antigo `examples` específico do OpenAPI agora é `openapi_examples` desde o FastAPI `0.103.0`.
 
@@ -171,7 +172,7 @@ E agora esse novo campo `examples` tem precedência sobre o antigo campo único 
 
 Esse novo campo `examples` no JSON Schema é **apenas uma `list`** de exemplos, não um dict com metadados extras como nos outros lugares do OpenAPI (descritos acima).
 
-/// info | Informação
+/// note | Nota
 
 Mesmo após o lançamento do OpenAPI 3.1.0 com essa nova integração mais simples com o JSON Schema, por um tempo o Swagger UI, a ferramenta que fornece a documentação automática, não suportava OpenAPI 3.1.0 (passou a suportar desde a versão 5.0.0 🎉).
 

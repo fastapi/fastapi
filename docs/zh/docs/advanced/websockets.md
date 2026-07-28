@@ -111,11 +111,11 @@ $ fastapi dev
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note | 注意
 
 由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
 
-您可以使用[规范中定义的有效代码](https://tools.ietf.org/html/rfc6455#section-7.4.1)。
+您可以使用[规范中定义的有效关闭代码](https://tools.ietf.org/html/rfc6455#section-7.4.1)。
 
 ///
 
@@ -140,7 +140,7 @@ $ fastapi dev
 * "Item ID"，用于路径。
 * "Token"，作为查询参数。
 
-/// tip
+/// tip | 提示
 
 注意，查询参数 `token` 将由依赖项处理。
 
@@ -168,13 +168,13 @@ $ fastapi dev
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | 提示
 
 上面的应用程序是一个最小和简单的示例，用于演示如何处理和向多个 WebSocket 连接广播消息。
 
 但请记住，由于所有内容都在内存中以单个列表的形式处理，因此它只能在进程运行时工作，并且只能使用单个进程。
 
-如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
+如果您需要与 FastAPI 集成更简单但更健壮的方案，支持 Redis、PostgreSQL 或其他，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
 
 ///
 

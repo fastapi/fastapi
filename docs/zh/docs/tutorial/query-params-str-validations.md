@@ -1,5 +1,6 @@
 # 查询参数和字符串校验 { #query-parameters-and-string-validations }
 
+
 **FastAPI** 允许你为参数声明额外的信息和校验。
 
 让我们以下面的应用为例：
@@ -29,7 +30,7 @@ FastAPI 会因为默认值 `= None` 而知道 `q` 的值不是必填的。
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | 信息
+/// note | 注意
 
 FastAPI 在 0.95.0 版本中添加了对 `Annotated` 的支持（并开始推荐使用）。
 
@@ -381,7 +382,7 @@ Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | 信息
+/// note | 注意
 
 这在 Pydantic 2 或更高版本中可用。😎
 

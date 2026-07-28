@@ -17,7 +17,7 @@
 
 ここでは、`fastapi` コマンド、または `uvicorn` コマンドを直接使って、**ワーカープロセス**付きの **Uvicorn** を使う方法を紹介します。
 
-/// info | 情報
+/// note
 
 DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md)。
 

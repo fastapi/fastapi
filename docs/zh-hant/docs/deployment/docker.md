@@ -132,7 +132,7 @@ Successfully installed fastapi pydantic
 
 </div>
 
-/// info | 資訊
+/// note | 注意
 
 還有其他格式與工具可以用來定義與安裝套件相依。
 
@@ -258,7 +258,7 @@ CMD fastapi run app/main.py --port 80
 
 你可以在 [Docker 關於 shell 與 exec 形式的文件](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) 閱讀更多。
 
-使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：[為什麼我的服務要花 10 秒才重新建立或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)
+使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：[為什麼我的服務要花 10 秒才重新建立或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)。
 
 #### 目錄結構 { #directory-structure }
 
@@ -454,7 +454,7 @@ Traefik 與 Docker、Kubernetes 等整合良好，因此為你的容器設定與
 
 ## 複本 - 行程數量 { #replication-number-of-processes }
 
-如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「<dfn title="一組配置為連接並共同運作的機器">叢集</dfn>」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
+如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「<dfn title="一組被設定為以某種方式連接並共同運作的機器。">叢集</dfn>」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
 
 像 Kubernetes 這類的分散式容器管理系統，通常內建處理「容器複本」以及支援進入請求的「負載平衡」的能力——全部都在「叢集層級」。
 
@@ -556,7 +556,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有「多個容器」，且每個容器大概都只執行「單一行程」（例如在一個 Kubernetes 叢集中），那你可能會想要一個「獨立的容器」來完成「前置步驟」的工作，並只在單一容器、單一行程中執行，接著才啟動多個複本的工作容器。
 
-/// info | 資訊
+/// note | 注意
 
 如果你使用 Kubernetes，這大概會是一個 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 
@@ -574,7 +574,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 你大概「不應該」使用這個基底 Docker 映像（或其他類似的）。
 
-如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述[從零建置映像](#build-a-docker-image-for-fastapi)。
+如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述「從零建置映像」：[為 FastAPI 建置 Docker 映像](#build-a-docker-image-for-fastapi)。
 
 若你需要多個 workers，只要使用 `--workers` 命令列選項即可。
 

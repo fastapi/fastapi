@@ -1,6 +1,6 @@
 # Cookies de Response { #response-cookies }
 
-## Usar un parámetro `Response` { #use-a-response-parameter }
+## Usa un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function*.
 
@@ -16,11 +16,11 @@ Y si declaraste un `response_model`, todavía se utilizará para filtrar y conve
 
 También puedes declarar el parámetro `Response` en las dependencias, y establecer cookies (y headers) en ellas.
 
-## Devolver una `Response` directamente { #return-a-response-directly }
+## Devuelve una `Response` directamente { #return-a-response-directly }
 
 También puedes crear cookies al devolver una `Response` directamente en tu código.
 
-Para hacer eso, puedes crear un response como se describe en [Devolver un Response Directamente](response-directly.md).
+Para hacer eso, puedes crear un response como se describe en [Devuelve un Response Directamente](response-directly.md).
 
 Luego establece Cookies en ella, y luego devuélvela:
 

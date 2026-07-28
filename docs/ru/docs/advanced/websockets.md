@@ -111,7 +111,7 @@ $ fastapi dev
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info | Примечание
+/// note | Примечание
 
 В веб-сокете вызывать `HTTPException` не имеет смысла. Вместо этого нужно использовать `WebSocketException`.
 

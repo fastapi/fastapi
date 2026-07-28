@@ -283,7 +283,7 @@ Aus diesem Grund basiert **FastAPI** auf Starlette, da dieses das schnellste ver
 
 Falcon ist ein weiteres leistungsstarkes Python-Framework. Es ist minimalistisch konzipiert und dient als Grundlage für andere Frameworks wie Hug.
 
-Es ist so konzipiert, dass es über Funktionen verfügt, welche zwei Parameter empfangen, einen <abbr title="Request - Anfrage: Daten, die der Client zum Server sendet">„Request“</abbr> und eine <abbr title="Response - Antwort: Daten, die der Server zum anfragenden Client zurücksendet">„Response“</abbr>. Dann „lesen“ Sie Teile des Requests und „schreiben“ Teile der Response. Aufgrund dieses Designs ist es nicht möglich, Request-Parameter und -Bodys mit Standard-Python-Typhinweisen als Funktionsparameter zu deklarieren.
+Es ist so konzipiert, dass es über Funktionen verfügt, welche zwei Parameter empfangen, einen <abbr title="Request - Anfrage: Daten, die der Client zum Server sendet">„Request“</abbr> und eine <abbr title="Response - Antwort: Daten, die der Server zum anfragenden Client zurücksendet">„Response“</abbr>. Dann „lesen“ Sie Teile des Requests und „schreiben“ Teile der Response. Aufgrund dieses Designs ist es nicht möglich, Request-Parameter und Requestbodys mit Standard-Python-Typhinweisen als Funktionsparameter zu deklarieren.
 
 Daher müssen Datenvalidierung, Serialisierung und Dokumentation im Code und nicht automatisch erfolgen. Oder sie müssen als Framework oberhalb von Falcon implementiert werden, so wie Hug. Dieselbe Unterscheidung findet auch in anderen Frameworks statt, die vom Design von Falcon inspiriert sind und ein Requestobjekt und ein Responseobjekt als Parameter haben.
 
@@ -351,11 +351,11 @@ Hug inspirierte **FastAPI** dazu, einen `response`-Parameter in Funktionen zu de
 
 ///
 
-### [APIStar](https://github.com/encode/apistar) (≦ 0.5) { #apistar-0-5 }
+### [APIStar](https://github.com/encode/apistar) (<= 0.5) { #apistar-0-5 }
 
 Kurz bevor ich mich entschied, **FastAPI** zu erstellen, fand ich den **APIStar**-Server. Er hatte fast alles, was ich suchte, und ein tolles Design.
 
-Er war eine der ersten Implementierungen eines Frameworks, die ich je gesehen hatte (vor NestJS und Molten), welches Python-Typhinweise zur Deklaration von Parametern und Requests verwendeten. Ich habe ihn mehr oder weniger zeitgleich mit Hug gefunden. Aber APIStar nutzte den OpenAPI-Standard.
+Er war eine der ersten Implementierungen eines Frameworks, die ich je gesehen hatte (vor NestJS und Molten), das Python-Typhinweise zur Deklaration von Parametern und Requests verwendete. Ich habe ihn mehr oder weniger zeitgleich mit Hug gefunden. Aber APIStar nutzte den OpenAPI-Standard.
 
 Er verfügte an mehreren Stellen über automatische Datenvalidierung, Datenserialisierung und OpenAPI-Schemagenerierung, basierend auf denselben Typhinweisen.
 
@@ -433,7 +433,7 @@ Es bietet:
 * CORS, GZip, statische Dateien, Responses streamen.
 * Session- und Cookie-Unterstützung.
 * 100 % Testabdeckung.
-* 100 % Typannotierte Codebasis.
+* 100 % typannotierte Codebasis.
 * Wenige starke Abhängigkeiten.
 
 Starlette ist derzeit das schnellste getestete Python-Framework. Nur übertroffen von Uvicorn, welches kein Framework, sondern ein Server ist.
@@ -448,7 +448,7 @@ Das ist eines der wichtigsten Dinge, welche **FastAPI** hinzufügt, alles basier
 
 ASGI ist ein neuer „Standard“, welcher von Mitgliedern des Django-Kernteams entwickelt wird. Es handelt sich immer noch nicht um einen „Python-Standard“ (ein PEP), obwohl sie gerade dabei sind, das zu tun.
 
-Dennoch wird es bereits von mehreren Tools als „Standard“ verwendet. Das verbessert die Interoperabilität erheblich, da Sie Uvicorn mit jeden anderen ASGI-Server (wie Daphne oder Hypercorn) tauschen oder ASGI-kompatible Tools wie `python-socketio` hinzufügen können.
+Dennoch wird es bereits von mehreren Tools als „Standard“ verwendet. Das verbessert die Interoperabilität erheblich, da Sie Uvicorn mit jedem anderen ASGI-Server (wie Daphne oder Hypercorn) tauschen oder ASGI-kompatible Tools wie `python-socketio` hinzufügen können.
 
 ///
 

@@ -1,5 +1,6 @@
 # 額外的狀態碼 { #additional-status-codes }
 
+
 在預設情況下，**FastAPI** 會使用 `JSONResponse` 傳回回應，並把你從你的「路徑操作（path operation）」回傳的內容放進該 `JSONResponse` 中。
 
 它會使用預設的狀態碼，或你在路徑操作中設定的狀態碼。

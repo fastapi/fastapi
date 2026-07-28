@@ -63,7 +63,7 @@ würden wir ein Python-`dict` erhalten mit:
 
 #### Ein `dict` entpacken { #unpacking-a-dict }
 
-Wenn wir ein `dict` wie `user_dict` nehmen und es einer Funktion (oder Klasse) mit `**user_dict` übergeben, wird Python es „entpacken“. Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüsselwort-Argumente übergeben.
+Wenn wir ein `dict` wie `user_dict` nehmen und es einer Funktion (oder Klasse) mit `**user_dict` übergeben, wird Python es „entpacken“. Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüssel-Wert-Argumente übergeben.
 
 Setzen wir also das `user_dict` von oben ein:
 
@@ -196,7 +196,7 @@ Dafür verwenden Sie Pythons Standard-`list`:
 
 ## Response mit beliebigem `dict` { #response-with-arbitrary-dict }
 
-Sie können auch eine Response deklarieren, die ein beliebiges `dict` zurückgibt, indem Sie nur die Typen der Schlüssel und Werte ohne ein Pydantic-Modell deklarieren.
+Sie können auch eine Response deklarieren, die ein einfaches beliebiges `dict` verwendet, indem Sie nur den Typ der Schlüssel und Werte deklarieren, ohne ein Pydantic-Modell zu verwenden.
 
 Dies ist nützlich, wenn Sie die gültigen Feld-/Attributnamen nicht im Voraus kennen (die für ein Pydantic-Modell benötigt werden würden).
 
@@ -208,4 +208,4 @@ In diesem Fall können Sie `dict` verwenden:
 
 Verwenden Sie gerne mehrere Pydantic-Modelle und vererben Sie je nach Bedarf.
 
-Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit in der Lage sein muss, verschiedene „Zustände“ zu haben. Wie im Fall der Benutzer-„Einheit“ mit einem Zustand einschließlich `password`, `password_hash` und ohne Passwort.
+Sie brauchen kein einzelnes Datenmodell pro Entität, wenn diese Entität in der Lage sein muss, verschiedene „Zustände“ zu haben. Die **Benutzer**-„Entität“ ist ein Beispiel, mit Zuständen, die `password`, `password_hash` oder kein Passwort umfassen.

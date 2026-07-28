@@ -35,7 +35,7 @@
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | 情報
+/// note | 備考
 
 *path operation 関数*の中で宣言している依存関係は`query_or_cookie_extractor`の1つだけであることに注意してください。
 

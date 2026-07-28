@@ -370,11 +370,11 @@ There could be cases where you need to do some **custom validation** that can't 
 
 In those cases, you can use a **custom validator function** that is applied after the normal validation (e.g. after validating that the value is a `str`).
 
-You can achieve that using [Pydantic's `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) inside of `Annotated`.
+You can achieve that using [Pydantic's `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) inside of `Annotated`.
 
 /// tip
 
-Pydantic also has [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) and others. 🤓
+Pydantic also has [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) and others. 🤓
 
 ///
 
@@ -406,7 +406,7 @@ But if you're curious about this specific code example and you're still entertai
 
 #### String with `value.startswith()` { #string-with-value-startswith }
 
-Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+Did you notice? A string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 

@@ -1,5 +1,6 @@
 # Helfen { #help }
 
+
 Möchten Sie FastAPI helfen oder Hilfe zu FastAPI erhalten?
 
 Es gibt sehr einfache Möglichkeiten, zu helfen und Hilfe zu bekommen.

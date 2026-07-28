@@ -1,17 +1,17 @@
 # LLM-Testdatei { #llm-test-file }
 
-Dieses Dokument testet, ob das <abbr title="Large Language Model - Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt - Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachsspezifische Prompt wird an `general_prompt` angehängt.
+Dieses Dokument testet, ob das <abbr title="Large Language Model - Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt - Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachspezifische Prompt wird an `general_prompt` angehängt.
 
-Hier hinzugefügte Tests werden von allen Erstellern sprachsspezifischer Prompts gesehen.
+Hier hinzugefügte Tests werden von allen Erstellern sprachspezifischer Prompts gesehen.
 
 So verwenden:
 
-* Einen sprachsspezifischen Prompt haben – `docs/{language code}/llm-prompt.md`.
+* Einen sprachspezifischen Prompt haben – `docs/{language code}/llm-prompt.md`.
 * Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache durchführen (siehe z. B. das Kommando `translate-page` der `translate.py`). Dadurch wird die Übersetzung unter `docs/{language code}/docs/_llm-test.md` erstellt.
 * Prüfen Sie, ob in der Übersetzung alles in Ordnung ist.
-* Verbessern Sie bei Bedarf Ihren sprachsspezifischen Prompt, den allgemeinen Prompt oder das englische Dokument.
+* Verbessern Sie bei Bedarf Ihren sprachspezifischen Prompt, den allgemeinen Prompt oder das englische Dokument.
 * Beheben Sie anschließend manuell die verbleibenden Probleme in der Übersetzung, sodass es eine gute Übersetzung ist.
-* Übersetzen Sie erneut, nachdem die gute Übersetzung vorliegt. Das ideale Ergebnis wäre, dass das LLM an der Übersetzung keine Änderungen mehr vornimmt. Das bedeutet, dass der allgemeine Prompt und Ihr sprachsspezifischer Prompt so gut sind, wie sie sein können (Es wird manchmal ein paar scheinbar zufällige Änderungen machen, der Grund ist, dass [LLMs keine deterministischen Algorithmen sind](https://doublespeak.chat/#/handbook#deterministic-output)).
+* Übersetzen Sie erneut, nachdem die gute Übersetzung vorliegt. Das ideale Ergebnis wäre, dass das LLM an der Übersetzung keine Änderungen mehr vornimmt. Das bedeutet, dass der allgemeine Prompt und Ihr sprachspezifischer Prompt so gut sind, wie sie sein können (Es wird manchmal ein paar scheinbar zufällige Änderungen machen, der Grund ist, dass [LLMs keine deterministischen Algorithmen sind](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Die Tests:
 
@@ -211,7 +211,7 @@ Siehe Abschnitt `### HTML abbr elements` im allgemeinen Prompt in `scripts/trans
 
 ////
 
-## HTML „dfn“-Elemente { #html-dfn-elements }
+## HTML-„dfn“-Elemente { #html-dfn-elements }
 
 * <dfn title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</dfn>
 * <dfn title="Eine Methode des Machine Learning, die künstliche neuronale Netze mit zahlreichen versteckten Schichten zwischen Eingabe- und Ausgabeschicht verwendet und so eine umfassende interne Struktur entwickelt">Deep Learning</dfn>
@@ -240,7 +240,7 @@ Die einzige strenge Regel für Überschriften ist, dass das LLM den Hash-Teil in
 
 Siehe Abschnitt `### Headings` im allgemeinen Prompt in `scripts/translate.py`.
 
-Für einige sprachsspezifische Anweisungen, siehe z. B. den Abschnitt `### Headings` in `docs/de/llm-prompt.md`.
+Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headings` in `docs/de/llm-prompt.md`.
 
 ////
 
@@ -363,12 +363,12 @@ Für einige sprachsspezifische Anweisungen, siehe z. B. den Abschnitt `### Headi
 * die Umgebungsvariable
 * die Umgebungsvariable
 * der `PATH`
-* die `PATH`-Umgebungsvariable
+* die `PATH`-Variable
 
 * die Authentifizierung
 * der Authentifizierungsanbieter
 * die Autorisierung
-* das Anmeldeformular
+* das Autorisierungsformular
 * der Autorisierungsanbieter
 * der Benutzer authentisiert sich
 * das System authentifiziert den Benutzer

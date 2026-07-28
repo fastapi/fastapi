@@ -1,5 +1,6 @@
 # Configurer les chemins d'accès { #path-operation-configuration }
 
+
 Vous pouvez passer plusieurs paramètres à votre *décorateur de chemin d'accès* pour le configurer.
 
 /// warning | Alertes
@@ -72,13 +73,13 @@ Vous pouvez spécifier la description de la réponse avec le paramètre `respons
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info
+/// note | Remarque
 
 Notez que `response_description` se réfère spécifiquement à la réponse, tandis que `description` se réfère au *chemin d'accès* en général.
 
 ///
 
-/// check | Vérifications
+/// tip | Astuce
 
 OpenAPI spécifie que chaque *chemin d'accès* requiert une description de réponse.
 

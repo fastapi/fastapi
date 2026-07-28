@@ -1,8 +1,8 @@
 # Introducción a Tipos en Python { #python-types-intro }
 
-Python tiene soporte para "anotaciones de tipos" opcionales (también llamadas "type hints").
+Python tiene soporte para "anotaciones de tipos" opcionales (también llamadas "anotaciones de tipos").
 
-Estas **"anotaciones de tipos"** o type hints son una sintaxis especial que permite declarar el <dfn title="por ejemplo: str, int, float, bool">tipo</dfn> de una variable.
+Estas **"anotaciones de tipos"** o anotaciones son una sintaxis especial que permite declarar el <dfn title="por ejemplo: str, int, float, bool">tipo</dfn> de una variable.
 
 Al declarar tipos para tus variables, los editores y herramientas te pueden proporcionar un mejor soporte.
 
@@ -44,7 +44,7 @@ Es un programa muy simple.
 
 Pero ahora imagina que lo escribieras desde cero.
 
-En algún momento habrías empezado la definición de la función, tenías los parámetros listos...
+En algún momento empiezas a definir la función, y tienes los parámetros listos...
 
 Pero luego tienes que llamar "ese método que convierte la primera letra a mayúscula".
 
@@ -58,7 +58,7 @@ Pero, tristemente, no obtienes nada útil:
 
 <img src="/img/python-types/image01.png">
 
-### Añadir tipos { #add-types }
+### Añade tipos { #add-types }
 
 Modifiquemos una sola línea de la versión anterior.
 
@@ -120,7 +120,7 @@ Ahora sabes que debes corregirlo, convertir `age` a un string con `str(age)`:
 
 Acabas de ver el lugar principal para declarar anotaciones de tipos. Como parámetros de función.
 
-Este también es el lugar principal donde los utilizarías con **FastAPI**.
+Este también es el lugar principal donde las utilizarías con **FastAPI**.
 
 ### Tipos simples { #simple-types }
 
@@ -137,7 +137,7 @@ Puedes usar, por ejemplo:
 
 ### Módulo `typing` { #typing-module }
 
-Para algunos casos adicionales, podrías necesitar importar algunas cosas del módulo `typing` de la standard library, por ejemplo cuando quieres declarar que algo tiene "cualquier tipo", puedes usar `Any` de `typing`:
+Para algunos casos adicionales, podrías necesitar importar algunas cosas del módulo `typing` del paquete estándar, por ejemplo cuando quieres declarar que algo tiene "cualquier tipo", puedes usar `Any` de `typing`:
 
 ```python
 from typing import Any
@@ -149,7 +149,7 @@ def some_function(data: Any):
 
 ### Tipos genéricos { #generic-types }
 
-Algunos tipos pueden tomar "parámetros de tipo" entre corchetes, para definir sus tipos internos, por ejemplo una "lista de strings" se declararía `list[str]`.
+Algunos tipos pueden tomar "parámetros de tipo" entre corchetes, para definir sus tipos internos, por ejemplo una "list de strings" se declararía `list[str]`.
 
 Estos tipos que pueden tomar parámetros de tipo se llaman **Tipos Genéricos** o **Genéricos**.
 
@@ -160,7 +160,7 @@ Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos d
 * `set`
 * `dict`
 
-#### Lista { #list }
+#### List { #list }
 
 Por ejemplo, vamos a definir una variable para ser una `list` de `str`.
 
@@ -168,7 +168,7 @@ Declara la variable, con la misma sintaxis de dos puntos (`:`).
 
 Como tipo, pon `list`.
 
-Como la lista es un tipo que contiene algunos tipos internos, los pones entre corchetes:
+Como la `list` es un tipo que contiene algunos tipos internos, los pones entre corchetes:
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
@@ -180,15 +180,15 @@ En este caso, `str` es el parámetro de tipo pasado a `list`.
 
 ///
 
-Eso significa: "la variable `items` es una `list`, y cada uno de los ítems en esta lista es un `str`".
+Eso significa: "la variable `items` es una `list`, y cada uno de los ítems en esta `list` es un `str`".
 
-Al hacer eso, tu editor puede proporcionar soporte incluso mientras procesa elementos de la lista:
+Al hacer eso, tu editor puede proporcionar soporte incluso mientras procesa elementos de la `list`:
 
 <img src="/img/python-types/image05.png">
 
 Sin tipos, eso es casi imposible de lograr.
 
-Nota que la variable `item` es uno de los elementos en la lista `items`.
+Nota que la variable `item` es uno de los elementos en la `list` `items`.
 
 Y aún así, el editor sabe que es un `str` y proporciona soporte para eso.
 

@@ -16,17 +16,11 @@ Bunun her operation için benzersiz olduğundan emin olmanız gerekir.
 
 ### operationId olarak *path operation function* adını kullanma { #using-the-path-operation-function-name-as-the-operationid }
 
-API’lerinizin function adlarını `operationId` olarak kullanmak istiyorsanız, hepsini dolaşıp her *path operation*’ın `operation_id` değerini `APIRoute.name` ile override edebilirsiniz.
+API’lerinizin function adlarını `operationId` olarak kullanmak istiyorsanız, `FastAPI`'ye özel bir `generate_unique_id_function` geçebilirsiniz.
 
-Bunu, tüm *path operation*’ları ekledikten sonra yapmalısınız.
+Bu function her bir `APIRoute`'u alır ve ilgili *path operation* için kullanılacak `operationId`'yi döndürür.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | İpucu
-
-`app.openapi()` fonksiyonunu manuel olarak çağırıyorsanız, bunu yapmadan önce `operationId`’leri güncellemelisiniz.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Uyarı
 

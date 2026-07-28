@@ -1,26 +1,6 @@
 # FastAPI Cloud { #fastapi-cloud }
 
-你可以用「一行指令」把你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)。如果你還沒加入，快去登記等候名單吧！🚀
-
-## 登入 { #login }
-
-請先確認你已經有 **FastAPI Cloud** 帳號（我們已從等候名單邀請你 😉）。
-
-然後登入：
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-## 部署 { #deploy }
-
-現在用「一行指令」部署你的應用：
+你可以只用 **一個指令** 就把你的 FastAPI 應用程式部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
@@ -35,6 +15,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 會自動偵測你的 FastAPI 應用並將其部署到雲端。若你尚未登入，瀏覽器會自動開啟以完成驗證流程。
 
 就這樣！現在你可以透過該 URL 造訪你的應用。✨
 

@@ -2,11 +2,11 @@
 
 FastAPI'de **form field**'larını tanımlamak için **Pydantic model**'lerini kullanabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 Form'ları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart)'ı yükleyin.
 
-Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
+Bir [Sanal ortam](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden ve ardından paketi kurduğunuzdan emin olun. Örneğin:
 
 ```console
 $ pip install python-multipart

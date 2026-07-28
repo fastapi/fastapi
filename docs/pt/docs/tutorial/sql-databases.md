@@ -4,7 +4,7 @@
 
 Aqui veremos um exemplo usando [SQLModel](https://sqlmodel.tiangolo.com/).
 
-**SQLModel** é construído sobre [SQLAlchemy](https://www.sqlalchemy.org/) e Pydantic. Ele foi criado pelo mesmo autor do **FastAPI** para ser o par perfeito para aplicações **FastAPI** que precisam usar **bancos de dados SQL**.
+**SQLModel** é construído sobre [SQLAlchemy](https://www.sqlalchemy.org/) e Pydantic. Ele foi criado pelo mesmo autor do **FastAPI** para ser o par perfeito para aplicações FastAPI que precisam usar **bancos de dados SQL**.
 
 /// tip | Dica
 
@@ -32,7 +32,7 @@ Existe um gerador de projetos oficial com **FastAPI** e **PostgreSQL** incluindo
 
 Este é um tutorial muito simples e curto, se você quiser aprender sobre bancos de dados em geral, sobre SQL ou recursos mais avançados, acesse a [documentação do SQLModel](https://sqlmodel.tiangolo.com/).
 
-## Instalar o `SQLModel` { #install-sqlmodel }
+## Instale o `SQLModel` { #install-sqlmodel }
 
 Primeiro, certifique-se de criar seu [ambiente virtual](../virtual-environments.md), ativá-lo e, em seguida, instalar o `sqlmodel`:
 
@@ -45,13 +45,13 @@ $ pip install sqlmodel
 
 </div>
 
-## Crear o App com um Único Modelo { #create-the-app-with-a-single-model }
+## Crie o App com um Único Modelo { #create-the-app-with-a-single-model }
 
 Vamos criar a primeira versão mais simples do app com um único modelo **SQLModel**.
 
 Depois, vamos melhorá-lo aumentando a segurança e versatilidade com **múltiplos modelos** abaixo. 🤓
 
-### Criar Modelos { #create-models }
+### Crie Modelos { #create-models }
 
 Importe o `SQLModel` e crie um modelo de banco de dados:
 
@@ -71,7 +71,8 @@ Existem algumas diferenças:
 
     O SQLModel saberá que algo declarado como `str` será uma coluna SQL do tipo `TEXT` (ou `VARCHAR`, dependendo do banco de dados).
 
-### Criar um Engine { #create-an-engine }
+### Crie um Engine { #create-an-engine }
+
 Um `engine` SQLModel (por baixo dos panos, ele é na verdade um `engine` do SQLAlchemy) é o que **mantém as conexões** com o banco de dados.
 
 Você teria **um único objeto `engine`** para todo o seu código se conectar ao mesmo banco de dados.
@@ -82,13 +83,13 @@ Usar `check_same_thread=False` permite que o FastAPI use o mesmo banco de dados 
 
 Não se preocupe, com a forma como o código está estruturado, garantiremos que usamos **uma única *sessão* SQLModel por requisição** mais tarde, isso é realmente o que o `check_same_thread` está tentando conseguir.
 
-### Criar as Tabelas { #create-the-tables }
+### Crie as Tabelas { #create-the-tables }
 
 Em seguida, adicionamos uma função que usa `SQLModel.metadata.create_all(engine)` para **criar as tabelas** para todos os *modelos de tabela*.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
 
-### Criar uma Dependência de Sessão { #create-a-session-dependency }
+### Crie uma Dependência de Sessão { #create-a-session-dependency }
 
 Uma **`Session`** é o que armazena os **objetos na memória** e acompanha as alterações necessárias nos dados, para então **usar o `engine`** para se comunicar com o banco de dados.
 
@@ -98,7 +99,7 @@ Então, criamos uma dependência `Annotated` chamada `SessionDep` para simplific
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-### Criar Tabelas de Banco de Dados na Inicialização { #create-database-tables-on-startup }
+### Crie Tabelas de Banco de Dados na Inicialização { #create-database-tables-on-startup }
 
 Vamos criar as tabelas do banco de dados quando o aplicativo for iniciado.
 
@@ -114,7 +115,7 @@ O SQLModel terá utilitários de migração envolvendo o Alembic, mas por enquan
 
 ///
 
-### Criar um Hero { #create-a-hero }
+### Crie um Hero { #create-a-hero }
 
 Como cada modelo SQLModel também é um modelo Pydantic, você pode usá-lo nas mesmas **anotações de tipo** que usaria para modelos Pydantic.
 
@@ -126,25 +127,25 @@ Da mesma forma, você pode declará-lo como o **tipo de retorno** da função, e
 
 Aqui, usamos a dependência `SessionDep` (uma `Session`) para adicionar o novo `Hero` à instância `Session`, fazer commit das alterações no banco de dados, atualizar os dados no `hero` e então retorná-lo.
 
-### Ler Heroes { #read-heroes }
+### Leia Heroes { #read-heroes }
 
 Podemos **ler** `Hero`s do banco de dados usando um `select()`. Podemos incluir um `limit` e `offset` para paginar os resultados.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-### Ler um Único Hero { #read-one-hero }
+### Leia um Único Hero { #read-one-hero }
 
 Podemos **ler** um único `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-### Deletar um Hero { #delete-a-hero }
+### Delete um Hero { #delete-a-hero }
 
 Também podemos **deletar** um `Hero`.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
-### Executar o App { #run-the-app }
+### Execute o App { #run-the-app }
 
 Você pode executar o app:
 
@@ -164,19 +165,19 @@ Então, vá para a interface `/docs`, você verá que o **FastAPI** está usando
 <img src="/img/tutorial/sql-databases/image01.png">
 </div>
 
-## Atualizar o App com Múltiplos Modelos { #update-the-app-with-multiple-models }
+## Atualize o App com Múltiplos Modelos { #update-the-app-with-multiple-models }
 
 Agora vamos **refatorar** este app um pouco para aumentar a **segurança** e **versatilidade**.
 
-Se você verificar o app anterior, na interface você pode ser que, até agora, ele permite que o cliente decida o `id` do `Hero` a ser criado. 😱
+Se você verificar o app anterior, na interface você pode ver que, até agora, ele permite que o cliente decida o `id` do `Hero` a ser criado. 😱
 
-Não deveríamos deixar isso acontecer, eles poderiam sobrescrever um `id` que já atribuimos na base de dados. Decidir o `id` deve ser feito pelo **backend** ou pelo **banco de dados**, **não pelo cliente**.
+Não deveríamos deixar isso acontecer, eles poderiam sobrescrever um `id` que já atribuímos no banco de dados. Decidir o `id` deve ser feito pelo **backend** ou pelo **banco de dados**, **não pelo cliente**.
 
 Além disso, criamos um `secret_name` para o hero, mas até agora estamos retornando ele em todos os lugares, isso não é muito **secreto**... 😅
 
 Vamos corrigir essas coisas adicionando alguns **modelos extras**. Aqui é onde o SQLModel vai brilhar. ✨
 
-### Criar Múltiplos Modelos { #create-multiple-models }
+### Crie Múltiplos Modelos { #create-multiple-models }
 
 No **SQLModel**, qualquer classe de modelo que tenha `table=True` é um **modelo de tabela**.
 
@@ -277,7 +278,7 @@ Os campos de `HeroUpdate` são:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
 
-### Criar com `HeroCreate` e retornar um `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
+### Crie com `HeroCreate` e retorne um `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
 Agora que temos **múltiplos modelos**, podemos atualizar as partes do app que os utilizam.
 
@@ -299,19 +300,19 @@ Ao declará-lo no `response_model`, estamos dizendo ao **FastAPI** para fazer o 
 
 ///
 
-### Ler Heroes com `HeroPublic` { #read-heroes-with-heropublic }
+### Leia Heroes com `HeroPublic` { #read-heroes-with-heropublic }
 
 Podemos fazer o mesmo que antes para **ler** `Hero`s, novamente, usamos `response_model=list[HeroPublic]` para garantir que os dados sejam validados e serializados corretamente.
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
 
-### Ler Um Hero com `HeroPublic` { #read-one-hero-with-heropublic }
+### Leia Um Hero com `HeroPublic` { #read-one-hero-with-heropublic }
 
 Podemos **ler** um único herói:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
 
-### Atualizar um Hero com `HeroUpdate` { #update-a-hero-with-heroupdate }
+### Atualize um Hero com `HeroUpdate` { #update-a-hero-with-heroupdate }
 
 Podemos **atualizar um hero**. Para isso, usamos uma operação HTTP `PATCH`.
 
@@ -321,7 +322,7 @@ Em seguida, usamos `hero_db.sqlmodel_update(hero_data)` para atualizar o `hero_d
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
 
-### Deletar um Hero Novamente { #delete-a-hero-again }
+### Delete um Hero Novamente { #delete-a-hero-again }
 
 **Deletar** um hero permanece praticamente o mesmo.
 
@@ -329,7 +330,7 @@ Não vamos satisfazer o desejo de refatorar tudo neste aqui. 😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
-### Executar o App Novamente { #run-the-app-again }
+### Execute o App Novamente { #run-the-app-again }
 
 Você pode executar o app novamente:
 

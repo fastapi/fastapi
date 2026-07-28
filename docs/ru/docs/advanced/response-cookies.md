@@ -1,5 +1,6 @@
 # Cookies в ответе { #response-cookies }
 
+
 ## Использование параметра `Response` { #use-a-response-parameter }
 
 Вы можете объявить параметр типа `Response` в вашей функции-обработчике пути.

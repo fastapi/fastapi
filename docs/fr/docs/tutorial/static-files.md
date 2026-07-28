@@ -2,6 +2,14 @@
 
 Vous pouvez servir des fichiers statiques automatiquement à partir d'un répertoire en utilisant `StaticFiles`.
 
+/// tip | Astuce
+
+Si vous devez héberger un frontend, utilisez plutôt `app.frontend()`, lisez-en davantage dans [Frontend](frontend.md).
+
+`app.frontend()` utilise `StaticFiles` en interne, avec plusieurs avantages supplémentaires pour les frontends, comme la gestion du routing côté client.
+
+///
+
 ## Utiliser `StaticFiles` { #use-staticfiles }
 
 - Importer `StaticFiles`.

@@ -17,7 +17,7 @@ GitHub-Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/ful
   - 🎨 [Tailwind CSS](https://tailwindcss.com) und [shadcn/ui](https://ui.shadcn.com) für die Frontend-Komponenten.
   - 🤖 Ein automatisch generierter Frontend-Client.
   - 🧪 [Playwright](https://playwright.dev) für End-to-End-Tests.
-  - 🦇 „Dark-Mode“-Unterstützung.
+  - 🦇 Dark-Mode-Unterstützung.
 - 🐋 [Docker Compose](https://www.docker.com) für Entwicklung und Produktion.
 - 🔒 Sicheres Passwort-Hashing standardmäßig.
 - 🔑 JWT (JSON Web Token)-Authentifizierung.

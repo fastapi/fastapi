@@ -37,7 +37,7 @@ Code snippet'lerin içeriği olduğu gibi bırakılmalıdır.
 
 Dün bir arkadaşım şunu yazdı: "If you spell incorrectly correctly, you have spelled it incorrectly". Ben de şunu yanıtladım: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
-/// note
+/// note | Not
 
 LLM muhtemelen bunu yanlış çevirecektir. Yeniden çeviri yapıldığında düzeltilmiş çeviriyi koruyup korumadığı önemlidir.
 
@@ -124,7 +124,7 @@ Code block'ların içindeki code değiştirilmemelidir; tek istisna yorumlardır
 
 //// tab | Test
 
-/// note
+/// note | Not
 Bazı metin
 ///
 
@@ -132,15 +132,15 @@ Bazı metin
 Bazı metin
 ///
 
-/// tip
+/// tip | İpucu
 Bazı metin
 ///
 
-/// warning
+/// warning | Uyarı
 Bazı metin
 ///
 
-/// danger
+/// danger | Tehlike
 Bazı metin
 ///
 

@@ -18,7 +18,7 @@ Para estes casos, você pode utilizar um parâmetro `Response`.
 
 Você pode declarar um parâmetro do tipo `Response` em sua *função de operação de rota* (assim como você pode fazer para cookies e headers).
 
-E então você pode definir o `status_code` neste objeto de retorno *temporal*.
+E então você pode definir o `status_code` neste objeto de retorno *temporário*.
 
 {* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
 
@@ -26,6 +26,6 @@ E então você pode retornar qualquer objeto que você precise, como você faria
 
 E se você declarar um `response_model`, ele ainda será utilizado para filtrar e converter o objeto que você retornou.
 
-O **FastAPI** utilizará este retorno *temporal* para extrair o código de status (e também cookies e headers), e irá colocá-los no retorno final que contém o valor que você retornou, filtrado por qualquer `response_model`.
+O **FastAPI** utilizará este retorno *temporário* para extrair o código de status (e também cookies e headers), e irá colocá-los no retorno final que contém o valor que você retornou, filtrado por qualquer `response_model`.
 
 Você também pode declarar o parâmetro `Response` nas dependências, e definir o código de status nelas. Mas lembre-se que o último que for definido é o que prevalecerá.

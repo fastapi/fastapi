@@ -1,6 +1,6 @@
 # OAuth2 com Senha (e hashing), Bearer com tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-Agora que temos todo o fluxo de segurança, vamos tornar a aplicação realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> e hashing de senhas seguras.
+Agora que temos todo o fluxo de segurança, vamos tornar a aplicação realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> e hashing seguro de senhas.
 
 Este código é algo que você pode realmente usar na sua aplicação, salvar os hashes das senhas no seu banco de dados, etc.
 
@@ -42,9 +42,9 @@ $ pip install pyjwt
 
 </div>
 
-/// info | Informação
+/// note | Nota
 
-Se você pretente utilizar algoritmos de assinatura digital como o RSA ou o ECDSA, você deve instalar a dependência da biblioteca de criptografia `pyjwt[crypto]`.
+Se você pretende utilizar algoritmos de assinatura digital como o RSA ou o ECDSA, você deveria instalar a dependência da biblioteca de criptografia `pyjwt[crypto]`.
 
 Você pode ler mais sobre isso na [documentação de instalação do PyJWT](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
@@ -88,7 +88,7 @@ $ pip install "pwdlib[argon2]"
 
 Com o `pwdlib`, você poderia até configurá-lo para ser capaz de ler senhas criadas pelo **Django**, um plug-in de segurança do **Flask** ou muitos outros.
 
-Assim, você poderia, por exemplo, compartilhar os mesmos dados de um aplicativo Django em um banco de dados com um aplicativo FastAPI. Ou migrar gradualmente uma aplicação Django usando o mesmo banco de dados.
+Assim, você poderia, por exemplo, compartilhar os mesmos dados de uma aplicação Django em um banco de dados com uma aplicação FastAPI. Ou migrar gradualmente uma aplicação Django usando o mesmo banco de dados.
 
 E seus usuários poderiam fazer login tanto pela sua aplicação Django quanto pela sua aplicação **FastAPI**, ao mesmo tempo.
 
@@ -213,7 +213,7 @@ Usando as credenciais:
 Username: `johndoe`
 Password: `secret`
 
-/// check | Verifique
+/// tip | Dica
 
 Observe que em nenhuma parte do código está a senha em texto puro "`secret`", nós temos apenas o hash.
 
@@ -260,7 +260,7 @@ Com o que você viu até agora, você pode configurar uma aplicação **FastAPI*
 
 Em quase qualquer framework, lidar com a segurança se torna rapidamente um assunto bastante complexo.
 
-Muitos pacotes que simplificam bastante isso precisam fazer muitas concessões com o modelo de dados, o banco de dados e os recursos disponíveis. E alguns desses pacotes que simplificam demais na verdade têm falhas de segurança subjacentes.
+Muitos pacotes que simplificam bastante isso precisam fazer muitas concessões com o modelo de dados, o banco de dados e as funcionalidades disponíveis. E alguns desses pacotes que simplificam demais na verdade têm falhas de segurança subjacentes.
 
 ---
 
