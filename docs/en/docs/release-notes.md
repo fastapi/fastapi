@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.12 (2026-07-28)
+
 ### Fixes
 
 * 🐛 Fix line splitting in `format_sse_event` to comply with SSE spec. PR [#15515](https://github.com/fastapi/fastapi/pull/15515) by [@Zawwarsami16](https://github.com/Zawwarsami16).
