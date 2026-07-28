@@ -630,10 +630,13 @@ def get_request_handler(
                     _sse_with_checkpoints(sse_receive_stream)
                 )
 
+                response_args = _build_response_args(
+                    status_code=status_code, solved_result=solved_result
+                )
                 response = StreamingResponse(
                     sse_stream_content,
                     media_type="text/event-stream",
-                    background=solved_result.background_tasks,
+                    **response_args,
                 )
                 response.headers["Cache-Control"] = "no-cache"
                 # For Nginx proxies to not buffer server sent events
@@ -666,10 +669,13 @@ def get_request_handler(
 
                     jsonl_stream_content = _sync_stream_jsonl()
 
+                response_args = _build_response_args(
+                    status_code=status_code, solved_result=solved_result
+                )
                 response = StreamingResponse(
                     jsonl_stream_content,
                     media_type="application/jsonl",
-                    background=solved_result.background_tasks,
+                    **response_args,
                 )
                 response.headers.raw.extend(solved_result.response.headers.raw)
             elif _is_async_gen_callable(dependant.call) or _is_gen_callable(
