@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 class Item(BaseModel):
     name: str
+    optional: str | None = None
 
 
 app = FastAPI()
@@ -26,7 +27,7 @@ def stream_bare_sync() -> Iterable:
 router = APIRouter()
 
 
-@router.get("/events-jsonl")
+@router.get("/events-jsonl", response_model_exclude_none=True)
 async def stream_events_jsonl() -> AsyncIterable[Item]:
     yield Item(name="foo")
 
