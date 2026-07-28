@@ -171,7 +171,7 @@ def get_flat_params(dependant: Dependant) -> list[ModelField]:
     query_params: list[ModelField] = []
     header_params: list[ModelField] = []
     cookie_params: list[ModelField] = []
-    visited: list[DependencyCacheKey] = []
+    visited: set[DependencyCacheKey] = set()
     uses_scopes_cache: _UsesScopesCache = {}
     dependants = [dependant]
     while dependants:
@@ -182,7 +182,7 @@ def get_flat_params(dependant: Dependant) -> list[ModelField]:
         )
         if cache_key in visited:
             continue
-        visited.append(cache_key)
+        visited.add(cache_key)
         path_params.extend(current_dependant.path_params)
         query_params.extend(current_dependant.query_params)
         header_params.extend(current_dependant.header_params)

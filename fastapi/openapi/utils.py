@@ -98,7 +98,7 @@ class _OpenAPIDependencyData:
 
 def _get_openapi_dependency_data(dependant: Dependant) -> _OpenAPIDependencyData:
     dependency_data = _OpenAPIDependencyData()
-    visited: list[DependencyCacheKey] = []
+    visited: set[DependencyCacheKey] = set()
     uses_scopes_cache: _UsesScopesCache = {}
     dependants: list[tuple[Dependant, list[str], bool]] = [(dependant, [], True)]
     while dependants:
@@ -109,7 +109,7 @@ def _get_openapi_dependency_data(dependant: Dependant) -> _OpenAPIDependencyData
         )
         if cache_key in visited:
             continue
-        visited.append(cache_key)
+        visited.add(cache_key)
         dependency_data.path_params.extend(current_dependant.path_params)
         dependency_data.query_params.extend(current_dependant.query_params)
         dependency_data.header_params.extend(current_dependant.header_params)
