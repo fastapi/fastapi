@@ -262,7 +262,8 @@ jobs:
           git apply "$RUNNER_TEMP/tests.patch"
           uv sync --locked --no-dev --group tests --extra all
           set +e
-          xargs -0 uv run --no-sync pytest -- < "$RUNNER_TEMP/changed-tests"
+          mapfile -d '' -t changed_tests < "$RUNNER_TEMP/changed-tests"
+          uv run --no-sync pytest -- "${changed_tests[@]}"
           status=$?
           set -e
           if [ "$status" -eq 0 ]; then
