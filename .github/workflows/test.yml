@@ -201,6 +201,78 @@ jobs:
           mode: memory
           run: uv run --no-sync pytest tests/memory_benchmarks --codspeed
 
+  regression-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.sha }}
+          path: pr
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Find changed tests
+        if: github.event_name == 'pull_request'
+        id: changed-tests
+        working-directory: pr
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only --diff-filter=AM -z "$BASE_SHA" "$HEAD_SHA" -- tests \
+            | while IFS= read -r -d '' file; do
+                case "$(basename "$file")" in
+                  test_*.py) printf '%s\0' "$file" ;;
+                esac
+              done > "$RUNNER_TEMP/changed-tests"
+          if [ -s "$RUNNER_TEMP/changed-tests" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            git diff --binary "$BASE_SHA" "$HEAD_SHA" -- tests \
+              > "$RUNNER_TEMP/tests.patch"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "No added or modified test files; regression proof is not applicable."
+          fi
+      - name: Check out the base revision
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+      - name: Set up Python
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version-file: "base/.python-version"
+      - name: Setup uv
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: astral-sh/setup-uv@d31148d669074a8d0a63714ba94f3201e7020bc3 # v8.3.0
+        with:
+          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
+          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
+          version: "0.11.18"
+          enable-cache: true
+      - name: Run the changed tests against the base code
+        if: steps.changed-tests.outputs.found == 'true'
+        working-directory: base
+        run: |
+          git apply "$RUNNER_TEMP/tests.patch"
+          uv sync --locked --no-dev --group tests --extra all
+          set +e
+          xargs -0 uv run --no-sync pytest -- < "$RUNNER_TEMP/changed-tests"
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "::warning::The changed tests already pass on the base revision. Check whether the fix is still needed."
+            echo "### Regression proof: base already passes :warning:" >> "$GITHUB_STEP_SUMMARY"
+            echo "The changed tests pass without the pull request's code changes." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The changed tests fail on the base revision as expected (pytest exit code $status)."
+            echo "### Regression proof: base fails as expected :white_check_mark:" >> "$GITHUB_STEP_SUMMARY"
+          fi
   coverage-combine:
     needs:
       - test
@@ -253,6 +325,7 @@ jobs:
       - test
       - coverage-combine
       - benchmark
+      - regression-test
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
