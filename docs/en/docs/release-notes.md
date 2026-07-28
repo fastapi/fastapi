@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.10 (2026-07-28)
+
 ### Fixes
 
 * 🐛 Fix handling sequences with nested Annotated types. PR [#14874](https://github.com/fastapi/fastapi/pull/14874) by [@YuriiMotov](https://github.com/YuriiMotov).
