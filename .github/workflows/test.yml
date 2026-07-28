@@ -195,6 +195,11 @@ jobs:
         with:
           mode: simulation
           run: uv run --no-sync pytest tests/benchmarks --codspeed
+      - name: CodSpeed memory benchmark
+        uses: CodSpeedHQ/action@a4a36bb07c0638b0b4ca52bf1f3dad1b4289e52f # v4.18.1
+        with:
+          mode: memory
+          run: uv run --no-sync pytest tests/memory_benchmarks --codspeed
 
   coverage-combine:
     needs:
