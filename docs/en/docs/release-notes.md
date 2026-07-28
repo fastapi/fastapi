@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix `format_sse_event` docstring rendering of `\n\n` terminator. PR [#15613](https://github.com/fastapi/fastapi/pull/15613) by [@AshNicolus](https://github.com/AshNicolus).
 * 📝 Add API reference page for fastapi.sse. PR [#15930](https://github.com/fastapi/fastapi/pull/15930) by [@SAURABHSALVE](https://github.com/SAURABHSALVE).
 
 ## 0.140.12 (2026-07-28)
