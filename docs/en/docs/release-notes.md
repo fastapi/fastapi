@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.140.13 (2026-07-28)
+
 ### Fixes
 
 * 🐛 Fix `status_code` being ignored for SSE and JSONL streaming endpoints. PR [#15937](https://github.com/fastapi/fastapi/pull/15937) by [@SAURABHSALVE](https://github.com/SAURABHSALVE).
