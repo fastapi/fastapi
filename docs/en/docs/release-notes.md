@@ -7,6 +7,22 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix handling sequences with nested Annotated types. PR [#14874](https://github.com/fastapi/fastapi/pull/14874) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🐛 Accept any base test failure as regression. PR [#16092](https://github.com/fastapi/fastapi/pull/16092) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Preserve pytest exit code in regression check. PR [#16091](https://github.com/fastapi/fastapi/pull/16091) by [@tiangolo](https://github.com/tiangolo).
+* ✅ Test PR regressions against base code. PR [#16090](https://github.com/fastapi/fastapi/pull/16090) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.140.9 (2026-07-28)
+
+### Fixes
+
+* 🐛 Fix `exclude_defaults` not propagated to dict keys and values in `jsonable_encoder`. PR [#16043](https://github.com/fastapi/fastapi/pull/16043) by [@MBGrao](https://github.com/MBGrao).
+
 ### Internal
 
 * ⬆ Bump gitpython from 3.1.50 to 3.1.54. PR [#16047](https://github.com/fastapi/fastapi/pull/16047) by [@dependabot[bot]](https://github.com/apps/dependabot).

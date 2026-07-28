@@ -202,6 +202,20 @@ def test_encode_model_with_default():
     }
 
 
+def test_encode_model_with_default_in_dict_and_list():
+    model = ModelWithDefault(foo="foo", bar="bar")
+    assert jsonable_encoder([model], exclude_defaults=True) == [{"foo": "foo"}]
+    assert jsonable_encoder({"key": model}, exclude_defaults=True) == {
+        "key": {"foo": "foo"}
+    }
+    assert jsonable_encoder({"key": [model]}, exclude_defaults=True) == {
+        "key": [{"foo": "foo"}]
+    }
+    assert jsonable_encoder({"key": model}) == {
+        "key": {"foo": "foo", "bar": "bar", "bla": "bla"}
+    }
+
+
 def test_custom_encoders():
     class safe_datetime(datetime):
         pass
