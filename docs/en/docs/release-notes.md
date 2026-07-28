@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pymdown-extensions from 10.21.3 to 11.0. PR [#16048](https://github.com/fastapi/fastapi/pull/16048) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyasn1 from 0.6.3 to 0.6.4. PR [#16045](https://github.com/fastapi/fastapi/pull/16045) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.140.8 (2026-07-28)
