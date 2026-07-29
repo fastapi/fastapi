@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.141.1 (2026-07-29)
+
 ### Fixes
 
 * 🐛 Fix support for background tasks and headers from dependencies in `app.frontend()`. PR [#16105](https://github.com/fastapi/fastapi/pull/16105) by [@tiangolo](https://github.com/tiangolo).
