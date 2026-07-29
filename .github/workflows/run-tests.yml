@@ -30,7 +30,7 @@ jobs:
 
       - name: Install minimal dependencies
         run: |
-          python -m pip install "pydantic>=2.9.0" "starlette>=0.46.0" "annotated-doc>=0.0.2" "pytest>=9.0.0"
+          python -m pip install "pydantic>=2.9.0" "starlette>=0.46.0" "annotated-doc>=0.0.2" "pytest>=9.0.0" "pytest-timeout>=2.4.0"
 
       - name: Run tests (focused)
         env:
