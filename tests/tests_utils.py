@@ -40,7 +40,7 @@ def test_deep_dict_update_overwrite_on_type_mismatch():
 
 def test_get_value_or_default_returns_first_non_placeholder():
     first = DefaultPlaceholder("first")
-    second = Default("real")
+    second = "real"
     third = DefaultPlaceholder("third")
     result = utils.get_value_or_default(first, second, third)
     assert result == "real"
