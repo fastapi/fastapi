@@ -9,6 +9,7 @@ import os
 import stat
 import threading
 import types
+import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -1876,13 +1877,31 @@ def _get_resolved_absolute_path(path: str | os.PathLike[str]) -> str:
     return os.path.realpath(os.fspath(path))
 
 
+def _resolve_frontend_check_dir(
+    *,
+    directory: str | os.PathLike[str],
+    check_dir: bool | Literal["auto"],
+) -> bool:
+    if check_dir != "auto":
+        return check_dir
+    if os.environ.get("FASTAPI_ENV") != "development":
+        return True
+    if not os.path.isdir(directory):
+        warnings.warn(
+            f"Frontend directory '{directory}' does not exist. "
+            f"Resolved absolute path: '{_get_resolved_absolute_path(directory)}'",
+            stacklevel=3,
+        )
+    return False
+
+
 class _FrontendStaticFiles(StaticFiles):
     def __init__(
         self,
         *,
         directory: str | os.PathLike[str],
         fallback: Literal["auto", "index.html", "404.html"] | None,
-        check_dir: bool = True,
+        check_dir: bool,
     ) -> None:
         self.fallback = fallback
         if check_dir and not os.path.isdir(directory):
@@ -2025,7 +2044,7 @@ class _FrontendRoute(BaseRoute):
         *,
         directory: str | os.PathLike[str],
         fallback: Literal["auto", "index.html", "404.html"] | None = "auto",
-        check_dir: bool = True,
+        check_dir: bool,
     ) -> None:
         if fallback not in {"auto", "index.html", "404.html", None}:
             raise AssertionError(
@@ -2099,7 +2118,7 @@ class _FrontendRouteGroup(BaseRoute):
         *,
         directory: str | os.PathLike[str],
         fallback: Literal["auto", "index.html", "404.html"] | None = "auto",
-        check_dir: bool = True,
+        check_dir: bool,
     ) -> None:
         self.routes.append(
             _FrontendRoute(
@@ -2624,13 +2643,16 @@ class APIRouter(routing.Router):
             ),
         ] = "auto",
         check_dir: Annotated[
-            bool,
+            bool | Literal["auto"],
             Doc(
                 """
-                Check that the frontend directory exists when the app is created.
+                Check that the frontend directory exists when the app is created. When
+                set to `"auto"`, skip the check with a warning when `FASTAPI_ENV` is
+                `"development"`, and check it otherwise. The `fastapi dev` command
+                sets `FASTAPI_ENV` to `"development"` if it is not already set.
                 """
             ),
-        ] = True,
+        ] = "auto",
     ) -> None:
         """
         Serve a static frontend build as low-priority routes.
@@ -2664,6 +2686,9 @@ class APIRouter(routing.Router):
         app.include_router(router)
         ```
         """
+        check_dir = _resolve_frontend_check_dir(
+            directory=directory, check_dir=check_dir
+        )
         normalized_path = _normalize_frontend_path(path)
         if self._frontend_routes is None:
             self._frontend_routes = _FrontendRouteGroup(
