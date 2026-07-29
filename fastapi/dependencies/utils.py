@@ -614,6 +614,14 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
+    if dependant.is_parameterless:
+        return SolvedDependency(
+            values={},
+            errors=[],
+            background_tasks=background_tasks,
+            response=response,
+            dependency_cache=dependency_cache,
+        )
     if _uses_scopes_cache is None:
         _uses_scopes_cache = {}
     for sub_dependant in dependant.dependencies:

@@ -50,6 +50,23 @@ class Dependant:
     path: str | None = None
     scope: Literal["function", "request"] | None = None
 
+    @property
+    def is_parameterless(self) -> bool:
+        return not (
+            self.dependencies
+            or self.path_params
+            or self.query_params
+            or self.header_params
+            or self.cookie_params
+            or self.body_params
+            or self.http_connection_param_name
+            or self.request_param_name
+            or self.websocket_param_name
+            or self.response_param_name
+            or self.background_tasks_param_name
+            or self.security_scopes_param_name
+        )
+
 
 _UsesScopesCache = dict[int, tuple[Dependant, bool]]
 _CALLABLE_CLASSIFICATION_CACHE_SIZE = 4096
