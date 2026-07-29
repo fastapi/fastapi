@@ -77,3 +77,4 @@ def test_default_placeholder_bool_and_eq():
     # equality compares value
     assert dp_true == DefaultPlaceholder(1)
     assert not (dp_true == dp_false)
+    
