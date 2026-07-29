@@ -6,7 +6,12 @@ from unittest.mock import patch
 import fastapi.cli
 import pytest
 
+needs_fastapi_cli = pytest.mark.skipif(
+    fastapi.cli.cli_main is None, reason="fastapi-cli is not installed"
+)
 
+
+@needs_fastapi_cli
 def test_fastapi_cli():
     result = subprocess.run(
         [
