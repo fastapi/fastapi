@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Document `FASTAPI_ENV` in FastAPI CLI guide. PR [#16104](https://github.com/fastapi/fastapi/pull/16104) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.141.0 (2026-07-29)
 
 ### Features
