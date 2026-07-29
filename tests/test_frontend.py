@@ -1176,11 +1176,48 @@ def test_check_dir_true_fails_early_for_missing_directory(monkeypatch, tmp_path:
     monkeypatch.chdir(tmp_path)
 
     with pytest.raises(RuntimeError, match="does not exist") as exc_info:
-        app.frontend("/", directory="missing")
+        app.frontend("/", directory="missing", check_dir=True)
 
     message = str(exc_info.value)
     assert "'missing'" in message
     assert str(tmp_path / "missing") in message
+
+
+def test_check_dir_auto_warns_in_development(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("FASTAPI_ENV", "development")
+    app = FastAPI()
+
+    with pytest.warns(UserWarning, match="does not exist") as warnings:
+        app.frontend("/", directory=tmp_path / "missing")
+
+    assert str(tmp_path / "missing") in str(warnings[0].message)
+    assert warnings[0].filename == __file__
+
+
+def test_check_dir_auto_router_warning_points_to_user_code(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("FASTAPI_ENV", "development")
+    router = APIRouter()
+
+    with pytest.warns(UserWarning, match="does not exist") as warnings:
+        router.frontend("/", directory=tmp_path / "missing")
+
+    assert warnings[0].filename == __file__
+
+
+def test_check_dir_true_fails_in_development(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("FASTAPI_ENV", "development")
+    app = FastAPI()
+
+    with pytest.raises(RuntimeError, match="does not exist"):
+        app.frontend("/", directory=tmp_path / "missing", check_dir=True)
+
+
+def test_check_dir_auto_fails_outside_development(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("FASTAPI_ENV", "production")
+    router = APIRouter()
+
+    with pytest.raises(RuntimeError, match="does not exist"):
+        router.frontend("/", directory=tmp_path / "missing")
 
 
 def test_check_dir_false_allows_missing_directory_and_fails_on_request(tmp_path: Path):
