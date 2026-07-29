@@ -56,6 +56,7 @@ from fastapi.dependencies.models import (
     _is_gen_callable,
 )
 from fastapi.dependencies.utils import (
+    SolvedDependency,
     _get_body_field,
     _get_flat_body_params,
     _should_embed_body_fields,
@@ -1936,6 +1937,12 @@ class _FrontendStaticFiles(StaticFiles):
         assert isinstance(path, str)
         return os.path.normpath(os.path.join(*path.split("/")))
 
+    async def get_response_for_scope(self, scope: Scope) -> Response:
+        if not self.config_checked:
+            await self.check_config()
+            self.config_checked = True
+        return await self.get_response(self.get_path(scope), scope)
+
     async def get_response(self, path: str, scope: Scope) -> Response:
         if scope["method"] not in ("GET", "HEAD"):
             if await self._lookup_static_resource(path) is not None:
@@ -2086,7 +2093,8 @@ class _FrontendRoute(BaseRoute):
         return None
 
     async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
-        await self.app(scope, receive, send)
+        response = await self.app.get_response_for_scope(scope)
+        await response(scope, receive, send)
 
     def url_path_for(self, name: str, /, **path_params: Any) -> URLPath:
         raise NoMatchFound(name, path_params)
@@ -2189,8 +2197,12 @@ class _FrontendRouteGroup(BaseRoute):
                 dependant=dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 embed_body_fields=embed_body_fields,
-            ):
-                await route.handle(scope, receive, send)
+            ) as solved_result:
+                response = await route.app.get_response_for_scope(scope)
+                if response.background is None:
+                    response.background = solved_result.background_tasks
+                response.headers.raw.extend(solved_result.response.headers.raw)
+                await response(scope, receive, send)
             return
         await route.handle(scope, receive, send)
 
@@ -2210,7 +2222,7 @@ class _FrontendRouteGroup(BaseRoute):
         dependant: Dependant,
         dependency_overrides_provider: Any | None,
         embed_body_fields: bool,
-    ) -> AsyncIterator[None]:
+    ) -> AsyncIterator[SolvedDependency]:
         request = Request(scope, receive, send)
         previous_inner_astack = scope.get("fastapi_inner_astack", _SCOPE_MISSING)
         previous_function_astack = scope.get("fastapi_function_astack", _SCOPE_MISSING)
@@ -2228,7 +2240,7 @@ class _FrontendRouteGroup(BaseRoute):
                     )
                     if solved_result.errors:
                         raise RequestValidationError(solved_result.errors)
-                    yield
+                    yield solved_result
         finally:
             if previous_inner_astack is _SCOPE_MISSING:
                 scope.pop("fastapi_inner_astack", None)
