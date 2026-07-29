@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add `app.frontend(check_dir="auto")`, to make local development more convenient with `fastapi dev`. PR [#16102](https://github.com/fastapi/fastapi/pull/16102) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.140.13 (2026-07-28)
 
 ### Fixes
