@@ -42,9 +42,7 @@ except ImportError:  # pragma: no cover
 
 try:
     # Supporting the new Color format for newer versions of Pydantic
-    from pydantic_extra_types.color import (  # type: ignore[import-not-found]
-        Color as PyExtraColor,
-    )
+    from pydantic_extra_types.color import Color as PyExtraColor
 except ImportError:  # pragma: no cover
 
     class PyExtraColor:  # type: ignore[no-redef]
