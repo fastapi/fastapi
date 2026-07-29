@@ -78,6 +78,8 @@ When a JSON Lines response is served behind a proxy that buffers responses by de
 
 To prevent that, FastAPI sets the `X-Accel-Buffering: no` header on JSON Lines responses, telling Nginx (and compatible proxies) not to buffer them.
 
+If you need a different behavior, you can set that header yourself on the [`Response`](../advanced/response-headers.md) and your value will be used instead.
+
 /// note
 
 Caching headers (like `Cache-Control`) are **not** set automatically, they are left up to you. JSON Lines is also used for bulk exports where caching can be legitimate, so FastAPI doesn't impose a caching policy. If you need one, you can set it on the [`Response`](../advanced/response-headers.md).
