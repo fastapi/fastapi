@@ -18,6 +18,7 @@ from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
+from typing_inspection.typing_objects import is_typealiastype
 
 _T = TypeVar("_T")
 
@@ -62,6 +63,9 @@ def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+    if is_typealiastype(annotation):
+        return field_annotation_is_sequence(annotation.__value__)
+
     origin = get_origin(annotation)
 
     if origin is Annotated:
