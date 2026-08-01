@@ -336,12 +336,12 @@ def get_dependant(
             dependant=dependant,
         ):
             if param_details.field is not None:
-                raise FastAPIError(
+                raise FastAPIError(  # pragma: no cover
                     f"Cannot specify multiple FastAPI annotations for {param_name!r}"
                 )
             continue
         if param_details.field is None:
-            raise FastAPIError(
+            raise FastAPIError(  # pragma: no cover
                 f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             )
         if isinstance(param_details.field.field_info, params.Body):
@@ -443,7 +443,7 @@ def analyze_param(
                 )
             if value is not inspect.Signature.empty:
                 if is_path_param:
-                    raise FastAPIError("Path parameters cannot have default values")
+                    raise FastAPIError("Path parameters cannot have default values")  # pragma: no cover
                 field_info.default = value
             else:
                 field_info.default = RequiredParam
@@ -572,7 +572,7 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
         dependant.header_params.append(field)
     else:
         if field_info_in != params.ParamTypes.cookie:
-            raise FastAPIError(
+            raise FastAPIError(  # pragma: no cover
                 f"non-body parameters must be in path, query, header or cookie: {field.name}"
             )
         dependant.cookie_params.append(field)

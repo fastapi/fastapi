@@ -11,7 +11,7 @@ def test_additional_response_not_a_dict():
 
     with pytest.raises(FastAPIError, match="An additional response must be a dict"):
 
-        @app.get("/items", responses={200: "not a dict"})
+        @app.get("/items", responses={200: "not a dict"})  # ty: ignore[invalid-argument-type]
         async def get_items():
             pass  # pragma: no cover
 
@@ -36,7 +36,7 @@ def test_callable_endpoint_check():
     app = FastAPI()
 
     with pytest.raises(FastAPIError, match="An endpoint must be a callable"):
-        app.router.add_api_route("/items", endpoint="not a callable")
+        app.router.add_api_route("/items", endpoint="not a callable")  # ty: ignore[invalid-argument-type]
 
 
 def test_response_model_on_no_body_status():
