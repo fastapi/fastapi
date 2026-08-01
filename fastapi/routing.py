@@ -1037,12 +1037,14 @@ def _populate_api_route_state(
     route.description = route.description.split("\f")[0].strip()
     response_fields = {}
     for additional_status_code, response in route.responses.items():
-        assert isinstance(response, dict), "An additional response must be a dict"
+        if not isinstance(response, dict):
+            raise FastAPIError("An additional response must be a dict")
         model = response.get("model")
         if model:
-            assert is_body_allowed_for_status_code(additional_status_code), (
-                f"Status code {additional_status_code} must not have a response body"
-            )
+            if not is_body_allowed_for_status_code(additional_status_code):
+                raise FastAPIError(
+                    f"Status code {additional_status_code} must not have a response body"
+                )
             response_name = f"Response_{additional_status_code}_{route.unique_id}"
             response_field = create_model_field(
                 name=response_name, type_=model, mode="serialization"
@@ -1053,7 +1055,8 @@ def _populate_api_route_state(
     else:
         route.response_fields = {}
 
-    assert callable(endpoint), "An endpoint must be a callable"
+    if not callable(endpoint):
+        raise FastAPIError("An endpoint must be a callable")
     (
         route.dependant,
         body_params,
@@ -1101,9 +1104,10 @@ def _populate_api_route_state(
                 response_model = return_annotation
     route.response_model = response_model
     if route.response_model:
-        assert is_body_allowed_for_status_code(status_code), (
-            f"Status code {status_code} must not have a response body"
-        )
+        if not is_body_allowed_for_status_code(status_code):
+            raise FastAPIError(
+                f"Status code {status_code} must not have a response body"
+            )
         response_name = "Response_" + route.unique_id
         route.response_field = create_model_field(
             name=response_name,
@@ -2536,10 +2540,12 @@ class APIRouter(routing.Router):
             lifespan=lifespan_context,
         )
         if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith("/"), (
-                "A path prefix must not end with '/', as the routes will start with '/'"
-            )
+            if not prefix.startswith("/"):
+                raise FastAPIError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise FastAPIError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
 
         # Handle on_startup/on_shutdown locally since Starlette removed support
         # Ref: https://github.com/Kludex/starlette/pull/3117
@@ -3265,19 +3271,23 @@ class APIRouter(routing.Router):
         app.include_router(internal_router)
         ```
         """
-        assert self is not router, (
-            "Cannot include the same APIRouter instance into itself. "
-            "Did you mean to include a different router?"
-        )
-        assert not router._contains_router(self), (
-            "Cannot include an APIRouter instance that already includes this router. "
-            "Did you mean to include a different router?"
-        )
-        if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith("/"), (
-                "A path prefix must not end with '/', as the routes will start with '/'"
+        if self is router:
+            raise FastAPIError(
+                "Cannot include the same APIRouter instance into itself. "
+                "Did you mean to include a different router?"
             )
+        if router._contains_router(self):
+            raise FastAPIError(
+                "Cannot include an APIRouter instance that already includes this router. "
+                "Did you mean to include a different router?"
+            )
+        if prefix:
+            if not prefix.startswith("/"):
+                raise FastAPIError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise FastAPIError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
         else:
             for route, route_context in _iter_routes_with_context(router.routes):
                 if route_context is None:

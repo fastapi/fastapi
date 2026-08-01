@@ -64,7 +64,7 @@ from fastapi.dependencies.models import (
     _is_gen_callable,
     _UsesScopesCache,
 )
-from fastapi.exceptions import DependencyScopeError
+from fastapi.exceptions import DependencyScopeError, FastAPIError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
@@ -335,11 +335,15 @@ def get_dependant(
             type_annotation=param_details.type_annotation,
             dependant=dependant,
         ):
-            assert param_details.field is None, (
+            if param_details.field is not None:
+                raise FastAPIError(
+                    f"Cannot specify multiple FastAPI annotations for {param_name!r}"
+                )
+            continue
+        if param_details.field is None:
+            raise FastAPIError(
                 f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             )
-            continue
-        assert param_details.field is not None
         if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:
@@ -429,14 +433,17 @@ def analyze_param(
                 field_info=fastapi_annotation,
                 annotation=use_annotation,
             )
-            assert (
-                field_info.default == Undefined or field_info.default == RequiredParam
-            ), (
-                f"`{field_info.__class__.__name__}` default value cannot be set in"
-                f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
-            )
+            if (
+                field_info.default is not Undefined
+                and field_info.default is not RequiredParam
+            ):
+                raise FastAPIError(
+                    f"`{field_info.__class__.__name__}` default value cannot be set in"
+                    f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
+                )
             if value is not inspect.Signature.empty:
-                assert not is_path_param, "Path parameters cannot have default values"
+                if is_path_param:
+                    raise FastAPIError("Path parameters cannot have default values")
                 field_info.default = value
             else:
                 field_info.default = RequiredParam
@@ -445,21 +452,24 @@ def analyze_param(
             depends = fastapi_annotation
     # Get Depends from default value
     if isinstance(value, params.Depends):
-        assert depends is None, (
-            "Cannot specify `Depends` in `Annotated` and default value"
-            f" together for {param_name!r}"
-        )
-        assert field_info is None, (
-            "Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a"
-            f" default value together for {param_name!r}"
-        )
+        if depends is not None:
+            raise FastAPIError(
+                "Cannot specify `Depends` in `Annotated` and default value"
+                f" together for {param_name!r}"
+            )
+        if field_info is not None:
+            raise FastAPIError(
+                "Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a"
+                f" default value together for {param_name!r}"
+            )
         depends = value
     # Get FieldInfo from default value
     elif isinstance(value, FieldInfo):
-        assert field_info is None, (
-            "Cannot specify FastAPI annotations in `Annotated` and default value"
-            f" together for {param_name!r}"
-        )
+        if field_info is not None:
+            raise FastAPIError(
+                "Cannot specify FastAPI annotations in `Annotated` and default value"
+                f" together for {param_name!r}"
+            )
         field_info = value
         if isinstance(field_info, FieldInfo):
             field_info.annotation = type_annotation
@@ -484,9 +494,10 @@ def analyze_param(
             SecurityScopes,
         ),
     ):
-        assert field_info is None, (
-            f"Cannot specify FastAPI annotation for type {type_annotation!r}"
-        )
+        if field_info is not None:
+            raise FastAPIError(
+                f"Cannot specify FastAPI annotation for type {type_annotation!r}"
+            )
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else RequiredParam
@@ -509,10 +520,11 @@ def analyze_param(
     if field_info is not None:
         # Handle field_info.in_
         if is_path_param:
-            assert isinstance(field_info, params.Path), (
-                f"Cannot use `{field_info.__class__.__name__}` for path param"
-                f" {param_name!r}"
-            )
+            if not isinstance(field_info, params.Path):
+                raise FastAPIError(
+                    f"Cannot use `{field_info.__class__.__name__}` for path param"
+                    f" {param_name!r}"
+                )
         elif (
             isinstance(field_info, params.Param)
             and getattr(field_info, "in_", None) is None
@@ -534,15 +546,19 @@ def analyze_param(
             field_info=field_info,
         )
         if is_path_param:
-            assert is_scalar_field(field=field), (
-                "Path params must be of one of the supported types"
-            )
+            if not is_scalar_field(field=field):
+                raise FastAPIError(
+                    "Path params must be of one of the supported types"
+                )
         elif isinstance(field_info, params.Query):
-            assert (
+            if not (
                 is_scalar_field(field)
                 or field_annotation_is_scalar_sequence(field.field_info.annotation)
                 or lenient_issubclass(field.field_info.annotation, BaseModel)
-            ), f"Query parameter {param_name!r} must be one of the supported types"
+            ):
+                raise FastAPIError(
+                    f"Query parameter {param_name!r} must be one of the supported types"
+                )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
@@ -557,9 +573,10 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert field_info_in == params.ParamTypes.cookie, (
-            f"non-body parameters must be in path, query, header or cookie: {field.name}"
-        )
+        if field_info_in != params.ParamTypes.cookie:
+            raise FastAPIError(
+                f"non-body parameters must be in path, query, header or cookie: {field.name}"
+            )
         dependant.cookie_params.append(field)
 
 

@@ -1,10 +1,11 @@
 import pytest
 from fastapi import FastAPI
+from fastapi.exceptions import FastAPIError
 from pydantic import BaseModel
 
 
 def test_invalid_sequence():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -16,7 +17,7 @@ def test_invalid_sequence():
 
 
 def test_invalid_tuple():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -28,7 +29,7 @@ def test_invalid_tuple():
 
 
 def test_invalid_dict():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         class Item(BaseModel):
@@ -40,7 +41,7 @@ def test_invalid_dict():
 
 
 def test_invalid_simple_list():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         @app.get("/items/{id}")
@@ -49,7 +50,7 @@ def test_invalid_simple_list():
 
 
 def test_invalid_simple_tuple():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         @app.get("/items/{id}")
@@ -58,7 +59,7 @@ def test_invalid_simple_tuple():
 
 
 def test_invalid_simple_set():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         @app.get("/items/{id}")
@@ -67,7 +68,7 @@ def test_invalid_simple_set():
 
 
 def test_invalid_simple_dict():
-    with pytest.raises(AssertionError):
+    with pytest.raises(FastAPIError):
         app = FastAPI()
 
         @app.get("/items/{id}")

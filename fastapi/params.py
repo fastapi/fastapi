@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Annotated, Any, Literal
 
-from fastapi.exceptions import FastAPIDeprecationWarning
+from fastapi.exceptions import FastAPIError, FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo
@@ -182,7 +182,8 @@ class Path(Param):  # type: ignore[misc]
         json_schema_extra: dict[str, Any] | None = None,
         **extra: Any,
     ):
-        assert default is ..., "Path parameters cannot have a default value"
+        if default is not ...:
+            raise FastAPIError("Path parameters cannot have a default value")
         self.in_ = self.in_
         super().__init__(
             default=default,

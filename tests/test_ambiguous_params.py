@@ -2,6 +2,7 @@ from typing import Annotated
 
 import pytest
 from fastapi import Depends, FastAPI, Path
+from fastapi.exceptions import FastAPIError
 from fastapi.param_functions import Query
 from fastapi.testclient import TestClient
 
@@ -10,7 +11,7 @@ app = FastAPI()
 
 def test_no_annotated_defaults():
     with pytest.raises(
-        AssertionError, match="Path parameters cannot have a default value"
+        FastAPIError, match="Path parameters cannot have a default value"
     ):
 
         @app.get("/items/{item_id}/")
@@ -18,7 +19,7 @@ def test_no_annotated_defaults():
             pass  # pragma: nocover
 
     with pytest.raises(
-        AssertionError,
+        FastAPIError,
         match=(
             "`Query` default value cannot be set in `Annotated` for 'item_id'. Set the"
             " default value with `=` instead."
@@ -39,7 +40,7 @@ def test_multiple_annotations():
         return foo
 
     with pytest.raises(
-        AssertionError,
+        FastAPIError,
         match=(
             "Cannot specify `Depends` in `Annotated` and default value"
             " together for 'foo'"
@@ -51,7 +52,7 @@ def test_multiple_annotations():
             pass  # pragma: nocover
 
     with pytest.raises(
-        AssertionError,
+        FastAPIError,
         match=(
             "Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a"
             " default value together for 'foo'"

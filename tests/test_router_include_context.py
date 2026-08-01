@@ -343,7 +343,7 @@ def test_indirect_router_inclusion_cycles_are_rejected():
 
     parent_router.include_router(child_router, prefix="/child")
 
-    with pytest.raises(AssertionError, match="already includes this router"):
+    with pytest.raises(FastAPIError, match="already includes this router"):
         child_router.include_router(parent_router, prefix="/parent")
 
     parent_router = APIRouter()
@@ -353,7 +353,7 @@ def test_indirect_router_inclusion_cycles_are_rejected():
     parent_router.include_router(child_router, prefix="/child")
     child_router.include_router(grandchild_router, prefix="/grandchild")
 
-    with pytest.raises(AssertionError, match="already includes this router"):
+    with pytest.raises(FastAPIError, match="already includes this router"):
         grandchild_router.include_router(parent_router, prefix="/parent")
 
 

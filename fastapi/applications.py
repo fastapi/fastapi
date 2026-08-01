@@ -11,7 +11,11 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    FastAPIError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -924,8 +928,14 @@ class FastAPI(Starlette):
         self.openapi_schema: dict[str, Any] | None = None
         self._openapi_routes_version: int | None = None
         if self.openapi_url:
-            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
-            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+            if not self.title:
+                raise FastAPIError(
+                    "A title must be provided for OpenAPI, e.g.: 'My API'"
+                )
+            if not self.version:
+                raise FastAPIError(
+                    "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+                )
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
