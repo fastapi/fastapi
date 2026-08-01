@@ -443,7 +443,9 @@ def analyze_param(
                 )
             if value is not inspect.Signature.empty:
                 if is_path_param:
-                    raise FastAPIError("Path parameters cannot have default values")  # pragma: no cover
+                    raise FastAPIError(
+                        "Path parameters cannot have default values"
+                    )  # pragma: no cover
                 field_info.default = value
             else:
                 field_info.default = RequiredParam
