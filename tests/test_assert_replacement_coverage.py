@@ -1,7 +1,6 @@
 import pytest
 from fastapi import APIRouter, FastAPI, Path, Query
 from fastapi.exceptions import FastAPIError
-from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
 
