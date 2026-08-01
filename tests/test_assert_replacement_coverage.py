@@ -1,5 +1,7 @@
+from typing import Annotated
+
 import pytest
-from fastapi import APIRouter, FastAPI, Path, Query
+from fastapi import APIRouter, Depends, FastAPI, Path, Query, Request
 from fastapi.exceptions import FastAPIError
 from pydantic import BaseModel
 
@@ -164,11 +166,6 @@ def test_orjson_response_without_orjson():
             )
     finally:
         responses_module.orjson = original
-
-
-from typing import Annotated
-
-from fastapi import Depends, Request
 
 
 def test_fastapi_annotation_on_request_type():
