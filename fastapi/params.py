@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Annotated, Any, Literal
 
-from fastapi.exceptions import FastAPIError, FastAPIDeprecationWarning
+from fastapi.exceptions import FastAPIDeprecationWarning, FastAPIError
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo

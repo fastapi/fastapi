@@ -547,9 +547,7 @@ def analyze_param(
         )
         if is_path_param:
             if not is_scalar_field(field=field):
-                raise FastAPIError(
-                    "Path params must be of one of the supported types"
-                )
+                raise FastAPIError("Path params must be of one of the supported types")
         elif isinstance(field_info, params.Query):
             if not (
                 is_scalar_field(field)
