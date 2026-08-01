@@ -1,6 +1,5 @@
 # 도움 { #help }
 
-
 FastAPI를 돕거나 FastAPI에 대한 도움을 받고 싶으신가요?
 
 아주 간단하게 돕고 도움을 받을 수 있는 방법이 있습니다.
@@ -46,30 +45,16 @@ FastAPI와 friends에 대한 소식을 공유할 때 알림을 받으려면, 개
 * [**Bluesky**의 @tiangolo.com](https://bsky.app/profile/tiangolo.com)
 * [**LinkedIn**의 @tiangolo](https://www.linkedin.com/in/tiangolo/).
 
-## GitHub에서 질문으로 다른 사람 돕기 { #help-others-with-questions-in-github }
-
-[GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered)에서 다른 사람들의 질문에 도움을 줄 수 있습니다.
-
-많은 경우, 이미 그 질문에 대한 답을 알고 있을 수 있습니다. 🤓
-
-많은 사람들의 질문을 도와주면, 공식 [FastAPI 전문가](fastapi-people.md#fastapi-experts)가 됩니다. 🎉
-
-가장 중요한 점은: 친절하려고 노력하는 것입니다. 🤗
-
-### 도움 주는 방법 { #how-to-help }
-
-여기 있는 [도움 주는 방법 가이드](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github)를 따라 주세요.
-
 ## 질문하기 { #ask-questions }
 
 GitHub 저장소에서 [새 질문을 생성](https://github.com/fastapi/fastapi/discussions/new?category=questions)할 수 있습니다. 예를 들면:
 
-* **질문**을 하거나 **문제**에 대해 묻기
-* 새로운 **기능** 제안하기
+* **질문**을 하거나 **문제**에 대해 묻기.
+* 새로운 **기능** 제안하기.
 
 ## 채팅에 참여하기 { #join-the-chat }
 
-👥 [Discord 채팅 서버](https://discord.gg/VQjSZaeJmf) 👥 에 참여해서 FastAPI 커뮤니티의 다른 사람들과 어울리세요.
+👥 [Discord 채팅 서버](https://discord.com/invite/VQjSZaeJmf) 👥 에 참여해서 FastAPI 커뮤니티의 다른 사람들과 어울리세요.
 
 /// tip | 팁
 
@@ -81,8 +66,14 @@ GitHub 저장소에서 [새 질문을 생성](https://github.com/fastapi/fastapi
 
 ### 질문을 위해 채팅을 사용하지 마세요 { #dont-use-the-chat-for-questions }
 
-채팅은 더 자유로운 대화를 허용하므로, 너무 일반적이거나 답변하기 어려운 질문을 하게 되어 답변을 받지 못할 수 있습니다.
+채팅은 더 자유로운 대화를 허용하므로, 너무 일반적이거나 답변하기 어려운 질문을 하게 되어 답변을 받지 못할 수 있음을 기억하세요.
 
 GitHub에서는 템플릿이 올바른 질문을 작성하도록 안내하여, 더 쉽게 좋은 답변을 받거나 심지어 질문하기 전에 스스로 문제를 해결할 수 있습니다.
 
 또한 채팅 시스템의 대화는 GitHub만큼 검색이 쉽지 않아, 대화 속에 묻히곤 합니다.
+
+## FastAPI Cloud 사용해보기 { #try-fastapi-cloud }
+
+FastAPI와 friends의 주요 자금은 단일 명령어 `fastapi deploy`로 FastAPI 애플리케이션을 간단하고 빠르게 배포할 수 있는 플랫폼인 [**FastAPI Cloud**](https://fastapicloud.com)에서 나옵니다.
+
+FastAPI Cloud는 FastAPI를 만든 같은 팀이 구축했습니다. 사용해보고 여러분의 프로젝트에 고려해볼 수 있습니다.

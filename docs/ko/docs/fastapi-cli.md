@@ -1,8 +1,8 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI <abbr title="command line interface - 명령줄 인터페이스">CLI</abbr>**는 FastAPI 애플리케이션을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 커맨드 라인 프로그램입니다.
+**FastAPI <abbr title="command line interface - 명령줄 인터페이스">CLI</abbr>**는 FastAPI 애플리케이션을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 명령줄 프로그램입니다.
 
-FastAPI를 설치하면(예: `pip install "fastapi[standard]"`) 터미널에서 실행할 수 있는 커맨드 라인 프로그램이 함께 제공됩니다.
+프로젝트에 FastAPI를 추가하면(예: `uv add "fastapi[standard]"`) 터미널에서 실행할 수 있는 명령줄 프로그램이 함께 제공됩니다.
 
 개발용으로 FastAPI 애플리케이션을 실행하려면 `fastapi dev` 명령어를 사용할 수 있습니다:
 
@@ -41,7 +41,7 @@ $ <font color="#4E9A06">fastapi</font> dev
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#007166"><font color="#D3D7CF"> INFO </font></font></span>  Application startup complete.
 ```
 
 </div>
@@ -52,22 +52,22 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 ///
 
-내부적으로 **FastAPI CLI**는 고성능의, 프로덕션에 적합한 ASGI 서버인 [Uvicorn](https://www.uvicorn.dev)을 사용합니다. 😎
+내부적으로 **FastAPI CLI**는 고성능의, 프로덕션에 적합한 ASGI 서버인 [Uvicorn](https://uvicorn.dev)을 사용합니다. 😎
 
-`fastapi` CLI는 기본적으로 실행할 FastAPI 앱을 자동으로 감지하려고 시도합니다. `main.py` 파일 안의 `app`이라는 객체(또는 몇 가지 변형)가 있다고 가정합니다.
+`fastapi` CLI는 기본적으로 실행할 FastAPI 애플리케이션을 자동으로 감지하려고 시도합니다. `main.py` 파일 안의 `app`이라는 객체(또는 몇 가지 변형)가 있다고 가정합니다.
 
-하지만 사용할 앱을 명시적으로 구성할 수도 있습니다.
+하지만 사용할 애플리케이션을 명시적으로 구성할 수도 있습니다.
 
-## `pyproject.toml`에서 앱 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
+## `pyproject.toml`에서 애플리케이션 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
 
-`pyproject.toml` 파일에서 앱이 어디에 있는지 다음과 같이 구성할 수 있습니다:
+`pyproject.toml` 파일에서 애플리케이션이 어디에 있는지 다음과 같이 구성할 수 있습니다:
 
 ```toml
 [tool.fastapi]
 entrypoint = "main:app"
 ```
 
-이 `entrypoint`는 `fastapi` 명령어에 다음과 같이 앱을 임포트하라고 알려줍니다:
+이 `entrypoint`는 `fastapi` 명령어에 다음과 같이 애플리케이션을 임포트하라고 알려줍니다:
 
 ```python
 from main import app
@@ -97,16 +97,16 @@ from backend.main import app
 
 ### 경로 또는 `--entrypoint` CLI 옵션과 함께 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
-`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 앱 객체를 추정합니다:
+`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 애플리케이션 객체를 추정합니다:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 또는, `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 하지만 매번 `fastapi` 명령어를 호출할 때 올바른 경로\entrypoint를 전달하는 것을 기억해야 합니다.
@@ -118,6 +118,10 @@ $ fastapi dev --entrypoint main:app
 `fastapi dev`를 실행하면 개발 모드가 시작됩니다.
 
 기본적으로 **auto-reload**가 활성화되어 코드에 변경이 생기면 서버를 자동으로 다시 로드합니다. 이는 리소스를 많이 사용하며, 비활성화했을 때보다 안정성이 떨어질 수 있습니다. 개발 환경에서만 사용해야 합니다. 또한 컴퓨터가 자신과만 통신하기 위한(`localhost`) IP인 `127.0.0.1`에서 연결을 대기합니다.
+
+애플리케이션을 임포트하기 전에, `fastapi dev`는 `FASTAPI_ENV` 환경 변수를 `development`로 설정합니다. `FASTAPI_ENV`가 이미 설정되어 있다면 기존 값이 유지됩니다. 이를 통해 애플리케이션 시작 코드는 개발에 친화적인 동작을 선택할 수 있으면서도, `staging` 같은 애플리케이션별 환경을 제공할 수 있습니다.
+
+관례적인 `FASTAPI_ENV` 값은 `development`와 `production`입니다. 현재 `fastapi run`은 `FASTAPI_ENV`를 변경하지 않으므로, 애플리케이션이 프로덕션 모드를 감지해야 한다면 명시적으로 설정하세요.
 
 ## `fastapi run` { #fastapi-run }
 
