@@ -821,11 +821,17 @@ def request_params_to_args(
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
             params_to_process[get_validation_alias(field)] = value
-        processed_keys.add(alias or get_validation_alias(field))
-        # For headers with convert_underscores=True, mark both the converted
-        # header name and the original field alias as processed to avoid
-        # accepting the original alias as an extra header.
-        processed_keys.add(get_validation_alias(field))
+        target_key = alias or get_validation_alias(field)
+        val_key = get_validation_alias(field)
+        if isinstance(received_params, Headers):
+            processed_keys.add(target_key.lower())
+            processed_keys.add(val_key.lower())
+        else:
+            processed_keys.add(target_key)
+            # For headers with convert_underscores=True, mark both the converted
+            # header name and the original field alias as processed to avoid
+            # accepting the original alias as an extra header.
+            processed_keys.add(val_key)
 
     for key in received_params.keys():
         if key not in processed_keys:
