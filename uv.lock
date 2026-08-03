@@ -145,6 +145,18 @@ wheels = [
 ]
 
 [[package]]
+name = "asgi-lifespan"
+version = "2.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sniffio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6a/da/e7908b54e0f8043725a990bf625f2041ecf6bfe8eb7b19407f1c00b630f7/asgi-lifespan-2.1.0.tar.gz", hash = "sha256:5e2effaf0bfe39829cf2d64e7ecc47c7d86d676a6599f7afba378c31f5e3a308", size = 15627, upload-time = "2023-03-28T17:35:49.126Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2f/f5/c36551e93acba41a59939ae6a0fb77ddb3f2e8e8caa716410c65f7341f72/asgi_lifespan-2.1.0-py3-none-any.whl", hash = "sha256:ed840706680e28428c01e14afb3875d7d76d3206f3d5b2f2294e059b5c23804f", size = 10895, upload-time = "2023-03-28T17:35:47.772Z" },
+]
+
+[[package]]
 name = "ast-serialize"
 version = "0.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -898,6 +910,7 @@ standard-no-fastapi-cloud-cli = [
 dev = [
     { name = "a2wsgi" },
     { name = "anyio", extra = ["trio"] },
+    { name = "asgi-lifespan" },
     { name = "black" },
     { name = "cairosvg" },
     { name = "coverage", extra = ["toml"] },
@@ -938,6 +951,7 @@ dev = [
     { name = "zizmor" },
 ]
 docs = [
+    { name = "asgi-lifespan" },
     { name = "black" },
     { name = "cairosvg" },
     { name = "griffe-typingdoc" },
@@ -956,6 +970,7 @@ docs = [
     { name = "zensical" },
 ]
 docs-tests = [
+    { name = "asgi-lifespan" },
     { name = "httpx" },
     { name = "httpx2" },
     { name = "ruff" },
@@ -971,6 +986,7 @@ github-actions = [
 tests = [
     { name = "a2wsgi" },
     { name = "anyio", extra = ["trio"] },
+    { name = "asgi-lifespan" },
     { name = "coverage", extra = ["toml"] },
     { name = "dirty-equals" },
     { name = "flask" },
@@ -1040,6 +1056,7 @@ provides-extras = ["standard", "standard-no-fastapi-cloud-cli", "all"]
 dev = [
     { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
+    { name = "asgi-lifespan", specifier = ">=2.1.0,<3.0.0" },
     { name = "black", specifier = ">=25.1.0" },
     { name = "cairosvg", specifier = ">=2.8.2" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
@@ -1081,6 +1098,7 @@ dev = [
     { name = "zizmor", specifier = ">=1.23.1" },
 ]
 docs = [
+    { name = "asgi-lifespan", specifier = ">=2.1.0,<3.0.0" },
     { name = "black", specifier = ">=25.1.0" },
     { name = "cairosvg", specifier = ">=2.8.2" },
     { name = "griffe-typingdoc", specifier = ">=0.3.0" },
@@ -1099,6 +1117,7 @@ docs = [
     { name = "zensical", specifier = ">=0.0.42" },
 ]
 docs-tests = [
+    { name = "asgi-lifespan", specifier = ">=2.1.0,<3.0.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "httpx2", specifier = ">=2.0.0" },
     { name = "ruff", specifier = ">=0.14.14" },
@@ -1114,6 +1133,7 @@ github-actions = [
 tests = [
     { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
+    { name = "asgi-lifespan", specifier = ">=2.1.0,<3.0.0" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
     { name = "dirty-equals", specifier = ">=0.9.0" },
     { name = "flask", specifier = ">=3.0.0,<4.0.0" },

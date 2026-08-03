@@ -145,6 +145,7 @@ docs = [
     "zensical >=0.0.42",
 ]
 docs-tests = [
+    "asgi-lifespan >=2.1.0,<3.0.0",
     "httpx >=0.23.0,<1.0.0",
     "httpx2>=2.0.0",
     "ruff >=0.14.14",

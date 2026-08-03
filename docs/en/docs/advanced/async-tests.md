@@ -88,6 +88,22 @@ If your application relies on lifespan events, the `AsyncClient` won't trigger t
 
 ///
 
+## Testing Lifespan Events { #testing-lifespan-events }
+
+When your application uses lifespan events, install `asgi-lifespan`:
+
+<div class="termy">
+
+```console
+$ uv add --dev asgi-lifespan
+```
+
+</div>
+
+Then, use `LifespanManager` around your `AsyncClient` to trigger the application's startup and shutdown logic during the test:
+
+{* ../../docs_src/async_tests/app_b_py310/test_main.py *}
+
 ## Other Asynchronous Function Calls { #other-asynchronous-function-calls }
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
