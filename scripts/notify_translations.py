@@ -304,7 +304,7 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 
 def main() -> None:
-    settings = Settings()  # ty: ignore[missing-argument]
+    settings = Settings()
     if settings.debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
