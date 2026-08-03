@@ -74,9 +74,6 @@ sponsors:
   - login: ChargeStorm
     avatarUrl: https://avatars.githubusercontent.com/u/26000165?v=4
     url: https://github.com/ChargeStorm
-  - login: DanielYang59
-    avatarUrl: https://avatars.githubusercontent.com/u/80093591?u=63873f701c7c74aac83c906800a1dddc0bc8c92f&v=4
-    url: https://github.com/DanielYang59
   - login: nilslindemann
     avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
     url: https://github.com/nilslindemann
@@ -101,9 +98,9 @@ sponsors:
   - login: ashi-agrawal
     avatarUrl: https://avatars.githubusercontent.com/u/17105294?u=99c7a854035e5398d8e7b674f2d42baae6c957f8&v=4
     url: https://github.com/ashi-agrawal
-  - login: jaredtrog
-    avatarUrl: https://avatars.githubusercontent.com/u/4381365?v=4
-    url: https://github.com/jaredtrog
+  - login: mjohnsey
+    avatarUrl: https://avatars.githubusercontent.com/u/16784016?u=38fad2e6b411244560b3af99c5f5a4751bc81865&v=4
+    url: https://github.com/mjohnsey
   - login: jugeeem
     avatarUrl: https://avatars.githubusercontent.com/u/116043716?u=e4df530e99a086a1085f3dc125b94783670fb383&v=4
     url: https://github.com/jugeeem
@@ -173,9 +170,6 @@ sponsors:
   - login: jstanden
     avatarUrl: https://avatars.githubusercontent.com/u/63288?u=c3658d57d2862c607a0e19c2101c3c51876e36ad&v=4
     url: https://github.com/jstanden
-  - login: mjohnsey
-    avatarUrl: https://avatars.githubusercontent.com/u/16784016?u=38fad2e6b411244560b3af99c5f5a4751bc81865&v=4
-    url: https://github.com/mjohnsey
   - login: khadrawy
     avatarUrl: https://avatars.githubusercontent.com/u/13686061?u=59f25ef42ecf04c22657aac4238ce0e2d3d30304&v=4
     url: https://github.com/khadrawy
@@ -206,6 +200,9 @@ sponsors:
   - login: ternaus
     avatarUrl: https://avatars.githubusercontent.com/u/5481618?u=513a26b02a39e7a28d587cd37c6cc877ea368e6e&v=4
     url: https://github.com/ternaus
+  - login: jaredtrog
+    avatarUrl: https://avatars.githubusercontent.com/u/4381365?v=4
+    url: https://github.com/jaredtrog
 - - login: jpfyoder
     avatarUrl: https://avatars.githubusercontent.com/u/7548821?u=1683290ed65dae6987d673da044067577ee71521&v=4
     url: https://github.com/jpfyoder
@@ -248,6 +245,9 @@ sponsors:
   - login: hgalytoby
     avatarUrl: https://avatars.githubusercontent.com/u/50397689?u=6cc9028f3db63f8f60ad21c17b1ce4b88c4e2e60&v=4
     url: https://github.com/hgalytoby
+  - login: TheR1D
+    avatarUrl: https://avatars.githubusercontent.com/u/16740832?u=b0dfdbdb27b79729430c71c6128962f77b7b53f7&v=4
+    url: https://github.com/TheR1D
   - login: my3
     avatarUrl: https://avatars.githubusercontent.com/u/1825270?v=4
     url: https://github.com/my3
@@ -275,9 +275,6 @@ sponsors:
   - login: ddanier
     avatarUrl: https://avatars.githubusercontent.com/u/113563?u=ed1dc79de72f93bd78581f88ebc6952b62f472da&v=4
     url: https://github.com/ddanier
-  - login: TheR1D
-    avatarUrl: https://avatars.githubusercontent.com/u/16740832?u=b0dfdbdb27b79729430c71c6128962f77b7b53f7&v=4
-    url: https://github.com/TheR1D
   - login: Zuzah
     avatarUrl: https://avatars.githubusercontent.com/u/10934846?u=1ef43e075ddc87bd1178372bf4d95ee6175cae27&v=4
     url: https://github.com/Zuzah
@@ -308,10 +305,7 @@ sponsors:
   - login: danielunderwood
     avatarUrl: https://avatars.githubusercontent.com/u/4472301?v=4
     url: https://github.com/danielunderwood
-- - login: morzan1001
-    avatarUrl: https://avatars.githubusercontent.com/u/47593005?u=c30ab7230f82a12a9b938dcb54f84a996931409a&v=4
-    url: https://github.com/morzan1001
-  - login: ArtyomVancyan
+- - login: ArtyomVancyan
     avatarUrl: https://avatars.githubusercontent.com/u/44609997?v=4
     url: https://github.com/ArtyomVancyan
   - login: rwxd
@@ -335,6 +329,9 @@ sponsors:
   - login: onestn
     avatarUrl: https://avatars.githubusercontent.com/u/62360849?u=746dd21c34e7e06eefb11b03e8bb01aaae3c2a4f&v=4
     url: https://github.com/onestn
+  - login: morzan1001
+    avatarUrl: https://avatars.githubusercontent.com/u/47593005?u=c30ab7230f82a12a9b938dcb54f84a996931409a&v=4
+    url: https://github.com/morzan1001
   - login: Toothwitch
     avatarUrl: https://avatars.githubusercontent.com/u/1710406?u=5eebb23b46cd26e48643b9e5179536cad491c17a&v=4
     url: https://github.com/Toothwitch
