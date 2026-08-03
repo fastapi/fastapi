@@ -287,8 +287,8 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
 
         if (source_file := inspect.getsourcefile(func)) is not None:
             ctx["file"] = source_file
-        if (line_number := inspect.getsourcelines(func)[1]) is not None:
-            ctx["line"] = line_number
+        line_number = inspect.getsourcelines(func)[1]
+        ctx["line"] = line_number
         if (func_name := getattr(func, "__name__", None)) is not None:
             ctx["function"] = func_name
     except Exception:
