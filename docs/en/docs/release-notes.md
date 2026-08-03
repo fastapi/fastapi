@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ⬆ Bump the github-actions group with 6 updates. PR [#16120](https://github.com/fastapi/fastapi/pull/16120) by [@dependabot[bot]](https://github.com/apps/dependabot).
