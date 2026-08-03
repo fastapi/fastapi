@@ -518,7 +518,7 @@ def Query(  # noqa: N802
             RegEx pattern for strings.
 
             Read more about it in the
-            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions)
             """
         ),
     ] = None,
@@ -639,7 +639,7 @@ def Query(  # noqa: N802
             This affects the generated OpenAPI (e.g. visible at `/docs`).
 
             Read more about it in the
-            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi)
             """
         ),
     ] = True,
