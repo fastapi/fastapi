@@ -408,14 +408,16 @@ def get_openapi_path(
                 # doing this inspection tricks, that would probably be in the future
                 # TODO: probably make status_code a default class attribute for all
                 # responses in Starlette
+                status_code = None
                 response_signature = inspect.signature(current_response_class.__init__)
                 status_code_param = response_signature.parameters.get("status_code")
                 if status_code_param is not None:
                     if isinstance(status_code_param.default, int):
                         status_code = str(status_code_param.default)
-            operation.setdefault("responses", {}).setdefault(status_code, {})[
-                "description"
-            ] = route.response_description
+            if status_code is not None:
+                operation.setdefault("responses", {}).setdefault(status_code, {})[
+                    "description"
+                ] = route.response_description
             if is_body_allowed_for_status_code(route.status_code):
                 # Check for JSONL streaming (generator endpoints)
                 if route.is_json_stream:
