@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump cryptography from 48.0.1 to 50.0.0. PR [#16142](https://github.com/fastapi/fastapi/pull/16142) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump gitpython from 3.1.54 to 3.1.57. PR [#16141](https://github.com/fastapi/fastapi/pull/16141) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group with 6 updates. PR [#16120](https://github.com/fastapi/fastapi/pull/16120) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16122](https://github.com/fastapi/fastapi/pull/16122) by [@tiangolo](https://github.com/tiangolo).
