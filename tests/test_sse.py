@@ -88,6 +88,77 @@ async def sse_items_raw():
     yield ServerSentEvent(raw_data="cpu,87.3,1709145600", event="csv")
 
 
+@app.get(
+    "/items/stream-sse-event-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_include():
+    yield ServerSentEvent(
+        data=Item(name="Plumbus", description="A multi-purpose household device.")
+    )
+
+
+@app.get(
+    "/items/stream-sse-event-exclude",
+    response_class=EventSourceResponse,
+    response_model_exclude={"description"},
+)
+async def sse_items_event_exclude():
+    yield ServerSentEvent(
+        data=Item(name="Plumbus", description="A multi-purpose household device.")
+    )
+
+
+@app.get(
+    "/items/stream-sse-event-dict-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_dict_include():
+    yield ServerSentEvent(
+        data={"name": "Plumbus", "description": "A multi-purpose household device."}
+    )
+
+
+@app.get(
+    "/items/stream-sse-event-dict-exclude",
+    response_class=EventSourceResponse,
+    response_model_exclude={"description"},
+)
+async def sse_items_event_dict_exclude():
+    yield ServerSentEvent(
+        data={"name": "Plumbus", "description": "A multi-purpose household device."}
+    )
+
+
+@app.get(
+    "/items/stream-mixed-include",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_mixed_include() -> AsyncIterable[Item]:
+    yield Item(name="Plumbus", description="A multi-purpose household device.")
+    yield ServerSentEvent(
+        data=Item(name="Portal Gun", description="A portal opening device.")
+    )
+
+
+@app.get(
+    "/items/stream-sse-event-include-with-meta",
+    response_class=EventSourceResponse,
+    response_model_include={"name"},
+)
+async def sse_items_event_include_with_meta():
+    yield ServerSentEvent(
+        data=Item(name="Plumbus", description="A multi-purpose household device."),
+        event="item",
+        id="1",
+        retry=1000,
+        comment="keep include/exclude away from meta fields",
+    )
+
+
 router = APIRouter()
 
 
@@ -263,6 +334,74 @@ def test_raw_data_sent_without_json_encoding(client: TestClient):
 
     assert "event: csv\n" in text
     assert "data: cpu,87.3,1709145600\n" in text
+
+
+def test_server_sent_event_data_include(client: TestClient):
+    """`response_model_include` is applied to `ServerSentEvent(data=model)`."""
+    response = client.get("/items/stream-sse-event-include")
+    assert response.status_code == 200
+    assert response.text == 'data: {"name":"Plumbus"}\n\n'
+    assert "description" not in response.text
+
+
+def test_server_sent_event_data_exclude(client: TestClient):
+    """`response_model_exclude` is applied to `ServerSentEvent(data=model)`."""
+    response = client.get("/items/stream-sse-event-exclude")
+    assert response.status_code == 200
+    assert response.text == 'data: {"name":"Plumbus"}\n\n'
+    assert "description" not in response.text
+
+
+def test_server_sent_event_dict_data_include(client: TestClient):
+    """`response_model_include` is applied to dict data via jsonable_encoder."""
+    response = client.get("/items/stream-sse-event-dict-include")
+    assert response.status_code == 200
+    assert response.text == 'data: {"name": "Plumbus"}\n\n'
+    assert "description" not in response.text
+
+
+def test_server_sent_event_dict_data_exclude(client: TestClient):
+    """`response_model_exclude` is applied to dict data via jsonable_encoder."""
+    response = client.get("/items/stream-sse-event-dict-exclude")
+    assert response.status_code == 200
+    assert response.text == 'data: {"name": "Plumbus"}\n\n'
+    assert "description" not in response.text
+
+
+def test_server_sent_event_and_plain_item_include_match(client: TestClient):
+    """Directly yielded models and `ServerSentEvent`-wrapped models honor the same
+    `response_model_include` setting."""
+    response = client.get("/items/stream-mixed-include")
+    assert response.status_code == 200
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 2
+    assert data_lines[0] == 'data: {"name":"Plumbus"}'
+    assert data_lines[1] == 'data: {"name":"Portal Gun"}'
+    assert "description" not in response.text
+
+
+def test_server_sent_event_include_preserves_event_meta_and_raw(client: TestClient):
+    """Include/exclude only affect serialized `data`; meta fields and raw_data stay intact."""
+    response = client.get("/items/stream-sse-event-include-with-meta")
+    assert response.status_code == 200
+    text = response.text
+    assert ": keep include/exclude away from meta fields\n" in text
+    assert "event: item\n" in text
+    assert "id: 1\n" in text
+    assert "retry: 1000\n" in text
+    assert 'data: {"name":"Plumbus"}\n' in text
+    assert "description" not in text
+
+    raw_response = client.get("/items/stream-raw")
+    assert raw_response.status_code == 200
+    assert "data: plain text without quotes\n" in raw_response.text
+    assert 'data: "plain text without quotes"' not in raw_response.text
+
+    string_response = client.get("/items/stream-string")
+    assert string_response.status_code == 200
+    assert 'data: "plain text data"\n' in string_response.text
 
 
 def test_data_and_raw_data_mutually_exclusive():
