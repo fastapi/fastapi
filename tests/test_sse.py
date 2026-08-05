@@ -128,9 +128,7 @@ async def sse_items_event_exclude_none():
 )
 async def sse_items_mixed_exclude_none() -> AsyncIterable[ItemWithDefaults]:
     yield ItemWithDefaults(name="Plumbus", description=None)
-    yield ServerSentEvent(
-        data=ItemWithDefaults(name="Portal Gun", description=None)
-    )
+    yield ServerSentEvent(data=ItemWithDefaults(name="Portal Gun", description=None))
 
 
 @app.get(
