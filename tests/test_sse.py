@@ -16,6 +16,12 @@ class Item(BaseModel):
     description: str | None = None
 
 
+class ItemWithDefaults(BaseModel):
+    name: str
+    description: str | None = None
+    tag: str = "default-tag"
+
+
 items = [
     Item(name="Plumbus", description="A multi-purpose household device."),
     Item(name="Portal Gun", description="A portal opening device."),
@@ -86,6 +92,54 @@ async def sse_items_raw():
     yield ServerSentEvent(raw_data="plain text without quotes")
     yield ServerSentEvent(raw_data="<div>html fragment</div>", event="html")
     yield ServerSentEvent(raw_data="cpu,87.3,1709145600", event="csv")
+
+
+@app.get(
+    "/items/stream-sse-event-exclude-unset",
+    response_class=EventSourceResponse,
+    response_model_exclude_unset=True,
+)
+async def sse_items_event_exclude_unset():
+    yield ServerSentEvent(data=ItemWithDefaults(name="Plumbus"))
+
+
+@app.get(
+    "/items/stream-sse-event-exclude-defaults",
+    response_class=EventSourceResponse,
+    response_model_exclude_defaults=True,
+)
+async def sse_items_event_exclude_defaults():
+    yield ServerSentEvent(data=ItemWithDefaults(name="Plumbus"))
+
+
+@app.get(
+    "/items/stream-sse-event-exclude-none",
+    response_class=EventSourceResponse,
+    response_model_exclude_none=True,
+)
+async def sse_items_event_exclude_none():
+    yield ServerSentEvent(data=ItemWithDefaults(name="Plumbus", description=None))
+
+
+@app.get(
+    "/items/stream-mixed-exclude-none",
+    response_class=EventSourceResponse,
+    response_model_exclude_none=True,
+)
+async def sse_items_mixed_exclude_none() -> AsyncIterable[ItemWithDefaults]:
+    yield ItemWithDefaults(name="Plumbus", description=None)
+    yield ServerSentEvent(
+        data=ItemWithDefaults(name="Portal Gun", description=None)
+    )
+
+
+@app.get(
+    "/items/stream-sse-event-dict-exclude-none",
+    response_class=EventSourceResponse,
+    response_model_exclude_none=True,
+)
+async def sse_items_event_dict_exclude_none():
+    yield ServerSentEvent(data={"name": "Plumbus", "description": None})
 
 
 router = APIRouter()
@@ -221,6 +275,51 @@ def test_string_data_json_encoded(client: TestClient):
     response = client.get("/items/stream-string")
     assert response.status_code == 200
     assert 'data: "plain text data"\n' in response.text
+
+
+def test_server_sent_event_data_exclude_unset(client: TestClient):
+    response = client.get("/items/stream-sse-event-exclude-unset")
+    assert response.status_code == 200
+    assert 'data: {"name":"Plumbus"}\n' in response.text
+    assert "tag" not in response.text
+
+
+def test_server_sent_event_data_exclude_defaults(client: TestClient):
+    response = client.get("/items/stream-sse-event-exclude-defaults")
+    assert response.status_code == 200
+    assert 'data: {"name":"Plumbus"}\n' in response.text
+    assert "default-tag" not in response.text
+
+
+def test_server_sent_event_data_exclude_none(client: TestClient):
+    response = client.get("/items/stream-sse-event-exclude-none")
+    assert response.status_code == 200
+    text = response.text
+    assert '"name":"Plumbus"' in text
+    assert "description" not in text
+
+
+def test_server_sent_event_and_plain_item_exclude_none_match(client: TestClient):
+    """ServerSentEvent-wrapped and directly-yielded models honor the same
+    response_model_exclude_none setting."""
+    response = client.get("/items/stream-mixed-exclude-none")
+    assert response.status_code == 200
+    data_lines = [
+        line for line in response.text.strip().split("\n") if line.startswith("data: ")
+    ]
+    assert len(data_lines) == 2
+    assert "description" not in data_lines[0]
+    assert "description" not in data_lines[1]
+
+
+def test_server_sent_event_dict_data_exclude_none(client: TestClient):
+    """exclude_none is honored for non-model (dict) data too, via the
+    jsonable_encoder branch."""
+    response = client.get("/items/stream-sse-event-dict-exclude-none")
+    assert response.status_code == 200
+    text = response.text
+    assert '"name"' in text
+    assert "description" not in text
 
 
 def test_server_sent_event_null_id_rejected():

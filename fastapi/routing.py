@@ -531,9 +531,20 @@ def get_request_handler(
                             data_str: str | None = item.raw_data
                         elif item.data is not None:
                             if hasattr(item.data, "model_dump_json"):
-                                data_str = item.data.model_dump_json()
+                                data_str = item.data.model_dump_json(
+                                    exclude_unset=response_model_exclude_unset,
+                                    exclude_defaults=response_model_exclude_defaults,
+                                    exclude_none=response_model_exclude_none,
+                                )
                             else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
+                                data_str = json.dumps(
+                                    jsonable_encoder(
+                                        item.data,
+                                        exclude_unset=response_model_exclude_unset,
+                                        exclude_defaults=response_model_exclude_defaults,
+                                        exclude_none=response_model_exclude_none,
+                                    )
+                                )
                         else:
                             data_str = None
                         return format_sse_event(
