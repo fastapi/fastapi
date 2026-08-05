@@ -176,7 +176,7 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument, unknown-argument]
+        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument]
 
 
 def test_encode_model_with_alias():

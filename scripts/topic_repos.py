@@ -24,7 +24,7 @@ class Repo(BaseModel):
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
-    settings = Settings()  # ty: ignore[missing-argument]
+    settings = Settings()
 
     logging.info(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value(), per_page=100)

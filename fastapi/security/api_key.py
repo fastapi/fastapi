@@ -22,7 +22,7 @@ class APIKeyBase(SecurityBase):
         self.auto_error = auto_error
 
         self.model: APIKey = APIKey(
-            **{"in": location},  # ty: ignore[invalid-argument-type]
+            **{"in": location},
             name=name,
             description=description,
         )
