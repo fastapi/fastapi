@@ -8,12 +8,16 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Item(BaseModel):
     name: str
     description: str | None = None
+
+
+class AliasedItem(BaseModel):
+    item_name: str = Field(serialization_alias="itemName")
 
 
 items = [
@@ -86,6 +90,30 @@ async def sse_items_raw():
     yield ServerSentEvent(raw_data="plain text without quotes")
     yield ServerSentEvent(raw_data="<div>html fragment</div>", event="html")
     yield ServerSentEvent(raw_data="cpu,87.3,1709145600", event="csv")
+
+
+@app.get("/items/stream-aliased-event", response_class=EventSourceResponse)
+async def sse_items_aliased_event():
+    yield ServerSentEvent(data=AliasedItem(item_name="Plumbus"))
+
+
+@app.get("/items/stream-aliased-nested", response_class=EventSourceResponse)
+async def sse_items_aliased_nested():
+    yield ServerSentEvent(data={"nested": AliasedItem(item_name="Portal Gun")})
+
+
+@app.get("/items/stream-aliased-plain", response_class=EventSourceResponse)
+async def sse_items_aliased_plain() -> AsyncIterable[AliasedItem]:
+    yield AliasedItem(item_name="Plumbus")
+
+
+@app.get(
+    "/items/stream-aliased-no-alias",
+    response_class=EventSourceResponse,
+    response_model_by_alias=False,
+)
+async def sse_items_aliased_no_alias():
+    yield ServerSentEvent(data=AliasedItem(item_name="Plumbus"))
 
 
 router = APIRouter()
@@ -221,6 +249,37 @@ def test_string_data_json_encoded(client: TestClient):
     response = client.get("/items/stream-string")
     assert response.status_code == 200
     assert 'data: "plain text data"\n' in response.text
+
+
+def test_sse_event_data_uses_field_aliases(client: TestClient):
+    """`ServerSentEvent(data=...)` serializes models using their field aliases."""
+    response = client.get("/items/stream-aliased-event")
+    assert response.status_code == 200
+    assert 'data: {"itemName":"Plumbus"}\n' in response.text
+    assert "item_name" not in response.text
+
+
+def test_sse_event_data_uses_field_aliases_when_nested(client: TestClient):
+    """Aliases are also applied to models nested inside the `data` payload."""
+    response = client.get("/items/stream-aliased-nested")
+    assert response.status_code == 200
+    assert '"itemName"' in response.text
+    assert "item_name" not in response.text
+
+
+def test_sse_event_data_matches_plain_item_serialization(client: TestClient):
+    """Wrapping a model in `ServerSentEvent` produces the same `data:` payload as
+    yielding the model directly."""
+    data_line = 'data: {"itemName":"Plumbus"}\n'
+    assert data_line in client.get("/items/stream-aliased-event").text
+    assert data_line in client.get("/items/stream-aliased-plain").text
+
+
+def test_sse_event_data_respects_response_model_by_alias_false(client: TestClient):
+    """`response_model_by_alias=False` disables aliases for `ServerSentEvent` data."""
+    response = client.get("/items/stream-aliased-no-alias")
+    assert response.status_code == 200
+    assert 'data: {"item_name":"Plumbus"}\n' in response.text
 
 
 def test_server_sent_event_null_id_rejected():
