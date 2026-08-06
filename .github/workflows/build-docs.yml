@@ -6,6 +6,9 @@ on:
   pull_request:
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -57,6 +60,7 @@ jobs:
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.18"
           enable-cache: true
+          cache-suffix: docs
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -96,6 +100,7 @@ jobs:
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.18"
           enable-cache: true
+          cache-suffix: docs
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
