@@ -7,6 +7,7 @@ permissions: {}
 env:
   # Forks and Dependabot don't have access to secrets
   HAS_SECRETS: ${{ secrets.PRE_COMMIT != '' }}
+  UV_NO_SYNC: true
 
 jobs:
   pre-commit:
@@ -48,6 +49,10 @@ jobs:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.18"
+          cache-suffix: dev-all
+          # Cache written by workflow triggered by pull_request is PR-scoped and almost useless.
+          # Disable saving here, it will be populated by `warm-cache.yml`.
+          save-cache: false
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
