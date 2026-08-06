@@ -18,6 +18,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   prepare-release:
     runs-on: ubuntu-latest
@@ -48,6 +51,14 @@ jobs:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
           version: "0.11.18"
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+          cache-suffix: dev-all
+          # Disable saving cache as we install narrower set of dependencies than dev-all has.
+          save-cache: false
+      - name: Install dependencies
+        run: uv sync --locked --group dev
       - name: Prepare release
         env:
           PREPARE_RELEASE_BUMP: ${{ inputs.bump }}
