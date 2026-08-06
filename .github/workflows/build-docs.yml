@@ -32,6 +32,7 @@ jobs:
             - README.md
             - docs/**
             - docs_src/**
+            - .python-version
             - pyproject.toml
             - uv.lock
             - .github/workflows/build-docs.yml
