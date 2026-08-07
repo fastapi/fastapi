@@ -46,4 +46,4 @@ jobs:
             uv.lock
       - name: Populate the cache
         if: steps.setup-uv.outputs.cache-hit != 'true'
-        run: uv sync --locked --extra all
+        run: uv sync --locked --group dev --extra all
