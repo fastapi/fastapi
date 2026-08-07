@@ -34,6 +34,7 @@ from fastapi._compat import (
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
+    field_annotation_is_custom_object_type,
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
@@ -499,7 +500,9 @@ def analyze_param(
             type_annotation
         ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=use_annotation, default=default_value)
-        elif not field_annotation_is_scalar(annotation=type_annotation):
+        elif not field_annotation_is_scalar(
+            annotation=type_annotation
+        ) or field_annotation_is_custom_object_type(type_annotation):
             field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)

@@ -1,5 +1,8 @@
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
+from .shared import (
+    field_annotation_is_custom_object_type as field_annotation_is_custom_object_type,
+)
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
 from .shared import (
     field_annotation_is_scalar_sequence as field_annotation_is_scalar_sequence,

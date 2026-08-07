@@ -4,6 +4,7 @@ import warnings
 from collections import deque
 from collections.abc import Mapping, Sequence
 from dataclasses import is_dataclass
+from functools import lru_cache
 from typing import (
     Annotated,
     Any,
@@ -15,7 +16,8 @@ from typing import (
 )
 
 from fastapi.types import UnionType
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
+from pydantic.json_schema import PydanticJsonSchemaWarning
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 
@@ -108,6 +110,55 @@ def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
 def field_annotation_is_scalar(annotation: Any) -> bool:
     # handle Ellipsis here to make tuple[int, ...] work nicely
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
+
+
+@lru_cache
+def _type_has_object_json_schema(annotation: type[Any]) -> bool:
+    try:
+        with warnings.catch_warnings():
+            # Schema generation can warn while still succeeding, e.g. for a
+            # non-JSON-serializable default value.
+            warnings.simplefilter("ignore", PydanticJsonSchemaWarning)
+            json_schema = TypeAdapter(annotation).json_schema()
+    except Exception:
+        # Assume non-object if we can't retrieve a JSON schema at all.
+        return False
+    # Self-referencing types put their body in $defs behind a top-level $ref.
+    ref = json_schema.get("$ref")
+    if ref is not None:
+        json_schema = json_schema.get("$defs", {}).get(ref.removeprefix("#/$defs/"), {})
+    return json_schema.get("type") == "object"
+
+
+def _class_is_custom_object_type(annotation: Any) -> bool:
+    if not isinstance(annotation, type):
+        return False
+    if not (
+        hasattr(annotation, "__pydantic_core_schema__")
+        or hasattr(annotation, "__get_pydantic_core_schema__")
+    ):
+        return False
+    return _type_has_object_json_schema(annotation)
+
+
+def field_annotation_is_custom_object_type(annotation: Any) -> bool:
+    """Check if the annotation is a non-BaseModel class that implements the
+    Pydantic custom-schema protocol with an object-shaped JSON schema.
+
+    Such types validate from a JSON object, so they are
+    treated as body parameters, matching the behavior of `BaseModel` subclasses.
+
+    Custom types with scalar-shaped JSON schemas (e.g. `SecretStr`, `AnyUrl`)
+    are not affected and are treated as query parameters.
+    """
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        return any(
+            field_annotation_is_custom_object_type(arg) for arg in get_args(annotation)
+        )
+    if origin is Annotated:
+        return field_annotation_is_custom_object_type(get_args(annotation)[0])
+    return _class_is_custom_object_type(annotation)
 
 
 def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
