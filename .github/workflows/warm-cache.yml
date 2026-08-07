@@ -8,6 +8,11 @@ on:
   push:
     branches:
       - master
+    paths:
+      - pyproject.toml
+      - uv.lock
+      - .python-version
+      - .github/workflows/warm-cache.yml
   schedule:
     - cron: "0 4 * * *"
   workflow_dispatch:
@@ -16,6 +21,7 @@ permissions: {}
 
 jobs:
   warm-cache:
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
