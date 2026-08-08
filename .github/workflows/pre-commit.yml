@@ -5,12 +5,14 @@ on:
 permissions: {}
 
 env:
-  # Forks and Dependabot don't have access to secrets
-  HAS_SECRETS: ${{ secrets.PRE_COMMIT != '' }}
+  CAN_PUSH: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
 
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     timeout-minutes: 5
     steps:
       - name: Dump GitHub context
@@ -19,20 +21,18 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         name: Checkout PR for own repo
-        if: env.HAS_SECRETS == 'true'
+        if: env.CAN_PUSH == 'true'
         with:
           # To be able to commit it needs to fetch the head of the branch, not the
           # merge commit
           ref: ${{ github.head_ref }}
           # And it needs the full history to be able to compute diffs
           fetch-depth: 0
-          # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
-          token: ${{ secrets.PRE_COMMIT }} # zizmor: ignore[secrets-outside-env]
-          persist-credentials: true # Required for `git push` command
+          persist-credentials: false
       # pre-commit lite ci needs the default checkout configs to work
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         name: Checkout PR for fork
-        if: env.HAS_SECRETS == 'false'
+        if: env.CAN_PUSH == 'false'
         with:
         # To be able to commit it needs the head branch of the PR, the remote one
           ref: ${{ github.event.pull_request.head.sha }}
@@ -57,11 +57,26 @@ jobs:
         id: precommit
         run: uv run prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
         continue-on-error: true
+      - name: Check for changes
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Get PR Push token
+        id: pr-push
+        if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
+        uses: tiangolo/pr-push@ff4e51a433de4c22bbf90597e069e8247b9203d2 # 0.0.1
       - name: Commit and push changes
-        if: env.HAS_SECRETS == 'true'
+        if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
+        env:
+          PR_PUSH_TOKEN: ${{ steps.pr-push.outputs.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${PR_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add -A
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -70,7 +85,7 @@ jobs:
             git push
           fi
       - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
-        if: env.HAS_SECRETS == 'false'
+        if: env.CAN_PUSH == 'false'
         with:
           msg: 🎨 Auto format
       - name: Error out on pre-commit errors
