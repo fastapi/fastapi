@@ -23,9 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
-      contents: write
-      issues: write
-      pull-requests: write
+      contents: read
+      id-token: write
     env:
       PREPARE_RELEASE_VERSION_FILE: fastapi/__init__.py
       PREPARE_RELEASE_RELEASE_NOTES_FILE: docs/en/docs/release-notes.md
@@ -36,8 +35,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          token: ${{ secrets.FASTAPI_LATEST_CHANGES }} # zizmor: ignore[secrets-outside-env]
-          persist-credentials: true
+          persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
@@ -59,18 +57,22 @@ jobs:
           version="$(uv run python scripts/prepare_release.py current-version)"
           echo "$version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
       - name: Create release pull request
         env:
-          GH_TOKEN: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+          GH_TOKEN: ${{ steps.pr-submit.outputs.token }}
           VERSION: ${{ steps.release-version.outputs.version }}
         run: |
           set -euo pipefail
           branch="release-${VERSION}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "pr-submit[bot]"
+          git config user.email "pr-submit[bot]@users.noreply.github.com"
           git switch -c "$branch"
           git add $PREPARE_RELEASE_VERSION_FILE $PREPARE_RELEASE_RELEASE_NOTES_FILE
           git commit -m "🔖 Release version ${VERSION}"
+          gh auth setup-git
           git push --set-upstream origin "$branch"
           gh pr create \
             --base master \
