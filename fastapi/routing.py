@@ -1728,6 +1728,13 @@ class _IncludedRouter(BaseRoute):
     def _match(
         self, scope: Scope
     ) -> tuple[Match, Scope, BaseRoute | None, _EffectiveRouteContext | None]:
+        # Every route in this router is registered under the include prefix, so a
+        # path that does not start with the prefix's literal head cannot match any
+        # of them, and the whole subtree can be skipped. The prefix may contain
+        # path params, so only the part before the first one is literal.
+        literal_prefix = self.include_context.prefix.split("{", 1)[0]
+        if literal_prefix and not get_route_path(scope).startswith(literal_prefix):
+            return Match.NONE, {}, None, None
         partial: tuple[Scope, BaseRoute, _EffectiveRouteContext | None] | None = None
         for candidate in self.effective_candidates():
             if isinstance(candidate, _IncludedRouter):
