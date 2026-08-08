@@ -94,6 +94,30 @@ def test_post_no_body(client: TestClient):
     }
 
 
+def test_post_broken_body(client: TestClient):
+    response = client.put(
+        "/items/5",
+        headers={"content-type": "application/json"},
+        content="{some broken json}",
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "json_invalid",
+                "loc": ["body"],
+                "msg": "Invalid JSON: Expecting property name enclosed in double quotes",
+                "input": "{some broken json}",
+                "ctx": {
+                    "colno": 2,
+                    "lineno": 1,
+                    "pos": 1,
+                },
+            }
+        ]
+    }
+
+
 def test_post_no_item(client: TestClient):
     response = client.put("/items/5", json={"user": {"username": "johndoe"}})
     assert response.status_code == 422

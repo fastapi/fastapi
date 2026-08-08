@@ -1,3 +1,4 @@
+from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -18,7 +19,11 @@ def test_post_validation_error():
                 "input": "XL",
             }
         ],
-        "body": {"title": "towel", "size": "XL"},
+        # httpx 0.28.0 switches to compact JSON https://github.com/encode/httpx/issues/3363
+        "body": IsOneOf(
+            '{"title": "towel", "size": "XL"}',
+            '{"title":"towel","size":"XL"}',
+        ),
     }
 
 
