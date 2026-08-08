@@ -1,1 +1,1 @@
-PR Push validation.  
+PR Push validation.
