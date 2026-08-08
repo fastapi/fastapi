@@ -65,7 +65,6 @@ def test_header_param_model_no_underscore(client: TestClient):
                     "input": {
                         "host": "testserver",
                         "traceparent": "123",
-                        "x_tag": [],
                         "accept": "*/*",
                         "accept-encoding": IsOneOf(
                             "gzip, deflate", "gzip, deflate, zstd"
@@ -105,7 +104,6 @@ def test_header_param_model_invalid(client: TestClient):
                     "loc": ["header", "save_data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
                         "accept-encoding": IsOneOf(
