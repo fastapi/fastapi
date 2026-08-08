@@ -74,8 +74,8 @@ jobs:
         env:
           PR_PUSH_TOKEN: ${{ steps.pr-push.outputs.token }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "pr-push[bot]"
+          git config user.email "pr-push[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${PR_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add -A
           if git diff --staged --quiet; then
