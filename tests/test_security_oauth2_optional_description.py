@@ -215,7 +215,11 @@ def test_openapi_schema():
                                 "type": "string",
                             },
                             "username": {"title": "Username", "type": "string"},
-                            "password": {"title": "Password", "type": "string"},
+                            "password": {
+                                "title": "Password",
+                                "type": "string",
+                                "format": "password",
+                            },
                             "scope": {
                                 "title": "Scope",
                                 "type": "string",
@@ -228,6 +232,7 @@ def test_openapi_schema():
                             "client_secret": {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "format": "password",
                             },
                         },
                     },
