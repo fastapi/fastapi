@@ -419,7 +419,7 @@ def make_pr(
     *,
     language: Annotated[str | None, typer.Option(envvar="LANGUAGE")] = None,
     command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
-    github_token: Annotated[str, typer.Option(envvar="GH_TOKEN")],
+    github_token: Annotated[str, typer.Option(envvar="GITHUB_TOKEN")],
     github_repository: Annotated[str, typer.Option(envvar="GITHUB_REPOSITORY")],
 ) -> None:
     print("Setting up GitHub Actions git user")

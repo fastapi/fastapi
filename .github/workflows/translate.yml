@@ -132,6 +132,6 @@ jobs:
           gh auth setup-git
           uv run ./scripts/translate.py make-pr
         env:
-          GH_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}
           LANGUAGE: ${{ matrix.lang }}
           COMMAND: ${{ matrix.command }}
