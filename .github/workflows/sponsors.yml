@@ -59,4 +59,4 @@ jobs:
           uv run ./scripts/sponsors.py
         env:
           SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }} # zizmor: ignore[secrets-outside-env]
-          PR_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}

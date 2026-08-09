@@ -84,7 +84,7 @@ class SponsorsResponse(BaseModel):
 
 class Settings(BaseSettings):
     sponsors_token: SecretStr
-    pr_token: SecretStr
+    github_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
 
@@ -160,7 +160,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.pr_token.get_secret_value())
+    g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 
     tiers = get_individual_sponsors(settings=settings)
