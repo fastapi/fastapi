@@ -11,6 +11,10 @@ hide:
 
 * 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Update translations for ko (update-outdated). PR [#16171](https://github.com/fastapi/fastapi/pull/16171) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
 ### Internal
 
 * 🔐 Use PR Submit for automated updates. PR [#16172](https://github.com/fastapi/fastapi/pull/16172) by [@tiangolo](https://github.com/tiangolo).
