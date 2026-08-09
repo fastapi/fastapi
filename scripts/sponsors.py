@@ -190,9 +190,9 @@ def main() -> None:
         return
 
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        ["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"],
         check=True,
     )
     branch_name = f"fastapi-people-sponsors-{secrets.token_hex(4)}"
