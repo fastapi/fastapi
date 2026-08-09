@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Raise pytest-xdist minimum. PR [#16170](https://github.com/fastapi/fastapi/pull/16170) by [@tiangolo](https://github.com/tiangolo).
 * 🔐 Use PR Submit for pull requests. PR [#16167](https://github.com/fastapi/fastapi/pull/16167) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use GitHub CLI for Git authentication. PR [#16166](https://github.com/fastapi/fastapi/pull/16166) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use PR Push commit identity. PR [#16164](https://github.com/fastapi/fastapi/pull/16164) by [@tiangolo](https://github.com/tiangolo).
