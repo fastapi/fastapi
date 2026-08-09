@@ -17,6 +17,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Sponsors. PR [#16175](https://github.com/fastapi/fastapi/pull/16175) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🐛 Fix Sponsors Git authentication. PR [#16174](https://github.com/fastapi/fastapi/pull/16174) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16173](https://github.com/fastapi/fastapi/pull/16173) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🔐 Use PR Submit for automated updates. PR [#16172](https://github.com/fastapi/fastapi/pull/16172) by [@tiangolo](https://github.com/tiangolo).
