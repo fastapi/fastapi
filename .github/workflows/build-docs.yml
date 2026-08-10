@@ -109,10 +109,6 @@ jobs:
         run: uv sync --locked --no-dev --group docs
       - name: Update Languages
         run: uv run ./scripts/docs.py update-languages
-      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          key: zensical-${{ matrix.lang }}-${{ github.ref }}
-          path: site_zensical_src/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: | # zizmor: ignore[template-injection] - comes from trusted source
           uv run ./scripts/docs.py build-lang ${{ matrix.lang }}

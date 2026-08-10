@@ -15,6 +15,9 @@ jobs:
     if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Dump GitHub context
         env:
@@ -22,8 +25,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
-          persist-credentials: true
+          persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
@@ -44,9 +46,12 @@ jobs:
         run: uv sync --locked --group dev
       - name: Bump pre-commit hooks
         run: uv run prek auto-update --freeze --cooldown-days 7
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
       - name: Create pull request
         env:
-          GH_TOKEN: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+          GH_TOKEN: ${{ steps.pr-submit.outputs.token }}
           BASE_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           set -euo pipefail
@@ -54,12 +59,13 @@ jobs:
             echo "No pre-commit hook updates available"
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "pr-submit[bot]"
+          git config user.email "pr-submit[bot]@users.noreply.github.com"
           branch="bump-pre-commit-hooks"
           git switch -C "$branch"
           git add .pre-commit-config.yaml
           git commit -m "⬆ Bump pre-commit hooks"
+          gh auth setup-git
           git push --force origin "$branch"
           if [ -z "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
             gh pr create \

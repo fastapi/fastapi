@@ -1,0 +1,2 @@
+workflows:
+  - .github/workflows/pre-commit.yml
