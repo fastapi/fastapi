@@ -17,6 +17,7 @@ hide:
 
 ### Internal
 
+* 👷 Remove legacy label check. PR [#16180](https://github.com/fastapi/fastapi/pull/16180) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pymdown-extensions from 11.0 to 11.0.1. PR [#16162](https://github.com/fastapi/fastapi/pull/16162) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump gitpython from 3.1.57 to 3.1.58. PR [#16157](https://github.com/fastapi/fastapi/pull/16157) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Sponsors. PR [#16175](https://github.com/fastapi/fastapi/pull/16175) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
