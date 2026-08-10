@@ -30,11 +30,6 @@ on:
         type: string
         required: false
         default: ""
-      commit_in_place:
-        description: Commit changes directly instead of making a PR
-        type: boolean
-        required: false
-        default: false
       max:
         description: Maximum number of items to translate (e.g. 10)
         type: number
@@ -82,7 +77,8 @@ jobs:
     needs: langs
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      id-token: write
     strategy:
       matrix:
         lang: ${{ fromJson(needs.langs.outputs.langs) }}
@@ -95,7 +91,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-          persist-credentials: true # Required for `git push` in `translate.py`
+          persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
@@ -118,17 +114,24 @@ jobs:
         with:
           limit-access-to-actor: true
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }} # zizmor: ignore[secrets-outside-env]
+          GITHUB_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # zizmor: ignore[secrets-outside-env]
       - name: FastAPI Translate
-        run: |
-          uv run ./scripts/translate.py "$COMMAND"
-          uv run ./scripts/translate.py make-pr
+        run: uv run ./scripts/translate.py "$COMMAND"
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }} # zizmor: ignore[secrets-outside-env]
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # zizmor: ignore[secrets-outside-env]
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
-          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place == 'true' && 'true' || '' }}
           MAX: ${{ github.event.inputs.max }}
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
+      - name: Create pull request
+        run: |
+          gh auth setup-git
+          uv run ./scripts/translate.py make-pr
+        env:
+          GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          LANGUAGE: ${{ matrix.lang }}
+          COMMAND: ${{ matrix.command }}

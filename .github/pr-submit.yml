@@ -1,0 +1,6 @@
+workflows:
+  - .github/workflows/bump-pre-commit-hooks.yml
+  - .github/workflows/prepare-release.yml
+  - .github/workflows/sponsors.yml
+  - .github/workflows/topic-repos.yml
+  - .github/workflows/translate.yml

@@ -11,8 +11,22 @@ hide:
 
 * 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Update translations for ko (update-outdated). PR [#16171](https://github.com/fastapi/fastapi/pull/16171) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
 ### Internal
 
+* ⬆ Bump gitpython from 3.1.57 to 3.1.58. PR [#16157](https://github.com/fastapi/fastapi/pull/16157) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Sponsors. PR [#16175](https://github.com/fastapi/fastapi/pull/16175) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🐛 Fix Sponsors Git authentication. PR [#16174](https://github.com/fastapi/fastapi/pull/16174) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#16173](https://github.com/fastapi/fastapi/pull/16173) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🔐 Use PR Submit for automated updates. PR [#16172](https://github.com/fastapi/fastapi/pull/16172) by [@tiangolo](https://github.com/tiangolo).
+* 🔐 Use PR Submit for translations. PR [#16168](https://github.com/fastapi/fastapi/pull/16168) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Raise pytest-xdist minimum. PR [#16170](https://github.com/fastapi/fastapi/pull/16170) by [@tiangolo](https://github.com/tiangolo).
+* 🔐 Use PR Submit for pull requests. PR [#16167](https://github.com/fastapi/fastapi/pull/16167) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Use GitHub CLI for Git authentication. PR [#16166](https://github.com/fastapi/fastapi/pull/16166) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Use PR Push commit identity. PR [#16164](https://github.com/fastapi/fastapi/pull/16164) by [@tiangolo](https://github.com/tiangolo).
 * 🔒 Replace pre-commit PAT with PR Push. PR [#16161](https://github.com/fastapi/fastapi/pull/16161) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Disable saving Zensical's `.cache` in `build-docs.yml`. PR [#16156](https://github.com/fastapi/fastapi/pull/16156) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔥 Remove the old Latest Changes workflow. PR [#16148](https://github.com/fastapi/fastapi/pull/16148) by [@tiangolo](https://github.com/tiangolo).
