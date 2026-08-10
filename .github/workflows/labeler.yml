@@ -5,9 +5,6 @@ on:
       - opened
       - synchronize
       - reopened
-      # For label-checker
-      - labeled
-      - unlabeled
 
 permissions: {}
 
@@ -20,18 +17,4 @@ jobs:
     timeout-minutes: 5
     steps:
     - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
-      if: ${{ github.event.action != 'labeled' && github.event.action != 'unlabeled' }}
     - run: echo "Done adding labels"
-  # Run this after labeler applied labels
-  check-labels:
-    needs:
-      - labeler
-    permissions:
-      pull-requests: read
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: agilepathway/label-checker@c3d16ad512e7cea5961df85ff2486bb774caf3c5 # v1.6.65
-        with:
-          one_of: breaking,security,feature,bug,refactor,upgrade,docs,lang-all,internal,release
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
