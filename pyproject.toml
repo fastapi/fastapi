@@ -55,6 +55,7 @@ Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/fastapi/fastapi"
 Issues = "https://github.com/fastapi/fastapi/issues"
 Changelog = "https://fastapi.tiangolo.com/release-notes/"
+Sitemap = "https://fastapi.tiangolo.com/sitemap.xml"
 
 [project.optional-dependencies]
 standard = [
@@ -398,3 +399,38 @@ exclude = [
 
 [tool.ty.terminal]
 error-on-warning = true
+
+[tool.seo]
+json_ld = """
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "FastAPI",
+      "url": "https://fastapi.tiangolo.com/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Documentation",
+          "item": "https://fastapi.tiangolo.com/"
+        }
+      ]
+    }
+  ]
+}
+"""
+defer_non_critical_javascript = true
+preload_hero_image = true
+convert_images_to_modern_formats = true
+eliminate_render_blocking_css = true
