@@ -196,7 +196,8 @@ class HTTPBasic(HTTPBase):
 
     def make_authenticate_headers(self) -> dict[str, str]:
         if self.realm:
-            return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
+            escaped_realm = self.realm.replace('"', r'\"')
+            return {"WWW-Authenticate": f'Basic realm="{escaped_realm}"'}
         return {"WWW-Authenticate": "Basic"}
 
     async def __call__(  # type: ignore
