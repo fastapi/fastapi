@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 🔥 Remove unused image. PR [#16195](https://github.com/fastapi/fastapi/pull/16195) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
