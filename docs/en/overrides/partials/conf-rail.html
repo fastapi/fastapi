@@ -1,23 +1,7 @@
-{% set language = config.theme.language | default("en", true) %}
-{% set copy = {
-  "de": ["28. Oktober 2026", "Amsterdam, NL", "Alles über FastAPI, direkt von der Quelle.", "Mehr erfahren"],
-  "es": ["28 de octubre de 2026", "Ámsterdam, NL", "Todo sobre FastAPI, directo de la fuente.", "Más información"],
-  "fr": ["28 octobre 2026", "Amsterdam, NL", "Tout sur FastAPI, à la source.", "En savoir plus"],
-  "hi": ["28 अक्टूबर, 2026", "एम्स्टर्डम, नीदरलैंड्स", "सब कुछ FastAPI के बारे में, सीधे स्रोत से।", "और जानें"],
-  "ja": ["2026 年 10 月 28 日", "オランダ・アムステルダム", "FastAPI のすべてを、ソースから直接。", "詳細を見る"],
-  "ko": ["2026년 10월 28일", "네덜란드 암스테르담", "FastAPI에 관한 모든 것, 바로 출처에서.", "자세히 보기"],
-  "pt": ["28 de outubro de 2026", "Amsterdã, NL", "Tudo sobre FastAPI, direto da fonte.", "Saiba mais"],
-  "ru": ["28 октября 2026", "Амстердам, Нидерланды", "Всё о FastAPI — из первых рук.", "Подробнее"],
-  "tr": ["28 Ekim 2026", "Amsterdam, NL", "Kaynağından, bütünüyle FastAPI.", "Daha fazla bilgi"],
-  "uk": ["28 жовтня 2026 року", "Амстердам, Нідерланди", "Усе про FastAPI з першоджерела.", "Докладніше"],
-  "zh": ["2026 年 10 月 28 日", "荷兰阿姆斯特丹", "来自源头的 FastAPI 干货。", "了解更多"],
-  "zh-hant": ["2026 年 10 月 28 日", "荷蘭阿姆斯特丹", "全部關於 FastAPI，來自第一手來源。", "了解更多"]
-}[language] | default(["October 28, 2026", "Amsterdam, NL", "All about FastAPI, right from the source.", "Learn more"], true) %}
-
 <a class="fastapi-conf-rail no-link-icon" href="https://fastapiconf.com" target="_blank" rel="noopener">
   <span class="fastapi-conf-rail__eyebrow">FastAPI Conf '26</span>
-  <span class="fastapi-conf-rail__date">{{ copy[0] }}</span>
-  <span class="fastapi-conf-rail__place">{{ copy[1] }}</span>
-  <span class="fastapi-conf-rail__summary">{{ copy[2] }}</span>
-  <span class="fastapi-conf-rail__cta">{{ copy[3] }} <span aria-hidden="true">→</span></span>
+  <span class="fastapi-conf-rail__date">October 28, 2026</span>
+  <span class="fastapi-conf-rail__place">Amsterdam, NL</span>
+  <span class="fastapi-conf-rail__summary">All about FastAPI, right from the source.</span>
+  <span class="fastapi-conf-rail__cta">Learn more <span aria-hidden="true">→</span></span>
 </a>
