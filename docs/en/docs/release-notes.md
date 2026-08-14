@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Remove conf section and add event banner. PR [#16193](https://github.com/fastapi/fastapi/pull/16193) by [@alejsdev](https://github.com/alejsdev).
+
 ### Docs
 
 * 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
