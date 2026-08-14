@@ -507,7 +507,34 @@ Inspired by Termynal's CSS tricks with modifications
   outline-offset: 2px;
 }
 
-.md-sidebar--primary:has(.fastapi-conf-rail) { position: static; }
+.fastapi-conf-rail--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 76.234375em) {
+  .fastapi-conf-rail:not(.fastapi-conf-rail--mobile) {
+    display: none;
+  }
+
+  .md-typeset .fastapi-conf-rail--mobile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    margin: 0 0 1.25rem;
+    text-decoration: none;
+  }
+
+  .fastapi-conf-rail--mobile .fastapi-conf-rail__summary {
+    display: none;
+  }
+
+  .fastapi-conf-rail--mobile .fastapi-conf-rail__cta {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    align-self: center;
+    margin: 0 0 0 0.8rem;
+    white-space: nowrap;
+  }
+}
 
 .fastapi-feature-banner {
   display: block;

@@ -44,6 +44,14 @@
   {% endif %}
 {% endblock %}
 
+{% block content %}
+  {% if not page.url %}
+    {% set conf_rail_mobile = true %}
+    {% include "partials/conf-rail.html" %}
+  {% endif %}
+  {% include "partials/content.html" %}
+{% endblock %}
+
 {% block announce %}
 <div class="announce-wrapper">
   <div id="announce-left">
