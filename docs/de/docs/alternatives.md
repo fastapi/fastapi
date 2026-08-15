@@ -125,7 +125,7 @@ Einen offenen Standard für API-Spezifikationen zu übernehmen und zu verwenden,
 Und Standard-basierte Tools für die Oberfläche zu integrieren:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Diese beiden wurden ausgewählt, weil sie ziemlich beliebt und stabil sind, aber bei einer schnellen Suche könnten Sie Dutzende alternativer Benutzeroberflächen für OpenAPI finden (welche Sie mit **FastAPI** verwenden können).
 
@@ -137,7 +137,7 @@ Es gibt mehrere Flask REST Frameworks, aber nachdem ich die Zeit und Arbeit inve
 
 ### [Marshmallow](https://marshmallow.readthedocs.io/en/stable/) { #marshmallow }
 
-Eine der von API-Systemen benötigten Hauptfunktionen ist die Daten-<dfn title="auch genannt: Marshalling, Konvertierung">„Serialisierung“</dfn>, welche Daten aus dem Code (Python) entnimmt und in etwas umwandelt, was durch das Netzwerk gesendet werden kann. Beispielsweise das Konvertieren eines Objekts, welches Daten aus einer Datenbank enthält, in ein JSON-Objekt. Konvertieren von `datetime`-Objekten in Strings, usw.
+Eine der von API-Systemen benötigten Hauptfunktionen ist die Daten-„<dfn title="auch genannt: Marshalling, Konvertierung">Serialisierung</dfn>“, welche Daten aus dem Code (Python) entnimmt und in etwas umwandelt, was durch das Netzwerk gesendet werden kann. Beispielsweise das Konvertieren eines Objekts, welches Daten aus einer Datenbank enthält, in ein JSON-Objekt. Konvertieren von `datetime`-Objekten in Strings, usw.
 
 Eine weitere wichtige Funktion, benötigt von APIs, ist die Datenvalidierung, welche sicherstellt, dass die Daten unter gegebenen Umständen gültig sind. Zum Beispiel, dass ein Feld ein `int` ist und kein zufälliger String. Das ist besonders nützlich für hereinkommende Daten.
 
@@ -237,7 +237,7 @@ Das OpenAPI-Schema automatisch zu generieren, aus demselben Code, welcher die Se
 
 ///
 
-### [NestJS](https://nestjs.com/) (und [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (und [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Dies ist nicht einmal Python, NestJS ist ein von Angular inspiriertes JavaScript (TypeScript) NodeJS Framework.
 
@@ -337,7 +337,7 @@ Da es auf dem bisherigen Standard für synchrone Python-Webframeworks (WSGI) bas
 
 /// note | Hinweis
 
-Hug wurde von Timothy Crosley erstellt, demselben Schöpfer von [`isort`](https://github.com/timothycrosley/isort), einem großartigen Tool zum automatischen Sortieren von Importen in Python-Dateien.
+Hug wurde von Timothy Crosley erstellt, demselben Schöpfer von [`isort`](https://github.com/PyCQA/isort), einem großartigen Tool zum automatischen Sortieren von Importen in Python-Dateien.
 
 ///
 
@@ -401,7 +401,7 @@ Ich betrachte **FastAPI** als einen „spirituellen Nachfolger“ von APIStar, w
 
 ## Verwendet von **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic ist eine Bibliothek zum Definieren von Datenvalidierung, Serialisierung und Dokumentation (unter Verwendung von JSON Schema) basierend auf Python-Typhinweisen.
 
@@ -417,7 +417,7 @@ Die gesamte Datenvalidierung, Datenserialisierung und automatische Modelldokumen
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette ist ein leichtgewichtiges <dfn title="Der neue Standard für die Erstellung asynchroner Python-Webanwendungen">ASGI</dfn>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
 
@@ -462,7 +462,7 @@ Alles, was Sie also mit Starlette machen können, können Sie direkt mit **FastA
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn ist ein blitzschneller ASGI-Server, der auf uvloop und httptools basiert.
 
