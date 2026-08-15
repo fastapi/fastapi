@@ -54,11 +54,11 @@ Hepsi, tüm geliştiriciler için en iyi geliştirme deneyimini sağlayacak şek
 
 ## Gereksinimler { #requirements }
 
-Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı [**Pydantic**](https://docs.pydantic.dev/)'i kullanmaya karar verdim.
+Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı [**Pydantic**](https://pydantic.dev/docs/)'i kullanmaya karar verdim.
 
 Sonra, JSON Schema ile tamamen uyumlu olmasını sağlamak, kısıtlama bildirimlerini tanımlamanın farklı yollarını desteklemek ve birkaç editördeki testlere dayanarak editör desteğini (tip kontrolleri, otomatik tamamlama) geliştirmek için katkıda bulundum.
 
-Geliştirme sırasında, diğer ana gereksinim olan [**Starlette**](https://www.starlette.dev/)'e de katkıda bulundum.
+Geliştirme sırasında, diğer ana gereksinim olan [**Starlette**](https://starlette.dev/)'e de katkıda bulundum.
 
 ## Geliştirme { #development }
 
@@ -70,7 +70,7 @@ Geliştirme sırasında, diğer ana gereksinim olan [**Starlette**](https://www.
 
 Birçok kullanım durumuna daha iyi uyduğu için, önceki alternatiflerin yerine seçiliyor.
 
-Ben ve ekibim dahil, birçok geliştirici ve ekip projelerinde **FastAPI**'ya bağlı.
+Ben ve ekibim dahil, birçok geliştirici ve ekip projelerinde **FastAPI**'a bağlı.
 
 Tabi, geliştirilecek birçok özellik ve iyileştirme mevcut.
 

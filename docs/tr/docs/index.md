@@ -26,7 +26,7 @@ include_yaml:
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pyp/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -110,7 +110,7 @@ Temel özellikleri şunlardır:
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>FastAPI</strong> kütüphanesini, sorgulanarak <strong>tahminler</strong> alınabilecek bir <strong>REST</strong> server başlatmak için benimsedik." <em>[Ludwig için]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> olarak <strong>kriz yönetimi</strong> orkestrasyon framework'ümüzün açık kaynak sürümünü duyurmaktan memnuniyet duyuyoruz: <strong>Dispatch</strong>!" <em>[FastAPI ile geliştirildi]</em></blockquote>
@@ -133,7 +133,7 @@ Temel özellikleri şunlardır:
 
 "_**FastAPI** kütüphanesini, **predictions** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla benimsedik. [Ludwig için]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -150,12 +150,6 @@ Temel özellikleri şunlardır:
 ---
 
 </div>
-
-## FastAPI Conf { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com) **28 Ekim 2026**'da **Amsterdam, NL**'de gerçekleşiyor. Kaynağından, bütünüyle FastAPI. 🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - 28 Ekim 2026 - Amsterdam, NL"></a>
 
 ## FastAPI mini belgeseli { #fastapi-mini-documentary }
 
@@ -175,17 +169,17 @@ Web API yerine terminalde kullanılacak bir <abbr title="Command Line Interface 
 
 FastAPI iki devin omuzları üstünde duruyor:
 
-* Web kısımları için [Starlette](https://www.starlette.dev/).
-* Data kısımları için [Pydantic](https://docs.pydantic.dev/).
+* Web kısımları için [Starlette](https://starlette.dev/).
+* Data kısımları için [Pydantic](https://pydantic.dev/docs/).
 
 ## Kurulum { #installation }
 
-Bir [virtual environment](https://fastapi.tiangolo.com/tr/virtual-environments/) oluşturup etkinleştirelim ve ardından FastAPI'ı yükleyelim:
+Önce [`uv`'yi kurun](https://docs.astral.sh/uv/getting-started/installation/), ardından projenize FastAPI'ı ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Not**: Tüm terminallerde çalıştığından emin olmak için `"fastapi[standard]"` ifadesini tırnak içinde yazdığınızdan emin olun.
+
+`pip` kullanmayı tercih ediyorsanız, `fastapi[standard]` paketini bir virtual environment içinde kurun. Alternatif adımlar için [kurulum rehberine](tutorial/#install-fastapi) bakın.
 
 ## Örnek { #example }
 
@@ -250,7 +246,7 @@ Sunucuyu şu komutla çalıştıralım:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary><code>fastapi dev</code> komutu hakkında...</summary>
 
-`fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://www.uvicorn.dev) kullanarak bir server başlatır.
+`fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://uvicorn.dev) kullanarak bir server başlatır.
 
 Varsayılan olarak `fastapi dev`, local geliştirme için auto-reload etkin şekilde başlar.
 
@@ -314,7 +310,7 @@ Otomatik etkileşimli API dokümantasyonunu göreceksiniz ([Swagger UI](https://
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
+Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -492,12 +488,12 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 
 ### Uygulamanızı deploy edin (opsiyonel) { #deploy-your-app-optional }
 
-FastAPI uygulamanızı tek bir komutla [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz. 🚀
+FastAPI uygulamanızı isteğe bağlı olarak tek bir komutla [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -540,7 +536,7 @@ FastAPI, Pydantic ve Starlette'a bağımlıdır.
 
 ### `standard` Bağımlılıkları { #standard-dependencies }
 
-FastAPI'ı `pip install "fastapi[standard]"` ile yüklediğinizde, opsiyonel bağımlılıkların `standard` grubuyla birlikte gelir:
+FastAPI'ı `uv add "fastapi[standard]"` ile yüklediğinizde, opsiyonel bağımlılıkların `standard` grubuyla birlikte gelir:
 
 Pydantic tarafından kullanılanlar:
 
@@ -554,17 +550,17 @@ Starlette tarafından kullanılanlar:
 
 FastAPI tarafından kullanılanlar:
 
-* [`uvicorn`](https://www.uvicorn.dev) - uygulamanızı yükleyen ve servis eden server için. Buna, yüksek performanslı servis için gereken bazı bağımlılıkları (örn. `uvloop`) içeren `uvicorn[standard]` dahildir.
+* [`uvicorn`](https://uvicorn.dev) - uygulamanızı yükleyen ve servis eden server için. Buna, yüksek performanslı servis için gereken bazı bağımlılıkları (örn. `uvloop`) içeren `uvicorn[standard]` dahildir.
 * `fastapi-cli[standard]` - `fastapi` komutunu sağlamak için.
     * Buna, FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy etmenizi sağlayan `fastapi-cloud-cli` dahildir.
 
 ### `standard` Bağımlılıkları Olmadan { #without-standard-dependencies }
 
-`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `pip install fastapi` ile kurabilirsiniz.
+`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `uv add "fastapi[standard]"` yerine `uv add fastapi` ile kurabilirsiniz.
 
 ### `fastapi-cloud-cli` Olmadan { #without-fastapi-cloud-cli }
 
-FastAPI'ı standard bağımlılıklarla ama `fastapi-cloud-cli` olmadan kurmak istiyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile yükleyebilirsiniz.
+FastAPI'ı standard bağımlılıklarla ama `fastapi-cloud-cli` olmadan kurmak istiyorsanız, `uv add "fastapi[standard-no-fastapi-cloud-cli]"` ile yükleyebilirsiniz.
 
 ### Ek Opsiyonel Bağımlılıklar { #additional-optional-dependencies }
 
@@ -572,13 +568,13 @@ Yüklemek isteyebileceğiniz bazı ek bağımlılıklar da vardır.
 
 Ek opsiyonel Pydantic bağımlılıkları:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - ayar yönetimi için.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic ile kullanılacak ek type'lar için.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - ayar yönetimi için.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - Pydantic ile kullanılacak ek type'lar için.
 
 Ek opsiyonel FastAPI bağımlılıkları:
 
 * [`orjson`](https://github.com/ijl/orjson) - `ORJSONResponse` kullanmak istiyorsanız gereklidir.
-* [`ujson`](https://github.com/esnme/ultrajson) - `UJSONResponse` kullanmak istiyorsanız gereklidir.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - `UJSONResponse` kullanmak istiyorsanız gereklidir.
 
 ## Lisans { #license }
 
