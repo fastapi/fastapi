@@ -20,7 +20,7 @@
 
 Він відносно тісно пов’язаний з реляційними базами даних (наприклад, MySQL або PostgreSQL), тому мати базу даних NoSQL (наприклад, Couchbase, MongoDB, Cassandra тощо) як основний механізм зберігання не дуже просто.
 
-Він був створений для створення HTML у серверній частині, а не для створення API, які використовуються сучасним інтерфейсом (як-от React, Vue.js і Angular) або іншими системами (як-от <abbr title="Internet of Things - Інтернет речей">IoT</abbr> пристрої), які спілкуються з ним.
+Він був створений для створення HTML у серверній частині, а не для створення API, які використовються сучасним інтерфейсом (як-от React, Vue.js і Angular) або іншими системами (як-от <abbr title="Internet of Things - Інтернет речей">IoT</abbr> пристрої), які спілкуються з ним.
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
@@ -125,7 +125,7 @@ def read_url():
 Інтегрувати інструменти інтерфейсу на основі стандартів:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Ці два було обрано через те, що вони досить популярні та стабільні, але, виконавши швидкий пошук, ви можете знайти десятки додаткових альтернативних інтерфейсів для OpenAPI (які можна використовувати з **FastAPI**).
 
@@ -237,7 +237,7 @@ Flask-apispec був створений тими ж розробниками Mar
 
 ///
 
-### [NestJS](https://nestjs.com/) (та [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (та [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Це навіть не Python, NestJS - це фреймворк NodeJS JavaScript (TypeScript), натхненний Angular.
 
@@ -337,7 +337,7 @@ Hug був одним із перших фреймворків, який реа�
 
 /// note | Примітка
 
-Hug створив Тімоті Крослі, той самий творець [`isort`](https://github.com/timothycrosley/isort), чудовий інструмент для автоматичного сортування імпорту у файлах Python.
+Hug створив Тімоті Крослі, той самий творець [`isort`](https://github.com/PyCQA/isort), чудовий інструмент для автоматичного сортування імпорту у файлах Python.
 
 ///
 
@@ -363,7 +363,7 @@ Hug надихнув **FastAPI** оголосити параметр `response` 
 
 Він мав найкращі показники продуктивності на той час (перевершив лише Starlette).
 
-Спочатку він не мав автоматичного веб-інтерфейсу документації API, але я знав, що можу додати до нього інтерфейс користувача Swagger.
+Спочатку він не мав автоматичного веб-інтерфейсу документації API, але я знав, що можу додати до нього Swagger UI.
 
 Він мав систему введення залежностей. Він вимагав попередньої реєстрації компонентів, як і інші інструменти, розглянуті вище. Але все одно це була чудова функція.
 
@@ -401,7 +401,7 @@ APIStar створив Том Крісті. Той самий хлопець, я
 
 ## Використовується **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic - це бібліотека для визначення перевірки даних, серіалізації та документації (за допомогою Схеми JSON) на основі підказок типу Python.
 
@@ -417,7 +417,7 @@ Pydantic - це бібліотека для визначення перевір�
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette - це легкий фреймворк/набір інструментів <dfn title="Новий стандарт для створення асинхронних вебзастосунків на Python">ASGI</dfn>, який ідеально підходить для створення високопродуктивних asyncio сервісів.
 
@@ -462,7 +462,7 @@ ASGI - це новий «стандарт», який розробляється
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn - це блискавичний сервер ASGI, побудований на uvloop і httptools.
 
