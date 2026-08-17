@@ -30,6 +30,11 @@ on:
         type: string
         required: false
         default: ""
+      commit_in_place:
+        description: Commit changes directly instead of making a PR
+        type: boolean
+        required: false
+        default: false
       max:
         description: Maximum number of items to translate (e.g. 10)
         type: number
