@@ -230,7 +230,7 @@ strict_xfail = true
 filterwarnings = [
     "error",
 ]
-timeout = "20"
+timeout = 20.0
 
 [tool.coverage.run]
 parallel = true
