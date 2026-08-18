@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* 👷 Update translation PR branches with PR Push. PR [#16224](https://github.com/fastapi/fastapi/pull/16224) by [@tiangolo](https://github.com/tiangolo).
 * ⏪️ Restore `commit_in_place` input in `translate.yml`. PR [#16216](https://github.com/fastapi/fastapi/pull/16216) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Migrate automatic labels to Latest Changes. PR [#16185](https://github.com/fastapi/fastapi/pull/16185) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix branch name in `zizmor.yml` workflow (`main` -> `master`). PR [#16178](https://github.com/fastapi/fastapi/pull/16178) by [@YuriiMotov](https://github.com/YuriiMotov).
