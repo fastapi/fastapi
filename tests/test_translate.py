@@ -10,7 +10,7 @@ def run_git(repo_path: Path, *args: str) -> str:
         cwd=repo_path,
         check=True,
         capture_output=True,
-        text=True,
+        encoding="utf-8",
     )
     return result.stdout.strip()
 

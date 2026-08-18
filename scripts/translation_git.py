@@ -8,7 +8,7 @@ def has_translation_changes(repo_path: Path) -> bool:
         cwd=repo_path,
         check=True,
         capture_output=True,
-        text=True,
+        encoding="utf-8",
     )
     return bool(result.stdout)
 
