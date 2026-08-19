@@ -48,4 +48,4 @@
 
 ///
 
-想查看所有可用的參數與選項，請參閱 [Starlette 文件](https://www.starlette.dev/responses/#set-cookie)。
+想查看所有可用的參數與選項，請參閱 [Starlette 文件](https://starlette.dev/responses/#set-cookie)。

@@ -38,4 +38,4 @@
 
 請記住，專有的自訂標頭可以[使用 `X-` 前綴](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)來新增。
 
-但如果你有自訂標頭並希望瀏覽器端的客戶端能看見它們，你需要把這些標頭加入到 CORS 設定中（詳見 [CORS（跨來源資源共用）](../tutorial/cors.md)），使用在[Starlette 的 CORS 文件](https://www.starlette.dev/middleware/#corsmiddleware)中記載的 `expose_headers` 參數。
+但如果你有自訂標頭並希望瀏覽器端的客戶端能看見它們，你需要把這些標頭加入到 CORS 設定中（詳見 [CORS（跨來源資源共用）](../tutorial/cors.md)），使用在[Starlette 的 CORS 文件](https://starlette.dev/middleware/#corsmiddleware)中記載的 `expose_headers` 參數。

@@ -7,10 +7,10 @@
 
 若要接收上傳的檔案，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 因為上傳的檔案是以「表單資料」送出的。
