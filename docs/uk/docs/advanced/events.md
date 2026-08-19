@@ -154,7 +154,7 @@ async with lifespan(app):
 
 /// note | Примітка
 
-Ви можете прочитати більше про обробники `lifespan` Starlette у [документації Starlette про Lifespan](https://www.starlette.dev/lifespan/).
+Ви можете прочитати більше про обробники `lifespan` Starlette у [документації Starlette про Lifespan](https://starlette.dev/lifespan/).
 
 Зокрема, як працювати зі станом тривалості життя, який можна використовувати в інших ділянках вашого коду.
 
