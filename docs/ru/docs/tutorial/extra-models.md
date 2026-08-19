@@ -166,7 +166,7 @@ UserInDB(
 
 /// note | Примечание
 
-При объявлении [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) сначала указывайте наиболее специфичный тип, затем менее специфичный. В примере ниже более специфичный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
+При объявлении [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) сначала указывайте наиболее специфичный тип, затем менее специфичный. В примере ниже более специфичный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
 
 ///
 

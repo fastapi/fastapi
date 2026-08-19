@@ -34,12 +34,12 @@
 
 ## Установка `SQLModel` { #install-sqlmodel }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его и затем установили `sqlmodel`:
+Добавьте `sqlmodel` в свой проект:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ $ pip install sqlmodel
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
