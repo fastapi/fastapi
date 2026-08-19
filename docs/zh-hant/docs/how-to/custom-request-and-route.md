@@ -66,7 +66,7 @@
 
 而 `scope` 與 `receive` 這兩者，就是建立一個新的 `Request` 實例所需的資料。
 
-想了解更多 `Request`，請參考 [Starlette 的 Request 文件](https://www.starlette.dev/requests/)。
+想了解更多 `Request`，請參考 [Starlette 的 Request 文件](https://starlette.dev/requests/)。
 
 ///
 

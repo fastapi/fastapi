@@ -26,14 +26,14 @@
 
 /// note
 
-當你使用 `pip install "fastapi[standard]"` 指令安裝時，[`python-multipart`](https://github.com/Kludex/python-multipart) 套件會隨 **FastAPI** 自動安裝。
+當你執行 `uv add "fastapi[standard]"` 指令時，[`python-multipart`](https://github.com/Kludex/python-multipart) 套件會隨 **FastAPI** 自動安裝。
 
-不過若只執行 `pip install fastapi`，預設不會包含 `python-multipart`。
+不過若你使用 `uv add fastapi` 指令，預設不會包含 `python-multipart` 套件。
 
-若要手動安裝，請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，接著執行：
+若要手動安裝，請將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 因為 **OAuth2** 會以「form data」傳送 `username` 與 `password`。
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -72,7 +72,7 @@ $ fastapi dev
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | 注意
+/// note
 
 不管你在表單輸入什麼，現在都還不會成功；等等我們會把它完成。
 
@@ -98,19 +98,19 @@ OAuth2 的設計讓後端或 API 可以獨立於執行使用者驗證的伺服�
 
 簡化來看流程如下：
 
-- 使用者在前端輸入 `username` 與 `password`，按下 `Enter`。
-- 前端（在使用者的瀏覽器中執行）把 `username` 與 `password` 傳到我們 API 的特定 URL（在程式中宣告為 `tokenUrl="token"`）。
-- API 檢查 `username` 與 `password`，並回應一個「token（權杖）」（我們還沒實作這部分）。
-    - 「token（權杖）」就是一段字串，之後可用來識別並驗證此使用者。
-    - 通常 token 會設定一段時間後失效。
-        - 因此使用者之後需要重新登入。
-        - 若 token 被竊取，風險也較低；它不像永遠有效的萬用鑰匙（多數情況下）。
-- 前端會暫存這個 token。
-- 使用者在前端點擊，前往前端網頁應用程式的另一個區段。
-- 前端需要再向 API 取得資料。
-    - 但該端點需要驗證。
-    - 因此為了向 API 驗證，請求會帶上一個 `Authorization` 標頭，值為 `Bearer ` 加上 token。
-    - 例如 token 是 `foobar`，則 `Authorization` 標頭內容為：`Bearer foobar`。
+* 使用者在前端輸入 `username` 與 `password`，按下 `Enter`。
+* 前端（在使用者的瀏覽器中執行）把 `username` 與 `password` 傳到我們 API 的特定 URL（在程式中宣告為 `tokenUrl="token"`）。
+* API 檢查 `username` 與 `password`，並回應一個「token（權杖）」（我們還沒實作這部分）。
+    * 「token（權杖）」就是一段字串，之後可用來識別並驗證此使用者。
+    * 通常 token 會設定一段時間後失效。
+        * 因此使用者之後需要重新登入。
+        * 若 token 被竊取，風險也較低；它不像永遠有效的萬用鑰匙（多數情況下）。
+* 前端會暫存這個 token。
+* 使用者在前端點擊，前往前端網頁應用程式的另一個區段。
+* 前端需要再向 API 取得資料。
+    * 但該端點需要驗證。
+    * 因此為了向 API 驗證，請求會帶上一個 `Authorization` 標頭，值為 `Bearer ` 加上 token。
+    * 例如 token 是 `foobar`，則 `Authorization` 標頭內容為：`Bearer foobar`。
 
 ## **FastAPI** 的 `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 

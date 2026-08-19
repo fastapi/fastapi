@@ -52,7 +52,7 @@ npm run build
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI** 只會對看起來像瀏覽器導覽的 `GET` 和 `HEAD` 請求使用這個 fallback。遺失的檔案，例如 JavaScript、CSS 和圖片，仍會回傳 `404`。
+**FastAPI** 只會對明確使用 `Accept: text/html` 或 `Accept: application/xhtml+xml` 接受 HTML 的 `GET` 和 `HEAD` 請求使用這個 fallback，就像瀏覽器導覽請求通常會做的那樣。遺失的檔案，例如 JavaScript、CSS 和圖片，仍會回傳 `404`。
 
 對於只符合前端 fallback 的路徑，使用其他方法的請求，例如 `POST` 或 `PUT`，也會回傳 `404`。一般的 **FastAPI** *路徑操作*仍然比前端路由有更高優先順序。
 
@@ -106,9 +106,13 @@ npm run build
 
 ## 檢查目錄 { #check-directory }
 
-預設情況下，`app.frontend()` 會在建立應用程式時檢查目錄是否存在。
+預設情況下，`app.frontend()` 會使用 `check_dir="auto"`。
 
-這有助於及早發現設定錯誤。例如，如果缺少前端建置輸出目錄，**FastAPI** 會在啟動時引發錯誤。
+當 `FASTAPI_ENV` 環境變數設定為 `development` 時，如果前端建置輸出目錄遺失，**FastAPI** 只會顯示警告。如果尚未設定此環境變數，[`fastapi dev` 指令](https://github.com/fastapi/fastapi-cli#fastapi-dev)會為你設定。這讓你可以在開發期間，在建置或啟動前端之前先啟動後端。
+
+在任何其他環境中，**FastAPI** 會在建立應用程式時引發錯誤。這有助於在部署沒有前端檔案的應用程式之前，及早發現設定錯誤。
+
+你也可以設定 `check_dir=True`，以便在建立應用程式時一律檢查目錄。
 
 如果你的前端檔案稍後才會建立，例如在建立 app 物件之後由另一個建置步驟產生，請設定 `check_dir=False`：
 
@@ -131,6 +135,8 @@ npm run build
 前端回應會在一般的 **FastAPI** 應用程式內執行，因此 HTTP middleware 會套用到它們。
 
 來自 app、`APIRouter` 和 `include_router()` 的 dependencies 也會套用到前端回應。這對使用 cookie authentication 或類似方式保護前端很有用。
+
+Dependencies 也可以像一般*路徑操作*一樣修改回應 headers 並加入 background tasks。
 
 ## 僅限靜態建置輸出 { #static-build-output-only }
 

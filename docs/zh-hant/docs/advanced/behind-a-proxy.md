@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ IP `0.0.0.0` 通常用來表示程式在該機器／伺服器上的所有可用 
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ ASGI 規格針對這種用例定義了 `root_path`。
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn 會預期代理以 `http://127.0.0.1:8000/app` 來存取 Uvicorn，而�
 
 你可以很容易地用 [Traefik](https://docs.traefik.io/) 在本機跑一個「移除路徑前綴」的測試。
 
-[下載 Traefik](https://github.com/containous/traefik/releases)，它是一個單一的執行檔，你可以解壓縮後直接在終端機執行。
+[下載 Traefik](https://github.com/traefik/traefik/releases)，它是一個單一的執行檔，你可以解壓縮後直接在終端機執行。
 
 然後建立一個 `traefik.toml` 檔案，內容如下：
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

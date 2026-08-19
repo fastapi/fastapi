@@ -487,7 +487,7 @@ from app.main import app
 你也可以把路徑直接傳給指令，例如：
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 但你每次呼叫 `fastapi` 指令時都得記得傳入正確的路徑。
@@ -503,7 +503,7 @@ $ fastapi dev app/main.py
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
