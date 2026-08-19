@@ -6,7 +6,7 @@ Mais FastAPI prend aussi en charge l'utilisation de [`dataclasses`](https://docs
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-C'est toujours pris en charge grâce à **Pydantic**, qui offre une [prise en charge interne des `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
+C'est toujours pris en charge grâce à **Pydantic**, qui offre une [prise en charge interne des `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel).
 
 Ainsi, même avec le code ci‑dessus qui n'emploie pas explicitement Pydantic, FastAPI utilise Pydantic pour convertir ces dataclasses standard en la variante de dataclasses de Pydantic.
 
@@ -36,7 +36,7 @@ Vous pouvez aussi utiliser `dataclasses` dans le paramètre `response_model` :
 
 La dataclass sera automatiquement convertie en dataclass Pydantic.
 
-Ainsi, son schéma apparaîtra dans l'interface utilisateur de la documentation de l'API :
+Ainsi, son schéma apparaîtra dans l'interface utilisateur des documents de l'API :
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
@@ -74,7 +74,7 @@ Dans ce cas, vous pouvez simplement remplacer les `dataclasses` standard par `py
 
     Comme toujours, avec FastAPI vous pouvez combiner `def` et `async def` selon vos besoins.
 
-    Si vous avez besoin d'un rappel sur quand utiliser l'un ou l'autre, consultez la section _« In a hurry? »_ dans la documentation à propos de [`async` et `await`](../async.md#in-a-hurry).
+    Si vous avez besoin d'un rappel sur quand utiliser l'un ou l'autre, consultez la section _« Vous êtes pressé ? »_ dans les documents à propos de [`async` et `await`](../async.md#in-a-hurry).
 
 9. Cette *fonction de chemin d'accès* ne renvoie pas des dataclasses (même si elle le pourrait), mais une liste de dictionnaires contenant des données internes.
 
@@ -82,13 +82,13 @@ Dans ce cas, vous pouvez simplement remplacer les `dataclasses` standard par `py
 
 Vous pouvez combiner `dataclasses` avec d'autres annotations de type, selon de nombreuses combinaisons, pour former des structures de données complexes.
 
-Reportez‑vous aux annotations dans le code ci‑dessus pour voir plus de détails spécifiques.
+Reportez‑vous aux astuces d'annotation dans le code ci‑dessus pour voir plus de détails spécifiques.
 
 ## En savoir plus { #learn-more }
 
 Vous pouvez aussi combiner `dataclasses` avec d'autres modèles Pydantic, en hériter, les inclure dans vos propres modèles, etc.
 
-Pour en savoir plus, consultez la [documentation Pydantic sur les dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
+Pour en savoir plus, consultez les [documents Pydantic sur les dataclasses](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Version { #version }
 
