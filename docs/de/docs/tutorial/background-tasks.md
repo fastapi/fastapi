@@ -63,7 +63,7 @@ Und dann schreibt ein weiterer Hintergrundtask, der in der *Pfadoperation-Funkti
 
 ## Technische Details { #technical-details }
 
-Die Klasse `BackgroundTasks` stammt direkt von [`starlette.background`](https://www.starlette.dev/background/).
+Die Klasse `BackgroundTasks` stammt direkt von [`starlette.background`](https://starlette.dev/background/).
 
 Sie wird direkt in FastAPI importiert/inkludiert, sodass Sie sie von `fastapi` importieren können und vermeiden, versehentlich das alternative `BackgroundTask` (ohne das `s` am Ende) von `starlette.background` zu importieren.
 
@@ -71,7 +71,7 @@ Indem Sie nur `BackgroundTasks` (und nicht `BackgroundTask`) verwenden, ist es d
 
 Es ist immer noch möglich, `BackgroundTask` allein in FastAPI zu verwenden, aber Sie müssen das Objekt in Ihrem Code erstellen und eine Starlette-`Response` zurückgeben, die es enthält.
 
-Weitere Details finden Sie in [Starlettes offizieller Dokumentation für Hintergrundtasks](https://www.starlette.dev/background/).
+Weitere Details finden Sie in [Starlettes offizieller Dokumentation für Hintergrundtasks](https://starlette.dev/background/).
 
 ## Vorbehalt { #caveat }
 

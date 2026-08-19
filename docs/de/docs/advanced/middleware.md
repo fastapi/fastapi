@@ -2,9 +2,9 @@
 
 Im Haupttutorial haben Sie gelesen, wie Sie Ihrer Anwendung [benutzerdefinierte Middleware](../tutorial/middleware.md) hinzufügen können.
 
-Und dann auch, wie man [CORS mittels der `CORSMiddleware`](../tutorial/cors.md) handhabt.
+Und dann haben Sie auch gelesen, wie Sie [CORS mittels der `CORSMiddleware`](../tutorial/cors.md) handhaben.
 
-In diesem Abschnitt werden wir sehen, wie man andere Middlewares verwendet.
+In diesem Abschnitt werden wir sehen, wie Sie andere Middlewares verwenden.
 
 ## ASGI-Middleware hinzufügen { #adding-asgi-middlewares }
 
@@ -41,7 +41,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ## Integrierte Middleware { #integrated-middlewares }
 
-**FastAPI** enthält mehrere Middlewares für gängige Anwendungsfälle. Wir werden als Nächstes sehen, wie man sie verwendet.
+**FastAPI** enthält mehrere Middlewares für gängige Anwendungsfälle. Wir werden als Nächstes sehen, wie Sie sie verwenden.
 
 /// note | Technische Details
 
@@ -74,7 +74,7 @@ Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-<abbr
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-Verarbeitet GZip-Responses für alle Requests, die „gzip“ im `Accept-Encoding`-Header enthalten.
+Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`-Header enthalten.
 
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
@@ -91,7 +91,7 @@ Es gibt viele andere ASGI-Middlewares.
 
 Zum Beispiel:
 
-* [Uvicorns `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [Uvicorns `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie [Starlettes Middleware-Dokumentation](https://www.starlette.dev/middleware/) und die [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).
+Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie [Starlettes Middleware-Dokumentation](https://starlette.dev/middleware/) und die [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi).

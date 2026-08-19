@@ -12,7 +12,7 @@ Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, w
 
 Diese zusätzlichen Informationen werden unverändert zum für dieses Modell ausgegebenen **JSON-Schema** hinzugefügt und in der API-Dokumentation verwendet.
 
-Sie können das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in [Pydantic-Dokumentation: Configuration](https://docs.pydantic.dev/latest/api/config/).
+Sie können das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in [Pydantic-Dokumentation: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Sie können `"json_schema_extra"` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
 

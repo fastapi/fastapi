@@ -4,12 +4,12 @@ Sie können [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSoc
 
 ## `websockets` installieren { #install-websockets }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und `websockets` installieren (eine Python-Bibliothek, die die Verwendung des „WebSocket“-Protokolls erleichtert):
+Fügen Sie `websockets` (eine Python-Bibliothek, die die Verwendung des „WebSocket“-Protokolls erleichtert) zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ Legen Sie Ihren Code in einer Datei `main.py` ab und führen Sie dann Ihre Anwen
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -96,7 +96,7 @@ Sie können viele Nachrichten senden (und empfangen):
 
 Und alle verwenden dieselbe WebSocket-Verbindung.
 
-## Verwendung von `Depends` und anderen { #using-depends-and-others }
+## `Depends` und andere verwenden { #using-depends-and-others }
 
 In WebSocket-Endpunkten können Sie Folgendes aus `fastapi` importieren und verwenden:
 
@@ -126,7 +126,7 @@ Führen Sie Ihre Anwendung aus:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ Wenn Sie etwas benötigen, das sich leicht in FastAPI integrieren lässt, aber r
 
 Weitere Informationen zu Optionen finden Sie in der Dokumentation von Starlette:
 
-* [Die `WebSocket`-Klasse](https://www.starlette.dev/websockets/).
-* [Klassen-basierte Handhabung von WebSockets](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [Die `WebSocket`-Klasse](https://starlette.dev/websockets/).
+* [Klassen-basierte Handhabung von WebSockets](https://starlette.dev/endpoints/#websocketendpoint).

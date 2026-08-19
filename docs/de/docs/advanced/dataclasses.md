@@ -1,13 +1,12 @@
 # Datenklassen verwenden { #using-dataclasses }
 
-
 FastAPI basiert auf **Pydantic**, und ich habe Ihnen gezeigt, wie Sie Pydantic-Modelle verwenden können, um <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> zu deklarieren.
 
 Aber FastAPI unterstützt auf die gleiche Weise auch die Verwendung von [`dataclasses`](https://docs.python.org/3/library/dataclasses.html):
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Das ist dank **Pydantic** ebenfalls möglich, da es [„`dataclasses` intern unterstützt“](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
+Das ist dank **Pydantic** ebenfalls möglich, da es [interne Unterstützung für `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel) bietet.
 
 Auch wenn im obigen Code Pydantic nicht explizit vorkommt, verwendet FastAPI Pydantic, um diese Standard-Datenklassen in Pydantics eigene Variante von Datenklassen zu konvertieren.
 
@@ -65,7 +64,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
 6. Hier geben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurück, das `items` enthält, welches eine Liste von Datenklassen ist.
 
-    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <dfn title="Konvertieren der Daten in ein übertragbares Format">Serialisieren</dfn>.
+    FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <dfn title="die Daten in ein übertragbares Format konvertieren">serialisieren</dfn>.
 
 7. Hier verwendet das `response_model` als Typannotation eine Liste von `Author`-Datenklassen.
 
@@ -75,7 +74,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
     Wie immer können Sie in FastAPI `def` und `async def` beliebig kombinieren.
 
-    Wenn Sie eine Auffrischung darüber benötigen, wann welche Anwendung sinnvoll ist, lesen Sie den Abschnitt „In Eile?“ in der Dokumentation zu [`async` und `await`](../async.md#in-a-hurry).
+    Wenn Sie eine Auffrischung darüber benötigen, wann welche Anwendung sinnvoll ist, lesen Sie den Abschnitt _„In Eile?“_ in der Dokumentation zu [`async` und `await`](../async.md#in-a-hurry).
 
 9. Diese *Pfadoperation-Funktion* gibt keine Datenklassen zurück (obwohl dies möglich wäre), sondern eine Liste von Dictionarys mit internen Daten.
 
@@ -83,13 +82,13 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
 Sie können `dataclasses` mit anderen Typannotationen auf vielfältige Weise kombinieren, um komplexe Datenstrukturen zu bilden.
 
-Weitere Einzelheiten finden Sie in den Bemerkungen im Quellcode oben.
+Weitere spezifische Details finden Sie in den Annotationstipps im Code oben.
 
 ## Mehr erfahren { #learn-more }
 
 Sie können `dataclasses` auch mit anderen Pydantic-Modellen kombinieren, von ihnen erben, sie in Ihre eigenen Modelle einbinden, usw.
 
-Weitere Informationen finden Sie in der [Pydantic-Dokumentation zu Datenklassen](https://docs.pydantic.dev/latest/concepts/dataclasses/).
+Weitere Informationen finden Sie in der [Pydantic-Dokumentation zu Datenklassen](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Version { #version }
 

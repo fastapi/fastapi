@@ -6,10 +6,10 @@ Sie können Dateien, die vom Client hochgeladen werden, mithilfe von `File` defi
 
 Um hochgeladene Dateien zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann das Paket installieren, zum Beispiel:
+Fügen Sie es Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Das liegt daran, dass hochgeladene Dateien als „Formulardaten“ gesendet werden.
@@ -147,7 +147,7 @@ Sie können auch `File()` mit `UploadFile` verwenden, um zum Beispiel zusätzlic
 
 ## Mehrere Datei-Uploads { #multiple-file-uploads }
 
-Es ist auch möglich, mehrere Dateien gleichzeitig hochzuladen.
+Es ist möglich, mehrere Dateien gleichzeitig hochzuladen.
 
 Diese werden demselben „Formularfeld“ zugeordnet, welches mittels „Formulardaten“ gesendet wird.
 
@@ -159,7 +159,7 @@ Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
 /// note | Technische Details
 
-Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+Sie könnten auch `from starlette.responses import HTMLResponse` verwenden.
 
 **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> kommen aber direkt von Starlette.
 

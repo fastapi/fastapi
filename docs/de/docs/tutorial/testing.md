@@ -1,6 +1,6 @@
 # Testen { #testing }
 
-Dank [Starlette](https://www.starlette.dev/testclient/) ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
+Dank [Starlette](https://starlette.dev/testclient/) ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
 
 Es basiert auf [HTTPX](https://www.python-httpx.org), welches wiederum auf der Grundlage von Requests konzipiert wurde, es ist also sehr vertraut und intuitiv.
 
@@ -12,10 +12,10 @@ Damit können Sie [pytest](https://docs.pytest.org/) direkt mit **FastAPI** verw
 
 Um `TestClient` zu verwenden, installieren Sie zunächst [`httpx`](https://www.python-httpx.org).
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -52,7 +52,7 @@ Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
 /// tip | Tipp
 
-Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md) im Handbuch für fortgeschrittene Benutzer.
+Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md) im Tutorial für fortgeschrittene Benutzer.
 
 ///
 
@@ -153,16 +153,16 @@ Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des T
 
 ///
 
-## Tests ausführen { #run-it }
+## Ausführen { #run-it }
 
 Danach müssen Sie nur noch `pytest` installieren.
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -176,7 +176,7 @@ Führen Sie die Tests aus, mit:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

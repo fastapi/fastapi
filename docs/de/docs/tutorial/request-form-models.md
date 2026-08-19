@@ -6,10 +6,10 @@ Sie können **Pydantic-Modelle** verwenden, um **Formularfelder** in FastAPI zu 
 
 Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und es dann installieren, zum Beispiel:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -38,7 +38,7 @@ Sie können dies in der Dokumentations-UI unter `/docs` testen:
 
 ## Zusätzliche Formularfelder verbieten { #forbid-extra-form-fields }
 
-In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Formularfelder auf nur diejenigen beschränken, die im Pydantic-Modell deklariert sind, und jegliche **zusätzlichen** Felder **verbieten**.
+In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Formularfelder auf nur diejenigen **beschränken**, die im Pydantic-Modell deklariert sind. Und jegliche **zusätzlichen** Felder **verbieten**.
 
 /// note | Hinweis
 
@@ -46,11 +46,11 @@ Dies wird seit FastAPI Version `0.114.0` unterstützt. 🤓
 
 ///
 
-Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` Felder zu `verbieten`:
+Sie können Pydantics Modellkonfiguration verwenden, um jegliche `extra`-Felder auf `forbid` zu setzen:
 
 {* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
-Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
+Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error**-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>.
 
 Zum Beispiel, wenn der Client versucht, folgende Formularfelder zu senden:
 
@@ -58,7 +58,7 @@ Zum Beispiel, wenn der Client versucht, folgende Formularfelder zu senden:
 * `password`: `Portal Gun`
 * `extra`: `Mr. Poopybutthole`
 
-erhält er eine Error-Response, die ihm mitteilt, dass das Feld `extra` nicht erlaubt ist:
+Er erhält eine Error-Response, die ihm mitteilt, dass das Feld `extra` nicht erlaubt ist:
 
 ```json
 {

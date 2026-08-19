@@ -5,7 +5,7 @@ Sie können Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) mi
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 

@@ -19,15 +19,15 @@ Interaktive API-Dokumentation und erkundbare Web-Benutzeroberflächen. Da das Fr
 
 ![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API-Dokumentation mit [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Alternative API-Dokumentation mit [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Nur modernes Python { #just-modern-python }
 
-Alles basiert auf Standard-**Python-Typ**deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
+Alles basiert auf Standard-**Python-Typ**deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden. Nur modernes Standard-Python.
 
-Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python-Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md).
+Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python-Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Python-Typen](python-types.md).
 
 Sie schreiben Standard-Python mit Typen:
 
@@ -140,7 +140,7 @@ FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <dfn
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **„Graph“ von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.
-* Alle Abhängigkeiten können Daten von Requests anfordern und die Einschränkungen der **Pfadoperationen** sowie die automatische Dokumentation **erweitern**.
+* Alle Abhängigkeiten können Daten von Requests anfordern und die Einschränkungen der **Pfadoperation** sowie die automatische Dokumentation **erweitern**.
 * **Automatische Validierung** selbst für solche Parameter von *Pfadoperationen*, welche in Abhängigkeiten definiert sind.
 * Unterstützung für komplexe Benutzerauthentifizierungssysteme, **Datenbankverbindungen**, usw.
 * **Keine Kompromisse** bei Datenbanken, Frontends, usw., sondern einfache Integration mit allen.
@@ -159,7 +159,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 
 ## Starlette-Merkmale { #starlette-features }
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) [**Starlette**](https://www.starlette.dev/). Das bedeutet, wenn Sie eigenen Starlette-Quellcode haben, funktioniert dieser auch.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) [**Starlette**](https://starlette.dev/). Das bedeutet, wenn Sie eigenen Starlette-Quellcode haben, funktioniert dieser auch.
 
 `FastAPI` ist tatsächlich eine Unterklasse von `Starlette`. Wenn Sie also bereits Starlette kennen oder benutzen, das meiste funktioniert genau so.
 
@@ -177,13 +177,13 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 
 ## Pydantic-Merkmale { #pydantic-features }
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) [**Pydantic**](https://docs.pydantic.dev/). Das bedeutet, wenn Sie eigenen Pydantic-Quellcode haben, funktioniert dieser auch.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) [**Pydantic**](https://pydantic.dev/docs/). Das bedeutet, wenn Sie eigenen Pydantic-Quellcode haben, funktioniert dieser auch.
 
-Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper - Objektrelationaler Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper - Objekt-Dokument-Mapper">ODM</abbr>s für Datenbanken.
+Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper - Objektrelationaler Mapper">ORM</abbr>s und <abbr title="Object-Document Mapper - Objekt-Dokument-Mapper">ODM</abbr>s für Datenbanken.
 
-Daher können Sie in vielen Fällen das Objekt eines Requests **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
+Das bedeutet auch, dass Sie in vielen Fällen dasselbe Objekt, das Sie von einem Request erhalten, **direkt an die Datenbank** übergeben können, da alles automatisch validiert wird.
 
-Das gleiche gilt auch für die andere Richtung: Sie können in vielen Fällen das Objekt aus der Datenbank **direkt zum Client** senden.
+Das Gleiche gilt auch umgekehrt: In vielen Fällen können Sie einfach das Objekt, das Sie aus der Datenbank erhalten, **direkt an den Client** übergeben.
 
 Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für die gesamte Datenverarbeitung Pydantic nutzt):
 

@@ -32,7 +32,7 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 {* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
-Hier simulieren wir den langsamen *Startup*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
+Hier simulieren wir den aufwendigen *Startup*-Vorgang des Ladens des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Shutdown*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
@@ -140,7 +140,7 @@ Daher deklarieren wir die Eventhandler-Funktion mit Standard-`def` statt mit `as
 
 ### `startup` und `shutdown` zusammen { #startup-and-shutdown-together }
 
-Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
+Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource belegen und sie dann freigeben usw.
 
 Bei getrennten Funktionen, die keine gemeinsame Logik oder Variablen haben, ist dies schwieriger, da Sie Werte in globalen Variablen speichern oder ähnliche Tricks verwenden müssen.
 
@@ -154,9 +154,9 @@ In der technischen ASGI-Spezifikation ist dies Teil des [Lifespan-Protokolls](ht
 
 /// note | Hinweis
 
-Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in [Starlettes Lifespan-Dokumentation](https://www.starlette.dev/lifespan/).
+Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in [Starlettes Lifespan-Dokumentation](https://starlette.dev/lifespan/).
 
-Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihres Codes verwendet werden kann.
+Einschließlich, wie Sie Lifespan-Zustand handhaben, der in anderen Bereichen Ihres Codes verwendet werden kann.
 
 ///
 
