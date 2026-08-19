@@ -7,7 +7,7 @@ O corpo da **requisição** é a informação enviada pelo cliente para sua API.
 
 Sua API quase sempre precisa enviar um corpo na **resposta**. Mas os clientes não necessariamente precisam enviar **corpos de requisição** o tempo todo, às vezes eles apenas requisitam um path, talvez com alguns parâmetros de consulta, mas não enviam um corpo.
 
-Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://docs.pydantic.dev/) com todos os seus poderes e benefícios.
+Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://pydantic.dev/docs/) com todos os seus poderes e benefícios.
 
 /// note | Nota
 
