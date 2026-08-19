@@ -370,11 +370,11 @@ Podría haber casos donde necesites hacer alguna **validación personalizada** q
 
 En esos casos, puedes usar una **función validadora personalizada** que se aplique después de la validación normal (por ejemplo, después de validar que el valor es un `str`).
 
-Puedes lograr eso usando [`AfterValidator` de Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) dentro de `Annotated`.
+Puedes lograr eso usando [`AfterValidator` de Pydantic](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) dentro de `Annotated`.
 
 /// tip | Consejo
 
-Pydantic también tiene [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) y otros. 🤓
+Pydantic también tiene [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) y otros. 🤓
 
 ///
 
