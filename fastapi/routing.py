@@ -48,6 +48,11 @@ from fastapi._compat import (
     Undefined,
     lenient_issubclass,
 )
+from fastapi.concurrency import (
+    iterate_in_threadpool,
+    run_in_teardown_threadpool,
+    run_in_threadpool,
+)
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import (
     Dependant,
@@ -91,7 +96,6 @@ from fastapi.utils import (
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import get_route_path, is_async_callable
-from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
 from starlette.datastructures import URL, FormData, URLPath
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -316,7 +320,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors = await run_in_threadpool(
+            value, errors = await run_in_teardown_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
         if errors:
