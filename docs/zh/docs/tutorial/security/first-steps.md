@@ -1,6 +1,5 @@
 # 安全 - 第一步 { #security-first-steps }
 
-
 假设你的**后端** API 位于某个域名下。
 
 而**前端**在另一个域名，或同一域名的不同路径（或在移动应用中）。
@@ -27,14 +26,14 @@
 
 /// note | 注意
 
-当你使用命令 `pip install "fastapi[standard]"` 安装 **FastAPI** 时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会自动安装。
+当你运行 `uv add "fastapi[standard]"` 命令时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会随 **FastAPI** 自动安装。
 
-但是，如果你使用 `pip install fastapi`，默认不会包含 `python-multipart` 包。
+但是，如果你使用 `uv add fastapi` 命令，默认不会包含 `python-multipart` 包。
 
-如需手动安装，请先创建[虚拟环境](../../virtual-environments.md)、激活它，然后执行：
+如需手动安装，请把它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 这是因为 **OAuth2** 使用“表单数据”来发送 `username` 和 `password`。
@@ -46,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -145,7 +144,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 ///
 
-这个参数不会创建该端点/*路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
+这个参数不会创建该端点 / *路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
 
 我们很快也会创建对应的实际路径操作。
 

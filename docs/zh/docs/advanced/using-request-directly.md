@@ -15,7 +15,7 @@
 
 ## `Request` 对象的细节 { #details-about-the-request-object }
 
-实际上，**FastAPI** 的底层是 **Starlette**，**FastAPI** 只不过是在 **Starlette** 顶层提供了一些工具，所以能直接使用 Starlette 的 [`Request`](https://www.starlette.dev/requests/) 对象。
+实际上，**FastAPI** 的底层是 **Starlette**，**FastAPI** 只不过是在 **Starlette** 顶层提供了一些工具，所以能直接使用 Starlette 的 [`Request`](https://starlette.dev/requests/) 对象。
 
 但直接从 `Request` 对象提取数据时（例如，读取请求体），这些数据不会被 **FastAPI** 验证、转换或文档化（使用 OpenAPI，为自动的 API 用户界面）。
 
@@ -25,7 +25,7 @@
 
 ## 直接使用 `Request` 对象 { #use-the-request-object-directly }
 
-假设要在*路径操作函数*中获取客户端 IP 地址和主机。
+假设要在*路径操作函数*中获取客户端 IP 地址/主机。
 
 此时，需要直接访问请求。
 
@@ -39,17 +39,17 @@
 
 因此，能够提取、验证路径参数、并转换为指定类型，还可以用 OpenAPI 注释。
 
-同样，您也可以正常声明其它参数，而且还可以提取 `Request`。
+同样，你也可以正常声明其它参数，而且还可以提取 `Request`。
 
 ///
 
 ## `Request` 文档 { #request-documentation }
 
-你可以在[Starlette 官方文档站点的 `Request` 对象](https://www.starlette.dev/requests/)中阅读更多细节。
+你可以在[Starlette 官方文档站点的 `Request` 对象](https://starlette.dev/requests/)中阅读更多细节。
 
 /// note | 技术细节
 
-您也可以使用 `from starlette.requests import Request`。
+你也可以使用 `from starlette.requests import Request`。
 
 **FastAPI** 直接提供它只是为了方便开发者，但它直接来自 Starlette。
 
