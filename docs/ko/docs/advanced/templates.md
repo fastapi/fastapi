@@ -8,12 +8,12 @@
 
 ## 의존성 설치 { #install-dependencies }
 
-[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 후 `jinja2`를 설치해야 합니다:
+프로젝트에 `jinja2`를 추가합니다:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## 더 많은 세부 사항 { #more-details }
 
-템플릿 테스트를 포함한 더 많은 세부 사항은 [Starlette의 템플릿 문서](https://www.starlette.dev/templates/)를 확인하세요.
+템플릿 테스트를 포함한 더 많은 세부 사항은 [Starlette의 템플릿 문서](https://starlette.dev/templates/)를 확인하세요.

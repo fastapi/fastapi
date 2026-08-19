@@ -13,6 +13,7 @@ on:
       command:
         description: Command to run
         type: choice
+        required: true
         options:
           - translate-page
           - translate-lang
@@ -23,18 +24,12 @@ on:
       language:
         description: Language to translate to as a letter code (e.g. "es" for Spanish)
         type: string
-        required: false
-        default: ""
+        required: true
       en_path:
         description: File path in English to translate (e.g. docs/en/docs/index.md)
         type: string
         required: false
         default: ""
-      commit_in_place:
-        description: Commit changes directly instead of making a PR
-        type: boolean
-        required: false
-        default: false
       max:
         description: Maximum number of items to translate (e.g. 10)
         type: number
@@ -130,9 +125,11 @@ jobs:
           COMMAND: ${{ matrix.command }}
           MAX: ${{ github.event.inputs.max }}
       - name: Get PR Submit token
+        if: github.event_name == 'schedule'
         id: pr-submit
         uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
       - name: Create pull request
+        if: github.event_name == 'schedule'
         run: |
           gh auth setup-git
           uv run ./scripts/translate.py make-pr
@@ -140,3 +137,16 @@ jobs:
           GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}
           LANGUAGE: ${{ matrix.lang }}
           COMMAND: ${{ matrix.command }}
+      - name: Get PR Push token
+        if: github.event_name == 'workflow_dispatch'
+        id: pr-push
+        uses: tiangolo/pr-push@f336b3817f32ea9b8273a8c15f8ecb739ac38167 # 0.0.4
+      - name: Commit and push changes
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          COMMAND: ${{ matrix.command }}
+          GH_TOKEN: ${{ steps.pr-push.outputs.token }}
+          LANGUAGE: ${{ matrix.lang }}
+        run: |
+          gh auth setup-git
+          uv run ./scripts/translate.py push

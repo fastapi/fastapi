@@ -6,10 +6,10 @@
 
 업로드된 파일을 전달받기 위해 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치해야합니다.
 
-[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 다음, 예를 들어 다음과 같이 설치하세요:
+프로젝트에 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 업로드된 파일들은 "폼 데이터"의 형태로 전송되기 때문에 이 작업이 필요합니다.
