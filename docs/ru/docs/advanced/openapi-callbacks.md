@@ -35,7 +35,7 @@
 
 /// tip | Совет
 
-Query-параметр `callback_url` использует тип Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
+Query-параметр `callback_url` использует тип Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/).
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 Есть 2 основных отличия от обычной *операции пути*:
 
 * Ей не нужен реальный код, потому что ваше приложение никогда не будет вызывать эту функцию. Она используется только для документирования *внешнего API*. Поэтому в функции может быть просто `pass`.
-* *Путь* может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
+* *Путь* может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
 
 ### Выражение пути для обратного вызова { #the-callback-path-expression }
 
-*Путь* обратного вызова может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression), которое может включать части исходного запроса, отправленного *вашему API*.
+*Путь* обратного вызова может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression), которое может включать части исходного запроса, отправленного *вашему API*.
 
 В нашем случае это `str`:
 
