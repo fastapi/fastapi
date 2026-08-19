@@ -6,6 +6,7 @@ permissions: {}
 
 env:
   CAN_PUSH: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
+  UV_NO_SYNC: true
 
 jobs:
   pre-commit:
@@ -47,7 +48,8 @@ jobs:
         with:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "0.11.30"
+          cache-suffix: dev-all
           cache-dependency-glob: |
             pyproject.toml
             uv.lock

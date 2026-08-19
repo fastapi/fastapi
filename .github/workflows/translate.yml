@@ -38,6 +38,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   langs:
     runs-on: ubuntu-latest
@@ -57,7 +60,8 @@ jobs:
         with:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "0.11.30"
+          cache-suffix: github-actions
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -101,7 +105,8 @@ jobs:
         with:
           # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
           # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "0.11.30"
+          cache-suffix: github-actions
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
