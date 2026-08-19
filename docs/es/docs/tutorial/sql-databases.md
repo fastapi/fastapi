@@ -34,12 +34,12 @@ Este es un tutorial muy simple y corto, si deseas aprender sobre bases de datos 
 
 ## Instalar `SQLModel` { #install-sqlmodel }
 
-Primero, asegúrate de crear tu [entorno virtual](../virtual-environments.md), actívalo, y luego instala `sqlmodel`:
+Añade `sqlmodel` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Puedes ejecutar la aplicación:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Puedes ejecutar la aplicación de nuevo:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

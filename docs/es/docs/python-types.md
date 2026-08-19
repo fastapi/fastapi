@@ -269,7 +269,7 @@ No significa "`one_person` es la **clase** llamada `Person`".
 
 ## Modelos Pydantic { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) es un paquete de Python para realizar la validación de datos.
+[Pydantic](https://pydantic.dev/docs/) es un paquete de Python para realizar la validación de datos.
 
 Declaras la "forma" de los datos como clases con atributos.
 
@@ -285,7 +285,7 @@ Un ejemplo de la documentación oficial de Pydantic:
 
 /// note | Nota
 
-Para saber más sobre [Pydantic, revisa su documentación](https://docs.pydantic.dev/).
+Para saber más sobre [Pydantic, revisa su documentación](https://pydantic.dev/docs/).
 
 ///
 

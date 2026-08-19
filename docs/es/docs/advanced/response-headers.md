@@ -1,6 +1,5 @@
 # Headers de Response { #response-headers }
 
-
 ## Usa un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function* (como puedes hacer para cookies).
@@ -39,4 +38,4 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 Ten en cuenta que los headers propietarios personalizados se pueden agregar [usando el prefijo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando el parámetro `expose_headers` documentado en [la documentación CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando el parámetro `expose_headers` documentado en [la documentación CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).

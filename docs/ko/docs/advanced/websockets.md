@@ -4,12 +4,12 @@
 
 ## `websockets` 설치 { #install-websockets }
 
-[가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, `websockets`("WebSocket" 프로토콜을 쉽게 사용할 수 있게 해주는 Python 라이브러리)를 설치하세요:
+프로젝트에 `websockets`("WebSocket" 프로토콜을 쉽게 사용할 수 있게 해주는 Python 라이브러리)를 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ WebSocket 경로에서 메시지를 대기(`await`)하고 전송할 수 있습�
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -126,7 +126,7 @@ WebSocket이기 때문에 `HTTPException`을 발생시키는 것은 적절하지
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ FastAPI와 쉽게 통합할 수 있으면서 더 견고하고 Redis, PostgreSQL 
 
 다음 옵션에 대해 더 알아보려면 Starlette의 문서를 확인하세요:
 
-* [`WebSocket` 클래스](https://www.starlette.dev/websockets/).
-* [클래스 기반 WebSocket 처리](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [`WebSocket` 클래스](https://starlette.dev/websockets/).
+* [클래스 기반 WebSocket 처리](https://starlette.dev/endpoints/#websocketendpoint).

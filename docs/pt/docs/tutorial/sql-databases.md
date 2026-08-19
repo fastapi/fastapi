@@ -34,12 +34,12 @@ Este é um tutorial muito simples e curto, se você quiser aprender sobre bancos
 
 ## Instale o `SQLModel` { #install-sqlmodel }
 
-Primeiro, certifique-se de criar seu [ambiente virtual](../virtual-environments.md), ativá-lo e, em seguida, instalar o `sqlmodel`:
+Adicione `sqlmodel` ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Você pode executar o app:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Você pode executar o app novamente:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
