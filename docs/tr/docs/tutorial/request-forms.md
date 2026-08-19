@@ -1,16 +1,15 @@
 # Form Verisi { #form-data }
 
-
-JSON yerine form alanlarını almanız gerektiğinde `Form` kullanabilirsiniz.
+When you need to receive form fields instead of JSON, you can use `Form`.
 
 /// note | Not
 
 Formları kullanmak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu etkinleştirdiğinizden emin olun ve ardından örneğin şöyle kurun:
+Projenize ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
