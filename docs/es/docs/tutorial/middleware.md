@@ -37,7 +37,7 @@ La función middleware recibe:
 
 Ten en cuenta que los custom proprietary headers se pueden añadir [usando el prefijo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando el parámetro `expose_headers` documentado en [la documentación de CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando el parámetro `expose_headers` documentado en [la documentación de CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -67,9 +67,9 @@ Aquí usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html
 
 ## Orden de ejecución con múltiples middlewares { #multiple-middleware-execution-order }
 
-Cuando añades múltiples middlewares usando ya sea el decorador `@app.middleware()` o el método `app.add_middleware()`, cada nuevo middleware envuelve la aplicación, formando un stack. El último middleware añadido es el más externo, y el primero es el más interno.
+Cuando añades múltiples middlewares usando ya sea el decorador `@app.middleware()` o el método `app.add_middleware()`, cada nuevo middleware envuelve la aplicación, formando un stack. El último middleware añadido es el *más externo*, y el primero es el *más interno*.
 
-En el camino de la request, el middleware más externo se ejecuta primero.
+En el camino de la request, el middleware *más externo* se ejecuta primero.
 
 En el camino de la response, se ejecuta al final.
 

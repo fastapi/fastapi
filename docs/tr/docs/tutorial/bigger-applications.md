@@ -453,7 +453,7 @@ ve `app.include_router()` ile eklenen diğer tüm *path operation*’larla birli
 
 /// note | Çok Teknik Detaylar
 
-Not: Bu, muhtemelen doğrudan atlayabileceğiniz oldukça teknik bir detaydır.
+**Not**: Bu, muhtemelen **doğrudan atlayabileceğiniz** oldukça teknik bir detaydır.
 
 ---
 
@@ -461,7 +461,7 @@ Not: Bu, muhtemelen doğrudan atlayabileceğiniz oldukça teknik bir detaydır.
 
 Bunun nedeni, onların *path operation*’larını OpenAPI şemasına ve kullanıcı arayüzlerine dahil etmek istememizdir.
 
-FastAPI, orijinal router’ları ve *path operation*’ları etkin tutar; istekleri işlerken ve OpenAPI üretirken router prefix’lerini, dependency’leri, tag’leri, responses’ları ve diğer metaverileri birleştirir.
+FastAPI, orijinal router’ları ve *path operation*’ları etkin tutar; request'leri işlerken ve OpenAPI üretirken router prefix’lerini, dependency’leri, tag’leri, response’ları ve diğer metaverileri birleştirir.
 
 ///
 
@@ -487,7 +487,7 @@ Böylece `fastapi` komutu uygulamanızı nerede bulacağını bilir.
 Komuta dosya yolunu da verebilirsiniz, örneğin:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 Ancak o zaman her `fastapi` komutunu çalıştırdığınızda doğru yolu hatırlayıp geçirmeniz gerekir.
@@ -503,7 +503,7 @@ Ayrıca, diğer araçlar uygulamayı bulamayabilir; örneğin [VS Code Eklentisi
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

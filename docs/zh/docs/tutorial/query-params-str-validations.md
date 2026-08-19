@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 在这些情况下，你可以使用**自定义校验函数**，该函数会在正常校验之后应用（例如，在先校验值是 `str` 之后）。
 
-你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 来实现。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) 来实现。
 
 /// tip | 提示
 
-Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等。🤓
+Pydantic 还有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) 等。🤓
 
 ///
 

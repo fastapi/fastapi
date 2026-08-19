@@ -13,7 +13,7 @@
 
 その追加情報は、そのモデルの出力**JSON Schema**にそのまま追加され、APIドキュメントで使用されます。
 
-[Pydanticのドキュメント: Configuration](https://docs.pydantic.dev/latest/api/config/)で説明されているように、`dict`を受け取る属性`model_config`を使用できます。
+[Pydanticのドキュメント: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/)で説明されているように、`dict`を受け取る属性`model_config`を使用できます。
 
 生成されるJSON Schemaに表示したい追加データ（`examples`を含む）を含む`dict`を使って、`"json_schema_extra"`を設定できます。
 

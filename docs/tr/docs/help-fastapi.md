@@ -45,20 +45,6 @@ FastAPI ve friends hakkında paylaşacak haberlerim olduğunda duymak için, yaz
 * [**Bluesky**'de @tiangolo.com](https://bsky.app/profile/tiangolo.com)
 * [**LinkedIn**'de @tiangolo](https://www.linkedin.com/in/tiangolo/).
 
-## GitHub'da Sorularla Başkalarına Yardım Edin { #help-others-with-questions-in-github }
-
-[GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered) içindeki sorularda başkalarına yardımcı olmayı deneyebilirsiniz.
-
-Birçok durumda bu soruların cevabını zaten biliyor olabilirsiniz. 🤓
-
-Eğer insanların sorularına çok yardım ederseniz, resmi bir [FastAPI Expert](fastapi-people.md#fastapi-experts) olursunuz. 🎉
-
-Şunu unutmayın: en önemli nokta, nazik olmaya çalışmak. 🤗
-
-### Nasıl Yardım Edebilirsiniz { #how-to-help }
-
-[Nasıl yardım edileceğine dair rehberi](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) izleyin.
-
 ## Soru Sorun { #ask-questions }
 
 GitHub repository'sinde örneğin şunlar için [yeni bir soru oluşturabilirsiniz](https://github.com/fastapi/fastapi/discussions/new?category=questions):
@@ -68,7 +54,7 @@ GitHub repository'sinde örneğin şunlar için [yeni bir soru oluşturabilirsin
 
 ## Sohbete Katılın { #join-the-chat }
 
-👥 [Discord sohbet sunucusuna](https://discord.gg/VQjSZaeJmf) 👥 katılın ve FastAPI topluluğundaki diğer kişilerle takılın.
+👥 [Discord sohbet sunucusuna](https://discord.com/invite/VQjSZaeJmf) 👥 katılın ve FastAPI topluluğundaki diğer kişilerle takılın.
 
 /// tip | İpucu
 
@@ -85,3 +71,9 @@ Chat sistemleri daha "serbest sohbet"e izin verdiği için, çok genel ve yanıt
 GitHub'da şablon (template) doğru soruyu yazmanız için sizi yönlendirir; böylece daha kolay iyi bir cevap alabilir, hatta bazen sormadan önce problemi kendiniz çözebilirsiniz.
 
 Ayrıca chat sistemlerindeki konuşmalar GitHub kadar kolay aranabilir değildir; sohbet içinde kaybolurlar.
+
+## FastAPI Cloud'u Deneyin { #try-fastapi-cloud }
+
+FastAPI ve friends için ana finansman, FastAPI uygulamalarını tek bir komutla, `fastapi deploy`, basit ve hızlı bir şekilde deploy etmeye yarayan bir platform olan [**FastAPI Cloud**](https://fastapicloud.com)'dan gelir.
+
+FastAPI Cloud, FastAPI'nin arkasındaki aynı ekip tarafından geliştirilmektedir. Deneyebilir ve projeleriniz için değerlendirebilirsiniz.

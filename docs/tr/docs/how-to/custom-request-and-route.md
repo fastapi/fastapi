@@ -67,7 +67,7 @@ Bir `Request` ayrıca `request.receive` içerir; bu, request'in body'sini "almak
 
 Ve bu iki şey, `scope` ve `receive`, yeni bir `Request` instance'ı oluşturmak için gerekenlerdir.
 
-`Request` hakkında daha fazla bilgi için [Starlette'ın Request dokümantasyonu](https://www.starlette.dev/requests/) bölümüne bakın.
+`Request` hakkında daha fazla bilgi için [Starlette'ın Request dokümantasyonu](https://starlette.dev/requests/) bölümüne bakın.
 
 ///
 

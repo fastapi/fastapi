@@ -1,6 +1,5 @@
 # レスポンスヘッダー { #response-headers }
 
-
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 （Cookie と同様に）*path operation 関数*で `Response` 型のパラメータを宣言できます。
@@ -39,4 +38,4 @@
 
 独自のカスタムヘッダーは、[`X-` プレフィックスを使って](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)追加できることに注意してください。
 
-ただし、ブラウザのクライアントに見えるようにしたいカスタムヘッダーがある場合は、CORS 設定にそれらを追加する必要があります（[CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) を参照）。このとき、[Starlette の CORS ドキュメント](https://www.starlette.dev/middleware/#corsmiddleware)に記載の `expose_headers` パラメータを使用します。
+ただし、ブラウザのクライアントに見えるようにしたいカスタムヘッダーがある場合は、CORS 設定にそれらを追加する必要があります（[CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) を参照）。このとき、[Starlette の CORS ドキュメント](https://starlette.dev/middleware/#corsmiddleware)に記載の `expose_headers` パラメータを使用します。

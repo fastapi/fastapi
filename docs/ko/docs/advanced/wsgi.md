@@ -8,7 +8,7 @@
 
 /// note | 참고
 
-이를 사용하려면 `a2wsgi`를 설치해야 합니다. 예: `pip install a2wsgi`
+이를 사용하려면 프로젝트에 `a2wsgi`를 추가해야 합니다. 예: `uv add a2wsgi`
 
 ///
 

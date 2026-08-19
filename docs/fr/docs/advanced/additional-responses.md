@@ -24,7 +24,7 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 **FastAPI** prendra ce modèle, générera son schéma JSON et l'inclura au bon endroit dans OpenAPI.
 
-Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
+Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
 {* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
@@ -42,14 +42,14 @@ La clé `model` ne fait pas partie d'OpenAPI.
 
 Le bon endroit est :
 
-* Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
-    * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
+* Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
+    * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
         * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
             * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
 
 ///
 
-Les réponses générées au format OpenAPI pour ce *chemin d'accès* seront :
+Les réponses générées au format OpenAPI pour ce *chemin d'accès* seront :
 
 ```JSON hl_lines="3-12"
 {
@@ -88,7 +88,7 @@ Les réponses générées au format OpenAPI pour ce *chemin d'accès* seront :
 }
 ```
 
-Les schémas sont référencés à un autre endroit du modèle OpenAPI :
+Les schémas sont référencés à un autre endroit du modèle OpenAPI :
 
 ```JSON hl_lines="4-16"
 {
@@ -173,7 +173,7 @@ Les schémas sont référencés à un autre endroit du modèle OpenAPI :
 
 Vous pouvez utiliser ce même paramètre `responses` pour ajouter différents types de médias pour la même réponse principale.
 
-Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *chemin d'accès* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
+Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *chemin d'accès* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
 
 {* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
@@ -201,19 +201,19 @@ Vous pouvez déclarer un `response_model`, en utilisant le code HTTP par défaut
 
 Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui utilise un modèle Pydantic et a une `description` personnalisée.
 
-Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
+Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
 {* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
-Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
+Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combinez les réponses prédéfinies et les réponses personnalisées { #combine-predefined-responses-and-custom-ones }
+## Combiner les réponses prédéfinies et les réponses personnalisées { #combine-predefined-responses-and-custom-ones }
 
 Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de nombreux *chemins d'accès*, mais vous souhaitez les combiner avec des réponses personnalisées nécessaires à chaque *chemin d'accès*.
 
-Dans ces cas, vous pouvez utiliser la technique Python « unpacking » d'un `dict` avec `**dict_to_unpack` :
+Dans ces cas, vous pouvez utiliser la technique Python « unpacking » d'un `dict` avec `**dict_to_unpack` :
 
 ```Python
 old_dict = {
@@ -223,7 +223,7 @@ old_dict = {
 new_dict = {**old_dict, "new key": "new value"}
 ```
 
-Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
+Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
 
 ```Python
 {
@@ -235,13 +235,13 @@ Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la n
 
 Vous pouvez utiliser cette technique pour réutiliser certaines réponses prédéfinies dans vos *chemins d'accès* et les combiner avec des réponses personnalisées supplémentaires.
 
-Par exemple:
+Par exemple :
 
 {* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
 ## Plus d'informations sur les réponses OpenAPI { #more-information-about-openapi-responses }
 
-Pour voir exactement ce que vous pouvez inclure dans les réponses, vous pouvez consulter ces sections dans la spécification OpenAPI :
+Pour voir exactement ce que vous pouvez inclure dans les réponses, vous pouvez consulter ces sections dans la spécification OpenAPI :
 
-* [Objet Responses de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), il inclut le `Response Object`.
-* [Objet Response de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
+* [Objet Responses de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), il inclut le `Response Object`.
+* [Objet Response de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
