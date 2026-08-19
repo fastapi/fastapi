@@ -1,15 +1,15 @@
 # Formulardaten und Dateien im Request { #request-forms-and-files }
 
-Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definieren.
+Sie können gleichzeitig Dateien und Formularfelder mit `File` und `Form` definieren.
 
 /// note | Hinweis
 
 Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, diese aktivieren und es dann installieren, z. B.:
+Fügen Sie es Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

@@ -1,6 +1,5 @@
 # Sicherheit – Erste Schritte { #security-first-steps }
 
-
 Stellen wir uns vor, dass Sie Ihre **Backend**-API auf einer Domain haben.
 
 Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer Mobile-Anwendung).
@@ -27,17 +26,15 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 /// note | Hinweis
 
-Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
+Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `uv add "fastapi[standard]"` ausführen.
 
-Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
+Wenn Sie jedoch den Befehl `uv add fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und es dann mit:
+Um es manuell zu installieren, fügen Sie es Ihrem Projekt hinzu mit:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
-
-installieren.
 
 Das liegt daran, dass **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
 
@@ -48,7 +45,7 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
