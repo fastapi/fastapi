@@ -154,7 +154,7 @@ Altta, ASGI teknik spesifikasyonunda bu, [Lifespan Protokolü](https://asgi.read
 
 /// note | Not
 
-Starlette `lifespan` handler’ları hakkında daha fazlasını [Starlette Lifespan dokümanları](https://www.starlette.dev/lifespan/) içinde okuyabilirsiniz.
+Starlette `lifespan` handler’ları hakkında daha fazlasını [Starlette Lifespan dokümanları](https://starlette.dev/lifespan/) içinde okuyabilirsiniz.
 
 Ayrıca kodunuzun başka bölgelerinde de kullanılabilecek lifespan state’i nasıl yöneteceğinizi de kapsar.
 
