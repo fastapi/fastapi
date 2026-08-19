@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ru (update-outdated). PR [#16210](https://github.com/fastapi/fastapi/pull/16210) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh-hant (update-outdated). PR [#16211](https://github.com/fastapi/fastapi/pull/16211) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for uk (update-outdated). PR [#16208](https://github.com/fastapi/fastapi/pull/16208) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for de (update-outdated). PR [#16209](https://github.com/fastapi/fastapi/pull/16209) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
