@@ -1,4 +1,4 @@
-# Adicionando WSGI - Flask, Django, entre outros { #including-wsgi-flask-django-others }
+# Incluindo WSGI - Flask, Django, entre outros { #including-wsgi-flask-django-others }
 
 
 Como você viu em [Subaplicações - Montagens](sub-applications.md) e [Atrás de um Proxy](behind-a-proxy.md), você pode montar aplicações WSGI.
@@ -9,7 +9,7 @@ Para isso, você pode utilizar o `WSGIMiddleware` para encapsular a sua aplicaç
 
 /// note | Nota
 
-Isso requer instalar `a2wsgi`, por exemplo com `pip install a2wsgi`.
+Isso requer adicionar `a2wsgi` ao seu projeto, por exemplo com `uv add a2wsgi`.
 
 ///
 
@@ -37,13 +37,13 @@ Agora, todas as requisições sob o path `/v1/` serão manipuladas pela aplicaç
 
 E o resto será manipulado pelo **FastAPI**.
 
-Se você rodar a aplicação e ir até [http://localhost:8000/v1/](http://localhost:8000/v1/), você verá o retorno do Flask:
+Se você rodar a aplicação e ir até [http://localhost:8000/v1/](http://localhost:8000/v1/) você verá o retorno do Flask:
 
 ```txt
 Hello, World from Flask!
 ```
 
-E se você for até [http://localhost:8000/v2](http://localhost:8000/v2), você verá o retorno do FastAPI:
+E se você for até [http://localhost:8000/v2](http://localhost:8000/v2) você verá o retorno do FastAPI:
 
 ```JSON
 {

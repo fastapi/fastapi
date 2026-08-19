@@ -19,7 +19,7 @@ Documentação interativa da API e navegação web da interface de usuário. Com
 
 ![Interação Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentação alternativa da API com [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Documentação alternativa da API com [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -159,7 +159,7 @@ Qualquer integração é projetada para ser tão simples de usar (com dependênc
 
 ## Funcionalidades do Starlette { #starlette-features }
 
-**FastAPI** é totalmente compatível com (e baseado no) [**Starlette**](https://www.starlette.dev/). Então, qualquer código adicional Starlette que você tiver, também funcionará.
+**FastAPI** é totalmente compatível com (e baseado no) [**Starlette**](https://starlette.dev/). Então, qualquer código adicional Starlette que você tiver, também funcionará.
 
 `FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades se comportará da mesma forma.
 
@@ -177,7 +177,7 @@ Com **FastAPI**, você terá todas as funcionalidades do **Starlette** (já que 
 
 ## Funcionalidades do Pydantic { #pydantic-features }
 
-**FastAPI** é totalmente compatível com (e baseado no) [**Pydantic**](https://docs.pydantic.dev/). Então, qualquer código Pydantic adicional que você tiver, também funcionará.
+**FastAPI** é totalmente compatível com (e baseado no) [**Pydantic**](https://pydantic.dev/docs/). Então, qualquer código Pydantic adicional que você tiver, também funcionará.
 
 Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s e <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bancos de dados.
 
