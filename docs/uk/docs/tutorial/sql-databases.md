@@ -34,12 +34,12 @@
 
 ## Встановіть `SQLModel` { #install-sqlmodel }
 
-Спочатку переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його та встановили `sqlmodel`:
+Додайте `sqlmodel` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -49,7 +49,7 @@ $ pip install sqlmodel
 
 Спершу створимо найпростішу версію застосунку з однією моделлю **SQLModel**.
 
-Потім нижче покращимо безпеку і гнучкість за допомогою кількох моделей. 🤓
+Потім нижче покращимо безпеку і гнучкість за допомогою **кількох моделей**. 🤓
 
 ### Створіть моделі { #create-models }
 
@@ -152,7 +152,7 @@ SQLModel матиме утиліти міграцій-обгортки над Al
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,14 +337,14 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Якщо ви перейдете до UI `/docs`, побачите, що він оновився і більше не очікуватиме отримати `id` від клієнта під час створення героя тощо.
+Якщо ви перейдете до UI API `/docs`, побачите, що він оновився і більше не очікуватиме отримати `id` від клієнта під час створення героя тощо.
 
 <div class="screenshot">
 <img src="/img/tutorial/sql-databases/image02.png">

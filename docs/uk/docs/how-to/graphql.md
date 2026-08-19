@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * З [документацією для FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * З [документацією для FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+    * З [документацією для FastAPI](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * З [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) для інтеграції з ASGI
 * [Graphene](https://graphene-python.org/)

@@ -19,7 +19,7 @@
 
 ![взаємодія Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Альтернативна документація API за допомогою [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Альтернативна документація API за допомогою [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -159,7 +159,7 @@ FastAPI містить надзвичайно просту у використа
 
 ## Можливості Starlette { #starlette-features }
 
-**FastAPI** повністю сумісний із (та побудований на основі) [**Starlette**](https://www.starlette.dev/). Тому будь-який додатковий код Starlette, який ви маєте, також працюватиме.
+**FastAPI** повністю сумісний із (та побудований на основі) [**Starlette**](https://starlette.dev/). Тому будь-який додатковий код Starlette, який ви маєте, також працюватиме.
 
 `FastAPI` фактично є підкласом `Starlette`. Тому, якщо ви вже знайомі зі Starlette або використовуєте його, більшість функціональності працюватиме так само.
 
@@ -177,7 +177,7 @@ FastAPI містить надзвичайно просту у використа
 
 ## Можливості Pydantic { #pydantic-features }
 
-**FastAPI** повністю сумісний із (та побудований на основі) [**Pydantic**](https://docs.pydantic.dev/). Тому будь-який додатковий код Pydantic, який ви маєте, також працюватиме.
+**FastAPI** повністю сумісний із (та побудований на основі) [**Pydantic**](https://pydantic.dev/docs/). Тому будь-який додатковий код Pydantic, який ви маєте, також працюватиме.
 
 Включно із зовнішніми бібліотеками, які також базуються на Pydantic, як-от <abbr title="Object-Relational Mapper - Об'єктно-реляційний відображувач">ORM</abbr>-и, <abbr title="Object-Document Mapper - Об'єктно-документний відображувач">ODM</abbr>-и для баз даних.
 
