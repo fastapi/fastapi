@@ -12,7 +12,7 @@
 
 **TypeScript 클라이언트**의 경우 [Hey API](https://heyapi.dev/)는 TypeScript 생태계에 최적화된 경험을 제공하는 목적에 맞게 설계된 솔루션입니다.
 
-더 많은 SDK 생성기는 [OpenAPI.Tools](https://openapi.tools/#sdk)에서 확인할 수 있습니다.
+더 많은 SDK 생성기는 [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators)에서 확인할 수 있습니다.
 
 /// tip | 팁
 
