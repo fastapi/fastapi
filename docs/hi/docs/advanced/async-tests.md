@@ -45,7 +45,7 @@ file `test_main.py` में `main.py` के लिए tests होंगे, 
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```

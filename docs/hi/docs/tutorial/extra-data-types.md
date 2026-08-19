@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * एक Python `datetime.timedelta`.
     * requests और responses में इसे कुल seconds के `float` के रूप में दर्शाया जाएगा।
-    * Pydantic इसे "ISO 8601 time diff encoding" के रूप में दर्शाने की अनुमति भी देता है, [अधिक जानकारी के लिए docs देखें](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic इसे "ISO 8601 time diff encoding" के रूप में दर्शाने की अनुमति भी देता है, [अधिक जानकारी के लिए docs देखें](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * requests और responses में, इसे `set` जैसा ही माना जाता है:
         * requests में, एक list पढ़ी जाएगी, duplicates हटाए जाएँगे और उसे `set` में convert किया जाएगा।
@@ -49,7 +49,7 @@
 * `Decimal`:
     * Standard Python `Decimal`.
     * requests और responses में, इसे `float` जैसा ही handle किया जाएगा।
-* आप सभी valid Pydantic data types यहाँ देख सकते हैं: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/).
+* आप सभी valid Pydantic data types यहाँ देख सकते हैं: [Pydantic data types](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## उदाहरण { #example }
 

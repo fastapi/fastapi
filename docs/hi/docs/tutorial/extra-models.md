@@ -1,4 +1,4 @@
-# Extra Models { #extra-models }
+# अतिरिक्त Models { #extra-models }
 
 पिछले उदाहरण को आगे बढ़ाते हुए, एक से अधिक संबंधित model होना आम बात होगी।
 
@@ -166,7 +166,7 @@ Code duplication कम करना **FastAPI** के core ideas में स
 
 /// note | नोट
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) define करते समय, सबसे specific type को पहले include करें, उसके बाद कम specific type को। नीचे दिए गए उदाहरण में, अधिक specific `PlaneItem`, `Union[PlaneItem, CarItem]` में `CarItem` से पहले आता है।
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) define करते समय, सबसे specific type को पहले include करें, उसके बाद कम specific type को। नीचे दिए गए उदाहरण में, अधिक specific `PlaneItem`, `Union[PlaneItem, CarItem]` में `CarItem` से पहले आता है।
 
 ///
 

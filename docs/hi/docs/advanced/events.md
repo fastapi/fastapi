@@ -1,4 +1,4 @@
-# Lifespan Events { #lifespan-events }
+# Lifespan event { #lifespan-events }
 
 आप ऐसी logic (code) define कर सकते हैं जिसे application के **starts up** होने से पहले execute किया जाना चाहिए। इसका मतलब है कि यह code application के **requests receive करना शुरू करने से पहले**, **एक बार** execute होगा।
 
@@ -84,11 +84,11 @@ async with lifespan(app):
 
 {* ../../docs_src/events/tutorial003_py310.py hl[22] *}
 
-## Alternative Events (deprecated) { #alternative-events-deprecated }
+## Alternative event (deprecated) { #alternative-events-deprecated }
 
 /// warning | चेतावनी
 
-*startup* और *shutdown* को handle करने का recommended तरीका ऊपर बताए गए अनुसार `FastAPI` app के `lifespan` parameter का use करना है। अगर आप `lifespan` parameter provide करते हैं, तो `startup` और `shutdown` event handlers अब call नहीं किए जाएंगे। यह पूरा `lifespan` होगा या पूरे events, दोनों नहीं।
+*startup* और *shutdown* को handle करने का recommended तरीका ऊपर बताए गए अनुसार `FastAPI` app के `lifespan` parameter का use करना है। अगर आप `lifespan` parameter provide करते हैं, तो `startup` और `shutdown` event handlers अब call नहीं किए जाएंगे। यह पूरा `lifespan` होगा या पूरे event, दोनों नहीं।
 
 आप शायद यह हिस्सा skip कर सकते हैं।
 
@@ -150,11 +150,11 @@ application के shutting down होने पर run होने वाल�
 
 जिज्ञासु nerds के लिए बस एक technical detail। 🤓
 
-अंदर से, ASGI technical specification में, यह [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) का हिस्सा है, और यह `startup` और `shutdown` नाम के events define करता है।
+अंदर से, ASGI technical specification में, यह [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) का हिस्सा है, और यह `startup` और `shutdown` नाम के event define करता है।
 
 /// note | नोट
 
-आप Starlette `lifespan` handlers के बारे में [Starlette की Lifespan docs](https://www.starlette.dev/lifespan/) में और पढ़ सकते हैं।
+आप Starlette `lifespan` handlers के बारे में [Starlette की Lifespan docs](https://starlette.dev/lifespan/) में और पढ़ सकते हैं।
 
 इसमें यह भी शामिल है कि lifespan state को कैसे handle किया जाए जिसे आपके code के अन्य areas में use किया जा सकता है।
 
@@ -162,4 +162,4 @@ application के shutting down होने पर run होने वाल�
 
 ## Sub Applications { #sub-applications }
 
-🚨 ध्यान रखें कि ये lifespan events (startup और shutdown) केवल main application के लिए execute होंगे, [Sub Applications - Mounts](sub-applications.md) के लिए नहीं।
+🚨 ध्यान रखें कि ये lifespan event (startup और shutdown) केवल main application के लिए execute होंगे, [Sub Applications - Mounts](sub-applications.md) के लिए नहीं।

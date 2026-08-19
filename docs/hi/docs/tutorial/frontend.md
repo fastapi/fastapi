@@ -52,7 +52,7 @@ npm run build
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI** इस fallback का उपयोग केवल उन `GET` और `HEAD` requests के लिए करता है जो browser navigation जैसी दिखती हैं। JavaScript, CSS, और images जैसी missing files अभी भी `404` लौटाती हैं।
+**FastAPI** इस fallback का उपयोग केवल उन `GET` और `HEAD` requests के लिए करता है जो स्पष्ट रूप से `Accept: text/html` या `Accept: application/xhtml+xml` के साथ HTML accept करती हैं, जैसा browser navigation requests सामान्यतः करती हैं। JavaScript, CSS, और images जैसी missing files अभी भी `404` लौटाती हैं।
 
 अन्य methods वाली requests, जैसे `POST` या `PUT`, उन paths पर जो केवल frontend fallback से match करते हैं, वे भी `404` लौटाती हैं। नियमित **FastAPI** *path operations* की priority अभी भी frontend routes से अधिक होती है।
 
@@ -106,9 +106,13 @@ Default रूप से, `app.frontend()` `fallback="auto"` का उपयो
 
 ## Directory जाँचें { #check-directory }
 
-Default रूप से, `app.frontend()` app बनाते समय जाँचता है कि directory मौजूद है।
+Default रूप से, `app.frontend()` `check_dir="auto"` का उपयोग करता है।
 
-यह configuration errors को जल्दी पकड़ने में मदद करता है। उदाहरण के लिए, अगर frontend build output directory missing है, तो **FastAPI** startup पर error raise करेगा।
+जब `FASTAPI_ENV` environment variable को `development` पर set किया जाता है, तो अगर frontend build output directory missing है तो **FastAPI** केवल एक warning दिखाता है। [`fastapi dev` command](https://github.com/fastapi/fastapi-cli#fastapi-dev) आपके लिए यह environment variable set करता है अगर यह पहले से set नहीं है। यह आपको development के दौरान frontend को build या start करने से पहले backend start करने देता है।
+
+किसी भी अन्य environment में, app बनाए जाने पर **FastAPI** error raise करता है। यह frontend files के बिना app deploy करने से पहले configuration errors को जल्दी पकड़ने में मदद करता है।
+
+आप app बनाए जाने पर हमेशा directory की जाँच करने के लिए `check_dir=True` भी set कर सकते हैं।
 
 अगर आपकी frontend files बाद में बनाई जाती हैं, उदाहरण के लिए app object बनने के बाद किसी अलग build step द्वारा, तो `check_dir=False` set करें:
 
@@ -131,6 +135,8 @@ App में कोई भी नियमित *path operations* अभी �
 Frontend responses सामान्य **FastAPI** application के अंदर run करती हैं, इसलिए HTTP middleware उन पर लागू होता है।
 
 App से, `APIRouter` से, और `include_router()` से dependencies भी frontend responses पर लागू होती हैं। यह cookie authentication या इसी तरह से frontend को protect करने के लिए उपयोगी हो सकता है।
+
+Dependencies response headers को modify भी कर सकती हैं और background tasks add कर सकती हैं, जैसे सामान्य *path operations* के साथ।
 
 ## केवल Static Build Output { #static-build-output-only }
 

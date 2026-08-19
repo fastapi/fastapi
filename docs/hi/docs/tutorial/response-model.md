@@ -76,16 +76,16 @@ FastAPI इस `response_model` का उपयोग सभी data documentat
 
 `EmailStr` का उपयोग करने के लिए, पहले [`email-validator`](https://github.com/JoshData/python-email-validator) install करें।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर इसे install करते हैं, उदाहरण के लिए:
+इसे अपने project में जोड़ें:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 या इसके साथ:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -258,7 +258,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-जैसा कि `exclude_defaults` और `exclude_none` के लिए [Pydantic docs](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) में बताया गया है।
+जैसा कि `exclude_defaults` और `exclude_none` के लिए [Pydantic docs](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) में बताया गया है।
 
 ///
 

@@ -8,7 +8,7 @@
 
 /// note | नोट
 
-इसके लिए `a2wsgi` install करना required है, उदाहरण के लिए `pip install a2wsgi` के साथ।
+इसके लिए अपने project में `a2wsgi` जोड़ना required है, उदाहरण के लिए `uv add a2wsgi` के साथ।
 
 ///
 

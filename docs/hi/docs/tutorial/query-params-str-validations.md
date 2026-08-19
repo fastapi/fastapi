@@ -348,7 +348,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 अब मान लीजिए कि आपको यह parameter अब पसंद नहीं है।
 
-आपको इसे कुछ समय के लिए वहीं छोड़ना होगा क्योंकि clients इसे use कर रहे हैं, लेकिन आप चाहते हैं कि docs इसे स्पष्ट रूप से <dfn title="obsolete, इसका उपयोग न करने की recommendation है">deprecated</dfn> के रूप में दिखाएँ।
+आपको इसे कुछ समय के लिए वहीं छोड़ना होगा क्योंकि clients इसे use कर रहे हैं, लेकिन आप चाहते हैं कि docs इसे स्पष्ट रूप से <dfn title="अप्रचलित, इसका उपयोग न करने की recommendation है">deprecated</dfn> के रूप में दिखाएँ।
 
 फिर parameter `deprecated=True` को `Query` में pass करें:
 
@@ -370,15 +370,15 @@ generated OpenAPI schema से query parameter exclude करने के ल�
 
 ऐसे cases में, आप एक **custom validator function** use कर सकते हैं जो normal validation के बाद apply होता है (जैसे value के `str` होने की validation के बाद)।
 
-आप इसे `Annotated` के अंदर [Pydantic के `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) का उपयोग करके हासिल कर सकते हैं।
+आप इसे `Annotated` के अंदर [Pydantic के `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) का उपयोग करके हासिल कर सकते हैं।
 
 /// tip | टिप
 
-Pydantic में [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) और अन्य भी हैं। 🤓
+Pydantic में [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) और अन्य भी हैं। 🤓
 
 ///
 
-उदाहरण के लिए, यह custom validator check करता है कि item ID किसी <abbr title="International Standard Book Number - अंतर्राष्ट्रीय मानक पुस्तक संख्या">ISBN</abbr> book number के लिए `isbn-` से शुरू होती है या किसी <abbr title="Internet Movie Database - इंटरनेट मूवी डेटाबेस: फिल्मों के बारे में जानकारी वाली एक वेबसाइट">IMDB</abbr> movie URL ID के लिए `imdb-` से:
+उदाहरण के लिए, यह custom validator check करता है कि item ID किसी <abbr title="International Standard Book Number - अंतर्राष्ट्रीय standard पुस्तक संख्या">ISBN</abbr> book number के लिए `isbn-` से शुरू होती है या किसी <abbr title="Internet Movie Database - इंटरनेट मूवी डेटाबेस: फिल्मों के बारे में जानकारी वाली एक वेबसाइट">IMDB</abbr> movie URL ID के लिए `imdb-` से:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
