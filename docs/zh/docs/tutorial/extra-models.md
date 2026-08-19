@@ -167,7 +167,7 @@ UserInDB(
 
 /// note | 注意
 
-定义 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
+定义 [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) 类型时，要把更具体的类型写在前面，然后是不太具体的类型。下例中，更具体的 `PlaneItem` 位于 `Union[PlaneItem, CarItem]` 中的 `CarItem` 之前。
 
 ///
 
@@ -209,4 +209,4 @@ some_variable: PlaneItem | CarItem
 
 针对不同场景，可以随意使用不同的 Pydantic 模型并通过继承复用。
 
-当一个实体需要具备不同的“状态”时，无需只为该实体定义一个数据模型。例如，用户“实体”就可能有包含 `password`、包含 `password_hash` 以及不含密码等多种状态。
+当一个实体需要具备不同的“状态”时，无需只为该实体定义一个数据模型。例如，**用户**“实体”就可能有包含 `password`、包含 `password_hash` 以及不含密码等多种状态。

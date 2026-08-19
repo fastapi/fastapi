@@ -24,7 +24,7 @@
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework 作为一个灵活工具箱而创建，用于在底层使用 Django 构建 Web API，从而增强其 API 能力。
+Django REST Framework 作为一个灵活工具箱而创建，用于在底层使用 Django 构建 Web API，从而增强其 API 能力。
 
 它被包括 Mozilla、Red Hat、Eventbrite 在内的许多公司使用。
 
@@ -125,7 +125,7 @@ def read_url():
 并集成基于标准的用户界面工具：
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 选择这两者是因为它们相当流行且稳定；但稍作搜索，你就能找到数十种 OpenAPI 的替代用户界面（都可以与 **FastAPI** 搭配使用）。
 
@@ -237,7 +237,7 @@ Flask-apispec 由与 Marshmallow 相同的开发者创建。
 
 ///
 
-### [NestJS](https://nestjs.com/)（以及 [Angular](https://angular.io/)） { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/)（以及 [Angular](https://angular.dev/)） { #nestjs-and-angular }
 
 这甚至不是 Python。NestJS 是一个 JavaScript（TypeScript）的 NodeJS 框架，受 Angular 启发。
 
@@ -335,7 +335,7 @@ Hug 是最早使用 Python 类型提示来声明 API 参数类型的框架之一
 
 /// note | 注意
 
-Hug 由 Timothy Crosley 创建，他也是 [`isort`](https://github.com/timothycrosley/isort) 的作者，这是一个能自动排序 Python 文件中导入的优秀工具。
+Hug 由 Timothy Crosley 创建，他也是 [`isort`](https://github.com/PyCQA/isort) 的作者，这是一个能自动排序 Python 文件中导入的优秀工具。
 
 ///
 
@@ -399,7 +399,7 @@ APIStar 由 Tom Christie 创建。他还创建了：
 
 ## **FastAPI** 所使用的组件 { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic 是一个基于 Python 类型提示来定义数据校验、序列化与文档（使用 JSON Schema）的库。
 
@@ -415,7 +415,7 @@ Pydantic 是一个基于 Python 类型提示来定义数据校验、序列化与
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette 是一个轻量级的 <dfn title="构建异步 Python Web 应用的新标准">ASGI</dfn> 框架/工具集，非常适合构建高性能的 asyncio 服务。
 
@@ -460,7 +460,7 @@ ASGI 是由 Django 核心团队成员推动的新“标准”。它尚不是正�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn 是一个基于 uvloop 与 httptools 构建的极速 ASGI 服务器。
 
