@@ -31,12 +31,12 @@ JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 [ht
 
 Python에서 JWT 토큰을 생성하고 검증하려면 `PyJWT`를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
+프로젝트에 `pyjwt`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -73,12 +73,12 @@ pwdlib는 패스워드 해시를 다루기 위한 훌륭한 Python 패키지입�
 
 추천 알고리즘은 "Argon2"입니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
+프로젝트에 Argon2와 함께 `pwdlib`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -135,7 +135,7 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 JWT 토큰을 서명하는 데 사용할 임의의 비밀 키를 생성합니다.
 
-안전한 임의의 비밀 키를 생성하려면 다음 명령을 사용하십시오:
+안전한 임의의 비밀 키를 생성하려면 다음 명령어를 사용하십시오:
 
 <div class="termy">
 
