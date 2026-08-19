@@ -30,6 +30,12 @@ def test_incorrect_token():
     assert response.json() == {"detail": "Not authenticated"}
 
 
+def test_empty_bearer_token():
+    response = client.get("/items", headers={"Authorization": "Bearer "})
+    assert response.status_code == 401, response.text
+    assert response.json() == {"detail": "Not authenticated"}
+
+
 def test_token():
     response = client.get("/items", headers={"Authorization": "Bearer testtoken"})
     assert response.status_code == 200, response.text
