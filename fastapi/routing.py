@@ -1252,8 +1252,10 @@ class APIRoute(routing.Route):
         effective_context = _get_scope_effective_route_context(scope)
         if effective_context is not None and effective_context.original_route is self:
             match, child_scope = effective_context.matches(scope)
-        else:
-            match, child_scope = super().matches(scope)
+            if match != Match.NONE:
+                child_scope["route"] = RouteContext(self, effective_context)
+            return match, child_scope
+        match, child_scope = super().matches(scope)
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
@@ -1796,7 +1798,7 @@ class _IncludedRouter(BaseRoute):
             )
             original_route = effective_context.original_route
             if isinstance(original_route, APIRoute):
-                scope["route"] = original_route
+                scope["route"] = RouteContext(original_route, effective_context)
                 await original_route.handle(scope, receive, send)
                 return
         await route.handle(scope, receive, send)
@@ -2772,7 +2774,7 @@ class APIRouter(routing.Router):
                 )
                 original_route = low_priority_context.original_route
                 if isinstance(original_route, APIRoute):
-                    scope["route"] = original_route
+                    scope["route"] = RouteContext(original_route, low_priority_context)
                     await original_route.handle(scope, receive, send)
                     return
             await low_priority_route.handle(scope, receive, send)
