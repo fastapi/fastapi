@@ -31,6 +31,20 @@ def post_form_extra_allow(params: Annotated[FormModelExtraAllow, Form()]):
     return params
 
 
+class FormModelFieldsSet(BaseModel):
+    field_1: bool = True
+
+
+@app.post("/form-model-fields-set/")
+def post_form_model_fields_set(model: Annotated[FormModelFieldsSet, Form()]):
+    return {"fields_set": sorted(model.model_fields_set)}
+
+
+@app.post("/body-model-fields-set/")
+def post_body_model_fields_set(model: FormModelFieldsSet):
+    return {"fields_set": sorted(model.model_fields_set)}
+
+
 client = TestClient(app)
 
 
@@ -139,3 +153,14 @@ def test_extra_param_list():
         "param": "123",
         "extra_params": ["456", "789"],
     }
+
+
+def test_default_field_not_marked_as_set_for_form_model():
+    body_response = client.post("/body-model-fields-set/", json={})
+    form_response = client.post("/form-model-fields-set/", data={})
+
+    assert body_response.status_code == 200, body_response.text
+    assert form_response.status_code == 200, form_response.text
+
+    assert body_response.json() == {"fields_set": []}
+    assert form_response.json() == {"fields_set": []}
