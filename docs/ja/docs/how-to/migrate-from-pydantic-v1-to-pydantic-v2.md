@@ -24,7 +24,7 @@ Python の最新機能を使いたい場合は、Pydantic v2 を使用してい�
 
 ## 公式ガイド { #official-guide }
 
-Pydantic には v1 から v2 への公式の [移行ガイド](https://docs.pydantic.dev/latest/migration/) があります。
+Pydantic には v1 から v2 への公式の [移行ガイド](https://pydantic.dev/docs/validation/latest/get-started/migration/) があります。
 
 変更点、検証がより正確で厳密になった点、注意事項などが含まれます。
 

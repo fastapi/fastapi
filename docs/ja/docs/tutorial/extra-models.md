@@ -166,7 +166,7 @@ OpenAPIでは`anyOf`で定義されます。
 
 /// note | 備考
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
 
 ///
 
