@@ -4,7 +4,7 @@ from annotated_doc import Doc
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
-from starlette.requests import Request
+from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 
@@ -84,8 +84,8 @@ class OpenIdConnect(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, request: Request) -> str | None:
-        authorization = request.headers.get("Authorization")
+    async def __call__(self, conn: HTTPConnection) -> str | None:
+        authorization = conn.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
