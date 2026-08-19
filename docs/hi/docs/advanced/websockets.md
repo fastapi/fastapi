@@ -4,12 +4,12 @@
 
 ## `websockets` install करें { #install-websockets }
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाएँ, उसे activate करें, और `websockets` install करें (एक Python library जो "WebSocket" protocol का उपयोग आसान बनाती है):
+अपने project में `websockets` (एक Python library जो "WebSocket" protocol का उपयोग आसान बनाती है) जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ production में आपके पास ऊपर दिए गए विक
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -126,7 +126,7 @@ WebSocket endpoints में आप `fastapi` से import कर सकते
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 विकल्पों के बारे में अधिक जानने के लिए, इनके लिए Starlette का documentation देखें:
 
-* [`WebSocket` class](https://www.starlette.dev/websockets/)।
-* [Class-based WebSocket handling](https://www.starlette.dev/endpoints/#websocketendpoint)।
+* [`WebSocket` class](https://starlette.dev/websockets/)।
+* [Class-based WebSocket handling](https://starlette.dev/endpoints/#websocketendpoint)।

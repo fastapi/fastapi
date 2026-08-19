@@ -37,7 +37,7 @@ middleware function को मिलता है:
 
 ध्यान रखें कि custom proprietary headers को [`X-` prefix का उपयोग करके](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) जोड़ा जा सकता है।
 
-लेकिन अगर आपके पास custom headers हैं जिन्हें आप browser में client को दिखाना चाहते हैं, तो आपको उन्हें अपने CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md)) में `expose_headers` parameter का उपयोग करके जोड़ना होगा, जैसा कि [Starlette के CORS docs](https://www.starlette.dev/middleware/#corsmiddleware) में documented है।
+लेकिन अगर आपके पास custom headers हैं जिन्हें आप browser में client को दिखाना चाहते हैं, तो आपको उन्हें अपने CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md)) में `expose_headers` parameter का उपयोग करके जोड़ना होगा, जैसा कि [Starlette के CORS docs](https://starlette.dev/middleware/#corsmiddleware) में documented है।
 
 ///
 

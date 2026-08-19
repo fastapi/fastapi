@@ -61,9 +61,9 @@ background task के रूप में चलाने के लिए ए�
 
 और फिर *path operation function* पर generate हुआ एक और background task `email` path parameter का उपयोग करके एक message लिखेगा।
 
-## Technical Details { #technical-details }
+## तकनीकी विवरण { #technical-details }
 
-class `BackgroundTasks` सीधे [`starlette.background`](https://www.starlette.dev/background/) से आती है।
+class `BackgroundTasks` सीधे [`starlette.background`](https://starlette.dev/background/) से आती है।
 
 इसे सीधे FastAPI में import/include किया गया है ताकि आप इसे `fastapi` से import कर सकें और गलती से `starlette.background` से alternative `BackgroundTask` (अंत में `s` के बिना) import करने से बच सकें।
 
@@ -71,7 +71,7 @@ class `BackgroundTasks` सीधे [`starlette.background`](https://www.starle
 
 FastAPI में अकेले `BackgroundTask` का उपयोग करना अभी भी संभव है, लेकिन आपको अपने code में object बनाना होगा और उसे शामिल करते हुए Starlette `Response` return करना होगा।
 
-आप [Background Tasks के लिए Starlette के official docs](https://www.starlette.dev/background/) में अधिक details देख सकते हैं।
+आप [Background Tasks के लिए Starlette के official docs](https://starlette.dev/background/) में अधिक details देख सकते हैं।
 
 ## सावधानी { #caveat }
 

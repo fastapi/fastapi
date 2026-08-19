@@ -96,7 +96,7 @@ Pydantic model के हर attribute का एक type होता है।
 
 `str`, `int`, `float`, आदि जैसे सामान्य singular types के अलावा, आप अधिक complex singular types उपयोग कर सकते हैं जो `str` से inherit करते हैं।
 
-आपके पास मौजूद सभी options देखने के लिए, [Pydantic का Type Overview](https://docs.pydantic.dev/latest/concepts/types/) देखें। अगले chapter में आपको कुछ उदाहरण दिखेंगे।
+आपके पास मौजूद सभी options देखने के लिए, [Pydantic का Type Overview](https://pydantic.dev/docs/validation/latest/concepts/types/) देखें। अगले chapter में आपको कुछ उदाहरण दिखेंगे।
 
 उदाहरण के लिए, जैसा कि `Image` model में हमारे पास एक `url` field है, हम इसे `str` के बजाय Pydantic के `HttpUrl` का instance declare कर सकते हैं:
 

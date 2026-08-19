@@ -21,7 +21,7 @@ Common **web APIs** की तुलना में इसके **advantages**
 * [Strawberry](https://strawberry.rocks/) 🍓
     * [FastAPI के लिए docs](https://strawberry.rocks/docs/integrations/fastapi) के साथ
 * [Ariadne](https://ariadnegraphql.org/)
-    * [FastAPI के लिए docs](https://ariadnegraphql.org/docs/fastapi-integration) के साथ
+    * [FastAPI के लिए docs](https://ariadnegraphql.org/server/Integrations/fastapi-integration) के साथ
 * [Tartiflette](https://tartiflette.io/)
     * ASGI integration प्रदान करने के लिए [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) के साथ
 * [Graphene](https://graphene-python.org/)

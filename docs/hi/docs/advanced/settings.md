@@ -6,9 +6,13 @@
 
 इसी कारण उन्हें आम तौर पर environment variables में दिया जाता है जिन्हें application पढ़ती है।
 
+एक **environment variable** (जिसे **env var** भी कहा जाता है) एक value है जो Python code के बाहर, operating system में रहती है, और आपकी application और दूसरे programs द्वारा पढ़ी जा सकती है।
+
+जब आप कोई command चलाते हैं, तो आप उसके लिए एक environment variable बना सकते हैं। आप नीचे platform-specific commands देखेंगे।
+
 /// tip | सुझाव
 
-Environment variables को समझने के लिए आप [Environment Variables](../environment-variables.md) पढ़ सकते हैं।
+Environment variables कैसे काम करते हैं, इसकी विस्तृत व्याख्या के लिए [Environment Variables guide](https://tiangolo.com/guides/environment-variables/) पढ़ें।
 
 ///
 
@@ -20,27 +24,27 @@ Environment variables को समझने के लिए आप [Environmen
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-सौभाग्य से, Pydantic environment variables से आने वाली इन settings को handle करने के लिए एक बेहतरीन utility देता है: [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)।
+सौभाग्य से, Pydantic environment variables से आने वाली इन settings को handle करने के लिए [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) के साथ एक बेहतरीन utility देता है।
 
 ### `pydantic-settings` install करें { #install-pydantic-settings }
 
-सबसे पहले, सुनिश्चित करें कि आप अपना [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर `pydantic-settings` package install करते हैं:
+`pydantic-settings` package को अपने project में add करें:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-जब आप `all` extras को install करते हैं, तो यह भी शामिल आता है:
+जब आप `all` extras को इनके साथ install करते हैं, तो यह भी शामिल आता है:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Pydantic models की तरह ही, आप type annotations के सा�
 
 इसके बाद, आप configurations को environment variables के रूप में pass करते हुए server चलाएँगे, उदाहरण के लिए आप `ADMIN_EMAIL` और `APP_NAME` set कर सकते हैं:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | सुझाव
 
-एक ही command के लिए कई env vars set करने के लिए बस उन्हें space से अलग करें, और उन सभी को command से पहले रखें।
+Bash में, एक ही command के लिए कई env vars set करने के लिए, उन्हें space से अलग करें और उन सभी को command से पहले रखें।
 
 ///
 
@@ -172,11 +196,11 @@ dot (`.`) से शुरू होने वाली file Unix-like systems, 
 
 ///
 
-Pydantic के पास external library का उपयोग करके इस प्रकार की files से पढ़ने के लिए support है। आप [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support) पर और पढ़ सकते हैं।
+Pydantic के पास external library का उपयोग करके इस प्रकार की files से पढ़ने के लिए support है। आप [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support) पर और पढ़ सकते हैं।
 
 /// tip | सुझाव
 
-इसे काम करने के लिए, आपको `pip install python-dotenv` करना होगा।
+इसे काम करने के लिए, `uv add python-dotenv` के साथ `python-dotenv` को अपने project में add करें।
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | सुझाव
 
-`model_config` attribute केवल Pydantic configuration के लिए उपयोग किया जाता है। आप [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/) पर और पढ़ सकते हैं।
+`model_config` attribute केवल Pydantic configuration के लिए उपयोग किया जाता है। आप [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/) पर और पढ़ सकते हैं।
 
 ///
 

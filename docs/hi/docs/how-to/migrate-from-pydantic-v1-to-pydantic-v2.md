@@ -24,7 +24,7 @@ Pydantic team ने **Python 3.14** से शुरू करते हुए,
 
 ## आधिकारिक गाइड { #official-guide }
 
-Pydantic के पास v1 से v2 के लिए एक आधिकारिक [Migration Guide](https://docs.pydantic.dev/latest/migration/) है।
+Pydantic के पास v1 से v2 के लिए एक आधिकारिक [Migration Guide](https://pydantic.dev/docs/validation/latest/get-started/migration/) है।
 
 इसमें यह भी शामिल है कि क्या बदला है, validations अब कैसे अधिक सही और strict हैं, संभावित caveats आदि।
 
