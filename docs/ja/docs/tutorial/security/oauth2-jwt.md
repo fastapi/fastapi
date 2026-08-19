@@ -30,12 +30,12 @@ JWT トークンを使って遊んでみたいという方は、[https://jwt.io]
 
 PythonでJWTトークンの生成と検証を行うために、`PyJWT`をインストールする必要があります。
 
-[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
+プロジェクトに`pyjwt`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib は、パスワードのハッシュを処理するための優れたPyth
 
 推奨されるアルゴリズムは「Argon2」です。
 
-[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
+プロジェクトにArgon2付きで`pwdlib`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

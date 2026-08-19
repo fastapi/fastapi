@@ -19,7 +19,7 @@
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc) による代替の API ドキュメント。
+* [**ReDoc**](https://github.com/Redocly/redoc) による代替の API ドキュメント。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -159,7 +159,7 @@ FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title=
 
 ## Starletteの機能 { #starlette-features }
 
-**FastAPI** は [**Starlette**](https://www.starlette.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Starlette の追加コードも動作します。
+**FastAPI** は [**Starlette**](https://starlette.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Starlette の追加コードも動作します。
 
 `FastAPI` は実際には `Starlette` のサブクラスです。すでに Starlette を知っている、あるいは使っているなら、ほとんどの機能は同じように動作します。
 
@@ -177,7 +177,7 @@ FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title=
 
 ## Pydanticの機能 { #pydantic-features }
 
-**FastAPI** は [**Pydantic**](https://docs.pydantic.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Pydantic の追加コードも動作します。
+**FastAPI** は [**Pydantic**](https://pydantic.dev/docs/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Pydantic の追加コードも動作します。
 
 Pydantic に基づく外部ライブラリ（データベース用の <abbr title="Object-Relational Mapper - オブジェクト関係マッパー">ORM</abbr>、<abbr title="Object-Document Mapper - オブジェクトドキュメントマッパー">ODM</abbr> など）も含まれます。
 
