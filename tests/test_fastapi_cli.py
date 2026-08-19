@@ -32,3 +32,9 @@ def test_fastapi_cli_not_installed():
         with pytest.raises(RuntimeError) as exc_info:
             fastapi.cli.main()
         assert "To use the fastapi command, please install" in str(exc_info.value)
+
+
+def test_fastapi_cli_installed():
+    with patch.object(fastapi.cli, "cli_main") as mock_cli_main:
+        fastapi.cli.main()
+        mock_cli_main.assert_called_once()
