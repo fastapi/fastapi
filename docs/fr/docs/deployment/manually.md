@@ -52,7 +52,7 @@ La principale chose dont vous avez besoin pour exécuter une application **FastA
 
 Il existe plusieurs alternatives, notamment :
 
-* [Uvicorn](https://www.uvicorn.dev/) : un serveur ASGI haute performance.
+* [Uvicorn](https://uvicorn.dev) : un serveur ASGI haute performance.
 * [Hypercorn](https://hypercorn.readthedocs.io/) : un serveur ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
 * [Daphne](https://github.com/django/daphne) : le serveur ASGI conçu pour Django Channels.
 * [Granian](https://github.com/emmett-framework/granian) : un serveur HTTP Rust pour les applications Python.
@@ -73,14 +73,14 @@ Lorsque vous installez FastAPI, il est fourni avec un serveur de production, Uvi
 
 Mais vous pouvez également installer un serveur ASGI manuellement.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis vous pouvez installer l'application serveur.
+Ajoutez l'application serveur à votre projet.
 
 Par exemple, pour installer Uvicorn :
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -91,11 +91,11 @@ Un processus similaire s'appliquerait à tout autre programme de serveur ASGI.
 
 /// tip | Astuce
 
-En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
+En ajoutant le `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
 
 Cela inclut `uvloop`, le remplaçant hautes performances de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
 
-Lorsque vous installez FastAPI avec quelque chose comme `pip install "fastapi[standard]"`, vous obtenez déjà `uvicorn[standard]` aussi.
+Lorsque vous ajoutez FastAPI avec quelque chose comme `uv add "fastapi[standard]"`, vous obtenez déjà `uvicorn[standard]` aussi.
 
 ///
 
@@ -106,7 +106,7 @@ Si vous avez installé un serveur ASGI manuellement, vous devrez normalement pas
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```
