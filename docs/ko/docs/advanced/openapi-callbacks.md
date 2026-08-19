@@ -35,7 +35,7 @@
 
 /// tip | 팁
 
-`callback_url` 쿼리 파라미터는 Pydantic의 [Url](https://docs.pydantic.dev/latest/api/networks/) 타입을 사용합니다.
+`callback_url` 쿼리 파라미터는 Pydantic의 [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 타입을 사용합니다.
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 일반적인 *경로 처리*와의 주요 차이점은 2가지입니다:
 
 * 실제 코드를 가질 필요가 없습니다. 여러분의 앱은 이 코드를 절대 호출하지 않기 때문입니다. 이는 *external API*를 문서화하는 데만 사용됩니다. 따라서 함수는 그냥 `pass`만 있어도 됩니다.
-* *path*에는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
+* *path*에는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
 
 ### 콜백 경로 표현식 { #the-callback-path-expression }
 
-콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)을 가질 수 있습니다.
+콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)을 가질 수 있습니다.
 
 이 경우, 다음 `str`입니다:
 
