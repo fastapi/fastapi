@@ -6,10 +6,10 @@ Vous pouvez définir des fichiers et des champs de formulaire en même temps à 
 
 Pour recevoir des fichiers téléversés et/ou des données de formulaire, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis installer ce paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -24,7 +24,7 @@ Créez des paramètres de fichier et de formulaire de la même manière que pour
 
 {* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
-Les fichiers et les champs de formulaire seront téléversés en tant que données de formulaire et vous les recevrez.
+Les fichiers et les champs de formulaire seront téléversés en tant que données de formulaire et vous recevrez les fichiers et les champs de formulaire.
 
 Et vous pouvez déclarer certains fichiers comme `bytes` et d'autres comme `UploadFile`.
 

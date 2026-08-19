@@ -6,10 +6,10 @@ Puedes definir archivos que serán subidos por el cliente utilizando `File`.
 
 Para recibir archivos subidos, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
+Agrégalo a tu proyecto:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Esto es porque los archivos subidos se envían como "form data".

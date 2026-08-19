@@ -7,7 +7,7 @@ Ancak FastAPI, [`dataclasses`](https://docs.python.org/3/library/dataclasses.htm
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel) sunar.
+Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel) sunar.
 
 Yani yukarıdaki kod Pydantic'i doğrudan kullanmasa bile, FastAPI bu standart dataclass'ları Pydantic'in kendi dataclass biçimine dönüştürmek için Pydantic'i kullanmaktadır.
 
@@ -89,7 +89,7 @@ Daha spesifik ayrıntılar için yukarıdaki kod içi annotation ipuçlarına ba
 
 `dataclasses`'ı diğer Pydantic model'leriyle de birleştirebilir, onlardan kalıtım alabilir, kendi model'lerinize dahil edebilirsiniz, vb.
 
-Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://docs.pydantic.dev/latest/concepts/dataclasses/) bakın.
+Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/) bakın.
 
 ## Sürüm { #version }
 

@@ -8,12 +8,12 @@ Hay utilidades para configurarlo fácilmente que puedes usar directamente en tu 
 
 ## Instala dependencias { #install-dependencies }
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo e instalar `jinja2`:
+Añade `jinja2` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -123,4 +123,4 @@ Y porque estás usando `StaticFiles`, ese archivo CSS sería servido automática
 
 ## Más detalles { #more-details }
 
-Para más detalles, incluyendo cómo testear plantillas, revisa [la documentación de Starlette sobre plantillas](https://www.starlette.dev/templates/).
+Para más detalles, incluyendo cómo escribir pruebas para plantillas, revisa [la documentación de Starlette sobre plantillas](https://starlette.dev/templates/).

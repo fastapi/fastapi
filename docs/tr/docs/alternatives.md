@@ -125,7 +125,7 @@ API spesifikasyonları için özel bir şema yerine açık bir standart benimsem
 Ve standartlara dayalı kullanıcı arayüzü araçlarını entegre etmek:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Bu ikisi oldukça popüler ve istikrarlı oldukları için seçildi; hızlı bir aramayla OpenAPI için onlarca alternatif kullanıcı arayüzü bulabilirsiniz (**FastAPI** ile de kullanabilirsiniz).
 
@@ -237,7 +237,7 @@ Serileştirme ve doğrulamayı tanımlayan aynı koddan, OpenAPI şemasını oto
 
 ///
 
-### [NestJS](https://nestjs.com/) (ve [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (ve [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Bu Python bile değil; NestJS, Angular’dan ilham alan bir JavaScript (TypeScript) NodeJS framework’üdür.
 
@@ -337,7 +337,7 @@ Senkron Python web framework’leri için önceki standart olan WSGI’ye dayand
 
 /// note | Not
 
-Hug, Python dosyalarındaki import’ları otomatik sıralayan harika bir araç olan [`isort`](https://github.com/timothycrosley/isort)’un geliştiricisi Timothy Crosley tarafından geliştirildi.
+Hug, Python dosyalarındaki import’ları otomatik sıralayan harika bir araç olan [`isort`](https://github.com/PyCQA/isort)’un geliştiricisi Timothy Crosley tarafından geliştirildi.
 
 ///
 
@@ -380,7 +380,7 @@ Artık bir API web framework’ü değildi; geliştirici Starlette’e odaklanma
 APIStar, aşağıdakilerin de yaratıcısı olan Tom Christie tarafından geliştirildi:
 
 * Django REST Framework
-* **FastAPI**’ın üzerine kurulu Starlette
+* **FastAPI**’nin temel aldığı Starlette
 * Starlette ve **FastAPI** tarafından kullanılan Uvicorn
 
 ///
@@ -401,7 +401,7 @@ Sonra APIStar bir sunucu olarak var olmaktan çıktı ve Starlette oluşturuldu;
 
 ## **FastAPI** Tarafından Kullanılanlar { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic, Python tip belirteçlerine dayalı olarak veri doğrulama, serileştirme ve dökümantasyon (JSON Schema kullanarak) tanımlamak için bir kütüphanedir.
 
@@ -417,7 +417,7 @@ Tüm veri doğrulama, veri serileştirme ve JSON Schema tabanlı otomatik model 
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette, yüksek performanslı asyncio servisleri oluşturmak için ideal, hafif bir <dfn title="Asenkron Python web uygulamaları geliştirmek için yeni standart">ASGI</dfn> framework’ü/araç takımıdır.
 
@@ -462,7 +462,7 @@ Dolayısıyla Starlette ile yapabildiğiniz her şeyi, adeta “turbo şarjlı S
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn, uvloop ve httptools üzerinde inşa edilmiş, ışık hızında bir ASGI sunucusudur.
 

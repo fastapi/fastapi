@@ -33,7 +33,7 @@ Bunu `--forwarded-allow-ips="*"` olarak ayarlarsanız, gelen tüm IP'lere güven
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ Bunu yapmak için `--root-path` komut satırı seçeneğini şöyle kullanabilir
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Ardından Uvicorn'u şu şekilde başlatırsanız:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Böyle bir durumda (stripped path prefix olmadan), proxy `https://myawesomeapp.c
 
 [Traefik](https://docs.traefik.io/) kullanarak, stripped path prefix'li deneyi local'de kolayca çalıştırabilirsiniz.
 
-[Traefik'i indirin](https://github.com/containous/traefik/releases); tek bir binary'dir, sıkıştırılmış dosyayı çıkarıp doğrudan terminalden çalıştırabilirsiniz.
+[Traefik'i indirin](https://github.com/traefik/traefik/releases); tek bir binary'dir, sıkıştırılmış dosyayı çıkarıp doğrudan terminalden çalıştırabilirsiniz.
 
 Ardından `traefik.toml` adında bir dosya oluşturup şunu yazın:
 
@@ -321,7 +321,7 @@ Ve şimdi uygulamanızı `--root-path` seçeneğiyle başlatın:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

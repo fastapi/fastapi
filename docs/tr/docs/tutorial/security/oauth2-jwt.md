@@ -30,12 +30,12 @@ JWT token'larıyla oynayıp nasıl çalıştıklarını görmek isterseniz [http
 
 Python'da JWT token'larını üretmek ve doğrulamak için `PyJWT` kurmamız gerekiyor.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve ardından `pyjwt` kurun:
+Projenize `pyjwt` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ Birçok güvenli hashing algoritmasını ve bunlarla çalışmak için yardımc�
 
 Önerilen algoritma "Argon2"dir.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve sonra Argon2 ile birlikte pwdlib'i kurun:
+Projenize Argon2 ile birlikte `pwdlib` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

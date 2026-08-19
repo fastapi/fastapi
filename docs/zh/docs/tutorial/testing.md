@@ -1,6 +1,6 @@
 # 测试 { #testing }
 
-感谢 [Starlette](https://www.starlette.dev/testclient/)，测试**FastAPI** 应用轻松又愉快。
+感谢 [Starlette](https://starlette.dev/testclient/)，测试**FastAPI** 应用轻松又愉快。
 
 它基于 [HTTPX](https://www.python-httpx.org)，而HTTPX又是基于Requests设计的，所以很相似且易懂。
 
@@ -12,10 +12,10 @@
 
 要使用 `TestClient`，先要安装 [`httpx`](https://www.python-httpx.org)。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
+将它添加到你的项目中：
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -156,12 +156,12 @@ $ pip install httpx
 
 之后，你只需要安装 `pytest`。
 
-确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
+将它添加到你的项目中：
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

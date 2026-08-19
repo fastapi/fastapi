@@ -48,4 +48,4 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 ///
 
-Para ver todos los parámetros y opciones disponibles, revisa la [documentación en Starlette](https://www.starlette.dev/responses/#set-cookie).
+Para ver todos los parámetros y opciones disponibles, revisa la [documentación en Starlette](https://starlette.dev/responses/#set-cookie).

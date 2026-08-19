@@ -1,4 +1,4 @@
-# Yol Parametreleri { #path-parameters }
+# Path Parametreleri { #path-parameters }
 
 Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimiyle path "parametreleri"ni veya "değişkenleri"ni tanımlayabilirsiniz:
 
@@ -12,7 +12,7 @@ Yani, bu örneği çalıştırıp [http://127.0.0.1:8000/items/foo](http://127.0
 {"item_id":"foo"}
 ```
 
-## Tip İçeren Yol Parametreleri { #path-parameters-with-types }
+## Tip İçeren Path Parametreleri { #path-parameters-with-types }
 
 Standart Python tip belirteçlerini kullanarak path parametresinin tipini fonksiyonun içinde tanımlayabilirsiniz:
 
@@ -92,7 +92,7 @@ Dikkat edin: path parametresi integer olarak tanımlanmıştır.
 
 ## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon { #standards-based-benefits-alternative-documentation }
 
-Üretilen şema [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) standardından geldiği için birçok uyumlu araç vardır.
+Üretilen şema [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) standardından geldiği için birçok uyumlu araç vardır.
 
 Bu nedenle **FastAPI**'ın kendisi, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresinden erişebileceğiniz alternatif bir API dokümantasyonu (ReDoc kullanarak) sağlar:
 
@@ -102,7 +102,7 @@ Aynı şekilde, birçok uyumlu araç vardır. Birçok dil için kod üretme ara�
 
 ## Pydantic { #pydantic }
 
-Tüm veri doğrulamaları, arka planda [Pydantic](https://docs.pydantic.dev/) tarafından gerçekleştirilir; böylece onun tüm avantajlarından faydalanırsınız. Ve emin ellerde olduğunuzu bilirsiniz.
+Tüm veri doğrulamaları, arka planda [Pydantic](https://pydantic.dev/docs/) tarafından gerçekleştirilir; böylece onun tüm avantajlarından faydalanırsınız. Ve emin ellerde olduğunuzu bilirsiniz.
 
 Aynı tip tanımlarını `str`, `float`, `bool` ve daha birçok karmaşık veri tipiyle kullanabilirsiniz.
 

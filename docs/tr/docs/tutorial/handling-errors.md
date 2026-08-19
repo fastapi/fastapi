@@ -81,7 +81,7 @@ Ama ileri seviye bir senaryo için ihtiyaç duyarsanız, özel header’lar ekle
 
 ## Özel Exception Handler’ları Kurmak { #install-custom-exception-handlers }
 
-[Starlette’in aynı exception yardımcı araçlarıyla](https://www.starlette.dev/exceptions/) özel exception handler’lar ekleyebilirsiniz.
+[Starlette’in aynı exception yardımcı araçlarıyla](https://starlette.dev/exceptions/) özel exception handler’lar ekleyebilirsiniz.
 
 Diyelim ki sizin (ya da kullandığınız bir kütüphanenin) `raise` edebileceği `UnicornException` adında özel bir exception’ınız var.
 

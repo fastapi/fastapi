@@ -7,12 +7,18 @@
 
 将其复制到 `main.py` 文件中。
 
+/// tip | 提示
+
+FastAPI 有一个[官方 VS Code 扩展](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（以及 Cursor），它提供了很多功能，包括路径操作浏览器、路径操作搜索、测试中的 CodeLens 导航（从测试跳转到定义），以及 FastAPI Cloud 部署和日志，全部都可以在你的编辑器中完成。
+
+///
+
 运行实时服务器：
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -79,7 +85,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -186,16 +192,16 @@ from backend.main import app
 你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 或者，你也可以给 `fastapi dev` 命令传入 `--entrypoint` 选项：
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
-但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径/entrypoint。
+但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径\entrypoint。
 
 另外，其他工具可能无法找到它，例如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
 
@@ -206,7 +212,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -233,7 +239,7 @@ CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚�
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 [Starlette](https://www.starlette.dev/) 的功能。
+你也可以通过 `FastAPI` 使用所有的 [Starlette](https://starlette.dev/) 的功能。
 
 ///
 

@@ -8,12 +8,12 @@ Bunu kolayca yapılandırmak için, doğrudan **FastAPI** uygulamanızda kullana
 
 ## Bağımlılıkları Yükleme { #install-dependencies }
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, etkinleştirdiğinizden ve `jinja2`'yi yüklediğinizden emin olun:
+Projenize `jinja2` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -123,4 +123,4 @@ Ve `StaticFiles` kullandığınız için, bu CSS dosyası **FastAPI** uygulaman�
 
 ## Daha fazla detay { #more-details }
 
-Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://www.starlette.dev/templates/) bakın.
+Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://starlette.dev/templates/) bakın.
