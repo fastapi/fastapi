@@ -81,7 +81,7 @@ Pero todavía es parte de la misma aplicación/web API de **FastAPI** (es parte 
 
 Puedes crear las *path operations* para ese módulo usando `APIRouter`.
 
-### Importar `APIRouter` { #import-apirouter }
+### Importa `APIRouter` { #import-apirouter }
 
 Lo importas y creas una "instance" de la misma manera que lo harías con la clase `FastAPI`:
 
@@ -200,7 +200,7 @@ Los parámetros `prefix`, `tags`, `responses`, y `dependencies` son (como en muc
 
 ///
 
-### Importar las dependencias { #import-the-dependencies }
+### Importa las dependencias { #import-the-dependencies }
 
 Este código vive en el módulo `app.routers.items`, el archivo `app/routers/items.py`.
 
@@ -273,7 +273,7 @@ Eso se referiría a algún paquete arriba de `app/`, con su propio archivo `__in
 
 Pero ahora sabes cómo funciona, para que puedas usar imports relativos en tus propias apps sin importar cuán complejas sean. 🤓
 
-### Agregar algunos `tags`, `responses`, y `dependencies` personalizados { #add-some-custom-tags-responses-and-dependencies }
+### Agrega algunos `tags`, `responses`, y `dependencies` personalizados { #add-some-custom-tags-responses-and-dependencies }
 
 No estamos agregando el prefijo `/items` ni los `tags=["items"]` a cada *path operation* porque los hemos añadido al `APIRouter`.
 
@@ -299,7 +299,7 @@ Este será el archivo principal en tu aplicación que conecta todo.
 
 Y como la mayor parte de tu lógica ahora vivirá en su propio módulo específico, el archivo principal será bastante simple.
 
-### Importar `FastAPI` { #import-fastapi }
+### Importa `FastAPI` { #import-fastapi }
 
 Importas y creas una clase `FastAPI` como normalmente.
 
@@ -307,7 +307,7 @@ Y podemos incluso declarar [dependencias globales](dependencies/global-dependenc
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
 
-### Importar el `APIRouter` { #import-the-apirouter }
+### Importa el `APIRouter` { #import-the-apirouter }
 
 Ahora importamos los otros submódulos que tienen `APIRouter`s:
 
@@ -315,7 +315,7 @@ Ahora importamos los otros submódulos que tienen `APIRouter`s:
 
 Como los archivos `app/routers/users.py` y `app/routers/items.py` son submódulos que son parte del mismo paquete de Python `app`, podemos usar un solo punto `.` para importarlos usando "imports relativos".
 
-### Cómo funciona la importación { #how-the-importing-works }
+### Cómo funciona el import { #how-the-importing-works }
 
 La sección:
 
@@ -357,7 +357,7 @@ Para aprender más sobre Paquetes y Módulos de Python, lee [la documentación o
 
 ///
 
-### Evitar colisiones de nombres { #avoid-name-collisions }
+### Evita colisiones de nombres { #avoid-name-collisions }
 
 Estamos importando el submódulo `items` directamente, en lugar de importar solo su variable `router`.
 
@@ -376,7 +376,7 @@ Así que, para poder usar ambos en el mismo archivo, importamos los submódulos 
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
 
-### Incluir los `APIRouter`s para `users` y `items` { #include-the-apirouters-for-users-and-items }
+### Incluye los `APIRouter`s para `users` y `items` { #include-the-apirouters-for-users-and-items }
 
 Ahora, incluyamos los `router`s de los submódulos `users` y `items`:
 
@@ -412,7 +412,7 @@ Así que no afectará el rendimiento. ⚡
 
 ///
 
-### Incluir un `APIRouter` con un `prefix`, `tags`, `responses`, y `dependencies` personalizados { #include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies }
+### Incluye un `APIRouter` con un `prefix`, `tags`, `responses`, y `dependencies` personalizados { #include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies }
 
 Ahora, imaginemos que tu organización te dio el archivo `app/internal/admin.py`.
 
@@ -441,7 +441,7 @@ Pero eso solo afectará a ese `APIRouter` en nuestra app, no en ningún otro có
 
 Así, por ejemplo, otros proyectos podrían usar el mismo `APIRouter` con un método de autenticación diferente.
 
-### Incluir una *path operation* { #include-a-path-operation }
+### Incluye una *path operation* { #include-a-path-operation }
 
 También podemos agregar *path operations* directamente a la app de `FastAPI`.
 
@@ -465,7 +465,7 @@ FastAPI mantiene los routers y path operations originales activos, y combina los
 
 ///
 
-## Configurar el `entrypoint` en `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
+## Configura el `entrypoint` en `pyproject.toml` { #configure-the-entrypoint-in-pyproject-toml }
 
 Como tu objeto `app` de FastAPI vive en `app/main.py`, puedes configurar el `entrypoint` en tu archivo `pyproject.toml` así:
 
@@ -487,7 +487,7 @@ De esa manera el comando `fastapi` sabrá dónde encontrar tu app.
 También podrías pasar la ruta al comando, como:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 Pero tendrías que recordar pasar la ruta correcta cada vez que llames al comando `fastapi`.
@@ -503,7 +503,7 @@ Ahora, ejecuta tu app:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -516,7 +516,7 @@ Verás la documentación automática de la API, incluyendo los paths de todos lo
 
 <img src="/img/tutorial/bigger-applications/image01.png">
 
-## Incluir el mismo router múltiples veces con diferentes `prefix` { #include-the-same-router-multiple-times-with-different-prefix }
+## Incluye el mismo router múltiples veces con diferentes `prefix` { #include-the-same-router-multiple-times-with-different-prefix }
 
 También puedes usar `.include_router()` múltiples veces con el *mismo* router usando diferentes prefijos.
 
@@ -524,7 +524,7 @@ Esto podría ser útil, por ejemplo, para exponer la misma API bajo diferentes p
 
 Este es un uso avanzado que quizás no necesites realmente, pero está allí en caso de que lo necesites.
 
-## Incluir un `APIRouter` en otro { #include-an-apirouter-in-another }
+## Incluye un `APIRouter` en otro { #include-an-apirouter-in-another }
 
 De la misma manera que puedes incluir un `APIRouter` en una aplicación `FastAPI`, puedes incluir un `APIRouter` en otro `APIRouter` usando:
 

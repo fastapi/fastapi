@@ -6,12 +6,18 @@ El archivo FastAPI más simple podría verse así:
 
 Copia eso en un archivo `main.py`.
 
+/// tip | Consejo
+
+FastAPI tiene una [extensión oficial para VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (y Cursor), que proporciona muchas funcionalidades, incluyendo un explorador de path operations, búsqueda de path operations, navegación CodeLens en tests (saltar a la definición desde los tests), y despliegue y logs de FastAPI Cloud, todo desde tu editor.
+
+///
+
 Ejecuta el servidor en vivo:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ Verás la documentación interactiva automática de la API (proporcionada por [S
 
 Y ahora, ve a [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará el objeto app de FastAPI que debe usar:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 O, también puedes pasar la opción `--entrypoint` al comando `fastapi dev`:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Pero tendrías que recordar pasar el path\entrypoint correcto cada vez que llames al comando `fastapi`.
@@ -205,7 +211,7 @@ Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fast
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -232,7 +238,7 @@ La CLI detectará automáticamente tu aplicación de FastAPI y la desplegará en
 
 `FastAPI` es una clase que hereda directamente de `Starlette`.
 
-Puedes usar toda la funcionalidad de [Starlette](https://www.starlette.dev/) con `FastAPI` también.
+Puedes usar toda la funcionalidad de [Starlette](https://starlette.dev/) con `FastAPI` también.
 
 ///
 

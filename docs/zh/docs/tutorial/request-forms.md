@@ -6,10 +6,10 @@
 
 要使用表单，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请先创建并激活一个[虚拟环境](../virtual-environments.md)，然后再进行安装，例如：
+将其添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

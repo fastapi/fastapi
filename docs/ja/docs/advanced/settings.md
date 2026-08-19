@@ -6,9 +6,13 @@
 
 そのため、アプリケーションが読み取る環境変数で提供するのが一般的です。
 
+**環境変数**（**env var** とも呼ばれます）は、Python コードの外側、オペレーティングシステム内に存在する値で、アプリケーションや他のプログラムから読み取ることができます。
+
+コマンドを実行するときに、そのコマンド用の環境変数を作成できます。プラットフォーム固有のコマンドは以下で確認できます。
+
 /// tip | 豆知識
 
-環境変数について理解するには、[環境変数](../environment-variables.md)を参照してください。
+環境変数の仕組みの詳細な説明については、[Environment Variables guide](https://tiangolo.com/guides/environment-variables/)を参照してください。
 
 ///
 
@@ -20,16 +24,16 @@
 
 ## Pydantic の `Settings` { #pydantic-settings }
 
-幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、[Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) で提供されています。
+幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、[Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) で提供されています。
 
 ### `pydantic-settings` のインストール { #install-pydantic-settings }
 
-まず、[仮想環境](../virtual-environments.md)を作成して有効化し、`pydantic-settings` パッケージをインストールします:
+`pydantic-settings` パッケージをプロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Pydantic モデルと同様に、型アノテーションと（必要なら）�
 
 次に、設定を環境変数として渡してサーバーを実行します。たとえば、`ADMIN_EMAIL` と `APP_NAME` を次のように設定できます:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 豆知識
 
-1つのコマンドに複数の環境変数を設定するには、スペースで区切ってコマンドの前に並べます。
+Bash で1つのコマンドに複数の環境変数を設定するには、スペースで区切ってコマンドの前に並べます。
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support) を参照してください。
+Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support) を参照してください。
 
 /// tip | 豆知識
 
-これを機能させるには、`pip install python-dotenv` が必要です。
+これを機能させるには、`uv add python-dotenv` で `python-dotenv` をプロジェクトに追加します。
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 豆知識
 
-`model_config` 属性は Pydantic の設定専用です。詳しくは [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/) を参照してください。
+`model_config` 属性は Pydantic の設定専用です。詳しくは [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/) を参照してください。
 
 ///
 

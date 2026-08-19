@@ -15,7 +15,7 @@ Mais il existe des situations où vous pouvez avoir besoin d'accéder directemen
 
 ## Détails sur l'objet `Request` { #details-about-the-request-object }
 
-Comme **FastAPI** est en fait **Starlette** en dessous, avec une couche de plusieurs outils au-dessus, vous pouvez utiliser directement l'objet [`Request`](https://www.starlette.dev/requests/) de Starlette lorsque vous en avez besoin.
+Comme **FastAPI** est en fait **Starlette** en dessous, avec une couche de plusieurs outils au-dessus, vous pouvez utiliser directement l'objet [`Request`](https://starlette.dev/requests/) de Starlette lorsque vous en avez besoin.
 
 Cela signifie aussi que si vous récupérez des données directement à partir de l'objet `Request` (par exemple, lire le corps), elles ne seront pas validées, converties ni documentées (avec OpenAPI, pour l'interface utilisateur automatique de l'API) par FastAPI.
 
@@ -25,13 +25,13 @@ Mais il existe des cas spécifiques où il est utile d'obtenir l'objet `Request`
 
 ## Utiliser l'objet `Request` directement { #use-the-request-object-directly }
 
-Imaginons que vous souhaitiez obtenir l'adresse IP/l'hôte du client dans votre fonction de chemin d'accès.
+Imaginons que vous souhaitiez obtenir l'adresse IP/l'hôte du client dans votre *fonction de chemin d'accès*.
 
 Pour cela, vous devez accéder directement à la requête.
 
 {* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
-En déclarant un paramètre de fonction de chemin d'accès de type `Request`, **FastAPI** saura passer la `Request` dans ce paramètre.
+En déclarant un paramètre de *fonction de chemin d'accès* de type `Request`, **FastAPI** saura passer la `Request` dans ce paramètre.
 
 /// tip | Astuce
 
@@ -45,7 +45,7 @@ De la même façon, vous pouvez déclarer tout autre paramètre normalement, et 
 
 ## Documentation de `Request` { #request-documentation }
 
-Vous pouvez lire plus de détails sur [l'objet `Request` sur le site de documentation officiel de Starlette](https://www.starlette.dev/requests/).
+Vous pouvez lire plus de détails sur [l'objet `Request` sur le site de documentation officiel de Starlette](https://starlette.dev/requests/).
 
 /// note | Détails techniques
 

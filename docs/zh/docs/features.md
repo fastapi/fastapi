@@ -19,7 +19,7 @@
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 另外的 API 文档：[**ReDoc**](https://github.com/Rebilly/ReDoc)。
+* 另外的 API 文档：[**ReDoc**](https://github.com/Redocly/redoc)。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -160,7 +160,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 ## Starlette 特性 { #starlette-features }
 
-**FastAPI** 与 [**Starlette**](https://www.starlette.dev/) 完全兼容（并基于它构建）。所以，你有的其他的 Starlette 代码也能正常工作。
+**FastAPI** 与 [**Starlette**](https://starlette.dev/) 完全兼容（并基于它构建）。所以，你有的其他的 Starlette 代码也能正常工作。
 
 `FastAPI` 实际上是 `Starlette` 的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
 
@@ -178,7 +178,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 ## Pydantic 特性 { #pydantic-features }
 
-**FastAPI** 与 [**Pydantic**](https://docs.pydantic.dev/) 完全兼容（并基于它构建）。所以，你有的其他的 Pydantic 代码也能正常工作。
+**FastAPI** 与 [**Pydantic**](https://pydantic.dev/docs/) 完全兼容（并基于它构建）。所以，你有的其他的 Pydantic 代码也能正常工作。
 
 兼容包括基于 Pydantic 的外部库，例如用于数据库的 <abbr title="Object-Relational Mapper - 对象关系映射">ORM</abbr>s、<abbr title="Object-Document Mapper - 对象文档映射">ODM</abbr>s。
 

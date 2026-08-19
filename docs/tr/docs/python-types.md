@@ -270,7 +270,7 @@ Bunun "`one_person`, `Person` sınıfının bir **instance**'ıdır" anlamına g
 
 ## Pydantic modelleri { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/), data validation yapmak için bir Python kütüphanesidir.
+[Pydantic](https://pydantic.dev/docs/) is a Python kütüphanesidir.
 
 Verinin "shape"'ini attribute'lara sahip sınıflar olarak tanımlarsınız.
 
@@ -286,7 +286,7 @@ Resmî Pydantic dokümanlarından bir örnek:
 
 /// note | Not
 
-Daha fazlasını öğrenmek için [Pydantic'in dokümanlarına bakın](https://docs.pydantic.dev/).
+Daha fazlasını öğrenmek için [Pydantic'in dokümanlarına bakın](https://pydantic.dev/docs/).
 
 ///
 

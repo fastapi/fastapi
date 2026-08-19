@@ -45,4 +45,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações { #more-info }
 
-Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://www.starlette.dev/staticfiles/).
+Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://starlette.dev/staticfiles/).

@@ -1,6 +1,5 @@
 # Eventos de lifespan { #lifespan-events }
 
-
 Você pode definir a lógica (código) que deve ser executada antes da aplicação **inicializar**. Isso significa que esse código será executado **uma vez**, **antes** de a aplicação **começar a receber requisições**.
 
 Da mesma forma, você pode definir a lógica (código) que deve ser executada quando a aplicação estiver **encerrando**. Nesse caso, esse código será executado **uma vez**, **depois** de possivelmente ter tratado **várias requisições**.
@@ -155,7 +154,7 @@ Por baixo, na especificação técnica do ASGI, isso é parte do [Protocolo Life
 
 /// note | Nota
 
-Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://www.starlette.dev/lifespan/).
+Você pode ler mais sobre os manipuladores de `lifespan` do Starlette na [Documentação do Lifespan do Starlette](https://starlette.dev/lifespan/).
 
 Incluindo como lidar com estado do lifespan que pode ser usado em outras áreas do seu código.
 

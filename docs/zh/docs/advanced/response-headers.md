@@ -1,6 +1,5 @@
 # 响应头 { #response-headers }
 
-
 ## 使用 `Response` 参数 { #use-a-response-parameter }
 
 你可以在你的*路径操作函数*中声明一个 `Response` 类型的参数（就像你可以为 cookies 做的那样）。
@@ -39,4 +38,4 @@
 
 请注意，可以通过[使用 `X-` 前缀](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)添加自定义专有头部。
 
-但是，如果你有自定义头部，并希望浏览器中的客户端能够看到它们，你需要将它们添加到你的 CORS 配置中（在 [CORS（跨源资源共享）](../tutorial/cors.md) 中阅读更多），使用在 [Starlette 的 CORS 文档](https://www.starlette.dev/middleware/#corsmiddleware)中记录的 `expose_headers` 参数。
+但是，如果你有自定义头部，并希望浏览器中的客户端能够看到它们，你需要将它们添加到你的 CORS 配置中（在 [CORS（跨源资源共享）](../tutorial/cors.md) 中阅读更多），使用在 [Starlette 的 CORS 文档](https://starlette.dev/middleware/#corsmiddleware)中记录的 `expose_headers` 参数。

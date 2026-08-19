@@ -81,7 +81,7 @@ Mas caso precise em um cenário avançado, você pode adicionar headers customiz
 
 ## Instale manipuladores de exceções customizados { #install-custom-exception-handlers }
 
-Você pode adicionar manipuladores de exceção customizados com [as mesmas utilidades de exceção do Starlette](https://www.starlette.dev/exceptions/).
+Você pode adicionar manipuladores de exceção customizados com [as mesmas utilidades de exceção do Starlette](https://starlette.dev/exceptions/).
 
 Digamos que você tenha uma exceção customizada `UnicornException` que você (ou uma biblioteca que você usa) possa lançar com `raise`.
 

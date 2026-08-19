@@ -34,12 +34,12 @@ Bu çok basit ve kısa bir eğitimdir. Veritabanları genelinde, SQL hakkında v
 
 ## `SQLModel` Kurulumu { #install-sqlmodel }
 
-Önce [virtual environment](../virtual-environments.md) oluşturduğunuzdan emin olun, aktive edin ve ardından `sqlmodel`’i yükleyin:
+Projenize `sqlmodel` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Uygulamayı çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Uygulamayı tekrar çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

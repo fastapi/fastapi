@@ -35,7 +35,7 @@ Cette partie est assez normale, la plupart du code vous est probablement déjà 
 
 /// tip | Astuce
 
-Le paramètre de requête `callback_url` utilise un type Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
+Le paramètre de requête `callback_url` utilise un type Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/).
 
 ///
 
@@ -106,11 +106,11 @@ Il devrait ressembler exactement à un *chemin d'accès* FastAPI normal :
 Il y a 2 principales différences par rapport à un *chemin d'accès* normal :
 
 * Il n’a pas besoin d’avoir de code réel, car votre application n’appellera jamais ce code. Il sert uniquement à documenter l’*API externe*. La fonction peut donc simplement contenir `pass`.
-* Le *chemin* peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (voir plus bas) où il peut utiliser des variables avec des paramètres et des parties de la requête originale envoyée à *votre API*.
+* Le *chemin* peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (voir plus bas) où il peut utiliser des variables avec des paramètres et des parties de la requête originale envoyée à *votre API*.
 
 ### L’expression du chemin de callback { #the-callback-path-expression }
 
-Le *chemin* du callback peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) qui peut inclure des parties de la requête originale envoyée à *votre API*.
+Le *chemin* du callback peut contenir une [expression OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) qui peut inclure des parties de la requête originale envoyée à *votre API*.
 
 Dans ce cas, c’est la `str` :
 
@@ -177,10 +177,10 @@ Remarquez que vous ne passez pas le routeur lui-même (`invoices_callback_router
 
 ///
 
-### Vérifier la documentation { #check-the-docs }
+### Vérifier les documents { #check-the-docs }
 
 Vous pouvez maintenant démarrer votre application et aller sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Vous verrez votre documentation incluant une section « Callbacks » pour votre *chemin d'accès* qui montre à quoi l’*API externe* devrait ressembler :
+Vous verrez vos documents incluant une section « Callbacks » pour votre *chemin d'accès* qui montre à quoi l’*API externe* devrait ressembler :
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

@@ -21,7 +21,9 @@ Você pode declarar o tipo de um parâmetro de path na função, usando as anota
 Neste caso, `item_id` é declarado como um `int`.
 
 /// tip | Dica
+
 Isso fornecerá suporte do editor dentro da sua função, com verificações de erros, preenchimento automático, etc.
+
 ///
 
 ## Dados <dfn title="também conhecido como: serialização, parsing, marshalling">conversão</dfn> { #data-conversion }
@@ -33,9 +35,11 @@ Se você executar este exemplo e abrir seu navegador em [http://127.0.0.1:8000/i
 ```
 
 /// tip | Dica
+
 Perceba que o valor que sua função recebeu (e retornou) é `3`, como um `int` do Python, não uma string `"3"`.
 
 Então, com essa declaração de tipo, o **FastAPI** fornece <dfn title="convertendo a string que vem de um request HTTP em dados Python">"parsing"</dfn> automático do request.
+
 ///
 
 ## Validação de dados { #data-validation }
@@ -63,11 +67,13 @@ porque o parâmetro de path `item_id` tinha o valor `"foo"`, que não é um `int
 O mesmo erro apareceria se você fornecesse um `float` em vez de um `int`, como em: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
 /// tip | Dica
+
 Então, com a mesma declaração de tipo do Python, o **FastAPI** fornece validação de dados.
 
 Observe que o erro também declara claramente exatamente o ponto onde a validação não passou.
 
 Isso é incrivelmente útil ao desenvolver e depurar código que interage com sua API.
+
 ///
 
 ## Documentação { #documentation }
@@ -77,14 +83,16 @@ E quando você abrir seu navegador em [http://127.0.0.1:8000/docs](http://127.0.
 <img src="/img/tutorial/path-params/image01.png">
 
 /// tip | Dica
+
 Novamente, apenas com a mesma declaração de tipo do Python, o **FastAPI** fornece documentação automática e interativa (integrando o Swagger UI).
 
 Observe que o parâmetro de path está declarado como um inteiro.
+
 ///
 
 ## Benefícios baseados em padrões, documentação alternativa { #standards-based-benefits-alternative-documentation }
 
-E como o schema gerado é do padrão [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), existem muitas ferramentas compatíveis.
+E como o schema gerado é do padrão [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md), existem muitas ferramentas compatíveis.
 
 Por causa disso, o próprio **FastAPI** fornece uma documentação alternativa da API (usando ReDoc), que você pode acessar em [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
@@ -94,7 +102,7 @@ Da mesma forma, existem muitas ferramentas compatíveis. Incluindo ferramentas d
 
 ## Pydantic { #pydantic }
 
-Toda a validação de dados é realizada nos bastidores pelo [Pydantic](https://docs.pydantic.dev/), então você recebe todos os benefícios disso. E você sabe que está em boas mãos.
+Toda a validação de dados é realizada nos bastidores pelo [Pydantic](https://pydantic.dev/docs/), então você recebe todos os benefícios disso. E você sabe que está em boas mãos.
 
 Você pode usar as mesmas declarações de tipo com `str`, `float`, `bool` e muitos outros tipos de dados complexos.
 
@@ -135,7 +143,9 @@ Em seguida, crie atributos de classe com valores fixos, que serão os valores v�
 {* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
 
 /// tip | Dica
+
 Se você está se perguntando, "AlexNet", "ResNet" e "LeNet" são apenas nomes de modelos de Aprendizado de Máquina <dfn title="Tecnicamente, arquiteturas de modelos de Deep Learning">modelos</dfn>.
+
 ///
 
 ### Declare um parâmetro de path { #declare-a-path-parameter }
@@ -167,7 +177,9 @@ Você pode obter o valor real (um `str` neste caso) usando `model_name.value`, o
 {* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
 
 /// tip | Dica
+
 Você também pode acessar o valor `"lenet"` com `ModelName.lenet.value`.
+
 ///
 
 #### Retorne membros de enumeração { #return-enumeration-members }
@@ -218,19 +230,21 @@ Então, você pode usá-lo com:
 {* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
 
 /// tip | Dica
+
 Você pode precisar que o parâmetro contenha `/home/johndoe/myfile.txt`, com uma barra inicial (`/`).
 
 Nesse caso, a URL seria: `/files//home/johndoe/myfile.txt`, com uma barra dupla (`//`) entre `files` e `home`.
+
 ///
 
 ## Recapitulação { #recap }
 
 Com o **FastAPI**, ao usar declarações de tipo do Python curtas, intuitivas e padrão, você obtém:
 
-- Suporte no editor: verificações de erro, preenchimento automático, etc.
-- "<dfn title="convertendo a string que vem de um request HTTP em dados Python">parsing</dfn>" de dados
-- Validação de dados
-- Anotação da API e documentação automática
+* Suporte no editor: verificações de erro, preenchimento automático, etc.
+* "<dfn title="convertendo a string que vem de um request HTTP em dados Python">parsing</dfn>" de dados
+* Validação de dados
+* Anotação da API e documentação automática
 
 E você só precisa declará-los uma vez.
 

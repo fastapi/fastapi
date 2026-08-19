@@ -371,11 +371,11 @@ Yukarıdaki parametrelerle yapılamayan bazı **özel doğrulama** ihtiyaçları
 
 Bu durumlarda, normal doğrulamadan sonra (ör. değerin `str` olduğunun doğrulanmasından sonra) uygulanacak bir **custom validator function** kullanabilirsiniz.
 
-Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
+Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
 
 /// tip | İpucu
 
-Pydantic’te [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
+Pydantic’te [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
 
 ///
 
@@ -403,7 +403,7 @@ Bu custom validator’lar, request’te sağlanan **yalnızca** **aynı veri** i
 
 ---
 
-Ama bu örnek kodun detaylarını merak ediyorsanız, birkaç ek bilgi:
+Ama bu özel kod örneğini merak ediyorsanız ve hâlâ eğleniyorsanız, işte birkaç ek detay.
 
 #### `value.startswith()` ile String { #string-with-value-startswith }
 

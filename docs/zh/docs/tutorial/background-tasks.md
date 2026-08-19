@@ -7,9 +7,9 @@
 包括这些例子：
 
 * 执行操作后发送的电子邮件通知：
-    * 由于连接到电子邮件服务器并发送电子邮件往往很“慢”（几秒钟），您可以立即返回响应并在后台发送电子邮件通知。
+    * 由于连接到电子邮件服务器并发送电子邮件往往很“慢”（几秒钟），你可以立即返回响应并在后台发送电子邮件通知。
 * 处理数据：
-    * 例如，假设您收到的文件必须经过一个缓慢的过程，您可以返回一个"Accepted"(HTTP 202)响应并在后台处理它。
+    * 例如，假设你收到的文件必须经过一个缓慢的过程，你可以返回一个"Accepted"(HTTP 202)响应并在后台处理它。
 
 ## 使用 `BackgroundTasks` { #using-backgroundtasks }
 
@@ -61,23 +61,23 @@
 
 ## 技术细节 { #technical-details }
 
-`BackgroundTasks` 类直接来自 [`starlette.background`](https://www.starlette.dev/background/)。
+`BackgroundTasks` 类直接来自 [`starlette.background`](https://starlette.dev/background/)。
 
 它被直接导入/包含到FastAPI以便你可以从 `fastapi` 导入，并避免意外从 `starlette.background` 导入备用的 `BackgroundTask` (后面没有 `s`)。
 
-通过仅使用 `BackgroundTasks` (而不是 `BackgroundTask`)，使得能将它作为 *路径操作函数* 的参数 ，并让**FastAPI**为您处理其余部分, 就像直接使用 `Request` 对象。
+通过仅使用 `BackgroundTasks` (而不是 `BackgroundTask`)，使得能将它作为 *路径操作函数* 的参数 ，并让**FastAPI**为你处理其余部分, 就像直接使用 `Request` 对象。
 
-在FastAPI中仍然可以单独使用 `BackgroundTask`，但您必须在代码中创建对象，并返回包含它的Starlette `Response`。
+在FastAPI中仍然可以单独使用 `BackgroundTask`，但你必须在代码中创建对象，并返回包含它的Starlette `Response`。
 
-更多细节查看 [Starlette 后台任务的官方文档](https://www.starlette.dev/background/)。
+更多细节查看 [Starlette 后台任务的官方文档](https://starlette.dev/background/)。
 
 ## 告诫 { #caveat }
 
-如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 [Celery](https://docs.celeryq.dev)）可能更好。
+如果你需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，你不需要共享内存、变量等），那么使用其他更大的工具（如 [Celery](https://docs.celeryq.dev)）可能更好。
 
-它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
+它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许你在多个进程中运行后台任务，甚至是在多个服务器中。
 
-但是，如果您需要从同一个**FastAPI**应用程序访问变量和对象，或者您需要执行小型后台任务（如发送电子邮件通知），您只需使用 `BackgroundTasks` 即可。
+但是，如果你需要从同一个**FastAPI**应用程序访问变量和对象，或者你需要执行小型后台任务（如发送电子邮件通知），你只需使用 `BackgroundTasks` 即可。
 
 ## 回顾 { #recap }
 

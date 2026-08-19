@@ -7,7 +7,7 @@ Bir **request** body, client'in API'nize gönderdiği veridir. Bir **response** 
 
 API'niz neredeyse her zaman bir **response** body göndermek zorundadır. Ancak client'lerin her zaman **request body** göndermesi gerekmez; bazen sadece bir path isterler, belki birkaç query parametresiyle birlikte, ama body göndermezler.
 
-Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://docs.pydantic.dev/) modellerini kullanırsınız.
+Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://pydantic.dev/docs/) modellerini kullanırsınız.
 
 /// note | Not
 
