@@ -12,7 +12,7 @@
 
 추가 정보는 있는 그대로 해당 모델의 **JSON 스키마** 결과에 추가되고, API 문서에서 사용합니다.
 
-[Pydantic 문서: Configuration](https://docs.pydantic.dev/latest/api/config/)에 설명된 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 수 있습니다.
+[Pydantic 문서: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/)에 설명된 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 수 있습니다.
 
 `"json_schema_extra"`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
 

@@ -1,6 +1,5 @@
 import json
 import secrets
-import subprocess
 from collections.abc import Iterable
 from functools import lru_cache
 from os import sep as pathsep
@@ -10,10 +9,15 @@ from typing import Annotated
 import git
 import typer
 import yaml
-from doc_parsing_utils import check_translation
 from github import Github
 from pydantic_ai import Agent
 from rich import print
+
+from scripts.doc_parsing_utils import check_translation
+from scripts.translation_git import (
+    commit_translation_changes,
+    has_translation_changes,
+)
 
 non_translated_sections = (
     f"reference{pathsep}",
@@ -31,6 +35,7 @@ general_prompt_path = Path(__file__).absolute().parent / "general-llm-prompt.md"
 general_prompt = general_prompt_path.read_text(encoding="utf-8")
 
 app = typer.Typer()
+repository_path = Path(__file__).absolute().parent.parent
 
 
 @lru_cache
@@ -421,63 +426,60 @@ def make_pr(
     command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
     github_token: Annotated[str, typer.Option(envvar="GITHUB_TOKEN")],
     github_repository: Annotated[str, typer.Option(envvar="GITHUB_REPOSITORY")],
-    commit_in_place: Annotated[
-        bool, typer.Option(envvar="COMMIT_IN_PLACE", show_default=True)
-    ] = False,
 ) -> None:
-    print("Setting up GitHub Actions git user")
-    repo = git.Repo(Path(__file__).absolute().parent.parent)
-    if not repo.is_dirty(untracked_files=True):
-        print("Repository is clean, no changes to commit")
+    repo = git.Repo(repository_path)
+    if not has_translation_changes(repository_path):
+        print("No translation changes to commit")
         return
-    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True)
-    subprocess.run(
-        ["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"],
-        check=True,
-    )
-    current_branch = repo.active_branch.name
-    if current_branch == "master" and commit_in_place:
-        print("Can't commit directly to master")
-        raise typer.Exit(code=1)
-    if not commit_in_place:
-        branch_name = "translate"
-        if language:
-            branch_name += f"-{language}"
-        if command:
-            branch_name += f"-{command}"
-        branch_name += f"-{secrets.token_hex(4)}"
-        print(f"Creating a new branch {branch_name}")
-        subprocess.run(["git", "checkout", "-b", branch_name], check=True)
-    else:
-        branch_name = current_branch
-        print(f"Committing in place on branch {branch_name}")
-    print("Adding updated files")
-    git_path = Path("docs")
-    subprocess.run(["git", "add", str(git_path)], check=True)
-    print("Committing updated file")
-    message = "🌐 Update translations"
+    branch_name = "translate"
     if language:
-        message += f" for {language}"
+        branch_name += f"-{language}"
     if command:
-        message += f" ({command})"
-    subprocess.run(["git", "commit", "-m", message], check=True)
+        branch_name += f"-{command}"
+    branch_name += f"-{secrets.token_hex(4)}"
+    print(f"Creating a new branch {branch_name}")
+    repo.git.checkout("-b", branch_name)
+    message = commit_translation_changes(
+        repo_path=repository_path,
+        bot_name="pr-submit[bot]",
+        language=language,
+        command=command,
+    )
+    assert message is not None
     print("Pushing branch")
-    subprocess.run(["git", "push", "origin", branch_name], check=True)
-    if not commit_in_place:
-        print("Creating PR")
-        g = Github(github_token)
-        gh_repo = g.get_repo(github_repository)
-        body = (
-            message
-            + "\n\nThis PR was created automatically using LLMs."
-            + f"\n\nIt uses the prompt file https://github.com/fastapi/fastapi/blob/master/docs/{language}/llm-prompt.md."
-            + "\n\nIn most cases, it's better to make PRs updating that file so that the LLM can do a better job generating the translations than suggesting changes in this PR."
-        )
-        pr = gh_repo.create_pull(
-            title=message, body=body, base="master", head=branch_name
-        )
-        print(f"Created PR: {pr.number}")
+    repo.git.push("origin", branch_name)
+    print("Creating PR")
+    g = Github(github_token)
+    gh_repo = g.get_repo(github_repository)
+    body = (
+        message
+        + "\n\nThis PR was created automatically using LLMs."
+        + f"\n\nIt uses the prompt file https://github.com/fastapi/fastapi/blob/master/docs/{language}/llm-prompt.md."
+        + "\n\nIn most cases, it's better to make PRs updating that file so that the LLM can do a better job generating the translations than suggesting changes in this PR."
+    )
+    pr = gh_repo.create_pull(title=message, body=body, base="master", head=branch_name)
+    print(f"Created PR: {pr.number}")
     print("Finished")
+
+
+@app.command()
+def push(
+    *,
+    language: Annotated[str | None, typer.Option(envvar="LANGUAGE")] = None,
+    command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
+    github_ref_name: Annotated[str, typer.Option(envvar="GITHUB_REF_NAME")],
+) -> None:
+    repo = git.Repo(repository_path)
+    message = commit_translation_changes(
+        repo_path=repository_path,
+        bot_name="pr-push[bot]",
+        language=language,
+        command=command,
+    )
+    if message is None:
+        return
+    print(f"Pushing changes to {github_ref_name}")
+    repo.git.push("origin", f"HEAD:{github_ref_name}")
 
 
 if __name__ == "__main__":
