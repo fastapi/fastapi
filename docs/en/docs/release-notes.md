@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ko (update-outdated). PR [#16201](https://github.com/fastapi/fastapi/pull/16201) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ko (update-outdated). PR [#16171](https://github.com/fastapi/fastapi/pull/16171) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 
 ### Internal
