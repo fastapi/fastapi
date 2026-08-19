@@ -586,6 +586,7 @@ class SolvedDependency:
 # Use a unique object to compare against in case the cached value is None
 __cache_miss = object()
 
+
 async def solve_dependencies(
     *,
     request: Request | WebSocket,
