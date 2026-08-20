@@ -1,12 +1,12 @@
 from collections.abc import Sequence
 from typing import Annotated
-from typing_extensions import TypeAliasType
 
 import pytest
 from dirty_equals import IsOneOf, IsPartialDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import TypeAliasType
 
 from .utils import get_body_model_name
 
@@ -454,8 +454,12 @@ class FormModelTypeAliasListStr(BaseModel):
     p: FormTags
 
 
-@app.post("/model-type-alias-form-list-str", operation_id="model_type_alias_form_list_str")
-def read_model_type_alias_form_list_str(p: Annotated[FormModelTypeAliasListStr, Form()]):
+@app.post(
+    "/model-type-alias-form-list-str", operation_id="model_type_alias_form_list_str"
+)
+def read_model_type_alias_form_list_str(
+    p: Annotated[FormModelTypeAliasListStr, Form()],
+):
     return {"p": p.p}
 
 
@@ -482,8 +486,12 @@ class FormModelTypeAliasTupleStr(BaseModel):
     p: FormTupleTags
 
 
-@app.post("/model-type-alias-form-tuple-str", operation_id="model_type_alias_form_tuple_str")
-def read_model_type_alias_form_tuple_str(p: Annotated[FormModelTypeAliasTupleStr, Form()]):
+@app.post(
+    "/model-type-alias-form-tuple-str", operation_id="model_type_alias_form_tuple_str"
+)
+def read_model_type_alias_form_tuple_str(
+    p: Annotated[FormModelTypeAliasTupleStr, Form()],
+):
     return {"p": p.p}
 
 
@@ -511,8 +519,13 @@ class FormModelTypeAliasSequenceStr(BaseModel):
     p: FormSeqTags
 
 
-@app.post("/model-type-alias-form-sequence-str", operation_id="model_type_alias_form_sequence_str")
-def read_model_type_alias_form_sequence_str(p: Annotated[FormModelTypeAliasSequenceStr, Form()]):
+@app.post(
+    "/model-type-alias-form-sequence-str",
+    operation_id="model_type_alias_form_sequence_str",
+)
+def read_model_type_alias_form_sequence_str(
+    p: Annotated[FormModelTypeAliasSequenceStr, Form()],
+):
     return {"p": p.p}
 
 
