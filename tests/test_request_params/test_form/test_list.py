@@ -1,4 +1,6 @@
+from collections.abc import Sequence
 from typing import Annotated
+from typing_extensions import TypeAliasType
 
 import pytest
 from dirty_equals import IsOneOf, IsPartialDict
@@ -432,5 +434,94 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
 def test_required_list_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, data={"p_val_alias": ["hello", "world"]})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# =====================================================================================
+# TypeAliasType (PEP 695-style aliases)
+
+
+FormTags = TypeAliasType("FormTags", list[str])
+
+
+@app.post("/type-alias-form-list-str", operation_id="type_alias_form_list_str")
+async def read_type_alias_form_list_str(p: Annotated[FormTags, Form()]):
+    return {"p": p}
+
+
+class FormModelTypeAliasListStr(BaseModel):
+    p: FormTags
+
+
+@app.post("/model-type-alias-form-list-str", operation_id="model_type_alias_form_list_str")
+def read_model_type_alias_form_list_str(p: Annotated[FormModelTypeAliasListStr, Form()]):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-form-list-str", "/model-type-alias-form-list-str"],
+)
+def test_type_alias_form_list_str(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": ["hello", "world"]})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+FormTupleTags = TypeAliasType("FormTupleTags", tuple[str, ...])
+
+
+@app.post("/type-alias-form-tuple-str", operation_id="type_alias_form_tuple_str")
+async def read_type_alias_form_tuple_str(p: Annotated[FormTupleTags, Form()]):
+    return {"p": p}
+
+
+class FormModelTypeAliasTupleStr(BaseModel):
+    p: FormTupleTags
+
+
+@app.post("/model-type-alias-form-tuple-str", operation_id="model_type_alias_form_tuple_str")
+def read_model_type_alias_form_tuple_str(p: Annotated[FormModelTypeAliasTupleStr, Form()]):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-form-tuple-str", "/model-type-alias-form-tuple-str"],
+)
+def test_type_alias_form_tuple_str(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": ["hello", "world"]})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# Sequence[str]
+FormSeqTags = TypeAliasType("FormSeqTags", Sequence[str])
+
+
+@app.post("/type-alias-form-sequence-str", operation_id="type_alias_form_sequence_str")
+async def read_type_alias_form_sequence_str(p: Annotated[FormSeqTags, Form()]):
+    return {"p": p}
+
+
+class FormModelTypeAliasSequenceStr(BaseModel):
+    p: FormSeqTags
+
+
+@app.post("/model-type-alias-form-sequence-str", operation_id="model_type_alias_form_sequence_str")
+def read_model_type_alias_form_sequence_str(p: Annotated[FormModelTypeAliasSequenceStr, Form()]):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-form-sequence-str", "/model-type-alias-form-sequence-str"],
+)
+def test_type_alias_form_sequence_str(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": ["hello", "world"]})
     assert response.status_code == 200, response.text
     assert response.json() == {"p": ["hello", "world"]}
