@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from typing import Annotated
 
 import pytest
@@ -6,6 +7,7 @@ from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
+from typing_extensions import TypeAliasType
 
 app = FastAPI()
 
@@ -423,5 +425,99 @@ def test_required_list_alias_and_validation_alias_by_validation_alias(path: str)
     response = client.get(
         path, headers=[("p_val_alias", "hello"), ("p_val_alias", "world")]
     )
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# =====================================================================================
+# TypeAliasType (PEP 695-style aliases)
+
+
+HeaderTags = TypeAliasType("HeaderTags", list[str])
+
+
+@app.get("/type-alias-header-list-str")
+async def read_type_alias_header_list_str(p: Annotated[HeaderTags, Header()]):
+    return {"p": p}
+
+
+class HeaderModelTypeAliasListStr(BaseModel):
+    p: HeaderTags
+
+
+@app.get("/model-type-alias-header-list-str")
+async def read_model_type_alias_header_list_str(
+    p: Annotated[HeaderModelTypeAliasListStr, Header()],
+):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-header-list-str", "/model-type-alias-header-list-str"],
+)
+def test_type_alias_header_list_str(path: str):
+    client = TestClient(app)
+    response = client.get(path, headers=[("p", "hello"), ("p", "world")])
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+HeaderTupleTags = TypeAliasType("HeaderTupleTags", tuple[str, ...])
+
+
+@app.get("/type-alias-header-tuple-str")
+async def read_type_alias_header_tuple_str(p: Annotated[HeaderTupleTags, Header()]):
+    return {"p": p}
+
+
+class HeaderModelTypeAliasTupleStr(BaseModel):
+    p: HeaderTupleTags
+
+
+@app.get("/model-type-alias-header-tuple-str")
+async def read_model_type_alias_header_tuple_str(
+    p: Annotated[HeaderModelTypeAliasTupleStr, Header()],
+):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-header-tuple-str", "/model-type-alias-header-tuple-str"],
+)
+def test_type_alias_header_tuple_str(path: str):
+    client = TestClient(app)
+    response = client.get(path, headers=[("p", "hello"), ("p", "world")])
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+HeaderSeqTags = TypeAliasType("HeaderSeqTags", Sequence[str])
+
+
+@app.get("/type-alias-header-sequence-str")
+async def read_type_alias_header_sequence_str(p: Annotated[HeaderSeqTags, Header()]):
+    return {"p": p}
+
+
+class HeaderModelTypeAliasSequenceStr(BaseModel):
+    p: HeaderSeqTags
+
+
+@app.get("/model-type-alias-header-sequence-str")
+async def read_model_type_alias_header_sequence_str(
+    p: Annotated[HeaderModelTypeAliasSequenceStr, Header()],
+):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/type-alias-header-sequence-str", "/model-type-alias-header-sequence-str"],
+)
+def test_type_alias_header_sequence_str(path: str):
+    client = TestClient(app)
+    response = client.get(path, headers=[("p", "hello"), ("p", "world")])
     assert response.status_code == 200, response.text
     assert response.json() == {"p": ["hello", "world"]}
