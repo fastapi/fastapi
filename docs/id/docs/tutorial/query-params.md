@@ -1,4 +1,4 @@
-# Parameter Query { #parameter-query }
+# Parameter Query { #query-parameters }
 
 Ketika Anda mendeklarasikan parameter fungsi lain yang bukan bagian dari parameter path, parameter tersebut secara otomatis diinterpretasikan sebagai parameter "query".
 
@@ -28,7 +28,7 @@ Semua proses yang berlaku pada parameter path juga berlaku pada parameter query:
 * Validasi data
 * Dokumentasi otomatis
 
-## Nilai Default { #nilai-default }
+## Nilai Default { #defaults }
 
 Karena parameter query bukan bagian tetap dari path, mereka bisa bersifat opsional dan dapat memiliki nilai default.
 
@@ -57,7 +57,7 @@ Nilai parameter di dalam fungsi Anda akan menjadi:
 * `skip=20`: karena Anda mengaturnya di URL
 * `limit=10`: karena itu adalah nilai default
 
-## Parameter Opsional { #parameter-opsional }
+## Parameter Opsional { #optional-parameters }
 
 Dengan cara yang sama, Anda dapat mendeklarasikan parameter query opsional dengan menetapkan nilai default-nya ke `None`:
 
@@ -71,7 +71,7 @@ Perhatikan juga bahwa **FastAPI** cukup cerdas untuk mengenali bahwa parameter p
 
 ///
 
-## Konversi Tipe Parameter Query { #konversi-tipe-parameter-query }
+## Konversi Tipe Parameter Query { #query-parameter-type-conversion }
 
 Anda juga dapat mendeklarasikan tipe `bool`, dan mereka akan dikonversi:
 
@@ -109,7 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 atau variasi huruf lainnya (huruf besar, huruf kapital di awal, dll), fungsi Anda akan melihat parameter `short` bernilai `bool` `True`. Jika tidak, bernilai `False`.
 
-## Beberapa Parameter Path dan Query { #beberapa-parameter-path-dan-query }
+## Beberapa Parameter Path dan Query { #multiple-path-and-query-parameters }
 
 Anda dapat mendeklarasikan beberapa parameter path dan parameter query secara bersamaan, **FastAPI** tahu mana yang merupakan parameter path dan mana yang merupakan parameter query.
 
@@ -119,7 +119,7 @@ Mereka akan dikenali berdasarkan nama:
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Parameter Query Wajib { #parameter-query-wajib }
+## Parameter Query Wajib { #required-query-parameters }
 
 Ketika Anda mendeklarasikan nilai default untuk parameter non-path (sejauh ini kita baru melihat parameter query), maka parameter tersebut tidak wajib diisi.
 
