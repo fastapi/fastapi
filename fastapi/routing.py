@@ -1965,7 +1965,10 @@ class _FrontendStaticFiles(StaticFiles):
 
         if (
             self.fallback == "index.html"
-            or (self.fallback == "auto" and await self._fallback_file_exists("index.html"))
+            or (
+                self.fallback == "auto"
+                and await self._fallback_file_exists("index.html")
+            )
         ) and _is_frontend_navigation_request(scope):
             return await self._fallback_response("index.html", scope, status_code=200)
 
