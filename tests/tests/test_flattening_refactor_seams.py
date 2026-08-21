@@ -38,7 +38,6 @@ def test_same_dependency_different_scopes_yields_single_openapi_param():
     (scope-aware cache key), but must still resolve to a single
     parameter in the final OpenAPI schema -- the underlying HTTP header
     is the same regardless of which scopes are being checked."""
-    from fastapi.dependencies.utils import get_flat_params
 
     def get_user(security_scopes: SecurityScopes, x_token: str = Header()):
         return {"scopes": security_scopes.scopes, "token": x_token}
