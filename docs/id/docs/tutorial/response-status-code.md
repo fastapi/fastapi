@@ -1,4 +1,4 @@
-# Kode Status Respons { #kode-status-respons }
+# Kode Status Respons { #response-status-code }
 
 Sama seperti Anda dapat menentukan model respons, Anda juga dapat mendeklarasikan kode status HTTP yang digunakan untuk respons dengan parameter `status_code` di salah satu *operasi path*:
 
@@ -39,7 +39,7 @@ FastAPI mengetahui hal ini, dan akan menghasilkan dokumen OpenAPI yang menyataka
 
 ///
 
-## Tentang kode status HTTP { #tentang-kode-status-http }
+## Tentang kode status HTTP { #about-http-status-codes }
 
 /// note | Catatan
 
@@ -70,7 +70,7 @@ Untuk mengetahui lebih banyak tentang setiap kode status dan kegunaannya, periks
 
 ///
 
-## Pintasan untuk mengingat nama kode { #pintasan-untuk-mengingat-nama-kode }
+## Pintasan untuk mengingat nama kode { #shortcut-to-remember-the-names }
 
 Mari kita lihat contoh sebelumnya lagi:
 
@@ -96,6 +96,6 @@ Anda juga dapat menggunakan `from starlette import status`.
 
 ///
 
-## Mengubah nilai default { #mengubah-nilai-default }
+## Mengubah nilai default { #changing-the-default }
 
 Nantinya, di [Panduan Pengguna Lanjutan](../advanced/response-change-status-code.md), Anda akan melihat cara mengembalikan kode status yang berbeda dari nilai default yang Anda deklarasikan di sini.
