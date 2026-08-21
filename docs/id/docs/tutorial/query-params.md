@@ -24,7 +24,7 @@ Namun saat Anda mendeklarasikannya dengan tipe Python (pada contoh di atas, seba
 Semua proses yang berlaku pada parameter path juga berlaku pada parameter query:
 
 * Dukungan editor kode (tentu saja)
-* <dfn title="mengonversi string yang berasal dari HTTP request menjadi data Python">"Parsing"</dfn> data
+* <dfn title="mengonversi string yang berasal dari HTTP request menjadi data Python">"parsing"</dfn> data
 * Validasi data
 * Dokumentasi otomatis
 
