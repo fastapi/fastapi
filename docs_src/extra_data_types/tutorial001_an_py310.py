@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 @app.put("/items/{item_id}")
-async def read_items(
+async def update_item(
     item_id: UUID,
     start_datetime: Annotated[datetime, Body()],
     end_datetime: Annotated[datetime, Body()],
