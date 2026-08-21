@@ -1959,13 +1959,13 @@ class _FrontendStaticFiles(StaticFiles):
             return self.file_response(full_path, stat_result, scope)
 
         if self.fallback == "404.html" or (
-            self.fallback == "auto" and self._fallback_file_exists("404.html")
+            self.fallback == "auto" and await self._fallback_file_exists("404.html")
         ):
             return await self._fallback_response("404.html", scope, status_code=404)
 
         if (
             self.fallback == "index.html"
-            or (self.fallback == "auto" and self._fallback_file_exists("index.html"))
+            or (self.fallback == "auto" and await self._fallback_file_exists("index.html"))
         ) and _is_frontend_navigation_request(scope):
             return await self._fallback_response("index.html", scope, status_code=200)
 
@@ -1998,8 +1998,8 @@ class _FrontendStaticFiles(StaticFiles):
                 return full_path, stat_result, True
         return None
 
-    def _fallback_file_exists(self, fallback: str) -> bool:
-        _, stat_result = self.lookup_path(fallback)
+    async def _fallback_file_exists(self, fallback: str) -> bool:
+        _, stat_result = await run_in_threadpool(self.lookup_path, fallback)
         return stat_result is not None and stat.S_ISREG(stat_result.st_mode)
 
     async def _fallback_response(

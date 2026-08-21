@@ -1404,3 +1404,17 @@ def test_included_low_priority_routes_can_store_non_frontend_routes():
 
     assert response.status_code == 200
     assert response.text == "low"
+
+
+def test_fallback_file_exists_is_async_and_non_blocking(tmp_path: Path):
+    import inspect
+    from fastapi.routing import _FrontendStaticFiles
+
+    static_files = _FrontendStaticFiles(
+        directory=tmp_path,
+        fallback="auto",
+        check_dir=False,
+    )
+
+    assert inspect.iscoroutinefunction(static_files._fallback_file_exists)
+
