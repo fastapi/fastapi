@@ -343,3 +343,10 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encoders_by_type_contains_pure_path():
+    from fastapi.encoders import ENCODERS_BY_TYPE
+
+    assert PurePath in ENCODERS_BY_TYPE
+    assert ENCODERS_BY_TYPE[PurePath] is str

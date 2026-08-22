@@ -102,6 +102,7 @@ ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     IPv6Network: str,
     NameEmail: str,
     Path: str,
+    PurePath: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
     SecretStr: str,
