@@ -350,4 +350,3 @@ def test_encoders_by_type_contains_pure_path():
 
     assert PurePath in ENCODERS_BY_TYPE
     assert ENCODERS_BY_TYPE[PurePath] is str
-
