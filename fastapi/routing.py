@@ -2535,6 +2535,8 @@ class APIRouter(routing.Router):
             default=default,
             lifespan=lifespan_context,
         )
+        self._default = self.default
+        self.default = self._handle_no_match
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
@@ -2716,48 +2718,9 @@ class APIRouter(routing.Router):
         )
         self._mark_routes_changed()
 
-    async def app(self, scope: Scope, receive: Receive, send: Send) -> None:
-        assert scope["type"] in ("http", "websocket", "lifespan")
-
-        if "router" not in scope:
-            scope["router"] = self
-
-        if scope["type"] == "lifespan":
-            await self.lifespan(scope, receive, send)
-            return
-
-        partial: tuple[BaseRoute, Scope] | None = None
-        for route in self.routes:
-            match, child_scope = route.matches(scope)
-            if match == Match.FULL:
-                scope.update(child_scope)
-                await route.handle(scope, receive, send)
-                return
-            if match == Match.PARTIAL and partial is None:
-                partial = (route, child_scope)
-
-        if partial is not None:
-            route, child_scope = partial
-            scope.update(child_scope)
-            await route.handle(scope, receive, send)
-            return
-
-        route_path = get_route_path(scope)
-        if scope["type"] == "http" and self.redirect_slashes and route_path != "/":
-            redirect_scope = dict(scope)
-            if route_path.endswith("/"):
-                redirect_scope["path"] = redirect_scope["path"].rstrip("/")
-            else:
-                redirect_scope["path"] = redirect_scope["path"] + "/"
-
-            for route in self.routes:
-                match, _ = route.matches(redirect_scope)
-                if match != Match.NONE:
-                    redirect_url = URL(scope=redirect_scope)
-                    response = RedirectResponse(url=str(redirect_url))
-                    await response(scope, receive, send)
-                    return
-
+    async def _handle_no_match(
+        self, scope: Scope, receive: Receive, send: Send
+    ) -> None:
         (
             low_priority_match,
             low_priority_scope,
@@ -2778,7 +2741,7 @@ class APIRouter(routing.Router):
             await low_priority_route.handle(scope, receive, send)
             return
 
-        await self.default(scope, receive, send)
+        await self._default(scope, receive, send)
 
     async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
         included_router = _get_scope_included_router(scope)
