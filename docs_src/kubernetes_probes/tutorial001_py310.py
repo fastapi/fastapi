@@ -56,7 +56,9 @@ async def liveness_probe() -> HealthStatus:
     tags=["health"],
     response_model=ReadinessStatus,
     summary="Readiness Probe",
-    responses={status.HTTP_503_SERVICE_UNAVAILABLE: {"description": "Service Unavailable"}},
+    responses={
+        status.HTTP_503_SERVICE_UNAVAILABLE: {"description": "Service Unavailable"}
+    },
 )
 async def readiness_probe() -> ReadinessStatus:
     """Check whether the application and its dependencies are ready to accept traffic."""
