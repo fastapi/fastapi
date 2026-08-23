@@ -41,6 +41,9 @@ def is_body_allowed_for_status_code(status_code: int | str | None) -> bool:
 
 
 def get_path_param_names(path: str) -> set[str]:
+    """
+    Extract path parameter names from a path string.
+    """
     return set(re.findall("{(.*?)}", path))
 
 
