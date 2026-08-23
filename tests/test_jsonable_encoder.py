@@ -343,3 +343,17 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encode_pure_path():
+    from pathlib import PurePosixPath, PureWindowsPath
+
+    data = {
+        "posix": PurePosixPath("a/b/c"),
+        "windows": PureWindowsPath("a\\b\\c"),
+    }
+    assert jsonable_encoder(data) == {
+        "posix": "a/b/c",
+        "windows": "a\\b\\c",
+    }
+
