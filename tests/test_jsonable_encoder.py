@@ -356,4 +356,3 @@ def test_encode_pure_path():
         "posix": "a/b/c",
         "windows": "a\\b\\c",
     }
-
