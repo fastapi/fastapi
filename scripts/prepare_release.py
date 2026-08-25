@@ -7,8 +7,8 @@ from typing import Annotated, Literal
 
 import typer
 
-VERSION_PATTERN = re.compile(r'(?m)^__version__ = "(\d+\.\d+\.\d+)"$')
-VERSION_HEADING_PATTERN = re.compile(r"(?m)^## (\d+\.\d+\.\d+)(?: \([^)]+\))?$")
+VERSION_PATTERN = re.compile(r'^(?:__version__ = ")?(\d{1,6}\.\d{1,6}\.\d{1,6})(?:"$)?', flags=re.MULTILINE)
+VERSION_HEADING_PATTERN = re.compile(r"^## (\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^)]+\))?$", flags=re.MULTILINE)
 RELEASE_NOTES_HEADER = """---
 hide:
   - navigation
@@ -24,11 +24,11 @@ app = typer.Typer()
 
 
 def parse_version(version: str) -> tuple[int, int, int]:
-    match = re.fullmatch(r"\d+\.\d+\.\d+", version)
-    if not match:
+    parts = version.split(".")
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
         raise ValueError(f"Invalid version: {version!r}. Expected format: X.Y.Z")
-    major, minor, patch = version.split(".")
-    return int(major), int(minor), int(patch)
+    major, minor, patch = (int(part) for part in parts)
+    return major, minor, patch
 
 
 def get_current_version(content: str, version_file: Path) -> str:
@@ -66,8 +66,12 @@ def update_release_notes(
         raise RuntimeError(
             f"{release_notes_file} must start with {RELEASE_NOTES_HEADER!r}"
         )
-    if re.search(rf"^## {re.escape(version)}(?: \([^)]+\))?$", content, re.M):
-        raise RuntimeError(f"Release notes already contain a section for {version}")
+    # Check for an existing heading for this version using safe string checks
+    for line in content.splitlines():
+        if line.startswith(f"## {version}") and (
+            line == f"## {version}" or line[len(f"## {version}")] in (" ", "(")
+        ):
+            raise RuntimeError(f"Release notes already contain a section for {version}")
 
     latest_header = f"{RELEASE_NOTES_HEADER}{LATEST_CHANGES_HEADER}\n"
     if not content.startswith(latest_header):
@@ -82,16 +86,29 @@ def update_release_notes(
 
 
 def get_release_notes_body(content: str, version: str, release_notes_file: Path) -> str:
-    version_heading = re.compile(rf"(?m)^## {re.escape(version)}(?: \([^)]+\))?$")
-    match = version_heading.search(content)
-    if not match:
+    lines = content.splitlines()
+    start_idx = None
+    for i, line in enumerate(lines):
+        if line.startswith(f"## {version}") and (
+            line == f"## {version}" or line[len(f"## {version}")] in (" ", "(")
+        ):
+            start_idx = i
+            break
+    if start_idx is None:
         raise RuntimeError(
             f"Could not find release notes section for {version} in {release_notes_file}"
         )
 
-    next_match = VERSION_HEADING_PATTERN.search(content, match.end())
-    end = next_match.start() if next_match else len(content)
-    body = content[match.end() : end].strip()
+    end_idx = len(lines)
+    for j in range(start_idx + 1, len(lines)):
+        if lines[j].startswith("## "):
+            # consider it a version heading only if it looks like '## <digit>'
+            remainder = lines[j][3:]
+            if remainder and remainder[0].isdigit():
+                end_idx = j
+                break
+
+    body = "\n".join(lines[start_idx + 1 : end_idx]).strip()
     if not body:
         raise RuntimeError(
             f"Release notes section for {version} in {release_notes_file} is empty"
