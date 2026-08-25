@@ -16,7 +16,11 @@ from jinja2 import Template
 from ruff.__main__ import find_ruff_bin
 from slugify import slugify as py_slugify
 
-logging.basicConfig(level=logging.INFO)
+if not logging.getLogger().handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
+    logging.getLogger().addHandler(handler)
+logging.getLogger().setLevel(logging.INFO)
 
 SUPPORTED_LANGS = {
     "de",
@@ -57,19 +61,65 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 zensical_src_path = Path("site_zensical_src").absolute()
 
-header_pattern = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
-header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
+class _HeaderStartPattern:
+    def match(self, line: str):
+        if not line.startswith("#"):
+            return None
+        i = 0
+        n = len(line)
+        while i < n and line[i] == "#":
+            i += 1
+        if i < 1 or i > 6:
+            return None
+        pos = i
+        if pos >= n or not line[pos].isspace():
+            return None
+        while pos < n and line[pos].isspace():
+            pos += 1
+
+        class _M:
+            def __init__(self, g1: str, endpos: int):
+                self._g1 = g1
+                self._end = endpos
+
+            def group(self, idx: int):
+                if idx == 1:
+                    return self._g1
+                raise IndexError
+
+            def end(self):
+                return self._end
+
+        return _M(line[:i], pos)
+
+header_start_pattern = _HeaderStartPattern()
+# simple suffix matcher for a permalink like '{ #slug }' at the end of a header
+header_permalink_suffix = re.compile(r"\{\s*#[^}\s]+\s*\}\s*$")
 code_block3_pattern = re.compile(r"^\s*```")
 code_block4_pattern = re.compile(r"^\s*````")
 
 
-# Pattern to match markdown links: [text](url) → text
-md_link_pattern = re.compile(r"\[([^\]]+)\]\([^)]+\)")
-
-
 def strip_markdown_links(text: str) -> str:
-    """Replace markdown links with just their visible text."""
-    return md_link_pattern.sub(r"\1", text)
+    """Replace markdown links with just their visible text without using regex.
+
+    This function scans for occurrences of [text](url) and preserves only the
+    visible text portion. It is implemented without regex to avoid ReDoS risk.
+    """
+    out: list[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        if text[i] == "[":
+            j = text.find("]", i + 1)
+            if j != -1 and j + 1 < n and text[j + 1] == "(":
+                k = text.find(")", j + 2)
+                if k != -1:
+                    out.append(text[i + 1 : j])
+                    i = k + 1
+                    continue
+        out.append(text[i])
+        i += 1
+    return "".join(out)
 
 
 class VisibleTextExtractor(HTMLParser):
@@ -282,10 +332,17 @@ def stage_zensical_docs(lang: str) -> Path:
 
 
 def build_zensical_config(config_path: Path) -> None:
+    config_file_name = config_path.name
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+\.ya?ml", config_file_name):
+        raise RuntimeError("Invalid config file name")
+    zensical_bin = shutil.which("zensical")
+    if not zensical_bin:
+        raise RuntimeError("zensical binary not found in PATH")
     subprocess.run(
-        ["zensical", "build", "--config-file", config_path.name],
+        [zensical_bin, "build", "--config-file", config_file_name],
         check=True,
         cwd=config_path.parent,
+        timeout=300,
     )
 
 
@@ -336,10 +393,11 @@ def sponsor_img_url(img: str) -> str:
 def remove_header_permalinks(content: str):
     lines: list[str] = []
     for line in content.split("\n"):
-        match = header_with_permalink_pattern.match(line)
-        if match:
-            hashes, title, *_ = match.groups()
-            line = f"{hashes} {title}"
+        m = header_start_pattern.match(line)
+        if m:
+            # Remove a trailing permalink suffix if present
+            if header_permalink_suffix.search(line):
+                line = header_permalink_suffix.sub("", line).rstrip()
         lines.append(line)
     return "\n".join(lines)
 
@@ -451,10 +509,23 @@ def serve() -> None:
     typer.echo("This is here only to preview a site with translations already built.")
     typer.echo("Make sure you run the build-all command first.")
     os.chdir("site")
-    server_address = ("", 8008)
-    server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    typer.echo("Serving at: http://127.0.0.1:8008")
-    server.serve_forever()
+    server_address = ("127.0.0.1", 8008)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    try:
+        import ssl
+
+        cert = Path("cert.pem")
+        key = Path("key.pem")
+        if cert.is_file() and key.is_file():
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            context.load_cert_chain(certfile=str(cert), keyfile=str(key))
+            httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
+            typer.echo("Serving at: https://127.0.0.1:8008")
+        else:
+            typer.echo("Serving at: http://127.0.0.1:8008")
+    except Exception:
+        typer.echo("Serving at: http://127.0.0.1:8008")
+    httpd.serve_forever()
 
 
 @app.command()
@@ -463,9 +534,14 @@ def live() -> None:
     Serve the English docs with livereload from the source files.
     """
     render_banner_sponsors()
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+\.ya?ml", mkdocs_name):
+        raise RuntimeError("Invalid mkdocs config name")
+    zensical_bin = shutil.which("zensical")
+    if not zensical_bin:
+        raise RuntimeError("zensical binary not found in PATH")
     subprocess.run(
         [
-            "zensical",
+            zensical_bin,
             "serve",
             "--config-file",
             mkdocs_name,
@@ -474,6 +550,7 @@ def live() -> None:
         ],
         cwd=en_docs_path,
         check=True,
+        timeout=300,
     )
 
 
@@ -609,9 +686,12 @@ def generate_docs_src_versions_for_file(file_path: Path) -> None:
     base_content = file_path.read_text(encoding="utf-8")
     previous_content = {base_content}
     for target_version in target_versions:
+        ruff_bin = find_ruff_bin()
+        if not ruff_bin or not Path(ruff_bin).is_file() or not os.access(ruff_bin, os.X_OK):
+            raise RuntimeError("ruff binary not found or not executable")
         version_result = subprocess.run(
             [
-                find_ruff_bin(),
+                ruff_bin,
                 "check",
                 "--target-version",
                 target_version,
@@ -621,12 +701,16 @@ def generate_docs_src_versions_for_file(file_path: Path) -> None:
             ],
             input=base_content.encode("utf-8"),
             capture_output=True,
+            check=True,
+            timeout=120,
         )
         content_target = version_result.stdout.decode("utf-8")
         format_result = subprocess.run(
-            [find_ruff_bin(), "format", "-"],
+            [ruff_bin, "format", "-"],
             input=content_target.encode("utf-8"),
             capture_output=True,
+            check=True,
+            timeout=60,
         )
         content_format = format_result.stdout.decode("utf-8")
         if content_format in previous_content:
@@ -707,15 +791,33 @@ def update_docs_includes_py39_to_py310() -> None:
     For each include line referencing a _py39 file or directory in docs_src, replace
     the _py39 label with _py310.
     """
-    include_pattern = re.compile(r"\{[^}]*docs_src/[^}]*_py39[^}]*\.py[^}]*\}")
+    # Use a safe parser to replace _py39 -> _py310 only inside braces that reference docs_src and a .py file
+    def replace_includes(content: str) -> str:
+        out_parts: list[str] = []
+        idx = 0
+        while True:
+            start = content.find("{", idx)
+            if start == -1:
+                out_parts.append(content[idx:])
+                break
+            end = content.find("}", start + 1)
+            if end == -1:
+                out_parts.append(content[idx:])
+                break
+            segment = content[start + 1 : end]
+            if "docs_src" in segment and "_py39" in segment and ".py" in segment:
+                new_segment = segment.replace("_py39", "_py310")
+                out_parts.append(content[idx:start + 1] + new_segment + "}")
+            else:
+                out_parts.append(content[idx:end + 1])
+            idx = end + 1
+        return "".join(out_parts)
     count = 0
     for md_file in sorted(en_docs_path.rglob("*.md")):
         content = md_file.read_text(encoding="utf-8")
         if "_py39" not in content:
             continue
-        new_content = include_pattern.sub(
-            lambda m: m.group(0).replace("_py39", "_py310"), content
-        )
+        new_content = replace_includes(content)
         if new_content != content:
             md_file.write_text(new_content, encoding="utf-8")
             count += 1
@@ -871,10 +973,16 @@ def add_permalinks_page(path: Path, update_existing: bool = False):
 
         # Process Headers only outside codeblocks
         if not (in_code_block3 or in_code_block4):
-            match = header_pattern.match(line)
-            if match:
-                hashes, title, _permalink = match.groups()
-                if (not _permalink) or update_existing:
+            m = header_start_pattern.match(line)
+            if m:
+                hashes = m.group(1)
+                rest = line[m.end():].rstrip("\n")
+                has_permalink = False
+                title = rest
+                if header_permalink_suffix.search(rest):
+                    has_permalink = True
+                    title = header_permalink_suffix.sub("", rest).strip()
+                if (not has_permalink) or update_existing:
                     slug = slugify(
                         visible_text_extractor.extract_visible_text(
                             strip_markdown_links(title)
