@@ -13,7 +13,7 @@ JWT означає «JSON Web Tokens».
 Це стандарт кодування об'єкта JSON у довгу щільну строку без пробілів. Він виглядає так:
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+<REDACTED_JWT_TOKEN>
 ```
 
 Він не зашифрований, тому кожен може відновити інформацію з вмісту.
