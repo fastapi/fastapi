@@ -117,9 +117,7 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
-          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -181,9 +179,7 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
-          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -251,9 +247,7 @@ jobs:
         if: steps.changed-tests.outputs.found == 'true'
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
-          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "latest-known"
           enable-cache: true
       - name: Run the changed tests against the base code
         if: steps.changed-tests.outputs.found == 'true'
@@ -292,9 +286,7 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          # Before upgrading uv version, make sure astral-sh/setup-uv knows its checksum.
-          # See: https://github.com/astral-sh/setup-uv/issues/851#issuecomment-4282017837
-          version: "0.11.18"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
