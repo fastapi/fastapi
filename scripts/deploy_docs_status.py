@@ -24,8 +24,11 @@ class LinkData(BaseModel):
 
 def main() -> None:
     logger = logging.getLogger(__name__)
-    if __name__ == "__main__" and not logging.getLogger().hasHandlers():
+    if __name__ == "__main__":
         logging.basicConfig(level=logging.INFO)
+    else:
+        if not logger.handlers:
+            logger.addHandler(logging.NullHandler())
     settings = Settings()
 
     logging.info("Using config: %s", settings.model_dump_json(exclude={"github_token"}))
@@ -35,7 +38,7 @@ def main() -> None:
         (pr for pr in repo.get_pulls() if pr.head.sha == settings.commit_sha), None
     )
     if not use_pr:
-        logging.error(f"No PR found for hash: {settings.commit_sha}")
+        logging.error("No PR found for hash: %s", settings.commit_sha)
         return
     commits = list(use_pr.get_commits())
     current_commit = [c for c in commits if c.sha == settings.commit_sha][0]
@@ -79,7 +82,13 @@ def main() -> None:
     files = list(use_pr.get_files())
     docs_files = [f for f in files if f.filename.startswith("docs/")]
 
+    from urllib.parse import urlparse
+
     deploy_url = settings.deploy_url.rstrip("/")
+    parsed = urlparse(deploy_url)
+    if parsed.scheme not in ("http", "https") or not parsed.netloc:
+        logging.error("Invalid deploy_url provided; ignoring deploy_url.")
+        deploy_url = ""
     lang_links: dict[str, list[LinkData]] = {}
     for f in docs_files:
         filename = f.filename
