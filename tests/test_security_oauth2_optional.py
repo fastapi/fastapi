@@ -90,7 +90,8 @@ def test_strict_login_no_data():
 
 
 def test_strict_login_no_grant_type():
-    response = client.post("/login", data={"username": "johndoe", "password": "secret"})
+    pw = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
+    response = client.post("/login", data={"username": "johndoe", "password": pw})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -113,9 +114,10 @@ def test_strict_login_no_grant_type():
     ],
 )
 def test_strict_login_incorrect_grant_type(grant_type: str):
+    pw = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
     response = client.post(
         "/login",
-        data={"username": "johndoe", "password": "secret", "grant_type": grant_type},
+        data={"username": "johndoe", "password": pw, "grant_type": grant_type},
     )
     assert response.status_code == 422
     assert response.json() == {
@@ -132,15 +134,16 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
 
 
 def test_strict_login_correct_data():
+    pw = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
     response = client.post(
         "/login",
-        data={"username": "johndoe", "password": "secret", "grant_type": "password"},
+        data={"username": "johndoe", "password": pw, "grant_type": "password"},
     )
     assert response.status_code == 200
     assert response.json() == {
         "grant_type": "password",
         "username": "johndoe",
-        "password": "secret",
+        "password": pw,
         "scopes": [],
         "client_id": None,
         "client_secret": None,
