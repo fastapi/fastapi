@@ -117,11 +117,13 @@ function shuffle(array) {
 
     function cryptoRandomInt(max) {
         if (max <= 0) return 0;
+        var cryptoObj = (typeof crypto !== 'undefined' && crypto && typeof crypto.getRandomValues === 'function') ? crypto : (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') ? window.crypto : null;
+        if (!cryptoObj) return Math.floor(Math.random() * max);
         var arr = new Uint32Array(1);
         var limit = 0xFFFFFFFF - (0xFFFFFFFF % max);
         var r;
         do {
-            crypto.getRandomValues(arr);
+            cryptoObj.getRandomValues(arr);
             r = arr[0];
         } while (r >= limit);
         return r % max;
