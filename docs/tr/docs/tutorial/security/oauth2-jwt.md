@@ -13,7 +13,7 @@ JWT, "JSON Web Tokens" anlamına gelir.
 Bir JSON nesnesini, boşluk içermeyen uzun ve yoğun bir string'e kodlamak için kullanılan bir standarttır. Şuna benzer:
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+<REDACTED_JWT_TOKEN_EXAMPLE>
 ```
 
 Şifrelenmiş değildir; yani herkes içeriğindeki bilgiyi geri çıkarabilir.
