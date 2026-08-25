@@ -23,12 +23,12 @@ class LinkData(BaseModel):
 
 
 def main() -> None:
-    root_logger = logging.getLogger()
-    if not root_logger.hasHandlers():
+    logger = logging.getLogger(__name__)
+    if __name__ == "__main__" and not logging.getLogger().hasHandlers():
         logging.basicConfig(level=logging.INFO)
     settings = Settings()
 
-    logging.info(f"Using config: {settings.model_dump_json()}")
+    logging.info("Using config: %s", settings.model_dump_json(exclude={"github_token"}))
     g = Github(auth=Auth.Token(settings.github_token.get_secret_value()))
     repo = g.get_repo(settings.github_repository)
     use_pr = next(
