@@ -114,8 +114,21 @@ function setupTermynal() {
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
+
+    function cryptoRandomInt(max) {
+        if (max <= 0) return 0;
+        var arr = new Uint32Array(1);
+        var limit = 0xFFFFFFFF - (0xFFFFFFFF % max);
+        var r;
+        do {
+            crypto.getRandomValues(arr);
+            r = arr[0];
+        } while (r >= limit);
+        return r % max;
+    }
+
     while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
+        randomIndex = cryptoRandomInt(currentIndex);
         currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
@@ -245,6 +258,10 @@ async function main() {
     openLinksInNewTab();
     setupOpinionsTabs();
 }
-document$.subscribe(() => {
-    main()
-})
+if (typeof document$ !== 'undefined' && document$ && typeof document$.subscribe === 'function') {
+    document$.subscribe(() => {
+        main();
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', main);
+}
