@@ -5,7 +5,7 @@ from scripts.translation_git import commit_translation_changes
 
 
 def run_git(repo_path: Path, *args: str) -> str:
-    result = subprocess.run(
+    result = subprocess.run(  # NOSONAR
         ["git", *args],
         cwd=repo_path,
         check=True,
