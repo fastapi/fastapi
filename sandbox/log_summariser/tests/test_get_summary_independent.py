@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from fastapi.testclient import TestClient
 
 from sandbox.log_summariser.app.main import app, STORE, SummaryRecord

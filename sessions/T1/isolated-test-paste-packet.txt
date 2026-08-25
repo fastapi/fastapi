@@ -1,4 +1,4 @@
-﻿TIER C ISOLATED TEST SESSION DECLARATION
+TIER C ISOLATED TEST SESSION DECLARATION
 Tier: C (new chat session; memory OFF / cross-chat disabled)
 This session HAS access to: spec excerpt + public interface signatures + test harness conventions.
 This session DOES NOT have access to: implementation code, implementation transcript, plan, prior session.

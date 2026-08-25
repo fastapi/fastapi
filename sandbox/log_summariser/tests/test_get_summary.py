@@ -1,4 +1,4 @@
-﻿from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
+from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
 from fastapi.testclient import TestClient
 
 

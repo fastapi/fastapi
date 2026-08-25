@@ -1,4 +1,4 @@
-﻿# Log summariser sandbox (T1)
+# Log summariser sandbox (T1)
 
 This folder is a sandbox app used for kata work (spec/task-driven).
 

@@ -1,4 +1,4 @@
-﻿# Session log — T1
+# Session log — T1
 
 ## Task spec (as executed)
 
