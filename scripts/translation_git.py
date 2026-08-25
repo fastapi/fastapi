@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def has_translation_changes(repo_path: Path) -> bool:
-    import shutil
+    import shutil, os
 
     if not isinstance(repo_path, Path):
         raise TypeError("repo_path must be a pathlib.Path")
@@ -12,18 +12,22 @@ def has_translation_changes(repo_path: Path) -> bool:
         return False
 
     git_path = shutil.which("git")
-    if not git_path:
+    if not git_path or not os.path.isabs(git_path) or not os.access(git_path, os.X_OK):
         raise FileNotFoundError("git executable not found in PATH")
 
     try:
+        env = os.environ.copy()
+        env["PATH"] = os.path.dirname(git_path) + os.pathsep + env.get("PATH", "")
         result = subprocess.run(
             [git_path, "status", "--porcelain", "--", "docs"],
             cwd=str(repo_path),
             check=True,
             capture_output=True,
             encoding="utf-8",
+            timeout=15,
+            env=env,
         )
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired):
         return False
     return bool(result.stdout)
 
@@ -35,7 +39,7 @@ def commit_translation_changes(
     language: str | None,
     command: str | None,
 ) -> str | None:
-    import shutil
+    import shutil, os
 
     if not isinstance(repo_path, Path):
         raise TypeError("repo_path must be a pathlib.Path")
