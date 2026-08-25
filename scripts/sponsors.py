@@ -157,9 +157,19 @@ def update_content(*, content_path: Path, new_content: Any) -> bool:
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO)
+    # Configure a local logger (avoid configuring the root logger and exposing secrets)
+    logger = logging.getLogger("scripts.sponsors")
+    logger.setLevel(logging.INFO)
+    if not logger.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+        logger.addHandler(handler)
     settings = Settings()
-    logging.info(f"Using config: {settings.model_dump_json()}")
+    logger.info(
+        "Using config: github_repository=%s, httpx_timeout=%s",
+        settings.github_repository,
+        settings.httpx_timeout,
+    )
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 
@@ -189,29 +199,31 @@ def main() -> None:
         logging.info("The data hasn't changed, finishing.")
         return
 
-    logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True)
-    subprocess.run(
-        ["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"],
-        check=True,
-    )
+    logger.info("Setting up GitHub Actions git user")
+    git_exe = __import__("shutil").which("git")
+    if not git_exe:
+        logger.error("git executable not found in PATH")
+        raise RuntimeError("git not found")
+    try:
+        subprocess.run([git_exe, "config", "user.name", "pr-submit[bot]"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run([git_exe, "config", "user.email", "pr-submit[bot]@users.noreply.github.com"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except subprocess.CalledProcessError as e:
+        logger.error("Failed configuring git user: %s", e.stderr.strip() if e.stderr else str(e))
+        raise
     branch_name = f"fastapi-people-sponsors-{secrets.token_hex(4)}"
-    logging.info(f"Creating a new branch {branch_name}")
-    subprocess.run(["git", "checkout", "-b", branch_name], check=True)
-    logging.info("Adding updated file")
-    subprocess.run(
-        [
-            "git",
-            "add",
-            str(github_sponsors_path),
-        ],
-        check=True,
-    )
-    logging.info("Committing updated file")
-    message = "👥 Update FastAPI People - Sponsors"
-    subprocess.run(["git", "commit", "-m", message], check=True)
-    logging.info("Pushing branch")
-    subprocess.run(["git", "push", "origin", branch_name], check=True)
+    logger.info("Creating a new branch %s", branch_name)
+    try:
+        subprocess.run([git_exe, "checkout", "-b", branch_name], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        logger.info("Adding updated file")
+        subprocess.run([git_exe, "add", str(github_sponsors_path)], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        logger.info("Committing updated file")
+        message = "👥 Update FastAPI People - Sponsors"
+        subprocess.run([git_exe, "commit", "-m", message], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        logger.info("Pushing branch")
+        subprocess.run([git_exe, "push", "origin", branch_name], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except subprocess.CalledProcessError as e:
+        logger.error("Git command failed: %s", e.stderr.strip() if e.stderr else str(e))
+        raise
     logging.info("Creating PR")
     pr = repo.create_pull(title=message, body=message, base="master", head=branch_name)
     logging.info(f"Created PR: {pr.number}")
