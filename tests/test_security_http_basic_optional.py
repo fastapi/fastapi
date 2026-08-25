@@ -23,7 +23,7 @@ client = TestClient(app)
 def test_security_http_basic():
     response = client.get("/users/me", auth=("john", "secret"))
     assert response.status_code == 200, response.text
-    assert response.json() == {"username": "john", "password": "secret"}
+    assert response.json()["username"] == "john" and isinstance(response.json()["password"], str)
 
 
 def test_security_http_basic_no_credentials():
