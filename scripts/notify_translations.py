@@ -311,7 +311,12 @@ def main() -> None:
     logger.propagate = False
     if not logger.handlers:
         logger.addHandler(logging.NullHandler())
-    logger.debug(f"Using config: {settings.model_dump_json()}")
+    logger.debug(
+        "Using config: repository=%s, event=%s, debug=%s",
+        settings.github_repository,
+        settings.github_event_name,
+        bool(settings.debug),
+    )
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     if not settings.github_event_path.is_file():
@@ -329,10 +334,13 @@ def main() -> None:
     number = cast(int, number)
 
     # Avoid race conditions with multiple labels
-    sleep_time = secrets.randbelow(1000000) / 100000.0
+    # Use a cryptographically secure RNG (SystemRandom) to derive a uniform
+    # sleep time between 0 and 10 seconds.
+    sleep_time = random.SystemRandom().uniform(0, 10)
     logging.info(
-        f"Sleeping for {sleep_time} seconds to avoid "
-        "race conditions and multiple comments"
+        "Sleeping for %s seconds to avoid "
+        "race conditions and multiple comments",
+        sleep_time,
     )
     time.sleep(sleep_time)
 
