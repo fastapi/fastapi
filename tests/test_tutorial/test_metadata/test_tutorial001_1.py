@@ -26,7 +26,7 @@ def test_openapi_schema():
                 "contact": {
                     "name": "Deadpoolio the Amazing",
                     "url": "https://x-force.example.com/contact/secure/",
-                    "email": "dp@x-force.example.com",
+                    "email": "mailto:dp@x-force.example.com",
                 },
                 "license": {
                     "name": "Apache 2.0",
