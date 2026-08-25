@@ -26,6 +26,7 @@ async def dependency_c(dep_b=Depends(dependency_b)):
     class DBSession:
         def close(self, *args, **kwargs):
             pass
+
     dep_c = DBSession()
     try:
         yield dep_c

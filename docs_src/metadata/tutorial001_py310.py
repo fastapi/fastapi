@@ -20,10 +20,10 @@ app = FastAPI(
     description=description,
     summary="Deadpool's favorite app. Nuff said.",
     version="0.0.1",
-    terms_of_service='https://example.com/terms/',
+    terms_of_service="https://example.com/terms/",
     contact={
         "name": "Deadpoolio the Amazing",
-        "url": 'https://x-force.example.com/contact/',
+        "url": "https://x-force.example.com/contact/",
         "email": "dp@x-force.example.com",
     },
     license_info={

@@ -3,7 +3,8 @@ from pathlib import Path
 
 
 def has_translation_changes(repo_path: Path) -> bool:
-    import shutil, os
+    import os
+    import shutil
 
     if not isinstance(repo_path, Path):
         raise TypeError("repo_path must be a pathlib.Path")
@@ -27,7 +28,11 @@ def has_translation_changes(repo_path: Path) -> bool:
             timeout=15,
             env=env,
         )
-    except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired):
+    except (
+        subprocess.CalledProcessError,
+        FileNotFoundError,
+        subprocess.TimeoutExpired,
+    ):
         return False
     return bool(result.stdout)
 
@@ -39,7 +44,7 @@ def commit_translation_changes(
     language: str | None,
     command: str | None,
 ) -> str | None:
-    import shutil, os
+    import shutil
 
     if not isinstance(repo_path, Path):
         raise TypeError("repo_path must be a pathlib.Path")
@@ -59,13 +64,19 @@ def commit_translation_changes(
     # basic sanitization of inputs used as git config values
     if not isinstance(bot_name, str) or any(c in bot_name for c in "\n\r\x00"):
         raise ValueError("invalid bot_name")
-    if language is not None and (not isinstance(language, str) or any(c in language for c in "\n\r\x00")):
+    if language is not None and (
+        not isinstance(language, str) or any(c in language for c in "\n\r\x00")
+    ):
         raise ValueError("invalid language")
-    if command is not None and (not isinstance(command, str) or any(c in command for c in "\n\r\x00")):
+    if command is not None and (
+        not isinstance(command, str) or any(c in command for c in "\n\r\x00")
+    ):
         raise ValueError("invalid command")
 
     print("Setting up GitHub App git user")
-    subprocess.run([git_path, "config", "user.name", bot_name], cwd=str(repo_path), check=True)
+    subprocess.run(
+        [git_path, "config", "user.name", bot_name], cwd=str(repo_path), check=True
+    )
     subprocess.run(
         [
             git_path,

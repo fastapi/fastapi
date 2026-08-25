@@ -25,12 +25,18 @@ def test_post_body_form(client: TestClient):
     assert response.status_code == 200
     json_response = response.json()
     assert json_response.get("username") == "Foo"
-    assert "password" in json_response and isinstance(json_response.get("password"), str) and len(json_response.get("password")) > 0
+    assert (
+        "password" in json_response
+        and isinstance(json_response.get("password"), str)
+        and len(json_response.get("password")) > 0
+    )
 
 
 def test_post_body_extra_form(client: TestClient):
     password = __import__("secrets").token_urlsafe(16)
-    response = client.post("/login/", data={"username": "Foo", "password": password, "extra": "extra"})
+    response = client.post(
+        "/login/", data={"username": "Foo", "password": password, "extra": "extra"}
+    )
     assert response.status_code == 422
     assert response.json() == {
         "detail": [

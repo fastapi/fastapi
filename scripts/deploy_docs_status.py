@@ -1,5 +1,4 @@
 import logging
-import re
 from typing import Literal
 
 from github import Auth, Github

@@ -29,7 +29,9 @@ TEST_INCORRECT_PASSWORD = os.environ.get("TEST_INCORRECT_PASSWORD", "incorrect")
 TEST_ALICE_PASSWORD = os.environ.get("TEST_ALICE_PASSWORD", "secretalice")
 
 
-def get_access_token(*, username="johndoe", password: str | None = None, client: TestClient):
+def get_access_token(
+    *, username="johndoe", password: str | None = None, client: TestClient
+):
     if password is None:
         password = TEST_PASSWORD
     data = {"username": username, "password": password}
@@ -41,7 +43,9 @@ def get_access_token(*, username="johndoe", password: str | None = None, client:
 
 def test_login(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "johndoe", "password": TEST_PASSWORD})
+    response = client.post(
+        "/token", data={"username": "johndoe", "password": TEST_PASSWORD}
+    )
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -59,7 +63,9 @@ def test_login_incorrect_password(mod: ModuleType):
 
 def test_login_incorrect_username(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "foo", "password": TEST_PASSWORD})
+    response = client.post(
+        "/token", data={"username": "foo", "password": TEST_PASSWORD}
+    )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -135,9 +141,7 @@ def test_token_no_sub(mod: ModuleType):
 def test_token_no_username(mod: ModuleType):
     client = TestClient(mod.app)
     token = mod.create_access_token(data={"sub": "foo"})
-    response = client.get(
-        "/users/me", headers={"Authorization": f"Bearer {token}"}
-    )
+    response = client.get("/users/me", headers={"Authorization": f"Bearer {token}"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
@@ -146,9 +150,7 @@ def test_token_no_username(mod: ModuleType):
 def test_token_nonexistent_user(mod: ModuleType):
     client = TestClient(mod.app)
     token = mod.create_access_token(data={"sub": "username:bob"})
-    response = client.get(
-        "/users/me", headers={"Authorization": f"Bearer {token}"}
-    )
+    response = client.get("/users/me", headers={"Authorization": f"Bearer {token}"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == "Bearer"

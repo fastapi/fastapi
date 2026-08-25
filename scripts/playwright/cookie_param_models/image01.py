@@ -21,8 +21,9 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-import shutil
 import os
+import shutil
+
 # Validate that the 'fastapi' executable exists and is an absolute path before it's used.
 # This prevents attempting to run a missing or unexpected executable later.
 _fastapi_exec = shutil.which("fastapi")
@@ -37,7 +38,11 @@ if fastapi_exec is None:
     raise RuntimeError("fastapi executable not found in PATH")
 script_path = os.path.abspath("docs_src/cookie_param_models/tutorial001.py")
 process = subprocess.Popen(
-    [fastapi_exec, "run", script_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True, start_new_session=True
+    [fastapi_exec, "run", script_path],
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    close_fds=True,
+    start_new_session=True,
 )
 try:
     for _ in range(3):

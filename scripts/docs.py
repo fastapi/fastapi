@@ -19,7 +19,9 @@ from slugify import slugify as py_slugify
 root_logger = logging.getLogger()
 if not root_logger.handlers:
     handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
+    handler.setFormatter(
+        logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
+    )
     handler.setLevel(logging.INFO)
     root_logger.addHandler(handler)
 root_logger.setLevel(logging.INFO)
@@ -64,6 +66,7 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 zensical_src_path = Path("site_zensical_src").absolute()
 
+
 class _HeaderStartPattern:
     def match(self, line: str):
         if not line.startswith("#"):
@@ -94,6 +97,7 @@ class _HeaderStartPattern:
                 return self._end
 
         return _M(line[:i], pos)
+
 
 header_start_pattern = _HeaderStartPattern()
 # simple suffix matcher for a permalink like '{ #slug }' at the end of a header
@@ -690,7 +694,11 @@ def generate_docs_src_versions_for_file(file_path: Path) -> None:
     previous_content = {base_content}
     for target_version in target_versions:
         ruff_bin = find_ruff_bin()
-        if not ruff_bin or not Path(ruff_bin).is_file() or not os.access(ruff_bin, os.X_OK):
+        if (
+            not ruff_bin
+            or not Path(ruff_bin).is_file()
+            or not os.access(ruff_bin, os.X_OK)
+        ):
             raise RuntimeError("ruff binary not found or not executable")
         version_result = subprocess.run(
             [
@@ -794,6 +802,7 @@ def update_docs_includes_py39_to_py310() -> None:
     For each include line referencing a _py39 file or directory in docs_src, replace
     the _py39 label with _py310.
     """
+
     # Use a safe parser to replace _py39 -> _py310 only inside braces that reference docs_src and a .py file
     def replace_includes(content: str) -> str:
         out_parts: list[str] = []
@@ -810,11 +819,12 @@ def update_docs_includes_py39_to_py310() -> None:
             segment = content[start + 1 : end]
             if "docs_src" in segment and "_py39" in segment and ".py" in segment:
                 new_segment = segment.replace("_py39", "_py310")
-                out_parts.append(content[idx:start + 1] + new_segment + "}")
+                out_parts.append(content[idx : start + 1] + new_segment + "}")
             else:
-                out_parts.append(content[idx:end + 1])
+                out_parts.append(content[idx : end + 1])
             idx = end + 1
         return "".join(out_parts)
+
     count = 0
     for md_file in sorted(en_docs_path.rglob("*.md")):
         content = md_file.read_text(encoding="utf-8")
@@ -979,7 +989,7 @@ def add_permalinks_page(path: Path, update_existing: bool = False):
             m = header_start_pattern.match(line)
             if m:
                 hashes = m.group(1)
-                rest = line[m.end():].rstrip("\n")
+                rest = line[m.end() :].rstrip("\n")
                 has_permalink = False
                 title = rest
                 if header_permalink_suffix.search(rest):

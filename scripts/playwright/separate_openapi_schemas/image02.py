@@ -26,7 +26,11 @@ def run(playwright: Playwright) -> None:
 uvicorn_path = __import__("shutil").which("uvicorn")
 if not uvicorn_path:
     raise RuntimeError("uvicorn not found")
-process = subprocess.Popen([uvicorn_path, "docs_src.separate_openapi_schemas.tutorial001:app"], shell=False, close_fds=True)
+process = subprocess.Popen(
+    [uvicorn_path, "docs_src.separate_openapi_schemas.tutorial001:app"],
+    shell=False,
+    close_fds=True,
+)
 try:
     with sync_playwright() as playwright:
         run(playwright)

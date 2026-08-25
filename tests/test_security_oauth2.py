@@ -90,7 +90,9 @@ def test_strict_login_no_data():
 
 def test_strict_login_no_grant_type():
     pw_field = "".join(["p", "a", "s", "s", "w", "o", "r", "d"])
-    pw_value = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
+    pw_value = __import__("os").environ.get(
+        "TEST_PASSWORD", __import__("uuid").uuid4().hex
+    )
     response = client.post("/login", data={"username": "johndoe", pw_field: pw_value})
     assert response.status_code == 422
     assert response.json() == {
@@ -115,7 +117,9 @@ def test_strict_login_no_grant_type():
 )
 def test_strict_login_incorrect_grant_type(grant_type: str):
     pw_field = "".join(["p", "a", "s", "s", "w", "o", "r", "d"])
-    pw_value = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
+    pw_value = __import__("os").environ.get(
+        "TEST_PASSWORD", __import__("uuid").uuid4().hex
+    )
     response = client.post(
         "/login",
         data={"username": "johndoe", pw_field: pw_value, "grant_type": grant_type},
@@ -136,7 +140,9 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
 
 def test_strict_login_correct_grant_type():
     pw_field = "".join(["p", "a", "s", "s", "w", "o", "r", "d"])
-    pw_value = __import__("os").environ.get("TEST_PASSWORD", __import__("uuid").uuid4().hex)
+    pw_value = __import__("os").environ.get(
+        "TEST_PASSWORD", __import__("uuid").uuid4().hex
+    )
     grant_value = pw_field
     response = client.post(
         "/login",

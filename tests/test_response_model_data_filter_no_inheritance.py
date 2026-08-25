@@ -36,7 +36,9 @@ async def create_user(user: UserCreate):
 
 @app.get("/pets/{pet_id}", response_model=PetOut)
 async def read_pet(pet_id: int):
-    import secrets, hashlib
+    import hashlib
+    import secrets
+
     _raw_password = secrets.token_hex(16)
     _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
@@ -49,7 +51,9 @@ async def read_pet(pet_id: int):
 
 @app.get("/pets/", response_model=list[PetOut])
 async def read_pets():
-    import secrets, hashlib
+    import hashlib
+    import secrets
+
     _raw_password = secrets.token_hex(16)
     _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
@@ -66,6 +70,7 @@ client = TestClient(app)
 
 def test_filter_top_level_model():
     import uuid
+
     _password = uuid.uuid4().hex
     response = client.post(
         "/users", json={"email": "johndoe@example.com", "password": _password}

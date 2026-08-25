@@ -18,7 +18,9 @@ def get_current_username(
         current_username_bytes, correct_username_bytes
     )
     current_password_bytes = credentials.password.encode("utf8")
-    correct_password_bytes = __import__("os").environ.get("APP_PASSWORD", "").encode("utf8")
+    correct_password_bytes = (
+        __import__("os").environ.get("APP_PASSWORD", "").encode("utf8")
+    )
     is_correct_password = secrets.compare_digest(
         current_password_bytes, correct_password_bytes
     )

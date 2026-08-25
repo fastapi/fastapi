@@ -305,7 +305,6 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 def main() -> None:
     settings = Settings()
-    import secrets
     logger = logging.getLogger("notify_translations")
     logger.setLevel(logging.DEBUG if settings.debug else logging.INFO)
     logger.propagate = False
@@ -338,8 +337,7 @@ def main() -> None:
     # sleep time between 0 and 10 seconds.
     sleep_time = random.SystemRandom().uniform(0, 10)
     logging.info(
-        "Sleeping for %s seconds to avoid "
-        "race conditions and multiple comments",
+        "Sleeping for %s seconds to avoid race conditions and multiple comments",
         sleep_time,
     )
     time.sleep(sleep_time)

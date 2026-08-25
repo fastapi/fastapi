@@ -23,7 +23,7 @@ def get_client(request: pytest.FixtureRequest):
 
 def test_login(client: TestClient):
     mod = importlib.import_module(client.app.router.routes[0].endpoint.__module__)
-    pwd = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed"):]
+    pwd = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed") :]
     response = client.post("/token", data={"username": "johndoe", "password": pwd})
     assert response.status_code == 200, response.text
     assert response.json() == {"access_token": "johndoe", "token_type": "bearer"}
@@ -31,7 +31,7 @@ def test_login(client: TestClient):
 
 def test_login_incorrect_password(client: TestClient):
     mod = importlib.import_module(client.app.router.routes[0].endpoint.__module__)
-    correct = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed"):]
+    correct = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed") :]
     inc_pwd = correct + "x"
     response = client.post("/token", data={"username": "johndoe", "password": inc_pwd})
     assert response.status_code == 400, response.text
@@ -40,7 +40,7 @@ def test_login_incorrect_password(client: TestClient):
 
 def test_login_incorrect_username(client: TestClient):
     mod = importlib.import_module(client.app.router.routes[0].endpoint.__module__)
-    pwd = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed"):]
+    pwd = mod.fake_users_db["johndoe"]["hashed_password"][len("fakehashed") :]
     response = client.post("/token", data={"username": "foo", "password": pwd})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}

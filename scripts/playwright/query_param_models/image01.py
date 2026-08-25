@@ -24,8 +24,10 @@ def run(playwright: Playwright) -> None:
 
 
 _fastapi_cmd = __import__("shutil").which("fastapi")
-if not _fastapi_cmd or not __import__("os").path.isabs(_fastapi_cmd) or not __import__("os").access(
-    _fastapi_cmd, __import__("os").X_OK
+if (
+    not _fastapi_cmd
+    or not __import__("os").path.isabs(_fastapi_cmd)
+    or not __import__("os").access(_fastapi_cmd, __import__("os").X_OK)
 ):
     raise RuntimeError("fastapi executable not found or not executable")
 process = subprocess.Popen(

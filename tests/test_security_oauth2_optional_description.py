@@ -136,7 +136,7 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
 
 def test_strict_login_correct_correct_grant_type():
     PASSWORD = __import__("secrets").token_urlsafe(16)
-    GRANT_TYPE = "".join(["p", "a", "s", "s", "w", "o", "r", "d"]) 
+    GRANT_TYPE = "".join(["p", "a", "s", "s", "w", "o", "r", "d"])
     response = client.post(
         "/login",
         data={"username": "johndoe", "password": PASSWORD, "grant_type": GRANT_TYPE},

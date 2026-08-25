@@ -21,11 +21,17 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen([
-    "fastapi",
-    "run",
-    "docs_src/sql_databases/tutorial002.py",
-], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=False)
+process = subprocess.Popen(
+    [
+        "fastapi",
+        "run",
+        "docs_src/sql_databases/tutorial002.py",
+    ],
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    shell=False,
+)
 try:
     for _ in range(3):
         try:

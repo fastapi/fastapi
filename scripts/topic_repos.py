@@ -56,11 +56,11 @@ def main() -> None:
         return
     repos_path.write_text(new_repos_content, encoding="utf-8")
     # Securely run git commands with validations to avoid injection and unsafe paths
-    import shutil
     import re
+    import shutil
 
     def _safe_branch_name(name: str) -> bool:
-        return re.match(r'^[A-Za-z0-9._\-/]+$', name) is not None
+        return re.match(r"^[A-Za-z0-9._\-/]+$", name) is not None
 
     def _is_path_within_repo(path_str: str) -> bool:
         p = Path(path_str)
@@ -100,7 +100,13 @@ def main() -> None:
         git_path = shutil.which("git")
         if not git_path:
             raise RuntimeError("git not found in PATH")
-        return subprocess.run([git_path] + list(cmd[1:]), check=True, capture_output=True, text=True, timeout=30)
+        return subprocess.run(
+            [git_path] + list(cmd[1:]),
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
 
     logging.info("Setting up GitHub Actions git user")
     safe_run(["git", "config", "user.name", "pr-submit[bot]"])

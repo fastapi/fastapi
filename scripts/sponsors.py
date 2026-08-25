@@ -163,7 +163,9 @@ def main() -> None:
     logger.propagate = False
     if not logger.handlers:
         handler = logging.StreamHandler()
-        handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+        handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        )
         logger.addHandler(handler)
     settings = Settings()
     logger.info(
@@ -201,9 +203,9 @@ def main() -> None:
         return
 
     logger.info("Setting up GitHub Actions git user")
-    import shutil
     import os
     import re
+    import shutil
 
     git_exe = shutil.which("git")
     if not git_exe:
@@ -214,10 +216,29 @@ def main() -> None:
         logger.error("git executable at %s is not valid", git_exe)
         raise RuntimeError("invalid git executable")
     try:
-        subprocess.run([git_exe, "config", "user.name", "pr-submit[bot]"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        subprocess.run([git_exe, "config", "user.email", "pr-submit[bot]@users.noreply.github.com"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(
+            [git_exe, "config", "user.name", "pr-submit[bot]"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        subprocess.run(
+            [
+                git_exe,
+                "config",
+                "user.email",
+                "pr-submit[bot]@users.noreply.github.com",
+            ],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
     except subprocess.CalledProcessError as e:
-        logger.error("Failed configuring git user: %s", e.stderr.strip() if e.stderr else str(e))
+        logger.error(
+            "Failed configuring git user: %s", e.stderr.strip() if e.stderr else str(e)
+        )
         raise
     branch_name = f"fastapi-people-sponsors-{secrets.token_hex(4)}"
     # Validate generated branch name to avoid injection or unsafe characters
@@ -226,14 +247,38 @@ def main() -> None:
         raise RuntimeError("unsafe branch name")
     logger.info("Creating a new branch %s", branch_name)
     try:
-        subprocess.run([git_exe, "checkout", "-b", branch_name], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(
+            [git_exe, "checkout", "-b", branch_name],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
         logger.info("Adding updated file")
-        subprocess.run([git_exe, "add", str(github_sponsors_path)], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(
+            [git_exe, "add", str(github_sponsors_path)],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
         logger.info("Committing updated file")
         message = "👥 Update FastAPI People - Sponsors"
-        subprocess.run([git_exe, "commit", "-m", message], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(
+            [git_exe, "commit", "-m", message],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
         logger.info("Pushing branch")
-        subprocess.run([git_exe, "push", "origin", branch_name], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(
+            [git_exe, "push", "origin", branch_name],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
     except subprocess.CalledProcessError as e:
         logger.error("Git command failed: %s", e.stderr.strip() if e.stderr else str(e))
         raise

@@ -22,8 +22,8 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen(shell=False, args=
-    ["uvicorn", "docs_src.separate_openapi_schemas.tutorial002:app"]
+process = subprocess.Popen(
+    shell=False, args=["uvicorn", "docs_src.separate_openapi_schemas.tutorial002:app"]
 )
 try:
     with sync_playwright() as playwright:

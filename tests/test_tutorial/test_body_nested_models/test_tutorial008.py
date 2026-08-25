@@ -53,7 +53,7 @@ def test_post_not_a_list(client: TestClient):
         "detail": [
             {
                 "loc": ["body"],
-                    "input": {
+                "input": {
                     "name": "Example",
                     "url": "https://example.org/",
                 },

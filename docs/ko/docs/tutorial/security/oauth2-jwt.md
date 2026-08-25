@@ -14,7 +14,7 @@ JWT는 "JSON Web Tokens"를 의미합니다.
 JSON 객체를 공백이 없는 길고 밀집된 문자열로 부호화하는 표준입니다. 다음과 같은 형태입니다:
 
 ```
-[REDACTED - example JWT token removed for security reasons]
+REDACTED_EXAMPLE_JWT_TOKEN
 ```
 
 암호화된 것이 아니므로, 누구나 내용에서 정보를 복원할 수 있습니다.

@@ -24,7 +24,8 @@ class Settings(BaseSettings):
 
 settings = Settings()
 if settings.debug:
-    root_logger = logging.getLogger("label_approved"); handler = logging.StreamHandler()
+    root_logger = logging.getLogger("label_approved")
+    handler = logging.StreamHandler()
     root_logger.propagate = False
     if not root_logger.handlers:
         formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")

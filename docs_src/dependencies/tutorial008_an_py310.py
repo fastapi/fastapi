@@ -10,6 +10,8 @@ async def dependency_a():
     finally:
         if hasattr(dep_a, "close"):
             dep_a.close()
+
+
 DBSession = object
 
 

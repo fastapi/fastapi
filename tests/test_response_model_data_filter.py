@@ -36,7 +36,9 @@ async def create_user(user: UserCreate):
 async def read_pet(pet_id: int):
     user = UserDB(
         email="johndoe@example.com",
-        hashed_password=__import__('os').environ.get('TEST_HASHED_PASSWORD', __import__('secrets').token_hex(32)),
+        hashed_password=__import__("os").environ.get(
+            "TEST_HASHED_PASSWORD", __import__("secrets").token_hex(32)
+        ),
     )
     pet = PetDB(name="Nibbler", owner=user)
     return pet
@@ -46,7 +48,9 @@ async def read_pet(pet_id: int):
 async def read_pets():
     user = UserDB(
         email="johndoe@example.com",
-        hashed_password=__import__('os').environ.get('TEST_HASHED_PASSWORD', __import__('secrets').token_hex(32)),
+        hashed_password=__import__("os").environ.get(
+            "TEST_HASHED_PASSWORD", __import__("secrets").token_hex(32)
+        ),
     )
     pet1 = PetDB(name="Nibbler", owner=user)
     pet2 = PetDB(name="Zoidberg", owner=user)
@@ -58,7 +62,13 @@ client = TestClient(app)
 
 def test_filter_top_level_model():
     response = client.post(
-        "/users", json={"email": "johndoe@example.com", "password": __import__('os').environ.get('TEST_PASSWORD', __import__('secrets').token_urlsafe(32))}
+        "/users",
+        json={
+            "email": "johndoe@example.com",
+            "password": __import__("os").environ.get(
+                "TEST_PASSWORD", __import__("secrets").token_urlsafe(32)
+            ),
+        },
     )
     assert response.json() == {"email": "johndoe@example.com"}
 

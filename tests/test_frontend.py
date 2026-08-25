@@ -506,7 +506,9 @@ def test_frontend_dependency_response_headers_and_background_tasks(tmp_path: Pat
         response: Response, background_tasks: BackgroundTasks
     ) -> None:
         response.headers["X-Frontend-Dependency"] = "applied"
-        response.set_cookie("frontend", "dependency", secure=True, httponly=True, samesite="Strict")
+        response.set_cookie(
+            "frontend", "dependency", secure=True, httponly=True, samesite="Strict"
+        )
         background_tasks.add_task(calls.append, "background")
 
     dist = tmp_path / "dist"

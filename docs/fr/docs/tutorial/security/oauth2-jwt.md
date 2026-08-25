@@ -13,7 +13,7 @@ JWT signifie « JSON Web Tokens ».
 C'est une norme pour coder un objet JSON dans une longue chaîne compacte sans espaces. Cela ressemble à ceci :
 
 ```
-REDACTED_JWT_TOKEN
+REDACTED_EXAMPLE_JWT_TOKEN
 ```
 
 Il n'est pas chiffré ; ainsi, n'importe qui peut récupérer les informations à partir de son contenu.

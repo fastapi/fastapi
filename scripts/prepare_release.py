@@ -12,7 +12,7 @@ VERSION_PATTERN = re.compile(
     flags=re.ASCII | re.MULTILINE,
 )
 VERSION_HEADING_PATTERN = re.compile(
-    r'^##\s+(\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^\)\n]{1,1000}\))?$',
+    r"^##\s+(\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^\)\n]{1,1000}\))?$",
     flags=re.ASCII | re.MULTILINE,
 )
 RELEASE_NOTES_HEADER = """---
@@ -77,9 +77,11 @@ def update_release_notes(
     # Check for an existing heading for this version using safe string checks
     for line in content.splitlines():
         if line.startswith(f"## {version}"):
-            tail = line[len(f"## {version}"):].lstrip()
+            tail = line[len(f"## {version}") :].lstrip()
             if tail == "" or tail.startswith("("):
-                raise RuntimeError(f"Release notes already contain a section for {version}")
+                raise RuntimeError(
+                    f"Release notes already contain a section for {version}"
+                )
 
     latest_header = f"{RELEASE_NOTES_HEADER}{LATEST_CHANGES_HEADER}\n"
     if not content.startswith(latest_header):

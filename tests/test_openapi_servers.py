@@ -37,7 +37,7 @@ def test_openapi_schema():
             "servers": [
                 {"url": "/", "description": "Default, relative server"},
                 {
-                "url": "https://staging.localhost.tiangolo.com/",
+                    "url": "https://staging.localhost.tiangolo.com/",
                     "description": "Staging but actually localhost still",
                 },
                 {"url": "https://prod.example.com"},

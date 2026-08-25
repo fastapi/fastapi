@@ -23,7 +23,12 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    [__import__("sys").executable, "-m", "uvicorn", "docs_src.separate_openapi_schemas.tutorial001:app"],
+    [
+        __import__("sys").executable,
+        "-m",
+        "uvicorn",
+        "docs_src.separate_openapi_schemas.tutorial001:app",
+    ],
     stdout=subprocess.DEVNULL,
     stderr=subprocess.DEVNULL,
     close_fds=True,

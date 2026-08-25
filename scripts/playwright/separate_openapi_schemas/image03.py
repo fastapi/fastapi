@@ -23,7 +23,10 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-import os; os.environ["PATH"] = "/usr/bin:/bin:/usr/local/bin"; process = subprocess.Popen(
+import os
+
+os.environ["PATH"] = "/usr/bin:/bin:/usr/local/bin"
+process = subprocess.Popen(
     ["uvicorn", "docs_src.separate_openapi_schemas.tutorial001:app"],
     stdin=subprocess.DEVNULL,
     stdout=subprocess.DEVNULL,

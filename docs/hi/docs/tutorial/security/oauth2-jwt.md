@@ -13,7 +13,7 @@ JWT का मतलब है "JSON Web Tokens"।
 यह एक JSON object को बिना spaces वाली लंबी dense string में codify करने का standard है। यह ऐसा दिखता है:
 
 ```
-REDACTED_EXAMPLE_JWT_TOKEN_REMOVED_FOR_SECURITY
+REDACTED_EXAMPLE_JWT_TOKEN
 ```
 
 यह encrypted नहीं है, इसलिए कोई भी contents से जानकारी वापस प्राप्त कर सकता है।

@@ -4,8 +4,12 @@ from typing import TypedDict
 CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)\s*([^*]*)\*\}$")
 CODE_INCLUDE_PLACEHOLDER = "<CODE_INCLUDE>"
 
-HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6})\s+([^\n{]+)(\s*\{\s*#[^}\s]+\s*\})?\s*$")
-HEADER_LINE_RE = re.compile(r"^(#{1,6})\s+([^\n{]+)(?:\s*\{\s*([^}\s#][^}]*)\s*\})?\s*$")
+HEADER_WITH_PERMALINK_RE = re.compile(
+    r"^(#{1,6})\s+([^\n{]+)(\s*\{\s*#[^}\s]+\s*\})?\s*$"
+)
+HEADER_LINE_RE = re.compile(
+    r"^(#{1,6})\s+([^\n{]+)(?:\s*\{\s*([^}\s#][^}]*)\s*\})?\s*$"
+)
 
 TIANGOLO_COM = "https://fastapi.tiangolo.com"
 ASSETS_URL_PREFIXES = ("/img/", "/css/", "/js/")
@@ -13,7 +17,7 @@ ASSETS_URL_PREFIXES = ("/img/", "/css/", "/js/")
 MARKDOWN_LINK_RE = re.compile(
     r"(?<!\\)(?<!\!)"  # not an image ![...] and not escaped \[...]
     r"\[(?P<text>[^\]]+)\]"  # link text (no closing bracket)
-    r"\(" 
+    r"\("
     r"(?P<url>[^)\s]+)"  # url (no spaces and `)`)
     r"(?:\s+[\"'](?P<title>[^\"']*)[\"'])?"  # optional title in "" or ''
     r"\)"
@@ -27,9 +31,7 @@ HTML_ATTR_RE = re.compile(r"(\w+)\s*=\s*([\'\"])([^\'\"]*?)\2")
 
 CODE_BLOCK_LANG_RE = re.compile(r"^`{3,4}([A-Za-z0-9_-]*)", re.MULTILINE)
 
-SLASHES_COMMENT_RE = re.compile(
-    r"^(?P<code>.*?)(?P<comment>(?:^// .*| // .*))?$"
-)
+SLASHES_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>(?:^// .*| // .*))?$")
 
 HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>(?:^# .*| # .*))?$")
 
