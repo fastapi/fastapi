@@ -9,7 +9,6 @@ from playwright.sync_api import Playwright, sync_playwright
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     # Update the viewport manually
-    browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
     page.goto("http://localhost:8000/docs")
@@ -24,6 +23,14 @@ def run(playwright: Playwright) -> None:
 
 import shutil
 import os
+# Validate that the 'fastapi' executable exists and is an absolute path before it's used.
+# This prevents attempting to run a missing or unexpected executable later.
+_fastapi_exec = shutil.which("fastapi")
+if _fastapi_exec is None:
+    raise RuntimeError("fastapi executable not found in PATH")
+_fastapi_exec = os.path.abspath(_fastapi_exec)
+# Provide a sensible default name for later use; later code may re-check or override this.
+fastapi_exec = _fastapi_exec
 
 fastapi_exec = shutil.which("fastapi")
 if fastapi_exec is None:
