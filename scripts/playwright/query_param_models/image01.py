@@ -9,8 +9,8 @@ from playwright.sync_api import Playwright, sync_playwright
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     # Update the viewport manually
-    context = browser.new_context(viewport={"width": 960, "height": 1080})
-    page = context.new_page()
+    page = browser.new_context(viewport={"width": 960, "height": 1080}).new_page()
+    # page created from context; use page.context to close it
     page.goto("http://localhost:8000/docs")
     page.get_by_role("button", name="GET /items/ Read Items").click()
     page.get_by_role("button", name="Try it out").click()
@@ -19,13 +19,15 @@ def run(playwright: Playwright) -> None:
     page.screenshot(path="docs/en/docs/img/tutorial/query-param-models/image01.png")
 
     # ---------------------
-    context.close()
+    page.context.close()
     browser.close()
 
 
 _fastapi_cmd = __import__("shutil").which("fastapi")
-if _fastapi_cmd is None:
-    raise RuntimeError("fastapi executable not found")
+if not _fastapi_cmd or not __import__("os").path.isabs(_fastapi_cmd) or not __import__("os").access(
+    _fastapi_cmd, __import__("os").X_OK
+):
+    raise RuntimeError("fastapi executable not found or not executable")
 process = subprocess.Popen(
     [_fastapi_cmd, "run", "docs_src/query_param_models/tutorial001.py"],
     stdin=subprocess.DEVNULL,
