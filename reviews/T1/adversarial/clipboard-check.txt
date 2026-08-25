@@ -1,0 +1,2 @@
+﻿Get-Clipboard | Set-Content -Encoding utf8 .\reviews\T1\adversarial\clipboard-check.txt
+notepad .\reviews\T1\adversarial\clipboard-check.txt

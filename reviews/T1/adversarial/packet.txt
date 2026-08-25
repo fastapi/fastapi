@@ -1,0 +1,920 @@
+﻿ADVERSARIAL PASS (Copilot session; Tier B). Model: GitHub Copilot.
+
+INSTRUCTIONS:
+You are the adversarial pass. Do NOT repeat the existing seven-lens findings. Find what they missed.
+
+DIFF:
+diff --git a/sandbox/log_summariser/README.md b/sandbox/log_summariser/README.md
+new file mode 100644
+index 000000000..a29c43ffb
+--- /dev/null
++++ b/sandbox/log_summariser/README.md
+@@ -0,0 +1,5 @@
++# Log summariser sandbox (T1)
++
++This folder is a sandbox app used for kata work (spec/task-driven).
++
++T1 goal: minimal GET /tenants/{tenant_id}/summaries/{summary_id} backed by an in-memory store, with 200/404 behavior and stable JSON error shape.
+diff --git a/sandbox/log_summariser/__init__.py b/sandbox/log_summariser/__init__.py
+new file mode 100644
+index 000000000..e69de29bb
+diff --git a/sandbox/log_summariser/app/__init__.py b/sandbox/log_summariser/app/__init__.py
+new file mode 100644
+index 000000000..e69de29bb
+diff --git a/sandbox/log_summariser/app/main.py b/sandbox/log_summariser/app/main.py
+new file mode 100644
+index 000000000..8f6c5d9c0
+--- /dev/null
++++ b/sandbox/log_summariser/app/main.py
+@@ -0,0 +1,60 @@
++from __future__ import annotations
++
++from fastapi import FastAPI, HTTPException
++from pydantic import BaseModel
++
++
++app = FastAPI(title="Log Summariser Sandbox")
++
++
++class ErrorBody(BaseModel):
++    code: str
++    message: str
++    details: dict | None = None
++
++
++class ErrorResponse(BaseModel):
++    error: ErrorBody
++
++
++class SummaryRecord(BaseModel):
++    job_status: str
++    summary_text: str | None = None
++    error: ErrorBody | None = None
++
++
++# In-memory store: tenant_id -> summary_id -> SummaryRecord
++STORE: dict[str, dict[str, SummaryRecord]] = {}
++
++
++@app.get(
++    "/tenants/{tenant_id}/summaries/{summary_id}",
++    response_model=SummaryRecord,
++    responses={404: {"model": ErrorResponse}},
++)
++def get_summary(tenant_id: str, summary_id: str) -> SummaryRecord:
++    tenant_bucket = STORE.get(tenant_id)
++    if not tenant_bucket:
++        raise HTTPException(
++            status_code=404,
++            detail={"code": "not_found", "message": "summary not found", "details": None},
++        )
++    record = tenant_bucket.get(summary_id)
++    if not record:
++        raise HTTPException(
++            status_code=404,
++            detail={"code": "not_found", "message": "summary not found", "details": None},
++        )
++    return record
++
++
++# Convert FastAPI's HTTPException.detail into the required error envelope.
++@app.exception_handler(HTTPException)
++async def http_exception_handler(request, exc: HTTPException):
++    # Only wrap dict details in our standard shape; otherwise keep a minimal message.
++    if isinstance(exc.detail, dict) and "code" in exc.detail and "message" in exc.detail:
++        body = {"error": {"code": exc.detail["code"], "message": exc.detail["message"], "details": exc.detail.get("details")}}
++    else:
++        body = {"error": {"code": "http_error", "message": str(exc.detail), "details": None}}
++    from starlette.responses import JSONResponse
++    return JSONResponse(status_code=exc.status_code, content=body)
+diff --git a/sandbox/log_summariser/tests/__init__.py b/sandbox/log_summariser/tests/__init__.py
+new file mode 100644
+index 000000000..e69de29bb
+diff --git a/sandbox/log_summariser/tests/test_get_summary.py b/sandbox/log_summariser/tests/test_get_summary.py
+new file mode 100644
+index 000000000..f7b5676ac
+--- /dev/null
++++ b/sandbox/log_summariser/tests/test_get_summary.py
+@@ -0,0 +1,27 @@
++from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
++from fastapi.testclient import TestClient
++
++
++def test_get_summary_happy_path_and_404():
++    client = TestClient(app)
++
++    # Seed store
++    STORE.clear()
++    STORE.setdefault("t1", {})["s1"] = SummaryRecord(job_status="succeeded", summary_text="ok")
++
++    # Happy path
++    r = client.get("/tenants/t1/summaries/s1")
++    assert r.status_code == 200
++    assert r.json() == {"job_status": "succeeded", "summary_text": "ok", "error": None}
++
++    # Missing summary
++    r2 = client.get("/tenants/t1/summaries/missing")
++    assert r2.status_code == 404
++    assert r2.json()["error"]["code"] == "not_found"
++
++    # Missing tenant
++    r3 = client.get("/tenants/missing/summaries/s1")
++    assert r3.status_code == 404
++    assert r3.json()["error"]["code"] == "not_found"
++
++
+diff --git a/sandbox/log_summariser/tests/test_get_summary_independent.py b/sandbox/log_summariser/tests/test_get_summary_independent.py
+new file mode 100644
+index 000000000..4351488a2
+--- /dev/null
++++ b/sandbox/log_summariser/tests/test_get_summary_independent.py
+@@ -0,0 +1,162 @@
++import pytest
++from fastapi.testclient import TestClient
++
++from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
++
++client = TestClient(app)
++
++
++@pytest.fixture(autouse=True)
++def reset_store():
++    """
++    Isolate tests from one another.
++
++    Assumes STORE behaves like an in-memory mutable mapping.
++    """
++    if hasattr(STORE, "clear"):
++        STORE.clear()
++    yield
++    if hasattr(STORE, "clear"):
++        STORE.clear()
++
++
++def _insert_summary(tenant_id: str, summary_id: str, record: SummaryRecord):
++    """
++    Helper that populates STORE using the most likely nested structure.
++
++    The implementation is not available, so this helper mirrors the
++    route contract and keeps test intent explicit.
++    """
++    STORE.setdefault(tenant_id, {})
++    STORE[tenant_id][summary_id] = record
++
++
++@pytest.mark.parametrize(
++    "job_status",
++    ["queued", "running", "succeeded", "failed"],
++)
++def test_get_summary_returns_200_with_stored_summary_for_valid_ids(job_status):
++    tenant_id = "tenant-123"
++    summary_id = "summary-abc"
++
++    record = SummaryRecord(
++        job_status=job_status,
++        summary_text="Example summary",
++        error=None,
++    )
++
++    _insert_summary(tenant_id, summary_id, record)
++
++    response = client.get(
++        f"/tenants/{tenant_id}/summaries/{summary_id}"
++    )
++
++    assert response.status_code == 200
++
++    payload = response.json()
++    assert payload["job_status"] == job_status
++    assert payload["summary_text"] == "Example summary"
++    assert payload["error"] is None
++
++
++def test_get_summary_returns_nullable_fields_when_stored_record_contains_nulls():
++    tenant_id = "tenant-123"
++    summary_id = "summary-failed"
++
++    record = SummaryRecord(
++        job_status="failed",
++        summary_text=None,
++        error={"code": "processing_failure", "message": "processing failed", "details": {"reason": "processing_failure"}},
++    )
++
++    _insert_summary(tenant_id, summary_id, record)
++
++    response = client.get(
++        f"/tenants/{tenant_id}/summaries/{summary_id}"
++    )
++
++    assert response.status_code == 200
++
++    payload = response.json()
++    assert payload["job_status"] == "failed"
++    assert payload["summary_text"] is None
++    assert payload["error"]["code"] == "processing_failure"
++    assert payload["error"]["message"] == "processing failed"
++    assert payload["error"]["details"] == {"reason": "processing_failure"}
++
++
++def test_get_summary_returns_404_error_shape_for_missing_summary():
++    tenant_id = "tenant-123"
++
++    response = client.get(
++        f"/tenants/{tenant_id}/summaries/missing-summary"
++    )
++
++    assert response.status_code == 404
++
++    payload = response.json()
++
++    assert "error" in payload
++    assert set(payload["error"].keys()) == {
++        "code",
++        "message",
++        "details",
++    }
++    assert isinstance(payload["error"]["code"], str)
++    assert isinstance(payload["error"]["message"], str)
++    assert payload["error"]["details"] is None or isinstance(
++        payload["error"]["details"], dict
++    )
++
++
++def test_get_summary_returns_404_error_shape_for_missing_tenant_without_leaking_identity():
++    tenant_id = "missing-tenant"
++    summary_id = "missing-summary"
++
++    response = client.get(
++        f"/tenants/{tenant_id}/summaries/{summary_id}"
++    )
++
++    assert response.status_code == 404
++
++    payload = response.json()
++
++    assert "error" in payload
++    assert isinstance(payload["error"]["code"], str)
++    assert isinstance(payload["error"]["message"], str)
++
++    # AC: do not leak whether tenant_id or summary_id does not exist.
++    # FLAG: Exact wording is not specified in the excerpt, so we only
++    # assert that identifiers are not echoed in the message.
++    message = payload["error"]["message"]
++    assert tenant_id not in message
++    assert summary_id not in message
++
++
++def test_get_summary_returns_only_allowed_job_status_values():
++    tenant_id = "tenant-123"
++    summary_id = "summary-xyz"
++
++    record = SummaryRecord(
++        job_status="succeeded",
++        summary_text="done",
++        error=None,
++    )
++
++    _insert_summary(tenant_id, summary_id, record)
++
++    response = client.get(
++        f"/tenants/{tenant_id}/summaries/{summary_id}"
++    )
++
++    assert response.status_code == 200
++
++    payload = response.json()
++
++    assert payload["job_status"] in {
++        "queued",
++        "running",
++        "succeeded",
++        "failed",
++    }
++
+diff --git a/sessions/T1/isolated-test-paste-packet.txt b/sessions/T1/isolated-test-paste-packet.txt
+new file mode 100644
+index 000000000..3fa968bd7
+--- /dev/null
++++ b/sessions/T1/isolated-test-paste-packet.txt
+@@ -0,0 +1,45 @@
++TIER C ISOLATED TEST SESSION DECLARATION
++Tier: C (new chat session; memory OFF / cross-chat disabled)
++This session HAS access to: spec excerpt + public interface signatures + test harness conventions.
++This session DOES NOT have access to: implementation code, implementation transcript, plan, prior session.
++
++TASK
++Write pytest tests for the acceptance criteria below. You CANNOT see the implementation ΓÇö only the spec excerpt and the public interface signatures.
++For each AC produce at least:
++- 1 positive case
++- 1 negative or edge case
++For any uncertain edge case, still write the test and flag with: # FLAG: <why uncertain>
++
++SPEC EXCERPT (T1 scope)
++AC3 ΓÇö Retrieve summary:
++- Given an existing summary_id for tenant_id
++- When the client calls GET /tenants/{tenant_id}/summaries/{summary_id}
++- Then the service returns 200 with the stored summary and job_status in {queued,running,succeeded,failed}
++
++Errors / response shape:
++- All error responses are JSON with fields:
++  {"error": {"code": string, "message": string, "details": object|null}}
++- 404 not_found: tenant_id or summary_id does not exist (do not leak which)
++
++PUBLIC INTERFACE SIGNATURES (NO BODIES)
++Route:
++- GET /tenants/{tenant_id}/summaries/{summary_id}
++
++Response model shape:
++- SummaryRecord JSON:
++  {"job_status": <string>, "summary_text": <string|null>, "error": <object|null>}
++
++Error shape JSON:
++- ErrorResponse JSON:
++  {"error": {"code": <string>, "message": <string>, "details": <object|null>}}
++
++HARNESS CONVENTIONS
++- pytest runner: python -m pytest -q <path>
++- Use fastapi.testclient.TestClient(app)
++- Import app from: sandbox.log_summariser.app.main import app, STORE, SummaryRecord
++
++OUTPUT REQUIREMENTS
++Output ONLY the complete contents of this file:
++sandbox/log_summariser/tests/test_get_summary_independent.py
++
++Do not include explanations outside code.
+diff --git a/sessions/T1/session-log.md b/sessions/T1/session-log.md
+new file mode 100644
+index 000000000..cec01533a
+--- /dev/null
++++ b/sessions/T1/session-log.md
+@@ -0,0 +1,73 @@
++# Session log ΓÇö T1
++
++## Task spec (as executed)
++
++Implement T1: Minimal GET retrieve path over in-memory store (end-to-end).
++
++## Context loaded
++
++* Hot file: .github/copilot-instructions.md
++* Warm files: docs/context/stack.md
++* Skills/rules: skills/change-pre-mortem/SKILL.md (optional)
++* Spec/delta: specs/multi-tenant-log-summariser/spec.md
++* Plan/tasks: specs/multi-tenant-log-summariser/plan.md, specs/multi-tenant-log-summariser/tasks.md
++
++15-minute checkpoint
++
++Done: Implemented GET /tenants/{tenant\_id}/summaries/{summary\_id} backed by in-memory STORE; added test "test\_get\_summary\_happy\_path\_and\_404" (pytest run: 1 passed).
++
++
++
++Stuck: Pytest initially failed due to missing dependencies and warning-as-error behavior.
++
++
++
++Discovered: Repo pytest config treats warnings as errors; Starlette TestClient requires httpx2, and running sandbox tests requires installing repo runtime deps (starlette) + pytest-timeout plugin.
++
++
++
++Rejected: Disabling warnings-as-errors / ignoring StarletteDeprecationWarning; rejected because it weakens the verification gate and diverges from repo CI expectations.
++
++K 5.D.8 ΓÇö Independent tests (Tier C)
++
++Isolation tier: C (new chat session; memory/cross-chat disabled as available).
++
++
++
++Inputs provided: spec excerpt (AC3 + error shape), public interface signatures (SummaryRecord/ErrorBody shape), harness notes.
++
++
++
++Forbidden inputs NOT provided: implementation code, implementation transcript, plan.
++
++
++
++Test file: sandbox/log\_summariser/tests/test\_get\_summary\_independent.py
++
++
++
++Test run: python -m pytest -q sandbox/log\_summariser/tests/test\_get\_summary\_independent.py (PASS: 8 passed)
++
++
++
++Failure adjudication
++
++test\_get\_summary\_returns\_nullable\_fields\_when\_stored\_record\_contains\_nulls ΓÇö bug in test: the test used an invalid/incorrect error shape; corrected to match ErrorBody (code/message/details).
++
++## Ordered action log
++
++1. 
++
++## Rejected alternatives (with reasons)
++
++* 
++
++## Verification gates run
++
++* 
++
++## Outcome
++
++* Status: complete / partial / blocked
++* Next step:
++
+
+
+SPEC:
+Multi-tenant log summariser service
+
+Behaviour
+
+We are introducing a multi-tenant HTTP service that accepts raw log lines for a tenant, produces a concise summary, and stores the summary for later retrieval. Tenants are isolated: one tenant cannot read or influence another tenant’s data or rate limits. The service supports synchronous summarisation for small inputs and asynchronous job processing for larger inputs.
+
+
+
+
+
+Acceptance criteria
+
+AC1 — Create summary (sync)
+
+
+
+
+
+Given a valid tenant\_id and an authenticated request
+
+
+
+When the client submits ≤ 200 log lines to POST /tenants/{tenant\_id}/summaries
+
+
+
+Then the service returns 201 with a summary\_id and the generated summary text
+
+
+
+AC2 — Create summary (async)
+
+
+
+
+
+Given a valid tenant\_id and an authenticated request
+
+
+
+When the client submits > 200 and ≤ 5,000 log lines to POST /tenants/{tenant\_id}/summaries
+
+
+
+Then the service returns 202 with a summary\_id and job\_status="queued"
+
+
+
+AC3 — Retrieve summary
+
+
+
+
+
+Given an existing summary\_id for tenant\_id
+
+
+
+When the client calls GET /tenants/{tenant\_id}/summaries/{summary\_id}
+
+
+
+Then the service returns 200 with the stored summary and job\_status in {queued,running,succeeded,failed}
+
+
+
+AC4 — Soft per-tenant rate limit
+
+
+
+
+
+Given a tenant that has exceeded 60 create-summary requests in the last 60 seconds
+
+
+
+When the tenant submits another POST /tenants/{tenant\_id}/summaries request
+
+
+
+Then the service returns 429 with a Retry-After value in seconds
+
+
+
+Concurrency
+
+The service must behave correctly under concurrent requests for the same tenant and different tenants. Two simultaneous POST requests for the same tenant are allowed and must produce distinct summary\_id values and independent job lifecycles. Rate limiting is enforced per tenant across concurrent requests; if multiple requests arrive near-simultaneously, at most one may pass once the limit is reached, and the rest must receive 429. Retrieval (GET) must be safe during job execution and return the latest known job\_status without partial/invalid JSON responses.
+
+
+
+
+
+Idempotency under concurrency: If two or more POST requests arrive concurrently with the same (tenant\_id, Idempotency-Key), the service MUST behave atomically: exactly one summary\_id is created, and all concurrent requests MUST return the same summary\_id and the same eventual job lifecycle. Implementations MUST ensure the “check idempotency key → create summary/job” operation is a single atomic decision (e.g., unique constraint + transactional insert). Concurrent duplicates MUST NOT create duplicate jobs or return different summary\_id values.
+
+
+
+
+
+Errors
+
+All error responses are JSON with fields: { "error": { "code": string, "message": string, "details": object|null } }.
+
+
+
+
+
+400 invalid\_input: malformed JSON body; missing required fields; log\_lines not an array of strings; any log line > 8KB; empty log\_lines array.
+
+
+
+401 unauthenticated: missing/invalid auth credentials.
+
+
+
+403 forbidden: authenticated but not authorized for the tenant\_id.
+
+
+
+404 not\_found: tenant\_id or summary\_id does not exist (do not leak which).
+
+
+
+409 conflict: client attempts to reuse an idempotency key (see Integrations/Assumptions) with a different payload hash.
+
+
+
+413 payload\_too\_large: request exceeds payload limits (see NFR budget).
+
+
+
+422 unsupported\_content: content-type is not application/json.
+
+
+
+429 rate\_limited: per-tenant soft rate limit exceeded.
+
+
+
+500 internal: unexpected server error (no stack traces returned).
+
+For async jobs, failures must be represented as job\_status="failed" and include an error.code/message in the GET response for that summary\_id.
+
+
+
+Async job lifecycle rules:
+
+
+
+
+
+Allowed states: queued, running, succeeded, failed.
+
+
+
+Transitions MUST be monotonic and one-way: queued → running → succeeded|failed.
+
+
+
+States MUST NOT regress (e.g., running → queued) and MUST NOT oscillate.
+
+
+
+queued MAY be skipped only if the job is picked up immediately (e.g., create returns 202 but worker transitions to running before first GET).
+
+
+
+A job is considered stuck if it remains in queued or running for > 10 minutes; stuck jobs MUST transition to failed with error.code="job\_timeout".
+
+
+
+Boundaries
+
+Idempotency is tenant-scoped: the same Idempotency-Key value used by two different tenants is treated as independent.
+
+
+
+log\_lines length:
+
+
+
+0 lines → 400 invalid\_input
+
+
+
+1–200 lines → sync path (201)
+
+
+
+201–5,000 lines → async path (202)
+
+
+
+> 5,000 lines → 413 payload\_too\_large
+
+
+
+log line size:
+
+
+
+any line > 8KB → 400 invalid\_input
+
+
+
+total payload:
+
+
+
+body > 1MB → 413 payload\_too\_large
+
+
+
+character encoding: accept UTF-8; reject invalid UTF-8 with 400 invalid\_input.
+
+
+
+duplicate submits:
+
+
+
+with same idempotency key and same payload hash → return the same summary\_id (201/202) without reprocessing
+
+
+
+with same idempotency key but different payload hash → 409 conflict
+
+
+
+retrieval during processing:
+
+
+
+GET must return job\_status queued/running and summary may be null until succeeded/failed.
+
+
+
+Integrations
+
+AuthN/AuthZ: assumes an external identity layer provides an authenticated principal and a mapping to allowed tenant\_ids. If auth provider is unavailable, requests fail closed with 503 auth\_unavailable.
+
+
+
+Storage: summaries and job state are persisted in the service datastore (assume Postgres). Tenant\_id is a mandatory partition key on all reads/writes.
+
+
+
+Async execution: async jobs are processed by a worker using an internal queue mechanism (assume a durable queue). If the queue is unavailable, POST requests that would be async must return 503 queue\_unavailable.
+
+
+
+Summarisation engine: the summariser may call an external model/API. If the model/API is unavailable:
+
+
+
+sync requests return 503 summariser\_unavailable
+
+
+
+async jobs move to failed with error.code="summariser\_unavailable"
+
+
+
+Idempotency: the service supports an Idempotency-Key header on POST. Idempotency storage and uniqueness MUST be scoped by tenant\_id: deduplication is keyed on (tenant\_id, idempotency\_key). Keys from different tenants MUST NOT collide, influence dedup decisions, or leak identifiers across tenants.
+
+
+
+
+
+NFR budget
+
+Latency: p95 ≤ 300ms for sync POST (≤200 lines) excluding summariser external call time; p95 ≤ 100ms for GET summary.
+
+
+
+Payload size: request body ≤ 1MB; each log line ≤ 8KB; max 5,000 lines.
+
+
+
+Error behavior: 0 retries by default on POST at the API boundary; clients may retry safely only with Idempotency-Key. For async jobs, worker retries max 3 attempts with exponential backoff starting at 500ms.
+
+
+
+Cost/complexity constraint: no new paid SaaS dependencies; must run with existing CI/CD and one datastore + one queue.
+
+
+
+
+INDEPENDENT TESTS (read-only):
+import pytest
+from fastapi.testclient import TestClient
+
+from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
+
+client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def reset_store():
+    """
+    Isolate tests from one another.
+
+    Assumes STORE behaves like an in-memory mutable mapping.
+    """
+    if hasattr(STORE, "clear"):
+        STORE.clear()
+    yield
+    if hasattr(STORE, "clear"):
+        STORE.clear()
+
+
+def _insert_summary(tenant_id: str, summary_id: str, record: SummaryRecord):
+    """
+    Helper that populates STORE using the most likely nested structure.
+
+    The implementation is not available, so this helper mirrors the
+    route contract and keeps test intent explicit.
+    """
+    STORE.setdefault(tenant_id, {})
+    STORE[tenant_id][summary_id] = record
+
+
+@pytest.mark.parametrize(
+    "job_status",
+    ["queued", "running", "succeeded", "failed"],
+)
+def test_get_summary_returns_200_with_stored_summary_for_valid_ids(job_status):
+    tenant_id = "tenant-123"
+    summary_id = "summary-abc"
+
+    record = SummaryRecord(
+        job_status=job_status,
+        summary_text="Example summary",
+        error=None,
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert payload["job_status"] == job_status
+    assert payload["summary_text"] == "Example summary"
+    assert payload["error"] is None
+
+
+def test_get_summary_returns_nullable_fields_when_stored_record_contains_nulls():
+    tenant_id = "tenant-123"
+    summary_id = "summary-failed"
+
+    record = SummaryRecord(
+        job_status="failed",
+        summary_text=None,
+        error={"code": "processing_failure", "message": "processing failed", "details": {"reason": "processing_failure"}},
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert payload["job_status"] == "failed"
+    assert payload["summary_text"] is None
+    assert payload["error"]["code"] == "processing_failure"
+    assert payload["error"]["message"] == "processing failed"
+    assert payload["error"]["details"] == {"reason": "processing_failure"}
+
+
+def test_get_summary_returns_404_error_shape_for_missing_summary():
+    tenant_id = "tenant-123"
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/missing-summary"
+    )
+
+    assert response.status_code == 404
+
+    payload = response.json()
+
+    assert "error" in payload
+    assert set(payload["error"].keys()) == {
+        "code",
+        "message",
+        "details",
+    }
+    assert isinstance(payload["error"]["code"], str)
+    assert isinstance(payload["error"]["message"], str)
+    assert payload["error"]["details"] is None or isinstance(
+        payload["error"]["details"], dict
+    )
+
+
+def test_get_summary_returns_404_error_shape_for_missing_tenant_without_leaking_identity():
+    tenant_id = "missing-tenant"
+    summary_id = "missing-summary"
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 404
+
+    payload = response.json()
+
+    assert "error" in payload
+    assert isinstance(payload["error"]["code"], str)
+    assert isinstance(payload["error"]["message"], str)
+
+    # AC: do not leak whether tenant_id or summary_id does not exist.
+    # FLAG: Exact wording is not specified in the excerpt, so we only
+    # assert that identifiers are not echoed in the message.
+    message = payload["error"]["message"]
+    assert tenant_id not in message
+    assert summary_id not in message
+
+
+def test_get_summary_returns_only_allowed_job_status_values():
+    tenant_id = "tenant-123"
+    summary_id = "summary-xyz"
+
+    record = SummaryRecord(
+        job_status="succeeded",
+        summary_text="done",
+        error=None,
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+
+    assert payload["job_status"] in {
+        "queued",
+        "running",
+        "succeeded",
+        "failed",
+    }
+
+
+
+
+SEVEN-LENS REVIEW (do not repeat these findings):
+# Seven-lens review â€” T1
+Isolation tier: B (fresh review session; memory/cross-chat off). Implementation transcript not loaded.
+
+## Verdict
+HOLD â€” pending lens passes (verdict must follow from findings).
+
+## Inputs
+- Diff: branch session-T1 (sandbox/log_summariser + sessions/T1)
+- Spec: specs/multi-tenant-log-summariser/spec.md (AC3 + Errors section relevant)
+- Independent tests: sandbox/log_summariser/tests/test_get_summary_independent.py (PASS: 8 passed)
+- Test pass record: pytest output captured below
+
+## Lens 1 â€” Behaviour preservation
+(TBD)
+
+## Lens 2 â€” Hidden assumptions
+(TBD)
+
+## Lens 3 â€” Spec/ADR drift
+(TBD)
+
+## Lens 4 â€” Independent tests check
+(TBD)
+
+## Lens 5 â€” Edge cases
+(TBD)
+
+## Lens 6 â€” Security / tool-call surface
+(TBD)
+
+## Lens 7 â€” Over-engineering
+(TBD)
+
+## Test pass record
+(TBD)
+
+## Diff
+(TBD)
+
+

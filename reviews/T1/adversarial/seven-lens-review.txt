@@ -1,0 +1,39 @@
+﻿# Seven-lens review â€” T1
+Isolation tier: B (fresh review session; memory/cross-chat off). Implementation transcript not loaded.
+
+## Verdict
+HOLD â€” pending lens passes (verdict must follow from findings).
+
+## Inputs
+- Diff: branch session-T1 (sandbox/log_summariser + sessions/T1)
+- Spec: specs/multi-tenant-log-summariser/spec.md (AC3 + Errors section relevant)
+- Independent tests: sandbox/log_summariser/tests/test_get_summary_independent.py (PASS: 8 passed)
+- Test pass record: pytest output captured below
+
+## Lens 1 â€” Behaviour preservation
+(TBD)
+
+## Lens 2 â€” Hidden assumptions
+(TBD)
+
+## Lens 3 â€” Spec/ADR drift
+(TBD)
+
+## Lens 4 â€” Independent tests check
+(TBD)
+
+## Lens 5 â€” Edge cases
+(TBD)
+
+## Lens 6 â€” Security / tool-call surface
+(TBD)
+
+## Lens 7 â€” Over-engineering
+(TBD)
+
+## Test pass record
+(TBD)
+
+## Diff
+(TBD)
+
