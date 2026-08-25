@@ -733,7 +733,7 @@ def test_included_starlette_host_keeps_prefix_runtime_and_url_path_for():
     app = FastAPI()
     app.include_router(router, prefix="/api")
 
-    client = TestClient(app, base_url='https://api.example.com')
+    client = TestClient(app, base_url="https://api.example.com")
     response = client.get("/api/items/abc")
 
     assert response.status_code == 200
@@ -847,7 +847,7 @@ def test_included_starlette_host_without_prefix_keeps_original_app():
     app = FastAPI()
     app.include_router(router)
 
-    client = TestClient(app, base_url='https://api.example.com')
+    client = TestClient(app, base_url="https://api.example.com")
     response = client.get("/items/abc")
 
     assert response.status_code == 200
