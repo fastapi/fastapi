@@ -24,7 +24,12 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    ["uvicorn", "docs_src.separate_openapi_schemas.tutorial001:app"]
+    ["uvicorn", "docs_src.separate_openapi_schemas.tutorial001:app"],
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    close_fds=True,
+    start_new_session=True,
 )
 try:
     with sync_playwright() as playwright:
