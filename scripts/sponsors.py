@@ -160,6 +160,7 @@ def main() -> None:
     # Configure a local logger (avoid configuring the root logger and exposing secrets)
     logger = logging.getLogger("scripts.sponsors")
     logger.setLevel(logging.INFO)
+    logger.propagate = False
     if not logger.handlers:
         handler = logging.StreamHandler()
         handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
@@ -200,10 +201,18 @@ def main() -> None:
         return
 
     logger.info("Setting up GitHub Actions git user")
-    git_exe = __import__("shutil").which("git")
+    import shutil
+    import os
+    import re
+
+    git_exe = shutil.which("git")
     if not git_exe:
         logger.error("git executable not found in PATH")
         raise RuntimeError("git not found")
+    git_exe = os.path.abspath(git_exe)
+    if not (os.path.isfile(git_exe) and os.access(git_exe, os.X_OK)):
+        logger.error("git executable at %s is not valid", git_exe)
+        raise RuntimeError("invalid git executable")
     try:
         subprocess.run([git_exe, "config", "user.name", "pr-submit[bot]"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         subprocess.run([git_exe, "config", "user.email", "pr-submit[bot]@users.noreply.github.com"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -211,6 +220,10 @@ def main() -> None:
         logger.error("Failed configuring git user: %s", e.stderr.strip() if e.stderr else str(e))
         raise
     branch_name = f"fastapi-people-sponsors-{secrets.token_hex(4)}"
+    # Validate generated branch name to avoid injection or unsafe characters
+    if not re.match(r"^[A-Za-z0-9._/-]+$", branch_name):
+        logger.error("Generated unsafe branch name: %s", branch_name)
+        raise RuntimeError("unsafe branch name")
     logger.info("Creating a new branch %s", branch_name)
     try:
         subprocess.run([git_exe, "checkout", "-b", branch_name], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
