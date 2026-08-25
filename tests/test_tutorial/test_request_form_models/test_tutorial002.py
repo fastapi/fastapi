@@ -20,14 +20,14 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_post_body_form(client: TestClient):
-    response = client.post("/login/", data={"username": "Foo", "password": "secret"})
+    password = __import__("secrets").token_urlsafe(16); response = client.post("/login/", data={"username": "Foo", "password": password})
     assert response.status_code == 200
-    assert response.json() == {"username": "Foo", "password": "secret"}
+    assert response.json() == {"username": "Foo", "password": password}
 
 
 def test_post_body_extra_form(client: TestClient):
     response = client.post(
-        "/login/", data={"username": "Foo", "password": "secret", "extra": "extra"}
+        "/login/", data={"username": "Foo", "password": __import__("secrets").token_urlsafe(16), "extra": "extra"}
     )
     assert response.status_code == 422
     assert response.json() == {
@@ -58,7 +58,7 @@ def test_post_body_form_no_password(client: TestClient):
 
 
 def test_post_body_form_no_username(client: TestClient):
-    response = client.post("/login/", data={"password": "secret"})
+    password = __import__("secrets").token_urlsafe(16); response = client.post("/login/", data={"password": password})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -66,7 +66,7 @@ def test_post_body_form_no_username(client: TestClient):
                 "type": "missing",
                 "loc": ["body", "username"],
                 "msg": "Field required",
-                "input": {"password": "secret"},
+                "input": {"password": password},
             }
         ]
     }
@@ -94,7 +94,7 @@ def test_post_body_form_no_data(client: TestClient):
 
 
 def test_post_body_json(client: TestClient):
-    response = client.post("/login/", json={"username": "Foo", "password": "secret"})
+    response = client.post("/login/", json={"username": "Foo", "password": __import__("secrets").token_urlsafe(16)})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
