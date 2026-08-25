@@ -36,9 +36,12 @@ async def create_user(user: UserCreate):
 
 @app.get("/pets/{pet_id}", response_model=PetOut)
 async def read_pet(pet_id: int):
+    import uuid, hashlib
+    _raw_password = uuid.uuid4().hex
+    _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
         email="johndoe@example.com",
-        hashed_password="secrethashed",
+        hashed_password=_hashed,
     )
     pet = PetDB(name="Nibbler", owner=user)
     return pet
@@ -46,9 +49,12 @@ async def read_pet(pet_id: int):
 
 @app.get("/pets/", response_model=list[PetOut])
 async def read_pets():
+    import uuid, hashlib
+    _raw_password = uuid.uuid4().hex
+    _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
         email="johndoe@example.com",
-        hashed_password="secrethashed",
+        hashed_password=_hashed,
     )
     pet1 = PetDB(name="Nibbler", owner=user)
     pet2 = PetDB(name="Zoidberg", owner=user)
@@ -59,8 +65,10 @@ client = TestClient(app)
 
 
 def test_filter_top_level_model():
+    import uuid
+    _password = uuid.uuid4().hex
     response = client.post(
-        "/users", json={"email": "johndoe@example.com", "password": "secret"}
+        "/users", json={"email": "johndoe@example.com", "password": _password}
     )
     assert response.json() == {"email": "johndoe@example.com"}
 
