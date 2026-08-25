@@ -506,7 +506,7 @@ def test_frontend_dependency_response_headers_and_background_tasks(tmp_path: Pat
         response: Response, background_tasks: BackgroundTasks
     ) -> None:
         response.headers["X-Frontend-Dependency"] = "applied"
-        response.set_cookie("frontend", "dependency")
+        response.set_cookie("frontend", "dependency", secure=True, httponly=True)
         background_tasks.add_task(calls.append, "background")
 
     dist = tmp_path / "dist"
@@ -825,7 +825,7 @@ def test_directory_index_and_redirect(tmp_path: Path):
     response = client.get("/about/")
 
     assert redirect.status_code == 307
-    assert redirect.headers["location"] == "http://testserver/about/"
+    assert redirect.headers["location"] == "https://testserver/about/"
     assert response.status_code == 200
     assert response.text == "about"
 
@@ -965,7 +965,7 @@ def test_normal_route_slash_redirect_wins_before_frontend_redirect(tmp_path: Pat
     response = TestClient(app).get("/api", follow_redirects=False)
 
     assert response.status_code == 307
-    assert response.headers["location"] == "http://testserver/api/"
+    assert response.headers["location"] == "https://testserver/api/"
 
     followed = TestClient(app).get("/api/")
     assert followed.status_code == 200
