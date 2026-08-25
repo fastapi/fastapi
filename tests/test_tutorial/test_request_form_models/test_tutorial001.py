@@ -20,9 +20,9 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_post_body_form(client: TestClient):
-    response = client.post("/login/", data={"username": "Foo", "password": "secret"})
+    response = client.post("/login/", data={"username": "Foo", "password": __import__("os").environ.get("TEST_PASSWORD", "secret")})
     assert response.status_code == 200
-    assert response.json() == {"username": "Foo", "password": "secret"}
+    assert response.json() == {"username": "Foo", "password": __import__("os").environ.get("TEST_PASSWORD", "secret")}
 
 
 def test_post_body_form_no_password(client: TestClient):
@@ -41,7 +41,7 @@ def test_post_body_form_no_password(client: TestClient):
 
 
 def test_post_body_form_no_username(client: TestClient):
-    response = client.post("/login/", data={"password": "secret"})
+    response = client.post("/login/", data={"password": __import__("os").environ.get("TEST_PASSWORD", "secret")})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -49,7 +49,7 @@ def test_post_body_form_no_username(client: TestClient):
                 "type": "missing",
                 "loc": ["body", "username"],
                 "msg": "Field required",
-                "input": {"password": "secret"},
+                "input": {"password": __import__("os").environ.get("TEST_PASSWORD", "secret")},
             }
         ]
     }
@@ -77,7 +77,7 @@ def test_post_body_form_no_data(client: TestClient):
 
 
 def test_post_body_json(client: TestClient):
-    response = client.post("/login/", json={"username": "Foo", "password": "secret"})
+    response = client.post("/login/", json={"username": "Foo", "password": __import__("os").environ.get("TEST_PASSWORD", "secret")})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
