@@ -23,7 +23,7 @@ class Repo(BaseModel):
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, force=True)
     settings = Settings()
 
     logging.info(f"Using config: {settings.model_dump_json()}")
@@ -56,21 +56,18 @@ def main() -> None:
         return
     repos_path.write_text(new_repos_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True)
-    subprocess.run(
-        ["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"],
-        check=True,
-    )
+    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True, capture_output=True, text=True, timeout=30)
+    subprocess.run(["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"], check=True, capture_output=True, text=True, timeout=30)
     branch_name = f"fastapi-topic-repos-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")
-    subprocess.run(["git", "checkout", "-b", branch_name], check=True)
+    subprocess.run(["git", "checkout", "-b", branch_name], check=True, capture_output=True, text=True, timeout=30)
     logging.info("Adding updated file")
-    subprocess.run(["git", "add", str(repos_path)], check=True)
+    subprocess.run(["git", "add", str(repos_path)], check=True, capture_output=True, text=True, timeout=30)
     logging.info("Committing updated file")
     message = "👥 Update FastAPI GitHub topic repositories"
-    subprocess.run(["git", "commit", "-m", message], check=True)
+    subprocess.run(["git", "commit", "-m", message], check=True, capture_output=True, text=True, timeout=30)
     logging.info("Pushing branch")
-    subprocess.run(["git", "push", "origin", branch_name], check=True)
+    subprocess.run(["git", "push", "origin", branch_name], check=True, capture_output=True, text=True, timeout=30)
     logging.info("Creating PR")
     pr = r.create_pull(title=message, body=message, base="master", head=branch_name)
     logging.info(f"Created PR: {pr.number}")
