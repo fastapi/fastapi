@@ -22,7 +22,7 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen(
+process = subprocess.Popen(  # nosec
     ["uvicorn", "docs_src.separate_openapi_schemas.tutorial001:app"]
 )
 try:
