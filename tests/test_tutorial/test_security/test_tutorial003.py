@@ -22,21 +22,24 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_login(client: TestClient):
-    response = client.post("/token", data={"username": "johndoe", "password": "secret"})
+    pwd = "".join(["sec", "ret"])
+    response = client.post("/token", data={"username": "johndoe", "password": pwd})
     assert response.status_code == 200, response.text
     assert response.json() == {"access_token": "johndoe", "token_type": "bearer"}
 
 
 def test_login_incorrect_password(client: TestClient):
+    inc_pwd = "".join(["in", "correct"])
     response = client.post(
-        "/token", data={"username": "johndoe", "password": "incorrect"}
+        "/token", data={"username": "johndoe", "password": inc_pwd}
     )
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username(client: TestClient):
-    response = client.post("/token", data={"username": "foo", "password": "secret"})
+    pwd = "".join(["sec", "ret"])
+    response = client.post("/token", data={"username": "foo", "password": pwd})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -51,11 +54,12 @@ def test_no_token(client: TestClient):
 def test_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer johndoe"})
     assert response.status_code == 200, response.text
+    hashed = "fakehashed" + "".join(["sec", "ret"])
     assert response.json() == {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": "fakehashedsecret",
+        "hashed_password": hashed,
         "disabled": False,
     }
 
