@@ -21,7 +21,7 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen(
+process = subprocess.Popen(shell=False,
     ["fastapi", "run", "docs_src/json_base64_bytes/tutorial001_py310.py"]
 )
 try:
