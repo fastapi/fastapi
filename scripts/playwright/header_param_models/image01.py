@@ -23,7 +23,7 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    [__import__('shutil').which('fastapi') or 'fastapi', "run", "docs_src/header_param_models/tutorial001.py"],
+    [__import__('sys').executable, "-m", "fastapi", "run", "docs_src/header_param_models/tutorial001.py"],
     stdin=subprocess.DEVNULL,
     stdout=subprocess.DEVNULL,
     stderr=subprocess.DEVNULL,
