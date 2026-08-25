@@ -13,7 +13,7 @@ JWT bedeutet „JSON Web Tokens“.
 Es ist ein Standard, um ein JSON-Objekt in einem langen, kompakten String ohne Leerzeichen zu kodieren. Das sieht so aus:
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+REDACTED_FOR_SECURITY_REASONS_EXAMPLE_TOKEN
 ```
 
 Da er nicht verschlüsselt ist, kann jeder die Informationen aus dem Inhalt wiederherstellen.
