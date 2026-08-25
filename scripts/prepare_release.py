@@ -7,8 +7,14 @@ from typing import Annotated, Literal
 
 import typer
 
-VERSION_PATTERN = re.compile(r'^\s*__version__\s*=\s*"(\d{1,6}\.\d{1,6}\.\d{1,6})"\s*$', flags=re.MULTILINE)
-VERSION_HEADING_PATTERN = re.compile(r'^##\s+(\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^)]+\))?$', flags=re.MULTILINE)
+VERSION_PATTERN = re.compile(
+    r'^\s*__version__\s*=\s*"(\d{1,6}\.\d{1,6}\.\d{1,6})"\s*$',
+    flags=re.ASCII | re.MULTILINE,
+)
+VERSION_HEADING_PATTERN = re.compile(
+    r'^##\s+(\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^\)\n]{1,1000}\))?$',
+    flags=re.ASCII | re.MULTILINE,
+)
 RELEASE_NOTES_HEADER = """---
 hide:
   - navigation
@@ -24,7 +30,7 @@ app = typer.Typer()
 
 
 def parse_version(version: str) -> tuple[int, int, int]:
-    parts = version.split(".")
+    parts = version.split(".", 2)
     if len(parts) != 3 or not all(part.isdigit() for part in parts):
         raise ValueError(f"Invalid version: {version!r}. Expected format: X.Y.Z")
     if any(len(part) > 6 for part in parts):
