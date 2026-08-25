@@ -28,6 +28,32 @@ Discovered: Repo pytest config treats warnings as errors; Starlette TestClient r
 
 Rejected: Disabling warnings-as-errors / ignoring StarletteDeprecationWarning; rejected because it weakens the verification gate and diverges from repo CI expectations.
 
+K 5.D.8 — Independent tests (Tier C)
+
+Isolation tier: C (new chat session; memory/cross-chat disabled as available).
+
+
+
+Inputs provided: spec excerpt (AC3 + error shape), public interface signatures (SummaryRecord/ErrorBody shape), harness notes.
+
+
+
+Forbidden inputs NOT provided: implementation code, implementation transcript, plan.
+
+
+
+Test file: sandbox/log\_summariser/tests/test\_get\_summary\_independent.py
+
+
+
+Test run: python -m pytest -q sandbox/log\_summariser/tests/test\_get\_summary\_independent.py (PASS: 8 passed)
+
+
+
+Failure adjudication
+
+test\_get\_summary\_returns\_nullable\_fields\_when\_stored\_record\_contains\_nulls — bug in test: the test used an invalid/incorrect error shape; corrected to match ErrorBody (code/message/details).
+
 ## Ordered action log
 
 1. 

@@ -1,0 +1,162 @@
+﻿import pytest
+from fastapi.testclient import TestClient
+
+from sandbox.log_summariser.app.main import app, STORE, SummaryRecord
+
+client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def reset_store():
+    """
+    Isolate tests from one another.
+
+    Assumes STORE behaves like an in-memory mutable mapping.
+    """
+    if hasattr(STORE, "clear"):
+        STORE.clear()
+    yield
+    if hasattr(STORE, "clear"):
+        STORE.clear()
+
+
+def _insert_summary(tenant_id: str, summary_id: str, record: SummaryRecord):
+    """
+    Helper that populates STORE using the most likely nested structure.
+
+    The implementation is not available, so this helper mirrors the
+    route contract and keeps test intent explicit.
+    """
+    STORE.setdefault(tenant_id, {})
+    STORE[tenant_id][summary_id] = record
+
+
+@pytest.mark.parametrize(
+    "job_status",
+    ["queued", "running", "succeeded", "failed"],
+)
+def test_get_summary_returns_200_with_stored_summary_for_valid_ids(job_status):
+    tenant_id = "tenant-123"
+    summary_id = "summary-abc"
+
+    record = SummaryRecord(
+        job_status=job_status,
+        summary_text="Example summary",
+        error=None,
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert payload["job_status"] == job_status
+    assert payload["summary_text"] == "Example summary"
+    assert payload["error"] is None
+
+
+def test_get_summary_returns_nullable_fields_when_stored_record_contains_nulls():
+    tenant_id = "tenant-123"
+    summary_id = "summary-failed"
+
+    record = SummaryRecord(
+        job_status="failed",
+        summary_text=None,
+        error={"code": "processing_failure", "message": "processing failed", "details": {"reason": "processing_failure"}},
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert payload["job_status"] == "failed"
+    assert payload["summary_text"] is None
+    assert payload["error"]["code"] == "processing_failure"
+    assert payload["error"]["message"] == "processing failed"
+    assert payload["error"]["details"] == {"reason": "processing_failure"}
+
+
+def test_get_summary_returns_404_error_shape_for_missing_summary():
+    tenant_id = "tenant-123"
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/missing-summary"
+    )
+
+    assert response.status_code == 404
+
+    payload = response.json()
+
+    assert "error" in payload
+    assert set(payload["error"].keys()) == {
+        "code",
+        "message",
+        "details",
+    }
+    assert isinstance(payload["error"]["code"], str)
+    assert isinstance(payload["error"]["message"], str)
+    assert payload["error"]["details"] is None or isinstance(
+        payload["error"]["details"], dict
+    )
+
+
+def test_get_summary_returns_404_error_shape_for_missing_tenant_without_leaking_identity():
+    tenant_id = "missing-tenant"
+    summary_id = "missing-summary"
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 404
+
+    payload = response.json()
+
+    assert "error" in payload
+    assert isinstance(payload["error"]["code"], str)
+    assert isinstance(payload["error"]["message"], str)
+
+    # AC: do not leak whether tenant_id or summary_id does not exist.
+    # FLAG: Exact wording is not specified in the excerpt, so we only
+    # assert that identifiers are not echoed in the message.
+    message = payload["error"]["message"]
+    assert tenant_id not in message
+    assert summary_id not in message
+
+
+def test_get_summary_returns_only_allowed_job_status_values():
+    tenant_id = "tenant-123"
+    summary_id = "summary-xyz"
+
+    record = SummaryRecord(
+        job_status="succeeded",
+        summary_text="done",
+        error=None,
+    )
+
+    _insert_summary(tenant_id, summary_id, record)
+
+    response = client.get(
+        f"/tenants/{tenant_id}/summaries/{summary_id}"
+    )
+
+    assert response.status_code == 200
+
+    payload = response.json()
+
+    assert payload["job_status"] in {
+        "queued",
+        "running",
+        "succeeded",
+        "failed",
+    }
+

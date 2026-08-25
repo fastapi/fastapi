@@ -1,0 +1,45 @@
+﻿TIER C ISOLATED TEST SESSION DECLARATION
+Tier: C (new chat session; memory OFF / cross-chat disabled)
+This session HAS access to: spec excerpt + public interface signatures + test harness conventions.
+This session DOES NOT have access to: implementation code, implementation transcript, plan, prior session.
+
+TASK
+Write pytest tests for the acceptance criteria below. You CANNOT see the implementation — only the spec excerpt and the public interface signatures.
+For each AC produce at least:
+- 1 positive case
+- 1 negative or edge case
+For any uncertain edge case, still write the test and flag with: # FLAG: <why uncertain>
+
+SPEC EXCERPT (T1 scope)
+AC3 — Retrieve summary:
+- Given an existing summary_id for tenant_id
+- When the client calls GET /tenants/{tenant_id}/summaries/{summary_id}
+- Then the service returns 200 with the stored summary and job_status in {queued,running,succeeded,failed}
+
+Errors / response shape:
+- All error responses are JSON with fields:
+  {"error": {"code": string, "message": string, "details": object|null}}
+- 404 not_found: tenant_id or summary_id does not exist (do not leak which)
+
+PUBLIC INTERFACE SIGNATURES (NO BODIES)
+Route:
+- GET /tenants/{tenant_id}/summaries/{summary_id}
+
+Response model shape:
+- SummaryRecord JSON:
+  {"job_status": <string>, "summary_text": <string|null>, "error": <object|null>}
+
+Error shape JSON:
+- ErrorResponse JSON:
+  {"error": {"code": <string>, "message": <string>, "details": <object|null>}}
+
+HARNESS CONVENTIONS
+- pytest runner: python -m pytest -q <path>
+- Use fastapi.testclient.TestClient(app)
+- Import app from: sandbox.log_summariser.app.main import app, STORE, SummaryRecord
+
+OUTPUT REQUIREMENTS
+Output ONLY the complete contents of this file:
+sandbox/log_summariser/tests/test_get_summary_independent.py
+
+Do not include explanations outside code.
