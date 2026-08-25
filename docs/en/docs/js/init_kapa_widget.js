@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-var script = document.createElement("script"); script.setAttribute("integrity", "sha384-PLACEHOLDER"); script.setAttribute("crossorigin", "anonymous");
+var script = document.createElement("script"); script.setAttribute("crossorigin", "anonymous");
   script.src = "https://widget.kapa.ai/kapa-widget.bundle.js";
   script.setAttribute("data-website-id", "91f47f27-b405-4299-bf5f-a1c0ec07b3cc");
   script.setAttribute("data-project-name", "FastAPI");
