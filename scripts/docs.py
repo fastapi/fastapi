@@ -16,11 +16,14 @@ from jinja2 import Template
 from ruff.__main__ import find_ruff_bin
 from slugify import slugify as py_slugify
 
-if not logging.getLogger().handlers:
+root_logger = logging.getLogger()
+if not root_logger.handlers:
     handler = logging.StreamHandler()
     handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
-    logging.getLogger().addHandler(handler)
-logging.getLogger().setLevel(logging.INFO)
+    handler.setLevel(logging.INFO)
+    root_logger.addHandler(handler)
+root_logger.setLevel(logging.INFO)
+root_logger.propagate = False
 
 SUPPORTED_LANGS = {
     "de",
