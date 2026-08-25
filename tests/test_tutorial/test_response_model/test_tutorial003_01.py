@@ -25,7 +25,7 @@ def test_post_user(client: TestClient):
         "/user/",
         json={
             "username": "foo",
-            "password": "fighter",
+            "password": __import__('os').environ.get("TEST_PASSWORD", "fighter"),
             "email": "foo@example.com",
             "full_name": "Grave Dohl",
         },
