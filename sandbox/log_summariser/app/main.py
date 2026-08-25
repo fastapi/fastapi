@@ -1,4 +1,6 @@
-from __future__ import annotations
+﻿from __future__ import annotations
+
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -18,7 +20,7 @@ class ErrorResponse(BaseModel):
 
 
 class SummaryRecord(BaseModel):
-    job_status: str
+    job_status: Literal['queued','running','succeeded','failed']
     summary_text: str | None = None
     error: ErrorBody | None = None
 
@@ -58,3 +60,4 @@ async def http_exception_handler(request, exc: HTTPException):
         body = {"error": {"code": "http_error", "message": str(exc.detail), "details": None}}
     from starlette.responses import JSONResponse
     return JSONResponse(status_code=exc.status_code, content=body)
+
