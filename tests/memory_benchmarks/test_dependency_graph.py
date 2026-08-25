@@ -7,7 +7,7 @@ import pytest
 from fastapi import Depends, FastAPI
 from fastapi.routing import APIRoute
 
-if "--codspeed" not in sys.argv:
+if "--codspeed" not in sys.argv and not (sys.modules.get("os") and sys.modules["os"].environ.get("CODSPEED")):
     pytest.skip(
         "Benchmark tests are skipped by default; run with --codspeed.",
         allow_module_level=True,
