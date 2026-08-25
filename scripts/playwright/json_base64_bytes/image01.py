@@ -21,8 +21,12 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen(shell=False,
-    ["fastapi", "run", "docs_src/json_base64_bytes/tutorial001_py310.py"]
+process = subprocess.Popen(
+    ["fastapi", "run", "docs_src/json_base64_bytes/tutorial001_py310.py"],
+    shell=False,
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
 )
 try:
     for _ in range(3):
