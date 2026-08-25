@@ -5,7 +5,7 @@ import sys
 from datetime import date
 
 RELEASE_NOTES_FILE = "docs/en/docs/release-notes.md"
-RELEASE_HEADER_PATTERN = re.compile(r"^##\s+(\d+\.\d+\.\d+)(?:\s+\(([^()\n]{0,1000})\))?\s*$")
+RELEASE_HEADER_PATTERN = re.compile(r"^##\s+(\d+\.\d+\.\d+)(?:\s+\(([^
 
 
 def main() -> None:
