@@ -23,7 +23,9 @@ class LinkData(BaseModel):
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO)
+    root_logger = logging.getLogger()
+    if not root_logger.hasHandlers():
+        logging.basicConfig(level=logging.INFO)
     settings = Settings()
 
     logging.info(f"Using config: {settings.model_dump_json()}")
@@ -80,11 +82,13 @@ def main() -> None:
     deploy_url = settings.deploy_url.rstrip("/")
     lang_links: dict[str, list[LinkData]] = {}
     for f in docs_files:
-        match = re.match(r"docs/([^/]+)/docs/(.*)", f.filename)
-        if not match:
+        filename = f.filename
+        if not filename.startswith("docs/"):
             continue
-        lang = match.group(1)
-        path = match.group(2)
+        rest = filename[len("docs/") :]
+        if "/docs/" not in rest:
+            continue
+        lang, path = rest.split("/docs/", 1)
         if path.endswith("index.md"):
             path = path.replace("index.md", "")
         else:
