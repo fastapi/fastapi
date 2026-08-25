@@ -23,7 +23,12 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/request_form_models/tutorial001.py"]
+    ["fastapi", "run", "docs_src/request_form_models/tutorial001.py"],
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    shell=False,
+    close_fds=True,
 )
 try:
     for _ in range(3):
