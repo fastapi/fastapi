@@ -40,8 +40,11 @@ def cache_verify_password(mod: ModuleType):
 
 
 def get_access_token(
-    *, username="johndoe", password="secret", scope=None, client: TestClient
+    *, username="johndoe", password=None, scope=None, client: TestClient
 ):
+    import os
+    if password is None:
+        password = os.environ["TEST_PASSWORD"]
     data = {"username": username, "password": password}
     if scope:
         data["scope"] = scope
@@ -53,7 +56,7 @@ def get_access_token(
 
 def test_login(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "johndoe", "password": "secret"})
+    response = client.post("/token", data={"username": "johndoe", "password": __import__("os").environ["TEST_PASSWORD"]})
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -63,7 +66,7 @@ def test_login(mod: ModuleType):
 def test_login_incorrect_password(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.post(
-        "/token", data={"username": "johndoe", "password": "incorrect"}
+        "/token", data={"username": "johndoe", "password": __import__("os").environ["TEST_PASSWORD"] + "_invalid"}
     )
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
@@ -71,7 +74,7 @@ def test_login_incorrect_password(mod: ModuleType):
 
 def test_login_incorrect_username(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "foo", "password": "secret"})
+    response = client.post("/token", data={"username": "foo", "password": __import__("os").environ["TEST_PASSWORD"]})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -137,9 +140,7 @@ def test_token_no_sub(mod: ModuleType):
 
     response = client.get(
         "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vIn0.9ynBhuYb4e6aW3oJr_K_TBgwcMTDpRToQIE25L57rOE"
-        },
+        headers={"Authorization": f"Bearer {mod.create_access_token(data={'data': 'foo'})}"},
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -151,9 +152,7 @@ def test_token_no_username(mod: ModuleType):
 
     response = client.get(
         "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmb28ifQ.NnExK_dlNAYyzACrXtXDrcWOgGY2JuPbI4eDaHdfK5Y"
-        },
+        headers={"Authorization": f"Bearer {mod.create_access_token(data={'sub': 'foo'})}"},
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -177,9 +176,7 @@ def test_token_nonexistent_user(mod: ModuleType):
 
     response = client.get(
         "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZTpib2IifQ.HcfCW67Uda-0gz54ZWTqmtgJnZeNem0Q757eTa9EZuw"
-        },
+        headers={"Authorization": f"Bearer {mod.create_access_token(data={'sub': 'username:bob'})}"},
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -190,7 +187,7 @@ def test_token_inactive_user(mod: ModuleType):
     client = TestClient(mod.app)
 
     access_token = get_access_token(
-        username="alice", password="secretalice", scope="me", client=client
+        username="alice", password=__import__("os").environ["TEST_ALICE_PASSWORD"], scope="me", client=client
     )
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
