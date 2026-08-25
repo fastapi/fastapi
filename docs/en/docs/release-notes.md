@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Bump `setup-uv` action to `10.0.1`. PR [#16249](https://github.com/fastapi/fastapi/pull/16249) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Update translation PR branches with PR Push. PR [#16224](https://github.com/fastapi/fastapi/pull/16224) by [@tiangolo](https://github.com/tiangolo).
 * ⏪️ Restore `commit_in_place` input in `translate.yml`. PR [#16216](https://github.com/fastapi/fastapi/pull/16216) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Migrate automatic labels to Latest Changes. PR [#16185](https://github.com/fastapi/fastapi/pull/16185) by [@tiangolo](https://github.com/tiangolo).
