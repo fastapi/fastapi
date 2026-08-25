@@ -31,7 +31,7 @@ def test_put_all(client: TestClient):
             "tax": 3.2,
             "tags": ["foo", "bar", "foo"],
             "images": [
-                {"url": "https://example.org/image.png", "name": "example image"}
+                {'url': 'https://example.org/image.png', 'name': 'example image'}
             ],
         },
     )
@@ -45,7 +45,7 @@ def test_put_all(client: TestClient):
             "tax": 3.2,
             "tags": IsList("foo", "bar", check_order=False),
             "images": [
-                {"url": "https://example.org/image.png", "name": "example image"}
+                {'url': 'https://example.org/image.png', 'name': 'example image'}
             ],
         },
     }
@@ -100,7 +100,7 @@ def test_put_images_not_list(client: TestClient):
         json={
             "name": "Foo",
             "price": 35.4,
-            "images": {"url": "https://example.org/image.png", "name": "example image"},
+            "images": {'url': 'https://example.org/image.png', 'name': 'example image'},
         },
     )
     assert response.status_code == 422, response.text
@@ -109,8 +109,8 @@ def test_put_images_not_list(client: TestClient):
             {
                 "loc": ["body", "images"],
                 "input": {
-                    "url": "https://example.org/image.png",
-                    "name": "example image",
+                    'url': 'https://example.org/image.png',
+                    'name': 'example image',
                 },
                 "msg": "Input should be a valid list",
                 "type": "list_type",
