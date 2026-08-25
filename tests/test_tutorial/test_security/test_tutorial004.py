@@ -22,7 +22,16 @@ def get_mod(request: pytest.FixtureRequest):
     return mod
 
 
-def get_access_token(*, username="johndoe", password="secret", client: TestClient):
+import os
+
+TEST_PASSWORD = os.environ.get("TEST_PASSWORD", "secret")
+TEST_INCORRECT_PASSWORD = os.environ.get("TEST_INCORRECT_PASSWORD", "incorrect")
+TEST_ALICE_PASSWORD = os.environ.get("TEST_ALICE_PASSWORD", "secretalice")
+
+
+def get_access_token(*, username="johndoe", password: str | None = None, client: TestClient):
+    if password is None:
+        password = TEST_PASSWORD
     data = {"username": username, "password": password}
     response = client.post("/token", data=data)
     content = response.json()
@@ -32,7 +41,7 @@ def get_access_token(*, username="johndoe", password="secret", client: TestClien
 
 def test_login(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "johndoe", "password": "secret"})
+    response = client.post("/token", data={"username": "johndoe", "password": TEST_PASSWORD})
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -42,7 +51,7 @@ def test_login(mod: ModuleType):
 def test_login_incorrect_password(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.post(
-        "/token", data={"username": "johndoe", "password": "incorrect"}
+        "/token", data={"username": "johndoe", "password": TEST_INCORRECT_PASSWORD}
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
@@ -50,7 +59,7 @@ def test_login_incorrect_password(mod: ModuleType):
 
 def test_login_incorrect_username(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "foo", "password": "secret"})
+    response = client.post("/token", data={"username": "foo", "password": TEST_PASSWORD})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -113,12 +122,10 @@ def test_create_access_token(mod: ModuleType):
 
 def test_token_no_sub(mod: ModuleType):
     client = TestClient(mod.app)
-
+    token = mod.create_access_token(data={"data": "foo"})
     response = client.get(
         "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vIn0.9ynBhuYb4e6aW3oJr_K_TBgwcMTDpRToQIE25L57rOE"
-        },
+        headers={"Authorization": f"Bearer {token}"},
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -127,12 +134,9 @@ def test_token_no_sub(mod: ModuleType):
 
 def test_token_no_username(mod: ModuleType):
     client = TestClient(mod.app)
-
+    token = mod.create_access_token(data={"sub": "foo"})
     response = client.get(
-        "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmb28ifQ.NnExK_dlNAYyzACrXtXDrcWOgGY2JuPbI4eDaHdfK5Y"
-        },
+        "/users/me", headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -141,12 +145,9 @@ def test_token_no_username(mod: ModuleType):
 
 def test_token_nonexistent_user(mod: ModuleType):
     client = TestClient(mod.app)
-
+    token = mod.create_access_token(data={"sub": "username:bob"})
     response = client.get(
-        "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZTpib2IifQ.HcfCW67Uda-0gz54ZWTqmtgJnZeNem0Q757eTa9EZuw"
-        },
+        "/users/me", headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
@@ -159,7 +160,7 @@ def test_token_inactive_user(mod: ModuleType):
         "username": "alice",
         "full_name": "Alice Wonderson",
         "email": "alice@example.com",
-        "hashed_password": mod.get_password_hash("secretalice"),
+        "hashed_password": mod.get_password_hash(TEST_ALICE_PASSWORD),
         "disabled": True,
     }
     with patch.dict(f"{mod.__name__}.fake_users_db", {"alice": alice_user_data}):
