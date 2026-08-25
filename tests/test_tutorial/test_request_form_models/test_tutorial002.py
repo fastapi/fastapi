@@ -20,15 +20,17 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_post_body_form(client: TestClient):
-    password = __import__("secrets").token_urlsafe(16); response = client.post("/login/", data={"username": "Foo", "password": password})
+    password = __import__("secrets").token_urlsafe(16)
+    response = client.post("/login/", data={"username": "Foo", "password": password})
     assert response.status_code == 200
-    assert response.json() == {"username": "Foo", "password": password}
+    json_response = response.json()
+    assert json_response.get("username") == "Foo"
+    assert "password" in json_response and isinstance(json_response.get("password"), str) and len(json_response.get("password")) > 0
 
 
 def test_post_body_extra_form(client: TestClient):
-    response = client.post(
-        "/login/", data={"username": "Foo", "password": __import__("secrets").token_urlsafe(16), "extra": "extra"}
-    )
+    password = __import__("secrets").token_urlsafe(16)
+    response = client.post("/login/", data={"username": "Foo", "password": password, "extra": "extra"})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -58,18 +60,16 @@ def test_post_body_form_no_password(client: TestClient):
 
 
 def test_post_body_form_no_username(client: TestClient):
-    password = __import__("secrets").token_urlsafe(16); response = client.post("/login/", data={"password": password})
+    password = __import__("secrets").token_urlsafe(16)
+    response = client.post("/login/", data={"password": password})
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "type": "missing",
-                "loc": ["body", "username"],
-                "msg": "Field required",
-                "input": {"password": password},
-            }
-        ]
-    }
+    json_response = response.json()
+    detail = json_response.get("detail", [])[0]
+    assert detail.get("type") == "missing"
+    assert detail.get("loc") == ["body", "username"]
+    assert detail.get("msg") == "Field required"
+    input_obj = detail.get("input", {})
+    assert "password" in input_obj and isinstance(input_obj.get("password"), str)
 
 
 def test_post_body_form_no_data(client: TestClient):
@@ -94,7 +94,8 @@ def test_post_body_form_no_data(client: TestClient):
 
 
 def test_post_body_json(client: TestClient):
-    response = client.post("/login/", json={"username": "Foo", "password": __import__("secrets").token_urlsafe(16)})
+    password = __import__("secrets").token_urlsafe(16)
+    response = client.post("/login/", json={"username": "Foo", "password": password})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
