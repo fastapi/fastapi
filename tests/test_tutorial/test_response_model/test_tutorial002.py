@@ -23,7 +23,7 @@ def get_client(request: pytest.FixtureRequest):
 def test_post_user(client: TestClient):
     user_data = {
         "username": "foo",
-        "password": "fighter",
+        "password": __import__("secrets").token_urlsafe(16),
         "email": "foo@example.com",
         "full_name": "Grave Dohl",
     }
