@@ -7,8 +7,8 @@ from typing import Annotated, Literal
 
 import typer
 
-VERSION_PATTERN = re.compile(r'^(?:__version__ = ")?(\d{1,6}\.\d{1,6}\.\d{1,6})(?:"$)?', flags=re.MULTILINE)
-VERSION_HEADING_PATTERN = re.compile(r"^## (\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^)]+\))?$", flags=re.MULTILINE)
+VERSION_PATTERN = re.compile(r'^\s*__version__\s*=\s*"(\d{1,6}\.\d{1,6}\.\d{1,6})"\s*$', flags=re.MULTILINE)
+VERSION_HEADING_PATTERN = re.compile(r'^##\s+(\d{1,6}\.\d{1,6}\.\d{1,6})(?: \([^)]+\))?$', flags=re.MULTILINE)
 RELEASE_NOTES_HEADER = """---
 hide:
   - navigation
@@ -27,6 +27,8 @@ def parse_version(version: str) -> tuple[int, int, int]:
     parts = version.split(".")
     if len(parts) != 3 or not all(part.isdigit() for part in parts):
         raise ValueError(f"Invalid version: {version!r}. Expected format: X.Y.Z")
+    if any(len(part) > 6 for part in parts):
+        raise ValueError(f"Invalid version component length in: {version!r}")
     major, minor, patch = (int(part) for part in parts)
     return major, minor, patch
 
@@ -68,10 +70,10 @@ def update_release_notes(
         )
     # Check for an existing heading for this version using safe string checks
     for line in content.splitlines():
-        if line.startswith(f"## {version}") and (
-            line == f"## {version}" or line[len(f"## {version}")] in (" ", "(")
-        ):
-            raise RuntimeError(f"Release notes already contain a section for {version}")
+        if line.startswith(f"## {version}"):
+            tail = line[len(f"## {version}"):].lstrip()
+            if tail == "" or tail.startswith("("):
+                raise RuntimeError(f"Release notes already contain a section for {version}")
 
     latest_header = f"{RELEASE_NOTES_HEADER}{LATEST_CHANGES_HEADER}\n"
     if not content.startswith(latest_header):
