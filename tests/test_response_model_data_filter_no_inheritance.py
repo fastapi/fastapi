@@ -36,8 +36,8 @@ async def create_user(user: UserCreate):
 
 @app.get("/pets/{pet_id}", response_model=PetOut)
 async def read_pet(pet_id: int):
-    import uuid, hashlib
-    _raw_password = uuid.uuid4().hex
+    import secrets, hashlib
+    _raw_password = secrets.token_hex(16)
     _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
         email="johndoe@example.com",
@@ -49,8 +49,8 @@ async def read_pet(pet_id: int):
 
 @app.get("/pets/", response_model=list[PetOut])
 async def read_pets():
-    import uuid, hashlib
-    _raw_password = uuid.uuid4().hex
+    import secrets, hashlib
+    _raw_password = secrets.token_hex(16)
     _hashed = hashlib.sha256(_raw_password.encode()).hexdigest()
     user = UserDB(
         email="johndoe@example.com",
