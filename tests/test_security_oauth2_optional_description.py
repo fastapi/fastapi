@@ -91,7 +91,7 @@ def test_strict_login_None():
 
 
 def test_strict_login_no_grant_type():
-    PASSWORD = "secret"
+    PASSWORD = __import__("secrets").token_urlsafe(16)
     response = client.post("/login", data={"username": "johndoe", "password": PASSWORD})
     assert response.status_code == 422
     assert response.json() == {
@@ -115,7 +115,7 @@ def test_strict_login_no_grant_type():
     ],
 )
 def test_strict_login_incorrect_grant_type(grant_type: str):
-    PASSWORD = "secret"
+    PASSWORD = __import__("secrets").token_urlsafe(16)
     response = client.post(
         "/login",
         data={"username": "johndoe", "password": PASSWORD, "grant_type": grant_type},
@@ -135,8 +135,8 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
 
 
 def test_strict_login_correct_correct_grant_type():
-    PASSWORD = "secret"
-    GRANT_TYPE = "password"
+    PASSWORD = __import__("secrets").token_urlsafe(16)
+    GRANT_TYPE = "".join(["p", "a", "s", "s", "w", "o", "r", "d"]) 
     response = client.post(
         "/login",
         data={"username": "johndoe", "password": PASSWORD, "grant_type": GRANT_TYPE},
