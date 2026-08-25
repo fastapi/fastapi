@@ -4,15 +4,16 @@ from fastapi import Depends
 
 
 async def dependency_a():
-    dep_a = object()
+    dep_a = DBSession()
     try:
         yield dep_a
     finally:
         if hasattr(dep_a, "close"):
             dep_a.close()
+DBSession = object
 
 
-async def dependency_b(dep_a: Annotated[object, Depends(dependency_a)]):
+async def dependency_b(dep_a: Annotated[DBSession, Depends(dependency_a)]):
     dep_b = object()
     try:
         yield dep_b
@@ -20,7 +21,7 @@ async def dependency_b(dep_a: Annotated[object, Depends(dependency_a)]):
         if hasattr(dep_b, "close"):
             # pass dep_a if the close method expects it
             try:
-                dep_b.close(dep_a)
+                dep_b.close(getattr(dep_a, "session", dep_a))
             except TypeError:
                 dep_b.close()
 
