@@ -14,7 +14,9 @@ from pydantic import BaseModel, ValidationError
 
 # to get a string like this run:
 # openssl rand -hex 32
-SECRET_KEY = __import__("os").environ.get("SECRET_KEY", __import__("secrets").token_hex(32))
+SECRET_KEY = __import__("os").environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY environment variable must be set")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -24,14 +26,14 @@ fake_users_db = {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": __import__("os").environ.get("JOHNDOE_HASH", ""),
+        "hashed_password": __import__("os").environ.get("JOHNDOE_HASH"),
         "disabled": False,
     },
     "alice": {
         "username": "alice",
         "full_name": "Alice Chains",
         "email": "alicechains@example.com",
-        "hashed_password": __import__("os").environ.get("ALICE_HASH", ""),
+        "hashed_password": __import__("os").environ.get("ALICE_HASH"),
         "disabled": True,
     },
 }
