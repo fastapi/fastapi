@@ -20,8 +20,8 @@ def get_client(request: pytest.FixtureRequest):
 
 def test_post_body(client: TestClient):
     data = [
-        {"url": "http://example.com/", "name": "Example"},
-        {"url": "http://fastapi.tiangolo.com/", "name": "FastAPI"},
+        {"url": "https://example.com/", "name": "Example"},
+        {"url": "https://fastapi.tiangolo.com/", "name": "FastAPI"},
     ]
     response = client.post("/images/multiple", json=data)
     assert response.status_code == 200, response.text
@@ -46,7 +46,7 @@ def test_post_invalid_list_item(client: TestClient):
 
 
 def test_post_not_a_list(client: TestClient):
-    data = {"url": "http://example.com/", "name": "Example"}
+    data = {"url": "https://example.com/", "name": "Example"}
     response = client.post("/images/multiple", json=data)
     assert response.status_code == 422, response.text
     assert response.json() == {
@@ -55,7 +55,7 @@ def test_post_not_a_list(client: TestClient):
                 "loc": ["body"],
                 "input": {
                     "name": "Example",
-                    "url": "http://example.com/",
+                    "url": "https://example.com/",
                 },
                 "msg": "Input should be a valid list",
                 "type": "list_type",
