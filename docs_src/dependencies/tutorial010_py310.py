@@ -1,6 +1,6 @@
 class MySuperContextManager:
     def __init__(self):
-        self.db = DBSession()
+        self.db = type("DBSession", (), {"close": lambda self: None})()
 
     def __enter__(self):
         return self.db
