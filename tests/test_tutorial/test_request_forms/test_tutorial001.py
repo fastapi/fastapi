@@ -20,7 +20,9 @@ def get_client(request: pytest.FixtureRequest):
 
 
 def test_post_body_form(client: TestClient):
-    response = client.post("/login/", data={"username": "Foo", "password": "secret"})
+    import secrets
+    pwd = secrets.token_urlsafe(16)
+    response = client.post("/login/", data={"username": "Foo", "password": pwd})
     assert response.status_code == 200
     assert response.json() == {"username": "Foo"}
 
@@ -41,7 +43,9 @@ def test_post_body_form_no_password(client: TestClient):
 
 
 def test_post_body_form_no_username(client: TestClient):
-    response = client.post("/login/", data={"password": "secret"})
+    import secrets
+    pwd = secrets.token_urlsafe(16)
+    response = client.post("/login/", data={"password": pwd})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -77,7 +81,9 @@ def test_post_body_form_no_data(client: TestClient):
 
 
 def test_post_body_json(client: TestClient):
-    response = client.post("/login/", json={"username": "Foo", "password": "secret"})
+    import secrets
+    pwd = secrets.token_urlsafe(16)
+    response = client.post("/login/", json={"username": "Foo", "password": pwd})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
