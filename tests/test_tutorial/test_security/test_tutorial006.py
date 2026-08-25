@@ -23,7 +23,7 @@ def get_client(request: pytest.FixtureRequest):
 def test_security_http_basic(client: TestClient):
     response = client.get("/users/me", auth=("john", "secret"))
     assert response.status_code == 200, response.text
-    assert response.json()["username"] == "john" and "password" in response.json()
+    assert response.json()["username"] == "john" and len(response.json()) == 2
 
 
 def test_security_http_basic_no_credentials(client: TestClient):
