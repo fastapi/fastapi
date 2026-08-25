@@ -21,7 +21,7 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen(
+process = subprocess.Popen(args=
     ["fastapi", "run", "docs_src/sql_databases/tutorial001.py"],
 )
 try:
