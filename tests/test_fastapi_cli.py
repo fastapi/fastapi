@@ -8,7 +8,7 @@ import pytest
 
 
 def test_fastapi_cli():
-    result = subprocess.run(
+    result = subprocess.run(  # nosec
         [
             sys.executable,
             "-m",
