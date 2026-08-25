@@ -23,7 +23,11 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/header_param_models/tutorial001.py"]
+    [__import__('shutil').which('fastapi') or 'fastapi', "run", "docs_src/header_param_models/tutorial001.py"],
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    close_fds=True,
 )
 try:
     for _ in range(3):
