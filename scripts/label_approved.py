@@ -24,9 +24,21 @@ class Settings(BaseSettings):
 
 settings = Settings()
 if settings.debug:
-    logging.basicConfig(level=logging.DEBUG)
+    root_logger = logging.getLogger()
+    if not root_logger.handlers:
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        handler.setFormatter(formatter)
+        root_logger.addHandler(handler)
+    root_logger.setLevel(logging.DEBUG)
 else:
-    logging.basicConfig(level=logging.INFO)
+    root_logger = logging.getLogger()
+    if not root_logger.handlers:
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        handler.setFormatter(formatter)
+        root_logger.addHandler(handler)
+    root_logger.setLevel(logging.INFO)
 logging.debug(f"Using config: {settings.model_dump_json()}")
 g = Github(settings.token.get_secret_value())
 repo = g.get_repo(settings.github_repository)
