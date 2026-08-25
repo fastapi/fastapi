@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 # to get a string like this run:
 # openssl rand -hex 32
-SECRET_KEY = __import__("os").environ.get("SECRET_KEY", __import__("secrets").token_urlsafe(32))
+SECRET_KEY = __import__("os").environ["SECRET_KEY"]
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -19,7 +19,7 @@ fake_users_db = {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": __import__("os").environ.get("JOHNDOE_PASSWORD_HASH", ""),
+        "hashed_password": __import__("os").environ["JOHNDOE_PASSWORD_HASH"],
         "disabled": False,
     }
 }
