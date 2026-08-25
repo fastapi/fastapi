@@ -40,9 +40,11 @@ def cache_verify_password(mod: ModuleType):
 
 
 def get_access_token(
-    *, username="johndoe", password=None, scope=None, client: TestClient
+    *, username: str | None = None, password=None, scope=None, client: TestClient
 ):
     import os
+    if username is None:
+        username = os.environ["TEST_USERNAME"]
     if password is None:
         password = os.environ["TEST_PASSWORD"]
     data = {"username": username, "password": password}
@@ -56,7 +58,8 @@ def get_access_token(
 
 def test_login(mod: ModuleType):
     client = TestClient(mod.app)
-    response = client.post("/token", data={"username": "johndoe", "password": __import__("os").environ["TEST_PASSWORD"]})
+    import os
+    response = client.post("/token", data={"username": os.environ["TEST_USERNAME"], "password": __import__("os").environ["TEST_PASSWORD"]})
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -65,8 +68,9 @@ def test_login(mod: ModuleType):
 
 def test_login_incorrect_password(mod: ModuleType):
     client = TestClient(mod.app)
+    import os
     response = client.post(
-        "/token", data={"username": "johndoe", "password": __import__("os").environ["TEST_PASSWORD"] + "_invalid"}
+        "/token", data={"username": os.environ["TEST_USERNAME"], "password": __import__("os").environ["TEST_PASSWORD"] + "_invalid"}
     )
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
@@ -94,10 +98,11 @@ def test_token(mod: ModuleType):
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
     assert response.status_code == 200, response.text
+    import os
     assert response.json() == {
-        "username": "johndoe",
+        "username": os.environ["TEST_USERNAME"],
         "full_name": "John Doe",
-        "email": "johndoe@example.com",
+        "email": f"{os.environ['TEST_USERNAME']}@example.com",
         "disabled": False,
     }
 
@@ -121,8 +126,9 @@ def test_incorrect_token_type(mod: ModuleType):
 
 
 def test_verify_password(mod: ModuleType):
+    import os
     assert mod.verify_password(
-        "secret", mod.fake_users_db["johndoe"]["hashed_password"]
+        "secret", mod.fake_users_db[os.environ["TEST_USERNAME"]]["hashed_password"]
     )
 
 
@@ -203,7 +209,8 @@ def test_read_items(mod: ModuleType):
         "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
     )
     assert response.status_code == 200, response.text
-    assert response.json() == [{"item_id": "Foo", "owner": "johndoe"}]
+    import os
+    assert response.json() == [{"item_id": "Foo", "owner": os.environ["TEST_USERNAME"]}]
 
 
 def test_read_system_status(mod: ModuleType):
