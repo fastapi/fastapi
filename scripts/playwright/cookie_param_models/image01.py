@@ -9,7 +9,6 @@ from playwright.sync_api import Playwright, sync_playwright
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     # Update the viewport manually
-    context = browser.new_context(viewport={"width": 960, "height": 1080})
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
@@ -23,8 +22,15 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
+import shutil
+import os
+
+fastapi_exec = shutil.which("fastapi")
+if fastapi_exec is None:
+    raise RuntimeError("fastapi executable not found in PATH")
+script_path = os.path.abspath("docs_src/cookie_param_models/tutorial001.py")
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/cookie_param_models/tutorial001.py"]
+    [fastapi_exec, "run", script_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True, start_new_session=True
 )
 try:
     for _ in range(3):
