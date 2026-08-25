@@ -25,7 +25,7 @@ def test_post_user(client: TestClient):
         "/user/",
         json={
             "username": "foo",
-            "password": "fighter",
+            "password": __import__("secrets").token_urlsafe(16),
             "email": "foo@example.com",
             "full_name": "Grave Dohl",
         },
