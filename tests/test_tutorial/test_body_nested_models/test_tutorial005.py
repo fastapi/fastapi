@@ -30,7 +30,7 @@ def test_put_all(client: TestClient):
             "price": 35.4,
             "tax": 3.2,
             "tags": ["foo", "bar", "foo"],
-            "image": {"url": "http://example.com/image.png", "name": "example image"},
+            "image": {"url": "https://example.com/image.png", "name": "example image"},
         },
     )
     assert response.status_code == 200, response.text
@@ -42,7 +42,7 @@ def test_put_all(client: TestClient):
             "price": 35.4,
             "tax": 3.2,
             "tags": IsList("foo", "bar", check_order=False),
-            "image": {"url": "http://example.com/image.png", "name": "example image"},
+            "image": {"url": "https://example.com/image.png", "name": "example image"},
         },
     }
 
@@ -120,7 +120,7 @@ def test_put_missing_required_in_image(client: TestClient):
         json={
             "name": "Foo",
             "price": 35.4,
-            "image": {"url": "http://example.com/image.png"},
+            "image": {"url": "https://example.com/image.png"},
         },
     )
     assert response.status_code == 422, response.text
@@ -128,7 +128,7 @@ def test_put_missing_required_in_image(client: TestClient):
         "detail": [
             {
                 "loc": ["body", "image", "name"],
-                "input": {"url": "http://example.com/image.png"},
+                "input": {"url": "https://example.com/image.png"},
                 "msg": "Field required",
                 "type": "missing",
             },
