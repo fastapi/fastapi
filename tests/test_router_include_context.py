@@ -55,6 +55,28 @@ def test_iter_route_contexts_returns_direct_route_context():
     assert contexts[0].endpoint is read_item
 
 
+def test_iter_route_contexts_returns_effective_websocket_path():
+    router = APIRouter()
+
+    @router.websocket("/stream/{job_id}", name="stream")
+    async def stream():  # pragma: no cover
+        pass
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api/v1")
+
+    context = next(
+        context
+        for context in iter_route_contexts(app.routes)
+        if context.original_route is router.routes[0]
+    )
+
+    assert context.path == "/api/v1/stream/{job_id}"
+    assert context.path_format == "/api/v1/stream/{job_id}"
+    assert context.name == "stream"
+    assert context.endpoint is stream
+
+
 def test_iter_route_contexts_supports_nested_conflict_detection():
     existing_router = APIRouter()
     nested_router = APIRouter()
