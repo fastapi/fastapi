@@ -338,7 +338,15 @@ async def serialize_response(
         )
 
     else:
-        return jsonable_encoder(response_content)
+        return jsonable_encoder(
+            response_content,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
 
 
 async def run_endpoint_function(
@@ -514,7 +522,15 @@ def get_request_handler(
                         exclude_none=response_model_exclude_none,
                     )
                 else:
-                    data = jsonable_encoder(data)
+                    data = jsonable_encoder(
+                        data,
+                        include=response_model_include,
+                        exclude=response_model_exclude,
+                        by_alias=response_model_by_alias,
+                        exclude_unset=response_model_exclude_unset,
+                        exclude_defaults=response_model_exclude_defaults,
+                        exclude_none=response_model_exclude_none,
+                    )
                     return json.dumps(data).encode("utf-8")
 
             if is_sse_stream:
@@ -531,9 +547,26 @@ def get_request_handler(
                             data_str: str | None = item.raw_data
                         elif item.data is not None:
                             if hasattr(item.data, "model_dump_json"):
-                                data_str = item.data.model_dump_json()
+                                data_str = item.data.model_dump_json(
+                                    include=response_model_include,
+                                    exclude=response_model_exclude,
+                                    by_alias=response_model_by_alias,
+                                    exclude_unset=response_model_exclude_unset,
+                                    exclude_defaults=response_model_exclude_defaults,
+                                    exclude_none=response_model_exclude_none,
+                                )
                             else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
+                                data_str = json.dumps(
+                                    jsonable_encoder(
+                                        item.data,
+                                        include=response_model_include,
+                                        exclude=response_model_exclude,
+                                        by_alias=response_model_by_alias,
+                                        exclude_unset=response_model_exclude_unset,
+                                        exclude_defaults=response_model_exclude_defaults,
+                                        exclude_none=response_model_exclude_none,
+                                    )
+                                )
                         else:
                             data_str = None
                         return format_sse_event(
