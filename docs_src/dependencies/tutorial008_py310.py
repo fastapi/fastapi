@@ -1,10 +1,12 @@
 from fastapi import Depends
 
 
+class DBSession:
+    def close(self, *args, **kwargs):
+        pass
+
+
 async def dependency_a():
-    class DBSession:
-        def close(self, *args, **kwargs):
-            pass
     dep_a = DBSession()
     try:
         yield dep_a
@@ -13,9 +15,6 @@ async def dependency_a():
 
 
 async def dependency_b(dep_a=Depends(dependency_a)):
-    class DBSession:
-        def close(self, *args, **kwargs):
-            pass
     dep_b = DBSession()
     try:
         yield dep_b
