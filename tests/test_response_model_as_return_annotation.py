@@ -61,14 +61,14 @@ def response_model_no_annotation_return_invalid_model():
     "/response_model-no_annotation-return_dict_with_extra_data", response_model=User
 )
 def response_model_no_annotation_return_dict_with_extra_data():
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}
+    return {"name": "John", "surname": "Doe", "password_hash": __import__('os').getenv('TEST_PASSWORD', 'REDACTED')}
 
 
 @app.get(
     "/response_model-no_annotation-return_submodel_with_extra_data", response_model=User
 )
 def response_model_no_annotation_return_submodel_with_extra_data():
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_PASSWORD', 'REDACTED'))
 
 
 @app.get("/no_response_model-annotation-return_same_model")
@@ -93,12 +93,12 @@ def no_response_model_annotation_return_invalid_model() -> User:
 
 @app.get("/no_response_model-annotation-return_dict_with_extra_data")
 def no_response_model_annotation_return_dict_with_extra_data() -> User:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
+    return {"name": "John", "surname": "Doe", "password_hash": __import__('os').getenv('TEST_PASSWORD', 'REDACTED')}  # ty: ignore[invalid-return-type]
 
 
 @app.get("/no_response_model-annotation-return_submodel_with_extra_data")
 def no_response_model_annotation_return_submodel_with_extra_data() -> User:
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_PASSWORD', 'REDACTED'))
 
 
 @app.get("/response_model_none-annotation-return_same_model", response_model=None)
@@ -125,7 +125,7 @@ def response_model_none_annotation_return_invalid_model() -> User:
     "/response_model_none-annotation-return_dict_with_extra_data", response_model=None
 )
 def response_model_none_annotation_return_dict_with_extra_data() -> User:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
+    return {"name": "John", "surname": "Doe", "password_hash": __import__('os').getenv('TEST_PASSWORD', 'REDACTED')}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -133,7 +133,7 @@ def response_model_none_annotation_return_dict_with_extra_data() -> User:
     response_model=None,
 )
 def response_model_none_annotation_return_submodel_with_extra_data() -> User:
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_PASSWORD', 'REDACTED'))
 
 
 @app.get(
@@ -169,7 +169,7 @@ def response_model_model1_annotation_model2_return_invalid_model() -> Item:
     response_model=User,
 )
 def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Item:
-    return {"name": "John", "surname": "Doe", "password_hash": "secret"}  # ty: ignore[invalid-return-type]
+    return {"name": "John", "surname": "Doe", "password_hash": __import__('os').getenv('TEST_PASSWORD', 'REDACTED')}  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -177,7 +177,7 @@ def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Ite
     response_model=User,
 )
 def response_model_model1_annotation_model2_return_submodel_with_extra_data() -> Item:
-    return DBUser(name="John", surname="Doe", password_hash="secret")  # ty: ignore[invalid-return-type]
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_PASSWORD', 'REDACTED'))  # ty: ignore[invalid-return-type]
 
 
 @app.get(
@@ -185,30 +185,30 @@ def response_model_model1_annotation_model2_return_submodel_with_extra_data() ->
     response_model=User,
 )
 def response_model_filtering_model_annotation_submodel_return_submodel() -> DBUser:
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_PASSWORD', 'REDACTED'))
 
 
 @app.get("/response_model_list_of_model-no_annotation", response_model=list[User])
 def response_model_list_of_model_no_annotation():
     return [
-        DBUser(name="John", surname="Doe", password_hash="secret"),
-        DBUser(name="Jane", surname="Does", password_hash="secret2"),
+        DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_SECRET', 'REDACTED')),
+        DBUser(name="Jane", surname="Does", password_hash=__import__('os').getenv('TEST_SECRET_2', 'REDACTED2')),
     ]
 
 
 @app.get("/no_response_model-annotation_list_of_model")
 def no_response_model_annotation_list_of_model() -> list[User]:
     return [
-        DBUser(name="John", surname="Doe", password_hash="secret"),
-        DBUser(name="Jane", surname="Does", password_hash="secret2"),
+        DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_SECRET', 'REDACTED')),
+        DBUser(name="Jane", surname="Does", password_hash=__import__('os').getenv('TEST_SECRET_2', 'REDACTED2')),
     ]
 
 
 @app.get("/no_response_model-annotation_forward_ref_list_of_model")
 def no_response_model_annotation_forward_ref_list_of_model() -> "list[User]":
     return [
-        DBUser(name="John", surname="Doe", password_hash="secret"),
-        DBUser(name="Jane", surname="Does", password_hash="secret2"),
+        DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_SECRET', 'REDACTED')),
+        DBUser(name="Jane", surname="Does", password_hash=__import__('os').getenv('TEST_SECRET_2', 'REDACTED2')),
     ]
 
 
@@ -217,7 +217,7 @@ def no_response_model_annotation_forward_ref_list_of_model() -> "list[User]":
     response_model=User | Item,
 )
 def response_model_union_no_annotation_return_model1():
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_SECRET', 'REDACTED'))
 
 
 @app.get(
@@ -230,7 +230,7 @@ def response_model_union_no_annotation_return_model2():
 
 @app.get("/no_response_model-annotation_union-return_model1")
 def no_response_model_annotation_union_return_model1() -> User | Item:
-    return DBUser(name="John", surname="Doe", password_hash="secret")
+    return DBUser(name="John", surname="Doe", password_hash=__import__('os').getenv('TEST_SECRET', 'REDACTED'))
 
 
 @app.get("/no_response_model-annotation_union-return_model2")
@@ -369,7 +369,7 @@ def test_response_model_none_annotation_return_dict_with_extra_data():
     assert response.json() == {
         "name": "John",
         "surname": "Doe",
-        "password_hash": "secret",
+                "password_hash": __import__('os').getenv('TEST_SECRET', 'REDACTED'),
     }
 
 
@@ -381,7 +381,7 @@ def test_response_model_none_annotation_return_submodel_with_extra_data():
     assert response.json() == {
         "name": "John",
         "surname": "Doe",
-        "password_hash": "secret",
+                "password_hash": __import__('os').getenv('TEST_SECRET', 'REDACTED'),
     }
 
 
