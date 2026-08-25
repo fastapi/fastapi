@@ -8,7 +8,7 @@ from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-if not any(arg == "--codspeed" for arg in sys.argv[1:]):
+if not any(str(arg) == "--codspeed" for arg in sys.argv[1:]):
     pytest.skip(
         "Benchmark tests are skipped by default; run with --codspeed.",
         allow_module_level=True,
