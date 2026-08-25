@@ -9,7 +9,7 @@ from tests.benchmarks.utils import (
     generate_openapi,
 )
 
-if "--codspeed" not in sys.argv:
+if not (__import__("os").environ.get("CODSPEED", "").lower() in ("1", "true") or "--codspeed" in sys.argv):
     pytest.skip(
         "Benchmark tests are skipped by default; run with --codspeed.",
         allow_module_level=True,
