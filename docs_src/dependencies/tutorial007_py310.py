@@ -1,5 +1,5 @@
 async def get_db():
-    db = DBSession()
+    db = type("DBSession", (), {"close": lambda self: None})()
     try:
         yield db
     finally:
