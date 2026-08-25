@@ -34,7 +34,7 @@ def test_post_all(client: TestClient):
                 "tags": ["foo"],
                 "images": [
                     {
-                        "url": "http://example.com/image.png",
+                        "url": "https://example.com/image.png",
                         "name": "example image",
                     }
                 ],
@@ -62,7 +62,7 @@ def test_put_only_required(client: TestClient):
                     "price": 35.4,
                     "images": [
                         {
-                            "url": "http://example.com/image.png",
+                            "url": "https://example.com/image.png",
                             "name": "example image",
                         }
                     ],
@@ -84,7 +84,7 @@ def test_put_only_required(client: TestClient):
                 "tags": [],
                 "images": [
                     {
-                        "url": "http://example.com/image.png",
+                        "url": "https://example.com/image.png",
                         "name": "example image",
                     }
                 ],
