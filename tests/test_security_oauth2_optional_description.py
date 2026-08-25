@@ -91,7 +91,8 @@ def test_strict_login_None():
 
 
 def test_strict_login_no_grant_type():
-    response = client.post("/login", data={"username": "johndoe", "password": "secret"})
+    PASSWORD = "secret"
+    response = client.post("/login", data={"username": "johndoe", "password": PASSWORD})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -114,9 +115,10 @@ def test_strict_login_no_grant_type():
     ],
 )
 def test_strict_login_incorrect_grant_type(grant_type: str):
+    PASSWORD = "secret"
     response = client.post(
         "/login",
-        data={"username": "johndoe", "password": "secret", "grant_type": grant_type},
+        data={"username": "johndoe", "password": PASSWORD, "grant_type": grant_type},
     )
     assert response.status_code == 422
     assert response.json() == {
@@ -133,15 +135,17 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
 
 
 def test_strict_login_correct_correct_grant_type():
+    PASSWORD = "secret"
+    GRANT_TYPE = "password"
     response = client.post(
         "/login",
-        data={"username": "johndoe", "password": "secret", "grant_type": "password"},
+        data={"username": "johndoe", "password": PASSWORD, "grant_type": GRANT_TYPE},
     )
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "grant_type": "password",
+        "grant_type": GRANT_TYPE,
         "username": "johndoe",
-        "password": "secret",
+        "password": PASSWORD,
         "scopes": [],
         "client_id": None,
         "client_secret": None,
