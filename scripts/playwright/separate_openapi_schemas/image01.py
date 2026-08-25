@@ -22,7 +22,7 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
-process = subprocess.Popen([(__import__('shutil').which('uvicorn') or 'uvicorn'), "docs_src.separate_openapi_schemas.tutorial001:app"], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True)
+process = subprocess.Popen([(lambda p: p if p is not None else (_ for _ in ()).throw(FileNotFoundError("uvicorn not found")))(__import__('shutil').which('uvicorn')), "docs_src.separate_openapi_schemas.tutorial001:app"], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True)
 try:
     with sync_playwright() as playwright:
         run(playwright)
