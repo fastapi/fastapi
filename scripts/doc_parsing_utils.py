@@ -1,11 +1,11 @@
 import re
 from typing import TypedDict
 
-CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)\s*([^\*]*?)\*\}$")
+CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)\s*([^*]*)\*\}$")
 CODE_INCLUDE_PLACEHOLDER = "<CODE_INCLUDE>"
 
-HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6})\s+([^\n\{]+?)(\s*\{\s*#[^}\s]+\s*\})?\s*$")
-HEADER_LINE_RE = re.compile(r"^(#{1,6})\s+([^\n\{]+?)(?:\s*\{\s*([^\}\s#][^\}]*)\s*\})?\s*$")
+HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6})\s+([^\n{]+)(\s*\{\s*#[^}\s]+\s*\})?\s*$")
+HEADER_LINE_RE = re.compile(r"^(#{1,6})\s+([^\n{]+)(?:\s*\{\s*([^}\s#][^}]*)\s*\})?\s*$")
 
 TIANGOLO_COM = "https://fastapi.tiangolo.com"
 ASSETS_URL_PREFIXES = ("/img/", "/css/", "/js/")
