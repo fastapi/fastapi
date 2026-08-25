@@ -1,11 +1,11 @@
 import re
 from typing import TypedDict
 
-CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)(?:\s+([^}]*))?\s*\*\}$")
+CODE_INCLUDE_RE = re.compile(r"^\{\*\s*(\S+)\s*([^\*]*?)\*\}$")
 CODE_INCLUDE_PLACEHOLDER = "<CODE_INCLUDE>"
 
-HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6})\s+([^\n{]+?)(\s*\{\s*#[^}\s]+\s*\})?\s*$")
-HEADER_LINE_RE = re.compile(r"^(#{1,6})\s+([^\n{]+?)(?:\s*\{\s*([^\}\s#][^\}]*)\s*\})?\s*$")
+HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6})\s+([^\n\{]+?)(\s*\{\s*#[^}\s]+\s*\})?\s*$")
+HEADER_LINE_RE = re.compile(r"^(#{1,6})\s+([^\n\{]+?)(?:\s*\{\s*([^\}\s#][^\}]*)\s*\})?\s*$")
 
 TIANGOLO_COM = "https://fastapi.tiangolo.com"
 ASSETS_URL_PREFIXES = ("/img/", "/css/", "/js/")
@@ -20,18 +20,18 @@ MARKDOWN_LINK_RE = re.compile(
     r"(?:\{(?P<attrs>[^}]*)\})?"  # optional attributes in {}
 )
 
-HTML_LINK_RE = re.compile(r"<a\s+[^>]*>.*?</a>")
-HTML_LINK_TEXT_RE = re.compile(r"<a\b([^>]*)>(.*?)</a>")
-HTML_LINK_OPEN_TAG_RE = re.compile(r"<a\b([^>]*)>")
-HTML_ATTR_RE = re.compile(r'(\w+)\s*=\s*([\'"])(.*?)\2')
+HTML_LINK_RE = re.compile(r"<a\b[^>]*?>.*?</a>", re.DOTALL | re.IGNORECASE)
+HTML_LINK_TEXT_RE = re.compile(r"<a\b([^>]*)>(.*?)</a>", re.DOTALL | re.IGNORECASE)
+HTML_LINK_OPEN_TAG_RE = re.compile(r"<a\b([^>]*)>", re.IGNORECASE)
+HTML_ATTR_RE = re.compile(r"(\w+)\s*=\s*([\'\"])([^\'\"]*?)\2")
 
-CODE_BLOCK_LANG_RE = re.compile(r"^`{3,4}([\w-]*)", re.MULTILINE)
+CODE_BLOCK_LANG_RE = re.compile(r"^`{3,4}([A-Za-z0-9_-]*)", re.MULTILINE)
 
 SLASHES_COMMENT_RE = re.compile(
-    r"^(?P<code>.*?)(?P<comment>(?:(?<= )// .*)|(?:^// .*))?$"
+    r"^(?P<code>.*?)(?P<comment>(?:^// .*| // .*))?$"
 )
 
-HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>(?:(?<= )# .*)|(?:^# .*))?$")
+HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>(?:^# .*| # .*))?$")
 
 
 class CodeIncludeInfo(TypedDict):
