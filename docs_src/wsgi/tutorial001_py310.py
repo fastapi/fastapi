@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from flask import Flask, request
 from markupsafe import escape
 
-flask_app = Flask(__name__); flask_app.config.update(SECRET_KEY="change-me", WTF_CSRF_ENABLED=True)
+flask_app = Flask(__name__); flask_app.config.update(WTF_CSRF_ENABLED=True)
 
 
 @flask_app.route("/")
