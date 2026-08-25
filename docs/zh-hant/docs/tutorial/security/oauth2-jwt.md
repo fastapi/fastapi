@@ -13,7 +13,7 @@ JWT 的意思是「JSON Web Tokens」。
 它是一種把 JSON 物件編碼成一段長且緊密（沒有空白）的字串的標準。看起來像這樣：
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+REDACTED_JWT_TOKEN_FOR_EXAMPLE_ONLY
 ```
 
 它不是加密的，所以任何人都可以從內容還原出資訊。
