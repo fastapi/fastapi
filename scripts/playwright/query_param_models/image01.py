@@ -10,8 +10,6 @@ def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     # Update the viewport manually
     context = browser.new_context(viewport={"width": 960, "height": 1080})
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
     page = context.new_page()
     page.goto("http://localhost:8000/docs")
     page.get_by_role("button", name="GET /items/ Read Items").click()
@@ -25,8 +23,15 @@ def run(playwright: Playwright) -> None:
     browser.close()
 
 
+_fastapi_cmd = __import__("shutil").which("fastapi")
+if _fastapi_cmd is None:
+    raise RuntimeError("fastapi executable not found")
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/query_param_models/tutorial001.py"]
+    [_fastapi_cmd, "run", "docs_src/query_param_models/tutorial001.py"],
+    stdin=subprocess.DEVNULL,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    close_fds=True,
 )
 try:
     for _ in range(3):
