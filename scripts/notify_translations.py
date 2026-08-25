@@ -305,11 +305,9 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 def main() -> None:
     settings = Settings()
-    if settings.debug:
-        logging.basicConfig(level=logging.DEBUG)
-    else:
-        logging.basicConfig(level=logging.INFO)
-    logging.debug(f"Using config: {settings.model_dump_json()}")
+    logger = logging.getLogger("notify_translations")
+    logger.setLevel(logging.DEBUG if settings.debug else logging.INFO)
+    logger.debug(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     if not settings.github_event_path.is_file():
@@ -327,7 +325,7 @@ def main() -> None:
     number = cast(int, number)
 
     # Avoid race conditions with multiple labels
-    sleep_time = random.random() * 10  # random number between 0 and 10 seconds
+    sleep_time = random.SystemRandom().random() * 10
     logging.info(
         f"Sleeping for {sleep_time} seconds to avoid "
         "race conditions and multiple comments"
