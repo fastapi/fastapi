@@ -305,8 +305,12 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 def main() -> None:
     settings = Settings()
+    import secrets
     logger = logging.getLogger("notify_translations")
     logger.setLevel(logging.DEBUG if settings.debug else logging.INFO)
+    logger.propagate = False
+    if not logger.handlers:
+        logger.addHandler(logging.NullHandler())
     logger.debug(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
@@ -325,7 +329,7 @@ def main() -> None:
     number = cast(int, number)
 
     # Avoid race conditions with multiple labels
-    sleep_time = random.SystemRandom().random() * 10
+    sleep_time = secrets.randbelow(1000000) / 100000.0
     logging.info(
         f"Sleeping for {sleep_time} seconds to avoid "
         "race conditions and multiple comments"
