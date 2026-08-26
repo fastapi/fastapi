@@ -24,7 +24,7 @@ Wenn Sie eine ältere FastAPI-App mit Pydantic v1 haben, zeige ich Ihnen hier, w
 
 ## Offizieller Leitfaden { #official-guide }
 
-Pydantic hat einen offiziellen [Migrationsleitfaden](https://docs.pydantic.dev/latest/migration/) von v1 zu v2.
+Pydantic hat einen offiziellen [Migrationsleitfaden](https://pydantic.dev/docs/validation/latest/get-started/migration/) von v1 zu v2.
 
 Er enthält auch, was sich geändert hat, wie Validierungen nun korrekter und strikter sind, mögliche Stolpersteine, usw.
 

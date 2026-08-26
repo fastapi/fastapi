@@ -2,45 +2,49 @@
 
 In vielen Fällen benötigt Ihre Anwendung möglicherweise einige externe Einstellungen oder Konfigurationen, zum Beispiel geheime Schlüssel, Datenbank-Anmeldeinformationen, Anmeldeinformationen für E-Mail-Dienste, usw.
 
-Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z. B. Datenbank-URLs. Und vieles könnten schützenswerte, geheime Daten sein.
+Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z. B. Datenbank-URLs. Und viele könnten schützenswerte, geheime Daten sein.
 
 Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestellt, die von der Anwendung gelesen werden.
 
+Eine **Umgebungsvariable** (auch bekannt als **Env-Var**) ist ein Wert, der außerhalb des Python-Codes, im Betriebssystem, existiert und von Ihrer Anwendung und anderen Programmen gelesen werden kann.
+
+Sie können eine Umgebungsvariable für einen Befehl erstellen, wenn Sie ihn ausführen. Sie werden unten die plattformspezifischen Befehle sehen.
+
 /// tip | Tipp
 
-Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md) lesen.
+Lesen Sie den [Leitfaden zu Umgebungsvariablen](https://tiangolo.com/guides/environment-variables/) für eine detaillierte Erklärung, wie Umgebungsvariablen funktionieren.
 
 ///
 
 ## Typen und Validierung { #types-and-validation }
 
-Diese Umgebungsvariablen können nur Text-Strings verarbeiten, da sie außerhalb von Python liegen und mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen wie Linux, Windows, macOS) kompatibel sein müssen.
+Diese Umgebungsvariablen können nur Text-Strings verarbeiten, da sie außerhalb von Python liegen und mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen wie Linux, Windows und macOS) kompatibel sein müssen.
 
 Das bedeutet, dass jeder in Python aus einer Umgebungsvariablen gelesene Wert ein `str` ist und jede Konvertierung in einen anderen Typ oder jede Validierung im Code erfolgen muss.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings-Verwaltung](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
+Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings-Verwaltung](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### `pydantic-settings` installieren { #install-pydantic-settings }
 
-Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md) erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
+Fügen Sie Ihrem Projekt das Package `pydantic-settings` hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Es ist bereits enthalten, wenn Sie die `all`-Extras installiert haben, mit:
+Es ist auch enthalten, wenn Sie die `all`-Extras installieren mit:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
 Als Nächstes würden Sie den Server ausführen und die Konfigurationen als Umgebungsvariablen übergeben. Sie könnten beispielsweise `ADMIN_EMAIL` und `APP_NAME` festlegen mit:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Tipp
 
-Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen Sie diese einfach durch ein Leerzeichen und fügen Sie alle vor dem Befehl ein.
+In Bash trennen Sie, um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, diese durch ein Leerzeichen und fügen sie alle vor dem Befehl ein.
 
 ///
 
@@ -172,11 +196,11 @@ Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
 
 ///
 
-Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env)-Unterstützung](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env)-Unterstützung](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Tipp
 
-Damit das funktioniert, müssen Sie `pip install python-dotenv` ausführen.
+Damit das funktioniert, fügen Sie Ihrem Projekt `python-dotenv` mit `uv add python-dotenv` hinzu.
 
 ///
 
@@ -197,7 +221,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 
 /// tip | Tipp
 
-Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Konzepte: Konfiguration](https://docs.pydantic.dev/latest/concepts/config/).
+Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Konzepte: Konfiguration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 

@@ -6,10 +6,10 @@
 
 要使用表單，首先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立[虛擬環境](../virtual-environments.md)、啟用後再安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -26,7 +26,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
 
-**FastAPI** 會從請求中的 **表單資料** 擷取 **各欄位** 的資料，並將這些資料組成你定義的 Pydantic 模型實例。
+**FastAPI** 會從請求中的 **表單資料** **擷取** **每個欄位** 的資料，並給你所定義的 Pydantic 模型。
 
 ## 檢視文件 { #check-the-docs }
 
@@ -38,7 +38,7 @@ $ pip install python-multipart
 
 ## 禁止額外的表單欄位 { #forbid-extra-form-fields }
 
-在某些特殊情況（可能不常見）下，你可能希望僅允許 Pydantic 模型中宣告的表單欄位，並禁止任何額外欄位。
+在某些特殊情況（可能不常見）下，你可能希望將 **表單欄位** **限制** 為只有 Pydantic 模型中宣告的欄位。並**禁止**任何**額外**欄位。
 
 /// note | 注意
 
@@ -50,7 +50,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
-如果用戶端嘗試傳送額外資料，將會收到錯誤回應。
+如果用戶端嘗試傳送額外資料，將會收到**錯誤**回應。
 
 例如，用戶端若送出以下表單欄位：
 

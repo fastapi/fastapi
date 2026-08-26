@@ -6,10 +6,10 @@
 
 Щоб отримувати завантажені файли, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили його, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Це необхідно, оскільки завантажені файли передаються як «дані форми».

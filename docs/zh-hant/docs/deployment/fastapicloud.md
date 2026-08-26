@@ -5,7 +5,7 @@
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -24,9 +24,9 @@ CLI 會自動偵測你的 FastAPI 應用並將其部署到雲端。若你尚未�
 
 **[FastAPI Cloud](https://fastapicloud.com)** 由 **FastAPI** 的作者與團隊打造。
 
-它以最少的心力，精簡化建立、部署與存取 API 的流程。
+它以最少的心力，精簡化**建立**、**部署**與**存取** API 的流程。
 
-它把使用 FastAPI 開發應用的優異開發體驗，延伸到將它們部署到雲端。🎉
+它把使用 FastAPI 開發應用的優異**開發體驗**，延伸到將它們**部署**到雲端。🎉
 
 它也會為你處理部署應用時多數需要面對的事項，例如：
 

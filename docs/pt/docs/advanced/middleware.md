@@ -8,7 +8,7 @@ Nesta seção, veremos como usar outros middlewares.
 
 ## Adicionando middlewares ASGI { #adding-asgi-middlewares }
 
-Como o **FastAPI** é baseado no Starlette e implementa a especificação <abbr title="Asynchronous Server Gateway Interface – Interface de Gateway de Servidor Assíncrona">ASGI</abbr>, você pode usar qualquer middleware ASGI.
+Como o **FastAPI** é baseado no Starlette e implementa a especificação <abbr title="Asynchronous Server Gateway Interface - Interface de Gateway de Servidor Assíncrona">ASGI</abbr>, você pode usar qualquer middleware ASGI.
 
 O middleware não precisa ser feito para o FastAPI ou Starlette para funcionar, desde que siga a especificação ASGI.
 
@@ -91,7 +91,7 @@ Há muitos outros middlewares ASGI.
 
 Por exemplo:
 
-* [`ProxyHeadersMiddleware` do Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [`ProxyHeadersMiddleware` do Uvicorn](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Para checar outros middlewares disponíveis, confira [Documentação de Middlewares do Starlette](https://www.starlette.dev/middleware/) e a [Lista Incrível do ASGI](https://github.com/florimondmanca/awesome-asgi).
+Para checar outros middlewares disponíveis, confira [Documentação de Middlewares do Starlette](https://starlette.dev/middleware/) e a [Lista Incrível do ASGI](https://github.com/florimondmanca/awesome-asgi).

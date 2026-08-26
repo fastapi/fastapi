@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 その場合、通常のバリデーション（例: 値が `str` であることの検証）の後に適用される **カスタムバリデータ関数** を使えます。
 
-これを行うには、`Annotated` の中で [Pydantic の `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) を使います。
+これを行うには、`Annotated` の中で [Pydantic の `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) を使います。
 
 /// tip | 豆知識
 
-Pydantic には [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) などもあります。 🤓
+Pydantic には [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) などもあります。 🤓
 
 ///
 

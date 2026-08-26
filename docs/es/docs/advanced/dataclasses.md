@@ -6,7 +6,7 @@ Pero FastAPI también soporta el uso de [`dataclasses`](https://docs.python.org/
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Esto sigue siendo soportado gracias a **Pydantic**, ya que tiene [soporte interno para `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
+Esto sigue siendo soportado gracias a **Pydantic**, ya que tiene [soporte interno para `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel).
 
 Así que, incluso con el código anterior que no usa Pydantic explícitamente, FastAPI está usando Pydantic para convertir esos dataclasses estándar en su propia versión de dataclasses de Pydantic.
 
@@ -88,7 +88,7 @@ Revisa los consejos de anotación en el código arriba para ver más detalles es
 
 También puedes combinar `dataclasses` con otros modelos de Pydantic, heredar de ellos, incluirlos en tus propios modelos, etc.
 
-Para saber más, revisa la [documentación de Pydantic sobre dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
+Para saber más, revisa la [documentación de Pydantic sobre dataclasses](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Versión { #version }
 

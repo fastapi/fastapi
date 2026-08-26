@@ -91,7 +91,7 @@ Hay muchos otros middlewares ASGI.
 
 Por ejemplo:
 
-* [`ProxyHeadersMiddleware` de Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [`ProxyHeadersMiddleware` de Uvicorn](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Para ver otros middlewares disponibles, revisa [la documentación de Middleware de Starlette](https://www.starlette.dev/middleware/) y la [Lista ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).
+Para ver otros middlewares disponibles, revisa [la documentación de Middleware de Starlette](https://starlette.dev/middleware/) y la [Lista ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

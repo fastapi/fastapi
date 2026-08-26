@@ -7,10 +7,10 @@
 
 アップロードされたファイルを受け取るには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-[仮想環境](../virtual-environments.md)を作成して有効化し、次のようにインストールしてください:
+プロジェクトに追加してください:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 アップロードされたファイルは「form data」として送信されるためです。

@@ -12,7 +12,7 @@
 
 **TypeScript クライアント**向けには、[Hey API](https://heyapi.dev/) が目的特化のソリューションで、TypeScript エコシステムに最適化された体験を提供します。
 
-他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/#sdk) でも見つけられます。
+他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) でも見つけられます。
 
 /// tip | 豆知識
 

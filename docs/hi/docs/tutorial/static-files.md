@@ -45,4 +45,4 @@
 
 ## अधिक जानकारी { #more-info }
 
-अधिक विवरण और options के लिए [Static Files के बारे में Starlette की docs](https://www.starlette.dev/staticfiles/) देखें।
+अधिक विवरण और options के लिए [Static Files के बारे में Starlette की docs](https://starlette.dev/staticfiles/) देखें।

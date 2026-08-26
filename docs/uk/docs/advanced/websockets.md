@@ -4,12 +4,12 @@
 
 ## Встановіть `websockets` { #install-websockets }
 
-Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його та встановили `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket»):
+Додайте `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket») до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ $ pip install websockets
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -111,7 +111,7 @@ $ fastapi dev
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// note
+/// note | Примітка
 
 Оскільки це WebSocket, не має сенсу піднімати `HTTPException`, натомість ми піднімаємо `WebSocketException`.
 
@@ -126,7 +126,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -140,7 +140,7 @@ $ fastapi dev
 * «Item ID», який використовується у шляху.
 * «Token», який використовується як параметр запиту.
 
-/// tip
+/// tip | Порада
 
 Зверніть увагу, що параметр запиту `token` буде оброблено залежністю.
 
@@ -168,7 +168,7 @@ $ fastapi dev
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | Порада
 
 Застосунок вище - це мінімальний і простий приклад, що демонструє, як обробляти та розсилати повідомлення кільком з'єднанням WebSocket.
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 Щоб дізнатися більше про можливості, перегляньте документацію Starlette:
 
-* [Клас `WebSocket`](https://www.starlette.dev/websockets/).
-* [Обробка WebSocket на основі класів](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [Клас `WebSocket`](https://starlette.dev/websockets/).
+* [Обробка WebSocket на основі класів](https://starlette.dev/endpoints/#websocketendpoint).

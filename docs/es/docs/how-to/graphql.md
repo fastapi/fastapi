@@ -21,7 +21,7 @@ Aquí algunos de los paquetes de **GraphQL** que tienen soporte **ASGI**. Podrí
 * [Strawberry](https://strawberry.rocks/) 🍓
     * Con [documentación para FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * Con [documentación para FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+    * Con [documentación para FastAPI](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * Con [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) para proporcionar integración con ASGI
 * [Graphene](https://graphene-python.org/)

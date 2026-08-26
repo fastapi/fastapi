@@ -76,16 +76,16 @@ Aqui estamos declarando um modelo `UserIn`, ele conterá uma senha em texto simp
 
 Para usar `EmailStr`, primeiro instale [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ative-o e então instale-o, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 ou com:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -202,7 +202,7 @@ Isso também funcionará porque `RedirectResponse` é uma subclasse de `Response
 
 Mas quando você retorna algum outro objeto arbitrário que não é um tipo Pydantic válido (por exemplo, um objeto de banco de dados) e você o anota dessa forma na função, o FastAPI tentará criar um modelo de resposta Pydantic a partir dessa anotação de tipo e falhará.
 
-O mesmo aconteceria se você tivesse algo como uma <dfn title="uma união entre vários tipos significa 'qualquer um desses tipos'.">união</dfn> entre tipos diferentes onde um ou mais deles não são tipos Pydantic válidos, por exemplo, isso falharia 💥:
+O mesmo aconteceria se você tivesse algo como uma <dfn title='uma união entre vários tipos significa "qualquer um desses tipos".'>união</dfn> entre tipos diferentes onde um ou mais deles não são tipos Pydantic válidos, por exemplo, isso falharia 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -218,7 +218,7 @@ Neste caso, você pode desabilitar a geração do modelo de resposta definindo `
 
 {* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
 
-Isso fará com que o FastAPI pule a geração do modelo de resposta e, dessa forma, você pode ter quaisquer anotações de tipo de retorno que precisar sem afetar seu aplicativo FastAPI. 🤓
+Isso fará com que o FastAPI pule a geração do modelo de resposta e, dessa forma, você pode ter quaisquer anotações de tipo de retorno que precisar sem afetar sua aplicação FastAPI. 🤓
 
 ## Parâmetros de codificação do modelo de resposta { #response-model-encoding-parameters }
 
@@ -242,7 +242,7 @@ Você pode definir o parâmetro `response_model_exclude_unset=True` do *decorado
 
 e esses valores padrão não serão incluídos na resposta, apenas os valores realmente definidos.
 
-Então, se você enviar uma solicitação para essa *operação de rota* para o item com ID `foo`, a resposta (sem incluir valores padrão) será:
+Então, se você enviar uma request para essa *operação de rota* para o item com ID `foo`, a resposta (sem incluir valores padrão) será:
 
 ```JSON
 {
@@ -258,7 +258,7 @@ Você também pode usar:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-conforme descrito na [documentação do Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) para `exclude_defaults` e `exclude_none`.
+conforme descrito na [documentação do Pydantic](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) para `exclude_defaults` e `exclude_none`.
 
 ///
 
@@ -291,7 +291,7 @@ Se os dados tiverem os mesmos valores que os padrões, como o item com ID `baz`:
 }
 ```
 
-O FastAPI é inteligente o suficiente (na verdade, o Pydantic é inteligente o suficiente) para perceber que, embora `description`, `tax` e `tags` tenham os mesmos valores que os padrões, eles foram definidos explícita e diretamente (em vez de retirados dos padrões).
+O FastAPI é inteligente o suficiente (na verdade, o Pydantic é inteligente o suficiente) para perceber que, embora `description`, `tax` e `tags` tenham os mesmos valores que os padrões, eles foram definidos explicitamente (em vez de retirados dos padrões).
 
 Portanto, eles serão incluídos na resposta JSON.
 

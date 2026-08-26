@@ -92,7 +92,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 ## Standard-आधारित लाभ, वैकल्पिक documentation { #standards-based-benefits-alternative-documentation }
 
-और क्योंकि generate किया गया schema [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) standard से है, इसलिए कई compatible tools हैं।
+और क्योंकि generate किया गया schema [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) standard से है, इसलिए कई compatible tools हैं।
 
 इसी वजह से, **FastAPI** स्वयं एक वैकल्पिक API documentation प्रदान करता है (ReDoc का उपयोग करते हुए), जिसे आप [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) पर access कर सकते हैं:
 
@@ -102,7 +102,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 ## Pydantic { #pydantic }
 
-सारा data validation अंदरूनी तौर पर [Pydantic](https://docs.pydantic.dev/) द्वारा किया जाता है, इसलिए आपको इसके सभी लाभ मिलते हैं। और आप जानते हैं कि आप अच्छे हाथों में हैं।
+सारा data validation अंदरूनी तौर पर [Pydantic](https://pydantic.dev/docs/) द्वारा किया जाता है, इसलिए आपको इसके सभी लाभ मिलते हैं। और आप जानते हैं कि आप अच्छे हाथों में हैं।
 
 आप `str`, `float`, `bool` और कई अन्य जटिल data types के साथ वही type declarations इस्तेमाल कर सकते हैं।
 

@@ -5,10 +5,10 @@ Sie können Middleware zu **FastAPI**-Anwendungen hinzufügen.
 Eine „Middleware“ ist eine Funktion, die mit jedem **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**, bevor sie zurückgegeben wird.
 
 * Sie nimmt jeden **Request** entgegen, der an Ihre Anwendung gesendet wird.
-* Sie kann dann etwas mit diesem **Request** tun oder beliebigen Code ausführen.
+* Sie kann dann etwas mit diesem **Request** tun oder jeden notwendigen Code ausführen.
 * Dann gibt sie den **Request** zur Verarbeitung durch den Rest der Anwendung weiter (durch eine bestimmte *Pfadoperation*).
 * Sie nimmt dann die **Response** entgegen, die von der Anwendung generiert wurde (durch eine bestimmte *Pfadoperation*).
-* Sie kann etwas mit dieser **Response** tun oder beliebigen Code ausführen.
+* Sie kann etwas mit dieser **Response** tun oder jeden notwendigen Code ausführen.
 * Dann gibt sie die **Response** zurück.
 
 /// note | Technische Details
@@ -28,8 +28,8 @@ Die Middleware-Funktion erhält:
 * Den `request`.
 * Eine Funktion `call_next`, die den `request` als Parameter erhält.
     * Diese Funktion gibt den `request` an die entsprechende *Pfadoperation* weiter.
-    * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
-* Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
+    * Dann gibt sie die von der entsprechenden *Pfadoperation* generierte `response` zurück.
+* Sie können die `response` dann weiter ändern, bevor Sie sie zurückgeben.
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
@@ -37,7 +37,7 @@ Die Middleware-Funktion erhält:
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können [unter Verwendung des `X-`-Präfixes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md)) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in [Starlettes CORS-Dokumentation](https://www.starlette.dev/middleware/#corsmiddleware) dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihren CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md)) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in [Starlettes CORS-Dokumentation](https://starlette.dev/middleware/#corsmiddleware) dokumentiert ist.
 
 ///
 
@@ -67,7 +67,7 @@ Hier verwenden wir [`time.perf_counter()`](https://docs.python.org/3/library/tim
 
 ## Ausführungsreihenfolge bei mehreren Middlewares { #multiple-middleware-execution-order }
 
-Wenn Sie mehrere Middlewares hinzufügen, entweder mit dem `@app.middleware()` Dekorator oder der Methode `app.add_middleware()`, umschließt jede neue Middleware die Anwendung und bildet einen Stapel. Die zuletzt hinzugefügte Middleware ist die *äußerste*, und die erste ist die *innerste*.
+Wenn Sie mehrere Middlewares hinzufügen, entweder mit dem `@app.middleware()`-Dekorator oder der Methode `app.add_middleware()`, wrappt jede neue Middleware die Anwendung und bildet einen Stapel. Die zuletzt hinzugefügte Middleware ist die *äußerste*, und die erste ist die *innerste*.
 
 Auf dem Requestpfad läuft die *äußerste* Middleware zuerst.
 
@@ -92,4 +92,4 @@ Dieses Stapelverhalten stellt sicher, dass Middlewares in einer vorhersehbaren u
 
 Sie können später mehr über andere Middlewares im [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md) lesen.
 
-In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> mit einer Middleware behandeln können.
+In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing - Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> mit einer Middleware behandeln können.

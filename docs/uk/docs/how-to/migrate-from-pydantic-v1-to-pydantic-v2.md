@@ -24,7 +24,7 @@ FastAPI 0.128.0 також припинив підтримку `pydantic.v1`, т
 
 ## Офіційний посібник { #official-guide }
 
-У Pydantic є офіційний [Посібник з міграції](https://docs.pydantic.dev/latest/migration/) з v1 на v2.
+У Pydantic є офіційний [Посібник з міграції](https://pydantic.dev/docs/validation/latest/get-started/migration/) з v1 на v2.
 
 Там описано, що змінилося, як перевірки тепер стали коректнішими та суворішими, можливі застереження тощо.
 

@@ -8,7 +8,7 @@ Hier werden wir ein Beispiel mit [SQLModel](https://sqlmodel.tiangolo.com/) sehe
 
 /// tip | Tipp
 
-Sie könnten jede andere SQL- oder NoSQL-Datenbankbibliothek verwenden, die Sie möchten (in einigen Fällen als <abbr title="Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">„ORMs“</abbr> bezeichnet), FastAPI zwingt Sie nicht, irgendetwas zu verwenden. 😎
+Sie könnten jede andere SQL- oder NoSQL-Datenbankbibliothek verwenden, die Sie möchten (in einigen Fällen als <abbr title="Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen repräsentieren SQL-Tabellen und Instanzen repräsentieren Zeilen in diesen Tabellen">„ORMs“</abbr> bezeichnet), FastAPI zwingt Sie nicht, irgendetwas zu verwenden. 😎
 
 ///
 
@@ -34,12 +34,12 @@ Dies ist ein sehr einfaches und kurzes Tutorial. Wenn Sie mehr über Datenbanken
 
 ## `SQLModel` installieren { #install-sqlmodel }
 
-Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann `sqlmodel` installieren:
+Fügen Sie `sqlmodel` Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Sie können die App ausführen:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Sie können die App erneut ausführen:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

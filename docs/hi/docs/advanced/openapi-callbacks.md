@@ -35,7 +35,7 @@ Callback जोड़ने से पहले, पहले देखते �
 
 /// tip | सुझाव
 
-`callback_url` query parameter एक Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type का उपयोग करता है।
+`callback_url` query parameter एक Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) type का उपयोग करता है।
 
 ///
 
@@ -106,11 +106,11 @@ Callback *path operation* बनाने के लिए वही `APIRouter`
 सामान्य *path operation* से 2 मुख्य अंतर हैं:
 
 * इसमें कोई वास्तविक code होना required नहीं है, क्योंकि आपकी app इस code को कभी call नहीं करेगी। इसका उपयोग केवल *external API* को document करने के लिए किया जाता है। इसलिए, function में केवल `pass` हो सकता है।
-* *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (नीचे और देखें) हो सकता है, जहाँ यह *आपकी API* को भेजी गई original request के parameters और parts के साथ variables का उपयोग कर सकता है।
+* *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (नीचे और देखें) हो सकता है, जहाँ यह *आपकी API* को भेजी गई original request के parameters और parts के साथ variables का उपयोग कर सकता है।
 
 ### Callback path expression { #the-callback-path-expression }
 
-Callback *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) हो सकता है जो *आपकी API* को भेजी गई original request के parts शामिल कर सकता है।
+Callback *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) हो सकता है जो *आपकी API* को भेजी गई original request के parts शामिल कर सकता है।
 
 इस case में, यह `str` है:
 

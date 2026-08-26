@@ -34,12 +34,12 @@
 
 ## 安裝 `SQLModel` { #install-sqlmodel }
 
-首先，請先建立你的[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `sqlmodel`：
+將 `sqlmodel` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ SQLModel 之後會提供包裝 Alembic 的遷移工具，但目前你可以直�
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

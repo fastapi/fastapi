@@ -30,12 +30,12 @@ Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schau
 
 Wir müssen `PyJWT` installieren, um die JWT-Tokens in Python zu generieren und zu verifizieren.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und dann `pyjwt` installieren:
+Fügen Sie `pyjwt` zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -44,7 +44,7 @@ $ pip install pyjwt
 
 /// note | Hinweis
 
-Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
+Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Bibliotheksabhängigkeit `pyjwt[crypto]` installieren.
 
 Weitere Informationen finden Sie in der [PyJWT-Installationsdokumentation](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
@@ -72,12 +72,12 @@ Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen z
 
 Der empfohlene Algorithmus ist „Argon2“.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren, und installieren Sie dann pwdlib mit Argon2:
+Fügen Sie `pwdlib` mit Argon2 zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -206,7 +206,7 @@ Die Benutzeroberfläche sieht wie folgt aus:
 
 <img src="/img/tutorial/security/image07.png">
 
-Melden Sie sich bei der Anwendung auf die gleiche Weise wie zuvor an.
+Autorisieren Sie die Anwendung auf die gleiche Weise wie zuvor.
 
 Verwenden Sie die Anmeldeinformationen:
 
@@ -260,7 +260,7 @@ Mit dem, was Sie bis hier gesehen haben, können Sie eine sichere **FastAPI**-An
 
 In fast jedem Framework wird die Handhabung der Sicherheit recht schnell zu einem ziemlich komplexen Thema.
 
-Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenmodell, der Datenbank und den verfügbaren Funktionen eingehen. Und einige dieser Pakete, die die Dinge zu sehr vereinfachen, weisen tatsächlich Sicherheitslücken auf.
+Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenmodell, der Datenbank und den verfügbaren Funktionen eingehen. Und einige dieser Packages, die die Dinge zu sehr vereinfachen, weisen tatsächlich Sicherheitslücken auf.
 
 ---
 
@@ -268,7 +268,7 @@ Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenm
 
 Es gibt Ihnen die volle Flexibilität, diejenigen auszuwählen, die am besten zu Ihrem Projekt passen.
 
-Und Sie können viele gut gepflegte und weit verbreitete Packages wie `pwdlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
+Und Sie können viele gut gepflegte und weit verbreitete Packages wie `pwdlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Packages erfordert.
 
 Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu vereinfachen, ohne Kompromisse bei Flexibilität, Robustheit oder Sicherheit einzugehen.
 

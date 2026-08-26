@@ -96,7 +96,7 @@ Novamente, apenas fazendo essa declaração, com o **FastAPI**, você ganha:
 
 Além dos tipos singulares normais como `str`, `int`, `float`, etc. Você também pode usar tipos singulares mais complexos que herdam de `str`.
 
-Para ver todas as opções possíveis, consulte a [Visão geral dos tipos do Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Você verá alguns exemplos no próximo capítulo.
+Para ver todas as opções possíveis, consulte a [Visão geral dos tipos do Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/). Você verá alguns exemplos no próximo capítulo.
 
 Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declará-lo como um `HttpUrl` do Pydantic em vez de como uma `str`:
 
@@ -182,7 +182,7 @@ Mas você também não precisa se preocupar com eles, os dicts de entrada são c
 
 Você também pode declarar um corpo como um `dict` com chaves de algum tipo e valores de outro tipo.
 
-Sem ter que saber de antemão quais são os nomes de campos/atributos válidos (como seria o caso dos modelos Pydantic).
+Dessa forma, você não precisa saber de antemão quais são os nomes de campos/atributos válidos (como seria o caso dos modelos Pydantic).
 
 Isso seria útil se você deseja receber chaves que ainda não conhece.
 

@@ -81,7 +81,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 ## custom exception handlers install करें { #install-custom-exception-handlers }
 
-आप [Starlette से वही exception utilities](https://www.starlette.dev/exceptions/) के साथ custom exception handlers जोड़ सकते हैं।
+आप [Starlette से वही exception utilities](https://starlette.dev/exceptions/) के साथ custom exception handlers जोड़ सकते हैं।
 
 मान लीजिए आपके पास एक custom exception `UnicornException` है जिसे आप (या कोई library जिसका आप उपयोग करते हैं) `raise` कर सकते हैं।
 
@@ -101,7 +101,7 @@ Client को errors वाली HTTP responses return करने के ल�
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | Technical Details
+/// note | तकनीकी विवरण
 
 आप `from starlette.requests import Request` और `from starlette.responses import JSONResponse` का भी उपयोग कर सकते हैं।
 
@@ -161,7 +161,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 {* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
-/// note | Technical Details
+/// note | तकनीकी विवरण
 
 आप `from starlette.responses import PlainTextResponse` का भी उपयोग कर सकते हैं।
 

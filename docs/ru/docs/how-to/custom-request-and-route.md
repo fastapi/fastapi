@@ -66,7 +66,7 @@
 
 Именно этих двух компонентов — `scope` и `receive` — достаточно, чтобы создать новый экземпляр `Request`.
 
-Чтобы узнать больше о `Request`, см. [документацию Starlette о запросах](https://www.starlette.dev/requests/).
+Чтобы узнать больше о `Request`, см. [документацию Starlette о запросах](https://starlette.dev/requests/).
 
 ///
 

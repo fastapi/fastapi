@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -80,7 +80,7 @@ sequenceDiagram
 
     Proxy->>Server: HTTP-запрос<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
 
-    Note over Server: Server интерпретирует HTTP-заголовки<br/>(если --forwarded-allow-ips установлен)
+    Note over Server: Сервер интерпретирует HTTP-заголовки<br/>(если --forwarded-allow-ips установлен)
 
     Server->>Proxy: HTTP-ответ<br/>с верными HTTPS URLs
 
@@ -170,7 +170,7 @@ IP `0.0.0.0` обычно означает, что программа слуша
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn ожидает, что прокси обратится к нему по 
 
 Вы можете легко поэкспериментировать локально с функцией удаления префикса пути, используя [Traefik](https://docs.traefik.io/).
 
-[Скачайте Traefik](https://github.com/containous/traefik/releases) — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
+[Скачайте Traefik](https://github.com/traefik/traefik/releases) — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
 
 Затем создайте файл `traefik.toml` со следующим содержимым:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -358,7 +358,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 но уже по URL с префиксом, который добавляет прокси: `/api/v1`.
 
-Разумеется, задумывается, что все будут обращаться к приложению через прокси, поэтому вариант с префиксом пути `/api/v1` является «правильным».
+Разумеется, идея здесь в том, что все будут обращаться к приложению через прокси, поэтому вариант с префиксом пути `/api/v1` является «правильным».
 
 А вариант без префикса (`http://127.0.0.1:8000/app`), выдаваемый напрямую Uvicorn, предназначен исключительно для того, чтобы прокси (Traefik) мог к нему обращаться.
 

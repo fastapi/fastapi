@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic 模型 { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) 是一個用來做資料驗證的 Python 程式庫。
+[Pydantic](https://pydantic.dev/docs/) 是一個用來做資料驗證的 Python 程式庫。
 
 你以帶有屬性的類別來宣告資料的「形狀」。
 
@@ -285,7 +285,7 @@ def some_function(data: Any):
 
 /// note | 注意
 
-想了解更多 [Pydantic，請查看它的文件](https://docs.pydantic.dev/)。
+想了解更多 [Pydantic，請查看它的文件](https://pydantic.dev/docs/)。
 
 ///
 

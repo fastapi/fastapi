@@ -8,12 +8,12 @@
 
 ## Dependencies install करें { #install-dependencies }
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाएँ, उसे activate करें, और `jinja2` install करें:
+अपने project में `jinja2` जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## अधिक विवरण { #more-details }
 
-अधिक विवरण के लिए, जिसमें templates को test करना भी शामिल है, [templates पर Starlette के docs](https://www.starlette.dev/templates/) देखें।
+अधिक विवरण के लिए, जिसमें templates को test करना भी शामिल है, [templates पर Starlette के docs](https://starlette.dev/templates/) देखें।

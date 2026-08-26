@@ -45,20 +45,6 @@
 * [@tiangolo.com у **Bluesky**](https://bsky.app/profile/tiangolo.com)
 * [@tiangolo у **LinkedIn**](https://www.linkedin.com/in/tiangolo/).
 
-## Допомагайте іншим з питаннями на GitHub { #help-others-with-questions-in-github }
-
-Ви можете спробувати допомагати іншим з їхніми питаннями у [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered).
-
-У багатьох випадках ви вже можете знати відповідь на ці питання. 🤓
-
-Якщо ви багато допомагаєте людям із їхніми питаннями, ви станете офіційним [Експертом FastAPI](fastapi-people.md#fastapi-experts). 🎉
-
-Пам'ятайте, найважливіше: намагайтеся бути добрими. 🤗
-
-### Як допомагати { #how-to-help }
-
-Дотримуйтесь [посібника, як допомагати](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) тут.
-
 ## Ставте питання { #ask-questions }
 
 Ви можете [створити нове питання](https://github.com/fastapi/fastapi/discussions/new?category=questions) у репозиторії GitHub, наприклад, щоб:
@@ -68,7 +54,7 @@
 
 ## Долучайтеся до чату { #join-the-chat }
 
-Долучайтеся до 👥 [серверу чату Discord](https://discord.gg/VQjSZaeJmf) 👥 і спілкуйтеся з іншими в спільноті FastAPI.
+Долучайтеся до 👥 [серверу чату Discord](https://discord.com/invite/VQjSZaeJmf) 👥 і спілкуйтеся з іншими в спільноті FastAPI.
 
 /// tip | Порада
 
@@ -85,3 +71,9 @@
 У GitHub шаблон підкаже вам, як написати правильне питання, щоб ви легше отримали хорошу відповідь, або навіть розв'язали проблему самостійно ще до запиту.
 
 Розмови в чатах також не так просто шукати, як у GitHub, вони губляться.
+
+## Спробуйте FastAPI Cloud { #try-fastapi-cloud }
+
+Основне фінансування FastAPI та друзів надходить від [**FastAPI Cloud**](https://fastapicloud.com), платформи для розгортання застосунків FastAPI простим і швидким способом, однією командою, `fastapi deploy`.
+
+FastAPI Cloud створено тією ж командою, що стоїть за FastAPI. Ви можете спробувати його та розглянути для своїх проєктів.

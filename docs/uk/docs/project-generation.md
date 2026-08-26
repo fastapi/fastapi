@@ -1,17 +1,16 @@
 # Шаблон Full Stack FastAPI { #full-stack-fastapi-template }
 
-
 Шаблони, хоча зазвичай постачаються з певним налаштуванням, спроєктовані бути гнучкими та налаштовуваними. Це дає змогу змінювати їх і адаптувати до вимог вашого проєкту, що робить їх чудовою відправною точкою. 🏁
 
 Ви можете використати цей шаблон для старту, адже в ньому вже виконано значну частину початкового налаштування, безпеки, роботи з базою даних і деяких кінцевих точок API.
 
-Репозиторій GitHub: [Шаблон Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
+Репозиторій GitHub: [Шаблон Full Stack FastAPI](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI - стек технологій і можливості { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/uk) для бекенд API на Python.
   - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) для взаємодії з SQL-базою даних у Python (ORM).
-  - 🔍 [Pydantic](https://docs.pydantic.dev), який використовується FastAPI, для перевірки даних і керування налаштуваннями.
+  - 🔍 [Pydantic](https://pydantic.dev/docs/), який використовується FastAPI, для перевірки даних і керування налаштуваннями.
   - 💾 [PostgreSQL](https://www.postgresql.org) як SQL-база даних.
 - 🚀 [React](https://react.dev) для фронтенду.
   - 💃 Використання TypeScript, хуків, Vite та інших частин сучасного фронтенд-стеку.

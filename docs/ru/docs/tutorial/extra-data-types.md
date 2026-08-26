@@ -25,31 +25,31 @@
     * Стандартный "Универсальный уникальный идентификатор", используемый в качестве идентификатора во многих базах данных и системах.
     * В HTTP-запросах и HTTP-ответах будет представлен как `str`.
 * `datetime.datetime`:
-    * Встроенный в Python `datetime.datetime`.
+    * Python `datetime.datetime`.
     * В HTTP-запросах и HTTP-ответах будет представлен как `str` в формате ISO 8601, например: `2008-09-15T15:53:00+05:00`.
 * `datetime.date`:
-    * Встроенный в Python `datetime.date`.
+    * Python `datetime.date`.
     * В HTTP-запросах и HTTP-ответах будет представлен как `str` в формате ISO 8601, например: `2008-09-15`.
 * `datetime.time`:
-    * Встроенный в Python `datetime.time`.
+    * Python `datetime.time`.
     * В HTTP-запросах и HTTP-ответах будет представлен как `str` в формате ISO 8601, например: `14:23:55.003`.
 * `datetime.timedelta`:
-    * Встроенный в Python `datetime.timedelta`.
+    * Python `datetime.timedelta`.
     * В HTTP-запросах и HTTP-ответах будет представлен в виде общего количества секунд типа `float`.
-    * Pydantic также позволяет представить его как "Кодировку разницы во времени ISO 8601", [см. документацию для получения дополнительной информации](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic также позволяет представить его как "кодировку разницы во времени ISO 8601", [см. документацию для получения дополнительной информации](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * В HTTP-запросах и HTTP-ответах обрабатывается так же, как и `set`:
         * В HTTP-запросах будет прочитан список, исключены дубликаты и преобразован в `set`.
         * В HTTP-ответах `set` будет преобразован в `list`.
         * В сгенерированной схеме будет указано, что значения `set` уникальны (с помощью JSON-схемы `uniqueItems`).
 * `bytes`:
-    * Встроенный в Python `bytes`.
+    * Стандартный Python `bytes`.
     * В HTTP-запросах и HTTP-ответах будет рассматриваться как `str`.
     * В сгенерированной схеме будет указано, что это `str` в "формате" `binary`.
 * `Decimal`:
-    * Встроенный в Python `Decimal`.
+    * Стандартный Python `Decimal`.
     * В HTTP-запросах и HTTP-ответах обрабатывается так же, как и `float`.
-* Вы можете проверить все допустимые типы данных Pydantic здесь: [Типы данных Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
+* Вы можете проверить все допустимые типы данных Pydantic здесь: [Типы данных Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## Пример { #example }
 

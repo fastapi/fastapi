@@ -6,13 +6,13 @@ Dies vereinfacht es, aktuelle **Dokumentation** und Client-Bibliotheken (<abbr t
 
 In diesem Leitfaden erfahren Sie, wie Sie ein **TypeScript-SDK** für Ihr FastAPI-Backend generieren.
 
-## Open Source SDK-Generatoren { #open-source-sdk-generators }
+## Open-Source-SDK-Generatoren { #open-source-sdk-generators }
 
 Eine vielseitige Möglichkeit ist der [OpenAPI Generator](https://openapi-generator.tech/), der **viele Programmiersprachen** unterstützt und SDKs aus Ihrer OpenAPI-Spezifikation generieren kann.
 
 Für **TypeScript-Clients** ist [Hey API](https://heyapi.dev/) eine speziell entwickelte Lösung, die ein optimiertes Erlebnis für das TypeScript-Ökosystem bietet.
 
-Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/#sdk).
+Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Tipp
 
@@ -50,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Dies generiert ein TypeScript-SDK in `./src/client`.
 
-Sie können lernen, wie man [`@hey-api/openapi-ts` installiert](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
+Sie können lernen, wie Sie [`@hey-api/openapi-ts` installieren](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
 
 ### Das SDK verwenden { #using-the-sdk }
 

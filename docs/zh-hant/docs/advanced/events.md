@@ -155,7 +155,7 @@ async with lifespan(app):
 
 /// note
 
-你可以在 [Starlette 的 Lifespan 文件](https://www.starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
+你可以在 [Starlette 的 Lifespan 文件](https://starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
 
 也包含如何處理可在程式其他區域使用的 lifespan 狀態。
 

@@ -34,12 +34,12 @@
 
 ## `SQLModel` install करें { #install-sqlmodel }
 
-सबसे पहले, सुनिश्चित करें कि आप अपना [virtual environment](../virtual-environments.md) बनाएँ, उसे activate करें, और फिर `sqlmodel` install करें:
+`sqlmodel` को अपने project में जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ SQLModel में Alembic को wrap करने वाली migration utili
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ hero को **delete करना** लगभग पहले जैसा ह�
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

@@ -7,16 +7,42 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* 📱 Improve mobile responsiveness of conference rail. PR [#16196](https://github.com/fastapi/fastapi/pull/16196) by [@alejsdev](https://github.com/alejsdev).
+* ♻️ Remove conf section and add event banner. PR [#16193](https://github.com/fastapi/fastapi/pull/16193) by [@alejsdev](https://github.com/alejsdev).
+
 ### Docs
 
+* 🔥 Remove unused image. PR [#16195](https://github.com/fastapi/fastapi/pull/16195) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Use buttons for Termynal controls. PR [#16132](https://github.com/fastapi/fastapi/pull/16132) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
 
+* 🌐 Update translations for hi (update-outdated). PR [#16212](https://github.com/fastapi/fastapi/pull/16212) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ru (update-outdated). PR [#16210](https://github.com/fastapi/fastapi/pull/16210) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh-hant (update-outdated). PR [#16211](https://github.com/fastapi/fastapi/pull/16211) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for uk (update-outdated). PR [#16208](https://github.com/fastapi/fastapi/pull/16208) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for de (update-outdated). PR [#16209](https://github.com/fastapi/fastapi/pull/16209) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for tr (update-outdated). PR [#16207](https://github.com/fastapi/fastapi/pull/16207) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ja (update-outdated). PR [#16206](https://github.com/fastapi/fastapi/pull/16206) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for fr (update-outdated). PR [#16205](https://github.com/fastapi/fastapi/pull/16205) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh (update-outdated). PR [#16204](https://github.com/fastapi/fastapi/pull/16204) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for es (update-outdated). PR [#16203](https://github.com/fastapi/fastapi/pull/16203) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for pt (update-outdated). PR [#16202](https://github.com/fastapi/fastapi/pull/16202) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ko (update-outdated). PR [#16201](https://github.com/fastapi/fastapi/pull/16201) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ko (update-outdated). PR [#16171](https://github.com/fastapi/fastapi/pull/16171) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 
 ### Internal
 
+* ⬆️ Bump `setup-uv` action to `10.0.1`. PR [#16249](https://github.com/fastapi/fastapi/pull/16249) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Update translation PR branches with PR Push. PR [#16224](https://github.com/fastapi/fastapi/pull/16224) by [@tiangolo](https://github.com/tiangolo).
+* ⏪️ Restore `commit_in_place` input in `translate.yml`. PR [#16216](https://github.com/fastapi/fastapi/pull/16216) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Migrate automatic labels to Latest Changes. PR [#16185](https://github.com/fastapi/fastapi/pull/16185) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Fix branch name in `zizmor.yml` workflow (`main` -> `master`). PR [#16178](https://github.com/fastapi/fastapi/pull/16178) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👷 Remove legacy label check. PR [#16180](https://github.com/fastapi/fastapi/pull/16180) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump pymdown-extensions from 11.0 to 11.0.1. PR [#16162](https://github.com/fastapi/fastapi/pull/16162) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.57 to 3.1.58. PR [#16157](https://github.com/fastapi/fastapi/pull/16157) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Sponsors. PR [#16175](https://github.com/fastapi/fastapi/pull/16175) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🐛 Fix Sponsors Git authentication. PR [#16174](https://github.com/fastapi/fastapi/pull/16174) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16173](https://github.com/fastapi/fastapi/pull/16173) by [@pr-submit[bot]](https://github.com/apps/pr-submit).

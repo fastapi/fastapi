@@ -81,7 +81,7 @@ Pero en caso de que los necesites para un escenario avanzado, puedes agregar hea
 
 ## Instalar manejadores de excepciones personalizados { #install-custom-exception-handlers }
 
-Puedes agregar manejadores de excepciones personalizados con [las mismas utilidades de excepciones de Starlette](https://www.starlette.dev/exceptions/).
+Puedes agregar manejadores de excepciones personalizados con [las mismas utilidades de excepciones de Starlette](https://starlette.dev/exceptions/).
 
 Supongamos que tienes una excepción personalizada `UnicornException` que tú (o un paquete que usas) podrías lanzar.
 
@@ -91,7 +91,7 @@ Podrías agregar un manejador de excepciones personalizado con `@app.exception_h
 
 {* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
-Aquí, si solicitas `/unicorns/yolo`, la *path operation* lanzará un `UnicornException`.
+Aquí, si solicitas `/unicorns/yolo`, la *path operation* hará `raise` de un `UnicornException`.
 
 Pero será manejado por el `unicorn_exception_handler`.
 

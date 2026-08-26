@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic 模型 { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) 是一个用于执行数据校验的 Python 库。
+[Pydantic](https://pydantic.dev/docs/) 是一个用于执行数据校验的 Python 库。
 
 你将数据的“结构”声明为带有属性的类。
 
@@ -285,7 +285,7 @@ def some_function(data: Any):
 
 /// note | 注意
 
-要了解更多关于 [Pydantic 的信息，请查看其文档](https://docs.pydantic.dev/)。
+要了解更多关于 [Pydantic 的信息，请查看其文档](https://pydantic.dev/docs/)。
 
 ///
 

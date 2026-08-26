@@ -1,6 +1,5 @@
 # Response Header'ları { #response-headers }
 
-
 ## Bir `Response` parametresi kullanın { #use-a-response-parameter }
 
 *Path operation function* içinde (cookie'lerde yapabildiğiniz gibi) tipi `Response` olan bir parametre tanımlayabilirsiniz.
@@ -39,4 +38,4 @@ Ayrıca `Response` header ve cookie ayarlamak için sık kullanıldığından, *
 
 Özel/proprietary header'ların [`X-` prefix'i kullanılarak](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) eklenebileceğini unutmayın.
 
-Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) bölümünde daha fazla bilgi), bunun için [Starlette'in CORS dokümanında](https://www.starlette.dev/middleware/#corsmiddleware) açıklanan `expose_headers` parametresini kullanın.
+Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) bölümünde daha fazla bilgi), bunun için [Starlette'in CORS dokümanında](https://starlette.dev/middleware/#corsmiddleware) açıklanan `expose_headers` parametresini kullanın.
