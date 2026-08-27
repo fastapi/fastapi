@@ -105,8 +105,8 @@ def ensure_multipart_is_installed() -> None:
         from python_multipart import __version__
 
         # Import an attribute that can be mocked/deleted in testing
-        assert __version__ > "0.0.12"
-    except (ImportError, AssertionError):
+        assert tuple(int(part) for part in __version__.split(".")) >= (0, 0, 12)
+    except (ImportError, AssertionError, ValueError):
         try:
             # __version__ is available in both multiparts, and can be mocked
             from multipart import (  # type: ignore[no-redef,import-untyped]
