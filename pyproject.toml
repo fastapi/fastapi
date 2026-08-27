@@ -141,7 +141,7 @@ docs = [
     "pillow >=11.3.0",
     "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
-    "typer >=0.21.1",
+    "typer >=0.26.1",
     "zensical >=0.0.42",
 ]
 docs-tests = [
