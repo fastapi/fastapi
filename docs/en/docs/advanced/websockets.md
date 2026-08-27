@@ -54,9 +54,9 @@ You could also use `from starlette.websockets import WebSocket`.
 
 ///
 
-## Await for messages and send messages { #await-for-messages-and-send-messages }
+## Await messages and send messages { #await-messages-and-send-messages }
 
-In your WebSocket route you can `await` for messages and send messages.
+In your WebSocket route you can wait for messages with `await` and send messages back to the client.
 
 {* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
