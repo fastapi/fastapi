@@ -1,4 +1,4 @@
-from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 
 
 def test_init_oauth_html_chars_are_escaped():
@@ -35,3 +35,20 @@ def test_normal_init_oauth_still_works():
     assert '"clientId": "my-client"' in body
     assert '"appName": "My App"' in body
     assert "ui.initOAuth" in body
+
+
+def test_docs_template_values_are_escaped():
+    xss_payload = "\"></title><script>alert('xss')</script>&"
+    response = get_swagger_ui_html(
+        openapi_url=xss_payload,
+        title=xss_payload,
+        swagger_js_url=xss_payload,
+        oauth2_redirect_url=xss_payload,
+    )
+    swagger_body = bytes(response.body).decode()
+    response = get_redoc_html(
+        openapi_url=xss_payload, title=xss_payload, redoc_js_url=xss_payload
+    )
+    redoc_body = bytes(response.body).decode()
+    for body in (swagger_body, redoc_body):
+        assert "</title><script>" not in body and "'xss'" not in body
