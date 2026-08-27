@@ -773,6 +773,10 @@ def _get_multidict_value(
         if field.field_info.is_required():
             return
         else:
+            # For FormData, don't inject defaults: Pydantic should only see
+            # fields actually provided in the form, so model_fields_set stays accurate
+            if type(values).__name__ == "FormData":
+                return None
             return deepcopy(field.default)
     return value
 
