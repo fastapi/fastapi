@@ -228,9 +228,11 @@ def format_sse_event(
     if retry is not None:
         lines.append(f"retry: {retry}")
 
-    lines.append("")
-    lines.append("")
-    return "\n".join(lines).encode("utf-8")
+    # Terminate the event with a blank line. The terminator is appended to the
+    # joined field lines instead of being added as two empty lines, so that it
+    # is still emitted when no fields were set at all, which is the case for an
+    # empty `ServerSentEvent()`.
+    return ("\n".join(lines) + "\n\n").encode("utf-8")
 
 
 # Keep-alive comment, per the SSE spec recommendation
