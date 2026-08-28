@@ -58,6 +58,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
+from fastapi.logger import logger
 from fastapi.sse import (
     _PING_INTERVAL,
     KEEPALIVE_COMMENT,
@@ -556,7 +557,14 @@ def get_request_handler(
                     async def _producer() -> None:
                         async with send_stream:
                             async for raw_item in sse_aiter:
-                                await send_stream.send(_serialize_sse_item(raw_item))
+                                try:
+                                    chunk = _serialize_sse_item(raw_item)
+                                except ResponseValidationError:
+                                    logger.exception(
+                                        "ResponseValidationError while serializing SSE stream item"
+                                    )
+                                    raise
+                                await send_stream.send(chunk)
 
                     send_keepalive, receive_keepalive = (
                         anyio.create_memory_object_stream[bytes](max_buffer_size=1)
@@ -628,7 +636,14 @@ def get_request_handler(
 
                     async def _async_stream_jsonl() -> AsyncIterator[bytes]:
                         async for item in gen:
-                            yield _serialize_item(item)
+                            try:
+                                chunk = _serialize_item(item)
+                            except ResponseValidationError:
+                                logger.exception(
+                                    "ResponseValidationError while serializing JSONL stream item"
+                                )
+                                raise
+                            yield chunk
                             # To allow for cancellation to trigger
                             # Ref: https://github.com/fastapi/fastapi/issues/14680
                             await anyio.sleep(0)
@@ -640,7 +655,14 @@ def get_request_handler(
 
                     def _sync_stream_jsonl() -> Iterator[bytes]:
                         for item in gen:  # ty: ignore[not-iterable]
-                            yield _serialize_item(item)
+                            try:
+                                chunk = _serialize_item(item)
+                            except ResponseValidationError:
+                                logger.exception(
+                                    "ResponseValidationError while serializing JSONL stream item"
+                                )
+                                raise
+                            yield chunk
 
                     jsonl_stream_content = _sync_stream_jsonl()
 
