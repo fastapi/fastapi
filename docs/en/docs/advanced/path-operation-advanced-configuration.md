@@ -90,7 +90,7 @@ You can extend the OpenAPI schema for a *path operation* using the parameter `op
 
 ### OpenAPI Extensions { #openapi-extensions }
 
-This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
+This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specification-extensions):
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
 
