@@ -83,7 +83,11 @@ function setupTermynal() {
                 saveBuffer();
                 const inputCommands = useLines
                     .filter(line => line.type === "input")
-                    .map(line => line.value)
+                    .map(line => {
+                        const tmp = document.createElement("div");
+                        tmp.innerHTML = line.value;
+                        return tmp.textContent;
+                    })
                     .join("\n");
                 node.textContent = inputCommands;
                 const div = document.createElement("div");
