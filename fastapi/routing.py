@@ -3306,10 +3306,12 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             generate_unique_id_function=generate_unique_id_function,
         )
-        self.routes.append(
-            _IncludedRouter(original_router=router, include_context=include_context)
+        included_router = _IncludedRouter(
+            original_router=router, include_context=include_context
         )
+        self.routes.append(included_router)
         self._mark_routes_changed()
+        included_router.effective_candidates()
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
