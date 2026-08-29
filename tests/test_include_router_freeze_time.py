@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ def test_include_router_builds_fields_before_first_request():
     router = APIRouter()
 
     @router.get("/m")
-    def handler(from_date: Annotated[Optional[date], Query()] = None):
+    def handler(from_date: Annotated[date | None, Query()] = None):
         return {"from_date": str(from_date)}
 
     app = FastAPI()
