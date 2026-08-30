@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from typing import Any
+
+from fastapi import FastAPI, Response
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -20,6 +22,24 @@ class JsonApiError(BaseModel):
     errors: list[Error]
 
 
+class NoContentResponse(Response):
+    def __init__(
+        self,
+        content: bytes = b"",
+        status_code: int = 204,
+        headers: dict | None = None,
+        media_type: str | None = None,
+        background: Any = None,
+    ):
+        super().__init__(
+            content=content,
+            status_code=status_code,
+            headers=headers,
+            media_type=media_type,
+            background=background,
+        )
+
+
 @app.get(
     "/a",
     status_code=204,
@@ -32,6 +52,11 @@ async def a():
 
 @app.get("/b", responses={204: {"description": "No Content"}})
 async def b():
+    pass  # pragma: no cover
+
+
+@app.get("/c", response_class=NoContentResponse)
+async def c():
     pass  # pragma: no cover
 
 
@@ -83,6 +108,15 @@ def test_openapi_schema():
                         },
                         "summary": "B",
                         "operationId": "b_b_get",
+                    }
+                },
+                "/c": {
+                    "get": {
+                        "responses": {
+                            "204": {"description": "Successful Response"},
+                        },
+                        "summary": "C",
+                        "operationId": "c_c_get",
                     }
                 },
             },

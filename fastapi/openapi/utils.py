@@ -416,7 +416,7 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if is_body_allowed_for_status_code(route.status_code):
+            if is_body_allowed_for_status_code(status_code):
                 # Check for JSONL streaming (generator endpoints)
                 if route.is_json_stream:
                     jsonl_content: dict[str, Any] = {}
