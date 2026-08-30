@@ -932,6 +932,35 @@ def test_included_router_candidate_cache_is_thread_safe():
     assert TestClient(app).get("/items/0").json() == {"index": 0}
 
 
+def test_included_router_candidate_cache_rechecks_version_after_lock(monkeypatch):
+    router = APIRouter()
+    app = FastAPI()
+    app.include_router(router)
+    included_router = cast(_IncludedRouter, app.router.routes[-1])
+    included_router._effective_candidates_version = None
+    routes_version = router._get_routes_version()
+    version_checked = threading.Event()
+
+    def get_routes_version() -> int:
+        version_checked.set()
+        return routes_version
+
+    monkeypatch.setattr(router, "_get_routes_version", get_routes_version)
+    result: list[Sequence[object]] = []
+
+    def build_candidates() -> None:
+        result.append(included_router.effective_candidates())
+
+    with included_router._effective_routes_lock:
+        thread = threading.Thread(target=build_candidates)
+        thread.start()
+        assert version_checked.wait(timeout=1)
+        included_router._effective_candidates_version = routes_version
+    thread.join()
+
+    assert result == [[]]
+
+
 def test_included_router_low_priority_cache_rechecks_version_after_lock(monkeypatch):
     router = APIRouter()
     app = FastAPI()
