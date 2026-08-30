@@ -1,8 +1,8 @@
 # Respostas Adicionais no OpenAPI { #additional-responses-in-openapi }
 
-/// warning | Atenção
+/// Atenção
 
-Este é um tema bem avançado.
+Este é um assunto avançado.
 
 Se você está começando com o **FastAPI**, provavelmente você não precisa disso.
 
@@ -28,13 +28,13 @@ Por exemplo, para declarar outra resposta com o código de status `404` e um mod
 
 {* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
-/// note | Nota
+/// Nota
 
 Lembre-se que você deve retornar o `JSONResponse` diretamente.
 
 ///
 
-/// note | Nota
+/// Nota
 
 A chave `model` não é parte do OpenAPI.
 
@@ -43,7 +43,7 @@ O **FastAPI** pegará o modelo do Pydantic, gerará o JSON Schema, e adicionará
 O local correto é:
 
 * Na chave `content`, que tem como valor outro objeto JSON (`dict`) que contém:
-    * Uma chave com o media type, como por exemplo `application/json`, que contém como valor outro objeto JSON, que contém:
+    * Uma chave com o media type (tipo de mídia), como por exemplo `application/json`, que possui como valor outro objeto JSON, que contém:
         * Uma chave `schema`, que tem como valor o JSON Schema do modelo, sendo este o local correto.
             * O **FastAPI** adiciona aqui a referência aos JSON Schemas globais que estão localizados em outro lugar no seu OpenAPI, ao invés de incluí-lo diretamente. Deste modo, outras aplicações e clientes podem utilizar estes JSON Schemas diretamente, fornecer melhores ferramentas de geração de código, etc.
 
@@ -177,13 +177,13 @@ Por exemplo, você pode adicionar um media type adicional de `image/png`, declar
 
 {* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
-/// note | Nota
+/// Nota
 
 Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
 
 ///
 
-/// note | Nota
+/// Nota
 
 A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que a resposta possui o mesmo media type contido na classe principal de resposta (padrão `application/json`).
 
