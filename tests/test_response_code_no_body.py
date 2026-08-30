@@ -69,6 +69,11 @@ def test_get_response():
     assert "content-length" not in response.headers
     assert response.content == b""
 
+    response = client.get("/c")
+    assert response.status_code == 204, response.text
+    assert "content-length" not in response.headers
+    assert response.content == b""
+
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
