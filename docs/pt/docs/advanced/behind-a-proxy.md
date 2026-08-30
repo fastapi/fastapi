@@ -12,7 +12,7 @@ O programa do **servidor** (por exemplo, **Uvicorn** via **CLI do FastAPI**) é 
 
 Mas, por segurança, como o servidor não sabe que está atrás de um proxy confiável, ele não interpretará esses headers.
 
-/// note | Detalhes Técnicos
+/// Detalhes Técnicos
 
 Os headers do proxy são:
 
@@ -58,7 +58,7 @@ Ao definir `--proxy-headers`, agora o FastAPI conseguirá redirecionar para o lo
 https://mysuperapp.com/items/
 ```
 
-/// tip | Dica
+/// Dica
 
 Se você quiser saber mais sobre HTTPS, confira o tutorial [Sobre HTTPS](../deployment/https.md).
 
@@ -138,9 +138,9 @@ browser --> proxy
 proxy --> server
 ```
 
-/// tip | Dica
+/// Dica
 
-O IP `0.0.0.0` é comumente usado para significar que o programa escuta em todos os IPs disponíveis naquela máquina/servidor.
+O IP `0.0.0.0` é normalmente usado para significar que o programa escuta em todos os IPs disponíveis naquela máquina/servidor.
 
 ///
 
@@ -179,7 +179,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Se você usar Hypercorn, ele também tem a opção `--root-path`.
 
-/// note | Detalhes Técnicos
+/// nota | Detalhes Técnicos
 
 A especificação ASGI define um `root_path` para esse caso de uso.
 
@@ -269,7 +269,7 @@ Então, crie um arquivo `traefik.toml` com:
 
 Isso diz ao Traefik para escutar na porta 9999 e usar outro arquivo `routes.toml`.
 
-/// tip | Dica
+/// Dica
 
 Estamos usando a porta 9999 em vez da porta padrão HTTP 80 para que você não precise executá-lo com privilégios de administrador (`sudo`).
 
@@ -339,7 +339,7 @@ Agora, se você for ao URL com a porta para o Uvicorn: [http://127.0.0.1:8000/ap
 }
 ```
 
-/// tip | Dica
+/// Dica
 
 Perceba que, mesmo acessando em `http://127.0.0.1:8000/app`, ele mostra o `root_path` de `/api/v1`, retirado da opção `--root-path`.
 
@@ -386,7 +386,7 @@ Isso porque o FastAPI usa esse `root_path` para criar o `server` padrão no Open
 
 ## Servidores adicionais { #additional-servers }
 
-/// warning | Atenção
+/// Atenção
 
 Este é um caso de uso mais avançado. Sinta-se à vontade para pular.
 
@@ -427,7 +427,7 @@ Gerará um OpenAPI schema como:
 }
 ```
 
-/// tip | Dica
+/// Dica
 
 Perceba o servidor gerado automaticamente com um valor `url` de `/api/v1`, retirado do `root_path`.
 
@@ -437,13 +437,13 @@ Na interface de documentação em [http://127.0.0.1:9999/api/v1/docs](http://127
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-/// tip | Dica
+/// Dica
 
 A interface de documentação interagirá com o servidor que você selecionar.
 
 ///
 
-/// note | Detalhes Técnicos
+/// nota | Detalhes Técnicos
 
 A propriedade `servers` na especificação OpenAPI é opcional.
 
