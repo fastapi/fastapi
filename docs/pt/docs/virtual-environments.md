@@ -1,6 +1,6 @@
 # Ambientes Virtuais { #virtual-environments }
 
-Ao trabalhar com projetos Python, você deveria usar um **ambiente virtual** para isolar os pacotes instalados para cada projeto.
+Quando você trabalha com projetos Python, você deveria usar um **ambiente virtual** para isolar os pacotes instalados para cada projeto.
 
 Para projetos FastAPI, recomendo usar [uv](https://docs.astral.sh/uv/) para gerenciar o projeto, suas dependências e seu ambiente virtual.
 
