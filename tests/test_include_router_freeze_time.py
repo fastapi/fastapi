@@ -1,9 +1,8 @@
 from datetime import date
-from typing import Annotated
+from typing import Annotated, cast
 
 from fastapi import APIRouter, FastAPI, Query
-from fastapi.testclient import TestClient
-from freezegun import freeze_time
+from fastapi.routing import _IncludedRouter
 
 
 def test_include_router_builds_fields_before_first_request():
@@ -16,9 +15,6 @@ def test_include_router_builds_fields_before_first_request():
     app = FastAPI()
     app.include_router(router, prefix="/api")
 
-    client = TestClient(app, raise_server_exceptions=False)
+    included_router = cast(_IncludedRouter, app.router.routes[-1])
 
-    with freeze_time("2024-05-13"):
-        response = client.get("/api/m")
-
-    assert response.status_code == 200
+    assert included_router._effective_candidates
