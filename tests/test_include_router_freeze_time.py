@@ -18,3 +18,4 @@ def test_include_router_builds_fields_before_first_request():
     included_router = cast(_IncludedRouter, app.router.routes[-1])
 
     assert included_router._effective_candidates
+    assert handler() == {"from_date": "None"}
