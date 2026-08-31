@@ -19,9 +19,9 @@ Each event is a small text block with "fields" like `data`, `event`, `id`, and `
 It looks like this:
 
 ```
-data: {"name": "Portal Gun", "price": 999.99}
+data: {"name": "Plumbus", "description": "A multi-purpose household device."}
 
-data: {"name": "Plumbus", "price": 32.99}
+data: {"name": "Portal Gun", "description": "A portal opening device."}
 
 ```
 
