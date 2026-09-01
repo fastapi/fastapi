@@ -21,7 +21,7 @@ async def get_token(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
 app = FastAPI(dependencies=[Depends(get_token)])
 
 
-@app.get("/admin", dependencies=[Security(get_token, scopes=["read", "write"])])
+@app.get("/admin", dependencies=[Security(get_token, oauth_scopes=["read", "write"])])
 async def read_admin():
     return {"message": "Admin Access"}
 
