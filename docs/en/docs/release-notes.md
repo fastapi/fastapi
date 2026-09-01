@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump annotated-doc from 0.0.4 to 0.0.5. PR [#16288](https://github.com/fastapi/fastapi/pull/16288) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typing-inspection from 0.4.2 to 0.4.4. PR [#16286](https://github.com/fastapi/fastapi/pull/16286) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump fastar from 0.11.0 to 0.12.0. PR [#16287](https://github.com/fastapi/fastapi/pull/16287) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group with 5 updates. PR [#16284](https://github.com/fastapi/fastapi/pull/16284) by [@dependabot[bot]](https://github.com/apps/dependabot).
