@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI GitHub topic repositories. PR [#16291](https://github.com/fastapi/fastapi/pull/16291) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI People - Sponsors. PR [#16282](https://github.com/fastapi/fastapi/pull/16282) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆️ Bump Typer min version to 0.26.1. PR [#16252](https://github.com/fastapi/fastapi/pull/16252) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆️ Bump `setup-uv` action to `10.0.1`. PR [#16249](https://github.com/fastapi/fastapi/pull/16249) by [@YuriiMotov](https://github.com/YuriiMotov).
