@@ -147,7 +147,7 @@ docs = [
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
     "httpx2>=2.0.0",
-    "ruff >=0.14.14",
+    "ruff >=0.14.14,<0.16.0",
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
