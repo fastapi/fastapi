@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the github-actions group with 5 updates. PR [#16284](https://github.com/fastapi/fastapi/pull/16284) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pre-commit hooks. PR [#16290](https://github.com/fastapi/fastapi/pull/16290) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16291](https://github.com/fastapi/fastapi/pull/16291) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI People - Sponsors. PR [#16282](https://github.com/fastapi/fastapi/pull/16282) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
