@@ -389,6 +389,7 @@ def get_request_handler(
     strict_content_type: bool | DefaultPlaceholder = Default(True),
     stream_item_field: ModelField | None = None,
     is_json_stream: bool = False,
+    is_sse_stream: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = _is_coroutine_callable(dependant.call)
@@ -397,7 +398,6 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
-    is_sse_stream = lenient_issubclass(actual_response_class, EventSourceResponse)
     if isinstance(strict_content_type, DefaultPlaceholder):
         actual_strict_content_type: bool = strict_content_type.value
     else:
@@ -1246,6 +1246,7 @@ class APIRoute(routing.Route):
             strict_content_type=route.strict_content_type,
             stream_item_field=route.stream_item_field,
             is_json_stream=route.is_json_stream,
+            is_sse_stream=route.is_sse_stream,
         )
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
