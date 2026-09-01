@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the python-packages group across 1 directory with 15 updates. PR [#16285](https://github.com/fastapi/fastapi/pull/16285) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.3.1 to 1.6.0. PR [#16289](https://github.com/fastapi/fastapi/pull/16289) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump annotated-doc from 0.0.4 to 0.0.5. PR [#16288](https://github.com/fastapi/fastapi/pull/16288) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typing-inspection from 0.4.2 to 0.4.4. PR [#16286](https://github.com/fastapi/fastapi/pull/16286) by [@dependabot[bot]](https://github.com/apps/dependabot).
