@@ -396,6 +396,33 @@ def test_format_sse_event_splitlines_behavior_in_comment():
     assert format_sse_event(comment="hi\n") == b": hi\n: \n\n"
 
 
+def test_format_sse_event_without_fields_is_terminated():
+    # Without any field the result is still terminated by a blank line,
+    # instead of a single "\n".
+    assert format_sse_event() == b"\n\n"
+
+
+empty_event_app = FastAPI()
+
+
+@empty_event_app.get("/empty-event", response_class=EventSourceResponse)
+async def empty_event_stream():
+    yield ServerSentEvent(data="first")
+    yield ServerSentEvent()
+    yield ServerSentEvent(data="second")
+
+
+def test_empty_server_sent_event_is_terminated():
+    client = TestClient(empty_event_app)
+    response = client.get("/empty-event")
+    assert response.status_code == 200
+    assert response.text == (
+        'data: "first"\n\n'  # first event
+        "\n\n"  # empty event, terminated on its own
+        'data: "second"\n\n'  # last event, not merged with the empty one
+    )
+
+
 # default_response_class tests
 
 
