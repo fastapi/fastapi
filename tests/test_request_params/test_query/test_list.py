@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from typing import Annotated
 
 import pytest
@@ -6,6 +7,7 @@ from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
+from typing_extensions import TypeAliasType
 
 app = FastAPI()
 
@@ -424,5 +426,72 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
 def test_required_list_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_val_alias=hello&p_val_alias=world")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# =====================================================================================
+# TypeAliasType (PEP 695-style aliases)
+
+
+Tags = TypeAliasType("Tags", list[str])
+
+
+@app.get("/type-alias-list-str")
+async def read_type_alias_list_str(p: Annotated[Tags, Query()]):
+    return {"p": p}
+
+
+def test_type_alias_list_str():
+    client = TestClient(app)
+    response = client.get("/type-alias-list-str?p=hello&p=world")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+TupleTags = TypeAliasType("TupleTags", tuple[str, ...])
+
+
+@app.get("/type-alias-tuple-str")
+async def read_type_alias_tuple_str(p: Annotated[TupleTags, Query()]):
+    return {"p": p}
+
+
+def test_type_alias_tuple_str():
+    client = TestClient(app)
+    response = client.get("/type-alias-tuple-str?p=hello&p=world")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# Sequence[str]
+SeqTags = TypeAliasType("SeqTags", Sequence[str])
+
+
+@app.get("/type-alias-sequence-str")
+async def read_type_alias_sequence_str(p: Annotated[SeqTags, Query()]):
+    return {"p": p}
+
+
+def test_type_alias_sequence_str():
+    client = TestClient(app)
+    response = client.get("/type-alias-sequence-str?p=hello&p=world")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
+
+
+# Nested/chained alias
+InnerTags = TypeAliasType("InnerTags", list[str])
+OuterTags = TypeAliasType("OuterTags", InnerTags)
+
+
+@app.get("/type-alias-nested-list-str")
+async def read_type_alias_nested_list_str(p: Annotated[OuterTags, Query()]):
+    return {"p": p}
+
+
+def test_type_alias_nested_list_str():
+    client = TestClient(app)
+    response = client.get("/type-alias-nested-list-str?p=hello&p=world")
     assert response.status_code == 200, response.text
     assert response.json() == {"p": ["hello", "world"]}
