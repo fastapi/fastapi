@@ -67,7 +67,7 @@ from fastapi.dependencies.models import (
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
-from fastapi.types import DependencyCacheKey
+from fastapi.types import DependencyCacheKey, UnionType
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
@@ -742,8 +742,20 @@ def _validate_value_with_model_field(
     return field.validate(value, values, loc=loc)
 
 
+def _annotation_has_json(annotation: Any) -> bool:
+    origin = get_origin(annotation)
+    if origin is Annotated:
+        args = get_args(annotation)
+        return any(type(m) is Json for m in args[1:]) or _annotation_has_json(args[0])
+    if origin is Union or origin is UnionType:
+        return any(_annotation_has_json(arg) for arg in get_args(annotation))
+    return False
+
+
 def _is_json_field(field: ModelField) -> bool:
-    return any(type(item) is Json for item in field.field_info.metadata)
+    return any(type(item) is Json for item in field.field_info.metadata) or (
+        _annotation_has_json(field.field_info.annotation)
+    )
 
 
 def _get_multidict_value(
