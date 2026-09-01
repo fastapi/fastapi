@@ -1,4 +1,5 @@
-from typing import Annotated, Sequence
+from collections.abc import Sequence
+from typing import Annotated
 
 from fastapi import Depends, FastAPI, Form, Query
 from fastapi.testclient import TestClient
