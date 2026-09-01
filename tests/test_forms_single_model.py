@@ -3,8 +3,11 @@ from typing import Annotated
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import TypeAliasType
 
 app = FastAPI()
+
+Friends = TypeAliasType("Friends", list[str])
 
 
 class FormModel(BaseModel):
@@ -12,6 +15,7 @@ class FormModel(BaseModel):
     lastname: str
     age: int | None = None
     tags: list[str] = ["foo", "bar"]
+    friends: Friends = ["baz", "quux"]
     alias_with: str = Field(alias="with", default="nothing")
 
 
@@ -42,6 +46,7 @@ def test_send_all_data():
             "lastname": "Sanchez",
             "age": "70",
             "tags": ["plumbus", "citadel"],
+            "friends": ["Birbperson", "Swuanchy"],
             "with": "something",
         },
     )
@@ -51,6 +56,7 @@ def test_send_all_data():
         "lastname": "Sanchez",
         "age": 70,
         "tags": ["plumbus", "citadel"],
+        "friends": ["Birbperson", "Swuanchy"],
         "with": "something",
     }
 
@@ -63,6 +69,7 @@ def test_defaults():
         "lastname": "Sanchez",
         "age": None,
         "tags": ["foo", "bar"],
+        "friends": ["baz", "quux"],
         "with": "nothing",
     }
 
@@ -99,13 +106,21 @@ def test_no_data():
                 "type": "missing",
                 "loc": ["body", "username"],
                 "msg": "Field required",
-                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                "input": {
+                    "tags": ["foo", "bar"],
+                    "friends": ["baz", "quux"],
+                    "with": "nothing",
+                },
             },
             {
                 "type": "missing",
                 "loc": ["body", "lastname"],
                 "msg": "Field required",
-                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                "input": {
+                    "tags": ["foo", "bar"],
+                    "friends": ["baz", "quux"],
+                    "with": "nothing",
+                },
             },
         ]
     }
