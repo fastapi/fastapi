@@ -138,3 +138,24 @@ def test_serialize_sequence_value_with_none_first_in_union():
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]
     assert isinstance(result, list)
+
+
+def test_typealiastype_sequence_introspection_and_serialization():
+    from fastapi._compat import shared, v2
+    from typing_extensions import TypeAliasType
+
+    ListAlias = TypeAliasType("ListAlias", list[str])
+    SetAlias = TypeAliasType("SetAlias", set[int])
+    UnionAlias = TypeAliasType("UnionAlias", list[str] | None)
+
+    assert shared.field_annotation_is_sequence(ListAlias)
+    assert shared.field_annotation_is_sequence(SetAlias)
+    assert shared.field_annotation_is_sequence(UnionAlias)
+    assert shared.field_annotation_is_complex(ListAlias)
+    assert not shared.field_annotation_is_scalar(ListAlias)
+
+    field_info = FieldInfo(annotation=cast(Any, ListAlias))
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b"])
+    assert result == ["a", "b"]
+    assert isinstance(result, list)
