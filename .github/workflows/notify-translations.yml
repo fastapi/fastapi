@@ -19,6 +19,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -43,6 +46,7 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: github-actions
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
