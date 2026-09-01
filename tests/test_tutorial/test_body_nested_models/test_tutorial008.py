@@ -57,7 +57,7 @@ def test_post_not_a_list(client: TestClient):
                     "name": "Example",
                     "url": "http://example.com/",
                 },
-                "msg": "Input should be a valid list",
+                "msg": "Input should be a valid array",
                 "type": "list_type",
             }
         ]
