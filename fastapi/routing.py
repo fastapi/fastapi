@@ -1555,6 +1555,8 @@ class RouteContext:
     @property
     def _effective_route(self) -> BaseRoute | _EffectiveRouteContext:
         if self._route_context is not None:
+            if self._route_context.starlette_route is not None:
+                return self._route_context.starlette_route
             return self._route_context
         return self.route
 
