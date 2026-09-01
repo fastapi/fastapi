@@ -18,6 +18,7 @@ from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
+from typing_inspection.typing_objects import is_typealiastype
 
 _T = TypeVar("_T")
 
@@ -43,6 +44,12 @@ sequence_annotation_to_type = {
 sequence_types: tuple[type[Any], ...] = tuple(sequence_annotation_to_type.keys())
 
 
+def _unwrap_type_alias(annotation: Any) -> Any:
+    while is_typealiastype(annotation):
+        annotation = annotation.__value__
+    return annotation
+
+
 # Copy of Pydantic: pydantic/_internal/_utils.py with added TypeGuard
 def lenient_issubclass(
     cls: Any, class_or_tuple: type[_T] | tuple[type[_T], ...] | None
@@ -62,6 +69,7 @@ def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     origin = get_origin(annotation)
 
     if origin is Annotated:
@@ -82,6 +90,7 @@ def value_is_sequence(value: Any) -> bool:
 
 
 def _annotation_is_complex(annotation: type[Any] | None) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     return (
         lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
@@ -90,6 +99,7 @@ def _annotation_is_complex(annotation: type[Any] | None) -> bool:
 
 
 def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
@@ -111,6 +121,7 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
 
 
 def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     origin = get_origin(annotation)
 
     if origin is Annotated:
@@ -132,6 +143,7 @@ def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
 
 
 def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     if lenient_issubclass(annotation, bytes):
         return True
     origin = get_origin(annotation)
@@ -143,6 +155,7 @@ def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
 
 
 def is_uploadfile_or_nonable_uploadfile_annotation(annotation: Any) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     if lenient_issubclass(annotation, UploadFile):
         return True
     origin = get_origin(annotation)
@@ -154,6 +167,7 @@ def is_uploadfile_or_nonable_uploadfile_annotation(annotation: Any) -> bool:
 
 
 def is_bytes_sequence_annotation(annotation: Any) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one = False
@@ -169,6 +183,7 @@ def is_bytes_sequence_annotation(annotation: Any) -> bool:
 
 
 def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one = False
@@ -208,6 +223,7 @@ def is_pydantic_v1_model_class(cls: Any) -> bool:
 
 
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
+    annotation = _unwrap_type_alias(annotation)
     if is_pydantic_v1_model_class(annotation):
         return True
     origin = get_origin(annotation)
