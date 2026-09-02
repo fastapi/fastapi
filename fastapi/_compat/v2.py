@@ -364,12 +364,14 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
+    annotation = shared._unwrap_typealiastype(field.field_info.annotation)
+    origin_type = get_origin(annotation) or annotation
     if origin_type is Union or origin_type is UnionType:  # Handle optional sequences
-        union_args = get_args(field.field_info.annotation)
+        union_args = get_args(annotation)
         for union_arg in union_args:
             if union_arg is type(None):
                 continue
+            union_arg = shared._unwrap_typealiastype(union_arg)
             origin_type = get_origin(union_arg) or union_arg
             break
     assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
@@ -446,6 +448,7 @@ def get_flat_models_from_model(
 def get_flat_models_from_annotation(
     annotation: Any, known_models: TypeModelSet
 ) -> TypeModelSet:
+    annotation = shared._unwrap_typealiastype(annotation)
     origin = get_origin(annotation)
     if origin is not None:
         for arg in get_args(annotation):
@@ -462,7 +465,7 @@ def get_flat_models_from_annotation(
 def get_flat_models_from_field(
     field: ModelField, known_models: TypeModelSet
 ) -> TypeModelSet:
-    field_type = field.field_info.annotation
+    field_type = shared._unwrap_typealiastype(field.field_info.annotation)
     if lenient_issubclass(field_type, BaseModel):
         if field_type in known_models:
             return known_models

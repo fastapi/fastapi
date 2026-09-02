@@ -138,3 +138,60 @@ def test_serialize_sequence_value_with_none_first_in_union():
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]
     assert isinstance(result, list)
+
+
+def test_typealiastype_sequence_introspection_and_serialization():
+    from fastapi._compat import shared, v2
+    from typing_extensions import TypeAliasType
+
+    ListAlias = TypeAliasType("ListAlias", list[str])
+    SetAlias = TypeAliasType("SetAlias", set[int])
+    UnionAlias = TypeAliasType("UnionAlias", list[str] | None)
+
+    assert shared.field_annotation_is_sequence(ListAlias)
+    assert shared.field_annotation_is_sequence(SetAlias)
+    assert shared.field_annotation_is_sequence(UnionAlias)
+    assert shared.field_annotation_is_complex(ListAlias)
+    assert not shared.field_annotation_is_scalar(ListAlias)
+
+    field_info = FieldInfo(annotation=cast(Any, ListAlias))
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b"])
+    assert result == ["a", "b"]
+    assert isinstance(result, list)
+
+
+def test_typealiastype_helpers_and_flat_models():
+    from collections.abc import AsyncGenerator
+
+    from fastapi._compat import shared, v2
+    from fastapi.dependencies.utils import get_stream_item_type
+    from pydantic import BaseModel
+    from starlette.datastructures import UploadFile
+    from typing_extensions import TypeAliasType
+
+    class InnerModel(BaseModel):
+        x: int
+
+    BytesAlias = TypeAliasType("BytesAlias", bytes)
+    BytesSeqAlias = TypeAliasType("BytesSeqAlias", list[bytes])
+    UploadAlias = TypeAliasType("UploadAlias", UploadFile)
+    UploadSeqAlias = TypeAliasType("UploadSeqAlias", list[UploadFile])
+    ScalarSeqAlias = TypeAliasType("ScalarSeqAlias", list[str])
+    ModelAlias = TypeAliasType("ModelAlias", InnerModel)
+    StreamAlias = TypeAliasType("StreamAlias", AsyncGenerator[str, None])
+
+    assert shared.is_bytes_or_nonable_bytes_annotation(BytesAlias)
+    assert shared.is_bytes_sequence_annotation(BytesSeqAlias)
+    assert shared.is_uploadfile_or_nonable_uploadfile_annotation(UploadAlias)
+    assert shared.is_uploadfile_sequence_annotation(UploadSeqAlias)
+    assert shared.field_annotation_is_scalar_sequence(ScalarSeqAlias)
+    assert not shared.annotation_is_pydantic_v1(ModelAlias)
+    assert get_stream_item_type(StreamAlias) is str
+
+    # Flat models extraction
+    ListModelAlias = TypeAliasType("ListModelAlias", list[InnerModel])
+    assert InnerModel in v2.get_flat_models_from_annotation(ListModelAlias, set())
+    field_info = FieldInfo(annotation=cast(Any, ModelAlias))
+    field = v2.ModelField(name="inner", field_info=field_info)
+    assert InnerModel in v2.get_flat_models_from_field(field, set())
