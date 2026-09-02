@@ -35,6 +35,14 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the python-packages group across 1 directory with 15 updates. PR [#16285](https://github.com/fastapi/fastapi/pull/16285) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.3.1 to 1.6.0. PR [#16289](https://github.com/fastapi/fastapi/pull/16289) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump annotated-doc from 0.0.4 to 0.0.5. PR [#16288](https://github.com/fastapi/fastapi/pull/16288) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump typing-inspection from 0.4.2 to 0.4.4. PR [#16286](https://github.com/fastapi/fastapi/pull/16286) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump fastar from 0.11.0 to 0.12.0. PR [#16287](https://github.com/fastapi/fastapi/pull/16287) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group with 5 updates. PR [#16284](https://github.com/fastapi/fastapi/pull/16284) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pre-commit hooks. PR [#16290](https://github.com/fastapi/fastapi/pull/16290) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 👥 Update FastAPI GitHub topic repositories. PR [#16291](https://github.com/fastapi/fastapi/pull/16291) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI People - Sponsors. PR [#16282](https://github.com/fastapi/fastapi/pull/16282) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆️ Bump Typer min version to 0.26.1. PR [#16252](https://github.com/fastapi/fastapi/pull/16252) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆️ Bump `setup-uv` action to `10.0.1`. PR [#16249](https://github.com/fastapi/fastapi/pull/16249) by [@YuriiMotov](https://github.com/YuriiMotov).
