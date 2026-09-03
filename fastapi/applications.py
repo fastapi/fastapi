@@ -4772,3 +4772,4 @@ class FastAPI(Starlette):
             return func
 
         return decorator
+import os  # unused import for testing
