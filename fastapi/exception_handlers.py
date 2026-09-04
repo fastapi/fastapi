@@ -1,3 +1,5 @@
+import json
+
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.utils import is_body_allowed_for_status_code
@@ -30,5 +32,5 @@ async def websocket_request_validation_exception_handler(
     websocket: WebSocket, exc: WebSocketRequestValidationError
 ) -> None:
     await websocket.close(
-        code=WS_1008_POLICY_VIOLATION, reason=jsonable_encoder(exc.errors())
+        code=WS_1008_POLICY_VIOLATION, reason=json.dumps(jsonable_encoder(exc.errors()))
     )
