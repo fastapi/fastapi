@@ -1,4 +1,5 @@
 import functools
+import json
 
 import pytest
 from fastapi import (
@@ -229,6 +230,15 @@ def test_depend_validation():
             pass  # pragma: no cover
     # the validation error does produce a close message
     assert e.value.code == status.WS_1008_POLICY_VIOLATION
+    assert isinstance(e.value.reason, str)
+    assert json.loads(e.value.reason) == [
+        {
+            "type": "missing",
+            "loc": ["header", "x-missing"],
+            "msg": "Field required",
+            "input": None,
+        }
+    ]
     # and no error is leaked
     assert caught == []
 
@@ -269,3 +279,21 @@ def test_depend_err_handler():
             pass  # pragma: no cover
     assert e.value.code == 1002
     assert "foo" in e.value.reason
+
+
+def test_websocket_request_validation_close_reason():
+    myapp = make_app()
+    client = TestClient(myapp)
+    with pytest.raises(WebSocketDisconnect) as e:
+        with client.websocket_connect("/router/test"):
+            pass  # pragma: no cover
+    assert e.value.code == status.WS_1008_POLICY_VIOLATION
+    assert isinstance(e.value.reason, str)
+    assert json.loads(e.value.reason) == [
+        {
+            "type": "missing",
+            "loc": ["query", "queryparam"],
+            "msg": "Field required",
+            "input": None,
+        }
+    ]
