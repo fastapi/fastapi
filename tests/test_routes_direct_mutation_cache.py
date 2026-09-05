@@ -17,7 +17,6 @@ from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -136,8 +135,12 @@ def test_direct_clear_of_child_routes_invalidates_cache():
     child.routes.clear()
 
     # Both routes must be gone.
-    assert client.get("/v1/x").status_code == 404, "Cache not invalidated after .clear()"
-    assert client.get("/v1/y").status_code == 404, "Cache not invalidated after .clear()"
+    assert client.get("/v1/x").status_code == 404, (
+        "Cache not invalidated after .clear()"
+    )
+    assert client.get("/v1/y").status_code == 404, (
+        "Cache not invalidated after .clear()"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -247,7 +250,9 @@ def test_setitem_on_child_routes_invalidates_cache():
     child.routes[0] = _make_route("/new", "new")
 
     # Old route is gone, new route is present.
-    assert client.get("/v1/old").status_code == 404, "__setitem__ did not invalidate cache"
+    assert client.get("/v1/old").status_code == 404, (
+        "__setitem__ did not invalidate cache"
+    )
     assert client.get("/v1/new").status_code == 200, "__setitem__ new route not found"
 
 
