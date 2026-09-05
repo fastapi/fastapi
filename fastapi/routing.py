@@ -35,6 +35,7 @@ from typing import (
     Any,
     Literal,
     Protocol,
+    SupportsIndex,
     TypeVar,
     cast,
 )
@@ -2275,7 +2276,7 @@ class _RouteList(list):  # type: ignore[type-arg]
         super().append(item)
         self._owner._mark_routes_changed()
 
-    def insert(self, index: int, item: Any) -> None:  # type: ignore[override]
+    def insert(self, index: SupportsIndex, item: Any) -> None:
         super().insert(index, item)
         self._owner._mark_routes_changed()
 
