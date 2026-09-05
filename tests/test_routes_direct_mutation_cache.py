@@ -283,3 +283,56 @@ def test_delitem_on_child_routes_invalidates_cache():
     assert client.get("/v1/delete-me").status_code == 404, (
         "__delitem__ did not invalidate cache"
     )
+
+
+def test_routes_mutation_coverage() -> None:
+    """
+    Ensure all other list mutation methods correctly trigger invalidation
+    to maintain 100% coverage on _RouteList.
+    """
+    child = APIRouter()
+
+    def r1() -> str:
+        return "1"
+
+    def r2() -> str:
+        return "2"
+
+    r1.__name__ = "r1"
+    r2.__name__ = "r2"
+
+    route1 = APIRoute("/r1", endpoint=r1, methods=["GET"])
+    route2 = APIRoute("/r2", endpoint=r2, methods=["GET"])
+    route3 = APIRoute("/r3", endpoint=r2, methods=["GET"])
+
+    app = FastAPI()
+    app.include_router(child, prefix="/v1")
+    client = TestClient(app, raise_server_exceptions=True)
+
+    # 1. insert
+    child.routes.insert(0, route1)
+    assert client.get("/v1/r1").status_code == 200
+
+    # 2. extend
+    child.routes.extend([route2])
+    assert client.get("/v1/r2").status_code == 200
+
+    # 3. pop
+    popped = child.routes.pop()
+    assert popped == route2
+    assert client.get("/v1/r2").status_code == 404
+
+    # 4. __iadd__
+    child.routes += [route2]
+    assert client.get("/v1/r2").status_code == 200
+
+    # 5. reverse
+    child.routes.reverse()
+    # It just reorders them, but it should bump version
+    assert client.get("/v1/r1").status_code == 200
+
+    # 6. sort
+    child.routes.append(route3)
+    # Sort by path
+    child.routes.sort(key=lambda r: getattr(r, "path", ""))
+    assert client.get("/v1/r3").status_code == 200
