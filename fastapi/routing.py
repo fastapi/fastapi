@@ -35,6 +35,7 @@ from typing import (
     Any,
     Literal,
     Protocol,
+    SupportsIndex,
     TypeVar,
     cast,
 )
@@ -2252,6 +2253,72 @@ class _FrontendRouteGroup(BaseRoute):
                 scope["fastapi_function_astack"] = previous_function_astack
 
 
+class _RouteList(list):  # type: ignore[type-arg]
+    """
+    A ``list`` subclass used for :attr:`APIRouter.routes` that automatically
+    calls :meth:`APIRouter._mark_routes_changed` whenever the list is mutated
+    through any of the standard list mutation methods.
+
+    This ensures that direct mutation of ``router.routes`` (e.g.
+    ``router.routes.append(route)`` or ``router.routes.remove(route)``) is
+    reflected in the route-version counter so that the caches inside any
+    :class:`_IncludedRouter` that wraps this router are correctly invalidated
+    on the next request dispatch.
+    """
+
+    def __init__(self, owner: "APIRouter", iterable: list[Any]) -> None:
+        super().__init__(iterable)
+        self._owner = owner
+
+    # -- mutating methods that need to bump the version -----------------------
+
+    def append(self, item: Any) -> None:
+        super().append(item)
+        self._owner._mark_routes_changed()
+
+    def insert(self, index: SupportsIndex, item: Any) -> None:
+        super().insert(index, item)
+        self._owner._mark_routes_changed()
+
+    def extend(self, items: Any) -> None:
+        super().extend(items)
+        self._owner._mark_routes_changed()
+
+    def remove(self, item: Any) -> None:
+        super().remove(item)
+        self._owner._mark_routes_changed()
+
+    def pop(self, *args: Any) -> Any:
+        result = super().pop(*args)
+        self._owner._mark_routes_changed()
+        return result
+
+    def clear(self) -> None:
+        super().clear()
+        self._owner._mark_routes_changed()
+
+    def __setitem__(self, index: Any, value: Any) -> None:
+        super().__setitem__(index, value)
+        self._owner._mark_routes_changed()
+
+    def __delitem__(self, index: Any) -> None:
+        super().__delitem__(index)
+        self._owner._mark_routes_changed()
+
+    def __iadd__(self, items: Any) -> "_RouteList":  # type: ignore[misc]
+        super().__iadd__(items)
+        self._owner._mark_routes_changed()
+        return self
+
+    def sort(self, *args: Any, **kwargs: Any) -> None:
+        super().sort(*args, **kwargs)
+        self._owner._mark_routes_changed()
+
+    def reverse(self) -> None:
+        super().reverse()
+        self._owner._mark_routes_changed()
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -2535,6 +2602,13 @@ class APIRouter(routing.Router):
             default=default,
             lifespan=lifespan_context,
         )
+        # Replace the plain list from Starlette with an instrumented subclass
+        # that automatically bumps _routes_version on every mutation.  This
+        # ensures that direct mutations of router.routes (e.g.
+        # router.routes.append(route)) are reflected in the cache keys used by
+        # _IncludedRouter.effective_candidates().
+        # NOTE: _routes_version is initialised below, so we defer constructing
+        # _RouteList until after it is set (lines further down in __init__).
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
@@ -2564,6 +2638,9 @@ class APIRouter(routing.Router):
         self.generate_unique_id_function = generate_unique_id_function
         self.strict_content_type = strict_content_type
         self._routes_version = 0
+        # Now that _routes_version exists, wrap self.routes so future
+        # direct mutations auto-invalidate the cache.
+        self.routes = _RouteList(self, self.routes)
         self._low_priority_routes: list[BaseRoute] = []
         self._frontend_routes: _FrontendRouteGroup | None = None
 
@@ -2616,7 +2693,8 @@ class APIRouter(routing.Router):
             name=name,
             include_in_schema=include_in_schema,
         )
-        self._mark_routes_changed()
+        # _mark_routes_changed() is called automatically by _RouteList.append
+        # inside Starlette's add_route.
 
     def add_websocket_route(
         self,
@@ -2625,7 +2703,8 @@ class APIRouter(routing.Router):
         name: str | None = None,
     ) -> None:
         super().add_websocket_route(path, endpoint, name=name)
-        self._mark_routes_changed()
+        # _mark_routes_changed() is called automatically by _RouteList.append
+        # inside Starlette's add_websocket_route.
 
     def frontend(
         self,
@@ -2968,7 +3047,7 @@ class APIRouter(routing.Router):
             ),
         )
         self.routes.append(route)
-        self._mark_routes_changed()
+        # _mark_routes_changed() is called automatically by _RouteList.append.
 
     def api_route(
         self,
@@ -3052,7 +3131,7 @@ class APIRouter(routing.Router):
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
-        self._mark_routes_changed()
+        # _mark_routes_changed() is called automatically by _RouteList.append.
 
     def websocket(
         self,
@@ -3309,7 +3388,7 @@ class APIRouter(routing.Router):
         self.routes.append(
             _IncludedRouter(original_router=router, include_context=include_context)
         )
-        self._mark_routes_changed()
+        # _mark_routes_changed() is called automatically by _RouteList.append.
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
