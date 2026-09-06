@@ -2252,6 +2252,66 @@ class _FrontendRouteGroup(BaseRoute):
                 scope["fastapi_function_astack"] = previous_function_astack
 
 
+class _TrackedRouteList(list):
+    """A list that behaves exactly like a normal list, but notifies its
+    owning APIRouter (via _mark_routes_changed) on every mutation, so the
+    lazy effective-routes cache can never go stale from direct mutation of
+    `router.routes` (append/remove/insert/clear/etc.)."""
+
+    def __init__(self, *args: Any, owner: "APIRouter", **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self._owner = owner
+
+    def _notify(self) -> None:
+        self._owner._mark_routes_changed()
+
+    def append(self, item: Any) -> None:
+        super().append(item)
+        self._notify()
+
+    def extend(self, iterable: Any) -> None:
+        super().extend(iterable)
+        self._notify()
+
+    def insert(self, index: int, item: Any) -> None:
+        super().insert(index, item)
+        self._notify()
+
+    def remove(self, item: Any) -> None:
+        super().remove(item)
+        self._notify()
+
+    def pop(self, index: int = -1) -> Any:
+        item = super().pop(index)
+        self._notify()
+        return item
+
+    def clear(self) -> None:
+        super().clear()
+        self._notify()
+
+    def sort(self, *args: Any, **kwargs: Any) -> None:
+        super().sort(*args, **kwargs)
+        self._notify()
+
+    def reverse(self) -> None:
+        super().reverse()
+        self._notify()
+
+    def __setitem__(self, index: Any, value: Any) -> None:
+        super().__setitem__(index, value)
+        self._notify()
+
+    def __delitem__(self, index: Any) -> None:
+        super().__delitem__(index)
+        self._notify()
+
+    def __iadd__(self, other: Any) -> "_TrackedRouteList":
+        result = super().__iadd__(other)
+        self._notify()
+        return result  # type: ignore[return-value]
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -2566,6 +2626,18 @@ class APIRouter(routing.Router):
         self._routes_version = 0
         self._low_priority_routes: list[BaseRoute] = []
         self._frontend_routes: _FrontendRouteGroup | None = None
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        if name == "routes" and not isinstance(value, _TrackedRouteList):
+            value = _TrackedRouteList(value, owner=self)
+            super().__setattr__(name, value)
+            # During super().__init__() this fires before _routes_version
+            # exists yet; nothing to invalidate at that point since the
+            # router has never served a request.
+            if getattr(self, "_routes_version", None) is not None:
+                self._mark_routes_changed()
+            return
+        super().__setattr__(name, value)
 
     def _mark_routes_changed(self) -> None:
         self._routes_version += 1
