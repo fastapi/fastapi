@@ -218,4 +218,3 @@ def test_direct_routes_iadd_reverse_sort_and_self_reassignment() -> None:
     # setter with already wrapped _ObservableRouteList on same router
     child.routes = child.routes
     assert client.get("/api/a").status_code == 200
-
