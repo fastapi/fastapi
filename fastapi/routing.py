@@ -35,6 +35,7 @@ from typing import (
     Any,
     Literal,
     Protocol,
+    SupportsIndex,
     TypeVar,
     cast,
 )
@@ -2252,6 +2253,58 @@ class _FrontendRouteGroup(BaseRoute):
                 scope["fastapi_function_astack"] = previous_function_astack
 
 
+class _ObservableRouteList(list):  # type: ignore[type-arg]
+    def __init__(self, router: "APIRouter", iterable: Any = ()) -> None:
+        super().__init__(iterable)
+        self._router = router
+
+    def append(self, item: Any) -> None:
+        super().append(item)
+        self._router._mark_routes_changed()
+
+    def extend(self, iterable: Any) -> None:
+        super().extend(iterable)
+        self._router._mark_routes_changed()
+
+    def insert(self, index: SupportsIndex, item: Any) -> None:
+        super().insert(index, item)
+        self._router._mark_routes_changed()
+
+    def pop(self, index: SupportsIndex = -1) -> Any:
+        item = super().pop(index)
+        self._router._mark_routes_changed()
+        return item
+
+    def remove(self, item: Any) -> None:
+        super().remove(item)
+        self._router._mark_routes_changed()
+
+    def clear(self) -> None:
+        super().clear()
+        self._router._mark_routes_changed()
+
+    def __setitem__(self, index: Any, value: Any) -> None:
+        super().__setitem__(index, value)
+        self._router._mark_routes_changed()
+
+    def __delitem__(self, index: Any) -> None:
+        super().__delitem__(index)
+        self._router._mark_routes_changed()
+
+    def reverse(self) -> None:
+        super().reverse()
+        self._router._mark_routes_changed()
+
+    def sort(self, *args: Any, **kwargs: Any) -> None:
+        super().sort(*args, **kwargs)
+        self._router._mark_routes_changed()
+
+    def __iadd__(self, iterable: Any) -> "_ObservableRouteList":  # type: ignore[misc]
+        super().__iadd__(iterable)
+        self._router._mark_routes_changed()
+        return self
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -2569,6 +2622,19 @@ class APIRouter(routing.Router):
 
     def _mark_routes_changed(self) -> None:
         self._routes_version += 1
+
+    @property
+    def routes(self) -> list[BaseRoute]:
+        return getattr(self, "_routes", cast(list[BaseRoute], []))
+
+    @routes.setter
+    def routes(self, value: Sequence[BaseRoute]) -> None:
+        if not isinstance(value, _ObservableRouteList) or value._router is not self:
+            self._routes = _ObservableRouteList(self, value)
+        else:
+            self._routes = value
+        if hasattr(self, "_routes_version"):
+            self._mark_routes_changed()
 
     def _get_routes_version(self, seen: set[int] | None = None) -> int:
         if seen is None:
