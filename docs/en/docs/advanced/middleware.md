@@ -39,6 +39,49 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `app.add_middleware()` receives a middleware class as the first argument and any additional arguments to be passed to the middleware.
 
+## Creating ASGI middlewares { #creating-asgi-middlewares }
+
+You can also write your own ASGI middleware without dealing with the ASGI details, by inheriting from `ASGIMiddleware`.
+
+You implement `on_request()` to do something with each **request** before it is handled by a *path operation*, and `on_response()` to do something with each **response** before it is sent.
+
+{* ../../docs_src/advanced_middleware/tutorial004_py310.py hl[4:5,10:12,14:18,21] *}
+
+Whatever you store in `request.state` is available to the *path operations* and to `on_response()`.
+
+You can implement only one of the two methods, you don't have to implement both.
+
+/// tip
+
+This does the same as the middleware with `@app.middleware("http")` from the [Tutorial - Middleware](../tutorial/middleware.md), but it doesn't have its performance cost, and values set in <abbr title="Context Variables, from contextvars">`ContextVar`s</abbr> by *path operations* and dependencies are still visible in `on_response()`.
+
+///
+
+### Returning a response early { #returning-a-response-early }
+
+If `on_request()` returns a `Response`, that response is sent right away and the *path operation* is never called.
+
+```Python
+from fastapi import Request
+from fastapi.middleware.asgi import ASGIMiddleware
+from fastapi.responses import JSONResponse
+
+
+class BlockBotsMiddleware(ASGIMiddleware):
+    async def on_request(self, request: Request) -> JSONResponse | None:
+        if "bot" in request.headers.get("user-agent", ""):
+            return JSONResponse({"detail": "Not allowed"}, status_code=403)
+        return None
+```
+
+/// note | Technical Details
+
+The response body is never loaded in memory, so streaming responses keep streaming.
+
+Reading the request body with `await request.body()` (or `await request.json()`) in `on_request()` works, the *path operation* still receives it.
+
+///
+
 ## Integrated middlewares { #integrated-middlewares }
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.

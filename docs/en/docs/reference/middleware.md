@@ -1,8 +1,18 @@
 # Middleware
 
-There are several middlewares available provided by Starlette directly.
+You can create your own middleware with `ASGIMiddleware`.
+
+And there are several middlewares available provided by Starlette directly.
 
 Read more about them in the [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/).
+
+::: fastapi.middleware.asgi.ASGIMiddleware
+
+It can be imported from `fastapi`:
+
+```python
+from fastapi.middleware.asgi import ASGIMiddleware
+```
 
 ::: fastapi.middleware.cors.CORSMiddleware
 

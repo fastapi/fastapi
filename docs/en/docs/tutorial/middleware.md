@@ -92,4 +92,6 @@ This stacking behavior ensures that middlewares are executed in a predictable an
 
 You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md).
 
+There you will also read how to [create ASGI middlewares](../advanced/middleware.md#creating-asgi-middlewares), that work in the same way as the one above, but are faster.
+
 You will read about how to handle <abbr title="Cross-Origin Resource Sharing">CORS</abbr> with a middleware in the next section.
