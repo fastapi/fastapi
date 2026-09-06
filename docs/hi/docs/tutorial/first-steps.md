@@ -1,6 +1,6 @@
 # पहले कदम { #first-steps }
 
-सबसे सरल FastAPI file ऐसी दिख सकती है:
+सबसे सरल FastAPI file कुछ इस तरह दिखती है:
 
 {* ../../docs_src/first_steps/tutorial001_py310.py *}
 
@@ -66,7 +66,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 अपने browser में [http://127.0.0.1:8000](http://127.0.0.1:8000) खोलें।
 
-आपको JSON response इस तरह दिखेगा:
+आपको इस तरह का JSON response दिखेगा:
 
 ```JSON
 {"message": "Hello World"}
@@ -145,7 +145,7 @@ OpenAPI आपकी API के लिए API schema define करता है�
 
 OpenAPI schema ही शामिल किए गए दो interactive documentation systems को power देता है।
 
-और दर्जनों विकल्प हैं, सभी OpenAPI पर आधारित। आप **FastAPI** से बनी अपनी application में इनमें से कोई भी विकल्प आसानी से जोड़ सकते हैं।
+और दर्जनों विकल्प हैं, सभी OpenAPI पर आधारित हैं। आप **FastAPI** से बनी अपनी application में इनमें से कोई भी विकल्प आसानी से जोड़ सकते हैं।
 
 आप इसका उपयोग उन clients के लिए अपने आप code generate करने के लिए भी कर सकते हैं जो आपकी API से communicate करते हैं। उदाहरण के लिए, frontend, mobile या IoT applications।
 
@@ -200,7 +200,7 @@ $ uv run fastapi dev main.py
 $ uv run fastapi dev --entrypoint main:app
 ```
 
-लेकिन हर बार `fastapi` command call करते समय आपको सही path\entrypoint pass करना याद रखना होगा।
+लेकिन हर बार `fastapi` command call करते समय आपको सही path/entrypoint pass करना याद रखना होगा।
 
 इसके अलावा, दूसरे tools इसे ढूँढ नहीं पाएँगे, उदाहरण के लिए [VS Code Extension](../editor-support.md) या [FastAPI Cloud](https://fastapicloud.com), इसलिए `pyproject.toml` में `entrypoint` का उपयोग करने की सलाह दी जाती है।
 
@@ -324,7 +324,7 @@ APIs बनाते समय, आप आमतौर पर कोई specific
 
 Python में उस `@something` syntax को "decorator" कहा जाता है।
 
-आप इसे किसी function के ऊपर लगाते हैं। जैसे एक सुंदर सजावटी टोपी (मुझे लगता है term वहीं से आया है)।
+आप इसे किसी function के ऊपर लगाते हैं। जैसे एक सुंदर सजावटी टोपी (मुझे लगता है कि term वहीं से आया है)।
 
 एक "decorator" नीचे वाले function को लेता है और उसके साथ कुछ करता है।
 
@@ -405,7 +405,7 @@ Python में उस `@something` syntax को "decorator" कहा जा�
 
 **[FastAPI Cloud](https://fastapicloud.com)** को **FastAPI** के पीछे मौजूद उसी author और team ने बनाया है।
 
-यह कम से कम प्रयास के साथ API को **बनाने**, **deploy करने**, और **access करने** की process को streamlined करता है।
+यह कम से कम प्रयास के साथ API को **बनाने**, **deploy करने**, और **access करने** की process को streamline करता है।
 
 यह FastAPI के साथ apps बनाने जैसा ही **developer experience**, उन्हें cloud पर **deploy** करने में लाता है। 🎉
 
