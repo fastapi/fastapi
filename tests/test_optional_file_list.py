@@ -26,3 +26,42 @@ def test_optional_bytes_list_no_files():
     response = client.post("/files")
     assert response.status_code == 200
     assert response.json() == {"files_count": 0}
+
+
+def test_optional_bytes_list_empty_form_value():
+    client = TestClient(app)
+    response = client.post("/files", data={"files": ""})
+    assert response.status_code == 200
+
+
+def test_annotated_bytes_list_empty_form_value():
+    from typing import Annotated
+
+    app_annotated = FastAPI()
+
+    @app_annotated.post("/files-annotated")
+    async def upload_files_annotated(
+        files: Annotated[list[bytes] | None, File()] = None,
+    ):
+        return {"files": files}
+
+    client = TestClient(app_annotated)
+    response = client.post("/files-annotated", data={"files": ""})
+    assert response.status_code == 200
+
+
+def test_required_bytes_list_empty_form_value():
+    from typing import Annotated
+
+    app_required = FastAPI()
+
+    @app_required.post("/files-required")
+    async def upload_files_required(
+        files: Annotated[list[bytes], File()],
+    ):
+        return {"files": files}
+
+    client = TestClient(app_required)
+    response = client.post("/files-required", data={"files": ""})
+    assert response.status_code == 200
+
