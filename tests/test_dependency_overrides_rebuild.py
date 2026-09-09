@@ -17,7 +17,9 @@ def test_unchanged_override_does_not_rebuild_dependant(self_override: bool):
         return value
 
     async def unused():
-        return 0
+        raise AssertionError(
+            "Unused dependency should not be called"
+        )  # pragma: no cover
 
     @app.get("/")
     async def endpoint(value: int = Depends(dependency)):
