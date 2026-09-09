@@ -628,14 +628,15 @@ async def solve_dependencies(
             call = getattr(
                 dependency_overrides_provider, "dependency_overrides", {}
             ).get(original_call, original_call)
-            use_path: str = sub_dependant.path  # type: ignore
-            use_sub_dependant = get_dependant(
-                path=use_path,
-                call=call,
-                name=sub_dependant.name,
-                parent_oauth_scopes=_get_oauth_scopes(dependant=sub_dependant),
-                scope=sub_dependant.scope,
-            )
+            if call is not original_call:
+                use_path: str = sub_dependant.path  # type: ignore
+                use_sub_dependant = get_dependant(
+                    path=use_path,
+                    call=call,
+                    name=sub_dependant.name,
+                    parent_oauth_scopes=_get_oauth_scopes(dependant=sub_dependant),
+                    scope=sub_dependant.scope,
+                )
 
         solved_result = await solve_dependencies(
             request=request,
