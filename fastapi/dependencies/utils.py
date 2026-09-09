@@ -933,7 +933,7 @@ async def _extract_form_body(
             assert isinstance(value, sequence_types)
             results: list[bytes | str] = []
             for sub_value in value:
-                if isinstance(sub_value, UploadFile):
+                if isinstance(sub_value, UploadFile) or hasattr(sub_value, "read"):
                     results.append(await sub_value.read())
                 else:
                     results.append(sub_value)
