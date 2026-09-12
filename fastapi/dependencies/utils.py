@@ -260,10 +260,7 @@ _STREAM_ORIGINS = {
 
 def get_stream_item_type(annotation: Any) -> Any | None:
     while get_origin(annotation) is Annotated:
-        type_args = get_args(annotation)
-        if not type_args:
-            break
-        annotation = type_args[0]
+        annotation = get_args(annotation)[0]
     origin = get_origin(annotation)
     if origin is not None and origin in _STREAM_ORIGINS:
         type_args = get_args(annotation)
