@@ -1,5 +1,6 @@
 from typing import Annotated
 
+import fastapi.dependencies.utils as dependency_utils
 from fastapi import Cookie, Depends, FastAPI, Header, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -88,6 +89,17 @@ def test_query_model_dependency_parses_annotated_list():
     )
     assert resp.status_code == 200
     assert resp.json() == {"field": ["foo", "bar"]}
+
+
+def test_query_model_dependency_falls_back_when_hints_cannot_be_resolved(
+    monkeypatch,
+):
+    def raise_name_error(*args, **kwargs):
+        raise NameError("unresolvable annotation")
+
+    monkeypatch.setattr(dependency_utils, "get_type_hints", raise_name_error)
+    dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithList)
+    assert dependant.body_params
 
 
 def test_header_pass_extra_list():
