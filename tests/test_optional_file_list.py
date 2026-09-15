@@ -64,4 +64,3 @@ def test_required_bytes_list_empty_form_value():
     client = TestClient(app_required)
     response = client.post("/files-required", data={"files": ""})
     assert response.status_code == 200
-
