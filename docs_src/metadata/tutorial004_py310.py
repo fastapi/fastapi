@@ -1,6 +1,7 @@
 from fastapi import FastAPI
+from fastapi.types import OpenAPITag
 
-tags_metadata = [
+tags_metadata: list[OpenAPITag] = [
     {
         "name": "users",
         "description": "Operations with users. The **login** logic is also here.",

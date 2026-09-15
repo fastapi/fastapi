@@ -21,7 +21,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, IncEx, OpenAPITag
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
@@ -220,7 +220,7 @@ class FastAPI(Starlette):
             ),
         ] = "/openapi.json",
         openapi_tags: Annotated[
-            list[dict[str, Any]] | None,
+            list[OpenAPITag] | None,
             Doc(
                 """
                 A list of tags used by OpenAPI, these are the same `tags` you can set
@@ -259,7 +259,7 @@ class FastAPI(Starlette):
                 ```python
                 from fastapi import FastAPI
 
-                tags_metadata = [
+                tags_metadata: list[OpenAPITag] = [
                     {
                         "name": "users",
                         "description": "Operations with users. The **login** logic is also here.",

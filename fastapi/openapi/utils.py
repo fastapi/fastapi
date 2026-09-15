@@ -36,7 +36,7 @@ from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.sse import _SSE_EVENT_SCHEMA
-from fastapi.types import DependencyCacheKey, ModelNameMap
+from fastapi.types import DependencyCacheKey, ModelNameMap, OpenAPITag
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
@@ -591,7 +591,7 @@ def get_openapi(
     description: str | None = None,
     routes: Sequence[BaseRoute | routing.RouteContext],
     webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
-    tags: list[dict[str, Any]] | None = None,
+    tags: list[OpenAPITag] | None = None,
     servers: list[dict[str, str | Any]] | None = None,
     terms_of_service: str | None = None,
     contact: dict[str, str | Any] | None = None,
