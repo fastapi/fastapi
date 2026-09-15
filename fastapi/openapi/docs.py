@@ -1,4 +1,5 @@
 import json
+from html import escape
 from typing import Annotated, Any
 
 from annotated_doc import Doc
@@ -17,6 +18,11 @@ def _html_safe_json(value: Any) -> str:
         .replace(">", "\\u003e")
         .replace("&", "\\u0026")
     )
+
+
+def _html_escape(value: str) -> str:
+    """Escape a string before embedding it in HTML text or attributes."""
+    return escape(value, quote=True)
 
 
 swagger_ui_default_parameters: Annotated[
@@ -149,6 +155,15 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
+    openapi_url = _html_safe_json(openapi_url)
+    title = _html_escape(title)
+    swagger_js_url = _html_escape(swagger_js_url)
+    swagger_css_url = _html_escape(swagger_css_url)
+    swagger_favicon_url = _html_escape(swagger_favicon_url)
+    oauth2_redirect_url = (
+        _html_safe_json(oauth2_redirect_url) if oauth2_redirect_url else None
+    )
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -165,14 +180,14 @@ def get_swagger_ui_html(
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
+        url: {openapi_url},
     """
 
     for key, value in current_swagger_ui_parameters.items():
         html += f"{_html_safe_json(key)}: {_html_safe_json(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        html += f"oauth2RedirectUrl: window.location.origin + {oauth2_redirect_url},"
 
     html += """
     presets: [
@@ -261,6 +276,11 @@ def get_redoc_html(
     Read more about it in the
     [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).
     """
+    openapi_url = _html_escape(openapi_url)
+    title = _html_escape(title)
+    redoc_js_url = _html_escape(redoc_js_url)
+    redoc_favicon_url = _html_escape(redoc_favicon_url)
+
     html = f"""
     <!DOCTYPE html>
     <html>
