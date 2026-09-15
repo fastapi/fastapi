@@ -169,7 +169,7 @@ FastAPI में एक बेहद आसान, लेकिन बेहद
 * **WebSocket** support।
 * In-process background tasks।
 * Startup और shutdown events।
-* HTTPX पर बना test client।
+* HTTPX2 पर बना test client।
 * **CORS**, GZip, Static Files, Streaming responses।
 * **Session और Cookie** support।
 * 100% test coverage।

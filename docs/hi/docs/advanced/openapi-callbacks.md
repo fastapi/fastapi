@@ -51,7 +51,7 @@ Callback जोड़ने से पहले, पहले देखते �
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 लेकिन संभवतः callback का सबसे महत्वपूर्ण हिस्सा यह सुनिश्चित करना है कि आपका API user (external developer) *external API* को सही तरह से implement करे, उस data के अनुसार जिसे *आपकी API* callback के request body में भेजने वाली है, आदि।
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 वास्तविक callback सिर्फ़ एक HTTP request है।
 
-Callback को स्वयं implement करते समय, आप [HTTPX](https://www.python-httpx.org) या [Requests](https://requests.readthedocs.io/) जैसी किसी चीज़ का उपयोग कर सकते हैं।
+Callback को स्वयं implement करते समय, आप [HTTPX2](https://pydantic.dev/docs/httpx2/) या [Requests](https://requests.readthedocs.io/) जैसी किसी चीज़ का उपयोग कर सकते हैं।
 
 ///
 

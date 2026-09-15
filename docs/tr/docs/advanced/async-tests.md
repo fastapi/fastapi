@@ -10,13 +10,13 @@ Bunu nasıl çalıştırabileceğimize bir bakalım.
 
 Testlerimizde asenkron fonksiyonlar çağırmak istiyorsak, test fonksiyonlarımızın da asenkron olması gerekir. AnyIO bunun için güzel bir plugin sağlar; böylece bazı test fonksiyonlarının asenkron olarak çağrılacağını belirtebiliriz.
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 **FastAPI** uygulamanız `async def` yerine normal `def` fonksiyonları kullanıyor olsa bile, altta yatan yapı hâlâ bir `async` uygulamadır.
 
 `TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı “sihirli” işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
 
-`TestClient`, [HTTPX](https://www.python-httpx.org) tabanlıdır ve neyse ki API'yi test etmek için HTTPX'i doğrudan kullanabiliriz.
+`TestClient`, [HTTPX2](https://pydantic.dev/docs/httpx2/) tabanlıdır ve neyse ki API'yi test etmek için HTTPX2'yi doğrudan kullanabiliriz.
 
 ## Örnek { #example }
 

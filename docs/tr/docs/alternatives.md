@@ -429,7 +429,7 @@ Starlette, yüksek performanslı asyncio servisleri oluşturmak için ideal, haf
 * WebSocket desteği.
 * Süreç içi arka plan görevleri.
 * Başlatma ve kapatma olayları.
-* HTTPX üzerinde geliştirilmiş test client'ı.
+* HTTPX2 üzerinde geliştirilmiş test client'ı.
 * CORS, GZip, Statik Dosyalar, Streaming response'lar.
 * Session ve Cookie desteği.
 * %100 test kapsamı.

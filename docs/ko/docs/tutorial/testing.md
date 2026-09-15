@@ -2,7 +2,7 @@
 
 [Starlette](https://starlette.dev/testclient/) 덕분에 **FastAPI** 애플리케이션을 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
 
-이는 [HTTPX](https://www.python-httpx.org)를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
+이는 [HTTPX2](https://pydantic.dev/docs/httpx2/)를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
 
 이를 사용하면 **FastAPI**에서 [pytest](https://docs.pytest.org/)를 직접 사용할 수 있습니다.
 
@@ -10,12 +10,12 @@
 
 /// note | 참고
 
-`TestClient` 사용하려면, 우선 [`httpx`](https://www.python-httpx.org)를 설치해야 합니다.
+`TestClient` 사용하려면, 우선 [`httpx2`](https://pydantic.dev/docs/httpx2/)를 설치해야 합니다.
 
 프로젝트에 추가하세요:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ $ uv add httpx
 
 이름이 `test_`로 시작하는 함수를 만드세요(`pytest`의 표준적인 관례입니다).
 
-`httpx`를 사용하는 것과 같은 방식으로 `TestClient` 객체를 사용하세요.
+`httpx2`를 사용하는 것과 같은 방식으로 `TestClient` 객체를 사용하세요.
 
 표준적인 파이썬 표현식으로 확인이 필요한 곳에 간단한 `assert` 문장을 작성하세요(역시 표준적인 `pytest` 관례입니다).
 
@@ -130,7 +130,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-클라이언트가 요청에 정보를 전달해야 하는데 방법을 모르겠다면, Requests의 디자인을 기반으로 설계된 HTTPX처럼 `httpx`에서 해당 작업을 수행하는 방법을 검색(Google)하거나, `requests`에서의 방법을 검색해보세요.
+클라이언트가 요청에 정보를 전달해야 하는데 방법을 모르겠다면, Requests의 디자인을 기반으로 설계된 HTTPX2처럼 `httpx2`에서 해당 작업을 수행하는 방법을 검색(Google)하거나, `requests`에서의 방법을 검색해보세요.
 
 그 후, 테스트에서도 동일하게 적용하면 됩니다.
 
@@ -142,7 +142,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 * *헤더*를 전달하려면, `headers` 파라미터에 `dict`를 전달한다.
 * *쿠키*를 전달하려면, `cookies` 파라미터에 `dict`를 전달한다.
 
-백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient`를 이용해서) [HTTPX 문서](https://www.python-httpx.org)를 확인하세요.
+백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx2` 혹은 `TestClient`를 이용해서) [HTTPX2 문서](https://pydantic.dev/docs/httpx2/)를 확인하세요.
 
 /// note | 참고
 

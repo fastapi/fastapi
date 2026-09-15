@@ -2,7 +2,7 @@
 
 Thanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
 
-It is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.
+It is based on [HTTPX2](https://pydantic.dev/docs/httpx2/), which in turn is designed based on Requests, so it's very familiar and intuitive.
 
 With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.
 
@@ -10,12 +10,12 @@ With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI*
 
 /// note
 
-To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).
+To use `TestClient`, first install [`httpx2`](https://pydantic.dev/docs/httpx2/).
 
 Add it to your project:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ Create a `TestClient` by passing your **FastAPI** application to it.
 
 Create functions with a name that starts with `test_` (this is a standard `pytest` convention).
 
-Use the `TestClient` object the same way as you do with `httpx`.
+Use the `TestClient` object the same way as you do with `httpx2`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
@@ -130,7 +130,7 @@ You could then update `test_main.py` with the extended tests:
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
+Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx2`, or even how to do it with `requests`, as HTTPX2's design is based on Requests' design.
 
 Then you just do the same in your tests.
 
@@ -142,7 +142,7 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the [HTTPX documentation](https://www.python-httpx.org).
+For more information about how to pass data to the backend (using `httpx2` or the `TestClient`) check the [HTTPX2 documentation](https://pydantic.dev/docs/httpx2/).
 
 /// note
 

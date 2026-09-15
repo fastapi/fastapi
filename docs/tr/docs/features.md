@@ -169,7 +169,7 @@ Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanm�
 * **WebSocket** desteği.
 * Süreç içi arka plan görevleri.
 * Başlatma ve kapatma olayları.
-* HTTPX üzerine kurulu test istemcisi.
+* HTTPX2 üzerine kurulu test istemcisi.
 * **CORS**, GZip, Static Files, Streaming response’lar.
 * **Session ve Cookie** desteği.
 * %100 test kapsayıcılığı.

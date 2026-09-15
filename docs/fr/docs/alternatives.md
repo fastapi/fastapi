@@ -458,7 +458,7 @@ Il offre :
 * Le support de WebSocket.
 * Les tâches d'arrière-plan in-process.
 * Les événements de démarrage et d'arrêt.
-* Un client de test basé sur HTTPX.
+* Un client de test basé sur HTTPX2.
 * CORS, GZip, fichiers statiques, streaming des réponses.
 * Le support des sessions et des cookies.
 * Une couverture de test à 100 %.

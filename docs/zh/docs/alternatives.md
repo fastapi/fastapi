@@ -427,7 +427,7 @@ Starlette 是一个轻量级的 <dfn title="构建异步 Python Web 应用的新
 * 支持 WebSocket。
 * 进程内后台任务。
 * 启动与停止事件。
-* 基于 HTTPX 的测试客户端。
+* 基于 HTTPX2 的测试客户端。
 * CORS、GZip、静态文件、流式响应。
 * 会话与 Cookie 支持。
 * 100% 测试覆盖率。

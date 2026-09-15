@@ -481,7 +481,7 @@ item: Item
 * 通过 [Strawberry](https://strawberry.rocks) 等库进行 **GraphQL** 集成。
 * 许多额外特性（归功于 Starlette），例如：
     * **WebSockets**
-    * 基于 HTTPX 和 `pytest` 的极其简单的测试
+    * 基于 HTTPX2 和 `pytest` 的极其简单的测试
     * **CORS**
     * **Cookie Sessions**
     * ...以及更多。
@@ -544,7 +544,7 @@ Pydantic 使用：
 
 Starlette 使用：
 
-* [`httpx`](https://www.python-httpx.org) - 使用 `TestClient` 时需要。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) - 使用 `TestClient` 时需要。
 * [`jinja2`](https://jinja.palletsprojects.com) - 使用默认模板配置时需要。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - 使用 `request.form()` 支持表单<dfn title="将 HTTP 请求中的字符串转换为 Python 数据">「解析」</dfn>时需要。
 

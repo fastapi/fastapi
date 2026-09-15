@@ -481,7 +481,7 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 * [Strawberry](https://strawberry.rocks) ve diğer kütüphaneler ile **GraphQL** entegrasyonu.
 * Starlette sayesinde gelen birçok ek özellik:
     * **WebSockets**
-    * HTTPX ve `pytest` tabanlı aşırı kolay testler
+    * HTTPX2 ve `pytest` tabanlı aşırı kolay testler
     * **CORS**
     * **Cookie Sessions**
     * ...ve daha fazlası.
@@ -544,7 +544,7 @@ Pydantic tarafından kullanılanlar:
 
 Starlette tarafından kullanılanlar:
 
-* [`httpx`](https://www.python-httpx.org) - `TestClient` kullanmak istiyorsanız gereklidir.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) - `TestClient` kullanmak istiyorsanız gereklidir.
 * [`jinja2`](https://jinja.palletsprojects.com) - varsayılan template yapılandırmasını kullanmak istiyorsanız gereklidir.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - `request.form()` ile, form <dfn title="HTTP request'ten gelen string'i Python verisine dönüştürme">"ayrıştırma"</dfn> desteği istiyorsanız gereklidir.
 

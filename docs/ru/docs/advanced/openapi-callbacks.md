@@ -51,7 +51,7 @@ Query-параметр `callback_url` использует тип Pydantic [Url]
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 Но, возможно, самая важная часть обратного вызова — это убедиться, что пользователь вашего API (внешний разработчик) правильно реализует *внешний API* в соответствии с данными, которые *ваш API* будет отправлять в теле запроса обратного вызова и т.п.
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Сам обратный вызов — это всего лишь HTTP-запрос.
 
-Реализуя обратный вызов, вы можете использовать, например, [HTTPX](https://www.python-httpx.org) или [Requests](https://requests.readthedocs.io/).
+Реализуя обратный вызов, вы можете использовать, например, [HTTPX2](https://pydantic.dev/docs/httpx2/) или [Requests](https://requests.readthedocs.io/).
 
 ///
 

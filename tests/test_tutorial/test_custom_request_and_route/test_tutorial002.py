@@ -38,7 +38,7 @@ def test_exception_handler_body_access(client: TestClient):
                     "input": {"numbers": [1, 2, 3]},
                 }
             ],
-            # httpx 0.28.0 switches to compact JSON https://github.com/encode/httpx/issues/3363
+            # httpx2, and httpx from 0.28.0, use compact JSON https://github.com/encode/httpx/issues/3363
             "body": IsOneOf('{"numbers": [1, 2, 3]}', '{"numbers":[1,2,3]}'),
         }
     }

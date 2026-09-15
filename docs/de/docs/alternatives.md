@@ -429,7 +429,7 @@ Es bietet:
 * WebSocket-Unterstützung.
 * Hintergrundtasks im selben Prozess.
 * Startup- und Shutdown-Events.
-* Testclient basierend auf HTTPX.
+* Testclient basierend auf HTTPX2.
 * CORS, GZip, statische Dateien, Responses streamen.
 * Session- und Cookie-Unterstützung.
 * 100 % Testabdeckung.

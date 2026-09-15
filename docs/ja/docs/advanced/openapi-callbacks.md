@@ -51,7 +51,7 @@
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 しかし、おそらくコールバックで最も重要な点は、あなたの API 利用者（外部開発者）が、*あなたの API* がコールバックのリクエストボディなどで送るデータに従って、*外部 API* を正しく実装することを確実にすることです。
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 実際のコールバックは単なる HTTP リクエストです。
 
-自分でコールバックを実装する場合は、[HTTPX](https://www.python-httpx.org) や [Requests](https://requests.readthedocs.io/) のようなものを使えます。
+自分でコールバックを実装する場合は、[HTTPX2](https://pydantic.dev/docs/httpx2/) や [Requests](https://requests.readthedocs.io/) のようなものを使えます。
 
 ///
 

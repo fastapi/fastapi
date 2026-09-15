@@ -10,13 +10,13 @@
 
 如果我们想在测试中调用异步函数，那么我们的测试函数必须是异步的。 AnyIO 为此提供了一个简洁的插件，它允许我们指定一些测试函数要异步调用。
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 即使您的 **FastAPI** 应用程序使用普通的 `def` 函数而不是 `async def` ，它本质上仍是一个 `async` 异步应用程序。
 
 `TestClient` 在内部通过一些“魔法”操作，使得您可以在普通的 `def` 测试函数中调用异步的 FastAPI 应用程序，并使用标准的 pytest。但当我们在异步函数中使用它时，这种“魔法”就不再生效了。由于测试以异步方式运行，我们无法在测试函数中继续使用 `TestClient`。
 
-`TestClient` 是基于 [HTTPX](https://www.python-httpx.org) 的。幸运的是，我们可以直接使用它来测试 API。
+`TestClient` 是基于 [HTTPX2](https://pydantic.dev/docs/httpx2/) 的。幸运的是，我们可以直接使用它来测试 API。
 
 ## 示例 { #example }
 

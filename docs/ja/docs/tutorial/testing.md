@@ -2,7 +2,7 @@
 
 [Starlette](https://starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
-[HTTPX](https://www.python-httpx.org) がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
+[HTTPX2](https://pydantic.dev/docs/httpx2/) がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
 
 これを使用すると、**FastAPI** と共に [pytest](https://docs.pytest.org/) を直接利用できます。
 
@@ -10,12 +10,12 @@
 
 /// note | 備考
 
-`TestClient` を使用するには、まず [`httpx`](https://www.python-httpx.org) をインストールします。
+`TestClient` を使用するには、まず [`httpx2`](https://pydantic.dev/docs/httpx2/) をインストールします。
 
 プロジェクトに追加します:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ $ uv add httpx
 
 `test_` から始まる名前の関数を作成します (これは `pytest` の標準的なコンベンションです)。
 
-`httpx` と同じ様に `TestClient` オブジェクトを使用します。
+`httpx2` と同じ様に `TestClient` オブジェクトを使用します。
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します (これも `pytest` の標準です)。
 
@@ -130,7 +130,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx` での実現方法、あるいは HTTPX の設計が Requests の設計をベースにしているため `requests` での実現方法を検索 (Google) できます。
+リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx2` での実現方法、あるいは HTTPX2 の設計が Requests の設計をベースにしているため `requests` での実現方法を検索 (Google) できます。
 
 テストでも同じことを行います。
 
@@ -142,7 +142,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 * *ヘッダー* を渡すには、`headers` パラメータに `dict` を渡します。
 * *cookies* の場合、 `cookies` パラメータに `dict` です。
 
-(`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、[HTTPXのドキュメント](https://www.python-httpx.org)を確認してください。
+(`httpx2` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、[HTTPX2のドキュメント](https://pydantic.dev/docs/httpx2/)を確認してください。
 
 /// note | 備考
 

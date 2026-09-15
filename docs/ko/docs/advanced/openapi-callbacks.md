@@ -51,7 +51,7 @@
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 하지만 콜백에서 가장 중요한 부분은, 여러분의 API 사용자(외부 개발자)가 콜백 요청 body로 *여러분의 API*가 보낼 데이터 등에 맞춰 *external API*를 올바르게 구현하도록 보장하는 것입니다.
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 실제 콜백은 단지 HTTP 요청입니다.
 
-콜백을 직접 구현할 때는 [HTTPX](https://www.python-httpx.org)나 [Requests](https://requests.readthedocs.io/) 같은 것을 사용할 수 있습니다.
+콜백을 직접 구현할 때는 [HTTPX2](https://pydantic.dev/docs/httpx2/)나 [Requests](https://requests.readthedocs.io/) 같은 것을 사용할 수 있습니다.
 
 ///
 

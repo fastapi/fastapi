@@ -51,7 +51,7 @@
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 但回呼中最重要的部分，可能是在確保你的 API 使用者（外部開發者）能正確實作「外部 API」，符合「你的 API」在回呼請求 body 中要送出的資料格式，等等。
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 實際的回呼就是一個 HTTP 請求。
 
-當你自己實作回呼時，可以使用像是 [HTTPX](https://www.python-httpx.org) 或 [Requests](https://requests.readthedocs.io/)。
+當你自己實作回呼時，可以使用像是 [HTTPX2](https://pydantic.dev/docs/httpx2/) 或 [Requests](https://requests.readthedocs.io/)。
 
 ///
 

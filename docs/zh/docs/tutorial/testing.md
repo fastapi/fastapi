@@ -2,7 +2,7 @@
 
 感谢 [Starlette](https://starlette.dev/testclient/)，测试**FastAPI** 应用轻松又愉快。
 
-它基于 [HTTPX](https://www.python-httpx.org)，而HTTPX又是基于Requests设计的，所以很相似且易懂。
+它基于 [HTTPX2](https://pydantic.dev/docs/httpx2/)，而HTTPX2又是基于Requests设计的，所以很相似且易懂。
 
 有了它，你可以直接与**FastAPI**一起使用 [pytest](https://docs.pytest.org/)。
 
@@ -10,12 +10,12 @@
 
 /// note | 注意
 
-要使用 `TestClient`，先要安装 [`httpx`](https://www.python-httpx.org)。
+要使用 `TestClient`，先要安装 [`httpx2`](https://pydantic.dev/docs/httpx2/)。
 
 将它添加到你的项目中：
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ $ uv add httpx
 
 创建名字以 `test_` 开头的函数（这是标准的 `pytest` 约定）。
 
-像使用 `httpx` 那样使用 `TestClient` 对象。
+像使用 `httpx2` 那样使用 `TestClient` 对象。
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
@@ -130,7 +130,7 @@ $ uv add httpx
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx` 做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
+每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx2` 做，或者是用 `requests` 做，毕竟HTTPX2的设计是基于Requests的设计的。
 
 接着只需在测试中同样操作。
 
@@ -142,7 +142,7 @@ $ uv add httpx
 * 要发送 *headers*，传 `dict` 给 `headers` 参数。
 * 对于 *cookies*，传 `dict` 给 `cookies` 参数。
 
-关于如何传数据给后端的更多信息（使用 `httpx` 或 `TestClient`），请查阅 [HTTPX 文档](https://www.python-httpx.org)。
+关于如何传数据给后端的更多信息（使用 `httpx2` 或 `TestClient`），请查阅 [HTTPX2 文档](https://pydantic.dev/docs/httpx2/)。
 
 /// note | 注意
 

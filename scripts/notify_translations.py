@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 from typing import Any, cast
 
-import httpx
+import httpx2
 from github import Github
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
@@ -215,7 +215,7 @@ def get_graphql_response(
         "comment_id": comment_id,
         "body": body,
     }
-    response = httpx.post(
+    response = httpx2.post(
         github_graphql_url,
         headers=headers,
         timeout=settings.httpx_timeout,

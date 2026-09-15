@@ -481,7 +481,7 @@ item: Item
 * 與 [Strawberry](https://strawberry.rocks) 及其他函式庫的 **GraphQL** 整合。
 * 許多額外功能（感謝 Starlette），例如：
     * **WebSockets**
-    * 基於 HTTPX 與 `pytest` 的極其簡單的測試
+    * 基於 HTTPX2 與 `pytest` 的極其簡單的測試
     * **CORS**
     * **Cookie Sessions**
     * ...以及更多。
@@ -544,7 +544,7 @@ Pydantic 會使用：
 
 Starlette 會使用：
 
-* [`httpx`](https://www.python-httpx.org) - 若要使用 `TestClient` 必須安裝。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) - 若要使用 `TestClient` 必須安裝。
 * [`jinja2`](https://jinja.palletsprojects.com) - 若要使用預設的模板設定必須安裝。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - 若要支援表單 <dfn title="將來自 HTTP 請求的字串轉換為 Python 資料">"解析"</dfn>，搭配 `request.form()`。
 

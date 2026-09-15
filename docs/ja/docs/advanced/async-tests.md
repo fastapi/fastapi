@@ -10,13 +10,13 @@
 
 テスト内で非同期関数を呼び出したい場合、テスト関数自体も非同期である必要があります。AnyIO はこれを実現するための便利なプラグインを提供しており、特定のテスト関数を非同期で呼び出すことを指定できます。
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 **FastAPI** アプリケーションが通常の `def` 関数を使っていても、その内側は依然として `async` アプリケーションです。
 
 `TestClient` は、標準の pytest を使って通常の `def` のテスト関数から非同期の FastAPI アプリを呼び出すための「おまじない」を内部で行います。しかし、その「おまじない」はテスト関数自体が非同期の場合には機能しません。テストを非同期で実行すると、テスト関数内で `TestClient` は使えなくなります。
 
-`TestClient` は [HTTPX](https://www.python-httpx.org) を基に作られており、幸いなことに API のテストには HTTPX を直接利用できます。
+`TestClient` は [HTTPX2](https://pydantic.dev/docs/httpx2/) を基に作られており、幸いなことに API のテストには HTTPX2 を直接利用できます。
 
 ## 例 { #example }
 

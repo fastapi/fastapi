@@ -481,7 +481,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 * **GraphQL**-Integration mit [Strawberry](https://strawberry.rocks) und anderen Bibliotheken.
 * Viele zusätzliche Features (dank Starlette) wie:
     * **WebSockets**
-    * extrem einfache Tests auf Basis von HTTPX und `pytest`
+    * extrem einfache Tests auf Basis von HTTPX2 und `pytest`
     * **CORS**
     * **Cookie-Sessions**
     * ... und mehr.
@@ -544,7 +544,7 @@ Verwendet von Pydantic:
 
 Verwendet von Starlette:
 
-* [`httpx`](https://www.python-httpx.org) – erforderlich, wenn Sie den `TestClient` verwenden möchten.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) – erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * [`jinja2`](https://jinja.palletsprojects.com) – erforderlich, wenn Sie die Default-Template-Konfiguration verwenden möchten.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) – erforderlich, wenn Sie Formulare mittels `request.form()` <dfn title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</dfn> möchten.
 

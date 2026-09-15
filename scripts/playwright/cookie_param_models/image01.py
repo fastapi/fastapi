@@ -1,7 +1,7 @@
 import subprocess
 import time
 
-import httpx
+import httpx2
 from playwright.sync_api import Playwright, sync_playwright
 
 
@@ -29,8 +29,8 @@ process = subprocess.Popen(
 try:
     for _ in range(3):
         try:
-            response = httpx.get("http://localhost:8000/docs")
-        except httpx.ConnectError:
+            response = httpx2.get("http://localhost:8000/docs")
+        except httpx2.ConnectError:
             time.sleep(1)
             break
     with sync_playwright() as playwright:

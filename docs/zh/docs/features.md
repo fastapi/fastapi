@@ -170,7 +170,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 * **支持 WebSocket**。
 * 进程内后台任务。
 * Startup 和 shutdown 事件。
-* 测试客户端基于 HTTPX。
+* 测试客户端基于 HTTPX2。
 * **CORS**、GZip、静态文件、流响应。
 * 支持 **Session 和 Cookie**。
 * 100% 测试覆盖率。

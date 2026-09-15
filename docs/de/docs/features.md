@@ -169,7 +169,7 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 * **WebSocket**-Unterstützung.
 * Hintergrundtasks im selben Prozess.
 * Startup- und Shutdown-Events.
-* Testclient basierend auf HTTPX.
+* Testclient basierend auf HTTPX2.
 * **CORS**, GZip, statische Dateien, Responses streamen.
 * **Sitzungs- und Cookie**-Unterstützung.
 * 100 % Testabdeckung.

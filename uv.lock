@@ -861,7 +861,7 @@ dependencies = [
 all = [
     { name = "email-validator" },
     { name = "fastapi-cli", extra = ["standard"] },
-    { name = "httpx" },
+    { name = "httpx2" },
     { name = "itsdangerous" },
     { name = "jinja2" },
     { name = "pydantic-extra-types" },
@@ -874,7 +874,7 @@ standard = [
     { name = "email-validator" },
     { name = "fastapi-cli", extra = ["standard"] },
     { name = "fastar" },
-    { name = "httpx" },
+    { name = "httpx2" },
     { name = "jinja2" },
     { name = "pydantic-extra-types" },
     { name = "pydantic-settings" },
@@ -884,7 +884,7 @@ standard = [
 standard-no-fastapi-cloud-cli = [
     { name = "email-validator" },
     { name = "fastapi-cli", extra = ["standard-no-fastapi-cloud-cli"] },
-    { name = "httpx" },
+    { name = "httpx2" },
     { name = "jinja2" },
     { name = "pydantic-extra-types" },
     { name = "pydantic-settings" },
@@ -940,7 +940,6 @@ docs = [
     { name = "cairosvg" },
     { name = "griffe-typingdoc" },
     { name = "griffe-warnings-deprecated" },
-    { name = "httpx" },
     { name = "httpx2" },
     { name = "jieba" },
     { name = "markdown-include-variants" },
@@ -954,12 +953,11 @@ docs = [
     { name = "zensical" },
 ]
 docs-tests = [
-    { name = "httpx" },
     { name = "httpx2" },
     { name = "ruff" },
 ]
 github-actions = [
-    { name = "httpx" },
+    { name = "httpx2" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pygithub" },
@@ -1007,9 +1005,9 @@ requires-dist = [
     { name = "fastapi-cli", extras = ["standard"], marker = "extra == 'standard'", specifier = ">=0.0.32" },
     { name = "fastapi-cli", extras = ["standard-no-fastapi-cloud-cli"], marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=0.0.32" },
     { name = "fastar", marker = "extra == 'standard'", specifier = ">=0.9.0" },
-    { name = "httpx", marker = "extra == 'all'", specifier = ">=0.23.0,<1.0.0" },
-    { name = "httpx", marker = "extra == 'standard'", specifier = ">=0.23.0,<1.0.0" },
-    { name = "httpx", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=0.23.0,<1.0.0" },
+    { name = "httpx2", marker = "extra == 'all'", specifier = ">=2.0.0" },
+    { name = "httpx2", marker = "extra == 'standard'", specifier = ">=2.0.0" },
+    { name = "httpx2", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=2.0.0" },
     { name = "itsdangerous", marker = "extra == 'all'", specifier = ">=1.1.0" },
     { name = "jinja2", marker = "extra == 'all'", specifier = ">=3.1.5" },
     { name = "jinja2", marker = "extra == 'standard'", specifier = ">=3.1.5" },
@@ -1083,7 +1081,6 @@ docs = [
     { name = "cairosvg", specifier = ">=2.8.2" },
     { name = "griffe-typingdoc", specifier = ">=0.3.0" },
     { name = "griffe-warnings-deprecated", specifier = ">=1.1.0" },
-    { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "httpx2", specifier = ">=2.0.0" },
     { name = "jieba", specifier = ">=0.42.1" },
     { name = "markdown-include-variants", specifier = ">=0.0.8" },
@@ -1097,12 +1094,11 @@ docs = [
     { name = "zensical", specifier = ">=0.0.42" },
 ]
 docs-tests = [
-    { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "httpx2", specifier = ">=2.0.0" },
     { name = "ruff", specifier = ">=0.14.14,<0.16.0" },
 ]
 github-actions = [
-    { name = "httpx", specifier = ">=0.27.0,<1.0.0" },
+    { name = "httpx2", specifier = ">=2.0.0" },
     { name = "pydantic", specifier = ">=2.9.0,<3.0.0" },
     { name = "pydantic-settings", specifier = ">=2.1.0,<3.0.0" },
     { name = "pygithub", specifier = ">=2.3.0,<3.0.0" },

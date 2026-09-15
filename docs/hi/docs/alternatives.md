@@ -429,7 +429,7 @@ Starlette एक lightweight <dfn title="asynchronous Python web applications �
 * WebSocket support.
 * In-process background tasks.
 * Startup और shutdown events.
-* HTTPX पर built test client.
+* HTTPX2 पर built test client.
 * CORS, GZip, Static Files, Streaming responses.
 * Session और Cookie support.
 * 100% test coverage.

@@ -169,7 +169,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 * Soporte para **WebSocket**.
 * Tareas en segundo plano en el mismo proceso.
 * Eventos de inicio y apagado.
-* Cliente de prueba basado en HTTPX.
+* Cliente de prueba basado en HTTPX2.
 * **CORS**, GZip, archivos estáticos, responses en streaming.
 * Soporte para **Session y Cookie**.
 * Cobertura de tests del 100%.

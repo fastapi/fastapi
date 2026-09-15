@@ -429,7 +429,7 @@ Starlette 是一個輕量的 <dfn title="用於構建非同步 Python 網頁應�
 * WebSocket 支援。
 * 行程內（in-process）背景任務。
 * 啟動與關閉事件。
-* 建立在 HTTPX 上的測試用戶端。
+* 建立在 HTTPX2 上的測試用戶端。
 * CORS、GZip、靜態檔案、串流回應。
 * Session 與 Cookie 支援。
 * 100% 測試涵蓋率。

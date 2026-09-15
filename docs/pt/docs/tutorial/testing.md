@@ -2,7 +2,7 @@
 
 Graças ao [Starlette](https://starlette.dev/testclient/), testar aplicações **FastAPI** é fácil e agradável.
 
-Ele é baseado no [HTTPX](https://www.python-httpx.org), que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
+Ele é baseado no [HTTPX2](https://pydantic.dev/docs/httpx2/), que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
 Com ele, você pode usar o [pytest](https://docs.pytest.org/) diretamente com **FastAPI**.
 
@@ -10,12 +10,12 @@ Com ele, você pode usar o [pytest](https://docs.pytest.org/) diretamente com **
 
 /// note | Nota
 
-Para usar o `TestClient`, primeiro instale [`httpx`](https://www.python-httpx.org).
+Para usar o `TestClient`, primeiro instale [`httpx2`](https://pydantic.dev/docs/httpx2/).
 
 Adicione-o ao seu projeto:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ Crie um `TestClient` passando sua aplicação **FastAPI** para ele.
 
 Crie funções com um nome que comece com `test_` (essa é a convenção padrão do `pytest`).
 
-Use o objeto `TestClient` da mesma forma que você faz com `httpx`.
+Use o objeto `TestClient` da mesma forma que você faz com `httpx2`.
 
 Escreva instruções `assert` simples com as expressões Python padrão que você precisa verificar (novamente, `pytest` padrão).
 
@@ -130,7 +130,7 @@ Você pode então atualizar `test_main.py` com os testes estendidos:
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX é baseado no design do Requests.
+Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx2`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX2 é baseado no design do Requests.
 
 Depois é só fazer o mesmo nos seus testes.
 
@@ -142,7 +142,7 @@ Por exemplo:
 * Para passar *headers*, use um `dict` no parâmetro `headers`.
 * Para *cookies*, um `dict` no parâmetro `cookies`.
 
-Para mais informações sobre como passar dados para o backend (usando `httpx` ou `TestClient`), consulte a [documentação do HTTPX](https://www.python-httpx.org).
+Para mais informações sobre como passar dados para o backend (usando `httpx2` ou `TestClient`), consulte a [documentação do HTTPX2](https://pydantic.dev/docs/httpx2/).
 
 /// note | Nota
 

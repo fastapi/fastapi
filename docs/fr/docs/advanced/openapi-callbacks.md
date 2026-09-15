@@ -51,7 +51,7 @@ Cela pourrait être seulement une ou deux lignes de code, comme :
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 Mais la partie la plus importante du callback est sans doute de vous assurer que l’utilisateur de votre API (la personne développeuse externe) implémente correctement l’*API externe*, conformément aux données que *votre API* va envoyer dans le corps de la requête du callback, etc.
@@ -66,7 +66,7 @@ Cet exemple n’implémente pas le callback lui-même (qui pourrait être une si
 
 Le callback réel n’est qu’une requête HTTP.
 
-En implémentant vous-même le callback, vous pourriez utiliser quelque chose comme [HTTPX](https://www.python-httpx.org) ou [Requests](https://requests.readthedocs.io/).
+En implémentant vous-même le callback, vous pourriez utiliser quelque chose comme [HTTPX2](https://pydantic.dev/docs/httpx2/) ou [Requests](https://requests.readthedocs.io/).
 
 ///
 

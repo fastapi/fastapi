@@ -51,7 +51,7 @@
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 但回调最重要的部分可能是确保你的 API 用户（外部开发者）正确实现*外部 API*，与*你的 API*将在回调请求体中发送的数据等相匹配。
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 实际的回调只是一个 HTTP 请求。
 
-自己实现回调时，你可以使用类似 [HTTPX](https://www.python-httpx.org) 或 [Requests](https://requests.readthedocs.io/) 的工具。
+自己实现回调时，你可以使用类似 [HTTPX2](https://pydantic.dev/docs/httpx2/) 或 [Requests](https://requests.readthedocs.io/) 的工具。
 
 ///
 

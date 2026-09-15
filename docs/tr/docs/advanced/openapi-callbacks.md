@@ -51,7 +51,7 @@ Sadece bir-iki satır kod bile olabilir, örneğin:
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 Ancak callback'in belki de en önemli kısmı, API'nizin kullanıcısının (external geliştiricinin) *external API*'yi doğru şekilde uyguladığından emin olmaktır; çünkü sizin API'niz callback'in request body'sinde belirli veriler gönderecektir, vb.
@@ -66,7 +66,7 @@ Bu örnek callback'in kendisini implemente etmiyor (o zaten tek satır kod olabi
 
 Gerçek callback, sadece bir HTTP request'tir.
 
-Callback'i kendiniz implemente ederken [HTTPX](https://www.python-httpx.org) veya [Requests](https://requests.readthedocs.io/) gibi bir şey kullanabilirsiniz.
+Callback'i kendiniz implemente ederken [HTTPX2](https://pydantic.dev/docs/httpx2/) veya [Requests](https://requests.readthedocs.io/) gibi bir şey kullanabilirsiniz.
 
 ///
 

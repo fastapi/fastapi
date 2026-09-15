@@ -10,13 +10,13 @@
 
 若要在測試中呼叫非同步函式，測試函式本身也必須是非同步的。AnyIO 為此提供了一個好用的外掛，讓我們可以標示某些測試函式以非同步方式執行。
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 即使你的 **FastAPI** 應用使用一般的 `def` 函式而非 `async def`，它在底層仍然是個 `async` 應用。
 
 `TestClient` 在內部做了一些魔法，讓我們能在一般的 `def` 測試函式中，使用標準 pytest 來呼叫非同步的 FastAPI 應用。但當我們在非同步函式中使用它時，這個魔法就不再奏效了。也就是說，當以非同步方式執行測試時，就不能在測試函式內使用 `TestClient`。
 
-`TestClient` 是建立在 [HTTPX](https://www.python-httpx.org) 之上，所幸我們可以直接使用它來測試 API。
+`TestClient` 是建立在 [HTTPX2](https://pydantic.dev/docs/httpx2/) 之上，所幸我們可以直接使用它來測試 API。
 
 ## 範例 { #example }
 

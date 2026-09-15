@@ -5,7 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-import httpx
+import httpx2
 import yaml
 from github import Github
 from pydantic import BaseModel, SecretStr
@@ -97,7 +97,7 @@ def get_graphql_response(
 ) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.sponsors_token.get_secret_value()}"}
     variables = {"after": after}
-    response = httpx.post(
+    response = httpx2.post(
         github_graphql_url,
         headers=headers,
         timeout=settings.httpx_timeout,

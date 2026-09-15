@@ -2,7 +2,7 @@
 
 [Starlette](https://starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
 
-Temelde [HTTPX](https://www.python-httpx.org) üzerine kuruludur; HTTPX de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
+Temelde [HTTPX2](https://pydantic.dev/docs/httpx2/) üzerine kuruludur; HTTPX2 de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
 
 Bu sayede **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
 
@@ -10,12 +10,12 @@ Bu sayede **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullana
 
 /// note | Not
 
-`TestClient` kullanmak için önce [`httpx`](https://www.python-httpx.org)'i kurun.
+`TestClient` kullanmak için önce [`httpx2`](https://pydantic.dev/docs/httpx2/)'yi kurun.
 
 Projenize ekleyin:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
@@ -26,7 +26,7 @@ $ uv add httpx
 
 Adı `test_` ile başlayan fonksiyonlar oluşturun (bu, `pytest`'in standart konvansiyonudur).
 
-`TestClient` nesnesini `httpx` ile kullandığınız şekilde kullanın.
+`TestClient` nesnesini `httpx2` ile kullandığınız şekilde kullanın.
 
 Kontrol etmeniz gereken şeyler için standart Python ifadeleriyle basit `assert` satırları yazın (bu da `pytest` standardıdır).
 
@@ -130,7 +130,7 @@ Sonrasında `test_main.py` dosyanızı genişletilmiş testlerle güncelleyebili
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Client'ın request içinde bir bilgi göndermesi gerektiğinde ve bunu nasıl yapacağınızı bilemediğinizde, `httpx` ile nasıl yapılacağını aratabilirsiniz (Google) ya da HTTPX’in tasarımı Requests’e dayandığı için `requests` ile nasıl yapıldığını da arayabilirsiniz.
+Client'ın request içinde bir bilgi göndermesi gerektiğinde ve bunu nasıl yapacağınızı bilemediğinizde, `httpx2` ile nasıl yapılacağını aratabilirsiniz (Google) ya da HTTPX2’nin tasarımı Requests’e dayandığı için `requests` ile nasıl yapıldığını da arayabilirsiniz.
 
 Sonra testlerinizde aynısını uygularsınız.
 
@@ -142,7 +142,7 @@ Sonra testlerinizde aynısını uygularsınız.
 * *headers* göndermek için, `headers` parametresine bir `dict` verin.
 * *cookies* için, `cookies` parametresine bir `dict` verin.
 
-Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient` kullanarak) [HTTPX dokümantasyonu](https://www.python-httpx.org)'na bakın.
+Backend'e veri geçme hakkında daha fazla bilgi için (`httpx2` veya `TestClient` kullanarak) [HTTPX2 dokümantasyonu](https://pydantic.dev/docs/httpx2/)'na bakın.
 
 /// note | Not
 

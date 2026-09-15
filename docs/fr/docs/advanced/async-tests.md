@@ -10,13 +10,13 @@ Voyons comment procéder.
 
 Si nous voulons appeler des fonctions asynchrones dans nos tests, nos fonctions de test doivent être asynchrones. AnyIO fournit un plug-in pratique qui nous permet d'indiquer que certaines fonctions de test doivent être appelées de manière asynchrone.
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 Même si votre application **FastAPI** utilise des fonctions `def` normales au lieu de `async def`, c'est toujours une application `async` en interne.
 
 Le `TestClient` fait un peu de magie pour appeler l'application FastAPI asynchrone depuis vos fonctions de test `def` normales, en utilisant pytest standard. Mais cette magie ne fonctionne plus lorsque nous l'utilisons dans des fonctions asynchrones. En exécutant nos tests de manière asynchrone, nous ne pouvons plus utiliser le `TestClient` dans nos fonctions de test.
 
-Le `TestClient` est basé sur [HTTPX](https://www.python-httpx.org) et, heureusement, nous pouvons l'utiliser directement pour tester l'API.
+Le `TestClient` est basé sur [HTTPX2](https://pydantic.dev/docs/httpx2/) et, heureusement, nous pouvons l'utiliser directement pour tester l'API.
 
 ## Exemple { #example }
 

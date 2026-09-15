@@ -481,7 +481,7 @@ item: Item
 * [Strawberry](https://strawberry.rocks) および他のライブラリによる **GraphQL** 統合。
 * 以下のようなたくさんのおまけ機能（Starlette のおかげです）:
     * **WebSockets**
-    * HTTPX と `pytest` に基づく極めて簡単なテスト
+    * HTTPX2 と `pytest` に基づく極めて簡単なテスト
     * **CORS**
     * **Cookie Sessions**
     * ...などなど。
@@ -544,7 +544,7 @@ Pydantic によって使用されるもの:
 
 Starlette によって使用されるもの:
 
-* [`httpx`](https://www.python-httpx.org) - `TestClient` を使用したい場合に必要です。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) - `TestClient` を使用したい場合に必要です。
 * [`jinja2`](https://jinja.palletsprojects.com) - デフォルトのテンプレート設定を使用したい場合に必要です。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - `request.form()` とともに、フォームの <dfn title="HTTP リクエストから届く文字列を Python データに変換すること">「parsing」</dfn> をサポートしたい場合に必要です。
 

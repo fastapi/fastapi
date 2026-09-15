@@ -10,13 +10,13 @@
 
 테스트에서 비동기 함수를 호출하려면, 테스트 함수도 비동기여야 합니다. AnyIO는 이를 위한 깔끔한 플러그인을 제공하며, 일부 테스트 함수를 비동기로 호출하도록 지정할 수 있습니다.
 
-## HTTPX { #httpx }
+## HTTPX2 { #httpx2 }
 
 **FastAPI** 애플리케이션이 `async def` 대신 일반 `def` 함수를 사용하더라도, 내부적으로는 여전히 `async` 애플리케이션입니다.
 
 `TestClient`는 표준 pytest를 사용하여, 일반 `def` 테스트 함수 안에서 비동기 FastAPI 애플리케이션을 호출하도록 내부에서 마법 같은 처리를 합니다. 하지만 비동기 함수 안에서 이를 사용하면 그 마법은 더 이상 동작하지 않습니다. 테스트를 비동기로 실행하면, 테스트 함수 안에서 `TestClient`를 더 이상 사용할 수 없습니다.
 
-`TestClient`는 [HTTPX](https://www.python-httpx.org)를 기반으로 하며, 다행히 HTTPX를 직접 사용해 API를 테스트할 수 있습니다.
+`TestClient`는 [HTTPX2](https://pydantic.dev/docs/httpx2/)를 기반으로 하며, 다행히 HTTPX2를 직접 사용해 API를 테스트할 수 있습니다.
 
 ## 예시 { #example }
 

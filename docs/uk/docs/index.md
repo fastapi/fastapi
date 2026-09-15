@@ -481,7 +481,7 @@ item: Item
 * Інтеграцію **GraphQL** з [Strawberry](https://strawberry.rocks) та іншими бібліотеками.
 * Багато додаткових можливостей (завдяки Starlette) як-от:
     * **WebSockets**
-    * надзвичайно прості тести на основі HTTPX та `pytest`
+    * надзвичайно прості тести на основі HTTPX2 та `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...та більше.
@@ -544,7 +544,7 @@ FastAPI залежить від Pydantic і Starlette.
 
 Використовується Starlette:
 
-* [`httpx`](https://www.python-httpx.org) - потрібно, якщо ви хочете використовувати `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) - потрібно, якщо ви хочете використовувати `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - потрібно, якщо ви хочете використовувати конфігурацію шаблонів за замовчуванням.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - потрібно, якщо ви хочете підтримувати форми з <dfn title="перетворення строки, що надходить із HTTP-запиту, у дані Python">«парсингом»</dfn> через `request.form()`.
 

@@ -51,7 +51,7 @@
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx2.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 Але, можливо, найважливіша частина зворотного виклику - переконатися, що користувач вашого API (зовнішній розробник) правильно реалізує *зовнішній API* відповідно до даних, які *ваш API* надсилатиме в тілі запиту зворотного виклику тощо.
@@ -66,7 +66,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Фактичний зворотний виклик - це просто HTTP-запит.
 
-Реалізуючи зворотний виклик самостійно, ви можете скористатися, наприклад, [HTTPX](https://www.python-httpx.org) або [Requests](https://requests.readthedocs.io/).
+Реалізуючи зворотний виклик самостійно, ви можете скористатися, наприклад, [HTTPX2](https://pydantic.dev/docs/httpx2/) або [Requests](https://requests.readthedocs.io/).
 
 ///
 

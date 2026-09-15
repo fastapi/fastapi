@@ -61,7 +61,7 @@ standard = [
     "fastapi-cli[standard] >=0.0.32",
     "fastar >= 0.9.0",
     # For the test client
-    "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -79,7 +79,7 @@ standard = [
 standard-no-fastapi-cloud-cli = [
     "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.32",
     # For the test client
-    "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -97,7 +97,7 @@ standard-no-fastapi-cloud-cli = [
 all = [
     "fastapi-cli[standard] >=0.0.32",
     # # For the test client
-    "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -145,12 +145,11 @@ docs = [
     "zensical >=0.0.42",
 ]
 docs-tests = [
-    "httpx >=0.23.0,<1.0.0",
-    "httpx2>=2.0.0",
+    "httpx2 >=2.0.0",
     "ruff >=0.14.14,<0.16.0",
 ]
 github-actions = [
-    "httpx >=0.27.0,<1.0.0",
+    "httpx2 >=2.0.0",
     "pydantic >=2.9.0,<3.0.0",
     "pydantic-settings >=2.1.0,<3.0.0",
     "pygithub >=2.3.0,<3.0.0",
@@ -163,6 +162,9 @@ tests = [
     "coverage[toml] >=7.13,<8.0",
     "dirty-equals >=0.9.0",
     "flask >=3.0.0,<4.0.0",
+    # Only to exercise Starlette's deprecated `httpx` fallback in `TestClient`,
+    # in the CI job that uninstalls `httpx2`. FastAPI itself requires `httpx2`.
+    "httpx >=0.23.0,<1.0.0",
     "inline-snapshot >=0.21.1",
     "mypy >=1.14.1",
     "pwdlib[argon2] >=0.2.1",

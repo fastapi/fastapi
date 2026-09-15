@@ -429,7 +429,7 @@ Ele tem:
 * Suporte a WebSocket.
 * Tarefas em segundo plano dentro do processo.
 * Eventos de inicialização e encerramento.
-* Cliente de testes construído com HTTPX.
+* Cliente de testes construído com HTTPX2.
 * CORS, GZip, Arquivos Estáticos, respostas Streaming.
 * Suporte para Sessão e Cookie.
 * 100% coberto por testes.

@@ -429,7 +429,7 @@ Starlette는 경량 <dfn title="비동기 Python 웹 애플리케이션을 구�
 * WebSocket 지원.
 * 프로세스 내 백그라운드 작업.
 * 시작 및 종료 이벤트.
-* HTTPX 기반의 테스트 클라이언트.
+* HTTPX2 기반의 테스트 클라이언트.
 * CORS, GZip, Static Files, 스트리밍 응답.
 * 세션 및 쿠키 지원.
 * 100% 테스트 커버리지.
