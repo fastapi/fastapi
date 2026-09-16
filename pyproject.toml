@@ -229,6 +229,7 @@ addopts = [
 strict_xfail = true
 filterwarnings = [
     "error",
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
 ]
 timeout = "20"
 
