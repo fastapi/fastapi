@@ -91,6 +91,8 @@ from fastapi.utils import (
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import get_route_path, is_async_callable
+from starlette.background import BackgroundTask
+from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
 from starlette.datastructures import URL, FormData, URLPath
 from starlette.exceptions import HTTPException
@@ -352,6 +354,23 @@ async def run_endpoint_function(
         return await dependant.call(**values)
     else:
         return await run_in_threadpool(dependant.call, **values)
+
+
+def _merge_background_tasks(
+    target_response: Response, background_tasks: StarletteBackgroundTasks | None
+) -> None:
+    if background_tasks is None:
+        return
+    if target_response.background is None:
+        target_response.background = background_tasks
+    elif target_response.background is background_tasks:
+        return
+    elif isinstance(target_response.background, StarletteBackgroundTasks):
+        background_tasks.tasks.extend(target_response.background.tasks)
+        target_response.background = background_tasks
+    elif isinstance(target_response.background, BackgroundTask):
+        background_tasks.tasks.append(target_response.background)
+        target_response.background = background_tasks
 
 
 def _build_response_args(
@@ -709,8 +728,9 @@ def get_request_handler(
                     is_coroutine=is_coroutine,
                 )
                 if isinstance(raw_response, Response):
-                    if raw_response.background is None:
-                        raw_response.background = solved_result.background_tasks
+                    _merge_background_tasks(
+                        raw_response, solved_result.background_tasks
+                    )
                     response = raw_response
                 else:
                     response_args = _build_response_args(
@@ -2199,8 +2219,7 @@ class _FrontendRouteGroup(BaseRoute):
                 embed_body_fields=embed_body_fields,
             ) as solved_result:
                 response = await route.app.get_response_for_scope(scope)
-                if response.background is None:
-                    response.background = solved_result.background_tasks
+                _merge_background_tasks(response, solved_result.background_tasks)
                 response.headers.raw.extend(solved_result.response.headers.raw)
                 await response(scope, receive, send)
             return
