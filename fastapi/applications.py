@@ -220,7 +220,7 @@ class FastAPI(Starlette):
             ),
         ] = "/openapi.json",
         openapi_tags: Annotated[
-            list[OpenAPITag] | None,
+            list[OpenAPITag] | list[dict[str, Any]] | None,
             Doc(
                 """
                 A list of tags used by OpenAPI, these are the same `tags` you can set

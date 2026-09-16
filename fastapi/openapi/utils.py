@@ -591,7 +591,7 @@ def get_openapi(
     description: str | None = None,
     routes: Sequence[BaseRoute | routing.RouteContext],
     webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
-    tags: list[OpenAPITag] | None = None,
+    tags: list[OpenAPITag] | list[dict[str, Any]] | None = None,
     servers: list[dict[str, str | Any]] | None = None,
     terms_of_service: str | None = None,
     contact: dict[str, str | Any] | None = None,
