@@ -16,6 +16,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
 * Routing: declare router-level prefix, tags, and shared dependencies on the `APIRouter`; see [the path operation reference](references/path-operations.md).
+* Testing: use `TestClient` with regular `def` tests, also inside `async def` tests; see [Testing](#testing) and [the testing reference](references/testing.md).
 * Tooling and related libraries: use uv, Ruff, ty, Asyncer, SQLModel, and HTTPX when applicable; see [the other tools reference](references/other-tools.md).
 
 ## Use the `fastapi` CLI
@@ -260,6 +261,35 @@ async def stream_events() -> AsyncIterable[ServerSentEvent]:
 Plain objects are automatically JSON-serialized as `data:` fields. Use `ServerSentEvent` for full control over SSE fields (`event`, `id`, `retry`, `comment`) and `raw_data` for pre-formatted strings.
 
 See [the streaming reference](references/streaming.md) for JSON Lines, Server-Sent Events (`EventSourceResponse`, `ServerSentEvent`), and byte streaming (`StreamingResponse`) patterns.
+
+## Testing
+
+Use `TestClient` to test *path operations*, with regular `def` test functions. Create it in a `with` block when the app has a `lifespan`, otherwise the startup code never runs and the requests succeed against uninitialized state.
+
+Replace dependencies that reach external services with `app.dependency_overrides` instead of patching, and reset the overrides after each test.
+
+Keep using `TestClient` inside `async def` tests, it runs the app in its own event loop, so requests, WebSockets, and the `lifespan` keep working.
+
+```python
+from fastapi import FastAPI
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: str) -> dict:
+    return {"item_id": item_id}
+
+
+def test_read_item():
+    with TestClient(app) as client:
+        response = client.get("/items/plumbus")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": "plumbus"}
+```
+
+See [the testing reference](references/testing.md) for dependency overrides, WebSockets, and async tests.
 
 ## Tooling
 
