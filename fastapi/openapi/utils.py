@@ -156,6 +156,29 @@ def _get_openapi_security_definitions(
     return security_definitions, operation_security
 
 
+def _warn_on_duplicate_path(
+    *,
+    path: str,
+    paths: dict[str, dict[str, Any]],
+    new_path: dict[str, Any],
+) -> None:
+    if path not in paths:
+        return
+    existing_methods = set(paths[path].keys())
+    new_methods = set(new_path.keys())
+    colliding = existing_methods & new_methods
+    if colliding:
+        warnings.warn(
+            f"Duplicate OpenAPI path '{path}' for methods {sorted(colliding)}. "
+            "This can happen when two routes use different Starlette path "
+            "converters (e.g. {id:int} and {id:str}) that normalize to the same "
+            "OpenAPI path. The OpenAPI spec will only show one handler, but the "
+            "runtime router may execute a different one. Consider using distinct "
+            "path parameter names to avoid this.",
+            stacklevel=1,
+        )
+
+
 def _get_openapi_operation_parameters(
     *,
     dependency_data: _OpenAPIDependencyData,
@@ -638,6 +661,9 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
+                    _warn_on_duplicate_path(
+                        path=api_route.path_format, paths=paths, new_path=path
+                    )
                     paths.setdefault(api_route.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
@@ -658,6 +684,11 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
+                    _warn_on_duplicate_path(
+                        path=api_webhook.path_format,
+                        paths=webhook_paths,
+                        new_path=path,
+                    )
                     webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
