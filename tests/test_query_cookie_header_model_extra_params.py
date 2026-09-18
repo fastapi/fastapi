@@ -4,7 +4,7 @@ from typing import Annotated
 import fastapi.dependencies.utils as dependency_utils
 from fastapi import Cookie, Depends, FastAPI, Header, Query
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import AliasChoices, BaseModel
 
 app = FastAPI()
 
@@ -25,6 +25,13 @@ class QueryModelWithList(BaseModel):
 
 class QueryModelWithAlias(BaseModel):
     item_ids: Annotated[list[str] | None, Query(alias="itemAlias")] = None
+
+
+class QueryModelWithAliasChoices(BaseModel):
+    item_ids: Annotated[
+        list[str] | None,
+        Query(validation_alias=AliasChoices("itemAlias", "item_ids")),
+    ] = None
 
 
 @app.get("/query")
@@ -129,6 +136,27 @@ def test_query_model_dependency_resolves_aliased_signature_parameter(monkeypatch
 
     monkeypatch.setattr(dependency_utils, "get_typed_signature", signature_with_alias)
     dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithAlias)
+    assert [field.name for field in dependant.query_params] == ["itemAlias"]
+    assert not dependant.body_params
+
+
+def test_query_model_dependency_resolves_validation_alias_choices(monkeypatch):
+    def signature_with_alias(call):
+        return inspect.Signature(
+            [
+                inspect.Parameter(
+                    "itemAlias",
+                    inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    annotation=list[str] | None,
+                    default=None,
+                )
+            ]
+        )
+
+    monkeypatch.setattr(dependency_utils, "get_typed_signature", signature_with_alias)
+    dependant = dependency_utils.get_dependant(
+        path="/", call=QueryModelWithAliasChoices
+    )
     assert [field.name for field in dependant.query_params] == ["itemAlias"]
     assert not dependant.body_params
 
