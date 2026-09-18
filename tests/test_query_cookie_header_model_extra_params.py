@@ -1,3 +1,4 @@
+import inspect
 from typing import Annotated
 
 import fastapi.dependencies.utils as dependency_utils
@@ -20,6 +21,10 @@ class AuthHeaders(BaseModel):
 
 class QueryModelWithList(BaseModel):
     field: Annotated[list[str] | None, Query()] = None
+
+
+class QueryModelWithAlias(BaseModel):
+    item_ids: Annotated[list[str] | None, Query(alias="itemAlias")] = None
 
 
 @app.get("/query")
@@ -45,6 +50,13 @@ async def header_model_requires_hyphen(data: AuthHeaders = Header()):
 @app.get("/query-list-dependency")
 async def query_model_with_list_dependency(
     data: Annotated[QueryModelWithList, Depends()],
+):
+    return data
+
+
+@app.get("/query-list-dependency-alias")
+async def query_model_with_alias_dependency(
+    data: Annotated[QueryModelWithAlias, Depends()],
 ):
     return data
 
@@ -100,6 +112,35 @@ def test_query_model_dependency_falls_back_when_hints_cannot_be_resolved(
     monkeypatch.setattr(dependency_utils, "get_type_hints", raise_name_error)
     dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithList)
     assert dependant.body_params
+
+
+def test_query_model_dependency_resolves_aliased_signature_parameter(monkeypatch):
+    def signature_with_alias(call):
+        return inspect.Signature(
+            [
+                inspect.Parameter(
+                    "itemAlias",
+                    inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    annotation=list[str] | None,
+                    default=None,
+                )
+            ]
+        )
+
+    monkeypatch.setattr(dependency_utils, "get_typed_signature", signature_with_alias)
+    dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithAlias)
+    assert [field.name for field in dependant.query_params] == ["itemAlias"]
+    assert not dependant.body_params
+
+
+def test_query_model_dependency_parses_aliased_annotated_list():
+    client = TestClient(app)
+    resp = client.get(
+        "/query-list-dependency-alias",
+        params=[("itemAlias", "foo"), ("itemAlias", "bar")],
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"itemAlias": ["foo", "bar"]}
 
 
 def test_header_pass_extra_list():

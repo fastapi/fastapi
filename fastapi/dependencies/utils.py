@@ -293,17 +293,33 @@ def get_dependant(
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     model_annotations: dict[str, Any] = {}
+    model_fields: dict[str, Any] = {}
     if lenient_issubclass(call, BaseModel):
         try:
             model_annotations = get_type_hints(call, include_extras=True)
         except Exception:
             # Keep the standard signature-based path when annotations cannot be resolved.
             pass
+        model_fields = getattr(call, "model_fields", None) or getattr(
+            call, "__fields__", {}
+        )
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
+        annotation = model_annotations.get(param_name)
+        if annotation is None and model_annotations:
+            for field_name, field in model_fields.items():
+                aliases = [getattr(field, "alias", None)]
+                validation_alias = getattr(field, "validation_alias", None)
+                if isinstance(validation_alias, str):
+                    aliases.append(validation_alias)
+                else:
+                    aliases.extend(getattr(validation_alias, "choices", ()) or ())
+                if param_name in aliases:
+                    annotation = model_annotations.get(field_name)
+                    break
         param_details = analyze_param(
             param_name=param_name,
-            annotation=model_annotations.get(param_name, param.annotation),
+            annotation=annotation if annotation is not None else param.annotation,
             value=param.default,
             is_path_param=is_path_param,
         )
