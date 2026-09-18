@@ -1,5 +1,7 @@
+import sys
 from typing import Any, cast
 
+import pytest
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
@@ -138,3 +140,42 @@ def test_serialize_sequence_value_with_none_first_in_union():
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]
     assert isinstance(result, list)
+
+
+def test_pydantic_v1_not_imported_when_not_already_loaded(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from fastapi._compat.shared import (
+        is_pydantic_v1_model_class,
+        is_pydantic_v1_model_instance,
+    )
+
+    monkeypatch.delitem(sys.modules, "pydantic.v1", raising=False)
+
+    class Item(BaseModel):
+        name: str
+
+    assert is_pydantic_v1_model_class(Item) is False
+    assert is_pydantic_v1_model_instance(Item(name="foo")) is False
+    assert "pydantic.v1" not in sys.modules
+
+
+def test_app_with_pydantic_v2_only_does_not_import_pydantic_v1(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delitem(sys.modules, "pydantic.v1", raising=False)
+
+    class Item(BaseModel):
+        name: str
+
+    app = FastAPI()
+
+    @app.post("/items/")
+    def create_item(item: Item) -> Item:
+        return item
+
+    client = TestClient(app)
+    response = client.post("/items/", json={"name": "foo"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "foo"}
+    assert "pydantic.v1" not in sys.modules

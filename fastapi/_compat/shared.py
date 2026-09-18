@@ -1,3 +1,4 @@
+import sys
 import types
 import typing
 import warnings
@@ -186,6 +187,10 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 def is_pydantic_v1_model_instance(obj: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
+    if "pydantic.v1" not in sys.modules:
+        # A pydantic.v1 model can't exist without pydantic.v1 being imported,
+        # skip importing it, it's slow (e.g. 44 ms on AWS Lambda cold start)
+        return False
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
@@ -198,6 +203,10 @@ def is_pydantic_v1_model_instance(obj: Any) -> bool:
 def is_pydantic_v1_model_class(cls: Any) -> bool:
     # TODO: remove this function once the required version of Pydantic fully
     # removes pydantic.v1
+    if "pydantic.v1" not in sys.modules:
+        # A pydantic.v1 model can't exist without pydantic.v1 being imported,
+        # skip importing it, it's slow (e.g. 44 ms on AWS Lambda cold start)
+        return False
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
