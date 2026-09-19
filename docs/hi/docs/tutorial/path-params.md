@@ -215,7 +215,7 @@ OpenAPI किसी *path parameter* को उसके अंदर एक *p
 
 और docs फिर भी काम करेंगे, हालांकि ऐसा कोई documentation नहीं जोड़ेंगे जो बताए कि parameter में path होना चाहिए।
 
-### Path convertor { #path-convertor }
+### Path converter { #path-convertor }
 
 Starlette से सीधे एक option का उपयोग करके, आप इस तरह के URL का उपयोग करते हुए एक *path* रखने वाला *path parameter* declare कर सकते हैं:
 

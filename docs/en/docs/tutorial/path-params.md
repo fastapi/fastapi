@@ -215,7 +215,7 @@ Nevertheless, you can still do it in **FastAPI**, using one of the internal tool
 
 And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
 
-### Path convertor { #path-convertor }
+### Path converter { #path-convertor }
 
 Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
 
