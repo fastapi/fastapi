@@ -747,6 +747,10 @@ def get_request_handler(
                         response = actual_response_class(content, **response_args)
                     if not is_body_allowed_for_status_code(response.status_code):
                         response.body = b""
+                        # The response class already computed Content-Length from
+                        # the original content (e.g. for 205), keep it in sync
+                        if "content-length" in response.headers:
+                            response.headers["content-length"] = "0"
                     response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
