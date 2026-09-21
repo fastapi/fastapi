@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import re
 import sys
 from collections.abc import (
     AsyncGenerator,
@@ -100,12 +101,23 @@ multipart_incorrect_install_error = (
 )
 
 
+def _version_tuple(version: str) -> tuple[int, ...]:
+    # Compare versions numerically, as strings "0.0.100" < "0.0.12"
+    parts: list[int] = []
+    for part in version.split("."):
+        digits = re.match(r"\d+", part)
+        if digits is None:
+            break
+        parts.append(int(digits.group()))
+    return tuple(parts)
+
+
 def ensure_multipart_is_installed() -> None:
     try:
         from python_multipart import __version__
 
         # Import an attribute that can be mocked/deleted in testing
-        assert __version__ > "0.0.12"
+        assert _version_tuple(__version__) > (0, 0, 12)
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked

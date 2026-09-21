@@ -147,3 +147,16 @@ def test_old_multipart_installed(monkeypatch):
         @app.post("/")
         async def root(username: str = Form()):
             return username  # pragma: nocover
+
+
+@pytest.mark.parametrize("version", ["0.0.13", "0.0.100", "0.1.0", "1.0.0"])
+def test_python_multipart_version_is_compared_numerically(monkeypatch, version):
+    monkeypatch.setattr("python_multipart.__version__", version)
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+        monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    app = FastAPI()
+
+    @app.post("/")
+    async def root(username: str = Form()):
+        return username  # pragma: nocover
