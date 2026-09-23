@@ -49,6 +49,7 @@ The key features are:
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
+* **Helpful validation errors**: When a response doesn't match its declared model, FastAPI identifies the endpoint that returned it, including for dynamically created routes.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (previously known as Swagger) and [JSON Schema](https://json-schema.org/).
 
 <small>* estimation based on tests conducted by an internal development team, building production applications.</small>

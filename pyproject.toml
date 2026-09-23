@@ -229,9 +229,6 @@ addopts = [
 strict_xfail = true
 filterwarnings = [
     "error",
-    # Starlette accesses this deprecated AnyIO alias when importing its test client.
-    # https://github.com/Kludex/starlette/issues/3497
-    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning:starlette.testclient",
 ]
 timeout = "20"
 
