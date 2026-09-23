@@ -1,6 +1,13 @@
 import fastapi.routing
 
 
+class NonWeakrefableCallable:
+    __slots__ = ()
+
+    def __call__(self):
+        pass
+
+
 def test_endpoint_context_cache_does_not_reuse_context_for_different_callable(
     monkeypatch,
 ):
@@ -16,3 +23,12 @@ def test_endpoint_context_cache_does_not_reuse_context_for_different_callable(
 
     assert first_context["function"] == "serialize_response"
     assert second_context["function"] == "_extract_endpoint_context"
+
+
+def test_endpoint_context_cache_handles_non_weakrefable_callable():
+    fastapi.routing._endpoint_context_cache.clear()
+
+    context = fastapi.routing._extract_endpoint_context(NonWeakrefableCallable())
+
+    assert context == {}
+    assert fastapi.routing._endpoint_context_cache == {}
