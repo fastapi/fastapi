@@ -45,11 +45,13 @@ jobs:
           for i in 1 2 3 4 5; do
             if uv run smokeshow upload htmlcov; then
                 echo "Smokeshow upload success!"
-                break
+                exit 0
             fi
             echo "Smokeshow upload error, sleep 1 sec and try again."
             sleep 1
           done
+          echo "Smokeshow upload failed after 5 attempts."
+          exit 1
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100

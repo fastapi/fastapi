@@ -301,7 +301,9 @@ jobs:
           merge-multiple: true
       - run: ls -la coverage
       - run: uv run coverage combine coverage
-      - run: uv run coverage html --title "Coverage for ${{ github.sha }}"
+      # Omit tests from the HTML report to keep it under Smokeshow's 50 MB site size limit,
+      # per-test contexts make it too big otherwise. Tests are still checked by coverage report below.
+      - run: uv run coverage html --title "Coverage for ${{ github.sha }}" --omit "tests/*"
       - name: Store coverage HTML
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
