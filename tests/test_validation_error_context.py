@@ -85,21 +85,15 @@ client = TestClient(app)
 
 
 def test_endpoint_context_cache_discards_entry_for_different_endpoint(monkeypatch):
-    def stale_endpoint():
-        pass
-
-    def current_endpoint():
-        pass
-
     monkeypatch.setattr(
         routing,
         "_endpoint_context_cache",
-        {id(current_endpoint): (stale_endpoint, {"function": "stale_endpoint"})},
+        {id(get_item): (get_user, {"function": "get_user"})},
     )
 
-    context = routing._extract_endpoint_context(current_endpoint)
+    context = routing._extract_endpoint_context(get_item)
 
-    assert context["function"] == "current_endpoint"
+    assert context["function"] == "get_item"
 
 
 def test_request_validation_error_includes_endpoint_context():
