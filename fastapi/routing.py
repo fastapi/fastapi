@@ -271,16 +271,23 @@ class _DefaultLifespan:
         return self
 
 
-# Cache for endpoint context to avoid re-extracting on every request
-_endpoint_context_cache: dict[int, EndpointContext] = {}
+# Cache for endpoint context to avoid re-extracting on every request. Keep a
+# reference to each function to prevent id() reuse while its context is cached,
+# and bound the cache to avoid retaining endpoints indefinitely.
+_ENDPOINT_CONTEXT_CACHE_MAXSIZE = 256
+_endpoint_context_cache: dict[int, tuple[Any, EndpointContext]] = {}
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
     func_id = id(func)
+    cached = _endpoint_context_cache.get(func_id)
 
-    if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+    if cached is not None:
+        cached_func, cached_ctx = cached
+        if cached_func is func:
+            return cached_ctx
+        del _endpoint_context_cache[func_id]
 
     try:
         ctx: EndpointContext = {}
@@ -294,7 +301,10 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     except Exception:
         ctx = EndpointContext()
 
-    _endpoint_context_cache[func_id] = ctx
+    _endpoint_context_cache[func_id] = (func, ctx)
+    if len(_endpoint_context_cache) > _ENDPOINT_CONTEXT_CACHE_MAXSIZE:
+        del _endpoint_context_cache[next(iter(_endpoint_context_cache))]
+
     return ctx
 
 
