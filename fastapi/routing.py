@@ -10,6 +10,7 @@ import stat
 import threading
 import types
 import warnings
+import weakref
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -272,15 +273,17 @@ class _DefaultLifespan:
 
 
 # Cache for endpoint context to avoid re-extracting on every request
-_endpoint_context_cache: dict[int, EndpointContext] = {}
+_endpoint_context_cache: dict[
+    int, tuple[weakref.ReferenceType[Any], EndpointContext]
+] = {}
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
     func_id = id(func)
-
-    if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+    cached = _endpoint_context_cache.get(func_id)
+    if cached is not None and cached[0]() is func:
+        return cached[1]
 
     try:
         ctx: EndpointContext = {}
@@ -294,7 +297,14 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     except Exception:
         ctx = EndpointContext()
 
-    _endpoint_context_cache[func_id] = ctx
+    try:
+        func_ref = weakref.ref(func)
+    except TypeError:
+        # Some callable objects don't support weak references. Don't cache
+        # those objects rather than retaining them or risking an id collision.
+        pass
+    else:
+        _endpoint_context_cache[func_id] = (func_ref, ctx)
     return ctx
 
 
