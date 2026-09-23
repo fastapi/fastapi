@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, WebSocket
+from fastapi import FastAPI, Request, WebSocket, routing
 from fastapi.exceptions import (
     RequestValidationError,
     ResponseValidationError,
@@ -82,6 +82,24 @@ async def subapp_websocket_endpoint(websocket: WebSocket, item_id: int):
 
 
 client = TestClient(app)
+
+
+def test_endpoint_context_cache_discards_entry_for_different_endpoint(monkeypatch):
+    def stale_endpoint():
+        pass
+
+    def current_endpoint():
+        pass
+
+    monkeypatch.setattr(
+        routing,
+        "_endpoint_context_cache",
+        {id(current_endpoint): (stale_endpoint, {"function": "stale_endpoint"})},
+    )
+
+    context = routing._extract_endpoint_context(current_endpoint)
+
+    assert context["function"] == "current_endpoint"
 
 
 def test_request_validation_error_includes_endpoint_context():
