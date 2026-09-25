@@ -1099,6 +1099,27 @@ def _populate_api_route_state(
                 response_model = None
             else:
                 response_model = return_annotation
+    elif (
+        is_generator
+        and response_model is not None
+        and not lenient_issubclass(response_model, Response)
+        and (
+            isinstance(response_class, DefaultPlaceholder)
+            or lenient_issubclass(response_class, EventSourceResponse)
+        )
+    ):
+        # An explicit response_model on a streaming endpoint describes one
+        # streamed item, not the whole body, so it feeds stream_item_field the
+        # same way the return annotation does above. Without this the model is
+        # only used as the response field: items stream unvalidated, the
+        # response_model_* options are ignored, and OpenAPI gets an empty
+        # itemSchema. Both the item type and an iterator of it are accepted.
+        stream_item = get_stream_item_type(response_model)
+        if stream_item is None:
+            stream_item = response_model
+        if not lenient_issubclass(stream_item, ServerSentEvent):
+            route.stream_item_type = stream_item
+            response_model = None
     route.response_model = response_model
     if route.response_model:
         assert is_body_allowed_for_status_code(status_code), (
