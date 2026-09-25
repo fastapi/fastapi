@@ -34,11 +34,7 @@ You can see the defined cookies in the docs UI at `/docs`:
 
 /// note
 
-Have in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.
-
-If you go to the **API docs UI** at `/docs` you will be able to see the **documentation** for cookies for your *path operations*.
-
-But even if you **fill the data** and click "Execute", because the docs UI works with **JavaScript**, the cookies won't be sent, and you will see an **error** message as if you didn't write any values.
+Browsers don't allow JavaScript to set the `Cookie` header. In the **API docs UI** at `/docs`, any cookie values you enter won't be sent to the API. Required cookie parameters produce a validation error; optional ones use their default value.
 
 ///
 
