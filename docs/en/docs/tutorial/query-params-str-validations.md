@@ -178,6 +178,11 @@ This specific regular expression pattern checks that the received parameter valu
 * `fixedquery`: has the exact value `fixedquery`.
 * `$`: ends there, doesn't have any more characters after `fixedquery`.
 
+FastAPI uses Pydantic v2 to validate parameters. In Pydantic v2, `pattern` uses the Rust `regex`
+crate rather than Python's `re`, so some patterns behave differently. The Rust engine doesn't support
+lookarounds or backreferences. See [Pydantic's migration guide](https://pydantic.dev/docs/validation/latest/get-started/migration/#patterns--regex-on-strings)
+for details.
+
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
 Now you know that whenever you need them you can use them in **FastAPI**.
