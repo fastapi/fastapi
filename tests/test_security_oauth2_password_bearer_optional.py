@@ -36,6 +36,12 @@ def test_incorrect_token():
     assert response.json() == {"msg": "Create an account first"}
 
 
+def test_empty_bearer_token():
+    response = client.get("/items", headers={"Authorization": "Bearer "})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
