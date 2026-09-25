@@ -1,5 +1,9 @@
 from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestMalformedError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.utils import is_body_allowed_for_status_code
 from fastapi.websockets import WebSocket
 from starlette.exceptions import HTTPException
@@ -14,6 +18,15 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> Respon
         return Response(status_code=exc.status_code, headers=headers)
     return JSONResponse(
         {"detail": exc.detail}, status_code=exc.status_code, headers=headers
+    )
+
+
+async def request_malformed_exception_handler(
+    request: Request, exc: RequestMalformedError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=400,
+        content={"detail": jsonable_encoder(exc.errors())},
     )
 
 
