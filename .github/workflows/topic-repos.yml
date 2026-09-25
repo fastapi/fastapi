@@ -7,6 +7,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   topic-repos:
     if: github.repository_owner == 'fastapi'
@@ -32,6 +35,7 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: github-actions
           cache-dependency-glob: |
             pyproject.toml
             uv.lock

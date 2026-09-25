@@ -7,6 +7,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   smokeshow:
     runs-on: ubuntu-latest
@@ -29,6 +32,7 @@ jobs:
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           version: "latest-known"
+          cache-suffix: github-actions
           cache-dependency-glob: |
             pyproject.toml
             uv.lock

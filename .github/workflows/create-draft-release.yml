@@ -7,6 +7,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   create-draft-release:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
@@ -34,6 +37,14 @@ jobs:
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           version: "latest-known"
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+          cache-suffix: dev-all
+          # Disable saving cache as we install narrower set of dependencies than dev-all has.
+          save-cache: false
+      - name: Install dependencies
+        run: uv sync --locked --group dev
       - name: Extract release details
         id: release-details
         run: |
