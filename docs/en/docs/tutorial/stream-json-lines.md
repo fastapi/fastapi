@@ -106,6 +106,18 @@ You can also omit the return type. FastAPI will then use the [`jsonable_encoder`
 
 {* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
 
+## Custom Response Headers { #custom-response-headers }
+
+For normal responses, you can set custom headers using a `Response` parameter, as explained in [Response Headers](../advanced/response-headers.md#use-a-response-parameter).
+
+With a JSON Lines stream, the *path operation function* is a generator. Calling it creates the generator, but the code inside the generator body doesn't run until the response is already streaming. So setting headers inside the generator body is too late for headers that need to be sent with the response.
+
+Instead, use a dependency that receives the `Response` parameter and sets the headers before the stream starts:
+
+{* ../../docs_src/stream_json_lines/tutorial002_py310.py ln[1:28] hl[3,21:22,25] *}
+
+Dependencies run before FastAPI creates the streaming response, so FastAPI can copy those headers into the final JSON Lines response.
+
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 
 FastAPI also has first-class support for Server-Sent Events (SSE), which are quite similar but with a couple of extra details. You can learn about them in the next chapter: [Server-Sent Events (SSE)](server-sent-events.md). 🤓
