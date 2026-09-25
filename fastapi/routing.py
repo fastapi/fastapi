@@ -1099,6 +1099,11 @@ def _populate_api_route_state(
                 response_model = None
             else:
                 response_model = return_annotation
+    elif (route.is_sse_stream or route.is_json_stream) and response_model:
+        stream_item = get_stream_item_type(response_model) or response_model
+        if not lenient_issubclass(stream_item, ServerSentEvent):
+            route.stream_item_type = stream_item
+        response_model = None
     route.response_model = response_model
     if route.response_model:
         assert is_body_allowed_for_status_code(status_code), (
