@@ -1,6 +1,10 @@
-from fastapi import Cookie, FastAPI, Header, Query
+import inspect
+from typing import Annotated
+
+import fastapi.dependencies.utils as dependency_utils
+from fastapi import Cookie, Depends, FastAPI, Header, Query
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import AliasChoices, BaseModel
 
 app = FastAPI()
 
@@ -13,6 +17,21 @@ class Model(BaseModel):
 
 class AuthHeaders(BaseModel):
     x_user_id: str
+
+
+class QueryModelWithList(BaseModel):
+    field: Annotated[list[str] | None, Query()] = None
+
+
+class QueryModelWithAlias(BaseModel):
+    item_ids: Annotated[list[str] | None, Query(alias="itemAlias")] = None
+
+
+class QueryModelWithAliasChoices(BaseModel):
+    item_ids: Annotated[
+        list[str] | None,
+        Query(validation_alias=AliasChoices("itemAlias", "item_ids")),
+    ] = None
 
 
 @app.get("/query")
@@ -32,6 +51,20 @@ async def cookies_model_with_extra(data: Model = Cookie()):
 
 @app.get("/header-requires-hyphen")
 async def header_model_requires_hyphen(data: AuthHeaders = Header()):
+    return data
+
+
+@app.get("/query-list-dependency")
+async def query_model_with_list_dependency(
+    data: Annotated[QueryModelWithList, Depends()],
+):
+    return data
+
+
+@app.get("/query-list-dependency-alias")
+async def query_model_with_alias_dependency(
+    data: Annotated[QueryModelWithAlias, Depends()],
+):
     return data
 
 
@@ -65,6 +98,77 @@ def test_query_pass_extra_single():
         "param": "123",
         "param2": "456",
     }
+
+
+def test_query_model_dependency_parses_annotated_list():
+    client = TestClient(app)
+    resp = client.get(
+        "/query-list-dependency",
+        params=[("field", "foo"), ("field", "bar")],
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"field": ["foo", "bar"]}
+
+
+def test_query_model_dependency_falls_back_when_hints_cannot_be_resolved(
+    monkeypatch,
+):
+    def raise_name_error(*args, **kwargs):
+        raise NameError("unresolvable annotation")
+
+    monkeypatch.setattr(dependency_utils, "get_type_hints", raise_name_error)
+    dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithList)
+    assert dependant.body_params
+
+
+def test_query_model_dependency_resolves_aliased_signature_parameter(monkeypatch):
+    def signature_with_alias(call):
+        return inspect.Signature(
+            [
+                inspect.Parameter(
+                    "itemAlias",
+                    inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    annotation=list[str] | None,
+                    default=None,
+                )
+            ]
+        )
+
+    monkeypatch.setattr(dependency_utils, "get_typed_signature", signature_with_alias)
+    dependant = dependency_utils.get_dependant(path="/", call=QueryModelWithAlias)
+    assert [field.name for field in dependant.query_params] == ["itemAlias"]
+    assert not dependant.body_params
+
+
+def test_query_model_dependency_resolves_validation_alias_choices(monkeypatch):
+    def signature_with_alias(call):
+        return inspect.Signature(
+            [
+                inspect.Parameter(
+                    "itemAlias",
+                    inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    annotation=list[str] | None,
+                    default=None,
+                )
+            ]
+        )
+
+    monkeypatch.setattr(dependency_utils, "get_typed_signature", signature_with_alias)
+    dependant = dependency_utils.get_dependant(
+        path="/", call=QueryModelWithAliasChoices
+    )
+    assert [field.name for field in dependant.query_params] == ["itemAlias"]
+    assert not dependant.body_params
+
+
+def test_query_model_dependency_parses_aliased_annotated_list():
+    client = TestClient(app)
+    resp = client.get(
+        "/query-list-dependency-alias",
+        params=[("itemAlias", "foo"), ("itemAlias", "bar")],
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"itemAlias": ["foo", "bar"]}
 
 
 def test_header_pass_extra_list():
