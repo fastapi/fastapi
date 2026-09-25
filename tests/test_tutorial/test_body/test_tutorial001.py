@@ -150,7 +150,13 @@ def test_post_broken_body(client: TestClient):
                 "loc": ["body", 1],
                 "msg": "JSON decode error",
                 "input": {},
-                "ctx": {"error": "Expecting property name enclosed in double quotes"},
+                "ctx": {
+                    "error": "Expecting property name enclosed in double quotes",
+                    "position": 1,
+                    "line": 0,
+                    "column": 1,
+                    "snippet": "{some broken json}",
+                },
             }
         ]
     }
