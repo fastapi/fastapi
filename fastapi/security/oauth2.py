@@ -646,7 +646,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             if self.auto_error:
                 raise self.make_not_authenticated_error()
             else:
-                return None  # pragma: nocover
+                return None
         return param
 
 
