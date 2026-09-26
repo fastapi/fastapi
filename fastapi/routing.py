@@ -81,6 +81,13 @@ from fastapi.sse import (
     ServerSentEvent,
     format_sse_event,
 )
+from fastapi.telemetry._api import (
+    _operation,
+    _route_selected,
+    _run_sync_endpoint,
+    _validation_failed,
+    get_telemetry_data,
+)
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_model_field,
@@ -349,9 +356,12 @@ async def run_endpoint_function(
     assert dependant.call is not None, "dependant.call must be a function"
 
     if is_coroutine:
-        return await dependant.call(**values)
+        with _operation(name="endpoint", function=dependant.call):
+            return await dependant.call(**values)
     else:
-        return await run_in_threadpool(dependant.call, **values)
+        return await run_in_threadpool(
+            _run_sync_endpoint, function=dependant.call, arguments=values
+        )
 
 
 def _build_response_args(
@@ -404,6 +414,9 @@ def get_request_handler(
         actual_strict_content_type = strict_content_type
 
     async def app(request: Request) -> Response:
+        telemetry_data = get_telemetry_data()
+        if telemetry_data is not None:
+            telemetry_data.request = request
         response: Response | None = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
@@ -462,6 +475,7 @@ def get_request_handler(
                 body=e.doc,
                 endpoint_ctx=endpoint_ctx,
             )
+            _validation_failed(validation_error)
             raise validation_error from e
         except HTTPException:
             # If a middleware raises an HTTPException, it should be raised again
@@ -472,20 +486,27 @@ def get_request_handler(
             )
             raise http_error from e
 
+        if telemetry_data is not None:
+            telemetry_data.body = body
+
         # Solve dependencies and run path operation function, auto-closing dependencies
         errors: list[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
         )
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=dependant,
-            body=cast(dict[str, Any] | FormData | bytes | None, body),
-            dependency_overrides_provider=dependency_overrides_provider,
-            async_exit_stack=async_exit_stack,
-            embed_body_fields=embed_body_fields,
-        )
+        with _operation(name="dependencies", function=dependant.call):
+            solved_result = await solve_dependencies(
+                request=request,
+                dependant=dependant,
+                body=cast(dict[str, Any] | FormData | bytes | None, body),
+                dependency_overrides_provider=dependency_overrides_provider,
+                async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
+            )
+            if telemetry_data is not None:
+                telemetry_data.values = solved_result.values
+                telemetry_data.errors = solved_result.errors
         errors = solved_result.errors
         assert dependant.call  # For types
         if not errors:
@@ -724,19 +745,20 @@ def get_request_handler(
                     use_dump_json = response_field is not None and isinstance(
                         response_class, DefaultPlaceholder
                     )
-                    content = await serialize_response(
-                        field=response_field,
-                        response_content=raw_response,
-                        include=response_model_include,
-                        exclude=response_model_exclude,
-                        by_alias=response_model_by_alias,
-                        exclude_unset=response_model_exclude_unset,
-                        exclude_defaults=response_model_exclude_defaults,
-                        exclude_none=response_model_exclude_none,
-                        is_coroutine=is_coroutine,
-                        endpoint_ctx=endpoint_ctx,
-                        dump_json=use_dump_json,
-                    )
+                    with _operation(name="serialization", function=dependant.call):
+                        content = await serialize_response(
+                            field=response_field,
+                            response_content=raw_response,
+                            include=response_model_include,
+                            exclude=response_model_exclude,
+                            by_alias=response_model_by_alias,
+                            exclude_unset=response_model_exclude_unset,
+                            exclude_defaults=response_model_exclude_defaults,
+                            exclude_none=response_model_exclude_none,
+                            is_coroutine=is_coroutine,
+                            endpoint_ctx=endpoint_ctx,
+                            dump_json=use_dump_json,
+                        )
                     if use_dump_json:
                         response = Response(
                             content=content,
@@ -752,6 +774,7 @@ def get_request_handler(
             validation_error = RequestValidationError(
                 errors, body=body, endpoint_ctx=endpoint_ctx
             )
+            _validation_failed(validation_error)
             raise validation_error
 
         # Return response
@@ -767,6 +790,9 @@ def get_websocket_app(
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
+        telemetry_data = get_telemetry_data()
+        if telemetry_data is not None:
+            telemetry_data.websocket = websocket
         endpoint_ctx = (
             _extract_endpoint_context(dependant.call)
             if dependant.call
@@ -780,20 +806,27 @@ def get_websocket_app(
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
         )
-        solved_result = await solve_dependencies(
-            request=websocket,
-            dependant=dependant,
-            dependency_overrides_provider=dependency_overrides_provider,
-            async_exit_stack=async_exit_stack,
-            embed_body_fields=embed_body_fields,
-        )
+        with _operation(name="dependencies", function=dependant.call):
+            solved_result = await solve_dependencies(
+                request=websocket,
+                dependant=dependant,
+                dependency_overrides_provider=dependency_overrides_provider,
+                async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
+            )
+            if telemetry_data is not None:
+                telemetry_data.values = solved_result.values
+                telemetry_data.errors = solved_result.errors
         if solved_result.errors:
-            raise WebSocketRequestValidationError(
+            validation_error = WebSocketRequestValidationError(
                 solved_result.errors,
                 endpoint_ctx=endpoint_ctx,
             )
+            _validation_failed(validation_error)
+            raise validation_error
         assert dependant.call is not None, "dependant.call must be a function"
-        await dependant.call(**solved_result.values)
+        with _operation(name="endpoint", function=dependant.call):
+            await dependant.call(**solved_result.values)
 
     return app
 
@@ -1791,6 +1824,12 @@ class _IncludedRouter(BaseRoute):
             await route.handle(scope, receive, send)
             return
         if effective_context is not None:
+            _route_selected(
+                scope=scope,
+                path=getattr(effective_context.starlette_route, "path_format", None)
+                or effective_context.path_format,
+                mount=isinstance(route, routing.Mount),
+            )
             _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
                 effective_context
             )
@@ -2189,6 +2228,10 @@ class _FrontendRouteGroup(BaseRoute):
         if match == Match.NONE or route is None:
             raise HTTPException(status_code=404)
         _update_scope(scope, child_scope)
+        _route_selected(
+            scope=scope,
+            path=_join_frontend_paths(prefix, route.path).rstrip("/") + "/{path}",
+        )
         if match == Match.FULL and dependant and dependant.dependencies:
             async with self._solve_dependencies(
                 scope,
@@ -2731,6 +2774,11 @@ class APIRouter(routing.Router):
             match, child_scope = route.matches(scope)
             if match == Match.FULL:
                 scope.update(child_scope)
+                _route_selected(
+                    scope=scope,
+                    path=getattr(route, "path_format", None),
+                    mount=isinstance(route, routing.Mount),
+                )
                 await route.handle(scope, receive, send)
                 return
             if match == Match.PARTIAL and partial is None:
@@ -2739,6 +2787,11 @@ class APIRouter(routing.Router):
         if partial is not None:
             route, child_scope = partial
             scope.update(child_scope)
+            _route_selected(
+                scope=scope,
+                path=getattr(route, "path_format", None),
+                mount=isinstance(route, routing.Mount),
+            )
             await route.handle(scope, receive, send)
             return
 
@@ -2753,6 +2806,23 @@ class APIRouter(routing.Router):
             for route in self.routes:
                 match, _ = route.matches(redirect_scope)
                 if match != Match.NONE:
+                    if scope.get("fastapi.telemetry") is not None:
+                        telemetry_route: BaseRoute | _EffectiveRouteContext | None = (
+                            route
+                        )
+                        while isinstance(telemetry_route, _IncludedRouter):
+                            _, _, matched_route, matched_context = (
+                                telemetry_route._match(redirect_scope)
+                            )
+                            telemetry_route = (
+                                matched_context.starlette_route or matched_context
+                                if matched_context is not None
+                                else matched_route
+                            )
+                        _route_selected(
+                            scope=scope,
+                            path=getattr(telemetry_route, "path_format", None),
+                        )
                     redirect_url = URL(scope=redirect_scope)
                     response = RedirectResponse(url=str(redirect_url))
                     await response(scope, receive, send)
@@ -2766,6 +2836,12 @@ class APIRouter(routing.Router):
         ) = self._match_low_priority(scope)
         if low_priority_match != Match.NONE and low_priority_route is not None:
             _update_scope(scope, low_priority_scope)
+            _route_selected(
+                scope=scope,
+                path=getattr(
+                    low_priority_context or low_priority_route, "path_format", None
+                ),
+            )
             if low_priority_context is not None:
                 _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
                     low_priority_context

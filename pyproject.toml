@@ -47,6 +47,7 @@ dependencies = [
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
+    "opentelemetry-api>=1.44.0",
 ]
 
 [project.urls]
@@ -57,7 +58,13 @@ Issues = "https://github.com/fastapi/fastapi/issues"
 Changelog = "https://fastapi.tiangolo.com/release-notes/"
 
 [project.optional-dependencies]
+opentelemetry = [
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.44.0",
+]
 standard = [
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.44.0",
     "fastapi-cli[standard] >=0.0.32",
     "fastar >= 0.9.0",
     # For the test client
@@ -77,6 +84,8 @@ standard = [
 ]
 
 standard-no-fastapi-cloud-cli = [
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.44.0",
     "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.32",
     # For the test client
     "httpx >=0.23.0,<1.0.0",
@@ -95,6 +104,8 @@ standard-no-fastapi-cloud-cli = [
 ]
 
 all = [
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.44.0",
     "fastapi-cli[standard] >=0.0.32",
     # # For the test client
     "httpx >=0.23.0,<1.0.0",
@@ -158,6 +169,12 @@ github-actions = [
     "smokeshow >=0.5.0",
 ]
 tests = [
+    "opentelemetry-instrumentation-fastapi>=0.65b0",
+    "logfire>=5.1.0",
+    "sentry-sdk>=2.70.0",
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.44.0",
+
     { include-group = "docs-tests" },
     "anyio[trio] >=3.2.1,<5.0.0",
     "coverage[toml] >=7.13,<8.0",
@@ -233,6 +250,7 @@ filterwarnings = [
 timeout = "20"
 
 [tool.coverage.run]
+patch = ["subprocess"]
 parallel = true
 data_file = "coverage/.coverage"
 source = [

@@ -159,6 +159,7 @@ nav:
     - advanced/templates.md
     - advanced/websockets.md
     - advanced/events.md
+    - advanced/opentelemetry.md
     - advanced/testing-websockets.md
     - advanced/testing-events.md
     - advanced/testing-dependencies.md
