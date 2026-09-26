@@ -11,6 +11,17 @@ from ._otlp import otlp_collector
 from ._subprocess import run_in_subprocess
 
 
+def test_otlp_collector_does_not_resolve_hostname(monkeypatch):
+    # Reverse DNS during HTTPServer binding caused macOS CI timeouts.
+    # Reject any lookup so the regression is caught even when DNS is fast.
+    def fail_hostname_lookup(*args, **kwargs):
+        raise AssertionError("The local OTLP collector must not resolve hostnames")
+
+    monkeypatch.setattr("socket.getfqdn", fail_hostname_lookup)
+    with otlp_collector():
+        pass
+
+
 @pytest.mark.parametrize("base_path", ["", "/collector/"])
 @run_in_subprocess
 def test_real_otlp_export_and_repeated_lifespans(base_path):
@@ -467,11 +478,13 @@ def test_concurrent_provider_owner_wins(monkeypatch, wrapped_meter):
 def test_environment_export_initializes_after_fork():
     import os
     import threading
-    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    from http.server import BaseHTTPRequestHandler
 
     from fastapi import FastAPI
     from fastapi.telemetry import _runtime
     from fastapi.testclient import TestClient
+
+    from tests.test_telemetry._otlp import _CollectorServer
 
     received = []
 
@@ -485,7 +498,7 @@ def test_environment_export_initializes_after_fork():
         def log_message(self, format, *args):
             pass
 
-    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    server = _CollectorServer(("127.0.0.1", 0), Handler)
     os.environ["OTEL_EXPORTER_OTLP_TRACES_ENDPOINT"] = (
         f"http://127.0.0.1:{server.server_port}/traces"
     )
