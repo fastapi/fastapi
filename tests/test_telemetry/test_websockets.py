@@ -132,8 +132,8 @@ def test_unexpected_exception(telemetry, logs, mode, stage):
         await websocket.close()
 
     with pytest.raises(ValueError, match="websocket failed"):
-        with TestClient(app).websocket_connect("/ws") as websocket:
-            websocket.receive()
+        with TestClient(app).websocket_connect("/ws"):
+            pass  # pragma: no cover
     records = logs.get_finished_logs()
     assert len(records) == int(mode != "logs_disabled")
     if records:
@@ -187,12 +187,15 @@ def test_validation_data(telemetry, logs, tracing):
 
     @app.websocket("/ws/{value}")
     async def endpoint(*, websocket: WebSocket, value: int):
-        pytest.fail("Validation should fail before the endpoint runs")
+        pytest.fail(
+            "Validation should fail before the endpoint runs"
+        )  # pragma: no cover
 
     with pytest.raises(WebSocketDisconnect) as caught:
         with TestClient(app).websocket_connect("/ws/private-invalid-input"):
-            pass
+            pass  # pragma: no cover
     assert caught.value.code == 1008
+    assert config["logger_provider"].force_flush()
     (record,) = logs.get_finished_logs()
     assert record.log_record.event_name == "fastapi.validation.failed"
     assert record.log_record.severity_number == SeverityNumber.WARN
@@ -246,7 +249,7 @@ def test_handled_websocket_exception(telemetry, logs):
 
     with pytest.raises(WebSocketDisconnect) as caught:
         with TestClient(app).websocket_connect("/ws"):
-            pass
+            pass  # pragma: no cover
     assert caught.value.code == 1008
     assert len(server_spans(exporter)) == 1
     assert not logs.get_finished_logs()

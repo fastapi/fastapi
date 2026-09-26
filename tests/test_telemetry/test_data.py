@@ -142,7 +142,7 @@ def test_validation_data_without_tracing(invalid_json, logging):
 
     @app.post("/items")
     def endpoint(item: dict[str, int]):
-        return item
+        return item  # pragma: no cover
 
     try:
         with TestClient(app) as client:
@@ -153,6 +153,7 @@ def test_validation_data_without_tracing(invalid_json, logging):
                 if invalid_json
                 else client.post("/items", json={"amount": "private-input"})
             )
+        assert provider.force_flush()
         assert response.status_code == 422
         if not logging:
             assert not exporter.get_finished_logs()
@@ -234,7 +235,7 @@ def test_request_objects_are_not_exported():
                     assert websocket.receive_text() == "private-websocket-message"
                 with pytest.raises(WebSocketDisconnect):
                     with client.websocket_connect("/ws?count=invalid-websocket-count"):
-                        pass
+                        pass  # pragma: no cover
                 assert client.get("/handled").status_code == 503
                 for count, status in [("1", 500), ("invalid-count", 422)]:
                     response = client.post(

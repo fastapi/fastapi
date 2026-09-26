@@ -252,8 +252,8 @@ def test_current_sentry(sampling):
         raise ValueError("websocket failed")
 
     with pytest.raises(ValueError, match="websocket failed"):
-        with client.websocket_connect("/ws") as websocket:
-            websocket.receive()
+        with client.websocket_connect("/ws"):
+            pass  # pragma: no cover
     sentry_sdk.flush()
     assert items.count("event") == 3, items
     assert items.count("transaction") == (4 if sampling else 0), items
@@ -269,7 +269,9 @@ def test_api_only_and_no_implicit_sdk_import():
     class BlockSDK(MetaPathFinder):
         def find_spec(self, fullname, path=None, target=None):
             if fullname.startswith(("opentelemetry.sdk", "opentelemetry.exporter")):
-                raise AssertionError(f"Unexpected optional import: {fullname}")
+                raise AssertionError(
+                    f"Unexpected optional import: {fullname}"
+                )  # pragma: no cover
 
     sys.meta_path.insert(0, BlockSDK())
     from fastapi import FastAPI, WebSocket

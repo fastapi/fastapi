@@ -125,11 +125,11 @@ def test_logfire_native_spans_and_exception_logs():
     with client.websocket_connect("/ws?item_id=42") as websocket:
         assert websocket.receive_text() == "ok"
     with pytest.raises(ValueError, match="native error"):
-        with client.websocket_connect("/ws/error") as websocket:
-            websocket.receive()
+        with client.websocket_connect("/ws/error"):
+            pass  # pragma: no cover
     with pytest.raises(WebSocketDisconnect) as caught:
         with client.websocket_connect("/ws?item_id=invalid-item-id"):
-            pass
+            pass  # pragma: no cover
     assert caught.value.code == 1008
     logfire.force_flush()
     finished = spans.get_finished_spans()
@@ -277,8 +277,9 @@ def test_sentry_standard_log_processor(sampled):
     assert client.post("/sync?item_id=1", json={"value": "sync"}).status_code == 500
     assert client.post("/async?item_id=2", json={"value": "async"}).status_code == 500
     with pytest.raises(ValueError, match="websocket error"):
-        with client.websocket_connect("/ws?item_id=3") as websocket:
-            websocket.receive()
+        with client.websocket_connect("/ws?item_id=3"):
+            pass  # pragma: no cover
+    assert logger.force_flush()
     sentry_sdk.flush()
     assert len(items) == 3
     assert [item["request"] for item in items] == [

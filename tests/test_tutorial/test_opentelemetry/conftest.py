@@ -1,10 +1,8 @@
-import os
-
 import pytest
+
+from tests.test_telemetry.conftest import remove_export_environment
 
 
 @pytest.fixture(autouse=True)
 def clean_environment(monkeypatch):
-    for name in os.environ:
-        if name.startswith(("OTEL_", "LOGFIRE_", "SENTRY_")):
-            monkeypatch.delenv(name)
+    remove_export_environment(monkeypatch)

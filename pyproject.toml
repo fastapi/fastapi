@@ -250,7 +250,7 @@ filterwarnings = [
 timeout = "20"
 
 [tool.coverage.run]
-patch = ["subprocess"]
+patch = ["subprocess", "_exit"]
 parallel = true
 data_file = "coverage/.coverage"
 source = [

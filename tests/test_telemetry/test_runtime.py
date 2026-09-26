@@ -1,5 +1,6 @@
 import asyncio
 import threading
+from unittest.mock import Mock
 
 import pytest
 from fastapi import FastAPI
@@ -13,13 +14,11 @@ from ._subprocess import run_in_subprocess
 
 def test_otlp_collector_does_not_resolve_hostname(monkeypatch):
     # Reverse DNS during HTTPServer binding caused macOS CI timeouts.
-    # Reject any lookup so the regression is caught even when DNS is fast.
-    def fail_hostname_lookup(*args, **kwargs):
-        raise AssertionError("The local OTLP collector must not resolve hostnames")
-
-    monkeypatch.setattr("socket.getfqdn", fail_hostname_lookup)
+    lookup = Mock()
+    monkeypatch.setattr("socket.getfqdn", lookup)
     with otlp_collector():
         pass
+    lookup.assert_not_called()
 
 
 @pytest.mark.parametrize("base_path", ["", "/collector/"])
@@ -222,12 +221,9 @@ def test_invalid_configuration_reports_startup_failure(env, message):
         messages.append(message)
 
     async def run():
-        try:
+        with pytest.raises(FastAPIError) as exc_info:
             await FastAPI()({"type": "lifespan", "state": {}}, receive, send)
-        except FastAPIError as exc:
-            assert message in str(exc)
-        else:
-            raise AssertionError("Expected configuration error")
+        assert message in str(exc_info.value)
 
     asyncio.run(run())
     assert len(messages) == 1, messages
@@ -288,13 +284,10 @@ def test_missing_sdk_diagnostic():
     from fastapi.exceptions import FastAPIError
     from fastapi.testclient import TestClient
 
-    try:
+    with pytest.raises(FastAPIError) as exc_info:
         with TestClient(FastAPI()):
-            pass
-    except FastAPIError as exc:
-        assert "fastapi[opentelemetry]" in str(exc)
-    else:
-        raise AssertionError("Missing extra was not reported")
+            pass  # pragma: no cover
+    assert "fastapi[opentelemetry]" in str(exc_info.value)
 
 
 @run_in_subprocess
@@ -512,7 +505,7 @@ def test_environment_export_initializes_after_fork():
                 assert client.get("/").status_code == 404
             assert len(_runtime._owned) == 1
             _runtime._shutdown()
-        except BaseException:
+        except BaseException:  # pragma: no cover
             os._exit(1)
         os._exit(0)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -583,7 +576,7 @@ def test_unsupported_provider_reports_configuration_error(monkeypatch, name):
     app = FastAPI(telemetry={f"{name}_provider": object()})
     with pytest.raises(FastAPIError, match="does not support.*auto_configure"):
         with TestClient(app):
-            pass
+            pass  # pragma: no cover
 
 
 @pytest.mark.parametrize("error_type", [ValueError, AttributeError])
@@ -615,6 +608,6 @@ def test_failed_registration_closes_new_exporter(monkeypatch, error_type):
     app = FastAPI(telemetry={"tracer_provider": provider})
     with pytest.raises(error_type, match="registration failed"):
         with TestClient(app):
-            pass
+            pass  # pragma: no cover
     assert stopped == [True]
     provider.shutdown()
