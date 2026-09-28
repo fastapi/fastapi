@@ -428,7 +428,7 @@ For a more complete example including more features, see the <a href="https://fa
 **Spoiler alert**: the tutorial - user guide includes:
 
 * Declaration of **parameters** from other different places such as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** such as `maximum_length` or `regex`.
+* How to set **validation constraints** such as `max_length` or `pattern`.
 * A very powerful and easy to use **<dfn title="also known as components, resources, providers, services, injectables">Dependency Injection</dfn>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
