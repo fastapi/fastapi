@@ -45,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: /img/sponsors/svix.svg
-  - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
-    title: Fine-Grained Authorization for FastAPI
-    img: /img/sponsors/permit.png
   - url: https://dribia.com/en/
     title: Dribia - Data Science within your reach
     img: /img/sponsors/dribia.png
