@@ -174,7 +174,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:132] *}
 
 ### Technical details about the JWT "subject" `sub` { #technical-details-about-the-jwt-subject-sub }
 
