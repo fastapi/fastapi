@@ -424,9 +424,9 @@ With `data.items()` we get an <dfn title="Something we can iterate on with a for
 
 We convert this iterable object into a proper `list` with `list(data.items())`.
 
-Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, name)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, item)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
-Then we **assign those two values** of the tuple to the variables `id` and `name`.
+Then we **assign those two values** of the tuple to the variables `id` and `item`.
 
 So, if the user didn't provide an item ID, they will still receive a random suggestion.
 
