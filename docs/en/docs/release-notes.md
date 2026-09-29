@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add native OpenTelemetry support. PR [#16403](https://github.com/fastapi/fastapi/pull/16403) by [@tiangolo](https://github.com/tiangolo).
+
 ### Refactors
 
 * 📱 Improve mobile responsiveness of conference rail. PR [#16196](https://github.com/fastapi/fastapi/pull/16196) by [@alejsdev](https://github.com/alejsdev).
