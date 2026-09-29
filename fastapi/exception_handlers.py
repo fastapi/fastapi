@@ -1,3 +1,7 @@
+import math
+from collections.abc import Callable
+from typing import Any
+
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.utils import is_body_allowed_for_status_code
@@ -6,6 +10,19 @@ from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.status import WS_1008_POLICY_VIOLATION
+
+
+def _encode_error_detail_float(value: float) -> float | str:
+    # JSONResponse uses allow_nan=False; keep finite floats numeric and stringify
+    # non-finite ones so validation errors can still surface the rejected input.
+    if math.isfinite(value):
+        return value
+    return repr(value)
+
+
+_VALIDATION_ERROR_ENCODERS: dict[Any, Callable[[Any], Any]] = {
+    float: _encode_error_detail_float,
+}
 
 
 async def http_exception_handler(request: Request, exc: HTTPException) -> Response:
@@ -22,7 +39,11 @@ async def request_validation_exception_handler(
 ) -> JSONResponse:
     return JSONResponse(
         status_code=422,
-        content={"detail": jsonable_encoder(exc.errors())},
+        content={
+            "detail": jsonable_encoder(
+                exc.errors(), custom_encoder=_VALIDATION_ERROR_ENCODERS
+            )
+        },
     )
 
 
@@ -30,5 +51,8 @@ async def websocket_request_validation_exception_handler(
     websocket: WebSocket, exc: WebSocketRequestValidationError
 ) -> None:
     await websocket.close(
-        code=WS_1008_POLICY_VIOLATION, reason=jsonable_encoder(exc.errors())
+        code=WS_1008_POLICY_VIOLATION,
+        reason=jsonable_encoder(
+            exc.errors(), custom_encoder=_VALIDATION_ERROR_ENCODERS
+        ),
     )
