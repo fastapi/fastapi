@@ -31,15 +31,19 @@ Create a file `main.py`:
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-## Choose where to send telemetry { #choose-where-to-send-telemetry }
+Notice that it all works by default, you don't need to write any custom code for telemetry to work.
 
-/// tip
+## FastAPI Cloud { #fastapi-cloud }
 
-When you deploy to [FastAPI Cloud](https://fastapicloud.com) with `fastapi[standard]`, metrics work automatically. You don't have to configure anything else. You can view request counts and response times in the [Metrics dashboard](https://fastapicloud.com/docs/monitoring-and-performance/metrics/) on Pro plans.
+When you deploy to [FastAPI Cloud](https://fastapicloud.com) with `fastapi[standard]`, metrics work automatically. You don't have to configure anything else.
 
-///
+On Pro plans, you can view request counts, error rates, and response times in the [Metrics dashboard](https://fastapicloud.com/docs/monitoring-and-performance/metrics/).
 
-Your monitoring service will provide an endpoint that accepts **OTLP**, the OpenTelemetry protocol for sending telemetry. Use its HTTP/protobuf base endpoint.
+<img src="/img/tutorial/opentelemetry/image01.png" alt="FastAPI Cloud Pro metrics dashboard with example data">
+
+## Other monitoring services { #other-monitoring-services }
+
+To send telemetry to another monitoring service, configure an endpoint that accepts **OTLP**, the OpenTelemetry protocol for sending telemetry. Use the service's HTTP/protobuf base endpoint.
 
 Set these environment variables, replacing the example URL with your endpoint:
 
