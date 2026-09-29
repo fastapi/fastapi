@@ -2,6 +2,7 @@ from collections.abc import Callable
 from typing import Annotated, Any
 
 from annotated_doc import Doc
+from fastapi.telemetry._api import _operation
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from typing_extensions import ParamSpec
 
@@ -59,3 +60,8 @@ class BackgroundTasks(StarletteBackgroundTasks):
         [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
         """
         return super().add_task(func, *args, **kwargs)
+
+    async def __call__(self) -> None:
+        for task in self.tasks:
+            with _operation(name="background_task", function=task.func):
+                await task()

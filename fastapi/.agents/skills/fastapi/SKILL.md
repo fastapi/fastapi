@@ -12,6 +12,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 * Serve frontend apps: use `app.frontend()` or `router.frontend()` for built frontend assets; see [Serve Frontend Apps](#serve-frontend-apps).
 * Server-Sent Events (SSE): use `response_class=EventSourceResponse` and `yield`; see [Streaming](#streaming-json-lines-sse-bytes) and [the streaming reference](references/streaming.md).
 * JSON Lines and byte streaming: see [the streaming reference](references/streaming.md).
+* OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
 * Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, and class dependencies.
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
@@ -202,6 +203,16 @@ app.include_router(router)
 ```
 
 `app.frontend()` and `router.frontend()` are low-priority routes: regular API routes are matched first, then frontend files and client-side routing fallbacks. Use this for single-page apps and built frontend assets instead of mounting `StaticFiles` manually.
+
+## OpenTelemetry
+
+Prefer FastAPI's native OpenTelemetry support for request traces, metrics, and logs.
+
+Install `fastapi[standard]` to include the SDK and HTTP/protobuf exporters. Set `OTEL_SERVICE_NAME` to identify the app and `OTEL_EXPORTER_OTLP_ENDPOINT` to the collector's HTTP/protobuf base URL. Use `OTEL_EXPORTER_OTLP_HEADERS` when authentication is required.
+
+Use `FastAPI(telemetry={...})` for custom configuration, such as choosing signals or supplying providers.
+
+See the [OpenTelemetry tutorial](https://fastapi.tiangolo.com/advanced/opentelemetry/) for configuration details.
 
 ## Dependency Injection
 
