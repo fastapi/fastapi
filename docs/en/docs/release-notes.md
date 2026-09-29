@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.142.0 (2026-09-29)
+
 ### Features
 
 * ✨ Add native OpenTelemetry support. PR [#16403](https://github.com/fastapi/fastapi/pull/16403) by [@tiangolo](https://github.com/tiangolo).
