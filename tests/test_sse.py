@@ -2,6 +2,7 @@ import asyncio
 import time
 from collections.abc import AsyncIterable, Iterable
 
+import anyio
 import fastapi.routing
 import pytest
 from fastapi import APIRouter, FastAPI
@@ -488,3 +489,44 @@ def test_default_response_class_on_parent_router_openapi_schema():
         default_parent_app.openapi()["paths"]["/api/stream"]["get"]["responses"]["200"]
         == sse_schema_response
     )
+
+
+@pytest.mark.anyio
+async def test_sse_generator_closed_on_disconnect_while_send_blocked():
+    app = FastAPI()
+    log: list[str] = []
+
+    @app.get("/", response_class=EventSourceResponse)
+    async def stream():
+        try:
+            while True:
+                yield "x" * 1024
+        finally:
+            log.append("cleanup")
+
+    scope = {
+        "type": "http",
+        "method": "GET",
+        "path": "/",
+        "headers": [],
+        "query_string": b"",
+    }
+    sent = 0
+    disconnect = anyio.Event()
+
+    async def receive():
+        await disconnect.wait()
+        return {"type": "http.disconnect"}
+
+    async def send(message):
+        nonlocal sent
+        sent += 1
+        if sent >= 3:
+            # Stop draining: the producer now blocks in send_stream.send()
+            disconnect.set()
+            await anyio.sleep_forever()
+
+    with anyio.move_on_after(2):
+        await app(scope, receive, send)
+
+    assert log == ["cleanup"]

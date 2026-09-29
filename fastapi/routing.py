@@ -578,9 +578,23 @@ def get_request_handler(
                     ](max_buffer_size=1)
 
                     async def _producer() -> None:
-                        async with send_stream:
-                            async for raw_item in sse_aiter:
-                                await send_stream.send(_serialize_sse_item(raw_item))
+                        try:
+                            async with send_stream:
+                                try:
+                                    async for raw_item in sse_aiter:
+                                        await send_stream.send(
+                                            _serialize_sse_item(raw_item)
+                                        )
+                                except (
+                                    anyio.BrokenResourceError,
+                                    anyio.ClosedResourceError,
+                                ):
+                                    pass
+                        finally:
+                            aclose = getattr(sse_aiter, "aclose", None)
+                            if aclose is not None:
+                                with anyio.CancelScope(shield=True):
+                                    await aclose()
 
                     send_keepalive, receive_keepalive = (
                         anyio.create_memory_object_stream[bytes](max_buffer_size=1)
@@ -598,7 +612,11 @@ def get_request_handler(
                                         await send_keepalive.send(data)
                                     except TimeoutError:
                                         await send_keepalive.send(KEEPALIVE_COMMENT)
-                            except anyio.EndOfStream:
+                            except (
+                                anyio.EndOfStream,
+                                anyio.BrokenResourceError,
+                                anyio.ClosedResourceError,
+                            ):
                                 pass
 
                     async with anyio.create_task_group() as tg:
@@ -631,6 +649,7 @@ def get_request_handler(
                 sse_stream_content: AsyncIterator[bytes] | Iterator[bytes] = (
                     _sse_with_checkpoints(sse_receive_stream)
                 )
+                async_exit_stack.push_async_callback(sse_stream_content.aclose)
 
                 response_args = _build_response_args(
                     status_code=status_code, solved_result=solved_result
