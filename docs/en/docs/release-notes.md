@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ✅ Fix frontend test timeout with Starlette Git. PR [#16408](https://github.com/fastapi/fastapi/pull/16408) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Update sponsors: remove Permit.io. PR [#16406](https://github.com/fastapi/fastapi/pull/16406) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump anyio from 4.12.1 to 4.14.2. PR [#16375](https://github.com/fastapi/fastapi/pull/16375) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the python-packages group across 1 directory with 15 updates. PR [#16285](https://github.com/fastapi/fastapi/pull/16285) by [@dependabot[bot]](https://github.com/apps/dependabot).
