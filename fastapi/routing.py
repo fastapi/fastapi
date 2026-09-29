@@ -1304,12 +1304,8 @@ class APIRoute(routing.Route):
                 )
                 await response(scope, receive, send)
                 return
-            token = _effective_route_context_var.set(effective_context)
-            try:
-                app = request_response(self.get_route_handler())
-            finally:
-                _effective_route_context_var.reset(token)
-            await app(scope, receive, send)
+            assert effective_context.app is not None
+            await effective_context.app(scope, receive, send)
             return
         await super().handle(scope, receive, send)
 
@@ -1407,6 +1403,7 @@ class _RouterIncludeContext:
 class _EffectiveRouteContext:
     original_route: BaseRoute
     starlette_route: BaseRoute | None = None
+    app: ASGIApp | None = field(default=None, repr=False, compare=False)
     frontend_prefix: str = ""
     path: str = ""
     endpoint: Callable[..., Any] | None = None
@@ -1508,6 +1505,13 @@ class _EffectiveRouteContext:
             ),
             stream_item_type=route.stream_item_type,
         )
+        # Build once per inclusion context, just as APIRoute does for direct routes.
+        # Integrations may wrap dependant.call while constructing the handler.
+        token = _effective_route_context_var.set(context)
+        try:
+            context.app = request_response(original_route.get_route_handler())
+        finally:
+            _effective_route_context_var.reset(token)
         return context
 
     @classmethod
