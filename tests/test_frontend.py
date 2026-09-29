@@ -578,11 +578,8 @@ async def test_frontend_dependency_restores_existing_dependency_stacks(
     messages = []
 
     async def receive():
-        return {  # pragma: no cover
-            "type": "http.request",
-            "body": b"",
-            "more_body": False,
-        }
+        # Keep the connection open until the response finishes.
+        await anyio.sleep_forever()
 
     async def send(message):
         messages.append(message)
