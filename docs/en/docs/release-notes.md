@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Allow startup when automatic OpenTelemetry configuration fails. PR [#16418](https://github.com/fastapi/fastapi/pull/16418) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.142.1 (2026-09-29)
 
 ### Fixes
