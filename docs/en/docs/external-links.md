@@ -19,6 +19,10 @@ But now that FastAPI is the backend framework with the most GitHub stars across 
 
 ///
 
+## Community Tools
+
+* [Markdownizer](https://github.com/mohammadkhoddami/Markdownizer): a deterministic, local Python tool that generates structured, token-efficient codebase context for LLMs and AI coding assistants. Also available on [PyPI](https://pypi.org/project/markdownizer/).
+
 ## GitHub Repositories
 
 Most starred [GitHub repositories with the topic `fastapi`](https://github.com/topics/fastapi):
