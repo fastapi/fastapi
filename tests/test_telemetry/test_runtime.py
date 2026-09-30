@@ -1,5 +1,7 @@
 import asyncio
+import logging
 import threading
+from contextlib import asynccontextmanager
 from unittest.mock import Mock
 
 import pytest
@@ -201,33 +203,50 @@ def test_signal_endpoint_overrides_general_endpoint(monkeypatch, signal):
         ),
     ],
 )
-@run_in_subprocess
-def test_invalid_configuration_reports_startup_failure(env, message):
-    import os
+def test_invalid_configuration_warns_without_disabling_providers(
+    monkeypatch, caplog, telemetry, env, message
+):
+    for name, value in env.items():
+        monkeypatch.setenv(name, value)
+    config, exporter, _ = telemetry
+    events = []
 
-    os.environ.update(env)
+    @asynccontextmanager
+    async def lifespan(app):
+        events.append("startup")
+        yield
+        events.append("shutdown")
 
-    import asyncio
+    app = FastAPI(telemetry=config, lifespan=lifespan)
 
-    from fastapi import FastAPI
-    from fastapi.exceptions import FastAPIError
+    @app.get("/health")
+    async def health():
+        return {"status": "ok"}
 
-    messages = []
+    with TestClient(app) as client:
+        assert client.get("/health").json() == {"status": "ok"}
+    assert events == ["startup", "shutdown"]
+    assert exporter.get_finished_spans()
+    assert not runtime._owned
+    assert len(caplog.records) == 1
+    assert caplog.records[0].levelno == logging.WARNING
+    assert message in caplog.messages[0]
 
-    async def receive():
-        return {"type": "lifespan.startup"}
 
-    async def send(message):
-        messages.append(message)
+@pytest.mark.parametrize("stage", ["startup", "shutdown"])
+def test_application_lifespan_errors_still_propagate(monkeypatch, stage):
+    monkeypatch.setenv("OTEL_EXPORTER_OTLP_ENDPOINT", "not-a-url")
 
-    async def run():
-        with pytest.raises(FastAPIError) as exc_info:
-            await FastAPI()({"type": "lifespan", "state": {}}, receive, send)
-        assert message in str(exc_info.value)
+    @asynccontextmanager
+    async def lifespan(app):
+        if stage == "startup":
+            raise RuntimeError("application startup failed")
+        yield
+        raise RuntimeError("application shutdown failed")
 
-    asyncio.run(run())
-    assert len(messages) == 1, messages
-    assert messages[0]["type"] == "lifespan.startup.failed"
+    with pytest.raises(RuntimeError, match=f"application {stage} failed"):
+        with TestClient(FastAPI(lifespan=lifespan)) as client:
+            assert client.get("/").status_code == 404
 
 
 @pytest.mark.parametrize(
@@ -264,7 +283,7 @@ def test_no_implicit_export(env):
 
 
 @run_in_subprocess
-def test_missing_sdk_diagnostic():
+def test_missing_sdk_warns_without_preventing_startup():
     import os
 
     os.environ.update(
@@ -280,14 +299,18 @@ def test_missing_sdk_diagnostic():
                 raise ImportError("SDK absent")
 
     sys.meta_path.insert(0, BlockSDK())
+    from unittest import TestCase
+
     from fastapi import FastAPI
-    from fastapi.exceptions import FastAPIError
     from fastapi.testclient import TestClient
 
-    with pytest.raises(FastAPIError) as exc_info:
-        with TestClient(FastAPI()):
-            pass  # pragma: no cover
-    assert "fastapi[opentelemetry]" in str(exc_info.value)
+    with TestCase().assertLogs("fastapi", level="WARNING") as logs:
+        with TestClient(FastAPI()) as client:
+            assert client.get("/").status_code == 404
+    assert len(logs.records) == 1
+    assert logs.records[0].levelno == logging.WARNING
+    assert "fastapi[opentelemetry]" in logs.output[0]
+    assert not runtime._owned
 
 
 @run_in_subprocess
@@ -570,17 +593,29 @@ def test_real_otlp_exception_export_without_traces_or_metrics():
 
 
 @pytest.mark.parametrize("name", ["tracer", "meter", "logger"])
-def test_unsupported_provider_reports_configuration_error(monkeypatch, name):
-    signal = {"tracer": "TRACES", "meter": "METRICS", "logger": "LOGS"}[name]
+def test_unsupported_provider_warns_without_preventing_startup(
+    monkeypatch, caplog, name
+):
+    from opentelemetry._logs import NoOpLoggerProvider
+    from opentelemetry.metrics import NoOpMeterProvider
+    from opentelemetry.trace import NoOpTracerProvider
+
+    signal, provider = {
+        "tracer": ("TRACES", NoOpTracerProvider),
+        "meter": ("METRICS", NoOpMeterProvider),
+        "logger": ("LOGS", NoOpLoggerProvider),
+    }[name]
     monkeypatch.setenv(f"OTEL_EXPORTER_OTLP_{signal}_ENDPOINT", "http://127.0.0.1:1")
-    app = FastAPI(telemetry={f"{name}_provider": object()})
-    with pytest.raises(FastAPIError, match="does not support.*auto_configure"):
-        with TestClient(app):
-            pass  # pragma: no cover
+    app = FastAPI(telemetry={f"{name}_provider": provider()})
+    with TestClient(app) as client:
+        assert client.get("/").status_code == 404
+    assert "does not support adding an OTLP exporter" in caplog.text
+    assert "auto_configure" in caplog.text
+    assert not runtime._owned
 
 
 @pytest.mark.parametrize("error_type", [ValueError, AttributeError])
-def test_failed_registration_closes_new_exporter(monkeypatch, error_type):
+def test_failed_registration_closes_new_exporter(monkeypatch, caplog, error_type):
     from opentelemetry.exporter.otlp.proto.http import trace_exporter
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export.in_memory_span_exporter import (
@@ -606,8 +641,8 @@ def test_failed_registration_closes_new_exporter(monkeypatch, error_type):
     monkeypatch.setattr(trace_exporter, "OTLPSpanExporter", Exporter)
     monkeypatch.setenv("OTEL_EXPORTER_OTLP_TRACES_ENDPOINT", "http://127.0.0.1:1")
     app = FastAPI(telemetry={"tracer_provider": provider})
-    with pytest.raises(error_type, match="registration failed"):
-        with TestClient(app):
-            pass  # pragma: no cover
+    with TestClient(app) as client:
+        assert client.get("/").status_code == 404
+    assert "registration failed" in caplog.text
     assert stopped == [True]
     provider.shutdown()
