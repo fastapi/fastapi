@@ -210,17 +210,16 @@ def _configure_from_environment(config: TelemetryConfig) -> None:
 async def lifespan(
     *, config: TelemetryConfig, app: ASGIApp, scope: Scope, receive: Receive, send: Send
 ) -> None:
-    # Consume startup only inside the wrapper, and preserve ASGI failure events.
-    # Initialization exceptions before app(scope) would otherwise look like a
-    # server's unsupported-lifespan fallback and silently disable telemetry.
     async def wrapped_receive() -> Message:
         message = await receive()
         if message["type"] == "lifespan.startup":
             try:
                 _configure_from_environment(config)
             except Exception as exc:
-                await send({"type": "lifespan.startup.failed", "message": str(exc)})
-                raise
+                # Optional telemetry setup must not prevent application startup.
+                logger.warning(
+                    "FastAPI automatic telemetry configuration failed: %s", exc
+                )
         return message
 
     async def wrapped_send(message: Message) -> None:
