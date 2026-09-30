@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.142.2 (2026-09-30)
 
 ### Fixes
