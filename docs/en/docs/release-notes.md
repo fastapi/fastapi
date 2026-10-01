@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump gitpython from 3.1.60 to 3.1.62. PR [#16444](https://github.com/fastapi/fastapi/pull/16444) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16443](https://github.com/fastapi/fastapi/pull/16443) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI People - Sponsors. PR [#16437](https://github.com/fastapi/fastapi/pull/16437) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆ Bump pre-commit hooks. PR [#16442](https://github.com/fastapi/fastapi/pull/16442) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
