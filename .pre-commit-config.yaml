@@ -15,7 +15,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/crate-ci/typos
-    rev: 8a48f81b6c64dcfea44b3633223084c4be58ac5f # frozen: v1.49.0
+    rev: 53821664afd79bb88fcdd22fdc2f49d8d3f6cac9 # frozen: v1
     hooks:
       - id: typos
         args: [--force-exclude]
