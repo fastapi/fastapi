@@ -287,11 +287,12 @@ def get_definitions(
     fields: Sequence[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
+    schema_generator: type[_GenerateJsonSchema] = GenerateJsonSchema,
 ) -> tuple[
     dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
     dict[str, dict[str, Any]],
 ]:
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    generator = schema_generator(ref_template=REF_TEMPLATE)
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
     flat_validation_models = get_flat_models_from_fields(
@@ -333,7 +334,7 @@ def get_definitions(
         )
         for field in list(fields) + list(unique_flat_model_fields)
     ]
-    field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)
+    field_mapping, definitions = generator.generate_definitions(inputs=inputs)
     for item_def in cast(dict[str, dict[str, Any]], definitions).values():
         if "description" in item_def:
             item_description = cast(str, item_def["description"]).split("\f")[0]

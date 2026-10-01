@@ -5,6 +5,7 @@ from typing import Annotated, Any, Literal, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
+from fastapi._compat import GenerateJsonSchema
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -29,6 +30,7 @@ from fastapi.telemetry._asgi import (
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
+from pydantic.json_schema import GenerateJsonSchema as PydanticGenerateJsonSchema
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
@@ -830,6 +832,10 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        schema_generator: Annotated[
+            type[PydanticGenerateJsonSchema],
+            Doc("JSON Schema generator class used to build OpenAPI."),
+        ] = GenerateJsonSchema,
         openapi_external_docs: Annotated[
             dict[str, Any] | None,
             Doc(
@@ -907,6 +913,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
+        self.schema_generator = schema_generator
         self.openapi_external_docs = openapi_external_docs
         self.extra = extra
         self.openapi_version: Annotated[
@@ -1133,6 +1140,7 @@ class FastAPI(Starlette):
                 tags=self.openapi_tags,
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
+                schema_generator=self.schema_generator,
                 external_docs=self.openapi_external_docs,
             )
             self._openapi_routes_version = routes_version

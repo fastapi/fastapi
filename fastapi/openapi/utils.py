@@ -8,6 +8,9 @@ from typing import Any, Literal, cast
 
 from fastapi import routing
 from fastapi._compat import (
+    GenerateJsonSchema as GenerateJsonSchema,
+)
+from fastapi._compat import (
     ModelField,
     get_definitions,
     get_flat_models_from_fields,
@@ -43,6 +46,7 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
+from pydantic.json_schema import GenerateJsonSchema as PydanticGenerateJsonSchema
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 
@@ -597,6 +601,7 @@ def get_openapi(
     contact: dict[str, str | Any] | None = None,
     license_info: dict[str, str | Any] | None = None,
     separate_input_output_schemas: bool = True,
+    schema_generator: type[PydanticGenerateJsonSchema] = GenerateJsonSchema,
     external_docs: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     info: dict[str, Any] = {"title": title, "version": version}
@@ -624,6 +629,7 @@ def get_openapi(
         fields=all_fields,
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
+        schema_generator=schema_generator,
     )
     for route_context in routing.iter_route_contexts(routes):
         api_route = _get_api_route_for_openapi(route_context)
