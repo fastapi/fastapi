@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump urllib3 from 2.7.0 to 2.8.0. PR [#16445](https://github.com/fastapi/fastapi/pull/16445) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group with 3 updates. PR [#16438](https://github.com/fastapi/fastapi/pull/16438) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.142.2 (2026-09-30)
