@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyjwt from 2.13.0 to 2.15.0. PR [#16423](https://github.com/fastapi/fastapi/pull/16423) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump gitpython from 3.1.60 to 3.1.62. PR [#16444](https://github.com/fastapi/fastapi/pull/16444) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16443](https://github.com/fastapi/fastapi/pull/16443) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
