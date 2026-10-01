@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Sponsors. PR [#16437](https://github.com/fastapi/fastapi/pull/16437) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆ Bump pre-commit hooks. PR [#16442](https://github.com/fastapi/fastapi/pull/16442) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆ Bump urllib3 from 2.7.0 to 2.8.0. PR [#16445](https://github.com/fastapi/fastapi/pull/16445) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the github-actions group with 3 updates. PR [#16438](https://github.com/fastapi/fastapi/pull/16438) by [@dependabot[bot]](https://github.com/apps/dependabot).
