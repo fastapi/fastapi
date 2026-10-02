@@ -11,6 +11,25 @@ hide:
 
 * 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Update translations for es (add-missing). PR [#16426](https://github.com/fastapi/fastapi/pull/16426) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ru (add-missing). PR [#16427](https://github.com/fastapi/fastapi/pull/16427) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update Russian LLM-prompt. PR [#16449](https://github.com/fastapi/fastapi/pull/16449) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔨 Use `gpt-6-astra` model for translations. PR [#16453](https://github.com/fastapi/fastapi/pull/16453) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump the python-packages group across 1 directory with 14 updates. PR [#16447](https://github.com/fastapi/fastapi/pull/16447) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyjwt from 2.13.0 to 2.15.0. PR [#16423](https://github.com/fastapi/fastapi/pull/16423) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.60 to 3.1.62. PR [#16444](https://github.com/fastapi/fastapi/pull/16444) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#16443](https://github.com/fastapi/fastapi/pull/16443) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 👥 Update FastAPI People - Sponsors. PR [#16437](https://github.com/fastapi/fastapi/pull/16437) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump pre-commit hooks. PR [#16442](https://github.com/fastapi/fastapi/pull/16442) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump urllib3 from 2.7.0 to 2.8.0. PR [#16445](https://github.com/fastapi/fastapi/pull/16445) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group with 3 updates. PR [#16438](https://github.com/fastapi/fastapi/pull/16438) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.142.2 (2026-09-30)
 
 ### Fixes
