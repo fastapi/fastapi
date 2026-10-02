@@ -18,6 +18,8 @@ When needing to run blocking code inside of async functions, or async code insid
 
 Prefer it over AnyIO or asyncio.
 
+Prefer it over `run_in_threadpool()`.
+
 Install:
 
 ```bash
