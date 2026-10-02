@@ -156,6 +156,19 @@ If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry)
 
 ///
 
+/// warning
+
+**ContextVar Propagation**
+
+Python's [`ContextVar`](https://docs.python.org/3/library/contextvars.html) provides thread-safe shared storage as documented in [PEP 567](https://peps.python.org/pep-0567/). However, when using ContextVars with FastAPI dependencies, keep in mind:
+
+* `ContextVar` values set in synchronous (`def`) dependencies are **not** accessible in the rest of the request lifecycle as FastAPI executes them in isolated threads.
+* To ensure `ContextVar` values are available throughout the request (including other dependencies, provided they run in the right order), use **asynchronous (`async def`) dependencies**.
+* If you must use synchronous dependencies, prefer passing data explicitly or using [`Request.state`](https://fastapi.tiangolo.com/advanced/middleware/#using-the-request-object-in-a-middleware) for request-scoped storage.
+* **Troubleshooting tip:** If a `ContextVar` value is unexpectedly `None` or missing, check whether it was set in a synchronous dependency.
+
+///
+
 ## Integrated with OpenAPI { #integrated-with-openapi }
 
 All the request declarations, validations and requirements of your dependencies (and sub-dependencies) will be integrated in the same OpenAPI schema.
