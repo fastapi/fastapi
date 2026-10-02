@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for es (add-missing). PR [#16426](https://github.com/fastapi/fastapi/pull/16426) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ru (add-missing). PR [#16427](https://github.com/fastapi/fastapi/pull/16427) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update Russian LLM-prompt. PR [#16449](https://github.com/fastapi/fastapi/pull/16449) by [@YuriiMotov](https://github.com/YuriiMotov).
 
