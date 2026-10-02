@@ -11,6 +11,10 @@ hide:
 
 * 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Update Russian LLM-prompt. PR [#16449](https://github.com/fastapi/fastapi/pull/16449) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
 * ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
