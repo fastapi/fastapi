@@ -769,6 +769,12 @@ def get_request_handler(
                         response = actual_response_class(content, **response_args)
                     if not is_body_allowed_for_status_code(response.status_code):
                         response.body = b""
+                        # Unlike 1xx, 204, and 304, a 205 response is still
+                        # delimited by Content-Length, so it has to match the
+                        # now empty body
+                        # Ref: https://www.rfc-editor.org/rfc/rfc9112#section-6.3
+                        if response.status_code == 205:
+                            response.headers["content-length"] = "0"
                     response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
