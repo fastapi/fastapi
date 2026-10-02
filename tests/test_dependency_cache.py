@@ -38,8 +38,8 @@ async def get_sub_counter_no_cache(
 @app.get("/scope-counter")
 async def get_scope_counter(
     count: int = Security(dep_counter),
-    scope_count_1: int = Security(dep_counter, scopes=["scope"]),
-    scope_count_2: int = Security(dep_counter, scopes=["scope"]),
+    scope_count_1: int = Security(dep_counter, oauth_scopes=["scope"]),
+    scope_count_2: int = Security(dep_counter, oauth_scopes=["scope"]),
 ):
     return {
         "counter": count,
