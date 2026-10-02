@@ -55,6 +55,7 @@ def get_username():
     finally:
         print("Clean up before response is sent")
 
+
 UserNameDep = Annotated[str, Depends(get_username, scope="function")]
 
 @app.get("/users/me")
