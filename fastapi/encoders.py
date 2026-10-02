@@ -81,8 +81,21 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
         return float(dec_value)
 
 
+def bytes_encoder(o: bytes) -> str:
+    try:
+        return o.decode()
+    except UnicodeDecodeError as e:
+        raise ValueError(
+            "Unable to serialize bytes value to JSON because it is not valid "
+            "UTF-8 text. If you need to return raw/binary bytes from your app, "
+            "encode them yourself first (e.g. with base64) or pass a "
+            "`custom_encoder={bytes: ...}` to `jsonable_encoder()` to control "
+            "how they are serialized."
+        ) from e
+
+
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
-    bytes: lambda o: o.decode(),
+    bytes: bytes_encoder,
     Color: str,
     PyExtraColor: str,
     datetime.date: isoformat,
