@@ -79,7 +79,7 @@ OpenAPI 定义了以下安全方案：
     * HTTP Basic 认证方式。
     * HTTP Digest，等等。
 * `oauth2`：所有的 OAuth2 处理安全性的方式（称为「流程」）。
-    *以下几种流程适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，X (Twitter)，GitHub 等）：
+    * 以下几种流程适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，X (Twitter)，GitHub 等）：
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
