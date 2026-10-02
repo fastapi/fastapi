@@ -5,6 +5,9 @@ on:
     types:
       - published
 
+env:
+  UV_NO_SYNC: true
+
 permissions: {}
 
 jobs:
