@@ -628,43 +628,35 @@ def get_openapi(
     for route_context in routing.iter_route_contexts(routes):
         api_route = _get_api_route_for_openapi(route_context)
         if api_route is not None:
-            result = get_openapi_path(
+            path, security_schemes, path_definitions = get_openapi_path(
                 route=api_route,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
-            if result:
-                path, security_schemes, path_definitions = result
-                if path:
-                    paths.setdefault(api_route.path_format, {}).update(path)
-                if security_schemes:
-                    components.setdefault("securitySchemes", {}).update(
-                        security_schemes
-                    )
-                if path_definitions:
-                    definitions.update(path_definitions)
+            if path:
+                paths.setdefault(api_route.path_format, {}).update(path)
+            if security_schemes:
+                components.setdefault("securitySchemes", {}).update(security_schemes)
+            if path_definitions:
+                definitions.update(path_definitions)
     for webhook_context in routing.iter_route_contexts(webhooks or []):
         api_webhook = _get_api_route_for_openapi(webhook_context)
         if api_webhook is not None:
-            result = get_openapi_path(
+            path, security_schemes, path_definitions = get_openapi_path(
                 route=api_webhook,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
-            if result:
-                path, security_schemes, path_definitions = result
-                if path:
-                    webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
-                if security_schemes:
-                    components.setdefault("securitySchemes", {}).update(
-                        security_schemes
-                    )
-                if path_definitions:
-                    definitions.update(path_definitions)
+            if path:
+                webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
+            if security_schemes:
+                components.setdefault("securitySchemes", {}).update(security_schemes)
+            if path_definitions:
+                definitions.update(path_definitions)
     if definitions:
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
