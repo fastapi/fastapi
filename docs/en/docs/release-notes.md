@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh (add-missing). PR [#16433](https://github.com/fastapi/fastapi/pull/16433) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh-hant (add-missing). PR [#16432](https://github.com/fastapi/fastapi/pull/16432) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for pt (add-missing). PR [#16431](https://github.com/fastapi/fastapi/pull/16431) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for de (add-missing). PR [#16430](https://github.com/fastapi/fastapi/pull/16430) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
