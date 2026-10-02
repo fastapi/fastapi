@@ -125,7 +125,9 @@ def test_validation_data_without_tracing(invalid_json, logging):
             assert data.errors[0]["type"] == (
                 "json_invalid" if invalid_json else "int_parsing"
             )
-            assert data.body == ("{" if invalid_json else {"amount": "private-input"})
+            assert data.body == (
+                b"{" if invalid_json else b'{"amount": "private-input"}'
+            )
             observed.append(record.context)
 
         def shutdown(self):
