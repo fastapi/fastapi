@@ -140,7 +140,7 @@ def translate_page(
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai-chat:gpt-5.5")
+    agent = Agent("openai-chat:gpt-6-astra")
 
     MAX_ATTEMPTS = 3
     additional_instructions = ""
