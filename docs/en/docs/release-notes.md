@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for hi (add-missing). PR [#16435](https://github.com/fastapi/fastapi/pull/16435) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for tr (add-missing). PR [#16434](https://github.com/fastapi/fastapi/pull/16434) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh (add-missing). PR [#16433](https://github.com/fastapi/fastapi/pull/16433) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh-hant (add-missing). PR [#16432](https://github.com/fastapi/fastapi/pull/16432) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
