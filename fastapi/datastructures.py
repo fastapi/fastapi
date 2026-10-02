@@ -139,7 +139,11 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_json_schema__(
         cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
     ) -> dict[str, Any]:
-        return {"type": "string", "contentMediaType": "application/octet-stream"}
+        return {
+            "type": "string",
+            "format": "binary",  # For compatibility with OAS 3.0
+            "contentMediaType": "application/octet-stream",
+        }
 
     @classmethod
     def __get_pydantic_core_schema__(
