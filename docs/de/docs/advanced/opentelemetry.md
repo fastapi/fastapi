@@ -2,19 +2,19 @@
 
 Wenn Ihre API läuft, möchten Sie vielleicht wissen, wie viel Traffic sie erhält, welche Requests langsam sind und wann Fehler auftreten.
 
-**Telemetrie** sind Daten über das Verhalten Ihrer Anwendung, die Ihnen helfen, diese Fragen zu beantworten. Häufige Arten sind:
+**Telemetrie** umfasst Daten über das Verhalten Ihrer Anwendung, die Ihnen helfen, diese Fragen zu beantworten. Zu den gängigen Typen gehören:
 
-- **Metriken**: Messwerte, die Sie über die Zeit zusammenfassen können, etwa Responsezeiten und die Anzahl der Requests, die verarbeitet werden.
-- **Traces**: Aufzeichnungen einzelner Requests und der Operationen, die zu deren Verarbeitung ausgeführt werden. Jede zeitlich gemessene Operation wird **Span** genannt.
-- **Logs**: mit Zeitstempel versehene Aufzeichnungen von Events, etwa dass eine Anwendung startet oder eine Operation fehlschlägt.
+- **Metriken**: Messwerte, die Sie über einen Zeitraum zusammenfassen können, etwa Responsezeiten und die Anzahl der verarbeiteten Requests.
+- **Traces**: Aufzeichnungen einzelner Requests und der Operationen, die zu ihrer Verarbeitung ausgeführt werden. Jede zeitlich erfasste Operation wird als **Span** bezeichnet.
+- **Logs**: Aufzeichnungen von Events mit Zeitstempel, etwa das Starten einer Anwendung oder das Fehlschlagen einer Operation.
 
-[**OpenTelemetry**](https://opentelemetry.io/) ist eine Sammlung von Standards und Tools zum Sammeln von Telemetrie und zum Senden dieser Daten an einen Monitoring-Dienst, wo Sie sie in Dashboards untersuchen können.
+[**OpenTelemetry**](https://opentelemetry.io/) ist eine Sammlung von Standards und Werkzeugen zum Erfassen von Telemetriedaten und zum Senden dieser Daten an einen Monitoring-Dienst, wo Sie sie in Dashboards untersuchen können.
 
-**FastAPI bietet standardmäßig OpenTelemetry-Unterstützung** für HTTP-Request-Traces, Metriken und Logs. WebSocket-Verbindungen liefern ebenfalls Traces und Logs. Um diese Daten zu sehen, konfigurieren Sie einen Monitoring-Dienst, der sie empfängt.
+**FastAPI bietet standardmäßig OpenTelemetry-Unterstützung** für HTTP-Request-Traces, Metriken und Logs. WebSocket-Verbindungen liefern ebenfalls Traces und Logs. Um diese Daten anzuzeigen, konfigurieren Sie einen Monitoring-Dienst, der sie empfängt.
 
 ## FastAPI installieren { #install-fastapi }
 
-Installieren Sie FastAPI mit den `standard`-Extras, welche die Pakete zum Senden von Telemetrie enthalten:
+Installieren Sie FastAPI mit den `standard`-Extras, die die Pakete zum Senden von Telemetriedaten enthalten:
 
 <div class="termy">
 
@@ -31,30 +31,30 @@ Erstellen Sie eine Datei `main.py`:
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-Beachten Sie, dass all das standardmäßig funktioniert; Sie müssen keinen eigenen Code schreiben, damit Telemetrie funktioniert.
+Beachten Sie, dass alles standardmäßig funktioniert. Sie müssen keinen eigenen Code schreiben, damit die Telemetrie funktioniert.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
-Wenn Sie mit `fastapi[standard]` auf [FastAPI Cloud](https://fastapicloud.com) deployen, funktionieren Metriken automatisch. Sie müssen sonst nichts konfigurieren.
+Wenn Sie mit `fastapi[standard]` auf [FastAPI Cloud](https://fastapicloud.com) deployen, funktionieren Metriken automatisch. Sie müssen nichts weiter konfigurieren.
 
-Bei Pro-Tarifen können Sie Request-Anzahlen, Fehlerraten und Responsezeiten im [Metrik-Dashboard](https://fastapicloud.com/docs/monitoring-and-performance/metrics/) ansehen.
+Mit einem Pro-Tarif können Sie die Anzahl der Requests, Fehlerraten und Responsezeiten im [Metriken-Dashboard](https://fastapicloud.com/docs/monitoring-and-performance/metrics/) anzeigen.
 
-<img src="/img/tutorial/opentelemetry/image01.png" alt="FastAPI-Cloud-Pro-Metrik-Dashboard mit Beispieldaten">
+<img src="/img/tutorial/opentelemetry/image01.png" alt="FastAPI Cloud Pro-Metriken-Dashboard mit Beispieldaten">
 
 ## Andere Monitoring-Dienste { #other-monitoring-services }
 
-Um Telemetrie an einen anderen Monitoring-Dienst zu senden, konfigurieren Sie einen Endpoint, der **OTLP** akzeptiert, das OpenTelemetry-Protokoll zum Senden von Telemetrie. Verwenden Sie den HTTP/protobuf-Basis-Endpoint des Dienstes.
+Um Telemetriedaten an einen anderen Monitoring-Dienst zu senden, konfigurieren Sie einen Endpunkt, der **OTLP** akzeptiert, das OpenTelemetry-Protokoll zum Senden von Telemetriedaten. Verwenden Sie den HTTP/protobuf-Basisendpunkt des Dienstes.
 
-Setzen Sie diese Umgebungsvariablen und ersetzen Sie die Beispiel-URL durch Ihren Endpoint:
+Setzen Sie diese Umgebungsvariablen und ersetzen Sie die Beispiel-URL durch Ihren Endpunkt:
 
 ```bash
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` identifiziert Ihre Anwendung im Monitoring-Dienst. Der Endpoint ist die Basis-URL zum Empfangen von Daten. Traces werden unter dieser URL an `/v1/traces` gesendet, Metriken an `/v1/metrics` und Logs an `/v1/logs`.
+`OTEL_SERVICE_NAME` identifiziert Ihre Anwendung im Monitoring-Dienst. Der Endpunkt ist die Basis-URL für den Empfang von Daten. Unter dieser URL werden Traces an `/v1/traces`, Metriken an `/v1/metrics` und Logs an `/v1/logs` gesendet.
 
-Wenn Ihr Dienst Authentifizierung erfordert, setzen Sie `OTEL_EXPORTER_OTLP_HEADERS` auf die von ihm angegebenen Header, zum Beispiel `api-key=YOUR_API_KEY`.
+Wenn Ihr Dienst Authentifizierung erfordert, setzen Sie `OTEL_EXPORTER_OTLP_HEADERS` auf die von ihm vorgegebenen Header, zum Beispiel `api-key=YOUR_API_KEY`.
 
 ## Die Anwendung ausführen { #run-the-app }
 
@@ -75,7 +75,7 @@ $ curl http://127.0.0.1:8000/items/1
 {"item_id":1}
 ```
 
-Öffnen Sie Ihren Monitoring-Dienst und suchen Sie `my-api`. Nach dem nächsten Export können Sie einen Trace mit einem `GET /items/{item_id}`-Span sehen, zusammen mit Metriken für Request-Anzahlen, Responsedauer und aktive Requests.
+Öffnen Sie Ihren Monitoring-Dienst und suchen Sie nach `my-api`. Nach dem nächsten Export sehen Sie einen Trace mit einem `GET /items/{item_id}`-Span sowie Metriken zur Anzahl der Requests, zur Responsedauer und zu aktiven Requests.
 
 ## Telemetrie anpassen { #customize-telemetry }
 
@@ -85,67 +85,67 @@ Ein **Provider** stellt die Objekte bereit, die Traces, Metriken oder Logs aufze
 
 Telemetriebibliotheken können die globalen Provider von OpenTelemetry konfigurieren. Konfigurieren Sie die Bibliothek, bevor die Anwendung startet, und FastAPI verwendet diese Provider automatisch.
 
-Wenn ein OTLP-Endpoint in der Umgebung gesetzt ist, fügt FastAPI jedem aktivierten Provider einen Exporter für dieses Ziel hinzu. Bestehende Exporter senden weiterhin Daten an ihre Ziele.
+Wenn ein OTLP-Endpunkt in der Umgebung gesetzt ist, fügt FastAPI jedem aktivierten Provider einen Exporter für dieses Ziel hinzu. Vorhandene Exporter senden weiterhin Daten an ihre Ziele.
 
-Konfigurieren Sie jedes Ziel einmal. Wenn eine andere Bibliothek das in der Umgebung angegebene Ziel bereits verarbeitet, deaktivieren Sie ihren Umgebungsexport oder schalten Sie FastAPIs automatische Einrichtung aus:
+Konfigurieren Sie jedes Ziel einmal. Wenn eine andere Bibliothek bereits das in der Umgebung angegebene Ziel verwaltet, deaktivieren Sie deren Export über die Umgebung oder schalten Sie FastAPIs automatische Einrichtung aus:
 
 ```python
 app = FastAPI(telemetry={"auto_configure": False})
 ```
 
-Sie können auch direkt einen Provider im `telemetry`-Dictionary übergeben. Zum Beispiel verwendet dieser Provider OpenTelemetrys Konsolen-Exporter, um Request-Spans in Ihrem Terminal auszugeben:
+Sie können auch einen Provider direkt im Dictionary `telemetry` übergeben. Dieser Provider verwendet beispielsweise den Konsolenexporter von OpenTelemetry, um Request-Spans in Ihrem Terminal auszugeben:
 
 {* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
 
-Der **Exporter** sendet die Spans an ihr Ziel. `BatchSpanProcessor` gruppiert Spans und sendet sie im Hintergrund. Ersetzen Sie den Konsolen-Exporter durch einen Exporter, der von Ihrer Monitoring-Bibliothek bereitgestellt wird, um deren Ziel zu verwenden. Weitere Konfigurationsoptionen finden Sie in der [Python-Instrumentierungsanleitung von OpenTelemetry](https://opentelemetry.io/docs/languages/python/instrumentation/).
+Der **Exporter** sendet die Spans an ihr Ziel. `BatchSpanProcessor` gruppiert Spans und sendet sie im Hintergrund. Ersetzen Sie den Konsolenexporter durch einen Exporter Ihrer Monitoring-Bibliothek, um deren Ziel zu verwenden. Weitere Konfigurationsoptionen finden Sie im [Leitfaden zur Python-Instrumentierung von OpenTelemetry](https://opentelemetry.io/docs/languages/python/instrumentation/).
 
-Verwenden Sie `meter_provider` oder `logger_provider` im selben Dictionary, um einen Metrik- oder Logs-Provider bereitzustellen. Die Anwendung oder Bibliothek, die einen Provider erstellt, verwaltet dessen Herunterfahren. FastAPI verwaltet die Exportkomponenten, die es hinzufügt.
+Verwenden Sie `meter_provider` oder `logger_provider` im selben Dictionary, um einen Provider für Metriken oder Logs bereitzustellen. Die Anwendung oder Bibliothek, die einen Provider erstellt, verwaltet dessen Shutdown. FastAPI verwaltet die Exportkomponenten, die es hinzufügt.
 
 /// warning | Achtung
 
-OpenTelemetry verwendet standardmäßig globale Provider. Eine unabhängige Telemetriekonfiguration für [gemountete Sub-Anwendungen](sub-applications.md) ist nicht garantiert.
+OpenTelemetry verwendet standardmäßig globale Provider. Eine unabhängige Telemetriekonfiguration für [gemountete Unteranwendungen](sub-applications.md) ist nicht garantiert.
 
 ///
 
-### Request-Operationen tracen { #trace-request-operations }
+### Request-Operationen nachverfolgen { #trace-request-operations }
 
 Standardmäßig enthalten Request-Traces Spans für das Auflösen von Abhängigkeiten, das Ausführen Ihrer Pfadoperation-Funktion, das Serialisieren der Response und das Ausführen jedes Tasks in FastAPIs `BackgroundTasks`. Diese Spans verwenden denselben Provider und dieselben Exporter.
 
-Hintergrundtask-Spans bleiben Teil des Traces des Requests. Sie werden ausgeführt, nachdem der HTTP-Response-Span endet, und erhöhen daher nicht die gemessene Responsezeit.
+Die Spans der Hintergrundtasks bleiben Teil des Request-Traces. Sie werden ausgeführt, nachdem der HTTP-Response-Span beendet ist, und erhöhen daher nicht die gemessene Responsezeit.
 
 Um nur den HTTP-Request-Span aufzuzeichnen, setzen Sie `operation_spans` auf `False`:
 
 {* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
 
 
-### WebSocket-Verbindungen tracen { #trace-websocket-connections }
+### WebSocket-Verbindungen nachverfolgen { #trace-websocket-connections }
 
-Jede WebSocket-Verbindung hat einen Span wie `WS /ws/{room}`, der den Handler und die Bereinigung der Abhängigkeiten umfasst. Er verwendet dieselben Provider und Einstellungen, einschließlich `operation_spans` für die Auflösung von Abhängigkeiten und die Ausführung des Endpoints.
+Jede WebSocket-Verbindung hat einen Span wie `WS /ws/{room}`, der den Handler und das Aufräumen der Abhängigkeiten umfasst. Er verwendet dieselben Provider und Einstellungen, einschließlich `operation_spans` für das Auflösen von Abhängigkeiten und das Ausführen des Endpunkts.
 
-HTTP-Request-Metriken decken nur HTTP-Requests ab. Normale WebSocket-Trennungen mit den Codes `1000` oder `1001` erzeugen keine Error-Logs.
+HTTP-Request-Metriken erfassen nur HTTP-Requests. Normale WebSocket-Verbindungsabbrüche mit den Codes `1000` oder `1001` erzeugen keine Fehlerlogs.
 
 ### Fehler untersuchen { #inspect-errors }
 
-FastAPI zeichnet unbehandelte Exceptions als OpenTelemetry-Logs auf, die mit dem Trace des Requests oder der Verbindung verknüpft sind. Error-Logs werden auch dann aufgezeichnet, wenn der Trace nicht gesampelt wird.
+FastAPI zeichnet unbehandelte Exceptions als OpenTelemetry-Logs auf, die mit dem Trace des Requests oder der Verbindung verknüpft sind. Fehlerlogs werden auch dann aufgezeichnet, wenn der Trace nicht durch Sampling erfasst wird.
 
-Exception-Logs enthalten den Typ, die Nachricht und den Stacktrace der Exception. Nachrichten und Stacktraces können vertrauliche Informationen enthalten. Verwenden Sie die Log-Prozessoren Ihres Providers, um sie zu filtern oder zu schwärzen, oder setzen Sie `logs` auf `False`, um diese Logs zu deaktivieren.
+Exception-Logs enthalten den Typ, die Nachricht und den Stacktrace der Exception. Nachrichten und Stacktraces können sensible Informationen enthalten. Verwenden Sie die Logprozessoren Ihres Providers, um diese zu filtern oder zu schwärzen, oder setzen Sie `logs` auf `False`, um diese Logs zu deaktivieren.
 
-FastAPI zeichnet außerdem Request-Validierungsfehler als Warning-Logs mit der Route und der Fehleranzahl auf. Diese Logs enthalten nicht die ungültige Eingabe.
+FastAPI zeichnet außerdem fehlgeschlagene Request-Validierungen als Warnungslogs mit der Route und der Fehleranzahl auf. Diese Logs enthalten nicht die ungültigen Eingabedaten.
 
-## Auswählen, was aufgezeichnet werden soll { #choose-what-to-record }
+## Die aufzuzeichnenden Daten auswählen { #choose-what-to-record }
 
-Das `telemetry`-Dictionary akzeptiert außerdem diese Einstellungen:
+Das Dictionary `telemetry` akzeptiert außerdem diese Einstellungen:
 
 | Einstellung | Zweck | Defaultwert |
 | --- | --- | --- |
-| `tracing` | HTTP-Request- und WebSocket-Verbindungsspans aufzeichnen | `True` |
+| `tracing` | Spans für HTTP-Requests und WebSocket-Verbindungen aufzeichnen | `True` |
 | `metrics` | HTTP-Request-Metriken aufzeichnen | `True` |
-| `logs` | Validierungsfehler und unbehandelte Exceptions aufzeichnen | `True` |
+| `logs` | Fehlgeschlagene Validierungen und unbehandelte Exceptions aufzeichnen | `True` |
 | `operation_spans` | Spans für Request-Operationen hinzufügen | `True` |
-| `exclude` | Requests überspringen, wenn eine Funktion, die den ASGI-Scope erhält, `True` zurückgibt | `None` |
-| `auto_configure` | Exporter für Endpoints hinzufügen, die in Umgebungsvariablen gesetzt sind | `True` |
+| `exclude` | Requests überspringen, wenn eine Funktion, die den ASGI-Scope empfängt, `True` zurückgibt | `None` |
+| `auto_configure` | Exporter für Endpunkte hinzufügen, die in Umgebungsvariablen gesetzt sind | `True` |
 
-Zum Beispiel, um Metriken zu sammeln und dabei Healthchecks auszuschließen:
+Um beispielsweise Metriken zu erfassen und dabei Healthchecks auszuschließen:
 
 ```python
 from fastapi import FastAPI
@@ -158,4 +158,4 @@ app = FastAPI(
 )
 ```
 
-Setzen Sie `auto_configure` auf `False`, wenn Ihre Anwendung die Provider-Einrichtung selbst übernimmt, etwa innerhalb ihrer Lifespan-Funktion.
+Setzen Sie `auto_configure` auf `False`, wenn Ihre Anwendung die Einrichtung der Provider selbst übernimmt, etwa innerhalb ihrer Lifespan-Funktion.
