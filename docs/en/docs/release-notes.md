@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for uk (add-missing). PR [#16429](https://github.com/fastapi/fastapi/pull/16429) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ja (add-missing). PR [#16428](https://github.com/fastapi/fastapi/pull/16428) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ko (add-missing). PR [#16425](https://github.com/fastapi/fastapi/pull/16425) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for es (add-missing). PR [#16426](https://github.com/fastapi/fastapi/pull/16426) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
