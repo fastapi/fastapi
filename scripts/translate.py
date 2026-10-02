@@ -1,4 +1,5 @@
 import json
+import os
 import secrets
 from collections.abc import Iterable
 from functools import lru_cache
@@ -36,6 +37,8 @@ general_prompt = general_prompt_path.read_text(encoding="utf-8")
 
 app = typer.Typer()
 repository_path = Path(__file__).absolute().parent.parent
+
+os.environ["PYDANTIC_AI_NO_BANNER"] = "1"
 
 
 @lru_cache
