@@ -343,3 +343,8 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encode_bytearray():
+    data = {"data": bytearray(b"fastapi")}
+    assert jsonable_encoder(data) == {"data": "fastapi"}
