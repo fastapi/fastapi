@@ -29,6 +29,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove Render. PR [#16457](https://github.com/fastapi/fastapi/pull/16457) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Use `gpt-6-astra` model for translations. PR [#16453](https://github.com/fastapi/fastapi/pull/16453) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump the python-packages group across 1 directory with 14 updates. PR [#16447](https://github.com/fastapi/fastapi/pull/16447) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
