@@ -35,6 +35,11 @@ async def b():
     pass  # pragma: no cover
 
 
+@app.get("/c", status_code=205)
+async def c():
+    return {"message": "should not have a body"}
+
+
 client = TestClient(app)
 
 
@@ -42,6 +47,12 @@ def test_get_response():
     response = client.get("/a")
     assert response.status_code == 204, response.text
     assert "content-length" not in response.headers
+    assert response.content == b""
+
+
+def test_get_response_205():
+    response = client.get("/c")
+    assert response.status_code == 205, response.text
     assert response.content == b""
 
 
@@ -83,6 +94,13 @@ def test_openapi_schema():
                         },
                         "summary": "B",
                         "operationId": "b_b_get",
+                    }
+                },
+                "/c": {
+                    "get": {
+                        "summary": "C",
+                        "operationId": "c_c_get",
+                        "responses": {"205": {"description": "Successful Response"}},
                     }
                 },
             },
