@@ -27,10 +27,11 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
 from pydantic.fields import FieldInfo as FieldInfo
+from pydantic.json_schema import DefsRef, JsonSchemaKeyT, JsonSchemaMode
 from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined
+from pydantic_core import PydanticOmit, PydanticUndefined
 from pydantic_core import Url as Url
 from pydantic_core.core_schema import (
     with_info_plain_validator_function as with_info_plain_validator_function,
@@ -55,6 +56,37 @@ def evaluate_forwardref(
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
+    _generate_inner_depth = 0
+    _omitted_schema: JsonSchemaValue = {"__fastapi_omitted__": True}
+
+    def generate_inner(self, schema: Any) -> JsonSchemaValue:
+        self._generate_inner_depth += 1
+        try:
+            return super().generate_inner(schema)
+        except PydanticOmit:
+            if self._generate_inner_depth != 1:
+                # Let Pydantic handle omitted model fields and union members.
+                raise
+            return self._omitted_schema
+        finally:
+            self._generate_inner_depth -= 1
+
+    def generate_definitions(
+        self, inputs: Sequence[tuple[JsonSchemaKeyT, JsonSchemaMode, CoreSchema]]
+    ) -> tuple[
+        dict[tuple[JsonSchemaKeyT, JsonSchemaMode], JsonSchemaValue],
+        dict[DefsRef, JsonSchemaValue],
+    ]:
+        field_mapping, definitions = super().generate_definitions(inputs)
+        omitted_keys = [
+            key
+            for key, schema in field_mapping.items()
+            if schema is self._omitted_schema
+        ]
+        for key in omitted_keys:
+            del field_mapping[key]
+        return field_mapping, definitions
+
     # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
     # and dropping support for any version of Pydantic before that one (so, in a very long time)
     def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:

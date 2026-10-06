@@ -189,6 +189,8 @@ def _get_openapi_operation_parameters(
             # field_info = cast(Param, field_info)
             if not getattr(field_info, "include_in_schema", True):
                 continue
+            if (param, "validation") not in field_mapping:
+                continue
             param_schema = get_schema_from_model_field(
                 field=param,
                 model_name_map=model_name_map,
