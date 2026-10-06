@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Remove HTML title from newsletter to avoid the tooltip. PR [#16461](https://github.com/fastapi/fastapi/pull/16461) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Embed the FastAPI and friends newsletter signup form. PR [#16459](https://github.com/fastapi/fastapi/pull/16459) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
 
