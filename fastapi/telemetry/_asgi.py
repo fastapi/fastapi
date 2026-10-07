@@ -168,6 +168,8 @@ class NativeTelemetry:
         self._provider: metrics.MeterProvider | None = None
         self._duration: Histogram | None = None
         self._active: UpDownCounter | None = None
+        self._tracer_provider: trace.TracerProvider | None = None
+        self._tracer: trace.Tracer | None = None
 
     def enabled(self) -> bool:
         config = self.config
@@ -213,6 +215,15 @@ class NativeTelemetry:
             self._provider = provider
         assert self._duration is not None and self._active is not None
         return self._duration, self._active
+
+    def _get_tracer(self, *, provider: trace.TracerProvider) -> trace.Tracer:
+        if provider is not self._tracer_provider:
+            self._tracer = provider.get_tracer(
+                "fastapi", __version__, schema_url=_SCHEMA_URL
+            )
+            self._tracer_provider = provider
+        assert self._tracer is not None
+        return self._tracer
 
     async def __call__(
         self,
@@ -282,12 +293,7 @@ class NativeTelemetry:
         if tracing:
             parent = propagate.extract(Headers(scope=scope), getter=_HEADERS_GETTER)
             parent_token = otel_context.attach(parent)
-            tracer = trace.get_tracer(
-                "fastapi",
-                __version__,
-                config["tracer_provider"],
-                schema_url=_SCHEMA_URL,
-            )
+            tracer = self._get_tracer(provider=provider)
             span_attributes = {**attributes, **_server_attributes(scope)}
             if not is_websocket:
                 span_attributes["url.path"] = scope["path"]
