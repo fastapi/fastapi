@@ -7,6 +7,61 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Remove HTML title from newsletter to avoid the tooltip. PR [#16461](https://github.com/fastapi/fastapi/pull/16461) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Embed the FastAPI and friends newsletter signup form. PR [#16459](https://github.com/fastapi/fastapi/pull/16459) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for fr (add-missing). PR [#16436](https://github.com/fastapi/fastapi/pull/16436) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for hi (add-missing). PR [#16435](https://github.com/fastapi/fastapi/pull/16435) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for tr (add-missing). PR [#16434](https://github.com/fastapi/fastapi/pull/16434) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh (add-missing). PR [#16433](https://github.com/fastapi/fastapi/pull/16433) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh-hant (add-missing). PR [#16432](https://github.com/fastapi/fastapi/pull/16432) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for pt (add-missing). PR [#16431](https://github.com/fastapi/fastapi/pull/16431) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for de (add-missing). PR [#16430](https://github.com/fastapi/fastapi/pull/16430) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for uk (add-missing). PR [#16429](https://github.com/fastapi/fastapi/pull/16429) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ja (add-missing). PR [#16428](https://github.com/fastapi/fastapi/pull/16428) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ko (add-missing). PR [#16425](https://github.com/fastapi/fastapi/pull/16425) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for es (add-missing). PR [#16426](https://github.com/fastapi/fastapi/pull/16426) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ru (add-missing). PR [#16427](https://github.com/fastapi/fastapi/pull/16427) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update Russian LLM-prompt. PR [#16449](https://github.com/fastapi/fastapi/pull/16449) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 👷 Fix deprecated command in `bump-pre-commit-hooks` workflow. PR [#16463](https://github.com/fastapi/fastapi/pull/16463) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔧 Update sponsors: remove Render. PR [#16457](https://github.com/fastapi/fastapi/pull/16457) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Use `gpt-6-astra` model for translations. PR [#16453](https://github.com/fastapi/fastapi/pull/16453) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ Bump the python-packages group across 1 directory with 14 updates. PR [#16447](https://github.com/fastapi/fastapi/pull/16447) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyjwt from 2.13.0 to 2.15.0. PR [#16423](https://github.com/fastapi/fastapi/pull/16423) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.60 to 3.1.62. PR [#16444](https://github.com/fastapi/fastapi/pull/16444) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#16443](https://github.com/fastapi/fastapi/pull/16443) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 👥 Update FastAPI People - Sponsors. PR [#16437](https://github.com/fastapi/fastapi/pull/16437) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump pre-commit hooks. PR [#16442](https://github.com/fastapi/fastapi/pull/16442) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump urllib3 from 2.7.0 to 2.8.0. PR [#16445](https://github.com/fastapi/fastapi/pull/16445) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump the github-actions group with 3 updates. PR [#16438](https://github.com/fastapi/fastapi/pull/16438) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.142.2 (2026-09-30)
+
+### Fixes
+
+* 🐛 Allow startup when automatic OpenTelemetry configuration fails. PR [#16418](https://github.com/fastapi/fastapi/pull/16418) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.142.1 (2026-09-29)
+
+### Fixes
+
+* 🐛 Fix repeated endpoint wrapping in included routers. PR [#16414](https://github.com/fastapi/fastapi/pull/16414) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.142.0 (2026-09-29)
+
+### Features
+
+* ✨ Add native OpenTelemetry support. PR [#16403](https://github.com/fastapi/fastapi/pull/16403) by [@tiangolo](https://github.com/tiangolo).
+
 ### Refactors
 
 * 📱 Improve mobile responsiveness of conference rail. PR [#16196](https://github.com/fastapi/fastapi/pull/16196) by [@alejsdev](https://github.com/alejsdev).
@@ -35,6 +90,9 @@ hide:
 
 ### Internal
 
+* ✅ Fix frontend test timeout with Starlette Git. PR [#16408](https://github.com/fastapi/fastapi/pull/16408) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔧 Update sponsors: remove Permit.io. PR [#16406](https://github.com/fastapi/fastapi/pull/16406) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump anyio from 4.12.1 to 4.14.2. PR [#16375](https://github.com/fastapi/fastapi/pull/16375) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump the python-packages group across 1 directory with 15 updates. PR [#16285](https://github.com/fastapi/fastapi/pull/16285) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.3.1 to 1.6.0. PR [#16289](https://github.com/fastapi/fastapi/pull/16289) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump annotated-doc from 0.0.4 to 0.0.5. PR [#16288](https://github.com/fastapi/fastapi/pull/16288) by [@dependabot[bot]](https://github.com/apps/dependabot).
