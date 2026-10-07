@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.142.3 (2026-10-07)
+
 ### Fixes
 
 * 🐛 Cache OpenTelemetry tracers to preserve warning deduplication. PR [#16468](https://github.com/fastapi/fastapi/pull/16468) by [@tiangolo](https://github.com/tiangolo).
