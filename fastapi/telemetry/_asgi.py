@@ -238,9 +238,14 @@ class NativeTelemetry:
         if config["exclude"] is not None and config["exclude"](scope):
             # Keep mounted FastAPI apps from observing this excluded request.
             scope["fastapi.telemetry"] = None
+            # An in-process request can inherit another request's telemetry.
+            token = otel_context.attach(
+                otel_context.set_value(_REQUEST_TELEMETRY_KEY, None)
+            )
             try:
                 await app(scope, receive, send)
             finally:
+                otel_context.detach(token)
                 scope.pop("fastapi.telemetry", None)
             return
         tracing = config["tracing"] and not legacy_otel
