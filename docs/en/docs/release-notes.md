@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.142.4 (2026-10-07)
+
 ### Fixes
 
 * 🐛 Isolate FastAPI telemetry for excluded requests. PR [#16470](https://github.com/fastapi/fastapi/pull/16470) by [@tiangolo](https://github.com/tiangolo).
