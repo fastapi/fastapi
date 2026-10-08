@@ -38,6 +38,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   langs:
     runs-on: ubuntu-latest
@@ -56,6 +59,7 @@ jobs:
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
           version: "latest-known"
+          cache-suffix: translations
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -98,6 +102,7 @@ jobs:
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
           version: "latest-known"
+          cache-suffix: translations
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
