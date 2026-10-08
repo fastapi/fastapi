@@ -69,6 +69,18 @@ You can also omit the return type. FastAPI will use the [`jsonable_encoder`](./e
 
 {* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
 
+## Custom Response Headers { #custom-response-headers }
+
+For normal responses, you can set custom headers using a `Response` parameter, as explained in [Response Headers](../advanced/response-headers.md#use-a-response-parameter).
+
+With an SSE stream, the *path operation function* is a generator. Calling it creates the generator, but the code inside the generator body doesn't run until the response is already streaming. So setting headers inside the generator body is too late for headers that need to be sent with the response.
+
+Instead, use a dependency that receives the `Response` parameter and sets the headers before the stream starts:
+
+{* ../../docs_src/server_sent_events/tutorial006_py310.py ln[1:33] hl[3:4,22:23,26:30] *}
+
+Dependencies run before FastAPI creates the streaming response, so FastAPI can copy those headers into the final SSE response.
+
 ## `ServerSentEvent` { #serversentevent }
 
 If you need to set SSE fields like `event`, `id`, `retry`, or `comment`, you can yield `ServerSentEvent` objects instead of plain data.
