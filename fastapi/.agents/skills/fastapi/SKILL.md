@@ -208,7 +208,7 @@ app.include_router(router)
 
 Prefer FastAPI's native OpenTelemetry support for request traces, metrics, and logs.
 
-Install `fastapi[standard]` to include the SDK and HTTP/protobuf exporters. Set `OTEL_SERVICE_NAME` to identify the app and `OTEL_EXPORTER_OTLP_ENDPOINT` to the collector's HTTP/protobuf base URL. Use `OTEL_EXPORTER_OTLP_HEADERS` when authentication is required.
+Install `fastapi[standard]` to include the SDK and HTTP/protobuf exporters. Enable automatic exporter setup with `FASTAPI_OTEL_AUTO_CONFIGURE=true`, set `OTEL_SERVICE_NAME` to identify the app, and set `OTEL_EXPORTER_OTLP_ENDPOINT` to the collector's HTTP/protobuf base URL. Use `OTEL_EXPORTER_OTLP_HEADERS` when authentication is required. FastAPI uses providers configured by another telemetry library without needing automatic setup.
 
 Use `FastAPI(telemetry={...})` for custom configuration, such as choosing signals or supplying providers.
 
