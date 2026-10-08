@@ -45,6 +45,32 @@ Inside of your *path operation function*, pass your task function to the *backgr
 * Any sequence of arguments that should be passed to the task function in order (`email`).
 * Any keyword arguments that should be passed to the task function (`message="some notification"`).
 
+## Handle errors in the task { #handle-errors-in-the-task }
+
+The background task runs **after** the response is sent, so an exception inside it cannot change a
+response that has already gone out. It is not propagated to the *path operation function* either, which
+means a task can fail without anything in the response or the client suggesting that it did.
+
+That is the expected behavior, but it is easy to miss: the caller sees `200 OK` whether or not the
+notification was written.
+
+If the task does something you need to know about, catch the error inside the task and record it:
+
+{* ../../docs_src/background_tasks/tutorial003_py310.py hl[7,11:14] *}
+
+Logging is the smallest version of this. Depending on what the task does, you might also retry it, alert
+whoever is on call, or store the failure so it can be looked at later.
+
+/// tip
+
+For background work that has to survive a restart, be retried, or run on a different machine, use a task
+queue like <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>,
+<a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">arq</a>, or
+<a href="https://dramatiq.io/" class="external-link" target="_blank">Dramatiq</a>. The
+[Caveat](#caveat) section below describes when `BackgroundTasks` stops being enough.
+
+///
+
 ## Dependency Injection { #dependency-injection }
 
 Using `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.
