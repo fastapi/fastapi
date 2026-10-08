@@ -8,6 +8,7 @@ from .http import HTTPBearer as HTTPBearer
 from .http import HTTPDigest as HTTPDigest
 from .oauth2 import OAuth2 as OAuth2
 from .oauth2 import OAuth2AuthorizationCodeBearer as OAuth2AuthorizationCodeBearer
+from .oauth2 import OAuth2ClientCredentials as OAuth2ClientCredentials
 from .oauth2 import OAuth2PasswordBearer as OAuth2PasswordBearer
 from .oauth2 import OAuth2PasswordRequestForm as OAuth2PasswordRequestForm
 from .oauth2 import OAuth2PasswordRequestFormStrict as OAuth2PasswordRequestFormStrict
