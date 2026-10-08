@@ -19,6 +19,11 @@ def path_convertor(param: str = Path()):
     return {"path": param}
 
 
+@app.get("/path-implicit/{param:path}")
+def path_convertor_implicit(param: str):
+    return {"path": param}
+
+
 @app.get("/query/")
 def query_convertor(param: str = Query()):
     return {"query": param}
@@ -46,6 +51,13 @@ def test_route_converters_float():
 def test_route_converters_path():
     # Test path conversion
     response = client.get("/path/some/example")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"path": "some/example"}
+
+
+def test_route_converters_path_implicit():
+    # Test path conversion without explicit Path()
+    response = client.get("/path-implicit/some/example")
     assert response.status_code == 200, response.text
     assert response.json() == {"path": "some/example"}
 
