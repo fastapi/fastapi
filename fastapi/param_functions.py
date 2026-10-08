@@ -518,7 +518,7 @@ def Query(  # noqa: N802
             RegEx pattern for strings.
 
             Read more about it in the
-            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions)
             """
         ),
     ] = None,
@@ -639,7 +639,7 @@ def Query(  # noqa: N802
             This affects the generated OpenAPI (e.g. visible at `/docs`).
 
             Read more about it in the
-            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi)
             """
         ),
     ] = True,
@@ -2303,7 +2303,7 @@ def Depends(  # noqa: N802
             By default, after a dependency is called the first time in a request, if
             the dependency is declared again for the rest of the request (for example
             if the dependency is needed by several dependencies), the value will be
-            re-used for the rest of the request.
+            reused for the rest of the request.
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.
@@ -2411,7 +2411,7 @@ def Security(  # noqa: N802
             By default, after a dependency is called the first time in a request, if
             the dependency is declared again for the rest of the request (for example
             if the dependency is needed by several dependencies), the value will be
-            re-used for the rest of the request.
+            reused for the rest of the request.
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.

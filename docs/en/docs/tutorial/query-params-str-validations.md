@@ -178,6 +178,14 @@ This specific regular expression pattern checks that the received parameter valu
 * `fixedquery`: has the exact value `fixedquery`.
 * `$`: ends there, doesn't have any more characters after `fixedquery`.
 
+/// note
+
+FastAPI uses Pydantic for data validation. In Pydantic v2, regular expressions use Rust's `regex` library by default. Its syntax and behavior have some differences from Python's `re` module.
+
+You can read more in the [Pydantic migration guide](https://pydantic.dev/docs/validation/latest/get-started/migration/#patterns--regex-on-strings).
+
+///
+
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
 Now you know that whenever you need them you can use them in **FastAPI**.
@@ -416,9 +424,9 @@ With `data.items()` we get an <dfn title="Something we can iterate on with a for
 
 We convert this iterable object into a proper `list` with `list(data.items())`.
 
-Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, name)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, item)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
-Then we **assign those two values** of the tuple to the variables `id` and `name`.
+Then we **assign those two values** of the tuple to the variables `id` and `item`.
 
 So, if the user didn't provide an item ID, they will still receive a random suggestion.
 
