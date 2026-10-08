@@ -85,7 +85,9 @@ function setupTermynal() {
                     .filter(line => line.type === "input")
                     .map(line => line.value)
                     .join("\n");
-                node.textContent = inputCommands;
+                const plainTextExtractor = document.createElement("div");
+                plainTextExtractor.innerHTML = inputCommands;
+                node.textContent = plainTextExtractor.textContent;
                 const div = document.createElement("div");
                 node.style.display = "none";
                 node.after(div);
