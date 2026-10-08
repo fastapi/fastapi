@@ -88,8 +88,8 @@ def _configure_from_environment(config: TelemetryConfig) -> None:
     Called automatically before ASGI lifespan startup. Existing providers and
     their exporters are preserved. FastAPI registers its own export components once
     per provider. It does not inspect or deduplicate other components' exporters.
-    Pass `telemetry={"auto_configure": False}` to `FastAPI()` when another component
-    manages environment export.
+    Enable with `FASTAPI_OTEL_AUTO_CONFIGURE=true` or pass
+    `telemetry={"auto_configure": True}` to `FastAPI()`.
     """
     if (
         not config["auto_configure"]
