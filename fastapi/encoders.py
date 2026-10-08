@@ -280,11 +280,13 @@ def jsonable_encoder(
         return None
     if isinstance(obj, dict):
         encoded_dict = {}
-        allowed_keys = set(obj.keys())
-        if include is not None:
-            allowed_keys &= set(include)
-        if exclude is not None:
-            allowed_keys -= set(exclude)
+        allowed_keys: set[Any] | None = None
+        if include is not None or exclude is not None:
+            allowed_keys = set(obj.keys())
+            if include is not None:
+                allowed_keys &= set(include)
+            if exclude is not None:
+                allowed_keys -= set(exclude)
         for key, value in obj.items():
             if (
                 (
@@ -293,7 +295,7 @@ def jsonable_encoder(
                     or (not key.startswith("_sa"))
                 )
                 and (value is not None or not exclude_none)
-                and key in allowed_keys
+                and (allowed_keys is None or key in allowed_keys)
             ):
                 encoded_key = jsonable_encoder(
                     key,
