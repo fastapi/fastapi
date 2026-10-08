@@ -110,17 +110,14 @@ def ensure_multipart_is_installed() -> None:
         try:
             # __version__ is available in both multiparts, and can be mocked
             from multipart import (  # type: ignore[no-redef,import-untyped]
-                __version__,
+                __version__,  # noqa: F401
             )
 
-            assert __version__
             try:
                 # parse_options_header is only available in the right multipart
                 from multipart.multipart import (  # type: ignore[import-untyped]
-                    parse_options_header,
+                    parse_options_header,  # noqa: F401
                 )
-
-                assert parse_options_header
             except ImportError:
                 logger.error(multipart_incorrect_install_error)
                 raise RuntimeError(multipart_incorrect_install_error) from None
