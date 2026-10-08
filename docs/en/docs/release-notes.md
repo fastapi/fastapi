@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+* 💥 Require opt-in for automatic OpenTelemetry exporter setup. PR [#16476](https://github.com/fastapi/fastapi/pull/16476) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.142.4 (2026-10-07)
 
 ### Fixes
