@@ -64,7 +64,7 @@ from fastapi.dependencies.models import (
     _is_gen_callable,
     _UsesScopesCache,
 )
-from fastapi.exceptions import DependencyScopeError
+from fastapi.exceptions import DependencyScopeError, FastAPIError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
@@ -571,7 +571,23 @@ async def _solve_generator(
         cm = asynccontextmanager(dependant.call)(**sub_values)
     elif _is_gen_callable(dependant.call):
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    return await stack.enter_async_context(cm)
+
+    try:
+        solved = await stack.enter_async_context(cm)
+    except RuntimeError as ex:
+        if str(ex) != "generator didn't yield":
+            raise ex
+
+        dependency_name = getattr(dependant.call, "__name__", "(unknown)")
+        raise FastAPIError(
+            f"Dependency {dependency_name} raised: {ex}. There's a high chance that "
+            "this is a dependency with yield that catches an exception using except, "
+            "but doesn't raise the exception again. Read more about it in the docs: "
+            "https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield"
+            "/#dependencies-with-yield-and-except"
+        ) from ex
+
+    return solved
 
 
 @dataclass
