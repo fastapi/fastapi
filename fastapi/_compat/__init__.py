@@ -5,6 +5,7 @@ from .shared import (
     field_annotation_is_scalar_sequence as field_annotation_is_scalar_sequence,
 )
 from .shared import field_annotation_is_sequence as field_annotation_is_sequence
+from .shared import field_annotation_is_str as field_annotation_is_str
 from .shared import (
     is_bytes_or_nonable_bytes_annotation as is_bytes_or_nonable_bytes_annotation,
 )

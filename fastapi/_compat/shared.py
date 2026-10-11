@@ -110,6 +110,17 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
+def field_annotation_is_str(annotation: type[Any] | None) -> bool:
+    origin = get_origin(annotation)
+
+    if origin is Union or origin is UnionType:
+        for arg in get_args(annotation):
+            if field_annotation_is_str(arg):
+                return True
+        return False
+    return annotation is str or origin is str
+
+
 def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
     origin = get_origin(annotation)
 

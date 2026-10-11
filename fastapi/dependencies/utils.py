@@ -37,6 +37,7 @@ from fastapi._compat import (
     field_annotation_is_scalar,
     field_annotation_is_scalar_sequence,
     field_annotation_is_sequence,
+    field_annotation_is_str,
     get_cached_model_fields,
     get_missing_field_error,
     is_bytes_or_nonable_bytes_annotation,
@@ -758,18 +759,27 @@ def _get_multidict_value(
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
+
+    is_empty_string_form_field = False
+
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
-            and isinstance(value, str)  # For type checks
-            and value == ""
+            is_empty_string_form_field := (
+                isinstance(field.field_info, params.Form)
+                and isinstance(value, str)  # For type checks
+                and value == ""
+            )
         )
         or (
             field_annotation_is_sequence(field.field_info.annotation)
             and len(value) == 0
         )
     ):
+        if is_empty_string_form_field and field_annotation_is_str(
+            field.field_info.annotation
+        ):
+            return ""
         if field.field_info.is_required():
             return
         else:
