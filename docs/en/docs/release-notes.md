@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump werkzeug from 3.1.6 to 3.1.9. PR [#16464](https://github.com/fastapi/fastapi/pull/16464) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.143.1 (2026-10-14)
 
 ### Fixes
