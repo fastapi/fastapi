@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.143.1 (2026-10-14)
+
 ### Fixes
 
 * 🐛 Fix included route metadata in `iter_route_contexts()`. PR [#16484](https://github.com/fastapi/fastapi/pull/16484) by [@tiangolo](https://github.com/tiangolo).
