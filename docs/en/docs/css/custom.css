@@ -549,3 +549,10 @@ Inspired by Termynal's CSS tricks with modifications
 
 /* Hidden in MkDocs; rendered on GitHub (which doesn't load this stylesheet) */
 .only-github { display: none; }
+
+.newsletter-embed {
+  display: block;
+  width: calc(100% + 8px);
+  margin: -4px;
+  border: 0;
+}

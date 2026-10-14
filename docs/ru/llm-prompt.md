@@ -8,6 +8,8 @@ Use a neutral tone (not overly formal or informal).
 
 Use correct Russian grammar — appropriate cases, suffixes, and endings depending on context.
 
+Translate technical terms in prose unless explicitly instructed otherwise below. If there is no commonly used Russian equivalent, use a Russified English term, optionally adding a short Russian explanation. Preserve code identifiers, API names, and protocol names.
+
 For the following technical terms, use these specific translations to ensure consistency and clarity across the documentation:
 
 * production (meaning production software or environment): продакшн (do not change the ending, for example, translate `in production` as `в продакшн` (not `в продакшене`))
@@ -48,6 +50,15 @@ For the following technical terms, use these specific translations to ensure con
 * media type: тип содержимого (or `медиа-тип`)
 * request: HTTP-запрос
 * response: HTTP-ответ
+* endpoint: эндпоинт (for example, `OTLP-эндпоинт`)
+* handler: обработчик
+* span (in tracing): спан (add `отрезок трассировки` if clarification is needed)
+* stack trace: трассировка стека
+* warning logs: логи уровня предупреждения
+* destination (meaning a telemetry destination): получатель (for example, `отправлять данные получателю`, not `отправлять данные в назначение`)
+* trace is not sampled: трейс не попал в выборку
+* sensitive information: конфиденциальная информация
+* health check: проверка работоспособности (or `проверка состояния`)
 * type hints: аннотации типов
 * type annotations: аннотации типов
 * context manager: менеджер контекста
