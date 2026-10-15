@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-請注意，這些功能預設就能運作，你不需要撰寫任何自訂程式碼來啟用遙測。
+你不需要撰寫任何自訂程式碼來收集遙測資料。
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ $ uv add "fastapi[standard]"
 設定以下環境變數，並將範例 URL 替換為你的端點：
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` 用於在監控服務中識別你的應用程式。端點是接收資料的基礎 URL。追蹤會傳送到該 URL 下的 `/v1/traces`，指標傳送到 `/v1/metrics`，日誌則傳送到 `/v1/logs`。
+`FASTAPI_OTEL_AUTO_CONFIGURE=true` 會啟用 FastAPI 的匯出器自動設定功能。`OTEL_SERVICE_NAME` 用於在監控服務中識別你的應用程式。端點是接收資料的基礎 URL。追蹤會傳送到該 URL 下的 `/v1/traces`，指標傳送到 `/v1/metrics`，日誌則傳送到 `/v1/logs`。
 
 如果你的服務需要驗證身分，請將 `OTEL_EXPORTER_OTLP_HEADERS` 設定為該服務指定的標頭，例如 `api-key=YOUR_API_KEY`。
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 遙測函式庫可以設定 OpenTelemetry 的全域提供者。在應用程式啟動前設定好函式庫，FastAPI 就會自動使用這些提供者。
 
-當環境中設定了 OTLP 端點時，FastAPI 會為每個已啟用的提供者新增一個指向該目的地的匯出器。現有的匯出器會繼續將資料傳送到各自的目的地。
+預設情況下，FastAPI 會使用已設定的提供者，不會新增匯出器。當自動設定功能已啟用，且環境中設定了 OTLP 端點時，FastAPI 會為每個已啟用的提供者新增一個指向該目的地的匯出器。現有的匯出器會繼續將資料傳送到各自的目的地。
 
-每個目的地只需設定一次。如果另一個函式庫已經負責處理環境變數指定的目的地，請停用該函式庫依環境變數進行匯出的功能，或關閉 FastAPI 的自動設定：
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+如果另一個函式庫已經設定好匯出到相同目的地，請不要設定 `FASTAPI_OTEL_AUTO_CONFIGURE`，或將其設為 `false`，以避免重複的遙測資料。
 
 你也可以直接在 `telemetry` 字典中傳入提供者。例如，這個提供者使用 OpenTelemetry 的主控台匯出器，在終端機中印出請求的 span：
 
@@ -143,7 +140,7 @@ FastAPI 也會將請求驗證失敗記錄為警告日誌，其中包含路由和
 | `logs` | 記錄驗證失敗和未處理的例外 | `True` |
 | `operation_spans` | 為請求操作新增 span | `True` |
 | `exclude` | 當接收 ASGI scope 的函式回傳 `True` 時，略過該請求 | `None` |
-| `auto_configure` | 為環境變數中設定的端點新增匯出器 | `True` |
+| `auto_configure` | 為環境變數中設定的端點新增匯出器 | 若 `FASTAPI_OTEL_AUTO_CONFIGURE=true` 則為 `True`，否則為 `False` |
 
 例如，若要收集指標，但排除健康檢查：
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-當你的應用程式自行處理提供者設定時，例如在 lifespan 函式中設定，請將 `auto_configure` 設為 `False`。
+在 `telemetry` 字典中明確指定的 `auto_configure` 值會覆寫 `FASTAPI_OTEL_AUTO_CONFIGURE`。使用 `telemetry={"auto_configure": True}` 可在程式碼中啟用自動設定功能；使用 `telemetry={"auto_configure": False}` 則可為應用程式停用此功能，即使環境變數已啟用它。
