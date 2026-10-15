@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pydantic-ai-slim from 2.49.0 to 2.53.0. PR [#16487](https://github.com/fastapi/fastapi/pull/16487) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump werkzeug from 3.1.6 to 3.1.9. PR [#16464](https://github.com/fastapi/fastapi/pull/16464) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.143.1 (2026-10-14)
