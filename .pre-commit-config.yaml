@@ -29,6 +29,7 @@ repos:
         language: unsupported
         types:
           - python
+        # TODO: when translations catch up, re-enable this
         # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-ruff-format
@@ -38,6 +39,7 @@ repos:
         language: unsupported
         types:
           - python
+        # TODO: when translations catch up, re-enable this
         # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-mypy
