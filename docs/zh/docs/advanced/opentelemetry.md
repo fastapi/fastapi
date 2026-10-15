@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-注意，这一切默认就能工作，你无需编写任何自定义代码即可使用遥测功能。
+你无需编写任何自定义代码即可收集遥测数据。
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ $ uv add "fastapi[standard]"
 设置以下环境变量，将示例 URL 替换为你的端点：
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` 用于在监控服务中标识你的应用。端点是接收数据的基础 URL。追踪会发送到该 URL 下的 `/v1/traces`，指标发送到 `/v1/metrics`，日志发送到 `/v1/logs`。
+`FASTAPI_OTEL_AUTO_CONFIGURE=true` 启用 FastAPI 的 exporter 自动配置。`OTEL_SERVICE_NAME` 用于在监控服务中标识你的应用。端点是接收数据的基础 URL。追踪会发送到该 URL 下的 `/v1/traces`，指标发送到 `/v1/metrics`，日志发送到 `/v1/logs`。
 
 如果你的服务需要身份验证，请将 `OTEL_EXPORTER_OTLP_HEADERS` 设置为该服务指定的请求头，例如 `api-key=YOUR_API_KEY`。
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 遥测库可以配置 OpenTelemetry 的全局 provider。在应用启动之前配置好该库，FastAPI 就会自动使用这些 provider。
 
-当环境中设置了 OTLP 端点时，FastAPI 会为每个已启用的 provider 添加一个向该目标发送数据的 exporter。现有的 exporter 会继续向各自的目标发送数据。
+默认情况下，FastAPI 使用已配置的 provider，不会添加 exporter。当启用自动配置且环境中设置了 OTLP 端点时，FastAPI 会为每个已启用的 provider 添加一个向该目标发送数据的 exporter。现有的 exporter 会继续向各自的目标发送数据。
 
-每个目标只需配置一次。如果另一个库已经负责向环境变量指定的目标导出数据，请禁用该库基于环境变量的导出功能，或关闭 FastAPI 的自动配置：
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+如果另一个库已经配置了向同一目标导出数据，请不要设置 `FASTAPI_OTEL_AUTO_CONFIGURE`，或将其设置为 `false`，以避免遥测数据重复。
 
 你也可以直接在 `telemetry` 字典中传入 provider。例如，下面的 provider 使用 OpenTelemetry 的控制台 exporter，在终端中打印请求 span：
 
@@ -143,7 +140,7 @@ FastAPI 还会将请求验证失败记录为警告日志，其中包含路由和
 | `logs` | 记录验证失败和未处理的异常 | `True` |
 | `operation_spans` | 为请求操作添加 span | `True` |
 | `exclude` | 当接收 ASGI scope 的函数返回 `True` 时跳过请求 | `None` |
-| `auto_configure` | 为环境变量中设置的端点添加 exporter | `True` |
+| `auto_configure` | 为环境变量中设置的端点添加 exporter | 若 `FASTAPI_OTEL_AUTO_CONFIGURE=true` 则为 `True`，否则为 `False` |
 
 例如，要收集指标，同时排除健康检查：
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-当应用自行配置 provider 时，例如在其 lifespan 函数中配置，请将 `auto_configure` 设置为 `False`。
+在 `telemetry` 字典中显式设置的 `auto_configure` 值会覆盖 `FASTAPI_OTEL_AUTO_CONFIGURE`。使用 `telemetry={"auto_configure": True}` 在代码中启用自动配置，或使用 `telemetry={"auto_configure": False}` 为某个应用禁用自动配置，即使环境变量已启用它。
