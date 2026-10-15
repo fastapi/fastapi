@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🎨 Update Python format in Markdown with Ruff. PR [#16505](https://github.com/fastapi/fastapi/pull/16505) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.143.2 (2026-10-15)
 
 ### Fixes
