@@ -36,8 +36,8 @@ class TelemetryConfig(TypedDict, total=False):
     """Optional settings for `FastAPI(telemetry={...})`.
 
     Omitted settings keep their defaults. FastAPI preserves existing providers
-    and their exporters. Environment setup can add exporters unless `auto_configure`
-    is `False`. Providers supplied by the application are never shut down by FastAPI.
+    and their exporters. Environment setup can add exporters when `auto_configure`
+    is `True`. Providers supplied by the application are never shut down by FastAPI.
     """
 
     tracer_provider: Annotated[
@@ -71,7 +71,11 @@ class TelemetryConfig(TypedDict, total=False):
     ]
     auto_configure: Annotated[
         bool,
-        Doc("Add OTLP exporters from environment variables. Defaults to `True`."),
+        Doc(
+            "Add OTLP exporters from environment variables. Defaults to `False` unless "
+            "`FASTAPI_OTEL_AUTO_CONFIGURE=true` is set. An explicit value overrides "
+            "the environment variable."
+        ),
     ]
     exclude: Annotated[
         Callable[[MutableMapping[str, Any]], bool] | None,

@@ -1038,7 +1038,8 @@ class FastAPI(Starlette):
             "metrics": True,
             "logs": True,
             "operation_spans": True,
-            "auto_configure": True,
+            "auto_configure": os.getenv("FASTAPI_OTEL_AUTO_CONFIGURE", "").lower()
+            == "true",
             "exclude": None,
             **(telemetry if telemetry is not None else {}),
         }

@@ -31,7 +31,7 @@ Create a file `main.py`:
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-Notice that it all works by default, you don't need to write any custom code for telemetry to work.
+You don't need to write any custom code to collect telemetry.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ To send telemetry to another monitoring service, configure an endpoint that acce
 Set these environment variables, replacing the example URL with your endpoint:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` identifies your app in the monitoring service. The endpoint is the base URL for receiving data. Traces are sent to `/v1/traces`, metrics to `/v1/metrics`, and logs to `/v1/logs` under that URL.
+`FASTAPI_OTEL_AUTO_CONFIGURE=true` enables FastAPI's automatic exporter setup. `OTEL_SERVICE_NAME` identifies your app in the monitoring service. The endpoint is the base URL for receiving data. Traces are sent to `/v1/traces`, metrics to `/v1/metrics`, and logs to `/v1/logs` under that URL.
 
 If your service requires authentication, set `OTEL_EXPORTER_OTLP_HEADERS` to the headers it specifies, for example `api-key=YOUR_API_KEY`.
 
@@ -85,13 +86,9 @@ A **provider** supplies the objects that record traces, metrics, or logs. Its co
 
 Telemetry libraries can configure OpenTelemetry's global providers. Configure the library before the app starts, and FastAPI uses those providers automatically.
 
-When an OTLP endpoint is set in the environment, FastAPI adds an exporter for that destination to each enabled provider. Existing exporters continue sending data to their destinations.
+By default, FastAPI uses configured providers without adding exporters. When automatic setup is enabled and an OTLP endpoint is set in the environment, FastAPI adds an exporter for that destination to each enabled provider. Existing exporters continue sending data to their destinations.
 
-Configure each destination once. If another library already handles the environment destination, disable its environment export or turn off FastAPI's automatic setup:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+If another library already configures export to the same destination, leave `FASTAPI_OTEL_AUTO_CONFIGURE` unset or set it to `false` to avoid duplicate telemetry.
 
 You can also pass a provider directly in the `telemetry` dictionary. For example, this provider uses OpenTelemetry's console exporter to print request spans in your terminal:
 
@@ -143,7 +140,7 @@ The `telemetry` dictionary also accepts these settings:
 | `logs` | Record validation failures and unhandled exceptions | `True` |
 | `operation_spans` | Add spans for request operations | `True` |
 | `exclude` | Skip requests when a function receiving the ASGI scope returns `True` | `None` |
-| `auto_configure` | Add exporters for endpoints set in environment variables | `True` |
+| `auto_configure` | Add exporters for endpoints set in environment variables | `True` if `FASTAPI_OTEL_AUTO_CONFIGURE=true`, otherwise `False` |
 
 For example, to collect metrics while excluding health checks:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-Set `auto_configure` to `False` when your application handles provider setup itself, such as inside its lifespan function.
+An explicit `auto_configure` value in the `telemetry` dictionary overrides `FASTAPI_OTEL_AUTO_CONFIGURE`. Use `telemetry={"auto_configure": True}` to enable automatic setup in code, or `telemetry={"auto_configure": False}` to disable it for an app even when the environment variable enables it.

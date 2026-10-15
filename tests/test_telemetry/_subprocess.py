@@ -15,7 +15,7 @@ def run_in_subprocess(function):
         env = {
             name: value
             for name, value in os.environ.items()
-            if not name.startswith(("OTEL_", "LOGFIRE_", "SENTRY_"))
+            if not name.startswith(("FASTAPI_OTEL_", "OTEL_", "LOGFIRE_", "SENTRY_"))
         }
         env["PYDANTIC_DISABLE_PLUGINS"] = "__all__"
         result = subprocess.run(

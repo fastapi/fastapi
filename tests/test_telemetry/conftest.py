@@ -20,7 +20,7 @@ def clean_environment(monkeypatch):
 
 def remove_export_environment(monkeypatch):
     for name in os.environ:
-        if name.startswith(("OTEL_", "LOGFIRE_", "SENTRY_")):
+        if name.startswith(("FASTAPI_OTEL_", "OTEL_", "LOGFIRE_", "SENTRY_")):
             monkeypatch.delenv(name)
 
 

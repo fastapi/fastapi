@@ -160,7 +160,7 @@ jobs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     env:
       UV_PYTHON: "3.13"
       UV_RESOLUTION: highest

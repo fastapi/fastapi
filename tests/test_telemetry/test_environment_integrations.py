@@ -50,6 +50,7 @@ def test_environment_export_with_existing_integrations(mode):
     )
 
     with otlp_collector() as (base, received):
+        os.environ["FASTAPI_OTEL_AUTO_CONFIGURE"] = "true"
         os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = base + "/environment"
         os.environ["OTEL_EXPORTER_OTLP_HEADERS"] = "x-cloud=preserved"
         os.environ["OTEL_BSP_SCHEDULE_DELAY"] = "60000"

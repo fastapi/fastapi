@@ -24,8 +24,9 @@ def test_otlp_collector_does_not_resolve_hostname(monkeypatch):
 
 
 @pytest.mark.parametrize("base_path", ["", "/collector/"])
+@pytest.mark.parametrize("configuration", ["environment", "explicit"])
 @run_in_subprocess
-def test_real_otlp_export_and_repeated_lifespans(base_path):
+def test_real_otlp_export_and_repeated_lifespans(base_path, configuration):
     import os
     from contextlib import asynccontextmanager
 
@@ -46,6 +47,9 @@ def test_real_otlp_export_and_repeated_lifespans(base_path):
 
     with otlp_collector() as (base, received):
         prefix = base_path.rstrip("/")
+        os.environ["FASTAPI_OTEL_AUTO_CONFIGURE"] = (
+            "TRUE" if configuration == "environment" else "false"
+        )
         os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = base + base_path
         os.environ["OTEL_SERVICE_NAME"] = "native-test"
         os.environ["OTEL_EXPORTER_OTLP_HEADERS"] = "x-test=value"
@@ -60,7 +64,10 @@ def test_real_otlp_export_and_repeated_lifespans(base_path):
             seen.append(trace.get_tracer_provider())
             yield
 
-        app = FastAPI(lifespan=lifespan)
+        app = FastAPI(
+            lifespan=lifespan,
+            telemetry={"auto_configure": True} if configuration == "explicit" else {},
+        )
 
         @app.get("/items/{value}")
         def endpoint(value: int):
@@ -209,6 +216,7 @@ def test_invalid_configuration_warns_without_disabling_providers(
     for name, value in env.items():
         monkeypatch.setenv(name, value)
     config, exporter, _ = telemetry
+    config["auto_configure"] = True
     events = []
 
     @asynccontextmanager
@@ -245,23 +253,44 @@ def test_application_lifespan_errors_still_propagate(monkeypatch, stage):
         raise RuntimeError("application shutdown failed")
 
     with pytest.raises(RuntimeError, match=f"application {stage} failed"):
-        with TestClient(FastAPI(lifespan=lifespan)) as client:
+        with TestClient(
+            FastAPI(lifespan=lifespan, telemetry={"auto_configure": True})
+        ) as client:
             assert client.get("/").status_code == 404
 
 
 @pytest.mark.parametrize(
     "env",
     [
-        {},
-        {"OTEL_SERVICE_NAME": "no-endpoint"},
-        {"OTEL_TRACES_EXPORTER": "otlp", "OTEL_METRICS_EXPORTER": "otlp"},
+        {"FASTAPI_OTEL_AUTO_CONFIGURE": "true"},
+        {"FASTAPI_OTEL_AUTO_CONFIGURE": "true", "OTEL_SERVICE_NAME": "no-endpoint"},
         {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "true",
+            "OTEL_TRACES_EXPORTER": "otlp",
+            "OTEL_METRICS_EXPORTER": "otlp",
+        },
+        {"OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1"},
+        {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "",
+            "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1",
+        },
+        {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "false",
+            "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1",
+        },
+        {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "1",
+            "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1",
+        },
+        {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "true",
             "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1",
             "OTEL_TRACES_EXPORTER": "none",
             "OTEL_METRICS_EXPORTER": "none",
             "OTEL_LOGS_EXPORTER": "none",
         },
         {
+            "FASTAPI_OTEL_AUTO_CONFIGURE": "true",
             "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1",
             "OTEL_SDK_DISABLED": "true",
         },
@@ -305,7 +334,7 @@ def test_missing_sdk_warns_without_preventing_startup():
     from fastapi.testclient import TestClient
 
     with TestCase().assertLogs("fastapi", level="WARNING") as logs:
-        with TestClient(FastAPI()) as client:
+        with TestClient(FastAPI(telemetry={"auto_configure": True})) as client:
             assert client.get("/").status_code == 404
     assert len(logs.records) == 1
     assert logs.records[0].levelno == logging.WARNING
@@ -313,11 +342,22 @@ def test_missing_sdk_warns_without_preventing_startup():
     assert not runtime._owned
 
 
+@pytest.mark.parametrize(
+    "env,config",
+    [
+        ({}, {}),
+        ({"FASTAPI_OTEL_AUTO_CONFIGURE": "false"}, {}),
+        ({"FASTAPI_OTEL_AUTO_CONFIGURE": "true"}, {"auto_configure": False}),
+    ],
+)
 @run_in_subprocess
-def test_external_globals_are_unchanged_when_auto_configuration_is_disabled():
+def test_external_globals_are_unchanged_when_auto_configuration_is_disabled(
+    env, config
+):
     import os
 
     os.environ.update({"OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:1"})
+    os.environ.update(env)
 
     from fastapi import FastAPI
     from fastapi.telemetry import _runtime
@@ -340,19 +380,13 @@ def test_external_globals_are_unchanged_when_auto_configuration_is_disabled():
     trace.set_tracer_provider(tp)
     metrics.set_meter_provider(mp)
     for _ in range(2):
-        with TestClient(FastAPI(telemetry={"auto_configure": False})) as client:
+        with TestClient(FastAPI(telemetry=config)) as client:
             client.get("/")
     assert trace.get_tracer_provider() is tp
     assert metrics.get_meter_provider() is mp
     assert _logs.get_logger_provider() is lp
     assert not _runtime._owned
     assert len(exporter.get_finished_spans()) == 2
-
-
-def test_auto_configuration_opt_out(monkeypatch):
-    monkeypatch.setenv("OTEL_EXPORTER_OTLP_ENDPOINT", "invalid")
-    with TestClient(FastAPI(telemetry={"auto_configure": False})) as client:
-        assert client.get("/").status_code == 404
 
 
 def test_owned_flush_failure_does_not_break_shutdown(monkeypatch, caplog):
@@ -477,7 +511,9 @@ def test_concurrent_provider_owner_wins(monkeypatch, wrapped_meter):
     monkeypatch.setattr(runtime, "_owned", [])
     monkeypatch.setattr(runtime, "_configured", [])
     monkeypatch.setenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://127.0.0.1:1")
-    runtime._configure_from_environment(FastAPI()._telemetry)
+    runtime._configure_from_environment(
+        FastAPI(telemetry={"auto_configure": True})._telemetry
+    )
     assert stopped == ["tracer", "meter", "logger"]
     assert [provider for _, provider in runtime._configured] == winners
     assert len(runtime._owned) == 3
@@ -518,6 +554,7 @@ def test_environment_export_initializes_after_fork():
     os.environ["OTEL_EXPORTER_OTLP_TRACES_ENDPOINT"] = (
         f"http://127.0.0.1:{server.server_port}/traces"
     )
+    os.environ["FASTAPI_OTEL_AUTO_CONFIGURE"] = "true"
     # Importing and constructing before fork must not create providers.
     app = FastAPI()
     assert not _runtime._owned
@@ -555,7 +592,7 @@ def test_real_otlp_exception_export_without_traces_or_metrics():
     with otlp_collector() as (base, received):
         os.environ["OTEL_EXPORTER_OTLP_LOGS_ENDPOINT"] = base + "/logs"
         os.environ["OTEL_SERVICE_NAME"] = "errors-only"
-        app = FastAPI()
+        app = FastAPI(telemetry={"auto_configure": True})
 
         @app.get("/items/{item_id}")
         def endpoint(item_id: int):
@@ -606,7 +643,7 @@ def test_unsupported_provider_warns_without_preventing_startup(
         "logger": ("LOGS", NoOpLoggerProvider),
     }[name]
     monkeypatch.setenv(f"OTEL_EXPORTER_OTLP_{signal}_ENDPOINT", "http://127.0.0.1:1")
-    app = FastAPI(telemetry={f"{name}_provider": provider()})
+    app = FastAPI(telemetry={f"{name}_provider": provider(), "auto_configure": True})
     with TestClient(app) as client:
         assert client.get("/").status_code == 404
     assert "does not support adding an OTLP exporter" in caplog.text
@@ -640,7 +677,7 @@ def test_failed_registration_closes_new_exporter(monkeypatch, caplog, error_type
     monkeypatch.setattr(provider, "add_span_processor", fail)
     monkeypatch.setattr(trace_exporter, "OTLPSpanExporter", Exporter)
     monkeypatch.setenv("OTEL_EXPORTER_OTLP_TRACES_ENDPOINT", "http://127.0.0.1:1")
-    app = FastAPI(telemetry={"tracer_provider": provider})
+    app = FastAPI(telemetry={"tracer_provider": provider, "auto_configure": True})
     with TestClient(app) as client:
         assert client.get("/").status_code == 404
     assert "registration failed" in caplog.text

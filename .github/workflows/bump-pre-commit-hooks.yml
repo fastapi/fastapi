@@ -35,7 +35,7 @@ jobs:
             pyproject.toml
             uv.lock
       - name: Bump pre-commit hooks
-        run: uv run prek auto-update --freeze --cooldown-days 7
+        run: uv run prek update --freeze --cooldown-days 7
       - name: Get PR Submit token
         id: pr-submit
         uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
@@ -62,7 +62,7 @@ jobs:
               --base "$BASE_BRANCH" \
               --head "$branch" \
               --title "⬆ Bump pre-commit hooks" \
-              --body "Bump pre-commit hook versions via \`prek auto-update --freeze --cooldown-days 7\`." \
+              --body "Bump pre-commit hook versions via \`prek update --freeze --cooldown-days 7\`." \
               --label internal \
               --label dependencies \
               --label pre-commit

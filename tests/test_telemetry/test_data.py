@@ -1,3 +1,4 @@
+import asyncio
 import gc
 import weakref
 
@@ -7,7 +8,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request, WebSocket
 from fastapi.telemetry import get_telemetry_data
 from fastapi.testclient import TestClient
 from httpx import ASGITransport, AsyncClient
-from opentelemetry import context
+from opentelemetry import baggage, context
 from opentelemetry._logs import SeverityNumber
 from opentelemetry.sdk._logs import LoggerProvider, LogRecordProcessor
 from opentelemetry.sdk._logs.export import (
@@ -18,6 +19,7 @@ from pydantic import BaseModel
 from starlette.websockets import WebSocketDisconnect
 
 from ._otlp import otlp_collector
+from .conftest import metric_points, server_spans
 
 
 @pytest.mark.anyio
@@ -84,6 +86,145 @@ async def test_data_is_local_to_each_request_and_cleared_afterwards(telemetry):
     assert saved_data[0] is not saved_data[1]
     assert all(get_telemetry_data(ctx) is None for ctx in saved_contexts)
     assert get_telemetry_data() is None
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("invalid", [False, True])
+async def test_excluded_request_does_not_use_outer_telemetry(telemetry, logs, invalid):
+    config, exporter, reader = telemetry
+    app = FastAPI(
+        telemetry={**config, "exclude": lambda scope: scope["path"] == "/inner"}
+    )
+    tracer = config["tracer_provider"].get_tracer("test")
+
+    @app.get("/inner")
+    def inner(value: int):
+        assert get_telemetry_data() is None
+        assert baggage.get_baggage("example") == "value"
+        with tracer.start_as_current_span("inner.work"):
+            return value
+
+    @app.get("/outer")
+    async def outer(request: Request):
+        data = get_telemetry_data()
+        assert data is not None
+        values, errors = data.values, data.errors
+        outer_context = context.get_current()
+        async with AsyncClient(
+            transport=ASGITransport(app=app), base_url="http://internal"
+        ) as client:
+            response = await client.get(
+                "/inner", params={"value": "invalid" if invalid else "1"}
+            )
+        assert response.status_code == (422 if invalid else 200)
+        assert context.get_current() is outer_context
+        assert get_telemetry_data() is data
+        assert data.request is request
+        assert data.values is values
+        assert data.errors is errors
+        return "ok"
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        response = await client.get("/outer", headers={"baggage": "example=value"})
+    assert response.json() == "ok"
+    spans = exporter.get_finished_spans()
+    expected = [
+        "GET /outer",
+        "fastapi.dependencies",
+        "fastapi.endpoint",
+        "fastapi.serialization",
+    ]
+    if not invalid:
+        expected.append("inner.work")
+        operation = next(span for span in spans if span.name == "fastapi.endpoint")
+        work = next(span for span in spans if span.name == "inner.work")
+        assert work.parent.span_id == operation.context.span_id
+        assert work.context.trace_id == operation.context.trace_id
+    assert sorted(span.name for span in spans) == sorted(expected)
+    (point,) = metric_points(reader=reader)
+    assert point.attributes["http.route"] == "/outer"
+    assert point.count == 1
+    assert not logs.get_finished_logs()
+    assert get_telemetry_data() is None
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("error_type", [ValueError, asyncio.CancelledError])
+async def test_excluded_request_restores_context_after_error(
+    telemetry, logs, error_type
+):
+    config, exporter, _ = telemetry
+    app = FastAPI(
+        telemetry={**config, "exclude": lambda scope: scope["path"] == "/inner"}
+    )
+    error = error_type()
+
+    @app.get("/inner")
+    async def inner():
+        assert get_telemetry_data() is None
+        raise error
+
+    @app.get("/outer")
+    async def outer(request: Request):
+        outer_context = context.get_current()
+        async with AsyncClient(
+            transport=ASGITransport(app=app), base_url="http://internal"
+        ) as client:
+            with pytest.raises(error_type) as caught:
+                await client.get("/inner")
+        assert caught.value is error
+        assert context.get_current() is outer_context
+        data = get_telemetry_data()
+        assert data is not None
+        assert data.request is request
+        return "ok"
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        assert (await client.get("/outer")).json() == "ok"
+    (span,) = server_spans(exporter)
+    assert span.name == "GET /outer"
+    assert not logs.get_finished_logs()
+
+
+@pytest.mark.anyio
+async def test_included_request_inside_excluded_request(telemetry):
+    config, exporter, reader = telemetry
+    app = FastAPI(
+        telemetry={**config, "exclude": lambda scope: scope["path"] == "/excluded"}
+    )
+
+    @app.get("/included")
+    async def included(request: Request):
+        data = get_telemetry_data()
+        assert data is not None
+        assert data.request is request
+        return "ok"
+
+    @app.get("/excluded")
+    async def excluded():
+        assert get_telemetry_data() is None
+        excluded_context = context.get_current()
+        async with AsyncClient(
+            transport=ASGITransport(app=app), base_url="http://internal"
+        ) as client:
+            assert (await client.get("/included")).json() == "ok"
+        assert context.get_current() is excluded_context
+        assert get_telemetry_data() is None
+        return "ok"
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        assert (await client.get("/excluded")).json() == "ok"
+    (span,) = server_spans(exporter)
+    assert span.name == "GET /included"
+    (point,) = metric_points(reader=reader)
+    assert point.attributes["http.route"] == "/included"
+    assert point.count == 1
 
 
 def test_retained_context_does_not_keep_failed_request_alive(telemetry):

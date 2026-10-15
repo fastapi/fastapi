@@ -7,8 +7,42 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump werkzeug from 3.1.6 to 3.1.9. PR [#16464](https://github.com/fastapi/fastapi/pull/16464) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.143.1 (2026-10-14)
+
+### Fixes
+
+* 🐛 Fix included route metadata in `iter_route_contexts()`. PR [#16484](https://github.com/fastapi/fastapi/pull/16484) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.143.0 (2026-10-08)
+
+Automatic OpenTelemetry exporter setup is now opt-in. If you rely on FastAPI to configure exporters from `OTEL_*` environment variables, set `FASTAPI_OTEL_AUTO_CONFIGURE=true` or use `FastAPI(telemetry={"auto_configure": True})` to retain the previous behavior.
+
+Applications that configure their own providers and exporters require no changes. FastAPI Cloud enables automatic setup for you.
+
+### Breaking Changes
+
+* 💥 Require opt-in for automatic OpenTelemetry exporter setup. PR [#16476](https://github.com/fastapi/fastapi/pull/16476) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.142.4 (2026-10-07)
+
+### Fixes
+
+* 🐛 Isolate FastAPI telemetry for excluded requests. PR [#16470](https://github.com/fastapi/fastapi/pull/16470) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.142.3 (2026-10-07)
+
+### Fixes
+
+* 🐛 Cache OpenTelemetry tracers to preserve warning deduplication. PR [#16468](https://github.com/fastapi/fastapi/pull/16468) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
+* 📝 Remove HTML title from newsletter to avoid the tooltip. PR [#16461](https://github.com/fastapi/fastapi/pull/16461) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Embed the FastAPI and friends newsletter signup form. PR [#16459](https://github.com/fastapi/fastapi/pull/16459) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update skill, use Asyncer for blocking code in threads. PR [#16420](https://github.com/fastapi/fastapi/pull/16420) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
@@ -29,6 +63,8 @@ hide:
 
 ### Internal
 
+* 👷 Fix deprecated command in `bump-pre-commit-hooks` workflow. PR [#16463](https://github.com/fastapi/fastapi/pull/16463) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔧 Update sponsors: remove Render. PR [#16457](https://github.com/fastapi/fastapi/pull/16457) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Use `gpt-6-astra` model for translations. PR [#16453](https://github.com/fastapi/fastapi/pull/16453) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump the python-packages group across 1 directory with 14 updates. PR [#16447](https://github.com/fastapi/fastapi/pull/16447) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump starlette from 1.6.0 to 1.7.0. PR [#16440](https://github.com/fastapi/fastapi/pull/16440) by [@dependabot[bot]](https://github.com/apps/dependabot).
