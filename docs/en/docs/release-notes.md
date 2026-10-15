@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.143.2 (2026-10-15)
+
 ### Fixes
 
 * 🐛 Fix blocking frontend fallback file checks. PR [#16503](https://github.com/fastapi/fastapi/pull/16503) by [@tiangolo](https://github.com/tiangolo).
