@@ -31,7 +31,7 @@ Créez un fichier `main.py` :
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-Remarquez que tout fonctionne par défaut : vous n'avez pas besoin d'écrire de code personnalisé pour que la télémétrie fonctionne.
+Vous n'avez pas besoin d'écrire de code personnalisé pour collecter la télémétrie.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Pour envoyer la télémétrie à un autre service de supervision, configurez un 
 Définissez ces variables d'environnement en remplaçant l'URL d'exemple par votre endpoint :
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` identifie votre application dans le service de supervision. L'endpoint est l'URL de base pour recevoir les données. Les traces sont envoyées à `/v1/traces`, les métriques à `/v1/metrics` et les logs à `/v1/logs` sous cette URL.
+`FASTAPI_OTEL_AUTO_CONFIGURE=true` active la configuration automatique des exportateurs de FastAPI. `OTEL_SERVICE_NAME` identifie votre application dans le service de supervision. L'endpoint est l'URL de base pour recevoir les données. Les traces sont envoyées à `/v1/traces`, les métriques à `/v1/metrics` et les logs à `/v1/logs` sous cette URL.
 
 Si votre service nécessite une authentification, définissez `OTEL_EXPORTER_OTLP_HEADERS` avec les en-têtes qu'il spécifie, par exemple `api-key=YOUR_API_KEY`.
 
@@ -85,13 +86,9 @@ Un **fournisseur** fournit les objets qui enregistrent les traces, les métrique
 
 Les bibliothèques de télémétrie peuvent configurer les fournisseurs globaux d'OpenTelemetry. Configurez la bibliothèque avant le démarrage de l'application, et FastAPI utilise automatiquement ces fournisseurs.
 
-Lorsqu'un endpoint OTLP est défini dans l'environnement, FastAPI ajoute un exportateur pour cette destination à chaque fournisseur activé. Les exportateurs existants continuent d'envoyer des données vers leurs destinations.
+Par défaut, FastAPI utilise les fournisseurs configurés sans ajouter d'exportateurs. Lorsque la configuration automatique est activée et qu'un endpoint OTLP est défini dans l'environnement, FastAPI ajoute un exportateur pour cette destination à chaque fournisseur activé. Les exportateurs existants continuent d'envoyer des données vers leurs destinations.
 
-Configurez chaque destination une seule fois. Si une autre bibliothèque gère déjà la destination définie dans l'environnement, désactivez son export vers cette destination ou désactivez la configuration automatique de FastAPI :
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+Si une autre bibliothèque configure déjà l'export vers la même destination, laissez `FASTAPI_OTEL_AUTO_CONFIGURE` non définie ou définissez-la sur `false` pour éviter les doublons de télémétrie.
 
 Vous pouvez aussi passer un fournisseur directement dans le dictionnaire `telemetry`. Par exemple, ce fournisseur utilise l'exportateur console d'OpenTelemetry pour afficher les spans des requêtes dans votre terminal :
 
@@ -143,7 +140,7 @@ Le dictionnaire `telemetry` accepte également ces paramètres :
 | `logs` | Enregistrer les échecs de validation et les exceptions non gérées | `True` |
 | `operation_spans` | Ajouter des spans pour les opérations des requêtes | `True` |
 | `exclude` | Ignorer les requêtes lorsqu'une fonction recevant le scope ASGI renvoie `True` | `None` |
-| `auto_configure` | Ajouter des exportateurs pour les endpoints définis dans les variables d'environnement | `True` |
+| `auto_configure` | Ajouter des exportateurs pour les endpoints définis dans les variables d'environnement | `True` si `FASTAPI_OTEL_AUTO_CONFIGURE=true`, sinon `False` |
 
 Par exemple, pour collecter des métriques tout en excluant les vérifications de l'état de santé :
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-Définissez `auto_configure` sur `False` lorsque votre application gère elle-même la configuration des fournisseurs, par exemple dans sa fonction lifespan.
+Une valeur explicite de `auto_configure` dans le dictionnaire `telemetry` prend le pas sur `FASTAPI_OTEL_AUTO_CONFIGURE`. Utilisez `telemetry={"auto_configure": True}` pour activer la configuration automatique dans le code, ou `telemetry={"auto_configure": False}` pour la désactiver pour une application même lorsque la variable d'environnement l'active.
