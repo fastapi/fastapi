@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#16492](https://github.com/fastapi/fastapi/pull/16492) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
 ### Internal
 
 * ⬆ Bump pydantic-ai-slim from 2.49.0 to 2.53.0. PR [#16487](https://github.com/fastapi/fastapi/pull/16487) by [@dependabot[bot]](https://github.com/apps/dependabot).
