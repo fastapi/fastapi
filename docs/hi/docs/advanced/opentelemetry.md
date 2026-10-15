@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-ध्यान दें कि यह सब default रूप से काम करता है। Telemetry के काम करने के लिए आपको कोई कस्टम कोड लिखने की ज़रूरत नहीं है।
+Telemetry एकत्र करने के लिए आपको कोई कस्टम कोड लिखने की ज़रूरत नहीं है।
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Pro प्लान पर, आप [Metrics डैशबोर्ड](https://fa
 उदाहरण URL की जगह अपना endpoint डालकर, ये environment variables सेट करें:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` मॉनिटरिंग सेवा में आपके ऐप की पहचान करता है। Endpoint, data प्राप्त करने के लिए बेस URL है। उस URL के अंतर्गत traces को `/v1/traces`, metrics को `/v1/metrics` और logs को `/v1/logs` पर भेजा जाता है।
+`FASTAPI_OTEL_AUTO_CONFIGURE=true`, FastAPI के स्वचालित exporter setup को सक्षम करता है। `OTEL_SERVICE_NAME` मॉनिटरिंग सेवा में आपके ऐप की पहचान करता है। Endpoint, data प्राप्त करने के लिए बेस URL है। उस URL के अंतर्गत traces को `/v1/traces`, metrics को `/v1/metrics` और logs को `/v1/logs` पर भेजा जाता है।
 
 यदि आपकी सेवा को प्रमाणीकरण की ज़रूरत है, तो `OTEL_EXPORTER_OTLP_HEADERS` में उसके बताए गए headers सेट करें, उदाहरण के लिए `api-key=YOUR_API_KEY`।
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 Telemetry लाइब्रेरी OpenTelemetry के ग्लोबल providers को कॉन्फ़िगर कर सकती हैं। ऐप शुरू होने से पहले लाइब्रेरी को कॉन्फ़िगर करें, और FastAPI अपने आप उन providers का उपयोग करता है।
 
-जब environment में कोई OTLP endpoint सेट होता है, तो FastAPI हर सक्षम provider में उस गंतव्य के लिए एक exporter जोड़ता है। मौजूदा exporters अपने गंतव्यों पर data भेजना जारी रखते हैं।
+Default रूप से, FastAPI exporters जोड़े बिना कॉन्फ़िगर किए गए providers का उपयोग करता है। जब स्वचालित setup सक्षम होता है और environment में कोई OTLP endpoint सेट होता है, तो FastAPI हर सक्षम provider में उस गंतव्य के लिए एक exporter जोड़ता है। मौजूदा exporters अपने गंतव्यों पर data भेजना जारी रखते हैं।
 
-हर गंतव्य को एक बार कॉन्फ़िगर करें। यदि कोई दूसरी लाइब्रेरी पहले से ही environment में दिए गए गंतव्य को संभाल रही है, तो उसका environment export अक्षम करें या FastAPI का स्वचालित setup बंद करें:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+यदि कोई दूसरी लाइब्रेरी पहले से ही उसी गंतव्य पर export कॉन्फ़िगर करती है, तो डुप्लिकेट telemetry से बचने के लिए `FASTAPI_OTEL_AUTO_CONFIGURE` को सेट न करें या उसे `false` पर सेट करें।
 
 आप `telemetry` डिक्शनरी में सीधे एक provider भी पास कर सकते हैं। उदाहरण के लिए, यह provider आपके टर्मिनल में request spans प्रिंट करने के लिए OpenTelemetry के console exporter का उपयोग करता है:
 
@@ -143,7 +140,7 @@ FastAPI, request validation की विफलताओं को भी route 
 | `logs` | Validation की विफलताएँ और संभाले न गए exceptions रिकॉर्ड करना | `True` |
 | `operation_spans` | Request ऑपरेशन के लिए spans जोड़ना | `True` |
 | `exclude` | जब ASGI scope प्राप्त करने वाला function `True` लौटाए, तो requests छोड़ देना | `None` |
-| `auto_configure` | Environment variables में सेट endpoints के लिए exporters जोड़ना | `True` |
+| `auto_configure` | Environment variables में सेट endpoints के लिए exporters जोड़ना | यदि `FASTAPI_OTEL_AUTO_CONFIGURE=true` है तो `True`, अन्यथा `False` |
 
 उदाहरण के लिए, health checks को छोड़कर metrics एकत्र करने के लिए:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-जब आपका एप्लिकेशन provider setup खुद संभालता हो, जैसे अपने lifespan function के अंदर, तो `auto_configure` को `False` पर सेट करें।
+`telemetry` डिक्शनरी में स्पष्ट रूप से सेट की गई `auto_configure` की value, `FASTAPI_OTEL_AUTO_CONFIGURE` को ओवरराइड करती है। कोड में स्वचालित setup सक्षम करने के लिए `telemetry={"auto_configure": True}` का उपयोग करें, या किसी ऐप के लिए इसे अक्षम करने के लिए `telemetry={"auto_configure": False}` का उपयोग करें, भले ही environment variable इसे सक्षम करता हो।
