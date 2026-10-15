@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-すべてデフォルトで動作するため、テレメトリーを有効にするための独自のコードを書く必要はありません。
+テレメトリーを収集するための独自のコードを書く必要はありません。
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Proプランでは、[メトリクスダッシュボード](https://fastapicloud
 例のURLを自分のエンドポイントに置き換えて、次の環境変数を設定します:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME`は、監視サービス内でアプリを識別するための名前です。エンドポイントはデータを受信するためのベースURLです。そのURL配下の`/v1/traces`にトレース、`/v1/metrics`にメトリクス、`/v1/logs`にログが送信されます。
+`FASTAPI_OTEL_AUTO_CONFIGURE=true`は、FastAPIによるエクスポーターの自動設定を有効にします。`OTEL_SERVICE_NAME`は、監視サービス内でアプリを識別するための名前です。エンドポイントはデータを受信するためのベースURLです。そのURL配下の`/v1/traces`にトレース、`/v1/metrics`にメトリクス、`/v1/logs`にログが送信されます。
 
 サービスで認証が必要な場合は、`OTEL_EXPORTER_OTLP_HEADERS`にサービスが指定するヘッダー（例: `api-key=YOUR_API_KEY`）を設定してください。
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 テレメトリーライブラリは、OpenTelemetryのグローバルプロバイダーを設定できます。アプリの起動前にライブラリを設定すると、FastAPIはそれらのプロバイダーを自動的に使用します。
 
-環境変数にOTLPエンドポイントが設定されている場合、FastAPIは有効な各プロバイダーに、その送信先のエクスポーターを追加します。既存のエクスポーターは、それぞれの送信先にデータを送信し続けます。
+デフォルトでは、FastAPIはエクスポーターを追加せずに、設定済みのプロバイダーを使用します。自動設定が有効で、環境変数にOTLPエンドポイントが設定されている場合、FastAPIは有効な各プロバイダーに、その送信先のエクスポーターを追加します。既存のエクスポーターは、それぞれの送信先にデータを送信し続けます。
 
-各送信先は一度だけ設定してください。別のライブラリがすでに環境変数で指定された送信先への送信を処理している場合は、そのライブラリの環境変数に基づくエクスポートを無効にするか、FastAPIの自動設定を無効にします:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+別のライブラリがすでに同じ送信先へのエクスポートを設定している場合は、テレメトリーの重複を避けるため、`FASTAPI_OTEL_AUTO_CONFIGURE`を未設定のままにするか、`false`に設定してください。
 
 `telemetry`辞書にプロバイダーを直接渡すこともできます。例えば、次のプロバイダーはOpenTelemetryのコンソールエクスポーターを使用して、リクエストのスパンをターミナルに出力します:
 
@@ -143,7 +140,7 @@ FastAPIは、リクエストのバリデーション失敗も、ルートとエ�
 | `logs` | バリデーション失敗と未処理の例外を記録します | `True` |
 | `operation_spans` | リクエスト操作のスパンを追加します | `True` |
 | `exclude` | ASGIスコープを受け取る関数が`True`を返した場合、そのリクエストを除外します | `None` |
-| `auto_configure` | 環境変数に設定されたエンドポイントのエクスポーターを追加します | `True` |
+| `auto_configure` | 環境変数に設定されたエンドポイントのエクスポーターを追加します | `FASTAPI_OTEL_AUTO_CONFIGURE=true`の場合は`True`、それ以外は`False` |
 
 例えば、ヘルスチェックを除外してメトリクスを収集するには、次のようにします:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-lifespan関数内などで、アプリケーション自身がプロバイダーの設定を行う場合は、`auto_configure`を`False`に設定してください。
+`telemetry`辞書で明示的に指定した`auto_configure`の値は、`FASTAPI_OTEL_AUTO_CONFIGURE`より優先されます。コードで自動設定を有効にするには`telemetry={"auto_configure": True}`を使用します。環境変数で有効になっていても、アプリで無効にするには`telemetry={"auto_configure": False}`を使用してください。
