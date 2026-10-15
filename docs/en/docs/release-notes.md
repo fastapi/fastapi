@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for de (update-outdated). PR [#16493](https://github.com/fastapi/fastapi/pull/16493) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for uk (update-outdated). PR [#16494](https://github.com/fastapi/fastapi/pull/16494) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for tr (update-outdated). PR [#16490](https://github.com/fastapi/fastapi/pull/16490) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for pt (update-outdated). PR [#16491](https://github.com/fastapi/fastapi/pull/16491) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
