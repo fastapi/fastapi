@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix blocking frontend fallback file checks. PR [#16503](https://github.com/fastapi/fastapi/pull/16503) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Update translations for zh-hant (update-outdated). PR [#16500](https://github.com/fastapi/fastapi/pull/16500) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
