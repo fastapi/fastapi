@@ -90,9 +90,9 @@ $ echo "Hello, world!"  // Print greeting
 Если комментарий не соответствует этому шаблону, инструмент исправления не будет его сохранять.
 
 ```python
-# Function declaration
-def hello_world():  # Print greeting
-    print("Hello, world!")  # Print greeting without space after hash
+#Function declaration
+def hello_world():# Print greeting
+    print("Hello, world!")  #Print greeting without space after hash
 ```
 
 ```console

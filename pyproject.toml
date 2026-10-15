@@ -280,6 +280,10 @@ sort = "-Cover"
 [tool.coverage.html]
 show_contexts = true
 
+[tool.ruff]
+# Translation fixtures intentionally contain malformed code and comments.
+extend-exclude = ["scripts/tests/test_translation_fixer/**/*.md"]
+
 [tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
