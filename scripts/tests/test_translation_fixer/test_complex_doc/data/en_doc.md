@@ -92,9 +92,9 @@ Fixer tool expects comments that follow specific pattern:
 If comment doesn't follow this pattern, fixer tool will not preserve it.
 
 ```python
-#Function declaration
-def hello_world():# Print greeting
-    print("Hello, world!")  #Print greeting without space after hash
+# Function declaration
+def hello_world():  # Print greeting
+    print("Hello, world!")  # Print greeting without space after hash
 ```
 
 ```console
