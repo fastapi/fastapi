@@ -5,6 +5,7 @@ import errno
 import functools
 import inspect
 import json
+import math
 import os
 import stat
 import threading
@@ -305,6 +306,17 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     return ctx
 
 
+def _normalize_non_finite_floats(data: Any) -> Any:
+    """Replace non-finite values in JSON-compatible data, preserving dict keys."""
+    if isinstance(data, float):
+        return data if math.isfinite(data) else None
+    if isinstance(data, dict):
+        return {key: _normalize_non_finite_floats(value) for key, value in data.items()}
+    if isinstance(data, list):
+        return [_normalize_non_finite_floats(value) for value in data]
+    return data
+
+
 async def serialize_response(
     *,
     field: ModelField | None = None,
@@ -536,7 +548,9 @@ def get_request_handler(
                     )
                 else:
                     data = jsonable_encoder(data)
-                    return json.dumps(data).encode("utf-8")
+                    return json.dumps(_normalize_non_finite_floats(data)).encode(
+                        "utf-8"
+                    )
 
             if is_sse_stream:
                 # Generator endpoint: stream as Server-Sent Events
@@ -554,7 +568,11 @@ def get_request_handler(
                             if hasattr(item.data, "model_dump_json"):
                                 data_str = item.data.model_dump_json()
                             else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
+                                data_str = json.dumps(
+                                    _normalize_non_finite_floats(
+                                        jsonable_encoder(item.data)
+                                    )
+                                )
                         else:
                             data_str = None
                         return format_sse_event(
