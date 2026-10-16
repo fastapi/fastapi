@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix non-finite float serialization in JSONL and SSE streams. PR [#16509](https://github.com/fastapi/fastapi/pull/16509) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 🎨 Update Python format in Markdown with Ruff. PR [#16505](https://github.com/fastapi/fastapi/pull/16505) by [@tiangolo](https://github.com/tiangolo).
