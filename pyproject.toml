@@ -69,6 +69,7 @@ standard = [
     "fastar >= 0.9.0",
     # For the test client
     "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -89,6 +90,7 @@ standard-no-fastapi-cloud-cli = [
     "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.32",
     # For the test client
     "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -109,6 +111,7 @@ all = [
     "fastapi-cli[standard] >=0.0.32",
     # # For the test client
     "httpx >=0.23.0,<1.0.0",
+    "httpx2 >=2.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
