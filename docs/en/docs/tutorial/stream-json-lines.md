@@ -72,6 +72,20 @@ If you want to stream binary data, for example video or audio, check the advance
 
 ///
 
+## Proxy Buffering { #proxy-buffering }
+
+When a JSON Lines response is served behind a proxy that buffers responses by default (for example Nginx with `proxy_buffering on`), the proxy could hold back the lines and deliver them all at once, which would defeat the streaming.
+
+To prevent that, FastAPI sets the `X-Accel-Buffering: no` header on JSON Lines responses, telling Nginx (and compatible proxies) not to buffer them.
+
+If you need a different behavior, you can set that header yourself on the [`Response`](../advanced/response-headers.md) and your value will be used instead.
+
+/// note
+
+Caching headers (like `Cache-Control`) are **not** set automatically, they are left up to you. JSON Lines is also used for bulk exports where caching can be legitimate, so FastAPI doesn't impose a caching policy. If you need one, you can set it on the [`Response`](../advanced/response-headers.md).
+
+///
+
 ## Stream JSON Lines with FastAPI { #stream-json-lines-with-fastapi }
 
 To stream JSON Lines with FastAPI you can, instead of using `return` in your *path operation function*, use `yield` to produce each item in turn.
