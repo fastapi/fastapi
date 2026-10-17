@@ -343,3 +343,22 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_encode_bytes_valid_utf8():
+    assert jsonable_encoder(b"hello world") == "hello world"
+
+
+def test_encode_bytes_invalid_utf8_raises_clear_error():
+    with pytest.raises(ValueError, match="not valid UTF-8"):
+        jsonable_encoder(b"\xff\xfe\x00\x01")
+
+
+def test_encode_bytes_invalid_utf8_with_custom_encoder():
+    import base64
+
+    encoded = jsonable_encoder(
+        b"\xff\xfe\x00\x01",
+        custom_encoder={bytes: lambda v: base64.b64encode(v).decode()},
+    )
+    assert encoded == base64.b64encode(b"\xff\xfe\x00\x01").decode()
