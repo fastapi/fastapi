@@ -188,7 +188,7 @@ $ uv add "fastapi[standard]"
 
 **Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
 
-If you prefer to use `pip`, install `fastapi[standard]` inside a virtual environment. See the [installation guide](tutorial/#install-fastapi) for the alternative steps.
+If you prefer to use `pip`, install `fastapi[standard]` inside a virtual environment. See the [installation guide](https://fastapi.tiangolo.com/tutorial/#install-fastapi) for the alternative steps.
 
 ## Example { #example }
 
