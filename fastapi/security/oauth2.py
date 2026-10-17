@@ -536,7 +536,7 @@ class OAuth2PasswordBearer(OAuth2):
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        if not authorization or scheme.lower() != "bearer":
+        if not authorization or scheme.lower() != "bearer" or not param:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
             else:
@@ -642,7 +642,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
     async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        if not authorization or scheme.lower() != "bearer":
+        if not authorization or scheme.lower() != "bearer" or not param:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
             else:
