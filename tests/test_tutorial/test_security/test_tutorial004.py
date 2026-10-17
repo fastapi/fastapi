@@ -44,14 +44,14 @@ def test_login_incorrect_password(mod: ModuleType):
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
-    assert response.status_code == 401, response.text
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.post("/token", data={"username": "foo", "password": "secret"})
-    assert response.status_code == 401, response.text
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 

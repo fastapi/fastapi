@@ -36,7 +36,8 @@ Have in mind that, as **browsers handle cookies** in special ways and behind the
 
 If you go to the **API docs UI** at `/docs` you will be able to see the **documentation** for cookies for your *path operations*.
 
-But even if you **fill the data** and click "Execute", because the docs UI works with **JavaScript**, the cookies won't be sent, and you will see an **error** message as if you didn't write any values.
+But even if you **fill the data** and click "Execute", because the docs UI works with **JavaScript**, the cookies won't be sent.
+If the cookie parameter is required (no default value), you will see an **error** message as if you didn't write any values.
 
 ///
 

@@ -112,7 +112,7 @@ class OAuth2PasswordRequestForm:
 
                 ```python
                 "items:read items:write users:read profile openid"
-                ````
+                ```
 
                 would represent the scopes:
 
@@ -278,7 +278,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
                 ```python
                 "items:read items:write users:read profile openid"
-                ````
+                ```
 
                 would represent the scopes:
 

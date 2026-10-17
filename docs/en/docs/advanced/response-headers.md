@@ -22,7 +22,7 @@ You can also add headers when you return a `Response` directly.
 
 Create a response as described in [Return a Response Directly](response-directly.md) and pass the headers as an additional parameter:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:11] *}
 
 /// note | Technical Details
 

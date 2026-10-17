@@ -115,7 +115,7 @@ You can also use `url_for()` inside of the template, and use it, for example, wi
 
 In this example, it would link to a CSS file at `static/styles.css` with:
 
-```CSS hl_lines="4"
+```CSS
 {!../../docs_src/templates/static/styles.css!}
 ```
 
