@@ -9,7 +9,7 @@ from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
-from starlette.requests import Request
+from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 
@@ -91,8 +91,10 @@ class HTTPBase(SecurityBase):
             headers=self.make_authenticate_headers(),
         )
 
-    async def __call__(self, request: Request) -> HTTPAuthorizationCredentials | None:
-        authorization = request.headers.get("Authorization")
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -200,9 +202,9 @@ class HTTPBasic(HTTPBase):
         return {"WWW-Authenticate": "Basic"}
 
     async def __call__(  # type: ignore
-        self, request: Request
+        self, conn: HTTPConnection
     ) -> HTTPBasicCredentials | None:
-        authorization = request.headers.get("Authorization")
+        authorization = conn.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
@@ -300,8 +302,10 @@ class HTTPBearer(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> HTTPAuthorizationCredentials | None:
-        authorization = request.headers.get("Authorization")
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -401,8 +405,10 @@ class HTTPDigest(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> HTTPAuthorizationCredentials | None:
-        authorization = request.headers.get("Authorization")
+    async def __call__(
+        self, conn: HTTPConnection
+    ) -> HTTPAuthorizationCredentials | None:
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
