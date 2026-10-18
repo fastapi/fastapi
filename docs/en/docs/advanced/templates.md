@@ -109,17 +109,17 @@ For example, if your application is served at `https://example.com`, with an ID 
 
 ### URL paths in templates { #url-paths-in-templates }
 
-For links to the same site, you can use the `.path` attribute to get only the URL path:
+For links to the same site, you can use the `.path` attribute to get only the URL path, for example, in `templates/item_path.html`:
 
-{% raw %}
-
-```jinja
-<a href="{{ url_for('read_item', id=id).path }}">
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
 ```
 
-{% endraw %}
+Pass the template's name to `TemplateResponse`:
 
-With the same example, this would render:
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+With the same example, the item link would render:
 
 ```html
 <a href="/items/42">
