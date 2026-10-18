@@ -1,3 +1,5 @@
+from collections.abc import Iterable
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -65,6 +67,21 @@ def get_exclude_unset_none() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
 
 
+@app.get("/iterable_exclude_unset", response_model_exclude_unset=True)
+def get_iterable_exclude_unset() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
+@app.get("/iterable_exclude_defaults", response_model_exclude_defaults=True)
+def get_iterable_exclude_defaults() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
+@app.get("/iterable_exclude_none", response_model_exclude_none=True)
+def get_iterable_exclude_none() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
 client = TestClient(app)
 
 
@@ -91,3 +108,18 @@ def test_return_exclude_none():
 def test_return_exclude_unset_none():
     response = client.get("/exclude_unset_none")
     assert response.json() == {"y": "y"}
+
+
+def test_return_iterable_exclude_unset():
+    response = client.get("/iterable_exclude_unset")
+    assert response.json() == [{"x": None, "y": "y"}]
+
+
+def test_return_iterable_exclude_defaults():
+    response = client.get("/iterable_exclude_defaults")
+    assert response.json() == [{}]
+
+
+def test_return_iterable_exclude_none():
+    response = client.get("/iterable_exclude_none")
+    assert response.json() == [{"y": "y", "z": "z"}]

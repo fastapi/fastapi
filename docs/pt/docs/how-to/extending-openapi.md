@@ -6,7 +6,7 @@ Nesta seção, você verá como fazer isso.
 
 ## O processo normal { #the-normal-process }
 
-O processo normal (padrão) é o seguinte:
+O processo normal (padrão) é o seguinte.
 
 Uma aplicação (instância) do `FastAPI` possui um método `.openapi()` que deve retornar o esquema OpenAPI.
 
@@ -25,9 +25,17 @@ E essa função `get_openapi()` recebe como parâmetros:
 * `openapi_version`: A versão da especificação OpenAPI utilizada. Por padrão, a mais recente: `3.1.0`.
 * `summary`: Um resumo curto da API.
 * `description`: A descrição da sua API, que pode incluir markdown e será exibida na documentação.
-* `routes`: Uma lista de rotas, que são cada uma das *operações de rota* registradas. Elas são obtidas de `app.routes`.
+* `routes`: As rotas da aplicação, obtidas de `app.routes`. O FastAPI as usa para coletar as *operações de rota* registradas, incluindo as dos routers incluídos.
 
-/// info | Informação
+/// tip | Detalhes Técnicos
+
+`app.routes` é uma árvore de rotas de baixo nível. Ela pode incluir rotas candidatas que o FastAPI usa internamente para routers incluídos, não apenas objetos finais `APIRoute`.
+
+Você ainda pode passar `app.routes` para `get_openapi()`. O FastAPI vai percorrer essa árvore de rotas para coletar as operações de rota efetivas.
+
+///
+
+/// note | Nota
 
 O parâmetro `summary` está disponível no OpenAPI 3.1.0 e superior, suportado pelo FastAPI 0.99.0 e superior.
 
@@ -37,9 +45,9 @@ O parâmetro `summary` está disponível no OpenAPI 3.1.0 e superior, suportado 
 
 Com as informações acima, você pode usar a mesma função utilitária para gerar o esquema OpenAPI e sobrescrever cada parte que precisar.
 
-Por exemplo, vamos adicionar <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">Extensão OpenAPI do ReDoc para incluir um logo personalizado</a>.
+Por exemplo, vamos adicionar [Extensão OpenAPI do ReDoc para incluir um logo personalizado](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo).
 
-### **FastAPI** Normal { #normal-fastapi }
+### Normal **FastAPI** { #normal-fastapi }
 
 Primeiro, escreva toda a sua aplicação **FastAPI** normalmente:
 
@@ -73,8 +81,8 @@ Agora, você pode substituir o método `.openapi()` pela sua nova função.
 
 {* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
 
-### Verificar { #check-it }
+### Verifique { #check-it }
 
-Uma vez que você acessar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>, verá que está usando seu logo personalizado (neste exemplo, o logo do **FastAPI**):
+Uma vez que você acessar [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc), verá que está usando seu logo personalizado (neste exemplo, o logo do **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

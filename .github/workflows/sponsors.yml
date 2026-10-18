@@ -10,25 +10,32 @@ on:
         required: false
         default: "false"
 
+permissions: {}
+
 jobs:
   job:
     if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      id-token: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -37,12 +44,17 @@ jobs:
         run: uv sync --locked --no-dev --group github-actions
       # Allow debugging with tmate
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
       - name: FastAPI People Sponsors
-        run: uv run ./scripts/sponsors.py
+        run: |
+          gh auth setup-git
+          uv run ./scripts/sponsors.py
         env:
-          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
-          PR_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
+          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }} # zizmor: ignore[secrets-outside-env]
+          GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}

@@ -72,20 +72,20 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info
+/// note
 
-To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
+To use `EmailStr`, first install [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+Add it to your project:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 or with:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -182,7 +182,7 @@ There might be cases where you return something that is not a valid Pydantic fie
 
 ### Return a Response Directly { #return-a-response-directly }
 
-The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
+The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -251,14 +251,14 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 }
 ```
 
-/// info
+/// note
 
 You can also use:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-as described in <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+as described in [the Pydantic docs](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) for `exclude_defaults` and `exclude_none`.
 
 ///
 
@@ -266,6 +266,7 @@ as described in <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ But if your data has values for the model's fields with default values, like the
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 they will be included in the response.
 
@@ -281,6 +283,7 @@ they will be included in the response.
 
 If the data has the same values as the default ones, like the item with ID `baz`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ If the data has the same values as the default ones, like the item with ID `baz`
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI is smart enough (actually, Pydantic is smart enough) to realize that, even though `description`, `tax`, and `tags` have the same values as the defaults, they were set explicitly (instead of taken from the defaults).
 

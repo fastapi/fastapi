@@ -6,9 +6,13 @@
 
 因此，通常会将它们提供为由应用程序读取的环境变量。
 
+**环境变量**（也称为 **env var**）是存在于 Python 代码之外、操作系统中的值，可以由你的应用和其他程序读取。
+
+你可以在运行命令时为该命令创建环境变量。你将在下面看到特定于平台的命令。
+
 /// tip | 提示
 
-要理解环境变量，你可以阅读[环境变量](../environment-variables.md){.internal-link target=_blank}。
+阅读[环境变量指南](https://tiangolo.com/guides/environment-variables/)以详细了解环境变量的工作方式。
 
 ///
 
@@ -20,16 +24,16 @@
 
 ## Pydantic 的 `Settings` { #pydantic-settings }
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：[Pydantic：Settings 管理](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)。
 
 ### 安装 `pydantic-settings` { #install-pydantic-settings }
 
-首先，确保你创建并激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装 `pydantic-settings` 包：
+将 `pydantic-settings` 包添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ $ pip install "fastapi[all]"
 
 接下来，运行服务器，并把配置作为环境变量传入，例如你可以设置 `ADMIN_EMAIL` 和 `APP_NAME`：
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 提示
 
-要为单个命令设置多个环境变量，只需用空格分隔它们，并把它们都放在命令前面。
+在 Bash 中，要为单个命令设置多个环境变量，只需用空格分隔它们，并把它们都放在命令前面。
 
 ///
 
@@ -100,7 +124,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一个模块中放置设置 { #settings-in-another-module }
 
-你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 例如，可以有一个 `config.py` 文件：
 
@@ -112,7 +136,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | 提示
 
-你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a> 中阅读更多信息。
+Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 [Pydantic Settings：Dotenv（.env）支持](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support) 中阅读更多信息。
 
 /// tip | 提示
 
-要使其工作，你需要执行 `pip install python-dotenv`。
+要使其工作，请使用 `uv add python-dotenv` 将 `python-dotenv` 添加到你的项目。
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 提示
 
-`model_config` 属性仅用于 Pydantic 配置。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a> 中阅读更多信息。
+`model_config` 属性仅用于 Pydantic 配置。你可以在 [Pydantic：概念：配置](https://pydantic.dev/docs/validation/latest/concepts/config/) 中阅读更多信息。
 
 ///
 
@@ -291,12 +315,12 @@ participant execute as Execute function
 
 这样，它的行为几乎就像是一个全局变量。但由于它使用了依赖项函数，我们可以在测试时很容易地覆盖它。
 
-`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文档中关于 `@lru_cache` 的章节</a>阅读更多信息。
+`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 [Python 文档中关于 `@lru_cache` 的章节](https://docs.python.org/3/library/functools.html#functools.lru_cache)阅读更多信息。
 
 ## 小结 { #recap }
 
 你可以使用 Pydantic Settings 来处理应用的设置或配置，享受 Pydantic 模型的全部能力。
 
-- 通过使用依赖项，你可以简化测试。
-- 你可以与它一起使用 `.env` 文件。
-- 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。
+* 通过使用依赖项，你可以简化测试。
+* 你可以与它一起使用 `.env` 文件。
+* 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。

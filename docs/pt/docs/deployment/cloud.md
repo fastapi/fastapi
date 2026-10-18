@@ -1,4 +1,4 @@
-# Implantar FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
+# Implante FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
 
 Você pode usar praticamente **qualquer provedor de nuvem** para implantar sua aplicação FastAPI.
 
@@ -6,7 +6,7 @@ Na maioria dos casos, os principais provedores de nuvem têm tutoriais para impl
 
 ## FastAPI Cloud { #fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** é desenvolvido pelo mesmo autor e equipe por trás do **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** é desenvolvido pelo mesmo autor e equipe por trás do **FastAPI**.
 
 Ele simplifica o processo de **criar**, **implantar** e **acessar** uma API com o mínimo de esforço.
 
@@ -16,9 +16,8 @@ FastAPI Cloud é o patrocinador principal e provedor de financiamento dos projet
 
 ## Provedores de Nuvem - Patrocinadores { #cloud-providers-sponsors }
 
-Alguns outros provedores de nuvem ✨ [**patrocinam o FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ também. 🙇
+Alguns outros provedores de nuvem ✨ [**patrocinam o FastAPI**](https://github.com/sponsors/tiangolo) ✨ também. 🙇
 
 Você também pode considerá-los para seguir seus tutoriais e experimentar seus serviços:
 
-* <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
-* <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>
+* [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

@@ -49,13 +49,13 @@
 
 然後它只會回傳一個包含這些值的 `dict`。
 
-/// info | 說明
+/// note | 注意
 
 FastAPI 在 0.95.0 版新增了對 `Annotated` 的支援（並開始建議使用）。
 
 如果你使用較舊的版本，嘗試使用 `Annotated` 時會出現錯誤。
 
-在使用 `Annotated` 之前，請先[升級 FastAPI 版本](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}到至少 0.95.1。
+在使用 `Annotated` 之前，請先[升級 FastAPI 版本](../../deployment/versions.md#upgrading-the-fastapi-versions)到至少 0.95.1。
 
 ///
 
@@ -104,7 +104,7 @@ common_parameters --> read_users
 
 如此一來，你只需撰寫一次共用程式碼，**FastAPI** 會替你的各個「路徑操作」呼叫它。
 
-/// check | 檢查
+/// tip | 提示
 
 注意，你不必建立特殊的類別並把它傳到 **FastAPI** 去「註冊」或做類似的事。
 
@@ -150,7 +150,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 注意
 
-如果你不熟悉，請參考文件中的 [Async: "In a hurry?"](../../async.md#in-a-hurry){.internal-link target=_blank} 一節，瞭解 `async` 與 `await`。
+如果你不熟悉，請參考文件中的 [Async: "In a hurry?"](../../async.md#in-a-hurry) 一節，瞭解 `async` 與 `await`。
 
 ///
 

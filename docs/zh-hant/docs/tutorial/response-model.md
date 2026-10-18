@@ -13,6 +13,7 @@ FastAPI 會使用這個回傳型別來：
 * 在 OpenAPI 的「路徑操作」中為回應新增 JSON Schema。
     * 這會被自動文件使用。
     * 也會被自動用戶端程式碼產生工具使用。
+* 使用 Pydantic 將回傳資料**序列化**為 JSON，而 Pydantic 是用 **Rust** 撰寫的，因此會 **更快很多**。
 
 但更重要的是：
 
@@ -71,20 +72,20 @@ FastAPI 會使用這個 `response_model` 來做所有的資料文件、驗證等
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | 說明
+/// note | 注意
 
-要使用 `EmailStr`，請先安裝 <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>。
+要使用 `EmailStr`，請先安裝 [`email-validator`](https://github.com/JoshData/python-email-validator)。
 
-請先建立一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}、啟用它，然後安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
-或：
+或使用：
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -181,7 +182,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 ### 直接回傳 Response { #return-a-response-directly }
 
-最常見的情況是[直接回傳 Response（在進階文件中稍後會解釋）](../advanced/response-directly.md){.internal-link target=_blank}。
+最常見的情況是[直接回傳 Response（在進階文件中稍後會解釋）](../advanced/response-directly.md)。
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -250,14 +251,14 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 }
 ```
 
-/// info | 說明
+/// note | 注意
 
 你也可以使用：
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-如 <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 文件</a>中對 `exclude_defaults` 與 `exclude_none` 的說明。
+如 [Pydantic 文件](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value)中對 `exclude_defaults` 與 `exclude_none` 的說明。
 
 ///
 

@@ -1,8 +1,8 @@
 # Swagger UI 구성 { #configure-swagger-ui }
 
-추가적인 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 매개변수</a>를 구성할 수 있습니다.
+추가적인 [Swagger UI 매개변수](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)를 구성할 수 있습니다.
 
-구성을 하려면, `FastAPI()` 앱 객체를 생성할 때 또는 `get_swagger_ui_html()` 함수에 `swagger_ui_parameters` 인수를 전달하십시오.
+구성을 하려면, `FastAPI()` 애플리케이션 객체를 생성할 때 또는 `get_swagger_ui_html()` 함수에 `swagger_ui_parameters` 인수를 전달하십시오.
 
 `swagger_ui_parameters`는 Swagger UI에 직접 전달된 구성을 포함하는 딕셔너리를 받습니다.
 
@@ -50,7 +50,7 @@ FastAPI는 대부분의 사용 사례에 적합한 몇 가지 기본 구성 매�
 
 ## 기타 Swagger UI 매개변수 { #other-swagger-ui-parameters }
 
-사용할 수 있는 다른 모든 구성 옵션을 확인하려면, Swagger UI 매개변수에 대한 공식 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 매개변수 문서</a>를 참조하십시오.
+사용할 수 있는 다른 모든 구성 옵션을 확인하려면, 공식 [Swagger UI 매개변수 문서](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/)를 참조하십시오.
 
 ## JavaScript 전용 설정 { #javascript-only-settings }
 

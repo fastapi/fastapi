@@ -12,7 +12,7 @@ Vamos imaginar que você tenha um banco de dados `fake_db` que recebe apenas dad
 
 Por exemplo, ele não recebe objetos `datetime`, pois estes objetos não são compatíveis com JSON.
 
-Então, um objeto `datetime` teria que ser convertido em um `str` contendo os dados no <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">formato ISO</a>.
+Então, um objeto `datetime` teria que ser convertido em um `str` contendo os dados no [formato ISO](https://en.wikipedia.org/wiki/ISO_8601).
 
 Da mesma forma, este banco de dados não receberia um modelo Pydantic (um objeto com atributos), apenas um `dict`.
 
@@ -24,7 +24,7 @@ A função recebe um objeto, como um modelo Pydantic e retorna uma versão compa
 
 Neste exemplo, ele converteria o modelo Pydantic em um `dict`, e o `datetime` em um `str`.
 
-O resultado de chamar a função é algo que pode ser codificado com o padrão do Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
+O resultado de chamar a função é algo que pode ser codificado com o padrão do Python [`json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps).
 
 A função não retorna um grande `str` contendo os dados no formato JSON (como uma string). Mas sim, retorna uma estrutura de dados padrão do Python (por exemplo, um `dict`) com valores e subvalores compatíveis com JSON.
 

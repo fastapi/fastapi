@@ -6,7 +6,7 @@ Bu sayede **model'i yeniden kullanabilir**, **birden fazla yerde** tekrar tekrar
 
 /// note | Not
 
-This is supported since FastAPI version `0.115.0`. 🤓
+Bu özellik FastAPI'nin `0.115.0` sürümünden itibaren desteklenmektedir. 🤓
 
 ///
 
@@ -32,7 +32,7 @@ Tanımlanan cookie'leri `/docs` altındaki docs UI'da görebilirsiniz:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 Tarayıcıların cookie'leri özel biçimlerde ve arka planda yönetmesi nedeniyle, **JavaScript**'in cookie'lere erişmesine kolayca izin vermediğini aklınızda bulundurun.
 

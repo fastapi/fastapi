@@ -1,6 +1,6 @@
 # ベンチマーク { #benchmarks }
 
-TechEmpowerの独立したベンチマークでは、Uvicornの下で動作する**FastAPI**アプリケーションは、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">利用可能な最速のPythonフレームワークの1つ</a>であり、下回っているのはStarletteとUvicorn自体（FastAPIによって内部で使用される）のみだと示されています。
+TechEmpowerの独立したベンチマークでは、Uvicornの下で動作する**FastAPI**アプリケーションは、[利用可能な最速のPythonフレームワークの1つ](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7)であり、下回っているのはStarletteとUvicorn自体（FastAPIによって内部で使用される）のみだと示されています。
 
 ただし、ベンチマークを確認し、比較する際には下記の内容に気を付けてください。
 

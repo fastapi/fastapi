@@ -1,5 +1,6 @@
 # Scopes de OAuth2 { #oauth2-scopes }
 
+
 Puedes usar scopes de OAuth2 directamente con **FastAPI**, están integrados para funcionar de manera fluida.
 
 Esto te permitiría tener un sistema de permisos más detallado, siguiendo el estándar de OAuth2, integrado en tu aplicación OpenAPI (y la documentación de la API).
@@ -46,7 +47,7 @@ Normalmente se utilizan para declarar permisos de seguridad específicos, por ej
 * `instagram_basic` es usado por Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` es usado por Google.
 
-/// info | Información
+/// note | Nota
 
 En OAuth2 un "scope" es solo un string que declara un permiso específico requerido.
 
@@ -60,7 +61,7 @@ Para OAuth2 son solo strings.
 
 ## Vista global { #global-view }
 
-Primero, echemos un vistazo rápido a las partes que cambian desde los ejemplos en el **Tutorial - User Guide** principal para [OAuth2 con Password (y hashing), Bearer con tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Ahora usando scopes de OAuth2:
+Primero, echemos un vistazo rápido a las partes que cambian desde los ejemplos en el **Tutorial - User Guide** principal para [OAuth2 con Password (y hashing), Bearer con tokens JWT](../../tutorial/security/oauth2-jwt.md). Ahora usando scopes de OAuth2:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -126,7 +127,7 @@ Lo estamos haciendo aquí para demostrar cómo **FastAPI** maneja scopes declara
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Información Técnica
+/// note | Detalles técnicos
 
 `Security` es en realidad una subclase de `Depends`, y tiene solo un parámetro extra que veremos más adelante.
 
@@ -271,4 +272,4 @@ Pero al final, están implementando el mismo estándar OAuth2.
 
 ## `Security` en `dependencies` del decorador { #security-in-decorator-dependencies }
 
-De la misma manera que puedes definir una `list` de `Depends` en el parámetro `dependencies` del decorador (como se explica en [Dependencias en decoradores de path operation](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), también podrías usar `Security` con `scopes` allí.
+De la misma manera que puedes definir una `list` de `Depends` en el parámetro `dependencies` del decorador (como se explica en [Dependencias en decoradores de path operation](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), también podrías usar `Security` con `scopes` allí.

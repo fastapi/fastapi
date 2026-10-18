@@ -32,7 +32,7 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 {* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
 
-Hier simulieren wir den langsamen *Startup*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
+Hier simulieren wir den aufwendigen *Startup*-Vorgang des Ladens des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Shutdown*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
@@ -102,7 +102,7 @@ Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
 ### `startup`-Event { #startup-event }
 
-Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `startup`:
+Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `"startup"`:
 
 {* ../../docs_src/events/tutorial001_py310.py hl[8] *}
 
@@ -114,13 +114,13 @@ Und Ihre Anwendung empfängt erst dann Requests, wenn alle `startup`-Eventhandle
 
 ### `shutdown`-Event { #shutdown-event }
 
-Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
+Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `"shutdown"`:
 
 {* ../../docs_src/events/tutorial002_py310.py hl[6] *}
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.
 
-/// info | Info
+/// note | Hinweis
 
 In der Funktion `open()` bedeutet `mode="a"` „append“ („anhängen“), sodass die Zeile nach dem, was sich in dieser Datei befindet, hinzugefügt wird, ohne den vorherigen Inhalt zu überschreiben.
 
@@ -140,7 +140,7 @@ Daher deklarieren wir die Eventhandler-Funktion mit Standard-`def` statt mit `as
 
 ### `startup` und `shutdown` zusammen { #startup-and-shutdown-together }
 
-Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
+Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource belegen und sie dann freigeben usw.
 
 Bei getrennten Funktionen, die keine gemeinsame Logik oder Variablen haben, ist dies schwieriger, da Sie Werte in globalen Variablen speichern oder ähnliche Tricks verwenden müssen.
 
@@ -150,16 +150,16 @@ Aus diesem Grund wird jetzt empfohlen, stattdessen `lifespan` wie oben erläuter
 
 Nur ein technisches Detail für die neugierigen Nerds. 🤓
 
-In der technischen ASGI-Spezifikation ist dies Teil des <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protokolls</a> und definiert Events namens `startup` und `shutdown`.
+In der technischen ASGI-Spezifikation ist dies Teil des [Lifespan-Protokolls](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) und definiert Events namens `startup` und `shutdown`.
 
-/// info | Info
+/// note | Hinweis
 
-Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlettes Lifespan-Dokumentation</a>.
+Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in [Starlettes Lifespan-Dokumentation](https://starlette.dev/lifespan/).
 
-Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihres Codes verwendet werden kann.
+Einschließlich, wie Sie Lifespan-Zustand handhaben, der in anderen Bereichen Ihres Codes verwendet werden kann.
 
 ///
 
 ## Unteranwendungen { #sub-applications }
 
-🚨 Beachten Sie, dass diese Lifespan-Events (Startup und Shutdown) nur für die Hauptanwendung ausgeführt werden, nicht für [Unteranwendungen – Mounts](sub-applications.md){.internal-link target=_blank}.
+🚨 Beachten Sie, dass diese Lifespan-Events (Startup und Shutdown) nur für die Hauptanwendung ausgeführt werden, nicht für [Unteranwendungen – Mounts](sub-applications.md).

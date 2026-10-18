@@ -1,5 +1,6 @@
 # 高级依赖项 { #advanced-dependencies }
 
+
 ## 参数化的依赖项 { #parameterized-dependencies }
 
 目前我们看到的依赖项都是固定的函数或类。
@@ -98,7 +99,7 @@ checker(q="somequery")
 
 在 0.118.0 中，这一行为被回退为：让 `yield` 之后的退出代码在响应发送之后再执行。
 
-/// info | 信息
+/// note | 注意
 
 如你在下文所见，这与 0.106.0 之前的行为非常相似，但对若干边界情况做了改进和修复。
 
@@ -132,7 +133,7 @@ checker(q="somequery")
 
 这样会话会释放数据库连接，让其他请求可以使用。
 
-如果你还有其他需要在 `yield` 依赖项中提前退出的用例，请创建一个 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub 讨论问题</a>，说明你的具体用例以及为何提前关闭会对你有帮助。
+如果你还有其他需要在 `yield` 依赖项中提前退出的用例，请创建一个 [GitHub 讨论问题](https://github.com/fastapi/fastapi/discussions/new?category=questions)，说明你的具体用例以及为何提前关闭会对你有帮助。
 
 如果确有有力的用例需要提前关闭，我会考虑新增一种选择性启用提前关闭的方式。
 
@@ -144,7 +145,7 @@ checker(q="somequery")
 
 ### 后台任务与带 `yield` 的依赖项（技术细节） { #background-tasks-and-dependencies-with-yield-technical-details }
 
-在 FastAPI 0.106.0 之前，`yield` 之后抛出异常是不可行的，因为带 `yield` 的依赖项中的退出代码会在响应发送之后才执行，此时[异常处理器](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}已经运行完毕。
+在 FastAPI 0.106.0 之前，`yield` 之后抛出异常是不可行的，因为带 `yield` 的依赖项中的退出代码会在响应发送之后才执行，此时[异常处理器](../tutorial/handling-errors.md#install-custom-exception-handlers)已经运行完毕。
 
 之所以这样设计，主要是为了允许在后台任务中继续使用依赖项通过 `yield`“产出”的对象，因为退出代码会在后台任务完成之后才执行。
 

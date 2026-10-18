@@ -1,3 +1,5 @@
+from typing import Any, cast
+
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
@@ -56,9 +58,15 @@ def test_propagates_pydantic2_model_config():
 
     @app.post("/")
     def foo(req: Model) -> dict[str, str | None]:
+        value = req.value
+        if isinstance(value, Missing):
+            value = None
+        embedded_value = req.embedded_model.value
+        if isinstance(embedded_value, Missing):
+            embedded_value = None
         return {
-            "value": req.value or None,
-            "embedded_value": req.embedded_model.value or None,
+            "value": value,
+            "embedded_value": embedded_value,
         }
 
     client = TestClient(app)
@@ -100,7 +108,7 @@ def test_serialize_sequence_value_with_optional_list():
     """Test that serialize_sequence_value handles optional lists correctly."""
     from fastapi._compat import v2
 
-    field_info = FieldInfo(annotation=list[str] | None)
+    field_info = FieldInfo(annotation=cast(Any, list[str] | None))
     field = v2.ModelField(name="items", field_info=field_info)
     result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
     assert result == ["a", "b", "c"]
@@ -111,7 +119,7 @@ def test_serialize_sequence_value_with_optional_list_pipe_union():
     """Test that serialize_sequence_value handles optional lists correctly (with new syntax)."""
     from fastapi._compat import v2
 
-    field_info = FieldInfo(annotation=list[str] | None)
+    field_info = FieldInfo(annotation=cast(Any, list[str] | None))
     field = v2.ModelField(name="items", field_info=field_info)
     result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
     assert result == ["a", "b", "c"]
@@ -125,7 +133,7 @@ def test_serialize_sequence_value_with_none_first_in_union():
     from fastapi._compat import v2
 
     # Use Union[None, list[str]] to ensure None comes first in the union args
-    field_info = FieldInfo(annotation=Union[None, list[str]])  # noqa: UP007
+    field_info = FieldInfo(annotation=cast(Any, Union[None, list[str]]))  # noqa: UP007
     field = v2.ModelField(name="items", field_info=field_info)
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]

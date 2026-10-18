@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Понятие CORS или "Cross-Origin Resource Sharing"</a> относится к ситуациям, при которых запущенный в браузере фронтенд содержит JavaScript-код, который взаимодействует с бэкендом, находящимся на другом "источнике" ("origin").
+[CORS или "Cross-Origin Resource Sharing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) относится к ситуациям, при которых запущенный в браузере фронтенд содержит JavaScript-код, который взаимодействует с бэкендом, находящимся на другом "источнике" ("origin").
 
 ## Источник { #origin }
 
@@ -55,10 +55,10 @@
 * `allow_origins` - Список источников, на которые разрешено выполнять кросс-доменные запросы. Например, `['https://example.org', 'https://www.example.org']`. Можно использовать `['*']`, чтобы разрешить любые источники.
 * `allow_origin_regex` - Регулярное выражение для определения источников, на которые разрешено выполнять кросс-доменные запросы. Например, `'https://.*\.example\.org'`.
 * `allow_methods` - Список HTTP-методов, которые разрешены для кросс-доменных запросов. По умолчанию `['GET']`. Можно использовать `['*']`, чтобы разрешить все стандартные методы.
-* `allow_headers` - Список HTTP-заголовков запроса, которые должны поддерживаться при кросс-доменных запросах. По умолчанию `[]`. Можно использовать `['*']`, чтобы разрешить все заголовки. Заголовки `Accept`, `Accept-Language`, `Content-Language` и `Content-Type` всегда разрешены для <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">простых CORS-запросов</a>.
+* `allow_headers` - Список HTTP-заголовков запроса, которые должны поддерживаться при кросс-доменных запросах. По умолчанию `[]`. Можно использовать `['*']`, чтобы разрешить все заголовки. Заголовки `Accept`, `Accept-Language`, `Content-Language` и `Content-Type` всегда разрешены для [простых CORS-запросов](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests).
 * `allow_credentials` - Указывает, что куки разрешены в кросс-доменных запросах. По умолчанию `False`.
 
-    Ни один из параметров `allow_origins`, `allow_methods` и `allow_headers` не может быть установлен в `['*']`, если `allow_credentials` имеет значение `True`. Все они должны быть <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">указаны явно</a>.
+    Ни один из параметров `allow_origins`, `allow_methods` и `allow_headers` не может быть установлен в `['*']`, если `allow_credentials` имеет значение `True`. Все они должны быть [указаны явно](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).
 
 * `expose_headers` - Указывает любые заголовки ответа, которые должны быть доступны браузеру. По умолчанию `[]`.
 * `max_age` - Устанавливает максимальное время в секундах, в течение которого браузер кэширует CORS-ответы. По умолчанию `600`.
@@ -77,7 +77,7 @@
 
 ## Больше информации { #more-info }
 
-Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing - совместное использование ресурсов между источниками">CORS</abbr> обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">документации CORS от Mozilla</a>.
+Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing - совместное использование ресурсов между источниками">CORS</abbr> обратитесь к [документации CORS от Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 /// note | Технические детали
 

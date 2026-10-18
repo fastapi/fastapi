@@ -2,14 +2,14 @@
 
 У FastAPI ви можете використовувати **Pydantic-моделі** для оголошення **полів форми**.
 
-/// info | Інформація
+/// note | Примітка
 
-Щоб використовувати форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Щоб використовувати форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили його, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

@@ -2,11 +2,11 @@
 
 Vous pouvez utiliser des scopes OAuth2 directement avec **FastAPI**, ils sont intégrés pour fonctionner de manière transparente.
 
-Cela vous permettrait d’avoir un système d’autorisations plus fin, conforme au standard OAuth2, intégré à votre application OpenAPI (et à la documentation de l’API).
+Cela vous permettrait d’avoir un système d’autorisations plus fin, conforme au standard OAuth2, intégré à votre application OpenAPI (et aux documents de l’API).
 
 OAuth2 avec scopes est le mécanisme utilisé par de nombreux grands fournisseurs d’authentification, comme Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Ils l’utilisent pour fournir des permissions spécifiques aux utilisateurs et aux applications.
 
-Chaque fois que vous « log in with » Facebook, Google, GitHub, Microsoft, X (Twitter), cette application utilise OAuth2 avec scopes.
+Chaque fois que vous utilisez « se connecter avec » Facebook, Google, GitHub, Microsoft, X (Twitter), cette application utilise OAuth2 avec scopes.
 
 Dans cette section, vous verrez comment gérer l’authentification et l’autorisation avec le même OAuth2 avec scopes dans votre application **FastAPI**.
 
@@ -16,7 +16,7 @@ C’est une section plus ou moins avancée. Si vous débutez, vous pouvez la pas
 
 Vous n’avez pas nécessairement besoin des scopes OAuth2, et vous pouvez gérer l’authentification et l’autorisation comme vous le souhaitez.
 
-Mais OAuth2 avec scopes peut s’intégrer élégamment à votre API (avec OpenAPI) et à votre documentation d’API.
+Mais OAuth2 avec scopes peut s’intégrer élégamment à votre API (avec OpenAPI) et à vos documents d’API.
 
 Néanmoins, c’est toujours à vous de faire appliquer ces scopes, ou toute autre exigence de sécurité/autorisation, selon vos besoins, dans votre code.
 
@@ -34,7 +34,7 @@ Le contenu de chacune de ces chaînes peut avoir n’importe quel format, mais n
 
 Ces scopes représentent des « permissions ».
 
-Dans OpenAPI (par ex. la documentation de l’API), vous pouvez définir des « schémas de sécurité ».
+Dans OpenAPI (par ex. les documents de l’API), vous pouvez définir des « schémas de sécurité ».
 
 Lorsqu’un de ces schémas de sécurité utilise OAuth2, vous pouvez aussi déclarer et utiliser des scopes.
 
@@ -46,7 +46,7 @@ Ils sont généralement utilisés pour déclarer des permissions de sécurité s
 * `instagram_basic` est utilisé par Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` est utilisé par Google.
 
-/// info
+/// note | Remarque
 
 Dans OAuth2, un « scope » est simplement une chaîne qui déclare une permission spécifique requise.
 
@@ -60,7 +60,7 @@ Pour OAuth2, ce ne sont que des chaînes.
 
 ## Vue d’ensemble { #global-view }
 
-Voyons d’abord rapidement les parties qui changent par rapport aux exemples du **Tutoriel - Guide utilisateur** pour [OAuth2 avec mot de passe (et hachage), Bearer avec jetons JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Cette fois, en utilisant des scopes OAuth2 :
+Voyons d’abord rapidement les parties qui changent par rapport aux exemples du **Tutoriel - Guide utilisateur** pour [OAuth2 avec mot de passe (et hachage), Bearer avec jetons JWT](../../tutorial/security/oauth2-jwt.md). Cette fois, en utilisant des scopes OAuth2 :
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -74,7 +74,7 @@ Le paramètre `scopes` reçoit un `dict` avec chaque scope en clé et la descrip
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 
-Comme nous déclarons maintenant ces scopes, ils apparaîtront dans la documentation de l’API lorsque vous vous authentifiez/autorisez.
+Comme nous déclarons maintenant ces scopes, ils apparaîtront dans les documents de l’API lorsque vous vous authentifiez/autorisez.
 
 Et vous pourrez sélectionner à quels scopes vous souhaitez accorder l’accès : `me` et `items`.
 
@@ -126,7 +126,7 @@ Nous le faisons ici pour montrer comment **FastAPI** gère des scopes déclarés
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Détails techniques
+/// note | Détails techniques
 
 `Security` est en réalité une sous-classe de `Depends`, et elle n’a qu’un paramètre supplémentaire que nous verrons plus tard.
 
@@ -235,11 +235,11 @@ Elles seront vérifiées indépendamment pour chaque *chemin d’accès*.
 
 ## Tester { #check-it }
 
-Si vous ouvrez la documentation de l’API, vous pouvez vous authentifier et spécifier quels scopes vous voulez autoriser.
+Si vous ouvrez les documents de l’API, vous pouvez vous authentifier et spécifier quels scopes vous voulez autoriser.
 
 <img src="/img/tutorial/security/image11.png">
 
-Si vous ne sélectionnez aucun scope, vous serez « authenticated », mais lorsque vous essayerez d’accéder à `/users/me/` ou `/users/me/items/`, vous obtiendrez une erreur indiquant que vous n’avez pas suffisamment de permissions. Vous pourrez toujours accéder à `/status/`.
+Si vous ne sélectionnez aucun scope, vous serez « authentifié », mais lorsque vous essayerez d’accéder à `/users/me/` ou `/users/me/items/`, vous obtiendrez une erreur indiquant que vous n’avez pas suffisamment de permissions. Vous pourrez toujours accéder à `/status/`.
 
 Et si vous sélectionnez le scope `me` mais pas le scope `items`, vous pourrez accéder à `/users/me/` mais pas à `/users/me/items/`.
 
@@ -271,4 +271,4 @@ Mais au final, ils implémentent le même standard OAuth2.
 
 ## `Security` dans les dépendances du décorateur `dependencies` { #security-in-decorator-dependencies }
 
-De la même manière que vous pouvez définir une `list` de `Depends` dans le paramètre `dependencies` du décorateur (comme expliqué dans [Dépendances dans les décorateurs de chemins d’accès](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), vous pouvez aussi utiliser `Security` avec des `scopes` à cet endroit.
+De la même manière que vous pouvez définir une `list` de `Depends` dans le paramètre `dependencies` du décorateur (comme expliqué dans [Dépendances dans les décorateurs de chemins d’accès](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), vous pouvez aussi utiliser `Security` avec des `scopes` à cet endroit.

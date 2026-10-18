@@ -32,7 +32,7 @@
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | 정보
+/// note | 참고
 
 명심하세요, 내부적으로 **브라우저는 쿠키를 특별한 방식으로 처리**하기 때문에 **자바스크립트**가 쉽게 쿠키를 건드릴 수 **없습니다**.
 

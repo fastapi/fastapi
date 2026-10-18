@@ -1,6 +1,6 @@
 # CORS (Partage des ressources entre origines) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS ou « Cross-Origin Resource Sharing »</a> fait référence aux situations où un frontend exécuté dans un navigateur contient du code JavaScript qui communique avec un backend, et où le backend se trouve dans une « origine » différente de celle du frontend.
+[CORS ou « Cross-Origin Resource Sharing »](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) fait référence aux situations où un frontend exécuté dans un navigateur contient du code JavaScript qui communique avec un backend, et où le backend se trouve dans une « origine » différente de celle du frontend.
 
 ## Origine { #origin }
 
@@ -55,10 +55,10 @@ Les arguments suivants sont pris en charge :
 * `allow_origins` - Une liste d’origines autorisées à effectuer des requêtes cross-origin. Par ex. `['https://example.org', 'https://www.example.org']`. Vous pouvez utiliser `['*']` pour autoriser n’importe quelle origine.
 * `allow_origin_regex` - Une chaîne regex pour faire correspondre les origines autorisées à effectuer des requêtes cross-origin. Par ex. `'https://.*\.example\.org'`.
 * `allow_methods` - Une liste de méthodes HTTP qui doivent être autorisées pour les requêtes cross-origin. Par défaut `['GET']`. Vous pouvez utiliser `['*']` pour autoriser toutes les méthodes standard.
-* `allow_headers` - Une liste d’en-têtes HTTP de requête qui doivent être pris en charge pour les requêtes cross-origin. Par défaut `[]`. Vous pouvez utiliser `['*']` pour autoriser tous les en-têtes. Les en-têtes `Accept`, `Accept-Language`, `Content-Language` et `Content-Type` sont toujours autorisés pour les <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">requêtes CORS simples</a>.
+* `allow_headers` - Une liste d’en-têtes HTTP de requête qui doivent être pris en charge pour les requêtes cross-origin. Par défaut `[]`. Vous pouvez utiliser `['*']` pour autoriser tous les en-têtes. Les en-têtes `Accept`, `Accept-Language`, `Content-Language` et `Content-Type` sont toujours autorisés pour les [requêtes CORS simples](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests).
 * `allow_credentials` - Indique que les cookies doivent être pris en charge pour les requêtes cross-origin. Par défaut `False`.
 
-    Aucun de `allow_origins`, `allow_methods` et `allow_headers` ne peut être défini à `['*']` si `allow_credentials` est défini à `True`. Ils doivent tous être <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">spécifiés explicitement</a>.
+    Aucun de `allow_origins`, `allow_methods` et `allow_headers` ne peut être défini à `['*']` si `allow_credentials` est défini à `True`. Ils doivent tous être [spécifiés explicitement](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).
 
 * `expose_headers` - Indique les en-têtes de réponse qui doivent être accessibles au navigateur. Par défaut `[]`.
 * `max_age` - Définit un temps maximum (en secondes) pendant lequel les navigateurs peuvent mettre en cache les réponses CORS. Par défaut `600`.
@@ -77,7 +77,7 @@ Toute requête avec un en-tête `Origin`. Dans ce cas, le middleware laissera pa
 
 ## En savoir plus { #more-info }
 
-Pour plus d’informations sur <abbr title="Cross-Origin Resource Sharing - Partage des ressources entre origines">CORS</abbr>, consultez la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">documentation CORS de Mozilla</a>.
+Pour plus d’informations sur <abbr title="Cross-Origin Resource Sharing - Partage des ressources entre origines">CORS</abbr>, consultez la [documentation CORS de Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 /// note | Détails techniques
 

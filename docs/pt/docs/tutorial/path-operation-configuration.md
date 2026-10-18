@@ -58,7 +58,7 @@ Você pode adicionar um `summary` e uma `description`:
 
 Como as descrições tendem a ser longas e cobrir várias linhas, você pode declarar a descrição da *operação de rota* na <dfn title="uma string de várias linhas como a primeira expressão dentro de uma função (não atribuída a nenhuma variável) usada para documentação">docstring</dfn> da função e o **FastAPI** irá lê-la de lá.
 
-Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
+Você pode escrever [Markdown](https://en.wikipedia.org/wiki/Markdown) na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -72,13 +72,13 @@ Você pode especificar a descrição da resposta com o parâmetro `response_desc
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Informação
+/// note | Nota
 
-Note que `response_description` se refere especificamente à resposta, a `description` se refere à *operação de rota* em geral.
+Observe que `response_description` se refere especificamente à resposta, a `description` se refere à *operação de rota* em geral.
 
 ///
 
-/// check | Verifique
+/// tip | Dica
 
 OpenAPI especifica que cada *operação de rota* requer uma descrição de resposta.
 

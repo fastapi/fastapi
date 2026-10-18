@@ -2,7 +2,7 @@
 
 ## Mettre à jour en remplaçant avec `PUT` { #update-replacing-with-put }
 
-Pour mettre à jour un élément, vous pouvez utiliser l’opération <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a>.
+Pour mettre à jour un élément, vous pouvez utiliser l’opération [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT).
 
 Vous pouvez utiliser le `jsonable_encoder` pour convertir les données d’entrée en données pouvant être stockées au format JSON (par exemple, avec une base de données NoSQL). Par exemple, convertir `datetime` en `str`.
 
@@ -24,11 +24,11 @@ Cela signifie que si vous souhaitez mettre à jour l’élément `bar` avec `PUT
 
 comme il n’inclut pas l’attribut déjà enregistré « tax »: 20.2, le modèle d’entrée prendrait la valeur par défaut « tax »: 10.5.
 
-Et les données seraient enregistrées avec cette « nouvelle » `tax` de `10.5`.
+Et les données seraient enregistrées avec cette « nouvelle » « tax » de 10.5.
 
 ## Effectuer des mises à jour partielles avec `PATCH` { #partial-updates-with-patch }
 
-Vous pouvez également utiliser l’opération <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> pour mettre à jour des données de manière partielle.
+Vous pouvez également utiliser l’opération [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) pour mettre à jour des données de manière partielle.
 
 Cela signifie que vous pouvez n’envoyer que les données que vous souhaitez mettre à jour, en laissant le reste intact.
 
@@ -95,6 +95,6 @@ Remarquez que le modèle d’entrée est toujours validé.
 
 Ainsi, si vous souhaitez recevoir des mises à jour partielles pouvant omettre tous les attributs, vous devez disposer d’un modèle avec tous les attributs marqués comme optionnels (avec des valeurs par défaut ou `None`).
 
-Pour distinguer les modèles avec toutes les valeurs optionnelles pour les mises à jour et les modèles avec des valeurs requises pour la création, vous pouvez utiliser les idées décrites dans [Modèles supplémentaires](extra-models.md){.internal-link target=_blank}.
+Pour distinguer les modèles avec toutes les valeurs optionnelles pour les mises à jour et les modèles avec des valeurs requises pour la création, vous pouvez utiliser les idées décrites dans [Modèles supplémentaires](extra-models.md).
 
 ///

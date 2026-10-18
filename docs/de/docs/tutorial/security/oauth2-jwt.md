@@ -4,7 +4,7 @@ Da wir nun über den gesamten Sicherheitsablauf verfügen, machen wir die Anwend
 
 Diesen Code können Sie tatsächlich in Ihrer Anwendung verwenden, die Passwort-Hashes in Ihrer Datenbank speichern, usw.
 
-Wir bauen auf dem vorherigen Kapitel auf.
+Wir bauen auf dem vorherigen Kapitel auf und erweitern es.
 
 ## Über JWT { #about-jwt }
 
@@ -24,29 +24,29 @@ Auf diese Weise können Sie einen Token mit einer Gültigkeitsdauer von beispiel
 
 Nach einer Woche läuft der Token ab und der Benutzer wird nicht autorisiert und muss sich erneut anmelden, um einen neuen Token zu erhalten. Und wenn der Benutzer (oder ein Dritter) versuchen würde, den Token zu ändern, um das Ablaufdatum zu ändern, würden Sie das entdecken, weil die Signaturen nicht übereinstimmen würden.
 
-Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schauen Sie sich <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> an.
+Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schauen Sie sich [https://jwt.io](https://jwt.io/) an.
 
 ## `PyJWT` installieren { #install-pyjwt }
 
 Wir müssen `PyJWT` installieren, um die JWT-Tokens in Python zu generieren und zu verifizieren.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann `pyjwt` installieren:
+Fügen Sie `pyjwt` zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | Info
+/// note | Hinweis
 
-Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
+Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Bibliotheksabhängigkeit `pyjwt[crypto]` installieren.
 
-Weitere Informationen finden Sie in der <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT-Installationsdokumentation</a>.
+Weitere Informationen finden Sie in der [PyJWT-Installationsdokumentation](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,12 +72,12 @@ Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen z
 
 Der empfohlene Algorithmus ist „Argon2“.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren, und installieren Sie dann pwdlib mit Argon2:
+Fügen Sie `pwdlib` mit Argon2 zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -120,7 +120,7 @@ Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
 Wenn `authenticate_user` mit einem Benutzernamen aufgerufen wird, der in der Datenbank nicht existiert, führen wir dennoch `verify_password` gegen einen Dummy-Hash aus.
 
-So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden Timing-Angriffe verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
+So stellt man sicher, dass der Endpunkt ungefähr gleich viel Zeit für die Antwort benötigt, unabhängig davon, ob der Benutzername gültig ist oder nicht. Dadurch werden **Timing-Angriffe** verhindert, mit denen vorhandene Benutzernamen ermittelt werden könnten.
 
 /// note | Hinweis
 
@@ -168,7 +168,7 @@ Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## Die *Pfadoperation* `/token` aktualisieren { #update-the-token-path-operation }
+## Die `/token`-*Pfadoperation* aktualisieren { #update-the-token-path-operation }
 
 Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufzeit des Tokens.
 
@@ -200,20 +200,20 @@ Der wesentliche Punkt ist, dass der `sub`-Schlüssel in der gesamten Anwendung e
 
 ## Es testen { #check-it }
 
-Führen Sie den Server aus und gehen Sie zur Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Führen Sie den Server aus und gehen Sie zur Dokumentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Die Benutzeroberfläche sieht wie folgt aus:
 
 <img src="/img/tutorial/security/image07.png">
 
-Melden Sie sich bei der Anwendung auf die gleiche Weise wie zuvor an.
+Autorisieren Sie die Anwendung auf die gleiche Weise wie zuvor.
 
 Verwenden Sie die Anmeldeinformationen:
 
 Benutzername: `johndoe`
 Passwort: `secret`
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass im Code nirgendwo das Klartext-Passwort „`secret`“ steht, wir haben nur die gehashte Version.
 
@@ -260,7 +260,7 @@ Mit dem, was Sie bis hier gesehen haben, können Sie eine sichere **FastAPI**-An
 
 In fast jedem Framework wird die Handhabung der Sicherheit recht schnell zu einem ziemlich komplexen Thema.
 
-Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenmodell, der Datenbank und den verfügbaren Funktionen eingehen. Und einige dieser Pakete, die die Dinge zu sehr vereinfachen, weisen tatsächlich Sicherheitslücken auf.
+Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenmodell, der Datenbank und den verfügbaren Funktionen eingehen. Und einige dieser Packages, die die Dinge zu sehr vereinfachen, weisen tatsächlich Sicherheitslücken auf.
 
 ---
 
@@ -268,7 +268,7 @@ Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenm
 
 Es gibt Ihnen die volle Flexibilität, diejenigen auszuwählen, die am besten zu Ihrem Projekt passen.
 
-Und Sie können viele gut gepflegte und weit verbreitete Packages wie `pwdlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
+Und Sie können viele gut gepflegte und weit verbreitete Packages wie `pwdlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Packages erfordert.
 
 Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu vereinfachen, ohne Kompromisse bei Flexibilität, Robustheit oder Sicherheit einzugehen.
 

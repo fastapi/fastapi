@@ -8,13 +8,13 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info | Info
+/// note | Hinweis
 
 FastAPI hat in Version 0.95.0 Unterstützung für `Annotated` hinzugefügt und es zur Verwendung empfohlen.
 
 Wenn Sie eine ältere Version haben, würden Fehler angezeigt werden, wenn Sie versuchen, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions), auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
@@ -122,7 +122,7 @@ Und das Gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code
 
 ## Zusammenfassung { #recap }
 
-Mit `Query`, `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und Stringvalidierungen auf die gleichen Weisen deklarieren wie in [Query-Parameter und Stringvalidierungen](query-params-str-validations.md){.internal-link target=_blank} beschrieben.
+Mit `Query`, `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und Stringvalidierungen auf die gleichen Weisen deklarieren wie in [Query-Parameter und Stringvalidierungen](query-params-str-validations.md) beschrieben.
 
 Und Sie können auch Zahlenvalidierungen deklarieren:
 
@@ -131,7 +131,7 @@ Und Sie können auch Zahlenvalidierungen deklarieren:
 * `lt`: `l`ess `t`han (kleiner als)
 * `le`: `l`ess than or `e`qual (kleiner oder gleich)
 
-/// info | Info
+/// note | Hinweis
 
 `Query`, `Path`, und andere Klassen, die Sie später sehen werden, sind Unterklassen einer gemeinsamen `Param`-Klasse.
 

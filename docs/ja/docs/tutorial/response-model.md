@@ -13,6 +13,7 @@ FastAPIはこの戻り値の型を使って以下を行います:
 * OpenAPIの *path operation* に、レスポンス用の **JSON Schema** を追加します。
     * これは**自動ドキュメント**で使用されます。
     * 自動クライアントコード生成ツールでも使用されます。
+* 返却データを Pydantic を使ってJSONに**シリアライズ**します。Pydantic は内部が**Rust**で実装されているため、**非常に高速**です。
 
 しかし、最も重要なのは:
 
@@ -71,20 +72,20 @@ FastAPIはこの `response_model` を使って、データのドキュメント�
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | 情報
+/// note | 備考
 
-`EmailStr` を使用するには、最初に <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a> をインストールしてください。
+`EmailStr` を使用するには、最初に [`email-validator`](https://github.com/JoshData/python-email-validator) をインストールしてください。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化してから、例えば次のようにインストールしてください:
+プロジェクトに追加してください:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 または次のようにします:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -181,7 +182,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 ### レスポンスを直接返す { #return-a-response-directly }
 
-最も一般的なケースは、[高度なドキュメントで後述する「Responseを直接返す」](../advanced/response-directly.md){.internal-link target=_blank}場合です。
+最も一般的なケースは、[高度なドキュメントで後述する「Responseを直接返す」](../advanced/response-directly.md)場合です。
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -250,14 +251,14 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 }
 ```
 
-/// info | 情報
+/// note | 備考
 
 以下も使用できます:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-`exclude_defaults` と `exclude_none` については、<a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydanticのドキュメント</a>で説明されている通りです。
+`exclude_defaults` と `exclude_none` については、[Pydanticのドキュメント](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value)で説明されている通りです。
 
 ///
 

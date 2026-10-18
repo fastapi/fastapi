@@ -1,6 +1,6 @@
 # Swagger UI'yi Yapılandırın { #configure-swagger-ui }
 
-Bazı ek <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI parametrelerini</a> yapılandırabilirsiniz.
+Bazı ek [Swagger UI parametrelerini](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) yapılandırabilirsiniz.
 
 Bunları yapılandırmak için, `FastAPI()` uygulama nesnesini oluştururken ya da `get_swagger_ui_html()` fonksiyonuna `swagger_ui_parameters` argümanını verin.
 
@@ -50,13 +50,13 @@ FastAPI, çoğu kullanım senaryosu için uygun bazı varsayılan yapılandırma
 
 ## Diğer Swagger UI Parametreleri { #other-swagger-ui-parameters }
 
-Kullanabileceğiniz diğer tüm olası yapılandırmaları görmek için, resmi <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI parametreleri dokümantasyonunu</a> okuyun.
+Kullanabileceğiniz diğer tüm olası yapılandırmaları görmek için, resmi [Swagger UI parametreleri dokümantasyonunu](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) okuyun.
 
 ## Yalnızca JavaScript Ayarları { #javascript-only-settings }
 
 Swagger UI ayrıca bazı yapılandırmaların **yalnızca JavaScript** nesneleri olmasına izin verir (örneğin JavaScript fonksiyonları).
 
-FastAPI, bu yalnızca JavaScript olan `presets` ayarlarını da içerir:
+FastAPI, yalnızca JavaScript olan bu `presets` ayarlarını da içerir:
 
 ```JavaScript
 presets: [
@@ -67,4 +67,4 @@ presets: [
 
 Bunlar string değil, **JavaScript** nesneleridir; dolayısıyla bunları Python kodundan doğrudan geçemezsiniz.
 
-Böyle yalnızca JavaScript yapılandırmalarına ihtiyacınız varsa, yukarıdaki yöntemlerden birini kullanabilirsiniz: Swagger UI'nin tüm *path operation*'larını override edin ve ihtiyaç duyduğunuz JavaScript'i elle yazın.
+Böyle yalnızca JavaScript yapılandırmalarına ihtiyacınız varsa, yukarıdaki yöntemlerden birini kullanabilirsiniz. Swagger UI *path operation*'ının tamamını override edin ve ihtiyaç duyduğunuz JavaScript'i elle yazın.

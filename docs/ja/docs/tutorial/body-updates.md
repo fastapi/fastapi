@@ -2,7 +2,7 @@
 
 ## `PUT`による置換での更新 { #update-replacing-with-put }
 
-項目を更新するには<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTPの`PUT`</a>操作を使用することができます。
+項目を更新するには[HTTPの`PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT)操作を使用することができます。
 
 `jsonable_encoder`を用いて、入力データをJSONとして保存できるデータに変換することができます（例：NoSQLデータベース）。例えば、`datetime`を`str`に変換します。
 
@@ -28,7 +28,7 @@
 
 ## `PATCH`による部分的な更新 { #partial-updates-with-patch }
 
-また、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTPの`PATCH`</a>操作でデータを*部分的に*更新することもできます。
+また、[HTTPの`PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH)操作でデータを*部分的に*更新することもできます。
 
 つまり、更新したいデータだけを送信して、残りはそのままにしておくことができます。
 
@@ -68,7 +68,7 @@
 
 まとめると、部分的な更新を適用するには、次のようにします:
 
-* (オプションで)`PATCH`の代わりに`PUT`を使用します。
+* (オプションで)`PUT`の代わりに`PATCH`を使用します。
 * 保存されているデータを取得します。
 * そのデータをPydanticモデルにいれます。
 * 入力モデルからデフォルト値を含まない`dict`を生成します（`exclude_unset`を使用します）。
@@ -95,6 +95,6 @@
 
 そのため、すべての属性を省略できる部分的な変更を受け取りたい場合は、すべての属性をオプションとしてマークしたモデルを用意する必要があります（デフォルト値または`None`を使用して）。
 
-**更新** のためのオプション値がすべて設定されているモデルと、**作成** のための必須値が設定されているモデルを区別するには、[追加モデル](extra-models.md){.internal-link target=_blank}で説明されている考え方を利用することができます。
+**更新** のためのオプション値がすべて設定されているモデルと、**作成** のための必須値が設定されているモデルを区別するには、[追加モデル](extra-models.md)で説明されている考え方を利用することができます。
 
 ///

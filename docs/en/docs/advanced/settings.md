@@ -6,30 +6,34 @@ Most of these settings are variable (can change), like database URLs. And many c
 
 For this reason it's common to provide them in environment variables that are read by the application.
 
+An **environment variable** (also known as an **env var**) is a value that lives outside of the Python code, in the operating system, and can be read by your application and other programs.
+
+You can create an environment variable for a command when you run it. You will see the platform-specific commands below.
+
 /// tip
 
-To understand environment variables you can read [Environment Variables](../environment-variables.md){.internal-link target=_blank}.
+Read the [Environment Variables guide](https://tiangolo.com/guides/environment-variables/) for a detailed explanation of how environment variables work.
 
 ///
 
 ## Types and validation { #types-and-validation }
 
-These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
+These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, such as Linux, Windows, and macOS).
 
 That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or any validation has to be done in code.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Install `pydantic-settings` { #install-pydantic-settings }
 
-First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install the `pydantic-settings` package:
+Add the `pydantic-settings` package to your project:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ It also comes included when you install the `all` extras with:
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Then you can use the new `settings` object in your application:
 
 Next, you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip
 
-To set multiple env vars for a single command just separate them with a space, and put them all before the command.
+In Bash, to set multiple env vars for a single command, separate them with a space and put them all before the command.
 
 ///
 
@@ -100,7 +124,7 @@ And the `items_per_user` would keep its default value of `50`.
 
 ## Settings in another module { #settings-in-another-module }
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md).
 
 For example, you could have a file `config.py` with:
 
@@ -112,7 +136,7 @@ And then use it in a file `main.py`:
 
 /// tip
 
-You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,11 +196,11 @@ But a dotenv file doesn't really have to have that exact filename.
 
 ///
 
-Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic has support for reading from these types of files using an external library. You can read more at [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip
 
-For this to work, you need to `pip install python-dotenv`.
+For this to work, add `python-dotenv` to your project with `uv add python-dotenv`.
 
 ///
 
@@ -197,7 +221,7 @@ And then update your `config.py` with:
 
 /// tip
 
-The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+The `model_config` attribute is used just for Pydantic configuration. You can read more at [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -291,7 +315,7 @@ In the case of our dependency `get_settings()`, the function doesn't even take a
 
 That way, it behaves almost as if it was just a global variable. But as it uses a dependency function, then we can override it easily for testing.
 
-`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
+`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the [Python docs for `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Recap { #recap }
 

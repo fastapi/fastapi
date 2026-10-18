@@ -1,6 +1,6 @@
 # Réponse - Modifier le code d'état { #response-change-status-code }
 
-Vous avez probablement déjà lu que vous pouvez définir un [Code d'état de la réponse](../tutorial/response-status-code.md){.internal-link target=_blank} par défaut.
+Vous avez probablement déjà lu que vous pouvez définir un [Code d'état de la réponse](../tutorial/response-status-code.md) par défaut.
 
 Mais dans certains cas, vous devez renvoyer un code d'état différent de celui par défaut.
 
@@ -16,7 +16,7 @@ Pour ces cas, vous pouvez utiliser un paramètre `Response`.
 
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
-Vous pouvez déclarer un paramètre de type `Response` dans votre fonction de chemin d'accès (comme vous pouvez le faire pour les cookies et les en-têtes).
+Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès* (comme vous pouvez le faire pour les cookies et les en-têtes).
 
 Vous pouvez ensuite définir le `status_code` dans cet objet de réponse *temporaire*.
 

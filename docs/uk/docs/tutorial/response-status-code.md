@@ -1,5 +1,6 @@
 # Код статусу відповіді { #response-status-code }
 
+
 Так само, як ви можете вказати модель відповіді, ви також можете оголосити HTTP код статусу, що використовується для відповіді, за допомогою параметра `status_code` в будь-якій з *операцій шляху*:
 
 * `@app.get()`
@@ -18,9 +19,9 @@
 
 Параметр `status_code` приймає число з HTTP кодом статусу.
 
-/// info | Інформація
+/// note | Примітка
 
-`status_code` також може, як альтернативу, приймати `IntEnum`, наприклад, Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+`status_code` також може, як альтернативу, приймати `IntEnum`, наприклад, Python [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus).
 
 ///
 
@@ -66,7 +67,7 @@ FastAPI знає про це і створить документацію OpenAP
 
 /// tip | Порада
 
-Щоб дізнатися більше про кожен код статусу і для чого призначений кожен із них, перегляньте документацію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> про HTTP коди статусу</a>.
+Щоб дізнатися більше про кожен код статусу і для чого призначений кожен із них, перегляньте [документацію <abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> про HTTP коди статусу](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -98,4 +99,4 @@ FastAPI знає про це і створить документацію OpenAP
 
 ## Зміна значення за замовчуванням { #changing-the-default }
 
-Пізніше, у [Посібнику для досвідчених користувачів](../advanced/response-change-status-code.md){.internal-link target=_blank}, ви побачите, як повертати інший код статусу, ніж значення за замовчуванням, яке ви оголошуєте тут.
+Пізніше, у [Просунутому посібнику користувача](../advanced/response-change-status-code.md), ви побачите, як повертати інший код статусу, ніж значення за замовчуванням, яке ви оголошуєте тут.

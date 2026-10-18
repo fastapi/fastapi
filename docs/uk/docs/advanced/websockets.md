@@ -1,15 +1,15 @@
 # WebSockets { #websockets }
 
-Ви можете використовувати <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> з **FastAPI**.
+Ви можете використовувати [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) з **FastAPI**.
 
 ## Встановіть `websockets` { #install-websockets }
 
-Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md){.internal-link target=_blank}, активували його та встановили `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket»):
+Додайте `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket») до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 Але це найпростіший спосіб зосередитися на серверній частині WebSockets і мати робочий приклад:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## Створіть `websocket` { #create-a-websocket }
 
 У вашому застосунку **FastAPI** створіть `websocket`:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | Технічні деталі
 
@@ -58,25 +58,25 @@ $ pip install websockets
 
 У вашому маршруті WebSocket ви можете `await` повідомлення і надсилати повідомлення.
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 Ви можете отримувати та надсилати бінарні, текстові та JSON-дані.
 
 ## Спробуйте { #try-it }
 
-Якщо ваш файл називається `main.py`, запустіть ваш застосунок командою:
+Розмістіть код у файлі `main.py`, а потім запустіть ваш застосунок:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Відкрийте у браузері <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Відкрийте у браузері [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Ви побачите просту сторінку на кшталт:
 
@@ -109,38 +109,38 @@ $ fastapi dev main.py
 
 Вони працюють так само, як для інших ендпойнтів FastAPI/*операцій шляху*:
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note | Примітка
 
 Оскільки це WebSocket, не має сенсу піднімати `HTTPException`, натомість ми піднімаємо `WebSocketException`.
 
-Ви можете використати код закриття з <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">чинних кодів, визначених у специфікації</a>.
+Ви можете використати код закриття з [чинних кодів, визначених у специфікації](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 ///
 
 ### Спробуйте WebSockets із залежностями { #try-the-websockets-with-dependencies }
 
-Якщо ваш файл називається `main.py`, запустіть ваш застосунок командою:
+Запустіть ваш застосунок:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Відкрийте у браузері <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Відкрийте у браузері [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Там ви можете встановити:
 
 * «Item ID», який використовується у шляху.
 * «Token», який використовується як параметр запиту.
 
-/// tip
+/// tip | Порада
 
 Зверніть увагу, що параметр запиту `token` буде оброблено залежністю.
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 Коли з'єднання WebSocket закривається, `await websocket.receive_text()` підніме виняток `WebSocketDisconnect`, який ви можете перехопити й обробити, як у цьому прикладі.
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 Щоб спробувати:
 
@@ -168,13 +168,13 @@ $ fastapi dev main.py
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | Порада
 
 Застосунок вище - це мінімальний і простий приклад, що демонструє, як обробляти та розсилати повідомлення кільком з'єднанням WebSocket.
 
 Але майте на увазі, що оскільки все обробляється в пам'яті, в одному списку, це працюватиме лише поки процес запущений, і лише з одним процесом.
 
-Якщо вам потрібне щось просте для інтеграції з FastAPI, але більш надійне, з підтримкою Redis, PostgreSQL чи інших, перегляньте <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+Якщо вам потрібне щось просте для інтеграції з FastAPI, але більш надійне, з підтримкою Redis, PostgreSQL чи інших, перегляньте [encode/broadcaster](https://github.com/encode/broadcaster).
 
 ///
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 Щоб дізнатися більше про можливості, перегляньте документацію Starlette:
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">Клас `WebSocket`</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Обробка WebSocket на основі класів</a>.
+* [Клас `WebSocket`](https://starlette.dev/websockets/).
+* [Обробка WebSocket на основі класів](https://starlette.dev/endpoints/#websocketendpoint).

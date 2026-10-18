@@ -6,41 +6,45 @@
 
 З цієї причини поширено надавати їх у змінних оточення, які зчитуються застосунком.
 
+**Змінна оточення** (також відома як **env var**) - це значення, яке існує поза кодом Python, в операційній системі, і може бути прочитане вашим застосунком та іншими програмами.
+
+Ви можете створити змінну оточення для команди під час її запуску. Нижче ви побачите команди для конкретних платформ.
+
 /// tip | Порада
 
-Щоб зрозуміти змінні оточення, ви можете прочитати [Змінні оточення](../environment-variables.md){.internal-link target=_blank}.
+Прочитайте [посібник зі змінних оточення](https://tiangolo.com/guides/environment-variables/) для докладного пояснення того, як працюють змінні оточення.
 
 ///
 
 ## Типи та перевірка { #types-and-validation }
 
-Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows, macOS).
+Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows і macOS).
 
 Це означає, що будь-яке значення, прочитане в Python зі змінної оточення, буде `str`, і будь-яке перетворення в інший тип або будь-яка перевірка мають виконуватися в коді.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Встановіть `pydantic-settings` { #install-pydantic-settings }
 
-Спершу переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md){.internal-link target=_blank}, активували його, а потім встановили пакет `pydantic-settings`:
+Додайте пакет `pydantic-settings` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Він також входить у склад, якщо ви встановлюєте додаткові можливості «all» за допомогою:
+Він також входить у склад, якщо ви встановлюєте додаткові можливості `all` за допомогою:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ $ pip install "fastapi[all]"
 
 Далі ви б запустили сервер, передаючи конфігурації як змінні оточення, наприклад, ви можете встановити `ADMIN_EMAIL` і `APP_NAME` так:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Порада
 
-Щоб встановити кілька змінних оточення для однієї команди, просто розділіть їх пробілами і розмістіть усі перед командою.
+У Bash, щоб встановити кілька змінних оточення для однієї команди, розділіть їх пробілом і розмістіть усі перед командою.
 
 ///
 
@@ -100,7 +124,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## Налаштування в іншому модулі { #settings-in-another-module }
 
-Ви можете розмістити ці налаштування в іншому модулі, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Ви можете розмістити ці налаштування в іншому файлі модуля, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md).
 
 Наприклад, у вас може бути файл `config.py` з:
 
@@ -112,7 +136,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip | Порада
 
-Вам також знадобиться файл `__init__.py`, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам також знадобиться файл `__init__.py`, як ви бачили в [Більші застосунки - кілька файлів](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Порада
 
-Щоб це працювало, потрібно виконати `pip install python-dotenv`.
+Щоб це працювало, додайте `python-dotenv` до вашого проєкту за допомогою `uv add python-dotenv`.
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | Порада
 
-Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -291,12 +315,12 @@ participant execute as Execute function
 
 Таким чином, вона поводиться майже так само, якби це була просто глобальна змінна. Але оскільки використовується функція залежності, ми можемо легко переписати її для тестування.
 
-`@lru_cache` є частиною `functools`, що входить до стандартної бібліотеки Python, більше про це можна прочитати в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документації Python для `@lru_cache`</a>.
+`@lru_cache` є частиною `functools`, що входить до стандартної бібліотеки Python, більше про це можна прочитати в [документації Python для `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Підсумок { #recap }
 
 Ви можете використовувати Pydantic Settings для обробки налаштувань або конфігурацій вашого застосунку, з усією потужністю моделей Pydantic.
 
-- Використовуючи залежність, ви можете спростити тестування.
-- Ви можете використовувати з ним файли `.env`.
-- Використання `@lru_cache` дає змогу уникнути повторного читання файла dotenv для кожного запиту, водночас дозволяючи переписувати його під час тестування.
+* Використовуючи залежність, ви можете спростити тестування.
+* Ви можете використовувати з ним файли `.env`.
+* Використання `@lru_cache` дає змогу уникнути повторного читання файла dotenv для кожного запиту, водночас дозволяючи переписувати його під час тестування.

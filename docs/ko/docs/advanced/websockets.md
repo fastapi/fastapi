@@ -1,15 +1,15 @@
 # WebSockets { #websockets }
 
-여러분은 **FastAPI**에서 <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>를 사용할 수 있습니다.
+여러분은 **FastAPI**에서 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)를 사용할 수 있습니다.
 
 ## `websockets` 설치 { #install-websockets }
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고 활성화한 다음, `websockets`("WebSocket" 프로토콜을 쉽게 사용할 수 있게 해주는 Python 라이브러리)를 설치하세요:
+프로젝트에 `websockets`("WebSocket" 프로토콜을 쉽게 사용할 수 있게 해주는 Python 라이브러리)를 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 그러나 이는 WebSockets의 서버 측에 집중하고 동작하는 예제를 제공하는 가장 간단한 방법입니다:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## `websocket` 생성하기 { #create-a-websocket }
 
 **FastAPI** 애플리케이션에서 `websocket`을 생성합니다:
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 기술 세부사항
 
@@ -58,25 +58,25 @@ $ pip install websockets
 
 WebSocket 경로에서 메시지를 대기(`await`)하고 전송할 수 있습니다.
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 여러분은 이진 데이터, 텍스트, JSON 데이터를 받을 수 있고 전송할 수 있습니다.
 
 ## 시도해보기 { #try-it }
 
-파일 이름이 `main.py`라고 가정하고 다음으로 애플리케이션을 실행합니다:
+코드를 `main.py` 파일에 넣고 애플리케이션을 실행합니다:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-브라우저에서 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>을 여세요.
+브라우저에서 [http://127.0.0.1:8000](http://127.0.0.1:8000)을 여세요.
 
 간단한 페이지가 나타날 것입니다:
 
@@ -109,31 +109,31 @@ WebSocket 엔드포인트에서 `fastapi`에서 다음을 가져와 사용할 �
 
 이들은 다른 FastAPI 엔드포인트/*경로 처리*와 동일하게 동작합니다:
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info | 정보
+/// note | 참고
 
 WebSocket이기 때문에 `HTTPException`을 발생시키는 것은 적절하지 않습니다. 대신 `WebSocketException`을 발생시킵니다.
 
-명세서에 정의된 <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">유효한 코드</a>를 사용하여 종료 코드를 설정할 수 있습니다.
+명세서에 정의된 [유효한 코드](https://tools.ietf.org/html/rfc6455#section-7.4.1)를 사용하여 종료 코드를 설정할 수 있습니다.
 
 ///
 
 ### 종속성을 가진 WebSockets 시도해보기 { #try-the-websockets-with-dependencies }
 
-파일 이름이 `main.py`라고 가정하고 다음으로 애플리케이션을 실행합니다:
+애플리케이션을 실행합니다:
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-브라우저에서 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>을 여세요.
+브라우저에서 [http://127.0.0.1:8000](http://127.0.0.1:8000)을 여세요.
 
 여기에서 다음을 설정할 수 있습니다:
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 WebSocket 연결이 닫히면, `await websocket.receive_text()`가 `WebSocketDisconnect` 예외를 발생시킵니다. 그러면 이 예제처럼 이를 잡아 처리할 수 있습니다.
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 테스트해보기:
 
@@ -174,7 +174,7 @@ Client #1596980209979 left the chat
 
 하지만 모든 것을 메모리의 단일 리스트로 처리하므로, 프로세스가 실행 중인 동안만 동작하며 단일 프로세스에서만 작동한다는 점을 기억하세요.
 
-FastAPI와 쉽게 통합할 수 있으면서 더 견고하고 Redis, PostgreSQL 등을 지원하는 도구가 필요하다면, <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>를 확인하세요.
+FastAPI와 쉽게 통합할 수 있으면서 더 견고하고 Redis, PostgreSQL 등을 지원하는 도구가 필요하다면, [encode/broadcaster](https://github.com/encode/broadcaster)를 확인하세요.
 
 ///
 
@@ -182,5 +182,5 @@ FastAPI와 쉽게 통합할 수 있으면서 더 견고하고 Redis, PostgreSQL 
 
 다음 옵션에 대해 더 알아보려면 Starlette의 문서를 확인하세요:
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` 클래스</a>.
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">클래스 기반 WebSocket 처리</a>.
+* [`WebSocket` 클래스](https://starlette.dev/websockets/).
+* [클래스 기반 WebSocket 처리](https://starlette.dev/endpoints/#websocketendpoint).
