@@ -12,7 +12,6 @@ from fastapi.exception_handlers import (
     websocket_request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -641,21 +640,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
-        openapi_prefix: Annotated[
-            str,
-            Doc(
-                """
-                A URL prefix for the OpenAPI URL.
-                """
-            ),
-            deprecated(
-                """
-                "openapi_prefix" has been deprecated in favor of "root_path", which
-                follows more closely the ASGI standard, is simpler, and more
-                automatic.
-                """
-            ),
-        ] = "",
         root_path: Annotated[
             str,
             Doc(
@@ -879,15 +863,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
-        **extra: Annotated[
-            Any,
-            Doc(
-                """
-                Extra keyword arguments to be stored in the app, not used by FastAPI
-                anywhere.
-                """
-            ),
-        ],
     ) -> None:
         self.debug = debug
         self.title = title
@@ -908,7 +883,6 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
-        self.extra = extra
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -945,14 +919,6 @@ class FastAPI(Starlette):
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-        # TODO: remove when discarding the openapi_prefix parameter
-        if openapi_prefix:
-            logger.warning(
-                '"openapi_prefix" has been deprecated in favor of "root_path", which '
-                "follows more closely the ASGI standard, is simpler, and more "
-                "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
-            )
         self.webhooks: Annotated[
             routing.APIRouter,
             Doc(
@@ -965,7 +931,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = webhooks or routing.APIRouter()
-        self.root_path = root_path or openapi_prefix
+        self.root_path = root_path
         self.state: Annotated[
             State,
             Doc(

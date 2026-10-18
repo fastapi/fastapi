@@ -1,10 +1,20 @@
+from typing import Any
+
 import pytest
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
 from .main import app
 
 client = TestClient(app)
+
+
+@pytest.mark.parametrize("parameter", ["openapi_prefix", "unknown_parameter"])
+def test_unexpected_keyword_arguments(parameter: str):
+    kwargs: dict[str, Any] = {parameter: "/api/v1"}
+    with pytest.raises(TypeError, match=f"unexpected keyword argument '{parameter}'"):
+        FastAPI(**kwargs)
 
 
 @pytest.mark.parametrize(
