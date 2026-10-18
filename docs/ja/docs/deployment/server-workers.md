@@ -13,13 +13,13 @@
 
 アプリケーションをデプロイする際には、**複数のコア**を利用し、そしてより多くのリクエストを処理できるようにするために、プロセスの**レプリケーション**を持つことを望むでしょう。
 
-前のチャプターである[デプロイメントのコンセプト](concepts.md){.internal-link target=_blank}にて見てきたように、有効な戦略がいくつかあります。
+前のチャプターである[デプロイメントのコンセプト](concepts.md)にて見てきたように、有効な戦略がいくつかあります。
 
 ここでは、`fastapi` コマンド、または `uvicorn` コマンドを直接使って、**ワーカープロセス**付きの **Uvicorn** を使う方法を紹介します。
 
-/// info | 情報
+/// note | 備考
 
-DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}。
+DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md)。
 
 特に**Kubernetes**上で実行する場合は、おそらくワーカーは使わず、代わりに**コンテナごとに単一のUvicornプロセス**を実行したいはずですが、それについてはその章の後半で説明します。
 
@@ -86,7 +86,7 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]
@@ -126,7 +126,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## コンテナとDocker { #containers-and-docker }
 
-次章の[コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}では、その他の**デプロイメントのコンセプト**を扱うために使える戦略をいくつか説明します。
+次章の[コンテナ内のFastAPI - Docker](docker.md)では、その他の**デプロイメントのコンセプト**を扱うために使える戦略をいくつか説明します。
 
 単一のUvicornプロセスを実行するために、**ゼロから独自のイメージを構築する**方法も紹介します。これは簡単なプロセスで、**Kubernetes**のような分散コンテナ管理システムを使う場合に、おそらくやりたいことでしょう。
 

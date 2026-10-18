@@ -2,23 +2,23 @@
 
 FastAPI построен поверх **Pydantic**, и я показывал вам, как использовать Pydantic-модели для объявления HTTP-запросов и HTTP-ответов.
 
-Но FastAPI также поддерживает использование <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> тем же способом:
+Но FastAPI также поддерживает использование [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) тем же способом:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Это по-прежнему поддерживается благодаря **Pydantic**, так как в нём есть <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">встроенная поддержка `dataclasses`</a>.
+Это по-прежнему поддерживается благодаря **Pydantic**, так как в нём есть [встроенная поддержка `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel).
 
 Так что даже если в коде выше Pydantic не используется явно, FastAPI использует Pydantic, чтобы конвертировать стандартные dataclasses в собственный вариант dataclasses от Pydantic.
 
 И, конечно, поддерживаются те же возможности:
 
-- валидация данных
-- сериализация данных
-- документирование данных и т.д.
+* валидация данных
+* сериализация данных
+* документирование данных и т.д.
 
 Это работает так же, как с Pydantic-моделями. И на самом деле под капотом это достигается тем же образом, с использованием Pydantic.
 
-/// info | Информация
+/// note | Примечание
 
 Помните, что dataclasses не умеют всего того, что умеют Pydantic-модели.
 
@@ -64,7 +64,7 @@ FastAPI построен поверх **Pydantic**, и я показывал в�
 
 6. Здесь мы возвращаем словарь, содержащий `items`, который является списком dataclass.
 
-    FastAPI по-прежнему способен <abbr title="преобразование данных в формат, который можно передавать">сериализовать</abbr> данные в JSON.
+    FastAPI по-прежнему способен <dfn title="преобразование данных в формат, который можно передавать">сериализовать</dfn> данные в JSON.
 
 7. Здесь `response_model` использует аннотацию типа — список dataclass `Author`.
 
@@ -74,7 +74,7 @@ FastAPI построен поверх **Pydantic**, и я показывал в�
 
     Как и всегда в FastAPI, вы можете сочетать `def` и `async def` по необходимости.
 
-    Если хотите освежить в памяти, когда что использовать, посмотрите раздел _"Нет времени?"_ в документации про [`async` и `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Если хотите освежить в памяти, когда что использовать, посмотрите раздел _"Нет времени?"_ в документации про [`async` и `await`](../async.md#in-a-hurry).
 
 9. Эта *функция-обработчик пути* возвращает не dataclasses (хотя могла бы), а список словарей с внутренними данными.
 
@@ -88,7 +88,7 @@ FastAPI построен поверх **Pydantic**, и я показывал в�
 
 Вы также можете комбинировать `dataclasses` с другими Pydantic-моделями, наследоваться от них, включать их в свои модели и т.д.
 
-Чтобы узнать больше, посмотрите <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">документацию Pydantic о dataclasses</a>.
+Чтобы узнать больше, посмотрите [документацию Pydantic о dataclasses](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Версия { #version }
 

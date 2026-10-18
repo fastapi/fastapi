@@ -22,7 +22,7 @@ Con **FastAPI**, usando OpenAPI, puedes definir los nombres de estos webhooks, l
 
 Esto puede hacer mucho más fácil para tus usuarios **implementar sus APIs** para recibir tus requests de **webhook**, incluso podrían ser capaces de autogenerar algo de su propio código de API.
 
-/// info | Información
+/// note | Nota
 
 Los webhooks están disponibles en OpenAPI 3.1.0 y superiores, soportados por FastAPI `0.99.0` y superiores.
 
@@ -32,11 +32,11 @@ Los webhooks están disponibles en OpenAPI 3.1.0 y superiores, soportados por Fa
 
 Cuando creas una aplicación de **FastAPI**, hay un atributo `webhooks` que puedes usar para definir *webhooks*, de la misma manera que definirías *path operations*, por ejemplo con `@app.webhooks.post()`.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py39.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
 
 Los webhooks que defines terminarán en el esquema de **OpenAPI** y en la interfaz automática de **documentación**.
 
-/// info | Información
+/// note | Nota
 
 El objeto `app.webhooks` es en realidad solo un `APIRouter`, el mismo tipo que usarías al estructurar tu aplicación con múltiples archivos.
 
@@ -48,7 +48,7 @@ Esto es porque se espera que **tus usuarios** definan el actual **URL path** don
 
 ### Revisa la documentación { #check-the-docs }
 
-Ahora puedes iniciar tu app e ir a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Ahora puedes iniciar tu app e ir a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Verás que tu documentación tiene las *path operations* normales y ahora también algunos **webhooks**:
 

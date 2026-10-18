@@ -2,13 +2,13 @@
 
 La documentación de la API utiliza **Swagger UI** y **ReDoc**, y cada uno de estos necesita algunos archivos JavaScript y CSS.
 
-Por defecto, esos archivos se sirven desde un <abbr title="Content Delivery Network – Red de entrega de contenidos: Un servicio, normalmente compuesto de varios servidores, que proporciona archivos estáticos, como JavaScript y CSS. Se usa comúnmente para servir esos archivos desde el servidor más cercano al cliente, mejorando el rendimiento.">CDN</abbr>.
+Por defecto, esos archivos se sirven desde un <abbr title="Content Delivery Network - Red de entrega de contenidos: Un servicio, normalmente compuesto de varios servidores, que proporciona archivos estáticos, como JavaScript y CSS. Se usa comúnmente para servir esos archivos desde el servidor más cercano al cliente, mejorando el rendimiento.">CDN</abbr>.
 
 Pero es posible personalizarlo, puedes establecer un CDN específico, o servir los archivos tú mismo.
 
 ## CDN Personalizado para JavaScript y CSS { #custom-cdn-for-javascript-and-css }
 
-Digamos que quieres usar un <abbr title="Content Delivery Network – Red de entrega de contenidos">CDN</abbr> diferente, por ejemplo, quieres usar `https://unpkg.com/`.
+Digamos que quieres usar un <abbr title="Content Delivery Network - Red de entrega de contenidos">CDN</abbr> diferente, por ejemplo, quieres usar `https://unpkg.com/`.
 
 Esto podría ser útil si, por ejemplo, vives en un país que restringe algunas URLs.
 
@@ -18,7 +18,7 @@ El primer paso es desactivar la documentación automática, ya que por defecto, 
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
 
 ### Incluye la documentación personalizada { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Consejo
 
@@ -50,11 +50,11 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
 
 ### Pruébalo { #test-it }
 
-Ahora, deberías poder ir a tu documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, y recargar la página, cargará esos recursos desde el nuevo CDN.
+Ahora, deberías poder ir a tu documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), y recargar la página, cargará esos recursos desde el nuevo CDN.
 
 ## self hosting de JavaScript y CSS para la documentación { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ Probablemente puedas hacer clic derecho en cada enlace y seleccionar una opción
 
 **Swagger UI** utiliza los archivos:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+* [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 Y **ReDoc** utiliza el archivo:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 Después de eso, tu estructura de archivos podría verse así:
 
@@ -118,11 +118,11 @@ Después de eso, tu estructura de archivos podría verse así:
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
 
 ### Prueba los archivos estáticos { #test-the-static-files }
 
-Inicia tu aplicación y ve a <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Inicia tu aplicación y ve a [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js).
 
 Deberías ver un archivo JavaScript muy largo de **ReDoc**.
 
@@ -144,7 +144,7 @@ Igual que cuando usas un CDN personalizado, el primer paso es desactivar la docu
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
 
 ### Incluye la documentación personalizada para archivos estáticos { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Nuevamente, puedes reutilizar las funciones internas de FastAPI para crear las p
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Consejo
 
@@ -176,10 +176,10 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
 
 ### Prueba la UI de Archivos Estáticos { #test-static-files-ui }
 
-Ahora, deberías poder desconectar tu WiFi, ir a tu documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, y recargar la página.
+Ahora, deberías poder desconectar tu WiFi, ir a tu documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), y recargar la página.
 
 E incluso sin Internet, podrás ver la documentación de tu API e interactuar con ella.

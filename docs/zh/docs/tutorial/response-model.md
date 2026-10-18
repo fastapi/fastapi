@@ -13,6 +13,7 @@ FastAPI 会使用这个返回类型来：
 * 在 OpenAPI 的*路径操作*中为响应添加**JSON Schema**。
     * 它会被**自动文档**使用。
     * 它也会被自动客户端代码生成工具使用。
+* 使用 Pydantic 将返回数据**序列化**为 JSON。Pydantic 使用**Rust**编写，因此会**快很多**。
 
 但更重要的是：
 
@@ -71,20 +72,20 @@ FastAPI 会使用这个 `response_model` 来完成数据文档、校验等，并
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | 信息
+/// note | 注意
 
-要使用 `EmailStr`，首先安装 <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>。
+要使用 `EmailStr`，首先安装 [`email-validator`](https://github.com/JoshData/python-email-validator)。
 
-请先创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装，例如：
+将它添加到你的项目中：
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
-或者：
+或者使用：
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -115,7 +116,7 @@ $ pip install "pydantic[email]"
 
 {* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
 
-……我们仍将 `response_model` 声明为不包含密码的 `UserOut` 模型：
+...我们仍将 `response_model` 声明为不包含密码的 `UserOut` 模型：
 
 {* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
 
@@ -127,7 +128,7 @@ $ pip install "pydantic[email]"
 
 这就是为什么在这个例子里我们必须在 `response_model` 参数中声明它。
 
-……但继续往下读，看看如何更好地处理这种情况。
+...但继续往下读，看看如何更好地处理这种情况。
 
 ## 返回类型与数据过滤 { #return-type-and-data-filtering }
 
@@ -181,9 +182,9 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 ### 直接返回 Response { #return-a-response-directly }
 
-最常见的情况是[直接返回 Response，详见进阶文档](../advanced/response-directly.md){.internal-link target=_blank}。
+最常见的情况是[直接返回 Response，详见进阶文档](../advanced/response-directly.md)。
 
-{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
 这个简单场景 FastAPI 会自动处理，因为返回类型注解是 `Response`（或其子类）。
 
@@ -193,7 +194,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 你也可以在类型注解中使用 `Response` 的子类：
 
-{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
 
 这同样可行，因为 `RedirectResponse` 是 `Response` 的子类，FastAPI 会自动处理这个简单场景。
 
@@ -201,11 +202,11 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 但当你返回其他任意对象（如数据库对象）而它不是有效的 Pydantic 类型，并在函数中按此进行了注解时，FastAPI 会尝试基于该类型注解创建一个 Pydantic 响应模型，但会失败。
 
-如果你有一个在多个类型之间的<abbr title="多个类型的联合表示“这些类型中的任意一个”">联合类型</abbr>，其中一个或多个不是有效的 Pydantic 类型，也会发生同样的情况，例如这个会失败 💥：
+如果你有一个在多个类型之间的<dfn title="多个类型的联合表示“这些类型中的任意一个”。">联合类型</dfn>，其中一个或多个不是有效的 Pydantic 类型，也会发生同样的情况，例如这个会失败 💥：
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
-……它失败是因为该类型注解不是 Pydantic 类型，也不只是单个 `Response` 类或其子类，而是 `Response` 与 `dict` 的联合类型（任意其一）。
+...它失败是因为该类型注解不是 Pydantic 类型，也不只是单个 `Response` 类或其子类，而是 `Response` 与 `dict` 的联合类型（任意其一）。
 
 ### 禁用响应模型 { #disable-response-model }
 
@@ -250,14 +251,14 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 }
 ```
 
-/// info | 信息
+/// note | 注意
 
 你还可以使用：
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-详见 <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 文档</a>中对 `exclude_defaults` 和 `exclude_none` 的说明。
+详见 [Pydantic 文档](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value)中对 `exclude_defaults` 和 `exclude_none` 的说明。
 
 ///
 

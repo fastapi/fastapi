@@ -2,27 +2,27 @@
 
 Вы можете определять файлы и поля формы одновременно, используя `File` и `Form`.
 
-/// info | Информация
+/// note | Примечание
 
-Чтобы получать загруженные файлы и/или данные форм, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы получать загруженные файлы и/или данные форм, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет, например:
+Добавьте его в ваш проект:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## Импортируйте `File` и `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## Определите параметры `File` и `Form` { #define-file-and-form-parameters }
 
 Создайте параметры файла и формы таким же образом, как для `Body` или `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 Файлы и поля формы будут загружены в виде данных формы, и вы получите файлы и поля формы.
 
@@ -30,7 +30,7 @@ $ pip install python-multipart
 
 /// warning | Внимание
 
-Вы можете объявить несколько параметров `File` и `Form` в операции пути, но вы не можете также объявить поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с помощью `multipart/form-data` вместо `application/json`.
+Вы можете объявить несколько параметров `File` и `Form` в *операции пути*, но вы не можете также объявить поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с помощью `multipart/form-data` вместо `application/json`.
 
 Это не ограничение **FastAPI**, это часть протокола HTTP.
 

@@ -1,6 +1,6 @@
 # 历史、设计、未来 { #history-design-and-future }
 
-不久前，<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">曾有 **FastAPI** 用户问过</a>：
+不久前，[曾有 **FastAPI** 用户问过](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920)：
 
 > 这个项目有怎样的历史？好像它只用了几周就从默默无闻变得众所周知...
 
@@ -14,9 +14,10 @@
 
 **FastAPI** 其实只是延续了这些前辈的历史。
 
-正如[备选方案](alternatives.md){.internal-link target=_blank}一章所述：
+正如[备选方案](alternatives.md)一章所述：
 
 <blockquote markdown="1">
+
 没有大家之前所做的工作，**FastAPI** 就不会存在。
 
 以前创建的这些工具为它的出现提供了灵感。
@@ -24,6 +25,7 @@
 在那几年中，我一直回避创建新的框架。首先，我尝试使用各种框架、插件、工具解决 **FastAPI** 现在的功能。
 
 但到了一定程度之后，我别无选择，只能从之前的工具中汲取最优思路，并以尽量好的方式把这些思路整合在一起，使用之前甚至是不支持的语言特性（Python 3.6+ 的类型提示），从而创建一个能满足我所有需求的框架。
+
 </blockquote>
 
 ## 调研 { #investigation }
@@ -42,7 +44,7 @@
 
 同时，我还在最流行的 Python 代码编辑器中测试了很多思路，包括 PyCharm、VS Code、基于 Jedi 的编辑器。
 
-根据最新 <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python 开发者调研报告</a>显示，这几种编辑器覆盖了约 80% 的用户。
+根据最新 [Python 开发者调研报告](https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools)显示，这几种编辑器覆盖了约 80% 的用户。
 
 也就是说，**FastAPI** 针对差不多 80% 的 Python 开发者使用的编辑器进行了测试，而且其它大多数编辑器的工作方式也与之类似，因此，**FastAPI** 的优势几乎能在所有编辑器上体现。
 
@@ -52,11 +54,11 @@
 
 ## 需求项 { #requirements }
 
-经过测试多种备选方案，我最终决定使用  <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>，并充分利用它的优势。
+经过测试多种备选方案，我最终决定使用 [**Pydantic**](https://pydantic.dev/docs/)，并充分利用它的优势。
 
 我甚至为它做了不少贡献，让它完美兼容了 JSON Schema，支持多种方式定义约束声明，并基于多个编辑器，改进了它对编辑器支持（类型检查、自动补全）。
 
-在开发期间，我还为 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a> 做了不少贡献，这是另一个关键需求项。
+在开发期间，我还为 [**Starlette**](https://starlette.dev/) 做了不少贡献，这是另一个关键需求项。
 
 ## 开发 { #development }
 
@@ -74,4 +76,4 @@
 
 **FastAPI** 前景光明。
 
-在此，我们衷心感谢[您的帮助](help-fastapi.md){.internal-link target=_blank}。
+在此，我们衷心感谢[你的帮助](help-fastapi.md)。

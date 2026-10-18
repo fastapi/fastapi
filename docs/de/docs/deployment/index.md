@@ -4,7 +4,7 @@ Das Deployment einer **FastAPI**-Anwendung ist relativ einfach.
 
 ## Was bedeutet Deployment { #what-does-deployment-mean }
 
-<abbr title="Bereitstellen der Anwendung">**Deployment**</abbr> bedeutet, die notwendigen Schritte durchzuführen, um die Anwendung **für die Endbenutzer verfügbar** zu machen.
+<abbr title="Bereitstellen der Anwendung">**Deployment**</abbr> bedeutet, die notwendigen Schritte durchzuführen, um die Anwendung **für die Benutzer verfügbar** zu machen.
 
 Bei einer **Web-API** bedeutet das normalerweise, diese auf einem **entfernten Rechner** zu platzieren, mit einem **Serverprogramm**, welches gute Leistung, Stabilität, usw. bietet, damit Ihre **Benutzer** auf die Anwendung effizient und ohne Unterbrechungen oder Probleme **zugreifen** können.
 
@@ -16,7 +16,7 @@ Es gibt mehrere Möglichkeiten, dies zu tun, abhängig von Ihrem spezifischen An
 
 Sie könnten mithilfe einer Kombination von Tools selbst **einen Server deployen**, Sie könnten einen **Cloud-Dienst** nutzen, der einen Teil der Arbeit für Sie erledigt, oder andere mögliche Optionen.
 
-Zum Beispiel haben wir, das Team hinter FastAPI, <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a> entwickelt, um das Deployment von FastAPI-Apps in der Cloud so reibungslos wie möglich zu gestalten, mit derselben Developer-Experience wie beim Arbeiten mit FastAPI.
+Zum Beispiel haben wir, das Team hinter FastAPI, [**FastAPI Cloud**](https://fastapicloud.com) entwickelt, um das Deployment von FastAPI-Apps in der Cloud so reibungslos wie möglich zu gestalten, mit derselben Developer-Experience wie beim Arbeiten mit FastAPI.
 
 Ich zeige Ihnen einige der wichtigsten Konzepte, die Sie beim Deployment einer **FastAPI**-Anwendung wahrscheinlich berücksichtigen sollten (obwohl das meiste davon auch für jede andere Art von Webanwendung gilt).
 

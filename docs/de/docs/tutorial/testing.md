@@ -1,21 +1,21 @@
 # Testen { #testing }
 
-Dank <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
+Dank [Starlette](https://starlette.dev/testclient/) ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
 
-Es basiert auf <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, welches wiederum auf der Grundlage von Requests konzipiert wurde, es ist also sehr vertraut und intuitiv.
+Es basiert auf [HTTPX](https://www.python-httpx.org), welches wiederum auf der Grundlage von Requests konzipiert wurde, es ist also sehr vertraut und intuitiv.
 
-Damit können Sie <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> direkt mit **FastAPI** verwenden.
+Damit können Sie [pytest](https://docs.pytest.org/) direkt mit **FastAPI** verwenden.
 
 ## `TestClient` verwenden { #using-testclient }
 
-/// info | Info
+/// note | Hinweis
 
-Um `TestClient` zu verwenden, installieren Sie zunächst <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Um `TestClient` zu verwenden, installieren Sie zunächst [`httpx`](https://www.python-httpx.org).
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}, aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -24,19 +24,19 @@ Importieren Sie `TestClient`.
 
 Erstellen Sie einen `TestClient`, indem Sie ihm Ihre **FastAPI**-Anwendung übergeben.
 
-Erstellen Sie Funktionen mit einem Namen, der mit `test_` beginnt (das sind `pytest`-Konventionen).
+Erstellen Sie Funktionen mit einem Namen, der mit `test_` beginnt (das ist eine Standard-`pytest`-Konvention).
 
 Verwenden Sie das `TestClient`-Objekt auf die gleiche Weise wie `httpx`.
 
 Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken, die Sie überprüfen müssen (wiederum, Standard-`pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | Tipp
 
 Beachten Sie, dass die Testfunktionen normal `def` und nicht `async def` sind.
 
-Und die Anrufe an den Client sind ebenfalls normale Anrufe, die nicht `await` verwenden.
+Und die Aufrufe an den Client sind ebenfalls normale Aufrufe, die nicht `await` verwenden.
 
 Dadurch können Sie `pytest` ohne Komplikationen direkt nutzen.
 
@@ -52,7 +52,7 @@ Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
 /// tip | Tipp
 
-Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
+Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md) im Tutorial für fortgeschrittene Benutzer.
 
 ///
 
@@ -62,9 +62,9 @@ In einer echten Anwendung würden Sie Ihre Tests wahrscheinlich in einer anderen
 
 Und Ihre **FastAPI**-Anwendung könnte auch aus mehreren Dateien/Modulen, usw. bestehen.
 
-### **FastAPI** Anwendungsdatei { #fastapi-app-file }
+### **FastAPI**-Anwendungsdatei { #fastapi-app-file }
 
-Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigger-applications.md){.internal-link target=_blank} beschrieben:
+Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigger-applications.md) beschrieben:
 
 ```
 .
@@ -76,7 +76,7 @@ Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigge
 In der Datei `main.py` haben Sie Ihre **FastAPI**-Anwendung:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 
 ### Testdatei { #testing-file }
@@ -93,7 +93,7 @@ Dann könnten Sie eine Datei `test_main.py` mit Ihren Tests haben. Sie könnte s
 
 Da sich diese Datei im selben Package befindet, können Sie relative Importe verwenden, um das Objekt `app` aus dem `main`-Modul (`main.py`) zu importieren:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ... und haben den Code für die Tests wie zuvor.
@@ -131,7 +131,7 @@ Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisiere
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie nicht wissen, wie das geht, können Sie suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
+Immer wenn der Client Informationen im Request übergeben soll und Sie nicht wissen, wie, können Sie danach suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
 
 Dann machen Sie in Ihren Tests einfach das gleiche.
 
@@ -143,26 +143,26 @@ Z. B.:
 * Um *Header* zu übergeben, verwenden Sie ein `dict` im `headers`-Parameter.
 * Für *Cookies* ein `dict` im `cookies`-Parameter.
 
-Weitere Informationen zum Übergeben von Daten an das Backend (mithilfe von `httpx` oder dem `TestClient`) finden Sie in der <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX-Dokumentation</a>.
+Weitere Informationen zum Übergeben von Daten an das Backend (mithilfe von `httpx` oder dem `TestClient`) finden Sie in der [HTTPX-Dokumentation](https://www.python-httpx.org).
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, dass der `TestClient` Daten empfängt, die nach JSON konvertiert werden können, keine Pydantic-Modelle.
 
-Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des Testens an die Anwendung senden möchten, können Sie den `jsonable_encoder` verwenden, der in [JSON-kompatibler Encoder](encoder.md){.internal-link target=_blank} beschrieben wird.
+Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des Testens an die Anwendung senden möchten, können Sie den `jsonable_encoder` verwenden, der in [JSON-kompatibler Encoder](encoder.md) beschrieben wird.
 
 ///
 
-## Tests ausführen { #run-it }
+## Ausführen { #run-it }
 
 Danach müssen Sie nur noch `pytest` installieren.
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}, aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -176,7 +176,7 @@ Führen Sie die Tests aus, mit:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

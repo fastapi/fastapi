@@ -46,7 +46,7 @@ En estos casos, podría tener sentido almacenar las tags en un `Enum`.
 
 **FastAPI** soporta eso de la misma manera que con strings normales:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## Resumen y Descripción { #summary-and-description }
 
@@ -56,9 +56,9 @@ Puedes añadir un `summary` y `description`:
 
 ## Descripción desde docstring { #description-from-docstring }
 
-Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <abbr title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usada para documentación">docstring</abbr> de la función y **FastAPI** la leerá desde allí.
+Como las descripciones tienden a ser largas y cubrir múltiples líneas, puedes declarar la descripción de la *path operation* en la <dfn title="un string de múltiples líneas como la primera expresión dentro de una función (no asignada a ninguna variable) usado para documentación">docstring</dfn> de la función y **FastAPI** la leerá desde allí.
 
-Puedes escribir <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
+Puedes escribir [Markdown](https://en.wikipedia.org/wiki/Markdown) en el docstring, se interpretará y mostrará correctamente (teniendo en cuenta la indentación del docstring).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -72,13 +72,13 @@ Puedes especificar la descripción del response con el parámetro `response_desc
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que `response_description` se refiere específicamente al response, mientras que `description` se refiere a la *path operation* en general.
 
 ///
 
-/// check | Revisa
+/// tip | Consejo
 
 OpenAPI especifica que cada *path operation* requiere una descripción de response.
 
@@ -90,11 +90,11 @@ Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de 
 
 ## Deprecar una *path operation* { #deprecate-a-path-operation }
 
-Si necesitas marcar una *path operation* como <abbr title="obsoleta, se recomienda no usarla">deprecated</abbr>, pero sin eliminarla, pasa el parámetro `deprecated`:
+Si necesitas marcar una *path operation* como <dfn title="obsoleta, se recomienda no usarla">obsoleta</dfn>, pero sin eliminarla, pasa el parámetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
-Se marcará claramente como deprecado en la documentación interactiva:
+Se marcará claramente como deprecated en la documentación interactiva:
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 

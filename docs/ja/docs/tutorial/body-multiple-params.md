@@ -106,17 +106,11 @@
 q: str | None = None
 ```
 
-またはPython 3.10以上では:
-
-```Python
-q: Union[str, None] = None
-```
-
 例えば:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | 情報
+/// note | 備考
 
 `Body`もまた、後述する `Query` や `Path` などと同様に、すべての追加検証パラメータとメタデータパラメータを持っています。
 
@@ -131,7 +125,7 @@ Pydanticモデル`Item`の単一の`item`ボディパラメータしかないと
 しかし、追加のボディパラメータを宣言したときのように、キー `item` を持つ JSON と、その中のモデル内容を期待したい場合は、特別な `Body` パラメータ `embed` を使うことができます:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 以下において:

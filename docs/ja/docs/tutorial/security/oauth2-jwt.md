@@ -1,6 +1,6 @@
 # パスワード（およびハッシュ化）によるOAuth2、JWTトークンによるBearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-これでセキュリティの流れが全てわかったので、<abbr title="JSON Web Tokens">JWT</abbr>トークンと安全なパスワードのハッシュ化を使用して、実際にアプリケーションを安全にしてみましょう。
+これでセキュリティの流れが全てわかったので、<abbr title="JSON Web Tokens - JSON Webトークン">JWT</abbr>トークンと安全なパスワードのハッシュ化を使用して、実際にアプリケーションを安全にしてみましょう。
 
 このコードは、アプリケーションで実際に使用したり、パスワードハッシュをデータベースに保存するといった用途に利用できます。
 
@@ -24,29 +24,29 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 1週間後、トークンが期限切れとなるとどうなるでしょうか？ユーザーは認可されず、新しいトークンを得るために再びサインインしなければなりません。また、ユーザー（または第三者）がトークンを修正して有効期限を変更しようとした場合、署名が一致しないため、トークンの修正を検知できます。
 
-JWT トークンを使って遊んでみたいという方は、<a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> をチェックしてください。
+JWT トークンを使って遊んでみたいという方は、[https://jwt.io](https://jwt.io/) をチェックしてください。
 
 ## `PyJWT` のインストール { #install-pyjwt }
 
 PythonでJWTトークンの生成と検証を行うために、`PyJWT`をインストールする必要があります。
 
-[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
+プロジェクトに`pyjwt`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | 情報
+/// note | 備考
 
 RSAやECDSAのようなデジタル署名アルゴリズムを使用する予定がある場合は、cryptographyライブラリの依存関係`pyjwt[crypto]`をインストールしてください。
 
-詳細は<a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>で確認できます。
+詳細は[PyJWT インストールに関するドキュメント](https://pyjwt.readthedocs.io/en/latest/installation.html)で確認できます。
 
 ///
 
@@ -72,12 +72,12 @@ pwdlib は、パスワードのハッシュを処理するための優れたPyth
 
 推奨されるアルゴリズムは「Argon2」です。
 
-[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
+プロジェクトにArgon2付きで`pwdlib`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,11 @@ pwdlibはbcryptハッシュアルゴリズムもサポートしていますが�
 
 さらに、ユーザーを認証して返す関数も作成します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+`authenticate_user` がデータベースに存在しないユーザー名で呼び出された場合でも、ダミーのハッシュを使って `verify_password` を実行します。
+
+これにより、ユーザー名が有効かどうかに関わらずエンドポイントの応答時間がおおよそ同じになり、既存のユーザー名を列挙するために悪用されうる**タイミング攻撃**を防止できます。
 
 /// note | 備考
 
@@ -152,7 +156,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 新しいアクセストークンを生成するユーティリティ関数を作成します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 依存関係の更新 { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 トークンが無効な場合は、すぐにHTTPエラーを返します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## `/token` *path operation* の更新 { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 実際のJWTアクセストークンを作成し、それを返します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### JWTの「subject」`sub` についての技術的な詳細 { #technical-details-about-the-jwt-subject-sub }
 
@@ -196,7 +200,7 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 
 ## 確認 { #check-it }
 
-サーバーを実行し、ドキュメントに移動します：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+サーバーを実行し、ドキュメントに移動します：[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)。
 
 次のようなユーザーインターフェイスが表示されます：
 
@@ -209,9 +213,9 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-/// check | 確認
+/// tip | 豆知識
 
-コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+コードのどこにも平文のパスワード「`secret`」はなく、ハッシュ化されたものしかないことを確認してください。
 
 ///
 

@@ -6,7 +6,7 @@ Sie können den Debugger in Ihrem Editor verbinden, zum Beispiel mit Visual Stud
 
 Importieren und führen Sie `uvicorn` direkt in Ihrer FastAPI-Anwendung aus:
 
-{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
 
 ### Über `__name__ == "__main__"` { #about-name-main }
 
@@ -15,7 +15,7 @@ Der Hauptzweck von `__name__ == "__main__"` ist, dass Code ausgeführt wird, wen
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Wenn Sie sie mit folgendem Befehl ausführen:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -72,9 +72,9 @@ Daher wird die Zeile:
 
 nicht ausgeführt.
 
-/// info | Info
+/// note | Hinweis
 
-Für weitere Informationen besuchen Sie bitte <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">die offizielle Python-Dokumentation</a>.
+Für weitere Informationen besuchen Sie bitte [die offizielle Python-Dokumentation](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -88,7 +88,7 @@ Zum Beispiel können Sie in Visual Studio Code:
 
 * Zum „Debug“-Panel gehen.
 * „Konfiguration hinzufügen ...“ auswählen.
-* „Python“ auswählen.
+* „Python“ auswählen
 * Den Debugger mit der Option „`Python: Current File (Integrated Terminal)`“ ausführen.
 
 Der Server wird dann mit Ihrem **FastAPI**-Code gestartet, an Ihren Haltepunkten angehalten, usw.
@@ -99,7 +99,7 @@ So könnte es aussehen:
 
 ---
 
-Wenn Sie Pycharm verwenden, können Sie:
+Wenn Sie PyCharm verwenden, können Sie:
 
 * Das Menü „Run“ öffnen.
 * Die Option „Debug ...“ auswählen.

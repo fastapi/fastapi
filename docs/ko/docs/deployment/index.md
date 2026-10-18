@@ -16,7 +16,7 @@
 
 여러 도구를 조합해 직접 **서버를 배포**할 수도 있고, 작업의 일부를 대신해 주는 **클라우드 서비스**를 사용할 수도 있으며, 다른 가능한 선택지도 있습니다.
 
-예를 들어, FastAPI 뒤에 있는 저희 팀은 FastAPI로 작업하는 것과 같은 개발자 경험을 유지하면서, FastAPI 앱을 클라우드에 가능한 한 간소화된 방식으로 배포할 수 있도록 <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>를 만들었습니다.
+예를 들어, FastAPI 뒤에 있는 저희 팀은 FastAPI로 작업하는 것과 같은 개발자 경험을 유지하면서, FastAPI 앱을 클라우드에 가능한 한 간소화된 방식으로 배포할 수 있도록 [**FastAPI Cloud**](https://fastapicloud.com)를 만들었습니다.
 
 **FastAPI** 애플리케이션을 배포할 때 아마 염두에 두어야 할 몇 가지 주요 개념을 보여드리겠습니다(대부분은 다른 유형의 웹 애플리케이션에도 적용됩니다).
 

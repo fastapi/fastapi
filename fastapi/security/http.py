@@ -67,6 +67,8 @@ class HTTPAuthorizationCredentials(BaseModel):
 
 
 class HTTPBase(SecurityBase):
+    model: HTTPBaseModel
+
     def __init__(
         self,
         *,
@@ -75,9 +77,7 @@ class HTTPBase(SecurityBase):
         description: str | None = None,
         auto_error: bool = True,
     ):
-        self.model: HTTPBaseModel = HTTPBaseModel(
-            scheme=scheme, description=description
-        )
+        self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -321,7 +321,7 @@ class HTTPDigest(HTTPBase):
     HTTP Digest authentication.
 
     **Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,
-    but it doesn't implement the full Digest scheme, you would need to to subclass it
+    but it doesn't implement the full Digest scheme, you would need to subclass it
     and implement it in your code.
 
     Ref: https://datatracker.ietf.org/doc/html/rfc7616

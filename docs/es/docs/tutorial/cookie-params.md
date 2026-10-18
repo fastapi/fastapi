@@ -24,13 +24,13 @@ Pero recuerda que cuando importas `Query`, `Path`, `Cookie` y otros desde `fasta
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Para declarar cookies, necesitas usar `Cookie`, porque de lo contrario los parámetros serían interpretados como parámetros de query.
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Ten en cuenta que, como **los navegadores manejan las cookies** de formas especiales y por detrás, **no** permiten fácilmente que **JavaScript** las toque.
 

@@ -8,7 +8,7 @@ It will use the default status code or the one you set in your *path operation*.
 
 If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.
 
-For example, let's say that you want to have a *path operation* that allows to update items, and returns HTTP status codes of 200 "OK" when successful.
+For example, let's say that you want to have a *path operation* that allows updating items, and returns HTTP status codes of 200 "OK" when successful.
 
 But you also want it to accept new items. And when the items didn't exist before, it creates them, and returns an HTTP status code of 201 "Created".
 
@@ -38,4 +38,4 @@ You could also use `from starlette.responses import JSONResponse`.
 
 If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know beforehand what you are going to return.
 
-But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+But you can document that in your code, using: [Additional Responses](additional-responses.md).

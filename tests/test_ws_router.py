@@ -176,7 +176,7 @@ def test_router_with_params():
 
 def test_wrong_uri():
     """
-    Verify that a websocket connection to a non-existent endpoing returns in a shutdown
+    Verify that a websocket connection to a non-existent endpoint returns in a shutdown
     """
     client = TestClient(app)
     with pytest.raises(WebSocketDisconnect) as e:

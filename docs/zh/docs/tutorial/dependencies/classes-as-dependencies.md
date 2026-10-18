@@ -14,7 +14,7 @@
 
 对此，我们可以做的更好...
 
-## 什么构成了依赖项？ { #what-makes-a-dependency }
+## 什么构成了依赖项 { #what-makes-a-dependency }
 
 到目前为止，你看到的依赖项都被声明为函数。
 
@@ -101,7 +101,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 注意，我们在上面的代码中编写了两次`CommonQueryParams`：
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 
@@ -129,7 +129,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 ... Depends(CommonQueryParams)
 ```
 
-...实际上是 **Fastapi** 用来知道依赖项是什么的。
+...实际上是 **FastAPI** 用来知道依赖项是什么的。
 
 FastAPI 将从依赖项中提取声明的参数，这才是 FastAPI 实际调用的。
 
@@ -137,7 +137,7 @@ FastAPI 将从依赖项中提取声明的参数，这才是 FastAPI 实际调用
 
 在本例中，第一个 `CommonQueryParams` ：
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 你实际上可以只这样编写:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 但是你可以看到，我们在这里有一些代码重复了，编写了`CommonQueryParams`两次：
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 不是写成这样：
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...而是这样写:
 
-//// tab | Python 3.9+
+//// tab | Python 3.10+
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.9+ 未使用 Annotated
+//// tab | Python 3.10+ 未使用 Annotated
 
 /// tip | 提示
 

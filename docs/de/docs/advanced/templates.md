@@ -8,12 +8,12 @@ Es gibt Werkzeuge zur einfachen Konfiguration, die Sie direkt in Ihrer **FastAPI
 
 ## Abhängigkeiten installieren { #install-dependencies }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `jinja2` installieren:
+Fügen Sie `jinja2` Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +27,7 @@ $ pip install jinja2
 * Deklarieren Sie einen `<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
 * Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Hinweis
 
@@ -53,7 +53,7 @@ Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 
 ## Templates erstellen { #writing-templates }
 
-Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. folgendem Inhalt:
+Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B.:
 
 ```jinja hl_lines="7"
 {!../../docs_src/templates/templates/item.html!}
@@ -123,4 +123,4 @@ Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer *
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlettes Dokumentation zu Templates</a>.
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://starlette.dev/templates/).

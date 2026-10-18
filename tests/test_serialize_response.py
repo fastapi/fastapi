@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -9,8 +7,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    price: Optional[float] = None
-    owner_ids: Optional[list[int]] = None
+    price: float | None = None
+    owner_ids: list[int] | None = None
 
 
 @app.get("/items/valid", response_model=Item)

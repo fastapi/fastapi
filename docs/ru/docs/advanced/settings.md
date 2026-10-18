@@ -6,41 +6,45 @@
 
 По этой причине обычно их передают через переменные окружения, которые считываются приложением.
 
+**Переменная окружения** (также известная как **env var**) — это значение, которое существует вне Python-кода, в операционной системе, и может быть прочитано вашим приложением и другими программами.
+
+Вы можете создать переменную окружения для команды при её запуске. Ниже вы увидите команды, специфичные для разных платформ.
+
 /// tip | Совет
 
-Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md){.internal-link target=_blank}.
+Прочитайте [руководство по переменным окружения](https://tiangolo.com/guides/environment-variables/) для подробного объяснения того, как работают переменные окружения.
 
 ///
 
 ## Типы и валидация { #types-and-validation }
 
-Переменные окружения могут содержать только текстовые строки, так как они внешние по отношению к Python и должны быть совместимы с другими программами и остальной системой (и даже с разными операционными системами, такими как Linux, Windows, macOS).
+Эти переменные окружения могут содержать только текстовые строки, так как они внешние по отношению к Python и должны быть совместимы с другими программами и остальной системой (и даже с разными операционными системами, такими как Linux, Windows и macOS).
 
 Это означает, что любое значение, прочитанное в Python из переменной окружения, будет `str`, а любые преобразования к другим типам или любая валидация должны выполняться в коде.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: управление настройками</a>.
+К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — [Pydantic: управление настройками](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Установка `pydantic-settings` { #install-pydantic-settings }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет `pydantic-settings`:
+Добавьте пакет `pydantic-settings` в ваш проект:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Он также включен при установке набора `all` с:
+Он также включен при установке дополнительных зависимостей `all` с:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ $ pip install "fastapi[all]"
 
 Вы можете использовать все те же возможности валидации и инструменты, что и для Pydantic‑моделей, например разные типы данных и дополнительную валидацию через `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Совет
 
@@ -70,25 +74,45 @@ $ pip install "fastapi[all]"
 
 Затем вы можете использовать новый объект `settings` в вашем приложении:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Запуск сервера { #run-the-server }
 
 Далее вы можете запустить сервер, передав конфигурации через переменные окружения. Например, можно задать `ADMIN_EMAIL` и `APP_NAME` так:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Совет
 
-Чтобы задать несколько переменных окружения для одной команды, просто разделяйте их пробелами и укажите все перед командой.
+В Bash, чтобы задать несколько переменных окружения для одной команды, разделяйте их пробелами и укажите все перед командой.
 
 ///
 
@@ -100,19 +124,19 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## Настройки в другом модуле { #settings-in-another-module }
 
-Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 Например, у вас может быть файл `config.py` со следующим содержимым:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 А затем использовать его в файле `main.py`:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Совет
 
-Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md).
 
 ///
 
@@ -126,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Продолжая предыдущий пример, ваш файл `config.py` может выглядеть так:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Обратите внимание, что теперь мы не создаем экземпляр по умолчанию `settings = Settings()`.
 
@@ -134,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Теперь мы создаем зависимость, которая возвращает новый `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Совет
 
@@ -146,13 +170,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Затем мы можем запросить ее в *функции-обработчике пути* как зависимость и использовать там, где нужно.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Настройки и тестирование { #settings-and-testing }
 
 Далее будет очень просто предоставить другой объект настроек во время тестирования, создав переопределение зависимости для `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 В переопределении зависимости мы задаем новое значение `admin_email` при создании нового объекта `Settings`, а затем возвращаем этот новый объект.
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: поддержка Dotenv (.env)</a>.
+Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: [Pydantic Settings: поддержка Dotenv (.env)](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Совет
 
-Чтобы это работало, вам нужно `pip install python-dotenv`.
+Чтобы это работало, добавьте `python-dotenv` в ваш проект с помощью `uv add python-dotenv`.
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 Затем обновите ваш `config.py` так:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Совет
 
-Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -205,7 +229,7 @@ APP_NAME="ChimichangApp"
 
 ### Создание `Settings` только один раз с помощью `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
 
-Чтение файла с диска обычно затратная (медленная) операция, поэтому, вероятно, вы захотите сделать это один раз и затем переиспользовать один и тот же объект настроек, а не читать файл при каждом запросе.
+Чтение файла с диска обычно затратная (медленная) операция, поэтому, вероятно, вы захотите сделать это один раз и затем переиспользовать один и тот же объект настроек, а не читать файл при каждом HTTP-запросе.
 
 Но каждый раз, когда мы делаем:
 
@@ -222,13 +246,13 @@ def get_settings():
     return Settings()
 ```
 
-мы бы создавали этот объект для каждого запроса и читали файл `.env` на каждый запрос. ⚠️
+мы бы создавали этот объект для каждого HTTP-запроса и читали файл `.env` на каждый HTTP-запрос. ⚠️
 
 Но так как мы используем декоратор `@lru_cache` сверху, объект `Settings` будет создан только один раз — при первом вызове. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
-Затем при любых последующих вызовах `get_settings()` в зависимостях для следующих запросов, вместо выполнения внутреннего кода `get_settings()` и создания нового объекта `Settings`, будет возвращаться тот же объект, что был возвращен при первом вызове, снова и снова.
+Затем при любых последующих вызовах `get_settings()` в зависимостях для следующих HTTP-запросов, вместо выполнения внутреннего кода `get_settings()` и создания нового объекта `Settings`, будет возвращаться тот же объект, что был возвращен при первом вызове, снова и снова.
 
 #### Технические детали `lru_cache` { #lru-cache-technical-details }
 
@@ -291,7 +315,7 @@ participant execute as Execute function
 
 Таким образом, она ведет себя почти как глобальная переменная. Но так как используется функция‑зависимость, мы можем легко переопределить ее для тестирования.
 
-`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документации Python по `@lru_cache`</a>.
+`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в [документации Python по `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Итоги { #recap }
 
@@ -299,4 +323,4 @@ participant execute as Execute function
 
 * Используя зависимость, вы упрощаете тестирование.
 * Можно использовать файлы `.env`.
-* `@lru_cache` позволяет не читать файл dotenv снова и снова для каждого запроса, при этом давая возможность переопределять его во время тестирования.
+* `@lru_cache` позволяет не читать файл dotenv снова и снова для каждого HTTP-запроса, при этом давая возможность переопределять его во время тестирования.

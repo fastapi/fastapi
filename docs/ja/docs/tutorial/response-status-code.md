@@ -1,5 +1,6 @@
 # レスポンスステータスコード { #response-status-code }
 
+
 レスポンスモデルを指定するのと同じ方法で、レスポンスに使用されるHTTPステータスコードを以下の*path operations*のいずれかの`status_code`パラメータで宣言することもできます。
 
 * `@app.get()`
@@ -8,7 +9,7 @@
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 /// note | 備考
 
@@ -18,9 +19,9 @@
 
 `status_code`パラメータはHTTPステータスコードを含む数値を受け取ります。
 
-/// info | 情報
+/// note | 備考
 
-`status_code`は代わりに、Pythonの<a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>のように、`IntEnum`を受け取ることもできます。
+`status_code`は代わりに、Pythonの[`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)のように、`IntEnum`を受け取ることもできます。
 
 ///
 
@@ -66,7 +67,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 /// tip | 豆知識
 
-それぞれのステータスコードとどのコードが何のためのコードなのかについて詳細は<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>を参照してください。
+それぞれのステータスコードとどのコードが何のためのコードなのかについての詳細は、[<abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> のHTTPステータスコードに関するドキュメント](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)を参照してください。
 
 ///
 
@@ -74,7 +75,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 先ほどの例をもう一度見てみましょう:
 
-{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
 
 `201`は「作成完了」のためのステータスコードです。
 
@@ -82,7 +83,7 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 `fastapi.status`の便利な変数を利用することができます。
 
-{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
 それらは単なる便利なものであり、同じ番号を保持しています。しかし、その方法ではエディタの自動補完を使用してそれらを見つけることができます。
 
@@ -92,10 +93,10 @@ HTTPでは、レスポンスの一部として3桁の数字のステータスコ
 
 また、`from starlette import status`を使うこともできます。
 
-**FastAPI** は、`開発者の利便性を考慮して、fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+**FastAPI** は、開発者の利便性を考慮して、fastapi.statusと同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
 
 ///
 
 ## デフォルトの変更 { #changing-the-default }
 
-後に、[高度なユーザーガイド](../advanced/response-change-status-code.md){.internal-link target=_blank}で、ここで宣言しているデフォルトとは異なるステータスコードを返す方法を見ていきます。
+後に、[高度なユーザーガイド](../advanced/response-change-status-code.md)で、ここで宣言しているデフォルトとは異なるステータスコードを返す方法を見ていきます。

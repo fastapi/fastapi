@@ -4,7 +4,7 @@
 
 Some text
 
-{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Some more text
 
@@ -12,4 +12,4 @@ Some more text
 
 And even more text
 
-{* ../../docs_src/python_types/tutorial001_py39.py *}
+{* ../../docs_src/python_types/tutorial001_py310.py *}

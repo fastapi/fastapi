@@ -1,6 +1,6 @@
 # Dependencias { #dependencies }
 
-**FastAPI** tiene un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso pero intuitivo.
+**FastAPI** tiene un sistema de **<dfn title="también conocido como: componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</dfn>** muy poderoso pero intuitivo.
 
 Está diseñado para ser muy simple de usar, y para hacer que cualquier desarrollador integre otros componentes con **FastAPI** de forma muy sencilla.
 
@@ -51,13 +51,13 @@ En este caso, esta dependencia espera:
 
 Y luego solo devuelve un `dict` que contiene esos valores.
 
-/// info | Información
+/// note | Nota
 
 FastAPI agregó soporte para `Annotated` (y comenzó a recomendarlo) en la versión 0.95.0.
 
 Si tienes una versión anterior, obtendrás errores al intentar usar `Annotated`.
 
-Asegúrate de [Actualizar la versión de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} al menos a la 0.95.1 antes de usar `Annotated`.
+Asegúrate de [Actualizar la versión de FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions) al menos a la 0.95.1 antes de usar `Annotated`.
 
 ///
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 De esta manera escribes código compartido una vez y **FastAPI** se encarga de llamarlo para tus *path operations*.
 
-/// check | Revisa
+/// tip | Consejo
 
 Nota que no tienes que crear una clase especial y pasarla en algún lugar a **FastAPI** para "registrarla" o algo similar.
 
@@ -152,7 +152,7 @@ No importa. **FastAPI** sabrá qué hacer.
 
 /// note | Nota
 
-Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a-hurry){.internal-link target=_blank} sobre `async` y `await` en la documentación.
+Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a-hurry) sobre `async` y `await` en la documentación.
 
 ///
 

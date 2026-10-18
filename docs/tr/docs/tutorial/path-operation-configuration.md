@@ -1,5 +1,6 @@
 # Path Operation Yapılandırması { #path-operation-configuration }
 
+
 Onu yapılandırmak için *path operation decorator*’ınıza geçebileceğiniz çeşitli parametreler vardır.
 
 /// warning | Uyarı
@@ -46,7 +47,7 @@ Bu durumlarda tag’leri bir `Enum` içinde tutmak mantıklı olabilir.
 
 **FastAPI** bunu düz string’lerde olduğu gibi aynı şekilde destekler:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
 
 ## Özet ve açıklama { #summary-and-description }
 
@@ -54,11 +55,11 @@ Bir `summary` ve `description` ekleyebilirsiniz:
 
 {* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
-## Docstring’den Description { #description-from-docstring }
+## Docstring’den Açıklama { #description-from-docstring }
 
-Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *path operation* açıklamasını, fonksiyonun içinde <abbr title="dokümantasyon için, fonksiyon içinde ilk ifade olarak yazılan (herhangi bir değişkene atanmayan) çok satırlı string">docstring</abbr> olarak tanımlayabilirsiniz; **FastAPI** de onu buradan okur.
+Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *path operation* açıklamasını, fonksiyonun içinde <dfn title="dokümantasyon için kullanılan, fonksiyon içinde ilk ifade olarak yer alan (herhangi bir değişkene atanmayan) çok satırlı string">docstring</dfn> olarak tanımlayabilirsiniz; **FastAPI** de onu buradan okur.
 
-Docstring içinde <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
+Docstring içinde [Markdown](https://en.wikipedia.org/wiki/Markdown) yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -66,19 +67,19 @@ Interactive docs’ta şöyle kullanılacaktır:
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
-## Response description { #response-description }
+## Response Açıklaması { #response-description }
 
 `response_description` parametresi ile response açıklamasını belirtebilirsiniz:
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | Bilgi
+/// note | Not
 
 `response_description` özellikle response’u ifade eder; `description` ise genel olarak *path operation*’ı ifade eder.
 
 ///
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 OpenAPI, her *path operation* için bir response description zorunlu kılar.
 
@@ -90,9 +91,9 @@ Bu yüzden siz sağlamazsanız, **FastAPI** otomatik olarak "Successful response
 
 ## Bir *path operation*’ı Deprecate Etmek { #deprecate-a-path-operation }
 
-Bir *path operation*’ı kaldırmadan, <abbr title="kullanım dışı, kullanılması önerilmez">deprecated</abbr> olarak işaretlemeniz gerekiyorsa `deprecated` parametresini verin:
+Bir *path operation*’ı kaldırmadan, <dfn title="eskimiş, kullanılması önerilmez">deprecated</dfn> olarak işaretlemeniz gerekiyorsa `deprecated` parametresini verin:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
 
 Interactive docs’ta deprecated olduğu net şekilde işaretlenecektir:
 

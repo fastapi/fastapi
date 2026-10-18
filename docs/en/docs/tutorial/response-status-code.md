@@ -18,9 +18,9 @@ Notice that `status_code` is a parameter of the "decorator" method (`get`, `post
 
 The `status_code` parameter receives a number with the HTTP status code.
 
-/// info
+/// note
 
-`status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+`status_code` can alternatively also receive an `IntEnum`, such as Python's [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus).
 
 ///
 
@@ -49,7 +49,7 @@ If you already know what HTTP status codes are, skip to the next section.
 
 In HTTP, you send a numeric status code of 3 digits as part of the response.
 
-These status codes have a name associated to recognize them, but the important part is the number.
+These status codes have an associated name to help recognize them, but the important part is the number.
 
 In short:
 
@@ -66,7 +66,7 @@ In short:
 
 /// tip
 
-To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+To know more about each status code and which code is for what, check the [<abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -98,4 +98,4 @@ You could also use `from starlette import status`.
 
 ## Changing the default { #changing-the-default }
 
-Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.
+Later, in the [Advanced User Guide](../advanced/response-change-status-code.md), you will see how to return a different status code than the default you are declaring here.

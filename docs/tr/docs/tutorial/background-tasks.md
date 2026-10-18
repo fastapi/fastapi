@@ -15,7 +15,7 @@ Bu, request’ten sonra yapılması gereken; ancak client’ın response’u alm
 
 Önce `BackgroundTasks`’i import edin ve *path operation function*’ınızda `BackgroundTasks` tip bildirimi olan bir parametre tanımlayın:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
 **FastAPI**, sizin için `BackgroundTasks` tipinde bir obje oluşturur ve onu ilgili parametre olarak geçirir.
 
@@ -31,13 +31,13 @@ Bu örnekte görev fonksiyonu bir dosyaya yazacaktır (email göndermeyi simüle
 
 Ve yazma işlemi `async` ve `await` kullanmadığı için fonksiyonu normal `def` ile tanımlarız:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
 ## Arka Plan Görevini Ekleyin { #add-the-background-task }
 
 *Path operation function*’ınızın içinde, görev fonksiyonunuzu `.add_task()` metodu ile *background tasks* objesine ekleyin:
 
-{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` şu argümanları alır:
 
@@ -51,7 +51,9 @@ Ve yazma işlemi `async` ve `await` kullanmadığı için fonksiyonu normal `def
 
 **FastAPI** her durumda ne yapılacağını ve aynı objenin nasıl yeniden kullanılacağını bilir; böylece tüm arka plan görevleri birleştirilir ve sonrasında arka planda çalıştırılır:
 
+
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+
 
 Bu örnekte, response gönderildikten *sonra* mesajlar `log.txt` dosyasına yazılacaktır.
 
@@ -61,7 +63,7 @@ Ardından *path operation function* içinde oluşturulan başka bir arka plan g�
 
 ## Teknik Detaylar { #technical-details }
 
-`BackgroundTasks` sınıfı doğrudan <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>’dan gelir.
+`BackgroundTasks` sınıfı doğrudan [`starlette.background`](https://starlette.dev/background/)’dan gelir.
 
 `fastapi` üzerinden import edebilmeniz ve yanlışlıkla `starlette.background` içindeki alternatif `BackgroundTask`’i (sonunda `s` olmadan) import etmemeniz için FastAPI’nin içine doğrudan import/eklenmiştir.
 
@@ -69,11 +71,11 @@ Sadece `BackgroundTasks` (ve `BackgroundTask` değil) kullanarak, bunu bir *path
 
 FastAPI’de `BackgroundTask`’i tek başına kullanmak hâlâ mümkündür; ancak bu durumda objeyi kendi kodunuzda oluşturmanız ve onu içeren bir Starlette `Response` döndürmeniz gerekir.
 
-Daha fazla detayı <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette’in Background Tasks için resmi dokümantasyonunda</a> görebilirsiniz.
+Daha fazla detayı [Starlette’in Background Tasks için resmi dokümantasyonunda](https://starlette.dev/background/) görebilirsiniz.
 
 ## Dikkat Edilmesi Gerekenler { #caveat }
 
-Yoğun arka plan hesaplamaları yapmanız gerekiyorsa ve bunun aynı process tarafından çalıştırılmasına şart yoksa (örneğin memory, değişkenler vb. paylaşmanız gerekmiyorsa), <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a> gibi daha büyük araçları kullanmak size fayda sağlayabilir.
+Yoğun arka plan hesaplamaları yapmanız gerekiyorsa ve bunun aynı process tarafından çalıştırılmasına şart yoksa (örneğin memory, değişkenler vb. paylaşmanız gerekmiyorsa), [Celery](https://docs.celeryq.dev) gibi daha büyük araçları kullanmak size fayda sağlayabilir.
 
 Bunlar genellikle daha karmaşık konfigurasyonlar ve RabbitMQ veya Redis gibi bir mesaj/iş kuyruğu yöneticisi gerektirir; ancak arka plan görevlerini birden fazla process’te ve özellikle birden fazla server’da çalıştırmanıza olanak tanırlar.
 

@@ -6,7 +6,7 @@ FastAPI uygulamanızı yayınlamak için neredeyse **herhangi bir bulut sağlay�
 
 ## FastAPI Cloud { #fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>**, **FastAPI**'nin arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
+**[FastAPI Cloud](https://fastapicloud.com)**, **FastAPI**'nin arkasındaki aynı yazar ve ekip tarafından geliştirilmiştir.
 
 Bir API'yi minimum çabayla **oluşturma**, **yayınlama** ve **erişme** sürecini kolaylaştırır.
 
@@ -16,9 +16,8 @@ FastAPI Cloud, *FastAPI and friends* açık kaynak projelerinin birincil sponsor
 
 ## Bulut Sağlayıcılar - Sponsorlar { #cloud-providers-sponsors }
 
-Diğer bazı bulut sağlayıcılar da ✨ [**FastAPI'ye sponsor olur**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨. 🙇
+Diğer bazı bulut sağlayıcılar da ✨ [**FastAPI'ye sponsor olur**](https://github.com/sponsors/tiangolo) ✨. 🙇
 
 Kılavuzlarını takip etmek ve servislerini denemek için onları da değerlendirmek isteyebilirsiniz:
 
-* <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
-* <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>
+* [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

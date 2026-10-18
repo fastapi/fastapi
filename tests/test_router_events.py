@@ -1,6 +1,5 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import Union
 
 import pytest
 from fastapi import APIRouter, FastAPI, Request
@@ -32,31 +31,31 @@ def test_router_events(state: State) -> None:
     def main() -> dict[str, str]:
         return {"message": "Hello World"}
 
-    @app.on_event("startup")
+    @app.on_event("startup")  # ty: ignore[deprecated]
     def app_startup() -> None:
         state.app_startup = True
 
-    @app.on_event("shutdown")
+    @app.on_event("shutdown")  # ty: ignore[deprecated]
     def app_shutdown() -> None:
         state.app_shutdown = True
 
     router = APIRouter()
 
-    @router.on_event("startup")
+    @router.on_event("startup")  # ty: ignore[deprecated]
     def router_startup() -> None:
         state.router_startup = True
 
-    @router.on_event("shutdown")
+    @router.on_event("shutdown")  # ty: ignore[deprecated]
     def router_shutdown() -> None:
         state.router_shutdown = True
 
     sub_router = APIRouter()
 
-    @sub_router.on_event("startup")
+    @sub_router.on_event("startup")  # ty: ignore[deprecated]
     def sub_router_startup() -> None:
         state.sub_router_startup = True
 
-    @sub_router.on_event("shutdown")
+    @sub_router.on_event("shutdown")  # ty: ignore[deprecated]
     def sub_router_shutdown() -> None:
         state.sub_router_shutdown = True
 
@@ -176,7 +175,7 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
     @asynccontextmanager
     async def lifespan(
         app: FastAPI,
-    ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
+    ) -> AsyncGenerator[dict[str, str | bool], None]:
         yield {
             "app_specific": True,
             "overridden": "app",
@@ -185,7 +184,7 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
     @asynccontextmanager
     async def router_lifespan(
         app: FastAPI,
-    ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
+    ) -> AsyncGenerator[dict[str, str | bool], None]:
         yield {
             "router_specific": True,
             "overridden": "router",  # should override parent
@@ -254,7 +253,7 @@ def test_router_async_shutdown_handler(state: State) -> None:
     def main() -> dict[str, str]:
         return {"message": "Hello World"}
 
-    @app.on_event("shutdown")
+    @app.on_event("shutdown")  # ty: ignore[deprecated]
     async def app_shutdown() -> None:
         state.app_shutdown = True
 
@@ -275,7 +274,7 @@ def test_router_sync_generator_lifespan(state: State) -> None:
         yield
         state.app_shutdown = True
 
-    app = FastAPI(lifespan=lifespan)  # type: ignore[arg-type]
+    app = FastAPI(lifespan=lifespan)  # type: ignore[invalid-argument-type]  # ty: ignore[invalid-argument-type]
 
     @app.get("/")
     def main() -> dict[str, str]:
@@ -301,7 +300,7 @@ def test_router_async_generator_lifespan(state: State) -> None:
         yield
         state.app_shutdown = True
 
-    app = FastAPI(lifespan=lifespan)  # type: ignore[arg-type]
+    app = FastAPI(lifespan=lifespan)  # type: ignore[invalid-argument-type]  # ty: ignore[invalid-argument-type]
 
     @app.get("/")
     def main() -> dict[str, str]:
