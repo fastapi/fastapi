@@ -21,7 +21,7 @@ class APIKeyBase(SecurityBase):
     ):
         self.auto_error = auto_error
 
-        self.model: APIKey = APIKey(
+        self.model = APIKey(
             **{"in": location},
             name=name,
             description=description,
