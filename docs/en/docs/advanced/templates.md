@@ -99,11 +99,41 @@ So, the section with:
 
 ...will generate a link to the same URL that would be handled by the *path operation function* `read_item(id=id)`.
 
-For example, with an ID of `42`, this would render:
+`url_for()` returns an absolute URL, including the scheme and host, based on the current request.
+
+For example, if your application is served at `https://example.com`, with an ID of `42`, this would render:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### URL paths in templates { #url-paths-in-templates }
+
+For links to the same site, you can use the `.path` attribute to get only the URL path:
+
+{% raw %}
+
+```jinja
+<a href="{{ url_for('read_item', id=id).path }}">
+```
+
+{% endraw %}
+
+With the same example, this would render:
 
 ```html
 <a href="/items/42">
 ```
+
+The leading `/` makes this path relative to the root of the current site.
+
+The `.path` attribute excludes the scheme, host, query parameters, and fragment. Use the full URL for links to another host.
+
+/// tip
+
+If your application is behind a proxy, configure forwarded headers and `root_path` as described in [Behind a Proxy](behind-a-proxy.md).
+
+///
 
 ## Templates and static files { #templates-and-static-files }
 
