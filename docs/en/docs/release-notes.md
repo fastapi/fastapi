@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add WebSocket support to security dependencies. PR [#10147](https://github.com/fastapi/fastapi/pull/10147) by [@mnixry](https://github.com/mnixry).
+
 ## 0.143.5 (2026-10-18)
 
 ### Fixes
